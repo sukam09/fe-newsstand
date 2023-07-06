@@ -85,9 +85,6 @@ button {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-
-  width: 136px;
-  height: 29px;
-
-  font-size: 10px;
+  font-weight: 700;
+  font-size: 24px;
 }
