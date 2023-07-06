@@ -319,3 +319,75 @@ h1 {
 .now-count {
   color: #fff !important;
 }
+
+.rollingbanner {
+  position: relative;
+  width: 461px;
+  height: 17px;
+  padding: 16px;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-alt, #f5f7f9);
+}
+/* 타이틀 */
+.rollingbanner > .title {
+  font-weight: bold;
+  float: left;
+  padding-right: 10px;
+}
+/* 롤링 배너 */
+.rollingbanner > .wrap {
+  position: relative;
+  width: auto;
+  height: 17px;
+  box-sizing: border-box;
+  overflow: hidden;
+  gap: 16px;
+}
+.rolling ul {
+  list-style: none;
+}
+.rollingbanner li {
+  position: absolute;
+  top: -17px;
+  left: 0;
+  z-index: 10;
+}
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.rollingbanner li.prev {
+  top: 17px;
+  transition: top 0.5s linear;
+}
+.rollingbanner li.current {
+  top: 0;
+  transition: top 0.5s linear;
+}
+.rollingbanner li.next {
+  top: -17px;
+}
+.rollingbanner a {
+  display: block;
+  display: -webkit-box;
+  text-decoration: none;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #000;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
+.rollingbanner.reverse li.prev {
+  top: -17px;
+  transition: top 0.5s linear;
+}
+.rollingbanner.reverse li.next {
+  top: 17px;
+}
+.rollingbanner > ul > li {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
