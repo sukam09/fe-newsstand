@@ -45,13 +45,17 @@ body {
   margin-top: 33px;
 }
 
-.press-wrapper > header > nav {
+.main-nav-left {
   align-items: center;
+  gap: 24px;
+}
+
+.main-nav-right {
+  gap: 8px;
 }
 
 .header-wrapper,
 .press-wrapper > header,
-.press-wrapper > header > nav,
 .press-wrapper > header > ul {
   display: flex;
   justify-content: space-between;
