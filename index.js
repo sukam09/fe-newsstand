@@ -1,8 +1,11 @@
-const all_images = [
+const save_image=[
     "데일리안.png","문화일보.png","법률 방송 뉴스.png","서울경제.png", "세계일보.png","스브스비즈.png","스포츠동아.png","스포츠서울.png","시사저널e.png","아시아경제.png","아이뉴스24.png","에너지경제.png","이데일리.png","조선일보.png","조이뉴스.png","파이낸셜뉴스.png","헤럴드경제.png","BUISNESSPOST.png","CEO스코어데일리.png","Insight.png","KBS WORLD.png","KBS한국농어촌방송.png","KNN.png","Korea JoongAng Daily.png","90.png"
 ];
 
-const subscribe_images=[
+let all_images = [
+];
+
+let subscribe_images=[
 
 ];
 
@@ -27,14 +30,23 @@ let max_page = 3;
 
 function refresh(images){
     //if (currentStatus.all == 1)
+    all_images = save_image;
     shuffle(images);
-    for(let maxCardCnt = 24*page; maxCardCnt < 24*page+24; maxCardCnt++){
-        console.log(maxCardCnt);
-        const outer_div = document.createElement("div");
-        const news_logo = document.createElement("img");
-        news_logo.src = `신문사이름/${all_images[maxCardCnt]}`;
-        document.getElementById("main-grid").appendChild(outer_div);
-        document.getElementById("main-grid").children[maxCardCnt].appendChild(news_logo);
+    if(page === 0){
+        for(let maxCardCnt = 24*page; maxCardCnt < 24*page+24; maxCardCnt++){
+            console.log(maxCardCnt);
+            const outer_div = document.createElement("div");
+            const news_logo = document.createElement("img");
+            news_logo.src = `신문사이름/${all_images[maxCardCnt]}`;
+            document.getElementById("main-grid").appendChild(outer_div);
+            document.getElementById("main-grid").children[maxCardCnt].appendChild(news_logo);
+        }
+    }
+    else{
+        for(let maxCardCnt = page; maxCardCnt < page+24; maxCardCnt++){
+            document.getElementById("main-grid").children[maxCardCnt].children[0].src = `신문사이름/${all_images[maxCardCnt]}`;;
+            console.log(document.getElementById("main-grid").children[maxCardCnt].children[0].src);    
+        }
     }
     // else
     // my == 0
