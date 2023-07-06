@@ -32,13 +32,7 @@ body {
 }
 
 .today {
-  color: var(--text-text-default);
-  /* font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px;
-  float: right; */
+  color: var(--text-default);
 }
 
 section {
@@ -56,31 +50,19 @@ section {
   align-items: flex-start;
   gap: 16px;
   flex: 1 0 0;
-  border: 1px solid var(--border-border-default, #d2dae0);
-  background: var(--surface-surface-alt, #f5f7f9);
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-alt);
 }
 
 .press {
-  color: var(--text-text-strong, #14212b);
-  /* display-bold14 */
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  color: var(--text-strong);
 }
 
 .news-title {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-  color: var(--text-text-default, #5f6e76);
-  /* available-medium14 */
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  color: var(--text-default);
 }
 
 .tab-and-viewer {
@@ -96,9 +78,8 @@ section {
 }
 .tab-and-viewer .tabs .all-press-btn,
 .tab-and-viewer .tabs .sub-press-btn {
-  color: var(--text-text-strong, #14212b);
+  color: var(--text-strong);
   cursor: pointer;
-  /* selected-bold16 */
 }
 .tab-and-viewer .viewer {
   display: flex;
@@ -139,8 +120,8 @@ section {
   align-items: flex-start;
   gap: 1px;
   flex-shrink: 0;
-  border: 1px solid var(--border-border-default, #d2dae0);
-  background: var(--border-border-default, #d2dae0);
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--border-default);
 }
 .grid .grid-row {
   display: flex;
@@ -156,7 +137,7 @@ section {
   align-items: center;
   flex: 1 0 0;
   align-self: stretch;
-  background: var(--surface-surface-default, #fff);
+  background: var(--surface-default);
 }
 
 .left-btn,
