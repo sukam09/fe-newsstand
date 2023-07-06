@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "path": "./icons/basic/news_logo1.svg"
+  },
+  {
+    "id": "2",
+    "path": "./icons/basic/news_logo2.svg"
+  },
+  {
+    "id": "3",
+    "path": "./icons/basic/news_logo3.svg"
+  },
+  {
+    "id": "4",
+    "path": "./icons/basic/news_logo4.svg"
+  },
+  {
+    "id": "5",
+    "path": "./icons/basic/news_logo5.svg"
+  },
+  {
+    "id": "6",
+    "path": "./icons/basic/news_logo6.svg"
+  }
+]
