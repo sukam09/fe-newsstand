@@ -45,7 +45,8 @@ root {
 
   /* Object Styles */
   --border-default: 1px;
-  --popup-shadow-blur2: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  --popup-shadow-blur2: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 
 /* reset css */
@@ -255,9 +256,17 @@ table {
 
 /* commot css */
 body {
-  width: 930px;
+  width: 1280px;
+  height: 720px;
   margin: 65px auto;
   font-family: "Pretendard";
+  position: relative;
+}
+
+.container {
+  width: 930px;
+  margin: 0 auto;
+  padding: 58px 0 76px 0;
 }
 
 .main-header {
@@ -410,4 +419,12 @@ section {
   background-color: transparent;
   border: 0;
   cursor: pointer;
+  position: absolute;
+  top: 430px;
+}
+.left-btn {
+  left: 103px;
+}
+.right-btn {
+  right: 103px;
 }
