@@ -62,6 +62,10 @@ img.title_logo {
 .summary_container > span {
   color: #5f6e76;
 }
+.summary_container > span:hover {
+  text-decoration-line: underline;
+  cursor: pointer;
+}
 
 .main_header {
   justify-content: space-between;
