@@ -13,6 +13,11 @@ button {
   background-color: transparent;
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #root {
   display: flex;
   flex-direction: column;
@@ -93,5 +98,51 @@ button {
 }
 
 .view-type-icon {
+  display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.news-list {
+  width: 930px;
+  height: 388px;
+
+  position: relative;
+
+  border: 1px solid #d2dae0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.news-list > li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid #d2dae0;
+  cursor: pointer;
+}
+
+.grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.left-button,
+.right-button {
+  border: none;
+  width: 24px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

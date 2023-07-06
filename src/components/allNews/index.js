@@ -1,4 +1,5 @@
 import Icon from '../common/Icon.js';
+import AllNewsGrid from './AllNewsGrid.js';
 import AllNewsList from './AllnewsList.js';
 import ArrowButton from './ArrowButton.js';
 
@@ -12,7 +13,7 @@ export default class AllNews {
 
   init() {
     this.$wrapper.appendChild(this.createAllNewHeader());
-    this.$wrapper.appendChild(this.createAllNewsLists());
+    this.$wrapper.appendChild(new AllNewsGrid());
   }
 
   createAllNewHeader() {
@@ -42,24 +43,5 @@ export default class AllNews {
     $header.appendChild($iconNavigation);
 
     return $header;
-  }
-
-  createAllNewsLists() {
-    const $newsListWrapper = document.createElement('div');
-    const $newsLists = document.createElement('ul');
-    const $leftButton = new ArrowButton({ name: 'LeftButton' });
-    const $rightButton = new ArrowButton({ name: 'RightButton' });
-    $newsLists.className = 'news-list';
-
-    console.log($leftButton);
-    $newsListWrapper.appendChild($leftButton);
-
-    for (let i = 0; i < 24; i++) {
-      $newsLists.appendChild(new AllNewsList('데일리안'));
-    }
-    $newsListWrapper.appendChild($newsLists);
-    $newsListWrapper.appendChild($rightButton);
-
-    return $newsListWrapper;
   }
 }
