@@ -74,3 +74,20 @@ ul {
   padding-left: 0;
   text-align: center;
 }
+
+button {
+  background-color: transparent;
+}
+
+.news-stand-logo {
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  width: 136px;
+  height: 29px;
+
+  font-size: 10px;
+}
