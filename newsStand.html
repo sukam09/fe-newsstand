@@ -46,6 +46,10 @@
             height: 49px;
             border: solid 1px #d2dae0;
         }
+
+        .yonhapnews-container div span {
+            color: #5f6e76;
+        }
         
         .yonhapnews-container div + div {
             margin-left: 8px;
@@ -53,6 +57,26 @@
 
         .yonhapnews-container div h4 {
             padding: 10px 15px ;
+        }
+
+        .section-press-container {
+            display: flex;
+            padding: 32px 0px;
+            font-size: 16px;
+        }
+
+        .section-press-container div:nth-child(1) {
+            font-weight: bold;
+        }
+
+        .section-press-container div:nth-last-of-type(1) {
+            color: #879298;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .section-press-container img:nth-last-of-type(1) {
+            margin-left: 8px;
         }
 
     </style>
@@ -77,8 +101,8 @@
         </div>
     </div>
 
-    <section>
-        <div>
+    <section class="section-container">
+        <div class="section-press-container">
             <div>전체 언론사</div>
             <div>내가 구독한 언론사</div>
             <img src="./icons/list-view.png" alt="언론사 리스트">
