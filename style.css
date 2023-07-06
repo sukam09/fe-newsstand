@@ -84,7 +84,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 article,
@@ -122,10 +121,36 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+* {
+  box-sizing: border-box;
+}
 
 /* foundations */
 
 /* typography */
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Pretendard Bold"),
+    url("./assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+    url("./assets/fonts/Pretendard-Bold.subset.woff") format("woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Pretendard Medium"),
+    url("./assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
+    url("./assets/fonts/Pretendard-Medium.subset.woff") format("woff");
+}
+* {
+  font-family: Pretendard;
+}
+
 .display-bold24 {
   font-size: 24px;
   font-weight: 700;
