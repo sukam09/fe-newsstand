@@ -14,4 +14,4 @@ const getDate = () => {
   $date.textContent = dateString;
 };
 
-getDate();
+export default getDate;
