@@ -17,3 +17,5 @@
 2. 필요한 asset 다운받기
 
 ## 📌 image
+
+<img width="100%" alt="스크린샷 2023-07-06 오후 5 55 46" src="https://github.com/bae-sh/fe-newsstand/assets/37887690/4418874b-6403-4cd5-95ed-33343edeb69c">
