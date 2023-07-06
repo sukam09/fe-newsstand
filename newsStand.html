@@ -6,15 +6,17 @@
     <title>Document</title>
     <style>
         body {
-            width: 930px;
-            margin: 50px auto 0px auto;
+            margin: 150px 0 0 0;
         }
 
         .header-container {
+            width: 930px;
+            margin: 50px auto 0px auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
+            padding: 18px 70px;
+
         }
 
         .header-title-container {
@@ -35,6 +37,9 @@
 
         .yonhapnews-container {
             display: flex;
+            width: 930px;
+            margin: 0 auto;
+            padding: 0 70px;
         
         }
 
@@ -61,8 +66,10 @@
 
         .section-press-container {
             display: flex;
-            padding: 32px 0px;
             font-size: 16px;
+            width: 930px;
+            margin: 0 auto;
+            padding: 32px 70px;
         }
 
         .section-press-container div:nth-child(1) {
@@ -79,6 +86,38 @@
             margin-left: 8px;
         }
 
+
+        .section-press-content-container {
+            display: flex;
+            align-items: center;
+            width: 1070px;
+            margin: 0 auto;
+            
+        }
+
+        .section-container ul{
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            padding: 0;
+            border-top: 1px solid #d2dae0;
+            border-left: 1px solid #d2dae0;
+            height: 388px;
+            width: 930px;
+            margin: 0 auto;
+        }
+        
+        .section-container ul li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #d2dae0;
+            border-right: 1px solid #d2dae0;     
+        }
+
+
+        
+        
     </style>
 </head>
 <body>
@@ -109,35 +148,38 @@
             <img src="./icons/Symbol.png" alt="언론사 그리드">
         </div>
 
-        <img src="./icons/LeftButton.png" alt="이전 페이지">
-        <ul>    
-            <li><img src="./icons/asset 0 1.png" alt="서울경제"></li>
-            <li><img src="./icons/asset 1 1.png" alt="데일리안"></li>
-            <li><img src="./icons/asset 2 1.png" alt="헤럴드경제"></li>
-            <li><img src="./icons/asset 3 1.png" alt="SBS Biz"></li>
-            <li><img src="./icons/asset 4 1.png" alt="세계일보"></li>
-            <li><img src="./icons/asset 5 1.png" alt="아시아경제"></li>
-            <li><img src="./icons/asset 6 1.png" alt="이데일리"></li>
-            <li><img src="./icons/asset 7 1.png" alt="조선일보"></li>
-            <li><img src="./icons/asset 8 1.png" alt="아이뉴스24"></li>
-            <li><img src="./icons/asset 9 1.png" alt="파이낸셜뉴스"></li>
-            <li><img src="./icons/asset 10 1.png" alt="스포츠서울"></li>
-            <li><img src="./icons/asset 11 1.png" alt="스포츠동아"></li>
-            <li><img src="./icons/asset 12 1.png" alt="석간 문화일보"></li>
-            <li><img src="./icons/asset 13 1.png" alt="KBS WORLD"></li>
-            <li><img src="./icons/asset 14 1.png" alt="Korean JoongAng Daily"></li>
-            <li><img src="./icons/asset 15 1.png" alt="Insight"></li>
-            <li><img src="./icons/asset 16 1.png" alt="법률 방송 뉴스"></li>
-            <li><img src="./icons/asset 17 1.png" alt="시사저널e"></li>
-            <li><img src="./icons/asset 18 1.png" alt="RBS 한국농어촌방송"></li>
-            <li><img src="./icons/asset 19 1.png" alt="조이뉴스24"></li>
-            <li><img src="./icons/asset 20 1.png" alt="에너지경제"></li>
-            <li><img src="./icons/asset 21 1.png" alt="BUSINESSPOST"></li>
-            <li><img src="./icons/asset 22 1.png" alt="CEO스코어데일리"></li>
-            <li><img src="./icons/asset 23 1.png" alt="부산 경남 대표방송 KNN"></li>
-        </ul>
-        <img src="./icons/RightButton.png" alt="다음 페이지">
+        <div class="section-press-content-container">
 
-    </section>
-</body>
-</html>
+            <div><img class="section-leftbutton" src="./icons/LeftButton.png" alt="이전 페이지"></div>
+            <ul>    
+                <li><img src="./icons/asset 0 1.png" alt="서울경제"></li>
+                <li><img src="./icons/asset 1 1.png" alt="데일리안"></li>
+                <li><img src="./icons/asset 2 1.png" alt="헤럴드경제"></li>
+                <li><img src="./icons/asset 3 1.png" alt="SBS Biz"></li>
+                <li><img src="./icons/asset 4 1.png" alt="세계일보"></li>
+                <li><img src="./icons/asset 5 1.png" alt="아시아경제"></li>
+                <li><img src="./icons/asset 6 1.png" alt="이데일리"></li>
+                <li><img src="./icons/asset 7 1.png" alt="조선일보"></li>
+                <li><img src="./icons/asset 8 1.png" alt="아이뉴스24"></li>
+                <li><img src="./icons/asset 9 1.png" alt="파이낸셜뉴스"></li>
+                <li><img src="./icons/asset 10 1.png" alt="스포츠서울"></li>
+                <li><img src="./icons/asset 11 1.png" alt="스포츠동아"></li>
+                <li><img src="./icons/asset 12 1.png" alt="석간 문화일보"></li>
+                <li><img src="./icons/asset 13 1.png" alt="KBS WORLD"></li>
+                <li><img src="./icons/asset 14 1.png" alt="Korean JoongAng Daily"></li>
+                <li><img src="./icons/asset 15 1.png" alt="Insight"></li>
+                <li><img src="./icons/asset 16 1.png" alt="법률 방송 뉴스"></li>
+                <li><img src="./icons/asset 17 1.png" alt="시사저널e"></li>
+                <li><img src="./icons/asset 18 1.png" alt="RBS 한국농어촌방송"></li>
+                <li><img src="./icons/asset 19 1.png" alt="조이뉴스24"></li>
+                <li><img src="./icons/asset 20 1.png" alt="에너지경제"></li>
+                <li><img src="./icons/asset 21 1.png" alt="BUSINESSPOST"></li>
+                <li><img src="./icons/asset 22 1.png" alt="CEO스코어데일리"></li>
+                <li><img src="./icons/asset 23 1.png" alt="부산 경남 대표방송 KNN"></li>
+            </ul>
+            <div><img class="section-rightbutton" src="./icons/RightButton.png" alt="다음 페이지"></div>
+        </div>
+            
+        </section>
+    </body>
+    </html>
