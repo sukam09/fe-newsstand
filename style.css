@@ -40,6 +40,11 @@
   --color-surface-brand-alt: var(--color-blue-100);
   --color-border-bold: var(--color-grayscale-300);
   --color-border-default: var(--color-grayscale-100);
+
+  /* objects */
+  --border-default: 1px solid var(--color-border-default);
+  --box-shadow-popup: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 
 /* dark mode */
@@ -296,6 +301,10 @@ body {
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.container-header_logo {
+  display: flex;
   align-items: center;
 }
 .container-news-bar {
