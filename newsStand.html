@@ -6,13 +6,15 @@
     <title>Document</title>
     <style>
         body {
-            margin: 50px 35px 0px 35px;
+            width: 930px;
+            margin: 50px auto 0px auto;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 18px 0;
         }
 
         .header-title-container {
@@ -30,6 +32,29 @@
             color: #5f6e76;
             font-size: 16px;
         }
+
+        .yonhapnews-container {
+            display: flex;
+        
+        }
+
+        .yonhapnews-container div {
+            background-color: #F5F7F9;
+            display: flex;
+            align-items: center;
+            width: 461px;
+            height: 49px;
+            border: solid 1px #d2dae0;
+        }
+        
+        .yonhapnews-container div + div {
+            margin-left: 8px;
+        }
+
+        .yonhapnews-container div h4 {
+            padding: 10px 15px ;
+        }
+
     </style>
 </head>
 <body>
@@ -41,7 +66,7 @@
         <span>2023. 02. 10. 금요일</span>
     </header>
 
-    <div>
+    <div class="yonhapnews-container">
         <div>
             <h4>연합뉴스</h4>
             <span>[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</span>
