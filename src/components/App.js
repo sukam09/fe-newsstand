@@ -1,4 +1,5 @@
 import Header from './Header.js';
+import LatestNewsWrapper from './LatestNewsWrapper.js';
 
 export default class App {
   constructor() {
@@ -8,5 +9,6 @@ export default class App {
 
   init() {
     this.$app.appendChild(new Header());
+    this.$app.appendChild(new LatestNewsWrapper());
   }
 }
