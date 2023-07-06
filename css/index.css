@@ -123,3 +123,7 @@ body {
   display: flex;
   align-items: center;
 }
+
+.title:hover {
+  cursor: pointer;
+}
