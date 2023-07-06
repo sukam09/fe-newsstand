@@ -1,0 +1,49 @@
+/* css variable */
+:root {
+  /* Typography System */
+  --font-bold: 700;
+  --font-medium: 500;
+  --font-size-L: 24px;
+  --font-size-M: 16px;
+  --font-size-R: 14px;
+  --font-size-S: 12px;
+  --font-style-none: normal;
+  --line-height-22: 22px;
+  --line-height-auto: normal;
+  --line-style-underline: underline;
+  --line-style-none: none;
+
+  /* Color System: Light Mode */
+  --text-strong: #14212b;
+  --text-bold: #4b5966;
+  --text-default: #5f6e76;
+  --text-weak: #879298;
+  --text-white-default: #xf;
+  --text-white-weak: rgba(255, 255, 255, 0.7);
+  --text-point: #4362d0;
+  --surface-default: #ffffff;
+  --surface-alt: #f5f7f9;
+  --surface-brand-default: #4362d0;
+  --surface-brand-alt: #7890e7;
+  --border-bold: #6e8091;
+  --border-default: #d2dae0;
+
+  /* Color System: Dark Mode */
+  --d-text-strong: #ffffff;
+  --d-text-bold: #f5f7f9;
+  --d-text-default: #d2dae0;
+  --d-text-weak: #FFFFFF(70%);
+  --d-text-white-default: #ffffff;
+  --d-text-white-weak: rgba(255, 255, 255, 0.7);
+  --d-text-point: #4362d0;
+  --d-surface-default: #14212b;
+  --d-surface-alt: #4b5966;
+  --d-surface-brand-default: #4362d0;
+  --d-surface-brand-alt: #7890e7;
+  --d-border-bold: rgba(255, 255, 255, 0.7);
+  --d-border-default: #5f6e76;
+
+  /* Object Styles */
+  --border-default: 1px;
+  --popup-shadow-blur2: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
