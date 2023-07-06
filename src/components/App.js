@@ -1,6 +1,6 @@
-import AllNews from './AllNews.js';
-import Header from './Header.js';
-import LatestNews from './LatestNews.js';
+import AllNews from './allNews/index.js';
+import Header from './header/index.js';
+import LatestNews from './latestNews/index.js';
 
 export default class App {
   constructor() {
