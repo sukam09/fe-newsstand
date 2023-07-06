@@ -146,6 +146,12 @@ img.title_logo {
   position: relative;
   padding: 11.5px 16px 11.5px 16px;
   list-style: none;
+  color: #879298;
+}
+
+.category_list > li:hover {
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 .category_list > li > span {
   position: relative;
@@ -209,10 +215,15 @@ img.title_logo {
   white-space: pre-line;
 }
 
-.clicked {
+.category_list > .clicked {
   background-color: #7890e7;
   width: 166px;
   color: #ffffff;
+}
+
+.category_list > .clicked:hover {
+  cursor: default;
+  text-decoration-line: none;
 }
 
 .progressbar {
