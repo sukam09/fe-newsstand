@@ -1,14 +1,32 @@
-/* <section class="news-bar">
-<div class="news">
-  <span class="press"></span>
-  <span class="news-title"></span>
-</div>
-<div class="news">
-  <span class="press"></span>
-  <span class="news-title"></span>
-</div>
-</section> */
+root {
+  ---text-text-default: #5f6e76;
+}
+body {
+  width: 930px;
+  margin: 65px auto;
+}
 
+.main-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.today {
+  color: var(--text-text-default);
+  /* font-family: Pretendard; */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  float: right;}
+  
+  
 section {
   display: flex;
   width: 930px;
