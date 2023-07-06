@@ -1,3 +1,5 @@
+import Icon from './Icon.js';
+
 export default class Button {
   constructor({ colors, states, icon, text = '' }) {
     this.$button = document.createElement('button');
@@ -14,8 +16,8 @@ export default class Button {
   }
 
   init() {
-    const iconSrc = `src/assets/icons/${this.icon}.svg`;
+    const $iconImg = new Icon({ name: this.icon });
 
-    this.$button.innerHTML = `<img src='${iconSrc}'} class='icon' />${this.text}<h1>뉴스스탠드</h1>`;
+    this.$button.innerHTML = `${$iconImg.outerHTML} ${this.text}`;
   }
 }

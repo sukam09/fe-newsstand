@@ -11,7 +11,7 @@ export default class Header {
   init() {
     const $headerName = document.createElement('h1');
     const $date = document.createElement('span');
-    const $icon = new Button({ icon: 'newspaper' });
+    const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });
 
     $headerName.appendChild($icon);
 
