@@ -3,6 +3,7 @@ import Button from '../common/Button.js';
 export default class Header {
   constructor() {
     this.$header = document.createElement('header');
+    this.$header.className = 'header';
     this.init();
 
     return this.$header;

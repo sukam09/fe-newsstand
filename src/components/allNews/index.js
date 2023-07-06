@@ -1,4 +1,6 @@
+import Icon from '../common/Icon.js';
 import AllNewsList from './AllnewsList.js';
+import ArrowButton from './ArrowButton.js';
 
 export default class AllNews {
   constructor() {
@@ -16,23 +18,25 @@ export default class AllNews {
   createAllNewHeader() {
     const $header = document.createElement('div');
     const $titleNavigation = document.createElement('nav');
-    $titleNavigation.className = 'view-type-wrapper';
     const $iconNavigation = document.createElement('div');
+    $header.className = 'all-news-header';
+    $titleNavigation.className = 'view-type-wrapper';
     $iconNavigation.className = 'view-type-icon';
 
-    const $allNews = document.createElement('h3');
-    const $myNews = document.createElement('h3');
+    const $allPress = document.createElement('span');
+    const $subscibedPress = document.createElement('span');
 
-    $allNews.innerText = '전체 언론사';
-    $myNews.innerText = '내가 구독한 언론사';
+    $allPress.innerText = '전체 언론사';
+    $subscibedPress.innerText = '내가 구독한 언론사';
 
-    $titleNavigation.appendChild($allNews);
-    $titleNavigation.appendChild($myNews);
+    $titleNavigation.appendChild($allPress);
+    $titleNavigation.appendChild($subscibedPress);
 
-    const $listIcon = document.createElement('span');
-    $listIcon.innerText = 'icon';
+    const $listViewIcon = new Icon({ name: 'list-view' });
+    const $gridViewIcon = new Icon({ name: 'grid-view' });
 
-    $iconNavigation.appendChild($listIcon);
+    $iconNavigation.appendChild($listViewIcon);
+    $iconNavigation.appendChild($gridViewIcon);
 
     $header.appendChild($titleNavigation);
     $header.appendChild($iconNavigation);
@@ -41,13 +45,21 @@ export default class AllNews {
   }
 
   createAllNewsLists() {
-    const $newLists = document.createElement('ul');
-    $newLists.className = 'news-list';
+    const $newsListWrapper = document.createElement('div');
+    const $newsLists = document.createElement('ul');
+    const $leftButton = new ArrowButton({ name: 'LeftButton' });
+    const $rightButton = new ArrowButton({ name: 'RightButton' });
+    $newsLists.className = 'news-list';
+
+    console.log($leftButton);
+    $newsListWrapper.appendChild($leftButton);
 
     for (let i = 0; i < 24; i++) {
-      $newLists.appendChild(new AllNewsList('데일리안'));
+      $newsLists.appendChild(new AllNewsList('데일리안'));
     }
+    $newsListWrapper.appendChild($newsLists);
+    $newsListWrapper.appendChild($rightButton);
 
-    return $newLists;
+    return $newsListWrapper;
   }
 }

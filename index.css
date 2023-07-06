@@ -3,80 +3,61 @@ h2,
 h3 {
   display: inline;
 }
-
-header,
-section,
-.main-news {
-  padding: 10px;
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  background-color: transparent;
 }
 
-header {
-  position: relative;
-  border: 1px solid gray;
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
 }
 
 .date {
-  position: absolute;
-  right: 10px;
-  bottom: 0;
+  color: #5f6e76;
 }
 
-.main-news {
-  position: relative;
-  border: 1px solid gray;
+.latest-main-news {
+  width: 930px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
-.main-news > .news-wrapper:last-child {
-  position: absolute;
-  right: 10px;
+.auto-rolling-news {
+  padding: 16px;
+  border: 1px solid #d2dae0;
+  background-color: #f5f7f9;
+  flex: 1;
+  gap: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
-.news-wrapper {
-  display: inline-block;
-  border: 1px solid gray;
-  width: 40%;
-  text-align: center;
+.auto-rolling-news span {
+  font-weight: 700;
+  color: #14212b;
 }
 
-p {
-  display: inline;
-}
-
-.view-type-wrapper {
-  display: inline;
-}
-
-.view-type-icon {
-  display: inline;
-  position: absolute;
-  right: 10px;
-}
-
-section > div:first-child {
-  position: relative;
-  border: 1px solid gray;
-}
-
-section {
-  border: 1px solid gray;
-}
-
-li {
-  display: inline-block;
-  border: 1px solid gray;
-  width: 15%;
-  height: 50px;
-  line-height: 50px;
-  list-style-type: none;
-}
-
-ul {
-  padding-left: 0;
-  text-align: center;
-}
-
-button {
-  background-color: transparent;
+.auto-rolling-news p {
+  font-weight: 500;
+  color: #5f6e76;
+  margin: 0;
 }
 
 .news-stand-logo {
@@ -87,4 +68,30 @@ button {
   cursor: pointer;
   font-weight: 700;
   font-size: 24px;
+}
+
+.all-news-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 930px;
+}
+
+.view-type-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.view-type-wrapper span:first-child {
+  font-weight: 700;
+  color: #14212b;
+}
+
+.view-type-wrapper span:last-child {
+  color: #879298;
+}
+
+.view-type-icon {
+  gap: 8px;
 }
