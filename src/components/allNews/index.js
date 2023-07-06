@@ -1,4 +1,4 @@
-import AllNewsHeader from './AllNewsHeader.js';
+import AllNewsList from './AllnewsList.js';
 
 export default class AllNews {
   constructor() {
@@ -44,25 +44,9 @@ export default class AllNews {
     const $newLists = document.createElement('ul');
     $newLists.className = 'news-list';
 
-    const $newsList = document.createElement('li');
-    const $newsList2 = document.createElement('li');
-    const $newsList3 = document.createElement('li');
-    const $newsList4 = document.createElement('li');
-    const $newsList5 = document.createElement('li');
-    const $newsList6 = document.createElement('li');
-    $newsList.innerText = '데일리안';
-    $newsList2.innerText = '데일리안';
-    $newsList3.innerText = '데일리안';
-    $newsList4.innerText = '데일리안';
-    $newsList5.innerText = '데일리안';
-    $newsList6.innerText = '데일리안';
-
-    $newLists.appendChild($newsList);
-    $newLists.appendChild($newsList2);
-    $newLists.appendChild($newsList3);
-    $newLists.appendChild($newsList4);
-    $newLists.appendChild($newsList5);
-    $newLists.appendChild($newsList6);
+    for (let i = 0; i < 24; i++) {
+      $newLists.appendChild(new AllNewsList('데일리안'));
+    }
 
     return $newLists;
   }
