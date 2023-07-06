@@ -4,11 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            margin: 50px 35px 0px 35px;
+        }
 
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-title-container img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .header-container span {
+            color: #5f6e76;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div>
+    <header class="header-container">
+        <div class="header-title-container">
             <img src="./icons/newspaper.png" alt="뉴스스탠드 아이콘">
             <h2>뉴스스탠드</h2>
         </div>
