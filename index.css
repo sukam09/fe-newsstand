@@ -1,0 +1,80 @@
+@import url("global-style.css");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  line-height: normal;
+}
+
+.news-stand-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 930px;
+}
+
+.header-wrapper {
+  margin-top: 58px;
+}
+.header-wrapper,
+.hot-topic-wrapper,
+.hot-topic-wrapper > li,
+.press-wrapper > header,
+.press-wrapper > header > nav,
+.press-wrapper > header > ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hot-topic-wrapper > li {
+  /* background-color: #d2dae0; */
+  border: 1px solid #d2dae0;
+  padding: 0px 20px;
+  width: 50%;
+}
+
+.header-wrapper,
+.hot-topic-wrapper > li {
+  align-items: center;
+}
+.header-wrapper > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border: none;
+}
+
+.news-wrapper > li {
+  list-style-type: none;
+  border-right: 1px solid #d2dae0;
+  border-bottom: 1px solid #d2dae0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.news-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
