@@ -7,32 +7,36 @@
         <link rel="stylesheet" type="text/css" href="index.css" />
     </head>
     <body>
-        <div><</div>
+        <div class="arrow">
+            <i class="left_arrow" id="leftBtn">
+                <img src="./icons/LeftButton.png" alt="left" />
+            </i>
+        </div>
         <div>
             <header class="container_between">
                 <div class="header_left">
-                    <img src="" alt="logo" />
+                    <img src="./icons/newspaper.png" alt="logo" />
                     <h1>뉴스스탠드</h1>
                 </div>
                 <div class="header_right">
-                    <p>2023. 07. 05 수요일</p>
+                    <p class="today"></p>
                 </div>
             </header>
             <section class="container_between">
                 <div class="sec_trend_news" id="sectionLeft">
                     <span>
-                        <h5>연합뉴스</h5>
+                        <h5 id="newsFirstName">연합뉴스</h5>
                     </span>
                     <span>
-                        <p>[1보] 김기현 ...</p>
+                        <p id="newsFirstContent">[1보] 김기현 ...</p>
                     </span>
                 </div>
                 <div class="sec_trend_news" id="sectionRight">
                     <span>
-                        <h5>연합뉴스</h5>
+                        <h5 id="newsSecondName">연합뉴스</h5>
                     </span>
                     <span>
-                        <p>[1보] 김기현 ...</p>
+                        <p id="newsSecondContent">[1보] 김기현 ...</p>
                     </span>
                 </div>
             </section>
@@ -47,48 +51,26 @@
                         </span>
                     </div>
                     <div id="navRight">
-                        <button>1</button>
-                        <button>2</button>
+                        <i>
+                            <img src="./icons/Symbol.png" alt="search" />
+                        </i>
+                        <i>
+                            <img src="./icons/list-view.png" alt="search" />
+                        </i>
                     </div>
                 </nav>
             </div>
             <div class="container_center">
-                <main class="main_news_container">
-                    <ul>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                    </ul>
-                    <ul>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                    </ul>
-                    <ul>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                    </ul>
-                    <ul>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                        <li>서울경제</li>
-                    </ul>
-                </main>
+                <main class="main_news_container"></main>
             </div>
         </div>
-        <div>></div>
+        <div class="arrow">
+            <i class="right_arrow" id="rightBtn">
+                <img src="./icons/RightButton.png" alt="right" />
+            </i>
+        </div>
     </body>
+    <script src="./utils.js"></script>
+    <script src="./news_data.js"></script>
+    <script src="./random_news.js"></script>
 </html>
