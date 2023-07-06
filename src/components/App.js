@@ -1,3 +1,5 @@
+import Header from './Header.js';
+
 export default class App {
   constructor() {
     this.$app = document.getElementById('root');
@@ -5,6 +7,6 @@ export default class App {
   }
 
   init() {
-    console.log(this.$app);
+    this.$app.appendChild(new Header());
   }
 }
