@@ -1,9 +1,45 @@
+:root {
+  --grayscalewhite-alt: #FFFFFF(70%);
+  --grayscalewhite: #ffffff;
+  --grayscale50: #f5f7f9;
+  --grayscale100: #d2dae0;
+  --grayscale200: #879298;
+  --grayscale300: #6e8091;
+  --grayscale400: #5f6e76;
+  --grayscale500: #4b5966;
+  --grayscaleblack: #14212b;
+  --blue100: #7890e7;
+  --blue500: #4362d0;
+}
+
 :root[color-theme="light"] {
-  --background: yellow;
-  --boxColor: #000;
+  --text-strong: var(--grayscaleblack);
+  --text-bold: var(--grayscale500);
+  --text-default: var(--grayscale400);
+  --text-weak: var(--grayscale200);
+  --text-white-default: var(--grayscalewhite);
+  --text-white-weak: var(--grayscalewhite-alt);
+  --text-point: var(--blue500);
+  --surface-default: var(--grayscalewhite);
+  --surface-alt: var(--grayscale50);
+  --surface-brand-default: var(--blue500);
+  --surface-brand-alt: var(--blue100);
+  --border-bold: var(--grayscale300);
+  --border-default: var(--grayscale100);
 }
 
 :root[color-theme="dark"] {
-  --background: #000;
-  --boxColor: #fff;
+  --text-strong: var(--grayscalewhite50);
+  --text-bold: var(--grayscale50);
+  --text-default: var(--grayscale100);
+  --text-weak: var(--grayscalewhite-alt);
+  --text-white-default: var(--grayscalewhite);
+  --text-white-weak: var(--grayscalewhite-alt);
+  --text-point: var(--blue500);
+  --surface-default: var(--grayscaleblack);
+  --surface-alt: var(--grayscale500);
+  --surface-brand-default: var(--blue500);
+  --surface-brand-alt: var(--blue100);
+  --border-bold: var(--grayscalewhite-alt);
+  --border-default: var(--grayscale400);
 }

@@ -13,6 +13,7 @@ body {
   align-items: center;
   width: 1074px;
 }
+
 .title,
 .auto-rolling-news-bar,
 .main-tab-viewer,
@@ -66,4 +67,22 @@ body {
   height: 25%;
   border: 1px solid black;
   box-sizing: border-box;
+}
+.title img {
+  width: 24px;
+  height: 24px;
+}
+
+.grid-view button {
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+.grid-view img {
+  width: 24px;
+  height: 40px;
+}
+.date {
+  color: var(--text-default);
+  font-size: 16px;
 }
