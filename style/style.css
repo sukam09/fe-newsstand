@@ -43,7 +43,7 @@ img.title_logo {
 
 .summary_container {
   background-color: #f5f7f9;
-
+  /* position: relative; */
   width: 100%;
   border: 1px solid #d2dae0;
   gap: 16px;
@@ -59,12 +59,65 @@ img.title_logo {
   font-size: 14px;
 }
 
-.summary_container > span {
+.rolling_list > li {
+  display: none;
+  list-style: none;
+}
+
+.rolling_list > li.prev {
+  position: absolute;
+  top: -20px;
+  display: block;
   color: #5f6e76;
 }
-.summary_container > span:hover {
+.rolling_list > li.now {
+  position: absolute;
+  display: block;
+  top: 0px;
+  color: #5f6e76;
+  animation-name: stop, rolling_disappear;
+  animation-delay: 1s, 1s;
+  animation-duration: 1s, 1s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.rolling_list > li.next {
+  position: absolute;
+  display: block;
+  bottom: -20px;
+  color: #5f6e76;
+  animation-name: stop, rolling_disappear;
+  animation-delay: 1s, 1s;
+  animation-duration: 1s, 1s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.rolling_list :hover {
   text-decoration-line: underline;
   cursor: pointer;
+  animation-play-state: paused;
+}
+.rolling_list {
+  position: relative;
+  width: 70%;
+  overflow: hidden;
+  height: 17px;
+}
+@keyframes rolling_disappear {
+  to {
+    transform: translate(0, -20px);
+  }
+}
+@keyframes rolling_appear {
+  to {
+    bottom: 0px;
+  }
+}
+@keyframes stop {
+  to {
+  }
 }
 
 .main_header {
@@ -242,7 +295,7 @@ img.title_logo {
   top: 0;
   left: 0;
   z-index: 50;
-  animation: scale 3s linear;
+  animation: scale 20s linear;
   animation-iteration-count: infinite;
 }
 @keyframes scale {
