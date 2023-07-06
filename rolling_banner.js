@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 리스트 하나 만들기
-function getNewsLi(press, title, url) {
+function getNewsLi(press, title, url, idx) {
     const new_list = document.createElement("li");
+    if (idx == 0) new_list.setAttribute("class", "current");
+    else if (idx == 1) new_list.setAttribute("class", "next");
+    else if (idx == 2) new_list.setAttribute("class", "prev");
 
     const new_press = document.createElement("span");
     new_press.innerHTML = press;
