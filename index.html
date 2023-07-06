@@ -7,32 +7,27 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <section class="wrapper">
-        <header class="main"><div class="header-div1"><img src="./Vector.png"><h1>뉴스스탠드</h1></div><div class="header_div2">2023.02.10 목요일</div></header>
-        <section class="main">
-            <div class="section_div"><strong class="section_strong">연합뉴스</strong>1보 김기현,안철수,천하람,황교안 본선진출</div>
-            <div class="section_div"><strong class="section_strong">연합뉴스</strong>[속보] 최고위원 본경선, 김용민,김용태,김재원,민영삼</div>
+    <div class="main-container">
+        <aside id="aside-left"><img src="./img/LeftButton.png"></aside>
+        <section class="wrapper">
+            <header class="main"><div id="header-div-01"><img src="./img/Vector.png"><h1>뉴스스탠드</h1></div><div id="header-div-02"></div></header>
+            <section class="main">
+                <div class="section-div"><strong class="section-strong">연합뉴스</strong>1보 김기현,안철수,천하람,황교안 본선진출</div>
+                <div class="section-div"><strong class="section-strong">연합뉴스</strong>[속보] 최고위원 본경선, 김용민,김용태,김재원,민영삼</div>
+            </section>
+            <main class="main">
+                <div id="main-div"><div id="main-left"><div id="main-left-01">전체 구독사</div><div id = "main-left-02">내가 구독한 언론사</div></div><div id="main-image"><img id="card-list-image" src="./img/card_list.svg"><img id="grid-image" src="./img/grid.svg"></div></div>
+                <div id="main-grid">
+                    <li id="li0"></li>
+                </div>
+            </main>
         </section>
-        <main class="main">
-            <div class="main_div"><div class="main_left"><div><strong class="main_strong">전체 구독사</strong></div><div class="main_div2">내가 구독한 언론사</div></div><div class="main_image"><img src="./grid_image.png"><img src="./tap_image.png"></div></div>
-            <div>
-                <ul>
+        <aside id="aside-right">
+            <img src="./img/RightButton.png">
+        </aside>
+    </div>
+    <script src="./index.js">
 
-                </ul>
-                <ul>
-
-                </ul>
-                <ul>
-
-                </ul>
-                <ul>
-
-                </ul>
-            </div>
-        </main>
-    </section>
-    <aside>
-        <!-- 화살표 버튼태그 -->
-    </aside>
+    </script>
 </body>
 </html>
