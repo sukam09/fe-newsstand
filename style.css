@@ -124,7 +124,7 @@ table {
 }
 
 root {
-  ---text-text-default: #5f6e76;
+  --text-text-default: #5f6e76;
 }
 
 body {
@@ -137,12 +137,14 @@ body {
   justify-content: space-between;
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .title {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .today {
@@ -160,9 +162,11 @@ section {
   width: 930px;
   align-items: flex-start;
   gap: 8px;
+  margin-bottom: 32px;
 }
 
 .news {
+  cursor: pointer;
   display: flex;
   padding: 16px;
   align-items: flex-start;
@@ -193,4 +197,90 @@ section {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.tab-and-viewer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.tab-and-viewer .tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.tab-and-viewer .tabs .all-press-btn,
+.tab-and-viewer .tabs .sub-press-btn {
+  color: var(--text-text-strong, #14212b);
+  cursor: pointer;
+  /* selected-bold16 */
+}
+.tab-and-viewer .viewer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tab-and-viewer .viewer .list-btn,
+.tab-and-viewer .viewer .grid-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+}
+.tab-and-viewer .viewer .list-btn::before,
+.tab-and-viewer .viewer .grid-btn::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.tab-and-viewer .viewer span {
+  display: none;
+}
+.tab-and-viewer .viewer .list-btn::before {
+  background-image: url("./icons/list-btn.svg");
+}
+.tab-and-viewer .viewer .grid-btn::before {
+  background-image: url("./icons/grid-btn.svg");
+}
+
+.grid {
+  display: flex;
+  height: 388px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--border-border-default, #d2dae0);
+}
+.grid .grid-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.grid .grid-row li {
+  display: flex;
+  padding: 0px 50.667px 0px 51px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: var(--surface-surface-default, #fff);
+}
+
+.left-btn,
+.right-btn {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 }
