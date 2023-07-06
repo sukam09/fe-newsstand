@@ -45,6 +45,18 @@ body {
     margin-right: 8px;
 }
 
+span h5 {
+    font-size: 14px;
+    line-height: 16.71px;
+    font-weight: 700;
+}
+
+span p {
+    font-size: 14px;
+    line-height: 16.71px;
+    font-weight: 500;
+}
+
 .sec_trend_news span {
     display: flex;
     flex-direction: row;
@@ -107,10 +119,16 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.left_arrow,
-.right_arrow {
     position: relative;
     top: 15%;
+}
+
+.left_arrow {
+    position: relative;
+    left: 25%;
+}
+
+.right_arrow {
+    position: relative;
+    right: 25%;
 }
