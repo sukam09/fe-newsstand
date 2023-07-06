@@ -1,3 +1,4 @@
+import { getTodayDate } from '../../utils/index.js';
 import Button from '../common/Button.js';
 
 export default class Header {
@@ -15,8 +16,7 @@ export default class Header {
     const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });
 
     $headerName.appendChild($icon);
-
-    $date.innerText = '2023.02.10 금요일';
+    $date.innerText = getTodayDate();
     $date.className = 'date';
     $icon.src = '../../assets/icons/news-stand-simbol.svg';
 
