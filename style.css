@@ -390,13 +390,25 @@ body {
   border-left: 1px solid #d2dae0;
   border-top: 1px solid #d2dae0;
 }
-.grid-view > li {
+.grid-cell {
   display: flex;
   justify-content: center;
   align-items: center;
 
   border-right: 1px solid #d2dae0;
   border-bottom: 1px solid #d2dae0;
+}
+.grid-cell > button {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid-cell_news-img {
+  width: auto;
+  height: 20px;
 }
 .container-grid-view_left-btn {
   right: 100%;
