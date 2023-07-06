@@ -9,33 +9,31 @@
   </head>
   <body>
     <div class="news-stand-container">
-      <header class="header-wrapper">
+      <header class="header-wrapper flex-row-between">
         <button>
           <img class="icon-size24" src="./img/news_stand_logo.svg" />
           <p class="display-bold24 light-text-strong">뉴스스탠드</p>
         </button>
-        <time class="display-medium16 light-text-default"
-          >2023.02.10 금요일</time
-        >
+        <time class="system-date display-medium16 light-text-default"></time>
       </header>
 
       <ul class="hot-topic-wrapper flex-row-between">
         <li class="flex-row light-surface-alt light-border-default">
           <p class="display-bold14 light-text-strong">연합뉴스</p>
-          <p class="available-medium14 light-text-default">
+          <p class="hot-topic-contents available-medium14 light-text-default">
             [1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출
           </p>
         </li>
         <li class="flex-row light-surface-alt light-border-default">
           <p class="display-bold14 light-text-strong">연합뉴스</p>
-          <p class="available-medium14 light-text-default">
+          <p class="hot-topic-contents available-medium14 light-text-default">
             [속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼
           </p>
         </li>
       </ul>
 
-      <section class="press-wrapper">
-        <header>
+      <section class="press-wrapper light-surface-default">
+        <header class="flex-row-between">
           <nav class="main-nav-left flex-row">
             <p class="selected-bold16 light-text-strong">전체 언론사</p>
             <p class="available-medium16 light-text-weak">내가 구독한 언론사</p>
@@ -47,22 +45,11 @@
         </header>
 
         <ul class="news-wrapper">
-          <li>서울경제</li>
-          <li>데일리안</li>
-          <li>헤럴드경제</li>
-          <li>SBS Biz</li>
-          <li>세계일보</li>
-          <li>아시아경제</li>
-          <li>이데일리</li>
-          <li>서울경제</li>
-          <li>데일리안</li>
-          <li>헤럴드경제</li>
-          <li>SBS Biz</li>
-          <li>세계일보</li>
-          <li>아시아경제</li>
-          <li>이데일리</li>
+          <img class="left-arrow" src="./img/left_arrow.svg" />
+          <img class="right-arrow" src="./img/right_arrow.svg" />
         </ul>
       </section>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>
