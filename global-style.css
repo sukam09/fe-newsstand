@@ -5,7 +5,7 @@
   --bold-R: 700 14px/1.5 "Pretendard";
   --bold-S: 700 12px/1.5 "Pretendard";
 
-  --medium-M: 500 16px/22 "Pretendard";
+  --medium-M: 500 16px/22px "Pretendard";
   --medium-R: 500 14px/1.5 "Pretendard";
   --medium-S: 500 12px/1.5 "Pretendard";
 
@@ -22,38 +22,9 @@
 
   --blue-100: #7890e7;
   --blue-500: #4362d0;
-
-  /* Color System: Light Mode */
-  --text-strong: var(--grayscale-black);
-  --text-bold: var(--grayscale-500);
-  --text-default: var(--grayscale-400);
-  --text-weak: var(--grayscale-200);
-  --text-white-default: var(--grayscale-white);
-  --text-point: var(--blue-500);
-  --surface-default: var(--grayscale-white);
-  --surface-alt: var(--grayscale-50);
-  --surface-brand-default: var(--blue-500);
-  --surface-brand-alt: var(--blue-100);
-  --border-bold: var(--grayscale-300);
-  --border-default: var(--grayscale-100);
-
-  /* Color System: Dark Mode */
-  --text-stong: var(--grayscale-white);
-  --text-bold: var(--grayscale-50);
-  --text-default: var(--grayscale-100);
-  --text-weak: var(--grayscale-white-alt);
-  --text-white-default: var(--grayscale-white);
-  --text-white-weak: var(--grayscale-white-alt);
-  --text-point: var(--blue-500);
-  --surface-default: var(--grayscale-black);
-  --surface-alt: var(--grayscale-black);
-  --surface-brand-default: var(--blue-500);
-  --surface-brand-alt: var(--blue-100);
-  --border-bold: var(--grayscale-white-alt);
-  --border-default: var(--grayscale-400);
 }
 
-/* Typography System */
+/* Typography System - size */
 .display-bold24 {
   font: var(--bold-L);
 }
@@ -110,6 +81,108 @@
 .hover-medium14 {
   font: var(--medium-R);
   text-decoration: underline;
+}
+
+/* Color System: Light Mode */
+.light-text-strong {
+  color: var(--grayscale-black);
+}
+.light-text-bold {
+  color: var(--grayscale-500);
+}
+.light-text-default {
+  color: var(--grayscale-400);
+}
+.light-text-weak {
+  color: var(--grayscale-200);
+}
+
+.light-text-white-default {
+  color: var(--grayscale-white);
+}
+.light-text-white-weak {
+  color: var(--grayscale-white-alt);
+}
+
+.light-text-point {
+  color: var(--blue-500);
+}
+
+.light-surface-default {
+  background-color: var(--grayscale-white);
+}
+.light-surface-alt {
+  background-color: var(--grayscale-50);
+}
+
+.light-surface-brand-default {
+  background-color: var(--blue-500);
+}
+.light-surface-brand-alt {
+  background-color: var(--blue-100);
+}
+
+.light-border-bold {
+  color: var(--grayscale-300);
+}
+.light-border-default {
+  color: var(--grayscale-100);
+}
+
+/* Color System: Dark Mode */
+.dark-text-stong {
+  color: var(--grayscale-white);
+}
+.dark-text-bold {
+  color: var(--grayscale-50);
+}
+.dark-text-default {
+  color: var(--grayscale-100);
+}
+.dark-text-weak {
+  color: var(--grayscale-white-alt);
+}
+.dark-text-white-default {
+  color: var(--grayscale-white);
+}
+.dark-text-white-weak {
+  color: var(--grayscale-white-alt);
+}
+
+.dark-text-point {
+  color: var(--blue-500);
+}
+
+.dark-surface-default {
+  background-color: var(--grayscale-black);
+}
+.dark-surface-alt {
+  background-color: var(--grayscale-500);
+}
+
+.dark-surface-brand-default {
+  background-color: var(--blue-500);
+}
+.dark-surface-brand-alt {
+  background-color: var(--blue-100);
+}
+
+.dark-border-bold {
+  color: var(--grayscale-white-alt);
+}
+.dark-border-default {
+  color: var(--grayscale-400);
+}
+
+/* Icons */
+.icon-size24 {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-size16 {
+  width: 16px;
+  height: 16px;
 }
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
