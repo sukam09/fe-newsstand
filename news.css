@@ -1,3 +1,4 @@
+@import url("./reset.css");
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 @import url("./color.css");
 
@@ -6,6 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Pretendard;
+  height: 720px;
 }
 
 .wrapper {
@@ -14,7 +16,7 @@ body {
   width: 1074px;
 }
 
-.title,
+.title-wrapper,
 .auto-rolling-news-bar,
 .main-tab-viewer,
 .main-list {
@@ -24,15 +26,22 @@ body {
 
 .auto-rolling-news-bar,
 .main-tab-viewer,
-.title {
+.title-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
 }
 
 .auto-rolling-news {
+  display: flex;
+  align-items: center;
   width: 460px;
   height: 48px;
-  border: 1px solid gray;
+  border: 1px solid var(--border-default);
+  background-color: var(--surface-alt);
+  padding: 0 18px;
+  box-sizing: border-box;
 }
 
 .grid-view {
@@ -41,12 +50,12 @@ body {
 }
 
 .main-tab-viewer {
-  margin-top: 28px;
-  margin-bottom: 24px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .main-list ul {
-  list-style: none;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -68,16 +77,11 @@ body {
   border: 1px solid black;
   box-sizing: border-box;
 }
-.title img {
+.title-wrapper img {
   width: 24px;
   height: 24px;
 }
 
-.grid-view button {
-  border: 0;
-  outline: 0;
-  background: transparent;
-}
 .grid-view img {
   width: 24px;
   height: 40px;
@@ -85,4 +89,37 @@ body {
 .date {
   color: var(--text-default);
   font-size: 16px;
+}
+.all-press {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subscribe-press {
+  color: var(--text-weak);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 24px;
+}
+.press {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+.news-title {
+  color: var(--text-default);
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 18px;
+}
+.display-text {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 24px;
+  margin-left: 6px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
 }

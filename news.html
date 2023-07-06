@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>뉴스 스탠드</title>
     <link rel="stylesheet" href="./news.css" type="text/css" />
-    <link rel="stylesheet" href="./color.css" type="text/css" />
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <div class="title">
-          <h3><img src="./icon/news.png" />뉴스스탠드</h3>
-          <p class="date">2023. 07. 05. 수요일</p>
+        <div class="title-wrapper">
+          <div class="title">
+            <img src="./icon/news.png" />
+            <span class="display-text">뉴스스탠드</span>
+          </div>
+
+          <span class="date">2023. 07. 05. 수요일</span>
         </div>
       </header>
       <main>
         <div class="auto-rolling-news-bar">
           <div class="auto-rolling-news">
-            <span>연합뉴스</span>
-            <span>[1보] 김기현,안철수~~</span>
+            <span class="press">연합뉴스</span>
+            <span class="news-title">[1보] 김기현,안철수~~</span>
           </div>
           <div class="auto-rolling-news">
-            <span>연합뉴스</span>
-            <span>[속보] 최고위원 본경선,~~</span>
+            <span class="press">연합뉴스</span>
+            <span class="news-title">[속보] 최고위원 본경선,~~</span>
           </div>
         </div>
 
@@ -31,12 +34,14 @@
           <div class="main-container">
             <div class="main-tab-viewer">
               <div class="main-tab-btn">
-                <span>전체 언론사</span>
-                <span>내가 구독한 언론사</span>
+                <button><span class="all-press">전체 언론사</span></button>
+                <button class="subscribe-press">
+                  <span>내가 구독한 언론사</span>
+                </button>
               </div>
               <div class="viewer-btn">
-                <img src="./icon/list-view.png" alt="images" />
-                <img src="./icon/grid-view.png" alt="images" />
+                <button><img src="./icon/list-view.png" alt="images" /></button>
+                <button><img src="./icon/grid-view.png" alt="images" /></button>
               </div>
             </div>
 
