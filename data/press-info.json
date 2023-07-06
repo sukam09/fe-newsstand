@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "서울경제",
+    "img": "../asset/logos/press1.png"
+  },
+  {
+    "id": 2,
+    "name": "데일리안",
+    "img": "../asset/logos/press2.png"
+  },
+  {
+    "id": 3,
+    "name": "헤럴드경제",
+    "img": "../asset/logos/press3.png"
+  },
+  {
+    "id": 4,
+    "name": "SBS Biz",
+    "img": "../asset/logos/press4.png"
+  },
+  {
+    "id": 5,
+    "name": "세계일보",
+    "img": "../asset/logos/press5.png"
+  },
+  {
+    "id": 6,
+    "name": "아시아경제",
+    "img": "../asset/logos/press6.png"
+  },
+  {
+    "id": 7,
+    "name": "이데일리",
+    "img": "../asset/logos/press7.png"
+  },
+  {
+    "id": 8,
+    "name": "조선일보",
+    "img": "../asset/logos/press8.png"
+  },
+  {
+    "id": 9,
+    "name": "아이뉴스24",
+    "img": "../asset/logos/press9.png"
+  },
+  {
+    "id": 10,
+    "name": "파이낸셜뉴스",
+    "img": "../asset/logos/press10.png"
+  },
+  {
+    "id": 11,
+    "name": "스포츠서울",
+    "img": "../asset/logos/press11.png"
+  },
+  {
+    "id": 12,
+    "name": "스포츠동아",
+    "img": "../asset/logos/press12.png"
+  },
+  {
+    "id": 13,
+    "name": "문화일보",
+    "img": "../asset/logos/press13.png"
+  },
+  {
+    "id": 14,
+    "name": "KBS WORLD",
+    "img": "../asset/logos/press14.png"
+  },
+  {
+    "id": 15,
+    "name": "Korea JoongAng Daily",
+    "img": "../asset/logos/press15.png"
+  },
+  {
+    "id": 16,
+    "name": "Insight",
+    "img": "../asset/logos/press16.png"
+  },
+  {
+    "id": 17,
+    "name": "법률방송뉴스",
+    "img": "../asset/logos/press17.png"
+  },
+  {
+    "id": 18,
+    "name": "시사저널e",
+    "img": "../asset/logos/press18.png"
+  },
+  {
+    "id": 19,
+    "name": "한국농어촌방송",
+    "img": "../asset/logos/press19.png"
+  },
+  {
+    "id": 20,
+    "name": "조이뉴스24",
+    "img": "../asset/logos/press20.png"
+  },
+  {
+    "id": 21,
+    "name": "에너지경제",
+    "img": "../asset/logos/press21.png"
+  },
+  {
+    "id": 22,
+    "name": "BUSINESS POST",
+    "img": "../asset/logos/press22.png"
+  },
+  {
+    "id": 23,
+    "name": "CEO스코어데일리",
+    "img": "../asset/logos/press23.png"
+  },
+  {
+    "id": 24,
+    "name": "KNN",
+    "img": "../asset/logos/press24.png"
+  }
+]
