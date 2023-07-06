@@ -3,12 +3,20 @@ const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 const systemDate = document.querySelector(".system-date");
 
+let idList = Array.from({ length: 96 }, (_, idx) =>
+  String(idx).padStart(2, "0")
+);
+
+const shuffleIdList = (idList) => {
+  idList.sort(() => Math.random() - 0.5);
+};
+
 const makeGrid = (isLightMode, pageNum) => {
   for (let i = pageNum * 24; i < pageNum * 24 + 24; i++) {
     const gridItem = document.createElement("li");
     const imgSrc = isLightMode
-      ? `./img/light-media/img${String(i).padStart(2, "0")}.png`
-      : `./img/dark-media/img${String(i).padStart(2, "0")}.png`;
+      ? `./img/light-media/img${idList[i]}.png`
+      : `./img/dark-media/img${idList[i]}.png`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
@@ -64,6 +72,7 @@ function reloadPage() {
 }
 
 function init() {
+  shuffleIdList(idList);
   makeGrid(true, 3);
 }
 
