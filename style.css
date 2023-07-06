@@ -123,6 +123,71 @@ table {
   border-spacing: 0;
 }
 
+/* foundations */
+
+/* typography */
+.display-bold24 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.display-bold16 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.display-bold14 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.display-bold12 {
+  font-size: 12px;
+  font-weight: 700;
+}
+.display-medium16 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.display-medium14 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.display-medium12 {
+  font-size: 12px;
+  font-weight: 500;
+}
+.selected-bold16 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.selected-bold14 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.available-medium16 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.available-medium14 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.available-medium12 {
+  font-size: 12px;
+  font-weight: 500;
+}
+.hover-medium16 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  text-decoration-line: underline;
+}
+.hover-medium14 {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration-line: underline;
+}
+
 /* main css */
 body {
   width: 100vw;
