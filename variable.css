@@ -44,6 +44,6 @@
   --d-border-default: #5f6e76;
 
   /* Object Styles */
-  --border-default: 1px;
+  --border-border-default: 1px;
   --popup-shadow-blur2: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
