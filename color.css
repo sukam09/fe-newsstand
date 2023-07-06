@@ -1,0 +1,9 @@
+:root[color-theme="light"] {
+  --background: yellow;
+  --boxColor: #000;
+}
+
+:root[color-theme="dark"] {
+  --background: #000;
+  --boxColor: #fff;
+}
