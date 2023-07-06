@@ -1,0 +1,169 @@
+/* Reset */
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Sementic */
+
+#root {
+  font-family: "Pretendard";
+}
+
+.main-container {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 930px;
+}
+
+header {
+  padding: 3rem 0rem 2rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+header h1 a {
+  font-size: 24px;
+  font-weight: 700;
+  padding-left: 2rem;
+  text-decoration: none;
+  color: #14212b;
+  background-image: url("./asset/news-paper.svg");
+  background-repeat: no-repeat;
+  background-position-y: center;
+}
+
+.time {
+  color: #5f6e76;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+section.container {
+  padding: 1rem 0rem;
+}
+
+.recent-news {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recent-news article {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f5f7f9;
+  border: 1px solid #d2dae0;
+}
+
+.recent-news article h3 {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #14212b;
+  margin: 0;
+}
+
+.recent-news article a {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5f6e76;
+  text-decoration: none;
+}
+.recent-news article a:hover {
+  text-decoration: underline;
+}
+
+nav.agency {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.agency .agency-type {
+  display: flex;
+  gap: 1rem;
+}
+
+nav.agency .agency-type h3 {
+  margin: 0;
+}
+
+nav.agency .agency-type h3 button {
+  font-size: 16px;
+  font-weight: 500;
+  color: #879298;
+}
+
+nav.agency .agency-type h3 button.active {
+  font-weight: 700;
+  color: #14212b;
+}
+
+nav.agency .view-type {
+  display: flex;
+  gap: 0.5rem;
+}
+
+nav.agency .view-type button {
+  width: 24px;
+  height: 24px;
+}
+
+.list-view-btn {
+  background-image: url("./asset/list-view.svg");
+}
+
+.grid-view-btn {
+  background-image: url("./asset/grid-view.svg");
+  filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)
+    brightness(83%) contrast(97%);
+}
+
+.agency-list {
+  list-style: none;
+  padding: 0;
+  padding-left: 0.5px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.agency-list li {
+  border: 1px solid #d2dae0;
+  margin-top: -1px;
+  margin-left: -1px;
+  height: 90px;
+}
+
+/* Utility */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
