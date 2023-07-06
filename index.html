@@ -4,34 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="global-style.css" />
+
     <title>뉴스스탠드</title>
   </head>
   <body>
     <div class="news-stand-container">
       <header class="header-wrapper">
         <button>
-          <img src="./img/logo/news_stand_logo.svg" />
-          <p class="display-bold24">뉴스스탠드</p>
+          <img class="icon-size24" src="./img/logo/news_stand_logo.svg" />
+          <p class="display-bold24 light-text-strong">뉴스스탠드</p>
         </button>
-
-        <time>2023.02.10 금요일</time>
+        <time class="display-medium16 light-text-default"
+          >2023.02.10 금요일</time
+        >
       </header>
-      <ul class="hot-topic-wrapper">
-        <li>
-          <h5>연합뉴스</h5>
-          <p>[1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출</p>
+
+      <ul class="hot-topic-wrapper flex-row-between">
+        <li class="flex-row light-surface-alt light-border-default">
+          <p class="display-bold14 light-text-strong">연합뉴스</p>
+          <p class="available-medium14 light-text-default">
+            [1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출
+          </p>
         </li>
-        <li>
-          <h5>연합뉴스</h5>
-          <p>[속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼</p>
+        <li class="flex-row light-surface-alt light-border-default">
+          <p class="display-bold14 light-text-strong">연합뉴스</p>
+          <p class="available-medium14 light-text-default">
+            [속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼
+          </p>
         </li>
       </ul>
+
       <section class="press-wrapper">
         <header>
           <nav>
-            <p>전체 언론사</p>
-            <p>내가 구독한 언론사</p>
+            <p class="selected-bold16">전체 언론사</p>
+            <p class="available-medium16">내가 구독한 언론사</p>
           </nav>
           <nav>
             <p>목록 보기</p>

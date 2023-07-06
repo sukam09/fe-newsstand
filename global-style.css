@@ -123,10 +123,10 @@
 }
 
 .light-border-bold {
-  color: var(--grayscale-300);
+  border: 1px solid var(--grayscale-300);
 }
 .light-border-default {
-  color: var(--grayscale-100);
+  border: 1px solid var(--grayscale-100);
 }
 
 /* Color System: Dark Mode */
@@ -168,10 +168,10 @@
 }
 
 .dark-border-bold {
-  color: var(--grayscale-white-alt);
+  border: 1px solid var(--grayscale-white-alt);
 }
 .dark-border-default {
-  color: var(--grayscale-400);
+  border: 1px solid var(--grayscale-400);
 }
 
 /* Icons */
