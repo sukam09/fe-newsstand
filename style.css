@@ -1,5 +1,5 @@
 @import url(./reset.css);
-@import url(variable.css);
+@import url(./variable.css);
 @import url(./typography.css);
 
 /* commot css */
@@ -25,12 +25,12 @@ body {
 
 .today {
   color: var(--text-text-default);
-  /* font-family: Pretendard; */
+  /* font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
-  float: right;
+  float: right; */
 }
 
 section {

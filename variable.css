@@ -1,5 +1,5 @@
 /* css variable */
-root {
+:root {
   /* Typography System */
   --font-bold: 700;
   --font-medium: 500;
