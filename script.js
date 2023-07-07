@@ -3,9 +3,7 @@ const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 const systemDate = document.querySelector(".system-date");
 
-let idList = Array.from({ length: 96 }, (_, idx) =>
-  String(idx).padStart(2, "0")
-);
+let idList = Array.from({ length: 96 }, (_, idx) => idx);
 
 const shuffleIdList = (idList) => {
   idList.sort(() => Math.random() - 0.5);
@@ -15,14 +13,15 @@ const makeGrid = (isLightMode, pageNum) => {
   for (let i = pageNum * 24; i < pageNum * 24 + 24; i++) {
     const gridItem = document.createElement("li");
     const imgSrc = isLightMode
-      ? `./img/light-media/img${idList[i]}.png`
-      : `./img/dark-media/img${idList[i]}.png`;
+      ? `./img/light-media/${idList[i]}.png`
+      : `./img/dark-media/${idList[i]}.png`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = function () {
       const img = document.createElement("img");
       img.src = imgSrc;
+      img.style.height = "20px";
       gridItem.appendChild(img);
     };
 
@@ -49,9 +48,8 @@ const getSystemDate = () => {
   let date = today.getDate();
   let day = today.getDay();
 
-  // 한자리 숫자 앞에 0을 추가
-  if (month < 10) month = "0" + month;
-  if (date < 10) date = "0" + date;
+  if (month < 10) month = String(month).padStart(2, "0");
+  if (date < 10) date = String(date).padStart(2, "0");
 
   const saveDate =
     year + ". " + month + ". " + date + ". " + WEEKDAY[Number(day)];
@@ -73,7 +71,7 @@ function reloadPage() {
 
 function init() {
   shuffleIdList(idList);
-  makeGrid(true, 3);
+  makeGrid(true, 0);
 }
 
 init();
