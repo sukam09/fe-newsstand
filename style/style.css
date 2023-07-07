@@ -96,7 +96,7 @@ section {
   background-color: transparent;
   border: 0;
 }
-.tab-and-viewer .viewer .list-btn::before,
+/* .tab-and-viewer .viewer .list-btn::before,
 .tab-and-viewer .viewer .grid-btn::before {
   content: "";
   width: 24px;
@@ -111,7 +111,7 @@ section {
 }
 .tab-and-viewer .viewer .grid-btn::before {
   background-image: url("./icons/grid-btn.svg");
-}
+} */
 
 .grid {
   display: flex;
@@ -137,6 +137,7 @@ section {
   flex: 1 0 0;
   align-self: stretch;
   background: var(--surface-default);
+  cursor: pointer;
 }
 
 .left-btn,
