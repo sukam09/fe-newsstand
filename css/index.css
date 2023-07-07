@@ -1,0 +1,25 @@
+/* display.
+list-style.
+position.
+float.
+clear.
+width / height.
+padding / margin.
+border / background.
+color / font
+text-decoration
+text-align / vertical-align
+white-space
+other text
+content
+ */
+
+/* global */
+#container{
+    width: 930px;
+    margin: 0 auto;
+}
+
+.header, .newsflash, .newspaper {
+    width: 100%;
+}
