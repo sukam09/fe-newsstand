@@ -11,11 +11,55 @@ for (let i = 1; i < 97; i++) {
   });
 }
 
+function appendPressInGrid(press) {
+  let image = document.createElement("img");
+  image.src = `./icons/press_logo/${press.src}`;
+  let sub = document.createElement("img");
+  image.classList.add("original");
+  sub.src = `./icons/Button.svg`;
+  sub.classList.add("sub");
+  let list = document.createElement("li");
+  list.classList.add("press-item");
+  list.appendChild(image);
+  list.appendChild(sub);
+  document.getElementById("press-list").appendChild(list);
+}
+
+function initDisplayNone() {
+  document.querySelector(".list-selected").style.display = "none";
+  document.querySelector(".press-list-section").style.display = "none";
+  document.getElementById("grid-prev").style.display = "none";
+}
+
+function setDate() {
+  document.querySelector(".date").textContent = `${date.getFullYear()}. ${
+    date.getMonth() + 1
+  }. ${date.getDate()}. ${day[date.getDay()]}요일`;
+}
+
+function changeToGrid() {
+  document.getElementsByClassName("grid-selected")[0].style.display = "flex";
+  document.getElementsByClassName("list-selected")[0].style.display = "none";
+  document.getElementsByClassName("press-list-section")[0].style.display =
+    "none";
+  document.getElementsByClassName("press-grid")[0].style.display = "block";
+  grid_view_selected = true;
+}
+
+function changeToList() {
+  document.getElementsByClassName("grid-selected")[0].style.display = "none";
+  document.getElementsByClassName("list-selected")[0].style.display = "flex";
+  document.getElementsByClassName("press-list-section")[0].style.display =
+    "block";
+  document.getElementsByClassName("press-grid")[0].style.display = "none";
+  grid_view_selected = false;
+}
+
 const shuffle = () => Math.random() - 0.5;
 let shuffled_presses = [...presses].sort(shuffle);
 
 document.getElementById("grid-next").addEventListener("click", () => {
-  if (grid_page_count + 1 === presses.length / 24 - 1) {
+  if (grid_page_count + 1 === parseInt(presses.length / 24) - 1) {
     document.getElementById("grid-next").style.display = "none";
   }
   if (grid_page_count + 1 < parseInt(presses.length / 24)) {
@@ -27,18 +71,7 @@ document.getElementById("grid-next").addEventListener("click", () => {
       (grid_page_count + 1) * 24
     );
     slice_shuffled_presses.forEach((press) => {
-      let image = document.createElement("img");
-      image.src = `./icons/press_logo/${press.src}`;
-      let sub = document.createElement("img");
-      image.classList.add("original");
-      sub.src = `./icons/Button.svg`;
-      sub.classList.add("sub");
-
-      let list = document.createElement("li");
-      list.classList.add("press-item");
-      list.appendChild(image);
-      list.appendChild(sub);
-      document.getElementById("press-list").appendChild(list);
+      appendPressInGrid(press);
     });
   }
 });
@@ -56,43 +89,17 @@ document.getElementById("grid-prev").addEventListener("click", () => {
       grid_page_count * 24 + 24
     );
     slice_shuffled_presses.forEach((press) => {
-      let image = document.createElement("img");
-      image.src = `./icons/press_logo/${press.src}`;
-      let list = document.createElement("li");
-      let sub = document.createElement("img");
-      image.classList.add("original");
-      sub.src = `./icons/Button.svg`;
-      sub.classList.add("sub");
-      list.classList.add("press-item");
-      list.appendChild(image);
-      list.appendChild(sub);
-
-      document.getElementById("press-list").appendChild(list);
+      appendPressInGrid(press);
     });
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".list-selected").style.display = "none";
-  document.querySelector(".press-list-section").style.display = "none";
-  document.getElementById("grid-prev").style.display = "none";
-  document.querySelector(".date").textContent = `${date.getFullYear()}. ${
-    date.getMonth() + 1
-  }. ${date.getDate()}. ${day[date.getDay()]}요일`;
+  initDisplayNone();
+  setDate();
   const slice_shuffled_presses = shuffled_presses.slice(0, 24);
   slice_shuffled_presses.forEach((press) => {
-    let image = document.createElement("img");
-    image.src = `./icons/press_logo/${press.src}`;
-    let sub = document.createElement("img");
-    image.classList.add("original");
-    sub.src = `./icons/Button.svg`;
-    sub.classList.add("sub");
-
-    let list = document.createElement("li");
-    list.classList.add("press-item");
-    list.appendChild(image);
-    list.appendChild(sub);
-    document.getElementById("press-list").appendChild(list);
+    appendPressInGrid(press);
   });
 
   var interval = window.setInterval(firstRollingCallback, 5000);
@@ -100,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var interval2 = window.setInterval(secondRollingCallback, 5000);
   }, 2000);
 });
+
 function firstRollingCallback() {
   //.prev 클래스 삭제
   document.querySelector(".rollingbanner .prev").classList.remove("prev");
@@ -155,30 +163,17 @@ list_symbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
     if (grid_view_selected) {
       // grid 상태이면
-      document.getElementsByClassName("grid-selected")[0].style.display =
-        "none";
-      document.getElementsByClassName("list-selected")[0].style.display =
-        "flex";
-      document.getElementsByClassName("press-list-section")[0].style.display =
-        "block";
-      document.getElementsByClassName("press-grid")[0].style.display = "none";
-      grid_view_selected = false;
+      changeToList();
     }
   });
 });
+
 let grid_symbol = document.querySelectorAll(".grid-symbol");
 grid_symbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
     if (!grid_view_selected) {
       // grid 상태 아니면
-      document.getElementsByClassName("grid-selected")[0].style.display =
-        "flex";
-      document.getElementsByClassName("list-selected")[0].style.display =
-        "none";
-      document.getElementsByClassName("press-list-section")[0].style.display =
-        "none";
-      document.getElementsByClassName("press-grid")[0].style.display = "block";
-      grid_view_selected = true;
+      changeToGrid();
     }
   });
 });
