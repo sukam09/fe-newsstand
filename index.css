@@ -20,12 +20,11 @@ div>img{
 }
 
 input[type="radio"]{
-    opacity: 0;
+    display: none;
 }
 
 .main{
     margin:0 auto;
-    border: 1px green dotted;
     padding:20px;
     width:930px;
 }
@@ -85,12 +84,14 @@ main.main{
 #main-left{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    width:220px;
 }
 
 #main-right{
     display: flex;
     justify-content: space-between;
-    width:100px;
+    width:65px;
 }
 
 #main-grid{
