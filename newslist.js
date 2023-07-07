@@ -43,8 +43,6 @@ shuffledArray.forEach((arr, idx) => {
     ${page0.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
  `
 
-let cnt = 0;
-
 function showPressImg(cnt) {
     if(cnt === 0){
         sectionNewsList.innerHTML = `
@@ -69,18 +67,36 @@ function showPressImg(cnt) {
 `
     }
 }
-
 const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
+const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
+
+let cnt = 0;
+
+function buttonControll() {
+    if(cnt !== 0){
+        sectionLeftButtonEvent.style.visibility = "visible";
+    }
+    else {
+        sectionLeftButtonEvent.style.visibility = "hidden";
+    }
+    if(cnt >= 3){
+        sectionRightBUttonEvent.style.visibility = "hidden";
+    }
+    else {
+        sectionRightBUttonEvent.style.visibility = "visible";
+    }
+}
+
+
 sectionLeftButtonEvent.addEventListener('click', () => {
     cnt--;
     showPressImg(cnt);
-
+    buttonControll();
 })
-
-const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
 sectionRightBUttonEvent.addEventListener('click', () => {
     cnt ++;
     showPressImg(cnt);
+    buttonControll();
 })
 
 
