@@ -141,6 +141,10 @@ function createSubButton(id) {
   subButton.style.height = "24px";
   subButton.style.borderRadius = "50px";
   subButton.innerHTML = "+ 구독하기";
+  subButton.style.fontSize = "12px";
+  subButton.style.color = "#879298";
+  subButton.style.border = "1px solid #D2DAE0";
+  subButton.style.backgroundColor = "#FFFFFF";
 
   subButton.addEventListener("click", () => {
     const targetPress = pressObjArr.find((item) => item.id == id);
@@ -158,7 +162,11 @@ function createUnSubButton(id) {
   unSubButton.style.width = "72px";
   unSubButton.style.height = "24px";
   unSubButton.style.borderRadius = "50px";
-  unSubButton.innerHTML = "X 해지하기";
+  unSubButton.innerHTML = "✕ 해지하기";
+  unSubButton.style.fontSize = "12px";
+  unSubButton.style.color = "#879298";
+  unSubButton.style.border = "1px solid #D2DAE0";
+  unSubButton.style.backgroundColor = "#F5F7F9";
 
   unSubButton.addEventListener("click", () => {
     const targetPress = pressObjArr.find((item) => item.id == id);
