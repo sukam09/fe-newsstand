@@ -12,6 +12,10 @@ div>img{
     height: auto;
 }
 
+input[type="radio"]{
+    opacity: 0;
+}
+
 .main{
     margin:0 auto;
     border: 1px green dotted;
@@ -60,11 +64,6 @@ header.main{
     margin-right: 20px;
 }
 
-#main-left-01{
-    font-weight: bold;
-    margin-right: 18px;
-}
-
 main.main{
     width:930px;
     height:430px;
@@ -81,7 +80,7 @@ main.main{
     flex-direction: row;
 }
 
-#main-image{
+#main-right{
     display: flex;
     justify-content: space-between;
     width:100px;
@@ -139,13 +138,20 @@ section.main{
     cursor:pointer
 }
 
-#grid-image{
-    border:2px blue solid;
-}
 
 #main-div-02{
     display: flex;
     flex-direction: row;
     position: relative;
     left: -60px;
+}
+
+input[type="radio"]:checked + label
+{
+    font-weight: bold;
+}
+
+input[type="radio"]:checked + img
+{
+    background-color: blue;
 }

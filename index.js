@@ -9,11 +9,6 @@ let subscribe_images=[
 
 ];
 
-const newsStatus={
-    all:1,
-    my:0,
-};
-
 const cardStatus={
     grid:1,
     cardList:0,
@@ -84,45 +79,37 @@ function shuffle(array){
     array.sort(() => Math.random() - 0.5);
 }
 
-function clickAllNews(){
-    allNews.addEventListener('click',()=>{
-        newsStatus.all = 1;
-        newsStatus.my = 0;
-        subscribeNews.style.fontWeight="normal";
-        allNews.style.fontWeight="bold";
-        refresh(subscribe_images);
-    });
-}
+// function clickAllNews(){
+//     allNews.addEventListener('click',()=>{
+//         refresh(subscribe_images);
+//     });
+// }
 
-function clickMySubscribeNews(){
-    subscribeNews.addEventListener('click',()=>{
-        newsStatus.all = 0;
-        newsStatus.my = 1;
-        subscribeNews.style.fontWeight="bold";
-        allNews.style.fontWeight="normal";
-        refresh(subscribe_images);
-    });
-}
+// function clickMySubscribeNews(){
+//     subscribeNews.addEventListener('click',()=>{
+//         refresh(subscribe_images);
+//     });
+// }
 
-function clickGridImage(){
-    gridImage.addEventListener('click',()=>{
-        cardStatus.grid = 1;
-        cardStatus.cardList = 0;
-        cardListImage.style.border="0px blue solid";
-        gridImage.style.border="2px blue solid";
-        refresh(subscribe_images);
-    });
-}
+// function clickGridImage(){
+//     gridImage.addEventListener('click',()=>{
+//         cardStatus.grid = 1;
+//         cardStatus.cardList = 0;
+//         cardListImage.style.border="0px blue solid";
+//         gridImage.style.border="2px blue solid";
+//         refresh(subscribe_images);
+//     });
+// }
 
-function clickCardListImage(){
-    cardListImage.addEventListener('click',()=>{
-        cardStatus.grid = 0;
-        cardStatus.cardList = 1;
-        cardListImage.style.border="2px blue solid";
-        gridImage.style.border="0px blue solid";
-        refresh(subscribe_images);
-    });
-}
+// function clickCardListImage(){
+//     cardListImage.addEventListener('click',()=>{
+//         cardStatus.grid = 0;
+//         cardStatus.cardList = 1;
+//         cardListImage.style.border="2px blue solid";
+//         gridImage.style.border="0px blue solid";
+//         refresh(subscribe_images);
+//     });
+//}
 
 function clickRightAsideButton(){
     rightAsideButton.addEventListener("click",()=>{
@@ -157,9 +144,9 @@ refresh(save_images);
 shuffle(save_images);
 setDate();
 clickNewsStand();
-clickAllNews();
-clickMySubscribeNews();
-clickGridImage();
-clickCardListImage();
+// clickAllNews();
+//clickMySubscribeNews();
+// clickGridImage();
+// clickCardListImage();
 clickRightAsideButton();
 clickLeftAsideButton();

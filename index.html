@@ -15,11 +15,27 @@
                 <div class="section-div"><strong class="section-strong">연합뉴스</strong>[속보] 최고위원 본경선, 김용민,김용태,김재원,민영삼</div>
             </section>
             <main class="main">
-                <div id="main-div"><div id="main-left"><div id="main-left-01">전체 구독사</div><div id = "main-left-02">내가 구독한 언론사</div></div><div id="main-image"><img id="card-list-image" src="./img/card_list.svg"><img id="grid-image" src="./img/grid.svg"></div></div>
+                <div id="main-div">
+                    <div id="main-left">
+                        <input type="radio" id="main-left-radio-01" name="subscribe" checked>
+                        <label for = "main-left-radio-01">전체 구독사</label>
+                        <input name="subscribe" id="main-left-radio-02" type="radio">
+                        <label for = "main-left-radio-02">내가 선택한 구독사</label>
+                    </div>
+                    <div id="main-right">
+                        <label>
+                            <input type="radio" id="main-right-radio-01" name="sort" checked>
+                            <img id="card-list-image" src="./img/card_list.svg">
+                        </label>
+                        <label>
+                            <input type="radio" id="main-right-radio-02" name="sort">
+                            <img id="grid-image" src="./img/grid.svg">
+                        </label>
+                    </div>
+                 </div>
                 <div id="main-div-02">
                     <aside id="aside-left"><img src="./img/LeftButton.png"></aside>
-                    <div id="main-grid">
-                    </div>
+                    <div id="main-grid"></div>
                     <aside id="aside-right"><img src="./img/RightButton.png"></aside>
                 </div>
             </main>
