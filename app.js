@@ -11,16 +11,21 @@ const $nextPageButton = document.querySelector(
 const $headerDate = document.querySelector(".container-header_date");
 
 /* utils */
-const fetchNewsData = async () => {
-  try {
-    const response = await fetch("./mocks/news.json");
-    const data = await response.json();
 
-    // shuffle data
-    return data.sort(() => Math.random() - 0.5);
-  } catch (error) {
-    console.error(error.message);
+const customFetch = async (url, callback, options) => {
+  try {
+    const response = await fetch(url, options);
+    let data = await response.json();
+
+    if (callback) data = callback(data);
+    return data;
+  } catch (err) {
+    console.error(err);
   }
+};
+
+const shuffleData = (data) => {
+  return data.sort(() => Math.random() - 0.5);
 };
 
 const setDate = () => {
@@ -64,7 +69,7 @@ const fillNewsContents = (newsData) => {
 (async function init() {
   setDate();
 
-  const newsData = await fetchNewsData();
+  const newsData = await customFetch("./mocks/news.json", shuffleData);
   fillNewsContents(newsData);
 
   /* event handler */
