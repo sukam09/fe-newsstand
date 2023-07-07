@@ -5,11 +5,11 @@ export default class AllNews {
   constructor() {
     this.$wrapper = document.createElement('section');
 
-    this.init();
+    this.render();
     return this.$wrapper;
   }
 
-  init() {
+  render() {
     this.$wrapper.appendChild(new AllNewHeader());
     this.$wrapper.appendChild(new AllNewsGrid());
   }

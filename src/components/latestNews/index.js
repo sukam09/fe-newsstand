@@ -3,11 +3,11 @@ export default class LatestNews {
     this.$wrapper = document.createElement('div');
     this.$wrapper.className = 'latest-main-news';
 
-    this.init();
+    this.render();
     return this.$wrapper;
   }
 
-  init() {
+  render() {
     this.$wrapper.appendChild(this.createLatestNewsComponent('연합뉴스', '[1보] !'));
     this.$wrapper.appendChild(this.createLatestNewsComponent('연합뉴스', '[1보] !'));
   }

@@ -6,7 +6,7 @@ export default class AllNewsGrid {
     this.$wrapper = document.createElement('div');
     this.$wrapper.className = 'grid-wrapper';
 
-    this.init();
+    this.render();
 
     return this.$wrapper;
   }
@@ -23,7 +23,7 @@ export default class AllNewsGrid {
     this.$wrapper.appendChild($newsListGrid);
   }
 
-  init() {
+  render() {
     this.$wrapper.appendChild(new ArrowButton({ name: 'LeftButton' }));
     this.addGrid();
     this.$wrapper.appendChild(new ArrowButton({ name: 'RightButton' }));

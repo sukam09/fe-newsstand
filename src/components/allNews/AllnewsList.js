@@ -3,9 +3,9 @@ export default class AllNewsList {
     const $component = document.createElement('li');
     $component.innerText = name;
 
-    this.init();
+    this.render();
     return $component;
   }
 
-  init() {}
+  render() {}
 }
