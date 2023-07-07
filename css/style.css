@@ -14,21 +14,19 @@ body {
     width: 930px;
 }
 
-/* 위 */
+/* header */
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* border: 1px solid red; */
 }
-
 
 .title_wrapper {
     display: flex;
     align-items: center;
-    /* border: 1px solid yellow; */
+    cursor: pointer;
 }
 
 .title_wrapper img {
@@ -37,7 +35,7 @@ header {
     margin-right : 8px;
 }
 
-/* 중간 */
+/* article content */
 
 .article_wrapper {
     display: flex;
@@ -57,17 +55,7 @@ article {
     margin-left: 10px;
 }
 
-.view_select {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.view_select img{
-    cursor:pointer;
-}
-/* 아래 */
-
+/* main grid */
 main {
     display: flex;
     width: 100%;
@@ -93,11 +81,28 @@ nav {
 .media_select{
     cursor:pointer;
 }
+
+.view_select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view_select img{
+    cursor:pointer;
+}
+
+.grid_wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 로고 표시하는 list */
 ul {
     display: grid;
     width: 930px;
     height: 388px;
-    /* 6 * 4 grid */
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 0;
@@ -114,22 +119,28 @@ ul li {
     position: relative;
 }
 
-.grid_wrapper{
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.arrow_wrapper_left{
+/* page 이동시키는 화살표 img */
+#arrow_wrapper_left{
     position: absolute;
     left:-72px;
     cursor:pointer;
 }
-.arrow_wrapper_right{
+
+#arrow_wrapper_left.page_0{
+    display: none;
+}
+
+#arrow_wrapper_right{
     position: absolute;
     right:-72px;
     cursor:pointer;
 }
 
+#arrow_wrapper_right.page_3{
+    display:none;
+}
+
+/* logo mouse hover시 */
 .media-hover {
     display: none;
 }
