@@ -32,7 +32,6 @@ function shuffleImgIndex() {
 }
 const shuffledPress = shuffleImgIndex();
 
-//todo padstart
 function getDateInterval() {
   setInterval(makeDate, 60000);
 }
