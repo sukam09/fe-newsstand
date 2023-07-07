@@ -34,6 +34,14 @@ body {
   flex-direction: column;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 /* header-wrapper */
 .header-wrapper {
   align-items: center;
