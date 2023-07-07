@@ -30,6 +30,7 @@ function makeDate() {
 function shuffleImgIndex() {
   return [...imgIndex].sort(() => Math.random() - 0.5);
 }
+const shuffledPress = shuffleImgIndex();
 
 //todo padstart
 function getDateInterval() {
@@ -43,25 +44,22 @@ function showMainList() {
     const img = document.createElement("img");
     img.setAttribute(
       "src",
-      `../images/lightmode-media/asset ${shuffleImgIndex()[i]} 1.png`
+      `../images/lightmode-media/asset ${shuffledPress[i]} 1.png`
     );
     main_list_ul.appendChild(li);
     li.appendChild(img);
   }
-  console.log(main_list_page);
 }
-
 function changePage(e) {
   if (e.target.id === "left") {
     main_list_page--;
-    showMainList();
-    checkPage();
   } else {
     main_list_page++;
-    showMainList();
-    checkPage();
   }
+  showMainList();
+  checkPage();
 }
+
 function checkPage() {
   if (main_list_page === 1) left_btn.style.visibility = "hidden";
   else if (main_list_page === 4) right_btn.style.visibility = "hidden";
@@ -70,13 +68,13 @@ function checkPage() {
     right_btn.style.visibility = "visible";
   }
 }
+
 //이벤트 리스너
 mainLogo.addEventListener("click", reload);
 right_btn.addEventListener("click", (e) => changePage(e));
 left_btn.addEventListener("click", (e) => changePage(e));
 
 //default
-console.log(shuffleImgIndex());
 makeDate();
 getDateInterval();
 showMainList();
