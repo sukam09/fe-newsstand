@@ -6,6 +6,7 @@ const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
 const $nextPageButton = document.querySelector(
   ".container-grid-view_right-btn"
 );
+const $headerDate = document.querySelector(".container-header_date");
 
 /* utils */
 const fetchNewsData = async () => {
@@ -19,12 +20,6 @@ const fetchNewsData = async () => {
     console.error(error.message);
   }
 };
-
-const isFirstPage = () => {
-  return pages === 0;
-};
-
-const isLastPage = () => {};
 
 /* grid view control */
 const fillNewsContents = (newsData) => {
@@ -51,7 +46,22 @@ const fillNewsContents = (newsData) => {
   }
 };
 
+const setDate = () => {
+  const today = new Date();
+
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "long",
+  };
+
+  $headerDate.innerText = today.toLocaleDateString("ko-KR", options);
+};
+
 (async function init() {
+  setDate();
+
   const newsData = await fetchNewsData();
 
   newsData.forEach((news) => {
