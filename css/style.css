@@ -1,9 +1,8 @@
 @import "reset.css";
 @import "constant.css";
-@import "../assets/fonts/pretendard/pretendard.css";
+@import "font.css";
 
 body {
-    font-family: "Pretendard";
     display: flex;
     align-items: center;
     justify-content: center;
