@@ -5,12 +5,12 @@ export default class AllNewHeader {
     this.$header = document.createElement('div');
     this.$header.className = 'all-news-header';
 
-    this.init();
+    this.render();
 
     return this.$header;
   }
 
-  init() {
+  render() {
     this.addTitleNavigator();
     this.addIconNavigator();
   }

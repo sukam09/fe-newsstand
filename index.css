@@ -1,7 +1,13 @@
+@import './color.css';
+
 h1,
 h2,
 h3 {
   display: inline;
+}
+
+h1 > button {
+  color: var(--text-strong);
 }
 body {
   height: 100vh;
@@ -32,7 +38,7 @@ section {
 }
 
 .date {
-  color: #5f6e76;
+  color: var(--text-default);
 }
 
 .latest-main-news {
@@ -148,6 +154,6 @@ section {
 }
 
 .press-logo {
-  width: 63px;
+  width: fit-content;
   height: 20px;
 }
