@@ -70,10 +70,13 @@ const fillNewsContents = (newsData) => {
   /* event handler */
 
   const handlePrevButtonClick = () => {
-    $nextPageButton.classList.remove("hidden");
-    pages--;
+    const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
 
-    if (pages === 0) {
+    if (pages === maxPage) {
+      $nextPageButton.classList.remove("hidden");
+    }
+
+    if (--pages === 0) {
       $prevPageButton.classList.add("hidden");
     }
     fillNewsContents(newsData);
@@ -82,14 +85,13 @@ const fillNewsContents = (newsData) => {
   const handleNextButtonClick = () => {
     const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
 
-    if (pages === maxPage) {
-      return;
+    if (pages === 0) {
+      $prevPageButton.classList.remove("hidden");
     }
 
-    $prevPageButton.classList.remove("hidden");
-    pages++;
-
-    if (pages === maxPage) $nextPageButton.classList.add("hidden");
+    if (++pages === maxPage) {
+      $nextPageButton.classList.add("hidden");
+    }
     fillNewsContents(newsData);
   };
 
