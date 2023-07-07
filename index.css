@@ -153,3 +153,7 @@ body {
 .right_arrow {
     text-align: center;
 }
+
+#option_all_press {
+    font-weight: bold;
+}

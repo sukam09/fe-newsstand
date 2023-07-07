@@ -30,8 +30,14 @@
 
                     <section class="container_between">
                         <div class="sec_trend_news">
-                            <div class="rolling_banner" id="rollingBannerLeft"></div>
-                            <div class="rolling_banner" id="rollingBannerRight"></div>
+                            <div
+                                class="rolling_banner"
+                                id="rollingBannerLeft"
+                            ></div>
+                            <div
+                                class="rolling_banner"
+                                id="rollingBannerRight"
+                            ></div>
                         </div>
                     </section>
                 </div>
@@ -51,18 +57,38 @@
                         <nav class="nav_container">
                             <div id="navLeft">
                                 <span>
-                                    <p>전체 언론사</p>
+                                    <p
+                                        class="option_press"
+                                        id="option_all_press"
+                                    >
+                                        전체 언론사
+                                    </p>
                                 </span>
                                 <span>
-                                    <p>내가 구독한 언론사</p>
+                                    <p
+                                        class="option_press"
+                                        id="option_subscribe_press"
+                                    >
+                                        내가 구독한 언론사
+                                    </p>
                                 </span>
                             </div>
                             <div id="navRight">
                                 <i>
-                                    <img src="./icons/Symbol.png" alt="search" />
+                                    <img
+                                        class="option_main"
+                                        id="option_symbol_main"
+                                        src="./icons/option_symbol_main_active.png"
+                                        alt="search"
+                                    />
                                 </i>
                                 <i>
-                                    <img src="./icons/list-view.png" alt="search" />
+                                    <img
+                                        class="option_main"
+                                        id="option_list_main"
+                                        src="./icons/option_list_main.png"
+                                        alt="search"
+                                    />
                                 </i>
                             </div>
                         </nav>
@@ -132,6 +158,7 @@
     </body>
     <script src="./utils.js"></script>
     <script src="./news_data.js"></script>
+    <script src="./events.js"></script>
     <script src="./random_news.js"></script>
     <script type="module" src="./rolling_banner.js"></script>
 </html>
