@@ -4,16 +4,27 @@ const sectionNewsList =  document.getElementById('section-news-list');
 const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
 const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
 
+const now = new Date();
+const year = now.getFullYear();
+const month = ('0'+(now.getMonth() + 1)).slice(-2);
+const date = ('0'+(now.getDate())).slice(-2);
+const week = ['일', '월', '화', '수', '목', '금', '토'];
+const day = week[now.getDay()];
+const todayDate = document.getElementById('header-today-date');
+todayDate.innerHTML = `${year}. ${month}. ${date}. ${day}요일`;
+
+const page = [[],[],[],[]];
+
 for(let i=0;i<96;i++){
     array.push(i);
 }
+
 array.forEach(arr => {
     newsList.push({"id":arr});
 })
 
 const shuffledArray = [...newsList].sort(() => Math.random() - 0.5);
 
-const page = [[],[],[],[]];
 shuffledArray.forEach((arr,idx) => {
     if(0 <= idx && idx <= 23){
         page[0].push(arr);
@@ -29,17 +40,17 @@ shuffledArray.forEach((arr,idx) => {
     }
 }) 
 
+let cnt = 0;
+sectionNewsList.innerHTML = `
+    ${page[0].map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+ `
+
 function showPressImg(cnt){
     sectionNewsList.innerHTML = `
          ${page[cnt].map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
      `
 }
 
- sectionNewsList.innerHTML = `
-    ${page[0].map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
- `
-
-let cnt = 0;
 
 function buttonControll() {
     if(cnt !== 0){
@@ -56,7 +67,6 @@ function buttonControll() {
     }
 }
 
-
 sectionLeftButtonEvent.addEventListener('click', () => {
     cnt--;
     showPressImg(cnt);
@@ -67,8 +77,6 @@ sectionRightBUttonEvent.addEventListener('click', () => {
     showPressImg(cnt);
     buttonControll();
 })
-
-
 
 
 
