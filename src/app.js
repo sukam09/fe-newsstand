@@ -1,6 +1,13 @@
 import getDate from './getDate.js';
-import { initPressItems, handleClickTitleIcon } from './utils.js';
+import {
+  initNewsPressData,
+  handleClickTitleIcon,
+  handleClickNextPageButton,
+  showNewsPressItems,
+} from './utils.js';
 
 getDate();
-initPressItems();
+initNewsPressData();
+// showNewsPressItems();
 handleClickTitleIcon();
+handleClickNextPageButton();

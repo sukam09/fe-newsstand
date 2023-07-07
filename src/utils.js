@@ -1,18 +1,32 @@
+let page = 1;
+let newsPressData = [];
+
 const shuffleArray = array => array.sort(() => Math.random() - 0.5);
 
-const initPressItems = () => {
+const initNewsPressData = () => {
   fetch('../data/press-info.json')
     .then(response => response.json())
     .then(jsonData => {
-      const newsPressData = shuffleArray(jsonData);
-      newsPressItems.forEach((item, index) => {
-        const $img = document.createElement('img');
-        const { logo } = newsPressData[index];
-        $img.src = logo;
-        item.appendChild($img);
-        $img.classList.add('press-logo');
-      });
+      newsPressData = shuffleArray(jsonData);
+      showNewsPressItems();
     });
+};
+
+const showNewsPressItems = () => {
+  const startIndex = 24 * (page - 1);
+  const endIndex = startIndex + 23;
+  const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
+  // console.log(page, startIndex, endIndex, currentNewsPressData);
+  newsPressItems.forEach((item, index) => {
+    item.innerHTML = '';
+
+    const $img = document.createElement('img');
+    const { logo } = currentNewsPressData[index];
+    $img.src = logo;
+    $img.classList.add('press-logo');
+
+    item.appendChild($img);
+  });
 };
 
 const newsPressItems = document.querySelectorAll('.news-press-item');
@@ -25,4 +39,15 @@ const handleClickTitleIcon = () => {
   });
 };
 
-export { initPressItems, handleClickTitleIcon };
+const nextPageButton = document.querySelector('.right-arrow-button');
+console.log(nextPageButton);
+
+const handleClickNextPageButton = () => {
+  nextPageButton.addEventListener('click', () => {
+    page++;
+    console.log(page);
+    showNewsPressItems();
+  });
+};
+
+export { initNewsPressData, showNewsPressItems, handleClickTitleIcon, handleClickNextPageButton };
