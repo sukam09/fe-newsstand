@@ -16,7 +16,7 @@ export default class AllNewsGrid {
     const $newsLists = document.createElement('ul');
     $newsLists.className = 'news-list';
     for (let i = 0; i < 24; i++) {
-      $newsLists.appendChild(new AllNewsList('데일리안'));
+      $newsLists.appendChild(new AllNewsList(i));
     }
     $newsListGrid.appendChild($newsLists);
 

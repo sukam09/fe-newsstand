@@ -146,3 +146,8 @@ section {
   align-items: center;
   cursor: pointer;
 }
+
+.press-logo {
+  width: 63px;
+  height: 20px;
+}
