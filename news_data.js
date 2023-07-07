@@ -192,35 +192,147 @@ const news_data = [
         url: "./images/소년한국일보.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "티브이데일리",
+        url: "./images/티브이데일리.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "bbsnews",
+        url: "./images/bbsnews.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "mondediplo",
+        url: "./images/mondediplo.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "mk스포츠",
+        url: "./images/mk스포츠.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "텐아시아",
+        url: "./images/텐아시아.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "정책브리핑",
+        url: "./images/정책브리핑.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "씨네21",
+        url: "./images/씨네21.png",
     },
     {
-        name: "knn",
-        url: "./images/knn.png",
+        name: "뉴스포스트",
+        url: "./images/뉴스포스트.png",
+    },
+    {
+        name: "정신의학신문",
+        url: "./images/정신의학신문.png",
+    },
+    {
+        name: "철강금속신문",
+        url: "./images/철강금속신문.png",
+    },
+    {
+        name: "itchosun",
+        url: "./images/itchosun.png",
+    },
+    {
+        name: "여성경제신문",
+        url: "./images/여성경제신문.png",
+    },
+    {
+        name: "sportalkorea",
+        url: "./images/sportalkorea.png",
+    },
+    {
+        name: "한국일보",
+        url: "./images/한국일보.png",
+    },
+    {
+        name: "프레시안",
+        url: "./images/프레시안.png",
+    },
+    {
+        name: "노컷뉴스",
+        url: "./images/노컷뉴스.png",
+    },
+    {
+        name: "thejoongang",
+        url: "./images/thejoongang.png",
+    },
+    {
+        name: "서울신문",
+        url: "./images/서울신문.png",
+    },
+    {
+        name: "스포츠조선",
+        url: "./images/스포츠조선.png",
+    },
+    {
+        name: "전자신문",
+        url: "./images/전자신문.png",
+    },
+    {
+        name: "한국경제tv",
+        url: "./images/한국경제tv.png",
+    },
+    {
+        name: "bloter",
+        url: "./images/bloter.png",
+    },
+    {
+        name: "kbs",
+        url: "./images/kbs.png",
+    },
+    {
+        name: "동아일보",
+        url: "./images/동아일보.png",
+    },
+    {
+        name: "newsis",
+        url: "./images/newsis.png",
+    },
+    {
+        name: "한국경제",
+        url: "./images/한국경제.png",
+    },
+    {
+        name: "시사in",
+        url: "./images/시사in.png",
+    },
+    {
+        name: "산",
+        url: "./images/산.png",
+    },
+    {
+        name: "독서신문",
+        url: "./images/독서신문.png",
+    },
+    {
+        name: "econotimes",
+        url: "./images/econotimes.png",
+    },
+    {
+        name: "대전방송",
+        url: "./images/대전방송.png",
+    },
+    {
+        name: "시사오늘시사",
+        url: "./images/시사오늘시사.png",
+    },
+    {
+        name: "데일리한국",
+        url: "./images/데일리한국.png",
+    },
+    {
+        name: "뉴스토마토",
+        url: "./images/뉴스토마토.png",
+    },
+    {
+        name: "에이블뉴스",
+        url: "./images/에이블뉴스.png",
+    },
+    {
+        name: "ytn사이언스",
+        url: "./images/ytn사이언스.png",
     },
 ];
