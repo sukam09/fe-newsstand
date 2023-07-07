@@ -17,33 +17,11 @@ body {
   width: 930px;
 }
 
-/* 재사용 CSS */
-.flex-row-between {
+/* header-wrapper */
+.header-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
-}
-
-/* header-wrapper */
-.header-wrapper {
   align-items: center;
   margin-top: 58px;
 }
@@ -55,15 +33,19 @@ body {
   gap: 8px;
   background-color: transparent;
   border: none;
-  cursor: pointer;
 }
 
 /* hot-topic-wrapper */
 .hot-topic-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 40px;
 }
 
 .hot-topic-wrapper > li {
+  display: flex;
+  flex-direction: row;
   align-items: center;
 
   width: 429px;
@@ -72,9 +54,24 @@ body {
   gap: 16px;
 }
 
+.hot-topic-wrapper > li > p:hover {
+  text-decoration: underline;
+}
+
 /* press-wrapper */
 .press-wrapper {
   margin-top: 33px;
+}
+
+.press-wrapper > header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.press-wrapper > header > nav {
+  display: flex;
+  flex-direction: row;
 }
 
 .main-nav-left {
@@ -86,15 +83,39 @@ body {
   gap: 8px;
 }
 
-/* news-wrapper */
+/* .arrows-wrapper */
+.arrows-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
+  margin-top: 25px;
+}
+
+.left-arrow {
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: -72px; /* 0 - 24 - 48 */
+}
+
+.right-arrow {
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: 978px; /* 930 + 48 */
+}
+
+/* news-wrapper */
 .news-wrapper {
   display: grid;
-  position: relative;
+
   grid-template-columns: repeat(6, 1fr);
   list-style-type: none;
   padding: 0;
-  margin-top: 25px;
   border-top: 1px solid #d2dae0;
   border-left: 1px solid #d2dae0;
 }
@@ -109,20 +130,22 @@ body {
   border-bottom: 1px solid #d2dae0;
 }
 
-.left-arrow {
-  position: absolute;
-  top: 172px;
-  left: -71px;
-  width: 24px;
-  height: 40px;
+.hot-topic-wrapper > li > h2,
+.hot-topic-wrapper > li > p,
+.main-nav-left > h2,
+.main-nav-right > img,
+.news-wrapper > li > img,
+.left-arrow,
+.right-arrow,
+.header-wrapper > button {
   cursor: pointer;
 }
 
-.right-arrow {
-  position: absolute;
-  top: 172px;
-  left: 974px; /* 926 + 48 */
-  width: 24px;
-  height: 40px;
-  cursor: pointer;
+/* 재사용 CSS */
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }
