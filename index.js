@@ -1,8 +1,7 @@
-import { all_images } from "./data.js";
-const subscribe_images=[
+import { data } from "./data.js";
 
-]; //구독버튼시 해당 신문사 push
-
+let logoAll = data.all_images;
+let logoSubscribe = data.subscribe_images;
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
 let currentPageNumber = 0;
@@ -15,15 +14,15 @@ const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
 const mainGrid = document.getElementById("main-grid");
 
-function refresh(images){
-    let render_images = images;
+function refresh(logos){
+    let logoRender = logos;
     mainGrid.innerHTML='';
     for(let PAGE_INDEX = currentPageNumber * COUNT_PER_PAGE; PAGE_INDEX < COUNT_PER_PAGE * currentPageNumber + 24 ; PAGE_INDEX++){
-        const outer_div = document.createElement("div");
-        const news_logo = document.createElement("img");
-        news_logo.src = `icons/light/${render_images[PAGE_INDEX]}`;
-        outer_div.append(news_logo);
-        mainGrid.append(outer_div);
+        const outerDiv = document.createElement("div");
+        const newsLogo = document.createElement("img");
+        newsLogo.src = `icons/light/${logoRender[PAGE_INDEX]}`;
+        outerDiv.append(newsLogo);
+        mainGrid.append(outerDiv);
     }
 }
 
@@ -89,12 +88,12 @@ function clickRightAsideButton(){
         if (currentPageNumber == MAX_PAGE_NUMBER - 1){
             rightAsideButton.style.visibility = "hidden";
             currentPageNumber++;
-            refresh(all_images);
+            refresh(logoAll);
             return ;
         }
         currentPageNumber++;
         leftAsideButton.style.visibility="visible";
-        refresh(all_images);
+        refresh(logoAll);
     });
 }
 
@@ -103,17 +102,17 @@ function clickLeftAsideButton(){
         if (currentPageNumber == MIN_PAGE_NUMBER + 1){
             leftAsideButton.style.visibility = "hidden";
             currentPageNumber--;
-            refresh(all_images);
+            refresh(logoAll);
             return ;
         }
         currentPageNumber--;
         rightAsideButton.style.visibility="visible"
-        refresh(all_images);
+        refresh(logoAll);
     });
 }
 
-shuffle(all_images);
-refresh(all_images);
+shuffle(logoAll);
+refresh(logoAll);
 setDate();
 clickNewsStand();
 // clickAllNews();
