@@ -34,6 +34,8 @@ function rollingBanner(banner) {
 
 // 리스트 하나 만들기
 function getNewsLi(press, title, url, idx) {
+    const new_list_div = document.createElement("div");
+    new_list_div.setAttribute("class", "list_div");
     const new_list = document.createElement("li");
     if (idx == 0) new_list.setAttribute("class", "current");
     else if (idx == 1) new_list.setAttribute("class", "next");
@@ -46,8 +48,10 @@ function getNewsLi(press, title, url, idx) {
     new_news.setAttribute("href", url);
     new_news.innerHTML = title;
 
-    new_list.appendChild(new_press);
-    new_list.appendChild(new_news);
+    new_list_div.appendChild(new_press);
+    new_list_div.appendChild(new_news);
+
+    new_list.appendChild(new_list_div);
     return new_list;
 }
 
