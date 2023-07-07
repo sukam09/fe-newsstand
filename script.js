@@ -1,6 +1,8 @@
 let presses = [];
 let grid_page_count = 0;
 let grid_view_selected = true;
+let date = new Date();
+const day = ["일", "월", "화", "수", "목", "금", "토"];
 
 for (let i = 1; i < 97; i++) {
   presses.push({
@@ -73,8 +75,10 @@ document.getElementById("grid-prev").addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".list-selected").style.display = "none";
   document.querySelector(".press-list-section").style.display = "none";
-
   document.getElementById("grid-prev").style.display = "none";
+  document.querySelector(".date").textContent = `${date.getFullYear()}. ${
+    date.getMonth() + 1
+  }. ${date.getDate()}. ${day[date.getDay()]}요일`;
   const slice_shuffled_presses = shuffled_presses.slice(0, 24);
   slice_shuffled_presses.forEach((press) => {
     let image = document.createElement("img");
