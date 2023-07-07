@@ -1,5 +1,8 @@
 const newsList = [];
 const array = [];
+const sectionNewsList =  document.getElementById('section-news-list');
+const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
+const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
 
 for(let i=0;i<96;i++){
     array.push(i);
@@ -9,66 +12,32 @@ array.forEach(arr => {
 })
 
 const shuffledArray = [...newsList].sort(() => Math.random() - 0.5);
-const sectionNewsList =  document.getElementById('section-news-list');
-const page0 = [];
-const page1 = [];
-const page2 = [];
-const page3 = [];
 
-shuffledArray.forEach((arr, idx) => {
-    if(0<=idx && idx <=23) {
-        page0.push(arr);
+const page = [[],[],[],[]];
+shuffledArray.forEach((arr,idx) => {
+    if(0 <= idx && idx <= 23){
+        page[0].push(arr);
     }
-})
+    else if(24<=idx && idx<=47){
+        page[1].push(arr);
+    }
+    else if(48<=idx && idx<=71){
+        page[2].push(arr);
+    }
+    else{
+        page[3].push(arr);
+    }
+}) 
 
-shuffledArray.forEach((arr, idx) => {
-    if(24<=idx && idx <=47) {
-        page1.push(arr);
-    }
-})
-
-shuffledArray.forEach((arr, idx) => {
-    if(48<=idx && idx <=71) {
-        page2.push(arr);
-    }
-})
-
-shuffledArray.forEach((arr, idx) => {
-    if(72<=idx && idx <=95) {
-        page3.push(arr);
-    }
-})
+function showPressImg(cnt){
+    sectionNewsList.innerHTML = `
+         ${page[cnt].map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+     `
+}
 
  sectionNewsList.innerHTML = `
-    ${page0.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[0].map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
  `
-
-function showPressImg(cnt) {
-    if(cnt === 0){
-        sectionNewsList.innerHTML = `
-    ${page0.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
-`
-    }
-
-    else if(cnt === 1){
-        sectionNewsList.innerHTML = `
-    ${page1.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
-`
-    }
-
-    else if(cnt === 2){
-        sectionNewsList.innerHTML = `
-    ${page2.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
-`
-    }
-    else {
-        sectionNewsList.innerHTML = `
-    ${page3.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
-`
-    }
-}
-const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
-const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
 
 let cnt = 0;
 
