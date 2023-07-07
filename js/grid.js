@@ -78,7 +78,7 @@ function createGridItem(element) {
   li.style.position = "relative";
 
   // li 생성
-  li.className = "item";
+  li.className = "grid_item";
   li.append(subButtonContainer);
   li.append(unSubButtonContainer);
   li.addEventListener("mouseover", () => {
