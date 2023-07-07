@@ -1,4 +1,4 @@
-const indexArr = Array.from({length: 3}, (_,i)=>i);
+const indexArr = Array.from({length: 96}, (_,i)=>i);
 indexArr.sort(() => Math.random() - 0.5);
 let page = 0;
 
@@ -28,16 +28,17 @@ const arr = {
 const createNewspaperItem = function(index, mode) {
     return `
     <li class="newspaper__item">
-    <img src=${mode === "light" ? arr.list[indexArr[index]].lightUrl : arr.list[indexArr[index]].darkUrl} alt=${arr.list[indexArr[index]].name} />
+    <img src="./assets/newspaper/${mode}/${index+1}.png" alt=${'name'} />
     </li>
     `
 }
 
 const createNewspaperList = function(page, mode) {
-    const nowPageIndexArr = indexArr.slice(page * 3, (page + 1) * 3);
+    const nowPageIndexArr = indexArr.slice(page * 24, (page + 1) * 24);
     const liArr = nowPageIndexArr.map(item => createNewspaperItem(item, mode))
     let newspaperList = liArr.reduce((news, currentIndex) => news + currentIndex);
     return newspaperList;
 }
 
-createNewspaperList(page, "light");
+console.log(createNewspaperList(page, "light"));
+document.querySelector(".newspaper__list").innerHTML = createNewspaperList(page, "light");
