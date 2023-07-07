@@ -13,10 +13,11 @@ const initNewsPressData = () => {
 };
 
 const showNewsPressItems = () => {
+  checkShowPageButton(page);
   const startIndex = 24 * (page - 1);
   const endIndex = startIndex + 23;
   const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
-  // console.log(page, startIndex, endIndex, currentNewsPressData);
+
   newsPressItems.forEach((item, index) => {
     item.innerHTML = '';
 
@@ -39,15 +40,42 @@ const handleClickTitleIcon = () => {
   });
 };
 
-const nextPageButton = document.querySelector('.right-arrow-button');
-console.log(nextPageButton);
+const validatePage = page => page >= 1 && page <= 4;
 
-const handleClickNextPageButton = () => {
-  nextPageButton.addEventListener('click', () => {
-    page++;
-    console.log(page);
+const prevPageButton = document.querySelector('.left-arrow-button');
+
+const handleClickPrevPageButton = () => {
+  prevPageButton.addEventListener('click', () => {
+    if (!validatePage(page - 1)) return;
+    page--;
     showNewsPressItems();
   });
 };
 
-export { initNewsPressData, showNewsPressItems, handleClickTitleIcon, handleClickNextPageButton };
+const nextPageButton = document.querySelector('.right-arrow-button');
+
+const handleClickNextPageButton = () => {
+  nextPageButton.addEventListener('click', () => {
+    if (!validatePage(page + 1)) return;
+    page++;
+    showNewsPressItems();
+  });
+};
+
+const checkShowPageButton = page => {
+  prevPageButton.classList.remove('disabled');
+  nextPageButton.classList.remove('disabled');
+
+  if (page === 1) prevPageButton.classList.add('disabled');
+  else if (page === 4) nextPageButton.classList.add('disabled');
+};
+
+checkShowPageButton(page);
+
+export {
+  initNewsPressData,
+  showNewsPressItems,
+  handleClickTitleIcon,
+  handleClickPrevPageButton,
+  handleClickNextPageButton,
+};

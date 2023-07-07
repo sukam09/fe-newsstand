@@ -209,7 +209,6 @@ header {
 }
 
 .left-arrow-button {
-  display: none;
   position: absolute;
   top: 50%;
   bottom: 50%;
@@ -245,4 +244,8 @@ header {
 .right-arrow-button > img {
   width: 100%;
   height: 100%;
+}
+
+.disabled {
+  display: none;
 }
