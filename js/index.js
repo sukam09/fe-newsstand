@@ -10,6 +10,8 @@ let main_list_page = 1;
 const mainLogo = document.querySelector(".title");
 const day = document.querySelector(".date");
 const main_list_ul = document.querySelector(".main-list-ul");
+const left_btn = document.getElementById("left-btn");
+const right_btn = document.getElementById("right-btn");
 
 //함수
 function reload() {
@@ -35,7 +37,8 @@ function getDateInterval() {
 }
 
 function showMainList() {
-  for (let i = 24 * (main_list_page - 1); i <= 23; i++) {
+  main_list_ul.innerHTML = "";
+  for (let i = 24 * (main_list_page - 1); i < 24 * main_list_page; i++) {
     const li = document.createElement("li");
     const img = document.createElement("img");
     img.setAttribute(
@@ -45,12 +48,36 @@ function showMainList() {
     main_list_ul.appendChild(li);
     li.appendChild(img);
   }
+  console.log(main_list_page);
 }
 
+function changePage(e) {
+  if (e.target.id === "left") {
+    main_list_page--;
+    showMainList();
+    checkPage();
+  } else {
+    main_list_page++;
+    showMainList();
+    checkPage();
+  }
+}
+function checkPage() {
+  if (main_list_page === 1) left_btn.style.visibility = "hidden";
+  else if (main_list_page === 4) right_btn.style.visibility = "hidden";
+  else {
+    left_btn.style.visibility = "visible";
+    right_btn.style.visibility = "visible";
+  }
+}
 //이벤트 리스너
 mainLogo.addEventListener("click", reload);
+right_btn.addEventListener("click", (e) => changePage(e));
+left_btn.addEventListener("click", (e) => changePage(e));
 
 //default
+console.log(shuffleImgIndex());
 makeDate();
 getDateInterval();
 showMainList();
+checkPage();

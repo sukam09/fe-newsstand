@@ -132,6 +132,9 @@ body {
   align-items: center;
 }
 
-.title:hover {
+button:hover,
+.title span:hover,
+.main-list ul li:hover,
+.auto-rolling-news span:hover {
   cursor: pointer;
 }
