@@ -31,8 +31,34 @@ function removeChildElement(parent) {
 
 paintNewsicon(selectedPage);
 
-let btn = document.querySelector(".newsstand--right-btn");
-btn.addEventListener("click", (e) => {
+const rightBtn = document.querySelector(".newsstand--right-btn");
+const leftBtn = document.querySelector(".newsstand--left-btn");
+
+rightBtn.addEventListener("click", (e) => {
   removeChildElement(ul);
   paintNewsicon(++selectedPage);
+  isBtnDisabled();
 });
+
+leftBtn.addEventListener("click", (e) => {
+  removeChildElement(ul);
+  paintNewsicon(--selectedPage);
+  isBtnDisabled();
+});
+
+function isBtnDisabled() {
+  selectedPage
+    ? leftBtn.classList.remove("btn-disabled")
+    : leftBtn.classList.add("btn-disabled");
+  selectedPage === 3
+    ? rightBtn.classList.add("btn-disabled")
+    : rightBtn.classList.remove("btn-disabled");
+}
+
+//0  right
+
+//1  left right
+
+//2 left right
+
+//3 left

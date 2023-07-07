@@ -47,7 +47,14 @@
 .newsstand-btn-thumb {
   margin-left: 2%;
 }
+.newsstand--left-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 193px;
+  left: -60px;
+}
 .newsstand--right-btn {
+  cursor: pointer;
   position: absolute;
   top: 193px;
   right: -60px;
