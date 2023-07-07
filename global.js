@@ -1,3 +1,4 @@
+// 그리드 뷰로 전환
 function changeToGrid() {
   const list_button = document.getElementsByClassName("list_button")[0];
   const grid_button = document.getElementsByClassName("grid_button")[0];
@@ -29,6 +30,7 @@ function changeToGrid() {
   showGridPageButton();
 }
 
+// 리스트 뷰로 변환
 function changeToList() {
   const list_button = document.getElementsByClassName("list_button")[0];
   const grid_button = document.getElementsByClassName("grid_button")[0];
@@ -59,7 +61,8 @@ function changeToList() {
   right_list_button.style.display = "block";
 }
 
-function updateToday() {
+// 오늘 날짜 update
+function updateDate() {
   let today = new Date();
   const dateHtml = document.getElementsByClassName("date")[0];
   const options = {

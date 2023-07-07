@@ -1,3 +1,4 @@
-let now_grid_page = 0;
-updateToday();
-appendList();
+window.addEventListener("load", () => {
+  updateDate();
+  appendList();
+});
