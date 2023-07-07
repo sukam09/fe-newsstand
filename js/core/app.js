@@ -1,12 +1,15 @@
-import { header } from "../components/header.js";
-import { main } from "../components/main.js";
 import { date } from "../utils/date.js";
-import { createRandomNewsstand } from "../utils/creatRandomNewstand.js";
+import { newsstandSystem } from "../newsstand/newsstandSystem.js";
 
-const root = document.querySelector("#root");
+// 기능
+headerRender();
+mainRender();
 
-root.innerHTML += header;
-root.innerHTML += main;
+function headerRender() {
+  date();
+}
 
-date();
-createRandomNewsstand();
+function mainRender() {
+  const newsstanSystem = new newsstandSystem();
+  newsstanSystem.createRandomNewsstand();
+}
