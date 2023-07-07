@@ -11,6 +11,7 @@ div>img{
     width: auto;
     height: auto;
 }
+
 .main{
     margin:0 auto;
     border: 1px green dotted;
@@ -114,12 +115,14 @@ main.main{
     justify-content: center;
     align-items: center;
     visibility: hidden;
+    margin-right: 40px;
 }
 
 #aside-right{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 40px;
 }
 
 .main-container{
@@ -138,4 +141,11 @@ section.main{
 
 #grid-image{
     border:2px blue solid;
+}
+
+#main-div-02{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: -60px;
 }
