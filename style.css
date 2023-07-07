@@ -132,7 +132,6 @@ section {
 }
 .grid .grid-row li {
   display: flex;
-  padding: 0px 50.667px 0px 51px;
   justify-content: center;
   align-items: center;
   flex: 1 0 0;
