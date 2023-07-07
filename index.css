@@ -134,7 +134,7 @@ body {
     list-style-type: none;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid #d2dae0;
     display: flex;
     justify-content: center;
     align-items: center;
