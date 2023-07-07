@@ -140,8 +140,8 @@ function clickLeftAsideButton(){
     });
 }
 
-refresh(save_images);
 shuffle(save_images);
+refresh(save_images);
 setDate();
 clickNewsStand();
 // clickAllNews();

@@ -7,6 +7,13 @@ li{
     list-style: none;
 }
 
+label{
+    padding:0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
 div>img{
     width: auto;
     height: auto;
@@ -153,5 +160,5 @@ input[type="radio"]:checked + label
 
 input[type="radio"]:checked + img
 {
-    background-color: blue;
+    border:2px blue solid;
 }
