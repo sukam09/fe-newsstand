@@ -1,11 +1,15 @@
+import Logo from '../common/Logo.js';
+
 export default class AllNewsList {
   constructor(name) {
-    const $component = document.createElement('li');
-    $component.innerText = name;
+    this.$component = document.createElement('li');
 
-    this.render();
-    return $component;
+    this.render(name);
+    return this.$component;
   }
 
-  render() {}
+  render(name) {
+    const $logoImg = new Logo({ name });
+    this.$component.appendChild($logoImg);
+  }
 }
