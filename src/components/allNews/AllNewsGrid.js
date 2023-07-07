@@ -1,3 +1,4 @@
+import { shufflePressOrder } from '../../utils/index.js';
 import AllNewsList from './AllnewsList.js';
 import ArrowButton from './ArrowButton.js';
 
@@ -5,6 +6,7 @@ export default class AllNewsGrid {
   constructor() {
     this.$wrapper = document.createElement('div');
     this.$wrapper.className = 'grid-wrapper';
+    this.$pressOrder = shufflePressOrder();
     this.page = 0;
 
     this.render();
@@ -18,7 +20,7 @@ export default class AllNewsGrid {
     const $newsLists = document.createElement('ul');
     $newsLists.className = 'news-list';
     for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(i));
+      $newsLists.appendChild(new AllNewsList(this.$pressOrder[i]));
     }
     $newsListGrid.appendChild($newsLists);
 
