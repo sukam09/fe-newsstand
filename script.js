@@ -1,5 +1,6 @@
 let presses = [];
 let grid_page_count = 0;
+let grid_view_selected = true;
 
 for (let i = 1; i < 97; i++) {
   presses.push({
@@ -70,6 +71,9 @@ document.getElementById("grid-prev").addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".list-selected").style.display = "none";
+  document.querySelector(".press-list-section").style.display = "none";
+
   document.getElementById("grid-prev").style.display = "none";
   const slice_shuffled_presses = shuffled_presses.slice(0, 24);
   slice_shuffled_presses.forEach((press) => {
@@ -141,3 +145,36 @@ function secondRollingCallback() {
   next[1].classList.remove("next");
   next[1].classList.add("current");
 }
+
+let list_symbol = document.querySelectorAll(".list-symbol");
+list_symbol.forEach((symbol) => {
+  symbol.addEventListener("click", () => {
+    if (grid_view_selected) {
+      // grid 상태이면
+      document.getElementsByClassName("grid-selected")[0].style.display =
+        "none";
+      document.getElementsByClassName("list-selected")[0].style.display =
+        "flex";
+      document.getElementsByClassName("press-list-section")[0].style.display =
+        "block";
+      document.getElementsByClassName("press-grid")[0].style.display = "none";
+      grid_view_selected = false;
+    }
+  });
+});
+let grid_symbol = document.querySelectorAll(".grid-symbol");
+grid_symbol.forEach((symbol) => {
+  symbol.addEventListener("click", () => {
+    if (!grid_view_selected) {
+      // grid 상태 아니면
+      document.getElementsByClassName("grid-selected")[0].style.display =
+        "flex";
+      document.getElementsByClassName("list-selected")[0].style.display =
+        "none";
+      document.getElementsByClassName("press-list-section")[0].style.display =
+        "none";
+      document.getElementsByClassName("press-grid")[0].style.display = "block";
+      grid_view_selected = true;
+    }
+  });
+});
