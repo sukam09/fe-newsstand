@@ -52,6 +52,11 @@
     flex-direction: row;
     align-items: center;
   }
+
+  .flex_column {
+    display: flex;
+    flex-direction: column;
+  }
   ```
 
 - grid
@@ -68,17 +73,26 @@
     border-left: solid 1px #d2dae0;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(6, 1fr);
-    padding: 0;
+    ...;
   }
 
-  .grid_container > li {
+  .grid_item {
     border-right: solid 1px #d2dae0;
     border-bottom: solid 1px #d2dae0;
-    border-collapse: separate;
-    height: 96px;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ...;
   }
   ```
+
+- 애니메이션
+
+### **기능**
+
+-[] 오늘 날짜 가져오기
+
+-[] 그리드 뷰, 리스트 뷰 전환
+
+-[] 그리드 아이템 랜덤 배치
+
+-[] 그리드 페이지 전환
+
+###

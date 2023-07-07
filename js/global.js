@@ -15,8 +15,8 @@ function changeToGrid() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  list_button.src = "./images/list_off.png";
-  grid_button.src = "./images/grid_on.png";
+  list_button.src = "./assets/icons/list_off.png";
+  grid_button.src = "./assets/icons/grid_on.png";
 
   // 그리드, 리스트 전환
   list_container.style.display = "none";
@@ -47,8 +47,8 @@ function changeToList() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  list_button.src = "./images/list_on.png";
-  grid_button.src = "./images/grid_off.png";
+  list_button.src = "./assets/icons/list_on.png";
+  grid_button.src = "./assets/icons/grid_off.png";
 
   // 그리드, 리스트 전환
   list_container.style.display = "block";
