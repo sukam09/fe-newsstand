@@ -36,6 +36,7 @@ async function printGrid() {
   }
 }
 printGrid();
+initDate();
 
 const RIGHT = 1;
 const LEFT = 0;
@@ -53,4 +54,11 @@ function moveGrid(dir) {
   }
 
   printGrid();
+}
+
+function initDate() {
+  const date = new Date();
+  const week = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+  const todaystr = `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}. ${week[date.getDay()]}`;
+  document.querySelector(".today").innerHTML = todaystr;
 }
