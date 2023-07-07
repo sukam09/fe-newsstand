@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>뉴스 스탠드</title>
+    <script src="pressObj.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <section class="title_section flex_row">
+        <div class="title_container flex_row">
+          <img class="title_logo" src="./images/logo.png" alt="" />
+          <h1 class="title">뉴스스탠드</h1>
+        </div>
+        <span class="date"></span>
+      </section>
+      <section class="summary_section flex_row">
+        <div class="summary_container flex_row">
+          <h2>연합뉴스</h2>
+          <ul class="rolling_list">
+            <li class="prev">
+              [1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
+            </li>
+            <li class="now">
+              [2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
+            </li>
+            <li class="next">
+              [3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
+            </li>
+            <li>[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</li>
+            <li>[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</li>
+          </ul>
+        </div>
+        <div class="summary_container flex_row">
+          <h2>연합뉴스</h2>
+          <span>[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</span>
+        </div>
+      </section>
+      <section class="main_section">
+        <div class="main_header flex_row">
+          <div class="main_title_container flex_row">
+            <h2>전체 언론사</h2>
+            <span>내가 구독한 언론사</span>
+          </div>
+          <div class="view_button_container flex_row">
+            <img
+              class="list_button"
+              src="./images/list_off.png"
+              alt=""
+              onclick="changeToList();"
+            />
+            <img
+              class="grid_button"
+              src="./images/grid_on.png"
+              alt=""
+              onclick="changeToGrid();"
+            />
+          </div>
+        </div>
+        <div class="main_container">
+          <img
+            src="./images/leftbutton.png"
+            class="left_grid_button"
+            alt=""
+            onclick="showPrevGridPage()"
+          />
+          <img
+            src="./images/leftbutton.png"
+            class="left_list_button"
+            alt=""
+            onclick=""
+          />
+          <div class="main_content">
+            <ul class="grid_container" id="page0"></ul>
+            <ul class="grid_container" id="page1"></ul>
+            <ul class="grid_container" id="page2"></ul>
+            <ul class="grid_container" id="page3"></ul>
+            <div class="list_container">
+              <div class="category_container">
+                <ul class="category_list flex_row">
+                  <li class="clicked">
+                    <span> 종합/경제 </span>
+                    <span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                    </span>
+                    <div class="progressbar"></div>
+                  </li>
+                  <li>
+                    <span> 방송/통신 </span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                    </span>
+                    <div class="progressbar"></div>
+                  </li>
+                  <li>
+                    <span> IT</span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                      <div class="progressbar"></div>
+                    </span>
+                  </li>
+                  <li>
+                    <span> 영자지</span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                      <div class="progressbar"></div>
+                    </span>
+                  </li>
+                  <li>
+                    <span> 스포츠/연예</span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                      <div class="progressbar"></div>
+                    </span>
+                  </li>
+                  <li>
+                    <span> 매거진/전문지</span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                      <div class="progressbar"></div>
+                    </span>
+                  </li>
+                  <li>
+                    <span> 지역</span
+                    ><span class="page_count">
+                      <span class="now_page">1 </span>
+                      <span class="all_page">/ 81</span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div class="news_info flex_column">
+                <div class="news_info_header flex_row">
+                  <img src="./images/img11.png" alt="" />
+                  <span>2023.07.06 19:00 편집</span>
+                  <button>+ 구독하기&#32;</button>
+                </div>
+                <div class="news_info_body flex_row">
+                  <div class="topic flex_column">
+                    <img
+                      src="./images/dog.jpeg"
+                      alt=""
+                      width="320px"
+                      height="200px"
+                    />
+                    <span
+                      >봇물처럼 터지는 공공요금 인상…꼭 지금이어야 하나</span
+                    >
+                  </div>
+                  <div class="news_list_container flex_column">
+                    <ul class="news_list flex_column">
+                      <li>
+                        [단독] 美복권 키오스크 "불법"인데…정부 방치에 '우후죽순'
+                      </li>
+                      <li>서울 버스·지하철도 4월부터 '쑥'…"인상 철회" 촉구</li>
+                      <li>SM 인수 카카오, 하이브 등장에 '닭 쫒던 개'</li>
+                      <li>이자 선택권 생기는 보험계약대출…득실 따져봤습니다</li>
+                      <li>
+                        [단독] 中 판매 부진 못 견딘 현대차…창저우 공장 철수 검토
+                      </li>
+                      <li>'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'</li>
+                    </ul>
+                    <small>SBS Biz 언론사에서 직접 편집한 뉴스입니다.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <img
+            src="./images/rightbutton.png"
+            class="right_grid_button"
+            alt=""
+            onclick="showNextGridPage()"
+          />
+          <img
+            src="./images/rightbutton.png"
+            class="right_list_button"
+            alt=""
+            onclick=""
+          />
+        </div>
+      </section>
+    </div>
+
+    <script src="global.js"></script>
+    <script src="grid.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
