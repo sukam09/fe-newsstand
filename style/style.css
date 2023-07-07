@@ -1,0 +1,160 @@
+@import url(./reset.css);
+@import url(./variable.css);
+@import url(./typography.css);
+
+/* commot css */
+body {
+  width: 1280px;
+  height: 720px;
+  margin: 65px auto;
+  font-family: "Pretendard";
+  position: relative;
+}
+
+.container {
+  width: 930px;
+  margin: 0 auto;
+  padding: 58px 0 76px 0;
+}
+
+.main-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.today {
+  color: var(--text-default);
+}
+
+section {
+  display: flex;
+  width: 930px;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.news {
+  cursor: pointer;
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-alt);
+}
+
+.press {
+  color: var(--text-strong);
+}
+
+.news-title {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  color: var(--text-default);
+}
+
+.tab-and-viewer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.tab-and-viewer .tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.tab-and-viewer .tabs .all-press-btn,
+.tab-and-viewer .tabs .sub-press-btn {
+  color: var(--text-strong);
+  cursor: pointer;
+}
+.tab-and-viewer .viewer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tab-and-viewer .viewer .list-btn,
+.tab-and-viewer .viewer .grid-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+}
+/* .tab-and-viewer .viewer .list-btn::before,
+.tab-and-viewer .viewer .grid-btn::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.tab-and-viewer .viewer span {
+  display: none;
+}
+.tab-and-viewer .viewer .list-btn::before {
+  background-image: url("./icons/list-btn.svg");
+}
+.tab-and-viewer .viewer .grid-btn::before {
+  background-image: url("./icons/grid-btn.svg");
+} */
+
+.grid {
+  display: flex;
+  height: 388px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  flex-shrink: 0;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--border-default);
+}
+.grid .grid-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.grid .grid-row li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: var(--surface-default);
+  cursor: pointer;
+}
+
+.left-btn,
+.right-btn {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 430px;
+}
+.left-btn {
+  left: 103px;
+  display: none;
+}
+.right-btn {
+  right: 103px;
+}

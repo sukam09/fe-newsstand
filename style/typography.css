@@ -1,0 +1,80 @@
+@import url(./variable.css);
+
+/* Typhography System */
+.display-bold24 {
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-L);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.display-bold16,
+.selected-bold16 {
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-M);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.display-bold14,
+.selected-bold14 {
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-R);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.display-bold12 {
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-S);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.display-medium16,
+.available-medium16 {
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-M);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-22);
+  text-decoration: var(--line-style-none);
+}
+
+.display-medium14,
+.available-medium14 {
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-R);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.display-medium12,
+.available-medium12 {
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-S);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-none);
+}
+
+.hover-medium16 {
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-M);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-22);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-underline);
+}
+
+.hover-medium14 {
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-R);
+  font-style: var(--font-style-none);
+  line-height: var(--line-height-auto);
+  text-decoration: var(--line-style-underline);
+}
