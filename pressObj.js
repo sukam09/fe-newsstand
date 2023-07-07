@@ -1,4 +1,4 @@
-const pressObjArr = [];
+let pressObjArr = [];
 
 (() => {
   for (let i = 1; i <= 96; i++) {

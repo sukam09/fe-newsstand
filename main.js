@@ -77,13 +77,99 @@ function appendList() {
     const id = Math.floor(idx / 24);
     const newImg = document.createElement("img");
     const li = document.createElement("li");
+    const subButtonContainer = createSubButton(element.id);
+    const unSubButtonContainer = createUnSubButton(element.id);
+
     newImg.src = element.imgSrc;
     newImg.id = element.id;
+    li.style.position = "relative";
+    li.append(subButtonContainer);
+    li.append(unSubButtonContainer);
+
+    li.addEventListener("mouseover", () => {
+      toggleSubButton(element, subButtonContainer);
+      toggleUnSubButton(element, unSubButtonContainer);
+    });
+    li.addEventListener("mouseout", () =>
+      hiddenSubButtons(subButtonContainer, unSubButtonContainer)
+    );
+
     li.appendChild(newImg);
     li.className = "item";
+
     grid_container_list[id].appendChild(li);
   });
 }
+function toggleSubButton(element, subButtonContainer) {
+  if (element.isSub) {
+    subButtonContainer.style.display = "none";
+  } else {
+    subButtonContainer.style.display = "flex";
+  }
+}
+function toggleUnSubButton(element, unSubButtonContainer) {
+  if (element.isSub) {
+    unSubButtonContainer.style.display = "flex";
+  } else {
+    unSubButtonContainer.style.display = "none";
+  }
+}
+
+function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
+  subButtonContainer.style.display = "none";
+  unSubButtonContainer.style.display = "none";
+}
+
+function createSubButtonContainer() {
+  const subButtonContainer = document.createElement("div");
+  subButtonContainer.style.backgroundColor = "#F5F7F9";
+  subButtonContainer.style.width = "100%";
+  subButtonContainer.style.height = "100%";
+  subButtonContainer.style.zIndex = 9999;
+  subButtonContainer.style.display = "none";
+  subButtonContainer.style.justifyContent = "center";
+  subButtonContainer.style.alignItems = "center";
+  subButtonContainer.style.position = "absolute";
+
+  return subButtonContainer;
+}
+
+function createSubButton(id) {
+  const subButtonContainer = createSubButtonContainer();
+  const subButton = document.createElement("button");
+  subButton.style.width = "72px";
+  subButton.style.height = "24px";
+  subButton.style.borderRadius = "50px";
+  subButton.innerHTML = "+ 구독하기";
+
+  subButton.addEventListener("click", () => {
+    const targetPress = pressObjArr.find((item) => item.id == id);
+    targetPress.isSub = true;
+
+    toggleSubButton(targetPress, subButtonContainer);
+  });
+
+  subButtonContainer.appendChild(subButton);
+  return subButtonContainer;
+}
+function createUnSubButton(id) {
+  const unSubButtonContainer = createSubButtonContainer();
+  const unSubButton = document.createElement("button");
+  unSubButton.style.width = "72px";
+  unSubButton.style.height = "24px";
+  unSubButton.style.borderRadius = "50px";
+  unSubButton.innerHTML = "X 해지하기";
+
+  unSubButton.addEventListener("click", () => {
+    const targetPress = pressObjArr.find((item) => item.id == id);
+    targetPress.isSub = false;
+    toggleUnSubButton(targetPress, unSubButtonContainer);
+  });
+
+  unSubButtonContainer.appendChild(unSubButton);
+  return unSubButtonContainer;
+}
+
 function right_grid_button_click() {
   const curPage = document.getElementById(`page${now_grid_page}`);
   now_grid_page += 1;
