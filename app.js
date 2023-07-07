@@ -2,6 +2,8 @@ const NEWS_COUNT = 24;
 
 let pages = 0;
 
+let scheme = "light";
+
 const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
 const $nextPageButton = document.querySelector(
   ".container-grid-view_right-btn"
@@ -19,6 +21,19 @@ const fetchNewsData = async () => {
   } catch (error) {
     console.error(error.message);
   }
+};
+
+const setDate = () => {
+  const today = new Date();
+
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "long",
+  };
+
+  $headerDate.innerText = today.toLocaleDateString("ko-KR", options);
 };
 
 /* grid view control */
@@ -46,28 +61,10 @@ const fillNewsContents = (newsData) => {
   }
 };
 
-const setDate = () => {
-  const today = new Date();
-
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "long",
-  };
-
-  $headerDate.innerText = today.toLocaleDateString("ko-KR", options);
-};
-
 (async function init() {
   setDate();
 
   const newsData = await fetchNewsData();
-
-  newsData.forEach((news) => {
-    news.src = news.src.replace("images", "images/light");
-  });
-
   fillNewsContents(newsData);
 
   /* event handler */
