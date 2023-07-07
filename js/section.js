@@ -1,11 +1,14 @@
-var rolling = document.querySelector(".rolling > ul");
+const setRollingEvent = function(rollingElement){
+	window.setInterval( function () {
+		rollingElement.style.transitionDuration = "400ms";
+		rollingElement.style.marginTop = "-16px";
+	
+		window.setTimeout( function () {
+			rollingElement.removeAttribute("style");         
+			rollingElement.appendChild(rollingElement.firstElementChild);
+		}, 400);
+	}, 2000);
+}
 
-window.setInterval( function () {
-	rolling.style.transitionDuration = "400ms";
-	rolling.style.marginTop = "-16px";
-
-	window.setTimeout( function () {
-		rolling.removeAttribute("style");         
-		rolling.appendChild(rolling.firstElementChild);
-	}, 400);
-}, 2000);
+let rolling = document.querySelectorAll(".rolling > ul");
+rolling.forEach(elem => setRollingEvent(elem));
