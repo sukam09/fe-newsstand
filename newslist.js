@@ -39,7 +39,54 @@ shuffledArray.forEach((arr, idx) => {
     }
 })
 
-sectionNewsList.innerHTML = `
+ sectionNewsList.innerHTML = `
+    ${page0.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+ `
+
+let cnt = 0;
+
+function showPressImg(cnt) {
+    if(cnt === 0){
+        sectionNewsList.innerHTML = `
+    ${page0.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+`
+    }
+
+    else if(cnt === 1){
+        sectionNewsList.innerHTML = `
     ${page1.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
 `
+    }
+
+    else if(cnt === 2){
+        sectionNewsList.innerHTML = `
+    ${page2.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+`
+    }
+    else {
+        sectionNewsList.innerHTML = `
+    ${page3.map(arr => `<li><img src="./icons/asset ${arr["id"]} 1.png"</li>`).join('')};
+`
+    }
+}
+
+const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
+sectionLeftButtonEvent.addEventListener('click', () => {
+    cnt--;
+    showPressImg(cnt);
+
+})
+
+const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
+sectionRightBUttonEvent.addEventListener('click', () => {
+    cnt ++;
+    showPressImg(cnt);
+})
+
+
+
+
+
+
+
 
