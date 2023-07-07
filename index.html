@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script defer src="script.js"></script>
+    <script defer type="module" src="script/grid.js"></script>
+    <script defer src="script/header.js"></script>
 </head>
 <body>
     <div class="news_stand_wrapper">
@@ -46,7 +47,7 @@
                 </nav>
                 <div class = "grid_wrapper">
 
-                    <div class="arrow_wrapper_left" onclick="setPage(-1)">
+                    <div id="arrow_wrapper_left">
                         <img src="assets/images/left.svg" alt="화살표">
                     </div>
                     <ul>
@@ -147,7 +148,7 @@
                             <div class="media-hover surface-alt">구독하기</div>
                         </li>
                     </ul>
-                    <div class="arrow_wrapper_right" onclick="setPage(1)">
+                    <div id="arrow_wrapper_right">
                         <img src="assets/images/right.svg" alt="화살표">
                     </div>
                 </div>
