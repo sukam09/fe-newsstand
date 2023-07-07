@@ -91,7 +91,7 @@ h1 {
   display: none;
 }
 
-.press-list {
+#press-list {
   width: 930px;
   height: 388px;
   display: grid;
@@ -156,13 +156,23 @@ h1 {
   font-weight: 700;
   line-height: normal;
 }
+
+.l-btn {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 180px;
+  left: -72px;
+}
+
 .r-btn {
   width: 24px;
   height: 40px;
   flex-shrink: 0;
   position: absolute;
   top: 180px;
-  right: -60px;
+  right: -72px;
 }
 .press-grid {
   position: relative;
