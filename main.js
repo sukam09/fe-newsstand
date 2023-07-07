@@ -127,4 +127,20 @@ function showButton() {
   }
 }
 
+function updateToday() {
+  let today = new Date();
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "long",
+  };
+
+  today = today.toLocaleDateString("ko-KR", options);
+
+  const dateHtml = document.getElementsByClassName("date")[0];
+  dateHtml.innerHTML = today;
+}
+
+updateToday();
 appendList();
