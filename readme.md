@@ -2,7 +2,6 @@
 
 목표 : 하나의 index.html파일에 js DOM API를 이용하여 news stand를 완성한다.
 
-3. 데이터 랜덤 생성
 4. 컬러값 상수화
 5. 폰트 적용
 6. css 모듈화
