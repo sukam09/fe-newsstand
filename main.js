@@ -8,12 +8,14 @@ import { fetchData } from "./api.js";
 
 // 그리드 PRESS ICON 요소 생성
 
-async function main() {
+let current_grid_page = 0;
+
+async function printGrid() {
   try {
     const news_icon = await fetchData();
     console.log(news_icon);
     const grid = document.querySelector(".grid");
-    let icon_idx = 0;
+    let icon_idx = current_grid_page * 24;
     for (let i = 0; i < 4; i++) {
       const grid_row = document.createElement("ul");
       grid_row.className = "grid-row";
@@ -33,4 +35,22 @@ async function main() {
     console.error(e);
   }
 }
-main();
+printGrid();
+
+const RIGHT = 1;
+const LEFT = 0;
+
+const right_btn = document.querySelector(".right-btn");
+const left_btn = document.querySelector(".left-btn");
+right_btn.addEventListener("click", () => moveGrid(RIGHT));
+left_btn.addEventListener("click", () => moveGrid(LEFT));
+
+function moveGrid(dir) {
+  if (dir === RIGHT) {
+    current_grid_page++;
+  } else {
+    current_grid_page--;
+  }
+
+  printGrid();
+}
