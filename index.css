@@ -38,55 +38,37 @@ body {
 }
 
 .sec_trend_news {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
-    height: 49px;
-    margin-right: 8px;
-
-    position: relative;
 }
 
-.sec_trend_news ul {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+.rolling_banner {
     position: relative;
-
-    margin: 0;
-    padding: 0;
-}
-
-.sec_trend_news li {
-    list-style-type: none;
     width: 100%;
     height: 100%;
-    display: flex;
-
-    border: none;
-    font-size: 14px;
+    overflow: hidden;
 }
 
-.sec_trend_news li.prev {
+.rolling_banner li {
     position: absolute;
-    top: -50px;
+    top: -36px;
+    left: 0;
 }
 
-.sec_trend_news li.current {
-    top: 0px;
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.rolling_banner li.prev {
+    top: 36px;
+    transition: top 1s ease;
 }
 
-.sec_trend_news li.next {
-    position: absolute;
-    top: 50px;
+.rolling_banner li.current {
+    top: 0;
+    transition: top 1s ease;
 }
 
-.sec_trend_news span,
-a {
-    display: flex;
-    flex-direction: row;
-    margin: auto 1em;
+.rolling_banner li.next {
+    top: -36px;
 }
 
 .nav_container span,

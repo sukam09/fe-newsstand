@@ -14,6 +14,11 @@ export const news_trend_left = [
         title: "[3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출",
         url: "#",
     },
+    {
+        press: "연합뉴스",
+        title: "[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출",
+        url: "#",
+    },
 ];
 
 export const news_trend_right = [
