@@ -1,0 +1,155 @@
+@import "reset.css";
+@import "constant.css";
+@import "font.css";
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 930px;
+    height: 100vh;
+}
+.news_stand_wrapper {
+    width: 930px;
+}
+
+/* header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.title_wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title_wrapper img {
+    width : 24px;
+    height : 24px;
+    margin-right : 8px;
+}
+
+/* article content */
+
+.article_wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: var(--border-default);
+    margin: 40px 0 32px;
+    padding: 16px;
+}
+
+.news_title_wrapper {
+    margin-left: 10px;
+}
+
+/* main grid */
+main {
+    display: flex;
+    width: 100%;
+}
+
+.media_wrapper {
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.media_select_wrapper {
+    display: flex;
+    align-items: center;
+    gap : 24px;
+}
+
+.media_select{
+    cursor:pointer;
+}
+
+.view_select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view_select img{
+    cursor:pointer;
+}
+
+.grid_wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 로고 표시하는 list */
+ul {
+    display: grid;
+    width: 930px;
+    height: 388px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 0;
+    border-top: var(--border-default);
+    border-left: var(--border-default);
+}
+
+ul li {
+    border-right: var(--border-default);
+    border-bottom: var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* page 이동시키는 화살표 img */
+#arrow_wrapper_left{
+    position: absolute;
+    left:-72px;
+    cursor:pointer;
+}
+
+#arrow_wrapper_left.page_0{
+    display: none;
+}
+
+#arrow_wrapper_right{
+    position: absolute;
+    right:-72px;
+    cursor:pointer;
+}
+
+#arrow_wrapper_right.page_3{
+    display:none;
+}
+
+/* logo mouse hover시 */
+.media-hover {
+    display: none;
+}
+
+ul li:hover .media-hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
