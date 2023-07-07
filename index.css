@@ -1,0 +1,164 @@
+img{
+    width: 24px;
+    height: 24px;
+}
+
+li{
+    list-style: none;
+}
+
+label{
+    padding:0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+div>img{
+    width: auto;
+    height: auto;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+.main{
+    margin:0 auto;
+    padding:20px;
+    width:930px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header.main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-div{
+    padding:15px 30px 15px 20px;
+    border:0.5px #D2DAE0 solid;
+    background-color:#F5F7F9;
+}
+
+#header-div-01{
+    display: flex;
+    flex-direction: row;
+}
+
+#header-div-02{
+    margin-top: 50px;
+    color:#5F6E76;
+    font-size: 16px;
+}
+
+#header-div-01>img{
+    width: 24px;
+    height: 24px;
+    padding-top: 20px;
+    margin-right:10px;
+}
+
+.section-strong{
+    margin-right: 20px;
+}
+
+main.main{
+    width:930px;
+    height:430px;
+}
+
+#main-div{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#main-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:220px;
+}
+
+#main-right{
+    display: flex;
+    justify-content: space-between;
+    width:65px;
+}
+
+#main-grid{
+    display: grid;
+    width:930px;
+    height:388px;
+    grid-template-columns: repeat(6, minmax(155px, auto));
+    grid-template-rows: repeat(4, minmax(97px, auto));
+    grid-auto-flow: dense;
+    place-items: center;
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+    margin-top:20px;
+}
+
+#main-grid>div{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px black solid;
+    border-top: 1px black solid;
+}
+
+#aside-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    margin-right: 40px;
+}
+
+#aside-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.main-container{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+section.main{
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-div-01:hover{
+    cursor:pointer
+}
+
+#main-div-02{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: -60px;
+}
+
+input[type="radio"]:checked + label
+{
+    font-weight: bold;
+}
+
+input[type="radio"]:checked + img
+{
+    border:2px blue solid;
+}

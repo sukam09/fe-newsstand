@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스스탠드</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="main-container">
+        <section class="wrapper">
+            <header class="main">
+                <div id="header-div-01"><img src="./img/Vector.png"><h1>뉴스스탠드</h1></div>
+                <div id="header-div-02"></div>
+            </header>
+            <section class="main">
+                <div class="section-div">
+                    <strong class="section-strong">연합뉴스</strong>1보 김기현,안철수,천하람,황교안 본선진출
+                </div>
+                <div class="section-div">
+                    <strong class="section-strong">연합뉴스</strong>[속보] 최고위원 본경선, 김용민,김용태,김재원,민영삼
+                </div>
+            </section>
+            <main class="main">
+                <div id="main-div">
+                    <div id="main-left">
+                        <input type="radio" id="main-left-radio-01" name="subscribe" checked>
+                        <label for = "main-left-radio-01">전체 구독사</label>
+                        <input name="subscribe" id="main-left-radio-02" type="radio">
+                        <label for = "main-left-radio-02">내가 선택한 구독사</label>
+                    </div>
+                    <div id="main-right">
+                        <label>
+                            <input type="radio" id="main-right-radio-01" name="sort">
+                            <img id="card-list-image" src="./img/card_list.svg">
+                        </label>
+                        <label>
+                            <input type="radio" id="main-right-radio-02" name="sort" checked>
+                            <img id="grid-image" src="./img/grid.svg">
+                        </label>
+                    </div>
+                 </div>
+                <div id="main-div-02">
+                    <aside id="aside-left"><img src="./img/LeftButton.png"></aside>
+                    <div id="main-grid"></div>
+                    <aside id="aside-right"><img src="./img/RightButton.png"></aside>
+                </div>
+            </main>
+        </section>
+    </div>
+    <script type="module" src="./index.js">
+    </script>
+</body>
+</html>
