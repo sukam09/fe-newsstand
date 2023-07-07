@@ -1,0 +1,151 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url("reset.css");
+@import url("global-style.css");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard";
+  font-style: normal;
+  line-height: normal;
+}
+
+.news-stand-container {
+  display: flex;
+  flex-direction: column;
+  width: 930px;
+}
+
+/* header-wrapper */
+.header-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 58px;
+}
+
+.header-wrapper > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border: none;
+}
+
+/* hot-topic-wrapper */
+.hot-topic-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.hot-topic-wrapper > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 429px;
+  height: 17px;
+  padding: 16px;
+  gap: 16px;
+}
+
+.hot-topic-wrapper > li > p:hover {
+  text-decoration: underline;
+}
+
+/* press-wrapper */
+.press-wrapper {
+  margin-top: 33px;
+}
+
+.press-wrapper > header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.press-wrapper > header > nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-nav-left {
+  align-items: center;
+  gap: 24px;
+}
+
+.main-nav-right {
+  gap: 8px;
+}
+
+/* .arrows-wrapper */
+.arrows-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 25px;
+}
+
+.left-arrow {
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: -72px; /* 0 - 24 - 48 */
+}
+
+.right-arrow {
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: 978px; /* 930 + 48 */
+}
+
+/* news-wrapper */
+.news-wrapper {
+  display: grid;
+
+  grid-template-columns: repeat(6, 1fr);
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+}
+.news-wrapper > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 154px;
+  height: 96px;
+  list-style-type: none;
+  border-right: 1px solid #d2dae0;
+  border-bottom: 1px solid #d2dae0;
+}
+
+.hot-topic-wrapper > li > h2,
+.hot-topic-wrapper > li > p,
+.main-nav-left > h2,
+.main-nav-right > img,
+.news-wrapper > li > img,
+.left-arrow,
+.right-arrow,
+.header-wrapper > button {
+  cursor: pointer;
+}
+
+/* 재사용 CSS */
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
