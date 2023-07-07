@@ -152,6 +152,7 @@ section {
 }
 .left-btn {
   left: 103px;
+  display: none;
 }
 .right-btn {
   right: 103px;

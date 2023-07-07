@@ -1,19 +1,32 @@
 import { fetchData } from "./api.js";
 
-// fetch("./Data/grid_icon.json") //json파일 읽어오기
-//   .then((response) => response.json()) //읽어온 데이터를 json으로 변환
-//   .then((json) => {
-//     console.log(json);
-//   });
-
-// 그리드 PRESS ICON 요소 생성
-
 let current_grid_page = 0;
+let news_icon;
+
+function updateGrid() {
+  try {
+    if (news_icon) {
+      let icon_idx = current_grid_page * 24;
+      const grid_row = document.querySelectorAll(".grid ul");
+
+      grid_row.forEach((ul, index) => {
+        const grid_li = ul.querySelectorAll("li");
+        grid_li.forEach((li) => {
+          const press_logo = li.querySelector(".press-logo");
+          press_logo.src = news_icon[icon_idx++].path;
+        });
+      });
+    } else {
+      throw "empty data!";
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 async function printGrid() {
   try {
-    const news_icon = await fetchData();
-    console.log(news_icon);
+    news_icon = await fetchData();
     const grid = document.querySelector(".grid");
     let icon_idx = current_grid_page * 24;
     for (let i = 0; i < 4; i++) {
@@ -30,6 +43,7 @@ async function printGrid() {
         grid_row.appendChild(grid_li);
       }
       grid.appendChild(grid_row);
+      updateGrid();
     }
   } catch (e) {
     console.error(e);
@@ -51,6 +65,15 @@ function moveGrid(dir) {
   } else {
     current_grid_page--;
   }
-
-  printGrid();
+  if (current_grid_page === 0) {
+    left_btn.style.display = "none";
+    right_btn.style.display = "block";
+  } else if (current_grid_page === 3) {
+    right_btn.style.display = "none";
+    left_btn.style.display = "block";
+  } else {
+    right_btn.style.display = "block";
+    left_btn.style.display = "block";
+  }
+  updateGrid();
 }
