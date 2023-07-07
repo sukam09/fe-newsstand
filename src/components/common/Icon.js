@@ -2,12 +2,12 @@ export default class Icon {
   constructor({ name }) {
     this.$img = document.createElement('img');
 
-    this.init(name);
+    this.render(name);
 
     return this.$img;
   }
 
-  init(name) {
+  render(name) {
     this.$img.src = `src/assets/icons/${name}.svg`;
   }
 }

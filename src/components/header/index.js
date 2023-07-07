@@ -5,12 +5,12 @@ export default class Header {
   constructor() {
     this.$header = document.createElement('header');
     this.$header.className = 'header';
-    this.init();
+    this.render();
 
     return this.$header;
   }
 
-  init() {
+  render() {
     const $headerName = document.createElement('h1');
     const $date = document.createElement('span');
     const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });

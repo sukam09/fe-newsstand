@@ -10,12 +10,12 @@ export default class Button {
     this.icon = icon;
     this.text = text;
 
-    this.init();
+    this.render();
 
     return this.$button;
   }
 
-  init() {
+  render() {
     const $iconImg = new Icon({ name: this.icon });
 
     this.$button.innerHTML = `${$iconImg.outerHTML} ${this.text}`;
