@@ -8,4 +8,10 @@ function getTodayDate() {
   )}. ${`${date.getDate()}`.padStart(2, '0')}. ${days[date.getDay()]}`;
 }
 
-export { getTodayDate };
+function shufflePressOrder() {
+  const array = Array.from({ length: 96 }, (v, idx) => idx);
+  array.sort(() => Math.random() - 0.5);
+  return array;
+}
+
+export { getTodayDate, shufflePressOrder };
