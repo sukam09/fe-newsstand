@@ -4,13 +4,17 @@ const sectionNewsList = document.getElementById('section-news-list');
 const sectionLeftButtonEvent = document.getElementById('section-leftbutton-event');
 const sectionRightBUttonEvent = document.getElementById('section-rightbutton-event');
 
-const now = new Date();
-const year = now.getFullYear();
-const month = ('0' + (now.getMonth() + 1)).slice(-2);
-const date = ('0' + (now.getDate())).slice(-2);
-const week = ['일', '월', '화', '수', '목', '금', '토'];
-const day = week[now.getDay()];
-const todayDate = document.getElementById('header-today-date');
+function showDate() {
+	const now = new Date();
+	const year = now.getFullYear();
+	const month = ('0' + (now.getMonth() + 1)).slice(-2);
+	const date = ('0' + (now.getDate())).slice(-2);
+	const week = ['일', '월', '화', '수', '목', '금', '토'];
+	const day = week[now.getDay()];
+	const todayDate = document.getElementById('header-today-date');
+
+	todayDate.innerHTML = `${year}. ${month}. ${date}. ${day}요일`;
+}
 
 function shuffleImgs() {
 	const shuffledArray = [...newsList].sort(() => Math.random() - 0.5);
@@ -55,11 +59,11 @@ function buttonControll() {
 	}
 }
 
+showDate();
+
 window.addEventListener('load', () => {
 	shuffleImgs();
 })
-
-todayDate.innerHTML = `${year}. ${month}. ${date}. ${day}요일`;
 
 const page = [[], [], [], []];
 
@@ -78,6 +82,7 @@ sectionLeftButtonEvent.addEventListener('click', () => {
 	showPressImg(cnt);
 	buttonControll();
 })
+
 sectionRightBUttonEvent.addEventListener('click', () => {
 	cnt++;
 	showPressImg(cnt);
