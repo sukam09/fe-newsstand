@@ -16,6 +16,8 @@ export default class Header {
     const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });
 
     $headerName.appendChild($icon);
+    $headerName.addEventListener('click', () => location.reload());
+
     $date.innerText = getTodayDate();
     $date.className = 'date';
     $icon.src = '../../assets/icons/news-stand-simbol.svg';
