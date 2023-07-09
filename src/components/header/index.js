@@ -14,4 +14,8 @@ export default class Header extends Component {
   mounted() {
     new Icon(this.$target.querySelector('img'), { name: 'newspaper' });
   }
+
+  setEvent() {
+    this.$target.addEventListener('click', () => location.reload());
+  }
 }
