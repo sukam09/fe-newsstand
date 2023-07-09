@@ -1,16 +1,20 @@
-export default class ArrowButton {
-  constructor({ name, isVisible, action }) {
-    this.$button = document.createElement('button');
-    this.$button.className = name === 'LeftButton' ? 'left-button' : 'right-button';
-    this.$button.addEventListener('click', action);
-    this.$button.style.visibility = isVisible ? 'visible' : 'hidden';
-    this.render(name);
+import Component from '../Component.js';
 
-    return this.$button;
+export default class ArrowButton extends Component {
+  setup() {
+    this.state = {
+      name: this.props.name,
+      isVisible: this.props.isVisible,
+      action: this.props.action,
+    };
+    this.$target.style.visibility = this.state.isVisible ? 'visible' : 'hidden';
   }
 
-  render(name) {
-    const buttonHTML = `<img src=src/assets/buttons/${name}.svg>`;
-    this.$button.innerHTML = buttonHTML;
+  template() {
+    return `<img src=src/assets/buttons/${this.state.name}.svg>`;
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', this.state.action);
   }
 }

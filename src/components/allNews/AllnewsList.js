@@ -1,15 +1,16 @@
+import Component from '../Component.js';
 import Logo from '../common/Logo.js';
 
-export default class AllNewsList {
-  constructor(name) {
-    this.$component = document.createElement('li');
-
-    this.render(name);
-    return this.$component;
+export default class AllNewsList extends Component {
+  setup() {
+    this.state = { name: this.props.name };
   }
 
-  render(name) {
-    const $logoImg = new Logo({ name });
-    this.$component.appendChild($logoImg);
+  template() {
+    return `<img class='press-logo'/>`;
+  }
+
+  mounted() {
+    new Logo(this.$target.querySelector('img'), { name: this.state.name });
   }
 }

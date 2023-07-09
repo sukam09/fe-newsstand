@@ -1,28 +1,17 @@
 import { getTodayDate } from '../../utils/index.js';
-import Button from '../common/Button.js';
+import Component from '../Component.js';
+import Icon from '../common/Icon.js';
 
-export default class Header {
-  constructor() {
-    this.$header = document.createElement('header');
-    this.$header.className = 'header';
-    this.render();
+export default class Header extends Component {
+  template() {
+    const todayDate = getTodayDate();
 
-    return this.$header;
+    return `<h1><button class='news-stand-logo'>
+              <img/>뉴스스탠드</button></h1>
+            <span class='date'>${todayDate}</span>`;
   }
 
-  render() {
-    const $headerName = document.createElement('h1');
-    const $date = document.createElement('span');
-    const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });
-
-    $headerName.appendChild($icon);
-    $headerName.addEventListener('click', () => location.reload());
-
-    $date.innerText = getTodayDate();
-    $date.className = 'date';
-    $icon.src = '../../assets/icons/news-stand-simbol.svg';
-
-    this.$header.appendChild($headerName);
-    this.$header.appendChild($date);
+  mounted() {
+    new Icon(this.$target.querySelector('img'), { name: 'newspaper' });
   }
 }

@@ -1,58 +1,48 @@
 import { shufflePressOrder } from '../../utils/index.js';
+import Component from '../Component.js';
 import AllNewsList from './AllnewsList.js';
 import ArrowButton from './ArrowButton.js';
 
-export default class AllNewsGrid {
-  constructor() {
-    this.$wrapper = document.createElement('div');
-    this.$wrapper.className = 'grid-wrapper';
-    this.$pressOrder = shufflePressOrder();
-    this.page = 0;
-
-    this.render();
-
-    return this.$wrapper;
+export default class AllNewsGrid extends Component {
+  setup() {
+    this.state = { pressOrder: shufflePressOrder(), page: 0 };
+  }
+  template() {
+    return `<button class='left-button'></button>
+            <div class='news-list-wrapper'>
+            <ul class='news-list'>
+            </ul>
+            </div>
+            <button class='right-button'></button>
+            `;
   }
 
-  addGrid() {
-    const $newsListGrid = document.createElement('div');
-    $newsListGrid.className = 'news-list-wrapper';
-    const $newsLists = document.createElement('ul');
-    $newsLists.className = 'news-list';
-    for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(this.$pressOrder[i]));
+  mounted() {
+    let innerHTML = '';
+    for (let i = 24 * this.state.page; i < 24 * (this.state.page + 1); i++) {
+      innerHTML += new AllNewsList(document.createElement('li'), {
+        name: this.state.pressOrder[i],
+      }).outerHTML;
     }
-    $newsListGrid.appendChild($newsLists);
+    this.$target.querySelector('.news-list').innerHTML = innerHTML;
 
-    this.$wrapper.appendChild($newsListGrid);
+    new ArrowButton(this.$target.querySelector('.left-button'), {
+      name: 'left-button',
+      isVisible: this.state.page !== 0,
+      action: this.goPreviousPage.bind(this),
+    });
+    new ArrowButton(this.$target.querySelector('.right-button'), {
+      name: 'right-button',
+      isVisible: this.state.page !== 3,
+      action: this.goNextPage.bind(this),
+    });
   }
 
   goNextPage() {
-    this.page += 1;
-    this.render();
+    this.setState({ page: this.state.page + 1 });
   }
 
   goPreviousPage() {
-    this.page -= 1;
-    this.render();
-  }
-  render() {
-    this.$wrapper.replaceChildren();
-
-    this.$wrapper.appendChild(
-      new ArrowButton({
-        name: 'LeftButton',
-        isVisible: this.page !== 0,
-        action: this.goPreviousPage.bind(this),
-      }),
-    );
-    this.addGrid();
-    this.$wrapper.appendChild(
-      new ArrowButton({
-        name: 'RightButton',
-        isVisible: this.page !== 3,
-        action: this.goNextPage.bind(this),
-      }),
-    );
+    this.setState({ page: this.state.page - 1 });
   }
 }

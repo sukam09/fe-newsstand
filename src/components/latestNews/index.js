@@ -1,16 +1,23 @@
+import Component from '../Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
 
-export default class LatestNews {
-  constructor() {
-    this.$wrapper = document.createElement('div');
-    this.$wrapper.className = 'latest-main-news';
-
-    this.render();
-    return this.$wrapper;
+export default class LatestNews extends Component {
+  template() {
+    return `<div class='auto-rolling-news'></div>
+            <div class='auto-rolling-news'></div>
+            `;
   }
 
-  render() {
-    this.$wrapper.appendChild(new LatestNewsComponent());
-    this.$wrapper.appendChild(new LatestNewsComponent());
+  mounted() {
+    const $newsLists = this.$target.querySelectorAll('.auto-rolling-news');
+
+    new LatestNewsComponent($newsLists[0], {
+      name: '연합뉴스',
+      content: '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+    });
+    new LatestNewsComponent($newsLists[1], {
+      name: '연합뉴스',
+      content: '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+    });
   }
 }

@@ -1,16 +1,15 @@
+import Component from '../Component.js';
 import AllNewHeader from './AllNewHeader.js';
 import AllNewsGrid from './AllNewsGrid.js';
 
-export default class AllNews {
-  constructor() {
-    this.$wrapper = document.createElement('section');
-
-    this.render();
-    return this.$wrapper;
+export default class AllNews extends Component {
+  template() {
+    return `<div class='all-news-header'></div>
+            <div class='grid-wrapper'></div>`;
   }
 
-  render() {
-    this.$wrapper.appendChild(new AllNewHeader());
-    this.$wrapper.appendChild(new AllNewsGrid());
+  mounted() {
+    new AllNewHeader(this.$target.querySelector('.all-news-header'));
+    new AllNewsGrid(this.$target.querySelector('.grid-wrapper'));
   }
 }

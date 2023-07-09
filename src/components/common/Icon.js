@@ -1,13 +1,9 @@
-export default class Icon {
-  constructor({ name }) {
-    this.$img = document.createElement('img');
+import Component from '../Component.js';
 
-    this.render(name);
-
-    return this.$img;
-  }
-
-  render(name) {
-    this.$img.src = `src/assets/icons/${name}.svg`;
+export default class Icon extends Component {
+  setup() {
+    this.state = { name: this.props.name };
+    this.$target.src = `src/assets/icons/${this.state.name}.svg`;
+    this.$target.alt = this.state.name;
   }
 }

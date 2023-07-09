@@ -1,45 +1,21 @@
+import Component from '../Component.js';
 import Icon from '../common/Icon.js';
 
-export default class AllNewHeader {
-  constructor() {
-    this.$header = document.createElement('div');
-    this.$header.className = 'all-news-header';
+export default class AllNewHeader extends Component {
+  template() {
+    return `<nav class='view-type-wrapper'>
+            <span>전체 언론사</span>        
+            <span>내가 구독한 언론사</span>
+            </nav>
 
-    this.render();
-
-    return this.$header;
+            <div class='view-type-icon'>
+            <img id ='list-view-icon'/>
+            <img id ='grid-view-icon'/>
+            </div>`;
   }
 
-  render() {
-    this.addTitleNavigator();
-    this.addIconNavigator();
-  }
-
-  addTitleNavigator() {
-    const $titleNavigation = document.createElement('nav');
-    $titleNavigation.className = 'view-type-wrapper';
-
-    const $allPress = document.createElement('span');
-    const $subscibedPress = document.createElement('span');
-
-    $allPress.innerText = '전체 언론사';
-    $subscibedPress.innerText = '내가 구독한 언론사';
-
-    $titleNavigation.appendChild($allPress);
-    $titleNavigation.appendChild($subscibedPress);
-    this.$header.appendChild($titleNavigation);
-  }
-
-  addIconNavigator() {
-    const $iconNavigation = document.createElement('div');
-    $iconNavigation.className = 'view-type-icon';
-
-    const $listViewIcon = new Icon({ name: 'list-view' });
-    const $gridViewIcon = new Icon({ name: 'grid-view' });
-
-    $iconNavigation.appendChild($listViewIcon);
-    $iconNavigation.appendChild($gridViewIcon);
-
-    this.$header.appendChild($iconNavigation);
+  mounted() {
+    new Icon(this.$target.querySelector('#list-view-icon'), { name: 'list-view' });
+    new Icon(this.$target.querySelector('#grid-view-icon'), { name: 'grid-view' });
   }
 }
