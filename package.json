@@ -1,0 +1,9 @@
+{
+  "name": "newsstand",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/asdf99245/fe-newsstand.git",
+  "author": "asdf99245 <asdf99245@naver.com>",
+  "license": "MIT",
+  "type": "module"
+}

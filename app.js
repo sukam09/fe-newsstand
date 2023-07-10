@@ -1,8 +1,15 @@
-const NEWS_COUNT = 24;
+import { startRollingBanner } from "./scripts/rolling-banner.js";
+import { fillNewsContents } from "./scripts/grid-view.js";
+import {
+  customFetch,
+  shuffleData,
+  getKRLocaleDateString,
+} from "./utils/index.js";
+import { NEWS_COUNT } from "./constants/index.js";
 
+// TODO: global state로 관리해야할듯
+let theme = "light";
 let pages = 0;
-
-let scheme = "light";
 
 const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
 const $nextPageButton = document.querySelector(
@@ -10,69 +17,19 @@ const $nextPageButton = document.querySelector(
 );
 const $headerDate = document.querySelector(".container-header_date");
 
-/* utils */
-
-const customFetch = async (url, callback, options) => {
-  try {
-    const response = await fetch(url, options);
-    let data = await response.json();
-
-    if (callback) data = callback(data);
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+const getSlicedDataFromPage = (data, page, count) => {
+  return data.slice(page * count, (page + 1) * count);
 };
 
-const shuffleData = (data) => {
-  return data.sort(() => Math.random() - 0.5);
-};
-
-const setDate = () => {
-  const today = new Date();
-
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "long",
-  };
-
-  $headerDate.innerText = today.toLocaleDateString("ko-KR", options);
-};
-
-/* grid view control */
-const fillNewsContents = (newsData) => {
-  const $gridView = document.querySelector(".grid-view");
-  $gridView.innerHTML = "";
-  const startIndex = pages * NEWS_COUNT;
-
-  for (let i = startIndex; i < startIndex + NEWS_COUNT; i++) {
-    const $li = document.createElement("li");
-    $li.className = "grid-cell";
-
-    const $button = document.createElement("button");
-
-    const $img = document.createElement("img");
-    $img.className = "grid-cell_news-img";
-
-    $img.src = newsData[i].src;
-    $img.alt = newsData[i].name;
-
-    $button.appendChild($img);
-    $li.appendChild($button);
-
-    $gridView.appendChild($li);
-  }
-};
-
-(async function init() {
-  setDate();
+// main
+(async function () {
+  $headerDate.innerText = getKRLocaleDateString(new Date());
 
   const newsData = await customFetch("./mocks/news.json", shuffleData);
-  fillNewsContents(newsData);
+  fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
 
-  /* event handler */
+  const headlineData = await customFetch("./mocks/headline.json");
+  startRollingBanner(headlineData);
 
   const handlePrevButtonClick = () => {
     const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
@@ -81,10 +38,12 @@ const fillNewsContents = (newsData) => {
       $nextPageButton.classList.remove("hidden");
     }
 
-    if (--pages === 0) {
+    pages -= 1;
+    if (pages === 0) {
       $prevPageButton.classList.add("hidden");
     }
-    fillNewsContents(newsData);
+
+    fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
   };
 
   const handleNextButtonClick = () => {
@@ -94,10 +53,12 @@ const fillNewsContents = (newsData) => {
       $prevPageButton.classList.remove("hidden");
     }
 
-    if (++pages === maxPage) {
+    pages += 1;
+    if (pages === maxPage) {
       $nextPageButton.classList.add("hidden");
     }
-    fillNewsContents(newsData);
+
+    fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
   };
 
   $prevPageButton.addEventListener("click", handlePrevButtonClick);
