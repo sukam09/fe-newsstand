@@ -1,3 +1,8 @@
+const MOVE_OFFSET = 14;
+const DURATION_ROLLING = 5000;
+const DURATION_DIFF_BANNER = 1000;
+const DURATION_RESET = 500;
+
 const $containerNewsBar = document.querySelector(".container-news-bar");
 
 const createRollingBannerList = ($banner, data) => {
@@ -27,7 +32,7 @@ export const startRollingBanner = (headlineData) => {
     const autoRolling = () => {
       cnt += 1;
       $banner.style.transitionDuration = "500ms";
-      $banner.style.transform = `translateY(-${14 * cnt}px)`;
+      $banner.style.transform = `translateY(-${MOVE_OFFSET * cnt}px)`;
 
       if (cnt >= dataLength) {
         clearInterval(interval);
@@ -36,16 +41,16 @@ export const startRollingBanner = (headlineData) => {
           $banner.style.transitionDuration = "0ms";
           $banner.style.transform = "translateY(0)";
           autoPlay();
-        }, 500);
+        }, DURATION_RESET);
       }
     };
 
     const autoPlay = () => {
-      interval = setInterval(autoRolling, 5 * 1000);
+      interval = setInterval(autoRolling, DURATION_ROLLING);
     };
 
     if (idx === 1) {
-      setTimeout(autoPlay, 1000);
+      setTimeout(autoPlay, DURATION_DIFF_BANNER);
     } else {
       autoPlay();
     }
