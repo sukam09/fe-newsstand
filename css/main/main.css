@@ -1,5 +1,5 @@
-@import "newsarea.css";
-@import "subview.css";
+@import 'newsarea.css';
+@import 'subview.css';
 
 #main {
   width: 100%;

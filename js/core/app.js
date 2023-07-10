@@ -1,5 +1,5 @@
-import { date } from "../utils/date.js";
-import { newsstandSystem } from "../newsstand/newsstandSystem.js";
+import { date } from '../utils/date.js';
+import { newsstandSystem } from '../newsstand/newsstandSystem.js';
 
 // 기능
 headerRender();
