@@ -76,11 +76,17 @@ body {
     gap: 8px;
 
     position: absolute;
-    top: -49px;
+    top: 49px;
+}
+.li-headline {
+    text-decoration: none;
+}
+.li-headline:hover {
+    text-decoration: underline;
 }
 
 .grid_section .prev {
-    top: 49px;
+    top: -49px;
     transition: top 1s ease;
 }
 
@@ -90,7 +96,7 @@ body {
 }
 
 .grid_section .next {
-    top: -49px;
+    top: 49px;
 }
 
 /* main */
