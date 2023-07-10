@@ -11,8 +11,16 @@ export default class LatestNewsComponent extends Component {
   }
 
   setEvent() {
+    const $newsList = this.$target.querySelector('.auto-rolling-animation');
+
+    setTimeout(() => {
+      $newsList.style.animationPlayState = 'paused';
+    }, this.state.delay * 1000);
+    setTimeout(() => {
+      $newsList.style.animationPlayState = 'running';
+    }, this.state.delay * 2000);
+
     this.$target.addEventListener('mouseover', () => {
-      const $newsList = this.$target.querySelector('.auto-rolling-animation');
       const currentOpacity = getComputedStyle($newsList).opacity;
 
       if (currentOpacity === '1') {
@@ -21,8 +29,6 @@ export default class LatestNewsComponent extends Component {
     });
 
     this.$target.addEventListener('mouseout', () => {
-      const $newsList = this.$target.querySelector('.auto-rolling-animation');
-
       $newsList.style.animationPlayState = 'running';
     });
   }

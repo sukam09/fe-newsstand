@@ -101,6 +101,7 @@ section {
 .auto-rolling-animation {
   animation: rolling 5s linear infinite;
 }
+
 /* news stand*/
 .news-stand-logo {
   border: none;
