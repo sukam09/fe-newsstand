@@ -1,22 +1,31 @@
 const ROLLING_NEWS_NUM = 5;
+
+// 왼쪽 배너 롤링 반복
 let rollingIntervalLeft = setInterval(() => {
   rollingEvent("left");
-}, 3000);
-let rollingIntervalRight = setInterval(() => {
-  rollingEvent("right");
-}, 3000);
+}, 5000);
 
+// 오른쪽 배너 롤링 1초 Timeout 후 반복
+let rollingIntervalRight = setInterval(() => {
+  setTimeout(() => {
+    rollingEvent("right");
+  }, 1000);
+}, 5000);
+
+// 마우스 아웃시 반복 재시작
 function startRolling(state) {
   if (state == "left") {
     rollingIntervalLeft = setInterval(() => {
       rollingEvent("left");
-    }, 3000);
+    }, 5000);
   } else {
     rollingIntervalRight = setInterval(() => {
       rollingEvent("right");
-    }, 3000);
+    }, 5000);
   }
 }
+
+// 마우스 호버시 반복 멈춤
 function stopRolling(state) {
   if (state == "left") {
     clearInterval(rollingIntervalLeft);
