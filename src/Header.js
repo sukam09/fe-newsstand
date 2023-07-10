@@ -34,12 +34,14 @@ export default function Header({ $target }) {
       <div class="date"></div>
     `;
 
-    const $titleIcon = $header.querySelector('.title-icon');
-    if (!isInit) {
-      $titleIcon.addEventListener('click', handleClickTitleIcon);
-    }
-
     getDate();
+
+    if (!isInit) {
+      const $titleIcon = $header.querySelector('.title-icon');
+      $titleIcon.addEventListener('click', handleClickTitleIcon);
+
+      isInit = true;
+    }
   };
 
   this.render();
