@@ -42,6 +42,10 @@ function createSubButton(id) {
     toggleSubButton(targetPress, subButtonContainer);
   });
 
+  subButton.addEventListener("mouseover", () => {
+    subButton.style.cursor = "pointer";
+  });
+
   subButtonContainer.appendChild(subButton);
   return subButtonContainer;
 }
