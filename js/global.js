@@ -1,32 +1,58 @@
-let interval = setInterval(rollingEvent, 3000);
+const ROLLING_NEWS_NUM = 5;
+let rollingIntervalLeft = setInterval(() => {
+  rollingEvent("left");
+}, 3000);
+let rollingIntervalRight = setInterval(() => {
+  rollingEvent("right");
+}, 3000);
 
-function startRolling() {
-  interval = setInterval(rollingEvent, 3000);
+function startRolling(state) {
+  if (state == "left") {
+    rollingIntervalLeft = setInterval(() => {
+      rollingEvent("left");
+    }, 3000);
+  } else {
+    rollingIntervalRight = setInterval(() => {
+      rollingEvent("right");
+    }, 3000);
+  }
 }
-function stopRolling() {
-  clearInterval(interval);
+function stopRolling(state) {
+  if (state == "left") {
+    clearInterval(rollingIntervalLeft);
+  } else {
+    clearInterval(rollingIntervalRight);
+  }
 }
+
+// 롤링에 들어갈 뉴스 리스트 추가
 function appendRollingList() {
-  const rollingListContainer = document.getElementsByClassName(
-    "newsbanner__list-container"
+  const rollingListContainerLeft = document.getElementsByClassName(
+    "newsbanner__list-container--left"
   );
-  rollingNewsContent.forEach((item, idx) => {
-    const bannerItem = createBannerItem(idx, item);
-    rollingListContainer[0].appendChild(bannerItem);
-  });
+  const rollingListContainerRight = document.getElementsByClassName(
+    "newsbanner__list-container--right"
+  );
+  for (let i = 0; i < ROLLING_NEWS_NUM; i++) {
+    const leftItem = createBannerItem(i, rollingNewsContentLeft[i], "left");
+    const rightItem = createBannerItem(i, rollingNewsContentRight[i], "right");
+    rollingListContainerLeft[0].appendChild(leftItem);
+    rollingListContainerRight[0].appendChild(rightItem);
+  }
 }
 
-function createBannerItem(idx, content) {
+// 롤링 컨테이너에 넣을 리스트 생성
+function createBannerItem(idx, content, state) {
   const newItem = document.createElement("li");
   newItem.innerHTML = content;
   newItem.addEventListener("mouseover", () => {
     newItem.style.textDecorationLine = "underline";
     newItem.style.cursor = "pointer";
-    stopRolling();
+    stopRolling(state);
   });
   newItem.addEventListener("mouseout", () => {
     newItem.style.textDecorationLine = "none";
-    startRolling();
+    startRolling(state);
   });
   switch (idx) {
     case 0:
@@ -45,24 +71,31 @@ function createBannerItem(idx, content) {
 }
 
 // 롤링 애니메이션
-function rollingEvent() {
+function rollingEvent(state) {
   // 이전 값 삭제
   document
-    .querySelector(".newsbanner__list--prev")
+    .querySelector(
+      `.newsbanner__list-container--${state} .newsbanner__list--prev`
+    )
     .classList.remove("newsbanner__list--prev");
 
   // 현재 값 이전으로 옮기기
-  let now = document.querySelector(".newsbanner__list--now");
+  let now = document.querySelector(
+    `.newsbanner__list-container--${state} .newsbanner__list--now`
+  );
   now.classList.remove("newsbanner__list--now");
   now.classList.add("newsbanner__list--prev");
-
   // 다음 값 현재로 옮기기
-  let next = document.querySelector(".newsbanner__list--next");
+  let next = document.querySelector(
+    `.newsbanner__list-container--${state} .newsbanner__list--next`
+  );
 
   // 다음 값이 없다면 처음부터
   if (next.nextElementSibling == null) {
     document
-      .querySelector(".newsbanner__list:first-child")
+      .querySelector(
+        `.newsbanner__list-container--${state} .newsbanner__list:first-child`
+      )
       .classList.add("newsbanner__list--next");
   } else {
     next.nextElementSibling.classList.add("newsbanner__list--next");
