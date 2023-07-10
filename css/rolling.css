@@ -17,12 +17,12 @@
 
 .rolling-banner li.prev {
   top: -36px;
-  transition: top 0.5s ease;;
+  transition: top 1s ease;;
 }
 
 .rolling-banner li.current {
   top: 0;
-  transition: top 0.5s ease;
+  transition: top 1s ease;
 }
 
 .rolling-banner li.next {
@@ -35,7 +35,7 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: #000;
+  color: var(--text-text-default);
   text-decoration: none;
 }
 
