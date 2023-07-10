@@ -1,4 +1,4 @@
-import { fetchPressData, fetchHotTopicData } from "./utils.js";
+import { fetchPressData } from "./utils.js";
 
 // rowSize, colSize, maxPage, currentPage is main size variable
 const rowSize = 6;

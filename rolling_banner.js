@@ -1,4 +1,4 @@
-import { news_trend_left, news_trend_right } from "./trend_news.js";
+import { fetchHotTopicData } from "./utils.js";
 
 function createList(news) {
     const list = document.createElement("ul");
@@ -21,21 +21,26 @@ function createList(news) {
     return list;
 }
 
-function showBanner() {
-    const banners = document.querySelectorAll(".rolling_banner");
+function showBanner(data1, data2) {
+    const banner_left = document.getElementById("rollingBannerLeft");
+    const banner_right = document.getElementById("rollingBannerRight");
 
-    banners.forEach((banner) => {
-        createList(news_trend_left);
-        const list = createList(news_trend_left);
-        banner.appendChild(list);
-    });
+    const list_left = createList(data1);
+    const list_right = createList(data2);
+
+    banner_left.appendChild(list_left);
+    banner_right.appendChild(list_right);
 }
 
-function updateBanner(banner) {
+function updateBanner(banner, loc) {
     if (banner.style.animationPlayState === "paused") {
         return;
     }
-    banner.style.animation = "roll-up 3s ease-in-out forwards";
+    if (loc === "left") {
+        banner.style.animation = "roll-up-left 3s ease-in-out forwards";
+    } else if (loc === "right") {
+        banner.style.animation = "roll-up-right 3s ease-in-out forwards";
+    }
 
     setTimeout(() => {
         //if hover, stop animation
@@ -90,19 +95,25 @@ function controlBanner() {
         document.getElementById("rollingBannerRight").childNodes[0];
 
     setInterval(() => {
-        updateBanner(left_banner);
+        updateBanner(left_banner, "left");
     }, 5000);
     delay(1000).then(() => {
         setInterval(() => {
-            updateBanner(right_banner);
+            updateBanner(right_banner, "right");
         }, 5000);
     });
 }
 
-function init() {
-    showBanner();
-    bannerMouseEvents();
-    controlBanner();
+function auto_rolling() {
+    const promise_data = fetchHotTopicData();
+
+    console.log(promise_data);
+
+    promise_data.then((data) => {
+        showBanner(data[0], data[1]);
+        bannerMouseEvents();
+        controlBanner();
+    });
 }
 
-init();
+export { auto_rolling };
