@@ -1,15 +1,8 @@
 import { fetchRollingNewsData } from "./api.js";
 
 const RollingNewsNum = 5;
-const first_news = document.querySelector("#first-news");
-// const first_news_press = document.querySelector("#first-news-press");
-// const first_news_title = document.querySelector("#first-news-title");
-const second_news = document.querySelector("#second-news");
-// const second_news_press = document.querySelector("#second-news-press");
-// const second_news_title = document.querySelector("#second-news-title");
 let rolling_news;
-let first_news_index = 0;
-let second_news_index = RollingNewsNum;
+let rolling_news_index = 0;
 
 async function initRollingNews() {
   rolling_news = await fetchRollingNewsData();
@@ -17,7 +10,10 @@ async function initRollingNews() {
 }
 
 function makeDomData() {
-  for (let i = 0; i < 1; i++) {
+  const first_news = document.querySelector("#first-news");
+  const second_news = document.querySelector("#second-news");
+
+  for (let i = 0; i < 2; i++) {
     for (let j = 0; j < RollingNewsNum; j++) {
       const news_li = document.createElement("li");
       if (j === 0) {
@@ -50,21 +46,27 @@ function makeDomData() {
 }
 
 function rollingCallback() {
-  //.prev 클래스 삭제
-  document.querySelector(".prev-news").classList.remove("prev-news");
+  let prev, current, next;
+  if (rolling_news_index === 0) {
+    prev = document.querySelector("#first-news .prev-news");
+    current = document.querySelector("#first-news .current-news");
+    next = document.querySelector("#first-news .next-news");
+    setTimeout(rollingCallback, 1000);
+    rolling_news_index = 1;
+  } else {
+    prev = document.querySelector("#second-news .prev-news");
+    current = document.querySelector("#second-news .current-news");
+    next = document.querySelector("#second-news .next-news");
+    rolling_news_index = 0;
+  }
+  prev.classList.remove("prev-news");
 
-  //.current -> .prev
-  let current = document.querySelector(".current-news");
   current.classList.remove("current-news");
   current.classList.add("prev-news");
 
-  //.next -> .current
-  let next = document.querySelector(".next-news");
-  //다음 목록 요소가 널인지 체크
   if (next.nextElementSibling == null) {
-    document.querySelector(".news-bar ul:first-child li:first-child").classList.add("next-news");
+    document.querySelector(".news-bar li:first-child").classList.add("next-news");
   } else {
-    //목록 처음 요소를 다음 요소로 선택
     next.nextElementSibling.classList.add("next-news");
   }
   next.classList.remove("next-news");
