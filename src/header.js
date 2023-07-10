@@ -21,6 +21,7 @@ export const setHeadline = async () => {
   const headLineData = await customFetch("./mocks/headlines.json");
 
   fillHeadlineContents(headLineData);
+
   setRollingInterval();
 };
 
@@ -76,6 +77,17 @@ export const setRollingInterval = () => {
     rollingInterval = setInterval(() => {
       rollingCallback();
     }, 5000);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      clearInterval(rollingInterval);
+      rollingInterval = setInterval(() => {
+        rollingCallback();
+      }, 5000);
+    } else {
+      clearInterval(rollingInterval);
+    }
   });
 };
 
