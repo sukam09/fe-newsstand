@@ -250,8 +250,7 @@ h1 {
   width: 320px;
   height: 200px;
   border: 1px solid var(--border-default);
-  background: url(<path-to-image>),
-    lightgray 0px -11.561px / 100% 106.561% no-repeat;
+  background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
 }
 .news-main > h2 {
   overflow: hidden;
@@ -316,6 +315,10 @@ h1 {
   position: absolute;
   top: 180px;
   right: -72px;
+}
+
+.press-grid > img {
+  cursor: pointer;
 }
 
 /* */
@@ -442,3 +445,32 @@ h1 {
 }
 
 /* rolling style end */
+
+.view-icon-div > img {
+  cursor: pointer;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.press-option > span {
+  cursor: pointer;
+}
+
+#press-list > li {
+  cursor: pointer;
+}
+
+.news > .right-btn,
+.left-btn {
+  cursor: pointer;
+}
+
+.list-nav > ul > li {
+  cursor: pointer;
+}
+
+.press-info > button {
+  cursor: pointer;
+}
