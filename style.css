@@ -344,8 +344,30 @@ body {
   background: var(--color-surface-alt);
   border: var(--border-default);
 }
-.container-news-bar > div > a {
+.container-news-bar_window {
+  flex: 1;
+
+  height: 14px;
+  overflow: hidden;
+}
+.container-news-bar_window > ul {
   color: var(--color-text-default);
+  transition: transform 0.5s linear;
+}
+.container-news-bar_window > ul > li {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+}
+.container-news-bar_window > ul > li > a {
+  display: block;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container-news-bar_window > ul > li > a:hover {
+  text-decoration-line: underline;
 }
 .main-nav {
   margin-bottom: 25px;
