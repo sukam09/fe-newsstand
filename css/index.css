@@ -187,14 +187,49 @@ label:hover,
   display: flex;
   height: 40px;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 25px;
   font-size: 14px;
 }
+
 .press-info {
+  margin: 24px auto 16px auto;
   width: 882px;
   height: 24px;
+  display: flex;
+  align-items: center;
+}
+.press-info span {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 10px;
 }
 .list-view-news {
+  margin: 0 auto;
   width: 882px;
   height: 260px;
+  display: flex;
+}
+.list-view-main {
+  width: 320px;
+  height: 260px;
+  margin-right: 32px;
+}
+.list-view-sub {
+  width: 530px;
+  height: 245px;
+}
+
+.list-view-sub li {
+  color: var(--text-bold);
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.list-view-sub li.sub-caption {
+  font-size: 14px;
+  color: var(--text-weak);
+}
+.list-main-title {
+  margin-top: 16px;
+  font-weight: 500;
+  color: var(--text-strong);
 }

@@ -181,7 +181,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.setAttribute("color-theme", "light");
   ReloadWrapper();
   DateWrapper();
-  GridWrapper();
+  // GridWrapper();
   addEvent();
   leftInterval = setInterval(rollingNewsBarLeft, 5000);
   setTimeout(() => {
