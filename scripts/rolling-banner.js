@@ -14,6 +14,14 @@ const createRollingBannerList = ($banner, data) => {
   }, "");
 };
 
+const setTransitionDuration = ($banner, value) => {
+  $banner.style.transitionDuration = `${value}ms`;
+};
+
+const setTransform = ($banner, cnt) => {
+  $banner.style.transform = `translateY(-${MOVE_OFFSET * cnt}px)`;
+};
+
 export const startRollingBanner = (headlineData) => {
   const [leftSlice, rightSlice] = [
     headlineData.slice(0, 5),
@@ -34,15 +42,15 @@ export const startRollingBanner = (headlineData) => {
 
     const autoRolling = () => {
       cnt += 1;
-      $banner.style.transitionDuration = "500ms";
-      $banner.style.transform = `translateY(-${MOVE_OFFSET * cnt}px)`;
+      setTransitionDuration($banner, 500);
+      setTransform($banner, cnt);
 
       if (cnt >= dataLength) {
         clearInterval(interval);
         setTimeout(() => {
           cnt = 0;
-          $banner.style.transitionDuration = "0ms";
-          $banner.style.transform = "translateY(0)";
+          setTransitionDuration($banner, 0);
+          setTransform($banner, cnt);
           autoPlay();
         }, DURATION_RESET);
       }
