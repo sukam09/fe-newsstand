@@ -1,3 +1,7 @@
+const MIN_PAGE_NUM = 1;
+const MAX_PAGE_NUM = 4;
+const PAGE_COUNT = 24;
+
 let page = 1;
 let newsPressData = [];
 
@@ -14,8 +18,8 @@ const initNewsPressData = () => {
 
 const showNewsPressItems = () => {
     checkShowPageButton(page);
-    const startIndex = 24 * (page - 1);
-    const endIndex = startIndex + 23;
+    const startIndex = PAGE_COUNT * (page - 1);
+    const endIndex = startIndex + (PAGE_COUNT - 1);
     const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
 
     const newsPressGrid = document.querySelector(".news-press-grid");
@@ -42,7 +46,7 @@ const handleClickTitleIcon = () => {
     });
 };
 
-const validatePage = (page) => page >= 1 && page <= 4;
+const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
 
 const prevPageButton = document.querySelector(".left-arrow-button");
 
@@ -68,8 +72,8 @@ const checkShowPageButton = (page) => {
     prevPageButton.classList.remove("disabled");
     nextPageButton.classList.remove("disabled");
 
-    if (page === 1) prevPageButton.classList.add("disabled");
-    else if (page === 4) nextPageButton.classList.add("disabled");
+    if (page === MIN_PAGE_NUM) prevPageButton.classList.add("disabled");
+    else if (page === MAX_PAGE_NUM) nextPageButton.classList.add("disabled");
 };
 
 checkShowPageButton(page);
