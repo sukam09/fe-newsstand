@@ -6,6 +6,8 @@ export default function NewsPressGridview({ $target, initialState }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 
+  $target.appendChild($section);
+
   this.state = initialState;
 
   this.setState = nextState => {
@@ -49,8 +51,6 @@ export default function NewsPressGridview({ $target, initialState }) {
 
       $ul.appendChild($li);
     });
-
-    $target.appendChild($section);
   };
 
   const handleMoveToPrevPage = () => {

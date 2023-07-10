@@ -1,6 +1,8 @@
 export default function Header({ $target }) {
   const $header = document.createElement('header');
 
+  $target.appendChild($header);
+
   const addLeadingZero = number => (number < 10 ? '0' + number : number);
 
   const getDate = () => {
@@ -38,7 +40,6 @@ export default function Header({ $target }) {
     }
 
     getDate();
-    $target.appendChild($header);
   };
 
   this.render();
