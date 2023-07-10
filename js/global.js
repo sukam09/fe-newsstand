@@ -1,3 +1,11 @@
+let interval = setInterval(rollingEvent, 3000);
+
+function startRolling() {
+  interval = setInterval(rollingEvent, 3000);
+}
+function stopRolling() {
+  clearInterval(interval);
+}
 function appendRollingList() {
   const rollingListContainer = document.getElementsByClassName(
     "newsbanner__list-container"
@@ -11,6 +19,15 @@ function appendRollingList() {
 function createBannerItem(idx, content) {
   const newItem = document.createElement("li");
   newItem.innerHTML = content;
+  newItem.addEventListener("mouseover", () => {
+    newItem.style.textDecorationLine = "underline";
+    newItem.style.cursor = "pointer";
+    stopRolling();
+  });
+  newItem.addEventListener("mouseout", () => {
+    newItem.style.textDecorationLine = "none";
+    startRolling();
+  });
   switch (idx) {
     case 0:
       newItem.className = "newsbanner__list newsbanner__list--prev";
@@ -47,10 +64,8 @@ function rollingEvent() {
     document
       .querySelector(".newsbanner__list:first-child")
       .classList.add("newsbanner__list--next");
-    console.log("if");
   } else {
     next.nextElementSibling.classList.add("newsbanner__list--next");
-    console.log("else");
   }
   next.classList.remove("newsbanner__list--next");
   next.classList.add("newsbanner__list--now");
