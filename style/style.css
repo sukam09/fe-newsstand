@@ -60,65 +60,35 @@ img.title_logo {
   font-size: 14px;
 }
 
-.rolling_list > li {
-  display: none;
-  list-style: none;
-}
-
-.rolling_list > li.prev {
-  position: absolute;
-  top: -20px;
-  display: block;
-  color: #5f6e76;
-}
-.rolling_list > li.now {
-  position: absolute;
-  display: block;
-  top: 0px;
-  color: #5f6e76;
-  animation-name: stop, rolling_disappear;
-  animation-delay: 1s, 1s;
-  animation-duration: 1s, 1s;
-  animation-timing-function: linear, linear;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
-.rolling_list > li.next {
-  position: absolute;
-  display: block;
-  bottom: -20px;
-  color: #5f6e76;
-  animation-name: stop, rolling_disappear;
-  animation-delay: 1s, 1s;
-  animation-duration: 1s, 1s;
-  animation-timing-function: linear, linear;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
 .rolling_list :hover {
   text-decoration-line: underline;
-  cursor: pointer;
-  animation-play-state: paused;
 }
 .rolling_list {
   position: relative;
   width: 70%;
-  overflow: hidden;
   height: 17px;
+  list-style: none;
 }
-@keyframes rolling_disappear {
-  to {
-    transform: translate(0, -20px);
-  }
+
+.top {
+  position: absolute;
+  top: -20px;
+  transition: top 2s ease;
 }
-@keyframes rolling_appear {
-  to {
-    bottom: 0px;
-  }
+.view {
+  position: absolute;
+  top: 0px;
+  transition: all 2s ease;
 }
-@keyframes stop {
-  to {
-  }
+.next {
+  position: absolute;
+  top: 40px;
+}
+.bottom {
+  position: absolute;
+
+  top: 40px;
+  transition: top 2s ease;
 }
 
 .main_header {

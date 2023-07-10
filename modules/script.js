@@ -11,6 +11,7 @@ import {
   showPrevGridPage,
 } from "./grid.js";
 import { showGridPage } from "./grid.js";
+import { rolling } from "./listView.js";
 import { shufflePress } from "./pressObj.js";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -27,6 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
   updateDate();
   initGrid();
   showGridPage(0);
+  rolling();
 
   listButton.addEventListener("click", handleListButton);
   gridButton.addEventListener("click", handleGridButton);
