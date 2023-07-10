@@ -1,5 +1,5 @@
 export async function fetchNewsIconData() {
-  const jsonData = await fetchJsonFile("./Data/News_Icon.json");
+  const jsonData = await fetchJsonFile("../Data/News_Icon.json");
   shuffle_id(jsonData);
   return jsonData;
 }
