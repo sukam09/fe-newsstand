@@ -44,6 +44,25 @@ body {
   box-sizing: border-box;
 }
 
+.auto-rolling-news {
+  position: relative;
+  overflow: hidden;
+}
+
+.auto-rolling-news li {
+  position: absolute;
+  top: 50px;
+}
+
+.auto-rolling-news ul li.prev {
+  top: -20px;
+  transition: top 0.5s ease;
+}
+.auto-rolling-news ul li.current {
+  top: 15px;
+  transition: top 0.5s ease;
+}
+
 .grid-view {
   display: flex;
   align-items: center;
@@ -80,6 +99,7 @@ body {
   border-bottom: none;
   border-left: none;
 }
+
 .main-list ul li:nth-child(6n + 1) {
   border-left: 1px solid var(--border-default);
 }
@@ -122,6 +142,7 @@ body {
   font-size: 14px;
   font-weight: 700;
 }
+
 .news-title {
   color: var(--text-default);
   font-size: 14px;
