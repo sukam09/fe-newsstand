@@ -13,7 +13,7 @@ export default function Header({ $target }) {
     const day = today.getDate();
     const weekDay = weekDays[today.getDay()];
 
-    const dateString = `${year}. ${addLeadingZero(month)}. ${addLeadingZero(day)} ${weekDay}요일`;
+    const dateString = `${year}. ${addLeadingZero(month)}. ${addLeadingZero(day)}. ${weekDay}요일`;
     $date.textContent = dateString;
   };
 
