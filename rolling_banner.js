@@ -32,6 +32,9 @@ function showBanner() {
 }
 
 function updateBanner(banner) {
+    if (banner.style.animationPlayState === "paused") {
+        return;
+    }
     banner.style.animation = "roll-up 3s ease-in-out forwards";
 
     setTimeout(() => {
