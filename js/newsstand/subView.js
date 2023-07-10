@@ -39,7 +39,9 @@ const firstTitle = document.getElementById("main__first-title");
 const secondTitle = document.getElementById("main__second-title");
 const thirdTitle = document.getElementById("main__third-title");
 
-const [test1] = document.getElementsByClassName("main__rolling-title-left");
+const [subViewBox] = document.getElementsByClassName(
+  "main__rolling-title-left"
+);
 
 let move = 2;
 let dataCnt = 1;
@@ -49,10 +51,14 @@ export function paintSubView() {
   firstCorp.textContent = newsDataLeft[0].corp;
   firstTitle.textContent = newsDataLeft[0].title;
 
-  const interval1 = setInterval(moveContent, SET_TIME);
+  const subViewInterval = setInterval(moveContent, SET_TIME);
 
-  test1.addEventListener("mouseover", () => clearInterval(interval1));
-  test1.addEventListener("mouseout", () => setInterval(moveContent, SET_TIME));
+  subViewBox.addEventListener("mouseover", () =>
+    clearInterval(subViewInterval)
+  );
+  subViewBox.addEventListener("mouseout", () =>
+    setInterval(moveContent, SET_TIME)
+  );
 }
 
 function moveContent() {

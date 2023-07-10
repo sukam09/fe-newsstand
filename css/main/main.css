@@ -1,6 +1,7 @@
-@import "newsarea.css";
-@import "subview.css";
-@import "rolling.css";
+@import "./mediaArea/mediaarea.css";
+@import "./mediaArea/subview.css";
+@import "./mediaArea/rolling.css";
+@import "./newsArea/newsarea.css";
 
 #main {
   width: 100%;
