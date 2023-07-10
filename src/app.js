@@ -1,11 +1,11 @@
 import getDate from "./header/getDate.js";
-import { initNewsPressData } from "./news-display/grid-view/setNewsPressGrid.js";
-import { infiniteRolling } from "./news-bar/rolling.js";
+import { handleClickTitleIcon } from "./header/handleTitleIcon.js";
 import {
+    initNewsPressData,
     handleClickNextPageButton,
     handleClickPrevPageButton,
-} from "./news-display/pageButton.js";
-import { handleClickTitleIcon } from "./header/handleTitleIcon.js";
+} from "./news-display/utils.js";
+import { infiniteRolling } from "./news-bar/rolling.js";
 
 getDate();
 initNewsPressData();
