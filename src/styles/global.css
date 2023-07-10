@@ -174,15 +174,4 @@
   border: 1px solid var(--grayscale-400);
 }
 
-/* Icons */
-.icon-size24 {
-  width: 24px;
-  height: 24px;
-}
-
-.icon-size16 {
-  width: 16px;
-  height: 16px;
-}
-
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");

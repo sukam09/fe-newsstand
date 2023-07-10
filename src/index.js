@@ -1,5 +1,5 @@
-const newsWrapper = document.querySelector(".news-wrapper");
-const systemDate = document.querySelector(".system-date");
+const newsWrapper = document.querySelector(".press-logo__wrapper");
+const systemDate = document.querySelector(".header__time");
 
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
@@ -22,6 +22,7 @@ const makeGrid = () => {
       ? `./assets/images/light-press-logo/${idList[i]}.png`
       : `./assets/images/dark-press-logo/${idList[i]}.png`;
 
+    console.log(gridItem);
     let checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = function () {
@@ -29,6 +30,7 @@ const makeGrid = () => {
       img.classList.add(`img${i}`);
       img.src = imgSrc;
       img.style.height = "20px";
+      gridItem.classList.add("press-logo__li");
       gridItem.appendChild(img);
     };
 
@@ -45,8 +47,8 @@ const changeImgSrc = () => {
   for (let i = 0; i < 24; i++) {
     const $img = document.querySelector(`.img${i}`);
     const imgSrc = isLightMode
-      ? `./img/light-media/${newImg[i]}.png`
-      : `./img/dark-media/${newImg[i]}.png`;
+      ? `./assets/images/light-press-logo/${newImg[i]}.png`
+      : `./assets/images/dark-press-logo/${newImg[i]}.png`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
@@ -63,8 +65,8 @@ const changeImgSrc = () => {
  * Grid 화살표 hidden 처리
  */
 const setArrowVisible = (mediaList) => {
-  const leftArrow = document.querySelector(".left-arrow");
-  const rightArrow = document.querySelector(".right-arrow");
+  const leftArrow = document.querySelector(".arrows__img-left");
+  const rightArrow = document.querySelector(".arrows__img-right");
 
   // 페이지 제한 0~3에 따른 hidden 여부
   if (pageNum === 0) {
