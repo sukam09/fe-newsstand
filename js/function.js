@@ -11,7 +11,7 @@ function showDate() {
 
 function clickLogo() {
   const $logo = document.querySelector('.title-icon');
-  $logo.addEventListener('click', function(){location.reload()});
+  $logo.addEventListener('click', function () { location.reload() });
 }
 
 function initImgs() {
@@ -68,15 +68,16 @@ function turnPage(page) {
 }
 
 function rollingNews() {
+  
   function rollingNewsLeft() {
     document.addEventListener('DOMContentLoaded', () => {
-      const interval = window.setInterval(rollingCallback, 5000, 1);
+      const leftInterval = window.setInterval(rollingCallback, 5000, 1);
     })
   }
 
   function rollingNewsRight() {
     document.addEventListener('DOMContentLoaded', () => {
-      const interval = window.setTimeout(rollingBetween, 1000)
+      const rightInterval = window.setTimeout(rollingBetween, 1000)
     })
   }
 
@@ -86,10 +87,9 @@ function rollingNews() {
 
 function rollingBetween() {
   const interval = window.setInterval(rollingCallback, 5000, 0);
-
 }
 
-function rollingCallback(isLeftNews) {
+function rollingCallback(isLeftNews, isLeftInterval) {
   let newsIdx = null
   isLeftNews === 1 ? newsIdx = 0 : newsIdx = 1;
   const $prev = document.querySelectorAll('.rolling-banner .prev')[newsIdx];
@@ -98,6 +98,7 @@ function rollingCallback(isLeftNews) {
   const $current = document.querySelectorAll('.rolling-banner .current')[newsIdx];
   $current.classList.remove('current');
   $current.classList.add('prev');
+  $current.addEventListener('mouseenter', handleSpauseRolling)
 
   const $next = document.querySelectorAll('.rolling-banner .next')[newsIdx];
   if ($next.nextElementSibling === null) {
@@ -109,7 +110,13 @@ function rollingCallback(isLeftNews) {
   }
   $next.classList.remove('next');
   $next.classList.add('current');
+
+  function handleSpauseRolling() {
+    
+  }
 }
+
+
 
 export { clickLogo, initImgs, showDate, rollingNews };
 
