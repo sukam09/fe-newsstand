@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <header class="container__header flex_row">
-        <div class="container__header__main flex_row">
+        <div class="container__header__main flex_row" onclick="refresh()">
           <img
             class="container__header__main__logo"
             src="./assets/images/logo.png"
@@ -74,7 +74,10 @@
             <div class="list_container">
               <header class="category_container_header">
                 <ul class="category_list_container flex_row">
-                  <li class="category_list category_list--clicked">
+                  <li
+                    class="category_list category_list--clicked"
+                    onclick="categoryClicked(this)"
+                    id="category1">
                     <span class="category_list__title"> 종합/경제 </span>
                     <wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -82,7 +85,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category2">
                     <span class="category_list__title"> 방송/통신 </span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -90,7 +96,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category3">
                     <span class="category_list__title"> IT</span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -98,7 +107,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category4">
                     <span class="category_list__title"> 영자지</span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -106,7 +118,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category5">
                     <span class="category_list__title"> 스포츠/연예</span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -114,7 +129,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category6">
                     <span class="category_list__title"> 매거진/전문지</span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -122,7 +140,10 @@
                     </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li class="category_list">
+                  <li
+                    class="category_list"
+                    onclick="categoryClicked(this)"
+                    id="category7">
                     <span class="category_list__title"> 지역</span
                     ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
@@ -199,8 +220,10 @@
       </section>
     </div>
 
+    <script src="js/category.js"></script>
+    <script src="js/rollingAnimation.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/grid.js"></script>
+    <script src="js/gridView.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

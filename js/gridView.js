@@ -1,5 +1,4 @@
 let now_grid_page = 0;
-const COUNT_PRESS = 96;
 const MAX_GRID_COUNT = 24;
 
 // 언론사 랜덤 셔플
