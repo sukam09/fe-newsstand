@@ -45,16 +45,16 @@ function RenderNews(shuffledData) {
 function toggleArrow() {
     switch (currentPage) {
         case 0:
-            document.querySelector(".left-arrow").style.display = "none";
-            document.querySelector(".right-arrow").style.display = "block";
+            document.querySelector(".left-arrow").style.visibility = "hidden";
+            document.querySelector(".right-arrow").style.visibility = "visible";
             break;
         case maxPage:
-            document.querySelector(".left-arrow").style.display = "block";
-            document.querySelector(".right-arrow").style.display = "none";
+            document.querySelector(".left-arrow").style.visibility = "visible";
+            document.querySelector(".right-arrow").style.visibility = "hidden";
             break;
         default:
-            document.querySelector(".left-arrow").style.display = "block";
-            document.querySelector(".right-arrow").style.display = "block";
+            document.querySelector(".left-arrow").style.visibility = "visible";
+            document.querySelector(".right-arrow").style.visibility = "visible";
             break;
     }
 }
