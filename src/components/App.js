@@ -14,5 +14,6 @@ export default class App extends Component {
     new Header(this.$target.querySelector('.header'));
     new LatestNews(this.$target.querySelector('.latest-main-news'));
     new AllNews(this.$target.querySelector('.all-news'));
+
   }
 }
