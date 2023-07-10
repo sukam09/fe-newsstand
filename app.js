@@ -9,6 +9,7 @@ const $nextPageButton = document.querySelector(
   ".container-grid-view_right-btn"
 );
 const $headerDate = document.querySelector(".container-header_date");
+const $containerNewsBar = document.querySelector(".container-news-bar");
 
 /* utils */
 
@@ -66,11 +67,62 @@ const fillNewsContents = (newsData) => {
   }
 };
 
-(async function init() {
-  setDate();
+const createRollingBannerList = (data) => {
+  const list = [...data, data[0]];
 
-  const newsData = await customFetch("./mocks/news.json", shuffleData);
-  fillNewsContents(newsData);
+  return list.reduce((acc, curr) => {
+    return acc + `<li><a href="#">${curr}</a></li>`;
+  }, "");
+};
+
+(async function init() {
+  /* headline view control */
+  const handleRollingBanner = (headlineData) => {
+    const [left, right] = [headlineData.slice(0, 5), headlineData.slice(5)];
+    const dataLength = left.length;
+
+    const $banners = $containerNewsBar.querySelectorAll(
+      ".container-news-bar_window > ul"
+    );
+
+    $banners[0].innerHTML = createRollingBannerList(left);
+    $banners[1].innerHTML = createRollingBannerList(right);
+
+    $banners.innerHTML = $banners.forEach(($banner, idx) => {
+      let cnt = 0;
+      let interval;
+
+      const autoRolling = () => {
+        cnt += 1;
+        $banner.style.transitionDuration = "500ms";
+        $banner.style.transform = `translateY(-${14 * cnt}px)`;
+
+        if (cnt >= dataLength) {
+          clearInterval(interval);
+          setTimeout(() => {
+            cnt = 0;
+            $banner.style.transitionDuration = "0ms";
+            $banner.style.transform = "translateY(0)";
+            autoPlay();
+          }, 500);
+        }
+      };
+
+      const autoPlay = () => {
+        interval = setInterval(autoRolling, 5 * 1000);
+      };
+
+      if (idx === 1) {
+        setTimeout(autoPlay, 1000);
+      } else {
+        autoPlay();
+      }
+
+      $banner.addEventListener("mouseover", () => {
+        clearInterval(interval);
+      });
+    });
+  };
 
   /* event handler */
 
@@ -99,6 +151,14 @@ const fillNewsContents = (newsData) => {
     }
     fillNewsContents(newsData);
   };
+
+  setDate();
+
+  const newsData = await customFetch("./mocks/news.json", shuffleData);
+  fillNewsContents(newsData);
+
+  const headlineData = await customFetch("./mocks/headline.json");
+  handleRollingBanner(headlineData);
 
   $prevPageButton.addEventListener("click", handlePrevButtonClick);
   $nextPageButton.addEventListener("click", handleNextButtonClick);
