@@ -1,0 +1,159 @@
+@import './color.css';
+
+h1,
+h2,
+h3 {
+  display: inline;
+}
+
+h1 > button {
+  color: var(--text-strong);
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  background-color: transparent;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
+}
+
+.date {
+  color: var(--text-default);
+}
+
+.latest-main-news {
+  width: 930px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.auto-rolling-news {
+  padding: 16px;
+  border: 1px solid #d2dae0;
+  background-color: #f5f7f9;
+  flex: 1;
+  gap: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.auto-rolling-news span {
+  font-weight: 700;
+  color: #14212b;
+}
+
+.auto-rolling-news p {
+  font-weight: 500;
+  color: #5f6e76;
+  margin: 0;
+}
+
+.news-stand-logo {
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.all-news-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 930px;
+}
+
+.view-type-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.view-type-wrapper span:first-child {
+  font-weight: 700;
+  color: #14212b;
+}
+
+.view-type-wrapper span:last-child {
+  color: #879298;
+}
+
+.view-type-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-list {
+  width: 930px;
+  height: 388px;
+
+  position: relative;
+
+  border: 1px solid #d2dae0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.news-list > li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid #d2dae0;
+  cursor: pointer;
+}
+
+.grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.left-button,
+.right-button {
+  border: none;
+  width: 24px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.press-logo {
+  width: fit-content;
+  height: 20px;
+}
