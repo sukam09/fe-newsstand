@@ -19,7 +19,9 @@
   --grayscale-black : #14212B;
   --blue-100 : #7890E7;
   --blue-500 : #4362D0;
-  --border-default : 1px solid var(--grayscale-100);
+  /* --border-default : 1px solid var(--grayscale-100); */
+  --border-default : var(--grayscale-100);
+  --border-bold : var(--grayscale-300);
 }
 
 .display-bold24 {
@@ -96,7 +98,7 @@
   color: var(--blue-500);
 }
 
-.surface-default {
+.grawi--grayscale-white {
   background-color: var(--grayscale-white);
 }
 
@@ -110,6 +112,35 @@
 
 .surface-brand-alt {
   background-color: var(--blue-100);
+}
+
+.button {
+  display: inline-flex;
+  height: 24px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  color: var(--grayscale-200);
+  font: var(--medium-S);
+}
+
+.button:hover {
+  border-radius: 50px;
+  border: 1px solid var(--border-bold);
+  color: var(--grayscale-500);
+}
+
+.white-button {
+  border: 1px solid var(--border-default);
+  background-color: var(--grayscale-white);
+}
+
+.gray-button {
+  border: 1px solid var(--border-default);
+  background-color: var(--grayscale-50);
 }
 
 .flex-center{

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,81 +9,59 @@
     <script defer type="module" src="script/grid.js"></script>
     <script defer src="script/header.js"></script>
 </head>
+
 <body>
     <div class="news_stand_wrapper">
-        <header>
+        <header class="news_stand_header">
             <div class="title_wrapper">
                 <img src="assets/images/newsstand.svg" alt="뉴스스탠드 아이콘">
                 <h1 class="text-strong display-bold24">뉴스스탠드</h1>
             </div>
-            <time class="display-medium16 text-default">
-                2023.02.10. 금요일
-            </time>
+            <time class="display-medium16 text-default"></time>
         </header>
         <div class="article_wrapper">
             <article class="surface-alt">
                 <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper">
-                    <p class="text-default available-medium14">[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</p>
+                <div class="news_title_wrapper text-default available-medium14">
+                    [1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
                 </div>
             </article>
             <article class="surface-alt">
                 <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper">
-                    <p class="text-default available-medium14">[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</p>
+                <div class="news_title_wrapper text-default available-medium14">
+                    [속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼
                 </div>
             </article>
         </div>
         <main>
-            <div class = "media_wrapper">
-                <nav>
+            <div class="media_wrapper">
+                <nav class="media_view_nav">
                     <div class="media_select_wrapper">
-                        <div class="media_select text-strong selected-bold16">전체 언론사</div>
-                        <div class="media_select text-weak available-medium16">내가 구독한 언론사</div>
+                        <input type="radio" name="media_view_select" id="media_view_all" class="media_select display-none" checked>
+                        <label for="media_view_all" class="text-weak available-medium16">
+                            전체 언론사
+                        </label>
+                        <input type="radio" name="media_view_select" id="media_view_subscribed" class="media_select display-none">
+                        <label for="media_view_subscribed" class="text-weak available-medium16">내가 구독한 언론사</lab>
                     </div>
                     <div class="view_select">
                         <img src="assets/images/list.svg" alt="리스트 보기">
                         <img src="assets/images/grid.svg" alt="그리드 보기">
                     </div>
                 </nav>
-                <div class = "grid_wrapper">
-
-                    <div id="arrow_wrapper_left">
-                        <img src="assets/images/left.svg" alt="화살표">
+                <div class="media_view_wrapper">
+                    <button id="left_arrow">
+                        <img src="assets/images/left.svg" alt="이전 페이지">
+                    </button>
+                    <div class="media_view">
                     </div>
-                    <ul>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                    </ul>
-                    <div id="arrow_wrapper_right">
-                        <img src="assets/images/right.svg" alt="화살표">
-                    </div>
+                    <button id="right_arrow">
+                        <img src="assets/images/right.svg" alt="다음 페이지">
+                    </button>
                 </div>
             </div>
         </main>
     </div>
 </body>
-</html>
 
+</html>

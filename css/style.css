@@ -19,7 +19,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
 .title_wrapper {
@@ -54,17 +53,15 @@ article {
     margin-left: 10px;
 }
 
-/* main grid */
-main {
-    display: flex;
-    width: 100%;
-}
+/* main */
 
 .media_wrapper {
     width: 100%;
 }
 
-nav {
+/* main nav */
+
+.media_view_nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -77,9 +74,19 @@ nav {
     gap : 24px;
 }
 
-.media_select{
-    cursor:pointer;
+.media_select:checked + label {
+    /* 
+        text-strong
+        selected-bold16
+     */
+    font: var(--bold-M);
+    color: var(--grayscale-black);
 }
+
+.media_select + label {
+    cursor: pointer;
+}
+
 
 .view_select {
     display: flex;
@@ -91,14 +98,42 @@ nav {
     cursor:pointer;
 }
 
-.grid_wrapper{
+/* media_view */
+
+.media_view_wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-/* 로고 표시하는 list */
-ul {
+.media_view {
+    width: 930px;
+    height: 388px;
+}
+
+#left_arrow, #right_arrow {
+    position: absolute;
+    padding: 0;
+    width: 24px;
+    height: 40px;
+}
+
+#left_arrow {
+    left:-72px;
+}
+
+#right_arrow {
+    right:-72px;
+}
+
+#left_arrow img, #right_arrow img {
+    width: 100%;
+    height: 100%;
+}
+
+/* grid */
+
+.media_view_grid {
     display: grid;
     width: 930px;
     height: 388px;
@@ -109,7 +144,7 @@ ul {
     border-left: var(--border-default);
 }
 
-ul li {
+.media_view_grid li {
     border-right: var(--border-default);
     border-bottom: var(--border-default);
     display: flex;
@@ -118,25 +153,12 @@ ul li {
     position: relative;
 }
 
-/* page 이동시키는 화살표 img */
-#arrow_wrapper_left{
-    position: absolute;
-    left:-72px;
-    cursor:pointer;
-}
-
-#arrow_wrapper_left.page_0{
+#left_arrow.page_0 {
     display: none;
 }
 
-#arrow_wrapper_right{
-    position: absolute;
-    right:-72px;
-    cursor:pointer;
-}
-
-#arrow_wrapper_right.page_3{
-    display:none;
+#right_arrow.page_3 {
+    display: none;
 }
 
 /* logo mouse hover시 */

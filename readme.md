@@ -19,28 +19,74 @@
 
 ## 레이아웃 구조
 
-  ```bash
+### 전체
+
+```bash
+
+news_stand_wrapper
+│
+├── news_stand_header
+│   ├── title_wrapper
+│   │   ├── logo
+│   │   └── title
+│   └── time
+│
+├── article_wrapper
+│   └── article
+│       ├── title
+│       └── news_title
+│
+└── main
+    ├── media_view_nav
+    │   ├── media_select_wrapper
+    │   │   └── media_select * 2
+    │   │
+    │   └── view_select_wrapper
+    │       └── view_select * 2
+    │
+    └── media_view_wrapper
+        ├── left_arrow
+        │
+        ├── media_view
+        │   └── GRID or LIST
+        │
+        └── right_arrow
+
+```
+
+### 그리드
+
+```bash
+grid_wrapper
+│
+└── media_item
+    └── li * 24
+        └── img
+
+
+```
+
+### 리스트
   
-  news_stand_wrapper
-  │
-  ├── header
-  │     ├── title_wrapper
-  │     └── time
-  │
-  ├── article_wrapper
-  │     └── article
-  │         ├── h2
-  │         └── news_title_wrapper
-  │   
-  └── main
-        ├── media_wrapper
-        │   └── nav
-        │       ├── media_select_wrapper
-        │       └── media_select
-        │           └── view_select
-        ├── ul
-        │   └── li
-        │       └── img
-        └── arrow_wrapper
-            └── img
-  ```
+```bash
+list_wrapper
+│
+├── nav
+│   └── media_select * n
+│       └── indicator
+│
+└── media_view
+    ├── media_info
+    │   ├── logo
+    │   ├── last_updated
+    │   └── subscribe
+    │
+    ├── thumbnail_news
+    │   ├── img
+    │   └── title
+    │
+    └── sub_news
+        ├── li * 6
+        │   └── description
+        └── notice
+```
