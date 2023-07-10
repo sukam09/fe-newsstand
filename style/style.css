@@ -148,3 +148,8 @@ img.title_logo {
 .main_content {
   height: 388px;
 }
+
+.view_button_container .clicked {
+  filter: invert(10%) sepia(100%) saturate(5490%) hue-rotate(242deg)
+    brightness(101%) contrast(144%);
+}

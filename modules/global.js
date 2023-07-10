@@ -1,10 +1,12 @@
+import { gridPage, showGridPageButton } from "./grid.js";
+
 // 그리드 뷰로 전환
 export function changeToGrid() {
-  const list_button = document.getElementsByClassName("list_button")[0];
-  const grid_button = document.getElementsByClassName("grid_button")[0];
+  const list_button = document.getElementById("list_button");
+  const grid_button = document.getElementById("grid_button");
   const list_container = document.getElementsByClassName("list_container")[0];
-  const grid_container =
-    document.getElementsByClassName("grid_container")[now_grid_page];
+  const grid_container = document.getElementById(`grid_page_${gridPage}`);
+
   const left_list_button =
     document.getElementsByClassName("left_list_button")[0];
   const right_list_button =
@@ -15,8 +17,8 @@ export function changeToGrid() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  list_button.src = "./assets/icons/list_off.png";
-  grid_button.src = "./assets/icons/grid_on.png";
+  grid_button.className = "clicked";
+  list_button.className = "";
 
   // 그리드, 리스트 전환
   list_container.style.display = "none";
@@ -31,12 +33,11 @@ export function changeToGrid() {
 }
 
 // 리스트 뷰로 변환
-function changeToList() {
-  const list_button = document.getElementsByClassName("list_button")[0];
-  const grid_button = document.getElementsByClassName("grid_button")[0];
+export function changeToList() {
+  const list_button = document.getElementById("list_button");
+  const grid_button = document.getElementById("grid_button");
   const list_container = document.getElementsByClassName("list_container")[0];
-  const grid_container =
-    document.getElementsByClassName("grid_container")[now_grid_page];
+  const grid_container = document.getElementById(`grid_page_${gridPage}`);
   const left_list_button =
     document.getElementsByClassName("left_list_button")[0];
   const right_list_button =
@@ -47,8 +48,8 @@ function changeToList() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  list_button.src = "./assets/icons/list_on.png";
-  grid_button.src = "./assets/icons/grid_off.png";
+  list_button.className = "clicked";
+  grid_button.className = "";
 
   // 그리드, 리스트 전환
   list_container.style.display = "block";
@@ -77,7 +78,3 @@ export function updateDate() {
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
 }
-
-export const testFunction = () => {
-  console.log("testestestsetestse");
-};

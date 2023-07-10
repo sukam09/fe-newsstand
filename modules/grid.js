@@ -146,7 +146,10 @@ export function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
 // 그리드 다음 페이지 전환
 export function showNextGridPage() {
   hiddenGridPage(gridPage);
-  gridPage > 3 ? (gridPage = 3) : (gridPage += 1);
+  gridPage += 1;
+  if (gridPage >= MAX_PAGE) {
+    gridPage = MAX_PAGE - 1;
+  }
   showGridPage(gridPage);
   showGridPageButton();
 }
@@ -154,7 +157,10 @@ export function showNextGridPage() {
 // 그리드 이전 페이지 전환
 export function showPrevGridPage() {
   hiddenGridPage(gridPage);
-  gridPage < 0 ? (gridPage = 0) : (gridPage -= 1);
+  gridPage -= 1;
+  if (gridPage < 0) {
+    gridPage = 0;
+  }
   showGridPage(gridPage);
   showGridPageButton();
 }
@@ -165,17 +171,16 @@ export function showGridPageButton() {
     document.getElementsByClassName("left_grid_button")[0];
   const right_grid_button =
     document.getElementsByClassName("right_grid_button")[0];
-  switch (gridPage) {
-    case 0:
-      left_grid_button.style.display = "none";
-      right_grid_button.style.display = "block";
-      return;
-    case 3:
-      left_grid_button.style.display = "block";
-      right_grid_button.style.display = "none";
-      return;
-    default:
-      left_grid_button.style.display = "block";
-      right_grid_button.style.display = "block";
+
+  console.log(gridPage);
+  if (gridPage <= 0) {
+    left_grid_button.style.display = "none";
+    right_grid_button.style.display = "block";
+  } else if (gridPage >= MAX_PAGE - 1) {
+    left_grid_button.style.display = "block";
+    right_grid_button.style.display = "none";
+  } else {
+    left_grid_button.style.display = "block";
+    right_grid_button.style.display = "block";
   }
 }
