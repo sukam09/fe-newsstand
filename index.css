@@ -43,7 +43,7 @@ body {
   margin-top: 40px;
 }
 
-.hot-topic-wrapper > li {
+.hot-topic-wrapper > * > li {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -53,8 +53,7 @@ body {
   padding: 16px;
   gap: 16px;
 }
-
-.hot-topic-wrapper > li > p:hover {
+.hot-topic-wrapper > * > * > p:hover {
   text-decoration: underline;
 }
 
@@ -130,22 +129,15 @@ body {
   border-bottom: 1px solid #d2dae0;
 }
 
-.hot-topic-wrapper > li > h2,
-.hot-topic-wrapper > li > p,
-.main-nav-left > h2,
-.main-nav-right > img,
+.hot-topic-wrapper > * > *,
+.press-wrapper > header > * > *,
 .news-wrapper > li > img,
-.left-arrow,
-.right-arrow,
+.arrows-wrapper > img,
 .header-wrapper > button {
   cursor: pointer;
 }
 
 /* 재사용 CSS */
 .hidden {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
+  display: none;
 }

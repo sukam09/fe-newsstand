@@ -1,9 +1,15 @@
-const newsWrapper = document.querySelector(".news-wrapper");
-const systemDate = document.querySelector(".system-date");
+const $newsWrapper = document.querySelector(".news-wrapper");
+const $systemDate = document.querySelector(".system-date");
 
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
 let pageNum = 0;
+
+/**
+ * 핫토픽 5개씩 요소 추가하기
+ */
+
+const setHotTopic = () => {};
 
 /**
  * 배열을 섞는 함수
@@ -13,31 +19,31 @@ const shuffleList = (list) => {
 };
 
 /**
- * 뉴스스탠드 Grid 제작하기
+ * 언론사 Grid 제작하기
  */
 const makeGrid = () => {
   for (let i = 0; i < 24; i++) {
-    const gridItem = document.createElement("li");
+    const $li = document.createElement("li");
     const imgSrc = isLightMode
       ? `./img/light-media/${idList[i]}.png`
       : `./img/dark-media/${idList[i]}.png`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
-    checkImg.onload = function () {
-      const img = document.createElement("img");
-      img.classList.add(`img${i}`);
-      img.src = imgSrc;
-      img.style.height = "20px";
-      gridItem.appendChild(img);
+    checkImg.onload = () => {
+      const $img = document.createElement("img");
+      $img.classList.add(`img${i}`);
+      $img.src = imgSrc;
+      $img.style.height = "20px";
+      $li.appendChild($img);
     };
 
-    newsWrapper.append(gridItem);
+    $newsWrapper.append($li);
   }
 };
 
 /**
- * 이미지 src 변경하기
+ * 언론사 이미지 src 변경하기
  */
 const changeImgSrc = () => {
   let newImg = idList.slice(pageNum * 24, pageNum * 24 + 24);
@@ -50,17 +56,17 @@ const changeImgSrc = () => {
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
-    checkImg.onload = function () {
+    checkImg.onload = () => {
       $img.src = imgSrc;
     };
-    checkImg.onerror = function () {
+    checkImg.onerror = () => {
       $img.remove();
     };
   }
 };
 
 /**
- * Grid 화살표 hidden 처리
+ * Grid 화살표 hidden 처리하기
  */
 const setArrowVisible = (mediaList) => {
   const leftArrow = document.querySelector(".left-arrow");
@@ -80,7 +86,7 @@ const setArrowVisible = (mediaList) => {
 };
 
 /**
- * Grid 화살표 클릭
+ * Grid 화살표 클릭하기
  */
 const clickArrow = (className) => {
   if (className === "left-arrow") pageNum--;
@@ -90,41 +96,23 @@ const clickArrow = (className) => {
 };
 
 /**
- * 시스템 날짜 가져오기
- */
-const getSystemDate = () => {
-  const WEEKDAY = [
-    "일요일",
-    "월요일",
-    "화요일",
-    "수요일",
-    "목요일",
-    "금요일",
-    "토요일",
-  ];
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let date = today.getDate();
-  let day = WEEKDAY[Number(today.getDay())];
-
-  return [year, month, date, day];
-};
-
-/**
  * 시스템 날짜 표시하기
  */
-const setSystemDate = (todayInfo) => {
-  let [year, month, date, day] = todayInfo;
-  if (month < 10) month = String(month).padStart(2, "0");
-  if (date < 10) date = String(date).padStart(2, "0");
-  const dateForm = year + ". " + month + ". " + date + ". " + day;
+const setDate = () => {
+  const today = new Date();
+
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "long",
+  };
 
   const $p = document.createElement("p");
-  const dateText = document.createTextNode(dateForm);
-  $p.appendChild(dateText);
-  systemDate.append($p);
+  $p.innerText = today.toLocaleDateString("ko-KR", options);
+  $systemDate.append($p);
 };
+const subscribed = Array.from({ length: 27 }, (_, idx) => idx + 1);
 
 /**
  * 로고를 클릭하면 새로고침
@@ -134,7 +122,7 @@ const reloadPage = () => {
 };
 
 function init() {
-  setSystemDate(getSystemDate());
+  setDate();
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
