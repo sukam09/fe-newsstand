@@ -78,6 +78,12 @@ header {
 .news-press-view-menu {
     display: flex;
     gap: 8px;
+
+    color: var(--color-text-weak);
+}
+
+.news-press-view-menu > .news-press-view-active {
+    color: var(--color-text-point);
 }
 
 .news-press-grid-container {
