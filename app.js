@@ -1,7 +1,9 @@
-import { auto_rolling } from "./rolling_banner.js";
+import { autoRolling } from "./rolling_banner.js";
+import { renderPress } from "./random_news.js";
 
 function initApp() {
-    auto_rolling();
+    autoRolling();
+    renderPress();
 }
 
 initApp();

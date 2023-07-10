@@ -104,10 +104,8 @@ function controlBanner() {
     });
 }
 
-function auto_rolling() {
+function autoRolling() {
     const promise_data = fetchHotTopicData();
-
-    console.log(promise_data);
 
     promise_data.then((data) => {
         showBanner(data[0], data[1]);
@@ -116,4 +114,4 @@ function auto_rolling() {
     });
 }
 
-export { auto_rolling };
+export { autoRolling };

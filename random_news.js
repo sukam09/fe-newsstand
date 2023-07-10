@@ -59,7 +59,7 @@ function toggleArrow() {
     }
 }
 
-function init() {
+function renderPress() {
     const promise_data = fetchPressData();
 
     promise_data.then((data) => {
@@ -68,4 +68,4 @@ function init() {
     });
 }
 
-init();
+export { renderPress };
