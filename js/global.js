@@ -1,9 +1,30 @@
 // 롤링 애니메이션
 function rollingEvent() {
-  document.querySelector(".rolling_list .prev").classList.remove("prev");
+  // 이전 값 삭제
+  document
+    .querySelector(".newsbanner__list--prev")
+    .classList.remove("newsbanner__list--prev");
 
-  let now = document.querySelector(".rolling_list .now");
-  now.classList.remove("");
+  // 현재 값 이전으로 옮기기
+  let now = document.querySelector(".newsbanner__list--now");
+  now.classList.remove("newsbanner__list--now");
+  now.classList.add("newsbanner__list--prev");
+
+  // 다음 값 현재로 옮기기
+  let next = document.querySelector(".newsbanner__list--next");
+
+  // 다음 값이 없다면 처음부터
+  if (next.nextElementSibling == null) {
+    document
+      .querySelector(".newsbanner__list:first-child")
+      .classList.add("newsbanner__list--next");
+    console.log("if");
+  } else {
+    next.nextElementSibling.classList.add("newsbanner__list--next");
+    console.log("else");
+  }
+  next.classList.remove("newsbanner__list--next");
+  next.classList.add("newsbanner__list--now");
 }
 
 // 그리드 뷰로 전환

@@ -73,27 +73,25 @@ section {
 }
 
 .newsbanner__list {
+  position: absolute;
   display: none;
+  color: #5f6e76;
   list-style: none;
 }
 
-.rnewsbanner__list--prev {
-  position: absolute;
+.newsbanner__list--prev {
   top: -20px;
   display: block;
-  color: #5f6e76;
+  transition: top 1s ease;
 }
 .newsbanner__list--now {
-  position: absolute;
-  display: block;
   top: 0px;
-  color: #5f6e76;
+  display: block;
+  transition: top 1s ease;
 }
 .newsbanner__list--next {
-  position: absolute;
+  top: 20px;
   display: block;
-  bottom: -20px;
-  color: #5f6e76;
 }
 
 /* 메인 뉴스 헤더 부분 */
