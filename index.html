@@ -1,81 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <header>
-      <div class="title">
-        <div class="title-icon">
-          <img src="./asset/icons/newsstand.svg" alt="뉴스스탠드" />
-        </div>
-        <div>뉴스스탠드</div>
-      </div>
-      <div class="date"></div>
-    </header>
-    <section class="recent-news-container">
-      <div class="recent-news-item">
-        <span class="recent-news-press">연합뉴스</span>
-        <span class="recent-news-headline"
-          >[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</span
-        >
-      </div>
-      <div class="recent-news-item">
-        <span class="recent-news-press">연합뉴스</span>
-        <span class="recent-news-headline"
-          >[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</span
-        >
-      </div>
-    </section>
-    <section class="news-press-display">
-      <div class="news-press-tab-container">
-        <div class="news-press-type-menu">
-          <div class="news-press-tab-menu-activated">전체 언론사</div>
-          <div class="news-press-tab-menu">내가 구독한 언론사</div>
-        </div>
-        <div class="news-press-align-menu">
-          <img src="./asset/icons/list-view.svg" alt="리스트 뷰" />
-          <img src="./asset/icons/grid-view.svg" alt="그리드 뷰" />
-        </div>
-      </div>
-      <div class="news-press-container">
-        <ul class="news-press-grid-container">
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-          <li class="news-press-item"></li>
-        </ul>
-        <button class="left-arrow-button">
-          <img src="./asset/icons/left-button.png" alt="왼쪽 화살표" />
-        </button>
-        <button class="right-arrow-button">
-          <img src="./asset/icons/right-button.png" alt="오른쪽 화살표" />
-        </button>
-      </div>
-    </section>
-    <script src="./src/app.js" type="module"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/style.css" />
+        <title>Newsstand</title>
+    </head>
+    <body>
+        <header>
+            <div class="title-container">
+                <div class="title-icon">
+                    <img src="./asset/icons/newsstand.svg" alt="뉴스스탠드" />
+                </div>
+                <h1 class="display-bold24">뉴스스탠드</h1>
+            </div>
+            <div class="display-medium16 date"></div>
+        </header>
+        <section class="news-bar-container">
+            <div class="news-bar-item">
+                <span class="display-bold14 news-press">연합뉴스</span>
+                <span class="available-medium14 news-headline"
+                    >[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</span
+                >
+            </div>
+            <div class="news-bar-item">
+                <span class="display-bold14 news-press">연합뉴스</span>
+                <span class="available-medium14 news-headline"
+                    >[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</span
+                >
+            </div>
+        </section>
+        <section class="news-press-display">
+            <div class="news-press-tab-container">
+                <div class="news-press-type-menu">
+                    <div class="news-press-tab-menu-active selected-bold16">
+                        전체 언론사
+                    </div>
+                    <div class="available-medium16">내가 구독한 언론사</div>
+                </div>
+                <div class="news-press-view-menu">
+                    <img src="./asset/icons/list-view.svg" alt="리스트 뷰" />
+                    <img src="./asset/icons/grid-view.svg" alt="그리드 뷰" />
+                </div>
+            </div>
+            <div class="news-press-grid-container">
+                <ul class="news-press-grid">
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                    <li class="news-press-item"></li>
+                </ul>
+                <button class="left-arrow-button">
+                    <img
+                        src="./asset/icons/left-button.png"
+                        alt="왼쪽 화살표"
+                    />
+                </button>
+                <button class="right-arrow-button">
+                    <img
+                        src="./asset/icons/right-button.png"
+                        alt="오른쪽 화살표"
+                    />
+                </button>
+            </div>
+        </section>
+        <script src="./src/app.js" type="module"></script>
+    </body>
 </html>

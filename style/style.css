@@ -1,0 +1,150 @@
+@import url("reset.css");
+@import url("common.css");
+
+body {
+    width: 930px;
+    margin: 58px auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-container {
+    display: flex;
+    gap: 8px;
+
+    color: var(--color-text-strong);
+}
+
+.title-icon {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.date {
+    color: var(--color-text-default);
+}
+
+.news-bar-container {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.news-bar-item {
+    display: flex;
+    gap: 16px;
+    width: 50%;
+    padding: 16px;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border-default);
+}
+
+.news-bar-item > .news-press {
+    color: var(--color-text-strong);
+}
+
+.news-bar-item > .news-headline {
+    color: var(--color-text-default);
+}
+
+.news-press-display {
+    margin-top: 32px;
+}
+
+.news-press-tab-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-press-type-menu {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    color: var(--color-text-weak);
+}
+
+.news-press-tab-menu-active {
+    color: var(--color-text-strong);
+}
+
+.news-press-view-menu {
+    display: flex;
+    gap: 8px;
+}
+
+.news-press-grid-container {
+    position: relative;
+}
+
+.news-press-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 930px;
+    height: 388px;
+    padding: 0;
+    margin-top: 24px;
+
+    border-top: 1px solid var(--color-border-default);
+    border-left: 1px solid var(--color-border-default);
+}
+
+.news-press-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+
+    background-color: var(--color-surface-default);
+    border-right: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border-default);
+}
+
+.news-press-item > .press-logo {
+    height: 20px;
+}
+
+.left-arrow-button {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: -72px;
+    transform: translate(0, -50%);
+
+    width: 24px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.left-arrow-button > img {
+    width: 100%;
+    height: 100%;
+}
+
+.right-arrow-button {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    right: -72px;
+    transform: translate(0, -50%);
+    width: 24px;
+    height: 40px;
+}
+
+.right-arrow-button > img {
+    width: 100%;
+    height: 100%;
+}
+
+.disabled {
+    display: none;
+}
