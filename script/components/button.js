@@ -3,11 +3,11 @@ import Icon from './icon.js';
 const Button = (icon, isWhite, text, onClick) => {
   const buttonElement = document.createElement('button');
 
-  buttonElement.className = `button border-default`;
-  buttonElement.classList.add(isWhite ? 'surface-default' : 'surface-alt');
+  buttonElement.className = `button border_default`;
+  buttonElement.classList.add(isWhite ? 'surface_default' : 'surface_alt');
   buttonElement.innerHTML = Icon[icon];
   if (text) {
-    buttonElement.classList.add('text-button');
+    buttonElement.classList.add('text_button');
     buttonElement.innerHTML += text;
   }
   buttonElement.addEventListener('click', onClick);
@@ -17,7 +17,7 @@ const Button = (icon, isWhite, text, onClick) => {
 
 const subButton = isSub => {
   const subElement = document.createElement('div');
-  subElement.className = 'media-hover  surface-alt';
+  subElement.className = 'media_hover  surface_alt';
   const button = isSub
     ? Button('plus', 'white', '구독하기')
     : Button('close', 'gray', '해지하기');

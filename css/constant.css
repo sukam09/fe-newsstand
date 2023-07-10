@@ -26,97 +26,92 @@
 
 /* text */
 
-.display-bold24 {
+.display_bold24 {
   font: var(--bold-L);
 }
 
-.display-bold16 {
+.display_bold16 {
   font: var(--bold-M);
 }
-.display-bold14 {
+.display_bold14 {
   font: var(--bold-R);
 }
-.display-bold12 {
+.display_bold12 {
   font: var(--bold-S);
 }
-.display-medium16 {
+.display_medium16 {
   font: var(--medium-M);
 }
-.display-medium14 {
+.display_medium14 {
   font: var(--medium-R);
 }
-.display-medium12 {
+.display_medium12 {
   font: var(--bold-S);
 }
-.selected-bold16 {
+.selected_bold16 {
   font: var(--bold-M);
 }
-.selected-bold14 {
+.selected_bold14 {
   font: var(--bold-R);
 }
-.available-medium16 {
+.available_medium16, .hover_medium16 {
   font: var(--medium-M);
 }
-.available-medium14 {
+.available_medium14, .hover_medium14 {
   font: var(--medium-R);
 }
-.available-medium12 {
+.available_medium12 {
   font: var(--medium-S);
 }
-.hover-medium16:hover{
-  font: var(--medium-M);
-  text-decoration: underline;
-}
-.hover-medium14:hover{
-  font: var(--medium-R);
+.hover_medium16, .hover_medium14 {
   text-decoration: underline;
 }
 
 /* color */
 
-.text-strong {
+.text_strong {
   color: var(--grayscale-black);
 }
 
-.text-bold {
+.text_bold {
   color: var(--grayscale-500);
 }
 
-.text-default {
+.text_default {
   color: var(--grayscale-400);
 }
 
-.text-weak {
+.text_weak {
   color: var(--grayscale-200);
 }
 
-.text-white-default {
+.text_white-default {
   color: var(--grayscale-white);
 }
 
-.text-white-weak {
+.text_white-weak {
   color: var(--grayscale-white-alt);
 }
 
-.text-point {
+.text_point {
   color: var(--blue-500);
 }
 
 /* background color */
 
-.surface-default {
+.surface_default {
   background-color: var(--grayscale-white);
 }
 
-.surface-alt {
+.surface_alt {
   background-color: var(--grayscale-50);
 }
 
-.surface-brand-default {
+.surface_brand-default {
   background-color: var(--blue-500);
 }
 
-.surface-brand-alt {
+.surface_brand-alt {
   background-color: var(--blue-100);
 }
 
@@ -136,7 +131,7 @@
   font: var(--medium-S);
 }
 
-.text-button {
+.text_button {
   padding-right: 10px;
 }
 
@@ -169,17 +164,17 @@
 
 /* layout */
 
-.flex-center{
+.flex_center{
   display:flex;
   align-items: center;
   justify-content: center;
 }
-.flex-sb{
+.flex_sb{
   display:flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.display-none {
+.display_none {
   display: none;
 }

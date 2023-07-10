@@ -171,11 +171,11 @@ article {
 }
 
 /* logo mouse hover시 */
-.media-hover {
+.media_hover {
     display: none;
 }
 
-ul li:hover .media-hover {
+ul li:hover .media_hover {
     display: flex;
     align-items: center;
     justify-content: center;
