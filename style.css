@@ -189,10 +189,6 @@ section.container {
 
 .recent-news article {
   flex: 1;
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem; */
   padding: 1rem;
   background-color: var(--color-surface-alt);
   border: 1px solid var(--color-border-default);
@@ -228,11 +224,11 @@ section.container {
 
 .recent-news li {
   position: absolute;
-  top: -4rem;
+  top: -2rem;
 }
 
 .recent-news li.prev {
-  top: -4rem;
+  top: -2rem;
   transition: top 1s ease;
 }
 
@@ -243,7 +239,7 @@ section.container {
 }
 
 .recent-news li.next {
-  top: 4rem;
+  top: 2rem;
 }
 
 .recent-news article a {
@@ -366,7 +362,7 @@ nav.agency .view-type button {
 
 /* Utility */
 
-.sr-only {
+.screen-reader-only {
   position: absolute;
   width: 1px;
   height: 1px;
