@@ -5,8 +5,39 @@ const sectionPrevButton = document.getElementById('press-content-prev');
 const sectionNextButton = document.getElementById('press-content-next');
 
 const page = [[], [], [], []];
+let newsbarFirst = [];
+let newsbarSecond = [];
 
 let pageNumber = 0;
+let newsTitleOb = {};
+
+// async function fetchData() {
+//     const newsbarTitle = await fetch("../assets/data/newsTitle.json").then((res) => {
+//         return res.json()
+//     });
+//     return newsbarTitle;
+// }
+
+// fetchData().then((data)=> {
+//     newsbarFirst = data.titleFirst.map((elem) => {
+//         return elem.name;
+//     });
+
+//     newsbarSecond = data.titleSecond.map((elem) => {
+//         return elem.name;
+//     });
+
+//     // setInterval(function() {
+//     //     newsbarFirst.forEach((elem) => {
+//     //         prevFirst.innerHTML = elem;
+//     //     })
+        
+//     //     newsbarSecond.forEach((elem)=> {
+//     //         prevSecond.innerHTML = elem;
+//     //     })
+//     // }, 3000);
+// })
+
 
 function showDate() {
 	const now = new Date();
@@ -46,6 +77,69 @@ function showPressImg(flag) {
 showDate();
 
 window.addEventListener('DOMContentLoaded', shuffleImgs);
+
+
+
+/////////////////////////////처음부터 다시 해보자.///////////////////////////////
+// document.addEventListener('DOMContentLoaded', ()=>{
+//     let interval = window.setInterval(rollingCallback, 3000);
+//     // window.setInterval(rollingCallback, 3000);
+// })
+// function rollingCallback(){
+//     //.prev 클래스 삭제
+//     document.querySelector('.newsbar-first-container .prev').classList.remove('prev');
+
+//     //.current -> .prev
+//     let current = document.querySelector('.newsbar-first-container .current');
+//     current.classList.remove('current');
+//     current.classList.add('prev');
+
+//     //.next -> .current
+//     let next = document.querySelector('.newsbar-first-container .next');
+//     //다음 목록 요소가 널인지 체크
+//     if(next.nextElementSibling == null){
+//         document.querySelector('.newsbar-first-container li:first-child').classList.add('next');
+//     }else{
+//     	//목록 처음 요소를 다음 요소로 선택
+//         next.nextElementSibling.classList.add('next');
+//     }
+//     next.classList.remove('next');
+//     next.classList.add('current');
+// }
+
+document.addEventListener('DOMContentLoaded', ()=> {
+    var interval = window.setInterval(rollingCb, 3000);
+})
+function rollingCb() {
+    document.querySelector('.newsbar-first-container .prev').classList.remove('prev');
+    let currentFirst = document.querySelector('.newsbar-first-container .current');
+    currentFirst.classList.remove('current');
+    currentFirst.classList.add('prev');
+
+    document.querySelector('.newsbar-second-container .prev').classList.remove('prev');
+    let currentSecond = document.querySelector('.newsbar-second-container .current');
+    currentSecond.classList.remove('current');
+    currentSecond.classList.add('prev');
+
+    let nextFirst = document.querySelector('.newsbar-first-container .next');
+    if(nextFirst.nextElementSibling == null) {
+        document.querySelector('.newsbar-first-container ul li:first-child').classList.add('next');
+    } else {
+        nextFirst.nextElementSibling.classList.add('next');
+    }
+    nextFirst.classList.remove('next');
+    nextFirst.classList.add('current');
+
+    let nextSecond = document.querySelector('.newsbar-second-container .next');
+    if(nextSecond.nextElementSibling == null) {
+        document.querySelector('.newsbar-second-container ul li:first-child').classList.add('next');
+    } else {
+        nextSecond.nextElementSibling.classList.add('next');
+    }
+    nextSecond.classList.remove('next');
+    nextSecond.classList.add('current');
+}
+
 
 for (let i = 0; i < 96; i++) {
 	pageAllNum.push(i);

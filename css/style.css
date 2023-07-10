@@ -40,6 +40,7 @@ body {
     align-items: center;
     width: 930px;
     padding-top: 40px;
+
 }
 
 .newsbar-container h4 {
@@ -51,7 +52,38 @@ body {
     padding: 16px 16px;
 }
 
-.newsbar-container span {
+.newsbar-container ul {
+    position: absolute;
+    margin: 0px 0px;
+}
+
+.newsbar-first-container {
+    /* display: flex; */
+    width: 461px;
+    height: 49px;
+    background-color: #F5F7F9;
+    border: 1px solid #D2DAE0;
+    align-items: center; 
+    position: relative;   
+}
+
+.newsbar-first-container > .wrap {
+    position: relative;
+    width: auto;
+    height: 16.5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.newsbar-first-container ul {
+    position: relative;
+    height: 100%;
+}
+
+.newsbar-first-container li {
+    position: absolute;
+    top: 100px;
+    left: 40px;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -59,23 +91,98 @@ body {
     color: #5f6e76;
 }
 
-.newsbar-first-container {
-    display: flex;
+  /* 이전, 현재, 다음 롤링 배너 표시 */
+.newsbar-first-container li.prev {
+    top: 18px;
+    transition: top 0.5s ease;
+}
+.newsbar-first-container li.current {
+    top: 0px;
+    transition: top 0.5s ease;
+}
+.newsbar-first-container li.next {
+    top: -18px;
+}
+
+/* .newsbar-first-container a{
+    display: block;
+    display: -webkit-box;
+    text-decoration: none;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient:vertical;
+    overflow: hidden;
+} */
+
+.newsbar-second-container {
+    /* display: flex; */
     width: 461px;
     height: 49px;
     background-color: #F5F7F9;
     border: 1px solid #D2DAE0;
+    align-items: center; 
+    position: relative;   
+}
+
+.newsbar-second-container > .wrap {
+    position: relative;
+    width: auto;
+    height: 16.5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.newsbar-second-container ul {
+    position: relative;
+    height: 100%;
+}
+
+.newsbar-second-container li {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #5f6e76;
+}
+
+  /* 이전, 현재, 다음 롤링 배너 표시 */
+.newsbar-second-container li.prev {
+    top: 18px;
+    transition: top 0.5s ease;
+}
+.newsbar-second-container li.current {
+    top: 0px;
+    transition: top 0.5s ease;
+}
+.newsbar-second-container li.next {
+    top: -18px;
+}
+
+
+
+
+
+
+
+
+
+
+/* .newsbar-second-container {
+    display: flex;
+    width: 461px;
+    height: 49px;
+    border: 1px solid #D2DAE0;
+    background-color: #F5F7F9;
     align-items: center;
 }
 
-.newsbar-second-container {
-    display: flex;
-    width: 461px;
-    height: 49px;
-    border: 1px solid #D2DAE0;
-    background-color: #F5F7F9;
-    align-items: center;
-}
+.newsbar-second-container .wrap {
+    overflow: hidden;
+    width: 364px;
+    height: 17px;
+} */
 
 .pressbar-container {
     display: flex;
