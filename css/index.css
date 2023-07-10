@@ -161,7 +161,7 @@ body {
   align-items: center;
 }
 
-button:hover,
+label:hover,
 .title:hover,
 .main-list ul li:hover,
 .news-title:hover {

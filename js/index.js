@@ -92,6 +92,7 @@ function GridWrapper() {
   checkPage();
 }
 
+//롤링 뉴스바
 function rollingNewsBarLeft() {
   document.querySelector(".prev").classList.remove("prev");
 
@@ -132,6 +133,28 @@ function rollingNewsBarRight() {
   next.classList.add("current");
 }
 
+//뷰 타입 변경
+const view_type = document.querySelectorAll(".viewer-btn button");
+view_type[0].addEventListener("click", () => {
+  view_type[0].innerHTML = `<img
+  src="../images/icon/List-view-checked.svg"
+  alt="images"
+/>`;
+  view_type[1].innerHTML = `<img
+  src="../images/icon/Grid-view-unchecked.svg"
+  alt="images"
+/>`;
+});
+view_type[1].addEventListener("click", () => {
+  view_type[0].innerHTML = `<img
+  src="../images/icon/List-view-unchecked.svg"
+  alt="images"
+/>`;
+  view_type[1].innerHTML = `<img
+  src="../images/icon/Grid-view-checked.svg"
+  alt="images"
+/>`;
+});
 window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.setAttribute("color-theme", "light");
   ReloadWrapper();
