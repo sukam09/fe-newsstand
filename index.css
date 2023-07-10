@@ -3,25 +3,29 @@
 }
 
 body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .container {
-    display: grid;
-    grid-template-rows: 1fr 1fr 5fr;
-}
-
-.container_grid {
-    display: grid;
-    grid-template-columns: 1fr 7fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* header */
-.grid_header {
+.container_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 930px;
+    margin-bottom: 1.5em;
 }
 
 .header-left {
@@ -36,14 +40,16 @@ body {
 }
 
 /* section */
-.grid_section {
+.container_section {
+    width: 930px;
+    margin-bottom: 1.5em;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
 }
 
-.grid_section-banner {
+.container_section-banner {
     height: 49px;
     overflow: hidden;
     position: relative;
@@ -58,53 +64,52 @@ body {
     background-color: #f5f7f9;
 }
 
-.grid_section-banner-press {
+.container_section-banner-press {
     display: block;
     margin-left: 8px;
 }
 
-.grid_sec-banner-list {
+.container_sec-banner-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.grid_sec_li-banner {
+.container_sec_li-banner {
     height: 49px;
     display: flex;
     align-items: center;
     gap: 8px;
 
     position: absolute;
-    top: 49px;
-}
-.li-headline {
-    text-decoration: none;
-}
-.li-headline:hover {
-    text-decoration: underline;
+    top: -49px;
 }
 
-.grid_section .prev {
-    top: -49px;
+.container_section .prev {
+    top: 49px;
     transition: top 1s ease;
 }
 
-.grid_section .current {
+.container_section .current {
     top: 0px;
     transition: top 1s ease;
 }
 
-.grid_section .next {
-    top: 49px;
+.container_section .next {
+    top: -49px;
 }
 
 /* main */
 
-.grid-arrow {
+.container_main {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.btn-arrow {
+    margin: 2em;
 }
 
 .btn_img-arrow {
@@ -112,14 +117,18 @@ body {
     height: 40px;
 }
 
-.grid_main_nav {
+.container_main_news {
+    width: 930px;
+}
+
+.container_main_nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1em;
 }
 
-.grid_main_nav-left {
+.container_main_nav-left {
     gap: 24px;
     display: flex;
     flex-direction: row;
