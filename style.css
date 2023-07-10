@@ -189,10 +189,10 @@ section.container {
 
 .recent-news article {
   flex: 1;
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; */
   padding: 1rem;
   background-color: var(--color-surface-alt);
   border: 1px solid var(--color-border-default);
@@ -206,12 +206,54 @@ section.container {
   margin: 0;
 }
 
-.recent-news article a {
+.wrap {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.recent-news ul {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recent-news li {
+  position: absolute;
+  top: -4rem;
+}
+
+.recent-news li.prev {
+  top: -4rem;
+  transition: top 1s ease;
+}
+
+.recent-news li.current {
+  top: 50%;
+  transition: top 1s ease;
+  transform: translate(0%, -50%);
+}
+
+.recent-news li.next {
+  top: 4rem;
+}
+
+.recent-news article a {
+  display: block;
   font-size: var(--font-size-regular);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-default);
   text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
 }
 .recent-news article a:hover {
   text-decoration: underline;
