@@ -28,8 +28,12 @@ async function fetchHotTopicData() {
         const data = await fetch("./data/hot_topic_data.json")
             .then((res) => res.json())
             .then((data) => data.sort(() => Math.random() - 0.5));
-        // then return data
-        return data;
+        // then data.location = "left" or "right" two arr return
+
+        const left = data.filter((item) => item.location === "left");
+        const right = data.filter((item) => item.location === "right");
+
+        return [left, right];
     } catch (error) {
         console.log(error);
         return null;
