@@ -5,19 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" type="text/css" href="/src/style/style.css" />
+        <link rel="stylesheet" type="text/css" href="/src/style/utils.css" />
     </head>
     <body>
         <div id="app">
             <div class="main-container">
                 <header>
                     <h1><a href="/">뉴스스탠드</a></h1>
-                    <div class="time">
-                        <time></time>
-                    </div>
+                    <time id="time"></time>
                 </header>
                 <main>
                     <section class="container">
-                        <h2 class="sr-only">최신 뉴스</h2>
+                        <h2 class="screen-reader-only">최신 뉴스</h2>
                         <div class="recent-news">
                             <article>
                                 <h3>연합뉴스</h3>
@@ -30,7 +29,7 @@
                         </div>
                     </section>
                     <section class="container">
-                        <h2 class="sr-only">언론사 보기</h2>
+                        <h2 class="screen-reader-only">언론사 보기</h2>
                         <nav class="agency">
                             <div class="agency-type">
                                 <h3>
@@ -44,23 +43,31 @@
                             </div>
                             <div class="view-type">
                                 <button class="list-view-btn">
-                                    <span class="sr-only">기사 보기</span>
+                                    <span class="screen-reader-only"
+                                        >기사 보기</span
+                                    >
                                 </button>
                                 <button class="grid-view-btn">
-                                    <span class="sr-only">언론사 보기</span>
+                                    <span class="screen-reader-only"
+                                        >언론사 보기</span
+                                    >
                                 </button>
                             </div>
                         </nav>
                         <div class="agency-list-container">
                             <button class="prev-page-btn">
-                                <span class="sr-only">이전 페이지</span>
+                                <span class="screen-reader-only"
+                                    >이전 페이지</span
+                                >
                                 <img
                                     src="/asset/icon/left-button.svg"
                                     alt="이전 페이지 버튼"
                                 />
                             </button>
                             <button class="next-page-btn">
-                                <span class="sr-only">다음 페이지</span>
+                                <span class="screen-reader-only"
+                                    >다음 페이지</span
+                                >
                                 <img
                                     src="/asset/icon/right-button.svg"
                                     alt="다음 페이지 버튼"
@@ -72,7 +79,7 @@
                 </main>
             </div>
         </div>
-        <script type="module" src="./index.js"></script>
+        <script type="module" src="/src/app.js"></script>
 
         <script type="module" src="/src/main.ts"></script>
     </body>
