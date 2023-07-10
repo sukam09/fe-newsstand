@@ -52,10 +52,10 @@ body {
   justify-content: space-between;
   margin-top: 40px;
   gap: 16px;
-  overflow: hidden;
 }
 
 .hot-topic-wrapper > div {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,6 +69,8 @@ body {
 
   background-color: var(--grayscale-50);
   border: 1px solid var(--grayscale-100);
+
+  overflow: hidden;
 }
 
 .hot-topic_list {
@@ -76,6 +78,22 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 16px;
+
+  position: absolute;
+  top: 62px; /* 49 + 13 */
+}
+
+.hot-topic-wrapper > * > .prev {
+  top: -36px;
+}
+
+.hot-topic-wrapper > * > .current {
+  top: 13px;
+  transition: top 0.5s ease;
+}
+
+.hot-topic-wrapper > * > .next {
+  top: 62px; /* 49 + 13 */
 }
 
 .hot-topic_list_title {
@@ -88,7 +106,7 @@ body {
   color: var(--grayscale-400);
 }
 
-.hot-topic-wrapper > * > * > p:hover {
+.hot-topic_list > p:hover {
   text-decoration: underline;
 }
 

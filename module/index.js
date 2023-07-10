@@ -31,6 +31,11 @@ const setHotTopic = async () => {
     const $li = document.createElement("li");
     $li.classList.add("hot-topic_list");
 
+    // 0번째 p => current, 1번째 p => next, 4번째 p => prev
+    if (idx % 5 === 0) $li.classList.add("prev");
+    else if (idx % 5 === 1) $li.classList.add("current");
+    else if (idx % 5 === 2) $li.classList.add("next");
+
     const $h2 = document.createElement("h2");
     $h2.classList.add("hot-topic_list_title");
     $h2.innerText = topic.title;
@@ -49,6 +54,45 @@ const setHotTopic = async () => {
  * 핫토픽 롤링하는 함수
  * -> 5초에 한번씩 가장 위에 있는 뉴스 하위로 가져옴.
  */
+
+const rollingTopic = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    let leftInterval = setInterval(() => {
+      rollingCallback("hot-topic-left");
+    }, 5000);
+
+    let interval = setTimeout(() => {
+      var rightInterval = setInterval(() => {
+        rollingCallback("hot-topic-right");
+      }, 5000);
+    }, 1000);
+  });
+};
+
+function rollingCallback(sectionClass) {
+  //.prev 클래스 삭제
+  document.querySelector(`.${sectionClass} .prev`).classList.remove("prev");
+
+  //.current -> .prev
+  let current = document.querySelector(`.${sectionClass} .current`);
+  current.classList.remove("current");
+  current.classList.add("prev");
+
+  //.next -> .current
+  let next = document.querySelector(`.${sectionClass} .next`);
+  // 다음 목록 요소 null 체크
+  if (next.nextElementSibling === null) {
+    // null 이면 첫번째 요소를 next
+    document
+      .querySelector(`.${sectionClass} .hot-topic_list:first-child`)
+      .classList.add("next");
+  } else {
+    // null이 아니면, 목록 처음 요소를 다음 요소로 선택
+    next.nextElementSibling.classList.add("next");
+  }
+  next.classList.remove("next");
+  next.classList.add("current");
+}
 
 /**
  * 배열을 섞는 함수
@@ -164,7 +208,10 @@ const reloadPage = () => {
 
 function init() {
   setDate();
+
   setHotTopic();
+  rollingTopic();
+
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
