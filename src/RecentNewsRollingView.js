@@ -1,3 +1,4 @@
+const HEADLINE_NUMBERS = 5;
 export default function RecentNewsRollingViewView({ $target, initialState }) {
   const $section = document.createElement('section');
   $section.classList.add('recent-news-container');
@@ -9,6 +10,12 @@ export default function RecentNewsRollingViewView({ $target, initialState }) {
     this.render();
   };
 
+  setInterval(() => {
+    this.setState({
+      ...this.state,
+      headlineIndex: (this.state.headlineIndex + 1) % HEADLINE_NUMBERS,
+    });
+  }, 5000);
   this.render = () => {
     const { headlineIndex, leftHeadlines, rightHeadlines } = this.state;
 
