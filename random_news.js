@@ -29,13 +29,12 @@ function renderNews(shuffledData) {
         let ul = document.createElement("ul");
         for (let j = 0; j < rowSize; j++) {
             const item = shuffledData[cnt] || { name: "empty", url: "" };
-            let li = document.createElement("li");
-            let img = document.createElement("img");
-            img.classList.add("news_data_img");
-            img.src = item.url;
+            ul.innerHTML += `
+            <li class="news_data_item">
+                <img class="news_data_img" src="${item.url}" />
+            </li>
+            `;
             cnt += 1;
-            li.appendChild(img);
-            ul.appendChild(li);
         }
         news_data_container.appendChild(ul);
     }

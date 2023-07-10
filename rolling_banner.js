@@ -3,19 +3,15 @@ import { fetchHotTopicData } from "./utils.js";
 function createList(news) {
     const list = document.createElement("ul");
     list.classList.add("hot_list");
+
     news.forEach((item) => {
         const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = item.url;
-        const span = document.createElement("span");
-        span.classList.add("hot_press");
-        span.textContent = item.press;
-        const strong = document.createElement("p");
-        strong.classList.add("hot_title");
-        strong.textContent = item.title;
-        a.appendChild(span);
-        a.appendChild(strong);
-        li.appendChild(a);
+        li.innerHTML = `
+        <a href="${item.url}">
+            <span class="hot_press">${item.press}</span>
+            <p class="hot_title">${item.title}</p>
+        </a>
+        `;
         list.appendChild(li);
     });
     return list;

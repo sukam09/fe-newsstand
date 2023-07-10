@@ -31,7 +31,6 @@ function createMainNav(container) {
         max="100"></progress>
     <span>${currentCategory}</span>
     <span>${current}/${max}</span>
-    
   `;
 
     const ul = document.createElement("ul");
