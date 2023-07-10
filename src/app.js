@@ -1,13 +1,17 @@
-import getDate from './getDate.js';
-import {
-  initNewsPressData,
-  handleClickTitleIcon,
-  handleClickPrevPageButton,
-  handleClickNextPageButton,
-} from './utils.js';
+import Header from './Header.js';
+import RecentNewsRolling from './RecentNewsRolling.js';
+import NewsPressGridview from './NewsPressGridview.js';
 
-getDate();
-initNewsPressData();
-handleClickTitleIcon();
-handleClickPrevPageButton();
-handleClickNextPageButton();
+export default function App({ $app }) {
+  new Header({ $target: $app });
+
+  new RecentNewsRolling({ $target: $app });
+
+  new NewsPressGridview({
+    $target: $app,
+    initialState: {
+      page: 1,
+      newsPressData: [],
+    },
+  });
+}
