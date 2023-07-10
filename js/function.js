@@ -1,12 +1,12 @@
 function showDate() {
-	const now = new Date();
-	const year = now.getFullYear();
-  const month = String(now.getMonth()+1).padStart(2,0);
-	const date = String(now.getDate()).padStart(2,0);
-	const week = ['일', '월', '화', '수', '목', '금', '토'];
-	const day = week[now.getDay()];
-	const $todayDate = document.querySelector('.date');
-	$todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, 0);
+  const date = String(now.getDate()).padStart(2, 0);
+  const week = ['일', '월', '화', '수', '목', '금', '토'];
+  const day = week[now.getDay()];
+  const $todayDate = document.querySelector('.date');
+  $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
 function initImgs() {
@@ -33,9 +33,9 @@ function initImgs() {
   })
 
   $sectionNewsList.innerHTML = `
-    ${page[0].map(arr => `<li><img src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[0].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
   `
-  return page;
+  turnPage(page);
 }
 
 function turnPage(page) {
@@ -54,7 +54,7 @@ function turnPage(page) {
     const $sectionNewsList = document.querySelector('.press-lists');
     this.className === 'left-button' ? pageCnt-- : pageCnt++;
     $sectionNewsList.innerHTML = `
-    ${page[pageCnt].map(arr => `<li><img src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[pageCnt].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
     `
     showPageTurner();
   }
@@ -62,4 +62,49 @@ function turnPage(page) {
   $pageNextButton.addEventListener('click', showPressImg);
 }
 
-export {turnPage, initImgs, showDate};
+function rollingNews() {
+  function rollingNewsLeft() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const interval = window.setInterval(rollingCallback, 5000, 1);
+    })
+  }
+
+  function rollingNewsRight() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const interval = window.setTimeout(rollingBetween, 1000)
+    })
+  }
+
+  rollingNewsLeft();
+  rollingNewsRight();
+}
+
+function rollingBetween() {
+  const interval = window.setInterval(rollingCallback, 5000, 0);
+
+}
+
+function rollingCallback(isLeftNews) {
+  let newsIdx = null
+  isLeftNews === 1 ? newsIdx = 0 : newsIdx = 1;
+  const $prev = document.querySelectorAll('.rolling-banner .prev')[newsIdx];
+  $prev.classList.remove('prev');
+
+  const $current = document.querySelectorAll('.rolling-banner .current')[newsIdx];
+  $current.classList.remove('current');
+  $current.classList.add('prev');
+
+  const $next = document.querySelectorAll('.rolling-banner .next')[newsIdx];
+  if ($next.nextElementSibling === null) {
+    const $nullNext = document.querySelectorAll('.rolling-banner ul li:first-child')[newsIdx];
+    $nullNext.classList.add('next');
+  }
+  else {
+    $next.nextElementSibling.classList.add('next');
+  }
+  $next.classList.remove('next');
+  $next.classList.add('current');
+}
+
+export { initImgs, showDate, rollingNews };
+

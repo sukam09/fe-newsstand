@@ -1,5 +1,5 @@
-import { initImgs, showDate, turnPage } from "./function.js";
+import { initImgs, showDate, rollingNews} from "./function.js";
 
 showDate();
-const page = initImgs();
-turnPage(page);
+initImgs();
+rollingNews();

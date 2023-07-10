@@ -1,4 +1,5 @@
 @import url(reset.css);
+@import url(rolling.css);
 :root {
   --text-text-strong: #14212B;
   --text-text-default: #5F6E76;
@@ -169,3 +170,4 @@ body {
 .pointer{
   cursor: pointer;
 }
+
