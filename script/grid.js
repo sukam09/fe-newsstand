@@ -1,6 +1,5 @@
 import { MEDIA } from './constants.js';
 import media_data from '../assets/data/media_data.js';
-const mediaLogo = document.querySelectorAll('.media_logo');
 const arrow_left = document.querySelector('#arrow_wrapper_left');
 const arrow_right = document.querySelector('#arrow_wrapper_right');
 const subscribed = [
@@ -16,6 +15,7 @@ const shuffle = array => {
 };
 
 const setLogoList = () => {
+  const mediaLogo = document.querySelectorAll('.media_logo');
   const addSubButton = isSub => {
     const subElement = document.createElement('div');
     subElement.className = 'media-hover surface-alt';
@@ -68,7 +68,19 @@ const setArrowVisible = () => {
   arrow_right.className = `page_${page}`;
 };
 
+const setLiList = () => {
+  const ul = document.querySelector(".grid_wrapper ul");
+  for (let i = 0; i < 24; i++) {
+    const liHTML = `
+      <li>
+          <img src="" alt="" class="media_logo">
+      </li>
+    `;
+    ul.innerHTML += liHTML;
+  }
+}
 const init = () => {
+  setLiList();
   shuffle(logoIndex);
   setLogoList();
   setArrow();
