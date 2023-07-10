@@ -53,6 +53,7 @@ body {
 
 .news {
   display: flex;
+  height: 17px;
   padding: 16px;
   align-items: flex-start;
   gap: 16px;
@@ -79,6 +80,36 @@ body {
   flex-direction: column;
   flex: 1 0 0;
   color: var(--text-default);
+}
+
+.news-bar > .news {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-bar li {
+  position: absolute;
+  left: 16px;
+  top: -36px;
+  left: 0;
+  overflow: hidden;
+}
+
+.news-bar li.prev-news {
+  left: 16px;
+  top: -36px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.current-news {
+  left: 16px;
+  top: 16px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.next-news {
+  left: 16px;
+  top: 52px;
 }
 
 /* tab-and-viewer */
