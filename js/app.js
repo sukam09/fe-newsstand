@@ -1,5 +1,6 @@
-import { initImgs, showDate, rollingNews} from "./function.js";
+import { initImgs, showDate, rollingNews, clickLogo} from "./function.js";
 
+clickLogo();
 showDate();
 initImgs();
 rollingNews();

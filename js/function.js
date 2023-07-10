@@ -9,6 +9,11 @@ function showDate() {
   $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
+function clickLogo() {
+  const $logo = document.querySelector('.title-icon');
+  $logo.addEventListener('click', function(){location.reload()});
+}
+
 function initImgs() {
   const $sectionNewsList = document.querySelector('.press-lists');
   const newsList = [];
@@ -106,5 +111,5 @@ function rollingCallback(isLeftNews) {
   $next.classList.add('current');
 }
 
-export { initImgs, showDate, rollingNews };
+export { clickLogo, initImgs, showDate, rollingNews };
 
