@@ -1,12 +1,14 @@
-import { fetchData } from "./api.js";
+import { fetchPressData } from "./api.js";
+import "./module/NewArticle.js";
 
 let current_grid_page = 0;
 let news_icon;
+const IconsPerPage = 24;
 
 function updateGrid() {
   try {
     if (news_icon) {
-      let icon_idx = current_grid_page * 24;
+      let icon_idx = current_grid_page * IconsPerPage;
       const grid_row = document.querySelectorAll(".grid ul");
 
       grid_row.forEach((ul, index) => {
@@ -17,7 +19,7 @@ function updateGrid() {
         });
       });
     } else {
-      throw "empty data!";
+      throw Error("empty data!");
     }
   } catch (e) {
     console.log(e);
@@ -26,9 +28,9 @@ function updateGrid() {
 
 async function printGrid() {
   try {
-    news_icon = await fetchData();
+    news_icon = await fetchPressData("./Data/grid_icon.json");
     const grid = document.querySelector(".grid");
-    let icon_idx = current_grid_page * 24;
+    let icon_idx = current_grid_page * IconsPerPage;
     for (let i = 0; i < 4; i++) {
       const grid_row = document.createElement("ul");
       grid_row.className = "grid-row";
@@ -37,7 +39,8 @@ async function printGrid() {
         const press_logo = document.createElement("img");
         press_logo.className = "press-logo";
 
-        press_logo.src = news_icon[icon_idx++].path;
+        //수정한 부분
+        if (news_icon.length > icon_idx) press_logo.src = news_icon[icon_idx++].path;
 
         grid_li.appendChild(press_logo);
         grid_row.appendChild(grid_li);

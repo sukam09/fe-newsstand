@@ -48,10 +48,28 @@ section {
   display: flex;
   padding: 16px;
   align-items: flex-start;
-  gap: 16px;
+  /* gap: 16px; */
   flex: 1 0 0;
   border: var(--border-border-default) solid var(--border-default);
   background: var(--surface-alt);
+
+  height: 17px;
+  overflow: hidden;
+  position: relative;
+}
+.wrap-rolling-news {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  top: 16px;
+  transition: top 0.5s;
+}
+.each-news {
+  width: 100%;
+  display: flex;
+  gap: 16px;
 }
 
 .press {
@@ -63,6 +81,9 @@ section {
   flex-direction: column;
   flex: 1 0 0;
   color: var(--text-default);
+}
+.news-title:hover {
+  text-decoration: underline;
 }
 
 .tab-and-viewer {
