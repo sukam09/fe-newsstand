@@ -23,3 +23,41 @@ const newList = [
   "'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'",
   "SBS Biz 언론사에서 직접 편집한 뉴스입니다.",
 ];
+
+const categoryList = [
+  {
+    id: 1,
+    name: "종합/경제",
+    tabs: 81,
+  },
+  {
+    id: 2,
+    name: "방송/통신",
+    tabs: 24,
+  },
+  {
+    id: 3,
+    name: "IT",
+    tabs: 10,
+  },
+  {
+    id: 4,
+    name: "영자지",
+    tabs: 30,
+  },
+  {
+    id: 5,
+    name: "스포츠/연애",
+    tabs: 15,
+  },
+  {
+    id: 6,
+    name: "매거진/전문지",
+    tabs: 21,
+  },
+  {
+    id: 7,
+    name: "지역",
+    tabs: 8,
+  },
+];
