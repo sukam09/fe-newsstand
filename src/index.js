@@ -22,7 +22,6 @@ const makeGrid = () => {
       ? `./assets/images/light-press-logo/${idList[i]}.png`
       : `./assets/images/dark-press-logo/${idList[i]}.png`;
 
-    console.log(gridItem);
     let checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = function () {
