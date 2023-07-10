@@ -67,7 +67,6 @@
   font-size: var(--font-size-M);
   font-style: var(--font-style-none);
   line-height: var(--line-height-22);
-  line-height: var(--line-height-auto);
   text-decoration: var(--line-style-underline);
 }
 

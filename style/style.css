@@ -2,7 +2,13 @@
 @import url(./variable.css);
 @import url(./typography.css);
 
-/* commot css */
+/* common css */
+html {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 body {
   width: 1280px;
   height: 720px;
@@ -17,6 +23,7 @@ body {
   padding: 58px 0 76px 0;
 }
 
+/* main header */
 .main-header {
   justify-content: space-between;
   display: flex;
@@ -35,7 +42,8 @@ body {
   color: var(--text-default);
 }
 
-section {
+/* news-bar */
+.news-bar {
   display: flex;
   width: 930px;
   align-items: flex-start;
@@ -65,30 +73,35 @@ section {
   color: var(--text-default);
 }
 
+/* tab-and-viewer */
 .tab-and-viewer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
 }
-.tab-and-viewer .tabs {
+
+.tabs {
   display: flex;
   align-items: center;
   gap: 24px;
 }
-.tab-and-viewer .tabs .all-press-btn,
-.tab-and-viewer .tabs .sub-press-btn {
+
+.all-press-btn,
+.sub-press-btn {
   color: var(--text-strong);
   cursor: pointer;
 }
-.tab-and-viewer .viewer {
+
+.viewer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 8px;
 }
-.tab-and-viewer .viewer .list-btn,
-.tab-and-viewer .viewer .grid-btn {
+
+.list-btn,
+.grid-btn {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -96,23 +109,8 @@ section {
   background-color: transparent;
   border: 0;
 }
-/* .tab-and-viewer .viewer .list-btn::before,
-.tab-and-viewer .viewer .grid-btn::before {
-  content: "";
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-.tab-and-viewer .viewer span {
-  display: none;
-}
-.tab-and-viewer .viewer .list-btn::before {
-  background-image: url("./icons/list-btn.svg");
-}
-.tab-and-viewer .viewer .grid-btn::before {
-  background-image: url("./icons/grid-btn.svg");
-} */
 
+/* grid */
 .grid {
   display: flex;
   height: 388px;
@@ -123,6 +121,7 @@ section {
   border: var(--border-border-default) solid var(--border-default);
   background: var(--border-default);
 }
+
 .grid .grid-row {
   display: flex;
   align-items: flex-start;
@@ -130,6 +129,7 @@ section {
   flex: 1 0 0;
   align-self: stretch;
 }
+
 .grid .grid-row li {
   display: flex;
   justify-content: center;
@@ -140,6 +140,7 @@ section {
   cursor: pointer;
 }
 
+/* left-button, right-button */
 .left-btn,
 .right-btn {
   width: 24px;
@@ -151,10 +152,12 @@ section {
   position: absolute;
   top: 430px;
 }
+
 .left-btn {
   left: 103px;
   display: none;
 }
+
 .right-btn {
   right: 103px;
 }
