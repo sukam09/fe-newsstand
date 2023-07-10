@@ -7,11 +7,11 @@ let currentPage = 0;
 //onClick event
 document.querySelector(".left_arrow").addEventListener("click", () => {
     currentPage -= 1;
-    RenderNews(shuffledData, currentPage);
+    RenderNews(shuffledData);
 });
 document.querySelector(".right_arrow").addEventListener("click", () => {
     currentPage += 1;
-    RenderNews(shuffledData, currentPage);
+    RenderNews(shuffledData);
 });
 
 function RenderNews(shuffledData) {
@@ -54,7 +54,7 @@ function toggleArrow() {
 }
 
 function init() {
-    RenderNews(shuffledData, currentPage);
+    RenderNews(shuffledData);
 }
 
 init();
