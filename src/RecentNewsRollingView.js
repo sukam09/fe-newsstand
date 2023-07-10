@@ -1,4 +1,4 @@
-export default function RecentNewsRolling({ $target }) {
+export default function RecentNewsRollingViewView({ $target }) {
   const $section = document.createElement('section');
   $section.classList.add('recent-news-container');
 
