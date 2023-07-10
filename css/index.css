@@ -19,7 +19,8 @@ body {
 .title-wrapper,
 .auto-rolling-news-bar,
 .main-tab-viewer,
-.main-list {
+.main-list,
+.list-view {
   width: 930px;
   margin: 0 auto;
 }
@@ -149,6 +150,9 @@ body {
   font-weight: 500;
   padding-left: 18px;
 }
+.news-title:hover {
+  text-decoration: underline;
+}
 .display-text {
   color: var(--text-strong);
   font-weight: 700;
@@ -166,4 +170,31 @@ label:hover,
 .main-list ul li:hover,
 .news-title:hover {
   cursor: pointer;
+}
+
+.list-view {
+  border: 1px solid var(--border-default);
+  box-sizing: border-box;
+  height: 388px;
+}
+
+.category {
+  display: flex;
+  height: 40px;
+  background-color: var(--surface-alt);
+}
+.category div {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 14px;
+}
+.press-info {
+  width: 882px;
+  height: 24px;
+}
+.list-view-news {
+  width: 882px;
+  height: 260px;
 }

@@ -22,7 +22,7 @@
       <main>
         <div class="auto-rolling-news-bar">
           <div class="auto-rolling-news">
-            <ul>
+            <ul id="left-rolling">
               <li class="current">
                 <span class="press">연합뉴스1</span>
                 <span class="news-title">[1111보] 김기현,안철수~~</span>
@@ -46,7 +46,7 @@
             </ul>
           </div>
           <div class="auto-rolling-news">
-            <ul>
+            <ul id="right-rolling">
               <li class="current">
                 <span class="press">연합뉴스</span>
                 <span class="news-title">[속보1] 최고위원 본경선,~~</span>
@@ -82,25 +82,6 @@
               </div>
 
               <div class="viewer-btn">
-                <!-- <label
-                  ><input type="radio" name="view-type" style="display: none" />
-                  <img
-                    src="../images/icon/List-view-unchecked.svg"
-                    alt="images"
-                  />
-                </label>
-                <label
-                  ><input
-                    type="radio"
-                    name="view-type"
-                    style="display: none"
-                    checked
-                  />
-                  <img
-                    src="../images/icon/Grid-view-checked.svg"
-                    alt="images"
-                  />
-                </label> -->
                 <button>
                   <img
                     src="../images/icon/List-view-unchecked.svg"
@@ -126,6 +107,22 @@
               <button id="right-btn">
                 <img id="right" src="../images/icon/RightButton.svg" />
               </button>
+            </div>
+
+            <div class="list-view">
+              <div class="category">
+                <div>종합/경제</div>
+                <div>방송/통신</div>
+                <div>IT</div>
+                <div>영자지</div>
+                <div>스포츠/연예</div>
+                <div>매거진/전문지</div>
+                <div>지역</div>
+              </div>
+
+              <div class="press-info"></div>
+
+              <div class="list-view-news"></div>
             </div>
           </div>
         </section>
