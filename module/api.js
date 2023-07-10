@@ -1,13 +1,18 @@
-export async function fetchNewsIconData() {
+async function fetchJsonFile(path) {
+  return fetch(path).then((response) => {
+    return response.json();
+  });
+}
+
+async function fetchNewsIconData() {
   const jsonData = await fetchJsonFile("../Data/News_Icon.json");
   shuffle_id(jsonData);
   return jsonData;
 }
 
-async function fetchJsonFile(path) {
-  return fetch(path).then((response) => {
-    return response.json();
-  });
+async function fetchRollingNewsData() {
+  const jsonData = await fetchJsonFile("../Data/Rolling_News.json");
+  return jsonData;
 }
 
 function shuffle_id(news_icon) {
@@ -23,3 +28,5 @@ function shuffle_id(news_icon) {
     news_icon[randomIndex].path = tempValue;
   }
 }
+
+export { fetchNewsIconData, fetchRollingNewsData };

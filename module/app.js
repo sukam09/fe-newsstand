@@ -1,5 +1,6 @@
 import { initDate } from "./util.js";
 import { printGrid, moveGrid } from "./grid.js";
+import { initRollingNews } from "./rolling.js";
 
 const RIGHT = 1;
 const LEFT = 0;
@@ -12,6 +13,7 @@ function init() {
   left_btn.addEventListener("click", () => moveGrid(LEFT));
 
   initDate();
+  initRollingNews();
   printGrid();
 }
 

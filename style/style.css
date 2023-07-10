@@ -52,7 +52,6 @@ body {
 }
 
 .news {
-  cursor: pointer;
   display: flex;
   padding: 16px;
   align-items: flex-start;
@@ -62,11 +61,20 @@ body {
   background: var(--surface-alt);
 }
 
+.news li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
 .press {
+  cursor: pointer;
   color: var(--text-strong);
 }
 
 .news-title {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
