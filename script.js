@@ -23,12 +23,24 @@ function initDisplayNone() {
   document.querySelectorAll(".count").forEach((count) => {
     count.style.display = "none";
   });
+  document.querySelector(".count").style.display = "block";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initDisplayNone();
   changeToGrid();
-
+  while (idx <= CATEGORY_NUM - 1 && idx >= 0) {
+    setInterval(function () {
+      if (idx == CATEGORY_NUM - 1) {
+        movingProgress(idx, 0);
+        idx = 0;
+      } else {
+        movingProgress(idx, idx + 1);
+        idx++;
+      }
+    }, 20000);
+    break;
+  }
   const slice_shuffled_presses = shuffled_presses.slice(0, PRESS_NUM_IN_GRID);
   slice_shuffled_presses.forEach((press) => {
     appendPressInGrid(press);
@@ -138,4 +150,27 @@ grid_prev.addEventListener("click", () => {
       appendPressInGrid(press);
     });
   }
+});
+
+/***** 프로그레스바 이동 함수 *****/
+function movingProgress(idx_1, idx_2) {
+  document
+    .getElementsByClassName("progress-item")
+    [idx_1].classList.remove("progress-bar");
+  document.getElementsByClassName("count")[idx_1].style.display = "none";
+
+  document
+    .getElementsByClassName("progress-item")
+    [idx_2].classList.add("progress-bar");
+  document.getElementsByClassName("count")[idx_2].style.display = "block";
+}
+
+/***** 프로그레스바 카테고리 누르면 이동 *****/
+const categories = document.querySelectorAll(".progress-item");
+categories.forEach((category) => {
+  category.addEventListener("click", () => {
+    category_clicked = true;
+    document.querySelector(".progress-bar").classList.remove("progress-bar");
+    category.classList.add("progress-bar");
+  });
 });
