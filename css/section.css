@@ -26,6 +26,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.newsflash .newsflash__content .rolling span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 .newsflash .newsflash__content .newsflash__content__newspaper {
   display: inline-block;
   margin-right: 10px;
