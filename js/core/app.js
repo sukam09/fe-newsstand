@@ -1,5 +1,5 @@
 import { date } from "../utils/date.js";
-import { newsstandSystem } from "../newsstand/newsstandSystem.js";
+import { createRandomNewsstand } from "../newsstand/newsstandSystem.js";
 
 // 기능
 headerRender();
@@ -10,6 +10,5 @@ function headerRender() {
 }
 
 function mainRender() {
-  const newsstanSystem = new newsstandSystem();
-  newsstanSystem.createRandomNewsstand();
+  createRandomNewsstand();
 }
