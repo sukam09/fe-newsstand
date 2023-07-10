@@ -340,6 +340,7 @@ body {
   gap: 16px;
 
   display: flex;
+  overflow: hidden;
 
   background: var(--color-surface-alt);
   border: var(--border-default);
