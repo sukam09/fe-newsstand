@@ -1,0 +1,56 @@
+/*
+메인 컨텐츠 페이지 전환 버튼 컴포넌트
+*/
+
+export default function Button($target, props, onClick) {
+  //   this.state = mode;
+
+  //   this.setState = (nextState) => {
+  //     this.state = nextState;
+  //     this.render();
+  //   };
+
+  this.render = () => {
+    const $button = document.createElement("button");
+
+    $button.setAttribute("class", `${props.direction}-button_content`);
+
+    $button.innerHTML =
+      props.direction === "left"
+        ? `<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="26"
+    height="42"
+    viewBox="0 0 26 42"
+    fill="none"
+  >
+    <path d="M25 1L1 21L25 41" stroke="#6E8091" />
+  </svg>`
+        : `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="26"
+  height="42"
+  viewBox="0 0 26 42"
+  fill="none"
+>
+  <path d="M1 41L25 21L1 1" stroke="#6E8091" />
+</svg>`;
+
+    if (props.direction === "left") {
+      $button.style.display = props.page === 0 ? "none" : "block";
+
+      $button.addEventListener("click", () => {
+        onClick({ renderContent: "all", page: props.page - 1 });
+      });
+    } else {
+      $button.style.display = props.page === 3 ? "none" : "block";
+
+      $button.addEventListener("click", () => {
+        onClick({ renderContent: "all", page: props.page + 1 });
+      });
+    }
+    $target.appendChild($button);
+  };
+
+  this.render();
+}
