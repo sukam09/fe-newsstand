@@ -25,6 +25,9 @@
   gap: 8px;
   justify-content: space-between;
 }
+.container__header__main:hover {
+  cursor: pointer;
+}
 
 .container__header__main__logo {
   width: 24px;
