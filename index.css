@@ -1,0 +1,136 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 930px 1fr;
+    margin: 3em;
+}
+
+.container_between {
+    margin: auto 2em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.container_center {
+    margin: auto 2em;
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.header_left {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: center;
+    justify-items: center;
+    gap: 8px;
+}
+
+.header_left img {
+    object-fit: none;
+}
+
+.header-right {
+    width: 140px;
+    height: 22px;
+}
+
+.sec_trend_news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.rolling_banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.rolling_banner li {
+    position: absolute;
+    top: -36px;
+    left: 0;
+}
+
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.rolling_banner li.prev {
+    top: 36px;
+    transition: top 1s ease;
+}
+
+.rolling_banner li.current {
+    top: 0;
+    transition: top 1s ease;
+}
+
+.rolling_banner li.next {
+    top: -36px;
+}
+
+.nav_container span,
+#navLeft,
+#navRight {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    align-items: center;
+    gap: 8px;
+}
+#navLeft {
+    gap: 24px;
+}
+
+.nav_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.main_news_container {
+    width: 930px;
+    height: 388px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.main_news_container ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+
+.main_news_container li {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 15%;
+}
+
+.left_arrow {
+    position: relative;
+    left: 25%;
+}
+
+.right_arrow {
+    position: relative;
+    right: 25%;
+}
