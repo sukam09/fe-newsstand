@@ -7,12 +7,23 @@ let newsPressData = [];
 
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 const initNewsPressData = () => {
-    fetch("../data/press-info.json")
+    fetch("../data/press-data.json")
         .then((response) => response.json())
         .then((jsonData) => {
             newsPressData = shuffleArray(jsonData);
             showNewsPressItems();
         });
+};
+
+const fillEmptyCells = (currentNewsPressData, newsPressGrid) => {
+    if (currentNewsPressData.length < 24) {
+        const count = currentNewsPressData.length;
+        for (let i = 0; i < 24 - count; i++) {
+            const $li = document.createElement("li");
+            $li.className = "news-press-item";
+            newsPressGrid.appendChild($li);
+        }
+    }
 };
 
 const showNewsPressItems = () => {
@@ -34,6 +45,7 @@ const showNewsPressItems = () => {
         $li.appendChild($img);
         newsPressGrid.appendChild($li);
     });
+    fillEmptyCells(currentNewsPressData, newsPressGrid);
 };
 
 const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;

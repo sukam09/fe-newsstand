@@ -10,7 +10,7 @@ const getNewsBarElement = (newData) => {
 
 const createNewsBar = (item, index) => {
     const $ul = document.createElement("ul");
-    fetch(`../data/news-bar-data${index + 1}.json`)
+    fetch(`../data/news-bar-data-${index + 1}.json`)
         .then((response) => response.json())
         .then((jsonData) => {
             jsonData.forEach((item) =>

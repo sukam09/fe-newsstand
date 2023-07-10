@@ -1,0 +1,482 @@
+[
+    {
+        "id": 1,
+        "name": "서울경제",
+        "logo": "../asset/logos/press1.png"
+    },
+    {
+        "id": 2,
+        "name": "데일리안",
+        "logo": "../asset/logos/press2.png"
+    },
+    {
+        "id": 3,
+        "name": "헤럴드경제",
+        "logo": "../asset/logos/press3.png"
+    },
+    {
+        "id": 4,
+        "name": "SBS Biz",
+        "logo": "../asset/logos/press4.png"
+    },
+    {
+        "id": 5,
+        "name": "세계일보",
+        "logo": "../asset/logos/press5.png"
+    },
+    {
+        "id": 6,
+        "name": "아시아경제",
+        "logo": "../asset/logos/press6.png"
+    },
+    {
+        "id": 7,
+        "name": "이데일리",
+        "logo": "../asset/logos/press7.png"
+    },
+    {
+        "id": 8,
+        "name": "조선일보",
+        "logo": "../asset/logos/press8.png"
+    },
+    {
+        "id": 9,
+        "name": "아이뉴스24",
+        "logo": "../asset/logos/press9.png"
+    },
+    {
+        "id": 10,
+        "name": "파이낸셜뉴스",
+        "logo": "../asset/logos/press10.png"
+    },
+    {
+        "id": 11,
+        "name": "스포츠서울",
+        "logo": "../asset/logos/press11.png"
+    },
+    {
+        "id": 12,
+        "name": "스포츠동아",
+        "logo": "../asset/logos/press12.png"
+    },
+    {
+        "id": 13,
+        "name": "문화일보",
+        "logo": "../asset/logos/press13.png"
+    },
+    {
+        "id": 14,
+        "name": "KBS WORLD",
+        "logo": "../asset/logos/press14.png"
+    },
+    {
+        "id": 15,
+        "name": "Korea JoongAng Daily",
+        "logo": "../asset/logos/press15.png"
+    },
+    {
+        "id": 16,
+        "name": "Insight",
+        "logo": "../asset/logos/press16.png"
+    },
+    {
+        "id": 17,
+        "name": "법률방송뉴스",
+        "logo": "../asset/logos/press17.png"
+    },
+    {
+        "id": 18,
+        "name": "시사저널e",
+        "logo": "../asset/logos/press18.png"
+    },
+    {
+        "id": 19,
+        "name": "한국농어촌방송",
+        "logo": "../asset/logos/press19.png"
+    },
+    {
+        "id": 20,
+        "name": "조이뉴스24",
+        "logo": "../asset/logos/press20.png"
+    },
+    {
+        "id": 21,
+        "name": "에너지경제",
+        "logo": "../asset/logos/press21.png"
+    },
+    {
+        "id": 22,
+        "name": "BUSINESS POST",
+        "logo": "../asset/logos/press22.png"
+    },
+    {
+        "id": 23,
+        "name": "CEO스코어데일리",
+        "logo": "../asset/logos/press23.png"
+    },
+    {
+        "id": 24,
+        "name": "KNN",
+        "logo": "../asset/logos/press24.png"
+    },
+    {
+        "id": 25,
+        "name": "The Korea Herald",
+        "logo": "../asset/logos/press25.png"
+    },
+    {
+        "id": 26,
+        "name": "MBC",
+        "logo": "../asset/logos/press26.png"
+    },
+    {
+        "id": 27,
+        "name": "뉴스타파",
+        "logo": "../asset/logos/press27.png"
+    },
+    {
+        "id": 28,
+        "name": "NewDaily",
+        "logo": "../asset/logos/press28.png"
+    },
+    {
+        "id": 29,
+        "name": "국민일보",
+        "logo": "../asset/logos/press29.png"
+    },
+    {
+        "id": 30,
+        "name": "일간스포츠",
+        "logo": "../asset/logos/press30.png"
+    },
+    {
+        "id": 31,
+        "name": "경향신문",
+        "logo": "../asset/logos/press31.png"
+    },
+    {
+        "id": 32,
+        "name": "ZDNET Korea",
+        "logo": "../asset/logos/press32.png"
+    },
+    {
+        "id": 33,
+        "name": "마이데일리",
+        "logo": "../asset/logos/press33.png"
+    },
+    {
+        "id": 34,
+        "name": "머니투데이",
+        "logo": "../asset/logos/press34.png"
+    },
+    {
+        "id": 35,
+        "name": "SBS",
+        "logo": "../asset/logos/press35.png"
+    },
+    {
+        "id": 36,
+        "name": "OhmyNews",
+        "logo": "../asset/logos/press36.png"
+    },
+    {
+        "id": 37,
+        "name": "매일경제",
+        "logo": "../asset/logos/press37.png"
+    },
+    {
+        "id": 38,
+        "name": "MBN",
+        "logo": "../asset/logos/press38.png"
+    },
+    {
+        "id": 39,
+        "name": "YTN",
+        "logo": "../asset/logos/press39.png"
+    },
+    {
+        "id": 40,
+        "name": "시사위크",
+        "logo": "../asset/logos/press40.png"
+    },
+    {
+        "id": 41,
+        "name": "Digital Today",
+        "logo": "../asset/logos/press41.png"
+    },
+    {
+        "id": 42,
+        "name": "data news",
+        "logo": "../asset/logos/press42.png"
+    },
+    {
+        "id": 43,
+        "name": "한국대학신문",
+        "logo": "../asset/logos/press43.png"
+    },
+    {
+        "id": 44,
+        "name": "서울파이낸스",
+        "logo": "../asset/logos/press44.png"
+    },
+    {
+        "id": 45,
+        "name": "엑스포츠뉴스",
+        "logo": "../asset/logos/press45.png"
+    },
+    {
+        "id": 46,
+        "name": "맥스무비",
+        "logo": "../asset/logos/press46.png"
+    },
+    {
+        "id": 47,
+        "name": "OBS",
+        "logo": "../asset/logos/press47.png"
+    },
+    {
+        "id": 48,
+        "name": "소년한국일보",
+        "logo": "../asset/logos/press48.png"
+    },
+    {
+        "id": 49,
+        "name": "OSEN",
+        "logo": "../asset/logos/press49.png"
+    },
+    {
+        "id": 50,
+        "name": "디지털타임스",
+        "logo": "../asset/logos/press50.png"
+    },
+    {
+        "id": 51,
+        "name": "미디어오늘",
+        "logo": "../asset/logos/press51.png"
+    },
+    {
+        "id": 52,
+        "name": "연합뉴스TV",
+        "logo": "../asset/logos/press52.png"
+    },
+    {
+        "id": 53,
+        "name": "한겨례",
+        "logo": "../asset/logos/press53.png"
+    },
+    {
+        "id": 54,
+        "name": "ChosunBiz",
+        "logo": "../asset/logos/press54.png"
+    },
+    {
+        "id": 55,
+        "name": "jtbc",
+        "logo": "../asset/logos/press55.png"
+    },
+    {
+        "id": 56,
+        "name": "metro",
+        "logo": "../asset/logos/press56.png"
+    },
+    {
+        "id": 57,
+        "name": "비즈한국",
+        "logo": "../asset/logos/press57.png"
+    },
+    {
+        "id": 58,
+        "name": "주간경향",
+        "logo": "../asset/logos/press58.png"
+    },
+    {
+        "id": 59,
+        "name": "Forbes",
+        "logo": "../asset/logos/press59.png"
+    },
+    {
+        "id": 60,
+        "name": "TV REPORT",
+        "logo": "../asset/logos/press60.png"
+    },
+    {
+        "id": 61,
+        "name": "티브이데일리",
+        "logo": "../asset/logos/press61.png"
+    },
+    {
+        "id": 62,
+        "name": "BBS NEWS",
+        "logo": "../asset/logos/press62.png"
+    },
+    {
+        "id": 63,
+        "name": "MONDE diplomatique",
+        "logo": "../asset/logos/press63.png"
+    },
+    {
+        "id": 64,
+        "name": "MK스포츠",
+        "logo": "../asset/logos/press64.png"
+    },
+    {
+        "id": 65,
+        "name": "텐아시아",
+        "logo": "../asset/logos/press65.png"
+    },
+    {
+        "id": 66,
+        "name": "정책브리핑",
+        "logo": "../asset/logos/press66.png"
+    },
+    {
+        "id": 67,
+        "name": "씨네21",
+        "logo": "../asset/logos/press67.png"
+    },
+    {
+        "id": 68,
+        "name": "뉴스포스트",
+        "logo": "../asset/logos/press68.png"
+    },
+    {
+        "id": 69,
+        "name": "정신의학신문",
+        "logo": "../asset/logos/press69.png"
+    },
+    {
+        "id": 70,
+        "name": "철강금속신문",
+        "logo": "../asset/logos/press70.png"
+    },
+    {
+        "id": 71,
+        "name": "IT Chosun",
+        "logo": "../asset/logos/press71.png"
+    },
+    {
+        "id": 72,
+        "name": "여성경제신문",
+        "logo": "../asset/logos/press72.png"
+    },
+    {
+        "id": 73,
+        "name": "한국일보",
+        "logo": "../asset/logos/press73.png"
+    },
+    {
+        "id": 74,
+        "name": "sportal korea",
+        "logo": "../asset/logos/press74.png"
+    },
+    {
+        "id": 75,
+        "name": "프레시안",
+        "logo": "../asset/logos/press75.png"
+    },
+    {
+        "id": 76,
+        "name": "노컷뉴스",
+        "logo": "../asset/logos/press76.png"
+    },
+    {
+        "id": 77,
+        "name": "The JoongAng",
+        "logo": "../asset/logos/press77.png"
+    },
+    {
+        "id": 78,
+        "name": "서울신문",
+        "logo": "../asset/logos/press78.png"
+    },
+    {
+        "id": 79,
+        "name": "스포츠 조선",
+        "logo": "../asset/logos/press79.png"
+    },
+    {
+        "id": 80,
+        "name": "전자신문",
+        "logo": "../asset/logos/press80.png"
+    },
+    {
+        "id": 81,
+        "name": "한국경제TV",
+        "logo": "../asset/logos/press81.png"
+    },
+    {
+        "id": 82,
+        "name": "BLOTER",
+        "logo": "../asset/logos/press82.png"
+    },
+    {
+        "id": 83,
+        "name": "KBS",
+        "logo": "../asset/logos/press83.png"
+    },
+    {
+        "id": 84,
+        "name": "동아일보",
+        "logo": "../asset/logos/press84.png"
+    },
+    {
+        "id": 85,
+        "name": "NEWSIS",
+        "logo": "../asset/logos/press85.png"
+    },
+    {
+        "id": 86,
+        "name": "한국경제",
+        "logo": "../asset/logos/press86.png"
+    },
+    {
+        "id": 87,
+        "name": "시사IN",
+        "logo": "../asset/logos/press87.png"
+    },
+    {
+        "id": 88,
+        "name": "월간산",
+        "logo": "../asset/logos/press88.png"
+    },
+    {
+        "id": 89,
+        "name": "독서신문",
+        "logo": "../asset/logos/press89.png"
+    },
+    {
+        "id": 90,
+        "name": "ECONOTIMES",
+        "logo": "../asset/logos/press90.png"
+    },
+    {
+        "id": 91,
+        "name": "대전방송",
+        "logo": "../asset/logos/press91.png"
+    },
+    {
+        "id": 92,
+        "name": "시사오늘",
+        "logo": "../asset/logos/press92.png"
+    },
+    {
+        "id": 93,
+        "name": "데일리한국",
+        "logo": "../asset/logos/press93.png"
+    },
+    {
+        "id": 94,
+        "name": "뉴스토마토",
+        "logo": "../asset/logos/press94.png"
+    },
+    {
+        "id": 95,
+        "name": "에이블뉴스",
+        "logo": "../asset/logos/press95.png"
+    },
+    {
+        "id": 96,
+        "name": "YTN 사이언스",
+        "logo": "../asset/logos/press96.png"
+    }
+]
