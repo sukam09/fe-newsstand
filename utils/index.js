@@ -1,3 +1,3 @@
 export * from "./date.js";
 export * from "./fetch.js";
-export * from "./sort.js";
+export * from "./data.js";
