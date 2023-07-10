@@ -1,11 +1,10 @@
 let now_grid_page = 0;
+const COUNT_PRESS = 96;
+const MAX_GRID_COUNT = 24;
 
 // 언론사 랜덤 셔플
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
+  array.sort(() => Math.random() - 0.5);
   return array;
 }
 
@@ -15,7 +14,7 @@ function appendList() {
   const shuffledArr = shuffleArray(pressObjArr);
 
   shuffledArr.forEach((element, idx) => {
-    const id = Math.floor(idx / 24);
+    const id = Math.floor(idx / MAX_GRID_COUNT);
     const gridItem = createGridItem(element);
     gridContainerList[id].appendChild(gridItem);
   });
@@ -79,8 +78,7 @@ function createGridItem(element) {
 
   // li 생성
   li.className = "grid_item";
-  li.append(subButtonContainer);
-  li.append(unSubButtonContainer);
+  li.append(subButtonContainer, unSubButtonContainer);
   li.addEventListener("mouseover", () => {
     toggleSubButton(element, subButtonContainer);
     toggleUnSubButton(element, unSubButtonContainer);
@@ -119,19 +117,20 @@ function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
 
 // 그리드 다음 페이지 전환
 function showNextGridPage() {
-  const curPage = document.getElementById(`page${now_grid_page}`);
-  now_grid_page > 3 ? (now_grid_page = 3) : (now_grid_page += 1);
-  const nextPage = document.getElementById(`page${now_grid_page}`);
-  curPage.style.display = "none";
-  nextPage.style.display = "grid";
-  showGridPageButton();
+  showGridPage(1);
 }
 
 // 그리드 이전 페이지 전환
 function showPrevGridPage() {
+  showGridPage(-1);
+}
+
+// 그리드 페이지 업데이트
+function showGridPage(increment) {
   const curPage = document.getElementById(`page${now_grid_page}`);
-  now_grid_page < 0 ? (now_grid_page = 0) : (now_grid_page -= 1);
+  now_grid_page += increment;
   const nextPage = document.getElementById(`page${now_grid_page}`);
+  now_grid_page = Math.max(0, Math.min(now_grid_page, 3));
   curPage.style.display = "none";
   nextPage.style.display = "grid";
   showGridPageButton();
