@@ -1,0 +1,22 @@
+/* font face */
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 700;
+    font-display: swap;
+    src: local("Pretendard Bold"),
+        url("/asset/font/woff2/Pretendard-Bold.subset.woff2") format("woff2"),
+        url("/asset/font/woff/Pretendard-Bold.subset.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-display: swap;
+    src: local("Pretendard Medium"),
+        url("/asset/font/woff2/Pretendard-Medium.subset.woff2") format("woff2"),
+        url("/asset/font/woff/Pretendard-Medium.subset.woff") format("woff");
+}
+
+* {
+    font-family: "Pretendard";
+}
