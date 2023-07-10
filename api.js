@@ -1,12 +1,11 @@
-export async function fetchData() {
-  const jsonData = await jsonfetch();
+export async function fetchNewsIconData() {
+  const jsonData = await fetchJsonFile("./Data/News_Icon.json");
   shuffle_id(jsonData);
-  console.log(jsonData);
   return jsonData;
 }
 
-async function jsonfetch() {
-  return fetch("./Data/grid_icon.json").then((response) => {
+async function fetchJsonFile(path) {
+  return fetch(path).then((response) => {
     return response.json();
   });
 }
