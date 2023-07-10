@@ -99,7 +99,7 @@ section {
 }
 
 .auto-rolling-animation {
-  animation: rolling 5s linear infinite;
+  animation: rolling 5s ease-in-out;
 }
 
 /* news stand*/
