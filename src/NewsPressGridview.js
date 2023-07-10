@@ -53,20 +53,15 @@ export default function NewsPressGridview({ $target, initialState }) {
     });
   };
 
-  const handleMoveToPrevPage = () => {
-    if (this.state.page <= PAGE_MIN_NUMBER) {
+  const validatePage = page => page >= PAGE_MIN_NUMBER && page <= PAGE_MAX_NUMBER;
+
+  const handleMovePage = newPage => {
+    console.log(newPage);
+
+    if (!validatePage(newPage)) {
       return;
     }
-
-    this.setState({ ...this.state, page: this.state.page - 1 });
-  };
-
-  const handleMoveToNextPage = () => {
-    if (this.state.page >= PAGE_MAX_NUMBER) {
-      return;
-    }
-
-    this.setState({ ...this.state, page: this.state.page + 1 });
+    this.setState({ ...this.state, page: newPage });
   };
 
   const checkShowPageButton = ($prevPageButton, $nextPageButton) => {
@@ -116,8 +111,10 @@ export default function NewsPressGridview({ $target, initialState }) {
     checkShowPageButton($prevPageButton, $nextPageButton);
 
     if (!isInit) {
-      $prevPageButton.addEventListener('click', handleMoveToPrevPage);
-      $nextPageButton.addEventListener('click', handleMoveToNextPage);
+      const { page } = this.state;
+
+      $prevPageButton.addEventListener('click', () => handleMovePage(page - 1));
+      $nextPageButton.addEventListener('click', () => handleMovePage(page + 1));
 
       isInit = true;
     }
