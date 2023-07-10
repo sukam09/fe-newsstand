@@ -9,7 +9,7 @@ const $leftBtn = document.querySelector('.newsstand--left-btn');
 
 async function initNewsStand() {
   const newsData = await getNewsData();
-  const datas = newsDatePaser(shuffle(newsData));
+  const datas = newsDataPaser(shuffle(newsData));
   paintNewsstand(datas);
   pagination(datas);
 }
@@ -51,7 +51,7 @@ function pagination(datas) {
   $leftBtn.addEventListener('click', handleLeftBtn);
 }
 
-function newsDatePaser(datas) {
+function newsDataPaser(datas) {
   return datas.map((data) => [data.name, data.src]);
 }
 
