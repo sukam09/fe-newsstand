@@ -1,73 +1,105 @@
-import { news_trend_left, news_trend_right } from "./trend_ news.js";
+import { news_trend_left, news_trend_right } from "./trend_news.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    getBanner();
-    window.setInterval(rollingCallback, 3000);
-});
-
-function rollingCallback() {
-    let bannerArr = document.querySelectorAll(".rolling_banner");
-    bannerArr.forEach((banner) => rollingBanner(banner));
+function createList(news) {
+    const list = document.createElement("ul");
+    list.classList.add("hot_list");
+    news.forEach((item) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.url;
+        const span = document.createElement("span");
+        span.classList.add("hot_press");
+        span.textContent = item.press;
+        const strong = document.createElement("p");
+        strong.classList.add("hot_title");
+        strong.textContent = item.title;
+        a.appendChild(span);
+        a.appendChild(strong);
+        li.appendChild(a);
+        list.appendChild(li);
+    });
+    return list;
 }
 
-function rollingBanner(banner) {
-    //.prev 클래스 삭제
-    let prev = banner.querySelector(".news_list .prev");
-    prev.classList.remove("prev");
+function showBanner() {
+    const banners = document.querySelectorAll(".rolling_banner");
 
-    //.current -> .prev
-    let current = banner.querySelector(".news_list .current");
-    current.classList.remove("current");
-    current.classList.add("prev");
-    //.next -> .current
-    let next = banner.querySelector(".news_list .next");
-    //다음 목록 요소가 널인지 체크
-    if (next.nextElementSibling == null) {
-        banner.querySelector(".news_list li:first-child").classList.add("next");
-    } else {
-        //목록 처음 요소를 다음 요소로 선택
-        next.nextElementSibling.classList.add("next");
-    }
-    next.classList.remove("next");
-    next.classList.add("current");
+    banners.forEach((banner) => {
+        createList(news_trend_left);
+        const list = createList(news_trend_left);
+        banner.appendChild(list);
+    });
 }
 
-// 리스트 하나 만들기
-function getNewsLi(press, title, url, idx) {
-    const new_list_div = document.createElement("div");
-    new_list_div.setAttribute("class", "list_div");
-    const new_list = document.createElement("li");
-    if (idx == 0) new_list.setAttribute("class", "current");
-    else if (idx == 1) new_list.setAttribute("class", "next");
-    else if (idx == 2) new_list.setAttribute("class", "prev");
+function updateBanner(banner) {
+    banner.style.animation = "roll-up 3s ease-in-out forwards";
 
-    const new_press = document.createElement("span");
-    new_press.innerHTML = press;
-
-    const new_news = document.createElement("a");
-    new_news.setAttribute("href", url);
-    new_news.innerHTML = title;
-
-    new_list_div.appendChild(new_press);
-    new_list_div.appendChild(new_news);
-
-    new_list.appendChild(new_list_div);
-    return new_list;
+    setTimeout(() => {
+        //if hover, stop animation
+        if (banner.style.animationPlayState === "paused") {
+            return;
+        }
+        banner.appendChild(banner.childNodes[0]);
+        banner.style.animation = "none";
+    }, 4000);
 }
 
-// 전체 리스트 만들기
-function getNewsUl(data) {
-    const news_list = document.createElement("ul");
-    news_list.setAttribute("class", "news_list");
+//hover event stop animation
+function hoverStop(banner) {
+    banner.style.animationPlayState = "paused";
+}
 
-    data.forEach((news, idx) => {
-        news_list.appendChild(getNewsLi(news.press, news.title, news.url, idx));
+function hoverStart(banner) {
+    banner.style.animationPlayState = "running";
+}
+
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function bannerMouseEvents() {
+    const left_banner =
+        document.getElementById("rollingBannerLeft").childNodes[0];
+    const right_banner =
+        document.getElementById("rollingBannerRight").childNodes[0];
+
+    left_banner.addEventListener("mouseover", function () {
+        hoverStop(left_banner);
     });
 
-    return news_list;
+    left_banner.addEventListener("mouseout", function () {
+        hoverStart(left_banner);
+    });
+
+    right_banner.addEventListener("mouseover", function () {
+        hoverStop(right_banner);
+    });
+
+    right_banner.addEventListener("mouseout", function () {
+        hoverStart(right_banner);
+    });
 }
 
-function getBanner() {
-    document.getElementById("rollingBannerLeft").appendChild(getNewsUl(news_trend_left));
-    document.getElementById("rollingBannerRight").appendChild(getNewsUl(news_trend_right));
+function controlBanner() {
+    const left_banner =
+        document.getElementById("rollingBannerLeft").childNodes[0];
+    const right_banner =
+        document.getElementById("rollingBannerRight").childNodes[0];
+
+    setInterval(() => {
+        updateBanner(left_banner);
+    }, 5000);
+    delay(1000).then(() => {
+        setInterval(() => {
+            updateBanner(right_banner);
+        }, 5000);
+    });
 }
+
+function init() {
+    showBanner();
+    bannerMouseEvents();
+    controlBanner();
+}
+
+init();
