@@ -1,3 +1,32 @@
+function appendRollingList() {
+  const rollingListContainer = document.getElementsByClassName(
+    "newsbanner__list-container"
+  );
+  rollingNewsContent.forEach((item, idx) => {
+    const bannerItem = createBannerItem(idx, item);
+    rollingListContainer[0].appendChild(bannerItem);
+  });
+}
+
+function createBannerItem(idx, content) {
+  const newItem = document.createElement("li");
+  newItem.innerHTML = content;
+  switch (idx) {
+    case 0:
+      newItem.className = "newsbanner__list newsbanner__list--prev";
+      break;
+    case 1:
+      newItem.className = "newsbanner__list newsbanner__list--now";
+      break;
+    case 2:
+      newItem.className = "newsbanner__list newsbanner__list--next";
+      break;
+    default:
+      newItem.className = "newsbanner__list";
+  }
+  return newItem;
+}
+
 // 롤링 애니메이션
 function rollingEvent() {
   // 이전 값 삭제

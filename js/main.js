@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   updateDate();
-  appendList();
+  appendGridList();
+  appendRollingList();
   var interval = window.setInterval(rollingEvent, 3000);
 });

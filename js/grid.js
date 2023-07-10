@@ -9,10 +9,9 @@ function shuffleArray(array) {
 }
 
 // 셔플된 리스트 그리드리스트에 append
-function appendList() {
+function appendGridList() {
   const gridContainerList = document.getElementsByClassName("grid_container");
   const shuffledArr = shuffleArray(pressObjArr);
-
   shuffledArr.forEach((element, idx) => {
     const id = Math.floor(idx / MAX_GRID_COUNT);
     const gridItem = createGridItem(element);
