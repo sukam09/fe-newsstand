@@ -1,5 +1,6 @@
 import { MEDIA } from './constants.js';
 import media_data from '../assets/data/media_data.js';
+import { subButton } from './components/button.js';
 
 // (임시) 구독한 언론사 배열
 const subscribed = [
@@ -10,20 +11,11 @@ let page = 0;
 
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
 
-const shuffle = array => {
+const shuffleArray = array => {
   array.sort(() => Math.random() - 0.5);
 };
 
 const setLogoList = () => {
-  const addSubButton = isSub => {
-    const subElement = document.createElement('div');
-    const subButton = document.createElement('button');
-    subElement.className = 'media-hover surface-alt';
-    subButton.className = 'button white-button';
-    subButton.innerHTML = isSub ? '구독하기' : '해지하기';
-    subElement.appendChild(subButton);
-    return subElement;
-  };
   const mediaLogo = document.querySelectorAll('.media_logo');
   const gridIndex = Array.from(
     { length: MEDIA.PAGE_SIZE },
@@ -46,7 +38,7 @@ const setLogoList = () => {
     // 구독 여부에 따라 구독하기 or 해지하기 추가
     imageElement.insertAdjacentElement(
       'afterend',
-      addSubButton(!subscribed.includes(logoIndex[id]))
+      subButton(!subscribed.includes(logoIndex[id]))
     );
   });
 };
@@ -101,7 +93,7 @@ const createGrid = () => {
 };
 
 const initGrid = () => {
-  shuffle(logoIndex);
+  shuffleArray(logoIndex);
   setLogoList();
   setArrow();
 };
