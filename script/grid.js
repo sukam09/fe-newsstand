@@ -2,6 +2,9 @@ import { MEDIA } from './constants.js';
 import media_data from '../assets/data/media_data.js';
 const arrow_left = document.querySelector('#arrow_wrapper_left');
 const arrow_right = document.querySelector('#arrow_wrapper_right');
+let interval1;
+let interval2;
+let timeout;
 const subscribed = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27,
@@ -84,6 +87,41 @@ const init = () => {
   shuffle(logoIndex);
   setLogoList();
   setArrow();
+  rollingHandler();
 };
+const startRollingFirst = () => {
+  interval1 = window.setInterval(() => rollingCallback('first'), 5000);
+}
+const startRollingSecond = () => {
+  interval2 = window.setInterval(() => rollingCallback('second'), 5000);
+}
+const rollingHandler = () => {
+  startRollingFirst();
+  timeout = setTimeout(startRollingSecond, 1000);
+  document.querySelector('.news_title_wrapper').addEventListener('mouseenter',function(){
+    window.clearInterval(interval1);
+    window.clearInterval(interval2);
+    window.clearTimeout(timeout);
+  })
+  document.querySelector('.news_title_wrapper').addEventListener('mouseleave',function(){
+    startRollingFirst();
+    timeout = setTimeout(startRollingSecond, 1000);
+  })
+}
+const rollingCallback = (location) => {
+  document.querySelector(`.news_title_wrapper.${location} .prev`).classList.remove('prev');
+  let current = document.querySelector(`.news_title_wrapper.${location} .current`);
+  current.classList.remove('current');
+  current.classList.add('prev');
+  let next = document.querySelector(`.news_title_wrapper.${location} .next`);
+  if(next.nextElementSibling == null){
+      document.querySelector(`.news_title_wrapper.${location} p:first-child`).classList.add('next');
+  }else{
+      next.nextElementSibling.classList.add('next');
+  }
+  next.classList.remove('next');
+  next.classList.add('current');
+}
+
 
 init();

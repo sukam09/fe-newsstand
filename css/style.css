@@ -48,10 +48,7 @@ article {
     border: var(--border-default);
     margin: 40px 0 32px;
     padding: 16px;
-}
-
-.news_title_wrapper {
-    margin-left: 10px;
+    gap : 16px;
 }
 
 /* main grid */
@@ -152,4 +149,67 @@ ul li:hover .media-hover {
     width: 100%;
     height: 100%;
     z-index: 9999;
+}
+
+
+/* article_wrapper 배너 롤링 */
+.rolling_wrapper{
+    position: relative;
+}
+/* 롤링 배너 */
+.news_title_wrapper{
+    position: relative;
+    width: 355px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+} 
+.news_title_wrapper p{
+    position: absolute;
+    top: -36px;
+    left: 0;
+}
+.news_title_wrapper a{
+    display: block;
+    display: -webkit-box;
+    text-decoration: none;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient:vertical;
+    overflow: hidden;
+    color: #000;
+}
+
+.news_stand_wrapper p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.news_title_wrapper p.prev{
+    top: 36px;
+    transition: top 0.5s ease;
+}
+.news_title_wrapper p.current{
+    top: 0;
+    transition: top 0.5s ease;
+}
+.news_title_wrapper p.next{
+    top: -36px;
+}
+.news_title_wrapper p a{
+    display: block;
+    display: -webkit-box;
+    text-decoration: none;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient:vertical;
+    overflow: hidden;
+    color: #000;
+}
+
+/* 반대 방향으로 진행 */
+.news_title_wrapper.reverse p.prev{
+    top: -36px;
+    transition: top 0.5s ease;
+}
+.news_title_wrapper.reverse p.next{
+    top: 36px;
 }
