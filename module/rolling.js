@@ -11,8 +11,8 @@ async function initRollingNews() {
 }
 
 function makeDomData() {
-  const first_news = document.querySelector("#first-news");
-  const second_news = document.querySelector("#second-news");
+  const first_news = document.querySelector("#first-news>div");
+  const second_news = document.querySelector("#second-news>div");
 
   for (let i = 0; i < 2; i++) {
     for (let j = 0; j < RollingNewsNum; j++) {
@@ -25,17 +25,17 @@ function makeDomData() {
         news_li.className = "prev-news";
       }
 
-      const news_press = document.createElement("a");
-      news_press.className = "press display-bold14";
-      news_press.innerHTML = rolling_news[RollingNewsNum * i + j].press;
-      news_press.href = rolling_news[RollingNewsNum * i + j].url;
+      // const news_press = document.createElement("a");
+      // news_press.className = "press display-bold14";
+      // news_press.innerHTML = rolling_news[RollingNewsNum * i + j].press;
+      // news_press.href = rolling_news[RollingNewsNum * i + j].url;
 
       const news_title = document.createElement("a");
       news_title.className = "news-title available-medium14";
       news_title.innerHTML = rolling_news[RollingNewsNum * i + j].title;
       news_title.href = rolling_news[RollingNewsNum * i + j].url;
 
-      news_li.appendChild(news_press);
+      // news_li.appendChild(news_press);
       news_li.appendChild(news_title);
       if (i === 0) {
         first_news.appendChild(news_li);
