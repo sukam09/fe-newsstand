@@ -5,11 +5,12 @@ import {
     handleClickNextPageButton,
     handleClickPrevPageButton,
 } from "./news-display/utils.js";
-import { infiniteRolling } from "./news-bar/rolling.js";
+import { setNewsBarRolling, infiniteRolling } from "./news-bar/rolling.js";
 
 getDate();
 initNewsPressData();
 handleClickTitleIcon();
 handleClickPrevPageButton();
 handleClickNextPageButton();
+setNewsBarRolling();
 infiniteRolling();
