@@ -1,14 +1,24 @@
 import { date } from "../utils/date.js";
-import { createRandomNewsstand } from "../newsstand/newsstandSystem.js";
+import { paintRandomNewsstand } from "../newsstand/newsstandSystem.js";
+import { paintSubView } from "../newsstand/subView.js";
+import { paintSubViewRight } from "../newsstand/subviewRight.js";
+
+const test = document.getElementsByClassName("main__rolling-title-right");
 
 // 기능
-headerRender();
-mainRender();
+renderHeader();
+renderMain();
+renderSubview();
 
-function headerRender() {
+function renderHeader() {
   date();
 }
 
-function mainRender() {
-  createRandomNewsstand();
+function renderSubview() {
+  paintSubView();
+  paintSubViewRight();
+}
+
+function renderMain() {
+  paintRandomNewsstand();
 }

@@ -10,28 +10,53 @@
     <div id="root">
       <header id="header" role="banner">
         <div class="header__view">
-          <div class="header—logo">
+          <div class="header—-logo">
             <img src="./assets/basicIcon/Symbol.svg" alt="" />
           </div>
-          <h1 class="header—title">
+          <h1 class="header—-title">
             <a onClick="window.location.reload()">뉴스스탠드</a>
           </h1>
         </div>
-        <div class="header—date">2023. 07.05 수요일</div>
+        <div class="header—-date">2023. 07.05 수요일</div>
       </header>
       <main id="main" role="contents">
         <section class="main__subview">
           <div class="main__content">
-            <div class="main-—corp-name">연합뉴스</div>
-            <div class="main—-news-box">
-              삼성전자 2분기 영업익 6천억…사실상 '바닥' 확인 평가
-            </div>
+            <ul class="main__rolling-corp">
+              <li
+                id="main__first-corp"
+                class="main-—corp-name card_sliding"
+              ></li>
+              <li id="main__second-corp" class="main-—corp-name"></li>
+              <li id="main__third-corp" class="main-—corp-name"></li>
+            </ul>
+            <ul class="main__rolling-title main__rolling-title-left">
+              <li
+                id="main__first-title"
+                class="main—-news-box card_sliding"
+              ></li>
+              <li id="main__second-title" class="main—-news-box"></li>
+              <li id="main__third-title" class="main—-news-box"></li>
+            </ul>
           </div>
+
           <div class="main__content">
-            <div class="main-—corp-name">해럴드경제</div>
-            <div class="main—-news-box">
-              지난달 '천둥·번개친 날' 역대 1위…기온은 역대 4위
-            </div>
+            <ul class="main__rolling-corp main__rolling-corp-right">
+              <li
+                id="main__first-corp-right"
+                class="main-—corp-name card_sliding"
+              ></li>
+              <li id="main__second-corp-right" class="main-—corp-name"></li>
+              <li id="main__third-corp-right" class="main-—corp-name"></li>
+            </ul>
+            <ul class="main__rolling-title main__rolling-title-right">
+              <li
+                id="main__first-title-right"
+                class="main—-news-box card_sliding"
+              ></li>
+              <li id="main__second-title-right" class="main—-news-box"></li>
+              <li id="main__third-title-right" class="main—-news-box"></li>
+            </ul>
           </div>
         </section>
         <section id="newsstand">
@@ -72,4 +97,5 @@
   </body>
 
   <script src="./js/core/app.js" type="module"></script>
+  <script src="./js/newsstand/subView.js" type="module"></script>
 </html>

@@ -14,13 +14,13 @@
   flex: 0.5;
 }
 
-.header—title {
+.header—-title {
   margin-left: 3%;
 }
-.header—title a {
+.header—-title a {
   cursor: pointer;
 }
-.header—date {
+.header-—date {
   display: flex;
   flex: 0.5;
   align-items: center;

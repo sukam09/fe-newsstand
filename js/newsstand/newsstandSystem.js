@@ -12,7 +12,7 @@ let newsstandList = Array.from({ length: NEWS_CONTENTS }, () => 1).map(
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 
-function createRandomNewsstand() {
+export function paintRandomNewsstand() {
   newsstandList = shuffle(newsstandList);
 
   paintNews();
@@ -67,5 +67,3 @@ function isBtnDisabled() {
     ? rightBtn.classList.add("btn-disabled")
     : rightBtn.classList.remove("btn-disabled");
 }
-
-export { createRandomNewsstand };
