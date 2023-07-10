@@ -473,10 +473,5 @@
     "id": 95,
     "name": "에이블뉴스",
     "logo": "./icons/light/95.png"
-  },
-  {
-    "id": 96,
-    "name": "YTN 사이언스",
-    "logo": "./icons/light/96.png"
   }
 ]

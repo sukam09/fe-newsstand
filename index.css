@@ -106,9 +106,8 @@ main.main {
   grid-template-rows: repeat(4, minmax(97px, auto));
   grid-auto-flow: dense;
   place-items: center;
-  border-right: 1px black solid;
-  border-bottom: 1px black solid;
   margin-top: 20px;
+  grid-gap: 1px;
 }
 
 #main-grid > div {
@@ -117,9 +116,9 @@ main.main {
   width: 100%;
   align-items: center;
   justify-content: center;
-  border-left: 1px black solid;
-  border-top: 1px black solid;
+  border: 1px black solid;
 }
+
 
 #aside-left {
   display: flex;
@@ -150,6 +149,11 @@ section.main {
   cursor: pointer;
 }
 
+.rolling-banner:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 #main-div-02 {
   display: flex;
   flex-direction: row;
@@ -164,3 +168,9 @@ input[type="radio"]:checked + label {
 input[type="radio"]:checked + img {
   border: 2px blue solid;
 }
+
+/*   {
+    "id": 96,
+    "name": "YTN 사이언스",
+    "logo": "./icons/light/96.png"
+  } */

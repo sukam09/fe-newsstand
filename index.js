@@ -1,9 +1,11 @@
 import logoAll from "./news_image.json" assert { type: "json" };
 import news_article from "./news_article.json" assert { type: "json" };
-let logoSubscribe;
+
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
 let currentPageNumber = 0;
+let firstBannerIndex = 1;
+let secondBannerIndex = 6;
 const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
 
@@ -118,37 +120,60 @@ function clickLeftAsideButton() {
 }
 
 function rollingBanner() {
-  addRollingData();
-  let firstBannerIndex = 1;
+  addInitRollingData();
   addEventListener("DOMContentLoaded", () => {
-    let interval = window.setInterval(() => {
-      changeBanner(firstBannerIndex, 1);
-      firstBannerIndex++;
-      if (firstBannerIndex == 5) firstBannerIndex = 0;
-      let secondBannerIndex = firstBannerIndex + 5;
-      setTimeout(() => {
-        changeBanner(secondBannerIndex, 2);
-      }, 2000);
-    }, 5000);
+    let interval1 = setInterval(rollingInterval, 5000, 1);
+    let interval2 = setInterval(rollingInterval, 6000, 2);
+    addRollingHoverEvent(interval1, interval2);
   });
 }
 
-function changeBanner(index, number) {
-  let oldBanner = document.getElementById(`rolling-banner-0${number}`)
+function addRollingHoverEvent(interval1, interval2) {
+  let onHoverRolling1 = document.getElementById("rolling-banner-01");
+  let onHoverRolling2 = document.getElementById("rolling-banner-02");
+  onHoverRolling1.addEventListener("mouseover", () => {
+    clearInterval(interval1);
+  });
+  onHoverRolling1.addEventListener("mouseleave", () => {
+    interval1 = setInterval(rollingInterval, 5000, 1);
+  });
+  onHoverRolling2.addEventListener("mouseover", () => {
+    clearInterval(interval2);
+  });
+  onHoverRolling2.addEventListener("mouseleave", () => {
+    interval2 = setInterval(rollingInterval, 5000, 2);
+  });
+}
+
+function rollingInterval(bannerNumber) {
+  if (bannerNumber == 1) {
+    changeBanner(firstBannerIndex, bannerNumber);
+    firstBannerIndex++;
+    if (firstBannerIndex == 5) firstBannerIndex = 0;
+  } else {
+    changeBanner(secondBannerIndex, bannerNumber);
+    secondBannerIndex++;
+    if (secondBannerIndex == 10) secondBannerIndex = 5;
+  }
+}
+
+function changeBanner(index, bannerNumber) {
+  const oldBanner = document.getElementById(`rolling-banner-0${bannerNumber}`)
     .childNodes[1];
-  let newBanner = document.createElement("div");
+  const newBanner = document.createElement("div");
   newBanner.innerText = news_article[0].article[index];
   newBanner.style.transition = "transform 0.5s";
   newBanner.style.transform = "translateY(100%)";
+  newBanner.className = "rolling-banner";
   document
-    .getElementById(`rolling-banner-0${number}`)
+    .getElementById(`rolling-banner-0${bannerNumber}`)
     .replaceChild(newBanner, oldBanner);
   setTimeout(function () {
     newBanner.style.transform = "translateY(0)";
   }, 10);
 }
 
-function addRollingData() {
+function addInitRollingData() {
   let firstRollingData = document.createElement("div");
   firstRollingData.innerHTML = news_article[0].article[0];
   let secondRollingData = document.createElement("div");
