@@ -38,20 +38,34 @@ header {
 }
 
 .news-bar-item {
-    display: flex;
-    gap: 16px;
     width: 50%;
-    padding: 16px;
+    height: 49px;
+    padding: 10px 16px;
     background: var(--color-surface-alt);
     border: 1px solid var(--color-border-default);
 }
 
-.news-bar-item > .news-press {
+.news-bar-rolling {
+    height: 28px;
+    overflow: hidden;
+}
+
+.news-bar-rolling > ul > li {
+    display: flex;
+    gap: 16px;
+    padding: 6px 0;
+}
+
+.news-bar-press {
     color: var(--color-text-strong);
 }
 
-.news-bar-item > .news-headline {
+.news-bar-headline {
+    width: 360px;
     color: var(--color-text-default);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .news-press-display {
