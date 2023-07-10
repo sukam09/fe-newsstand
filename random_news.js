@@ -1,16 +1,10 @@
+import { fetchPressData, fetchHotTopicData } from "./utils.js";
+
 // rowSize, colSize, maxPage, currentPage is main size variable
 const rowSize = 6;
 const colSize = 4;
 const maxPage = 3;
 let currentPage = 0;
-
-async function fetchPressData() {
-    const data = await fetch("./data/press_data.json")
-        .then((res) => res.json())
-        .then((data) => data.sort(() => Math.random() - 0.5));
-    // then return data
-    return data;
-}
 
 // move page
 function movePage(data) {
