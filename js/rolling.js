@@ -33,7 +33,9 @@ const setRollingAndStop = (rollingElement, index) => {
 };
 
 const setRolling = () => {
-  const $rollingTarget = document.querySelectorAll(".rolling > ul");
+  const $rollingTarget = document.querySelectorAll(
+    ".newsflash__content_rolling > ul"
+  );
   $rollingTarget.forEach((elem, index) => setRollingAndStop(elem, index));
 };
 

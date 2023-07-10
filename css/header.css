@@ -1,29 +1,29 @@
 /* header */
 
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header .header__title__logo {
-    display: inline-block;
-    vertical-align: middle;
+.header__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 136px;
+  font-size: 24px;
+  white-space: nowrap;
 }
 
-.header .header__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 136px;
-    font-size: 24px;
-    white-space: nowrap;
+.header__title__logo {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.header .header__date {
-    position: relative;
-    top: 8.5px;
-    color: #5f6e76;
-    font-size: 16px;
+.header__date {
+  position: relative;
+  top: 8.5px;
+  color: #5f6e76;
+  font-size: 16px;
 }
