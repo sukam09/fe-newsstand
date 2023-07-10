@@ -1,7 +1,11 @@
+const NEWS_CONTENTS = 96;
+const VIEWED_CONTENS = 24;
+const LAST_PAGE = 3;
+
 class newsstandSystem {
   constructor() {
     (this.selectedPage = 0),
-      (this.newsstandList = Array.from({ length: 96 }, () => 1).map(
+      (this.newsstandList = Array.from({ length: NEWS_CONTENTS }, () => 1).map(
         (_, index) => `${++index}.png`
       ));
     (this.rightBtn = document.querySelector(".newsstand--right-btn")),
@@ -16,8 +20,8 @@ class newsstandSystem {
   paintNews() {
     const ul = document.querySelector(".newsstand-area—six-col-list");
     for (
-      let idx = this.selectedPage * 24;
-      idx < this.selectedPage * 24 + 24;
+      let idx = this.selectedPage * VIEWED_CONTENS;
+      idx < this.selectedPage * VIEWED_CONTENS + VIEWED_CONTENS;
       idx++
     ) {
       const li = document.createElement("li");
@@ -61,7 +65,7 @@ class newsstandSystem {
     this.selectedPage
       ? this.leftBtn.classList.remove("btn-disabled")
       : this.leftBtn.classList.add("btn-disabled");
-    this.selectedPage === 3
+    this.selectedPage === LAST_PAGE
       ? this.rightBtn.classList.add("btn-disabled")
       : this.rightBtn.classList.remove("btn-disabled");
   }
