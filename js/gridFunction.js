@@ -1,7 +1,7 @@
 import presses from "../assets/light-media.js";
+import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
 let grid_page_count = 0;
 let grid_view_selected = true;
-console.log(presses);
 
 const PAGE_SIZE = 24;
 
@@ -9,16 +9,20 @@ const shuffle = () => Math.random() - 0.5;
 let shuffled_presses = [...presses].sort(shuffle);
 
 function appendPressInGrid(press) {
-  const image = document.createElement("img");
-  image.src = `${press.src}`;
-  const sub = document.createElement("img");
-  image.classList.add("original");
-  sub.src = `./img/icons/Button.svg`;
-  sub.classList.add("sub");
   const list = document.createElement("li");
   list.classList.add("press-item");
-  list.appendChild(image);
-  list.appendChild(sub);
+  initGridItemEvent(list);
+  const image = document.createElement("img");
+  image.src = `${press.src}`;
+  image.classList.add("original");
+  const button = document.createElement("button");
+  button.classList.add("hidden");
+  preventButtonClick(button);
+  const sub_img = document.createElement("img");
+  sub_img.src = press.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+  button.append(sub_img);
+
+  list.append(image, button);
   document.getElementById("press-list").appendChild(list);
 }
 
@@ -70,7 +74,6 @@ document.getElementById("grid-prev").addEventListener("click", () => {
 
 function initPressGrid() {
   let shuffled_presses = [...presses].sort(shuffle);
-  console.log(shuffled_presses);
   const slice_shuffled_presses = shuffled_presses.slice(0, PAGE_SIZE);
   slice_shuffled_presses.forEach(press => {
     appendPressInGrid(press);
