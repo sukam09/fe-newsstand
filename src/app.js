@@ -8,7 +8,8 @@ export default function App({ $app }) {
   new RecentNewsRollingView({
     $target: $app,
     initialState: {
-      headlineIndex: 0,
+      leftHeadlineIndex: 0,
+      rightHeadlineIndex: 0,
       leftHeadlines: [
         `정부, '처리수' 표현에 "문제없어", '핵폐수'엔 "불안감 내용 부적절"`,
         `IAEA 최종보고서 반발…전국 곳곳서 후쿠시마 오염수 방류 규탄`,
