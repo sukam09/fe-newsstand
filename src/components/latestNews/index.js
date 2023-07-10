@@ -3,11 +3,10 @@ import LatestNewsComponent from './LatestNewsComponent.js';
 
 export default class LatestNews extends Component {
   template() {
-    return `<div class='auto-rolling-news'></div>
-            <div class='auto-rolling-news'></div>
+    return `<div class='auto-rolling-news '></div>
+            <div class='auto-rolling-news '></div>
             `;
   }
-
   mounted() {
     const $newsLists = this.$target.querySelectorAll('.auto-rolling-news');
 
