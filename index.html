@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Stand</title>
     <link href="./style.css" rel="stylesheet" />
-    <script src="./app.js" defer></script>
+    <script src="./src/app.js" defer type="module"></script>
   </head>
   <body>
     <div class="container">
@@ -31,17 +31,13 @@
           <span class="display-medium16 container-header_date"></span>
         </div>
         <div class="container-news-bar">
-          <div>
+          <div class="container-news-bar_wrap" id="left-rolling-box">
             <h2 class="display-bold14">연합뉴스</h2>
-            <a class="available-medium14" href="#"
-              >[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</a
-            >
+            <ul></ul>
           </div>
-          <div>
+          <div class="container-news-bar_wrap" id="right-rolling-box">
             <h2 class="display-bold14">연합뉴스</h2>
-            <a class="available-medium14" href="#"
-              >[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</a
-            >
+            <ul></ul>
           </div>
         </div>
       </header>
