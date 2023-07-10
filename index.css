@@ -1,11 +1,10 @@
+:root {
+    --hot-topic-left-length: 4;
+}
 body {
     display: flex;
     justify-content: center;
 }
-
-/* .grid_border {
-    border: 1px solid black;
-} */
 
 .container_row {
     display: grid;
@@ -49,7 +48,7 @@ body {
     height: 22px;
 }
 
-.sec_trend_news {
+.sec_hot_topics {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -62,43 +61,44 @@ body {
     overflow: hidden;
     border: 1px solid #d2dae0;
     background-color: #f5f7f9;
-    height: 49px;
+    height: 47px;
 }
 
-.rolling_banner li {
-    position: absolute;
-    top: -49px;
-    left: 0;
+.hot_list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding: 0 0 0 16px;
 }
 
-/* 이전, 현재, 다음 롤링 배너 표시 */
-.rolling_banner li.prev {
-    top: 49px;
-    transition: top 1s ease;
-}
-
-.rolling_banner li.current {
-    top: 0;
-    transition: top 1s ease;
-}
-
-.rolling_banner li.next {
-    top: -49px;
-}
-
-.list_div {
+.hot_list li {
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
     height: 49px;
-    font-size: 14px;
-    padding-left: 10px;
 }
 
-.list_div a {
+.hot_list li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
+    font-size: 12px;
+    gap: 8px;
+}
+
+.hot_list li a span {
+    color: #1c1e1f;
+    font-weight: 700;
+}
+
+.hot_list li a p {
     color: #5f6e76;
+    font-weight: 500;
+}
+.hot_list li a p:hover {
+    text-decoration: underline;
 }
 
 .nav_container span,
@@ -174,4 +174,13 @@ body {
 .option_press_active {
     font-weight: bold;
     color: #14212b;
+}
+
+@keyframes roll-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-25%);
+    }
 }
