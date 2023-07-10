@@ -1,4 +1,5 @@
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", function () {
   updateDate();
   appendList();
+  rollingEvent();
 });

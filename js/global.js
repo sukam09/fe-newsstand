@@ -1,3 +1,11 @@
+// 롤링 애니메이션
+function rollingEvent() {
+  document.querySelector(".rolling_list .prev").classList.remove("prev");
+
+  let now = document.querySelector(".rolling_list .now");
+  now.classList.remove("");
+}
+
 // 그리드 뷰로 전환
 function changeToGrid() {
   const list_button = document.getElementsByClassName("list_button")[0];
@@ -64,7 +72,7 @@ function changeToList() {
 // 오늘 날짜 update
 function updateDate() {
   let today = new Date();
-  const dateHtml = document.getElementsByClassName("date")[0];
+  const dateHtml = document.getElementsByClassName("container__header_date")[0];
   const options = {
     year: "numeric",
     month: "2-digit",

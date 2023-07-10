@@ -7,188 +7,208 @@
     <link rel="stylesheet" href="./style/gridView.css" />
     <link rel="stylesheet" href="./style/listView.css" />
     <title>뉴스 스탠드</title>
-    <script src="pressObj.js"></script>
+    <script src="./constant/pressObj.js"></script>
+    <script src="./constant/newsContents.js"></script>
   </head>
   <body>
     <div class="container">
-      <section class="title_section flex_row">
-        <div class="title_container flex_row">
-          <img class="title_logo" src="./assets/images/logo.png" alt="" />
-          <h1 class="title">뉴스스탠드</h1>
+      <header class="container__header flex_row">
+        <div class="container__header__main flex_row">
+          <img
+            class="container__header__main__logo"
+            src="./assets/images/logo.png"
+            alt="" />
+          <h1 class="container__header__main__title">뉴스스탠드</h1>
         </div>
-        <span class="date"></span>
-      </section>
-      <section class="summary_section flex_row">
-        <div class="summary_container flex_row">
-          <h2>연합뉴스</h2>
-          <ul class="rolling_list">
-            <li class="prev">
+        <span class="container__header_date"></span>
+      </header>
+      <section class="banner_section flex_row">
+        <wrap class="newsbanner flex_row">
+          <h2 class="newsbanner__title">연합뉴스</h2>
+          <ul class="newsbanner__list-container">
+            <li class="newsbanner__list newsbanner__list--prev">
               [1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
             </li>
-            <li class="now">
+            <li class="newsbanner__list newsbanner__list--now">
               [2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
             </li>
-            <li class="next">
+            <li class="newsbanner__list newsbanner__list--next">
               [3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
             </li>
-            <li>[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</li>
-            <li>[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</li>
+            <li class="newsbanner__list">
+              [4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
+            </li>
+            <li class="newsbanner__list">
+              [5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
+            </li>
           </ul>
-        </div>
-        <div class="summary_container flex_row">
-          <h2>연합뉴스</h2>
+        </wrap>
+        <div class="newsbanner flex_row">
+          <h2 class="newsbanner__title">연합뉴스</h2>
           <span>[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</span>
         </div>
       </section>
       <section class="main_section">
-        <div class="main_header flex_row">
-          <div class="main_title_container flex_row">
-            <h2>전체 언론사</h2>
-            <span>내가 구독한 언론사</span>
-          </div>
-          <div class="view_button_container flex_row">
+        <header class="main_section__header flex_row">
+          <wrapper class="main_section__header__title flex_row">
+            <h2 class="main_section__header__title--all">전체 언론사</h2>
+            <span class="main_section__header__title--sub"
+              >내가 구독한 언론사</span
+            >
+          </wrapper>
+          <wrapper class="main_section__header__button-wrapper flex_row">
             <img
               class="list_button"
               src="./assets/icons/list_off.png"
               alt=""
-              onclick="changeToList();"
-            />
+              onclick="changeToList();" />
             <img
               class="grid_button"
               src="./assets/icons/grid_on.png"
               alt=""
-              onclick="changeToGrid();"
-            />
-          </div>
-        </div>
+              onclick="changeToGrid();" />
+          </wrapper>
+        </header>
         <div class="main_container">
           <img
             src="./assets/icons/leftbutton.png"
             class="left_grid_button"
             alt=""
-            onclick="showPrevGridPage()"
-          />
+            onclick="showPrevGridPage()" />
           <img
             src="./assets/icons/leftbutton.png"
             class="left_list_button"
             alt=""
-            onclick=""
-          />
+            onclick="" />
           <div class="main_content">
             <ul class="grid_container" id="page0"></ul>
             <ul class="grid_container" id="page1"></ul>
             <ul class="grid_container" id="page2"></ul>
             <ul class="grid_container" id="page3"></ul>
             <div class="list_container">
-              <div class="category_container">
-                <ul class="category_list flex_row">
-                  <li class="clicked">
-                    <span> 종합/경제 </span>
-                    <span class="page_count">
+              <header class="category_container_header">
+                <ul class="category_list_container flex_row">
+                  <li class="category_list category_list--clicked">
+                    <span class="category_list__title"> 종합/경제 </span>
+                    <wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                    </span>
+                    </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> 방송/통신 </span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> 방송/통신 </span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                    </span>
+                    </wrapper>
                     <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> IT</span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> IT</span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                      <div class="progressbar"></div>
-                    </span>
+                    </wrapper>
+                    <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> 영자지</span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> 영자지</span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                      <div class="progressbar"></div>
-                    </span>
+                    </wrapper>
+                    <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> 스포츠/연예</span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> 스포츠/연예</span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                      <div class="progressbar"></div>
-                    </span>
+                    </wrapper>
+                    <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> 매거진/전문지</span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> 매거진/전문지</span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                      <div class="progressbar"></div>
-                    </span>
+                    </wrapper>
+                    <div class="progressbar"></div>
                   </li>
-                  <li>
-                    <span> 지역</span
-                    ><span class="page_count">
+                  <li class="category_list">
+                    <span class="category_list__title"> 지역</span
+                    ><wrapper class="page_count_wrapper">
                       <span class="now_page">1 </span>
                       <span class="all_page">/ 81</span>
-                    </span>
+                    </wrapper>
+                    <div class="progressbar"></div>
                   </li>
                 </ul>
-              </div>
-              <div class="news_info flex_column">
-                <div class="news_info_header flex_row">
-                  <img src="./assets/images/img11.png" alt="" />
-                  <span>2023.07.06 19:00 편집</span>
-                  <button>+ 구독하기&#32;</button>
-                </div>
-                <div class="news_info_body flex_row">
+              </header>
+              <wrapper class="list_container__wrapper flex_column">
+                <header class="list_container__wrapper__header flex_row">
+                  <img
+                    class="list_container__wrapper__header__logo"
+                    src="./assets/images/img11.png"
+                    alt="" />
+                  <span class="list_container__wrapper__header__time"
+                    >2023.07.06 19:00 편집</span
+                  >
+                  <button class="list_container__wrapper__header__button">
+                    + 구독하기&#32;
+                  </button>
+                </header>
+                <wrapper class="list_container__wrapper__main flex_row">
                   <div class="topic flex_column">
                     <img
                       src="./assets/images/dog.jpeg"
                       alt=""
                       width="320px"
-                      height="200px"
-                    />
+                      height="200px" />
                     <span
                       >봇물처럼 터지는 공공요금 인상…꼭 지금이어야 하나</span
                     >
                   </div>
-                  <div class="news_list_container flex_column">
-                    <ul class="news_list flex_column">
-                      <li>
+                  <wrapper class="news_list_container__wrapper flex_column">
+                    <ul class="news_list__container flex_column">
+                      <li class="news_list">
                         [단독] 美복권 키오스크 "불법"인데…정부 방치에 '우후죽순'
                       </li>
-                      <li>서울 버스·지하철도 4월부터 '쑥'…"인상 철회" 촉구</li>
-                      <li>SM 인수 카카오, 하이브 등장에 '닭 쫒던 개'</li>
-                      <li>이자 선택권 생기는 보험계약대출…득실 따져봤습니다</li>
-                      <li>
+                      <li class="news_list">
+                        서울 버스·지하철도 4월부터 '쑥'…"인상 철회" 촉구
+                      </li>
+                      <li class="news_list">
+                        SM 인수 카카오, 하이브 등장에 '닭 쫒던 개'
+                      </li>
+                      <li class="news_list">
+                        이자 선택권 생기는 보험계약대출…득실 따져봤습니다
+                      </li>
+                      <li class="news_list">
                         [단독] 中 판매 부진 못 견딘 현대차…창저우 공장 철수 검토
                       </li>
-                      <li>'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'</li>
+                      <li class="news_list">
+                        '쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'
+                      </li>
                     </ul>
-                    <small>SBS Biz 언론사에서 직접 편집한 뉴스입니다.</small>
-                  </div>
-                </div>
-              </div>
+                    <small class="news_list_detail"
+                      >SBS Biz 언론사에서 직접 편집한 뉴스입니다.</small
+                    >
+                  </wrapper>
+                </wrapper>
+              </wrapper>
             </div>
           </div>
-
           <img
             src="./assets/icons/rightbutton.png"
             class="right_grid_button"
             alt=""
-            onclick="showNextGridPage()"
-          />
+            onclick="showNextGridPage()" />
           <img
             src="./assets/icons/rightbutton.png"
             class="right_list_button"
             alt=""
-            onclick=""
-          />
+            onclick="" />
         </div>
       </section>
     </div>
