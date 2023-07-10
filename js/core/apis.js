@@ -3,5 +3,9 @@ async function getNewsData() {
     return response.json();
   });
 }
-
-export { getNewsData };
+async function getRollingData() {
+  return await fetch('./rollingData.json').then((response) => {
+    return response.json();
+  });
+}
+export { getNewsData, getRollingData };
