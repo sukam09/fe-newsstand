@@ -30,13 +30,13 @@ function optionShowMain() {
         option.addEventListener("click", () => {
             show_options.main = option.id;
             if (option.id === "option_symbol_main") {
-                option.src = "./icons/option_symbol_main_active.png";
+                option.src = "./public/icons/option_symbol_main_active.png";
                 document.getElementById("option_list_main").src =
-                    "./icons/option_list_main.png";
+                    "./public/icons/option_list_main.png";
             } else {
-                option.src = "./icons/option_list_main_active.png";
+                option.src = "./public/icons/option_list_main_active.png";
                 document.getElementById("option_symbol_main").src =
-                    "./icons/option_symbol_main.png";
+                    "./public/icons/option_symbol_main.png";
             }
             // here main change ...
         });

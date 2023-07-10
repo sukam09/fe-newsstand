@@ -1,21 +1,32 @@
-const shuffledData = news_data.slice().sort(() => Math.random() - 0.5);
+// rowSize, colSize, maxPage, currentPage is main size variable
 const rowSize = 6;
 const colSize = 4;
 const maxPage = 3;
 let currentPage = 0;
 
-//onClick event
-document.querySelector(".left_arrow").addEventListener("click", () => {
-    currentPage -= 1;
-    RenderNews(shuffledData);
-});
-document.querySelector(".right_arrow").addEventListener("click", () => {
-    currentPage += 1;
-    RenderNews(shuffledData);
-});
+async function fetchPressData() {
+    const data = await fetch("./data/press_data.json")
+        .then((res) => res.json())
+        .then((data) => data.sort(() => Math.random() - 0.5));
+    // then return data
+    return data;
+}
 
-function RenderNews(shuffledData) {
-    let news_data_container = document.querySelector(".main_news_container");
+// move page
+function movePage(data) {
+    document.querySelector(".left_arrow").addEventListener("click", () => {
+        currentPage -= 1;
+        renderNews(data);
+    });
+    document.querySelector(".right_arrow").addEventListener("click", () => {
+        currentPage += 1;
+        renderNews(data);
+    });
+}
+
+// render news
+function renderNews(shuffledData) {
+    const news_data_container = document.querySelector(".main_news_container");
     let cnt = currentPage * 24;
     news_data_container.innerHTML = "";
     toggleArrow(currentPage);
@@ -36,6 +47,7 @@ function RenderNews(shuffledData) {
     }
 }
 
+// toggle arrow
 function toggleArrow() {
     switch (currentPage) {
         case 0:
@@ -54,7 +66,12 @@ function toggleArrow() {
 }
 
 function init() {
-    RenderNews(shuffledData);
+    const promise_data = fetchPressData();
+
+    promise_data.then((data) => {
+        renderNews(data);
+        movePage(data);
+    });
 }
 
 init();
