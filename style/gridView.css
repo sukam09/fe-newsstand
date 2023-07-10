@@ -37,12 +37,14 @@
   top: 50%;
   left: -48px;
   transform: translate(0%, -50%);
+  cursor: pointer;
 }
 .right_grid_button {
   position: absolute;
   top: 50%;
   right: -48px;
   transform: translate(0%, -50%);
+  cursor: pointer;
 }
 
 /* sub buttons */

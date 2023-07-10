@@ -25,6 +25,7 @@ section {
 }
 
 .title_container {
+  cursor: pointer;
   gap: 8px;
 }
 img.title_logo {

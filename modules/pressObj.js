@@ -296,3 +296,10 @@ export let pressObjArr = [
     isSub: false,
   },
 ];
+
+export function shufflePress() {
+  for (let i = pressObjArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pressObjArr[i], pressObjArr[j]] = [pressObjArr[j], pressObjArr[i]];
+  }
+}

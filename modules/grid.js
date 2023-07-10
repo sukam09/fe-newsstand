@@ -2,26 +2,11 @@ import { pressObjArr } from "./pressObj.js";
 
 export let gridPage = 0;
 const NUM_IN_A_GRID = 24;
-const PRESS_LEN = pressObjArr.length;
 const MAX_PAGE = 4;
-
-// 언론사 랜덤 셔플
-export function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// 셔플된 리스트 생성
-// export function appendList() {
-//   const pressObjArr = shuffleArray(pressObjArr);
-// }
 
 export function initGrid() {
   const mainContent = document.getElementsByClassName("main_content")[0];
-  console.log(MAX_PAGE, NUM_IN_A_GRID);
+  const gridButton = document.getElementById("grid_button");
   for (let i = 0; i < MAX_PAGE; i++) {
     const gridContainer = document.createElement("ul");
     gridContainer.id = `grid_page_${i}`;
@@ -35,7 +20,7 @@ export function initGrid() {
     }
     mainContent.appendChild(gridContainer);
   }
-  console.log(mainContent);
+  gridButton.className = "clicked";
 }
 
 export function showGridPage(page) {

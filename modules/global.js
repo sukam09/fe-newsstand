@@ -1,7 +1,7 @@
 import { gridPage, showGridPageButton } from "./grid.js";
 
 // 그리드 뷰로 전환
-export function changeToGrid() {
+export function handleGridButton() {
   const list_button = document.getElementById("list_button");
   const grid_button = document.getElementById("grid_button");
   const list_container = document.getElementsByClassName("list_container")[0];
@@ -33,7 +33,7 @@ export function changeToGrid() {
 }
 
 // 리스트 뷰로 변환
-export function changeToList() {
+export function handleListButton() {
   const list_button = document.getElementById("list_button");
   const grid_button = document.getElementById("grid_button");
   const list_container = document.getElementsByClassName("list_container")[0];
@@ -64,10 +64,8 @@ export function changeToList() {
 
 // 오늘 날짜 update
 export function updateDate() {
-  console.log("test");
   let today = new Date();
   const dateHtml = document.getElementsByClassName("date")[0];
-  console.log(dateHtml);
   const options = {
     year: "numeric",
     month: "2-digit",
@@ -77,4 +75,8 @@ export function updateDate() {
 
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
+}
+
+export function handleLogoButton() {
+  location.reload();
 }
