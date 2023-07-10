@@ -1,0 +1,61 @@
+#newsstand {
+  position: relative;
+  height: 400px;
+}
+
+.newsstand__media-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.newsstand__tab {
+  display: flex;
+  flex: 0.5;
+}
+.newsstand__media-nav :nth-child(2) {
+  justify-content: flex-end;
+}
+.newsstand—text-clicked {
+  font-weight: bold;
+}
+.newsstand—text-unclicked {
+  margin-left: 3%;
+  color: #879298;
+}
+
+.newsstand__media-area {
+  width: 930px;
+  height: 388px;
+}
+.newsstand-area—six-col-list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+
+  padding-left: 0px;
+}
+.newsstand—subscrtion-box {
+  text-align: center;
+  padding: 30px;
+
+  border-bottom: 1px solid #d2dae0;
+  border-right: 1px solid #d2dae0;
+}
+
+.newsstand-btn-thumb {
+  margin-left: 2%;
+}
+.newsstand--left-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 193px;
+  left: -60px;
+}
+.newsstand--right-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 193px;
+  right: -60px;
+}
