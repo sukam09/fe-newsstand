@@ -12,10 +12,9 @@ const day = document.querySelector(".date");
 const main_list_ul = document.querySelector(".main-list-ul");
 const left_btn = document.getElementById("left-btn");
 const right_btn = document.getElementById("right-btn");
-
 //함수
 function reload() {
-  window.location.reload();
+  document.location.reload();
 }
 
 function makeDate() {
@@ -69,6 +68,45 @@ function checkPage() {
   }
 }
 
+function getNewsData() {
+  fetch("../data/news.json")
+    .then((response) => response.json())
+    .then((newsData) => {
+      const news = newsData.News;
+      drawRollingHtml("recent-left", news);
+      drawRollingHtml("recent-right", news);
+    })
+    .catch((error) => {
+      console.error("Error fetching news data:", error);
+    });
+}
+
+function drawRollingHtml(target, news) {
+  const _target = document.getElementById(target);
+  let newsHTML = `<div class="wrap"><ul>`;
+  for (let i = 0; i < news.length; i++) {
+    newsHTML +=
+      '<li class="' +
+      (i === 0
+        ? "current"
+        : i === 1
+        ? "next"
+        : i === news.length - 1
+        ? "prev"
+        : "") +
+      '">';
+    newsHTML +=
+      '<span class="press">' +
+      news[i].press +
+      "</span>" +
+      '<a href="#">' +
+      news[i].title +
+      "</a>";
+    newsHTML += "</li>";
+  }
+  newsHTML += "</ul></div>";
+  _target.innerHTML = newsHTML;
+}
 //이벤트 리스너
 mainLogo.addEventListener("click", reload);
 right_btn.addEventListener("click", (e) => changePage(e));
@@ -79,3 +117,4 @@ makeDate();
 getDateInterval();
 showMainList();
 checkPage();
+getNewsData();
