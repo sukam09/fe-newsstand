@@ -89,7 +89,6 @@ body {
 
 .all-press-btn,
 .sub-press-btn {
-  color: var(--text-strong);
   cursor: pointer;
 }
 
@@ -108,6 +107,14 @@ body {
   align-items: center;
   background-color: transparent;
   border: 0;
+}
+
+.selected-tab {
+  color: var(--text-strong);
+}
+
+.available-tab {
+  color: var(--text-weak);
 }
 
 /* grid */
