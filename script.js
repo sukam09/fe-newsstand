@@ -1,6 +1,7 @@
 const $newsWrapper = document.querySelector(".news-wrapper");
 const $systemDate = document.querySelector(".system-date");
 
+const MEDIA_NUM = 24;
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
 let pageNum = 0;
@@ -22,13 +23,13 @@ const shuffleList = (list) => {
  * 언론사 Grid 제작하기
  */
 const makeGrid = () => {
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
     const imgSrc = isLightMode
       ? `./img/light-media/${idList[i]}.png`
       : `./img/dark-media/${idList[i]}.png`;
 
-    let checkImg = new Image();
+    const checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = () => {
       const $img = document.createElement("img");
@@ -46,15 +47,18 @@ const makeGrid = () => {
  * 언론사 이미지 src 변경하기
  */
 const changeImgSrc = () => {
-  let newImg = idList.slice(pageNum * 24, pageNum * 24 + 24);
+  let newImg = idList.slice(
+    pageNum * MEDIA_NUM,
+    pageNum * MEDIA_NUM + MEDIA_NUM
+  );
 
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < MEDIA_NUM; i++) {
     const $img = document.querySelector(`.img${i}`);
     const imgSrc = isLightMode
       ? `./img/light-media/${newImg[i]}.png`
       : `./img/dark-media/${newImg[i]}.png`;
 
-    let checkImg = new Image();
+    const checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = () => {
       $img.src = imgSrc;
@@ -68,7 +72,7 @@ const changeImgSrc = () => {
 /**
  * Grid 화살표 hidden 처리하기
  */
-const setArrowVisible = (mediaList) => {
+const setArrowVisible = () => {
   const leftArrow = document.querySelector(".left-arrow");
   const rightArrow = document.querySelector(".right-arrow");
 
@@ -88,9 +92,8 @@ const setArrowVisible = (mediaList) => {
 /**
  * Grid 화살표 클릭하기
  */
-const clickArrow = (className) => {
-  if (className === "left-arrow") pageNum--;
-  if (className === "right-arrow") pageNum++;
+const clickArrow = (num) => {
+  pageNum += num;
   changeImgSrc();
   setArrowVisible();
 };
