@@ -1,5 +1,5 @@
 import { initDate } from "./util.js";
-import { right_btn, left_btn, printGrid, moveGrid } from "./grid.js";
+import { printGrid, moveGrid } from "./grid.js";
 
 const RIGHT = 1;
 const LEFT = 0;
