@@ -121,6 +121,10 @@ const createRollingBannerList = (data) => {
       $banner.addEventListener("mouseover", () => {
         clearInterval(interval);
       });
+
+      $banner.addEventListener("mouseout", () => {
+        autoPlay();
+      });
     });
   };
 
