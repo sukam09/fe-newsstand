@@ -3,7 +3,7 @@ export default function Header({ $target }) {
 
   $target.appendChild($header);
 
-  const addLeadingZero = number => (number < 10 ? '0' + number : number);
+  const addLeadingZero = number => (number < 10 ? `0${number}` : number);
 
   const getDate = () => {
     const $date = $header.querySelector('.date');
