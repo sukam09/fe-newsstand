@@ -1,0 +1,150 @@
+.flex_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1000px;
+}
+
+section {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.title_section {
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.title_container {
+  gap: 8px;
+}
+img.title_logo {
+  width: 24px;
+  height: 24px;
+}
+
+.date {
+  color: #5f6e76;
+}
+
+.summary_section {
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.summary_container {
+  background-color: #f5f7f9;
+  /* position: relative; */
+  width: 100%;
+  border: 1px solid #d2dae0;
+  gap: 16px;
+
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 14px;
+  height: 49px;
+}
+
+.summary_container > h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.rolling_list > li {
+  display: none;
+  list-style: none;
+}
+
+.rolling_list > li.prev {
+  position: absolute;
+  top: -20px;
+  display: block;
+  color: #5f6e76;
+}
+.rolling_list > li.now {
+  position: absolute;
+  display: block;
+  top: 0px;
+  color: #5f6e76;
+  animation-name: stop, rolling_disappear;
+  animation-delay: 1s, 1s;
+  animation-duration: 1s, 1s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.rolling_list > li.next {
+  position: absolute;
+  display: block;
+  bottom: -20px;
+  color: #5f6e76;
+  animation-name: stop, rolling_disappear;
+  animation-delay: 1s, 1s;
+  animation-duration: 1s, 1s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.rolling_list :hover {
+  text-decoration-line: underline;
+  cursor: pointer;
+  animation-play-state: paused;
+}
+.rolling_list {
+  position: relative;
+  width: 70%;
+  overflow: hidden;
+  height: 17px;
+}
+@keyframes rolling_disappear {
+  to {
+    transform: translate(0, -20px);
+  }
+}
+@keyframes rolling_appear {
+  to {
+    bottom: 0px;
+  }
+}
+@keyframes stop {
+  to {
+  }
+}
+
+.main_header {
+  justify-content: space-between;
+}
+
+.main_title_container {
+  gap: 24px;
+}
+
+.main_title_container > h2 {
+  font-size: 16px;
+}
+.main_title_container > span {
+  font-size: 16px;
+  color: #879298;
+}
+
+.view_button_container {
+  gap: 8px;
+  cursor: pointer;
+}
+
+.main_container {
+  position: relative;
+}
+
+.main_content {
+  height: 388px;
+}
