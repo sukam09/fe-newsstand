@@ -15,32 +15,6 @@ export default function NewsPressGridview({ $target, initialState }) {
     this.render();
   };
 
-  $section.innerHTML = `
-    <div class="news-press-tab-container">
-      <div class="news-press-type-menu">
-        <div class="news-press-tab-menu-activated">전체 언론사</div>
-        <div class="news-press-tab-menu">내가 구독한 언론사</div>
-      </div>
-      <div class="news-press-align-menu">
-        <img src="./asset/icons/list-view.svg" alt="리스트 뷰" />
-        <img src="./asset/icons/grid-view.svg" alt="그리드 뷰" />
-      </div>
-    </div>
-    <div class="news-press-container">
-      <ul class="news-press-grid-container">
-      </ul>
-      <button class="left-arrow-button">
-        <img src="./asset/icons/left-button.png" alt="왼쪽 화살표" />
-      </button>
-      <button class="right-arrow-button">
-        <img src="./asset/icons/right-button.png" alt="오른쪽 화살표" />
-      </button>
-    </div>
-  `;
-
-  const $prevPageButton = $section.querySelector('.left-arrow-button');
-  const $nextPageButton = $section.querySelector('.right-arrow-button');
-
   const shuffleArray = array => array.sort(() => Math.random() - 0.5);
 
   const fetchNewsPressData = () => {
@@ -83,8 +57,6 @@ export default function NewsPressGridview({ $target, initialState }) {
   const validatePage = page => page >= PAGE_MIN_NUMBER && page <= PAGE_MAX_NUMBER;
 
   const handleMovePage = newPage => {
-    console.log(newPage);
-
     if (!validatePage(newPage)) {
       return;
     }
@@ -107,14 +79,40 @@ export default function NewsPressGridview({ $target, initialState }) {
   this.render = () => {
     if (!isInit) {
       fetchNewsPressData();
-
-      $prevPageButton.addEventListener('click', () => handleMovePage(this.state.page - 1));
-      $nextPageButton.addEventListener('click', () => handleMovePage(this.state.page + 1));
-
       isInit = true;
     }
+
+    $section.innerHTML = `
+      <div class="news-press-tab-container">
+        <div class="news-press-type-menu">
+          <div class="news-press-tab-menu-activated">전체 언론사</div>
+          <div class="news-press-tab-menu">내가 구독한 언론사</div>
+        </div>
+        <div class="news-press-align-menu">
+          <img src="./asset/icons/list-view.svg" alt="리스트 뷰" />
+          <img src="./asset/icons/grid-view.svg" alt="그리드 뷰" />
+        </div>
+      </div>
+      <div class="news-press-container">
+        <ul class="news-press-grid-container">
+        </ul>
+        <button class="left-arrow-button">
+          <img src="./asset/icons/left-button.png" alt="왼쪽 화살표" />
+        </button>
+        <button class="right-arrow-button">
+          <img src="./asset/icons/right-button.png" alt="오른쪽 화살표" />
+        </button>
+      </div>
+    `;
+
+    const $prevPageButton = $section.querySelector('.left-arrow-button');
+    const $nextPageButton = $section.querySelector('.right-arrow-button');
+
     initNewsPressItems();
     checkShowPageButton($prevPageButton, $nextPageButton);
+
+    $prevPageButton.addEventListener('click', () => handleMovePage(this.state.page - 1));
+    $nextPageButton.addEventListener('click', () => handleMovePage(this.state.page + 1));
   };
 
   this.render();
