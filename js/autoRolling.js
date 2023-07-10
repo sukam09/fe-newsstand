@@ -1,56 +1,6 @@
-// function getNewsData() {
-//   fetch("../data/news.json")
-//     .then((response) => response.json())
-//     .then((newsData) => {
-//       const news = newsData.News;
-//       drawRollingHtml("recent-left", news);
-//       drawRollingHtml("recent-right", news);
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching news data:", error);
-//     });
-// }
-
-// function drawRollingHtml(target, news) {
-//   const _target = document.getElementById(target);
-//   let newsHTML = '<div class="wrap"><ul>';
-//   for (let i = 0; i < news.length; i++) {
-//     newsHTML +=
-//       '<li class="' +
-//       (i === 0
-//         ? "current"
-//         : i === 1
-//         ? "next"
-//         : i === news.length - 1
-//         ? "prev"
-//         : "") +
-//       '">';
-//     newsHTML +=
-//       '<span class="press">' +
-//       news[i].press +
-//       "</span>" +
-//       '<a href="#">' +
-//       news[i].title +
-//       "</a>";
-//     newsHTML += "</li>";
-//   }
-//   newsHTML += "</ul></div>";
-//   _target.innerHTML = newsHTML;
-// }
-
-function pauseAutoRolling() {
-  for (let i = 0; i < newsData.length; i++) {
-    newsData[i].style.transition = "none";
-  }
-}
-
-function resumeAutoRolling() {
-  for (let i = 0; i < newsData.length; i++) {
-    // const delay = (i+1)*scrollDelay;
-    const delay = 1;
-    newsData[i].style.transition = `transform 0.5s ease ${delay}ms`;
-  }
-}
+const RECENT_CNT = 5;
+let leftAutoRollingInterval;
+let rightAutoRollingInterval;
 
 function rollingCallback(target) {
   //.prev 클래스 삭제
@@ -76,13 +26,47 @@ function rollingCallback(target) {
   next.classList.add("current");
 }
 
-//이벤트 리스너
 document.addEventListener("DOMContentLoaded", () => {
-  setInterval(() => rollingCallback("recent-left"), 5000);
+  leftAutoRollingInterval = setInterval(
+    () => rollingCallback("recent-left"),
+    5000
+  );
 });
-setTimeout(() => {
-  setInterval(() => rollingCallback("recent-right"), 5000);
-}, 1000);
 
-// default
-// getNewsData();
+document.addEventListener("DOMContentLoaded", () =>
+  setTimeout(() => {
+    rightAutoRollingInterval = setInterval(
+      () => rollingCallback("recent-right"),
+      5000
+    );
+  }, 1000)
+);
+
+const recent_left = document.querySelector("#recent-left");
+const recent_right = document.querySelector("#recent-right");
+
+recent_left.addEventListener("mouseover", () => {
+  clearInterval(leftAutoRollingInterval);
+  recent_left.querySelector(".current").style.textDecoration = "underline";
+});
+
+recent_left.addEventListener("mouseout", () => {
+  leftAutoRollingInterval = setInterval(
+    () => rollingCallback("recent-left"),
+    5000
+  );
+  recent_left.querySelector(".current").style.textDecoration = "none";
+});
+
+recent_right.addEventListener("mouseover", () => {
+  clearInterval(rightAutoRollingInterval);
+  recent_right.querySelector(".current").style.textDecoration = "underline";
+});
+
+recent_right.addEventListener("mouseout", () => {
+  rightAutoRollingInterval = setInterval(
+    () => rollingCallback("recent-right"),
+    5000
+  );
+  recent_right.querySelector(".current").style.textDecoration = "none";
+});
