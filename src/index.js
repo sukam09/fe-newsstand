@@ -6,6 +6,93 @@ let isLightMode = true;
 let pageNum = 0;
 
 /**
+ * 롤링 테스트
+ */
+let rollingTest = [
+  {
+    press: "연합뉴스",
+    title: "[1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[2보] 김기헌.안철수.천하람.황교안.전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[3보] 김기헌.안철수.천하람.황교안.전대 본경선 진출",
+  },
+];
+
+let rollingTimer = 5000;
+let index = 0;
+
+function startRolling() {
+  const newLatest = document.querySelector(".latest_news__wrapper-left");
+
+  rollingTest.forEach((rolling) => {
+    const $li = document.createElement("li");
+    $li.classList.add("latest_news__li");
+
+    const $h2 = document.createElement("h2");
+    $h2.classList.add("latest_news__h2");
+    $h2.innerText = rolling.press;
+
+    const $p = document.createElement("p");
+    $p.classList.add("latest_news__p");
+    $p.innerText = rolling.title;
+
+    $li.appendChild($h2);
+    $li.appendChild($p);
+
+    newLatest.append($li);
+  });
+}
+
+var interval;
+document.addEventListener("DOMContentLoaded", () => {
+  // 롤링 초기화
+  interval = window.setInterval(rollingCallback, 5000);
+
+  //마우스 호버시 롤링이 멈추었다 벗어나면 다시 롤링이 되도록 처리
+  document
+    .querySelector(".rolling-banner")
+    .addEventListener("mouseover", function () {
+      window.clearInterval(interval);
+    });
+  document
+    .querySelector(".rolling-banner")
+    .addEventListener("mouseout", function () {
+      interval = window.setInterval(rollingCallback, 5000);
+    });
+});
+
+function rollingCallback() {
+  //.prev 클래스 삭제
+  document
+    .querySelector(".latest_news__wrapper-left .prev")
+    .classList.remove("prev");
+
+  //.current -> .prev
+  let current = document.querySelector(".latest_news__wrapper-left .current");
+  current.classList.remove("current");
+  current.classList.add("prev");
+
+  //.next -> .current
+  let next = document.querySelector(".latest_news__wrapper-left .next");
+  //다음 목록 요소가 널인지 체크
+  if (next.nextElementSibling == null) {
+    document
+      .querySelector(".latest_news__wrapper-left li:first-child")
+      .classList.add("next");
+  } else {
+    //목록 처음 요소를 다음 요소로 선택
+    next.nextElementSibling.classList.add("next");
+  }
+  next.classList.remove("next");
+  next.classList.add("current");
+}
+
+/**
  * 배열을 섞는 함수
  */
 const shuffleList = (list) => {
