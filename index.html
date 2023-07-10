@@ -12,25 +12,25 @@
       <header class="header-wrapper">
         <button onclick="reloadPage()">
           <img class="icon-size24" src="./img/news_stand_logo.svg" />
-          <h1 class="display-bold24 light-text-strong">뉴스스탠드</h1>
+          <h1 class="header_title">뉴스스탠드</h1>
         </button>
-        <time class="system-date display-medium16 light-text-default"></time>
+        <time class="system-date"></time>
       </header>
 
       <!-- 최신 뉴스 자동롤링 영역 -->
       <ul class="hot-topic-wrapper">
         <div class="hot-topic-left">
-          <li class="light-surface-alt light-border-default">
-            <h2 class="display-bold14 light-text-strong">연합뉴스</h2>
-            <p class="hot-topic-contents available-medium14 light-text-default">
+          <li class="hot-topic_list">
+            <h2 class="hot-topic_list_title">연합뉴스</h2>
+            <p class="hot-topic_list_content">
               [1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출
             </p>
           </li>
         </div>
         <div class="hot-topic-right">
-          <li class="light-surface-alt light-border-default">
-            <h2 class="display-bold14 light-text-strong">연합뉴스</h2>
-            <p class="hot-topic-contents available-medium14 light-text-default">
+          <li class="hot-topic_list">
+            <h2 class="hot-topic_list_title">연합뉴스</h2>
+            <p class="hot-topic_list_content">
               [속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼
             </p>
           </li>
@@ -38,13 +38,11 @@
       </ul>
 
       <!-- 언론사별 기사들을 확인하는 영역 -->
-      <section class="press-wrapper light-surface-default">
+      <section class="press-wrapper">
         <header>
           <nav class="main-nav-left">
-            <h2 class="selected-bold16 light-text-strong">전체 언론사</h2>
-            <h2 class="available-medium16 light-text-weak">
-              내가 구독한 언론사
-            </h2>
+            <h2 class="main-nav_selected">전체 언론사</h2>
+            <h2 class="main-nav_unselected">내가 구독한 언론사</h2>
           </nav>
           <nav class="main-nav-right">
             <img class="icon-size24" src="./img/list_view.svg" />
@@ -55,12 +53,12 @@
         <div class="arrows-wrapper">
           <ul class="news-wrapper"></ul>
           <img
-            onclick="clickArrow('left-arrow')"
+            onclick="clickArrow(-1)"
             class="left-arrow"
             src="./img/left_arrow.svg"
           />
           <img
-            onclick="clickArrow('right-arrow')"
+            onclick="clickArrow(+1)"
             class="right-arrow"
             src="./img/right_arrow.svg"
           />
