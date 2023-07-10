@@ -24,6 +24,8 @@
   --border-bold : var(--grayscale-300);
 }
 
+/* text */
+
 .display-bold24 {
   font: var(--bold-L);
 }
@@ -70,6 +72,8 @@
   text-decoration: underline;
 }
 
+/* color */
+
 .text-strong {
   color: var(--grayscale-black);
 }
@@ -98,6 +102,8 @@
   color: var(--blue-500);
 }
 
+/* background color */
+
 .surface-default {
   background-color: var(--grayscale-white);
 }
@@ -114,6 +120,8 @@
   background-color: var(--blue-100);
 }
 
+/* button */
+
 .button {
   display: inline-flex;
   height: 24px;
@@ -123,6 +131,7 @@
   gap: 2px;
   flex-shrink: 0;
   border-radius: 50px;
+  border: 1px solid var(--border-default);
   color: var(--grayscale-200);
   font: var(--medium-S);
 }
@@ -138,8 +147,7 @@
 }
 
 .button:hover {
-  border-radius: 50px;
-  border: 1px solid var(--border-bold);
+  border-color: var(--border-bold);
   color: var(--grayscale-500);
 }
 
@@ -147,15 +155,19 @@
   fill: var(--grayscale-500);
 }
 
-.white-button {
-  border: 1px solid var(--border-default);
-  background-color: var(--grayscale-white);
+/* box shadow */
+
+.shadow {
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 
-.gray-button {
-  border: 1px solid var(--border-default);
-  background-color: var(--grayscale-50);
+/* snack bar */
+
+.snack_bar {
+  padding: 16px 24px;
 }
+
+/* layout */
 
 .flex-center{
   display:flex;

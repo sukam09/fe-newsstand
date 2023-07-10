@@ -22,38 +22,44 @@
         <div class="article_wrapper">
             <article class="surface-alt">
                 <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper text-default available-medium14">
+                <h3 class="news_title_wrapper text-default available-medium14">
                     [1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출
-                </div>
+                </h3>
             </article>
             <article class="surface-alt">
                 <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper text-default available-medium14">
+                <h3 class="news_title_wrapper text-default available-medium14">
                     [속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼
-                </div>
+                </h3>
             </article>
         </div>
         <main>
             <div class="media_wrapper">
                 <nav class="media_view_nav">
                     <div class="media_select_wrapper">
-                        <input type="radio" name="media_view_select" id="media_view_all" class="media_select display-none" checked>
-                        <label for="media_view_all" class="text-weak available-medium16">
+                        <input type="radio" name="media_select" id="media_select_all" class="media_select" checked>
+                        <label for="media_select_all" class="text-weak available-medium16">
                             전체 언론사
                         </label>
-                        <input type="radio" name="media_view_select" id="media_view_subscribed" class="media_select display-none">
-                        <label for="media_view_subscribed" class="text-weak available-medium16">내가 구독한 언론사</lab>
+                        <input type="radio" name="media_select" id="media_select_subscribed" class="media_select">
+                        <label for="media_select_subscribed" class="text-weak available-medium16">내가 구독한 언론사</label>
                     </div>
-                    <div class="view_select">
-                        <img src="assets/images/list.svg" alt="리스트 보기">
-                        <img src="assets/images/grid.svg" alt="그리드 보기">
+                    <div class="view_select_wrapper">
+                        <input type="radio" name="view_select" class="view_select" id="view_list">
+                        <label for="view_list">
+                            <img src="assets/icons/list-view.svg" alt="리스트 보기">
+                        </label>
+                        <input type="radio" name="view_select" class="view_select" id="view_grid">
+                        <label for="view_grid">
+                            <img src="assets/icons/grid-view.svg" alt="그리드 보기">
+                        </label>
                     </div>
                 </nav>
                 <div class="media_view_wrapper">
                     <button id="left_arrow">
                         <img src="assets/images/left.svg" alt="이전 페이지">
                     </button>
-                    <div class="media_view">
+                    <div id="media_view">
                     </div>
                     <button id="right_arrow">
                         <img src="assets/images/right.svg" alt="다음 페이지">
