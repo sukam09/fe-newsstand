@@ -1,5 +1,5 @@
 // 그리드 뷰로 전환
-function changeToGrid() {
+export function changeToGrid() {
   const list_button = document.getElementsByClassName("list_button")[0];
   const grid_button = document.getElementsByClassName("grid_button")[0];
   const list_container = document.getElementsByClassName("list_container")[0];
@@ -62,9 +62,11 @@ function changeToList() {
 }
 
 // 오늘 날짜 update
-function updateDate() {
+export function updateDate() {
+  console.log("test");
   let today = new Date();
   const dateHtml = document.getElementsByClassName("date")[0];
+  console.log(dateHtml);
   const options = {
     year: "numeric",
     month: "2-digit",
@@ -75,3 +77,7 @@ function updateDate() {
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
 }
+
+export const testFunction = () => {
+  console.log("testestestsetestse");
+};

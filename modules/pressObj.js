@@ -1,4 +1,4 @@
-let pressObjArr = [
+export let pressObjArr = [
   { id: 1, name: "머니투데이", src: "./assets/images/img1.png", isSub: false },
   { id: 2, name: "경향신문", src: "./assets/images/img2.png", isSub: false },
   { id: 3, name: "뉴스타파", src: "./assets/images/img3.png", isSub: false },

@@ -1,7 +1,12 @@
-let now_grid_page = 0;
+import { pressObjArr } from "./pressObj.js";
+
+export let gridPage = 0;
+const NUM_IN_A_GRID = 24;
+const PRESS_LEN = pressObjArr.length;
+const MAX_PAGE = 4;
 
 // 언론사 랜덤 셔플
-function shuffleArray(array) {
+export function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -9,20 +14,41 @@ function shuffleArray(array) {
   return array;
 }
 
-// 셔플된 리스트 그리드리스트에 append
-function appendList() {
-  const gridContainerList = document.getElementsByClassName("grid_container");
-  const shuffledArr = shuffleArray(pressObjArr);
+// 셔플된 리스트 생성
+// export function appendList() {
+//   const pressObjArr = shuffleArray(pressObjArr);
+// }
 
-  shuffledArr.forEach((element, idx) => {
-    const id = Math.floor(idx / 24);
-    const gridItem = createGridItem(element);
-    gridContainerList[id].appendChild(gridItem);
-  });
+export function initGrid() {
+  const mainContent = document.getElementsByClassName("main_content")[0];
+  console.log(MAX_PAGE, NUM_IN_A_GRID);
+  for (let i = 0; i < MAX_PAGE; i++) {
+    const gridContainer = document.createElement("ul");
+    gridContainer.id = `grid_page_${i}`;
+    gridContainer.className = "grid_container";
+    gridContainer.style.display = "none";
+
+    for (let j = 0; j < NUM_IN_A_GRID; j++) {
+      const idx = i * NUM_IN_A_GRID + j;
+      const newItem = createGridItem(pressObjArr[idx]);
+      gridContainer.appendChild(newItem);
+    }
+    mainContent.appendChild(gridContainer);
+  }
+  console.log(mainContent);
+}
+
+export function showGridPage(page) {
+  const gridContainer = document.getElementById(`grid_page_${page}`);
+  gridContainer.style.display = "grid";
+}
+export function hiddenGridPage(page) {
+  const gridContainer = document.getElementById(`grid_page_${page}`);
+  gridContainer.style.display = "none";
 }
 
 // 구독버튼 컨테이너 생성
-function createSubButtonContainer() {
+export function createSubButtonContainer() {
   const subButtonContainer = document.createElement("div");
   subButtonContainer.className = "sub_button_container";
 
@@ -30,7 +56,7 @@ function createSubButtonContainer() {
 }
 
 // 구독버튼 생성
-function createSubButton(id) {
+export function createSubButton(id) {
   const subButtonContainer = createSubButtonContainer();
   const subButton = document.createElement("button");
   subButton.className = "sub_button";
@@ -47,8 +73,8 @@ function createSubButton(id) {
   return subButtonContainer;
 }
 
-// 해지버튼 생성
-function createUnSubButton(id) {
+// 구독 해지 버튼 생성
+export function createUnSubButton(id) {
   const unSubButtonContainer = createSubButtonContainer();
   const unSubButton = document.createElement("button");
   unSubButton.className = "unsub_button";
@@ -66,15 +92,15 @@ function createUnSubButton(id) {
 }
 
 // 그리드 아이템 리스트 태그 생성
-function createGridItem(element) {
+export function createGridItem(pressObj) {
   const newImg = document.createElement("img");
   const li = document.createElement("li");
-  const subButtonContainer = createSubButton(element.id);
-  const unSubButtonContainer = createUnSubButton(element.id);
+  const subButtonContainer = createSubButton(pressObj.id);
+  const unSubButtonContainer = createUnSubButton(pressObj.id);
 
   // 이미지 로드
-  newImg.src = element.src;
-  newImg.id = element.id;
+  newImg.src = pressObj.src;
+  newImg.id = pressObj.id;
   li.style.position = "relative";
 
   // li 생성
@@ -82,8 +108,8 @@ function createGridItem(element) {
   li.append(subButtonContainer);
   li.append(unSubButtonContainer);
   li.addEventListener("mouseover", () => {
-    toggleSubButton(element, subButtonContainer);
-    toggleUnSubButton(element, unSubButtonContainer);
+    toggleSubButton(pressObj, subButtonContainer);
+    toggleUnSubButton(pressObj, unSubButtonContainer);
   });
   li.addEventListener("mouseout", () =>
     hiddenSubButtons(subButtonContainer, unSubButtonContainer)
@@ -94,7 +120,7 @@ function createGridItem(element) {
 }
 
 // 구독버튼 토글
-function toggleSubButton(element, subButtonContainer) {
+export function toggleSubButton(element, subButtonContainer) {
   if (element.isSub) {
     subButtonContainer.style.display = "none";
   } else {
@@ -103,7 +129,7 @@ function toggleSubButton(element, subButtonContainer) {
 }
 
 // 해지버튼 토글
-function toggleUnSubButton(element, unSubButtonContainer) {
+export function toggleUnSubButton(element, unSubButtonContainer) {
   if (element.isSub) {
     unSubButtonContainer.style.display = "flex";
   } else {
@@ -112,38 +138,34 @@ function toggleUnSubButton(element, unSubButtonContainer) {
 }
 
 // 구독, 해지 버튼 숨기기
-function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
+export function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
   subButtonContainer.style.display = "none";
   unSubButtonContainer.style.display = "none";
 }
 
 // 그리드 다음 페이지 전환
-function showNextGridPage() {
-  const curPage = document.getElementById(`page${now_grid_page}`);
-  now_grid_page > 3 ? (now_grid_page = 3) : (now_grid_page += 1);
-  const nextPage = document.getElementById(`page${now_grid_page}`);
-  curPage.style.display = "none";
-  nextPage.style.display = "grid";
+export function showNextGridPage() {
+  hiddenGridPage(gridPage);
+  gridPage > 3 ? (gridPage = 3) : (gridPage += 1);
+  showGridPage(gridPage);
   showGridPageButton();
 }
 
 // 그리드 이전 페이지 전환
-function showPrevGridPage() {
-  const curPage = document.getElementById(`page${now_grid_page}`);
-  now_grid_page < 0 ? (now_grid_page = 0) : (now_grid_page -= 1);
-  const nextPage = document.getElementById(`page${now_grid_page}`);
-  curPage.style.display = "none";
-  nextPage.style.display = "grid";
+export function showPrevGridPage() {
+  hiddenGridPage(gridPage);
+  gridPage < 0 ? (gridPage = 0) : (gridPage -= 1);
+  showGridPage(gridPage);
   showGridPageButton();
 }
 
 // 그리뷰의 좌우 페이지 전환 버튼 업데이트
-function showGridPageButton() {
+export function showGridPageButton() {
   const left_grid_button =
     document.getElementsByClassName("left_grid_button")[0];
   const right_grid_button =
     document.getElementsByClassName("right_grid_button")[0];
-  switch (now_grid_page) {
+  switch (gridPage) {
     case 0:
       left_grid_button.style.display = "none";
       right_grid_button.style.display = "block";
