@@ -48,6 +48,8 @@ header.main {
   border: 0.5px #d2dae0 solid;
   background-color: #f5f7f9;
   display: flex;
+  width: 400px;
+  height: 20px;
 }
 
 #header-div-01 {
@@ -161,9 +163,4 @@ input[type="radio"]:checked + label {
 
 input[type="radio"]:checked + img {
   border: 2px blue solid;
-}
-
-.rolling-banner {
-  top: -36px;
-  transition: top 2s ease;
 }

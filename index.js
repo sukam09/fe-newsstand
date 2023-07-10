@@ -118,6 +118,7 @@ function clickLeftAsideButton() {
 }
 
 function rollingBanner() {
+  addRollingData();
   let firstBannerIndex = 1;
   addEventListener("DOMContentLoaded", () => {
     let interval = window.setInterval(() => {
@@ -134,13 +135,26 @@ function rollingBanner() {
 
 function changeBanner(index, number) {
   let oldBanner = document.getElementById(`rolling-banner-0${number}`)
-    .childNodes[0];
-  console.log(oldBanner);
+    .childNodes[1];
   let newBanner = document.createElement("div");
   newBanner.innerText = news_article[0].article[index];
+  newBanner.style.transition = "transform 0.5s";
+  newBanner.style.transform = "translateY(100%)";
   document
     .getElementById(`rolling-banner-0${number}`)
     .replaceChild(newBanner, oldBanner);
+  setTimeout(function () {
+    newBanner.style.transform = "translateY(0)";
+  }, 10);
+}
+
+function addRollingData() {
+  let firstRollingData = document.createElement("div");
+  firstRollingData.innerHTML = news_article[0].article[0];
+  let secondRollingData = document.createElement("div");
+  secondRollingData.innerHTML = news_article[0].article[5];
+  document.getElementById(`rolling-banner-01`).appendChild(firstRollingData);
+  document.getElementById(`rolling-banner-02`).appendChild(secondRollingData);
 }
 
 function init() {
