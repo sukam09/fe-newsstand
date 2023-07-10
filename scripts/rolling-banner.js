@@ -15,15 +15,18 @@ const createRollingBannerList = ($banner, data) => {
 };
 
 export const startRollingBanner = (headlineData) => {
-  const [left, right] = [headlineData.slice(0, 5), headlineData.slice(5)];
-  const dataLength = left.length;
+  const [leftSlice, rightSlice] = [
+    headlineData.slice(0, 5),
+    headlineData.slice(5),
+  ];
+  const dataLength = leftSlice.length;
 
   const $banners = $containerNewsBar.querySelectorAll(
     ".container-news-bar_window > ul"
   );
 
-  createRollingBannerList($banners[0], left);
-  createRollingBannerList($banners[1], right);
+  createRollingBannerList($banners[0], leftSlice);
+  createRollingBannerList($banners[1], rightSlice);
 
   $banners.forEach(($banner, idx) => {
     let cnt = 0;
