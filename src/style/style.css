@@ -1,3 +1,6 @@
+/* Reset CSS */
+@import url("./reset.css");
+
 :root {
     /* color */
     --color-grayscale-white-alt: #ffffffb2;
