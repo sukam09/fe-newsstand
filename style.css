@@ -249,3 +249,8 @@ header {
 .disabled {
   display: none;
 }
+
+.recent-news-headline:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

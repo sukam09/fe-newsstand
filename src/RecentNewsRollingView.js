@@ -1,4 +1,6 @@
 const HEADLINE_NUMBERS = 5;
+const HEADLINE_ROLLING_DELAY = 5000;
+const HEADLINE_DELAY_DIFF = 1000;
 
 export default function RecentNewsRollingView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -13,29 +15,40 @@ export default function RecentNewsRollingView({ $target, initialState }) {
     this.render();
   };
 
-  const setLeftHeadlineTimer = () => {
-    setInterval(() => {
-      this.setState({
-        ...this.state,
-        leftHeadlineIndex: (this.state.leftHeadlineIndex + 1) % HEADLINE_NUMBERS,
-      });
-    }, 5000);
+  const setLeftHeadline = () => {
+    this.setState({
+      ...this.state,
+      leftHeadlineIndex: (this.state.leftHeadlineIndex + 1) % HEADLINE_NUMBERS,
+    });
   };
 
-  const setRightHeadlineTimer = () => {
-    setInterval(() => {
-      this.setState({
-        ...this.state,
-        rightHeadlineIndex: (this.state.rightHeadlineIndex + 1) % HEADLINE_NUMBERS,
-      });
-    }, 5000);
+  const setRightHeadline = () => {
+    this.setState({
+      ...this.state,
+      rightHeadlineIndex: (this.state.rightHeadlineIndex + 1) % HEADLINE_NUMBERS,
+    });
   };
 
-  setLeftHeadlineTimer();
+  this.timer = setInterval(() => {
+    setLeftHeadline();
+    setTimeout(() => {
+      setRightHeadline();
+    }, HEADLINE_DELAY_DIFF);
+  }, HEADLINE_ROLLING_DELAY);
 
-  setTimeout(() => {
-    setRightHeadlineTimer();
-  }, 1000);
+  const handleMouseEnter = () => {
+    clearInterval(this.timer);
+    clearTimeout(this.rightHeadlineTimer);
+  };
+
+  const handleMouseLeave = () => {
+    this.timer = setInterval(() => {
+      setLeftHeadline();
+      this.rightHeadlineTimer = setTimeout(() => {
+        setRightHeadline();
+      }, HEADLINE_DELAY_DIFF);
+    }, HEADLINE_ROLLING_DELAY);
+  };
 
   this.render = () => {
     const { leftHeadlineIndex, rightHeadlineIndex, leftHeadlines, rightHeadlines } = this.state;
@@ -50,6 +63,12 @@ export default function RecentNewsRollingView({ $target, initialState }) {
         <span class="recent-news-headline">${rightHeadlines[rightHeadlineIndex]}</span>
       </div>
     `;
+
+    const $recentNewsHeadlines = $section.querySelectorAll('.recent-news-headline');
+    $recentNewsHeadlines.forEach($recentNewsHeadline => {
+      $recentNewsHeadline.addEventListener('mouseenter', handleMouseEnter);
+      $recentNewsHeadline.addEventListener('mouseleave', handleMouseLeave);
+    });
   };
 
   this.render();
