@@ -7,6 +7,10 @@ const RIGHT = 1;
 
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
+const first_news = document.querySelector("#first-news");
+const second_news = document.querySelector("#second-news");
+
+let first_interval, second_interval;
 
 function init() {
   initDate();
@@ -15,8 +19,21 @@ function init() {
 
   right_btn.addEventListener("click", () => moveGrid(RIGHT));
   left_btn.addEventListener("click", () => moveGrid(LEFT));
-  document.addEventListener("DOMContentLoaded", () => {
-    window.setInterval(rollingCallback, 3000);
+
+  first_interval = window.setInterval(() => rollingCallback(LEFT), 5000);
+  second_interval = window.setTimeout(() => window.setInterval(() => rollingCallback(RIGHT), 5000), 1000);
+
+  first_news.addEventListener("mouseover", () => {
+    window.clearInterval(first_interval);
+  });
+  first_news.addEventListener("mouseout", () => {
+    first_interval = window.setInterval(() => rollingCallback(LEFT), 5000);
+  });
+  second_news.addEventListener("mouseover", () => {
+    window.clearInterval(first_interval);
+  });
+  second_news.addEventListener("mouseout", () => {
+    second_interval = window.setInterval(() => rollingCallback(RIGHT), 5000);
   });
 }
 

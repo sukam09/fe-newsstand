@@ -1,8 +1,9 @@
 import { fetchRollingNewsData } from "./api.js";
 
+const LEFT = 0;
+const RIGHT = 1;
 const RollingNewsNum = 5;
 let rolling_news;
-let rolling_news_index = 0;
 
 async function initRollingNews() {
   rolling_news = await fetchRollingNewsData();
@@ -45,30 +46,32 @@ function makeDomData() {
   }
 }
 
-function rollingCallback() {
+function rollingCallback(dir) {
   let prev, current, next;
-  if (rolling_news_index === 0) {
+  if (dir === LEFT) {
     prev = document.querySelector("#first-news .prev-news");
     current = document.querySelector("#first-news .current-news");
     next = document.querySelector("#first-news .next-news");
-    setTimeout(rollingCallback, 1000);
-    rolling_news_index = 1;
+    if (next.nextElementSibling == null) {
+      document.querySelector(".news-bar #first-news li:first-child").classList.add("next-news");
+    } else {
+      next.nextElementSibling.classList.add("next-news");
+    }
   } else {
     prev = document.querySelector("#second-news .prev-news");
     current = document.querySelector("#second-news .current-news");
     next = document.querySelector("#second-news .next-news");
-    rolling_news_index = 0;
+    if (next.nextElementSibling == null) {
+      document.querySelector(".news-bar #second-news li:first-child").classList.add("next-news");
+    } else {
+      next.nextElementSibling.classList.add("next-news");
+    }
   }
   prev.classList.remove("prev-news");
 
   current.classList.remove("current-news");
   current.classList.add("prev-news");
 
-  if (next.nextElementSibling == null) {
-    document.querySelector(".news-bar li:first-child").classList.add("next-news");
-  } else {
-    next.nextElementSibling.classList.add("next-news");
-  }
   next.classList.remove("next-news");
   next.classList.add("current-news");
 }

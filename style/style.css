@@ -82,6 +82,10 @@ body {
   color: var(--text-default);
 }
 
+.news-title:hover {
+  text-decoration: var(--line-style-underline);
+}
+
 .news-bar > .news {
   position: relative;
   overflow: hidden;
