@@ -1,3 +1,6 @@
+import { renderPress } from "./random_news.js";
+import { rendListNews } from "./list_news.js";
+
 let show_options = {
     press: "all",
     main: "symbol",
@@ -13,10 +16,14 @@ function optionShowPress() {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_subscribe_press").className =
                     "option_press option_press_inactive";
+
+                // here (random_news.js) renderPress()
             } else {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_all_press").className =
                     "option_press option_press_inactive";
+
+                // here (subscribe_news.js) renderPress()
             }
 
             // here main change ...
@@ -26,6 +33,8 @@ function optionShowPress() {
 
 function optionShowMain() {
     const option_main = document.querySelectorAll(".option_main");
+    const news_data_container = document.querySelector(".main_news_container");
+
     option_main.forEach((option) => {
         option.addEventListener("click", () => {
             show_options.main = option.id;
@@ -33,14 +42,32 @@ function optionShowMain() {
                 option.src = "./public/icons/option_symbol_main_active.png";
                 document.getElementById("option_list_main").src =
                     "./public/icons/option_list_main.png";
+                news_data_container.classList.remove("list_news_container");
+                news_data_container.classList.add("grid_news_container");
+                deleteMainDisplay();
+                // renderPress();
+
+                // here (random_news.js) renderMain()
             } else {
                 option.src = "./public/icons/option_list_main_active.png";
                 document.getElementById("option_symbol_main").src =
                     "./public/icons/option_symbol_main.png";
+
+                news_data_container.classList.remove("grid_news_container");
+                news_data_container.classList.add("list_news_container");
+                deleteMainDisplay();
+                rendListNews();
+
+                // here (list_news.js) renderMain()
             }
             // here main change ...
         });
     });
+}
+
+function deleteMainDisplay() {
+    const news_data_container = document.querySelector(".main_news_container");
+    news_data_container.innerHTML = "";
 }
 
 function init() {
