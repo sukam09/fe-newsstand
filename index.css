@@ -1,119 +1,127 @@
-body {
-    display: flex;
-    justify-content: center;
+* {
+    font-family: "Pretendard";
 }
 
-/* .grid_border {
-    border: 1px solid black;
-} */
+body {
+    display: flex;
+    align-items: center;
+}
 
-.container_row {
+.container {
     display: grid;
     grid-template-rows: 1fr 1fr 5fr;
 }
 
-.container_col {
+.container_grid {
     display: grid;
     grid-template-columns: 1fr 7fr 1fr;
+}
+
+/* header */
+.grid_header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.container_between {
+.header-left {
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-
-.container_center {
-    padding-bottom: 1em;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.header_left {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    text-align: center;
-    justify-items: center;
+    align-items: center;
     gap: 8px;
 }
 
-.header_left img {
-    object-fit: none;
+.icon {
+    width: 24px;
+    height: 24px;
 }
 
-.header-right {
-    width: 140px;
-    height: 22px;
+/* section */
+.grid_section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
 }
 
-.sec_trend_news {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-    gap: 9px;
-}
-
-.rolling_banner {
+.grid_section-banner {
+    height: 49px;
+    overflow: hidden;
     position: relative;
     width: 100%;
-    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    /* style */
     border: 1px solid #d2dae0;
     background-color: #f5f7f9;
-    height: 49px;
 }
 
-.rolling_banner li {
+.grid_section-banner-press {
+    display: block;
+    margin-left: 8px;
+}
+
+.grid_sec-banner-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.grid_sec_li-banner {
+    height: 49px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     position: absolute;
     top: -49px;
-    left: 0;
 }
 
-/* 이전, 현재, 다음 롤링 배너 표시 */
-.rolling_banner li.prev {
+.grid_section .prev {
     top: 49px;
     transition: top 1s ease;
 }
 
-.rolling_banner li.current {
-    top: 0;
+.grid_section .current {
+    top: 0px;
     transition: top 1s ease;
 }
 
-.rolling_banner li.next {
+.grid_section .next {
     top: -49px;
 }
 
-.list_div {
+/* main */
+
+.grid-arrow {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 5px;
-    height: 49px;
-    font-size: 14px;
-    padding-left: 10px;
-}
-
-.nav_container span,
-#navLeft,
-#navRight {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
     align-items: center;
-    gap: 8px;
-}
-#navLeft {
-    gap: 24px;
 }
 
-.nav_container {
+.btn_img-arrow {
+    width: 24px;
+    height: 40px;
+}
+
+.grid_main_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.grid_main_nav-left {
+    gap: 24px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;
+}
+
+.nav-left {
+    display: block;
 }
 
 .main_news_container {
@@ -134,22 +142,53 @@ body {
     list-style-type: none;
     width: 100%;
     height: 100%;
-    border: 1px solid #d2dae0;
+    border-top: 1px solid #d2dae0;
+    border-left: 1px solid #d2dae0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.arrow {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+.main_news_container li.border_bottom {
+    border-bottom: 1px solid #d2dae0;
 }
 
-.left_arrow,
-.right_arrow {
-    text-align: center;
+.main_news_container li.border_right {
+    border-right: 1px solid #d2dae0;
+}
+
+/* other */
+.bold14 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16.71px;
+    color: #14212b;
+}
+
+.bold16 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19.09px;
+    color: #14212b;
+}
+
+.bold24 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.64px;
+    color: #14212b;
+}
+
+.medium14 {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.71px;
+    color: #5f6e76;
+}
+
+.medium16 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5f6e76;
 }

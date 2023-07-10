@@ -4,84 +4,93 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        />
         <link rel="stylesheet" type="text/css" href="index.css" />
+        <script src="./components/date.js"></script>
+        <script type="module" src="./components/banner.js"></script>
+        <script type="module" src="./components/gridNews.js"></script>
     </head>
     <body>
-        <div class="container_row">
-            <header class="container_col">
-                <div class="grid_border"></div>
-                <div class="grid_border">
-                    <header class="container_between">
-                        <div class="header_left">
-                            <img src="./icons/newspaper.png" alt="logo" />
-                            <h1>뉴스스탠드</h1>
-                        </div>
-                        <div class="header_right">
-                            <p class="today"></p>
-                        </div>
-                    </header>
+        <div class="container">
+            <header class="container_grid">
+                <div></div>
+                <div class="grid_header">
+                    <div class="header-left bold24">
+                        <img
+                            class="header-left-icon-newspaper icon"
+                            src="./styles/icon/newspaper.png"
+                            alt="icon-newspaper"
+                        />
+                        <span>뉴스스탠드</span>
+                    </div>
+                    <div class="header-right medium16"></div>
                 </div>
-                <div class="grid_border"></div>
+                <div></div>
             </header>
-            <div class="container_col">
-                <div class="grid_border"></div>
-                <div class="grid_border">
-                    <!-- banner -->
+            <section class="container_grid">
+                <div></div>
+                <div class="grid_section">
+                    <div class="grid_section-banner">
+                        <span class="grid_section-banner-press bold14">press1</span>
+                        <ul class="grid_sec-banner-list">
+                            <li class="grid_sec_li-banner prev"><a class="medium14">[속보1]</a></li>
+                            <li class="grid_sec_li-banner current"><a class="medium14">[속보2]</a></li>
+                            <li class="grid_sec_li-banner next"><a class="medium14">[속보3]</a></li>
+                        </ul>
+                    </div>
 
-                    <section class="container_between">
-                        <div class="sec_trend_news">
-                            <div class="rolling_banner" id="rollingBannerLeft"></div>
-                            <div class="rolling_banner" id="rollingBannerRight"></div>
-                        </div>
-                    </section>
-                </div>
-                <div class="grid_border"></div>
-            </div>
-            <div class="container_col">
-                <!-- 7, 8, 9 -->
-                <div class="grid_border">
-                    <!-- 7 -->
-                    <i class="left_arrow" id="leftBtn">
-                        <img src="./icons/LeftButton.png" alt="left" />
-                    </i>
-                </div>
-                <div class="grid_border">
-                    <!-- 8 -->
-                    <div>
-                        <nav class="nav_container">
-                            <div id="navLeft">
-                                <span>
-                                    <p>전체 언론사</p>
-                                </span>
-                                <span>
-                                    <p>내가 구독한 언론사</p>
-                                </span>
-                            </div>
-                            <div id="navRight">
-                                <i>
-                                    <img src="./icons/Symbol.png" alt="search" />
-                                </i>
-                                <i>
-                                    <img src="./icons/list-view.png" alt="search" />
-                                </i>
-                            </div>
-                        </nav>
-                        <div class="container_center">
-                            <main class="main_news_container"></main>
-                        </div>
+                    <div class="grid_section-banner">
+                        <span class="grid_section-banner-press bold14">press1</span>
+                        <ul class="grid_sec-banner-list">
+                            <li class="grid_sec_li-banner prev"><a class="medium14">[속보1]</a></li>
+                            <li class="grid_sec_li-banner current"><a class="medium14">[속보2]</a></li>
+                            <li class="grid_sec_li-banner next"><a class="medium14">[속보3]</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="grid_border">
-                    <!-- 9 : right arrow-->
-                    <i class="right_arrow" id="rightBtn">
-                        <img src="./icons/RightButton.png" alt="right" />
+                <div></div>
+            </section>
+            <div class="container_grid">
+                <div class="grid-arrow">
+                    <i class="btn-arrow left-arrow">
+                        <img class="btn_img-arrow" src="./styles/icon/btn-left-arrow.png" alt="icon-left-arrow" />
+                    </i>
+                </div>
+                <div class="grid_main">
+                    <nav class="grid_main_nav">
+                        <div class="grid_main_nav-left">
+                            <span class="nav-left bold16">전체 언론사</span>
+                            <span class="nav-left medium16">내가 구독한 언론사</span>
+                        </div>
+                        <div class="grid_main_nav-right">
+                            <i
+                                ><img
+                                    class="nav-right_icon icon"
+                                    src="./styles/icon/list-view.png"
+                                    alt="icon-list-view"
+                            /></i>
+                            <i
+                                ><img
+                                    class="nav-right_icon icon"
+                                    src="./styles/icon/grid-view.png"
+                                    alt="icon-grid-view"
+                            /></i>
+                        </div>
+                    </nav>
+                    <div class="grid_main-news">
+                        <main class="main_news_container"></main>
+                    </div>
+                </div>
+                <div class="grid-arrow">
+                    <i class="btn-arrow right-arrow">
+                        <img class="btn_img-arrow" src="./styles/icon/btn-right-arrow.png" alt="icon-right-arrow" />
                     </i>
                 </div>
             </div>
         </div>
     </body>
-    <script src="./utils.js"></script>
-    <script src="./news_data.js"></script>
-    <script src="./random_news.js"></script>
-    <script type="module" src="./rolling_banner.js"></script>
 </html>

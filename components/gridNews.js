@@ -1,3 +1,5 @@
+import { news_data } from "../data/news_data.js";
+
 const shuffledData = news_data.slice().sort(() => Math.random() - 0.5);
 const rowSize = 6;
 const colSize = 4;
@@ -5,11 +7,11 @@ const maxPage = 3;
 let currentPage = 0;
 
 //onClick event
-document.querySelector(".left_arrow").addEventListener("click", () => {
+document.querySelector(".left-arrow").addEventListener("click", () => {
     currentPage -= 1;
     RenderNews(shuffledData, currentPage);
 });
-document.querySelector(".right_arrow").addEventListener("click", () => {
+document.querySelector(".right-arrow").addEventListener("click", () => {
     currentPage += 1;
     RenderNews(shuffledData, currentPage);
 });
@@ -26,6 +28,10 @@ function RenderNews(shuffledData) {
             const item = shuffledData[cnt] || { name: "empty", url: "" };
             let li = document.createElement("li");
             let img = document.createElement("img");
+            if (i == colSize - 1 && j == rowSize - 1) li.setAttribute("class", "border_bottom border_right");
+            else if (i == colSize - 1) li.setAttribute("class", "border_bottom");
+            else if (j == rowSize - 1) li.setAttribute("class", "border_right");
+
             img.classList.add("news_data_img");
             img.src = item.url;
             cnt += 1;
@@ -39,16 +45,16 @@ function RenderNews(shuffledData) {
 function toggleArrow() {
     switch (currentPage) {
         case 0:
-            document.querySelector(".left_arrow").style.display = "none";
-            document.querySelector(".right_arrow").style.display = "block";
+            document.querySelector(".left-arrow").style.display = "none";
+            document.querySelector(".right-arrow").style.display = "block";
             break;
         case maxPage:
-            document.querySelector(".left_arrow").style.display = "block";
-            document.querySelector(".right_arrow").style.display = "none";
+            document.querySelector(".left-arrow").style.display = "block";
+            document.querySelector(".right-arrow").style.display = "none";
             break;
         default:
-            document.querySelector(".left_arrow").style.display = "block";
-            document.querySelector(".right_arrow").style.display = "block";
+            document.querySelector(".left-arrow").style.display = "block";
+            document.querySelector(".right-arrow").style.display = "block";
             break;
     }
 }
