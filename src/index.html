@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/index.css" />
+    <title>뉴스스탠드</title>
+  </head>
+  <body>
+    <div class="news-stand-container">
+      <!-- 기본 상단 영역 -->
+      <header class="header-wrapper">
+        <button onclick="reloadPage()">
+          <img class="icon-size24" src="./assets/icons/newspaper.svg" />
+          <h1 class="display-bold24 light-text-strong">뉴스스탠드</h1>
+        </button>
+        <time class="system-date display-medium16 light-text-default"></time>
+      </header>
+
+      <!-- 최신 뉴스 자동롤링 영역 -->
+      <ul class="hot-topic-wrapper">
+        <li class="light-surface-alt light-border-default">
+          <h2 class="display-bold14 light-text-strong">연합뉴스</h2>
+          <p class="hot-topic-contents available-medium14 light-text-default">
+            [1보] 김기헌.안철수.천하람.황교안.전대 본경선 진출
+          </p>
+        </li>
+        <li class="light-surface-alt light-border-default">
+          <h2 class="display-bold14 light-text-strong">연합뉴스</h2>
+          <p class="hot-topic-contents available-medium14 light-text-default">
+            [속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼
+          </p>
+        </li>
+      </ul>
+
+      <!-- 언론사별 기사들을 확인하는 영역 -->
+      <section class="press-wrapper light-surface-default">
+        <header>
+          <nav class="main-nav-left">
+            <h2 class="selected-bold16 light-text-strong">전체 언론사</h2>
+            <h2 class="available-medium16 light-text-weak">
+              내가 구독한 언론사
+            </h2>
+          </nav>
+          <nav class="main-nav-right">
+            <img class="icon-size24" src="./assets/icons/list-view.svg" />
+            <img class="icon-size24" src="./assets/icons/grid-view.svg" />
+          </nav>
+        </header>
+
+        <div class="arrows-wrapper">
+          <ul class="news-wrapper"></ul>
+          <img
+            onclick="clickArrow('left-arrow')"
+            class="left-arrow"
+            src="./assets/icons/chevron-left.svg"
+          />
+          <img
+            onclick="clickArrow('right-arrow')"
+            class="right-arrow"
+            src="./assets/icons/chevron-right.svg"
+          />
+        </div>
+      </section>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
