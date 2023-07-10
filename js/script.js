@@ -2,6 +2,9 @@ import { setDate } from "./setDate.js";
 import { firstRollingCallback, secondRollingCallback } from "./newsRolling.js";
 import { initPressGrid } from "./gridFunction.js";
 
+const ROLLING_TIME = 5000;
+const ROLLING_LATENCY = 2000;
+
 function initDisplayNone() {
   document.querySelector(".list-selected").style.display = "none";
   document.querySelector(".press-list-section").style.display = "none";
@@ -13,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setDate();
   initPressGrid();
 
-  let interval = window.setInterval(firstRollingCallback, 5000);
+  let interval = window.setInterval(firstRollingCallback, ROLLING_TIME);
   setTimeout(function () {
-    let interval2 = window.setInterval(secondRollingCallback, 5000);
-  }, 2000);
+    let interval2 = window.setInterval(secondRollingCallback, ROLLING_TIME);
+  }, ROLLING_LATENCY);
 });

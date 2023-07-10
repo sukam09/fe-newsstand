@@ -1,25 +1,21 @@
-let presses = [];
+import presses from "../assets/light-media.js";
 let grid_page_count = 0;
 let grid_view_selected = true;
+console.log(presses);
 
-for (let i = 1; i < 97; i++) {
-  presses.push({
-    id: i,
-    src: `${i}.png`,
-  });
-}
+const PAGE_SIZE = 24;
 
 const shuffle = () => Math.random() - 0.5;
 let shuffled_presses = [...presses].sort(shuffle);
 
 function appendPressInGrid(press) {
-  let image = document.createElement("img");
-  image.src = `./icons/press_logo/${press.src}`;
-  let sub = document.createElement("img");
+  const image = document.createElement("img");
+  image.src = `${press.src}`;
+  const sub = document.createElement("img");
   image.classList.add("original");
-  sub.src = `./icons/Button.svg`;
+  sub.src = `./img/icons/Button.svg`;
   sub.classList.add("sub");
-  let list = document.createElement("li");
+  const list = document.createElement("li");
   list.classList.add("press-item");
   list.appendChild(image);
   list.appendChild(sub);
@@ -43,14 +39,14 @@ function changeToList() {
 }
 
 document.getElementById("grid-next").addEventListener("click", () => {
-  if (grid_page_count + 1 === parseInt(presses.length / 24) - 1) {
+  if (grid_page_count + 1 === parseInt(presses.length / PAGE_SIZE) - 1) {
     document.getElementById("grid-next").style.display = "none";
   }
-  if (grid_page_count + 1 < parseInt(presses.length / 24)) {
+  if (grid_page_count + 1 < parseInt(presses.length / PAGE_SIZE)) {
     document.getElementById("grid-prev").style.display = "block";
     document.getElementById("press-list").innerHTML = "";
     grid_page_count += 1;
-    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * 24, (grid_page_count + 1) * 24);
+    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * PAGE_SIZE, (grid_page_count + 1) * PAGE_SIZE);
     slice_shuffled_presses.forEach(press => {
       appendPressInGrid(press);
     });
@@ -65,7 +61,7 @@ document.getElementById("grid-prev").addEventListener("click", () => {
     document.getElementById("grid-next").style.display = "block";
     document.getElementById("press-list").innerHTML = "";
     grid_page_count -= 1;
-    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * 24, grid_page_count * 24 + 24);
+    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * PAGE_SIZE, (grid_page_count + 1) * PAGE_SIZE);
     slice_shuffled_presses.forEach(press => {
       appendPressInGrid(press);
     });
@@ -75,7 +71,7 @@ document.getElementById("grid-prev").addEventListener("click", () => {
 function initPressGrid() {
   let shuffled_presses = [...presses].sort(shuffle);
   console.log(shuffled_presses);
-  const slice_shuffled_presses = shuffled_presses.slice(0, 24);
+  const slice_shuffled_presses = shuffled_presses.slice(0, PAGE_SIZE);
   slice_shuffled_presses.forEach(press => {
     appendPressInGrid(press);
   });
