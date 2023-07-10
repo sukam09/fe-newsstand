@@ -1,6 +1,3 @@
-const $newsWrapper = document.querySelector(".news-wrapper");
-const $systemDate = document.querySelector(".system-date");
-
 const MEDIA_NUM = 24;
 const TOPIC_NUM = 10;
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
@@ -31,7 +28,7 @@ const setHotTopic = async () => {
     const $li = document.createElement("li");
     $li.classList.add("hot-topic_list");
 
-    // 0번째 p => current, 1번째 p => next, 4번째 p => prev
+    // 0번째 li => prev, 1번째 li => current, 4번째 li => next
     if (idx % 5 === 0) $li.classList.add("prev");
     else if (idx % 5 === 1) $li.classList.add("current");
     else if (idx % 5 === 2) $li.classList.add("next");
@@ -56,20 +53,50 @@ const setHotTopic = async () => {
  */
 
 const rollingTopic = () => {
+  // 토픽 롤링 타이머 세팅
   document.addEventListener("DOMContentLoaded", () => {
-    let leftInterval = setInterval(() => {
-      rollingCallback("hot-topic-left");
-    }, 5000);
+    let leftInterval = null,
+      rightInterval = null;
+    leftInterval = startRolling("hot-topic-left");
 
-    let interval = setTimeout(() => {
-      var rightInterval = setInterval(() => {
-        rollingCallback("hot-topic-right");
-      }, 5000);
+    setTimeout(() => {
+      rightInterval = startRolling("hot-topic-right");
     }, 1000);
+
+    // 마우스 호버 시 타이머 리셋
+    const $hotTopicLeft = document.querySelector(".hot-topic-left");
+    $hotTopicLeft.addEventListener("mouseenter", () => {
+      clearInterval(leftInterval);
+    });
+    $hotTopicLeft.addEventListener("mouseleave", () => {
+      leftInterval = startRolling("hot-topic-left");
+    });
+
+    const $hotTopicRight = document.querySelector(".hot-topic-right");
+    $hotTopicRight.addEventListener("mouseenter", () => {
+      clearInterval(rightInterval);
+    });
+    $hotTopicRight.addEventListener("mouseleave", () => {
+      leftInterval = startRolling("hot-topic-right");
+    });
   });
 };
 
-function rollingCallback(sectionClass) {
+/**
+ * 핫토픽 롤링 시작
+ */
+const startRolling = (sectionClass) => {
+  let interval = setInterval(() => {
+    rollingCallback(sectionClass);
+  }, 5000);
+
+  return interval;
+};
+
+/**
+ * 핫토픽 롤링 동작 함수
+ */
+const rollingCallback = (sectionClass) => {
   //.prev 클래스 삭제
   document.querySelector(`.${sectionClass} .prev`).classList.remove("prev");
 
@@ -92,7 +119,7 @@ function rollingCallback(sectionClass) {
   }
   next.classList.remove("next");
   next.classList.add("current");
-}
+};
 
 /**
  * 배열을 섞는 함수
@@ -105,6 +132,8 @@ const shuffleList = (list) => {
  * 언론사 Grid 제작하기
  */
 const makeGrid = () => {
+  const $newsWrapper = document.querySelector(".news-wrapper");
+
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
     const imgSrc = isLightMode
@@ -193,6 +222,7 @@ const setDate = () => {
     weekday: "long",
   };
 
+  const $systemDate = document.querySelector(".system-date");
   const $p = document.createElement("p");
   $p.innerText = today.toLocaleDateString("ko-KR", options);
   $systemDate.append($p);
