@@ -51,20 +51,31 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 40px;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.hot-topic-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  width: 461px;
+  height: 49px;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 16px;
+
+  background-color: var(--grayscale-50);
+  border: 1px solid var(--grayscale-100);
 }
 
 .hot-topic_list {
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  width: 429px;
-  height: 17px;
-  padding: 16px;
   gap: 16px;
-
-  background-color: var(--grayscale-50);
-  border: 1px solid var(--grayscale-100);
 }
 
 .hot-topic_list_title {

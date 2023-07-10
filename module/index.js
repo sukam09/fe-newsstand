@@ -2,15 +2,53 @@ const $newsWrapper = document.querySelector(".news-wrapper");
 const $systemDate = document.querySelector(".system-date");
 
 const MEDIA_NUM = 24;
+const TOPIC_NUM = 10;
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
 let pageNum = 0;
 
+const getJSON = async (url) => {
+  try {
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (err) {
+    console.error("Error : ", err);
+    return null;
+  }
+};
+
 /**
  * 핫토픽 5개씩 요소 추가하기
  */
+const setHotTopic = async () => {
+  const $hotTopicLeft = document.querySelector(".hot-topic-left");
+  const $hotTopicRight = document.querySelector(".hot-topic-right");
 
-const setHotTopic = () => {};
+  let hotTopic = await getJSON("../assets/hotTopic.json");
+
+  hotTopic.forEach((topic, idx) => {
+    const $li = document.createElement("li");
+    $li.classList.add("hot-topic_list");
+
+    const $h2 = document.createElement("h2");
+    $h2.classList.add("hot-topic_list_title");
+    $h2.innerText = topic.title;
+
+    const $p = document.createElement("p");
+    $p.classList.add("hot-topic_list_content");
+    $p.innerText = topic.content;
+
+    $li.append($h2, $p);
+
+    idx < 5 ? $hotTopicLeft.append($li) : $hotTopicRight.append($li);
+  });
+};
+
+/**
+ * 핫토픽 롤링하는 함수
+ * -> 5초에 한번씩 가장 위에 있는 뉴스 하위로 가져옴.
+ */
 
 /**
  * 배열을 섞는 함수
@@ -126,6 +164,7 @@ const reloadPage = () => {
 
 function init() {
   setDate();
+  setHotTopic();
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
