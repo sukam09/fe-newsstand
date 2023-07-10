@@ -1,18 +1,30 @@
 body {
+    display: flex;
+    justify-content: center;
+}
+
+/* .grid_border {
+    border: 1px solid black;
+} */
+
+.container_row {
     display: grid;
-    grid-template-columns: 1fr 930px 1fr;
-    margin: 3em;
+    grid-template-rows: 1fr 1fr 5fr;
+}
+
+.container_col {
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+    align-items: center;
 }
 
 .container_between {
-    margin: auto 2em;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
 
 .container_center {
-    margin: auto 2em;
     padding-bottom: 1em;
     display: flex;
     justify-content: center;
@@ -41,24 +53,27 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
+    gap: 9px;
 }
 
 .rolling_banner {
     position: relative;
     width: 100%;
-    height: 100%;
     overflow: hidden;
+    border: 1px solid #d2dae0;
+    background-color: #f5f7f9;
+    height: 49px;
 }
 
 .rolling_banner li {
     position: absolute;
-    top: -36px;
+    top: -49px;
     left: 0;
 }
 
 /* 이전, 현재, 다음 롤링 배너 표시 */
 .rolling_banner li.prev {
-    top: 36px;
+    top: 49px;
     transition: top 1s ease;
 }
 
@@ -68,7 +83,17 @@ body {
 }
 
 .rolling_banner li.next {
-    top: -36px;
+    top: -49px;
+}
+
+.list_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 49px;
+    font-size: 14px;
+    padding-left: 10px;
 }
 
 .nav_container span,
@@ -109,7 +134,7 @@ body {
     list-style-type: none;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid #d2dae0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,15 +147,9 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 15%;
 }
 
-.left_arrow {
-    position: relative;
-    left: 25%;
-}
-
+.left_arrow,
 .right_arrow {
-    position: relative;
-    right: 25%;
+    text-align: center;
 }

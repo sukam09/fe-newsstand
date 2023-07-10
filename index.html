@@ -7,55 +7,77 @@
         <link rel="stylesheet" type="text/css" href="index.css" />
     </head>
     <body>
-        <div class="arrow">
-            <i class="left_arrow" id="leftBtn">
-                <img src="./icons/LeftButton.png" alt="left" />
-            </i>
-        </div>
-        <div>
-            <header class="container_between">
-                <div class="header_left">
-                    <img src="./icons/newspaper.png" alt="logo" />
-                    <h1>뉴스스탠드</h1>
+        <div class="container_row">
+            <header class="container_col">
+                <div class="grid_border"></div>
+                <div class="grid_border">
+                    <header class="container_between">
+                        <div class="header_left">
+                            <img src="./icons/newspaper.png" alt="logo" />
+                            <h1>뉴스스탠드</h1>
+                        </div>
+                        <div class="header_right">
+                            <p class="today"></p>
+                        </div>
+                    </header>
                 </div>
-                <div class="header_right">
-                    <p class="today"></p>
-                </div>
+                <div class="grid_border"></div>
             </header>
-            <section class="container_between">
-                <div class="sec_trend_news">
-                    <div class="rolling_banner" id="rollingBannerLeft"></div>
-                    <div class="rolling_banner" id="rollingBannerRight"></div>
+            <div class="container_col">
+                <div class="grid_border"></div>
+                <div class="grid_border">
+                    <!-- banner -->
+
+                    <section class="container_between">
+                        <div class="sec_trend_news">
+                            <div class="rolling_banner" id="rollingBannerLeft"></div>
+                            <div class="rolling_banner" id="rollingBannerRight"></div>
+                        </div>
+                    </section>
                 </div>
-            </section>
-            <div class="container_between">
-                <nav class="nav_container">
-                    <div id="navLeft">
-                        <span>
-                            <p>전체 언론사</p>
-                        </span>
-                        <span>
-                            <p>내가 구독한 언론사</p>
-                        </span>
-                    </div>
-                    <div id="navRight">
-                        <i>
-                            <img src="./icons/Symbol.png" alt="search" />
-                        </i>
-                        <i>
-                            <img src="./icons/list-view.png" alt="search" />
-                        </i>
-                    </div>
-                </nav>
+                <div class="grid_border"></div>
             </div>
-            <div class="container_center">
-                <main class="main_news_container"></main>
+            <div class="container_col">
+                <!-- 7, 8, 9 -->
+                <div class="grid_border">
+                    <!-- 7 -->
+                    <i class="left_arrow" id="leftBtn">
+                        <img src="./icons/LeftButton.png" alt="left" />
+                    </i>
+                </div>
+                <div class="grid_border">
+                    <!-- 8 -->
+                    <div>
+                        <nav class="nav_container">
+                            <div id="navLeft">
+                                <span>
+                                    <p>전체 언론사</p>
+                                </span>
+                                <span>
+                                    <p>내가 구독한 언론사</p>
+                                </span>
+                            </div>
+                            <div id="navRight">
+                                <i>
+                                    <img src="./icons/Symbol.png" alt="search" />
+                                </i>
+                                <i>
+                                    <img src="./icons/list-view.png" alt="search" />
+                                </i>
+                            </div>
+                        </nav>
+                        <div class="container_center">
+                            <main class="main_news_container"></main>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_border">
+                    <!-- 9 : right arrow-->
+                    <i class="right_arrow" id="rightBtn">
+                        <img src="./icons/RightButton.png" alt="right" />
+                    </i>
+                </div>
             </div>
-        </div>
-        <div class="arrow">
-            <i class="right_arrow" id="rightBtn">
-                <img src="./icons/RightButton.png" alt="right" />
-            </i>
         </div>
     </body>
     <script src="./utils.js"></script>
