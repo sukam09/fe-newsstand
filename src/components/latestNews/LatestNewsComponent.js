@@ -1,11 +1,12 @@
+import { ROLLING_COUNT, ROLLING_SECOND, SECOND } from '../../constants/index.js';
 import Component from '../Component.js';
 
 export default class LatestNewsComponent extends Component {
   setup() {
     this.state = { ...this.props };
     this.isRolling = false;
+
     this.timerOn();
-    // setTimeout(this.timerOn.bind(this), this.state.delay * 1000);
   }
 
   template() {
@@ -33,7 +34,16 @@ export default class LatestNewsComponent extends Component {
     if (this.isRolling) return;
     this.isRolling = true;
 
-    this.timer = setInterval(this.nextNews.bind(this), 5000);
+    if (this.props.delay === 1) {
+      this.props.delay = 0;
+
+      setTimeout(() => {
+        this.$target.querySelector('.auto-rolling-animation').style.animationPlayState = 'paused';
+        this.timer = setInterval(this.nextNews.bind(this), ROLLING_SECOND);
+      }, SECOND);
+    } else {
+      this.timer = setInterval(this.nextNews.bind(this), ROLLING_SECOND);
+    }
   }
 
   timerOff() {
@@ -42,6 +52,8 @@ export default class LatestNewsComponent extends Component {
   }
 
   nextNews() {
-    this.state.currentIndex = this.setState({ currentIndex: (this.state.currentIndex + 1) % 5 });
+    this.state.currentIndex = this.setState({
+      currentIndex: (this.state.currentIndex + 1) % ROLLING_COUNT,
+    });
   }
 }
