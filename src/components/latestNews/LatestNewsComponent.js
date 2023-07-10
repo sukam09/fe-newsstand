@@ -11,8 +11,8 @@ export default class LatestNewsComponent extends Component {
 
   template() {
     const currentConent = this.state.content[this.state.currentIndex];
-    return `<span>${this.state.name}</span>
-            <p class='auto-rolling-animation'>${currentConent}</p>
+    return `<span class='display-bold14'>${this.state.name}</span>
+            <p class='auto-rolling-animation available-medium14'>${currentConent}</p>
             `;
   }
 

@@ -4,8 +4,8 @@ import Icon from '../common/Icon.js';
 export default class AllNewHeader extends Component {
   template() {
     return `<nav class='view-type-wrapper'>
-            <span>전체 언론사</span>        
-            <span>내가 구독한 언론사</span>
+            <span class='selected-bold16'>전체 언론사</span>        
+            <span class='available-medium16'>내가 구독한 언론사</span>
             </nav>
 
             <div class='view-type-icon'>
