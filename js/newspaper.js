@@ -1,6 +1,11 @@
+import { constants } from "./constants.js";
+
 const $newspaperList = document.querySelector(".newspaper__list");
 
-const indexArr = Array.from({ length: 96 }, (_, i) => i);
+const indexArr = Array.from(
+  { length: constants.ALL_PAGE_NEWSPAPER },
+  (_, i) => i
+);
 indexArr.sort(() => Math.random() - 0.5);
 
 const createNewspaperItem = (index, mode) => {
@@ -12,7 +17,10 @@ const createNewspaperItem = (index, mode) => {
 };
 
 const createNewspaperList = (page, mode) => {
-  const nowPageIndexArr = indexArr.slice(page * 24, (page + 1) * 24);
+  const nowPageIndexArr = indexArr.slice(
+    page * constants.ONE_PAGE_NEWSPAPER,
+    (page + 1) * constants.ONE_PAGE_NEWSPAPER
+  );
   const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
   const newspaperList = liArr.reduce(
     (news, currentIndex) => news + currentIndex

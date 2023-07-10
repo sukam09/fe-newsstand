@@ -1,22 +1,25 @@
+import { constants } from "./constants.js";
+
 const timer = [];
 
 const repeatRolling = (rollingElement) => {
-  rollingElement.style.transitionDuration = "400ms";
+  rollingElement.style.transitionDuration =
+    constants.ROLLING_TRANSITION_DURATION_MS + "ms";
   rollingElement.style.marginTop = "-16px";
 
   window.setTimeout(() => {
     rollingElement.removeAttribute("style");
     rollingElement.appendChild(rollingElement.firstElementChild);
-  }, 400);
+  }, constants.ROLLING_TRANSITION_DURATION_MS);
 };
 
 const setRollingEvent = (rollingElement, index) => {
   setTimeout(() => {
     timer[index] = window.setInterval(
       () => repeatRolling(rollingElement),
-      5000
+      constants.ROLLING_TIMING_SEC * 1000
     );
-  }, index * 1000);
+  }, index * constants.ROLLING_DIFF_SEC * 1000);
 };
 
 const setRollingAndStop = (rollingElement, index) => {
