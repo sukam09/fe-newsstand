@@ -1,4 +1,5 @@
 import { fetchPressData } from "./utils.js";
+import { show_options } from "./events.js";
 
 // rowSize, colSize, maxPage, currentPage is main size variable
 const rowSize = 6;
@@ -9,21 +10,25 @@ let currentPage = 0;
 // move page
 function movePage(data) {
     document.querySelector(".left_arrow").addEventListener("click", () => {
-        currentPage -= 1;
-        renderNews(data);
+        if (currentPage < 0) return;
+
+        renderGridPress(data, currentPage - 1);
+        currentPage = currentPage - 1;
     });
     document.querySelector(".right_arrow").addEventListener("click", () => {
-        currentPage += 1;
-        renderNews(data);
+        if (currentPage > maxPage) return;
+
+        renderGridPress(data, currentPage + 1);
+        currentPage = currentPage + 1;
     });
 }
 
 // render news
-function renderNews(shuffledData) {
+function renderGridPress(shuffledData, page) {
     const news_data_container = document.querySelector(".main_news_container");
-    let cnt = currentPage * 24;
+    let cnt = page * 24;
     news_data_container.innerHTML = "";
-    toggleArrow(currentPage);
+    toggleArrow(page);
 
     for (let i = 0; i < colSize; i++) {
         let ul = document.createElement("ul");
@@ -41,8 +46,8 @@ function renderNews(shuffledData) {
 }
 
 // toggle arrow
-function toggleArrow() {
-    switch (currentPage) {
+function toggleArrow(page) {
+    switch (page) {
         case 0:
             document.querySelector(".left_arrow").style.display = "none";
             document.querySelector(".right_arrow").style.display = "block";
@@ -58,13 +63,18 @@ function toggleArrow() {
     }
 }
 
-function renderPress() {
+function initPress() {
     const promise_data = fetchPressData();
 
     promise_data.then((data) => {
-        renderNews(data);
-        movePage(data);
+        renderPress(data, 0);
+        show_options.press_data = data;
     });
 }
 
-export { renderPress };
+function renderPress(data, page) {
+    renderGridPress(data, page);
+    movePage(data);
+}
+
+export { initPress, renderGridPress, currentPage };

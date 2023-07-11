@@ -1,9 +1,10 @@
-import { renderPress } from "./random_news.js";
+import { renderGridPress, currentPage } from "./random_news.js";
 import { rendListNews } from "./list_news.js";
 
-let show_options = {
+const show_options = {
     press: "all",
     main: "symbol",
+    press_data: [],
 };
 
 function optionShowPress() {
@@ -11,7 +12,6 @@ function optionShowPress() {
     option_press.forEach((option) => {
         option.addEventListener("click", () => {
             show_options.press = option.id;
-            console.log(show_options.press);
             if (option.id === "option_all_press") {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_subscribe_press").className =
@@ -45,7 +45,7 @@ function optionShowMain() {
                 news_data_container.classList.remove("list_news_container");
                 news_data_container.classList.add("grid_news_container");
                 deleteMainDisplay();
-                // renderPress();
+                renderGridPress(show_options.press_data, currentPage);
 
                 // here (random_news.js) renderMain()
             } else {
@@ -76,3 +76,5 @@ function init() {
 }
 
 init();
+
+export { show_options };
