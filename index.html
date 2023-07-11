@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Stand</title>
-    <link href="./style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
     <script src="./src/app.js" defer type="module"></script>
   </head>
   <body>
@@ -94,70 +94,34 @@
               <path d="M25 1L1 21L25 41" stroke="#6E8091" />
             </svg>
           </button>
-          <ul class="grid-view hidden"></ul>
+
+          <ul class="grid-view"></ul>
 
           <!-- 리스트 뷰 -->
-          <div class="list-view">
+          <div class="list-view hidden">
             <!-- 카테고리 -->
             <nav class="list-view_category-bar display-medium14">
               <ul>
-                <li>종합/경제</li>
+                <!-- <li class="category--selected">
+                  <div class="progress"></div>
+                  <div class="progress-component">
+                    <span class="display-bold14">종합/경제</span>
+                    <div class="display-bold12">
+                      <span>2</span>
+                      <span>/81</span>
+                    </div>
+                  </div>
+                </li>
                 <li>방송/통신</li>
                 <li>IT</li>
                 <li>영자지</li>
                 <li>스포츠/연예</li>
                 <li>매거진/전문지</li>
-                <li>지역</li>
+                <li>지역</li> -->
               </ul>
             </nav>
             <!-- 메인 리스트 -->
-            <div class="list-view_main">
-              <header class="list-view_main-header">
-                <img src="./assets/images/light/0.png" height="20px" />
-                <span class="available-medium12">2023.02.10. 19:38 편집</span>
-                <div>구독하기</div>
-              </header>
-              <div class="list-view_main-box">
-                <!-- side -->
-                <div class="list-view_main-news">
-                  <img
-                    src="./assets/images/news.jpeg"
-                    width="320px"
-                    height="200px"
-                  />
-                  <span class="available-medium16"
-                    >대통령실, 도이치모터스 1심 판결에 "김 여사 연루 의혹,
-                    민주당 주장 깨졌다"</span
-                  >
-                </div>
-                <!-- main -->
-                <ul class="list-view_news-list available-medium16">
-                  <li>
-                    이재명 "공개소환, 회술레같은 수치"…검찰 "비공개 출석
-                    요구하지도 않았다"
-                  </li>
-                  <li>
-                    '위안부 후원금 횡령 의혹' 벌금형...미소 지은 윤미향 무소속
-                  </li>
-                  <li>
-                    민주, 이재명 검찰 출석 당일에 尹정권 맹폭…"50억 클럽 방치,
-                    李 수사 올인"
-                  </li>
-                  <li>
-                    [단독] "매니저라 불러주세요" HMM, 직급체계 5단계→2단계로
-                    간소화
-                  </li>
-                  <li>
-                    '멍투성이' 초등생 사망 친부 "학대, 아내가 다 했다"…10일
-                    구속여부 결정
-                  </li>
-                  <li>러, 젤렌스키 유럽 간 새 루한스크서 집중 공세</li>
-                  <li class="display-medium14">
-                    데일리안 언론사에서 직접 편집한 뉴스입니다.
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <div class="list-view_main"></div>
           </div>
 
           <button class="container-grid-view_right-btn">
