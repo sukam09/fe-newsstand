@@ -4,6 +4,7 @@ import { category } from "./components/category/category.js";
 
 let listPage = 0;
 const MAX_LIST_PAGE = 7;
+const $listContainer = document.getElementById("list_container");
 
 export function showListage(page) {
   const $newsInfo = document.getElementsByClassName(`news_${page}`)[0];
@@ -16,14 +17,16 @@ export function showPrevListPage() {
   listPage <= 0 ? 0 : (listPage -= 1);
 }
 
-export async function initListNews() {
+export async function initListView() {
   const newsData = await fetchData("/data/news.json");
-  const $listContainer = document.getElementById("list_container");
-  $listContainer.insertAdjacentHTML("afterbegin", category(newsData));
+  initCategory(newsData);
+  initNews(newsData);
+  showListage(0);
+}
 
+function initNews(newsData) {
   for (let i = 0; i < newsData.length; i++) {
     const category = newsData[i];
-    category.data.length;
 
     for (let j = 0; j < category.data.length; j++) {
       // 카테고리 하나에 대한 페이지 생성
@@ -33,15 +36,16 @@ export async function initListNews() {
       );
     }
   }
+}
 
+function initCategory(newsData) {
+  $listContainer.insertAdjacentHTML("afterbegin", category(newsData));
   const $categoryItemList = document.getElementsByClassName("category_item");
-
   for (let i = 0; i < newsData.length; i++) {
     const $categoryItem = $categoryItemList[i];
     $categoryItem.addEventListener("click", (e) => {
+      document.getElementsByClassName("clicked")[0].classList.remove("clicked");
       e.currentTarget.classList.add("clicked");
     });
   }
-
-  showListage(0);
 }

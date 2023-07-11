@@ -33,6 +33,11 @@
   align-items: flex-start;
 }
 
+.news_main_img {
+  width: 320px;
+  height: 200px;
+}
+
 /* category */
 .category {
   background-color: #f5f7fb;
@@ -45,6 +50,9 @@
   font-size: 14px;
   padding: 0px;
   margin: 0px;
+  height: 100%;
+  padding: 0;
+  list-style: none;
 }
 .category_list > li {
   position: relative;
@@ -72,6 +80,10 @@
 .category_list > .clicked:hover {
   cursor: default;
   text-decoration-line: none;
+}
+.category_item {
+  position: relative;
+  height: 100%;
 }
 
 .clicked > .page_count {

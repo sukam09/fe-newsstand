@@ -6,7 +6,7 @@ export function categoryItem(categoryName, len) {
       <span>${categoryName}</span>
       <span class="page_count">
         <span class="now_page">${1}</span>
-        <span class="all_page">${len}</span>
+        <span class="all_page">/ ${len}</span>
       </span>
       ${progressBar()}
     </li>

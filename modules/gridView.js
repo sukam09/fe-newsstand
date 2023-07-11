@@ -2,7 +2,7 @@ export let gridPage = 0;
 const NUM_IN_A_GRID = 24;
 const MAX_PAGE = 4;
 
-export function initGrid(pressDataArr) {
+export function initGridView(pressDataArr) {
   const $gridContainer = document.getElementById("grid_container");
   const gridButton = document.getElementById("grid_button");
   for (let i = 0; i < MAX_PAGE; i++) {

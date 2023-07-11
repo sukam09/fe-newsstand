@@ -5,8 +5,7 @@ import {
   initDate,
 } from "./global.js";
 import {
-  gridPage,
-  initGrid,
+  initGridView,
   showNextGridPage,
   showPrevGridPage,
 } from "./gridView.js";
@@ -14,7 +13,7 @@ import { showGridPage } from "./gridView.js";
 import { fetchData, shuffleArray } from "./utils.js";
 import { initHeadline, rolling } from "./headline.js";
 import {
-  initListNews,
+  initListView,
   showNextListPage,
   showPrevListPage,
 } from "./listView.js";
@@ -36,9 +35,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   initDate();
   initHeadline();
-  initGrid(shuffledPressData);
+  initGridView(shuffledPressData);
   showGridPage(0);
-  initListNews();
+  initListView();
   rightGridButton.addEventListener("click", showNextGridPage);
   leftGridButton.addEventListener("click", showPrevGridPage);
   rightListButton.addEventListener("click", showNextListPage);
