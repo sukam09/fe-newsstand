@@ -1,9 +1,18 @@
 1. 레이아웃 설계
-   ![UI - 1](./docs/test1.png)
-   ![UI - 2](./docs/test2.png)
+   ![UI - 1](./docs/test3.png)
+   ![UI - 2](./docs/test4.png)
 2. 네이밍 규칙
-    - id : camelCase (class 명이랑 중복 x)
-    - class : underscore (요소 기능을 포함해야함)
+    - HTML, CSS
+        - id : `camelCase`
+        - class : `underscore`
+            - 요소 기능 포함할 것
+            - 4번 이상 참조하지 않도록 설계할 것
+    - JS
+        - function : `camelCase`
+        - variable
+            - constant : `UPPERCASE`
+            - function scope : `camelCase`
+            - global scope : `single tone`
 
 ---
 
@@ -24,6 +33,16 @@
 
 ### 7.10 (월)
 
--   [ ] list_view 만들기
--   [ ] 자동 롤링 구현
+-   [x] list_view 만들기
+-   [x] 자동 롤링 구현
+-   [ ] 모듈화
+
+### 7.11 (화)
+
+-   [ ] list_view 구현
+    -   [ ] main_nav 구현
+        -   [x] nav 클릭 구현
+        -   [ ] 프로그레시브 바 구현
+    -   [ ] 데이터 정리
+-   [ ] list_view, grid_view 이벤트 분류
 -   [ ] 모듈화
