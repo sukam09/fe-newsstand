@@ -29,6 +29,8 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    width: 932px;
+    height: 390px;
 }
 
 .header_left {
@@ -225,7 +227,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 16px;
     padding: 16px;
 }
 
@@ -237,6 +238,7 @@ body {
     font-size: 12px;
     font-weight: 500;
     color: #5f6e76;
+    margin-left: 8px;
 }
 
 .content_picture {
@@ -257,6 +259,7 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 320px;
+    margin-left: 8px;
 }
 
 .content_body_contents {
