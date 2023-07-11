@@ -8,11 +8,10 @@ let firstBannerIndex = 1;
 let secondBannerIndex = 6;
 const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
-
 function refresh(logos) {
   shuffle(logos);
   const COUNT_PER_PAGE = 24;
-  const mainGrid = document.getElementById("main-grid");
+  const mainGrid = document.getElementById("main-grid-01");
   mainGrid.innerHTML = "";
   for (
     let PAGE_INDEX = currentPageNumber * COUNT_PER_PAGE;
@@ -90,7 +89,6 @@ function clickCardListImage() {
 }
 
 function clickRightAsideButton() {
-  const rightAsideButton = document.getElementById("aside-right");
   rightAsideButton.addEventListener("click", () => {
     if (currentPageNumber == MAX_PAGE_NUMBER - 1) {
       rightAsideButton.style.visibility = "hidden";
@@ -105,7 +103,6 @@ function clickRightAsideButton() {
 }
 
 function clickLeftAsideButton() {
-  const leftAsideButton = document.getElementById("aside-left");
   leftAsideButton.addEventListener("click", () => {
     if (currentPageNumber == MIN_PAGE_NUMBER + 1) {
       leftAsideButton.style.visibility = "hidden";
@@ -120,29 +117,30 @@ function clickLeftAsideButton() {
 }
 
 function rollingBanner() {
-  addInitRollingData();
+  addInitRollingData(1);
+  addInitRollingData(2);
   addEventListener("DOMContentLoaded", () => {
     let interval1 = setInterval(rollingInterval, 5000, 1);
     let interval2 = setInterval(rollingInterval, 6000, 2);
-    addRollingHoverEvent(interval1, interval2);
+    //addRollingHoverEvent(interval1, interval2);
   });
 }
 
 function addRollingHoverEvent(interval1, interval2) {
-  let onHoverRolling1 = document.getElementById("rolling-banner-01");
-  let onHoverRolling2 = document.getElementById("rolling-banner-02");
-  onHoverRolling1.addEventListener("mouseover", () => {
-    clearInterval(interval1);
-  });
-  onHoverRolling1.addEventListener("mouseleave", () => {
-    interval1 = setInterval(rollingInterval, 5000, 1);
-  });
-  onHoverRolling2.addEventListener("mouseover", () => {
-    clearInterval(interval2);
-  });
-  onHoverRolling2.addEventListener("mouseleave", () => {
-    interval2 = setInterval(rollingInterval, 5000, 2);
-  });
+  // const bannerHover01 = document.getElementById("rolling-banner-01");
+  // const bannerHover02 = document.getElementById("rolling-banner-02");
+  // bannerHover01.addEventListener("mouseover", () => {
+  //   clearInterval(interval1);
+  // });
+  // bannerHover01.addEventListener("mouseleave", () => {
+  //   interval1 = setInterval(rollingInterval, 5000, 1);
+  // });
+  // bannerHover02.addEventListener("mouseover", () => {
+  //   clearInterval(interval2);
+  // });
+  // bann.addEventListener("mouseleave", () => {
+  //   interval2 = setInterval(rollingInterval, 6000, 2);
+  // });
 }
 
 function rollingInterval(bannerNumber) {
@@ -157,29 +155,56 @@ function rollingInterval(bannerNumber) {
   }
 }
 
-function changeBanner(index, bannerNumber) {
-  const oldBanner = document.getElementById(`rolling-banner-0${bannerNumber}`)
-    .childNodes[1];
-  const newBanner = document.createElement("div");
-  newBanner.innerText = news_article[0].article[index];
-  newBanner.style.transition = "transform 0.5s";
-  newBanner.style.transform = "translateY(100%)";
-  newBanner.className = "rolling-banner";
+function changeBanner(articleIndex, bannerNumber) {
   document
-    .getElementById(`rolling-banner-0${bannerNumber}`)
-    .replaceChild(newBanner, oldBanner);
-  setTimeout(function () {
-    newBanner.style.transform = "translateY(0)";
-  }, 10);
+    .querySelector(`#rolling-banner-0${bannerNumber} .wrap .prev`)
+    .classList.remove("prev");
+  let currentBanner = document.querySelector(
+    `#rolling-banner-0${bannerNumber} .wrap .current`
+  );
+  let nextBanner = document.querySelector(
+    `#rolling-banner-0${bannerNumber} .wrap .next`
+  );
+  currentBanner.classList.remove("current");
+  currentBanner.classList.add("prev");
+  if (nextBanner.nextElementSibling == null)
+    document
+      .querySelector(`#rolling-banner-0${bannerNumber} .wrap ul li:first-child`)
+      .classList.add("next");
+  else nextBanner.nextElementSibling.classList.add("next");
+  nextBanner.classList.remove("next");
+  nextBanner.classList.add("current");
 }
 
-function addInitRollingData() {
-  let firstRollingData = document.createElement("div");
-  firstRollingData.innerHTML = news_article[0].article[0];
-  let secondRollingData = document.createElement("div");
-  secondRollingData.innerHTML = news_article[0].article[5];
-  document.getElementById(`rolling-banner-01`).appendChild(firstRollingData);
-  document.getElementById(`rolling-banner-02`).appendChild(secondRollingData);
+function addInitRollingData(bannerNumber) {
+  let rollingBanner = document.getElementById(
+    `rolling-banner-0${bannerNumber}`
+  );
+  let startIndex, endIndex, secondIndex;
+  if (bannerNumber == 1) {
+    startIndex = 0;
+    endIndex = parseInt(news_article[0].article.length / 2);
+  } else {
+    startIndex = Math.ceil(news_article[0].article.length / 2);
+    endIndex = news_article[0].article.length;
+  }
+  secondIndex = startIndex + 1;
+  let newsHTML = `<div class="wrap"><ul>`;
+  for (; startIndex < endIndex; startIndex++) {
+    newsHTML +=
+      '<li class="' +
+      (startIndex === endIndex - 1
+        ? "prev"
+        : startIndex === secondIndex
+        ? "next"
+        : startIndex === secondIndex - 1
+        ? "current"
+        : "") +
+      '">';
+    newsHTML += '<a href="#">' + news_article[0].article[startIndex] + "</a>";
+  }
+  newsHTML += "</ul></div>";
+  rollingBanner.innerHTML = newsHTML;
 }
 
 function init() {
@@ -187,11 +212,7 @@ function init() {
   clickRightAsideButton();
   clickLeftAsideButton();
   setDate();
+  rollingBanner();
 }
 refresh(logoAll);
-// clickAllNews();
-//clickMySubscribeNews();
-// clickGridImage();
-// clickCardListImage();
 init();
-rollingBanner();
