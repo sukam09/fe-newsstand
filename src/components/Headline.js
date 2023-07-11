@@ -51,7 +51,7 @@ export default function Headline({ $target, initialState }) {
   };
 
   this.render = () => {
-    const { index, headlines } = this.state;
+    const { headlines } = this.state;
 
     $div.innerHTML = `
       <div class="recent-news-press">연합뉴스</div>

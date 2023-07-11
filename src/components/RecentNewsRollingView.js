@@ -25,7 +25,6 @@ export default function RecentNewsRollingView({ $target, initialState }) {
     new Headline({
       $target: $section,
       initialState: {
-        index: 0,
         headlines: leftHeadlines,
         offset: 0,
       },
@@ -34,7 +33,6 @@ export default function RecentNewsRollingView({ $target, initialState }) {
     new Headline({
       $target: $section,
       initialState: {
-        index: 0,
         headlines: rightHeadlines,
         offset: HEADLINE_ROLLING_DELAY_DIFF,
       },
