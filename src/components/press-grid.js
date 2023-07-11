@@ -41,4 +41,30 @@ const getNavRightElement = () => {
   return $navRight;
 };
 
+const shuffleList = (list) => {
+  list.sort(() => Math.random() - 0.5);
+};
+
+const makeGrid = () => {
+  for (let i = 0; i < 24; i++) {
+    const gridItem = document.createElement('li');
+    const imgSrc = isLightMode
+      ? `./assets/images/light-press-logo/${idList[i]}.png`
+      : `./assets/images/dark-press-logo/${idList[i]}.png`;
+
+    let checkImg = new Image();
+    checkImg.src = imgSrc;
+    checkImg.onload = function () {
+      const img = document.createElement('img');
+      img.classList.add(`img${i}`);
+      img.src = imgSrc;
+      img.style.height = '20px';
+      gridItem.classList.add('press-logo__li');
+      gridItem.appendChild(img);
+    };
+
+    newsWrapper.append(gridItem);
+  }
+};
+
 export { setPressGrid };

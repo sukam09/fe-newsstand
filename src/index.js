@@ -19,11 +19,11 @@ const shuffleList = (list) => {
  * 뉴스스탠드 Grid 제작하기
  */
 const makeGrid = () => {
-  for (let i = 0; i < 24; i++) {
+  for (let i = 1; i <= 24; i++) {
     const gridItem = document.createElement('li');
     const imgSrc = isLightMode
-      ? `./assets/images/light-press-logo/${idList[i]}.png`
-      : `./assets/images/dark-press-logo/${idList[i]}.png`;
+      ? `./assets/images/light-press-logo/img${idList[i]}.svg`
+      : `./assets/images/dark-press-logo/img${idList[i]}.svg`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
@@ -49,8 +49,8 @@ const changeImgSrc = () => {
   for (let i = 0; i < 24; i++) {
     const $img = document.querySelector(`.img${i}`);
     const imgSrc = isLightMode
-      ? `./assets/images/light-press-logo/${newImg[i]}.png`
-      : `./assets/images/dark-press-logo/${newImg[i]}.png`;
+      ? `./assets/images/light-press-logo/img${newImg[i]}.png`
+      : `./assets/images/dark-press-logo/img${newImg[i]}.png`;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
@@ -63,6 +63,7 @@ const changeImgSrc = () => {
   }
 };
 
+/////////////////////
 /**
  * Grid 화살표 hidden 처리
  */
@@ -96,6 +97,7 @@ const clickArrow = (className) => {
 function init() {
   setNewsStandHeader();
   setLatestNews();
+  setPressGrid();
   //
   shuffleList(idList);
   setArrowVisible(idList);
