@@ -1,5 +1,5 @@
 import NewsTitle from './components/NewsTitle.js';
-import { HEADLINE, NEWSDATA } from './constants.js';
+import { HEADLINE, HEADLINE_DATA } from './constants.js';
 
 const startRolling = newsTitleWrapper => {
   const newsTitle = newsTitleWrapper.querySelector('.news_title');
@@ -21,7 +21,7 @@ const updateNewsContent = (newsTitleWrapper, newsData) => {
 const startLoop = (newsTitleWrapper, index) => {
   const newsLoopData = {
     index: 0,
-    news: NEWSDATA.NEWS[index],
+    news: HEADLINE_DATA.NEWS[index],
     loop: null,
   };
 
@@ -42,11 +42,11 @@ const startLoop = (newsTitleWrapper, index) => {
   });
 };
 
-const init = () => {
+const initHeadline = () => {
   const newsTitleWrappers = document.querySelectorAll('.news_title_wrapper');
 
   newsTitleWrappers.forEach((newsTitleWrapper, index) => {
-    newsTitleWrapper.appendChild(NewsTitle(NEWSDATA.NEWS[index][0]));
+    newsTitleWrapper.appendChild(NewsTitle(HEADLINE_DATA.NEWS[index][0]));
     setTimeout(() => {
       startLoop(newsTitleWrapper, index);
     }, HEADLINE.DELAY * index);
@@ -54,7 +54,7 @@ const init = () => {
 };
 
 const headlineApp = () => {
-  init();
+  initHeadline();
 };
 
 export default headlineApp;

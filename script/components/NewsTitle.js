@@ -1,5 +1,3 @@
-import { NEWSDATA } from '../constants.js';
-
 const NewsTitle = text => {
   const newsTitle = document.createElement('div');
   const anchor = document.createElement('a');

@@ -11,7 +11,7 @@ const MEDIA = {
   MAX_PAGE: 3,
 };
 
-const NEWSDATA = {
+const HEADLINE_DATA = {
   MEDIA: '연합뉴스',
   NEWS: [
     [
@@ -31,4 +31,4 @@ const NEWSDATA = {
   ],
 };
 
-export { HEADLINE, MEDIA, NEWSDATA, SNACKBAR_DELAY };
+export { HEADLINE, MEDIA, HEADLINE_DATA, SNACKBAR_DELAY };
