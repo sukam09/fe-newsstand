@@ -108,4 +108,4 @@ const gridApp = () => {
   createGrid();
 };
 
-gridApp();
+export default gridApp;
