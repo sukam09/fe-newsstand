@@ -19,12 +19,12 @@ function btnColorChange(targetBtn, InActiveBtn) {
 }
 
 function layoutChange(targetBtn) {
-  const ID = targetBtn.id;
   const layout = document.querySelector("main");
+  const ID = targetBtn.id;
+  let InActiveBtn;
 
   layout.innerHTML = ``;
 
-  let InActiveBtn;
   if (ID === GRID_BTN_ID) {
     layout.className = GRID;
     InActiveBtn = document.getElementById(LIST_BTN_ID);

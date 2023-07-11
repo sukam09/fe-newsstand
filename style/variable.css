@@ -18,7 +18,7 @@
   --text-bold: #4b5966;
   --text-default: #5f6e76;
   --text-weak: #879298;
-  --text-white-default: #xf;
+  --text-white-default: rgba(255, 255, 255, 1);
   --text-white-weak: rgba(255, 255, 255, 0.7);
   --text-point: #4362d0;
   --surface-default: #ffffff;

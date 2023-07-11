@@ -9,6 +9,11 @@ export async function fetchRollingArticle(path) {
   return jsonData;
 }
 
+export async function fetchCategoryNews(path) {
+  const jsonData = await jsonfetch(path);
+  return jsonData;
+}
+
 async function jsonfetch(path) {
   return fetch(path).then((response) => {
     return response.json();
