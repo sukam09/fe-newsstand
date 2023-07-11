@@ -90,15 +90,17 @@ news_stand_container
 │
 ├── /assets
 │     ├── /data
+│     │    ├── latest-news.json
 │     │    ├── dark-press.json
 │     │    └── light-press.json
-│     └── /fonts
-│     └── /icons
+│     ├── /fonts
+│     ├── /icons
 │     └── /images
 │          ├── /dark-press-logo
 │          └── /light-press-logo
 │
 ├── /components
+│     └──latest-news.js
 │
 └── /styles
 │     ├── global.css
