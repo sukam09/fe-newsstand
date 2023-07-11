@@ -116,6 +116,14 @@ body {
   top: 52px;
 }
 
+.news-bar a {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  width: 360px;
+}
+
 /* tab-and-viewer */
 .tab-and-viewer {
   display: flex;
