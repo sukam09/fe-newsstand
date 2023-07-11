@@ -52,10 +52,10 @@ function shuffleImgIndex() {
 }
 const shuffledPress = shuffleImgIndex();
 
-function changePage(e) {
-  if (e.target.id === "left") {
+function changePage(target) {
+  if (target === "left") {
     main_list_page--;
-  } else if (e.target.id === "right") {
+  } else if (target === "right") {
     main_list_page++;
   }
   checkPage();
@@ -79,21 +79,38 @@ function handleClick(e) {
   const list_view_btn = document.querySelector(
     ".viewer-btn .list-view-btn img"
   );
-  const target = e.target.classList.value;
-  if (target === "grid-view-btn") {
-    main_list_page = 1;
-    view_content.innerHTML = grid_view;
-    grid_view_btn.src = "../images/icon/grid-view-clicked.svg";
-    list_view_btn.src = "../images/icon/list-view.svg";
-    showMainList();
-  } else if (target === "list-view-btn") {
-    main_list_page = 1;
-    view_content.innerHTML = list_view;
-    grid_view_btn.src = "../images/icon/grid-view.svg";
-    list_view_btn.src = "../images/icon/list-view-clicked.svg";
+  const target = e.target.id;
+
+  switch (target) {
+    case "grid-btn":
+    case "list-btn":
+      changeView(target);
+      break;
+    case "left":
+    case "right":
+      changePage(target);
+      break;
+    default:
+      break;
   }
 }
-document.addEventListener("click", changePage);
-document.querySelector(".viewer-btn").addEventListener("click", handleClick);
+
+function changeView(target) {
+  const grid_btn = document.getElementById("grid-btn");
+  const list_btn = document.getElementById("list-btn");
+  main_list_page = 1;
+  if (target === "grid-btn") {
+    view_content.innerHTML = grid_view;
+    grid_btn.src = "../images/icon/grid-view-clicked.svg";
+    list_btn.src = "../images/icon/list-view.svg";
+    showMainList();
+  } else {
+    view_content.innerHTML = list_view;
+    grid_btn.src = "../images/icon/grid-view.svg";
+    list_btn.src = "../images/icon/list-view-clicked.svg";
+  }
+}
+
+document.addEventListener("click", handleClick);
 checkPage();
 showMainList();
