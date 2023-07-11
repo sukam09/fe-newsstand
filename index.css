@@ -1,4 +1,5 @@
-@import './color.css';
+@import "./color.css";
+@import "./latest.css";
 
 h1,
 h2,
@@ -39,36 +40,6 @@ section {
 
 .date {
   color: var(--text-default);
-}
-
-.latest-main-news {
-  width: 930px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
-.auto-rolling-news {
-  padding: 16px;
-  border: 1px solid #d2dae0;
-  background-color: #f5f7f9;
-  flex: 1;
-  gap: 16px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-}
-
-.auto-rolling-news span {
-  font-weight: 700;
-  color: #14212b;
-}
-
-.auto-rolling-news p {
-  font-weight: 500;
-  color: #5f6e76;
-  margin: 0;
 }
 
 .news-stand-logo {
