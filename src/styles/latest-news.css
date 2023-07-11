@@ -1,0 +1,63 @@
+/* 최신 뉴스 자동롤링 영역 */
+.latest_news__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+  height: 51px;
+  gap: 8px;
+}
+
+.latest_news__wrapper-left,
+.latest_news__wrapper-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 429px;
+  height: 17px;
+  padding: 16px;
+  gap: 16px;
+
+  background-color: var(--grayscale-50);
+  border: 1px solid var(--grayscale-100);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.latest_news__li {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  position: absolute;
+  top: -35px;
+}
+
+.latest_news__h2 {
+  cursor: pointer;
+  font: var(--bold-R);
+  color: var(--grayscale-black);
+}
+
+.latest_news__p {
+  cursor: pointer;
+  font: var(--medium-R);
+  color: var(--grayscale-400);
+}
+
+/* 롤링 영역 */
+.prev {
+  top: -35px;
+  transition: top 0.5s ease;
+}
+
+.current {
+  top: 14px;
+  transition: top 0.5s ease;
+}
+
+.next {
+  top: 63px;
+}

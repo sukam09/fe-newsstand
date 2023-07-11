@@ -1,7 +1,7 @@
-import { getLatestNews } from "./components/latest-news.js";
+import { setLatestNews } from './components/latest-news.js';
 
-const newsWrapper = document.querySelector(".press-logo__wrapper");
-const systemDate = document.querySelector(".header__time");
+const newsWrapper = document.querySelector('.press-logo__wrapper');
+const systemDate = document.querySelector('.header__time');
 
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
@@ -21,7 +21,7 @@ const shuffleList = (list) => {
  */
 const makeGrid = () => {
   for (let i = 0; i < 24; i++) {
-    const gridItem = document.createElement("li");
+    const gridItem = document.createElement('li');
     const imgSrc = isLightMode
       ? `./assets/images/light-press-logo/${idList[i]}.png`
       : `./assets/images/dark-press-logo/${idList[i]}.png`;
@@ -29,11 +29,11 @@ const makeGrid = () => {
     let checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = function () {
-      const img = document.createElement("img");
+      const img = document.createElement('img');
       img.classList.add(`img${i}`);
       img.src = imgSrc;
-      img.style.height = "20px";
-      gridItem.classList.add("press-logo__li");
+      img.style.height = '20px';
+      gridItem.classList.add('press-logo__li');
       gridItem.appendChild(img);
     };
 
@@ -68,17 +68,17 @@ const changeImgSrc = () => {
  * Grid 화살표 hidden 처리
  */
 const setArrowVisible = (mediaList) => {
-  const leftArrow = document.querySelector(".arrows__img-left");
-  const rightArrow = document.querySelector(".arrows__img-right");
+  const leftArrow = document.querySelector('.arrows__img-left');
+  const rightArrow = document.querySelector('.arrows__img-right');
 
   // 페이지 제한 0~3에 따른 hidden 여부
   if (pageNum === 0) {
-    leftArrow.classList.add("hidden");
+    leftArrow.classList.add('hidden');
   } else if (pageNum > 0 && pageNum < 3) {
-    leftArrow.classList.remove("hidden");
-    rightArrow.classList.remove("hidden");
+    leftArrow.classList.remove('hidden');
+    rightArrow.classList.remove('hidden');
   } else if (pageNum === 3) {
-    rightArrow.classList.add("hidden");
+    rightArrow.classList.add('hidden');
   }
 
   // 언론사 로고 개수 따른 hidden 여부
@@ -88,8 +88,8 @@ const setArrowVisible = (mediaList) => {
  * Grid 화살표 클릭
  */
 const clickArrow = (className) => {
-  if (className === "left-arrow") pageNum--;
-  if (className === "right-arrow") pageNum++;
+  if (className === 'left-arrow') pageNum--;
+  if (className === 'right-arrow') pageNum++;
   changeImgSrc();
   setArrowVisible();
 };
@@ -98,15 +98,7 @@ const clickArrow = (className) => {
  * 시스템 날짜 가져오기
  */
 const getSystemDate = () => {
-  const WEEKDAY = [
-    "일요일",
-    "월요일",
-    "화요일",
-    "수요일",
-    "목요일",
-    "금요일",
-    "토요일",
-  ];
+  const WEEKDAY = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
   let today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;
@@ -121,11 +113,11 @@ const getSystemDate = () => {
  */
 const setSystemDate = (todayInfo) => {
   let [year, month, date, day] = todayInfo;
-  if (month < 10) month = String(month).padStart(2, "0");
-  if (date < 10) date = String(date).padStart(2, "0");
-  const dateForm = year + ". " + month + ". " + date + ". " + day;
+  if (month < 10) month = String(month).padStart(2, '0');
+  if (date < 10) date = String(date).padStart(2, '0');
+  const dateForm = year + '. ' + month + '. ' + date + '. ' + day;
 
-  const $p = document.createElement("p");
+  const $p = document.createElement('p');
   const dateText = document.createTextNode(dateForm);
   $p.appendChild(dateText);
   systemDate.append($p);
@@ -143,7 +135,7 @@ function init() {
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
-  getLatestNews();
+  setLatestNews();
 }
 
 init();
