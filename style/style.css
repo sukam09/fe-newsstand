@@ -40,13 +40,13 @@ header {
 .news-bar-item {
     width: 50%;
     height: 49px;
-    padding: 10px 16px;
+    padding: 10px 15px;
     background: var(--color-surface-alt);
     border: 1px solid var(--color-border-default);
 }
 
 .news-bar-rolling {
-    height: 28px;
+    height: 30px;
     overflow: hidden;
 }
 
@@ -58,6 +58,7 @@ header {
 
 .news-bar-press {
     color: var(--color-text-strong);
+    padding: 1px;
 }
 
 .news-bar-headline {
@@ -66,6 +67,7 @@ header {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 1px;
 }
 
 .news-bar-headline:hover {
@@ -177,9 +179,59 @@ header {
 }
 
 .news-press-list-view {
-    width: 500px;
-    height: 200px;
-    background-color: red;
+    width: 930px;
+    height: 388px;
+    /* background-color: silver; */
+}
+
+.list-view-category-bar {
+    display: flex;
+    align-items: center;
+    width: 930px;
+    height: 40px;
+
+    color: var(--color-text-weak);
+
+    border: 1px solid var(--color-border-default);
+    background: var(--color-surface-alt);
+}
+
+.list-view-category-bar > ul {
+    display: flex;
+}
+
+.list-view-category-bar > ul > li {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+
+    cursor: pointer;
+}
+
+.list-view-category-selected {
+    display: flex;
+    justify-content: space-between;
+    width: 166px;
+    color: var(--color-text-white-default);
+    background-color: var(--color-surface-brand-alt);
+}
+
+.category-progress-number-container {
+    display: flex;
+    gap: 2px;
+    color: var(--color-text-white-weak);
+}
+
+.category-progress-number {
+    color: var(--color-text-white-default);
+}
+
+.list-view-main-container {
+    width: 930px;
+    height: 348px;
+    border: 1px solid var(--color-border-default);
+    border-top: none;
 }
 
 .hidden {

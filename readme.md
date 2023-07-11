@@ -14,23 +14,23 @@
 
 ```html
 <section>
-  <div>
-    <ul>
-      <li></li>
-      <li></li>
-    </ul>
     <div>
-      <span></span>
-      <span></span>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
     </div>
-  </div>
-  <div>
-    <ul>
-      <li></li>
-      <li></li>
-      ...
-      <li></li>
-    </ul>
-  </div>
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            ...
+            <li></li>
+        </ul>
+    </div>
 </section>
 ```

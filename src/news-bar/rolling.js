@@ -6,7 +6,7 @@ const setRollingEvent = (rollingElement, index) => {
     const startInterval = () => {
         interval = window.setInterval(() => {
             rollingElement.style.transitionDuration = "500ms";
-            rollingElement.style.marginTop = "-26px";
+            rollingElement.style.marginTop = "-28px";
 
             window.setTimeout(() => {
                 rollingElement.removeAttribute("style");
