@@ -60,7 +60,9 @@ section.main {
 }
 
 .section-strong {
+  position: relative;
   width: 30%;
+  top: 10%;
 }
 
 .section-div {
@@ -95,11 +97,11 @@ section.main {
 
 .rolling-banner li {
   position: absolute;
-  top: -48px;
+  top: -36px;
   left: 0;
 }
 .rolling-banner li.prev {
-  top: -48px;
+  top: -36px;
   transition: top 0.5s ease;
 }
 .rolling-banner li.current {
@@ -108,12 +110,11 @@ section.main {
   transform: translate(0, -50%);
 }
 .rolling-banner li.next {
-  top: 48px;
+  top: 36px;
 }
 
 .wrap > ul {
   position: relative;
-  top: -15px;
   height: 100%;
 }
 .rolling-banner a {
@@ -167,8 +168,8 @@ section.main {
   display: grid;
   width: 930px;
   height: 388px;
-  grid-template-columns: repeat(6, minmax(155px, auto));
-  grid-template-rows: repeat(4, minmax(97px, auto));
+  grid-template-columns: repeat(6, minmax(153.5px, auto));
+  grid-template-rows: repeat(4, minmax(92px, auto));
   grid-auto-flow: dense;
   place-items: center;
   margin-top: 20px;
@@ -208,20 +209,12 @@ section.main {
   flex-direction: row;
   position: relative;
   left: -60px;
-}
-
-#header-div-01:hover {
-  cursor: pointer;
+  width: 1050px;
 }
 
 .main-container {
   display: flex;
   justify-content: space-evenly;
-}
-
-.rolling-banner:hover {
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 input[type="radio"]:checked + label {
@@ -230,4 +223,13 @@ input[type="radio"]:checked + label {
 
 input[type="radio"]:checked + img {
   border: 2px blue solid;
+}
+
+.rolling-banner a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#header-div-01:hover {
+  cursor: pointer;
 }
