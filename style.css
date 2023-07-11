@@ -1,3 +1,5 @@
+@import url('reset.css');
+
 :root {
   --text-text-strong: #14212b;
   --surface-surface-alt: #f5f7f9;
@@ -133,6 +135,33 @@ header {
   font-size: 14px;
   font-weight: 500;
   color: #5f6e76;
+  list-style-type: none;
+}
+
+.recent-news-headline {
+  position: relative;
+  width: auto;
+  height: 100%;
+}
+
+.recent-news-headline ul {
+  position: absolute;
+  top: -36px;
+  list-style: none;
+}
+
+.recent-news-headline li.prev {
+}
+
+.recent-news-headline li.current {
+}
+
+.recent-news-headline li.current:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.recent-news-headline li.next {
 }
 
 .news-press-display {
@@ -248,9 +277,4 @@ header {
 
 .disabled {
   display: none;
-}
-
-.recent-news-headline:hover {
-  cursor: pointer;
-  text-decoration: underline;
 }
