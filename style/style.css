@@ -60,14 +60,17 @@ img.title_logo {
   font-size: 14px;
 }
 
-.rolling_list :hover {
+.left_rolling_list :hover,
+.right_rolling_list :hover {
   text-decoration-line: underline;
 }
-.rolling_list {
+.left_rolling_list,
+.right_rolling_list {
   position: relative;
   width: 70%;
   height: 17px;
   list-style: none;
+  overflow: hidden;
 }
 
 .top {
@@ -86,7 +89,6 @@ img.title_logo {
 }
 .bottom {
   position: absolute;
-
   top: 40px;
   transition: top 2s ease;
 }
