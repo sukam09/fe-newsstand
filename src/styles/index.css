@@ -1,13 +1,13 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
-@import url("./reset.css");
-@import url("./global.css");
-@import url("./latest-news.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+@import url('./reset.css');
+@import url('./design.css');
+@import url('./latest-news.css');
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   line-height: normal;
 }
