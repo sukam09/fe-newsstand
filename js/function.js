@@ -35,7 +35,7 @@ function initImgs() {
   const FIRST_PAGE_IDX = 0;
 
   for (let i = 0; i < PRESS_CNT; i++) { //고차함수로 바꾸기
-    imgId.push(i);
+    imgId.push(i+1);
   }
 
   imgId.forEach(arr => {
@@ -50,13 +50,13 @@ function initImgs() {
   })
 
   $sectionNewsList.innerHTML = `
-    ${page[FIRST_PAGE_IDX].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[FIRST_PAGE_IDX].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
   `
   turnPage(page);
 }
 
 /**
- 페이지 넘기는 버튼 클릭 이벤트 핸들링
+ 페이지 넘기는 버튼의 클릭 이벤트 핸들링
  */
 function turnPage(page) {
   const $pagePrevButton = document.querySelector('.left-button');
@@ -80,7 +80,7 @@ function turnPage(page) {
     const $sectionNewsList = document.querySelector('.press-lists');
     this.className === 'left-button' ? pageCnt-- : pageCnt++;
     $sectionNewsList.innerHTML = `
-    ${page[pageCnt].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[pageCnt].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
     `
     showPageTurner();
   }
@@ -88,11 +88,16 @@ function turnPage(page) {
   $pageNextButton.addEventListener('click', handleClickTurner);
 }
 
-
+/**
+ 최신 뉴스 자동 롤링
+ */
 function rollNews() {
   const ROLLING_INTERVAL_TIME = 5000;
   const ROLLING_INTERVAL_SPACE_TIME = 1000;
 
+  /**
+   왼쪽 최신 뉴스 자동 롤링 설정
+   */
   function rollNewsLeft() { //clearInterval을 위해 interval을 전역으로 빼기
     let leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
     const $lists = document.querySelectorAll('.rolling-banner .wrap-left li');
@@ -109,6 +114,9 @@ function rollNews() {
     })
   }
 
+  /**
+   오른쪽 최신 뉴스 자동 롤링 설정
+   */
   function rollNewsRight() {
     let rightInterval = window.setTimeout(setSpace, ROLLING_INTERVAL_SPACE_TIME);
   }
@@ -132,6 +140,10 @@ function rollNews() {
   rollNewsLeft();
   rollNewsRight();
 
+  /** 
+  롤링을 위한 객체의 class명 변경
+  (next -> current, current -> prev)
+  */
   function rollNewsCallback(isLeftNews) { //줄일 수 있음. 클래스 명에 템플릿 리터럴 이용하기
     const FIRST_NEWS_IDX = 0;
     const SECOND_NEWS_IDX = 1;
