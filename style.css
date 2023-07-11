@@ -229,12 +229,12 @@ section.container {
 
 .recent-news li.prev {
   top: -2rem;
-  transition: top 1s ease;
+  transition: all 1.5s ease;
 }
 
 .recent-news li.current {
   top: 50%;
-  transition: top 1s ease;
+  transition: all 1.5s ease;
   transform: translate(0%, -50%);
 }
 
