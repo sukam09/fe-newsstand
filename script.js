@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 20000);
     break;
   }
+
   const slice_shuffled_presses = shuffled_presses.slice(0, PRESS_NUM_IN_GRID);
   slice_shuffled_presses.forEach((press) => {
     appendPressInGrid(press);
@@ -101,7 +102,7 @@ function appendPressInGrid(press) {
 
   //구독하기 이미지 추가
   const $sub = document.createElement("img");
-  $sub.src = `./icons/Button.svg`;
+  $sub.src = `./icons/others/Button.svg`;
   $sub.classList.add("sub");
 
   //ul에 li 추가
@@ -167,10 +168,17 @@ function movingProgress(idx_1, idx_2) {
 
 /***** 프로그레스바 카테고리 누르면 이동 *****/
 const categories = document.querySelectorAll(".progress-item");
-categories.forEach((category) => {
-  category.addEventListener("click", () => {
+for (let i = 0; i < categories.length; i++) {
+  categories[i].addEventListener("click", () => {
     category_clicked = true;
+
+    const counts = document.querySelectorAll(".count");
+    counts.forEach((count) => {
+      count.style.display = "none";
+    });
+    counts[i].style.display = "block";
+
     document.querySelector(".progress-bar").classList.remove("progress-bar");
-    category.classList.add("progress-bar");
+    categories[i].classList.add("progress-bar");
   });
-});
+}
