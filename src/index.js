@@ -1,7 +1,7 @@
 import { setLatestNews } from './components/latest-news.js';
+import { setHeaderElement } from './components/header.js';
 
 const newsWrapper = document.querySelector('.press-logo__wrapper');
-const systemDate = document.querySelector('.header__time');
 
 let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
@@ -112,6 +112,8 @@ const getSystemDate = () => {
  * 시스템 날짜 표시하기
  */
 const setSystemDate = (todayInfo) => {
+  const systemDate = document.querySelector('.header__time');
+
   let [year, month, date, day] = todayInfo;
   if (month < 10) month = String(month).padStart(2, '0');
   if (date < 10) date = String(date).padStart(2, '0');
@@ -131,11 +133,15 @@ const reloadPage = () => {
 };
 
 function init() {
+  setHeaderElement();
+  setLatestNews();
+
+  //
   setSystemDate(getSystemDate());
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
-  setLatestNews();
+  //
 }
 
 init();

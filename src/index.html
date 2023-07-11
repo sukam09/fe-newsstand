@@ -11,13 +11,7 @@
   <body>
     <div class="news-stand__container">
       <!-- 기본 상단 영역 -->
-      <header class="header__wrapper">
-        <button class="header__button" onclick="reloadPage()">
-          <img class="header__img" src="./assets/icons/newspaper.svg" />
-          <h1 class="header__h1">뉴스스탠드</h1>
-        </button>
-        <time class="header__time"></time>
-      </header>
+      <header class="header__wrapper"></header>
 
       <!-- 최신 뉴스 자동롤링 영역 -->
       <div class="latest_news__wrapper">
@@ -40,16 +34,8 @@
 
         <button class="arrows__wrapper">
           <ul class="press-logo__wrapper"></ul>
-          <img
-            onclick="clickArrow('left-arrow')"
-            class="arrows__img-left"
-            src="./assets/icons/chevron-left.svg"
-          />
-          <img
-            onclick="clickArrow('right-arrow')"
-            class="arrows__img-right"
-            src="./assets/icons/chevron-right.svg"
-          />
+          <img onclick="clickArrow('left-arrow')" class="arrows__img-left" src="./assets/icons/chevron-left.svg" />
+          <img onclick="clickArrow('right-arrow')" class="arrows__img-right" src="./assets/icons/chevron-right.svg" />
         </button>
       </article>
     </div>
