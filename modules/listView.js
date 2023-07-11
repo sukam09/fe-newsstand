@@ -1,9 +1,13 @@
 import { fetchData } from "./utils.js";
+import { news } from "./components/news/news.js";
 
 let listPage = 0;
 const MAX_LIST_PAGE = 7;
 
-export function showListage(page) {}
+export function showListage(page) {
+  const $newsInfo = document.getElementsByClassName(`news_${page}`)[0];
+  $newsInfo.style.display = "block";
+}
 export function showNextListPage() {
   listPage >= MAX_LIST_PAGE ? MAX_LIST_PAGE : (listPage += 1);
 }
@@ -12,7 +16,6 @@ export function showPrevListPage() {
 }
 
 export async function initListNews() {
-  console.log("test");
   const newsData = await fetchData("/data/news.json");
   const { categoryName, dataLen, data } = newsData;
   const $categoryName = document.getElementsByClassName("category_name")[0];
@@ -25,44 +28,7 @@ export async function initListNews() {
   $allPage.innerHTML = `/ ${newsData.dataLen}`;
 
   for (let i = 0; i < dataLen; i++) {
-    // create header
-    const newsInfoHeader = `
-    <div class="news_info_header">
-      <img src=${data[i].logoSrc} />
-      <button class="news_info_sub_button"> + 구독하기 </button>
-    </div>
-    `;
-
-    const newsInfoTopic = `
-    <div class="news_info_topic flex_column">
-      <img src=${data[i].imgSrc} class="news_info_main_img"/>
-      <div class="news_info_title">${data[i].mainTitle}</div>
-    </div>`;
-
-    let newsList = "";
-    for (let j = 0; j < data[i].subTitleList.length; j++) {
-      newsList += `<li>${data[i].subTitleList[j].title}</li>`;
-    }
-    const newsInfoList = `
-    <ul>
-      ${newsList}
-    </ul
-    `;
-
-    const newsInfoBody = `
-    <div>
-      ${newsInfoTopic}
-      ${newsInfoList}
-    </div>
-    `;
-
-    const $newsInfo = `<div class="news_info news_info_${i} flex_column">
-      ${newsInfoHeader}
-      ${newsInfoBody}
-    </div>
-    `;
-
-    $listContainer.insertAdjacentHTML("beforeend", $newsInfo);
-    console.log($newsInfo);
+    $listContainer.insertAdjacentHTML("beforeend", news(data[i], i));
   }
+  showListage(0);
 }
