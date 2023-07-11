@@ -1,7 +1,7 @@
 const view_content = document.querySelector(".view-content");
 const imgIndex = Array(96)
   .fill()
-  .map((arr, i) => i);
+  .map((arr, i) => i + 1);
 
 let main_list_page = 1;
 const grid_view = `
@@ -43,10 +43,7 @@ function showGridView() {
   for (let i = 24 * (main_list_page - 1); i < 24 * main_list_page; i++) {
     const li = document.createElement("li");
     const img = document.createElement("img");
-    img.setAttribute(
-      "src",
-      `../images/lightmode-media/asset ${shuffledPress[i]} 1.png`
-    );
+    img.setAttribute("src", `../images/logo/light/img${shuffledPress[i]}.svg`);
     main_list_ul.appendChild(li);
     li.appendChild(img);
   }
