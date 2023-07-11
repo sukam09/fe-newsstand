@@ -18,7 +18,6 @@ export default function Main($target, props) {
   };
 
   this.render = () => {
-    console.log(this.state.mainContent);
     let $main = document.querySelector(".news");
 
     if ($main) {

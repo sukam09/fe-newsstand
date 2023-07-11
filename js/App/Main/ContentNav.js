@@ -17,8 +17,8 @@ export default function ContentNav($target, props, onClick) {
     const $nav = document.createElement("nav");
     $nav.setAttribute("class", "news-navbar");
 
-    new SubscriptionSwitch($nav, this.state, onClick);
-    new SourceSwich($nav, this.state, onClick);
+    new SubscriptionSwitch($nav, props, onClick);
+    new SourceSwich($nav, props, onClick);
 
     $target.appendChild($nav);
   };

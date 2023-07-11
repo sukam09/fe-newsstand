@@ -6,7 +6,7 @@ import Button from "./Button.js";
 const allButtonInner = "전체 언론사";
 const myButtonInner = "내가 구독한 언론사";
 
-export default function SourceSwich($target, props, onClick) {
+export default function SubscriptionSwitch($target, props, onClick) {
   //   this.state = mode;
 
   this.setState = (nextState) => {
@@ -20,14 +20,24 @@ export default function SourceSwich($target, props, onClick) {
 
     new Button(
       $div,
-      { type: "list-all", inner: allButtonInner, changeState: "mainContent" },
+      {
+        ...props,
+        type: "list-all",
+        inner: allButtonInner,
+        changeState: "mainContent",
+      },
       "news-navbar_newspaper",
       onClick
     );
 
     new Button(
       $div,
-      { type: "list-my", inner: myButtonInner, changeState: "mainContent" },
+      {
+        ...props,
+        type: "list-my",
+        inner: myButtonInner,
+        changeState: "mainContent",
+      },
       "news-navbar_newspaper",
       onClick
     );

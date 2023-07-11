@@ -5,6 +5,7 @@
 export default function Button($target, props, ClassName, onClick) {
   // debugger;
   // this.state = mode;
+  const { renderContent, mode, page } = props;
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -12,7 +13,12 @@ export default function Button($target, props, ClassName, onClick) {
   };
 
   const changeMainContent = () => {
-    onClick({});
+    onClick({
+      mainContent: props.type,
+      renderContent: renderContent,
+      mode: mode,
+      page: 1,
+    });
   };
 
   const changeRenderContent = () => {};
@@ -25,6 +31,7 @@ export default function Button($target, props, ClassName, onClick) {
     );
 
     $button.innerHTML = props.inner;
+    $button.addEventListener("click", changeMainContent);
 
     $target.appendChild($button);
   };

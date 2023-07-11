@@ -35,6 +35,13 @@
   width: 56px;
 }
 
+.news .news-navbar_content path {
+  fill: #879298;
+}
+
+.news .news-navbar_content .select {
+  fill: #4362d0;
+}
 /* newspapers section */
 .newspaper__list {
   display: grid;

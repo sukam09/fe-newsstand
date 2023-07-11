@@ -18,8 +18,11 @@ export default function MainContent($target, props, onClick) {
     const $section = document.createElement("section");
     $section.setAttribute("class", "news-section");
 
-    new Newspaper($section, props);
-    // new News($section, { page: props.page }, this.setState);
+    if (props.mainContent === "newspaper") {
+      new Newspaper($section, props);
+    } else {
+      new News($section, { page: props.page }, this.setState);
+    }
 
     new Button($section, { ...props, direction: "left" }, onClick);
     new Button(
