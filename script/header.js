@@ -20,5 +20,10 @@ const setTime = () => {
   );
 };
 
-setHeader();
-setTime();
+/**
+ * 즉시실행함수
+ */
+(() => {
+  setHeader();
+  setTime();
+})();

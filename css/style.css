@@ -195,15 +195,6 @@ ul li:hover .media-hover {
 .news_title_wrapper p.next{
     top: -36px;
 }
-.news_title_wrapper p a{
-    display: block;
-    display: -webkit-box;
-    text-decoration: none;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient:vertical;
-    overflow: hidden;
-    color: #000;
-}
 
 /* 반대 방향으로 진행 */
 .news_title_wrapper.reverse p.prev{
