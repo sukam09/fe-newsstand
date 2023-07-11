@@ -1,3 +1,5 @@
+import { shuffle } from "../utils/util.js";
+
 import {
   moveTopContent,
   moveMiddleContent,
@@ -8,7 +10,7 @@ import {
 const MAIN_CORP_CLASS_NAME = "main__rolling-corp";
 const MAIN_TITLE_CLASS_NAME = "main__rolling-title";
 
-const newsDataLeft = [
+const newsDataLeft = shuffle([
   {
     title: `삼성전자 2분기 영업익 6천억…사실상 '바닥' 확인 평가`,
     corp: `연합뉴스`,
@@ -29,7 +31,7 @@ const newsDataLeft = [
     title: `푸바오 일일 매니저 채용 경쟁률 4540:1…무슨 일 할까`,
     corp: `YTN`,
   },
-];
+]);
 
 const SET_TIME = 4000; // 롤링되는 주기 입니다 (1000 => 1초)
 const firstCorp = document.getElementById("main__first-corp");

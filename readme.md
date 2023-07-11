@@ -38,6 +38,27 @@
 
 - 오늘 롤링효과와 뉴스리스트를 구현하면서 코드가 다시 복잡해졌다. 내일은 전체구조를 다듬는 일을 하는게 좋을것같다.
 
+### 폴더구조
+
+```bash
+├── assets
+│   ├── bascIcon
+│   ├── newsIcon
+│   └── thumbnail
+├── css
+│   ├── header
+│   ├── main
+│   ├── reset.css
+│   └── style.css
+├── js
+│   ├── core
+│   ├── newsstand
+│   └── utils
+├── data
+│   └── headline.json
+
+```
+
 # 뉴스스탠드 기본 구조
 
 header(#header)

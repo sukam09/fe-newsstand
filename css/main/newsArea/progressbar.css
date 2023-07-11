@@ -1,0 +1,26 @@
+.newsstand__progress {
+  height: 40px;
+  animation: progress 20s;
+  background-color: blue;
+}
+.newsstand__progress-category {
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+.newsstand__progress-total {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+    background-color: blue;
+  }
+  100% {
+    width: 100%;
+    background-color: blue;
+  }
+}

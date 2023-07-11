@@ -12,7 +12,7 @@ let newsstandList = Array.from({ length: NEWS_CONTENTS }, () => 1).map(
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 
-export function paintRandomNewsstand() {
+export function paintGridNewsstand() {
   newsstandList = shuffle(newsstandList);
 
   paintNews();

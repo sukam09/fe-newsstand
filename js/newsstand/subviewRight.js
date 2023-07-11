@@ -1,3 +1,4 @@
+import { shuffle } from "../utils/util.js";
 import {
   moveTopContent,
   moveMiddleContent,
@@ -8,7 +9,7 @@ import {
 const MAIN_CORP_CLASS_NAME = "main__rolling-corp-right";
 const MAIN_TITLE_CLASS_NAME = "main__rolling-title-right";
 
-const newsDataRight = [
+const newsDataRight = shuffle([
   {
     title: `英 BBC "한국 향한 '우크라 포탄 지원' 압박 고조"`,
     corp: `YTN`,
@@ -29,7 +30,7 @@ const newsDataRight = [
     title: `엔씨소프트 생성형 AI 이름은 '바르코'?…상표권 출원`,
     corp: `연합뉴스`,
   },
-];
+]);
 
 const SET_TIME = 5000; // 롤링되는 주기 입니다 (1000 => 1초)
 const firstCorp = document.getElementById("main__first-corp-right");

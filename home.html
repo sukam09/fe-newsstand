@@ -91,18 +91,24 @@
             <ul class="newsstand-area—six-col-list"></ul>
           </div>
           <!-- 뉴스스탠드 리스트보기 -->
-          <section id="newsstand__news-area">
+          <section id="newsstand__news-area" class="view-disabled">
             <ul class="newsstand__news-nav">
-              <li class="newsstand__focus newsstand__focus-font">
-                <span>종합/경제</span
-                ><span class="newsstand__focus-font">1/81</span>
+              <li>
+                <span>종합/경제</span>
               </li>
-              <li><span>방송/통신</span></li>
+              <li>
+                <span>방송/통신</span>
+              </li>
               <li><span>IT</span></li>
               <li><span>영자지</span></li>
-              <li><span>스포츠/연예</span></li>
+              <li class="newsstand__focus newsstand__focus-font">
+                <div class="newsstand__progress"></div>
+                <span class="newsstand__progress-category">스포츠/연예</span>
+              </li>
               <li><span>매거진/전문지</span></li>
-              <li><span>지역</span></li>
+              <li>
+                <span>지역</span>
+              </li>
             </ul>
             <div class="newsstand__list-content">
               <!-- newsstand 왼쪽 콘텐츠 (사진, 소제목) -->
@@ -153,5 +159,7 @@
   </body>
 
   <script src="./js/core/app.js" type="module"></script>
-  <script src="./js/newsstand/subView.js" type="module"></script>
+  <!-- <script src="./js/newsstand/newsstandTab.js" type="module"></script> -->
+  <script src="./js/utils/testJson.js" type="module"></script>
+  <!-- <script src="./js/newsstand/subView.js" type="module"></script> -->
 </html>

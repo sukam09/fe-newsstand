@@ -1,3 +1,5 @@
+@import "./progressbar.css";
+
 #newsstand__news-area {
   height: 400px;
   border: 1px solid var(--border-border-default);
@@ -13,17 +15,16 @@
 .newsstand__news-nav li {
   font-size: 14px;
   font-weight: 500;
-  padding: 16px;
-  gap: 8px;
+  margin-right: 10px;
 }
-
 .newsstand__focus {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  flex: 0.4 0 0;
-
+  flex: 0.3;
   background-color: rgba(28, 111, 255, 0.6);
 }
+
 .newsstand__focus-font {
   color: var(--text-white-default);
   font-weight: 700;
