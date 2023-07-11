@@ -34,7 +34,16 @@ section {
   align-items: center;
   width: 930px;
 }
-
+.icon-small {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.icon-medium {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
 /* latest news*/
 
 .latest-main-news {
@@ -104,7 +113,7 @@ section {
   gap: 8px;
 }
 
-.news-list {
+.news-list-grid {
   width: 930px;
   height: 388px;
 
@@ -118,7 +127,7 @@ section {
   border-right: 0px;
 }
 
-.news-list > li {
+.news-list-grid > li {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -130,7 +139,7 @@ section {
   cursor: pointer;
 }
 
-.grid-wrapper {
+.all-news-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;

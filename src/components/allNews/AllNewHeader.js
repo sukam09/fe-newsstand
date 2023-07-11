@@ -9,13 +9,24 @@ export default class AllNewHeader extends Component {
             </nav>
 
             <div class='view-type-icon'>
-            <img id ='list-view-icon'/>
-            <img id ='grid-view-icon'/>
+            <img id ='list-view-icon' class='icon-medium'/>
+            <img id ='grid-view-icon' class='icon-medium'/>
             </div>`;
   }
 
   mounted() {
-    new Icon(this.$target.querySelector('#list-view-icon'), { name: 'list-view' });
-    new Icon(this.$target.querySelector('#grid-view-icon'), { name: 'grid-view-focus' });
+    const listIconName = this.props.view === 'list' ? 'list-view-focus' : 'list-view';
+    const gridIconName = this.props.view === 'grid' ? 'grid-view-focus' : 'grid-view';
+
+    new Icon(this.$target.querySelector('#list-view-icon'), { name: listIconName });
+    new Icon(this.$target.querySelector('#grid-view-icon'), { name: gridIconName });
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', e => {
+      const id = e.target.id;
+      if (id === 'list-view-icon') this.props.onClick('list');
+      else if (id === 'grid-view-icon') this.props.onClick('grid');
+    });
   }
 }
