@@ -1,4 +1,4 @@
-const HEADLINE_ROLLING_DELAY = 5000;
+import { HEADLINE_ROLLING_DELAY } from '../constants.js';
 
 export default function Headline({ $target, initialState }) {
   const $div = document.createElement('div');

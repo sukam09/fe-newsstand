@@ -1,7 +1,5 @@
 import Headline from './Headline.js';
-
-const HEADLINE_NUMBERS = 5;
-const HEADLINE_ROLLING_DELAY_DIFF = 1000;
+import { HEADLINE_NUMBERS, HEADLINE_ROLLING_DELAY_DIFF } from '../constants.js';
 
 export default function RecentNewsRollingView({ $target, initialState }) {
   const $section = document.createElement('section');

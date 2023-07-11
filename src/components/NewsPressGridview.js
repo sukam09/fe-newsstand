@@ -1,6 +1,4 @@
-const NEWS_PRESS_NUMBERS_PER_PAGE = 24;
-const PAGE_MIN_NUMBER = 1;
-const PAGE_MAX_NUMBER = 4;
+import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
 export default function NewsPressGridview({ $target, initialState }) {
   const $section = document.createElement('section');
