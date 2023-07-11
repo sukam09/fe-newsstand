@@ -1,4 +1,4 @@
-import { gridPage, showGridPageButton } from "./grid.js";
+import { gridPage, showGridPageButton } from "./gridView.js";
 
 // 그리드 뷰로 전환
 export function handleGridButton() {

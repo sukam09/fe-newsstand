@@ -25,8 +25,6 @@ export function rolling() {
     }, 5000);
   }, 1000);
 
-  console.log("set ID", leftRollingId);
-
   rightRollingId = setInterval(() => {
     rollingAnimation(rightRollingList, rightViewIdx);
     rightViewIdx += 1;

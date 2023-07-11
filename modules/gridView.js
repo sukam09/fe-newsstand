@@ -1,10 +1,8 @@
-import { pressObjArr } from "./pressObj.js";
-
 export let gridPage = 0;
 const NUM_IN_A_GRID = 24;
 const MAX_PAGE = 4;
 
-export function initGrid() {
+export function initGrid(pressDataArr) {
   const mainContent = document.getElementsByClassName("main_content")[0];
   const gridButton = document.getElementById("grid_button");
   for (let i = 0; i < MAX_PAGE; i++) {
@@ -15,7 +13,7 @@ export function initGrid() {
 
     for (let j = 0; j < NUM_IN_A_GRID; j++) {
       const idx = i * NUM_IN_A_GRID + j;
-      const newItem = createGridItem(pressObjArr[idx]);
+      const newItem = createGridItem(pressDataArr[idx]);
       gridContainer.appendChild(newItem);
     }
     mainContent.appendChild(gridContainer);
@@ -41,17 +39,15 @@ export function createSubButtonContainer() {
 }
 
 // 구독버튼 생성
-export function createSubButton(id) {
+export function createSubButton(pressDataItem) {
   const subButtonContainer = createSubButtonContainer();
   const subButton = document.createElement("button");
   subButton.className = "sub_button";
   subButton.innerHTML = "+ 구독하기";
 
   subButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id == id);
-    targetPress.isSub = true;
-
-    toggleSubButton(targetPress, subButtonContainer);
+    pressDataItem.isSub = true;
+    toggleSubButton(pressDataItem, subButtonContainer);
   });
 
   subButtonContainer.appendChild(subButton);
@@ -59,16 +55,15 @@ export function createSubButton(id) {
 }
 
 // 구독 해지 버튼 생성
-export function createUnSubButton(id) {
+export function createUnSubButton(pressDataItem) {
   const unSubButtonContainer = createSubButtonContainer();
   const unSubButton = document.createElement("button");
   unSubButton.className = "unsub_button";
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id == id);
-    targetPress.isSub = false;
-    toggleUnSubButton(targetPress, unSubButtonContainer);
+    pressDataItem.isSub = false;
+    toggleUnSubButton(pressDataItem, unSubButtonContainer);
   });
 
   unSubButtonContainer.appendChild(unSubButton);
@@ -77,15 +72,15 @@ export function createUnSubButton(id) {
 }
 
 // 그리드 아이템 리스트 태그 생성
-export function createGridItem(pressObj) {
+export function createGridItem(pressDataItem) {
   const newImg = document.createElement("img");
   const li = document.createElement("li");
-  const subButtonContainer = createSubButton(pressObj.id);
-  const unSubButtonContainer = createUnSubButton(pressObj.id);
+  const subButtonContainer = createSubButton(pressDataItem);
+  const unSubButtonContainer = createUnSubButton(pressDataItem);
 
   // 이미지 로드
-  newImg.src = pressObj.src;
-  newImg.id = pressObj.id;
+  newImg.src = pressDataItem.src;
+  newImg.id = pressDataItem.id;
   li.style.position = "relative";
 
   // li 생성
@@ -93,8 +88,8 @@ export function createGridItem(pressObj) {
   li.append(subButtonContainer);
   li.append(unSubButtonContainer);
   li.addEventListener("mouseover", () => {
-    toggleSubButton(pressObj, subButtonContainer);
-    toggleUnSubButton(pressObj, unSubButtonContainer);
+    toggleSubButton(pressDataItem, subButtonContainer);
+    toggleUnSubButton(pressDataItem, unSubButtonContainer);
   });
   li.addEventListener("mouseout", () =>
     hiddenSubButtons(subButtonContainer, unSubButtonContainer)
@@ -157,7 +152,6 @@ export function showGridPageButton() {
   const right_grid_button =
     document.getElementsByClassName("right_grid_button")[0];
 
-  console.log(gridPage);
   if (gridPage <= 0) {
     left_grid_button.style.display = "none";
     right_grid_button.style.display = "block";

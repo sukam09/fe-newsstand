@@ -9,12 +9,12 @@ import {
   initGrid,
   showNextGridPage,
   showPrevGridPage,
-} from "./grid.js";
-import { showGridPage } from "./grid.js";
+} from "./gridView.js";
+import { showGridPage } from "./gridView.js";
 import { rolling } from "./listView.js";
-import { shufflePress } from "./pressObj.js";
+import { shuffleArray } from "./utils.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const rightGridButton =
     document.getElementsByClassName("right_grid_button")[0];
   rightGridButton.addEventListener("click", () => showNextGridPage(gridPage));
@@ -24,9 +24,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const gridButton = document.getElementById("grid_button");
   const titleContainer = document.getElementsByClassName("title_container")[0];
 
-  shufflePress();
+  const press = await fetchPressData();
+  const { data } = press;
+  const shuffledPressData = shuffleArray(data);
+
   updateDate();
-  initGrid();
+  initGrid(shuffledPressData);
   showGridPage(0);
   rolling();
 
@@ -34,3 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
   gridButton.addEventListener("click", handleGridButton);
   titleContainer.addEventListener("click", handleLogoButton);
 });
+
+const fetchPressData = async () => {
+  const res = await fetch("/data/press.json");
+  const jsonData = await res.json();
+  return jsonData;
+};
