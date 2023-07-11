@@ -1,4 +1,4 @@
-const setHeaderElement = () => {
+const setNewsStandHeader = () => {
   const headerWrapper = document.querySelector('.header__wrapper');
 
   const $button = document.createElement('button');
@@ -37,4 +37,4 @@ const setHeaderTime = () => {
   headerTime.innerHTML = Intl.DateTimeFormat('ko-KR', options).format(new Date());
 };
 
-export { setHeaderElement };
+export { setNewsStandHeader };

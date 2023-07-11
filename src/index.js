@@ -1,5 +1,6 @@
+import { setNewsStandHeader } from './components/news-stand-header.js';
 import { setLatestNews } from './components/latest-news.js';
-import { setHeaderElement } from './components/header.js';
+import { setPressGrid } from './components/press-grid.js';
 
 const newsWrapper = document.querySelector('.press-logo__wrapper');
 
@@ -93,7 +94,7 @@ const clickArrow = (className) => {
 };
 
 function init() {
-  setHeaderElement();
+  setNewsStandHeader();
   setLatestNews();
   //
   shuffleList(idList);
