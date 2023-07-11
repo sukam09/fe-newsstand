@@ -82,6 +82,7 @@ header {
 .news-press-tab-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 24px;
 }
 
 .news-press-type-menu {
@@ -117,7 +118,6 @@ header {
     width: 930px;
     height: 388px;
     padding: 0;
-    margin-top: 24px;
 
     border-top: 1px solid var(--color-border-default);
     border-left: 1px solid var(--color-border-default);
@@ -180,4 +180,8 @@ header {
     width: 500px;
     height: 200px;
     background-color: red;
+}
+
+.hidden {
+    display: none;
 }
