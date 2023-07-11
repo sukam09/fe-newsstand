@@ -202,6 +202,7 @@ h2.headline_area_item {
 /* logo mouse hover시 */
 .media_hover {
     display: none;
+    cursor: pointer;
 }
 
 ul li:hover .media_hover {
