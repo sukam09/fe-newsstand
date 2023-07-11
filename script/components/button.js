@@ -1,4 +1,4 @@
-import Icon from './icon.js';
+import Icon from './Icon.js';
 
 const Button = (icon, isWhite, text, onClick) => {
   const buttonElement = document.createElement('button');
@@ -15,7 +15,7 @@ const Button = (icon, isWhite, text, onClick) => {
   return buttonElement;
 };
 
-const subButton = isSub => {
+const SubButton = isSub => {
   const subElement = document.createElement('div');
   subElement.className = 'media_hover surface_alt';
   const button = isSub
@@ -26,4 +26,4 @@ const subButton = isSub => {
 };
 
 export default Button;
-export { subButton };
+export { SubButton };

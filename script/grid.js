@@ -1,6 +1,6 @@
 import { MEDIA } from './constants.js';
 import media_data from '../assets/data/media_data.js';
-import { subButton } from './components/button.js';
+import { SubButton } from './components/Button.js';
 
 const shuffleArray = array => {
   array.sort(() => Math.random() - 0.5);
@@ -45,7 +45,7 @@ const setGrid = () => {
     // 구독 여부에 따라 구독하기 or 해지하기 버튼 추가
     imageElement.insertAdjacentElement(
       'afterend',
-      subButton(!subscribed.includes(mediaArray[mediaId]))
+      SubButton(!subscribed.includes(mediaArray[mediaId]))
     );
   });
 };
