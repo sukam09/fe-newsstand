@@ -1,6 +1,6 @@
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
-export default function NewsPressGridview({ $target, initialState }) {
+export default function PressGridView({ $target, initialState }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 

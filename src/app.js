@@ -1,11 +1,11 @@
 import Header from './components/Header.js';
-import RecentNewsRollingView from './components/RecentNewsRollingView.js';
-import NewsPressGridview from './components/NewsPressGridview.js';
+import AutoRollingNews from './components/AutoRollingNews.js';
+import PressGridView from './components/PressGridview.js';
 
 export default function App({ $app }) {
   new Header({ $target: $app });
 
-  new RecentNewsRollingView({
+  new AutoRollingNews({
     $target: $app,
     initialState: {
       headlineData: [
@@ -23,7 +23,7 @@ export default function App({ $app }) {
     },
   });
 
-  new NewsPressGridview({
+  new PressGridView({
     $target: $app,
     initialState: {
       page: 1,
