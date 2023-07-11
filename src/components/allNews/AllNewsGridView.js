@@ -2,13 +2,13 @@ import { shufflePressOrder } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 
-export default class AllNewsGrid extends Component {
+export default class AllNewsGridView extends Component {
   setup() {
     this.state = { pressOrder: shufflePressOrder(), page: 0 };
   }
 
   template() {
-    return `<div class='news-list-grid-wrapper'>
+    return `<div class='news-list-wrapper'>
               <button class='left-button'></button>
               <ul class='news-list-grid border-default'></ul>
               <button class='right-button'></button>

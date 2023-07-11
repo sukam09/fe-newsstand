@@ -113,13 +113,10 @@ section {
 }
 
 /* news-list-grid */
-.news-list-grid-wrapper {
+.news-list-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  border-bottom: 0px;
-  border-right: 0px;
 
   gap: 36px;
 }
@@ -132,6 +129,9 @@ section {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
+
+  border-bottom: 0px;
+  border-right: 0px;
 }
 
 .news-list-grid > li {
