@@ -9,7 +9,7 @@ function showDate() {
   $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
-function clickLogo() {
+function handleClickLogo() {
   const $logo = document.querySelector('.title-icon');
   $logo.addEventListener('click', function () { location.reload() });
 }
@@ -55,7 +55,7 @@ function turnPage(page) {
     $pageNextButton.style.display = pageCnt >= RIGHT_UNDISPLAY ? "none" : "block"
   }
 
-  function showPressImg() {
+  function handleClickTurner() {
     const $sectionNewsList = document.querySelector('.press-lists');
     this.className === 'left-button' ? pageCnt-- : pageCnt++;
     $sectionNewsList.innerHTML = `
@@ -63,33 +63,33 @@ function turnPage(page) {
     `
     showPageTurner();
   }
-  $pagePrevButton.addEventListener('click', showPressImg);
-  $pageNextButton.addEventListener('click', showPressImg);
+  $pagePrevButton.addEventListener('click', handleClickTurner);
+  $pageNextButton.addEventListener('click', handleClickTurner);
 }
 
-function rollingNews() {
-  
-  function rollingNewsLeft() {
+function rollNews() {
+
+  function rollNewsLeft() {
     document.addEventListener('DOMContentLoaded', () => {
-      const leftInterval = window.setInterval(rollingCallback, 5000, 1);
+      const leftInterval = window.setInterval(rollNewsCallback, 5000, 1);
     })
   }
 
-  function rollingNewsRight() {
+  function rollNewsRight() {
     document.addEventListener('DOMContentLoaded', () => {
-      const rightInterval = window.setTimeout(rollingBetween, 1000)
+      const rightInterval = window.setTimeout(setSpace, 1000)
     })
   }
 
-  rollingNewsLeft();
-  rollingNewsRight();
+  rollNewsLeft();
+  rollNewsRight();
 }
 
-function rollingBetween() {
-  const interval = window.setInterval(rollingCallback, 5000, 0);
+function setSpace() {
+  const interval = window.setInterval(rollNewsCallback, 5000, 0);
 }
 
-function rollingCallback(isLeftNews, isLeftInterval) {
+function rollNewsCallback(isLeftNews, isLeftInterval) {
   let newsIdx = null
   isLeftNews === 1 ? newsIdx = 0 : newsIdx = 1;
   const $prev = document.querySelectorAll('.rolling-banner .prev')[newsIdx];
@@ -118,5 +118,5 @@ function rollingCallback(isLeftNews, isLeftInterval) {
 
 
 
-export { clickLogo, initImgs, showDate, rollingNews };
+export { handleClickLogo, initImgs, showDate, rollNews };
 
