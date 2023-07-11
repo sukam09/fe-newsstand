@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/index.css" type="text/css" />
     <script src="../js/index.js" type="module"></script>
     <script src="../js/autoRolling.js" type="module"></script>
+    <script src="../js/view.js" type="module"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -36,25 +37,35 @@
                 </button>
               </div>
               <div class="viewer-btn">
-                <button>
-                  <img src="../images/icon/list-view.png" alt="images" />
+                <button class="list-view-btn">
+                  <img
+                    class="list-view-btn"
+                    src="../images/icon/list-view.svg"
+                    alt="images"
+                  />
                 </button>
-                <button>
-                  <img src="../images/icon/grid-view.png" alt="images" />
+                <button class="grid-view-btn">
+                  <img
+                    class="grid-view-btn"
+                    src="../images/icon/grid-view-clicked.svg"
+                    alt="images"
+                  />
                 </button>
               </div>
             </div>
 
-            <div class="grid-view">
-              <button id="left-btn">
-                <img id="left" src="../images/icon/LeftButton.png" />
-              </button>
-              <div class="main-list">
-                <ul class="main-list-ul"></ul>
+            <div class="view-content">
+              <div class="grid-view">
+                <button id="left-btn">
+                  <img id="left" src="../images/icon/LeftButton.png" />
+                </button>
+                <div class="main-list">
+                  <ul class="main-list-ul"></ul>
+                </div>
+                <button id="right-btn">
+                  <img id="right" src="../images/icon/RightButton.png" />
+                </button>
               </div>
-              <button id="right-btn">
-                <img id="right" src="../images/icon/RightButton.png" />
-              </button>
             </div>
           </div>
         </section>

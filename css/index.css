@@ -204,12 +204,5 @@ a:hover {
   display: flex;
   height: 24px;
   width: 24px;
-  vertical-align: middle;
   align-items: center;
-}
-
-/*test용*/
-
-.viewer-btn button .clicked {
-  background-color: red;
 }
