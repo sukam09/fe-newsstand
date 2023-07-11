@@ -96,7 +96,7 @@ body {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
     gap: 8px;
 }
 
@@ -180,9 +180,10 @@ body {
 
 .main_nav_title {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 200px;
+    gap: 8px;
 }
 .main_nav_title span {
     z-index: 0;
@@ -196,7 +197,7 @@ body {
     z-index: 0;
     width: 200px;
     border-radius: 0;
-    height: 49px;
+    height: 40px;
 }
 
 .main_nav_title progress::-webkit-progress-bar {
@@ -211,7 +212,7 @@ body {
 .main_nav ul {
     display: flex;
     list-style-type: none;
-    padding: 16px 0 16px 0;
+    padding: 11px 0 11px 0;
     margin: 0;
     border-bottom: 1px solid #d2dae0;
     background-color: #f5f7f9;
