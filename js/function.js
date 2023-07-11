@@ -1,3 +1,8 @@
+//매직넘버 밖으로 또는 constant file 따로 만들어서 넣기
+
+/**
+ 년, 월, 일, 요일 화면에 띄우기
+ */
 function showDate() {
   const now = new Date();
   const year = now.getFullYear();
@@ -9,11 +14,17 @@ function showDate() {
   $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
+/**
+ 로고 클릭하면 새로고침
+ */
 function handleClickLogo() {
   const $logo = document.querySelector('.title-icon');
   $logo.addEventListener('click', function () { location.reload() });
 }
 
+/**
+ 언론사 리스트 랜덤화해서 첫 페이지 띄우기
+ */
 function initImgs() {
   const $sectionNewsList = document.querySelector('.press-lists');
   const newsList = [];
@@ -21,8 +32,9 @@ function initImgs() {
   const page = [[], [], [], []];
   const PRESS_CNT = 96;
   const ONE_PRESS_CNT = 24;
+  const FIRST_PAGE_IDX = 0;
 
-  for (let i = 0; i < PRESS_CNT; i++) {
+  for (let i = 0; i < PRESS_CNT; i++) { //고차함수로 바꾸기
     imgId.push(i);
   }
 
@@ -38,11 +50,14 @@ function initImgs() {
   })
 
   $sectionNewsList.innerHTML = `
-    ${page[0].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
+    ${page[FIRST_PAGE_IDX].map(arr => `<li><img class="pointer" src="./img/asset ${arr["id"]} 1.png"</li>`).join('')};
   `
   turnPage(page);
 }
 
+/**
+ 페이지 넘기는 버튼 클릭 이벤트 핸들링
+ */
 function turnPage(page) {
   const $pagePrevButton = document.querySelector('.left-button');
   const $pageNextButton = document.querySelector('.right-button');
@@ -50,11 +65,17 @@ function turnPage(page) {
   const RIGHT_UNDISPLAY = 3;
   let pageCnt = 0;
 
+  /**
+   페이지 넘기는 버튼 유무 설정
+   */
   function showPageTurner() {
     $pagePrevButton.style.display = pageCnt !== LEFT_UNDISPLAY ? "block" : "none";
     $pageNextButton.style.display = pageCnt >= RIGHT_UNDISPLAY ? "none" : "block"
   }
 
+  /**
+   해당 페이지에 맞는 언론사 리스트 띄우기
+   */
   function handleClickTurner() {
     const $sectionNewsList = document.querySelector('.press-lists');
     this.className === 'left-button' ? pageCnt-- : pageCnt++;
@@ -67,56 +88,76 @@ function turnPage(page) {
   $pageNextButton.addEventListener('click', handleClickTurner);
 }
 
-function rollNews() {
 
-  function rollNewsLeft() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const leftInterval = window.setInterval(rollNewsCallback, 5000, 1);
+function rollNews() {
+  const ROLLING_INTERVAL_TIME = 5000;
+  const ROLLING_INTERVAL_SPACE_TIME = 1000;
+
+  function rollNewsLeft() { //clearInterval을 위해 interval을 전역으로 빼기
+    let leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
+    const $lists = document.querySelectorAll('.rolling-banner .wrap-left li');
+    $lists.forEach($list => {
+      $list.addEventListener('mouseenter', () => {
+        clearInterval(leftInterval);
+      });
+    })
+
+    $lists.forEach($list => {
+      $list.addEventListener('mouseleave', () => {
+        leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
+      })
     })
   }
 
   function rollNewsRight() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const rightInterval = window.setTimeout(setSpace, 1000)
+    let rightInterval = window.setTimeout(setSpace, ROLLING_INTERVAL_SPACE_TIME);
+  }
+
+  function setSpace() {
+    let rightInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'right');
+    const $lists = document.querySelectorAll('.rolling-banner .wrap-right li');
+    $lists.forEach($list => {
+      $list.addEventListener('mouseenter', () => {
+        clearInterval(rightInterval);
+      });
+    })
+
+    $lists.forEach($list => {
+      $list.addEventListener('mouseleave', () => {
+        rightInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'right');
+      })
     })
   }
 
   rollNewsLeft();
   rollNewsRight();
-}
 
-function setSpace() {
-  const interval = window.setInterval(rollNewsCallback, 5000, 0);
-}
+  function rollNewsCallback(isLeftNews) { //줄일 수 있음. 클래스 명에 템플릿 리터럴 이용하기
+    const FIRST_NEWS_IDX = 0;
+    const SECOND_NEWS_IDX = 1;
+    let newsIdx = null;
 
-function rollNewsCallback(isLeftNews, isLeftInterval) {
-  let newsIdx = null
-  isLeftNews === 1 ? newsIdx = 0 : newsIdx = 1;
-  const $prev = document.querySelectorAll('.rolling-banner .prev')[newsIdx];
-  $prev.classList.remove('prev');
+    isLeftNews === 'left' ? newsIdx = FIRST_NEWS_IDX : newsIdx = SECOND_NEWS_IDX;
+    const $prev = document.querySelectorAll('.rolling-banner li.prev')[newsIdx];
+    $prev.classList.remove('prev');
 
-  const $current = document.querySelectorAll('.rolling-banner .current')[newsIdx];
-  $current.classList.remove('current');
-  $current.classList.add('prev');
-  $current.addEventListener('mouseenter', handleSpauseRolling)
+    const $current = document.querySelectorAll('.rolling-banner li.current')[newsIdx];
+    $current.classList.remove('current');
+    $current.classList.add('prev');
 
-  const $next = document.querySelectorAll('.rolling-banner .next')[newsIdx];
-  if ($next.nextElementSibling === null) {
-    const $nullNext = document.querySelectorAll('.rolling-banner ul li:first-child')[newsIdx];
-    $nullNext.classList.add('next');
+    const $next = document.querySelectorAll('.rolling-banner li.next')[newsIdx];
+    if ($next.nextElementSibling === null) {
+      const $nullNext = document.querySelectorAll('.rolling-banner ul li:first-child')[newsIdx];
+      $nullNext.classList.add('next');
+    }
+    else {
+      $next.nextElementSibling.classList.add('next');
+    }
+    $next.classList.remove('next');
+    $next.classList.add('current');
   }
-  else {
-    $next.nextElementSibling.classList.add('next');
-  }
-  $next.classList.remove('next');
-  $next.classList.add('current');
 
-  function handleSpauseRolling() {
-    
-  }
 }
-
-
 
 export { handleClickLogo, initImgs, showDate, rollNews };
 
