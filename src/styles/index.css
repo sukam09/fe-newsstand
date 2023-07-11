@@ -1,7 +1,8 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
 @import url('./reset.css');
 @import url('./design.css');
-@import url('./latest-news.css');
+@import url('./components/latest-news.css');
+@import url('./components/news-stand-header.css');
 
 body {
   display: flex;
@@ -14,36 +15,6 @@ body {
 
 .news-stand__container {
   width: 930px;
-}
-
-/* 기본 상단 영역 */
-.header__wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 58px;
-}
-
-.header__button {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-
-  background-color: transparent;
-  border: none;
-}
-
-.header__h1 {
-  font: var(--bold-L);
-  color: var(--grayscale-black);
-}
-
-.header__time {
-  font: var(--medium-M);
-  color: var(--grayscale-400);
 }
 
 /* 언론사별 기사들을 확인하는 영역 */
