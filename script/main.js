@@ -73,73 +73,39 @@ function showPressImg(flag) {
 		${page[pageNumber].map(arr => `<li><img src="../assets/images/press/ ${arr["id"]}.png"</li>`).join('')};
 	`
 }
-
 showDate();
 
-window.addEventListener('DOMContentLoaded', shuffleImgs);
+// rolling 
 
+let intervalFirstNewsbar = setInterval(function() {
+    rollingCb('first');
+}, 3000);
 
+let intervalSecondNewsbar = setInterval(()=>{
+    setTimeout(()=>{
+        rollingCb('second');
+    }, 1000)
+}, 3000);
 
-/////////////////////////////처음부터 다시 해보자.///////////////////////////////
-// document.addEventListener('DOMContentLoaded', ()=>{
-//     let interval = window.setInterval(rollingCallback, 3000);
-//     // window.setInterval(rollingCallback, 3000);
-// })
-// function rollingCallback(){
-//     //.prev 클래스 삭제
-//     document.querySelector('.newsbar-first-container .prev').classList.remove('prev');
+function rollingCb(state) {
+    document.querySelector(`.newsbar-content-container-${state} .prev`).classList.remove('prev');
+    let current = document.querySelector(`.newsbar-content-container-${state} .current`);
+    current.classList.remove('current');
+    current.classList.add('prev');
 
-//     //.current -> .prev
-//     let current = document.querySelector('.newsbar-first-container .current');
-//     current.classList.remove('current');
-//     current.classList.add('prev');
-
-//     //.next -> .current
-//     let next = document.querySelector('.newsbar-first-container .next');
-//     //다음 목록 요소가 널인지 체크
-//     if(next.nextElementSibling == null){
-//         document.querySelector('.newsbar-first-container li:first-child').classList.add('next');
-//     }else{
-//     	//목록 처음 요소를 다음 요소로 선택
-//         next.nextElementSibling.classList.add('next');
-//     }
-//     next.classList.remove('next');
-//     next.classList.add('current');
-// }
-
-document.addEventListener('DOMContentLoaded', ()=> {
-    var interval = window.setInterval(rollingCb, 3000);
-})
-function rollingCb() {
-    document.querySelector('.newsbar-first-container .prev').classList.remove('prev');
-    let currentFirst = document.querySelector('.newsbar-first-container .current');
-    currentFirst.classList.remove('current');
-    currentFirst.classList.add('prev');
-
-    document.querySelector('.newsbar-second-container .prev').classList.remove('prev');
-    let currentSecond = document.querySelector('.newsbar-second-container .current');
-    currentSecond.classList.remove('current');
-    currentSecond.classList.add('prev');
-
-    let nextFirst = document.querySelector('.newsbar-first-container .next');
-    if(nextFirst.nextElementSibling == null) {
-        document.querySelector('.newsbar-first-container ul li:first-child').classList.add('next');
+    let next = document.querySelector(`.newsbar-content-container-${state} .next`);
+    if(next.nextElementSibling == null) {
+        document.querySelector(`.newsbar-content-container-${state} li:first-child`).classList.add('next');
     } else {
-        nextFirst.nextElementSibling.classList.add('next');
+        next.nextElementSibling.classList.add('next');
     }
-    nextFirst.classList.remove('next');
-    nextFirst.classList.add('current');
-
-    let nextSecond = document.querySelector('.newsbar-second-container .next');
-    if(nextSecond.nextElementSibling == null) {
-        document.querySelector('.newsbar-second-container ul li:first-child').classList.add('next');
-    } else {
-        nextSecond.nextElementSibling.classList.add('next');
-    }
-    nextSecond.classList.remove('next');
-    nextSecond.classList.add('current');
+    next.classList.remove('next');
+    next.classList.add('current');
 }
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    shuffleImgs();
+});
 
 for (let i = 0; i < 96; i++) {
 	pageAllNum.push(i);
