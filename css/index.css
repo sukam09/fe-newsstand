@@ -81,15 +81,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .title-wrapper img {
   width: 24px;
   height: 24px;
-}
-
-.grid-view button img {
-  width: 24px;
-  height: 40px;
 }
 .date {
   color: var(--text-default);
@@ -104,7 +98,7 @@ body {
   color: var(--text-weak);
   font-size: 16px;
   font-weight: 500;
-  padding-left: 24px;
+  margin-left: 24px;
 }
 .press {
   color: var(--text-strong);
@@ -137,6 +131,9 @@ a:hover {
   cursor: pointer;
 }
 
+/*
+자동 롤링 부분
+*/
 .auto-rolling-news {
   position: relative;
   width: 460px;
@@ -189,4 +186,30 @@ a:hover {
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: #000;
+}
+
+.auto-rolling-news a:hover {
+  text-decoration: underline;
+}
+
+.viewer-btn {
+  display: flex;
+  height: 24px;
+  width: 56px;
+  justify-content: space-between;
+  vertical-align: middle;
+  align-items: center;
+}
+.viewer-btn button {
+  display: flex;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+  align-items: center;
+}
+
+/*test용*/
+
+.viewer-btn button .clicked {
+  background-color: red;
 }

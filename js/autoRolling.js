@@ -47,7 +47,6 @@ const recent_right = document.querySelector("#recent-right");
 
 recent_left.addEventListener("mouseover", () => {
   clearInterval(leftAutoRollingInterval);
-  recent_left.querySelector(".current").style.textDecoration = "underline";
 });
 
 recent_left.addEventListener("mouseout", () => {
@@ -55,12 +54,10 @@ recent_left.addEventListener("mouseout", () => {
     () => rollingCallback("recent-left"),
     5000
   );
-  recent_left.querySelector(".current").style.textDecoration = "none";
 });
 
 recent_right.addEventListener("mouseover", () => {
   clearInterval(rightAutoRollingInterval);
-  recent_right.querySelector(".current").style.textDecoration = "underline";
 });
 
 recent_right.addEventListener("mouseout", () => {
@@ -68,5 +65,4 @@ recent_right.addEventListener("mouseout", () => {
     () => rollingCallback("recent-right"),
     5000
   );
-  recent_right.querySelector(".current").style.textDecoration = "none";
 });
