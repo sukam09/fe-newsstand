@@ -74,7 +74,8 @@ function DoingRolling(leftArticles, rightArticles) {
     //
   }, ARTICLE_CHANGE_TIME);
 }
-async function NewArticlePrint() {
+
+export async function NewArticlePrint() {
   try {
     const articles = await fetchRollingArticle("../Data/news.json");
     leftArticles = articles.slice(0, 5);
@@ -92,5 +93,3 @@ async function NewArticlePrint() {
     console.error(e);
   }
 }
-
-NewArticlePrint();
