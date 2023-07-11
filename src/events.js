@@ -1,4 +1,4 @@
-import { renderGridPress, currentPage } from "./views/grid_views.js";
+import { renderGridPress, grid_current_page } from "./views/grid_views.js";
 import { initListNews } from "./views/list_views.js";
 
 const show_options = {
@@ -44,23 +44,19 @@ function optionShowMain() {
                     "./assets/icons/option_list_main.png";
                 news_data_container.classList.remove("list_news_container");
                 news_data_container.classList.add("grid_news_container");
-                deleteMainDisplay();
-                renderGridPress(show_options.press_data, currentPage);
 
-                // here (random_news.js) renderMain()
+                deleteMainDisplay();
+                renderGridPress(show_options.press_data, grid_current_page);
             } else {
                 option.src = "./assets/icons/option_list_main_active.png";
                 document.getElementById("option_symbol_main").src =
                     "./assets/icons/option_symbol_main.png";
-
                 news_data_container.classList.remove("grid_news_container");
                 news_data_container.classList.add("list_news_container");
+
                 deleteMainDisplay();
                 initListNews();
-
-                // here (list_news.js) renderMain()
             }
-            // here main change ...
         });
     });
 }

@@ -1,25 +1,25 @@
 import { fetchPressData } from "../utils.js";
 import { show_options } from "../events.js";
 
-// rowSize, colSize, maxPage, currentPage is main size variable
-const rowSize = 6;
-const colSize = 4;
-const maxPage = 3;
-let currentPage = 0;
+// ROWSIZE, COLSIZE, MAXPAGE, grid_current_page is main size variable
+const ROWSIZE = 6;
+const COLSIZE = 4;
+const MAXPAGE = 3;
+let grid_current_page = 0;
 
 // move page
 function movePage(data) {
     document.querySelector(".left_arrow").addEventListener("click", () => {
-        if (currentPage < 0) return;
+        if (grid_current_page < 0) return;
 
-        renderGridPress(data, currentPage - 1);
-        currentPage = currentPage - 1;
+        renderGridPress(data, grid_current_page - 1);
+        grid_current_page = grid_current_page - 1;
     });
     document.querySelector(".right_arrow").addEventListener("click", () => {
-        if (currentPage > maxPage) return;
+        if (grid_current_page > MAXPAGE) return;
 
-        renderGridPress(data, currentPage + 1);
-        currentPage = currentPage + 1;
+        renderGridPress(data, grid_current_page + 1);
+        grid_current_page = grid_current_page + 1;
     });
 }
 
@@ -30,9 +30,9 @@ function renderGridPress(shuffledData, page) {
     news_data_container.innerHTML = "";
     toggleArrow(page);
 
-    for (let i = 0; i < colSize; i++) {
+    for (let i = 0; i < COLSIZE; i++) {
         let ul = document.createElement("ul");
-        for (let j = 0; j < rowSize; j++) {
+        for (let j = 0; j < ROWSIZE; j++) {
             const item = shuffledData[cnt] || { name: "empty", url: "" };
             ul.innerHTML += `
             <li class="news_data_item">
@@ -52,7 +52,7 @@ function toggleArrow(page) {
             document.querySelector(".left_arrow").style.display = "none";
             document.querySelector(".right_arrow").style.display = "block";
             break;
-        case maxPage:
+        case MAXPAGE:
             document.querySelector(".left_arrow").style.display = "block";
             document.querySelector(".right_arrow").style.display = "none";
             break;
@@ -77,4 +77,4 @@ function renderPress(data, page) {
     movePage(data);
 }
 
-export { initPress, renderGridPress, currentPage };
+export { initPress, renderGridPress, grid_current_page };

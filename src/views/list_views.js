@@ -11,7 +11,7 @@ const category = [
 ];
 
 let currentCategory = "종합/경제";
-let currentPage = 0;
+let list_current_page = 0;
 let current = 10;
 let count = 23;
 let max = 100;
