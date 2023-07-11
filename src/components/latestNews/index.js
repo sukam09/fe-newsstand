@@ -3,8 +3,8 @@ export default class LatestNews {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "latest-main-news";
 
-    this.LATEST_NEWS_COUNT = 5;
-    this.ROLLING_SPEED = 2000;
+    this.LATEST_NEWS_COUNT = 6;
+    this.ROLLING_SPEED = 5000;
 
     this.render();
     return this.$wrapper;
@@ -21,14 +21,13 @@ export default class LatestNews {
     const $wrapper = document.createElement("div");
     $container.className = "latest--container";
     $hiddenCompoent.className = "text--wrapper";
-    $wrapper.className = "auto-rolling-news";
+    $wrapper.className = `auto-rolling-news ${location}`;
 
-    // for (let i = 0; i < this.LATEST_NEWS_COUNT; i++) {}
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 1`));
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 2`));
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 3`));
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 4`));
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 5`));
+    for (let i = 1; i < this.LATEST_NEWS_COUNT; i++) {
+      $wrapper.appendChild(
+        this.createLatestNewsComponent("연합뉴스", `[1보] ${i}`)
+      );
+    }
     $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 1`));
 
     this.handleRolling($wrapper);
@@ -57,12 +56,14 @@ export default class LatestNews {
 
   handleRolling(wrapper) {
     let order = 1;
+    let interval;
 
-    let interval = setInterval(() => {
-      if (order > this.LATEST_NEWS_COUNT) {
+    interval = setInterval(() => {
+      if (order >= this.LATEST_NEWS_COUNT) {
         wrapper.classList.remove("play" + (order - 1));
         order = 0;
-        clearInterval(interval);
+        clearTimeout(interval);
+        this.handleRolling(wrapper);
       }
       wrapper.classList.add("play" + order);
       wrapper.classList.remove("play" + (order - 1));
