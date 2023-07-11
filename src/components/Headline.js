@@ -1,5 +1,4 @@
-const HEADLINE_NUMBERS = 5;
-const HEADLINE_ROLLING_DELAY = 3000;
+const HEADLINE_ROLLING_DELAY = 5000;
 
 export default function Headline({ $target, initialState }) {
   const $div = document.createElement('div');
@@ -9,17 +8,25 @@ export default function Headline({ $target, initialState }) {
 
   this.state = initialState;
 
-  this.setState = nextState => {
-    this.state = nextState;
-    this.render();
-  };
-
   const setHeadline = () => {
-    // TODO: setState 지우고 transition과 class 바꿔주는 방식으로 구현
-    this.setState({
-      ...this.state,
-      index: (this.state.index + 1) % HEADLINE_NUMBERS,
-    });
+    const $prev = $div.querySelector('.prev');
+    const $current = $div.querySelector('.current');
+    const $next = $div.querySelector('.next');
+
+    $prev.classList.remove('prev');
+
+    $current.classList.remove('current');
+    $current.classList.add('prev');
+
+    $next.classList.remove('next');
+    $next.classList.add('current');
+
+    if ($next.nextElementSibling === null) {
+      const $first = $div.querySelector('li:first-child');
+      $first.classList.add('next');
+    } else {
+      $next.nextElementSibling.classList.add('next');
+    }
   };
 
   const setTimer = (callback, interval) => {
@@ -47,14 +54,17 @@ export default function Headline({ $target, initialState }) {
     const { index, headlines } = this.state;
 
     $div.innerHTML = `
-      <span class="recent-news-press">연합뉴스</span>
-      <span class="recent-news-headline">${headlines[index]}</span>
+      <div class="recent-news-press">연합뉴스</div>
+      <div class="recent-news-headline">
+        <ul>
+          <li>${headlines[3]}</li>
+          <li class="prev">${headlines[4]}</li>
+          <li class="current">${headlines[0]}</li>
+          <li class="next">${headlines[1]}</li>
+          <li>${headlines[2]}</li>
+        </ul>
+      </div>
     `;
-
-    const $span = $div.querySelector('.recent-news-headline');
-
-    $span.addEventListener('mouseenter', handleMouseEnter);
-    $span.addEventListener('mouseleave', handleMouseLeave);
   };
 
   this.render();
