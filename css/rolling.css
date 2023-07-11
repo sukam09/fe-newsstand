@@ -52,7 +52,7 @@
 }
 
 .newsbar-content-container li.prev {
-    top: 18px;
+    top: -18px;
     transition: top 0.5s ease;
 }
 .newsbar-content-container li.current {
@@ -60,5 +60,5 @@
     transition: top 0.5s ease;
 }
 .newsbar-content-container li.next {
-    top: -18px;
+    top: 18px;
 }
