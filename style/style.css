@@ -108,8 +108,8 @@ section {
   align-items: flex-start;
   gap: 8px;
 }
-.tab-and-viewer .viewer .list-btn,
-.tab-and-viewer .viewer .grid-btn {
+#list-btn,
+#grid-btn {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -117,22 +117,6 @@ section {
   background-color: transparent;
   border: 0;
 }
-/* .tab-and-viewer .viewer .list-btn::before,
-.tab-and-viewer .viewer .grid-btn::before {
-  content: "";
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-.tab-and-viewer .viewer span {
-  display: none;
-}
-.tab-and-viewer .viewer .list-btn::before {
-  background-image: url("./icons/list-btn.svg");
-}
-.tab-and-viewer .viewer .grid-btn::before {
-  background-image: url("./icons/grid-btn.svg");
-} */
 
 .grid {
   display: flex;

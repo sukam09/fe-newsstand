@@ -1,5 +1,6 @@
 import { NewArticlePrint } from "./module/NewArticle.js";
 import { printGrid } from "./module/GridView.js";
+import SelectViewStyle from "./module/ViewStyle.js";
 
 function initDate() {
   const date = new Date();
@@ -11,7 +12,8 @@ function initDate() {
 function main() {
   initDate(); // 오늘 날짜
   NewArticlePrint(); // 롤링
-  printGrid(); // 그리드뷰
+  printGrid();
+  SelectViewStyle(); // 뷰 선택
 }
 
 main();
