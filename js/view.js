@@ -32,7 +32,12 @@ const list_view = `
         </div>
 `;
 
-function showMainList() {
+function shuffleImgIndex() {
+  return [...imgIndex].sort(() => Math.random() - 0.5);
+}
+const shuffledPress = shuffleImgIndex();
+
+function showGridView() {
   const main_list_ul = document.querySelector(".main-list-ul");
   main_list_ul.innerHTML = "";
   for (let i = 24 * (main_list_page - 1); i < 24 * main_list_page; i++) {
@@ -47,40 +52,33 @@ function showMainList() {
   }
 }
 
-function shuffleImgIndex() {
-  return [...imgIndex].sort(() => Math.random() - 0.5);
-}
-const shuffledPress = shuffleImgIndex();
-
 function changePage(target) {
   if (target === "left") {
     main_list_page--;
   } else if (target === "right") {
     main_list_page++;
   }
+  showGridView();
   checkPage();
 }
 
 function checkPage() {
-  const left_btn = document.getElementById("left-btn");
-  const right_btn = document.getElementById("right-btn");
-  if (main_list_page === 1) left_btn.style.visibility = "hidden";
-  else if (main_list_page === 4) right_btn.style.visibility = "hidden";
-  else {
-    left_btn.style.visibility = "visible";
-    right_btn.style.visibility = "visible";
+  const path = new URL(document.getElementById("grid-btn").src).pathname;
+  const isClicked = path.includes("clicked");
+  if (isClicked) {
+    const left_btn = document.getElementById("left-btn");
+    const right_btn = document.getElementById("right-btn");
+    if (main_list_page === 1) left_btn.style.visibility = "hidden";
+    else if (main_list_page === 4) right_btn.style.visibility = "hidden";
+    else {
+      left_btn.style.visibility = "visible";
+      right_btn.style.visibility = "visible";
+    }
   }
 }
 
 function handleClick(e) {
-  const grid_view_btn = document.querySelector(
-    ".viewer-btn .grid-view-btn img"
-  );
-  const list_view_btn = document.querySelector(
-    ".viewer-btn .list-view-btn img"
-  );
   const target = e.target.id;
-
   switch (target) {
     case "grid-btn":
     case "list-btn":
@@ -95,6 +93,8 @@ function handleClick(e) {
   }
 }
 
+function showListView() {}
+
 function changeView(target) {
   const grid_btn = document.getElementById("grid-btn");
   const list_btn = document.getElementById("list-btn");
@@ -103,14 +103,17 @@ function changeView(target) {
     view_content.innerHTML = grid_view;
     grid_btn.src = "../images/icon/grid-view-clicked.svg";
     list_btn.src = "../images/icon/list-view.svg";
-    showMainList();
+    showGridView();
+    checkPage();
   } else {
     view_content.innerHTML = list_view;
     grid_btn.src = "../images/icon/grid-view.svg";
     list_btn.src = "../images/icon/list-view-clicked.svg";
+    showListView();
   }
 }
 
 document.addEventListener("click", handleClick);
+
+showGridView();
 checkPage();
-showMainList();

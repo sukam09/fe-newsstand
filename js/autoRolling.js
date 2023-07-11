@@ -25,8 +25,22 @@ function rollingCallback(target) {
   next.classList.remove("next");
   next.classList.add("current");
 }
+document.addEventListener("DOMContentLoaded", () => {
+  leftAutoRollingInterval = setInterval(
+    () => rollingCallback("recent-left"),
+    5000
+  );
+  setTimeout(() => {
+    rightAutoRollingInterval = setInterval(
+      () => rollingCallback("recent-right"),
+      5000
+    );
+  }, 1000);
+});
 
-window.addEventListener("focus", function () {
+window.addEventListener("focus", () => {
+  clearInterval(leftAutoRollingInterval);
+  clearInterval(rightAutoRollingInterval);
   leftAutoRollingInterval = setInterval(
     () => rollingCallback("recent-left"),
     5000
