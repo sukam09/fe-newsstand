@@ -1,5 +1,5 @@
 import { renderGridPress, currentPage } from "./random_news.js";
-import { rendListNews } from "./list_news.js";
+import { initListNews } from "./list_news.js";
 
 const show_options = {
     press: "all",
@@ -56,7 +56,7 @@ function optionShowMain() {
                 news_data_container.classList.remove("grid_news_container");
                 news_data_container.classList.add("list_news_container");
                 deleteMainDisplay();
-                rendListNews();
+                initListNews();
 
                 // here (list_news.js) renderMain()
             }
