@@ -40,6 +40,18 @@ async function fetchHotTopicData() {
     }
 }
 
+async function fetchNewsData() {
+    try {
+        const data = await fetch("./data/all_news.json")
+            .then((res) => res.json())
+        
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", showToday);
 
-export { fetchPressData, fetchHotTopicData };
+export { fetchPressData, fetchHotTopicData, fetchNewsData };
