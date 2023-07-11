@@ -30,7 +30,7 @@
   --color-text-strong: var(--color-grayscale-black);
   --color-text-bold: var(--color-grayscale-500);
   --color-text-default: var(--color-grayscale-400);
-  --color-text-weak: var(--color-grayscale-300);
+  --color-text-weak: var(--color-grayscale-200);
   --color-text-white-default: var(--color-grayscale-white);
   --color-text-white-weak: var(--color-grayscale-white-alt);
   --color-text-point: var(--color-blue-500);
