@@ -8,13 +8,9 @@ const $nextPageButton = document.querySelector(
 export const handlePrevButtonClick = (data, pages, callback) => () => {
   const maxPage = Math.floor(data.length / NEWS_COUNT) - 1;
 
-  if (pages.getPages() === maxPage) {
-    $nextPageButton.classList.remove("hidden");
-  }
+  pages.getPages() === maxPage && $nextPageButton.classList.remove("hidden");
 
-  if (pages.setPages(-1) === 0) {
-    $prevPageButton.classList.add("hidden");
-  }
+  pages.setPages(-1) === 0 && $prevPageButton.classList.add("hidden");
 
   callback(data, pages);
 };
@@ -22,18 +18,14 @@ export const handlePrevButtonClick = (data, pages, callback) => () => {
 export const handleNextButtonClick = (data, pages, callback) => () => {
   const maxPage = Math.floor(data.length / NEWS_COUNT) - 1;
 
-  if (pages.getPages() === 0) {
-    $prevPageButton.classList.remove("hidden");
-  }
+  pages.getPages() === 0 && $prevPageButton.classList.remove("hidden");
 
-  if (pages.setPages(1) === maxPage) {
-    $nextPageButton.classList.add("hidden");
-  }
+  pages.setPages(1) === maxPage && $nextPageButton.classList.add("hidden");
 
   callback(data, pages);
 };
 
-export const setButtons = (data, pages, callback) => {
+export const setNavigationButtons = (data, pages, callback) => {
   $prevPageButton.addEventListener(
     "click",
     handlePrevButtonClick(data, pages, callback)
