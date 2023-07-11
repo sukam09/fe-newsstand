@@ -72,6 +72,12 @@ body {
   overflow: hidden;
 }
 
+.latest_news__li {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
 .latest_news__h2 {
   cursor: pointer;
   font: var(--bold-R);
