@@ -10,7 +10,7 @@ const show_options = {
 function optionShowPress() {
     const option_press = document.querySelectorAll(".option_press");
     option_press.forEach((option) => {
-        option.addEventListener("click", () => {
+        option.addEventListener("click", (e) => {
             show_options.press = option.id;
             if (option.id === "option_all_press") {
                 option.className = "option_press option_press_active";
@@ -39,9 +39,9 @@ function optionShowMain() {
         option.addEventListener("click", () => {
             show_options.main = option.id;
             if (option.id === "option_symbol_main") {
-                option.src = "./public/icons/option_symbol_main_active.png";
+                option.src = "./assets/icons/option_symbol_main_active.png";
                 document.getElementById("option_list_main").src =
-                    "./public/icons/option_list_main.png";
+                    "./assets/icons/option_list_main.png";
                 news_data_container.classList.remove("list_news_container");
                 news_data_container.classList.add("grid_news_container");
                 deleteMainDisplay();
@@ -49,9 +49,9 @@ function optionShowMain() {
 
                 // here (random_news.js) renderMain()
             } else {
-                option.src = "./public/icons/option_list_main_active.png";
+                option.src = "./assets/icons/option_list_main_active.png";
                 document.getElementById("option_symbol_main").src =
-                    "./public/icons/option_symbol_main.png";
+                    "./assets/icons/option_symbol_main.png";
 
                 news_data_container.classList.remove("grid_news_container");
                 news_data_container.classList.add("list_news_container");
