@@ -26,21 +26,23 @@ function rollingCallback(target) {
   next.classList.add("current");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("focus", function () {
   leftAutoRollingInterval = setInterval(
     () => rollingCallback("recent-left"),
     5000
   );
-});
-
-document.addEventListener("DOMContentLoaded", () =>
   setTimeout(() => {
     rightAutoRollingInterval = setInterval(
       () => rollingCallback("recent-right"),
       5000
     );
-  }, 1000)
-);
+  }, 1000);
+});
+
+window.addEventListener("blur", function () {
+  clearInterval(leftAutoRollingInterval);
+  clearInterval(rightAutoRollingInterval);
+});
 
 const recent_left = document.querySelector("#recent-left");
 const recent_right = document.querySelector("#recent-right");
