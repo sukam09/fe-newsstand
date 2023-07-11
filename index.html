@@ -55,7 +55,7 @@
               <button class="available-medium16">내가 구독한 언론사</button>
             </div>
             <div class="main-nav_viewer">
-              <button>
+              <button data-view="list">
                 <svg
                   width="24"
                   height="24"
@@ -69,7 +69,7 @@
                   />
                 </svg>
               </button>
-              <button class="main-nav_viewer--selected">
+              <button data-view="grid" class="main-nav_viewer--selected">
                 <svg
                   width="24"
                   height="24"
@@ -87,10 +87,10 @@
           </nav>
         </header>
         <main class="container-main">
-          <ul class="grid-view hidden"></ul>
-          <div class="list-view">
+          <ul class="grid-view"></ul>
+          <div class="list-view hidden">
             <header>
-              <nav class="list-view_nav">
+              <nav class="list-view_tab">
                 <ul class="available-medium14">
                   <li class="category-selected selected-bold14">종합/경제</li>
                   <li>방송/통신</li>
