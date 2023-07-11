@@ -4,9 +4,6 @@ const pressContentView = document.getElementById('press-content-view');
 const sectionPrevButton = document.getElementById('press-content-prev');
 const sectionNextButton = document.getElementById('press-content-next');
 
-const headlineNewsSecond = document.querySelector('.newsbar-content-container-second .current');
-
-
 const page = [[], [], [], []];
 let newsbarFirst = [];
 let newsbarSecond = [];
@@ -51,9 +48,6 @@ function showPressImg(flag) {
 	`
 }
 
-
-
-// rolling 
 function startRolling() {
     intervalFirstNewsbar = setInterval(()=> {
         rollingCb('first');
@@ -64,7 +58,6 @@ function startRolling() {
             rollingCb('second');
         }, 1000)
     }, 3000);
-
 }
 
 function stopRolling(){
@@ -72,15 +65,19 @@ function stopRolling(){
     clearInterval(intervalSecondNewsbar);
 }
 
-function mouseEventRolling() {
-    const headlineNews = document.querySelectorAll(`.newsbar-content-container li`);
-
+function mouseEventRolling(state) {
+    const headlineNews = document.querySelectorAll(`.newsbar-content-container-${state} li`);
+    
     headlineNews.forEach((elem) => {
         elem.addEventListener('mouseover', () => {
+            elem.style.textDecoration = "underline";
+            elem.style.cursor = "pointer";
             stopRolling();
         })
     
         elem.addEventListener('mouseout', () => {
+            elem.style.textDecoration = "none";
+            elem.style.cursor = "auto";
             startRolling();
         })
     })
@@ -106,7 +103,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     showDate();
     shuffleImgs();
     startRolling();
-    mouseEventRolling();
+    mouseEventRolling("first");
+    mouseEventRolling("second");
 });
 
 for (let i = 0; i < 96; i++) {
