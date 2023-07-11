@@ -8,7 +8,7 @@ const setHotTopic = async () => {
   const $hotTopicLeft = document.querySelector(".hot-topic-left");
   const $hotTopicRight = document.querySelector(".hot-topic-right");
 
-  let hotTopic = await getJSON("../assets/hotTopic.json");
+  let hotTopic = await getJSON("../assets/hot-topic.json");
 
   hotTopic.forEach((topic, idx) => {
     const $li = document.createElement("li");

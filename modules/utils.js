@@ -1,5 +1,11 @@
 import { IMAGE } from "../constant.js";
 
+const $gridIcon = document.querySelector(".nav-grid");
+const $listIcon = document.querySelector(".nav-list");
+
+const $gridView = document.querySelector(".news-grid-wrapper");
+const $listView = document.querySelector(".news-list-wrapper");
+
 /**
  * 배열을 섞는 함수
  */
@@ -48,30 +54,16 @@ const setViewEvent = () => {
 };
 
 const moveGridView = () => {
-  const $gridIcon = document.querySelector(".nav-grid");
-  const $listIcon = document.querySelector(".nav-list");
-
-  //   $gridIcon.src = "/images/grid-view_blue.svg";
   $gridIcon.src = IMAGE.BLUE_GRID_ICON;
   $listIcon.src = IMAGE.GRAY_LIST_ICON;
-
-  const $gridView = document.querySelector(".news-grid-wrapper");
-  const $listView = document.querySelector(".news-list-wrapper");
-
-  console.log($gridView, $listView);
 
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
 };
 
 const moveListView = () => {
-  const $gridIcon = document.querySelector(".nav-grid");
-  const $listIcon = document.querySelector(".nav-list");
-
   $gridIcon.src = IMAGE.GRAY_GRID_ICON;
   $listIcon.src = IMAGE.BLUE_LIST_ICON;
-  const $gridView = document.querySelector(".news-grid-wrapper");
-  const $listView = document.querySelector(".news-list-wrapper");
 
   $listView.classList.remove("hidden");
   $gridView.classList.add("hidden");
