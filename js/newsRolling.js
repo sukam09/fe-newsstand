@@ -3,7 +3,6 @@ const ROLLING_LATENCY = 1000;
 
 function rollingCallback(index) {
   //.prev 클래스 삭제
-  console.log(document.querySelector(`.rolling-${index} .prev`));
   document.querySelector(`.rolling-${index} .prev`).classList.remove("prev");
 
   //.current -> .prev
