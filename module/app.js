@@ -21,7 +21,7 @@ function init() {
   left_btn.addEventListener("click", () => moveGrid(LEFT));
 
   first_interval = window.setInterval(() => rollingCallback(LEFT), 5000);
-  second_interval = window.setTimeout(() => window.setInterval(() => rollingCallback(RIGHT), 5000), 1000);
+  window.setTimeout(() => (second_interval = window.setInterval(() => rollingCallback(RIGHT), 5000)), 1000);
 
   first_news.addEventListener("mouseover", () => {
     window.clearInterval(first_interval);
@@ -30,7 +30,7 @@ function init() {
     first_interval = window.setInterval(() => rollingCallback(LEFT), 5000);
   });
   second_news.addEventListener("mouseover", () => {
-    window.clearInterval(first_interval);
+    window.clearInterval(second_interval);
   });
   second_news.addEventListener("mouseout", () => {
     second_interval = window.setInterval(() => rollingCallback(RIGHT), 5000);
