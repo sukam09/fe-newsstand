@@ -57,11 +57,7 @@ function hoverStart(banner) {
     banner.style.animationPlayState = "running";
 }
 
-function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function bannerMouseEvents() {
+function bannerMouseEvents(leftBanner, rightBanner) {
     const left_banner =
         document.getElementById("rollingBannerLeft").childNodes[0];
     const right_banner =
@@ -73,6 +69,7 @@ function bannerMouseEvents() {
 
     left_banner.addEventListener("mouseout", function () {
         hoverStart(left_banner);
+        clearTimeout(leftBanner);
     });
 
     right_banner.addEventListener("mouseover", function () {
@@ -81,6 +78,7 @@ function bannerMouseEvents() {
 
     right_banner.addEventListener("mouseout", function () {
         hoverStart(right_banner);
+        clearTimeout(rightBanner);
     });
 }
 
@@ -90,14 +88,16 @@ function controlBanner() {
     const right_banner =
         document.getElementById("rollingBannerRight").childNodes[0];
 
-    setInterval(() => {
+    let leftBanner = setInterval(() => {
         updateBanner(left_banner, "left");
     }, 5000);
-    delay(1000).then(() => {
+    let rightBanner = setTimeout(() => {
         setInterval(() => {
             updateBanner(right_banner, "right");
         }, 5000);
-    });
+    }, 1000);
+
+    return [leftBanner, rightBanner];
 }
 
 function autoRolling() {
@@ -105,8 +105,7 @@ function autoRolling() {
 
     promise_data.then((data) => {
         showBanner(data[0], data[1]);
-        bannerMouseEvents();
-        controlBanner();
+        bannerMouseEvents(controlBanner());
     });
 }
 
