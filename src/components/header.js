@@ -22,6 +22,19 @@ const setHeaderElement = () => {
   $button.appendChild($h1);
   headerWrapper.appendChild($button);
   headerWrapper.appendChild($time);
+  setHeaderTime();
+};
+
+const setHeaderTime = () => {
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'long',
+  };
+
+  const headerTime = document.querySelector('.header__time');
+  headerTime.innerHTML = Intl.DateTimeFormat('ko-KR', options).format(new Date());
 };
 
 export { setHeaderElement };

@@ -7,8 +7,6 @@ let idList = Array.from({ length: 96 }, (_, idx) => idx);
 let isLightMode = true;
 let pageNum = 0;
 
-/************************************************** 롤링롤링 테스트 */
-
 /**
  * 배열을 섞는 함수
  */
@@ -94,50 +92,10 @@ const clickArrow = (className) => {
   setArrowVisible();
 };
 
-/**
- * 시스템 날짜 가져오기
- */
-const getSystemDate = () => {
-  const WEEKDAY = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let date = today.getDate();
-  let day = WEEKDAY[Number(today.getDay())];
-
-  return [year, month, date, day];
-};
-
-/**
- * 시스템 날짜 표시하기
- */
-const setSystemDate = (todayInfo) => {
-  const systemDate = document.querySelector('.header__time');
-
-  let [year, month, date, day] = todayInfo;
-  if (month < 10) month = String(month).padStart(2, '0');
-  if (date < 10) date = String(date).padStart(2, '0');
-  const dateForm = year + '. ' + month + '. ' + date + '. ' + day;
-
-  const $p = document.createElement('p');
-  const dateText = document.createTextNode(dateForm);
-  $p.appendChild(dateText);
-  systemDate.append($p);
-};
-
-/**
- * 로고를 클릭하면 새로고침
- */
-const reloadPage = () => {
-  location.reload();
-};
-
 function init() {
   setHeaderElement();
   setLatestNews();
-
   //
-  setSystemDate(getSystemDate());
   shuffleList(idList);
   setArrowVisible(idList);
   makeGrid();
