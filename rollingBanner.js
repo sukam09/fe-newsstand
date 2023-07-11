@@ -1,26 +1,26 @@
 /***** 뉴스 배너 롤링 *****/
+const ROLLING_TIME = 5000;
+
 document.addEventListener("DOMContentLoaded", () => {
-  var interval = window.setInterval(firstRollingCallback, 5000);
-  setTimeout(function () {
-    var interval2 = window.setInterval(secondRollingCallback, 5000);
-  }, 2000);
+  initRolling_first();
+  initRolling_second();
 });
 
-function firstRollingCallback() {
+function rollingCallback(idx) {
   //.prev 클래스 삭제
-  document.querySelector(".rollingbanner .prev").classList.remove("prev");
+  document.querySelector(`.rolling-${idx} .prev`).classList.remove("prev");
 
   //.current -> .prev
-  let current = document.querySelector(".rollingbanner .current");
+  let current = document.querySelector(`.rolling-${idx} .current`);
   current.classList.remove("current");
   current.classList.add("prev");
 
   //.next -> .current
-  let next = document.querySelector(".rollingbanner .next");
+  let next = document.querySelector(`.rolling-${idx} .next`);
   //다음 목록 요소가 널인지 체크
   if (next.nextElementSibling == null) {
     document
-      .querySelector(".rollingbanner ul li:first-child")
+      .querySelector(`.rolling-${idx} ul li:first-child`)
       .classList.add("next");
   } else {
     //목록 처음 요소를 다음 요소로 선택
@@ -30,22 +30,41 @@ function firstRollingCallback() {
   next.classList.add("current");
 }
 
-function secondRollingCallback() {
-  const prev = document.querySelectorAll(".rollingbanner .prev");
-  prev[1].classList.remove("prev");
+function firstRolling() {
+  return window.setInterval(() => rollingCallback("first"), ROLLING_TIME);
+}
 
-  const current = document.querySelectorAll(".rollingbanner .current");
-  current[1].classList.remove("current");
-  current[1].classList.add("prev");
+function secondRolling() {
+  return window.setInterval(() => rollingCallback("second"), ROLLING_TIME);
+}
 
-  const next = document.querySelectorAll(".rollingbanner .next");
-  if (next[1].nextElementSibling == null) {
-    document
-      .querySelectorAll(".rollingbanner ul li:first-child")[1]
-      .classList.add("next");
-  } else {
-    next[1].nextElementSibling.classList.add("next");
-  }
-  next[1].classList.remove("next");
-  next[1].classList.add("current");
+/***** 롤링 배너 호버시 멈추기 & 재시작 *****/
+//첫번째 배너
+function initRolling_first() {
+  let interval1 = firstRolling();
+
+  const banner = document.querySelector(".rollingbanner");
+  banner.addEventListener("mouseenter", () => {
+    window.clearInterval(interval1);
+  });
+
+  banner.addEventListener("mouseleave", function () {
+    interval1 = firstRolling();
+  });
+}
+
+//두번째 배너
+function initRolling_second() {
+  let interval2;
+  let time_out = setTimeout(() => (interval2 = secondRolling()), 1000);
+
+  const banner = document.querySelectorAll(".rollingbanner")[1];
+  banner.addEventListener("mouseenter", () => {
+    window.clearInterval(interval2);
+    window.clearTimeout(time_out);
+  });
+
+  banner.addEventListener("mouseleave", function () {
+    let interval3 = secondRolling();
+  });
 }
