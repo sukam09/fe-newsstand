@@ -228,6 +228,31 @@ body {
   background: var(--surface-alt);
 }
 
+.field-tab button.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+  width: 166px;
+  background: var(--surface-brand-default);
+  color: var(--text-white-default);
+}
+
+.field-tab button.progress div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.field-tab button.progress .progress-curr-num {
+  color: var(--text-white-default);
+}
+
+.field-tab button.progress .progress-total-num {
+  color: var(--text-white-week);
+}
+
 .list-press-news {
   display: flex;
   width: 930px;
