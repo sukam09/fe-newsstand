@@ -5,7 +5,12 @@ import MainContent from "./Main/MainContent.js";
 export default function Main($target, props) {
   const mode = props.mode;
 
-  this.state = { mainContent: "newspaper", renderContent: "all", page: 0 };
+  this.state = {
+    mainContent: "newspaper",
+    renderContent: "list-all",
+    page: 1,
+    mode: props.mode,
+  };
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -13,6 +18,7 @@ export default function Main($target, props) {
   };
 
   this.render = () => {
+    console.log(this.state.mainContent);
     let $main = document.querySelector(".news");
 
     if ($main) {
@@ -22,8 +28,8 @@ export default function Main($target, props) {
       $main.setAttribute("class", "news");
     }
 
-    new ContentNav($main, { renderContent: this.state.renderContent });
-    new MainContent($main, { ...this.state, mode: mode }, this.setState);
+    new ContentNav($main, this.state, this.setState);
+    new MainContent($main, this.state, this.setState);
 
     $target.appendChild($main);
   };

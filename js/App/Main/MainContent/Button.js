@@ -3,8 +3,9 @@
 */
 
 export default function Button($target, props, onClick) {
-  //   this.state = mode;
-
+  // console.log(props);
+  this.state = { startPage: 1, lastPage: 4 };
+  const { mainContent, renderContent, mode } = props;
   //   this.setState = (nextState) => {
   //     this.state = nextState;
   //     this.render();
@@ -37,16 +38,26 @@ export default function Button($target, props, onClick) {
 </svg>`;
 
     if (props.direction === "left") {
-      $button.style.display = props.page === 0 ? "none" : "block";
+      $button.style.display = props.page === 1 ? "none" : "block";
 
       $button.addEventListener("click", () => {
-        onClick({ renderContent: "all", page: props.page - 1 });
+        onClick({
+          mainContent: mainContent,
+          renderContent: renderContent,
+          mode: mode,
+          page: props.page - 1,
+        });
       });
     } else {
-      $button.style.display = props.page === 3 ? "none" : "block";
+      $button.style.display = props.page === props.lastPage ? "none" : "block";
 
       $button.addEventListener("click", () => {
-        onClick({ renderContent: "all", page: props.page + 1 });
+        onClick({
+          mainContent: mainContent,
+          renderContent: renderContent,
+          mode: mode,
+          page: props.page + 1,
+        });
       });
     }
     $target.appendChild($button);

@@ -4,9 +4,10 @@
 */
 import Button from "./MainContent/Button.js";
 import Newspaper from "./MainContent/Newspaper.js";
+import News from "./MainContent/News.js";
 
 export default function MainContent($target, props, onClick) {
-  // this.state = mode;
+  this.state = { lastPage: 4 };
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -17,10 +18,15 @@ export default function MainContent($target, props, onClick) {
     const $section = document.createElement("section");
     $section.setAttribute("class", "news-section");
 
-    new Newspaper($section, { page: props.page, mode: props.mode });
-    // new News()
-    new Button($section, { direction: "left", page: props.page }, onClick);
-    new Button($section, { direction: "right", page: props.page }, onClick);
+    new Newspaper($section, props);
+    // new News($section, { page: props.page }, this.setState);
+
+    new Button($section, { ...props, direction: "left" }, onClick);
+    new Button(
+      $section,
+      { ...props, direction: "right", lastPage: this.state.lastPage },
+      onClick
+    );
 
     $target.appendChild($section);
   };

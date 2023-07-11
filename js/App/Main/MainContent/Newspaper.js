@@ -14,7 +14,7 @@ const createNewspaperItem = function (index, mode) {
 };
 
 const createNewspaperList = function (page, mode) {
-  const nowPageIndexArr = indexArr.slice(page * 24, (page + 1) * 24);
+  const nowPageIndexArr = indexArr.slice((page - 1) * 24, page * 24);
   const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
   let newspaperList = liArr.reduce((news, currentIndex) => news + currentIndex);
   return newspaperList;
@@ -30,9 +30,11 @@ export default function Newspaper($target, props) {
 
   this.render = () => {
     const $ul = document.createElement("ul");
+
     $ul.setAttribute("class", "newspaper__list");
     $ul.innerHTML = createNewspaperList(props.page, props.mode);
 
+    $target.innerHTML = "";
     $target.appendChild($ul);
   };
 
