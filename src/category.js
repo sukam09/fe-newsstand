@@ -7,7 +7,7 @@ function categoryClicked(item) {
 }
 
 // 카테고리 리스트 추가
-function appendCategoryList() {
+export function appendCategoryList() {
   const categoryListContainer = document.getElementsByClassName(
     "category_list_container"
   );

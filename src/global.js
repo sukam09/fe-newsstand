@@ -80,3 +80,5 @@ function updateDate() {
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
 }
+
+export { updateDate };

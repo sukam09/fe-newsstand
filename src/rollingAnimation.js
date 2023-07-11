@@ -36,7 +36,7 @@ function stopRolling(state) {
 }
 
 // 롤링에 들어갈 뉴스 리스트 추가
-function appendRollingList() {
+export function appendRollingList() {
   const rollingListContainerLeft = document.getElementsByClassName(
     "newsbanner__list-container--left"
   );

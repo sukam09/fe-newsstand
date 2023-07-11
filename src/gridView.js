@@ -158,3 +158,5 @@ function showGridPageButton() {
       right_grid_button.style.display = "block";
   }
 }
+
+export { appendGridList };
