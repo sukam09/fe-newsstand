@@ -6,10 +6,10 @@ export default class Header extends Component {
   template() {
     const todayDate = getTodayDate();
 
-    return `<h1><button class='news-stand-logo display-bold24
+    return `<h1><button class='news-stand-logo display-bold24 text-strong
 '>
               <img/>뉴스스탠드</button></h1>
-            <span class='date display-medium16'>${todayDate}</span>`;
+            <span class='date display-medium16 text-default'>${todayDate}</span>`;
   }
 
   mounted() {

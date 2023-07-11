@@ -1,100 +1,6 @@
-@import './color.css';
-
-/* font */
-:root {
-  /* font size */
-  --text-size-large: 24px;
-  --text-size-medium: 16px;
-  --text-size-regular: 14px;
-  --text-size-small: 12px;
-
-  /* font weight */
-  --text-weight-bold: 700;
-  --text-weight-medium: 500;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local('Pretendard Bold'),
-    url('src/assets/fonts/Pretendard-Bold.subset.woff2') format('woff2'),
-    url('src/assets/fonts/Pretendard-Bold.subset.woff') format('woff');
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local('Pretendard Medium'),
-    url('src/assets/fonts/Pretendard-Medium.subset.woff2') format('woff2'),
-    url('src/assets/fonts/Pretendard-Medium.subset.woff') format('woff');
-}
-* {
-  font-family: Pretendard;
-}
-
-.display-bold24 {
-  font-size: var(--text-size-large);
-  font-weight: var(--text-weight-bold);
-}
-.display-bold16 {
-  font-size: var(--text-size-medium);
-  font-weight: var(--text-weight-bold);
-}
-.display-bold14 {
-  font-size: var(--text-size-regular);
-  font-weight: var(--text-weight-bold);
-}
-.display-bold12 {
-  font-size: var(--text-size-small);
-  font-weight: var(--text-weight-bold);
-}
-.display-medium16 {
-  font-size: var(--text-size-medium);
-  font-weight: var(--text-weight-medium);
-  line-height: 22px;
-}
-.display-medium14 {
-  font-size: var(--text-size-regular);
-  font-weight: var(--text-weight-medium);
-}
-.display-medium12 {
-  font-size: var(--text-size-small);
-  font-weight: var(--text-weight-medium);
-}
-.selected-bold16 {
-  font-size: var(--text-size-medium);
-  font-weight: var(--text-weight-bold);
-}
-.selected-bold14 {
-  font-size: var(--text-size-regular);
-  font-weight: var(--text-weight-bold);
-}
-.available-medium16 {
-  font-size: var(--text-size-medium);
-  font-weight: var(--text-weight-medium);
-  line-height: 22px;
-}
-.available-medium14 {
-  font-size: var(--text-size-regular);
-  font-weight: var(--text-weight-medium);
-}
-.available-medium12 {
-  font-size: var(--text-size-small);
-  font-weight: var(--text-weight-medium);
-}
-.hover-medium16 {
-  font-size: var(--text-size-medium);
-  font-weight: var(--text-weight-medium);
-  line-height: 22px;
-  text-decoration-line: underline;
-}
-.hover-medium14 {
-  font-size: var(--text-size-regular);
-  font-weight: var(--text-weight-medium);
-  text-decoration-line: underline;
-}
+@import url('styles/reset.css');
+@import url('styles/color.css');
+@import url('styles/typography.css');
 
 /* class */
 
@@ -104,17 +10,11 @@ h3 {
   display: inline;
 }
 
-h1 > button {
-  color: var(--text-strong);
-}
 body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-button {
-  background-color: transparent;
 }
 
 section {
@@ -135,10 +35,6 @@ section {
   width: 930px;
 }
 
-.date {
-  color: var(--text-default);
-}
-
 /* latest news*/
 
 .latest-main-news {
@@ -151,9 +47,7 @@ section {
 
 .auto-rolling-news {
   padding: 16px;
-  border: 1px solid #d2dae0;
-  background-color: #f5f7f9;
-  flex: 1;
+  background-color: var(--gray-scale-50);
   gap: 16px;
 
   display: flex;
@@ -161,15 +55,6 @@ section {
   overflow: hidden;
   width: 100%;
   position: relative;
-}
-
-.auto-rolling-news span {
-  color: #14212b;
-}
-
-.auto-rolling-news p {
-  color: #5f6e76;
-  margin: 0;
 }
 
 .auto-rolling-div {
@@ -188,13 +73,18 @@ section {
 }
 
 .news-stand-logo {
-  border: none;
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
 
+.all-news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
 .all-news-header {
   display: flex;
   align-items: center;
@@ -206,14 +96,6 @@ section {
   display: flex;
   align-items: center;
   gap: 24px;
-}
-
-.view-type-wrapper span:first-child {
-  color: #14212b;
-}
-
-.view-type-wrapper span:last-child {
-  color: #879298;
 }
 
 .view-type-icon {
@@ -228,13 +110,12 @@ section {
 
   position: relative;
 
-  border: 1px solid #d2dae0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
 
-  list-style-type: none;
-  padding-left: 0;
+  border-bottom: 0px;
+  border-right: 0px;
 }
 
 .news-list > li {
@@ -243,7 +124,9 @@ section {
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #d2dae0;
+  border-top: 0px;
+  border-left: 0px;
+
   cursor: pointer;
 }
 
@@ -256,7 +139,6 @@ section {
 
 .left-button,
 .right-button {
-  border: none;
   width: 24px;
   height: 40px;
 
@@ -267,6 +149,5 @@ section {
 }
 
 .press-logo {
-  width: fit-content;
   height: 20px;
 }

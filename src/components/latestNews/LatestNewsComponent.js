@@ -14,11 +14,11 @@ export default class LatestNewsComponent extends Component {
     const currentConent = this.state.content[this.state.currentIndex];
     const nextContent = this.state.content[(this.state.currentIndex + 1) % 5];
 
-    return `<span class='display-bold14'>${this.state.name}</span>
+    return `<span class='display-bold14 text-strong'>${this.state.name}</span>
     <div>
       <div class='auto-rolling-div'>
-        <p class='auto-rolling-animation available-medium14'>${currentConent}</p>
-        <p class='auto-rolling-animation available-medium14'>${nextContent}</p>
+        <p class='auto-rolling-animation available-medium14 text-default'>${currentConent}</p>
+        <p class='auto-rolling-animation available-medium14 text-default'>${nextContent}</p>
       </div>
     </div>
     `;
@@ -33,7 +33,7 @@ export default class LatestNewsComponent extends Component {
   timerOn() {
     this.timer = setInterval(() => {
       const $content = this.$target.querySelector('.auto-rolling-div');
-      $content.style.top = '-22px';
+      $content.style.top = '-18px';
 
       setTimeout(this.nextNews.bind(this), SECOND);
     }, ROLLING_SECOND);

@@ -1,6 +1,5 @@
 import { shufflePressOrder } from '../../utils/index.js';
 import Component from '../Component.js';
-import AllNewsList from './AllnewsList.js';
 import ArrowButton from './ArrowButton.js';
 
 export default class AllNewsGrid extends Component {
@@ -9,10 +8,7 @@ export default class AllNewsGrid extends Component {
   }
   template() {
     return `<button class='left-button'></button>
-            <div class='news-list-wrapper'>
-            <ul class='news-list'>
-            </ul>
-            </div>
+            <ul class='news-list border-default'></ul>
             <button class='right-button'></button>
             `;
   }
@@ -20,9 +16,7 @@ export default class AllNewsGrid extends Component {
   mounted() {
     let innerHTML = '';
     for (let i = 24 * this.state.page; i < 24 * (this.state.page + 1); i++) {
-      innerHTML += new AllNewsList(document.createElement('li'), {
-        name: this.state.pressOrder[i],
-      }).outerHTML;
+      innerHTML += `<li class='border-default'><img class='press-logo' src='src/assets/logo/${this.state.pressOrder[i]}.png'/></li>`;
     }
     this.$target.querySelector('.news-list').innerHTML = innerHTML;
 
