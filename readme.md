@@ -23,3 +23,27 @@
 - [ ] 구독한 언론사: 그리드 보기
 - [ ] 구독해지 시 dialog 표시
 - [ ] 다크모드(선택)
+
+## 디렉토리 구조
+
+```
+newsstand
+├─ app.js
+├─ assets // 정적 데이터들
+│  ├─ fonts
+│  ├─ icons
+│  └─ images
+│     ├─ dark
+│     └─ light
+├─ constants // 상수
+├─ db.js
+├─ index.html
+├─ makeMocks.js
+├─ mocks // mock 데이터
+├─ package.json
+├─ readme.md
+├─ scripts // js scripts 파일들
+├─ style.css
+├─ styles // style 파일들
+└─ utils // 유틸 함수들
+```
