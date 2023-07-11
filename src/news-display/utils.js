@@ -32,7 +32,7 @@ const showNewsPressItems = () => {
     const endIndex = startIndex + (PAGE_COUNT - 1);
     const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
 
-    const newsPressGrid = document.querySelector(".news-press-grid");
+    const newsPressGrid = document.querySelector(".news-press-grid-view");
     newsPressGrid.innerHTML = "";
     currentNewsPressData.forEach((_, index) => {
         const $li = document.createElement("li");

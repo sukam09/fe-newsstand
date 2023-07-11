@@ -33,7 +33,7 @@
                     <div class="available-medium16">내가 구독한 언론사</div>
                 </div>
                 <div class="news-press-view-menu">
-                    <button>
+                    <button class="news-display-list-button">
                         <svg
                             width="24"
                             height="24"
@@ -47,7 +47,9 @@
                             />
                         </svg>
                     </button>
-                    <button class="news-press-view-active">
+                    <button
+                        class="news-display-grid-button news-display-active"
+                    >
                         <svg
                             width="24"
                             height="24"
@@ -63,8 +65,9 @@
                     </button>
                 </div>
             </div>
-            <div class="news-press-grid-container">
-                <ul class="news-press-grid"></ul>
+            <div class="news-display-container">
+                <ul class="news-press-grid-view"></ul>
+                <div class="news-press-list-view"></div>
                 <button class="left-arrow-button">
                     <img
                         src="./asset/icons/left-button.png"

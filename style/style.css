@@ -103,15 +103,15 @@ header {
     color: var(--color-text-weak);
 }
 
-.news-press-view-menu > .news-press-view-active {
+.news-display-active {
     color: var(--color-text-point);
 }
 
-.news-press-grid-container {
+.news-display-container {
     position: relative;
 }
 
-.news-press-grid {
+.news-press-grid-view {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     width: 930px;
@@ -174,4 +174,10 @@ header {
 
 .disabled {
     display: none;
+}
+
+.news-press-list-view {
+    width: 500px;
+    height: 200px;
+    background-color: red;
 }

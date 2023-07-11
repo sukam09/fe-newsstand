@@ -6,6 +6,7 @@ import {
     handleClickPrevPageButton,
 } from "./news-display/utils.js";
 import { setNewsBarRolling, infiniteRolling } from "./news-bar/rolling.js";
+import { handleClickViewIcon } from "./news-display/setViewMode.js";
 
 // header
 handleClickTitleIcon();
@@ -16,6 +17,7 @@ setNewsBarRolling();
 infiniteRolling();
 
 // news display
+handleClickViewIcon();
 initNewsPressData();
 handleClickPrevPageButton();
 handleClickNextPageButton();
