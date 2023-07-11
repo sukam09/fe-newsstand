@@ -171,7 +171,6 @@ body {
 
 .main_nav {
     display: grid;
-    grid-template-columns: 166px 764px;
     font-size: 14px;
     font-weight: 500;
     height: 50px;
@@ -181,26 +180,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 166px;
 }
 .main_nav_title span {
     z-index: 0;
     margin: 0 16px 0 16px;
+    color: #ffffff;
+    font-weight: 700;
 }
 
 .main_nav_title progress {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     width: 166px;
     border-radius: 0;
     height: 50px;
 }
 
-progress::-webkit-progress-bar {
+.main_nav_title progress::-webkit-progress-bar {
     background: #7890e7;
     overflow: hidden;
 }
 
-progress::-webkit-progress-value {
+.main_nav_title progress::-webkit-progress-value {
     background: #4362d0;
 }
 
@@ -213,10 +215,13 @@ progress::-webkit-progress-value {
     background-color: #f5f7f9;
 }
 
-.main_nav li {
+.main_nav_item {
     padding: 0 16px 0 16px;
+    color: #5f6e76;
+    font-weight: 500;
 }
 
+/* arrow */
 .arrow {
     width: 100%;
     height: 100%;
