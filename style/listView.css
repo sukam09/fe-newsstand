@@ -121,6 +121,12 @@
   cursor: pointer;
   text-decoration-line: underline;
 }
+.topic__thumbnail {
+  transition: all 0.1s linear;
+}
+.topic__thumbnail:hover {
+  transform: scale(1.1);
+}
 
 /* news list */
 .news_list__container {

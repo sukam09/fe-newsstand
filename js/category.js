@@ -11,17 +11,18 @@ function appendCategoryList() {
   const categoryListContainer = document.getElementsByClassName(
     "category_list_container"
   );
-  categoryList.forEach((item) => {
-    const newCategory = createCategoryList(item);
+  const suffledCategory = shuffleArray(categoryList);
+  categoryList.forEach((item, idx) => {
+    const newCategory = createCategoryList(item, idx);
     categoryListContainer[0].appendChild(newCategory);
   });
 }
 
 // 카테고리 리스트 태그 생성
-function createCategoryList(item) {
+function createCategoryList(item, idx) {
   // li 생성
   const newList = document.createElement("li");
-  if (item.id == 1) {
+  if (idx == 0) {
     newList.className = "category_list category_list--clicked";
   } else {
     newList.className = "category_list";
