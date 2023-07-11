@@ -19,7 +19,6 @@
   --grayscale-black : #14212B;
   --blue-100 : #7890E7;
   --blue-500 : #4362D0;
-  /* --border-default : 1px solid var(--grayscale-100); */
   --border-default : var(--grayscale-100);
   --border-bold : var(--grayscale-300);
 }
@@ -63,7 +62,7 @@
 .available_medium12 {
   font: var(--medium-S);
 }
-.hover_medium16, .hover_medium14 {
+.hover_medium16:hover, .hover_medium14:hover {
   text-decoration: underline;
 }
 
@@ -164,6 +163,10 @@
 
 /* layout */
 
+.pointer {
+  cursor: pointer;
+}
+
 .flex_center{
   display:flex;
   align-items: center;
@@ -177,4 +180,18 @@
 
 .display_none {
   display: none;
+}
+
+/* animation */
+
+@keyframes news_rolling_animation {
+  0% {
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  100% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
 }

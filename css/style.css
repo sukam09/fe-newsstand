@@ -35,22 +35,51 @@ header {
 
 /* article content */
 
-.article_wrapper {
+#headline_news_wrapper {
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
-article {
+.headline_news {
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
-    width: 100%;
+    width: calc(50% - 5px);
     border: 1px solid var(--border-default);
     margin: 40px 0 32px;
     padding: 16px;
 }
 
-.news_title_wrapper {
-    margin-left: 10px;
+.headline_area {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    height: 17.5px;
+}
+
+h2.headline_area_item {
+    flex-shrink: 0;
+}
+
+.headline_area_item {
+    flex-grow: 0;
+    overflow: hidden;
+}
+
+.news_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_title a {
+    white-space: nowrap;
+}
+
+.rolling .news_title {
+    animation-duration: 0.5s;
+    animation-name: news_rolling_animation;
+    animation-fill-mode: forwards;
 }
 
 /* main */
