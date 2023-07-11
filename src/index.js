@@ -21,6 +21,39 @@ const getLatestNews = () => {
     });
 };
 
+const createLatestNewsElement = (news) => {
+  const $li = document.createElement("li");
+  $li.classList.add("latest_news__li");
+
+  const $h2 = document.createElement("h2");
+  $h2.classList.add("latest_news__h2");
+  $h2.innerText = news.press;
+
+  const $p = document.createElement("p");
+  $p.classList.add("latest_news__p");
+  $p.innerText = news.title;
+
+  $li.appendChild($h2);
+  $li.appendChild($p);
+
+  return $li;
+};
+
+const setLatestNews = (latestNews, side) => {
+  const newsWrapper = document.querySelector(`.latest_news__wrapper-${side}`);
+  const $ul = document.createElement("ul");
+  $ul.classList.add("rolling__wrapper");
+  newsWrapper.appendChild($ul);
+
+  latestNews.forEach((news) => {
+    const $li = createLatestNewsElement(news);
+    $ul.appendChild($li);
+  });
+
+  addRolling(side);
+  startRolling(side);
+};
+
 /************************************************** 롤링롤링 테스트 */
 
 /**
