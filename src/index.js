@@ -54,6 +54,68 @@ const setLatestNews = (latestNews, side) => {
   startRolling(side);
 };
 
+/**
+ * 최신 뉴스 롤링
+ */
+const addRolling = (side) => {
+  const rollingWrapper = document.querySelector(
+    `.latest_news__wrapper-${side} .rolling__wrapper`
+  );
+  const liElements = rollingWrapper.querySelectorAll("li");
+
+  const firstLi = liElements[0];
+  firstLi.classList.add("prev");
+
+  const secondLi = liElements[1];
+  secondLi.classList.add("current");
+
+  const thirdLi = liElements[2];
+  thirdLi.classList.add("next");
+};
+
+const setRolling = (side) => {
+  document
+    .querySelector(`.latest_news__wrapper-${side} .prev`)
+    .classList.remove("prev");
+
+  const current = document.querySelector(
+    `.latest_news__wrapper-${side} .current`
+  );
+  current.classList.remove("current");
+  current.classList.add("prev");
+
+  let next = document.querySelector(`.latest_news__wrapper-${side} .next`);
+  if (next.nextElementSibling === null) {
+    document
+      .querySelector(`.latest_news__wrapper-${side} li:first-child`)
+      .classList.add("next");
+  }
+  if (next.nextElementSibling !== null) {
+    next.nextElementSibling.classList.add("next");
+  }
+  next.classList.remove("next");
+  next.classList.add("current");
+};
+
+const startRolling = (side) => {
+  let interval;
+  document.addEventListener("DOMContentLoaded", () => {
+    document
+      .querySelector(".rolling__wrapper")
+      .addEventListener("mouseover", function () {
+        window.clearInterval(interval);
+      });
+    document
+      .querySelector(".rolling__wrapper")
+      .addEventListener("mouseout", function () {
+        interval = window.setInterval(setRolling, 2000, side);
+      });
+  });
+
+  // 자동 실행 코드
+  interval = window.setInterval(setRolling, 2000, side);
+};
+
 /************************************************** 롤링롤링 테스트 */
 
 /**
