@@ -68,6 +68,13 @@ header {
     text-overflow: ellipsis;
 }
 
+.news-bar-headline:hover {
+    text-decoration: underline;
+    color: var(--color-text-bold);
+
+    cursor: pointer;
+}
+
 .news-press-display {
     margin-top: 32px;
 }

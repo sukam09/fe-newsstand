@@ -7,10 +7,15 @@ import {
 } from "./news-display/utils.js";
 import { setNewsBarRolling, infiniteRolling } from "./news-bar/rolling.js";
 
-getDate();
-initNewsPressData();
+// header
 handleClickTitleIcon();
-handleClickPrevPageButton();
-handleClickNextPageButton();
+getDate();
+
+// news bar rolling
 setNewsBarRolling();
 infiniteRolling();
+
+// news display
+initNewsPressData();
+handleClickPrevPageButton();
+handleClickNextPageButton();

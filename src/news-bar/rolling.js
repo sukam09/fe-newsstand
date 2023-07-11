@@ -1,20 +1,37 @@
 import { createNewsBar } from "./setNewsBar.js";
 
-const setRollingEvent = (rollingElement) => {
-    window.setInterval(() => {
-        rollingElement.style.transitionDuration = "400ms";
-        rollingElement.style.marginTop = "-26px";
+const setRollingEvent = (rollingElement, index) => {
+    let interval;
 
-        window.setTimeout(() => {
-            rollingElement.removeAttribute("style");
-            rollingElement.appendChild(rollingElement.firstElementChild);
-        }, 1000);
-    }, 5000);
+    const startInterval = () => {
+        interval = window.setInterval(() => {
+            rollingElement.style.transitionDuration = "500ms";
+            rollingElement.style.marginTop = "-26px";
+
+            window.setTimeout(() => {
+                rollingElement.removeAttribute("style");
+                rollingElement.appendChild(rollingElement.firstElementChild);
+            }, 1000);
+        }, 5000);
+    };
+
+    window.setTimeout(() => {
+        startInterval();
+    }, 1000 * index);
+
+    rollingElement.addEventListener("mouseenter", () => {
+        clearInterval(interval);
+    });
+
+    rollingElement.addEventListener("mouseleave", () => {
+        clearInterval(interval);
+        startInterval();
+    });
 };
 
 const infiniteRolling = () => {
-    const rollingElement = document.querySelectorAll(".news-bar-rolling > ul");
-    rollingElement.forEach((item) => setRollingEvent(item));
+    const rollingElements = document.querySelectorAll(".news-bar-rolling > ul");
+    rollingElements.forEach((item, index) => setRollingEvent(item, index));
 };
 
 const setNewsBarRolling = () => {
