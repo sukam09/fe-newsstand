@@ -41,10 +41,11 @@ const firstTitle = document.getElementById("main__first-title");
 const secondTitle = document.getElementById("main__second-title");
 const thirdTitle = document.getElementById("main__third-title");
 
-const [subViewBox] = document.getElementsByClassName(
-  "main__rolling-title-left"
-);
-
+// const [subViewBox] = document.getElementsByClassName(
+//   "main__rolling-title-left"
+// );
+let subViewInterval;
+const subViewBox = document.querySelector(".main__rolling-title-left");
 let move = 2;
 let dataCnt = 1;
 let currentChildIndex = 1; // 자식의 몇번째를 의미함.
@@ -53,14 +54,15 @@ export function paintSubView() {
   firstCorp.textContent = newsDataLeft[0].corp;
   firstTitle.textContent = newsDataLeft[0].title;
 
-  const subViewInterval = setInterval(moveContent, SET_TIME);
-
-  subViewBox.addEventListener("mouseover", () =>
-    clearInterval(subViewInterval)
-  );
-  subViewBox.addEventListener("mouseout", () =>
-    setInterval(moveContent, SET_TIME)
-  );
+  subViewInterval = setInterval(moveContent, SET_TIME);
+  subViewBox.addEventListener("mouseover", () => {
+    console.log("마우스 오버");
+    clearInterval(subViewInterval);
+  });
+  subViewBox.addEventListener("mouseout", () => {
+    console.log("마우스 아웃");
+    subViewInterval = setInterval(moveContent, SET_TIME);
+  });
 }
 
 function moveContent() {

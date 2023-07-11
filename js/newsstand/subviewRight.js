@@ -47,19 +47,20 @@ const [leftViewBox] = document.getElementsByClassName(
 let move = 2;
 let dataCnt = 1;
 let currentChildIndex = 1; // 자식의 몇번째를 의미함.
+let subViewRightInterval;
 
 export function paintSubViewRight() {
   firstCorp.textContent = newsDataRight[0].corp;
   firstTitle.textContent = newsDataRight[0].title;
 
-  const subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+  subViewRightInterval = setInterval(moveContentRight, SET_TIME);
 
-  leftViewBox.addEventListener("mouseover", () =>
-    clearInterval(subViewRightInterval)
-  );
-  leftViewBox.addEventListener("mouseout", () =>
-    setInterval(moveContentRight, SET_TIME)
-  );
+  leftViewBox.addEventListener("mouseover", () => {
+    clearInterval(subViewRightInterval);
+  });
+  leftViewBox.addEventListener("mouseout", () => {
+    subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+  });
 }
 
 function moveContentRight() {
