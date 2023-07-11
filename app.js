@@ -36,11 +36,15 @@ const initDB = async () => {
   NewsDB.instance = mockData;
 };
 
+const setHeaderDate = () => {
+  $headerDate.innerText = getKRLocaleDateString(new Date());
+};
+
 // main
 (async function () {
   await initDB();
 
-  $headerDate.innerText = getKRLocaleDateString(new Date());
+  setHeaderDate();
 
   const newsData = NewsDB.getNewsData();
   fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
