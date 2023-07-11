@@ -1,7 +1,6 @@
 import { MEDIA } from "../constant.js";
-import { idList } from "../index.js";
+import { isLightMode, idList } from "../index.js";
 
-let isLightMode = true;
 let pageNum = 0;
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 
@@ -9,13 +8,13 @@ const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
  * 언론사 Grid 제작하기
  */
 const makeGrid = () => {
-  const $newsWrapper = document.querySelector(".news-wrapper");
+  const $newsWrapper = document.querySelector(".news-grid-wrapper");
 
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
     const imgSrc = isLightMode
-      ? `./img/light-media/${idList[i]}.png`
-      : `./img/dark-media/${idList[i]}.png`;
+      ? `/images/light-media/${idList[i]}.png`
+      : `/images/dark-media/${idList[i]}.png`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
@@ -50,8 +49,8 @@ const changeImgSrc = (pageNum) => {
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $img = document.querySelector(`.img${i}`);
     const imgSrc = isLightMode
-      ? `./img/light-media/${newImg[i]}.png`
-      : `./img/dark-media/${newImg[i]}.png`;
+      ? `./images/light-media/${newImg[i]}.png`
+      : `./images/dark-media/${newImg[i]}.png`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;

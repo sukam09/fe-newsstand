@@ -172,8 +172,8 @@ body {
   left: 978px; /* 930 + 48 */
 }
 
-/* news-wrapper */
-.news-wrapper {
+/* news-grid-wrapper */
+.news-grid-wrapper {
   display: grid;
 
   grid-template-columns: repeat(6, 1fr);
@@ -182,7 +182,7 @@ body {
   border-top: 1px solid #d2dae0;
   border-left: 1px solid #d2dae0;
 }
-.news-wrapper > li {
+.news-grid-wrapper > li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,7 +195,7 @@ body {
 
 .hot-topic-wrapper > * > *,
 .press-wrapper > header > * > *,
-.news-wrapper > li > img,
+.news-grid-wrapper > li > img,
 .arrows-wrapper > img,
 .header-wrapper > button {
   cursor: pointer;

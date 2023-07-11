@@ -12,4 +12,11 @@ const TOPIC = {
   ROLLING_TIME_GAP: 1000,
 };
 
-export { MEDIA, TOPIC };
+const IMAGE = {
+  BLUE_GRID_ICON: "/images/grid-view_blue.svg",
+  GRAY_GRID_ICON: "/images/grid-view_gray.svg",
+  BLUE_LIST_ICON: "/images/list-view_blue.svg",
+  GRAY_LIST_ICON: "/images/list-view_gray.svg",
+};
+
+export { MEDIA, TOPIC, IMAGE };
