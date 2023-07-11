@@ -29,12 +29,16 @@ export default function RecentNewsRollingView({ $target, initialState }) {
     });
   };
 
-  this.timer = setInterval(() => {
-    setLeftHeadline();
-    setTimeout(() => {
-      setRightHeadline();
-    }, HEADLINE_DELAY_DIFF);
-  }, HEADLINE_ROLLING_DELAY);
+  const setHeadlineTimer = () => {
+    return setInterval(() => {
+      setLeftHeadline();
+      setTimeout(() => {
+        setRightHeadline();
+      }, HEADLINE_DELAY_DIFF);
+    }, HEADLINE_ROLLING_DELAY);
+  };
+
+  this.timer = setHeadlineTimer();
 
   const handleMouseEnter = () => {
     clearInterval(this.timer);
@@ -42,12 +46,7 @@ export default function RecentNewsRollingView({ $target, initialState }) {
   };
 
   const handleMouseLeave = () => {
-    this.timer = setInterval(() => {
-      setLeftHeadline();
-      this.rightHeadlineTimer = setTimeout(() => {
-        setRightHeadline();
-      }, HEADLINE_DELAY_DIFF);
-    }, HEADLINE_ROLLING_DELAY);
+    this.timer = setHeadlineTimer();
   };
 
   this.render = () => {
