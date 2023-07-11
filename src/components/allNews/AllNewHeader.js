@@ -16,6 +16,6 @@ export default class AllNewHeader extends Component {
 
   mounted() {
     new Icon(this.$target.querySelector('#list-view-icon'), { name: 'list-view' });
-    new Icon(this.$target.querySelector('#grid-view-icon'), { name: 'grid-view' });
+    new Icon(this.$target.querySelector('#grid-view-icon'), { name: 'grid-view-focus' });
   }
 }
