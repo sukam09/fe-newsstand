@@ -1,6 +1,12 @@
 import { startRollingBanner } from "./scripts/rolling-banner.js";
 import { fillNewsContents } from "./scripts/grid-view.js";
 import {
+  $gridView,
+  $listView,
+  $prevPageButton,
+  $nextPageButton,
+} from "./scripts/doms.js";
+import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
@@ -12,15 +18,6 @@ import { NEWS_COUNT, VIEW_TYPE } from "./constants/index.js";
 let theme = "light";
 let pages = 0;
 
-const $containerMain = document.querySelector(".container-main");
-const $gridView = $containerMain.querySelector(".grid-view");
-const $listView = $containerMain.querySelector(".list-view");
-const $prevPageButton = $containerMain.querySelector(
-  ".container-main_left-btn"
-);
-const $nextPageButton = $containerMain.querySelector(
-  ".container-main_right-btn"
-);
 const $headerDate = document.querySelector(".container-header_date");
 const $mainNav = document.querySelector(".main-nav");
 const $mainNavViewerButtons = $mainNav.querySelectorAll(
