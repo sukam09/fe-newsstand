@@ -6,28 +6,44 @@ const LIST_BTN_ID = "list-btn";
 const GRID = "grid";
 const LIST = "list";
 
-function layoutChange(e) {
-  const ID = e.target.parentNode.id;
+function btnColorChange(targetBtn, InActiveBtn) {
+  const rootStyles = getComputedStyle(document.documentElement);
+  const btnActiveColor = rootStyles.getPropertyValue("--text-point");
+  const btnInActiveColor = rootStyles.getPropertyValue("--text-weak");
+
+  const active_btn = targetBtn.querySelector("path");
+  active_btn.setAttribute("fill", btnActiveColor);
+
+  const inactive_btn = InActiveBtn.querySelector("path");
+  inactive_btn.setAttribute("fill", btnInActiveColor);
+}
+
+function layoutChange(targetBtn) {
+  const ID = targetBtn.id;
   const layout = document.querySelector("main");
 
   layout.innerHTML = ``;
 
+  let InActiveBtn;
   if (ID === GRID_BTN_ID) {
     layout.className = GRID;
+    InActiveBtn = document.getElementById(LIST_BTN_ID);
   } else if (ID === LIST_BTN_ID) {
     layout.className = LIST;
+    InActiveBtn = document.getElementById(GRID_BTN_ID);
   }
+  btnColorChange(targetBtn, InActiveBtn);
 }
 
 export default function SelectViewStyle() {
   const list_Btn = document.querySelector("#list-btn");
   const grid_Btn = document.querySelector("#grid-btn");
-  list_Btn.addEventListener("click", (e) => {
-    layoutChange(e);
+  list_Btn.addEventListener("click", () => {
+    layoutChange(list_Btn);
     printList();
   });
-  grid_Btn.addEventListener("click", (e) => {
-    layoutChange(e);
+  grid_Btn.addEventListener("click", () => {
+    layoutChange(grid_Btn);
     printGrid();
   });
 }

@@ -110,6 +110,7 @@ section {
 }
 #list-btn,
 #grid-btn {
+  z-index: 3;
   cursor: pointer;
   display: flex;
   justify-content: center;
