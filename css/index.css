@@ -140,7 +140,7 @@ a:hover {
   height: 48px;
   font-size: 0.875rem;
   letter-spacing: -1px;
-  padding: 0 18px;
+  padding: 10px 18px;
   box-sizing: border-box;
   border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
@@ -167,12 +167,12 @@ a:hover {
 }
 /* 이전, 현재, 다음 롤링 배너 표시 */
 .auto-rolling-news li.prev {
-  top: -50%;
-  transition: top 0.5s ease;
+  top: -48px;
+  transition: top 0.8s ease;
 }
 .auto-rolling-news li.current {
   top: 50%;
-  transition: top 0.5s ease;
+  transition: top 0.8s ease;
   transform: translate(0, -50%);
 }
 .auto-rolling-news li.next {

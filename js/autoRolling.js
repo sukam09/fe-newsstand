@@ -26,6 +26,8 @@ function rollingCallback(target) {
   next.classList.add("current");
 }
 document.addEventListener("DOMContentLoaded", () => {
+  clearInterval(leftAutoRollingInterval);
+  clearInterval(rightAutoRollingInterval);
   leftAutoRollingInterval = setInterval(
     () => rollingCallback("recent-left"),
     5000
@@ -62,6 +64,7 @@ const recent_left = document.querySelector("#recent-left");
 const recent_right = document.querySelector("#recent-right");
 
 recent_left.addEventListener("mouseover", () => {
+  console.log("l");
   clearInterval(leftAutoRollingInterval);
 });
 
@@ -82,3 +85,33 @@ recent_right.addEventListener("mouseout", () => {
     5000
   );
 });
+// document.addEventListener("mouseover", (e) => {
+//   const target = e.target;
+//   //   console.log(target);
+//   if (target.matches("#recent-left li")) console.log(target);
+//   //   switch (target) {
+//   //     case "recent-left":
+//   //       clearInterval(leftAutoRollingInterval);
+//   //       break;
+//   //     case "recent-right":
+//   //       clearInterval(rightAutoRollingInterval);
+//   //       break;
+//   //     default:
+//   //       break;
+//   //   }
+// });
+
+// document.addEventListener("mouseout", (e) => {
+//   //   const target = e.target.id;
+//   //   console.log(target);
+//   //   switch (target) {
+//   //     case "recent-left":
+//   //       leftAutoRollingInterval;
+//   //       break;
+//   //     case "recent-right":
+//   //       rightAutoRollingInterval;
+//   //       break;
+//   //     default:
+//   //       break;
+//   //   }
+// });
