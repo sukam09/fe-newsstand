@@ -1,4 +1,4 @@
-import { fetchHotTopicData } from "./utils.js";
+import { fetchHotTopicData } from "../utils.js";
 
 function createList(news) {
     const list = document.createElement("ul");

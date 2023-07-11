@@ -1,5 +1,5 @@
-import { fetchPressData } from "./utils.js";
-import { show_options } from "./events.js";
+import { fetchPressData } from "../utils.js";
+import { show_options } from "../events.js";
 
 // rowSize, colSize, maxPage, currentPage is main size variable
 const rowSize = 6;

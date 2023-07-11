@@ -1,4 +1,4 @@
-import { fetchNewsData } from "./utils.js";
+import { fetchNewsData } from "../utils.js";
 
 const category = [
     "종합/경제",

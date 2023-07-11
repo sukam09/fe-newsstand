@@ -1,5 +1,5 @@
-import { renderGridPress, currentPage } from "./random_news.js";
-import { initListNews } from "./list_news.js";
+import { renderGridPress, currentPage } from "./views/grid_views.js";
+import { initListNews } from "./views/list_views.js";
 
 const show_options = {
     press: "all",
