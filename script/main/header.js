@@ -20,10 +20,10 @@ const setTime = () => {
   );
 };
 
-/**
- * 즉시실행함수
- */
-(() => {
+
+const headerInit = () => {
   setHeader();
   setTime();
-})();
+}
+
+export default headerInit;

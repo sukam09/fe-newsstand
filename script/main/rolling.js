@@ -54,9 +54,8 @@ const rollingCallback = (location) => {
   newNext.classList.add('next');
 }
 
-/**
- * 즉시실행함수
- */
-(() => {
+const rollingInit = () => {
   rollingHandler();
-})();
+}
+
+export default rollingInit;

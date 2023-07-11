@@ -1,5 +1,5 @@
-import { shuffle, getJSON } from './util.js';
-import { MEDIA } from './constants.js'; // magic 넘버
+import { shuffle, getJSON } from '../util/util.js';
+import { MEDIA } from '../constants.js'; // magic 넘버
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -7,7 +7,7 @@ import { MEDIA } from './constants.js'; // magic 넘버
                 ...
   ]
 */
-import media_data from '../assets/data/media_data.js';
+import media_data from '../../assets/data/media_data.js';
 
 const subscribed = []; // 구독된 언론사 index 추가
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index); // 전체 언론사 index
@@ -108,11 +108,11 @@ const GridController = {
 /**
  * 초기 실행 함수
  */
-const init = () => {
+const gridInit = () => {
   shuffle(logoIndex);
   GridController.setLiList();
   GridController.setLogoList();
   PageController.setArrow();
 };
 
-init();
+export default gridInit;

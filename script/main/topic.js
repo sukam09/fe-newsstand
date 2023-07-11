@@ -1,4 +1,4 @@
-import { getJSON } from "./util.js";
+import { getJSON } from "../util/util.js";
 const setTopic = async () => {
   const mainTopic = await getJSON("../assets/data/mainTopic.json");
 
@@ -28,9 +28,8 @@ const getTopicHTML = (topics) => {
   }).join('');
 };
 
-/**
- * 즉시실행함수
- */
-(() => {
+const getTopicInit = () => {
   setTopic();
-})();
+}
+
+export default getTopicInit;
