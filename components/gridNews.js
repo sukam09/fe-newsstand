@@ -1,6 +1,6 @@
-import { news_data } from "../data/news_data.js";
+import { pressObjArr } from "../data/pressObj.js";
 
-const shuffledData = news_data.slice().sort(() => Math.random() - 0.5);
+const shuffledData = pressObjArr.slice().sort(() => Math.random() - 0.5);
 const rowSize = 6;
 const colSize = 4;
 const maxPage = 3;
@@ -25,7 +25,7 @@ function RenderNews(shuffledData) {
     for (let i = 0; i < colSize; i++) {
         let ul = document.createElement("ul");
         for (let j = 0; j < rowSize; j++) {
-            const item = shuffledData[cnt] || { name: "empty", url: "" };
+            const item = shuffledData[cnt];
             let li = document.createElement("li");
             let img = document.createElement("img");
             if (i == colSize - 1 && j == rowSize - 1) li.setAttribute("class", "border_bottom border_right");
@@ -33,7 +33,7 @@ function RenderNews(shuffledData) {
             else if (j == rowSize - 1) li.setAttribute("class", "border_right");
 
             img.classList.add("news_data_img");
-            img.src = item.url;
+            img.src = item.lightSrc;
             cnt += 1;
             li.appendChild(img);
             ul.appendChild(li);
