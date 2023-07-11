@@ -4,7 +4,7 @@ import { gridPage, showGridPageButton } from "./gridView.js";
 export function handleGridButton() {
   const list_button = document.getElementById("list_button");
   const grid_button = document.getElementById("grid_button");
-  const list_container = document.getElementsByClassName("list_container")[0];
+  const list_container = document.getElementById("list_container");
   const grid_container = document.getElementById(`grid_page_${gridPage}`);
 
   const left_list_button =
@@ -36,7 +36,7 @@ export function handleGridButton() {
 export function handleListButton() {
   const list_button = document.getElementById("list_button");
   const grid_button = document.getElementById("grid_button");
-  const list_container = document.getElementsByClassName("list_container")[0];
+  const list_container = document.getElementById("list_container");
   const grid_container = document.getElementById(`grid_page_${gridPage}`);
   const left_list_button =
     document.getElementsByClassName("left_list_button")[0];

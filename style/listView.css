@@ -1,5 +1,5 @@
 /* list view */
-.list_container {
+#list_container {
   display: none;
 }
 
@@ -34,7 +34,7 @@
 }
 
 /* category */
-.category_container {
+.category {
   background-color: #f5f7fb;
   border: solid 1px #d2dae0;
 }

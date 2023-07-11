@@ -1,5 +1,6 @@
 import { fetchData } from "./utils.js";
 import { news } from "./components/news/news.js";
+import { category } from "./components/category/category.js";
 
 let listPage = 0;
 const MAX_LIST_PAGE = 7;
@@ -17,18 +18,30 @@ export function showPrevListPage() {
 
 export async function initListNews() {
   const newsData = await fetchData("/data/news.json");
-  const { categoryName, dataLen, data } = newsData;
-  const $categoryName = document.getElementsByClassName("category_name")[0];
-  const $nowPage = document.getElementsByClassName("now_page")[0];
-  const $allPage = document.getElementsByClassName("all_page")[0];
-  const $listContainer = document.getElementsByClassName("list_container")[0];
-  // header
-  $categoryName.innerHTML = categoryName;
-  $nowPage.innerHTML = "1";
-  $allPage.innerHTML = `/ ${newsData.dataLen}`;
+  const $listContainer = document.getElementById("list_container");
+  $listContainer.insertAdjacentHTML("afterbegin", category(newsData));
 
-  for (let i = 0; i < dataLen; i++) {
-    $listContainer.insertAdjacentHTML("beforeend", news(data[i], i));
+  for (let i = 0; i < newsData.length; i++) {
+    const category = newsData[i];
+    category.data.length;
+
+    for (let j = 0; j < category.data.length; j++) {
+      // 카테고리 하나에 대한 페이지 생성
+      $listContainer.insertAdjacentHTML(
+        "beforeend",
+        news(newsData[i].data[j], j)
+      );
+    }
   }
+
+  const $categoryItemList = document.getElementsByClassName("category_item");
+
+  for (let i = 0; i < newsData.length; i++) {
+    const $categoryItem = $categoryItemList[i];
+    $categoryItem.addEventListener("click", (e) => {
+      e.currentTarget.classList.add("clicked");
+    });
+  }
+
   showListage(0);
 }

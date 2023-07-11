@@ -3,31 +3,31 @@ const NUM_IN_A_GRID = 24;
 const MAX_PAGE = 4;
 
 export function initGrid(pressDataArr) {
-  const mainContent = document.getElementsByClassName("main_content")[0];
+  const $gridContainer = document.getElementById("grid_container");
   const gridButton = document.getElementById("grid_button");
   for (let i = 0; i < MAX_PAGE; i++) {
-    const gridContainer = document.createElement("ul");
-    gridContainer.id = `grid_page_${i}`;
-    gridContainer.className = "grid_container";
-    gridContainer.style.display = "none";
+    const pressGrid = document.createElement("ul");
+    pressGrid.id = `grid_page_${i}`;
+    pressGrid.className = "press_grid";
+    pressGrid.style.display = "none";
 
     for (let j = 0; j < NUM_IN_A_GRID; j++) {
       const idx = i * NUM_IN_A_GRID + j;
       const newItem = createGridItem(pressDataArr[idx]);
-      gridContainer.appendChild(newItem);
+      pressGrid.appendChild(newItem);
     }
-    mainContent.appendChild(gridContainer);
+    $gridContainer.appendChild(pressGrid);
   }
   gridButton.className = "clicked";
 }
 
 export function showGridPage(page) {
-  const gridContainer = document.getElementById(`grid_page_${page}`);
-  gridContainer.style.display = "grid";
+  const pressGrid = document.getElementById(`grid_page_${page}`);
+  pressGrid.style.display = "grid";
 }
 export function hiddenGridPage(page) {
-  const gridContainer = document.getElementById(`grid_page_${page}`);
-  gridContainer.style.display = "none";
+  const pressGrid = document.getElementById(`grid_page_${page}`);
+  pressGrid.style.display = "none";
 }
 
 // 구독버튼 컨테이너 생성
