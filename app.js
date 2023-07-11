@@ -4,6 +4,7 @@ import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
+  NewsDB,
 } from "./utils/index.js";
 import { NEWS_COUNT, VIEW_TYPE } from "./constants/index.js";
 
@@ -30,14 +31,21 @@ const getSlicedDataFromPage = (data, page, count) => {
   return data.slice(page * count, (page + 1) * count);
 };
 
+const initDB = async () => {
+  const mockData = await customFetch("./mocks/news.json", shuffleData);
+  NewsDB.instance = mockData;
+};
+
 // main
 (async function () {
+  await initDB();
+
   $headerDate.innerText = getKRLocaleDateString(new Date());
 
-  const newsData = await customFetch("./mocks/news.json", shuffleData);
+  const newsData = NewsDB.getNewsData();
   fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
 
-  const headlineData = await customFetch("./mocks/headline.json");
+  const headlineData = NewsDB.getHeadlineData();
   startRollingBanner(headlineData);
 
   const handlePrevButtonClick = () => {
@@ -90,7 +98,6 @@ const getSlicedDataFromPage = (data, page, count) => {
     }
   };
 
-  console.log($mainNavViewerButtons);
   $prevPageButton.addEventListener("click", handlePrevButtonClick);
   $nextPageButton.addEventListener("click", handleNextButtonClick);
   $mainNavViewerButtons.forEach(($button) => {
