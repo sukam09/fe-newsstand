@@ -85,6 +85,13 @@ body {
     top: -49px;
 }
 
+.container_sec_li-banner a {
+    text-decoration: none;
+}
+.container_sec_li-banner a:hover {
+    text-decoration: underline;
+}
+
 .container_section .prev {
     top: 49px;
     transition: top 1s ease;
