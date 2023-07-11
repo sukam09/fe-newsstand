@@ -3,6 +3,8 @@ const HEADLINE = {
   INTERVAL: 5000,
 };
 
+const SNACKBAR_DELAY = 5000;
+
 const MEDIA = {
   TOTAL: 96,
   PAGE_SIZE: 24,
@@ -29,4 +31,4 @@ const NEWSDATA = {
   ],
 };
 
-export { HEADLINE, MEDIA, NEWSDATA };
+export { HEADLINE, MEDIA, NEWSDATA, SNACKBAR_DELAY };
