@@ -1,10 +1,10 @@
-import Component from '../Component.js';
+import Component from '../core/Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
 
 export default class LatestNews extends Component {
   template() {
-    return `<div class='auto-rolling-news border-default'></div>
-            <div class='auto-rolling-news border-default'></div>
+    return `<div class='auto-rolling-news border-default surface-alt'></div>
+            <div class='auto-rolling-news border-default surface-alt'></div>
             `;
   }
   mounted() {

@@ -56,7 +56,6 @@ section {
 
 .auto-rolling-news {
   padding: 16px;
-  background-color: var(--gray-scale-50);
   gap: 16px;
 
   display: flex;
@@ -113,6 +112,17 @@ section {
   gap: 8px;
 }
 
+/* news-list-grid */
+.news-list-grid-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 0px;
+  border-right: 0px;
+
+  gap: 36px;
+}
 .news-list-grid {
   width: 930px;
   height: 388px;
@@ -122,9 +132,6 @@ section {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-
-  border-bottom: 0px;
-  border-right: 0px;
 }
 
 .news-list-grid > li {
@@ -139,13 +146,42 @@ section {
   cursor: pointer;
 }
 
-.all-news-wrapper {
+/* news-list-list */
+.newslist-list-view {
+  width: 930px;
+
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 50px;
+  flex-direction: column;
+  gap: 20px;
 }
 
+.newslist-list-view > nav {
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.newslist-list-view > nav > li {
+  padding: 12px 16px;
+}
+
+.press-header-focus {
+  display: flex;
+  justify-content: space-between;
+  width: 166px;
+}
+
+.all-news-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .left-button,
 .right-button {
   width: 24px;

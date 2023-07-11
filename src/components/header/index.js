@@ -1,5 +1,5 @@
 import { getTodayDate } from '../../utils/index.js';
-import Component from '../Component.js';
+import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 
 export default class Header extends Component {

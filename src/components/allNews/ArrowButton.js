@@ -1,4 +1,4 @@
-import Component from '../Component.js';
+import Component from '../core/Component.js';
 
 export default class ArrowButton extends Component {
   setup() {

@@ -1,4 +1,4 @@
-import Component from '../Component.js';
+import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 
 export default class AllNewHeader extends Component {

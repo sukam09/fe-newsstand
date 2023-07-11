@@ -1,5 +1,5 @@
 import { ROLLING_COUNT, ROLLING_SECOND, SECOND } from '../../constants/index.js';
-import Component from '../Component.js';
+import Component from '../core/Component.js';
 
 export default class LatestNewsComponent extends Component {
   setup() {

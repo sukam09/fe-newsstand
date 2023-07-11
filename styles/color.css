@@ -63,22 +63,22 @@
   color: var(--blue-500);
 }
 .surface-default {
-  color: var(--gray-scale-white);
+  background-color: var(--gray-scale-white);
 }
 .surface-alt {
-  color: var(--gray-scale-50);
+  background-color: var(--gray-scale-50);
 }
 .surface-brand-default {
-  color: var(--blue-500);
+  background-color: var(--blue-500);
 }
 .surface-brand-alt {
-  color: var(--blue-100);
+  background-color: var(--blue-100);
 }
 .border-bold {
-  color: var(--gray-scale-300);
+  border: 1px solid var(--gray-scale-300);
 }
 .border-default {
-  color: var(--gray-scale-100);
+  border: 1px solid var(--gray-scale-100);
 }
 
 /*dark*/
@@ -104,25 +104,20 @@
   color: var(--blue-500);
 }
 .surface-default-dark {
-  color: var(--gray-scale-black);
+  background-color: var(--gray-scale-black);
 }
 .surface-alt-dark {
-  color: var(--gray-scale-500);
+  background-color: var(--gray-scale-500);
 }
 .surface-brand-default-dark {
-  color: var(--blue-500);
+  background-color: var(--blue-500);
 }
 .surface-brand-alt-dark {
-  color: var(--blue-100);
+  background-color: var(--blue-100);
 }
 .border-bold-dark {
-  color: var(--gray-scale-white-alt);
+  border: 1px solid var(--gray-scale-white-alt);
 }
 .border-default-dark {
-  color: var(--gray-scale-400);
-}
-
-/*border*/
-.border-default {
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--gray-scale-400);
 }
