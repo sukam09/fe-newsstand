@@ -235,7 +235,7 @@ body {
   gap: 8px;
   height: 40px;
   width: 166px;
-  background: var(--surface-brand-default);
+  background: var(--surface-brand-alt);
   color: var(--text-white-default);
 }
 
@@ -250,7 +250,7 @@ body {
 }
 
 .field-tab button.progress .progress-total-num {
-  color: var(--text-white-week);
+  color: var(--text-white-weak);
 }
 
 .list-press-news {

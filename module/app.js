@@ -5,7 +5,7 @@ import { initRollingNews, rollingCallback } from "./rolling.js";
 const LEFT = 0;
 const RIGHT = 1;
 const NEWS_BAR_DELAY_TIME = 5000;
-const NEWS_BAR_DELAY_DIFF = 1000;
+const NEWS_BAR_DELAY_GAP = 1000;
 
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
@@ -23,7 +23,7 @@ function init() {
   left_btn.addEventListener("click", () => moveGrid(LEFT));
 
   first_interval = window.setInterval(() => rollingCallback(LEFT), NEWS_BAR_DELAY_TIME);
-  window.setTimeout(() => (second_interval = window.setInterval(() => rollingCallback(RIGHT), NEWS_BAR_DELAY_TIME)), NEWS_BAR_DELAY_DIFF);
+  window.setTimeout(() => (second_interval = window.setInterval(() => rollingCallback(RIGHT), NEWS_BAR_DELAY_TIME)), NEWS_BAR_DELAY_GAP);
 
   first_news.addEventListener("mouseover", () => {
     window.clearInterval(first_interval);
