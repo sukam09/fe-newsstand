@@ -1,6 +1,6 @@
-import Header from './Header.js';
-import RecentNewsRollingView from './RecentNewsRollingView.js';
-import NewsPressGridview from './NewsPressGridview.js';
+import Header from './components/Header.js';
+import RecentNewsRollingView from './components/RecentNewsRollingView.js';
+import NewsPressGridview from './components/NewsPressGridview.js';
 
 export default function App({ $app }) {
   new Header({ $target: $app });
