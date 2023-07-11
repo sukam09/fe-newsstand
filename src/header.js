@@ -1,4 +1,5 @@
 import { customFetch, setDate } from "./utils.js";
+import { ROLLING_WAIT_TIME, ROLLING_DIFF_TIME } from "./constants.js";
 
 const $haederLogo = document.querySelector(".container-header_logo");
 const $headerDate = document.querySelector(".container-header_date");
@@ -59,7 +60,7 @@ const createHeadlineContent = (title, link, idx) => {
 export const setRollingInterval = () => {
   let rollingInterval = setInterval(() => {
     rollingCallback();
-  }, 5000);
+  }, ROLLING_WAIT_TIME);
 
   $leftRollingBox.addEventListener("mouseenter", () => {
     clearInterval(rollingInterval);
@@ -67,7 +68,7 @@ export const setRollingInterval = () => {
   $leftRollingBox.addEventListener("mouseleave", () => {
     rollingInterval = setInterval(() => {
       rollingCallback();
-    }, 5000);
+    }, ROLLING_WAIT_TIME);
   });
 
   $rightRollingBox.addEventListener("mouseenter", () => {
@@ -76,7 +77,7 @@ export const setRollingInterval = () => {
   $rightRollingBox.addEventListener("mouseleave", () => {
     rollingInterval = setInterval(() => {
       rollingCallback();
-    }, 5000);
+    }, ROLLING_WAIT_TIME);
   });
 
   document.addEventListener("visibilitychange", () => {
@@ -84,7 +85,7 @@ export const setRollingInterval = () => {
       clearInterval(rollingInterval);
       rollingInterval = setInterval(() => {
         rollingCallback();
-      }, 5000);
+      }, ROLLING_WAIT_TIME);
     } else {
       clearInterval(rollingInterval);
     }
@@ -95,7 +96,7 @@ const rollingCallback = () => {
   rollingElement($leftRollingBox);
 
   const rightRollingCallback = () => rollingElement($rightRollingBox);
-  setTimeout(rightRollingCallback, 1000);
+  setTimeout(rightRollingCallback, ROLLING_DIFF_TIME);
 };
 
 const rollingElement = (elem) => {

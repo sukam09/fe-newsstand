@@ -1,6 +1,6 @@
-import { setButtons } from "./buttons.js";
-import { NEWS_COUNT } from "./constants.js";
-import { customFetch, shuffleArrayRandom } from "./utils.js";
+import { setNavigationButtons } from "./navigation-button.js";
+import { NEWS_COUNT, PRESS_ICON } from "./constants.js";
+import { shuffleArrayRandom } from "./utils.js";
 
 const $gridView = document.querySelector(".grid-view");
 
@@ -39,9 +39,22 @@ const createNewsContent = (src, name) => {
   return $li;
 };
 
-export const setNewsGrid = async (pages) => {
-  const newsData = await customFetch("./mocks/news.json", shuffleArrayRandom);
+export const setNewsGrid = (pages) => {
+  const pressIcons = ObjectToArrayRandom(PRESS_ICON);
 
-  fillNewsContents(newsData, pages);
-  setButtons(newsData, pages, fillNewsContents);
+  fillNewsContents(pressIcons, pages);
+  setNavigationButtons(pressIcons, pages, fillNewsContents);
+};
+
+const ObjectToArrayRandom = (data) => {
+  const newArray = [];
+
+  Object.values(data).forEach((item) =>
+    newArray.push({
+      name: data,
+      src: item.light,
+    })
+  );
+
+  return shuffleArrayRandom(newArray);
 };
