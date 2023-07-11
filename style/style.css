@@ -93,6 +93,11 @@ img.title_logo {
   transition: top 2s ease;
 }
 
+li:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
 .main_header {
   justify-content: space-between;
 }
