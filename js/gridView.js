@@ -74,7 +74,7 @@ function createGridItem(element) {
   const unSubButtonContainer = createUnSubButton(element.id);
 
   // 이미지 로드
-  newImg.src = element.src;
+  newImg.src = element.lightSrc;
   newImg.id = element.id;
   li.style.position = "relative";
 
