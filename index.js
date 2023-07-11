@@ -159,14 +159,10 @@ function changeBanner(articleIndex, bannerNumber) {
   document
     .querySelector(`#rolling-banner-0${bannerNumber} .wrap .prev`)
     .classList.remove("prev");
-  let currentBanner = document.querySelector(
-    `#rolling-banner-0${bannerNumber} .wrap .current`
-  );
+  currentBannerChange(bannerNumber);
   let nextBanner = document.querySelector(
     `#rolling-banner-0${bannerNumber} .wrap .next`
   );
-  currentBanner.classList.remove("current");
-  currentBanner.classList.add("prev");
   if (nextBanner.nextElementSibling == null)
     document
       .querySelector(`#rolling-banner-0${bannerNumber} .wrap ul li:first-child`)
@@ -174,6 +170,14 @@ function changeBanner(articleIndex, bannerNumber) {
   else nextBanner.nextElementSibling.classList.add("next");
   nextBanner.classList.remove("next");
   nextBanner.classList.add("current");
+}
+
+function currentBannerChange(bannerNumber) {
+  let currentBanner = document.querySelector(
+    `#rolling-banner-0${bannerNumber} .wrap .current`
+  );
+  currentBanner.classList.remove("current");
+  currentBanner.classList.add("prev");
 }
 
 function addInitRollingData(bannerNumber) {

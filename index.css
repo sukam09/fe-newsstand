@@ -1,3 +1,4 @@
+@import "./css/reset.css";
 img {
   width: 24px;
   height: 24px;
@@ -15,7 +16,11 @@ label {
   flex-direction: row;
   cursor: pointer;
 }
-
+h1 {
+  position: relative;
+  top: 35%;
+  font-weight: bold;
+}
 div > img {
   width: auto;
   height: auto;
