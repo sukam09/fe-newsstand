@@ -34,11 +34,11 @@ const newsDataRight = shuffle([
 
 const SET_TIME = 5000; // 롤링되는 주기 입니다 (1000 => 1초)
 const firstCorp = document.getElementById("main__first-corp-right");
+const secondCorp = document.getElementById("main__second-corp-right");
+const thirdCorp = document.getElementById("main__third-corp-right");
 const firstTitle = document.getElementById("main__first-title-right");
 const secondTitle = document.getElementById("main__second-title-right");
 const thirdTitle = document.getElementById("main__third-title-right");
-const secondCorp = document.getElementById("main__second-corp-right");
-const thirdCorp = document.getElementById("main__third-corp-right");
 
 const [leftViewBox] = document.getElementsByClassName(
   "main__rolling-title-right"
@@ -52,17 +52,17 @@ export function paintSubViewRight() {
   firstCorp.textContent = newsDataRight[0].corp;
   firstTitle.textContent = newsDataRight[0].title;
 
-  const subViewRightInterval = setInterval(moveContent, SET_TIME);
+  const subViewRightInterval = setInterval(moveContentRight, SET_TIME);
 
   leftViewBox.addEventListener("mouseover", () =>
     clearInterval(subViewRightInterval)
   );
   leftViewBox.addEventListener("mouseout", () =>
-    setInterval(moveContent, SET_TIME)
+    setInterval(moveContentRight, SET_TIME)
   );
 }
 
-function moveContent() {
+function moveContentRight() {
   if (move == 2) {
     moveTopContent(
       firstTitle,
