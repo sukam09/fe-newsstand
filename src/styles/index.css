@@ -76,6 +76,9 @@ body {
   display: flex;
   flex-direction: row;
   gap: 16px;
+
+  position: absolute;
+  top: -35px;
 }
 
 .latest_news__h2 {
@@ -90,24 +93,19 @@ body {
   color: var(--grayscale-400);
 }
 
-/* 롤링 테스트 */
-.latest_news__li {
-  position: absolute;
-  top: -49px;
-}
-
+/* 롤링 영역 */
 .prev {
-  top: -49px;
+  top: -35px;
   transition: top 0.5s ease;
 }
 
 .current {
-  top: 0;
+  top: 14px;
   transition: top 0.5s ease;
 }
 
 .next {
-  top: 49px;
+  top: 63px;
 }
 
 /* 언론사별 기사들을 확인하는 영역 */
