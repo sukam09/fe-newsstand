@@ -38,6 +38,15 @@
 
 - 오늘 롤링효과와 뉴스리스트를 구현하면서 코드가 다시 복잡해졌다. 내일은 전체구조를 다듬는 일을 하는게 좋을것같다.
 
+**7월 11일**
+
+1. 프로그래스 바 구현
+   <img width="938" alt="스크린샷 2023-07-11 오후 6 09 09" src="https://github.com/devMingu/fe-newsstand/assets/96288558/4a52d8d6-a3b9-4515-8f9a-daffb455b834">
+
+- 오늘은 하루종일 프로그래스 바를 구현하는데 시간을 보낸것 같다. 처음에는 단순하게 배경색상에 키프레임을줘서 채우면 되겠지 생각했는데 그리 간단하지 않았다. 흐릿한 배경이 존재하고 그 위에 배경을 서서히 채워야했다. 그러기위해서 css의 position값을 잘 활용할 수 있어야했다. 부모 태그에 position을 'relative'로 자식 태그의 position은 'absolute'로 위치 관계를 잘 잡아야한다. 이게 또 중요한 이유는 프로그래스 바 내부에 텍스트가 있기 때문에 영역을 잘 생각해서 구현해줘야했다.
+
+- 처음에는 setInterval을 활용해서 width 값을 0부터 시작해서 일정값만큼 증가시켜서 구현을 했었다. 구현은 잘 되었는데 이상하게 페이지를 이동하다보면 채워지는 바의 속도가 점점 빨라지는것이었다. 왜 이런 문제가 발생하는지 몰랐는데 크롱의 강의를 들으면서 '콜 스택' '이벤트 루프' '콜백 큐'의 관계를 이해하니까 왜 속도가 빨라졌는지 이해할 수 있었다. 이 부분에대해서 정리를 해보자.
+
 ### 폴더구조
 
 ```bash
@@ -56,40 +65,4 @@
 │   └── utils
 ├── data
 │   └── headline.json
-
 ```
-
-# 뉴스스탠드 기본 구조
-
-header(#header)
-
-- div (.header\_\_view)
-  - i (.헤더로고) (.header—logo)
-  - h1 (.헤더제목) (.header—title)
-- div (.헤더 날짜) (.header—date)
-
-main(#main)
-
-- section2 (.main\_\_subview)
-  - div (.main\_\_content)
-    - div (.main—corp-name)
-    - div (.main—news-box)
-  - div (.main\_\_content)
-    - div (.main—corp-name)
-    - div (.main—news-box)
-- section3 (#newsstand)
-  - div (.newsstand\_\_media-nav)
-    - div (.newsstand\_\_tab)
-      - div (.newsstand—text-clicked)
-      - div (.newsstand—text-unclicked)
-    - div (.newsstand\_\_tab)
-      - i (.newsstand—btn-list)
-      - i (.newsstand-btn-thumb)
-  - div (.newsstand\_\_media-area)
-    - ul (.newsstand-area—six-col-list)
-      - li (.newsstand—subscrtion-box)
-      - li (.newsstand—subscrtion-box)
-      - li (.newsstand—subscrtion-box)
-      - li (.newsstand—subscrtion-box)
-  - div (.newsstand--right-btn)
-    - img
