@@ -46,21 +46,27 @@ export const rollNews = (data) => {
   appendRollingList($ul[0], leftList);
   appendRollingList($ul[1], rightList);
   // 각 롤링 구역마다 interval 설정하여 rolling handler 실행
-  // forEach로 변경 필요
-  $ul.forEach((ul, idx) => {
-    const interval = setTimeout(() => {
-      setInterval(() => {
-        rollingHandler(ul);
-      }, 5000);
+  const interval = [];
+
+  const setRoller = (ul, idx) => {
+    setTimeout(() => {
+      interval[idx] = setInterval(() => rollingHandler(ul), 5000);
     }, 1000 * idx);
+  };
+
+  const resetRoller = (idx) => {
+    clearInterval(interval[idx]);
+  };
+
+  $ul.forEach((ul, idx) => {
+    setRoller(ul, idx);
 
     ul.addEventListener("mouseover", () => {
-      clearInterval(interval);
+      resetRoller(idx);
     });
+
     ul.addEventListener("mouseout", () => {
-      setInterval(() => {
-        rollingHandler(ul);
-      }, 5000);
+      setRoller(ul, idx);
     });
   });
 };
