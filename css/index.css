@@ -19,7 +19,7 @@ body {
 .title-wrapper,
 .auto-rolling-news-bar,
 .main-tab-viewer,
-.main-list,
+.grid-view,
 .list-view {
   width: 930px;
   margin: 0 auto;
@@ -34,6 +34,33 @@ body {
   margin-bottom: 36px;
 }
 
+label:hover,
+.title:hover,
+.grid-view ul li:hover,
+.news-title:hover {
+  cursor: pointer;
+}
+/* 헤더 */
+.title-wrapper img {
+  width: 24px;
+  height: 24px;
+}
+.date {
+  color: var(--text-default);
+  font-size: 16px;
+}
+.display-text {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 24px;
+  margin-left: 6px;
+}
+.title {
+  display: flex;
+  align-items: center;
+}
+
+/* 롤링 뉴스 */
 .auto-rolling-news {
   display: flex;
   align-items: center;
@@ -63,19 +90,37 @@ body {
   top: 15px;
   transition: top 0.5s ease;
 }
+.press {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+.news-title {
+  color: var(--text-default);
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 18px;
+}
+.news-title:hover {
+  text-decoration: underline;
+}
 
-.grid-view {
+/* 그리드 뷰 */
+.main {
   display: flex;
   align-items: center;
 }
-
+.main button img {
+  width: 24px;
+  height: 40px;
+}
 .main-tab-viewer {
   align-items: center;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-.main-list ul {
+.grid-view ul {
   width: 100%;
   padding: 0;
   margin: 0;
@@ -83,13 +128,13 @@ body {
   letter-spacing: 0;
   word-spacing: 0;
 }
-.main-list {
+.grid-view {
   display: flex;
   flex-wrap: wrap;
   height: 388px;
 }
 
-.main-list ul li {
+.grid-view ul li {
   display: inline-block;
   width: calc(100% / 6);
   height: 25%;
@@ -101,32 +146,19 @@ body {
   border-left: none;
 }
 
-.main-list ul li:nth-child(6n + 1) {
+.grid-view ul li:nth-child(6n + 1) {
   border-left: 1px solid var(--border-default);
 }
-.main-list ul li:nth-last-child(-n + 6) {
+.grid-view ul li:nth-last-child(-n + 6) {
   border-bottom: 1px solid var(--border-default);
 }
-.main-list ul li img {
+.grid-view ul li img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.title-wrapper img {
-  width: 24px;
-  height: 24px;
-}
-
-.grid-view button img {
-  width: 24px;
-  height: 40px;
-}
-.date {
-  color: var(--text-default);
-  font-size: 16px;
-}
 .all-press {
   color: var(--text-strong);
   font-size: 16px;
@@ -138,40 +170,8 @@ body {
   font-weight: 500;
   padding-left: 24px;
 }
-.press {
-  color: var(--text-strong);
-  font-size: 14px;
-  font-weight: 700;
-}
 
-.news-title {
-  color: var(--text-default);
-  font-size: 14px;
-  font-weight: 500;
-  padding-left: 18px;
-}
-.news-title:hover {
-  text-decoration: underline;
-}
-.display-text {
-  color: var(--text-strong);
-  font-weight: 700;
-  font-size: 24px;
-  margin-left: 6px;
-}
-
-.title {
-  display: flex;
-  align-items: center;
-}
-
-label:hover,
-.title:hover,
-.main-list ul li:hover,
-.news-title:hover {
-  cursor: pointer;
-}
-
+/* 리스트 뷰 */
 .list-view {
   border: 1px solid var(--border-default);
   box-sizing: border-box;
@@ -183,12 +183,14 @@ label:hover,
   height: 40px;
   background-color: var(--surface-alt);
 }
-.category div {
+.category li {
   display: flex;
-  height: 40px;
   align-items: center;
-  padding: 0 25px;
+  /* justify-content: space-between; */
+  padding: 0 15px;
   font-size: 14px;
+  color: var(--text-weak);
+  font-weight: 500;
 }
 
 .press-info {
@@ -202,6 +204,7 @@ label:hover,
   font-size: 14px;
   font-weight: 500;
   padding: 0 10px;
+  color: var(--text-default);
 }
 .list-view-news {
   margin: 0 auto;
@@ -232,4 +235,34 @@ label:hover,
   margin-top: 16px;
   font-weight: 500;
   color: var(--text-strong);
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+    background-color: var(--surface-brand-default);
+  }
+  100% {
+    width: 100%;
+    background-color: var(--surface-brand-default);
+  }
+}
+
+.category .sample {
+  position: relative;
+  padding: 0;
+  width: 15%;
+  background-color: var(--surface-brand-alt);
+}
+
+.category .sample div {
+  height: 100%;
+  animation-name: progressBar;
+  animation-duration: 20s;
+}
+
+.category .sample span {
+  position: absolute;
+  color: var(--text-white-default);
+  font-weight: 700;
 }
