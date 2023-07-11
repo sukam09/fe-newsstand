@@ -42,7 +42,7 @@ img.title_logo {
   justify-content: space-between;
 }
 
-.summary_container {
+.headline_container {
   background-color: #f5f7f9;
   /* position: relative; */
   width: 100%;
@@ -55,9 +55,16 @@ img.title_logo {
   height: 49px;
 }
 
-.summary_container > h2 {
+.headline_container > h2 {
   margin: 0;
   font-size: 14px;
+}
+
+.headline_container li {
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .left_rolling_list :hover,
@@ -91,11 +98,6 @@ img.title_logo {
   position: absolute;
   top: 40px;
   transition: top 2s ease;
-}
-
-li:hover {
-  animation-play-state: paused;
-  cursor: pointer;
 }
 
 .main_header {

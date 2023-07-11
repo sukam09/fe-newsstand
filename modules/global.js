@@ -63,7 +63,7 @@ export function handleListButton() {
 }
 
 // 오늘 날짜 update
-export function updateDate() {
+export function initDate() {
   let today = new Date();
   const dateHtml = document.getElementsByClassName("date")[0];
   const options = {

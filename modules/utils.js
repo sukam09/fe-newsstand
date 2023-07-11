@@ -5,3 +5,9 @@ export function shuffleArray(arr) {
   }
   return arr;
 }
+
+export const fetchData = async (url) => {
+  const res = await fetch(url);
+  const jsonData = await res.json();
+  return jsonData;
+};
