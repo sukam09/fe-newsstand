@@ -1,6 +1,7 @@
+import Headline from './Headline.js';
+
 const HEADLINE_NUMBERS = 5;
-const HEADLINE_ROLLING_DELAY = 5000;
-const HEADLINE_DELAY_DIFF = 1000;
+const HEADLINE_ROLLING_DELAY_DIFF = 1000;
 
 export default function RecentNewsRollingView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -15,58 +16,28 @@ export default function RecentNewsRollingView({ $target, initialState }) {
     this.render();
   };
 
-  const setLeftHeadline = () => {
-    this.setState({
-      ...this.state,
-      leftHeadlineIndex: (this.state.leftHeadlineIndex + 1) % HEADLINE_NUMBERS,
-    });
-  };
-
-  const setRightHeadline = () => {
-    this.setState({
-      ...this.state,
-      rightHeadlineIndex: (this.state.rightHeadlineIndex + 1) % HEADLINE_NUMBERS,
-    });
-  };
-
-  const setHeadlineTimer = () => {
-    return setInterval(() => {
-      setLeftHeadline();
-      setTimeout(() => {
-        setRightHeadline();
-      }, HEADLINE_DELAY_DIFF);
-    }, HEADLINE_ROLLING_DELAY);
-  };
-
-  this.timer = setHeadlineTimer();
-
-  const handleMouseEnter = () => {
-    clearInterval(this.timer);
-    clearTimeout(this.rightHeadlineTimer);
-  };
-
-  const handleMouseLeave = () => {
-    this.timer = setHeadlineTimer();
-  };
-
   this.render = () => {
-    const { leftHeadlineIndex, rightHeadlineIndex, leftHeadlines, rightHeadlines } = this.state;
+    const { headlineData } = this.state;
 
-    $section.innerHTML = `
-      <div class="recent-news-item">
-        <span class="recent-news-press">연합뉴스</span>
-        <span class="recent-news-headline">${leftHeadlines[leftHeadlineIndex]}</span>
-      </div>
-      <div class="recent-news-item">
-        <span class="recent-news-press">연합뉴스</span>
-        <span class="recent-news-headline">${rightHeadlines[rightHeadlineIndex]}</span>
-      </div>
-    `;
+    const leftHeadlines = headlineData.slice(0, HEADLINE_NUMBERS);
+    const rightHeadlines = headlineData.slice(HEADLINE_NUMBERS, HEADLINE_NUMBERS * 2);
 
-    const $recentNewsHeadlines = $section.querySelectorAll('.recent-news-headline');
-    $recentNewsHeadlines.forEach($recentNewsHeadline => {
-      $recentNewsHeadline.addEventListener('mouseenter', handleMouseEnter);
-      $recentNewsHeadline.addEventListener('mouseleave', handleMouseLeave);
+    new Headline({
+      $target: $section,
+      initialState: {
+        index: 0,
+        headlines: leftHeadlines,
+        offset: 0,
+      },
+    });
+
+    new Headline({
+      $target: $section,
+      initialState: {
+        index: 0,
+        headlines: rightHeadlines,
+        offset: HEADLINE_ROLLING_DELAY_DIFF,
+      },
     });
   };
 
