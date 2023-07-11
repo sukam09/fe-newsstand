@@ -1,0 +1,15 @@
+const MEDIA = {
+  TOTAL_NUM: 96,
+  GRID_ROW_NUM: 4,
+  GRID_COLUMN_NUM: 6,
+  MAX_PAGE: 3,
+};
+
+const TOPIC = {
+  TOTAL_NUM: 10,
+  SECTION_NUM: 5,
+  ROLLING_TIME: 5000,
+  ROLLING_TIME_GAP: 1000,
+};
+
+export { MEDIA, TOPIC };

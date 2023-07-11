@@ -10,7 +10,7 @@
     <div class="news-stand-container">
       <!-- 기본 상단 영역 -->
       <header class="header-wrapper">
-        <button onclick="reloadPage()">
+        <button>
           <img class="icon-size24" src="./img/news_stand_logo.svg" />
           <h1 class="header_title">뉴스스탠드</h1>
         </button>
@@ -38,19 +38,11 @@
 
         <div class="arrows-wrapper">
           <ul class="news-wrapper"></ul>
-          <img
-            onclick="clickArrow(-1)"
-            class="left-arrow"
-            src="./img/left_arrow.svg"
-          />
-          <img
-            onclick="clickArrow(+1)"
-            class="right-arrow"
-            src="./img/right_arrow.svg"
-          />
+          <img class="left-arrow" src="./img/left_arrow.svg" />
+          <img class="right-arrow" src="./img/right_arrow.svg" />
         </div>
       </section>
     </div>
   </body>
-  <script src="module/index.js"></script>
+  <script type="module" src="index.js"></script>
 </html>
