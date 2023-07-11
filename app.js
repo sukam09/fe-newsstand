@@ -11,10 +11,8 @@ import { NEWS_COUNT } from "./constants/index.js";
 let theme = "light";
 let pages = 0;
 
-const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
-const $nextPageButton = document.querySelector(
-  ".container-grid-view_right-btn"
-);
+const $prevPageButton = document.querySelector(".container-main_left-btn");
+const $nextPageButton = document.querySelector(".container-main_right-btn");
 const $headerDate = document.querySelector(".container-header_date");
 
 const getSlicedDataFromPage = (data, page, count) => {
