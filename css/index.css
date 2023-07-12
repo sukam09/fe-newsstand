@@ -110,7 +110,8 @@ label:hover,
   display: flex;
   align-items: center;
 }
-.main button img {
+#left,
+#right {
   width: 24px;
   height: 40px;
 }
@@ -206,6 +207,10 @@ label:hover,
   padding: 0 10px;
   color: var(--text-default);
 }
+.press-info-img {
+  width: 52.5px;
+  height: 20px;
+}
 .list-view-news {
   margin: 0 auto;
   width: 882px;
@@ -240,11 +245,9 @@ label:hover,
 @keyframes progressBar {
   0% {
     width: 0%;
-    background-color: var(--surface-brand-default);
   }
   100% {
     width: 100%;
-    background-color: var(--surface-brand-default);
   }
 }
 
@@ -257,6 +260,7 @@ label:hover,
 
 .category .sample div {
   height: 100%;
+  background-color: var(--surface-brand-default);
   animation-name: progressBar;
   animation-duration: 20s;
 }
