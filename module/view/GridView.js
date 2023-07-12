@@ -1,5 +1,5 @@
-import { fetchPressData } from "../api.js";
-import { current_grid_page } from "./Arrow.js";
+import { fetchPressData } from "../../api.js";
+import { current_grid_page } from "../components/Arrow.js";
 
 let news_icon;
 const ICONS_PER_PAGE = 24;

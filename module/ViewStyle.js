@@ -1,4 +1,4 @@
-import { printGrid } from "./GridView.js";
+import { printGrid } from "./view/GridView.js";
 import { printList } from "./view/ListView.js";
 
 const GRID_BTN_ID = "grid-btn";

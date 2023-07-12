@@ -77,7 +77,7 @@ function DoingRolling(leftArticles, rightArticles) {
 
 export async function NewArticlePrint() {
   try {
-    const articles = await fetchRollingArticle("../Data/news.json");
+    const articles = await fetchRollingArticle("./Data/news.json");
     leftArticles = articles.slice(0, 5);
     rightArticles = articles.slice(5, 10);
 

@@ -1,4 +1,4 @@
-import { updateGrid } from "./GridView.js";
+import { updateGrid } from "../view/GridView.js";
 
 export let current_grid_page = 0;
 
