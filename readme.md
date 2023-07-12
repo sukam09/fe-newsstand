@@ -4,8 +4,8 @@
 fe-newsstand
 ├─ .gitignore
 ├─ Data
+│  ├─ News_Data.json
 │  └─ Rolling_News.json
-├─ Thumbnail.png
 ├─ icons
 │  ├─ GridButton-Blue.svg
 │  ├─ GridButton.svg
@@ -20,25 +20,28 @@ fe-newsstand
 │  ├─ SymbolX.svg
 │  ├─ basic
 │  │  ├─ news_logo1.svg
-│     ├─ ...
+│  │  ├─ ...
 │  │  └─ news_logo96.svg
 │  └─ dark
 │     ├─ d_news_logo1.svg
 │     ├─ ...
 │     └─ d_news_logo96.svg
-├─ index.html
 ├─ module
 │  ├─ api.js
 │  ├─ app.js
 │  ├─ grid.js
+│  ├─ list.js
 │  ├─ rolling.js
-│  └─ util.js
-├─ readme.md
-└─ style
-   ├─ reset.css
-   ├─ style.css
-   ├─ typography.css
-   └─ variable.css
+│  ├─ util.js
+│  └─ variable.js
+├─ style
+│  ├─ reset.css
+│  ├─ style.css
+│  ├─ typography.css
+│  └─ variable.css
+├─ index.html
+├─ datagenerator.js
+└─ readme.md
 
 ```
 
