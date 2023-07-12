@@ -1,6 +1,7 @@
 @import "reset.css";
 @import "global.css";
 @import "font.css";
+@import "news_list.css";
 
 body {
     display: flex;
