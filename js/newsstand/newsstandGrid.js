@@ -7,7 +7,7 @@ const LAST_PAGE = 3;
 
 let selectedPage = 0;
 let newsstandList = Array.from({ length: NEWS_CONTENTS }, () => 1).map(
-  (_, index) => `${++index}.png`
+  (_, index) => `img${++index}.svg`
 );
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
@@ -30,7 +30,7 @@ function paintNews() {
     li.className = "newsstand—subscrtion-box";
     const img = document.createElement("img");
     const icon = newsstandList[idx];
-    img.src = `./assets/newsIcon/light/${icon}`;
+    img.src = `./assets/logo/light/${icon}`;
     li.appendChild(img);
     ul.appendChild(li);
   }
