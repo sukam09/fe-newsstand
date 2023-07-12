@@ -19,8 +19,6 @@ export default class AllNewsListView extends Component {
       currentPage: 81,
       totalPage: 81,
     };
-
-    setInterval(this.goNextPage.bind(this), NEXT_PAGE_INTERVAL);
   }
 
   template() {
@@ -68,6 +66,7 @@ export default class AllNewsListView extends Component {
     this.navigationMount();
     setTimeout(() => {
       this.$target.querySelector('.progress-bar').style.width = '100%';
+      this.setTimer();
     }, 100);
 
     new ArrowButton(this.$target.querySelector('.left-button'), {
@@ -99,10 +98,21 @@ export default class AllNewsListView extends Component {
                   </li>`
           );
         }
-        return innerHTML + `<li class="text-weak available-medium14">${press}</li>`;
+        return innerHTML + `<li class="text-weak available-medium14 press-type-name">${press}</li>`;
       },
       '',
     );
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', e => {
+      if (e.target.classList.contains('press-type-name')) {
+        const targetPress = e.target.innerHTML;
+        const currentPressIndex = this.state.pressOrder.indexOf(targetPress);
+
+        this.setState({ currentPressIndex, currentPage: 81 });
+      }
+    });
   }
 
   goPrevPage() {
@@ -124,5 +134,15 @@ export default class AllNewsListView extends Component {
     } else {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
+  }
+
+  setTimer() {
+    this.resetTimer();
+
+    this.timer = setInterval(this.goNextPage.bind(this), NEXT_PAGE_INTERVAL);
+  }
+
+  resetTimer() {
+    clearInterval(this.timer);
   }
 }
