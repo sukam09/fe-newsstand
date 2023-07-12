@@ -3,12 +3,12 @@
     "id": "1",
     "name": "YTN 사이언스",
     "path": "./icons/basic/news_logo1.svg",
-    "path-dark": "./icons/dark/d_news_logo1.svg",
+    "path_dark": "./icons/dark/d_news_logo1.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:47",
-    "main-title": "main title",
-    "main-img-src": "./img/1.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:47",
+    "main_title": "main title",
+    "main_img_src": "./img/1.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -17,18 +17,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "2",
     "name": "Able뉴스",
     "path": "./icons/basic/news_logo2.svg",
-    "path-dark": "./icons/dark/d_news_logo2.svg",
+    "path_dark": "./icons/dark/d_news_logo2.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:31",
-    "main-title": "main title",
-    "main-img-src": "./img/2.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:31",
+    "main_title": "main title",
+    "main_img_src": "./img/2.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -37,18 +37,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "3",
     "name": "뉴스토마토",
     "path": "./icons/basic/news_logo3.svg",
-    "path-dark": "./icons/dark/d_news_logo3.svg",
+    "path_dark": "./icons/dark/d_news_logo3.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:25",
-    "main-title": "main title",
-    "main-img-src": "./img/3.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:25",
+    "main_title": "main title",
+    "main_img_src": "./img/3.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -57,18 +57,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "4",
     "name": "데일리한국",
     "path": "./icons/basic/news_logo4.svg",
-    "path-dark": "./icons/dark/d_news_logo4.svg",
+    "path_dark": "./icons/dark/d_news_logo4.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:49",
-    "main-title": "main title",
-    "main-img-src": "./img/4.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:49",
+    "main_title": "main title",
+    "main_img_src": "./img/4.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -77,18 +77,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "5",
     "name": "시사오늘",
     "path": "./icons/basic/news_logo5.svg",
-    "path-dark": "./icons/dark/d_news_logo5.svg",
+    "path_dark": "./icons/dark/d_news_logo5.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:49",
-    "main-title": "main title",
-    "main-img-src": "./img/5.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:49",
+    "main_title": "main title",
+    "main_img_src": "./img/5.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -97,18 +97,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "6",
     "name": "대전방송",
     "path": "./icons/basic/news_logo6.svg",
-    "path-dark": "./icons/dark/d_news_logo6.svg",
+    "path_dark": "./icons/dark/d_news_logo6.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:19",
-    "main-title": "main title",
-    "main-img-src": "./img/6.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:19",
+    "main_title": "main title",
+    "main_img_src": "./img/6.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -117,18 +117,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "7",
     "name": "이코노타임즈",
     "path": "./icons/basic/news_logo7.svg",
-    "path-dark": "./icons/dark/d_news_logo7.svg",
+    "path_dark": "./icons/dark/d_news_logo7.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:52",
-    "main-title": "main title",
-    "main-img-src": "./img/7.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:52",
+    "main_title": "main title",
+    "main_img_src": "./img/7.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -137,18 +137,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "8",
     "name": "독서신문",
     "path": "./icons/basic/news_logo8.svg",
-    "path-dark": "./icons/dark/d_news_logo8.svg",
+    "path_dark": "./icons/dark/d_news_logo8.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:34",
-    "main-title": "main title",
-    "main-img-src": "./img/8.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:34",
+    "main_title": "main title",
+    "main_img_src": "./img/8.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -157,18 +157,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "9",
     "name": "산",
     "path": "./icons/basic/news_logo9.svg",
-    "path-dark": "./icons/dark/d_news_logo9.svg",
+    "path_dark": "./icons/dark/d_news_logo9.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:20",
-    "main-title": "main title",
-    "main-img-src": "./img/9.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:20",
+    "main_title": "main title",
+    "main_img_src": "./img/9.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -177,18 +177,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "10",
     "name": "시사 IN",
     "path": "./icons/basic/news_logo10.svg",
-    "path-dark": "./icons/dark/d_news_logo10.svg",
+    "path_dark": "./icons/dark/d_news_logo10.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:53",
-    "main-title": "main title",
-    "main-img-src": "./img/10.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:53",
+    "main_title": "main title",
+    "main_img_src": "./img/10.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -197,18 +197,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "11",
     "name": "한국경제",
     "path": "./icons/basic/news_logo11.svg",
-    "path-dark": "./icons/dark/d_news_logo11.svg",
+    "path_dark": "./icons/dark/d_news_logo11.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:22",
-    "main-title": "main title",
-    "main-img-src": "./img/11.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:22",
+    "main_title": "main title",
+    "main_img_src": "./img/11.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -217,18 +217,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "12",
     "name": "NEWSIS",
     "path": "./icons/basic/news_logo12.svg",
-    "path-dark": "./icons/dark/d_news_logo12.svg",
+    "path_dark": "./icons/dark/d_news_logo12.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/12.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/12.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -237,18 +237,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "13",
     "name": "동아일보",
     "path": "./icons/basic/news_logo13.svg",
-    "path-dark": "./icons/dark/d_news_logo13.svg",
+    "path_dark": "./icons/dark/d_news_logo13.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:43",
-    "main-title": "main title",
-    "main-img-src": "./img/13.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:43",
+    "main_title": "main title",
+    "main_img_src": "./img/13.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -257,18 +257,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "14",
     "name": "KBS",
     "path": "./icons/basic/news_logo14.svg",
-    "path-dark": "./icons/dark/d_news_logo14.svg",
+    "path_dark": "./icons/dark/d_news_logo14.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:49",
-    "main-title": "main title",
-    "main-img-src": "./img/14.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:49",
+    "main_title": "main title",
+    "main_img_src": "./img/14.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -277,18 +277,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "15",
     "name": "BLOTER",
     "path": "./icons/basic/news_logo15.svg",
-    "path-dark": "./icons/dark/d_news_logo15.svg",
+    "path_dark": "./icons/dark/d_news_logo15.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:47",
-    "main-title": "main title",
-    "main-img-src": "./img/15.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:47",
+    "main_title": "main title",
+    "main_img_src": "./img/15.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -297,18 +297,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "16",
     "name": "한국경제TV",
     "path": "./icons/basic/news_logo16.svg",
-    "path-dark": "./icons/dark/d_news_logo16.svg",
+    "path_dark": "./icons/dark/d_news_logo16.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:23",
-    "main-title": "main title",
-    "main-img-src": "./img/16.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:23",
+    "main_title": "main title",
+    "main_img_src": "./img/16.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -317,18 +317,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "17",
     "name": "전자신문",
     "path": "./icons/basic/news_logo17.svg",
-    "path-dark": "./icons/dark/d_news_logo17.svg",
+    "path_dark": "./icons/dark/d_news_logo17.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:37",
-    "main-title": "main title",
-    "main-img-src": "./img/17.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:37",
+    "main_title": "main title",
+    "main_img_src": "./img/17.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -337,18 +337,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "18",
     "name": "스포츠조선",
     "path": "./icons/basic/news_logo18.svg",
-    "path-dark": "./icons/dark/d_news_logo18.svg",
+    "path_dark": "./icons/dark/d_news_logo18.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:48",
-    "main-title": "main title",
-    "main-img-src": "./img/18.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:48",
+    "main_title": "main title",
+    "main_img_src": "./img/18.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -357,18 +357,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "19",
     "name": "서울신문",
     "path": "./icons/basic/news_logo19.svg",
-    "path-dark": "./icons/dark/d_news_logo19.svg",
+    "path_dark": "./icons/dark/d_news_logo19.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:11",
-    "main-title": "main title",
-    "main-img-src": "./img/19.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:11",
+    "main_title": "main title",
+    "main_img_src": "./img/19.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -377,18 +377,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "20",
     "name": "중앙일보",
     "path": "./icons/basic/news_logo20.svg",
-    "path-dark": "./icons/dark/d_news_logo20.svg",
+    "path_dark": "./icons/dark/d_news_logo20.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:10",
-    "main-title": "main title",
-    "main-img-src": "./img/20.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:10",
+    "main_title": "main title",
+    "main_img_src": "./img/20.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -397,18 +397,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "21",
     "name": "노컷뉴스",
     "path": "./icons/basic/news_logo21.svg",
-    "path-dark": "./icons/dark/d_news_logo21.svg",
+    "path_dark": "./icons/dark/d_news_logo21.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:57",
-    "main-title": "main title",
-    "main-img-src": "./img/21.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:57",
+    "main_title": "main title",
+    "main_img_src": "./img/21.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -417,18 +417,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "22",
     "name": "프레시안",
     "path": "./icons/basic/news_logo22.svg",
-    "path-dark": "./icons/dark/d_news_logo22.svg",
+    "path_dark": "./icons/dark/d_news_logo22.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:16",
-    "main-title": "main title",
-    "main-img-src": "./img/22.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:16",
+    "main_title": "main title",
+    "main_img_src": "./img/22.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -437,18 +437,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "23",
     "name": "sportalkorea",
     "path": "./icons/basic/news_logo23.svg",
-    "path-dark": "./icons/dark/d_news_logo23.svg",
+    "path_dark": "./icons/dark/d_news_logo23.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:18",
-    "main-title": "main title",
-    "main-img-src": "./img/23.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:18",
+    "main_title": "main title",
+    "main_img_src": "./img/23.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -457,18 +457,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "24",
     "name": "한국일보",
     "path": "./icons/basic/news_logo24.svg",
-    "path-dark": "./icons/dark/d_news_logo24.svg",
+    "path_dark": "./icons/dark/d_news_logo24.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:54",
-    "main-title": "main title",
-    "main-img-src": "./img/24.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:54",
+    "main_title": "main title",
+    "main_img_src": "./img/24.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -477,18 +477,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "25",
     "name": "여성경제신문",
     "path": "./icons/basic/news_logo25.svg",
-    "path-dark": "./icons/dark/d_news_logo25.svg",
+    "path_dark": "./icons/dark/d_news_logo25.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:31",
-    "main-title": "main title",
-    "main-img-src": "./img/25.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:31",
+    "main_title": "main title",
+    "main_img_src": "./img/25.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -497,18 +497,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "26",
     "name": "IT조선",
     "path": "./icons/basic/news_logo26.svg",
-    "path-dark": "./icons/dark/d_news_logo26.svg",
+    "path_dark": "./icons/dark/d_news_logo26.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:27",
-    "main-title": "main title",
-    "main-img-src": "./img/26.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:27",
+    "main_title": "main title",
+    "main_img_src": "./img/26.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -517,18 +517,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "27",
     "name": "철강금속신문",
     "path": "./icons/basic/news_logo27.svg",
-    "path-dark": "./icons/dark/d_news_logo27.svg",
+    "path_dark": "./icons/dark/d_news_logo27.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:30",
-    "main-title": "main title",
-    "main-img-src": "./img/27.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:30",
+    "main_title": "main title",
+    "main_img_src": "./img/27.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -537,18 +537,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "28",
     "name": "정신의학신문",
     "path": "./icons/basic/news_logo28.svg",
-    "path-dark": "./icons/dark/d_news_logo28.svg",
+    "path_dark": "./icons/dark/d_news_logo28.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:27",
-    "main-title": "main title",
-    "main-img-src": "./img/28.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:27",
+    "main_title": "main title",
+    "main_img_src": "./img/28.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -557,18 +557,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "29",
     "name": "뉴스포스트",
     "path": "./icons/basic/news_logo29.svg",
-    "path-dark": "./icons/dark/d_news_logo29.svg",
+    "path_dark": "./icons/dark/d_news_logo29.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:38",
-    "main-title": "main title",
-    "main-img-src": "./img/29.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:38",
+    "main_title": "main title",
+    "main_img_src": "./img/29.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -577,18 +577,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "30",
     "name": "씨네21",
     "path": "./icons/basic/news_logo30.svg",
-    "path-dark": "./icons/dark/d_news_logo30.svg",
+    "path_dark": "./icons/dark/d_news_logo30.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:27",
-    "main-title": "main title",
-    "main-img-src": "./img/30.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:27",
+    "main_title": "main title",
+    "main_img_src": "./img/30.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -597,18 +597,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "31",
     "name": "정책프리핑",
     "path": "./icons/basic/news_logo31.svg",
-    "path-dark": "./icons/dark/d_news_logo31.svg",
+    "path_dark": "./icons/dark/d_news_logo31.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:47",
-    "main-title": "main title",
-    "main-img-src": "./img/31.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:47",
+    "main_title": "main title",
+    "main_img_src": "./img/31.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -617,18 +617,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "32",
     "name": "텐아시아",
     "path": "./icons/basic/news_logo32.svg",
-    "path-dark": "./icons/dark/d_news_logo32.svg",
+    "path_dark": "./icons/dark/d_news_logo32.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:44",
-    "main-title": "main title",
-    "main-img-src": "./img/32.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:44",
+    "main_title": "main title",
+    "main_img_src": "./img/32.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -637,18 +637,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "33",
     "name": "MK스포츠",
     "path": "./icons/basic/news_logo33.svg",
-    "path-dark": "./icons/dark/d_news_logo33.svg",
+    "path_dark": "./icons/dark/d_news_logo33.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:40",
-    "main-title": "main title",
-    "main-img-src": "./img/33.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:40",
+    "main_title": "main title",
+    "main_img_src": "./img/33.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -657,18 +657,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "34",
     "name": "MONDE",
     "path": "./icons/basic/news_logo34.svg",
-    "path-dark": "./icons/dark/d_news_logo34.svg",
+    "path_dark": "./icons/dark/d_news_logo34.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/34.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/34.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -677,18 +677,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "35",
     "name": "BBS NEWS",
     "path": "./icons/basic/news_logo35.svg",
-    "path-dark": "./icons/dark/d_news_logo35.svg",
+    "path_dark": "./icons/dark/d_news_logo35.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:42",
-    "main-title": "main title",
-    "main-img-src": "./img/35.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:42",
+    "main_title": "main title",
+    "main_img_src": "./img/35.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -697,18 +697,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "36",
     "name": "티브이데일리",
     "path": "./icons/basic/news_logo36.svg",
-    "path-dark": "./icons/dark/d_news_logo36.svg",
+    "path_dark": "./icons/dark/d_news_logo36.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:23",
-    "main-title": "main title",
-    "main-img-src": "./img/36.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:23",
+    "main_title": "main title",
+    "main_img_src": "./img/36.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -717,18 +717,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "37",
     "name": "TV Report",
     "path": "./icons/basic/news_logo37.svg",
-    "path-dark": "./icons/dark/d_news_logo37.svg",
+    "path_dark": "./icons/dark/d_news_logo37.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:29",
-    "main-title": "main title",
-    "main-img-src": "./img/37.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:29",
+    "main_title": "main title",
+    "main_img_src": "./img/37.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -737,18 +737,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "38",
     "name": "Forbes",
     "path": "./icons/basic/news_logo38.svg",
-    "path-dark": "./icons/dark/d_news_logo38.svg",
+    "path_dark": "./icons/dark/d_news_logo38.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:36",
-    "main-title": "main title",
-    "main-img-src": "./img/38.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:36",
+    "main_title": "main title",
+    "main_img_src": "./img/38.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -757,18 +757,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "39",
     "name": "주간경향",
     "path": "./icons/basic/news_logo39.svg",
-    "path-dark": "./icons/dark/d_news_logo39.svg",
+    "path_dark": "./icons/dark/d_news_logo39.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:47",
-    "main-title": "main title",
-    "main-img-src": "./img/39.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:47",
+    "main_title": "main title",
+    "main_img_src": "./img/39.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -777,18 +777,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "40",
     "name": "비즈한국",
     "path": "./icons/basic/news_logo40.svg",
-    "path-dark": "./icons/dark/d_news_logo40.svg",
+    "path_dark": "./icons/dark/d_news_logo40.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/40.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/40.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -797,18 +797,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "41",
     "name": "metro",
     "path": "./icons/basic/news_logo41.svg",
-    "path-dark": "./icons/dark/d_news_logo41.svg",
+    "path_dark": "./icons/dark/d_news_logo41.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:49",
-    "main-title": "main title",
-    "main-img-src": "./img/41.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:49",
+    "main_title": "main title",
+    "main_img_src": "./img/41.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -817,18 +817,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "42",
     "name": "JTBC",
     "path": "./icons/basic/news_logo42.svg",
-    "path-dark": "./icons/dark/d_news_logo42.svg",
+    "path_dark": "./icons/dark/d_news_logo42.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:41",
-    "main-title": "main title",
-    "main-img-src": "./img/42.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:41",
+    "main_title": "main title",
+    "main_img_src": "./img/42.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -837,18 +837,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "43",
     "name": "조선Biz",
     "path": "./icons/basic/news_logo43.svg",
-    "path-dark": "./icons/dark/d_news_logo43.svg",
+    "path_dark": "./icons/dark/d_news_logo43.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:35",
-    "main-title": "main title",
-    "main-img-src": "./img/43.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:35",
+    "main_title": "main title",
+    "main_img_src": "./img/43.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -857,18 +857,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "44",
     "name": "한겨레",
     "path": "./icons/basic/news_logo44.svg",
-    "path-dark": "./icons/dark/d_news_logo44.svg",
+    "path_dark": "./icons/dark/d_news_logo44.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:55",
-    "main-title": "main title",
-    "main-img-src": "./img/44.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:55",
+    "main_title": "main title",
+    "main_img_src": "./img/44.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -877,18 +877,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "45",
     "name": "연합뉴스TV",
     "path": "./icons/basic/news_logo45.svg",
-    "path-dark": "./icons/dark/d_news_logo45.svg",
+    "path_dark": "./icons/dark/d_news_logo45.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:11",
-    "main-title": "main title",
-    "main-img-src": "./img/45.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:11",
+    "main_title": "main title",
+    "main_img_src": "./img/45.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -897,18 +897,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "46",
     "name": "미디어오늘",
     "path": "./icons/basic/news_logo46.svg",
-    "path-dark": "./icons/dark/d_news_logo46.svg",
+    "path_dark": "./icons/dark/d_news_logo46.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:43",
-    "main-title": "main title",
-    "main-img-src": "./img/46.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:43",
+    "main_title": "main title",
+    "main_img_src": "./img/46.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -917,18 +917,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "47",
     "name": "디지털타임스",
     "path": "./icons/basic/news_logo47.svg",
-    "path-dark": "./icons/dark/d_news_logo47.svg",
+    "path_dark": "./icons/dark/d_news_logo47.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:51",
-    "main-title": "main title",
-    "main-img-src": "./img/47.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:51",
+    "main_title": "main title",
+    "main_img_src": "./img/47.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -937,18 +937,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "48",
     "name": "OSEN",
     "path": "./icons/basic/news_logo48.svg",
-    "path-dark": "./icons/dark/d_news_logo48.svg",
+    "path_dark": "./icons/dark/d_news_logo48.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:12",
-    "main-title": "main title",
-    "main-img-src": "./img/48.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:12",
+    "main_title": "main title",
+    "main_img_src": "./img/48.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -957,18 +957,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "49",
     "name": "소년한국일보",
     "path": "./icons/basic/news_logo49.svg",
-    "path-dark": "./icons/dark/d_news_logo49.svg",
+    "path_dark": "./icons/dark/d_news_logo49.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:37",
-    "main-title": "main title",
-    "main-img-src": "./img/49.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:37",
+    "main_title": "main title",
+    "main_img_src": "./img/49.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -977,18 +977,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "50",
     "name": "OBS",
     "path": "./icons/basic/news_logo50.svg",
-    "path-dark": "./icons/dark/d_news_logo50.svg",
+    "path_dark": "./icons/dark/d_news_logo50.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:28",
-    "main-title": "main title",
-    "main-img-src": "./img/50.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:28",
+    "main_title": "main title",
+    "main_img_src": "./img/50.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -997,18 +997,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "51",
     "name": "맥스무비",
     "path": "./icons/basic/news_logo51.svg",
-    "path-dark": "./icons/dark/d_news_logo51.svg",
+    "path_dark": "./icons/dark/d_news_logo51.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/51.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/51.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1017,18 +1017,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "52",
     "name": "엑스포츠뉴스",
     "path": "./icons/basic/news_logo52.svg",
-    "path-dark": "./icons/dark/d_news_logo52.svg",
+    "path_dark": "./icons/dark/d_news_logo52.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:19",
-    "main-title": "main title",
-    "main-img-src": "./img/52.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:19",
+    "main_title": "main title",
+    "main_img_src": "./img/52.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1037,18 +1037,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "53",
     "name": "서울파이낸스",
     "path": "./icons/basic/news_logo53.svg",
-    "path-dark": "./icons/dark/d_news_logo53.svg",
+    "path_dark": "./icons/dark/d_news_logo53.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:21",
-    "main-title": "main title",
-    "main-img-src": "./img/53.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:21",
+    "main_title": "main title",
+    "main_img_src": "./img/53.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1057,18 +1057,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "54",
     "name": "한국대학신문",
     "path": "./icons/basic/news_logo54.svg",
-    "path-dark": "./icons/dark/d_news_logo54.svg",
+    "path_dark": "./icons/dark/d_news_logo54.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:23",
-    "main-title": "main title",
-    "main-img-src": "./img/54.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:23",
+    "main_title": "main title",
+    "main_img_src": "./img/54.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1077,18 +1077,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "55",
     "name": "datanews",
     "path": "./icons/basic/news_logo55.svg",
-    "path-dark": "./icons/dark/d_news_logo55.svg",
+    "path_dark": "./icons/dark/d_news_logo55.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:38",
-    "main-title": "main title",
-    "main-img-src": "./img/55.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:38",
+    "main_title": "main title",
+    "main_img_src": "./img/55.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1097,18 +1097,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "56",
     "name": "DigitalToday",
     "path": "./icons/basic/news_logo56.svg",
-    "path-dark": "./icons/dark/d_news_logo56.svg",
+    "path_dark": "./icons/dark/d_news_logo56.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:34",
-    "main-title": "main title",
-    "main-img-src": "./img/56.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:34",
+    "main_title": "main title",
+    "main_img_src": "./img/56.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1117,18 +1117,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "57",
     "name": "시사위크",
     "path": "./icons/basic/news_logo57.svg",
-    "path-dark": "./icons/dark/d_news_logo57.svg",
+    "path_dark": "./icons/dark/d_news_logo57.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:21",
-    "main-title": "main title",
-    "main-img-src": "./img/57.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:21",
+    "main_title": "main title",
+    "main_img_src": "./img/57.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1137,18 +1137,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "58",
     "name": "YTN",
     "path": "./icons/basic/news_logo58.svg",
-    "path-dark": "./icons/dark/d_news_logo58.svg",
+    "path_dark": "./icons/dark/d_news_logo58.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:54",
-    "main-title": "main title",
-    "main-img-src": "./img/58.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:54",
+    "main_title": "main title",
+    "main_img_src": "./img/58.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1157,18 +1157,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "59",
     "name": "MBN",
     "path": "./icons/basic/news_logo59.svg",
-    "path-dark": "./icons/dark/d_news_logo59.svg",
+    "path_dark": "./icons/dark/d_news_logo59.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:45",
-    "main-title": "main title",
-    "main-img-src": "./img/59.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:45",
+    "main_title": "main title",
+    "main_img_src": "./img/59.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1177,18 +1177,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "60",
     "name": "매일경제",
     "path": "./icons/basic/news_logo60.svg",
-    "path-dark": "./icons/dark/d_news_logo60.svg",
+    "path_dark": "./icons/dark/d_news_logo60.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:14",
-    "main-title": "main title",
-    "main-img-src": "./img/60.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:14",
+    "main_title": "main title",
+    "main_img_src": "./img/60.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1197,18 +1197,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "61",
     "name": "오마이뉴스",
     "path": "./icons/basic/news_logo61.svg",
-    "path-dark": "./icons/dark/d_news_logo61.svg",
+    "path_dark": "./icons/dark/d_news_logo61.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:25",
-    "main-title": "main title",
-    "main-img-src": "./img/61.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:25",
+    "main_title": "main title",
+    "main_img_src": "./img/61.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1217,18 +1217,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "62",
     "name": "SBS",
     "path": "./icons/basic/news_logo62.svg",
-    "path-dark": "./icons/dark/d_news_logo62.svg",
+    "path_dark": "./icons/dark/d_news_logo62.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:30",
-    "main-title": "main title",
-    "main-img-src": "./img/62.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:30",
+    "main_title": "main title",
+    "main_img_src": "./img/62.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1237,18 +1237,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "63",
     "name": "머니투데이",
     "path": "./icons/basic/news_logo63.svg",
-    "path-dark": "./icons/dark/d_news_logo63.svg",
+    "path_dark": "./icons/dark/d_news_logo63.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:12",
-    "main-title": "main title",
-    "main-img-src": "./img/63.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:12",
+    "main_title": "main title",
+    "main_img_src": "./img/63.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1257,18 +1257,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "64",
     "name": "마이데일리",
     "path": "./icons/basic/news_logo64.svg",
-    "path-dark": "./icons/dark/d_news_logo64.svg",
+    "path_dark": "./icons/dark/d_news_logo64.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:56",
-    "main-title": "main title",
-    "main-img-src": "./img/64.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:56",
+    "main_title": "main title",
+    "main_img_src": "./img/64.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1277,18 +1277,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "65",
     "name": "ZDNET Korea",
     "path": "./icons/basic/news_logo65.svg",
-    "path-dark": "./icons/dark/d_news_logo65.svg",
+    "path_dark": "./icons/dark/d_news_logo65.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:45",
-    "main-title": "main title",
-    "main-img-src": "./img/65.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:45",
+    "main_title": "main title",
+    "main_img_src": "./img/65.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1297,18 +1297,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "66",
     "name": "경향신문",
     "path": "./icons/basic/news_logo66.svg",
-    "path-dark": "./icons/dark/d_news_logo66.svg",
+    "path_dark": "./icons/dark/d_news_logo66.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:11",
-    "main-title": "main title",
-    "main-img-src": "./img/66.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:11",
+    "main_title": "main title",
+    "main_img_src": "./img/66.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1317,18 +1317,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "67",
     "name": "일간스포츠",
     "path": "./icons/basic/news_logo67.svg",
-    "path-dark": "./icons/dark/d_news_logo67.svg",
+    "path_dark": "./icons/dark/d_news_logo67.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/67.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/67.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1337,18 +1337,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "68",
     "name": "국민일보",
     "path": "./icons/basic/news_logo68.svg",
-    "path-dark": "./icons/dark/d_news_logo68.svg",
+    "path_dark": "./icons/dark/d_news_logo68.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:41",
-    "main-title": "main title",
-    "main-img-src": "./img/68.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:41",
+    "main_title": "main title",
+    "main_img_src": "./img/68.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1357,18 +1357,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "69",
     "name": "뉴데일리",
     "path": "./icons/basic/news_logo69.svg",
-    "path-dark": "./icons/dark/d_news_logo69.svg",
+    "path_dark": "./icons/dark/d_news_logo69.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:30",
-    "main-title": "main title",
-    "main-img-src": "./img/69.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:30",
+    "main_title": "main title",
+    "main_img_src": "./img/69.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1377,18 +1377,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "70",
     "name": "뉴스타파",
     "path": "./icons/basic/news_logo70.svg",
-    "path-dark": "./icons/dark/d_news_logo70.svg",
+    "path_dark": "./icons/dark/d_news_logo70.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:22",
-    "main-title": "main title",
-    "main-img-src": "./img/70.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:22",
+    "main_title": "main title",
+    "main_img_src": "./img/70.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1397,18 +1397,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "71",
     "name": "MBC",
     "path": "./icons/basic/news_logo71.svg",
-    "path-dark": "./icons/dark/d_news_logo71.svg",
+    "path_dark": "./icons/dark/d_news_logo71.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:54",
-    "main-title": "main title",
-    "main-img-src": "./img/71.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:54",
+    "main_title": "main title",
+    "main_img_src": "./img/71.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1417,18 +1417,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "72",
     "name": "한국헤럴드",
     "path": "./icons/basic/news_logo72.svg",
-    "path-dark": "./icons/dark/d_news_logo72.svg",
+    "path_dark": "./icons/dark/d_news_logo72.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:34",
-    "main-title": "main title",
-    "main-img-src": "./img/72.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:34",
+    "main_title": "main title",
+    "main_img_src": "./img/72.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1437,18 +1437,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "73",
     "name": "KNN",
     "path": "./icons/basic/news_logo73.svg",
-    "path-dark": "./icons/dark/d_news_logo73.svg",
+    "path_dark": "./icons/dark/d_news_logo73.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:17",
-    "main-title": "main title",
-    "main-img-src": "./img/73.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:17",
+    "main_title": "main title",
+    "main_img_src": "./img/73.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1457,18 +1457,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "74",
     "name": "CEO스코어데일리",
     "path": "./icons/basic/news_logo74.svg",
-    "path-dark": "./icons/dark/d_news_logo74.svg",
+    "path_dark": "./icons/dark/d_news_logo74.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:13",
-    "main-title": "main title",
-    "main-img-src": "./img/74.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:13",
+    "main_title": "main title",
+    "main_img_src": "./img/74.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1477,18 +1477,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "75",
     "name": "BUSINESS POST",
     "path": "./icons/basic/news_logo75.svg",
-    "path-dark": "./icons/dark/d_news_logo75.svg",
+    "path_dark": "./icons/dark/d_news_logo75.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:47",
-    "main-title": "main title",
-    "main-img-src": "./img/75.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:47",
+    "main_title": "main title",
+    "main_img_src": "./img/75.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1497,18 +1497,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "76",
     "name": "에너지경제",
     "path": "./icons/basic/news_logo76.svg",
-    "path-dark": "./icons/dark/d_news_logo76.svg",
+    "path_dark": "./icons/dark/d_news_logo76.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/76.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/76.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1517,18 +1517,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "77",
     "name": "조이뉴스24",
     "path": "./icons/basic/news_logo77.svg",
-    "path-dark": "./icons/dark/d_news_logo77.svg",
+    "path_dark": "./icons/dark/d_news_logo77.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:18",
-    "main-title": "main title",
-    "main-img-src": "./img/77.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:18",
+    "main_title": "main title",
+    "main_img_src": "./img/77.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1537,18 +1537,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "78",
     "name": "한국농어촌방송",
     "path": "./icons/basic/news_logo78.svg",
-    "path-dark": "./icons/dark/d_news_logo78.svg",
+    "path_dark": "./icons/dark/d_news_logo78.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:42",
-    "main-title": "main title",
-    "main-img-src": "./img/78.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:42",
+    "main_title": "main title",
+    "main_img_src": "./img/78.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1557,18 +1557,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "79",
     "name": "시사저널e",
     "path": "./icons/basic/news_logo79.svg",
-    "path-dark": "./icons/dark/d_news_logo79.svg",
+    "path_dark": "./icons/dark/d_news_logo79.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:45",
-    "main-title": "main title",
-    "main-img-src": "./img/79.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:45",
+    "main_title": "main title",
+    "main_img_src": "./img/79.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1577,18 +1577,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "80",
     "name": "법률방송뉴스",
     "path": "./icons/basic/news_logo80.svg",
-    "path-dark": "./icons/dark/d_news_logo80.svg",
+    "path_dark": "./icons/dark/d_news_logo80.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:41",
-    "main-title": "main title",
-    "main-img-src": "./img/80.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:41",
+    "main_title": "main title",
+    "main_img_src": "./img/80.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1597,18 +1597,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "81",
     "name": "인사이트",
     "path": "./icons/basic/news_logo81.svg",
-    "path-dark": "./icons/dark/d_news_logo81.svg",
+    "path_dark": "./icons/dark/d_news_logo81.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:31",
-    "main-title": "main title",
-    "main-img-src": "./img/81.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:31",
+    "main_title": "main title",
+    "main_img_src": "./img/81.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1617,18 +1617,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "82",
     "name": "한국중앙데일리",
     "path": "./icons/basic/news_logo82.svg",
-    "path-dark": "./icons/dark/d_news_logo82.svg",
+    "path_dark": "./icons/dark/d_news_logo82.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:48",
-    "main-title": "main title",
-    "main-img-src": "./img/82.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:48",
+    "main_title": "main title",
+    "main_img_src": "./img/82.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1637,18 +1637,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "83",
     "name": "KBS WORLD",
     "path": "./icons/basic/news_logo83.svg",
-    "path-dark": "./icons/dark/d_news_logo83.svg",
+    "path_dark": "./icons/dark/d_news_logo83.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:56",
-    "main-title": "main title",
-    "main-img-src": "./img/83.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:56",
+    "main_title": "main title",
+    "main_img_src": "./img/83.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1657,18 +1657,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "84",
     "name": "석간문화일보",
     "path": "./icons/basic/news_logo84.svg",
-    "path-dark": "./icons/dark/d_news_logo84.svg",
+    "path_dark": "./icons/dark/d_news_logo84.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:45",
-    "main-title": "main title",
-    "main-img-src": "./img/84.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:45",
+    "main_title": "main title",
+    "main_img_src": "./img/84.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1677,18 +1677,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "85",
     "name": "스포츠동아",
     "path": "./icons/basic/news_logo85.svg",
-    "path-dark": "./icons/dark/d_news_logo85.svg",
+    "path_dark": "./icons/dark/d_news_logo85.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:53",
-    "main-title": "main title",
-    "main-img-src": "./img/85.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:53",
+    "main_title": "main title",
+    "main_img_src": "./img/85.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1697,18 +1697,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "86",
     "name": "소포츠서울",
     "path": "./icons/basic/news_logo86.svg",
-    "path-dark": "./icons/dark/d_news_logo86.svg",
+    "path_dark": "./icons/dark/d_news_logo86.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:11",
-    "main-title": "main title",
-    "main-img-src": "./img/86.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:11",
+    "main_title": "main title",
+    "main_img_src": "./img/86.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1717,18 +1717,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "87",
     "name": "파이낸셜뉴스",
     "path": "./icons/basic/news_logo87.svg",
-    "path-dark": "./icons/dark/d_news_logo87.svg",
+    "path_dark": "./icons/dark/d_news_logo87.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:20",
-    "main-title": "main title",
-    "main-img-src": "./img/87.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:20",
+    "main_title": "main title",
+    "main_img_src": "./img/87.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1737,18 +1737,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "88",
     "name": "아이뉴스24",
     "path": "./icons/basic/news_logo88.svg",
-    "path-dark": "./icons/dark/d_news_logo88.svg",
+    "path_dark": "./icons/dark/d_news_logo88.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:29",
-    "main-title": "main title",
-    "main-img-src": "./img/88.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:29",
+    "main_title": "main title",
+    "main_img_src": "./img/88.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1757,18 +1757,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "89",
     "name": "조선일보",
     "path": "./icons/basic/news_logo89.svg",
-    "path-dark": "./icons/dark/d_news_logo89.svg",
+    "path_dark": "./icons/dark/d_news_logo89.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:46",
-    "main-title": "main title",
-    "main-img-src": "./img/89.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:46",
+    "main_title": "main title",
+    "main_img_src": "./img/89.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1777,18 +1777,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "90",
     "name": "이데일리",
     "path": "./icons/basic/news_logo90.svg",
-    "path-dark": "./icons/dark/d_news_logo90.svg",
+    "path_dark": "./icons/dark/d_news_logo90.svg",
     "category": "매거진/전문지",
-    "edit-date": "2023.07.10. 18:13",
-    "main-title": "main title",
-    "main-img-src": "./img/90.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:13",
+    "main_title": "main title",
+    "main_img_src": "./img/90.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1797,18 +1797,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "91",
     "name": "아시아경제",
     "path": "./icons/basic/news_logo91.svg",
-    "path-dark": "./icons/dark/d_news_logo91.svg",
+    "path_dark": "./icons/dark/d_news_logo91.svg",
     "category": "지역",
-    "edit-date": "2023.07.10. 18:29",
-    "main-title": "main title",
-    "main-img-src": "./img/91.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:29",
+    "main_title": "main title",
+    "main_img_src": "./img/91.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1817,18 +1817,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "92",
     "name": "세계일보",
     "path": "./icons/basic/news_logo92.svg",
-    "path-dark": "./icons/dark/d_news_logo92.svg",
+    "path_dark": "./icons/dark/d_news_logo92.svg",
     "category": "종합/경제",
-    "edit-date": "2023.07.10. 18:23",
-    "main-title": "main title",
-    "main-img-src": "./img/92.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:23",
+    "main_title": "main title",
+    "main_img_src": "./img/92.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1837,18 +1837,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "93",
     "name": "SBS Biz",
     "path": "./icons/basic/news_logo93.svg",
-    "path-dark": "./icons/dark/d_news_logo93.svg",
+    "path_dark": "./icons/dark/d_news_logo93.svg",
     "category": "방송/통신",
-    "edit-date": "2023.07.10. 18:52",
-    "main-title": "main title",
-    "main-img-src": "./img/93.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:52",
+    "main_title": "main title",
+    "main_img_src": "./img/93.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1857,18 +1857,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "94",
     "name": "헤럴드경제",
     "path": "./icons/basic/news_logo94.svg",
-    "path-dark": "./icons/dark/d_news_logo94.svg",
+    "path_dark": "./icons/dark/d_news_logo94.svg",
     "category": "IT",
-    "edit-date": "2023.07.10. 18:58",
-    "main-title": "main title",
-    "main-img-src": "./img/94.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:58",
+    "main_title": "main title",
+    "main_img_src": "./img/94.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1877,18 +1877,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "95",
     "name": "데일리안",
     "path": "./icons/basic/news_logo95.svg",
-    "path-dark": "./icons/dark/d_news_logo95.svg",
+    "path_dark": "./icons/dark/d_news_logo95.svg",
     "category": "영자지",
-    "edit-date": "2023.07.10. 18:20",
-    "main-title": "main title",
-    "main-img-src": "./img/95.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:20",
+    "main_title": "main title",
+    "main_img_src": "./img/95.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1897,18 +1897,18 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   },
   {
     "id": "96",
     "name": "서울경제",
     "path": "./icons/basic/news_logo96.svg",
-    "path-dark": "./icons/dark/d_news_logo96.svg",
+    "path_dark": "./icons/dark/d_news_logo96.svg",
     "category": "스포츠/연예",
-    "edit-date": "2023.07.10. 18:38",
-    "main-title": "main title",
-    "main-img-src": "./img/96.png",
-    "sub-title": [
+    "edit_date": "2023.07.10. 18:38",
+    "main_title": "main title",
+    "main_img_src": "./img/96.png",
+    "sub_title": [
       "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
       "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
       "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -1917,6 +1917,6 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is-subscribe": "false"
+    "is_subscribe": "false"
   }
 ]
