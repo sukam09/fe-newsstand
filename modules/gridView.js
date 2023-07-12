@@ -1,23 +1,40 @@
+import { pressGrid } from "./components/pressGrid/pressGrid.js";
+import { pressItem } from "./components/pressGrid/pressItem/pressItem.js";
+
 export let gridPage = 0;
 const NUM_IN_A_GRID = 24;
 const MAX_PAGE = 4;
 
 export function initGridView(pressDataArr) {
+  // create grid
   const $gridContainer = document.getElementById("grid_container");
-  const gridButton = document.getElementById("grid_button");
-  for (let i = 0; i < MAX_PAGE; i++) {
-    const pressGrid = document.createElement("ul");
-    pressGrid.id = `grid_page_${i}`;
-    pressGrid.className = "press_grid";
-    pressGrid.style.display = "none";
 
+  for (let i = 0; i < MAX_PAGE; i++) {
+    let pressGridItems = "";
     for (let j = 0; j < NUM_IN_A_GRID; j++) {
       const idx = i * NUM_IN_A_GRID + j;
-      const newItem = createGridItem(pressDataArr[idx]);
-      pressGrid.appendChild(newItem);
+      pressGridItems += pressItem(pressDataArr[idx]);
     }
-    $gridContainer.appendChild(pressGrid);
+    const pressGridT = pressGrid(i, pressGridItems);
+    $gridContainer.innerHTML += pressGridT;
   }
+
+  // addEvent
+  const pressItems = $gridContainer.getElementsByClassName("grid_item");
+  for (let i = 0; i < pressItems.length; i++) {
+    pressItems[i].addEventListener("mouseover", (e) => {
+      e.currentTarget.getElementsByClassName(
+        "sub_button_container"
+      )[0].style.display = "flex";
+    });
+    pressItems[i].addEventListener("mouseout", (e) => {
+      e.currentTarget.getElementsByClassName(
+        "sub_button_container"
+      )[0].style.display = "none";
+    });
+  }
+
+  const gridButton = document.getElementById("grid_button");
   gridButton.className = "clicked";
 }
 
@@ -36,67 +53,6 @@ export function createSubButtonContainer() {
   subButtonContainer.className = "sub_button_container";
 
   return subButtonContainer;
-}
-
-// 구독버튼 생성
-export function createSubButton(pressDataItem) {
-  const subButtonContainer = createSubButtonContainer();
-  const subButton = document.createElement("button");
-  subButton.className = "sub_button";
-  subButton.innerHTML = "+ 구독하기";
-
-  subButton.addEventListener("click", () => {
-    pressDataItem.isSub = true;
-    toggleSubButton(pressDataItem, subButtonContainer);
-  });
-
-  subButtonContainer.appendChild(subButton);
-  return subButtonContainer;
-}
-
-// 구독 해지 버튼 생성
-export function createUnSubButton(pressDataItem) {
-  const unSubButtonContainer = createSubButtonContainer();
-  const unSubButton = document.createElement("button");
-  unSubButton.className = "unsub_button";
-  unSubButton.innerHTML = "✕ 해지하기";
-
-  unSubButton.addEventListener("click", () => {
-    pressDataItem.isSub = false;
-    toggleUnSubButton(pressDataItem, unSubButtonContainer);
-  });
-
-  unSubButtonContainer.appendChild(unSubButton);
-
-  return unSubButtonContainer;
-}
-
-// 그리드 아이템 리스트 태그 생성
-export function createGridItem(pressDataItem) {
-  const newImg = document.createElement("img");
-  const li = document.createElement("li");
-  const subButtonContainer = createSubButton(pressDataItem);
-  const unSubButtonContainer = createUnSubButton(pressDataItem);
-
-  // 이미지 로드
-  newImg.src = pressDataItem.src;
-  newImg.id = pressDataItem.id;
-  li.style.position = "relative";
-
-  // li 생성
-  li.className = "grid_item";
-  li.append(subButtonContainer);
-  li.append(unSubButtonContainer);
-  li.addEventListener("mouseover", () => {
-    toggleSubButton(pressDataItem, subButtonContainer);
-    toggleUnSubButton(pressDataItem, unSubButtonContainer);
-  });
-  li.addEventListener("mouseout", () =>
-    hiddenSubButtons(subButtonContainer, unSubButtonContainer)
-  );
-
-  li.appendChild(newImg);
-  return li;
 }
 
 // 구독버튼 토글

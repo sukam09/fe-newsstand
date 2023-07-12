@@ -1,6 +1,6 @@
-const http = require("http");
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
+const http = require("http");
 
 const PORT = 8080;
 
