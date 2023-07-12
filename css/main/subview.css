@@ -13,10 +13,9 @@
   background-color: #f5f7f9;
   flex: 0.495;
   border: 1px solid #d2dae0;
-  height: 16px;
+  height: 32px;
+  width: 45%;
   padding: 16px;
-  font-size: 0.85em;
-
   overflow: hidden;
 }
 .main-—corp-name {
@@ -24,15 +23,16 @@
   font-weight: bold;
   width: 20%;
 }
+.main—-news-area {
+  height: 16px;
+  width: 80%;
+  overflow: hidden;
+}
 .main—-news-box {
   position: relative;
-  height: 13px;
-  width: 100%;
-  margin-left: 3%;
 
-  font-weight: 500;
+  width: 80%;
   color: var(--text-gray-light);
-
   overflow: hidden;
 }
 /* .first-box {
@@ -41,10 +41,11 @@
   width: 100%;
 } */
 .main—-news-subview {
-  height: 13px;
+  height: 16px;
   width: 100%;
 
   display: block;
+  align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -56,11 +57,20 @@
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
 }
+/* .animate-subview-auto-rolling:hover {
+  text-decoration-line: underline;
+  animation-play-state: paused;
+} */
+.animate-subview-auto-rolling:hover {
+  animation-play-state: paused;
+  text-decoration-line: underline;
+}
+
 @keyframes auto-rolling {
   0% {
     transform: none;
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-54%);
   }
 }
