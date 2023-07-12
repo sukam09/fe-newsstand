@@ -57,18 +57,9 @@ const initArticle = () => {
   fillArticles(currentCategory, currentPage);
 };
 
-const updateButtonUI = (currentPage, maxPage) => {
-  if (currentPage === 0) {
-    $prevPageButton.classList.add("hidden");
-  } else {
-    $prevPageButton.classList.remove("hidden");
-  }
-
-  if (currentPage === maxPage) {
-    $nextPageButton.classList.add("hidden");
-  } else {
-    $nextPageButton.classList.remove("hidden");
-  }
+const updateButtonUI = () => {
+  $prevPageButton.classList.remove("hidden");
+  $nextPageButton.classList.remove("hidden");
 };
 
 export const renderListView = () => {
@@ -80,6 +71,6 @@ export const renderListView = () => {
 
     fillArticles(currentCategory, currentPage);
 
-    updateButtonUI(currentPage, 3);
+    updateButtonUI();
   });
 };
