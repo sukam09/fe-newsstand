@@ -25,9 +25,8 @@ function rollingCallback(target) {
   next.classList.remove("next");
   next.classList.add("current");
 }
+
 document.addEventListener("DOMContentLoaded", () => {
-  clearInterval(leftAutoRollingInterval);
-  clearInterval(rightAutoRollingInterval);
   leftAutoRollingInterval = setInterval(
     () => rollingCallback("recent-left"),
     5000
@@ -40,78 +39,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 });
 
-window.addEventListener("focus", () => {
-  clearInterval(leftAutoRollingInterval);
-  clearInterval(rightAutoRollingInterval);
-  leftAutoRollingInterval = setInterval(
-    () => rollingCallback("recent-left"),
-    5000
-  );
-  setTimeout(() => {
-    rightAutoRollingInterval = setInterval(
-      () => rollingCallback("recent-right"),
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === "hidden") {
+    clearInterval(leftAutoRollingInterval);
+    clearInterval(rightAutoRollingInterval);
+  } else {
+    clearInterval(leftAutoRollingInterval);
+    clearInterval(rightAutoRollingInterval);
+    leftAutoRollingInterval = setInterval(
+      () => rollingCallback("recent-left"),
       5000
     );
-  }, 1000);
+    setTimeout(() => {
+      rightAutoRollingInterval = setInterval(
+        () => rollingCallback("recent-right"),
+        5000
+      );
+    }, 1000);
+  }
 });
 
-window.addEventListener("blur", function () {
-  clearInterval(leftAutoRollingInterval);
-  clearInterval(rightAutoRollingInterval);
+document.addEventListener("mouseover", (e) => {
+  const target = e.target;
+  if (target.matches("#recent-left .wrap a")) {
+    clearInterval(leftAutoRollingInterval);
+  } else if (target.matches("#recent-right .wrap a")) {
+    clearInterval(rightAutoRollingInterval);
+  }
 });
 
-const recent_left = document.querySelector("#recent-left");
-const recent_right = document.querySelector("#recent-right");
-
-recent_left.addEventListener("mouseover", () => {
-  console.log("l");
-  clearInterval(leftAutoRollingInterval);
+document.addEventListener("mouseout", (e) => {
+  const target = e.target;
+  if (target.matches("#recent-left .wrap a")) {
+    leftAutoRollingInterval = setInterval(
+      () => rollingCallback("recent-left"),
+      5000
+    );
+  } else if (target.matches("#recent-right .wrap a")) {
+    setTimeout(() => {
+      rightAutoRollingInterval = setInterval(
+        () => rollingCallback("recent-right"),
+        5000
+      );
+    }, 1000);
+  }
 });
-
-recent_left.addEventListener("mouseout", () => {
-  leftAutoRollingInterval = setInterval(
-    () => rollingCallback("recent-left"),
-    5000
-  );
-});
-
-recent_right.addEventListener("mouseover", () => {
-  clearInterval(rightAutoRollingInterval);
-});
-
-recent_right.addEventListener("mouseout", () => {
-  rightAutoRollingInterval = setInterval(
-    () => rollingCallback("recent-right"),
-    5000
-  );
-});
-// document.addEventListener("mouseover", (e) => {
-//   const target = e.target;
-//   //   console.log(target);
-//   if (target.matches("#recent-left li")) console.log(target);
-//   //   switch (target) {
-//   //     case "recent-left":
-//   //       clearInterval(leftAutoRollingInterval);
-//   //       break;
-//   //     case "recent-right":
-//   //       clearInterval(rightAutoRollingInterval);
-//   //       break;
-//   //     default:
-//   //       break;
-//   //   }
-// });
-
-// document.addEventListener("mouseout", (e) => {
-//   //   const target = e.target.id;
-//   //   console.log(target);
-//   //   switch (target) {
-//   //     case "recent-left":
-//   //       leftAutoRollingInterval;
-//   //       break;
-//   //     case "recent-right":
-//   //       rightAutoRollingInterval;
-//   //       break;
-//   //     default:
-//   //       break;
-//   //   }
-// });

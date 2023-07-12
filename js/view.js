@@ -79,6 +79,8 @@ function handleClick(e) {
   switch (target) {
     case "grid-btn":
     case "list-btn":
+    case "grid-view-btn":
+    case "list-view-btn":
       changeView(target);
       break;
     case "left":
