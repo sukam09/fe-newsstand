@@ -3,8 +3,11 @@ export default class LatestNews {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "latest-main-news";
 
+    this.leftInterval = 0;
+    this.rightInterval = 0;
+
     this.LATEST_NEWS_COUNT = 6;
-    this.ROLLING_SPEED = 5000;
+    this.ROLLING_SPEED = 3000;
 
     this.render();
     return this.$wrapper;
@@ -30,7 +33,9 @@ export default class LatestNews {
     }
     $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 1`));
 
-    this.handleRolling($wrapper);
+    location === "left"
+      ? this.handleLeftRolling($wrapper, 1)
+      : this.handleRightRolling($wrapper, 1);
 
     $hiddenCompoent.appendChild($wrapper);
     $container.appendChild($hiddenCompoent);
@@ -51,23 +56,65 @@ export default class LatestNews {
     $component.appendChild($newsName);
     $component.appendChild($newsContent);
 
+    $component.addEventListener("mouseenter", (e) =>
+      this.handleRollingPause(e)
+    );
+    $component.addEventListener("mouseleave", (e) =>
+      this.handleRollingRestart(e)
+    );
+
     return $component;
   }
 
-  handleRolling(wrapper) {
-    let order = 1;
-    let interval;
-
-    interval = setInterval(() => {
+  handleLeftRolling(wrapper, order) {
+    this.leftInterval = setInterval(() => {
       if (order >= this.LATEST_NEWS_COUNT) {
-        wrapper.classList.remove("play" + (order - 1));
+        wrapper.classList.remove("left-play" + (order - 1));
         order = 0;
-        clearTimeout(interval);
-        this.handleRolling(wrapper);
       }
-      wrapper.classList.add("play" + order);
-      wrapper.classList.remove("play" + (order - 1));
+      wrapper.classList.add("left-play" + order);
+      wrapper.classList.remove("left-play" + (order - 1));
       order += 1;
     }, this.ROLLING_SPEED);
+  }
+
+  handleRightRolling(wrapper, order) {
+    this.rightInterval = setInterval(() => {
+      if (order >= this.LATEST_NEWS_COUNT) {
+        wrapper.classList.remove("right-play" + (order - 1));
+        order = 0;
+      }
+      wrapper.classList.add("right-play" + order);
+      wrapper.classList.remove("right-play" + (order - 1));
+      order += 1;
+    }, this.ROLLING_SPEED);
+  }
+
+  handleRollingPause(event) {
+    const $rollingContent = event.target;
+    const $rollingDiv = event.target.parentNode;
+    const classesOfRollingDiv = $rollingDiv.className;
+    $rollingContent.style.textDecoration = "underline";
+    // hover 시 멈춤 구현
+    if (classesOfRollingDiv.includes("right")) {
+      clearInterval(this.rightInterval);
+    } else {
+      clearInterval(this.leftInterval);
+    }
+  }
+
+  handleRollingRestart(event) {
+    const $rollingContent = event.target;
+    const $rollingDiv = event.target.parentNode;
+    const classesOfRollingDiv = $rollingDiv.className;
+    $rollingContent.style.textDecoration = "none";
+    // 롤링 재실행
+    const playClass = classesOfRollingDiv.split(" ")[2];
+    const playOrder = playClass ? +playClass[playClass.length - 1] + 1 : 1;
+    if (classesOfRollingDiv.includes("right")) {
+      this.handleRightRolling($rollingDiv, playOrder);
+    } else {
+      this.handleLeftRolling($rollingDiv, playOrder);
+    }
   }
 }
