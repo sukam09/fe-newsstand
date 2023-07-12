@@ -1,3 +1,5 @@
+@import "./color.css";
+
 .latest-main-news {
   width: 930px;
   display: flex;
@@ -8,8 +10,8 @@
 
 .latest--container {
   padding: 16px;
-  border: 1px solid #d2dae0;
-  background-color: #f5f7f9;
+  border: 1px solid var(--gray-scale-100);
+  background-color: var(--gray-scale-50);
   width: 100%;
   position: relative;
   height: 17px;
@@ -20,7 +22,7 @@
 
 .latest--container span {
   font-weight: 700;
-  color: #14212b;
+  color: var(--gray-scale-black);
   font-size: 14px;
 }
 
@@ -39,7 +41,7 @@
 .auto-rolling-news p {
   font-size: 14px;
   font-weight: 500;
-  color: #5f6e76;
+  color: var(--gray-scale-400);
   cursor: pointer;
   width: 100%;
 }
