@@ -1,4 +1,5 @@
 import { NewsDB } from "../core/index.js";
+import { store } from "../store/index.js";
 
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
@@ -52,6 +53,6 @@ const fillArticles = () => {
   $listViewNotice.innerText = `${name} 언론사에서 직접 편집한 뉴스입니다.`;
 };
 
-export const setListView = () => {
+export const fillListView = () => {
   fillArticles();
 };

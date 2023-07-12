@@ -1,4 +1,4 @@
-export const fillNewsContents = (newsData) => {
+export const fillGridView = (newsData) => {
   const $gridView = document.querySelector(".grid-view");
   $gridView.innerHTML = "";
 
