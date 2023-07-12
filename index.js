@@ -1,5 +1,6 @@
 import { render, createGridPages } from "./components/gridView.js";
 import { rollNews } from "./components/roller.js";
+import { viewSelectHandler } from "./utils/event.js";
 import { fetchData } from "./utils/fetch.js";
 import { shuffleData } from "./utils/shuffle.js";
 import { sliceData } from "./utils/slice.js";
@@ -18,24 +19,6 @@ fetchData().then((data) => {
   // 뉴스 rolling
   rollNews(slicedData);
 
-  // if grid view
-  if (true) {
-    const pages = createGridPages(agencies);
-    render(0, pages);
-
-    let currentPage = 0;
-
-    const prevBtn = document.querySelector(".prev-page-btn");
-    const nextBtn = document.querySelector(".next-page-btn");
-
-    prevBtn.addEventListener("click", () => {
-      render(--currentPage, pages);
-    });
-
-    nextBtn.addEventListener("click", () => {
-      render(++currentPage, pages);
-    });
-  }
-
-  // else if list view
+  // 상태에 따라 grid, list view render
+  viewSelectHandler(agencies);
 });
