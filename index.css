@@ -229,14 +229,24 @@ body {
   z-index: 3;
 }
 
+@keyframes progress {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 166px;
+  }
+}
+
 .news-list_category li .progress_bar {
-  width: 166px;
   height: 40px;
   background-color: var(--blue-500);
 
   position: absolute;
   left: 0px;
   z-index: 2;
+
+  animation: 20s linear progress infinite;
 }
 
 .news-list_category div {
