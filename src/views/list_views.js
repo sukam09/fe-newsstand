@@ -4,12 +4,19 @@ import { show_options } from "../events.js";
 let count = 40;
 
 function renderListNews(data, category, page) {
-    console.log(data, category, page);
     const news_data_container = document.querySelector(".main_news_container");
     news_data_container.innerHTML = "";
 
-    createMainNav(news_data_container, page + 1, data[category]);
-    createMainContent(news_data_container, data[category], page);
+    createMainNav(
+        news_data_container,
+        page + 1,
+        data[show_options.categorys[category]]
+    );
+    createMainContent(
+        news_data_container,
+        data[show_options.categorys[category]],
+        page
+    );
     changeCategory(data);
 }
 
@@ -19,14 +26,16 @@ function createMainNav(container, page, data) {
     const ul = document.createElement("ul");
 
     show_options.categorys.forEach((item) => {
-        if (item === show_options.category) {
+        if (item === show_options.categorys[show_options.category]) {
             ul.innerHTML += `<li class="main_nav_title">
             <progress
                 value="${count}"
                 min="0"
                 max="100"></progress>
-            <span>${show_options.category}</span>
-            <span class="progress_cnt">${page} / <b>${data.length}</b></span></li>`;
+            <span>${show_options.categorys[show_options.category]}</span>
+            <span class="progress_cnt">${page} / <b>${
+                data.length
+            }</b></span></li>`;
         } else {
             ul.innerHTML += `<li class="main_nav_item">${item}</li>`;
         }
@@ -73,13 +82,16 @@ function createMainContent(container, data, page) {
 
 function changeCategory(data) {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
+    console.log("호출");
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            show_options.category = item.innerText;
+            show_options.category = show_options.categorys.indexOf(
+                item.innerText
+            );
             renderListNews(data, show_options.category, 0);
+            show_options.list_current_page = 0;
         });
     });
-    show_options.list_current_page = 0;
 }
 
 function initNews() {

@@ -11,7 +11,7 @@ const show_options = {
 
     //list view
     list_current_page: 0,
-    category: "종합/경제",
+    category: 0,
     news_data: [],
     categorys: [
         "종합/경제",
@@ -22,6 +22,7 @@ const show_options = {
         "매거진/전문지",
         "지역",
     ],
+    category_size: 7,
 };
 
 const ROWSIZE = 6;
@@ -109,7 +110,6 @@ function toggleArrow(mode, page) {
     const left_arrow = document.querySelector(`.${mode}_left_arrow`);
     const right_arrow = document.querySelector(`.${mode}_right_arrow`);
 
-    // list exception case. 카테고리 내 뉴스가 1페이지일 경우 작성 x
     switch (page) {
         case 0:
             left_arrow.style.display = "none";
@@ -140,40 +140,69 @@ function movePage() {
 
     grid_left_arrow.addEventListener("click", () => {
         if (show_options.grid_current_page <= 0) return;
-
+        show_options.grid_current_page = show_options.grid_current_page - 1;
         renderGridPress(
             show_options.press_data,
-            show_options.grid_current_page - 1
+            show_options.grid_current_page
         );
-        show_options.grid_current_page = show_options.grid_current_page - 1;
     });
 
     grid_right_arrow.addEventListener("click", () => {
         if (show_options.grid_current_page >= length) return;
+        show_options.grid_current_page = show_options.grid_current_page + 1;
 
         renderGridPress(
             show_options.press_data,
-            show_options.grid_current_page + 1
+            show_options.grid_current_page
         );
-        show_options.grid_current_page = show_options.grid_current_page + 1;
     });
 
     list_left_arrow.addEventListener("click", () => {
+        show_options.list_current_page = show_options.list_current_page - 1;
+
+        if (show_options.list_current_page < 0) {
+            // category 뒤로
+            if (show_options.category === 0) {
+                show_options.category = show_options.category_size - 1;
+            } else {
+                show_options.category = show_options.category - 1;
+            }
+            show_options.list_current_page =
+                show_options.news_data[
+                    show_options.categorys[show_options.category]
+                ].length - 1;
+        }
+
         renderListNews(
             show_options.news_data,
             show_options.category,
-            show_options.list_current_page - 1
+            show_options.list_current_page
         );
-        show_options.list_current_page = show_options.list_current_page - 1;
     });
 
     list_right_arrow.addEventListener("click", () => {
+        show_options.list_current_page = show_options.list_current_page + 1;
+
+        if (
+            show_options.list_current_page >=
+            show_options.news_data[
+                show_options.categorys[show_options.category]
+            ].length
+        ) {
+            // category 앞으로
+            if (show_options.category === show_options.category_size - 1) {
+                show_options.category = 0;
+            } else {
+                show_options.category = show_options.category + 1;
+            }
+            show_options.list_current_page = 0;
+        }
+
         renderListNews(
             show_options.news_data,
             show_options.category,
-            show_options.list_current_page + 1
+            show_options.list_current_page
         );
-        show_options.list_current_page = show_options.list_current_page + 1;
     });
 }
 
