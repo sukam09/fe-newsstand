@@ -1,9 +1,10 @@
 import { fetchNewsData } from "./api.js";
 import { GRID, GLOBAL } from "./variable.js";
+import { setListNews } from "./list.js";
 
 async function initGrid() {
   try {
-    GLOBAL.news_icon = await fetchNewsData();
+    GLOBAL.news_data = await fetchNewsData();
     let icon_idx = GLOBAL.grid_cur_page * GRID.NEWS_NUM;
     for (let i = 0; i < GRID.ROW_NUM; i++) {
       const grid_row = document.createElement("ul");
@@ -13,7 +14,7 @@ async function initGrid() {
         const press_logo = document.createElement("img");
         press_logo.className = "press-logo";
 
-        press_logo.src = GLOBAL.news_icon[icon_idx++].path;
+        press_logo.src = GLOBAL.news_data[icon_idx++].path;
 
         grid_li.appendChild(press_logo);
         grid_row.appendChild(grid_li);
@@ -21,6 +22,7 @@ async function initGrid() {
       GLOBAL.DOM.grid_view.appendChild(grid_row);
       updateGrid();
     }
+    setListNews(0);
   } catch (e) {
     console.error(e);
   }
@@ -28,7 +30,7 @@ async function initGrid() {
 
 function updateGrid() {
   try {
-    if (GLOBAL.news_icon) {
+    if (GLOBAL.news_data) {
       let icon_idx = GLOBAL.grid_cur_page * GRID.NEWS_NUM;
       const grid_row = document.querySelectorAll(".grid ul");
 
@@ -36,7 +38,7 @@ function updateGrid() {
         const grid_li = ul.querySelectorAll("li");
         grid_li.forEach((li) => {
           const press_logo = li.querySelector(".press-logo");
-          press_logo.src = GLOBAL.news_icon[icon_idx++].path;
+          press_logo.src = GLOBAL.news_data[icon_idx++].path;
         });
       });
     } else {

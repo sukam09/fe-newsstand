@@ -153,17 +153,17 @@ for (let i = 0; i < 96; i += 7) {
     console.log(`"id": "${i + j + 1}",`);
     console.log(`"name": "${press[i + j]}",`);
     console.log(`"path": "./icons/basic/news_logo${i + j + 1}.svg",`);
-    console.log(`"path-dark": "./icons/dark/d_news_logo${i + j + 1}.svg",`);
+    console.log(`"path_dark": "./icons/dark/d_news_logo${i + j + 1}.svg",`);
     console.log(`"category": "${category[j]}",`);
-    console.log(`"edit-date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",`);
-    console.log(`"main-title": "main title",`);
-    console.log(`"main-img-src": "./img/${i + j + 1}.png",`);
+    console.log(`"edit_date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",`);
+    console.log(`"main_title": "main title",`);
+    console.log(`"main_img_src": "./img/${i + j + 1}.png",`);
     console.log(
-      `"sub-title": ["${title[(i % 7) * 6]}", "${title[(i % 7) * 6 + 1]}", "${title[(i % 7) * 6 + 2]}", "${title[(i % 7) * 6 + 3]}", "${title[(i % 7) * 6 + 4]}", "${title[(i % 7) * 6 + 5]}", "${
+      `"sub_title": ["${title[(i % 7) * 6]}", "${title[(i % 7) * 6 + 1]}", "${title[(i % 7) * 6 + 2]}", "${title[(i % 7) * 6 + 3]}", "${title[(i % 7) * 6 + 4]}", "${title[(i % 7) * 6 + 5]}", "${
         title[(i % 7) * 6 + 6]
       }"],`
     );
-    console.log(`"is-subscribe": "false"`);
+    console.log(`"is_subscribe": "false"`);
     console.log(`},`);
   }
 }

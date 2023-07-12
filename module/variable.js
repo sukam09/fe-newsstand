@@ -50,12 +50,16 @@ const CATEGORY = {
   LOCAL: 6,
 };
 
+const LIST = {
+  SUBTITLENUM: 6,
+};
+
 // 글로벌 네임스페이스
 const GLOBAL = {
   grid_cur_page: 0,
   list_cur_page: 0,
   list_cur_category: CATEGORY.ECONOMY,
-  news_icon: null,
+  news_data: null,
   rolling_news: null,
 
   CATEGORY_NUM: {
@@ -78,7 +82,12 @@ const GLOBAL = {
     today: document.querySelector(".today"),
     first_news: document.querySelector("#first-news"),
     second_news: document.querySelector("#second-news"),
+    list_press_icon: document.querySelector(".list-press-icon"),
+    edit_date: document.querySelector(".edit-date"),
+    main_news_title: document.querySelector(".main-news-title"),
+    sub_news_title: document.querySelectorAll(".sub-news-title"),
+    caption: document.querySelector(".caption"),
   },
 };
 
-export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, GLOBAL };
+export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, LIST, GLOBAL };
