@@ -57,14 +57,19 @@ export async function clearProgressBar() {
 
 function changePage() {
     if (pageArr[progressIdx] === list_news_data[progressIdx].news.length) {
+        let nextPage;
         if (progressIdx !== list_news_data.length - 1) {
-            changeProgressIdx(progressIdx + 1).then(() => {
-                changeProgressBar();
-                interval = window.setInterval(() => {
-                    changePage();
-                }, SET_TIME);
-            });
+            nextPage = progressIdx + 1;
+        } else {
+            nextPage = 0;
         }
+
+        changeProgressIdx(nextPage).then(() => {
+            changeProgressBar();
+            interval = window.setInterval(() => {
+                changePage();
+            }, SET_TIME);
+        });
     } else {
         const nowBtn = document.querySelectorAll(".list-view-btn")[progressIdx];
         const count_present = nowBtn.querySelector(".btn-tab-count-present");
