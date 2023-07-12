@@ -25,6 +25,7 @@ const show_options = {
     ],
     category_size: 7,
     progress_interval: new Object(),
+    progress_max: 20,
     progress_time: 0,
 };
 
