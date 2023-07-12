@@ -1,4 +1,4 @@
-import { fetchCategoryNews } from "../api.js";
+import { fetchCategoryNews } from "../../api.js";
 
 let news_data;
 let CURRENT_PAGE = 1;

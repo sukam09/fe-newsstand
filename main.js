@@ -1,4 +1,4 @@
-import { NewArticlePrint } from "./module/NewArticle.js";
+import { NewArticlePrint } from "./module/components/NewArticle.js";
 import { printGrid } from "./module/GridView.js";
 import SelectViewStyle from "./module/ViewStyle.js";
 

@@ -1,4 +1,4 @@
-import { fetchRollingArticle } from "../api.js";
+import { fetchRollingArticle } from "../../api.js";
 
 const ARTICLE_CHANGE_TIME = 5000;
 const ANIMATION_DELAY = 500;

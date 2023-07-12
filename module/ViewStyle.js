@@ -1,5 +1,5 @@
 import { printGrid } from "./GridView.js";
-import { printList } from "./ListView.js";
+import { printList } from "./view/ListView.js";
 
 const GRID_BTN_ID = "grid-btn";
 const LIST_BTN_ID = "list-btn";
