@@ -1,27 +1,12 @@
-document.documentElement.setAttribute("color-theme", "light");
+import { autoRollingAnimation } from "../utils/autoRolling.js";
 
-//변수
-const week = ["일", "월", "화", "수", "목", "금", "토"];
+function RecentNews() {
+  getNewsData();
+  autoRollingAnimation();
+  const headerElement = document.createElement("h1");
+  headerElement.textContent = "여기에 헤더 컴포넌트의 내용을 작성하세요";
 
-const mainLogo = document.querySelector(".title");
-const day = document.querySelector(".date");
-//함수
-function reload() {
-  document.location.reload();
-}
-
-function makeDate() {
-  const date = new Date();
-  day.innerHTML = `${date.getFullYear()}. ${String(
-    date.getMonth() + 1
-  ).padStart(2, 0)}. ${String(date.getDate()).padStart(2, 0)}. ${
-    week[date.getDay()]
-  }요일`;
-}
-
-//todo padstart
-function getDateInterval() {
-  setInterval(makeDate, 60000);
+  return headerElement;
 }
 
 function getNewsData() {
@@ -63,12 +48,5 @@ function drawRollingHtml(target, news) {
   newsHTML += "</ul></div>";
   _target.innerHTML = newsHTML;
 }
-//이벤트 리스너
 
-mainLogo.addEventListener("click", reload);
-
-//default
-makeDate();
-getDateInterval();
-
-getNewsData();
+export { RecentNews };
