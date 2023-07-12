@@ -1,3 +1,4 @@
+import { qs } from "../../utils.js";
 import { mainBody } from "./mainBody/mainBody.js";
 
 export async function mainSection() {

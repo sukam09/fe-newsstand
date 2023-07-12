@@ -4,12 +4,10 @@ import { pressGrid } from "./pressGrid/pressGrid.js";
 export async function mainContent() {
   const press = await fetchData("/data/press.json");
   const { data } = press;
-  console.log(data);
 
   return `
     <div class="main_content">
       <div id="list_container">
-      
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}

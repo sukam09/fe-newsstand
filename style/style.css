@@ -19,8 +19,10 @@ section {
   margin-bottom: 30px;
 }
 
-.title_section {
+#title_section {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -37,7 +39,8 @@ img.title_logo {
   color: #5f6e76;
 }
 
-.headline_section {
+#headline_section {
+  display: flex;
   gap: 8px;
   justify-content: space-between;
 }

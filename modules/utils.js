@@ -11,3 +11,5 @@ export const fetchData = async (url) => {
   const jsonData = await res.json();
   return jsonData;
 };
+
+export const qs = document.querySelector.bind(document);

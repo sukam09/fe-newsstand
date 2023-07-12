@@ -1,22 +1,14 @@
-import {
-  leftListButton,
-  rightGridButton,
-  rightListButton,
-} from "./buttons/buttons.js";
 import { mainContent } from "./mainContent/mianContent.js";
 import { pressGrid } from "./mainContent/pressGrid/pressGrid.js";
+import { leftButton, rightButton } from "./pageButtons/pageButtons.js";
 
 export async function mainBody() {
-  const mainContentComponent = await mainContent();
   return `
     <div class="main_body">
-      ${rightGridButton()}
-      ${rightListButton()}
+      ${rightButton()}
       ${await mainContent()}
-      ${leftListButton()}
-      ${rightListButton()}
+      ${leftButton()}
     </div>
-  
   `;
 }
 
