@@ -1,5 +1,4 @@
 import { fetchNewsIconData } from "./api.js";
-import { right_btn, left_btn } from "./app.js";
 
 const RIGHT = 1;
 const LEFT = 0;
@@ -11,6 +10,8 @@ const GRID_MIN_PAGE = 0;
 
 let current_grid_page = 0;
 let news_icon;
+const right_btn = document.querySelector(".right-btn");
+const left_btn = document.querySelector(".left-btn");
 
 async function printGrid() {
   try {

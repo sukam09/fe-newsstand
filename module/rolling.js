@@ -3,11 +3,37 @@ import { fetchRollingNewsData } from "./api.js";
 const LEFT = 0;
 const RIGHT = 1;
 const RollingNewsNum = 5;
+const NEWS_BAR_DELAY_TIME = 5000;
+const NEWS_BAR_DELAY_GAP = 1000;
 let rolling_news;
+let first_interval = null;
+let second_interval = null;
 
 async function initRollingNews() {
+  const first_news = document.querySelector("#first-news");
+  const second_news = document.querySelector("#second-news");
+
+  startFirstInterval();
+  window.setTimeout(startSecondInterval, NEWS_BAR_DELAY_GAP);
+
   rolling_news = await fetchRollingNewsData();
   makeDomData();
+
+  first_news.addEventListener("mouseover", () => {
+    window.clearTimeout(first_interval);
+  });
+
+  first_news.addEventListener("mouseout", () => {
+    startFirstInterval();
+  });
+
+  second_news.addEventListener("mouseover", () => {
+    window.clearTimeout(second_interval);
+  });
+
+  second_news.addEventListener("mouseout", () => {
+    startSecondInterval();
+  });
 }
 
 function makeDomData() {
@@ -76,4 +102,18 @@ function rollingCallback(dir) {
   next.classList.add("current-news");
 }
 
-export { initRollingNews, rollingCallback };
+const startFirstInterval = () => {
+  first_interval = window.setTimeout(() => {
+    rollingCallback(LEFT);
+    startFirstInterval();
+  }, NEWS_BAR_DELAY_TIME);
+};
+
+const startSecondInterval = () => {
+  second_interval = window.setTimeout(() => {
+    rollingCallback(RIGHT);
+    startSecondInterval();
+  }, NEWS_BAR_DELAY_TIME);
+};
+
+export { initRollingNews };

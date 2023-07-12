@@ -6,4 +6,12 @@ function initDate() {
   document.querySelector(".today").innerHTML = todaystr;
 }
 
-export { initDate };
+function initBtn() {
+  const right_btn = document.querySelector(".right-btn");
+  const left_btn = document.querySelector(".left-btn");
+
+  right_btn.addEventListener("click", () => moveGrid(RIGHT));
+  left_btn.addEventListener("click", () => moveGrid(LEFT));
+}
+
+export { initDate, initBtn };
