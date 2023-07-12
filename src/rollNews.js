@@ -1,46 +1,39 @@
 import { ROLLING_INTERVAL_SPACE_TIME, ROLLING_INTERVAL_TIME } from "./constant.js";
 
 /**
- 왼쪽 최신 뉴스 자동 롤링 설정
+ 뉴스 자동 롤링 설정
  */
-function rollNewsLeft() {
-  let leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
-  const $lists = document.querySelectorAll('.rolling-banner .wrap-left li');
+
+function rollNewsBoth(whatRolling) {
+  let interval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, whatRolling);
+  const $lists = document.querySelectorAll(`.rolling-banner .wrap-${whatRolling} li`);
   $lists.forEach($list => {
     $list.addEventListener('mouseenter', () => {
-      clearInterval(leftInterval);
-    });
+      clearInterval(interval);
+    })
   })
 
   $lists.forEach($list => {
     $list.addEventListener('mouseleave', () => {
-      leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
+      interval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, `${whatRolling}`);
     })
   })
 }
 
 /**
-오른쪽 최신 뉴스 자동 롤링 설정
+왼쪽 최신 뉴스 자동 롤링 설정
+ */
+function rollNewsLeft(){
+  rollNewsBoth('left');
+}
+
+/**
+오른쪽 최신 뉴스 1초 후 자동 롤링 설정
 */
 function rollNewsRight() {
-  let rightInterval = window.setTimeout(setSpace, ROLLING_INTERVAL_SPACE_TIME);
+  let rightInterval = window.setTimeout(rollNewsBoth, ROLLING_INTERVAL_SPACE_TIME, 'right');
 }
 
-function setSpace() {
-  let rightInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'right');
-  const $lists = document.querySelectorAll('.rolling-banner .wrap-right li');
-  $lists.forEach($list => {
-    $list.addEventListener('mouseenter', () => {
-      clearInterval(rightInterval);
-    });
-  })
-
-  $lists.forEach($list => {
-    $list.addEventListener('mouseleave', () => {
-      rightInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'right');
-    })
-  })
-}
 
 /** 
 롤링을 위한 객체의 class명 변경
@@ -70,8 +63,8 @@ function rollNewsCallback(whatNews) {
 최신 뉴스 자동 롤링
 */
 function rollNews() {
-  rollNewsLeft();
-  rollNewsRight();
+   rollNewsLeft();
+   rollNewsRight();
 }
 
 export default rollNews;
