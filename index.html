@@ -10,9 +10,7 @@
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
         />
         <link rel="stylesheet" type="text/css" href="index.css" />
-        <script src="./components/date.js"></script>
-        <script type="module" src="./components/banner.js"></script>
-        <script type="module" src="./components/gridNews.js"></script>
+        <script type="module" src="./app.js"></script>
     </head>
     <body>
         <div class="container">
@@ -47,11 +45,14 @@
                     <main class="main-list-view">
                         <nav class="list-view-tab">
                             <button class="btn-tab-item">
-                                <div class="btn-tab-category selected-bold14">종합/경제</div>
-                                <div class="btn-tab-count">
-                                    <div class="btn-tab-count-present display-bold12">1</div>
-                                    <div class="btn-tab-count-div display-bold12">/</div>
-                                    <div class="btn-tab-count-entire display-bold12">81</div>
+                                <div class="btn-tab-progress"></div>
+                                <div class="btn-tab-wrapper">
+                                    <span class="btn-tab-category selected-bold14">종합/경제</span>
+                                    <span class="btn-tab-count">
+                                        <span class="btn-tab-count-present display-bold12">1</span>
+                                        <span class="btn-tab-count-div display-bold12">/</span>
+                                        <span class="btn-tab-count-entire display-bold12">81</span>
+                                    </span>
                                 </div>
                             </button>
                             <div class="tab-item available-medium14">방송/통신</div>
@@ -63,8 +64,18 @@
                         </nav>
                         <div class="list-view-press-news">
                             <div class="list-view-press-info">
-                                <div>브랜드 마크</div>
-                                <span>edit date</span><button>버튼</button>
+                                <div>
+                                    <img src="styles/images/FE_press_svg/img1.svg" alt="press-logo" />
+                                </div>
+                                <span class="display-medium12">2023.02.10. 18:27 편집</span>
+                                <button class="btn-subscribe">
+                                    <img
+                                        class="btn-subscribe-icon"
+                                        src="./styles/icons/plus_gray_default.svg"
+                                        alt="plus-gray-default"
+                                    />
+                                    <span class="btn-subscribe-label available-medium12">구독하기</span>
+                                </button>
                             </div>
                             <div class="list-view-news">
                                 <div class="list-view-news-main">
