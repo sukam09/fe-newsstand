@@ -1,3 +1,5 @@
+import { NewsDB } from "../core/index.js";
+
 const MOVE_OFFSET = 14;
 const DURATION_ROLLING = 5000;
 const DURATION_DIFF_BANNER = 1000;
@@ -22,7 +24,9 @@ const setTransform = ($banner, cnt) => {
   $banner.style.transform = `translateY(-${MOVE_OFFSET * cnt}px)`;
 };
 
-export const startRollingBanner = (headlineData) => {
+export const startRollingBanner = () => {
+  const headlineData = NewsDB.getHeadlineData();
+
   const [leftSlice, rightSlice] = [
     headlineData.slice(0, 5),
     headlineData.slice(5),

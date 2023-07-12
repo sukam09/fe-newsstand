@@ -42,12 +42,10 @@ const setHeaderDate = () => {
   await initDB();
 
   setHeaderDate();
+  startRollingBanner();
 
   const newsData = NewsDB.getNewsData();
   fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
-
-  const headlineData = NewsDB.getHeadlineData();
-  startRollingBanner(headlineData);
 
   const handlePrevButtonClick = () => {
     const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
