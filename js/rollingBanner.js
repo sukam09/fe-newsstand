@@ -1,14 +1,15 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
 let interval1;
 let interval2;
+const rollingTime = 5000;
 
 function rollingBanner() {
   addInitRollingData(1);
   addInitRollingData(2);
   document.addEventListener("DOMContentLoaded", () => {
-    interval1 = setInterval(changeBanner, 5000, 1);
+    interval1 = setInterval(changeBanner, rollingTime, 1);
     setTimeout(() => {
-      interval2 = setInterval(changeBanner, 5000, 2);
+      interval2 = setInterval(changeBanner, rollingTime, 2);
     }, 1000);
   });
   addRollingHoverEvent(interval1, interval2);
@@ -85,13 +86,13 @@ function addRollingHoverEvent() {
     clearInterval(interval1);
   });
   bannerHover01.addEventListener("mouseleave", () => {
-    interval1 = setInterval(changeBanner, 5000, 1);
+    interval1 = setInterval(changeBanner, rollingTime, 1);
   });
   bannerHover02.addEventListener("mouseover", () => {
     clearInterval(interval2);
   });
   bannerHover02.addEventListener("mouseleave", () => {
-    interval2 = setInterval(changeBanner, 6000, 2);
+    interval2 = setInterval(changeBanner, rollingTime, 2);
   });
 }
 

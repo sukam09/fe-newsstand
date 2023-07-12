@@ -4,7 +4,6 @@ import { clickNewsStand } from "./js/newsStand.js";
 import { addInitCategory } from "./js/category.js";
 import { renderMain } from "./js/renderMain.js";
 
-// let isGrid = true;
 // function clickAllNews() {
 //   const allNews = document.getElementById("main-left-01");
 //   allNews.addEventListener("click", () => {
