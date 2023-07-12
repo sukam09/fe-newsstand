@@ -1,4 +1,7 @@
 @import "reset.css";
+@import "pressContent.css";
+@import "rolling.css";
+
 body {
     display: flex;
     justify-content: center;
@@ -42,7 +45,7 @@ body {
     width: 930px;
 }
 
-#pressbar-name-all {
+.pressbar-name-all {
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -51,7 +54,7 @@ body {
     
 }
 
-#pressbar-name-subscribe {
+.pressbar-name-subscribe {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -60,50 +63,13 @@ body {
     padding-left: 24px;
 }
 
-#pressbar-icon-grid-view {
+.pressbar-icon-grid-view {
     height: 24px;
     width: 24px;
 }
 
-#pressbar-icon-list-view {
+.pressbar-icon-list-view {
     padding-right: 8px;
     height: 24px;
     width: 24px;
-}
-.press-content-container {
-    display: flex;
-    position: relative;
-    padding-top: 25px;
-    align-items: center;
-    width: 1070px;
-    margin: 0 auto;
-}
-
-.press-content-container ul{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    width: 930px;
-    height: 388px;
-    border-top: 1px solid #d2dae0;
-    border-left: 1px solid #d2dae0;
-}
-
-.press-content-container ul li {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid #d2dae0;
-    border-right: 1px solid #d2dae0;     
-}
-
-#press-content-prev {
-    position: absolute;
-    left: -71px;
-    visibility: hidden;
-
-}
-#press-content-next {
-    position: absolute;
-    left: 978px;
 }

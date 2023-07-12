@@ -1,6 +1,7 @@
 const newsList = [];
 const pageAllNum = [];
-const pressContentView = document.getElementById('press-content-view');
+// const pressContentView = document.getElementById('press-content-view');
+const pressContentView = document.getElementsByClassName('press-content-view');
 const sectionPrevButton = document.getElementById('press-content-prev');
 const sectionNextButton = document.getElementById('press-content-next');
 
@@ -18,9 +19,9 @@ function showDate() {
 	const date = String(now.getDate()+1).padStart(2, 0);
 	const week = ['일', '월', '화', '수', '목', '금', '토'];
 	const day = week[now.getDay()];
-	const todayDate = document.getElementById('header-date');
+	const todayDate = document.getElementsByClassName('header-date');
 
-	todayDate.innerHTML = `${year}. ${month}. ${date}. ${day}요일`;
+	todayDate[0].innerHTML = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
 function shuffleImgs() {
@@ -30,7 +31,7 @@ function shuffleImgs() {
         const pageIndex = Math.floor(idx / 24);
         page[pageIndex].push(arr);
       });
-	pressContentView.innerHTML = `
+	pressContentView[0].innerHTML = `
     ${page[0].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
 	`
 }
@@ -41,7 +42,7 @@ function showPressImg(flag) {
     sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";
     sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
     console.log(pageNumber);
-	pressContentView.innerHTML = `
+	pressContentView[0].innerHTML = `
 		${page[pageNumber].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
 	`
 }
