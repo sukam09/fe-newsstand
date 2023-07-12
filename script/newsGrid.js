@@ -79,7 +79,7 @@ const createGridItems = gridElement => {
     const gridItem = document.createElement('li');
     const gridItemImage = document.createElement('img');
 
-    gridItemImage.className = 'media_logo';
+    gridItemImage.classList.add('media_logo');
     gridItem.appendChild(gridItemImage);
     gridElement.appendChild(gridItem);
   });
@@ -88,7 +88,7 @@ const createGridItems = gridElement => {
 const createGridElement = () => {
   const gridElement = document.createElement('ul');
 
-  gridElement.className = 'media_view_grid';
+  gridElement.classList.add('media_view_grid');
   createGridItems(gridElement);
   return gridElement;
 };
