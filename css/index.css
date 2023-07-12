@@ -228,6 +228,8 @@ a:hover {
 .list-view .field-tab div {
   display: inline-block;
   padding: 16px;
+  color: var(--text-weak);
+  font-size: 14px;
 }
 
 .list-view {
@@ -241,7 +243,7 @@ a:hover {
   border-top: none;
 }
 
-.press-info img {
+#press-logo {
   width: 52.5px;
   height: 20px;
 }
@@ -249,7 +251,6 @@ a:hover {
 .edit-date {
   color: var(--text-default);
   font-size: 12px;
-  font-weight: 500;
 }
 
 .news-content {
@@ -257,6 +258,20 @@ a:hover {
 
   height: 260px;
   padding-top: 16px;
+}
+
+/* 구독 버튼 */
+#subscribe {
+  color: var(--text-weak);
+  font-size: 12px;
+  display: flex;
+  height: 24px;
+  padding: 0px 6px;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-default);
+  background: var(--surface-alt);
 }
 
 /* main-news */
@@ -274,7 +289,6 @@ a:hover {
   color: var(--text-text-strong);
   text-overflow: ellipsis;
   font-size: 16px;
-  font-weight: 500;
   line-height: 22px;
   display: -webkit-box;
   -webkit-line-clamp: 2;

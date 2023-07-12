@@ -46,9 +46,9 @@ const list_view = `<div class="list-view">
 </div>
 
 <div class="press-news">
-<div class="press-info"><img alt="press" src="../assets/images/logo/light/img96.svg"/>
+<div class="press-info"><img id = "press-logo" alt="press-logo" src="../assets/images/logo/light/img96.svg"/>
   <span class="edit-date">2023.07.12 16:52 편집</span>
-  <button>구독하기</button>
+  <button id = "subscribe"><img src="../assets/icons/plus.svg"/><span>구독하기<span></button>
 </div>
 <div class = "news-content">
   <div class="main-news">
