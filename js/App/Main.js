@@ -6,7 +6,7 @@ export default function Main($target, props) {
   const mode = props.mode;
 
   this.state = {
-    mainContent: "newspaper",
+    mainContent: "news",
     renderContent: "list-all",
     page: 1,
     mode: props.mode,

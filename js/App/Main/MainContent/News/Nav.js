@@ -27,6 +27,7 @@ export default function Nav($target, props, onClick, onChange) {
     `;
 
     $ul.addEventListener("click", (e) => {
+      // data fetch
       if (e.target.tagName === "LI") {
         const active = document.querySelector(".select");
 

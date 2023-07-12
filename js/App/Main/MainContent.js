@@ -21,7 +21,7 @@ export default function MainContent($target, props, onClick) {
     if (props.mainContent === "newspaper") {
       new Newspaper($section, props);
     } else {
-      new News($section, { page: props.page }, this.setState);
+      new News($section, props, this.setState);
     }
 
     new Button($section, { ...props, direction: "left" }, onClick);

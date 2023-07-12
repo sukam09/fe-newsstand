@@ -4,7 +4,7 @@
 */
 
 import Nav from "./News/Nav.js";
-// import Contents from "./News/Contents.js";
+import Contents from "./News/Contents.js";
 
 export default function News($target, props, onClick) {
   this.state = { category: "1" };
@@ -18,6 +18,7 @@ export default function News($target, props, onClick) {
   this.render = () => {
     const $div = document.createElement("div");
     $div.setAttribute("class", "news-container");
+
     new Nav(
       $div,
       {
@@ -28,7 +29,7 @@ export default function News($target, props, onClick) {
       onClick,
       this.setState
     );
-    //new Contents()
+    new Contents($div, props);
 
     $target.innerHtml = "";
     $target.appendChild($div);

@@ -25,7 +25,7 @@ content
 .news-container .categoty-nav .categoty-list .select {
   display: flex;
   justify-content: space-between;
-  width: 10rem;
+  width: 166px;
   background-color: #7890e7;
   color: #ffffff;
 }
