@@ -10,14 +10,6 @@ const $leftRollingList = $leftRollingBox.querySelector("ul");
 const $rightRollingBox = $newsBar[1];
 const $rightRollingList = $rightRollingBox.querySelector("ul");
 
-export const setRolling = async () => {
-  const headLineData = await customFetch("./mocks/headlines.json");
-
-  fillHeadlineContents(headLineData);
-
-  setRollingInterval();
-};
-
 const fillHeadlineContents = (headlineData) => {
   headlineData.slice(0, 5).forEach(({ title, link }, idx) => {
     const headlineContent = createHeadlineContent(title, link, idx);
@@ -110,3 +102,13 @@ const rollingElement = (elem) => {
   $next.classList.remove("next");
   $next.classList.add("current");
 };
+
+const setRolling = async () => {
+  const headLineData = await customFetch("./mocks/headlines.json");
+
+  fillHeadlineContents(headLineData);
+
+  setRollingInterval();
+};
+
+export { setRolling };

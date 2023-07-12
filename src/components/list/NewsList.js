@@ -41,20 +41,4 @@ const createNewsList = (currentNewsList) => {
     </div>`;
 };
 
-const setPageActivateState = (newsList) => () => {
-  const $maxPage = document.querySelectorAll(
-    ".progress-component > div > span"
-  )[1];
-
-  const currentCategory = getState(categoryState);
-  const currentPage = getState(listPageState);
-
-  if (currentPage === newsList[currentCategory].length - 1) {
-    $maxPage.classList.replace("font-deactivate", "font-activate");
-  } else {
-    $maxPage.classList.contains("font-activate") &&
-      $maxPage.classList.replace("font-activate", "font-deactivate");
-  }
-};
-
-export { fillNewsList, setPageActivateState };
+export { fillNewsList };

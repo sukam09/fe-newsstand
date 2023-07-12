@@ -1,11 +1,15 @@
 import {
+  categoryState,
+  isListActivateState,
+  listPageState,
+} from "../../store/store.js";
+import {
   CATEGORY_LENGTH,
   PROGRESS_DIFF,
   PROGRESS_MAX,
   PROGRESS_TIME,
 } from "../../constants/constants.js";
 import { getState, setState } from "../../observer/observer.js";
-import { categoryState, listPageState } from "../../store/store.js";
 
 const $categoryBar = document.querySelector(".list-view_category-bar > ul");
 
@@ -23,22 +27,18 @@ const changeCategory = (newsList, categoryList) => () => {
       (categoryList.indexOf(currentCategory) + CATEGORY_LENGTH - 1) %
       CATEGORY_LENGTH;
 
-    setState(listPageState, 0);
     setState(categoryState, categoryList[prevCategoryIndex]);
   }
 };
 
-const updateProgress = () => {
-  const $progress = document.querySelector(".progress");
-  $progress.style.width = timeElapsed + "%";
+const initListPageState = () => {
+  setState(listPageState, 0);
 };
 
 let timeElapsed = 0;
 let interval;
 const startProgress = () => {
-  timeElapsed = 0;
-  clearInterval(interval);
-  updateProgress();
+  stopProgress();
 
   interval = setInterval(() => {
     timeElapsed += PROGRESS_DIFF;
@@ -54,9 +54,18 @@ const startProgress = () => {
 };
 
 const stopProgress = () => {
-  clearInterval(interval);
   timeElapsed = 0;
+  clearInterval(interval);
   updateProgress();
+};
+
+const updateProgress = () => {
+  const $progress = document.querySelector(".progress");
+  $progress.style.width = timeElapsed + "%";
+};
+
+const initProgress = () => {
+  getState(isListActivateState) ? startProgress() : stopProgress();
 };
 
 const updateCurrentPage = () => {
@@ -64,8 +73,6 @@ const updateCurrentPage = () => {
 
   $stateElem.innerHTML = getState(listPageState) + 1;
 };
-
-const setCategoryState = (category) => () => setState(categoryState, category);
 
 const setCategoryBar = (categoryList) => {
   categoryList.forEach((category) => {
@@ -76,12 +83,14 @@ const setCategoryBar = (categoryList) => {
 
     $categoryBar.appendChild($li);
   });
+
+  setCategoryState(categoryList[0])();
 };
+const setCategoryState = (category) => () => setState(categoryState, category);
 
 const changeActivateCategory = (newsList, categoryList) => () => {
-  const maxPage = newsList[getState(categoryState)].length;
   const $liList = $categoryBar.querySelectorAll("li");
-
+  const maxPage = newsList[getState(categoryState)].length;
   const currentCategoryIndex = categoryList.indexOf(getState(categoryState));
 
   $liList.forEach((li, idx) => {
@@ -99,8 +108,6 @@ const changeActivateCategory = (newsList, categoryList) => () => {
       }
     }
   });
-
-  setState(listPageState, 0);
 };
 
 const createProgressInner = (title, state, max) => {
@@ -114,6 +121,22 @@ const createProgressInner = (title, state, max) => {
   </div>`;
 };
 
+const setPageActivateState = (newsList) => () => {
+  const $maxPage = document.querySelectorAll(
+    ".progress-component > div > span"
+  )[1];
+
+  const currentCategory = getState(categoryState);
+  const currentPage = getState(listPageState);
+
+  if (currentPage === newsList[currentCategory].length - 1) {
+    $maxPage.classList.replace("font-deactivate", "font-activate");
+  } else {
+    $maxPage.classList.contains("font-activate") &&
+      $maxPage.classList.replace("font-activate", "font-deactivate");
+  }
+};
+
 export {
   updateCurrentPage,
   setCategoryBar,
@@ -121,4 +144,7 @@ export {
   stopProgress,
   changeCategory,
   changeActivateCategory,
+  initProgress,
+  initListPageState,
+  setPageActivateState,
 };
