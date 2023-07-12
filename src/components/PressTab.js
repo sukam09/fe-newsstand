@@ -21,6 +21,14 @@ export default function PressTab({ $target, initialState, onClick }) {
     onClick('grid');
   };
 
+  const setViewIcon = ($gridViewIcon, $listViewIcon) => {
+    $gridViewIcon.classList.remove('selected');
+    $listViewIcon.classList.remove('selected');
+    this.state.pressView === 'grid'
+      ? $gridViewIcon.classList.add('selected')
+      : $listViewIcon.classList.add('selected');
+  };
+
   this.render = () => {
     $section.innerHTML = `
       <div class="news-press-tab-container">
@@ -45,11 +53,7 @@ export default function PressTab({ $target, initialState, onClick }) {
     const $listViewIcon = $listViewButton.querySelector('path');
     const $gridViewIcon = $gridViewButton.querySelector('path');
 
-    $gridViewIcon.classList.remove('selected');
-    $listViewIcon.classList.remove('selected');
-    this.state.pressView === 'grid'
-      ? $gridViewIcon.classList.add('selected')
-      : $listViewIcon.classList.add('selected');
+    setViewIcon($gridViewIcon, $listViewIcon);
 
     $listViewButton.addEventListener('click', handleClickListViewButton);
     $gridViewButton.addEventListener('click', handleClickGridViewButton);
