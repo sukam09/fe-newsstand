@@ -1,3 +1,5 @@
+import latestNewsTitle from "../../data/latestNewsData.js";
+
 export default class LatestNews {
   constructor() {
     this.$wrapper = document.createElement("div");
@@ -8,7 +10,7 @@ export default class LatestNews {
     this.rightInterval = 0;
 
     this.LATEST_NEWS_COUNT = 6;
-    this.ROLLING_SPEED = 3000;
+    this.ROLLING_SPEED = 5000;
 
     this.render();
     return this.$wrapper;
@@ -52,10 +54,10 @@ export default class LatestNews {
     const $wrapper = document.createElement("div");
     $wrapper.className = `auto-rolling-news ${location}`;
 
-    for (let i = 1; i < this.LATEST_NEWS_COUNT; i++) {
-      $wrapper.appendChild(this.createContent(`[${i}보]`));
-    }
-    $wrapper.appendChild(this.createContent("[1보]"));
+    latestNewsTitle.forEach((news) =>
+      $wrapper.appendChild(this.createContent(news.title))
+    );
+    $wrapper.appendChild(this.createContent(latestNewsTitle[0].title));
 
     location === "left"
       ? this.handleLeftRolling($wrapper, 1)
