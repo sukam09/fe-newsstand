@@ -17,6 +17,7 @@ const setTotalPressList = (isLightMode) => {
     });
 };
 
+////
 const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
 };
