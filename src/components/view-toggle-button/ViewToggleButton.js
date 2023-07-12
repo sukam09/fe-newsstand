@@ -1,6 +1,5 @@
-import { isListActivateState } from "../store/store.js";
-import { startProgress, stopProgress } from "./list/ProgressBar.js";
-import { getState, setState, subscribe } from "../observer/observer.js";
+import { isListActivateState } from "../../store/store.js";
+import { getState, setState } from "../../observer/observer.js";
 
 const $gridView = document.querySelector(".grid-view");
 const $listView = document.querySelector(".list-view");
@@ -24,22 +23,18 @@ const setCurrentView = () => {
 
     $gridView.classList.add("hidden");
     $listView.classList.remove("hidden");
-
-    startProgress();
   } else {
     $listButton.className = "";
     $gridButton.className = "main-nav_viewer--selected";
 
     $gridView.classList.remove("hidden");
     $listView.classList.add("hidden");
-
-    stopProgress();
   }
 };
 
-export const setViewToggleButton = () => {
-  subscribe(isListActivateState, setCurrentView);
-
+const setEvents = () => {
   $listButton.addEventListener("click", handleListButtonClick);
   $gridButton.addEventListener("click", handleGridButtonClick);
 };
+
+export { setCurrentView, setEvents };
