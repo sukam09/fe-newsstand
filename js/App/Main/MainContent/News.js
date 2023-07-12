@@ -7,8 +7,12 @@ import Nav from "./News/Nav.js";
 import Contents from "./News/Contents.js";
 
 export default function News($target, props, onClick) {
-  this.state = { category: "1" };
-  this.state = { mainContent: "newspaper", renderContent: "all", page: 0 };
+  this.state = {
+    category: "1",
+    mainContent: "newspaper",
+    renderContent: "all",
+    page: props.page,
+  };
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -22,9 +26,9 @@ export default function News($target, props, onClick) {
     new Nav(
       $div,
       {
-        page: props.page,
+        page: this.state.page,
         renderContent: props.renderContent,
-        category: this.state.cahtegory,
+        category: this.state.category,
       },
       onClick,
       this.setState

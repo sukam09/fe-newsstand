@@ -29,6 +29,9 @@ content
   width: 166px;
   background-color: #7890e7;
   color: #ffffff;
+}
+
+.news-container .categoty-nav .categoty-list .select span {
   z-index: 1;
 }
 .news-container .categoty-nav .categoty-list .select .progress-bar {
@@ -36,6 +39,7 @@ content
   height: 100%;
   left: 0;
   background-color: #4362d0;
+  z-index: 0;
 }
 
 .news-container .categoty-nav .categoty-list li {
