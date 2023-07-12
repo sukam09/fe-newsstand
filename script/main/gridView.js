@@ -96,7 +96,7 @@ const GridController = {
   */
   setLiList() {
     const ul = document.querySelector(".grid_wrapper ul");
-    const liHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => html`
+    const liHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => `
       <li>
           <img src="" alt="" class="media_logo">
       </li>
