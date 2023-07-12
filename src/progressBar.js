@@ -51,4 +51,9 @@ function movingProgress() {
   }
 }
 
-export { movingProgress, progress_interval };
+function initializeProgress() {
+  idx = 0;
+  document.getElementsByClassName("count")[0].style.display = "block";
+}
+
+export { movingProgress, progress_interval, initializeProgress };
