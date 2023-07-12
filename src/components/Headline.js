@@ -1,5 +1,3 @@
-import { HEADLINE_ROLLING_DELAY } from '../constants.js';
-
 export default function Headline({ $target, initialState }) {
   const $div = document.createElement('div');
   $div.classList.add('recent-news-item');
@@ -9,9 +7,16 @@ export default function Headline({ $target, initialState }) {
   this.state = initialState;
 
   const setHeadline = () => {
+    if (!this.isAutoRolling) {
+      return;
+    }
+
     const $prev = $div.querySelector('.prev');
     const $current = $div.querySelector('.current');
     const $next = $div.querySelector('.next');
+
+    $current.removeEventListener('mouseenter', handleMouseEnter);
+    $current.removeEventListener('mouseleave', handleMouseLeave);
 
     $prev.classList.remove('prev');
 
@@ -27,27 +32,20 @@ export default function Headline({ $target, initialState }) {
     } else {
       $next.nextElementSibling.classList.add('next');
     }
+
+    $next.addEventListener('mouseenter', handleMouseEnter);
+    $next.addEventListener('mouseleave', handleMouseLeave);
   };
 
-  const setTimer = (callback, interval) => {
-    return setTimeout(() => {
-      setHeadline();
-      setTimer(callback, interval);
-    }, interval);
-  };
-
-  // setTimeout 함수에 delay를 0으로 걸어주는 것은 엄밀하게 0초가 아니기 때문에 offset이 0이 아닐 경우에만 setTimeout을 적용
-  this.timer =
-    this.state.offset === 0
-      ? setTimer(setHeadline, HEADLINE_ROLLING_DELAY)
-      : setTimeout(() => setTimer(setHeadline, HEADLINE_ROLLING_DELAY), this.state.offset);
+  this.isAutoRolling = true;
+  this.state.setTimer(setHeadline);
 
   const handleMouseEnter = () => {
-    clearTimeout(this.timer);
+    this.isAutoRolling = false;
   };
 
   const handleMouseLeave = () => {
-    this.timer = setTimer(setHeadline, HEADLINE_ROLLING_DELAY);
+    this.isAutoRolling = true;
   };
 
   this.render = () => {
