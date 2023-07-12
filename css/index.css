@@ -273,6 +273,9 @@ a:hover {
   border: 1px solid var(--border-default);
   background: var(--surface-alt);
 }
+#subscribe span {
+  padding-right: 4px;
+}
 
 /* main-news */
 .main-news {
