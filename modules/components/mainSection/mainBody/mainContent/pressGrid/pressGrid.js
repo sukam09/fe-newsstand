@@ -21,41 +21,17 @@ export function pressGrid(pressDataArr, page) {
 
   return `
     <ul id="grid_page_${page}" class="press_grid">
-        ${pressGridItems}
+      ${pressGridItems}
     </ul>
     `;
 }
 
 export function showGridPage(page) {
-  console.log("show", page);
-
   const pressGrid = document.getElementById(`grid_page_${page}`);
   pressGrid.style.display = "grid";
 }
 
-export function hiddenGridPage(page) {
-  console.log("hidden", page);
+export function hideGridPage(page) {
   const pressGrid = document.getElementById(`grid_page_${page}`);
   pressGrid.style.display = "none";
-}
-
-export function showNextGridPage() {
-  hiddenGridPage(gridPage);
-  gridPage += 1;
-  if (gridPage >= MAX_PAGE) {
-    gridPage = MAX_PAGE - 1;
-  }
-  showGridPage(gridPage);
-  showGridPageButton();
-}
-
-// 그리드 이전 페이지 전환
-export function showPrevGridPage() {
-  hiddenGridPage(gridPage);
-  gridPage -= 1;
-  if (gridPage < 0) {
-    gridPage = 0;
-  }
-  showGridPage(gridPage);
-  showGridPageButton();
 }

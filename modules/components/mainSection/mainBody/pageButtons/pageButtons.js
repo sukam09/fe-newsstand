@@ -3,7 +3,7 @@ import {
   MAX_GRID_PAGE,
   decGridPage,
   gridPage,
-  hiddenGridPage,
+  hideGridPage,
   incGridPage,
   showGridPage,
 } from "../mainContent/pressGrid/pressGrid.js";
@@ -32,7 +32,7 @@ export function leftButton() {
 
 export function showNextPage(type) {
   if (type === GRID) {
-    hiddenGridPage(gridPage);
+    hideGridPage(gridPage);
     incGridPage();
     showGridPage(gridPage);
     controllButtonStyle(GRID);
@@ -41,7 +41,7 @@ export function showNextPage(type) {
 
 export function showPrevPage(type) {
   if (type === GRID) {
-    hiddenGridPage(gridPage);
+    hideGridPage(gridPage);
     decGridPage();
     showGridPage(gridPage);
     controllButtonStyle(GRID);
