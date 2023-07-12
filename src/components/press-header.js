@@ -33,13 +33,21 @@ const getNavRightElement = () => {
 
   const $imgList = document.createElement('img');
   $imgList.classList.add('press__img');
-  $imgList.src = './assets/icons/list-view.svg';
-  $imgList.addEventListener('click', () => {}); //
+  $imgList.src = './assets/icons/list-hide.svg';
 
   const $imgGrid = document.createElement('img');
   $imgGrid.classList.add('press__img');
   $imgGrid.src = './assets/icons/grid-view.svg';
-  $imgGrid.addEventListener('click', () => {}); //
+
+  $imgList.addEventListener('click', () => {
+    $imgList.src = './assets/icons/list-view.svg';
+    $imgGrid.src = './assets/icons/grid-hide.svg';
+  }); //
+
+  $imgGrid.addEventListener('click', () => {
+    $imgGrid.src = './assets/icons/grid-view.svg';
+    $imgList.src = './assets/icons/list-hide.svg';
+  }); //
 
   $navRight.appendChild($imgList);
   $navRight.appendChild($imgGrid);
