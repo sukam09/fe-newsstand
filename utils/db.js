@@ -1,7 +1,26 @@
+/**
+ * @typedef {Object} MainNews
+ * @property {string} thumbnail
+ * @property {string} title
+ */
+
+/**
+ * @typedef {Object} newsData
+ * @property {string} name
+ * @property {string} src
+ * @property {string} category
+ * @property {string} edit_date
+ * @property {MainNews} main_news
+ * @property {string[]} sub_news
+ */
+
 class NewsDatabase {
   #instance = null;
   #instanceMapByCategory = null;
 
+  /**
+   * @param {newsData[]} data
+   */
   set instance(data) {
     if (this.#instance) return;
 
