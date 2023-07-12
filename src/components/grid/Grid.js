@@ -1,5 +1,5 @@
-import { gridPageState } from "../../store/store.js";
-import { getState, subscribe } from "../../observer/observer.js";
+import { gridPageState, isListActivateState } from "../../store/store.js";
+import { getState } from "../../observer/observer.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../constants/constants.js";
 import { ObjectToArrayRandom, shuffleArrayRandom } from "../../utils/utils.js";
 
@@ -34,6 +34,15 @@ const createGridContent = (src, name) => {
 
 const setGridButtonDisplay = () => {
   const currentPage = getState(gridPageState);
+
+  if (getState(isListActivateState)) {
+    $nextPageButton.classList.contains("hidden") &&
+      $nextPageButton.classList.remove("hidden");
+    $prevPageButton.classList.contains("hidden") &&
+      $prevPageButton.classList.remove("hidden");
+
+    return;
+  }
 
   if (currentPage === maxPage) {
     $nextPageButton.classList.add("hidden");

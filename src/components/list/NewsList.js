@@ -3,10 +3,6 @@ import { PRESS_ICON } from "../../constants/constants.js";
 import { categoryState, listPageState } from "../../store/store.js";
 
 const $listView = document.querySelector(".list-view_main");
-const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
-const $nextPageButton = document.querySelector(
-  ".container-grid-view_right-btn"
-);
 
 const fillNewsList = (newsList) => () => {
   const currentCategory = getState(categoryState);

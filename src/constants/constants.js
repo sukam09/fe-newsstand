@@ -1,7 +1,10 @@
-export const NEWS_COUNT = 24;
-export const ROLLING_WAIT_TIME = 5000;
-export const ROLLING_DIFF_TIME = 1000;
-export const CATEGORY_LIST = [
+const NEWS_COUNT = 24;
+const ROLLING_WAIT_TIME = 5000;
+const ROLLING_DIFF_TIME = 1000;
+const PROGRESS_TIME = 1000;
+const PROGRESS_MAX = 100;
+const PROGRESS_DIFF = 50;
+const CATEGORY_LIST = [
   "종합/경제",
   "방송/통신",
   "IT",
@@ -10,7 +13,8 @@ export const CATEGORY_LIST = [
   "매거진/전문지",
   "지역",
 ];
-export const PRESS_ICON = {
+const CATEGORY_LENGTH = 7;
+const PRESS_ICON = {
   오마이뉴스: {
     light: "./src/assets/images/light/0.png",
     dark: "./src/assets/images/light/0.png",
@@ -395,4 +399,16 @@ export const PRESS_ICON = {
     light: "./src/assets/images/light/95.png",
     dark: "./src/assets/images/light/95.png",
   },
+};
+
+export {
+  NEWS_COUNT,
+  ROLLING_WAIT_TIME,
+  ROLLING_DIFF_TIME,
+  PROGRESS_TIME,
+  CATEGORY_LIST,
+  PRESS_ICON,
+  PROGRESS_DIFF,
+  PROGRESS_MAX,
+  CATEGORY_LENGTH,
 };

@@ -1,14 +1,28 @@
+import {
+  CATEGORY_LENGTH,
+  PROGRESS_DIFF,
+  PROGRESS_MAX,
+  PROGRESS_TIME,
+} from "../../constants/constants.js";
 import { getState, setState } from "../../observer/observer.js";
 import { categoryState, listPageState } from "../../store/store.js";
 
-const changeNextCategory = (newsList, categoryList) => () => {
+const changeCategory = (newsList, categoryList) => () => {
   const currentCategory = getState(categoryState);
   const currentPage = getState(listPageState);
 
   if (currentPage === newsList[currentCategory].length) {
-    const nextCategoryIndex = (categoryList.indexOf(currentCategory) + 1) % 7;
+    const nextCategoryIndex =
+      (categoryList.indexOf(currentCategory) + 1) % CATEGORY_LENGTH;
 
     setState(categoryState, categoryList[nextCategoryIndex]);
+  } else if (currentPage === -1) {
+    const prevCategoryIndex =
+      (categoryList.indexOf(currentCategory) + CATEGORY_LENGTH - 1) %
+      CATEGORY_LENGTH;
+
+    setState(listPageState, 0);
+    setState(categoryState, categoryList[prevCategoryIndex]);
   }
 };
 
@@ -27,16 +41,16 @@ const startProgress = () => {
   clearInterval(interval);
 
   interval = setInterval(() => {
-    timeElapsed += 50;
+    timeElapsed += PROGRESS_DIFF;
     updateProgress();
 
-    if (timeElapsed === 100) {
+    if (timeElapsed === PROGRESS_MAX) {
       timeElapsed = 0;
 
       updateProgress();
       setState(listPageState, getState(listPageState) + 1);
     }
-  }, 1000);
+  }, PROGRESS_TIME);
 };
 
 const stopProgress = () => {
@@ -107,6 +121,6 @@ export {
   setCategoryBar,
   startProgress,
   stopProgress,
-  changeNextCategory,
+  changeCategory,
   changeActivateCategory,
 };

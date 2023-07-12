@@ -5,7 +5,7 @@ import { CATEGORY_LIST } from "../../constants/constants.js";
 import { customFetch, shuffleArrayRandom } from "../../utils/utils.js";
 import {
   changeActivateCategory,
-  changeNextCategory,
+  changeCategory,
   setCategoryBar,
   startProgress,
   updateCurrentPage,
@@ -21,7 +21,7 @@ export const setList = async () => {
   setCategoryBar(categoryList);
   changeActivateCategory(newsList, categoryList)();
 
-  subscribe(listPageState, changeNextCategory(newsList, categoryList));
+  subscribe(listPageState, changeCategory(newsList, categoryList));
   subscribe(listPageState, fillNewsList(newsList));
   subscribe(listPageState, updateCurrentPage);
   subscribe(listPageState, setPageActivateState(newsList));
