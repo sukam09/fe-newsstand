@@ -11,7 +11,7 @@ import {
 } from "./gridView.js";
 import { showGridPage } from "./gridView.js";
 import { fetchData, shuffleArray } from "./utils.js";
-import { initHeadline, rolling } from "./headline.js";
+import { initHeadline } from "./components/headline/headline.js";
 import {
   initListView,
   showNextListPage,

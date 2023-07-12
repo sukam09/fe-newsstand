@@ -1,4 +1,4 @@
-import { fetchData } from "./utils.js";
+import { fetchData } from "../../utils.js";
 
 export function rolling() {
   const leftRollingList = document.querySelectorAll(".left_rolling_list_item");

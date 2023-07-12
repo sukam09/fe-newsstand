@@ -103,14 +103,8 @@
   top: 0;
   left: 0;
   z-index: 50;
-  animation: scale 20s linear;
-  animation-iteration-count: infinite;
 }
-@keyframes scale {
-  to {
-    width: 100%;
-  }
-}
+
 .page_count {
   font-size: 12px;
   display: none;

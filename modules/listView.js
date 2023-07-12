@@ -1,6 +1,8 @@
 import { fetchData } from "./utils.js";
 import { news } from "./components/news/news.js";
 import { category } from "./components/category/category.js";
+import { startProgressAnimation } from "./components/category/progressBar.js";
+import { handleClickCategoryItem } from "./components/category/categoryItem.js";
 
 let listPage = 0;
 const MAX_LIST_PAGE = 7;
@@ -43,9 +45,7 @@ function initCategory(newsData) {
   const $categoryItemList = document.getElementsByClassName("category_item");
   for (let i = 0; i < newsData.length; i++) {
     const $categoryItem = $categoryItemList[i];
-    $categoryItem.addEventListener("click", (e) => {
-      document.getElementsByClassName("clicked")[0].classList.remove("clicked");
-      e.currentTarget.classList.add("clicked");
-    });
+
+    $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
   }
 }
