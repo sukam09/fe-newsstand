@@ -69,6 +69,7 @@ section {
 }
 
 .newsbanner__list-container {
+  padding: 0;
   position: relative;
   width: 70%;
   overflow: hidden;

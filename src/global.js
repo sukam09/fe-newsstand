@@ -9,7 +9,7 @@ function refresh() {
 let categoryInterval = setInterval(() => {
   listPageUp();
   updateCategory();
-}, 20000);
+}, 1000);
 
 export function stopInterval() {
   clearInterval(categoryInterval);
@@ -18,7 +18,7 @@ export function startInterval() {
   categoryInterval = setInterval(() => {
     listPageUp();
     updateCategory();
-  }, 20000);
+  }, 1000);
 }
 
 // 그리드 뷰로 전환
@@ -83,6 +83,7 @@ function changeToList() {
   right_grid_button.style.display = "none";
   left_list_button.style.display = "block";
   right_list_button.style.display = "block";
+  startInterval();
 }
 
 // 오늘 날짜 update
@@ -107,7 +108,7 @@ function updateDate() {
   mainLogo.addEventListener("click", refresh);
   listButton.addEventListener("click", changeToList);
   gridButton.addEventListener("click", changeToGrid);
-  clearInterval(categoryInterval);
+  stopInterval();
 })();
 
 export { updateDate };
