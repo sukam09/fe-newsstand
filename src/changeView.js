@@ -1,5 +1,7 @@
 /***** grid형 <-> list형 뷰 변경 *****/
 //grid형 보기로 바꾸기
+import { movingProgress, progress_interval } from "./progressBar.js";
+
 let grid_view_selected = true;
 
 function changeToGrid() {
@@ -28,6 +30,8 @@ grid_symbol.forEach((symbol) => {
       // grid 상태 아니면
       changeToGrid();
       grid_view_selected = true;
+      document.querySelector(".progress-bar").classList.remove("progress-bar");
+      clearInterval(progress_interval);
     }
   });
 });
@@ -39,6 +43,10 @@ list_symbol.forEach((symbol) => {
       //grid 상태라면
       changeToList();
       grid_view_selected = false;
+      document
+        .getElementsByClassName("progress-item")[0]
+        .classList.add("progress-bar");
+      movingProgress();
     }
   });
 });

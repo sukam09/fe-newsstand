@@ -32,9 +32,10 @@ for (let i = 0; i < categories.length; i++) {
   });
 }
 
+let progress_interval;
 function movingProgress() {
   while (idx <= CATEGORY_NUM - 1 && idx >= 0) {
-    setInterval(function () {
+    progress_interval = setInterval(function () {
       // if(category_clicked === true){
       //     clearInterval
       // }
@@ -50,4 +51,4 @@ function movingProgress() {
   }
 }
 
-export { movingProgress };
+export { movingProgress, progress_interval };
