@@ -16,14 +16,14 @@ function getNews(category) {
 function drawArrow() {
   console.log(page_count[now_category], total_pages[now_category]);
   if (page_count[now_category] === total_pages[now_category] - 1) {
-    document.querySelector(".right-btn").classList.add("hidden");
-    document.querySelector(".left-btn").classList.remove("hidden");
+    hideArrow("right");
+    showArrow("left");
   } else if (page_count[now_category] === 0) {
-    document.querySelector(".left-btn").classList.add("hidden");
-    document.querySelector(".right-btn").classList.remove("hidden");
+    hideArrow("left");
+    showArrow("right");
   } else {
-    document.querySelector(".right-btn").classList.remove("hidden");
-    document.querySelector(".left-btn").classList.remove("hidden");
+    showArrow("right");
+    showArrow("left");
   }
 }
 
@@ -58,12 +58,12 @@ function clickListRightBtn(category) {
   if (page_count[category] + 1 === total_pages[category] - 1) {
     page_count[category] += 1;
     drawNews(category, page_count[category]);
-    document.querySelector(".right-btn").classList.add("hidden");
+    hideArrow("right");
   } else {
     page_count[category] += 1;
     drawNews(category, page_count[category]);
   }
-  document.querySelector(".left-btn").classList.remove("hidden");
+  showArrow("left");
   restartAnimation();
   setNowCount();
 }
@@ -74,80 +74,87 @@ function clickListLeftBtn(category) {
   } else if (page_count[category] - 1 === 0) {
     page_count[category] -= 1;
     drawNews(category, page_count[category]);
-    document.querySelector(".left-btn").classList.add("hidden");
+    hideArrow("left");
   } else {
     page_count[category] -= 1;
     drawNews(category, page_count[category]);
   }
-  document.querySelector(".right-btn").classList.remove("hidden");
+  showArrow("right");
   restartAnimation();
   setNowCount();
 }
 
 function clickCategory(target) {
-  if (now_category === target.firstElementChild.textContent.trim()) {
-    return;
-  }
+  checkSameCategory();
   page_count[target.firstElementChild.innerText.trim()] = 0;
-  now_category = target.querySelector(".nav-item").innerText.trim();
-  document.querySelector(".right-btn").classList.remove("hidden");
-  document.querySelector(".left-btn").classList.add("hidden");
-  document.querySelector(".progress-bar").classList.remove("progress-bar");
-  target.classList.add("progress-bar");
-  document.querySelector(".progress-bar").addEventListener("animationiteration", nextNewsWhenProgressEnd);
-  document.querySelector(".count").remove();
-  setCount(document.querySelector(".progress-bar"));
+  now_category = target.querySelector(".nav-item").textContent.trim();
+  showArrow("right");
+  hideArrow("left");
+  initProgressWhenCategoryClick(target);
   drawNews(now_category, page_count[now_category]);
+}
+
+function initProgressWhenCategoryClick(target) {
+  const $progress_bar = document.querySelector(".progress-bar");
+  $progress_bar.classList.remove("progress-bar");
+  target.classList.add("progress-bar");
+  addProgressIterEvent($progress_bar);
+  document.querySelector(".count").remove();
+  insertCountDiv(document.querySelector(".progress-bar"));
 }
 
 function initCategoryClass() {
   const categories = document.querySelectorAll(".list-nav li");
   categories.forEach(category => category.addEventListener("click", e => clickCategory(e.target)));
-  document.querySelector(".progress-bar").insertAdjacentHTML(
-    "beforeend",
-    `
-  <div class="count font-init"><span class="now-count">${page_count[now_category] + 1}</span> <span>/</span><span class="total-count">${
-      total_pages[now_category]
-    }</span></div>
-  `,
-  );
-
-  document.querySelector(".progress-bar").addEventListener("animationiteration", nextNewsWhenProgressEnd);
-}
-
-function setCount(target) {
-  target.insertAdjacentHTML(
-    "beforeend",
-    `
-  <div class="count font-init"><span class="now-count">${page_count[now_category] + 1}</span> <span>/</span><span class="total-count">${
-      total_pages[now_category]
-    }</span></div>
-  `,
-  );
+  const $progress_bar = document.querySelector(".progress-bar");
+  insertCountDiv($progress_bar);
+  addProgressIterEvent($progress_bar);
 }
 
 function nextNewsWhenProgressEnd() {
   if (page_count[now_category] === total_pages[now_category] - 1) {
     page_count[now_category] = 0;
-    document.querySelector(".progress-bar").removeEventListener("animationiteration", console.log("erase!"));
+    const $progress_bar = document.querySelector(".progress-bar");
+    removeProgressIterEvent($progress_bar);
     now_category = category[category.indexOf(now_category) + 1];
     removeProgressStatus();
     document.querySelectorAll(".nav-item").forEach(nav => {
       if (nav.textContent === now_category) {
-        nav.parentElement.classList.add("progress-bar");
-        setCount(nav.parentElement);
-        nav.parentElement.addEventListener("animationiteration", nextNewsWhenProgressEnd);
+        const $nav_li = nav.parentElement;
+        $nav_li.classList.add("progress-bar");
+        insertCountDiv($nav_li);
+        addProgressIterEvent($nav_li);
       }
     });
-    drawNews(now_category, page_count[now_category]);
-    setNowCount();
-    drawArrow();
   } else {
     page_count[now_category] += 1;
-    drawNews(now_category, page_count[now_category]);
-    setNowCount();
-    drawArrow();
   }
+  redrawNewsContents();
+}
+
+function redrawNewsContents() {
+  drawNews(now_category, page_count[now_category]);
+  setNowCount();
+  drawArrow();
+}
+
+function insertCountDiv(component) {
+  component.insertAdjacentHTML(
+    "beforeend",
+    `
+  <div class="count font-init"><span class="now-count">${page_count[now_category] + 1}</span> <span>/</span><span class="total-count">${
+      total_pages[now_category]
+    }</span></div>
+  `,
+  );
+}
+
+function addProgressIterEvent(component) {
+  component.addEventListener("animationiteration", nextNewsWhenProgressEnd);
+}
+
+function removeProgressIterEvent(component) {
+  component.removeEventListener("animationiteration", console.log("erase!"));
 }
 
 function removeProgressStatus() {
@@ -157,6 +164,20 @@ function removeProgressStatus() {
 
 function setNowCount() {
   document.querySelector(".now-count").textContent = page_count[now_category] + 1;
+}
+
+function hideArrow(direction) {
+  document.querySelector(`.${direction}-btn`).classList.add("hidden");
+}
+
+function showArrow(direction) {
+  document.querySelector(`.${direction}-btn`).classList.remove("hidden");
+}
+
+function checkSameCategory(target) {
+  if (now_category === target.firstElementChild.textContent.trim()) {
+    return;
+  }
 }
 
 export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass };
