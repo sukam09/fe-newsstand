@@ -15,13 +15,13 @@ const grid_view = `
 const list_view = `
 <div class="grid-view">
           <button id="left-btn">
-            <img id="left" src="../assets/icons/LeftButton.png" />
+            <img id="left" src="../assets/icons/left-btn.svg" />
           </button>
           <div class="main-list">
             <ul class="main-list-ul">listslits</ul>
           </div>
           <button id="right-btn">
-            <img id="right" src="../assets/icons/RightButton.png" />
+            <img id="right" src="../assets/icons/right-btn.svg" />
           </button>
         </div>
 `;
