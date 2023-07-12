@@ -1,63 +1,38 @@
 import { fetchNewsData } from "../utils.js";
+import { show_options } from "../events.js";
 
-const category = [
-    "종합/경제",
-    "방송/통신",
-    "IT",
-    "영자지",
-    "스포츠/연예",
-    "매거진/전문지",
-    "지역",
-];
+let count = 40;
 
-let currentCategory = "종합/경제";
-let list_current_page = 0;
-let current = 10;
-let count = 23;
-let max = 100;
-
-function rendListNews(data, category, page) {
+function renderListNews(data, category, page) {
+    console.log(data, category, page);
     const news_data_container = document.querySelector(".main_news_container");
-
-    // data.category = category search
-    const filteredData = data.filter((item) => item.category === category);
-
     news_data_container.innerHTML = "";
-    createMainNav(news_data_container);
-    createMainContent(news_data_container, filteredData, 0);
+
+    createMainNav(news_data_container, page + 1, data[category]);
+    createMainContent(news_data_container, data[category], page);
     changeCategory(data);
 }
 
-function createMainNav(container) {
+function createMainNav(container, page, data) {
     const nav = document.createElement("nav");
     nav.classList.add("main_nav");
     const ul = document.createElement("ul");
 
-    category.forEach((item) => {
-        if (item === currentCategory) {
+    show_options.categorys.forEach((item) => {
+        if (item === show_options.category) {
             ul.innerHTML += `<li class="main_nav_title">
             <progress
                 value="${count}"
                 min="0"
                 max="100"></progress>
-            <span>${currentCategory}</span>
-            <span>${current} / ${max}</span></li>`;
+            <span>${show_options.category}</span>
+            <span class="progress_cnt">${page} / <b>${data.length}</b></span></li>`;
         } else {
             ul.innerHTML += `<li class="main_nav_item">${item}</li>`;
         }
     });
     nav.appendChild(ul);
     container.appendChild(nav);
-}
-
-function changeCategory(data) {
-    const main_nav_item = document.querySelectorAll(".main_nav_item");
-    main_nav_item.forEach((item) => {
-        item.addEventListener("click", () => {
-            currentCategory = item.innerText;
-            rendListNews(data, currentCategory, 0);
-        });
-    });
 }
 
 function createMainContent(container, data, page) {
@@ -69,8 +44,8 @@ function createMainContent(container, data, page) {
 
     data[page].contents.forEach((item) => {
         ul.innerHTML += `
-        <li class="content_body_contents_item"><span>${item}</span></li>
-        `;
+            <li class="content_body_contents_item"><span>${item}</span></li>
+            `;
     });
 
     const li = document.createElement("li");
@@ -96,14 +71,30 @@ function createMainContent(container, data, page) {
     container.appendChild(main_content);
 }
 
-function initListNews() {
+function changeCategory(data) {
+    const main_nav_item = document.querySelectorAll(".main_nav_item");
+    main_nav_item.forEach((item) => {
+        item.addEventListener("click", () => {
+            show_options.category = item.innerText;
+            renderListNews(data, show_options.category, 0);
+        });
+    });
+    show_options.list_current_page = 0;
+}
+
+function initNews() {
     const promise_data = fetchNewsData();
 
     promise_data.then((data) => {
-        rendListNews(data, currentCategory, 0);
+        // category 별로 분류하여 show_options.news_data에 저장
+        show_options.categorys.forEach((item) => {
+            show_options.news_data[item] = data.filter(
+                (news) => news.category === item
+            );
+        });
     });
 }
 
 function setProgress() {}
 
-export { initListNews, rendListNews };
+export { initNews, renderListNews };
