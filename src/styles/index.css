@@ -3,6 +3,7 @@
 @import url('./design.css');
 @import url('./components/latest-news.css');
 @import url('./components/news-stand-header.css');
+@import url('./components/press-header.css');
 @import url('./components/press-grid.css');
 
 body {

@@ -10,3 +10,5 @@ let isGridMode = true;
   setLatestNews();
   setPressHeader(isLightMode);
 })();
+
+// css 파일 분리
