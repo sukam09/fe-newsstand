@@ -2,6 +2,8 @@
     display: inline-flex;
     flex-direction: column;
     border: 1px solid var(--border-default);
+    width: 100%;
+    height: 100%;
 }
 
 /* nav */
@@ -52,7 +54,6 @@
 
 .list_view {
     display: flex;
-    width: 930px;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
