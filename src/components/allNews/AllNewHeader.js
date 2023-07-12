@@ -2,6 +2,12 @@ import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 
 export default class AllNewHeader extends Component {
+  setup() {
+    const isCurrentDarkMode = document.querySelector('#root').className === 'dark';
+    this.state = {
+      modeIcon: isCurrentDarkMode ? 'sun' : 'moon',
+    };
+  }
   template() {
     return `<nav class='view-type-wrapper'>
             <span class='selected-bold16 text-strong'>전체 언론사</span>        
@@ -9,6 +15,7 @@ export default class AllNewHeader extends Component {
             </nav>
 
             <div class='view-type-icon'>
+            <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
             <img id ='list-view-icon' class='icon-medium'/>
             <img id ='grid-view-icon' class='icon-medium'/>
             </div>`;
@@ -25,8 +32,18 @@ export default class AllNewHeader extends Component {
   setEvent() {
     this.$target.addEventListener('click', e => {
       const id = e.target.id;
-      if (id === 'list-view-icon') this.props.onClick('list');
-      else if (id === 'grid-view-icon') this.props.onClick('grid');
+
+      if (id === 'list-view-icon') {
+        this.props.onClick('list');
+      } else if (id === 'grid-view-icon') {
+        this.props.onClick('grid');
+      } else if (id === 'darkmode-icon') {
+        const isCurrentDarkMode = document.querySelector('#root').className === 'dark';
+        const nextModeIcon = isCurrentDarkMode ? 'sun' : 'moon';
+
+        document.querySelector('#root').className = isCurrentDarkMode ? 'light' : 'dark';
+        this.setState({ modeIcon: nextModeIcon });
+      }
     });
   }
 }
