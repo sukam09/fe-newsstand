@@ -2,6 +2,7 @@ import logoAll from "./json/news_image.json" assert { type: "json" };
 import { setDate } from "./js/Date.js";
 import { rollingBanner } from "./js/rollingBanner.js";
 import { clickNewsStand } from "./js/newsStand.js";
+import { addInitCategory } from "./js/category.js";
 
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
@@ -48,14 +49,16 @@ function clickMySubscribeNews() {
 function clickGridImage() {
   const gridImage = document.getElementById("grid-image");
   gridImage.addEventListener("click", () => {
-    refresh(subscribe_images);
+    document.getElementById("main-grid-01").style.display = "grid";
+    document.getElementById("main-grid-02").style.display = "none";
   });
 }
 
 function clickCardListImage() {
   const cardListImage = document.getElementById("card-list-image");
   cardListImage.addEventListener("click", () => {
-    refresh(subscribe_images);
+    document.getElementById("main-grid-01").style.display = "none";
+    document.getElementById("main-grid-02").style.display = "flex";
   });
 }
 
@@ -94,5 +97,8 @@ function init() {
   refresh(logoAll);
   clickRightAsideButton();
   clickLeftAsideButton();
+  addInitCategory();
+  clickCardListImage();
+  clickGridImage();
 }
 init();
