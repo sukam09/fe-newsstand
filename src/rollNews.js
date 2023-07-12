@@ -1,11 +1,9 @@
-const ROLLING_INTERVAL_TIME = 5000;
-const ROLLING_INTERVAL_SPACE_TIME = 1000;
-let newsList = [];
+import { ROLLING_INTERVAL_SPACE_TIME, ROLLING_INTERVAL_TIME } from "./constant.js";
 
 /**
  왼쪽 최신 뉴스 자동 롤링 설정
  */
-function rollNewsLeft() { //clearInterval을 위해 interval을 전역으로 빼기
+function rollNewsLeft() {
   let leftInterval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, 'left');
   const $lists = document.querySelectorAll('.rolling-banner .wrap-left li');
   $lists.forEach($list => {
@@ -58,7 +56,7 @@ function rollNewsCallback(whatNews) {
 
   const $next = document.querySelector(`.rolling-banner .wrap-${whatNews} li.next`);
   if ($next.nextElementSibling === null) {
-    const $nullNext = document.querySelector('.rolling-banner ul li:first-child');
+    const $nullNext = document.querySelector(`.rolling-banner .wrap-${whatNews} li:first-child`);
     $nullNext.classList.add('next');
   }
   else {

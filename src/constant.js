@@ -1,0 +1,7 @@
+export const ONE_PRESS_CNT = 24;
+export const FIRST_PAGE_IDX = 0;
+export const ROLLING_INTERVAL_TIME = 5000;
+export const ROLLING_INTERVAL_SPACE_TIME = 1000;
+export const LEFT_UNDISPLAY = 0;
+export const RIGHT_UNDISPLAY = 3;
+

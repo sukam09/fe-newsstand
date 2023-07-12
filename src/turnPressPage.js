@@ -1,7 +1,6 @@
+import { LEFT_UNDISPLAY, RIGHT_UNDISPLAY } from "./constant.js";
 const $pagePrevButton = document.querySelector('.left-button');
 const $pageNextButton = document.querySelector('.right-button');
-const LEFT_UNDISPLAY = 0;
-const RIGHT_UNDISPLAY = 3;
 let pageCnt = 0;
 
 /**

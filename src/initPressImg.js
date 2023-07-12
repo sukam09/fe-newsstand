@@ -1,11 +1,10 @@
+import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "./constant.js";
 import { fetchPressInfos } from "./dataFetch.js";
 import turnPressPage from "./turnPressPage.js";
 
 const $sectionNewsList = document.querySelector('.press-lists');
 const pressList = [];
 const page = [[], [], [], []];
-const ONE_PRESS_CNT = 24;
-const FIRST_PAGE_IDX = 0;
 
 async function randomizeImgs() {
   const pressInfoArr = await fetchPressInfos();
