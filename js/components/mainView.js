@@ -1,18 +1,12 @@
 import { checkPage } from "../utils/checkPage.js";
 import { changeView } from "../utils/changeView.js";
-
-const imgIndex = Array(96)
-  .fill()
-  .map((arr, i) => i + 1);
-function shuffleImgIndex() {
-  return [...imgIndex].sort(() => Math.random() - 0.5);
-}
-const shuffledPress = shuffleImgIndex();
+import { showGridView } from "../utils/makeGridView.js";
+import { showListView } from "../utils/makeListView.js";
 
 let page = 1;
 
 function MainView() {
-  showGridView();
+  showGridView(page);
   checkPage(page);
 
   const headerElement = document.createElement("h1");
@@ -28,7 +22,7 @@ function changePage(target) {
   } else if (target === "right") {
     page++;
   }
-  showGridView();
+  showGridView(page);
   checkPage(page);
 }
 
@@ -39,14 +33,14 @@ function handleClick(e) {
     case "grid-view-btn":
       page = 1;
       changeView("grid");
-      showGridView();
+      showGridView(page);
       checkPage(page);
       break;
     case "list-btn":
     case "list-view-btn":
       page = 1;
       changeView("list");
-      showListView();
+      showListView(page);
       checkPage(page);
       break;
     case "left":
@@ -57,21 +51,6 @@ function handleClick(e) {
       break;
   }
 }
-function showGridView() {
-  const main_list_ul = document.querySelector(".main-list-ul");
-  main_list_ul.innerHTML = "";
-  for (let i = 24 * (page - 1); i < 24 * page; i++) {
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    img.setAttribute(
-      "src",
-      `../assets/images/logo/light/img${shuffledPress[i]}.svg`
-    );
-    main_list_ul.appendChild(li);
-    li.appendChild(img);
-  }
-}
-function showListView() {}
 
 document.addEventListener("click", handleClick);
 
