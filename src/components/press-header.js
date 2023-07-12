@@ -42,11 +42,17 @@ const getNavRightElement = () => {
   $imgList.addEventListener('click', () => {
     $imgList.src = './assets/icons/list-view.svg';
     $imgGrid.src = './assets/icons/grid-hide.svg';
+
+    const pressWrapper = document.querySelector('.arrows__wrapper');
+    pressWrapper.classList.add('hidden');
   }); //
 
   $imgGrid.addEventListener('click', () => {
     $imgGrid.src = './assets/icons/grid-view.svg';
     $imgList.src = './assets/icons/list-hide.svg';
+
+    const pressWrapper = document.querySelector('.arrows__wrapper');
+    pressWrapper.classList.remove('hidden');
   }); //
 
   $navRight.appendChild($imgList);
