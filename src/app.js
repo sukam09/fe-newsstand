@@ -1,6 +1,6 @@
 import Header from './components/Header.js';
 import AutoRollingNews from './components/AutoRollingNews.js';
-import { PressTab } from './components/PressTab.js';
+import PressTab from './components/PressTab.js';
 import PressGridView from './components/PressGridview.js';
 import PressListView from './components/PressListView.js';
 
@@ -11,6 +11,7 @@ export default function App({ $app }) {
 
   this.setState = nextState => {
     this.state = nextState;
+    this.render();
   };
 
   new Header({ $target: $app });
@@ -35,18 +36,35 @@ export default function App({ $app }) {
 
   new PressTab({
     $target: $app,
+    onClick: newPressView => {
+      if (this.state.pressView === newPressView) {
+        return;
+      }
+      this.setState({ ...this.state, pressView: newPressView });
+    },
   });
 
-  this.state.pressView === 'grid'
-    ? new PressGridView({
-        $target: $app,
-        initialState: {
-          page: 1,
-          newsPressData: [],
-        },
-      })
-    : new PressListView({
-        $target: $app,
-        initialState: {},
-      });
+  const $div = document.createElement('div');
+  $app.appendChild($div);
+
+  this.render = () => {
+    $div.innerHTML = '';
+
+    this.state.pressView === 'grid'
+      ? new PressGridView({
+          $target: $div,
+          initialState: {
+            page: 1,
+            newsPressData: [],
+          },
+        })
+      : new PressListView({
+          $target: $div,
+          initialState: {
+            page: 1,
+          },
+        });
+  };
+
+  this.render();
 }
