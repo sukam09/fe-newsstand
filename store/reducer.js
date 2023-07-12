@@ -1,24 +1,9 @@
-import { VIEW_TYPE } from "../constants/index.js";
+import { VIEW_TYPE, CATEGORIES } from "../constants/index.js";
 import { createAction } from "../core/my-redux.js";
-
-const CATEGORIES = [
-  "종합/경제",
-  "방송/통신",
-  "IT",
-  "영자지",
-  "스포츠/연예",
-  "매거진/전문지",
-  "지역",
-];
-
-const CATEGORIES_TO_INDEX = CATEGORIES.reduce((acc, curr, idx) => {
-  acc[curr] = idx;
-  return acc;
-}, {});
 
 const initialState = {
   currentPage: 0,
-  currentCategory: "종합/경제",
+  currentCategory: CATEGORIES[0],
   viewType: VIEW_TYPE.GRID,
 };
 
