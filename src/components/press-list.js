@@ -31,6 +31,8 @@ const setPressList = (pressData) => {
 
 const getPressCategoryElement = (pressData, shufflePress, isLightMode) => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
+  arrowsWrapper.classList.add('displayNone');
+
   const pressCategoryNav = `
   <nav class='press-category__nav'>
     <ul class='press-category__ul'></ul>
