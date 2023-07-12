@@ -3,6 +3,11 @@ const HEADLINE = {
   INTERVAL: 5000,
 };
 
+const BUTTON = {
+  SUBSCRIBE: '구독하기',
+  UNSUBSCRIBE: '해지하기',
+};
+
 const SNACKBAR_DELAY = 5000;
 
 const MEDIA = {
