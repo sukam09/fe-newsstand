@@ -1,23 +1,23 @@
 import { constants } from "../../Data/constants.js";
+import newspaperData from "../../Data/newspaper.js";
 
 const $newspaperList = document.querySelector(".newspaper__list");
 
-const indexArr = Array.from(
-  { length: constants.ALL_PAGE_NEWSPAPER },
-  (_, i) => i
-);
-indexArr.sort(() => Math.random() - 0.5);
+const newspaperRandom = [...newspaperData];
+newspaperRandom.sort(() => Math.random() - 0.5);
 
-const createNewspaperItem = (index, mode) => {
+const createNewspaperItem = (item, mode) => {
   return `
     <li class="newspaper__item">
-    <img src="./assets/newspaper/${mode}/${index + 1}.png" alt=${"name"} />
+    <img src=${
+      mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
+    } alt=${item.name} />
     </li>
     `;
 };
 
 const createNewspaperList = (page, mode) => {
-  const nowPageIndexArr = indexArr.slice(
+  const nowPageIndexArr = newspaperRandom.slice(
     page * constants.ONE_PAGE_NEWSPAPER,
     (page + 1) * constants.ONE_PAGE_NEWSPAPER
   );
