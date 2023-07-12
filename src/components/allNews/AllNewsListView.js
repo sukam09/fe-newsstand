@@ -50,7 +50,6 @@ export default class AllNewsListView extends Component {
 
                     <div class='press-news-detail-list'></div>
                   </div>
-                  
                 </section>
               </div>
               
