@@ -9,8 +9,8 @@ function renderListNews(data, category, page) {
 
     createMainNav(
         news_data_container,
-        page + 1,
-        data[show_options.categorys[category]]
+        data[show_options.categorys[category]],
+        page + 1
     );
     createMainContent(
         news_data_container,
@@ -20,7 +20,7 @@ function renderListNews(data, category, page) {
     changeCategory(data);
 }
 
-function createMainNav(container, page, data) {
+function createMainNav(container, data, page) {
     const nav = document.createElement("nav");
     nav.classList.add("main_nav");
     const ul = document.createElement("ul");

@@ -1,6 +1,7 @@
 import { renderGridPress } from "./views/grid_views.js";
 import { renderListNews } from "./views/list_views.js";
 
+// 전역으로 관리할 것
 const show_options = {
     press: "all",
     main: "grid",
@@ -206,12 +207,10 @@ function movePage() {
     });
 }
 
-function init() {
+function handleEvents() {
     optionShowPress();
     optionShowMain();
     movePage();
 }
 
-init();
-
-export { show_options, toggleArrow, ROWSIZE, COLSIZE };
+export { handleEvents, toggleArrow, show_options, ROWSIZE, COLSIZE };

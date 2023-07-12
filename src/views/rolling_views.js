@@ -83,6 +83,10 @@ function bannerMouseEvents(leftBanner, rightBanner) {
 }
 
 function controlBanner() {
+    // 전역으로 바꿀 것
+    const INTERVAL = 5000;
+    const DELAY = 1000;
+
     const left_banner =
         document.getElementById("rollingBannerLeft").childNodes[0];
     const right_banner =
@@ -90,12 +94,12 @@ function controlBanner() {
 
     let leftBanner = setInterval(() => {
         updateBanner(left_banner, "left");
-    }, 5000);
+    }, INTERVAL);
     let rightBanner = setTimeout(() => {
         setInterval(() => {
             updateBanner(right_banner, "right");
-        }, 5000);
-    }, 1000);
+        }, INTERVAL);
+    }, DELAY);
 
     return [leftBanner, rightBanner];
 }
