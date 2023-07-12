@@ -34,4 +34,14 @@ function createElements(html) {
 function removeElement($element) {
     $element.remove();
 }
+/**
+ * document.querySelector의 축약형 함수입니다.
+ * @param selectors
+ * @returns
+ */
+function qs(selectors) {
+    return document.querySelector(selectors);
+}
 export { createElement, createElements, removeElement };
+const DOM = { createElement, createElements, removeElement, qs };
+export default DOM;
