@@ -66,23 +66,23 @@ section {
   top: 16px;
   transition: top 0.5s;
 }
-.each-news {
+.wrap-rolling-news .each-news {
   width: 100%;
   display: flex;
   gap: 16px;
 }
 
-.press {
+.wrap-rolling-news .press {
   color: var(--text-strong);
 }
 
-.news-title {
+.wrap-rolling-news .news-title {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
   color: var(--text-default);
 }
-.news-title:hover {
+.wrap-rolling-news .news-title:hover {
   text-decoration: underline;
 }
 

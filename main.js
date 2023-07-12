@@ -1,4 +1,4 @@
-import { RollingRender } from "./module/components/NewArticle.js";
+import { RollingRender } from "./module/components/Rolling.js";
 import { printGrid } from "./module/view/GridView.js";
 import { initDate } from "./module/utility/Date.js";
 import SelectViewStyle from "./module/ViewStyle.js";

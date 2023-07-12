@@ -48,18 +48,55 @@ function fieldInit() {
 async function fetchCategoryNewsData() {
   try {
     news_data = await fetchCategoryNews("../Data/category_news.json");
+    console.log(news_data);
     fieldInit();
+    createPressNewsSection();
   } catch (e) {
     console.error(e);
   }
 }
 
+function updateTimer() {
+  const intervalId = setInterval(() => {
+    if (CURRENT_PAGE === news_data[CURRENT_CATEGORY].press.length) {
+      console.log("카테고리 변경");
+      CURRENT_CATEGORY++;
+      CURRENT_PAGE = 0;
+    }
+    if (CURRENT_CATEGORY === news_data.length - 1) {
+      console.log("처음 카테고리로");
+      CURRENT_CATEGORY = 0;
+      CURRENT_PAGE = 0;
+    } else CURRENT_PAGE++;
+    updatePressNewsSection();
+  }, 5000);
+}
+
+function updatePressNewsSection() {
+  const pressInfo = document.querySelector(".press-news-wrap .press-info");
+  const pressLogo = pressInfo.querySelector(".press-icon");
+  pressLogo.src = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].path;
+
+  const mainNews = document.querySelector(".press-news-wrap .news .news-main");
+  const subNews = document.querySelector(".press-news-wrap .news .news-sub");
+  mainNews.querySelector(".news-title").innerHTML = news_data[CURRENT_PAGE].press[CURRENT_PAGE - 1].news[0];
+  subNews.querySelectorAll(".each-news-title").forEach((news, index) => {
+    news.innerHTML = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news[index + 1];
+  });
+}
+
 function createPressNewsSection() {
   const pressNewsDiv = document.createElement("div");
   pressNewsDiv.className = "press-news-wrap";
-  pressNewsDiv.innerHTML = `
+  try {
+    if (!news_data) {
+      throw Error("Empty Data");
+    }
+    const firstPress = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE].news.slice(1);
+
+    pressNewsDiv.innerHTML = `
     <div class="press-info">
-        <img class="press-icon" src="../../asset/icons/basic/news_logo1.svg"/>
+        <img class="press-icon" src="${news_data[CURRENT_CATEGORY].press[CURRENT_PAGE].path}"/>
         <span class="edit-time display-medium12">2023.02.10 18:24 편집</span>
         <button class="subscribe-btn">
         
@@ -71,23 +108,21 @@ function createPressNewsSection() {
     <div class="news">
         <div class="news-main">
           <img class="news-img" src="https://picsum.photos/320/200"/>
-          <span class="news-title available-medium16">뉴스 기사 타이틀 ~ </span>
+          <span class="news-title available-medium16">${news_data[CURRENT_CATEGORY].press[CURRENT_PAGE].news[0]} </span>
         </div>
         <div class="news-sub">
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
-          <span class="each-news-title available-medium16">가나다라마바사아자</span>
+           ${firstPress.map((news) => `<span class="available-medium16">${news}</span>`).join("")}
           <span class="explain display-medium14"> ~ 언론사에서 직접 편집한 뉴스입니다.</span>
         </div>
     </div>
 
   `;
 
-  const news_list_wrap = document.querySelector("main .news-list-wrap");
-  news_list_wrap.appendChild(pressNewsDiv);
+    const news_list_wrap = document.querySelector("main .news-list-wrap");
+    news_list_wrap.appendChild(pressNewsDiv);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 function createTabs() {
@@ -127,8 +162,8 @@ export function printList() {
   //HTML 요소 생성
   createNewsList();
   createTabs();
-  createPressNewsSection();
-  //
+
   fetchCategoryNewsData(); // 데이터 패치 및 초기화
   tabClickEventRegister(); // 탭 클릭 이벤트
+  updateTimer();
 }
