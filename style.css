@@ -252,6 +252,13 @@ body {
 .list-view-main_notice {
   color: var(--color-text-weak);
 }
+.tab-count {
+  display: none;
+  color: var(--color-text-white-weak);
+}
+.tab-count_current {
+  color: var(--color-text-white-default);
+}
 .hidden {
   display: none;
 }
@@ -259,4 +266,7 @@ body {
   width: 166px;
   color: var(--color-text-white-default);
   background: var(--color-surface-brand-alt);
+}
+.category-selected > .tab-count {
+  display: block;
 }
