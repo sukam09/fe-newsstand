@@ -1,0 +1,48 @@
+.news-list {
+  width: 930px;
+  height: 388px;
+  position: relative;
+  border: 1px solid var(--gray-scale-100);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.news-list > li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--gray-scale-100);
+  cursor: pointer;
+}
+
+.grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.grid-wrapper.hidden {
+  display: none;
+}
+
+.left-button,
+.right-button {
+  border: none;
+  width: 24px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.press-logo {
+  width: fit-content;
+  height: 20px;
+}

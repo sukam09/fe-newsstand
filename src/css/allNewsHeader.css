@@ -1,0 +1,27 @@
+.all-news-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 930px;
+}
+
+.view-type-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.view-type-wrapper span:first-child {
+  font-weight: 700;
+  color: var(--gray-scale-black);
+}
+
+.view-type-wrapper span:last-child {
+  color: var(--gray-scale-200);
+}
+
+.view-type-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
