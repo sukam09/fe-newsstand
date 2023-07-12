@@ -1,8 +1,8 @@
-import { customFetch, setDate } from "./utils.js";
-import { ROLLING_WAIT_TIME, ROLLING_DIFF_TIME } from "./constants.js";
-
-const $haederLogo = document.querySelector(".container-header_logo");
-const $headerDate = document.querySelector(".container-header_date");
+import { customFetch } from "../../utils/utils.js";
+import {
+  ROLLING_WAIT_TIME,
+  ROLLING_DIFF_TIME,
+} from "../../constants/constants.js";
 
 const $newsBar = document.querySelectorAll(".container-news-bar_wrap");
 const $leftRollingBox = $newsBar[0];
@@ -10,15 +10,7 @@ const $leftRollingList = $leftRollingBox.querySelector("ul");
 const $rightRollingBox = $newsBar[1];
 const $rightRollingList = $rightRollingBox.querySelector("ul");
 
-export const setHeaderLogo = () => {
-  $haederLogo.addEventListener("click", () => window.location.reload());
-};
-
-export const setHeaderDate = () => {
-  $headerDate.innerText = setDate();
-};
-
-export const setHeadline = async () => {
+export const setRolling = async () => {
   const headLineData = await customFetch("./mocks/headlines.json");
 
   fillHeadlineContents(headLineData);
@@ -57,7 +49,7 @@ const createHeadlineContent = (title, link, idx) => {
   return $li;
 };
 
-export const setRollingInterval = () => {
+const setRollingInterval = () => {
   let rollingInterval = setInterval(() => {
     rollingCallback();
   }, ROLLING_WAIT_TIME);

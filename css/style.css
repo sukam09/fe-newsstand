@@ -203,7 +203,7 @@ ul .next {
 
   background-color: var(--color-surface-brand-default);
 
-  transition: width 0.5s linear;
+  transition: width 1s linear;
 }
 .progress-component {
   width: 100%;
@@ -237,6 +237,10 @@ ul .next {
   align-self: stretch;
 
   color: var(--color-text-default);
+}
+.list-view_main-header > span {
+  display: flex;
+  align-items: center;
 }
 .list-view_main-box {
   gap: 32px;
@@ -274,4 +278,10 @@ ul .next {
 }
 .hidden {
   display: none;
+}
+.font-deactivate {
+  color: var(--color-text-white-weak);
+}
+.font-activate {
+  color: var(--color-text-white-default);
 }

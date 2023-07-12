@@ -70,8 +70,8 @@
   font-weight: 700;
   font-display: swap;
   src: local("Pretendard Bold"),
-    url("../assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
-    url("../assets/fonts/Pretendard-Bold.subset.woff") format("woff");
+    url("../src/assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+    url("../src/assets/fonts/Pretendard-Bold.subset.woff") format("woff");
 }
 @font-face {
   font-family: "Pretendard";
@@ -79,8 +79,8 @@
   font-weight: 500;
   font-display: swap;
   src: local("Pretendard Medium"),
-    url("../assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
-    url("../assets/fonts/Pretendard-Medium.subset.woff") format("woff");
+    url("../src/assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
+    url("../src/assets/fonts/Pretendard-Medium.subset.woff") format("woff");
 }
 * {
   font-family: Pretendard;

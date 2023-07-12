@@ -1,4 +1,4 @@
-export const customFetch = async (url, callback, options) => {
+const customFetch = async (url, callback, options) => {
   try {
     const response = await fetch(url, options);
     let data = await response.json();
@@ -10,13 +10,13 @@ export const customFetch = async (url, callback, options) => {
   }
 };
 
-export const shuffleArrayRandom = (array) => {
+const shuffleArrayRandom = (array) => {
   const new_array = array.slice();
 
   return new_array.sort(() => Math.random() - 0.5);
 };
 
-export const setDate = () => {
+const setDate = () => {
   const today = new Date();
 
   const options = {
@@ -28,3 +28,18 @@ export const setDate = () => {
 
   return today.toLocaleDateString("ko-KR", options);
 };
+
+const ObjectToArrayRandom = (data) => {
+  const newArray = [];
+
+  Object.values(data).forEach((item) =>
+    newArray.push({
+      name: data,
+      src: item.light,
+    })
+  );
+
+  return newArray;
+};
+
+export { customFetch, shuffleArrayRandom, setDate, ObjectToArrayRandom };

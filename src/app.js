@@ -1,19 +1,13 @@
-import { setNewsGrid } from "./grid.js";
-import { gridPagesStore, listPagesStore } from "./store.js";
-import { setHeaderLogo, setHeaderDate, setHeadline } from "./header.js";
-import { setViewToggleButton } from "./view-toggle-button.js";
-import { setCategoryBar, setList } from "./list.js";
+import { setNavigationButtons } from "./components/navigation-button.js";
+import { setViewToggleButton } from "./components/view-toggle-button.js";
+import { setHeader } from "./components/header/index.js";
+import { setGrid } from "./components/grid/index.js";
+import { setList } from "./components/list/index.js";
 
-(async function init() {
-  const gridCurrentPages = gridPagesStore.getInstance();
-  const listCurrentPages = listPagesStore.getInstance();
-
-  setHeaderLogo();
-  setHeaderDate();
-  setNewsGrid(gridCurrentPages);
-  setHeadline();
+(function init() {
+  setHeader();
+  setGrid();
+  setList();
+  setNavigationButtons();
   setViewToggleButton();
-
-  setCategoryBar();
-  setList(listCurrentPages);
 })();
