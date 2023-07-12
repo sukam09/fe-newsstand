@@ -11,9 +11,6 @@ function rollNewsBoth(whatRolling) {
     $list.addEventListener('mouseenter', () => {
       clearInterval(interval);
     })
-  })
-
-  $lists.forEach($list => {
     $list.addEventListener('mouseleave', () => {
       interval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, `${whatRolling}`);
     })
