@@ -1,9 +1,15 @@
 import { showGridPageButton, now_grid_page } from "./gridView.js";
+import { listPageUp, updateCategory } from "./category.js";
 
 // 로고 새로고침
 function refresh() {
   location.reload();
 }
+
+export let categoryInterval = setInterval(() => {
+  listPageUp();
+  updateCategory();
+}, 1000);
 
 // 그리드 뷰로 전환
 function changeToGrid() {
@@ -35,6 +41,7 @@ function changeToGrid() {
   left_list_button.style.display = "none";
   right_list_button.style.display = "none";
   showGridPageButton();
+  clearInterval(categoryInterval);
 }
 
 // 리스트 뷰로 변환
@@ -66,6 +73,10 @@ function changeToList() {
   right_grid_button.style.display = "none";
   left_list_button.style.display = "block";
   right_list_button.style.display = "block";
+  categoryInterval = setInterval(() => {
+    listPageUp();
+    updateCategory();
+  }, 1000);
 }
 
 // 오늘 날짜 update
@@ -90,6 +101,7 @@ function updateDate() {
   mainLogo.addEventListener("click", refresh);
   listButton.addEventListener("click", changeToList);
   gridButton.addEventListener("click", changeToGrid);
+  clearInterval(categoryInterval);
 })();
 
 export { updateDate };

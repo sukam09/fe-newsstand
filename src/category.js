@@ -1,13 +1,22 @@
-// 카테고리 메뉴 전환
+let now_list_page = 1;
+const MAX_NEWS_COUNT = 6;
+
+// 카테고리 메뉴 클릭시 전환
 function categoryClicked(item) {
   const targetOn = document.querySelector(`#category${item.id}`);
   const targetOff = document.querySelector(".category_list--clicked");
   targetOff.classList.remove("category_list--clicked");
   targetOn.classList.add("category_list--clicked");
+  now_list_page = 1;
+  updateCategory();
+}
+
+function listPageUp() {
+  now_list_page += 1;
 }
 
 // 카테고리 리스트 추가
-export function appendCategoryList() {
+function appendCategoryList() {
   const categoryListContainer = document.getElementsByClassName(
     "category_list_container"
   );
@@ -43,7 +52,7 @@ function createCategoryList(item, idx) {
   const nowPage = document.createElement("span");
   const allPage = document.createElement("span");
   nowPage.className = "now_page";
-  nowPage.innerHTML = "1 ";
+  nowPage.innerHTML = `${now_list_page} `;
   allPage.className = "all_page";
   allPage.innerHTML = `/ ${item.tabs}`;
   counterContainer.appendChild(nowPage);
@@ -56,3 +65,27 @@ function createCategoryList(item, idx) {
   newList.appendChild(progressBar);
   return newList;
 }
+
+function updateCategory() {
+  const nowpage = document.getElementsByClassName("category_list--clicked")[0]
+    .children[1].children[0];
+  nowpage.innerHTML = `${now_list_page} `;
+}
+
+// 리스트 뷰의 뉴스 append
+function appendNewsList() {
+  const newsListContainer = document.querySelector(".news_list__container");
+  for (let i = 0; i < MAX_NEWS_COUNT; i++) {
+    const newNewsList = createNewsList(newsList[i]);
+    newsListContainer.appendChild(newNewsList);
+  }
+}
+
+function createNewsList(content) {
+  const newList = document.createElement("li");
+  newList.className = "news_list";
+  newList.innerHTML = content;
+  return newList;
+}
+
+export { appendCategoryList, appendNewsList, updateCategory, listPageUp };
