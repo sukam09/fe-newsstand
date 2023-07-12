@@ -2,8 +2,9 @@ import { checkPage } from "../utils/checkPage.js";
 import { changeView } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
+import { FIRST_PAGE_NUM } from "../constants/constants.js";
 
-let page = 1;
+let page = FIRST_PAGE_NUM;
 
 function MainView() {
   showGridView(page);
@@ -31,14 +32,14 @@ function handleClick(e) {
   switch (target) {
     case "grid-btn":
     case "grid-view-btn":
-      page = 1;
+      page = FIRST_PAGE_NUM;
       changeView("grid");
       showGridView(page);
       checkPage(page);
       break;
     case "list-btn":
     case "list-view-btn":
-      page = 1;
+      page = FIRST_PAGE_NUM;
       changeView("list");
       showListView(page);
       checkPage(page);

@@ -5,7 +5,6 @@ function RecentNews() {
   autoRollingAnimation();
   const headerElement = document.createElement("h1");
   headerElement.textContent = "여기에 헤더 컴포넌트의 내용을 작성하세요";
-
   return headerElement;
 }
 

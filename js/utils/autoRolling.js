@@ -1,4 +1,7 @@
-const RECENT_CNT = 5;
+import {
+  ROLLING_WAIT_TIME,
+  ROLLING_DIFF_TIME,
+} from "../constants/constants.js";
 let leftAutoRollingInterval;
 let rightAutoRollingInterval;
 
@@ -30,14 +33,14 @@ export function autoRollingAnimation() {
   document.addEventListener("DOMContentLoaded", () => {
     leftAutoRollingInterval = setInterval(
       () => rollingCallback("recent-left"),
-      5000
+      ROLLING_WAIT_TIME
     );
     setTimeout(() => {
       rightAutoRollingInterval = setInterval(
         () => rollingCallback("recent-right"),
-        5000
+        ROLLING_WAIT_TIME
       );
-    }, 1000);
+    }, ROLLING_DIFF_TIME);
   });
 
   document.addEventListener("visibilitychange", () => {
@@ -49,14 +52,14 @@ export function autoRollingAnimation() {
       clearInterval(rightAutoRollingInterval);
       leftAutoRollingInterval = setInterval(
         () => rollingCallback("recent-left"),
-        5000
+        ROLLING_WAIT_TIME
       );
       setTimeout(() => {
         rightAutoRollingInterval = setInterval(
           () => rollingCallback("recent-right"),
-          5000
+          ROLLING_WAIT_TIME
         );
-      }, 1000);
+      }, ROLLING_DIFF_TIME);
     }
   });
 
@@ -74,15 +77,15 @@ export function autoRollingAnimation() {
     if (target.matches("#recent-left .wrap a")) {
       leftAutoRollingInterval = setInterval(
         () => rollingCallback("recent-left"),
-        5000
+        ROLLING_WAIT_TIME
       );
     } else if (target.matches("#recent-right .wrap a")) {
       setTimeout(() => {
         rightAutoRollingInterval = setInterval(
           () => rollingCallback("recent-right"),
-          5000
+          ROLLING_WAIT_TIME
         );
-      }, 1000);
+      }, ROLLING_DIFF_TIME);
     }
   });
 }
