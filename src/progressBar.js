@@ -1,4 +1,5 @@
 const CATEGORY_NUM = 7;
+const PROGRESS_TIME = 20000;
 let category_clicked = false;
 let idx = 0;
 
@@ -36,9 +37,6 @@ let progress_interval;
 function movingProgress() {
   while (idx <= CATEGORY_NUM - 1 && idx >= 0) {
     progress_interval = setInterval(function () {
-      // if(category_clicked === true){
-      //     clearInterval
-      // }
       if (idx == CATEGORY_NUM - 1) {
         changeCategory(idx, 0);
         idx = 0;
@@ -46,7 +44,7 @@ function movingProgress() {
         changeCategory(idx, idx + 1);
         idx++;
       }
-    }, 20000);
+    }, PROGRESS_TIME);
     break;
   }
 }
