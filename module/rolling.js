@@ -1,8 +1,7 @@
 import { fetchRollingNewsData } from "./api.js";
 import { ROLLING, GLOBAL } from "./variable.js";
 
-let first_interval = null;
-let second_interval = null;
+let first_interval, second_interval;
 
 async function initRollingNews() {
   startFirstInterval();
@@ -69,7 +68,8 @@ function rollingCallback(dir) {
     current = document.querySelector("#first-news .current-news");
     next = document.querySelector("#first-news .next-news");
     if (next.nextElementSibling == null) {
-      document.querySelector(".news-bar #first-news li:first-child").classList.add("next-news");
+      // document.querySelector(".news-bar #first-news li:first-child").classList.add("next-news");
+      document.querySelector(".news-bar #first-news li").classList.add("next-news");
     } else {
       next.nextElementSibling.classList.add("next-news");
     }
@@ -78,7 +78,8 @@ function rollingCallback(dir) {
     current = document.querySelector("#second-news .current-news");
     next = document.querySelector("#second-news .next-news");
     if (next.nextElementSibling == null) {
-      document.querySelector(".news-bar #second-news li:first-child").classList.add("next-news");
+      // document.querySelector(".news-bar #second-news li:first-child").classList.add("next-news");
+      document.querySelector(".news-bar #second-news li").classList.add("next-news");
     } else {
       next.nextElementSibling.classList.add("next-news");
     }
