@@ -1,8 +1,12 @@
-const setPressGrid = () => {
+let pageNum = 0;
+
+const setPressGrid = (isLightMode) => {
   const pressHeader = document.querySelector('.press__header');
 
   pressHeader.appendChild(getNavLeftElement());
   pressHeader.appendChild(getNavRightElement());
+
+  setTotalPress(isLightMode);
 };
 
 const getNavLeftElement = () => {
@@ -41,30 +45,46 @@ const getNavRightElement = () => {
   return $navRight;
 };
 
+/**
+ * 언론사 불러오기
+ */
+const setTotalPress = (isLightMode) => {
+  fetch('./assets/data/total-press.json')
+    .then((response) => response.json())
+    .then((data) => {
+      makeGrid(data, isLightMode);
+    })
+    .catch((error) => {
+      console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
+    });
+};
+
 const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
 };
 
-const makeGrid = () => {
-  for (let i = 0; i < 24; i++) {
-    const gridItem = document.createElement('li');
-    const imgSrc = isLightMode
-      ? `./assets/images/light-press-logo/${idList[i]}.png`
-      : `./assets/images/dark-press-logo/${idList[i]}.png`;
+const makeGrid = (pressData, isLightMode) => {
+  const pressLogoWrapper = document.querySelector('.press-logo__wrapper');
+  let gridIndex = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
+  shuffleList(gridIndex);
+
+  let gridPage = gridIndex.slice(pageNum * 24, pageNum * 24 + 24);
+  gridPage.forEach((pressNum, idx) => {
+    const $li = document.createElement('li');
+    $li.classList.add('press-logo__li');
+
+    const selectPress = pressData.filter((data) => data.id === pressNum);
+    const imgSrc = isLightMode ? selectPress[0].lightSrc : selectPress[0].darkSrc;
 
     let checkImg = new Image();
     checkImg.src = imgSrc;
-    checkImg.onload = function () {
-      const img = document.createElement('img');
-      img.classList.add(`img${i}`);
-      img.src = imgSrc;
-      img.style.height = '20px';
-      gridItem.classList.add('press-logo__li');
-      gridItem.appendChild(img);
+    checkImg.onload = () => {
+      const $img = document.createElement('img');
+      $img.src = imgSrc;
+      $li.appendChild($img);
+      pressLogoWrapper.append($li);
     };
-
-    newsWrapper.append(gridItem);
-  }
+  });
 };
 
 export { setPressGrid };
