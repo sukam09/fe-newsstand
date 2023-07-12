@@ -185,7 +185,7 @@ ul li:hover .media-hover {
 }
 /* 이전, 현재, 다음 롤링 배너 표시 */
 .news_title_wrapper p.prev{
-    top: 36px;
+    top: -36px;
     transition: top 0.5s ease;
 }
 .news_title_wrapper p.current{
@@ -193,14 +193,5 @@ ul li:hover .media-hover {
     transition: top 0.5s ease;
 }
 .news_title_wrapper p.next{
-    top: -36px;
-}
-
-/* 반대 방향으로 진행 */
-.news_title_wrapper.reverse p.prev{
-    top: -36px;
-    transition: top 0.5s ease;
-}
-.news_title_wrapper.reverse p.next{
     top: 36px;
 }
