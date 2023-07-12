@@ -1,5 +1,12 @@
+import { stopInterval, startInterval } from "./global.js";
+
 let now_list_page = 1;
 const MAX_NEWS_COUNT = 6;
+
+function refreshInterval() {
+  stopInterval();
+  startInterval();
+}
 
 // 카테고리 메뉴 클릭시 전환
 function categoryClicked(item) {
@@ -8,7 +15,7 @@ function categoryClicked(item) {
   targetOff.classList.remove("category_list--clicked");
   targetOn.classList.add("category_list--clicked");
   now_list_page = 1;
-  updateCategory();
+  refreshInterval();
 }
 
 function listPageUp() {
@@ -52,9 +59,9 @@ function createCategoryList(item, idx) {
   const nowPage = document.createElement("span");
   const allPage = document.createElement("span");
   nowPage.className = "now_page";
-  nowPage.innerHTML = `${now_list_page} `;
+  nowPage.innerHTML = `${now_list_page} /`;
   allPage.className = "all_page";
-  allPage.innerHTML = `/ ${item.tabs}`;
+  allPage.innerHTML = `${item.tabs}`;
   counterContainer.appendChild(nowPage);
   counterContainer.appendChild(allPage);
   newList.appendChild(counterContainer);
@@ -67,9 +74,26 @@ function createCategoryList(item, idx) {
 }
 
 function updateCategory() {
-  const nowpage = document.getElementsByClassName("category_list--clicked")[0]
-    .children[1].children[0];
-  nowpage.innerHTML = `${now_list_page} `;
+  const clickedCategory = document.getElementsByClassName(
+    "category_list--clicked"
+  )[0];
+  clickedCategory.children[1].children[0].innerHTML = `${now_list_page} /`;
+  if (
+    parseInt(now_list_page) ==
+    parseInt(clickedCategory.children[1].children[1].innerHTML) + 1
+  ) {
+    if (clickedCategory.nextElementSibling == null) {
+      document
+        .getElementsByClassName("category_list")[0]
+        .classList.add("category_list--clicked");
+    } else {
+      clickedCategory.nextElementSibling.classList.add(
+        "category_list--clicked"
+      );
+    }
+    clickedCategory.classList.remove("category_list--clicked");
+    now_list_page = 1;
+  }
 }
 
 // 리스트 뷰의 뉴스 append

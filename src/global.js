@@ -6,10 +6,20 @@ function refresh() {
   location.reload();
 }
 
-export let categoryInterval = setInterval(() => {
+let categoryInterval = setInterval(() => {
   listPageUp();
   updateCategory();
-}, 1000);
+}, 20000);
+
+export function stopInterval() {
+  clearInterval(categoryInterval);
+}
+export function startInterval() {
+  categoryInterval = setInterval(() => {
+    listPageUp();
+    updateCategory();
+  }, 20000);
+}
 
 // 그리드 뷰로 전환
 function changeToGrid() {
@@ -41,7 +51,7 @@ function changeToGrid() {
   left_list_button.style.display = "none";
   right_list_button.style.display = "none";
   showGridPageButton();
-  clearInterval(categoryInterval);
+  stopInterval();
 }
 
 // 리스트 뷰로 변환
@@ -73,10 +83,6 @@ function changeToList() {
   right_grid_button.style.display = "none";
   left_list_button.style.display = "block";
   right_list_button.style.display = "block";
-  categoryInterval = setInterval(() => {
-    listPageUp();
-    updateCategory();
-  }, 1000);
 }
 
 // 오늘 날짜 update
