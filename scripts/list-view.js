@@ -1,5 +1,7 @@
 import { NewsDB } from "../core/index.js";
 import { store } from "../store/index.js";
+import { VIEW_TYPE } from "../constants/index.js";
+import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
@@ -31,10 +33,7 @@ const CATEGORIES_TO_INDEX = CATEGORIES.reduce((acc, curr, idx) => {
   return acc;
 }, {});
 
-let currentCategory = CATEGORIES[0];
-let currentPage = 0;
-
-const fillArticles = () => {
+const fillArticles = (currentCategory, currentPage) => {
   const newsDataMap = NewsDB.getNewsDataMapByCategory();
   const { name, src, edit_date, main_news, sub_news } =
     newsDataMap.get(currentCategory)[currentPage];
@@ -53,6 +52,34 @@ const fillArticles = () => {
   $listViewNotice.innerText = `${name} 언론사에서 직접 편집한 뉴스입니다.`;
 };
 
-export const fillListView = () => {
-  fillArticles();
+const initArticle = () => {
+  const { currentPage, currentCategory } = store.getState();
+  fillArticles(currentCategory, currentPage);
+};
+
+const updateButtonUI = (currentPage, maxPage) => {
+  if (currentPage === 0) {
+    $prevPageButton.classList.add("hidden");
+  } else {
+    $prevPageButton.classList.remove("hidden");
+  }
+
+  if (currentPage === maxPage) {
+    $nextPageButton.classList.add("hidden");
+  } else {
+    $nextPageButton.classList.remove("hidden");
+  }
+};
+
+export const renderListView = () => {
+  initArticle();
+
+  store.subscribe(() => {
+    const { currentPage, currentCategory, viewType } = store.getState();
+    if (viewType !== VIEW_TYPE.LIST) return;
+
+    fillArticles(currentCategory, currentPage);
+
+    updateButtonUI(currentPage, 3);
+  });
 };

@@ -1,7 +1,7 @@
 import { NewsDB } from "./core/index.js";
 import { startRollingBanner } from "./scripts/rolling-banner.js";
-import { fillGridView } from "./scripts/grid-view.js";
-import { fillListView } from "./scripts/list-view.js";
+import { renderGridView } from "./scripts/grid-view.js";
+import { renderListView } from "./scripts/list-view.js";
 import {
   $gridView,
   $listView,
@@ -23,14 +23,6 @@ const $mainNavViewerButtons = $mainNav.querySelectorAll(
   ".main-nav_viewer > button"
 );
 
-const getSlicedDataFromPage = (data, page, count) => {
-  return data.slice(page * count, (page + 1) * count);
-};
-
-const getMaxPage = (data) => {
-  return Math.floor(data.length / NEWS_COUNT) - 1;
-};
-
 const initDB = async () => {
   const mockData = await customFetch("./mocks/news.json", shuffleData);
   NewsDB.instance = mockData;
@@ -40,43 +32,15 @@ const setHeaderDate = () => {
   $headerDate.innerText = getKRLocaleDateString(new Date());
 };
 
-const updateButtonUI = (currentPage, maxPage) => {
-  if (currentPage === 0) {
-    $prevPageButton.classList.add("hidden");
-  } else {
-    $prevPageButton.classList.remove("hidden");
-  }
-
-  if (currentPage === maxPage) {
-    $nextPageButton.classList.add("hidden");
-  } else {
-    $nextPageButton.classList.remove("hidden");
-  }
-};
-
 // main
 (async function () {
   await initDB();
   const newsData = NewsDB.getNewsData();
-  const maxPage = getMaxPage(newsData);
 
   setHeaderDate();
   startRollingBanner();
-  fillGridView(
-    getSlicedDataFromPage(newsData, store.getState().currentPage, NEWS_COUNT)
-  );
-
-  store.subscribe(() => {
-    const { currentPage, viewType } = store.getState();
-
-    if (viewType === VIEW_TYPE.GRID) {
-      fillGridView(getSlicedDataFromPage(newsData, currentPage, NEWS_COUNT));
-    } else {
-      fillListView();
-    }
-
-    updateButtonUI(currentPage, maxPage);
-  });
+  renderGridView(newsData);
+  renderListView();
 
   store.subscribe(() => {
     const viewType = store.getState().viewType;

@@ -1,8 +1,13 @@
-export const fillGridView = (newsData) => {
+import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
+import { store } from "../store/index.js";
+import { $nextPageButton, $prevPageButton } from "./doms.js";
+
+const fillGridView = (newsData, currentPage) => {
   const $gridView = document.querySelector(".grid-view");
   $gridView.innerHTML = "";
 
-  for (let i = 0; i < newsData.length; i++) {
+  const startIdx = currentPage * NEWS_COUNT;
+  for (let i = startIdx; i < startIdx + NEWS_COUNT; i++) {
     const $li = document.createElement("li");
     $li.className = "grid-cell";
 
@@ -19,4 +24,41 @@ export const fillGridView = (newsData) => {
 
     $gridView.appendChild($li);
   }
+};
+
+const initGridView = (newsData) => {
+  const currentPage = store.getState().currentPage;
+  fillGridView(newsData, currentPage);
+};
+
+const getMaxPage = (data) => {
+  return Math.floor(data.length / NEWS_COUNT) - 1;
+};
+
+const updateButtonUI = (currentPage, maxPage) => {
+  if (currentPage === 0) {
+    $prevPageButton.classList.add("hidden");
+  } else {
+    $prevPageButton.classList.remove("hidden");
+  }
+
+  if (currentPage === maxPage) {
+    $nextPageButton.classList.add("hidden");
+  } else {
+    $nextPageButton.classList.remove("hidden");
+  }
+};
+
+export const renderGridView = (newsData) => {
+  const maxPage = getMaxPage(newsData);
+  initGridView(newsData);
+
+  store.subscribe(() => {
+    const { currentPage, viewType } = store.getState();
+    if (viewType !== VIEW_TYPE.GRID) return;
+
+    fillGridView(newsData, currentPage);
+
+    updateButtonUI(currentPage, maxPage);
+  });
 };
