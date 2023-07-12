@@ -31,7 +31,7 @@ function shuffleImgs() {
         page[pageIndex].push(arr);
       });
 	pressContentView.innerHTML = `
-    ${page[0].map(arr => `<li><img src="../assets/images/press/ ${arr["id"]}.png"</li>`).join('')};
+    ${page[0].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
 	`
 }
 
@@ -42,12 +42,12 @@ function showPressImg(flag) {
     sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
     console.log(pageNumber);
 	pressContentView.innerHTML = `
-		${page[pageNumber].map(arr => `<li><img src="../assets/images/press/ ${arr["id"]}.png"</li>`).join('')};
+		${page[pageNumber].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
 	`
 }
 
 
-for (let i = 0; i < 96; i++) {
+for (let i = 1; i < 97; i++) {
 	pageAllNum.push(i);
 }
 

@@ -22,7 +22,6 @@ function mouseEventRolling(state) {
     
     headlineNews.forEach((elem) => {
         elem.addEventListener('mouseover', () => {
-            debugger;
             elem.style.textDecoration = "underline";
             elem.style.cursor = "pointer";
             stopRolling();

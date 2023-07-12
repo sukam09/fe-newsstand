@@ -61,9 +61,15 @@ body {
 }
 
 #pressbar-icon-grid-view {
-    padding-right: 8px;
+    height: 24px;
+    width: 24px;
 }
 
+#pressbar-icon-list-view {
+    padding-right: 8px;
+    height: 24px;
+    width: 24px;
+}
 .press-content-container {
     display: flex;
     position: relative;
