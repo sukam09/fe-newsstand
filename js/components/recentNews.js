@@ -1,5 +1,5 @@
 import { autoRollingAnimation } from "../utils/autoRolling.js";
-
+import { RECENT_NEWS_CNT } from "../constants/constants.js";
 function RecentNews() {
   getNewsData();
   autoRollingAnimation();
@@ -24,14 +24,14 @@ function getNewsData() {
 function drawRollingHtml(target, news) {
   const _target = document.getElementById(target);
   let newsHTML = `<div class="wrap"><ul>`;
-  for (let i = 0; i < news.length; i++) {
+  for (let i = 0; i < RECENT_NEWS_CNT; i++) {
     newsHTML +=
       '<li class="' +
       (i === 0
         ? "current"
         : i === 1
         ? "next"
-        : i === news.length - 1
+        : i === RECENT_NEWS_CNT - 1
         ? "prev"
         : "") +
       '">';

@@ -7,6 +7,7 @@ import { FIRST_PAGE_NUM } from "../constants/constants.js";
 let page = FIRST_PAGE_NUM;
 
 function MainView() {
+  document.addEventListener("click", handleClick);
   showGridView(page);
   checkPage(page);
 
@@ -16,7 +17,6 @@ function MainView() {
   return headerElement;
 }
 
-//TODO: 옮기기
 function changePage(target) {
   if (target === "left") {
     page--;
@@ -52,7 +52,5 @@ function handleClick(e) {
       break;
   }
 }
-
-document.addEventListener("click", handleClick);
 
 export { MainView };

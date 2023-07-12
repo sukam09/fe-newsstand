@@ -4,25 +4,19 @@ import {
 } from "../constants/constants.js";
 let leftAutoRollingInterval;
 let rightAutoRollingInterval;
-
 function rollingCallback(target) {
-  //.prev 클래스 삭제
   document.querySelector(`#${target} .wrap .prev`).classList.remove("prev");
 
-  //.current -> .prev
   let current = document.querySelector(`#${target} .wrap .current`);
   current.classList.remove("current");
   current.classList.add("prev");
 
-  //.next -> .current
   let next = document.querySelector(`#${target} .wrap .next`);
-  //다음 목록 요소가 널인지 체크
-  if (next.nextElementSibling == null) {
+  if (next.nextElementSibling === null) {
     document
       .querySelector(`#${target} .wrap ul li:first-child`)
       .classList.add("next");
   } else {
-    //목록 처음 요소를 다음 요소로 선택
     next.nextElementSibling.classList.add("next");
   }
   next.classList.remove("next");
@@ -50,6 +44,7 @@ export function autoRollingAnimation() {
     } else {
       clearInterval(leftAutoRollingInterval);
       clearInterval(rightAutoRollingInterval);
+
       leftAutoRollingInterval = setInterval(
         () => rollingCallback("recent-left"),
         ROLLING_WAIT_TIME
@@ -80,12 +75,10 @@ export function autoRollingAnimation() {
         ROLLING_WAIT_TIME
       );
     } else if (target.matches("#recent-right .wrap a")) {
-      setTimeout(() => {
-        rightAutoRollingInterval = setInterval(
-          () => rollingCallback("recent-right"),
-          ROLLING_WAIT_TIME
-        );
-      }, ROLLING_DIFF_TIME);
+      rightAutoRollingInterval = setInterval(
+        () => rollingCallback("recent-right"),
+        ROLLING_WAIT_TIME
+      );
     }
   });
 }
