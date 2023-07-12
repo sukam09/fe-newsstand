@@ -1,3 +1,4 @@
+import { NEXT_PAGE_INTERVAL } from '../../constants/index.js';
 import { shufflePressOrder } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
@@ -5,7 +6,6 @@ import ArrowButton from './ArrowButton.js';
 export default class AllNewsListView extends Component {
   setup() {
     this.state = {
-      page: 0,
       pressOrder: [
         '종합/경제',
         '방송/통신',
@@ -15,35 +15,27 @@ export default class AllNewsListView extends Component {
         '매거진/전문지',
         '지역',
       ],
-      currentPage: 1,
+      currentPressIndex: 0,
+      currentPage: 81,
       totalPage: 81,
     };
+    setInterval(() => {
+      if (this.state.currentPage === this.state.totalPage) {
+        const currentPressIndex = (this.state.currentPressIndex + 1) % this.state.pressOrder.length;
+
+        this.setState({ currentPressIndex, currentPage: 81 });
+      } else {
+        this.setState({ currentPage: this.state.currentPage + 1 });
+      }
+    }, NEXT_PAGE_INTERVAL);
   }
+
   template() {
     return `<div class='news-list-wrapper'>
               <button class='left-button'></button>
 
               <div class='newslist-list-view border-default'>
-                <nav class='border-default surface-alt'>
-
-                  <li class='text-weak available-medium14 press-header-focus surface-brand-alt '>
-                  <span class='progress-bar surface-brand-default'></span>
-                  <div>
-                    <span class='selected-bold14 text-white-default'>종합/경제</span><span class='selected-bold14 text-white-default'>
-                    <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
-                    <span class='display-bold12 text-white-weak'> / ${
-                      this.state.totalPage
-                    }</span></span>
-                  </div>
-                  </li>
-
-                  <li class='text-weak available-medium14'>방송/통신</li>
-                  <li class='text-weak available-medium14'>IT</li>
-                  <li class='text-weak available-medium14'>영자지</li>
-                  <li class='text-weak available-medium14'>스포츠/연애</li>
-                  <li class='text-weak available-medium14'>매거진/전문지</li>
-                  <li class='text-weak available-medium14'>지역</li>
-                </nav>
+                <nav class='border-default surface-alt'></nav>
 
                 <section class='press-news-section'>
                   <div class='press-news-info'>
@@ -80,6 +72,7 @@ export default class AllNewsListView extends Component {
   }
 
   mounted() {
+    this.navigationMount();
     setTimeout(() => {
       this.$target.querySelector('.progress-bar').style.width = '100%';
     }, 100);
@@ -93,5 +86,27 @@ export default class AllNewsListView extends Component {
       name: 'right-button',
       isVisible: true,
     });
+  }
+
+  navigationMount() {
+    this.$target.querySelector('nav').innerHTML = this.state.pressOrder.reduce(
+      (innerHTML, press, index) => {
+        if (index === this.state.currentPressIndex) {
+          return (
+            innerHTML +
+            `<li class='text-weak available-medium14 press-header-focus surface-brand-alt '>
+                  <span class='progress-bar surface-brand-default'></span>
+                  <div>
+                    <span class='selected-bold14 text-white-default'>${press}</span><span class='selected-bold14 text-white-default'>
+                    <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
+                    <span class='display-bold12 text-white-weak'> / ${this.state.totalPage}</span></span>
+                  </div>
+                  </li>`
+          );
+        }
+        return innerHTML + `<li class="text-weak available-medium14">${press}</li>`;
+      },
+      '',
+    );
   }
 }

@@ -182,7 +182,7 @@ section {
   top: 0;
   left: 0;
 
-  transition: width 20s linear;
+  transition: width 5s linear;
 }
 
 .press-header-focus > div {
