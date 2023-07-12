@@ -22,8 +22,8 @@ function drawArrow() {
     document.querySelector(".left-btn").classList.add("hidden");
     document.querySelector(".right-btn").classList.remove("hidden");
   } else {
-    document.querySelector(".right-btn").classList.add("block");
-    document.querySelector(".left-btn").classList.add("block");
+    document.querySelector(".right-btn").classList.remove("hidden");
+    document.querySelector(".left-btn").classList.remove("hidden");
   }
 }
 
