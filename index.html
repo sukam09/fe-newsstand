@@ -43,10 +43,40 @@
         </header>
 
         <div class="arrows-wrapper">
-          <ul class="news-grid-wrapper"></ul>
-          <ul class="news-list-wrapper hidden">
-            리스트뷰
-          </ul>
+          <!-- 그리드 영역 -->
+          <ul class="news-grid-wrapper hidden"></ul>
+          <!-- 리스트 영역 -->
+          <div class="news-list-wrapper">
+            <ul class="news-list_category">
+              <li class="category_selected">종합/경제</li>
+              <li class="category_unselected">방송/통신</li>
+            </ul>
+            <div class="news-list_media">
+              <div class="news-list_media_header">
+                <img alt="메인 기사 로고" />
+                <p></p>
+                <button class="news-list_unsubscribed_btn">+ 구독하기</button>
+                <button class="news-list_subscribed_btn hidden">x</button>
+              </div>
+              <div class="news-list_media_content">
+                <div class="news-list_media_content_main">
+                  <img
+                    src="https://picsum.photos/320/200"
+                    alt="메인 기사 이미지"
+                  />
+                  <p></p>
+                </div>
+                <ul class="news-list_media_content_sub">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <img class="left-arrow" src="/images/left_arrow.svg" />
           <img class="right-arrow" src="/images/right_arrow.svg" />
         </div>
