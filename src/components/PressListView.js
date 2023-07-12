@@ -58,7 +58,7 @@ export default function PressListView({ $target, initialState }) {
           </div>
         </div>
         <button class="list-right-button">
-          <img src="../asset/icons/right-button.png"/>
+          <img width="24px" height="40px" src="../asset/icons/right-button.png"/>
         </button>
       </article>
     `;
