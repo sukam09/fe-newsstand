@@ -12,9 +12,28 @@ function initDate() {
 function initBtn() {
   const right_btn = document.querySelector(".right-btn");
   const left_btn = document.querySelector(".left-btn");
+  const list_btn = document.querySelector(".list-btn");
+  const grid_btn = document.querySelector(".grid-btn");
+  const grid_view = document.querySelector(".grid");
+  const list_view = document.querySelector(".list-view");
 
   right_btn.addEventListener("click", () => moveGrid(+1));
   left_btn.addEventListener("click", () => moveGrid(-1));
+
+  list_btn.addEventListener("click", (e) => {
+    e.target.src = "./icons/ListButton-Blue.svg";
+    grid_btn.childNodes[1].src = "./icons/GridButton.svg";
+
+    grid_view.style.display = "none";
+    list_view.style.display = "inline-flex";
+  });
+  grid_btn.addEventListener("click", (e) => {
+    e.target.src = "./icons/GridButton-Blue.svg";
+    list_btn.childNodes[1].src = "./icons/ListButton.svg";
+
+    grid_view.style.display = "flex";
+    list_view.style.display = "none";
+  });
 }
 
 export { initDate, initBtn };
