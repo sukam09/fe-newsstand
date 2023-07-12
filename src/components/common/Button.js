@@ -1,27 +1,22 @@
 import Component from '../core/Component.js';
+import Icon from './Icon.js';
 
 export default class Button extends Component {
+  setup() {
+    this.state = { ...this.props };
+  }
   template() {
     return `
-      <button class="common-button border-default surface-alt text-weak"><img src='src/assets/icons/${this.props.icon}.svg' alt='plus' class='text-weak'/>${this.props.text}</button>
+      <button class="common-button border-default surface-alt text-weak">
+        <div class='common-button-icon'></div><span>${this.state.text}</span>
+      </button>
     `;
   }
 
   mounted() {
     const $button = this.$target.querySelector('button');
-    const { states, color } = this.props;
+    $button.className = `common-button ${this.state.color}`;
 
-    $button.className = 'common-button';
-    if (color === 'gray') {
-      $button.className +=
-        states === 'hover'
-          ? ' border-bold surface-alt text-bold'
-          : ' border-default surface-alt text-weak';
-    } else if (color === 'white') {
-      $button.className +=
-        states === 'hover'
-          ? ' border-bold surface-default text-bold'
-          : ' border-default surface-default text-weak';
-    }
+    new Icon(this.$target.querySelector('.common-button-icon'), { name: 'plus' });
   }
 }
