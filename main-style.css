@@ -125,7 +125,7 @@ h1 {
   z-index: 10;
 }
 
-.rollingbanner li:hover {
+.rolling-title:hover {
   text-decoration: underline;
 }
 

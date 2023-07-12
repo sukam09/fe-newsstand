@@ -1,11 +1,6 @@
 /***** 뉴스 배너 롤링 *****/
 const ROLLING_TIME = 5000;
 
-document.addEventListener("DOMContentLoaded", () => {
-  initRolling_first();
-  initRolling_second();
-});
-
 function rollingCallback(idx) {
   //.prev 클래스 삭제
   document.querySelector(`.rolling-${idx} .prev`).classList.remove("prev");
@@ -40,7 +35,7 @@ function secondRolling() {
 
 /***** 롤링 배너 호버시 멈추기 & 재시작 *****/
 //첫번째 배너
-function initRolling_first() {
+function initFirstRolling() {
   let interval1 = firstRolling();
 
   const banner = document.querySelector(".rollingbanner");
@@ -54,7 +49,7 @@ function initRolling_first() {
 }
 
 //두번째 배너
-function initRolling_second() {
+function initSecondRolling() {
   let interval2;
   let time_out = setTimeout(() => (interval2 = secondRolling()), 1000);
 
@@ -65,6 +60,8 @@ function initRolling_second() {
   });
 
   banner.addEventListener("mouseleave", function () {
-    let interval3 = secondRolling();
+    secondRolling();
   });
 }
+
+export { initFirstRolling, initSecondRolling };
