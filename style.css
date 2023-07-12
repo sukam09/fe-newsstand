@@ -187,6 +187,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.list-view_tab > ul > li:hover {
+  cursor: pointer;
+}
 .list-view-main {
   padding: 24px;
 }

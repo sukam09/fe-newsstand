@@ -1,5 +1,7 @@
+import { NewsDB } from "./core/index.js";
 import { startRollingBanner } from "./scripts/rolling-banner.js";
-import { fillNewsContents } from "./scripts/grid-view.js";
+import { renderGridView } from "./scripts/grid-view.js";
+import { renderListView } from "./scripts/list-view.js";
 import {
   $gridView,
   $listView,
@@ -10,23 +12,23 @@ import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
-  NewsDB,
 } from "./utils/index.js";
-import { NEWS_COUNT, VIEW_TYPE } from "./constants/index.js";
-
-// TODO: global state로 관리해야할듯
-let theme = "light";
-let pages = 0;
+import { VIEW_TYPE } from "./constants/index.js";
+import { store } from "./store/index.js";
+import {
+  changeView,
+  nextPage,
+  prevPage,
+  setCategory,
+} from "./store/reducer.js";
 
 const $headerDate = document.querySelector(".container-header_date");
 const $mainNav = document.querySelector(".main-nav");
 const $mainNavViewerButtons = $mainNav.querySelectorAll(
   ".main-nav_viewer > button"
 );
-
-const getSlicedDataFromPage = (data, page, count) => {
-  return data.slice(page * count, (page + 1) * count);
-};
+const $listViewTab = document.querySelector(".list-view_tab > ul");
+const $listViewTabItems = $listViewTab.querySelectorAll("li");
 
 const initDB = async () => {
   const mockData = await customFetch("./mocks/news.json", shuffleData);
@@ -40,47 +42,15 @@ const setHeaderDate = () => {
 // main
 (async function () {
   await initDB();
+  const newsData = NewsDB.getNewsData();
 
   setHeaderDate();
+  startRollingBanner();
+  renderGridView(newsData);
+  renderListView();
 
-  const newsData = NewsDB.getNewsData();
-  fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
-
-  const headlineData = NewsDB.getHeadlineData();
-  startRollingBanner(headlineData);
-
-  const handlePrevButtonClick = () => {
-    const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
-
-    if (pages === maxPage) {
-      $nextPageButton.classList.remove("hidden");
-    }
-
-    pages -= 1;
-    if (pages === 0) {
-      $prevPageButton.classList.add("hidden");
-    }
-
-    fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
-  };
-
-  const handleNextButtonClick = () => {
-    const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;
-
-    if (pages === 0) {
-      $prevPageButton.classList.remove("hidden");
-    }
-
-    pages += 1;
-    if (pages === maxPage) {
-      $nextPageButton.classList.add("hidden");
-    }
-
-    fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
-  };
-
-  const handleViewerButtonClick = (e) => {
-    const viewType = e.currentTarget.dataset.view;
+  store.subscribe(() => {
+    const viewType = store.getState().viewType;
 
     $mainNavViewerButtons.forEach(($button) => {
       if (viewType !== $button.dataset.view) {
@@ -97,11 +67,40 @@ const setHeaderDate = () => {
       $gridView.classList.add("hidden");
       $listView.classList.remove("hidden");
     }
-  };
-
-  $prevPageButton.addEventListener("click", handlePrevButtonClick);
-  $nextPageButton.addEventListener("click", handleNextButtonClick);
-  $mainNavViewerButtons.forEach(($button) => {
-    $button.addEventListener("click", handleViewerButtonClick);
   });
 })();
+
+const handleListViewTabClick = (e) => {
+  if (e.target === e.currentTarget) return;
+
+  $listViewTabItems.forEach(($item) => {
+    if ($item === e.target) {
+      $item.className = "category-selected selected-bold14";
+    } else {
+      $item.className = "";
+    }
+  });
+
+  const category = e.target.innerText;
+  store.dispatch(setCategory(category));
+};
+
+const handlePrevButtonClick = () => {
+  store.dispatch(prevPage());
+};
+
+const handleNextButtonClick = () => {
+  store.dispatch(nextPage());
+};
+
+const handleViewerButtonClick = (e) => {
+  const viewType = e.currentTarget.dataset.view;
+  store.dispatch(changeView(viewType));
+};
+
+$listViewTab.addEventListener("click", handleListViewTabClick);
+$prevPageButton.addEventListener("click", handlePrevButtonClick);
+$nextPageButton.addEventListener("click", handleNextButtonClick);
+$mainNavViewerButtons.forEach(($button) => {
+  $button.addEventListener("click", handleViewerButtonClick);
+});
