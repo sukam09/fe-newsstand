@@ -1,41 +1,34 @@
 import { fetchRollingNewsData } from "./api.js";
-import { ROLLING } from "./variable.js";
+import { ROLLING, GLOBAL } from "./variable.js";
 
-let rolling_news;
 let first_interval = null;
 let second_interval = null;
 
 async function initRollingNews() {
-  const first_news = document.querySelector("#first-news");
-  const second_news = document.querySelector("#second-news");
-
   startFirstInterval();
   window.setTimeout(startSecondInterval, ROLLING.DELAY_GAP);
 
-  rolling_news = await fetchRollingNewsData();
+  GLOBAL.rolling_news = await fetchRollingNewsData();
   makeDomData();
 
-  first_news.addEventListener("mouseover", () => {
+  GLOBAL.DOM.first_news.addEventListener("mouseover", () => {
     window.clearTimeout(first_interval);
   });
 
-  first_news.addEventListener("mouseout", () => {
+  GLOBAL.DOM.first_news.addEventListener("mouseout", () => {
     startFirstInterval();
   });
 
-  second_news.addEventListener("mouseover", () => {
+  GLOBAL.DOM.second_news.addEventListener("mouseover", () => {
     window.clearTimeout(second_interval);
   });
 
-  second_news.addEventListener("mouseout", () => {
+  GLOBAL.DOM.second_news.addEventListener("mouseout", () => {
     startSecondInterval();
   });
 }
 
 function makeDomData() {
-  const first_news = document.querySelector("#first-news>div");
-  const second_news = document.querySelector("#second-news>div");
-
   for (let i = 0; i < 2; i++) {
     for (let j = 0; j < ROLLING.NEWS_NUM; j++) {
       const news_li = document.createElement("li");
@@ -50,20 +43,20 @@ function makeDomData() {
       // 언론사도 같이 애니메이션 주고싶으면 사용하면 됨
       // const news_press = document.createElement("a");
       // news_press.className = "press display-bold14";
-      // news_press.innerHTML = rolling_news[RollingNewsNum * i + j].press;
-      // news_press.href = rolling_news[RollingNewsNum * i + j].url;
+      // news_press.innerHTML = GLOBAL.rolling_news[RollingNewsNum * i + j].press;
+      // news_press.href = GLOBAL.rolling_news[RollingNewsNum * i + j].url;
 
       const news_title = document.createElement("a");
       news_title.className = "news-title available-medium14";
-      news_title.innerHTML = rolling_news[ROLLING.NEWS_NUM * i + j].title;
-      news_title.href = rolling_news[ROLLING.NEWS_NUM * i + j].url;
+      news_title.innerHTML = GLOBAL.rolling_news[ROLLING.NEWS_NUM * i + j].title;
+      news_title.href = GLOBAL.rolling_news[ROLLING.NEWS_NUM * i + j].url;
 
       // news_li.appendChild(news_press);
       news_li.appendChild(news_title);
       if (i === 0) {
-        first_news.appendChild(news_li);
+        GLOBAL.DOM.first_news.appendChild(news_li);
       } else {
-        second_news.appendChild(news_li);
+        GLOBAL.DOM.second_news.appendChild(news_li);
       }
     }
   }

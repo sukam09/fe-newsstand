@@ -40,4 +40,22 @@ const BTN = {
   LIST_VIEW: 1,
 };
 
-export { ICON, JSONDATA, GRID, ROLLING, BTN };
+// 글로벌 네임스페이스
+const GLOBAL = {
+  grid_cur_page: 0,
+  news_icon: null,
+  rolling_news: null,
+  DOM: {
+    right_btn: document.querySelector(".right-btn"),
+    left_btn: document.querySelector(".left-btn"),
+    list_btn: document.querySelector(".list-btn"),
+    grid_btn: document.querySelector(".grid-btn"),
+    grid_view: document.querySelector(".grid"),
+    list_view: document.querySelector(".list-view"),
+    today: document.querySelector(".today"),
+    first_news: document.querySelector("#first-news"),
+    second_news: document.querySelector("#second-news"),
+  },
+};
+
+export { ICON, JSONDATA, GRID, ROLLING, BTN, GLOBAL };
