@@ -1,0 +1,8 @@
+.arrows__wrapper-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid var(--grayscale-100);
+  border-left: 1px solid var(--grayscale-100);
+}

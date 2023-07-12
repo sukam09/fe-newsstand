@@ -8,7 +8,8 @@ const setTotalPressList = (isLightMode) => {
     .then((response) => response.json())
     .then((data) => {
       let shufflePress = setPressList(data);
-      getPressLogoElement(data, shufflePress, isLightMode);
+      getPressCategoryElement(data, shufflePress, isLightMode);
+
       //   makePressGrid(data, shufflePress, isLightMode);
     })
     .catch((error) => {
@@ -20,52 +21,41 @@ const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
 };
 
-const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
+const setPressList = (pressData) => {
+  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
+  shuffleList(shufflePress);
+
+  return shufflePress;
+};
+
+const getPressCategoryElement = (pressData, shufflePress, isLightMode) => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
+  const pressCategoryNav = `
+  <nav class='press-category__nav'>
+    <ul class='press-category__ul'></ul>
+  </nav>
+  `;
 
-  /* nav */
-  const $nav = document.createElement('nav');
-  $nav.classList.add('press-category__nav');
+  const pressCategoryArticle = `
+  <article class='press-category__article'>
+    <section class='press-category__section-main'>
+      <nav class='section-main__nav'>
+        <img class='section-main__img-logo'>
+        <time class='section-main__time'></time>
+        <buttion class='section-main__button' />
+      </nav>
+      <img class='section-main__img-article' />
+      <h2 class='section-main__h2'></h2>
+    </section>
 
-  const $ul = document.createElement('ul');
-  $ul.classList.add('press-category__ul');
+    <section class='press-category__section-sub'>
+      <footer class='section-sub__footer'></footer>
+    </section>
 
-  /* article */
-  const $article = document.createElement('article');
-  $article.classList.add('press-category__article');
+  </article>
+  `;
 
-  /* article-main */
-
-  const $articleNav = document.createElement('nav');
-  $articleNav.classList.add('press-category__article-nav');
-
-  const $articleMain = document.createElement('');
-  $articleNav.classList.add('press-category__article-nav');
-
-  /* article-sub */
-
-  //   const $imgLeft = document.createElement('img');
-  //   $imgLeft.classList.add('arrows__img-left');
-  //   $imgLeft.classList.add('hidden');
-  //   $imgLeft.src = './assets/icons/chevron-left.svg';
-  //   $imgLeft.addEventListener('click', () => {
-  //     pageNum -= 1;
-  //     changePressLogo(pressData, shufflePress, isLightMode);
-  //     setArrowVisible();
-  //   });
-
-  //   const $imgRight = document.createElement('img');
-  //   $imgRight.classList.add('arrows__img-right');
-  //   $imgRight.src = './assets/icons/chevron-right.svg';
-  //   $imgRight.addEventListener('click', () => {
-  //     pageNum += 1;
-  //     changePressLogo(pressData, shufflePress, isLightMode);
-  //     setArrowVisible();
-  //   });
-
-  //   arrowsWrapper.appendChild($ul);
-  //   arrowsWrapper.appendChild($imgLeft);
-  //   arrowsWrapper.appendChild($imgRight);
+  arrowsWrapper.innerHTML = pressCategoryNav + pressCategoryArticle;
 };
 
 export { setTotalPressList };

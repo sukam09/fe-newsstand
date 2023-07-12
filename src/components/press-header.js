@@ -45,16 +45,22 @@ const getNavRightElement = () => {
     $imgList.src = './assets/icons/list-view.svg';
     $imgGrid.src = './assets/icons/grid-hide.svg';
 
-    const pressWrapper = document.querySelector('.arrows__wrapper-grid');
-    pressWrapper.classList.add('hidden');
+    const gridWrapper = document.querySelector('.arrows__wrapper-grid');
+    gridWrapper.classList.add('displayNone');
+
+    const listWrapper = document.querySelector('.arrows__wrapper-list');
+    listWrapper.classList.remove('displayNone');
   }); //
 
   $imgGrid.addEventListener('click', () => {
     $imgGrid.src = './assets/icons/grid-view.svg';
     $imgList.src = './assets/icons/list-hide.svg';
 
-    const pressWrapper = document.querySelector('.arrows__wrapper-grid');
-    pressWrapper.classList.remove('hidden');
+    const listWrapper = document.querySelector('.arrows__wrapper-list');
+    listWrapper.classList.add('displayNone');
+
+    const gridWrapper = document.querySelector('.arrows__wrapper-grid');
+    gridWrapper.classList.remove('displayNone');
   }); //
 
   $navRight.appendChild($imgList);

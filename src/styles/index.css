@@ -5,6 +5,7 @@
 @import url('./components/news-stand-header.css');
 @import url('./components/press-header.css');
 @import url('./components/press-grid.css');
+@import url('./components/press-list.css');
 
 body {
   display: flex;
@@ -20,10 +21,6 @@ body {
 }
 
 /* 재사용 CSS */
-.hidden {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
+.displayNone {
+  display: none;
 }
