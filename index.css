@@ -198,13 +198,31 @@ body {
     background-color: #f5f7f9;
 }
 
-.btn-tab-item {
-    width: 166px;
-    padding-left: 16px;
-    padding-right: 16px;
+.list-view-btn {
     display: flex;
     align-items: center;
     border: none;
+    background-color: #f5f7f9;
+    padding: 0;
+}
+
+.tab-item {
+    /* display: none / flex */
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.btn-tab-item {
+    width: 166px;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    /* display: none / flex */
+    display: none;
+    align-items: center;
     background-color: #7890e7;
     position: relative;
 }
@@ -246,16 +264,9 @@ body {
     color: #ffffff;
 }
 
-.btn-tab-count-div,
+.btn-tab-count-divison,
 .btn-tab-count-entire {
     color: rgba(255, 255, 255, 0.7);
-}
-
-.tab-item {
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    padding-right: 16px;
 }
 
 .list-view-press-news {
