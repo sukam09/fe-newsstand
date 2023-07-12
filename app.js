@@ -13,15 +13,22 @@ import {
   shuffleData,
   getKRLocaleDateString,
 } from "./utils/index.js";
-import { NEWS_COUNT, VIEW_TYPE } from "./constants/index.js";
+import { VIEW_TYPE } from "./constants/index.js";
 import { store } from "./store/index.js";
-import { changeView, nextPage, prevPage } from "./store/reducer.js";
+import {
+  changeView,
+  nextPage,
+  prevPage,
+  setCategory,
+} from "./store/reducer.js";
 
 const $headerDate = document.querySelector(".container-header_date");
 const $mainNav = document.querySelector(".main-nav");
 const $mainNavViewerButtons = $mainNav.querySelectorAll(
   ".main-nav_viewer > button"
 );
+const $listViewTab = document.querySelector(".list-view_tab > ul");
+const $listViewTabItems = $listViewTab.querySelectorAll("li");
 
 const initDB = async () => {
   const mockData = await customFetch("./mocks/news.json", shuffleData);
@@ -61,23 +68,39 @@ const setHeaderDate = () => {
       $listView.classList.remove("hidden");
     }
   });
-
-  const handlePrevButtonClick = () => {
-    store.dispatch(prevPage());
-  };
-
-  const handleNextButtonClick = () => {
-    store.dispatch(nextPage());
-  };
-
-  const handleViewerButtonClick = (e) => {
-    const viewType = e.currentTarget.dataset.view;
-    store.dispatch(changeView(viewType));
-  };
-
-  $prevPageButton.addEventListener("click", handlePrevButtonClick);
-  $nextPageButton.addEventListener("click", handleNextButtonClick);
-  $mainNavViewerButtons.forEach(($button) => {
-    $button.addEventListener("click", handleViewerButtonClick);
-  });
 })();
+
+const handleListViewTabClick = (e) => {
+  if (e.target === e.currentTarget) return;
+
+  $listViewTabItems.forEach(($item) => {
+    if ($item === e.target) {
+      $item.className = "category-selected selected-bold14";
+    } else {
+      $item.className = "";
+    }
+  });
+
+  const category = e.target.innerText;
+  store.dispatch(setCategory(category));
+};
+
+const handlePrevButtonClick = () => {
+  store.dispatch(prevPage());
+};
+
+const handleNextButtonClick = () => {
+  store.dispatch(nextPage());
+};
+
+const handleViewerButtonClick = (e) => {
+  const viewType = e.currentTarget.dataset.view;
+  store.dispatch(changeView(viewType));
+};
+
+$listViewTab.addEventListener("click", handleListViewTabClick);
+$prevPageButton.addEventListener("click", handlePrevButtonClick);
+$nextPageButton.addEventListener("click", handleNextButtonClick);
+$mainNavViewerButtons.forEach(($button) => {
+  $button.addEventListener("click", handleViewerButtonClick);
+});
