@@ -88,7 +88,13 @@ nav {
     cursor:pointer;
 }
 
+.view_wrapper {
+    width:930px;
+    height:388px;
+}
 .grid_wrapper{
+    width:100%;
+    height:100%;
     position: relative;
     display: flex;
     align-items: center;
@@ -96,9 +102,9 @@ nav {
 
 /* 로고 표시하는 list */
 ul {
+    width:100%;
+    height:100%;
     display: grid;
-    width: 930px;
-    height: 388px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 0;
@@ -179,7 +185,7 @@ ul li:hover .media-hover {
     color: #000;
 }
 
-.news_stand_wrapper p:hover{
+.article_wrapper p:hover{
     cursor: pointer;
     text-decoration: underline;
 }
@@ -194,4 +200,50 @@ ul li:hover .media-hover {
 }
 .news_title_wrapper p.next{
     top: 36px;
+}
+
+.grid_wrapper:not(.selected),
+.list_wrapper:not(.selected) {
+    display: none;
+}
+
+.list_wrapper {
+    width:100%;
+    height:100%;
+}
+
+.list_wrapper .category{
+    width:100%;
+    height : 40px;
+    display : flex;
+}
+
+.list_wrapper .category .category_item {
+    display: flex;
+    padding : 0 16px 0 16px;
+    height: 40px;
+    align-items: center;
+}
+
+.list_wrapper .category .category_item.progressed{
+    width : 134px;
+    display:flex;
+    gap:8px;
+}
+
+.list_wrapper .category .category_item .category_name{
+    width: 100%;
+    height: auto;
+}
+.list_wrapper .category .category_item .category_progress{
+    width: auto;
+    height: auto;
+}
+
+.category_item:not(.progressed) .category_progress{
+    display: none;
+}
+
+.listView_wrapper {
+    padding : 24px;
 }
