@@ -78,9 +78,9 @@ function rollingBanner(banner) {
     next.classList.add("current");
 }
 
-(function render() {
+export function renderBanner() {
     document.addEventListener("DOMContentLoaded", () => {
         getSection(); // 좌우 배너 만들기
         interval = window.setInterval(rollingCallback, 5000); // 5초간 자동 롤링
     });
-})();
+}

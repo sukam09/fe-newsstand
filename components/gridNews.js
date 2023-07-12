@@ -59,8 +59,6 @@ function toggleArrow() {
     }
 }
 
-function init() {
+export function renderGridNews() {
     RenderNews(shuffledData, currentPage);
 }
-
-init();

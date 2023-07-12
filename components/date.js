@@ -10,6 +10,6 @@ function showToday() {
     header_right.innerHTML = today.toLocaleDateString("ko-kr", options);
 }
 
-(function render() {
+export function renderDate() {
     document.addEventListener("DOMContentLoaded", showToday);
-})();
+}
