@@ -40,11 +40,34 @@ const BTN = {
   LIST_VIEW: 1,
 };
 
+const CATEGORY = {
+  ECONOMY: 0,
+  BROADCAST: 1,
+  IT: 2,
+  ENGLISH: 3,
+  SPORTS: 4,
+  MAGAZINE: 5,
+  LOCAL: 6,
+};
+
 // 글로벌 네임스페이스
 const GLOBAL = {
   grid_cur_page: 0,
+  list_cur_page: 0,
+  list_cur_category: CATEGORY.ECONOMY,
   news_icon: null,
   rolling_news: null,
+
+  CATEGORY_NUM: {
+    ECONOMY: 0,
+    BROADCAST: 0,
+    IT: 0,
+    ENGLISH: 0,
+    SPORTS: 0,
+    MAGAZINE: 0,
+    LOCAL: 0,
+  },
+
   DOM: {
     right_btn: document.querySelector(".right-btn"),
     left_btn: document.querySelector(".left-btn"),
@@ -58,4 +81,4 @@ const GLOBAL = {
   },
 };
 
-export { ICON, JSONDATA, GRID, ROLLING, BTN, GLOBAL };
+export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, GLOBAL };
