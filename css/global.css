@@ -84,11 +84,11 @@
   color: var(--grayscale-200);
 }
 
-.text_white-default {
+.text_white_default {
   color: var(--grayscale-white);
 }
 
-.text_white-weak {
+.text_white_weak {
   color: var(--grayscale-white-alt);
 }
 
