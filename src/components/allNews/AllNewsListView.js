@@ -6,7 +6,17 @@ export default class AllNewsListView extends Component {
   setup() {
     this.state = {
       page: 0,
-      pressOrder: shufflePressOrder(),
+      pressOrder: [
+        '종합/경제',
+        '방송/통신',
+        'IT',
+        '영자지',
+        '스포츠/연애',
+        '매거진/전문지',
+        '지역',
+      ],
+      currentPage: 1,
+      totalPage: 81,
     };
   }
   template() {
@@ -15,7 +25,18 @@ export default class AllNewsListView extends Component {
 
               <div class='newslist-list-view border-default'>
                 <nav class='border-default surface-alt'>
-                  <li class='text-weak available-medium14 press-header-focus surface-brand-default '><span class='selected-bold14 text-white-default'>종합/경제</span><span class='selected-bold14 text-white-default'>2/81</span></li>
+
+                  <li class='text-weak available-medium14 press-header-focus surface-brand-alt '>
+                  <span class='progress-bar surface-brand-default'></span>
+                  <div>
+                    <span class='selected-bold14 text-white-default'>종합/경제</span><span class='selected-bold14 text-white-default'>
+                    <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
+                    <span class='display-bold12 text-white-weak'> / ${
+                      this.state.totalPage
+                    }</span></span>
+                  </div>
+                  </li>
+
                   <li class='text-weak available-medium14'>방송/통신</li>
                   <li class='text-weak available-medium14'>IT</li>
                   <li class='text-weak available-medium14'>영자지</li>
@@ -26,7 +47,7 @@ export default class AllNewsListView extends Component {
 
                 <section class='press-news-section'>
                   <div class='press-news-info'>
-                    <img class='press-logo' src='src/assets/logo/${this.state.pressOrder[0]}.png'/>
+                    <img class='press-logo' src='src/assets/logo/${0}.png'/>
                     <span class='display-medium12 text-default'>2023.02.10. 19:38 편집</span>
                     <button>구독하기</button>
                   </div>
@@ -59,14 +80,18 @@ export default class AllNewsListView extends Component {
   }
 
   mounted() {
+    setTimeout(() => {
+      this.$target.querySelector('.progress-bar').style.width = '100%';
+    }, 100);
+
     new ArrowButton(this.$target.querySelector('.left-button'), {
       name: 'left-button',
-      isVisible: this.state.page !== 0,
+      isVisible: true,
     });
 
     new ArrowButton(this.$target.querySelector('.right-button'), {
       name: 'right-button',
-      isVisible: this.state.page !== 3,
+      isVisible: true,
     });
   }
 }

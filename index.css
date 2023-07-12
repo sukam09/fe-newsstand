@@ -170,11 +170,27 @@ section {
 }
 
 .press-header-focus {
-  display: flex;
-  justify-content: space-between;
   width: 166px;
+  position: relative;
 }
 
+.press-header-focus > .progress-bar {
+  width: 0%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: width 20s linear;
+}
+
+.press-header-focus > div {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+}
 .press-news-section {
   width: 930px;
   padding: 24px;

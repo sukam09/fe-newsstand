@@ -58,6 +58,7 @@
 }
 .text-white-weak {
   color: var(--gray-scale-white-alt);
+  opacity: var(--gray-scale-white-alt-opacity);
 }
 .text-point {
   color: var(--blue-500);
@@ -99,6 +100,7 @@
 }
 .text-white-weak-dark {
   color: var(--gray-scale-white-alt);
+  opacity: var(--gray-scale-white-alt-opacity);
 }
 .text-point-dark {
   color: var(--blue-500);
