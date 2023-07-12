@@ -69,7 +69,7 @@ function rollingCallback(dir) {
     next = document.querySelector("#first-news .next-news");
     if (next.nextElementSibling == null) {
       // document.querySelector(".news-bar #first-news li:first-child").classList.add("next-news");
-      document.querySelector(".news-bar #first-news li").classList.add("next-news");
+      GLOBAL.DOM.first_news.querySelector("li").classList.add("next-news");
     } else {
       next.nextElementSibling.classList.add("next-news");
     }
@@ -79,7 +79,7 @@ function rollingCallback(dir) {
     next = document.querySelector("#second-news .next-news");
     if (next.nextElementSibling == null) {
       // document.querySelector(".news-bar #second-news li:first-child").classList.add("next-news");
-      document.querySelector(".news-bar #second-news li").classList.add("next-news");
+      GLOBAL.DOM.second_news.querySelector("li").classList.add("next-news");
     } else {
       next.nextElementSibling.classList.add("next-news");
     }
