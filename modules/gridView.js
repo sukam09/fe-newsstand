@@ -1,4 +1,4 @@
-import { pressGrid } from "./components/pressGrid/pressGrid.js";
+import { pressGrid } from "./components/mainSection/mainBody/pressGrid/pressGrid.js";
 
 export let gridPage = 0;
 const MAX_PAGE = 4;
@@ -26,7 +26,7 @@ export function initGridView(pressDataArr) {
   }
 
   const gridButton = document.getElementById("grid_button");
-  gridButton.className = "clicked";
+  gridButton.className = "view_clicked";
 }
 
 export function showGridPage(page) {

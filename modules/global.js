@@ -17,7 +17,7 @@ export function handleGridButton() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  grid_button.className = "clicked";
+  grid_button.className = "view_clicked";
   list_button.className = "";
 
   // 그리드, 리스트 전환
@@ -48,7 +48,7 @@ export function handleListButton() {
     document.getElementsByClassName("right_grid_button")[0];
 
   // 버튼 색상 바꾸기
-  list_button.className = "clicked";
+  list_button.className = "view_clicked";
   grid_button.className = "";
 
   // 그리드, 리스트 전환

@@ -14,7 +14,10 @@ export function categoryItem(categoryName, len) {
 }
 
 export function handleClickCategoryItem(e) {
-  document.getElementsByClassName("clicked")[0].classList.remove("clicked");
+  const $clickedElements = document.getElementsByClassName("clicked");
+  for (let i = 0; i < $clickedElements.length; i++) {
+    $clickedElements[i].classList.remove("clicked");
+  }
   e.currentTarget.classList.add("clicked");
   const $progressbar = e.currentTarget.getElementsByClassName("progressbar")[0];
   startProgressAnimation($progressbar);

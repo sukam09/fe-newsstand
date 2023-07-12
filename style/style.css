@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.container {
+#root {
   margin: 0 auto;
   width: 930px;
 }
@@ -37,7 +37,7 @@ img.title_logo {
   color: #5f6e76;
 }
 
-.summary_section {
+.headline_section {
   gap: 8px;
   justify-content: space-between;
 }
@@ -73,6 +73,7 @@ img.title_logo {
 }
 .left_rolling_list,
 .right_rolling_list {
+  padding: 0px;
   position: relative;
   width: 70%;
   height: 17px;
@@ -121,7 +122,7 @@ img.title_logo {
   cursor: pointer;
 }
 
-.main_container {
+.main_body {
   position: relative;
 }
 
@@ -129,7 +130,7 @@ img.title_logo {
   height: 388px;
 }
 
-.view_button_container .clicked {
+.view_button_container .view_clicked {
   filter: invert(10%) sepia(100%) saturate(5490%) hue-rotate(242deg)
     brightness(101%) contrast(144%);
 }

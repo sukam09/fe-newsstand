@@ -1,7 +1,9 @@
 import { pressItem } from "./pressItem/pressItem.js";
 
 const NUM_IN_A_GRID = 24;
+
 export function pressGrid(pressDataArr, page) {
+  console.log(pressDataArr);
   let pressGridItems = "";
   for (let i = 0; i < NUM_IN_A_GRID; i++) {
     const idx = page * NUM_IN_A_GRID + i;

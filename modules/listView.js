@@ -41,11 +41,12 @@ function initNews(newsData) {
 }
 
 function initCategory(newsData) {
+  console.log($listContainer);
   $listContainer.insertAdjacentHTML("afterbegin", category(newsData));
   const $categoryItemList = document.getElementsByClassName("category_item");
+  console.log($categoryItemList);
   for (let i = 0; i < newsData.length; i++) {
     const $categoryItem = $categoryItemList[i];
-
     $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
   }
 }
