@@ -7,11 +7,11 @@ const maxPage = 3;
 let currentPage = 0;
 
 //onClick event
-document.querySelector(".left-arrow").addEventListener("click", () => {
+document.querySelector(".grid_view_btn-left").addEventListener("click", () => {
     currentPage -= 1;
     RenderNews(shuffledData, currentPage);
 });
-document.querySelector(".right-arrow").addEventListener("click", () => {
+document.querySelector(".grid_view_btn-right").addEventListener("click", () => {
     currentPage += 1;
     RenderNews(shuffledData, currentPage);
 });
@@ -45,16 +45,16 @@ function RenderNews(shuffledData) {
 function toggleArrow() {
     switch (currentPage) {
         case 0:
-            document.querySelector(".left-arrow").style.visibility = "hidden";
-            document.querySelector(".right-arrow").style.visibility = "visible";
+            document.querySelector(".grid_view_btn-left").style.visibility = "hidden";
+            document.querySelector(".grid_view_btn-right").style.visibility = "visible";
             break;
         case maxPage:
-            document.querySelector(".left-arrow").style.visibility = "visible";
-            document.querySelector(".right-arrow").style.visibility = "hidden";
+            document.querySelector(".grid_view_btn-left").style.visibility = "visible";
+            document.querySelector(".grid_view_btn-right").style.visibility = "hidden";
             break;
         default:
-            document.querySelector(".left-arrow").style.visibility = "visible";
-            document.querySelector(".right-arrow").style.visibility = "visible";
+            document.querySelector(".grid_view_btn-left").style.visibility = "visible";
+            document.querySelector(".grid_view_btn-right").style.visibility = "visible";
             break;
     }
 }
