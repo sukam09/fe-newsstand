@@ -63,12 +63,12 @@ body {
     padding-left: 24px;
 }
 
-.pressbar-icon-grid-view {
+#pressbar-icon-grid-view {
     height: 24px;
     width: 24px;
 }
 
-.pressbar-icon-list-view {
+#pressbar-icon-list-view {
     padding-right: 8px;
     height: 24px;
     width: 24px;
