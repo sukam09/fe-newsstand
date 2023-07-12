@@ -54,7 +54,7 @@ const makePressGrid = (pressData, shufflePress, isLightMode) => {
  * 그리드 화살표
  */
 const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
-  const arrowsWrapper = document.querySelector('.arrows__wrapper');
+  const arrowsWrapper = document.querySelector('.arrows__wrapper-grid');
 
   const $ul = document.createElement('ul');
   $ul.classList.add('press-logo__wrapper');

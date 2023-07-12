@@ -25,9 +25,9 @@
 
 ### 2P 최신 뉴스 자동 롤링
 
-- [ ] 최신 뉴스의 헤드라인 5개가 5초마다 자동으로 무한 롤링 CSS
-- [ ] 좌우 영역의 시간차를 1초로 설정
-- [ ] 마우스 호버시, 무한 롤링을 일시정지하고 헤드라인에 밑줄을 표시
+- [x] 최신 뉴스의 헤드라인 5개가 5초마다 자동으로 무한 롤링 CSS
+- [x] 좌우 영역의 시간차를 1초로 설정
+- [x] 마우스 호버시, 무한 롤링을 일시정지하고 헤드라인에 밑줄을 표시
 
 ### 5P 리스트 보기
 
@@ -51,32 +51,18 @@
 
 ```bash
 
-news_stand_container
+news_stand__container
 │
-├── header-wrapper
-│     ├── button
-│     └── time
+├── header__wrapper
 │
-├── hot-topic-wrapper
-│     └── li
-│     │   ├── h2
-│     │   └── p
-│     └── li
-│         ├── h2
-│         └── p
+├── latest_news__wrapper
+│     ├── latest_news__wrapper-left
+│     └── latest_news__wrapper-right
 │
-└── press-wrapper
-      ├── header
-      │   └── nav
-      │   │   ├── h2
-      │   │   └── h2
-      │   └── nav
-      │       ├── img
-      │       └── img
-      └── arrows-wrapper
-              ├── ul
-              ├── img
-              └── img
+└── press__wrapper
+      ├── press__header
+      ├── arrows__wrapper-grid
+      └── arrows__wrapper-list
 
 ```
 
@@ -91,8 +77,7 @@ news_stand_container
 ├── /assets
 │     ├── /data
 │     │    ├── latest-news.json
-│     │    ├── dark-press.json
-│     │    └── light-press.json
+│     │    └── total-press.json
 │     ├── /fonts
 │     ├── /icons
 │     └── /images
@@ -100,10 +85,20 @@ news_stand_container
 │          └── /light-press-logo
 │
 ├── /components
-│     └──latest-news.js
+│     ├── latest-news.js
+│     ├── news-stand-header.js
+│     ├── press-grid.js
+│     ├── press-header.js
+│     └── press-list.js
 │
 └── /styles
-│     ├── global.css
+│     ├── /components
+│     │     ├── latest-news.css
+│     │     ├── news-stand-header.css
+│     │     ├── press-grid.css
+│     │     ├── press-header.css
+│     │     └── press-list.css
+│     ├── design.css
 │     ├── index.css
 │     └── reset.css
 │

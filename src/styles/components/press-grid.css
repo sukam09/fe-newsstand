@@ -1,5 +1,5 @@
 /* 화살표 영역 */
-.arrows__wrapper {
+.arrows__wrapper-grid {
   position: relative;
   display: flex;
   flex-direction: row;

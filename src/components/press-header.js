@@ -43,7 +43,7 @@ const getNavRightElement = () => {
     $imgList.src = './assets/icons/list-view.svg';
     $imgGrid.src = './assets/icons/grid-hide.svg';
 
-    const pressWrapper = document.querySelector('.arrows__wrapper');
+    const pressWrapper = document.querySelector('.arrows__wrapper-grid');
     pressWrapper.classList.add('hidden');
   }); //
 
@@ -51,7 +51,7 @@ const getNavRightElement = () => {
     $imgGrid.src = './assets/icons/grid-view.svg';
     $imgList.src = './assets/icons/list-hide.svg';
 
-    const pressWrapper = document.querySelector('.arrows__wrapper');
+    const pressWrapper = document.querySelector('.arrows__wrapper-grid');
     pressWrapper.classList.remove('hidden');
   }); //
 
