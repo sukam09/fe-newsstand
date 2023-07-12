@@ -38,7 +38,6 @@ function drawNews(category, page) {
   news[page].subTitle.forEach(subnews => {
     const $li = document.createElement("li");
     $li.innerText = subnews;
-
     subList.append($li);
   });
   const caption = document.createElement("li");
@@ -85,7 +84,7 @@ function clickListLeftBtn(category) {
 }
 
 function clickCategory(target) {
-  checkSameCategory();
+  checkSameCategory(target);
   page_count[target.firstElementChild.innerText.trim()] = 0;
   now_category = target.querySelector(".nav-item").textContent.trim();
   showArrow("right");
@@ -98,7 +97,7 @@ function initProgressWhenCategoryClick(target) {
   const $progress_bar = document.querySelector(".progress-bar");
   $progress_bar.classList.remove("progress-bar");
   target.classList.add("progress-bar");
-  addProgressIterEvent($progress_bar);
+  addProgressIterEvent(target);
   document.querySelector(".count").remove();
   insertCountDiv(document.querySelector(".progress-bar"));
 }
@@ -113,19 +112,24 @@ function initCategoryClass() {
 
 function nextNewsWhenProgressEnd() {
   if (page_count[now_category] === total_pages[now_category] - 1) {
-    page_count[now_category] = 0;
-    const $progress_bar = document.querySelector(".progress-bar");
-    removeProgressIterEvent($progress_bar);
-    now_category = category[category.indexOf(now_category) + 1];
-    removeProgressStatus();
-    document.querySelectorAll(".nav-item").forEach(nav => {
-      if (nav.textContent === now_category) {
-        const $nav_li = nav.parentElement;
-        $nav_li.classList.add("progress-bar");
-        insertCountDiv($nav_li);
-        addProgressIterEvent($nav_li);
-      }
-    });
+    if (checkLastCategory()) {
+      console.log("good");
+      setFisrtCategory();
+    } else {
+      page_count[now_category] = 0;
+      const $progress_bar = document.querySelector(".progress-bar");
+      removeProgressIterEvent($progress_bar);
+      now_category = category[category.indexOf(now_category) + 1];
+      removeProgressStatus();
+      document.querySelectorAll(".nav-item").forEach(nav => {
+        if (nav.textContent === now_category) {
+          const $nav_li = nav.parentElement;
+          $nav_li.classList.add("progress-bar");
+          insertCountDiv($nav_li);
+          addProgressIterEvent($nav_li);
+        }
+      });
+    }
   } else {
     page_count[now_category] += 1;
   }
@@ -178,6 +182,20 @@ function checkSameCategory(target) {
   if (now_category === target.firstElementChild.textContent.trim()) {
     return;
   }
+}
+
+function checkLastCategory() {
+  if (now_category === category[category.length - 1] && page_count[now_category] === total_pages[now_category] - 1) {
+    return true;
+  }
+  return false;
+}
+
+function setFisrtCategory() {
+  now_category = category[0];
+  const $first_category = document.querySelector(".nav-item").parentElement;
+  console.log($first_category);
+  clickCategory($first_category);
 }
 
 export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass };
