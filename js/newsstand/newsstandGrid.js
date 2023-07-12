@@ -1,25 +1,24 @@
 import { shuffle } from "../utils/util.js";
+import { pressData } from "../fetchAPI.js";
+
+let logoData = await pressData("./data/pressObj.json");
 
 const NEWS_CONTENTS = 96;
 const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
 const LAST_PAGE = 3;
-
 let selectedPage = 0;
-let newsstandList = Array.from({ length: NEWS_CONTENTS }, () => 1).map(
-  (_, index) => `img${++index}.svg`
-);
+
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 
-export function paintGridNewsstand() {
-  newsstandList = shuffle(newsstandList);
-
+export async function paintGridNewsstand() {
   paintNews();
   pagination();
 }
 
-function paintNews() {
+async function paintNews() {
+  logoData = shuffle(logoData);
   const ul = document.querySelector(".newsstand-area—six-col-list");
   for (
     let idx = selectedPage * VIEWED_CONTENS;
@@ -29,8 +28,10 @@ function paintNews() {
     const li = document.createElement("li");
     li.className = "newsstand—subscrtion-box";
     const img = document.createElement("img");
-    const icon = newsstandList[idx];
-    img.src = `./assets/logo/light/${icon}`;
+    const icon = logoData[idx].lightSrc;
+    const alt = logoData[idx].name;
+    img.src = icon;
+    img.alt = alt;
     li.appendChild(img);
     ul.appendChild(li);
   }
@@ -42,13 +43,15 @@ function pagination() {
   const leftBtn = document.querySelector(".newsstand--left-btn");
   rightBtn.addEventListener("click", (e) => {
     removeChildElement(ul);
-    paintNews(++selectedPage, newsstandList);
+    selectedPage += 1;
+    paintNews();
     isBtnDisabled();
   });
 
   leftBtn.addEventListener("click", (e) => {
     removeChildElement(ul);
-    paintNews(--selectedPage, newsstandList);
+    selectedPage -= 1;
+    paintNews();
     isBtnDisabled();
   });
 }

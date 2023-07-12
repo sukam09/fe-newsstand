@@ -15,7 +15,7 @@ const MAIN_TITLE_CLASS_NAME = "main__rolling-title";
 const headlineData = await makeHeadlineData();
 
 // 인터벌 시간
-const SET_TIME = 4000; // 롤링되는 주기 입니다 (1000 => 1초)
+const SET_TIME = 5000; // 롤링되는 주기 입니다 (1000 => 1초)
 
 // 발행사
 makeCorpViewTag();
@@ -41,11 +41,9 @@ export async function paintSubView() {
 
   subViewInterval = setInterval(moveContent, SET_TIME);
   subViewBox.addEventListener("mouseover", () => {
-    console.log("마우스 오버");
     clearInterval(subViewInterval);
   });
   subViewBox.addEventListener("mouseout", () => {
-    console.log("마우스 아웃");
     subViewInterval = setInterval(moveContent, SET_TIME);
   });
 }

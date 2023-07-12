@@ -45,13 +45,18 @@ export function paintSubViewRight() {
   firstCorp.textContent = headlineData[0].publisher;
   firstTitle.textContent = headlineData[0].title;
 
-  subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+  setTimeout(() => {
+    subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+  }, 1000);
 
   leftViewBox.addEventListener("mouseover", () => {
     clearInterval(subViewRightInterval);
   });
   leftViewBox.addEventListener("mouseout", () => {
     subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+    // setTimeout(() => {
+    //   subViewRightInterval = setInterval(moveContentRight, SET_TIME);
+    // }, 1000);
   });
 }
 
