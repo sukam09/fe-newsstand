@@ -8,7 +8,7 @@ export default class Button extends Component {
   template() {
     return `
       <button class="common-button border-default surface-alt text-weak">
-        <div class='common-button-icon'></div><span>${this.state.text}</span>
+        <img class='common-button-icon'/><span>${this.state.text}</span>
       </button>
     `;
   }
