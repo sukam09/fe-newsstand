@@ -106,10 +106,12 @@ const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
 
   const $imgLeft = document.createElement('img');
   $imgLeft.classList.add('arrows__img-left');
+  $imgLeft.classList.add('hidden');
   $imgLeft.src = './assets/icons/chevron-left.svg';
   $imgLeft.addEventListener('click', () => {
     pageNum -= 1;
     changePressLogo(pressData, shufflePress, isLightMode);
+    setArrowVisible();
   });
 
   const $imgRight = document.createElement('img');
@@ -118,6 +120,7 @@ const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
   $imgRight.addEventListener('click', () => {
     pageNum += 1;
     changePressLogo(pressData, shufflePress, isLightMode);
+    setArrowVisible();
   });
 
   arrowsWrapper.appendChild($ul);
@@ -138,6 +141,22 @@ const changePressLogo = (pressData, shufflePress, isLightMode) => {
     checkImg.onload = () => ($img.src = imgSrc);
     checkImg.onerror = () => $img.remove();
   });
+};
+
+const setArrowVisible = () => {
+  const leftArrow = document.querySelector('.arrows__img-left');
+  const rightArrow = document.querySelector('.arrows__img-right');
+
+  if (pageNum === 0) {
+    leftArrow.classList.add('hidden');
+  }
+  if (pageNum > 0 && pageNum < 3) {
+    leftArrow.classList.remove('hidden');
+    rightArrow.classList.remove('hidden');
+  }
+  if (pageNum === 3) {
+    rightArrow.classList.add('hidden');
+  }
 };
 
 export { setPressGrid };
