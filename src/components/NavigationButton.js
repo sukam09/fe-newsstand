@@ -1,14 +1,12 @@
-import { getState, setState } from "../observer/observer.js";
 import {
   gridPageState,
   isListActivateState,
   listPageState,
 } from "../store/store.js";
+import { getState, setState } from "../observer/observer.js";
 
-const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
-const $nextPageButton = document.querySelector(
-  ".container-grid-view_right-btn"
-);
+const $prevPageButton = document.querySelector(".left-btn");
+const $nextPageButton = document.querySelector(".right-btn");
 
 const handlePrevButtonClick = () => {
   if (getState(isListActivateState))

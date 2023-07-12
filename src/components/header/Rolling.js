@@ -1,8 +1,8 @@
-import { customFetch } from "../../utils/utils.js";
 import {
   ROLLING_WAIT_TIME,
   ROLLING_DIFF_TIME,
 } from "../../constants/constants.js";
+import { customFetch } from "../../utils/utils.js";
 
 const $newsBar = document.querySelectorAll(".container-news-bar_wrap");
 const $leftRollingBox = $newsBar[0];

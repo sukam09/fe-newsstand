@@ -7,6 +7,8 @@ import {
 import { getState, setState } from "../../observer/observer.js";
 import { categoryState, listPageState } from "../../store/store.js";
 
+const $categoryBar = document.querySelector(".list-view_category-bar > ul");
+
 const changeCategory = (newsList, categoryList) => () => {
   const currentCategory = getState(categoryState);
   const currentPage = getState(listPageState);
@@ -26,19 +28,17 @@ const changeCategory = (newsList, categoryList) => () => {
   }
 };
 
-const $categoryBar = document.querySelector(".list-view_category-bar > ul");
-
-let timeElapsed = 0;
-let interval;
-
 const updateProgress = () => {
   const $progress = document.querySelector(".progress");
   $progress.style.width = timeElapsed + "%";
 };
 
+let timeElapsed = 0;
+let interval;
 const startProgress = () => {
   timeElapsed = 0;
   clearInterval(interval);
+  updateProgress();
 
   interval = setInterval(() => {
     timeElapsed += PROGRESS_DIFF;
@@ -63,19 +63,6 @@ const updateCurrentPage = () => {
   const $stateElem = document.querySelector(".progress-component > div > span");
 
   $stateElem.innerHTML = getState(listPageState) + 1;
-};
-
-const createProgressInner = (title, state, max) => {
-  const $progressInner = `<div class="progress"></div>
-  <div class="progress-component">
-    <span class="display-bold14">${title}</span>
-    <div class="display-bold12">
-      <span>${state}</span>
-      <span class="font-deactivate">/${max}</span>
-    </div>
-  </div>`;
-
-  return $progressInner;
 };
 
 const setCategoryState = (category) => () => setState(categoryState, category);
@@ -114,6 +101,17 @@ const changeActivateCategory = (newsList, categoryList) => () => {
   });
 
   setState(listPageState, 0);
+};
+
+const createProgressInner = (title, state, max) => {
+  return `<div class="progress"></div>
+  <div class="progress-component">
+    <span class="display-bold14">${title}</span>
+    <div class="display-bold12">
+      <span>${state}</span>
+      <span class="font-deactivate">/${max}</span>
+    </div>
+  </div>`;
 };
 
 export {

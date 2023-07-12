@@ -3,7 +3,7 @@ const ROLLING_WAIT_TIME = 5000;
 const ROLLING_DIFF_TIME = 1000;
 const PROGRESS_TIME = 1000;
 const PROGRESS_MAX = 100;
-const PROGRESS_DIFF = 50;
+const PROGRESS_DIFF = 5;
 const CATEGORY_LIST = [
   "종합/경제",
   "방송/통신",

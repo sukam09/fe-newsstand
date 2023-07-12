@@ -1,8 +1,8 @@
-import { setNavigationButtons } from "./components/navigation-button.js";
-import { setViewToggleButton } from "./components/view-toggle-button.js";
-import { setHeader } from "./components/header/index.js";
 import { setGrid } from "./components/grid/index.js";
 import { setList } from "./components/list/index.js";
+import { setHeader } from "./components/header/index.js";
+import { setNavigationButtons } from "./components/NavigationButton.js";
+import { setViewToggleButton } from "./components/ViewToggleButton.js";
 
 (function init() {
   setHeader();

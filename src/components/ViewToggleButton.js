@@ -1,6 +1,6 @@
-import { getState, setState, subscribe } from "../observer/observer.js";
 import { isListActivateState } from "../store/store.js";
 import { startProgress, stopProgress } from "./list/ProgressBar.js";
+import { getState, setState, subscribe } from "../observer/observer.js";
 
 const $gridView = document.querySelector(".grid-view");
 const $listView = document.querySelector(".list-view");
@@ -8,10 +8,6 @@ const $listView = document.querySelector(".list-view");
 const $mainNavView = document.querySelectorAll(".main-nav_viewer > button");
 const $listButton = $mainNavView[0];
 const $gridButton = $mainNavView[1];
-const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
-const $nextPageButton = document.querySelector(
-  ".container-grid-view_right-btn"
-);
 
 const handleListButtonClick = () => {
   setState(isListActivateState, true);
@@ -38,15 +34,6 @@ const setCurrentView = () => {
     $listView.classList.add("hidden");
 
     stopProgress();
-  }
-};
-
-const setListButtonDisplay = () => {
-  if (getState(isListActivateState)) {
-    $prevPageButton.classList.contains("hidden") &&
-      $prevPageButton.classList.remove("hidden");
-    $nextPageButton.classList.contains("hidden") &&
-      $nextPageButton.classList.remove("hidden");
   }
 };
 

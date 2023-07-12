@@ -1,13 +1,11 @@
-import { gridPageState, isListActivateState } from "../../store/store.js";
 import { getState } from "../../observer/observer.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../constants/constants.js";
+import { gridPageState, isListActivateState } from "../../store/store.js";
 import { ObjectToArrayRandom, shuffleArrayRandom } from "../../utils/utils.js";
 
 const $gridView = document.querySelector(".grid-view");
-const $prevPageButton = document.querySelector(".container-grid-view_left-btn");
-const $nextPageButton = document.querySelector(
-  ".container-grid-view_right-btn"
-);
+const $prevPageButton = document.querySelector(".left-btn");
+const $nextPageButton = document.querySelector(".right-btn");
 
 const pressIcons = shuffleArrayRandom(ObjectToArrayRandom(PRESS_ICON));
 const maxPage = Math.floor(pressIcons.length / NEWS_COUNT) - 1;
