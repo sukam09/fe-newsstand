@@ -61,4 +61,5 @@ function initRolling() {
     rightInterval = setInterval(() => rollingNewsBar(RIGHT), SET_INTERVAL_TIME);
   }, SET_TIMEOUT_TIME);
 }
+
 export { initRolling };

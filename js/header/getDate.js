@@ -19,5 +19,3 @@ function initDate() {
   getDateInterval();
 }
 export { initDate };
-//파라미터로 day를 받으면 범용성 굳
-//함수 파라미터 활용
