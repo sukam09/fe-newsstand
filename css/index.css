@@ -34,9 +34,9 @@ body {
   margin-bottom: 36px;
 }
 
-label:hover,
+button:hover,
 .title:hover,
-.grid-view ul li:hover,
+li:hover,
 .news-title:hover {
   cursor: pointer;
 }
@@ -187,7 +187,6 @@ label:hover,
 .category li {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   padding: 0 15px;
   font-size: 14px;
   color: var(--text-weak);
@@ -251,22 +250,31 @@ label:hover,
   }
 }
 
-.category .sample {
+.category .selected-category {
   position: relative;
   padding: 0;
   width: 15%;
   background-color: var(--surface-brand-alt);
 }
 
-.category .sample div {
+.category .selected-category div {
   height: 100%;
   background-color: var(--surface-brand-default);
   animation-name: progressBar;
-  animation-duration: 20s;
+  animation-duration: 5s;
+  animation-timing-function: linear;
 }
 
-.category .sample span {
+.category .selected-category span {
   position: absolute;
   color: var(--text-white-default);
   font-weight: 700;
+}
+
+.category-item {
+  left: 10px;
+}
+.category-num {
+  right: 10px;
+  display: none;
 }
