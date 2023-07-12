@@ -1,14 +1,10 @@
 import { fetchData } from "./utils.js";
 
 export function rolling() {
-  console.log("rolling start");
   const leftRollingList = document.querySelectorAll(".left_rolling_list_item");
   const rightRollingList = document.querySelectorAll(
     ".right_rolling_list_item"
   );
-
-  console.log(leftRollingList);
-  console.log(rightRollingList);
 
   let leftViewIdx = 0;
   let rightViewIdx = 0;

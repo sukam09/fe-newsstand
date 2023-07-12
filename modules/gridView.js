@@ -1,22 +1,13 @@
 import { pressGrid } from "./components/pressGrid/pressGrid.js";
-import { pressItem } from "./components/pressGrid/pressItem/pressItem.js";
 
 export let gridPage = 0;
-const NUM_IN_A_GRID = 24;
 const MAX_PAGE = 4;
 
 export function initGridView(pressDataArr) {
   // create grid
   const $gridContainer = document.getElementById("grid_container");
-
   for (let i = 0; i < MAX_PAGE; i++) {
-    let pressGridItems = "";
-    for (let j = 0; j < NUM_IN_A_GRID; j++) {
-      const idx = i * NUM_IN_A_GRID + j;
-      pressGridItems += pressItem(pressDataArr[idx]);
-    }
-    const pressGridT = pressGrid(i, pressGridItems);
-    $gridContainer.innerHTML += pressGridT;
+    $gridContainer.innerHTML += pressGrid(pressDataArr, i);
   }
 
   // addEvent
@@ -45,14 +36,6 @@ export function showGridPage(page) {
 export function hiddenGridPage(page) {
   const pressGrid = document.getElementById(`grid_page_${page}`);
   pressGrid.style.display = "none";
-}
-
-// 구독버튼 컨테이너 생성
-export function createSubButtonContainer() {
-  const subButtonContainer = document.createElement("div");
-  subButtonContainer.className = "sub_button_container";
-
-  return subButtonContainer;
 }
 
 // 구독버튼 토글
