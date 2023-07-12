@@ -46,23 +46,6 @@ function addInitRollingData(bannerNumber) {
   rollingBanner.innerHTML = newsHTML;
 }
 
-function addRollingHoverEvent() {
-  const bannerHover01 = document.getElementById("rolling-banner-01");
-  const bannerHover02 = document.getElementById("rolling-banner-02");
-  bannerHover01.addEventListener("mouseover", () => {
-    clearInterval(interval1);
-  });
-  bannerHover01.addEventListener("mouseleave", () => {
-    interval1 = setInterval(changeBanner, 5000, 1);
-  });
-  bannerHover02.addEventListener("mouseover", () => {
-    clearInterval(interval2);
-  });
-  bannerHover02.addEventListener("mouseleave", () => {
-    interval2 = setInterval(changeBanner, 6000, 2);
-  });
-}
-
 function changeBanner(bannerNumber) {
   removePrevBanner(bannerNumber);
   changeCurrentBanner(bannerNumber);
@@ -94,6 +77,23 @@ function changeNextBanner(bannerNumber) {
   else nextBanner.nextElementSibling.classList.add("next");
   nextBanner.classList.remove("next");
   nextBanner.classList.add("current");
+}
+
+function addRollingHoverEvent() {
+  const bannerHover01 = document.getElementById("rolling-banner-01");
+  const bannerHover02 = document.getElementById("rolling-banner-02");
+  bannerHover01.addEventListener("mouseover", () => {
+    clearInterval(interval1);
+  });
+  bannerHover01.addEventListener("mouseleave", () => {
+    interval1 = setInterval(changeBanner, 5000, 1);
+  });
+  bannerHover02.addEventListener("mouseover", () => {
+    clearInterval(interval2);
+  });
+  bannerHover02.addEventListener("mouseleave", () => {
+    interval2 = setInterval(changeBanner, 6000, 2);
+  });
 }
 
 export { rollingBanner };

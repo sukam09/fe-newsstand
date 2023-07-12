@@ -3,6 +3,7 @@ import { setDate } from "./js/Date.js";
 import { rollingBanner } from "./js/rollingBanner.js";
 import { clickNewsStand } from "./js/newsStand.js";
 import { addInitCategory } from "./js/category.js";
+import { shuffle } from "./js/utils.js";
 
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
@@ -26,10 +27,6 @@ function refresh(logos) {
     outerDiv.append(newsLogo);
     mainGrid.append(outerDiv);
   }
-}
-
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
 }
 
 function clickAllNews() {
