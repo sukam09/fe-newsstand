@@ -1,6 +1,7 @@
 import { NewsDB } from "./core/index.js";
 import { startRollingBanner } from "./scripts/rolling-banner.js";
 import { fillNewsContents } from "./scripts/grid-view.js";
+import { setListView } from "./scripts/list-view.js";
 import {
   $gridView,
   $listView,
@@ -46,6 +47,8 @@ const setHeaderDate = () => {
 
   const newsData = NewsDB.getNewsData();
   fillNewsContents(getSlicedDataFromPage(newsData, pages, NEWS_COUNT));
+
+  setListView();
 
   const handlePrevButtonClick = () => {
     const maxPage = Math.floor(newsData.length / NEWS_COUNT) - 1;

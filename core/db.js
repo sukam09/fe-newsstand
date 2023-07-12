@@ -37,7 +37,6 @@ class NewsDatabase {
       },
       new Map()
     );
-    console.log(this.#instanceMapByCategory);
   }
 
   getNewsData() {
