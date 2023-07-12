@@ -1,4 +1,4 @@
-import { constants } from "./constants.js";
+import { constants } from "../../Data/constants.js";
 
 const $newspaperList = document.querySelector(".newspaper__list");
 

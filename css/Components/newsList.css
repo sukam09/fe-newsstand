@@ -1,78 +1,4 @@
-/* main */
-
-.news-navbar {
-  display: flex;
-  justify-content: space-between;
-  height: 24px;
-  margin-bottom: 20px;
-  white-space: nowrap;
-}
-
-.news-navbar_newspaper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 216px;
-  gap: 24px;
-}
-
-.news-navbar_newspaper-list-all {
-  color: #14212b;
-  font-weight: bold;
-  line-height: 22px;
-}
-
-.news-navbar_newspaper-list-my {
-  color: #879298;
-  line-height: 22px;
-}
-
-.news-navbar_content {
-  display: flex;
-  justify-content: space-between;
-  width: 56px;
-}
-
-/* newspapers grid section */
-
-.newspaper__list {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(96.25px, auto));
-  border-top: 1px solid #d2dae0;
-  border-left: 1px solid #d2dae0;
-}
-
-.newspaper__item {
-  height: 96.25px;
-  border-bottom: 1px solid #d2dae0;
-  border-right: 1px solid #d2dae0;
-  text-align: center;
-  line-height: 96.25px;
-}
-
-/* grid page button */
-
-.news-section-grid {
-  height: 388px;
-  position: relative;
-}
-
-.right-button_content {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(61px, -21px);
-}
-
-.left-button_content {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-61px, -21px);
-}
-
-/* newspapers list section */
+/* news list layout */
 
 .news-section-list {
   display: none;
@@ -96,7 +22,7 @@
   align-items: center;
   width: 166px;
   padding: 0 16px;
-  background: linear-gradient(to right, #4362d0 30%, #7890e7 30%);
+  background: linear-gradient(to right, #4362d0 0%, #7890e7 0%);
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -155,6 +81,7 @@
   flex-direction: column;
   width: 320px;
   gap: 16px;
+  overflow: hidden;
 }
 
 .news-list__press-news__thumbnail {
@@ -171,10 +98,14 @@
   transition: 0.3s ease-in-out;
 }
 
-.news-list__press-news__thumbnail-image:hover {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+.news-list__press-news__main:hover {
   cursor: pointer;
+  text-decoration: underline;
+
+  .news-list__press-news__thumbnail-image {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 }
 
 .news-list__press-news__title {
@@ -194,7 +125,6 @@
   color: #4b5966;
 }
 
-.news-list__press-news__title:hover,
 .news-list__press-news__subtitle:hover {
   cursor: pointer;
   text-decoration: underline;

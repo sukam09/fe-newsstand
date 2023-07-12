@@ -1,0 +1,7 @@
+@import url("./Layout/reset.css");
+@import url("./Layout/global.css");
+@import url("./Components/header.css");
+@import url("./Components/headline.css");
+@import url("./Components/navBar.css");
+@import url("./Components/newsGrid.css");
+@import url("./Components/newsList.css");

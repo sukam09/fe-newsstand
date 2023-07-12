@@ -1,3 +1,5 @@
+import { setProgress } from "../NewsList/progress.js";
+
 const $listButton = document.querySelector(".news-navbar_content__list");
 const $gridButton = document.querySelector(".news-navbar_content__grid");
 const $listSection = document.querySelector(".news-section-list");
@@ -8,6 +10,7 @@ const clickList = () => {
   $gridButton.childNodes[1].childNodes[1].setAttribute("fill", "#879298");
   $gridSection.style.display = "none";
   $listSection.style.display = "block";
+  setProgress();
 };
 
 const clickGrid = () => {

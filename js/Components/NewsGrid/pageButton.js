@@ -1,4 +1,4 @@
-import { constants } from "./constants.js";
+import { constants } from "../../Data/constants.js";
 import { renderNewspaper } from "./newspaper.js";
 
 let page = 0;

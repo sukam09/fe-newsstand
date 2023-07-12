@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>news stand</title>
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
-    <link rel="stylesheet" type="text/css" href="./css/header.css" />
-    <link rel="stylesheet" type="text/css" href="./css/main.css" />
-    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="./css/section.css" />
-    <link rel="stylesheet" type="text/css" href="./css/util.css" />
 
+    <link rel="stylesheet" type="text/css" href="./css/app.css" />
     <script type="module" src="./js/app.js"></script>
   </head>
   <body>
@@ -37,33 +32,33 @@
         <div class="header__date"></div>
       </header>
 
-      <section class="newsflash">
-        <div class="newsflash__content">
-          <div class="newsflash__content__newspaper">연합뉴스</div>
-          <div class="newsflash__content_rolling">
+      <section class="headline">
+        <div class="headline__content">
+          <div class="headline__content__newspaper">연합뉴스</div>
+          <div class="headline__content_rolling">
             <ul>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [1보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [2보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [3보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [4보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [5보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
                 </span>
               </li>
@@ -71,32 +66,32 @@
           </div>
         </div>
 
-        <div class="newsflash__content">
-          <div class="newsflash__content__newspaper">연합뉴스</div>
-          <div class="newsflash__content_rolling">
+        <div class="headline__content">
+          <div class="headline__content__newspaper">연합뉴스</div>
+          <div class="headline__content_rolling">
             <ul>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [1보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [2보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [3보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [4보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
                 </span>
               </li>
               <li>
-                <span class="newsflash__content__title">
+                <span class="headline__content__title">
                   [5보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
                 </span>
               </li>
@@ -108,15 +103,13 @@
       <main class="news">
         <nav class="news-navbar">
           <div class="news-navbar_newspaper">
-            <span class="news-navbar_newspaper-list-all mouse-hover-pointer"
-              >전체 언론사</span
-            >
-            <span class="news-navbar_newspaper-list-my mouse-hover-pointer"
+            <span class="news-navbar_newspaper-list-all">전체 언론사</span>
+            <span class="news-navbar_newspaper-list-my"
               >내가 구독한 언론사</span
             >
           </div>
           <div class="news-navbar_content">
-            <span class="news-navbar_content__list mouse-hover-pointer">
+            <span class="news-navbar_content__list">
               <svg
                 class="view-line"
                 width="24"
@@ -131,7 +124,7 @@
                 />
               </svg>
             </span>
-            <span class="news-navbar_content__grid mouse-hover-pointer">
+            <span class="news-navbar_content__grid">
               <svg
                 class="view-chess"
                 width="24"
@@ -152,7 +145,7 @@
         <section class="news-section-grid">
           <ul class="newspaper__list"></ul>
 
-          <div class="left-button_content mouse-hover-pointer">
+          <div class="left-button_content">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26"
@@ -164,7 +157,7 @@
             </svg>
           </div>
 
-          <div class="right-button_content mouse-hover-pointer">
+          <div class="right-button_content">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26"
@@ -203,7 +196,7 @@
               <span class="news-list__press-news__info__date"
                 >2023.02.10. 18:27 편집</span
               >
-              <img src="./assets/button/Button.svg" alt="Button" />
+              <img src="./assets/icons/SubscribeButton.svg" alt="Button" />
             </div>
             <div class="news-list__press-news__news">
               <div class="news-list__press-news__main">

@@ -1,4 +1,4 @@
-import { constants } from "./constants.js";
+import { constants } from "../../Data/constants.js";
 
 const timer = [];
 
@@ -34,7 +34,7 @@ const setRollingAndStop = (rollingElement, index) => {
 
 const setRolling = () => {
   const $rollingTarget = document.querySelectorAll(
-    ".newsflash__content_rolling > ul"
+    ".headline__content_rolling > ul"
   );
   $rollingTarget.forEach((elem, index) => setRollingAndStop(elem, index));
 };

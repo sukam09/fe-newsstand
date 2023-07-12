@@ -1,0 +1,40 @@
+/* navBar */
+
+.news-navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 24px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+.news-navbar_newspaper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 216px;
+  gap: 24px;
+}
+
+.news-navbar_newspaper-list-all {
+  color: #14212b;
+  font-weight: bold;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.news-navbar_newspaper-list-my {
+  color: #879298;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.news-navbar_content {
+  display: flex;
+  justify-content: space-between;
+  width: 56px;
+}
+
+.news-navbar_content > span {
+  cursor: pointer;
+}
