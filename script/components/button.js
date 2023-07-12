@@ -1,32 +1,38 @@
+import { BUTTON } from '../constants.js';
 import Icon from './Icon.js';
 
-const Button = (icon, isWhite, text, onClick) => {
+const Button = ({ icon, isWhite, text, onClick }) => {
   const buttonElement = document.createElement('button');
+  const surfaceClass = isWhite ? 'surface_default' : 'surface_alt';
 
-  buttonElement.className = `button border_default`;
-  buttonElement.classList.add(isWhite ? 'surface_default' : 'surface_alt');
+  buttonElement.className = `button border_default ${surfaceClass}`;
   buttonElement.innerHTML = Icon[icon];
   if (text) {
     buttonElement.classList.add('text_button');
-    buttonElement.innerHTML += text;
+    buttonElement.appendChild(document.createTextNode(text));
   }
   buttonElement.addEventListener('click', onClick);
 
   return buttonElement;
 };
 
-const unSubButton = (withText, onClick) => {
+const UnSubButton = ({ withText, onClick }) => {
   return withText
-    ? Button('close', 'gray', '해지하기', onClick)
-    : Button('close', 'gray', onClick);
+    ? Button({
+        icon: 'close',
+        isWhite: false,
+        text: BUTTON.UNSUBSCRIBE,
+        onClick,
+      })
+    : Button({ icon: 'close', isWhite: false, onClick });
 };
 
-const SubButton = (isSub, withText, onClick) => {
+const SubButton = (isSub, withText = true, onClick) => {
   const subElement = document.createElement('div');
   subElement.className = 'media_hover surface_alt';
   const button = isSub
-    ? Button('plus', 'white', '구독하기', onClick)
-    : unSubButton(withText, onClick);
+    ? Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick })
+    : UnSubButton({ withText, onClick });
   subElement.appendChild(button);
 
   return subElement;
