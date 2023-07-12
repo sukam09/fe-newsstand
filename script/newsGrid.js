@@ -85,25 +85,25 @@ const createGridItems = gridElement => {
   });
 };
 
-const createGrid = () => {
+const createGridElement = () => {
   const gridElement = document.createElement('ul');
-  const mediaView = document.querySelector('#media_view');
 
   gridElement.className = 'media_view_grid';
   createGridItems(gridElement);
-  Array.from(mediaView.childNodes).forEach(child => child.remove());
-
-  mediaView.appendChild(gridElement);
+  return gridElement;
 };
 
 const initGrid = () => {
-  setGrid();
-  setArrow();
+  const mediaView = document.querySelector('#media_view');
+
+  Array.from(mediaView.childNodes).forEach(child => child.remove());
+  mediaView.appendChild(createGridElement());
 };
 
 const gridApp = () => {
-  createGrid();
   initGrid();
+  setGrid();
+  setArrow();
 };
 
 export default gridApp;
