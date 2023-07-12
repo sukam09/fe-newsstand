@@ -47,7 +47,7 @@ const appendLogo = (data) => {
 
     img.src = data.logo;
   }
-  document.querySelector(".agency-list").appendChild(li);
+  document.querySelector(".agency-grid").appendChild(li);
 };
 
 // ul 태그 내 모든 li 태그 삭제
@@ -59,7 +59,7 @@ function removeAllChildNodes(parent) {
 
 // 페이지에 따라 신문사 list 추가
 const render = (currentPage, pages) => {
-  const agencyList = document.querySelector(".agency-list");
+  const agencyList = document.querySelector(".agency-grid");
   // 기존 child nodes 모두 제거
   removeAllChildNodes(agencyList);
 

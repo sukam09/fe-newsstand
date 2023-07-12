@@ -185,19 +185,20 @@ nav.agency .view-type button {
     brightness(83%) contrast(97%);
 }
 
-.agency-list {
+.agency-grid {
   list-style: none;
   margin: 0;
   margin-top: 1.5rem;
   height: 388px;
   padding: 0;
   padding-left: 0.5px;
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
 
-.agency-list li {
+.agency-grid li {
   border: 1px solid var(--color-border-default);
   margin-top: -1px;
   margin-left: -1px;
@@ -208,7 +209,7 @@ nav.agency .view-type button {
   position: relative;
 }
 
-.agency-list li img {
+.agency-grid li img {
   height: 20px;
 }
 .agency-btn-hover {
@@ -242,6 +243,14 @@ nav.agency .view-type button {
 
 .next-page-btn {
   left: calc(100% + 3rem);
+}
+
+.agency-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-alt, #f5f7f9);
 }
 
 /* Utility */
