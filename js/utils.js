@@ -2,4 +2,8 @@ function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
-export { shuffle };
+function changeImageSrc(e, src) {
+  e.src = `${src}`;
+}
+
+export { shuffle, changeImageSrc };
