@@ -1,3 +1,5 @@
+import { initNewsPressData } from "./initNewsPressData.js";
+
 const MIN_PAGE_NUM = 1;
 const MAX_PAGE_NUM = 4;
 const PAGE_COUNT = 24;
@@ -6,14 +8,6 @@ let page = 1;
 let newsPressData = [];
 
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
-const initNewsPressData = () => {
-    fetch("../data/press-data.json")
-        .then((response) => response.json())
-        .then((jsonData) => {
-            newsPressData = shuffleArray(jsonData);
-            showNewsPressItems();
-        });
-};
 
 const fillEmptyCells = (currentNewsPressData, newsPressGrid) => {
     if (currentNewsPressData.length < 24) {
@@ -46,6 +40,12 @@ const showNewsPressItems = () => {
         newsPressGrid.appendChild($li);
     });
     fillEmptyCells(currentNewsPressData, newsPressGrid);
+};
+
+const shuffleNewsPress = async () => {
+    newsPressData = await initNewsPressData();
+    newsPressData = shuffleArray(newsPressData);
+    showNewsPressItems();
 };
 
 const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
@@ -81,8 +81,8 @@ const checkShowPageButton = (page) => {
 checkShowPageButton(page);
 
 export {
-    initNewsPressData,
     showNewsPressItems,
+    shuffleNewsPress,
     handleClickPrevPageButton,
     handleClickNextPageButton,
 };
