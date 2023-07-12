@@ -178,7 +178,7 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: progress 1s linear infinite;
+  animation: progress 10s linear infinite;
   z-index: -1;
 }
 .nav-item {
