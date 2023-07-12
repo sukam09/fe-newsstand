@@ -12,7 +12,7 @@ export const createStore = (reducer) => {
   const subscribers = [];
 
   const getState = () => {
-    return state;
+    return { ...state };
   };
 
   const subscribe = (callback) => {
