@@ -46,7 +46,7 @@ function clickListRightBtn(category) {
     console.log(category, page_count[category]);
   }
   document.querySelector(".left-btn").classList.remove("hidden");
-  document.querySelector(".now-count").textContent = page_count[category] + 1;
+  setNowCount();
 }
 
 function clickListLeftBtn(category) {
@@ -65,39 +65,25 @@ function clickListLeftBtn(category) {
     console.log(category, page_count[category]);
   }
   document.querySelector(".right-btn").classList.remove("hidden");
-  document.querySelector(".now-count").textContent = page_count[category] + 1;
-}
-
-function nextNewsWhenProgressEnd() {
-  console.log(now_category, page_count[now_category], total_pages[now_category]);
-
-  if (page_count[now_category] === total_pages[now_category] - 1) {
-    now_category = category[category.indexOf(now_category) + 1];
-  } else {
-    page_count[now_category] += 1;
-    drawNews(now_category, page_count[now_category]);
-    // document.querySelector(".now-count").textContent = page_count[category] + 1;
-  }
+  setNowCount();
 }
 
 function clickCategory(target) {
-  if (now_category === target.textContent) {
+  if (now_category === target.firstElementChild.textContent.trim()) {
     return;
   }
-  now_category = target.querySelector(".nav-item").textContent;
-  page_count[now_category] === total_pages[now_category] - 1
-    ? document.querySelector(".right-btn").classList.add("hidden")
-    : document.querySelector(".right-btn").classList.remove("hidden");
-
-  page_count[now_category] === 0
-    ? document.querySelector(".left-btn").classList.add("hidden")
-    : document.querySelector(".left-btn").classList.remove("hidden");
+  console.log(target.firstElementChild.innerText.trim());
+  console.log("pgcount", page_count[target.firstElementChild.innerText.trim()]);
+  page_count[target.firstElementChild.innerText.trim()] = 0;
+  now_category = target.querySelector(".nav-item").innerText.trim();
+  document.querySelector(".right-btn").classList.remove("hidden");
+  document.querySelector(".left-btn").classList.add("hidden");
   document.querySelector(".progress-bar").classList.remove("progress-bar");
   target.classList.add("progress-bar");
-  document.querySelector(".progress-bar").addEventListener("animationend", nextNewsWhenProgressEnd);
+  document.querySelector(".progress-bar").addEventListener("animationiteration", nextNewsWhenProgressEnd);
   console.log(document.querySelector(".count"));
   document.querySelector(".count").remove();
-  setCount(target);
+  setCount(document.querySelector(".progress-bar"));
   console.log(now_category, page_count[now_category] - 1);
   drawNews(now_category, page_count[now_category]);
 }
@@ -113,7 +99,8 @@ function initCategoryClass() {
     }</span></div>
   `,
   );
-  document.querySelector(".progress-bar").addEventListener("animationend", nextNewsWhenProgressEnd);
+
+  document.querySelector(".progress-bar").addEventListener("animationiteration", nextNewsWhenProgressEnd);
 }
 
 function setCount(target) {
@@ -127,6 +114,46 @@ function setCount(target) {
     }</span></div>
   `,
   );
+}
+
+function nextNewsWhenProgressEnd() {
+  console.log(now_category, page_count[now_category], total_pages[now_category]);
+
+  if (page_count[now_category] === total_pages[now_category] - 1) {
+    document.querySelector(".progress-bar").removeEventListener("animationiteration", console.log("erase"));
+    now_category = category[category.indexOf(now_category) + 1];
+    removeProgressStatus();
+    document.querySelectorAll(".nav-item").forEach(nav => {
+      if (nav.textContent === now_category) {
+        console.log("nav!!");
+        console.log(nav);
+        nav.parentElement.classList.add("progress-bar");
+        setCount(nav.parentElement);
+        nav.parentElement.addEventListener("animationiteration", nextNewsWhenProgressEnd);
+      }
+    });
+    drawNews(now_category, page_count[now_category]);
+    setNowCount();
+    console.log(document.querySelector(".progress-bar"));
+  } else {
+    page_count[now_category] += 1;
+    drawNews(now_category, page_count[now_category]);
+    setNowCount();
+    // document.querySelector(".now-count").textContent = page_count[category] + 1;
+  }
+}
+
+function removeProgressStatus() {
+  document.querySelector(".progress-bar").classList.remove("progress-bar");
+  document.querySelector(".count").remove();
+}
+
+function nextCategoryWhenProgressEnd() {
+  document.querySelector(".count").remove();
+}
+
+function setNowCount() {
+  document.querySelector(".now-count").textContent = page_count[now_category] + 1;
 }
 
 export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass };

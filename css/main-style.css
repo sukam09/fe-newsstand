@@ -149,6 +149,9 @@ h1 {
   padding: 0px 16px;
   align-items: center;
   gap: 8px;
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 /* progress bar style */
@@ -165,6 +168,7 @@ h1 {
   color: white !important;
   position: relative;
   z-index: 2;
+  pointer-events: none;
 }
 .progress-bar:after {
   content: "";
@@ -174,12 +178,18 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: progress 20s linear;
+  animation: progress 1s linear infinite;
   z-index: -1;
 }
 .nav-item {
   z-index: 3;
+  pointer-events: none;
 }
+
+.count {
+  pointer-events: none;
+}
+
 @keyframes progress {
   0% {
     width: 0px;
@@ -492,4 +502,40 @@ h1 {
   border: 0;
   background-color: transparent;
   cursor: pointer;
+}
+
+.list-nav > ul > li:hover {
+  text-decoration: underline;
+}
+
+.progress-bar:hover {
+  text-decoration: none !important;
+}
+
+.news-sub-list > li {
+  cursor: pointer;
+}
+
+.news-sub-list > li:hover {
+  text-decoration: underline;
+}
+
+.news-sub-list > li:last-child {
+  text-decoration: none;
+  cursor: default;
+}
+
+.news-main:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.news-main > div {
+  height: 200px;
+  overflow: hidden;
+}
+
+.news-main > div > img:hover {
+  transform: scale(1.05);
+  transition: 0.3s linear;
 }
