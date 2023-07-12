@@ -242,7 +242,7 @@ body {
     padding-right: 16px;
 }
 
-.btn-tab-item {
+.tab-item-clicked {
     width: 166px;
     height: 100%;
     padding-left: 16px;

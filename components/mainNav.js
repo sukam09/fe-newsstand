@@ -1,3 +1,5 @@
+import { initProgressBar, clearProgressBar } from "./progressBtn.js";
+
 let isGrid = true;
 const grid_icon = document.querySelector(".nav-right_grid_icon");
 const list_icon = document.querySelector(".nav-right_list_icon");
@@ -5,11 +7,17 @@ const main_grid_view = document.querySelector(".main-grid-view");
 const main_list_view = document.querySelector(".main-list-view");
 
 async function changeToGrid() {
-    isGrid = true;
+    clearProgressBar().then(() => {
+        console.log("clear");
+        isGrid = true;
+    });
 }
 
 async function changeToList() {
-    isGrid = false;
+    initProgressBar().then(() => {
+        console.log("init");
+        isGrid = false;
+    });
 }
 
 function changeView() {
@@ -36,6 +44,10 @@ function onClickIcon() {
     list_icon.addEventListener("click", () => {
         changeToList().then(changeView);
     });
+}
+
+function initMainNav() {
+    initProgressConst();
 }
 
 export function renderMainNav() {

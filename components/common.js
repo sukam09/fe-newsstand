@@ -20,3 +20,10 @@ export function createDiv(className, txt) {
 
     return newDiv;
 }
+
+export function createNav(className) {
+    const newNav = document.createElement("nav");
+    if (className) newNav.setAttribute("class", className);
+
+    return newNav;
+}
