@@ -25,8 +25,10 @@ export const viewSelectHandler = (agencies) => {
       gridBtn.setAttribute("viewtype", true);
       listBtn.removeAttribute("viewtype");
 
-      const gridDiv = document.querySelector(".agency-list-container");
-      gridDiv.style.display = "block";
+      const $grid = document.querySelector(".agency-grid");
+      const $list = document.querySelector(".asd");
+      $grid.style.display = "grid";
+      $list.style.display = "none";
 
       const pages = createGridPages(agencies);
       render(0, pages);
@@ -51,8 +53,10 @@ export const viewSelectHandler = (agencies) => {
       listBtn.setAttribute("viewtype", true);
       gridBtn.removeAttribute("viewtype");
 
-      const gridDiv = document.querySelector(".agency-list-container");
-      gridDiv.style.display = "none";
+      const $grid = document.querySelector(".agency-grid");
+      const $list = document.querySelector(".asd");
+      $grid.style.display = "none";
+      $list.style.display = "block";
     }
   };
 
