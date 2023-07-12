@@ -217,6 +217,7 @@ body {
 
 .main_nav_title progress::-webkit-progress-value {
     background: #4362d0;
+    transition: all 1s ease-out;
 }
 
 .main_nav ul {
