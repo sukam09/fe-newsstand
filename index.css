@@ -198,7 +198,7 @@ section.main {
   width: 100%;
   align-items: center;
   justify-content: center;
-  border: 1px black solid;
+  border: 1px #d2dae0 solid;
 }
 
 .main-div-02 {
@@ -230,21 +230,29 @@ section.main {
   text-align: left;
 }
 
+#category .wrap {
+  height: 100%;
+}
+
 #category ul {
   display: flex;
+  height: 100%;
+}
+
+#category div {
+  margin: auto;
+  float: left;
+  margin-left: 15px;
 }
 
 #category ul > li {
   font-size: 14px;
   margin: 15px;
+  justify-content: center;
 }
 
 input[type="radio"]:checked + label {
   font-weight: bold;
-}
-
-input[type="radio"]:checked + img {
-  border: 2px blue solid;
 }
 
 .rolling-banner a:hover {
