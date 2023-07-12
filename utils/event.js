@@ -26,7 +26,7 @@ export const viewSelectHandler = (agencies) => {
       listBtn.removeAttribute("viewtype");
 
       const $grid = document.querySelector(".agency-grid");
-      const $list = document.querySelector(".asd");
+      const $list = document.querySelector(".agency-list");
       $grid.style.display = "grid";
       $list.style.display = "none";
 
