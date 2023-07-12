@@ -3,6 +3,7 @@ export default class LatestNews {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "latest-main-news";
 
+    // interval 변수 초기화
     this.leftInterval = 0;
     this.rightInterval = 0;
 
@@ -14,58 +15,72 @@ export default class LatestNews {
   }
 
   render() {
-    this.$wrapper.appendChild(this.createLatesNewsContainer("left"));
-    this.$wrapper.appendChild(this.createLatesNewsContainer("right"));
+    this.$wrapper.appendChild(this.createLatestContainer("left"));
+    this.$wrapper.appendChild(this.createLatestContainer("right"));
   }
 
-  createLatesNewsContainer(location) {
+  /**
+   * 헤드라인 컴포넌트 구현
+   */
+  createLatestContainer(location) {
     const $container = document.createElement("div");
     const $hiddenCompoent = document.createElement("div");
-    const $wrapper = document.createElement("div");
-    $container.className = "latest--container";
     $hiddenCompoent.className = "text--wrapper";
-    $wrapper.className = `auto-rolling-news ${location}`;
+    $container.className = "latest--container";
 
-    for (let i = 1; i < this.LATEST_NEWS_COUNT; i++) {
-      $wrapper.appendChild(
-        this.createLatestNewsComponent("연합뉴스", `[1보] ${i}`)
-      );
-    }
-    $wrapper.appendChild(this.createLatestNewsComponent("연합뉴스", `[1보] 1`));
+    $hiddenCompoent.appendChild(this.createContentWrapper(location));
 
-    location === "left"
-      ? this.handleLeftRolling($wrapper, 1)
-      : this.handleRightRolling($wrapper, 1);
-
-    $hiddenCompoent.appendChild($wrapper);
+    $container.appendChild(this.createPressName("연합뉴스"));
     $container.appendChild($hiddenCompoent);
 
     return $container;
   }
 
-  createLatestNewsComponent(name, content) {
-    const $component = document.createElement("div");
-    $component.className = "latest--content";
+  /**
+   * 언론사 이름 컴포넌트 구현
+   */
+  createPressName(name) {
+    const $name = document.createElement("span");
+    $name.innerText = name;
+    return $name;
+  }
 
-    const $newsName = document.createElement("span");
-    const $newsContent = document.createElement("p");
+  /**
+   * 롤링 컴포넌트 구현
+   */
+  createContentWrapper(location) {
+    const $wrapper = document.createElement("div");
+    $wrapper.className = `auto-rolling-news ${location}`;
 
-    $newsName.innerText = name;
-    $newsContent.innerText = content;
+    for (let i = 1; i < this.LATEST_NEWS_COUNT; i++) {
+      $wrapper.appendChild(this.createContent(`[${i}보]`));
+    }
+    $wrapper.appendChild(this.createContent("[1보]"));
 
-    $component.appendChild($newsName);
-    $component.appendChild($newsContent);
+    location === "left"
+      ? this.handleLeftRolling($wrapper, 1)
+      : this.handleRightRolling($wrapper, 1);
 
-    $component.addEventListener("mouseenter", (e) =>
-      this.handleRollingPause(e)
-    );
-    $component.addEventListener("mouseleave", (e) =>
+    return $wrapper;
+  }
+
+  /**
+   * 헤드라인 컴포넌트 구현
+   */
+  createContent(content) {
+    const $content = document.createElement("p");
+
+    $content.innerText = content;
+
+    $content.addEventListener("mouseenter", (e) => this.handleRollingPause(e));
+    $content.addEventListener("mouseleave", (e) =>
       this.handleRollingRestart(e)
     );
 
-    return $component;
+    return $content;
   }
 
+  /* 롤링 구현 함수 (왼쪽) */
   handleLeftRolling(wrapper, order) {
     this.leftInterval = setInterval(() => {
       if (order >= this.LATEST_NEWS_COUNT) {
@@ -78,6 +93,7 @@ export default class LatestNews {
     }, this.ROLLING_SPEED);
   }
 
+  /* 롤링 구현 함수 (오른쪽) */
   handleRightRolling(wrapper, order) {
     this.rightInterval = setInterval(() => {
       if (order >= this.LATEST_NEWS_COUNT) {
@@ -90,6 +106,9 @@ export default class LatestNews {
     }, this.ROLLING_SPEED);
   }
 
+  /**
+   * hover 시 멈춤 기능 함수
+   */
   handleRollingPause(event) {
     const $rollingContent = event.target;
     const $rollingDiv = event.target.parentNode;
@@ -103,6 +122,9 @@ export default class LatestNews {
     }
   }
 
+  /**
+   * 마우스 아웃 시 롤링 재시작 기능 함수
+   */
   handleRollingRestart(event) {
     const $rollingContent = event.target;
     const $rollingDiv = event.target.parentNode;

@@ -1,6 +1,6 @@
 export default class Icon {
   constructor({ name }) {
-    this.$img = document.createElement('img');
+    this.$img = document.createElement("img");
 
     this.render(name);
 
