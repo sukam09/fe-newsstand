@@ -1,5 +1,3 @@
-//매직넘버 밖으로 또는 constant file 따로 만들어서 넣기
-
 const ROLLING_INTERVAL_TIME = 5000;
 const ROLLING_INTERVAL_SPACE_TIME = 1000;
 let newsList = [];
@@ -50,22 +48,17 @@ function setSpace() {
 롤링을 위한 객체의 class명 변경
 (next -> current, current -> prev)
 */
-function rollNewsCallback(isLeftNews) { //줄일 수 있음. 클래스 명에 템플릿 리터럴 이용하기
-  const FIRST_NEWS_IDX = 0;
-  const SECOND_NEWS_IDX = 1;
-  let newsIdx = null;
-
-  isLeftNews === 'left' ? newsIdx = FIRST_NEWS_IDX : newsIdx = SECOND_NEWS_IDX;
-  const $prev = document.querySelectorAll('.rolling-banner li.prev')[newsIdx];
+function rollNewsCallback(whatNews) {
+  const $prev = document.querySelector(`.rolling-banner .wrap-${whatNews} li.prev`);
   $prev.classList.remove('prev');
 
-  const $current = document.querySelectorAll('.rolling-banner li.current')[newsIdx];
+  const $current = document.querySelector(`.rolling-banner .wrap-${whatNews} li.current`);
   $current.classList.remove('current');
   $current.classList.add('prev');
 
-  const $next = document.querySelectorAll('.rolling-banner li.next')[newsIdx];
+  const $next = document.querySelector(`.rolling-banner .wrap-${whatNews} li.next`);
   if ($next.nextElementSibling === null) {
-    const $nullNext = document.querySelectorAll('.rolling-banner ul li:first-child')[newsIdx];
+    const $nullNext = document.querySelector('.rolling-banner ul li:first-child');
     $nullNext.classList.add('next');
   }
   else {
