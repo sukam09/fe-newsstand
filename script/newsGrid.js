@@ -20,8 +20,6 @@ const subscribed = [
   23, 24, 25, 26, 27,
 ];
 
-// const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
-
 const setGrid = () => {
   const mediaLogo = document.querySelectorAll('.media_logo');
   const gridIndex = Array.from(
