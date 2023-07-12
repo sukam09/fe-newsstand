@@ -19,15 +19,8 @@ export default class AllNewsListView extends Component {
       currentPage: 81,
       totalPage: 81,
     };
-    setInterval(() => {
-      if (this.state.currentPage === this.state.totalPage) {
-        const currentPressIndex = (this.state.currentPressIndex + 1) % this.state.pressOrder.length;
 
-        this.setState({ currentPressIndex, currentPage: 81 });
-      } else {
-        this.setState({ currentPage: this.state.currentPage + 1 });
-      }
-    }, NEXT_PAGE_INTERVAL);
+    setInterval(this.goNextPage.bind(this), NEXT_PAGE_INTERVAL);
   }
 
   template() {
@@ -80,11 +73,13 @@ export default class AllNewsListView extends Component {
     new ArrowButton(this.$target.querySelector('.left-button'), {
       name: 'left-button',
       isVisible: true,
+      action: this.goPrevPage.bind(this),
     });
 
     new ArrowButton(this.$target.querySelector('.right-button'), {
       name: 'right-button',
       isVisible: true,
+      action: this.goNextPage.bind(this),
     });
   }
 
@@ -108,5 +103,26 @@ export default class AllNewsListView extends Component {
       },
       '',
     );
+  }
+
+  goPrevPage() {
+    if (this.state.currentPage === 1) {
+      const currentPressIndex =
+        (this.state.currentPressIndex + this.state.pressOrder.length - 1) %
+        this.state.pressOrder.length;
+      this.setState({ currentPressIndex, currentPage: 81 });
+    } else {
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    }
+  }
+
+  goNextPage() {
+    if (this.state.currentPage === this.state.totalPage) {
+      const currentPressIndex = (this.state.currentPressIndex + 1) % this.state.pressOrder.length;
+
+      this.setState({ currentPressIndex, currentPage: 81 });
+    } else {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    }
   }
 }
