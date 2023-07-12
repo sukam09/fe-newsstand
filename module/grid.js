@@ -1,9 +1,9 @@
-import { fetchNewsIconData } from "./api.js";
+import { fetchNewsData } from "./api.js";
 import { GRID, GLOBAL } from "./variable.js";
 
 async function initGrid() {
   try {
-    GLOBAL.news_icon = await fetchNewsIconData();
+    GLOBAL.news_icon = await fetchNewsData();
     let icon_idx = GLOBAL.grid_cur_page * GRID.NEWS_NUM;
     for (let i = 0; i < GRID.ROW_NUM; i++) {
       const grid_row = document.createElement("ul");

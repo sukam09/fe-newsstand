@@ -13,7 +13,7 @@ const ICON = {
 };
 
 const JSONDATA = {
-  NEWS_ICON: "/Data/News_Icon.json",
+  NEWS_DATA: "DATA/News_Data.json",
   ROLLING_NEWS: "/Data/Rolling_News.json",
 };
 

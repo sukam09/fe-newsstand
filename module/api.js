@@ -6,8 +6,8 @@ async function fetchJsonFile(path) {
   });
 }
 
-async function fetchNewsIconData() {
-  const jsonData = await fetchJsonFile(JSONDATA.NEWS_ICON);
+async function fetchNewsData() {
+  const jsonData = await fetchJsonFile(JSONDATA.NEWS_DATA);
   shuffle_id(jsonData);
   return jsonData;
 }
@@ -17,18 +17,18 @@ async function fetchRollingNewsData() {
   return jsonData;
 }
 
-function shuffle_id(news_icon) {
-  let currentIndex = news_icon.length,
+function shuffle_id(jsonData) {
+  let currentIndex = jsonData.length,
     tempValue,
     randomIndex;
 
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    tempValue = news_icon[currentIndex].path;
-    news_icon[currentIndex].path = news_icon[randomIndex].path;
-    news_icon[randomIndex].path = tempValue;
+    tempValue = jsonData[currentIndex];
+    jsonData[currentIndex] = jsonData[randomIndex];
+    jsonData[randomIndex] = tempValue;
   }
 }
 
-export { fetchNewsIconData, fetchRollingNewsData };
+export { fetchNewsData, fetchRollingNewsData };
