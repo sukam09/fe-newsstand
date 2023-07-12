@@ -35,6 +35,13 @@ function drawNews(category, page) {
   subList.append(caption);
 }
 
+function restartAnimation() {
+  const $animation = document.querySelector(".progress-bar");
+  $animation.classList.remove("progress-bar");
+  void $animation.offsetWidth; // Reflow를 유발하여 애니메이션 재시작을 위한 트리거
+  $animation.classList.add("progress-bar");
+}
+
 function clickListRightBtn(category) {
   if (page_count[category] + 1 === total_pages[category] - 1) {
     page_count[category] += 1;
@@ -46,6 +53,7 @@ function clickListRightBtn(category) {
     console.log(category, page_count[category]);
   }
   document.querySelector(".left-btn").classList.remove("hidden");
+  restartAnimation();
   setNowCount();
 }
 
@@ -65,6 +73,7 @@ function clickListLeftBtn(category) {
     console.log(category, page_count[category]);
   }
   document.querySelector(".right-btn").classList.remove("hidden");
+  restartAnimation();
   setNowCount();
 }
 
