@@ -7,7 +7,7 @@ import {
 } from "./news-display/utils.js";
 import { setNewsBarRolling, infiniteRolling } from "./news-bar/rolling.js";
 import { handleClickViewIcon } from "./news-display/setViewMode.js";
-import { setCurrentCategory } from "./news-display/setCurrentCategory.js";
+import { setCategories } from "./news-display/setCategory.js";
 
 // header
 handleClickTitleIcon();
@@ -23,4 +23,4 @@ initNewsPressData();
 handleClickPrevPageButton();
 handleClickNextPageButton();
 
-setCurrentCategory();
+setCategories();

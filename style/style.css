@@ -181,7 +181,6 @@ header {
 .news-press-list-view {
     width: 930px;
     height: 388px;
-    /* background-color: silver; */
 }
 
 .list-view-category-bar {
@@ -218,9 +217,13 @@ header {
 }
 
 .category-progress-number-container {
-    display: flex;
+    display: none;
     gap: 2px;
     color: var(--color-text-white-weak);
+}
+
+.list-view-category-selected .category-progress-number-container {
+    display: flex;
 }
 
 .category-progress-number {
