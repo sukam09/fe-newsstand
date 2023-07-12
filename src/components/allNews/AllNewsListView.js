@@ -1,4 +1,5 @@
 import { NEXT_PAGE_INTERVAL } from '../../constants/index.js';
+import Button from '../common/Button.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 
@@ -15,8 +16,8 @@ export default class AllNewsListView extends Component {
         '지역',
       ],
       currentPressIndex: 0,
-      currentPage: 81,
-      totalPage: 81,
+      currentPage: 1,
+      totalPage: 2,
     };
     this.newList = [
       '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
@@ -39,7 +40,7 @@ export default class AllNewsListView extends Component {
                   <div class='press-news-info'>
                     <img class='press-logo' src='src/assets/logo/${0}.png'/>
                     <span class='display-medium12 text-default'>2023.02.10. 19:38 편집</span>
-                    <button>구독하기</button>
+                    <div class='subscribe-button-wrapper'></div>
                   </div>
 
                   <div class='press-news-content'>
@@ -66,6 +67,13 @@ export default class AllNewsListView extends Component {
       this.$target.querySelector('.progress-bar').style.width = '100%';
       this.setTimer();
     }, 100);
+
+    new Button(this.$target.querySelector('.subscribe-button-wrapper'), {
+      color: 'gray',
+      text: '구독하기',
+      icon: 'plus',
+      states: 'default',
+    });
 
     new ArrowButton(this.$target.querySelector('.left-button'), {
       name: 'left-button',
@@ -106,7 +114,8 @@ export default class AllNewsListView extends Component {
     this.$target.querySelector('.press-news-detail-list').innerHTML =
       this.newList.reduce(
         (innerHTML, content, index) =>
-          innerHTML + `<span class='available-medium16 text-bold'>${content}</span>`,
+          innerHTML +
+          `<span class='available-medium16 text-bold news-list-hover'>${content}</span>`,
         '',
       ) +
       `<span class='display-medium14 text-weak'>아주경제 언론사에서 직접 편집한 뉴스입니다.</span>`;
@@ -118,7 +127,7 @@ export default class AllNewsListView extends Component {
         const targetPress = e.target.innerHTML;
         const currentPressIndex = this.state.pressOrder.indexOf(targetPress);
 
-        this.setState({ currentPressIndex, currentPage: 81 });
+        this.setState({ currentPressIndex, currentPage: 1 });
       }
     });
   }
@@ -128,7 +137,7 @@ export default class AllNewsListView extends Component {
       const currentPressIndex =
         (this.state.currentPressIndex + this.state.pressOrder.length - 1) %
         this.state.pressOrder.length;
-      this.setState({ currentPressIndex, currentPage: 81 });
+      this.setState({ currentPressIndex, currentPage: 1 });
     } else {
       this.setState({ currentPage: this.state.currentPage - 1 });
     }
@@ -138,7 +147,7 @@ export default class AllNewsListView extends Component {
     if (this.state.currentPage === this.state.totalPage) {
       const currentPressIndex = (this.state.currentPressIndex + 1) % this.state.pressOrder.length;
 
-      this.setState({ currentPressIndex, currentPage: 81 });
+      this.setState({ currentPressIndex, currentPage: 1 });
     } else {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
