@@ -1,3 +1,4 @@
+import { NewsDB } from "./core/index.js";
 import { startRollingBanner } from "./scripts/rolling-banner.js";
 import { fillNewsContents } from "./scripts/grid-view.js";
 import {
@@ -10,7 +11,6 @@ import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
-  NewsDB,
 } from "./utils/index.js";
 import { NEWS_COUNT, VIEW_TYPE } from "./constants/index.js";
 
