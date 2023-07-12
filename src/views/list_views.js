@@ -1,7 +1,5 @@
 import { fetchNewsData } from "../utils.js";
-import { show_options } from "../events.js";
-
-let count = 40;
+import { show_options, movePage } from "../events.js";
 
 function renderListNews(data, category, page) {
     const news_data_container = document.querySelector(".main_news_container");
@@ -12,6 +10,7 @@ function renderListNews(data, category, page) {
         data[show_options.categorys[category]],
         page + 1
     );
+    setProgress();
     createMainContent(
         news_data_container,
         data[show_options.categorys[category]],
@@ -28,10 +27,10 @@ function createMainNav(container, data, page) {
     show_options.categorys.forEach((item) => {
         if (item === show_options.categorys[show_options.category]) {
             ul.innerHTML += `<li class="main_nav_title">
-            <progress
-                value="${count}"
+            <progress class="main_nav_progress"
+                value="${show_options.progress_time}"
                 min="0"
-                max="100"></progress>
+                max="20"></progress>
             <span>${show_options.categorys[show_options.category]}</span>
             <span class="progress_cnt">${page} / <b>${
                 data.length
@@ -82,7 +81,7 @@ function createMainContent(container, data, page) {
 
 function changeCategory(data) {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
-    console.log("호출");
+
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
             show_options.category = show_options.categorys.indexOf(
@@ -107,6 +106,22 @@ function initNews() {
     });
 }
 
-function setProgress() {}
+function setProgress() {
+    const progress = document.querySelector(".main_nav_progress");
+
+    clearInterval(show_options.interval);
+    show_options.progress_time = 0;
+
+    // 1초마다 1씩 증가
+    show_options.interval = setInterval(() => {
+        show_options.progress_time += 1;
+        if (show_options.progress_time === 21) {
+            clearInterval(show_options.interval);
+            show_options.progress_time = 0;
+            movePage("next");
+        }
+        progress.value = show_options.progress_time;
+    }, 1000);
+}
 
 export { initNews, renderListNews };

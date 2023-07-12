@@ -24,6 +24,8 @@ const show_options = {
         "지역",
     ],
     category_size: 7,
+    progress_interval: new Object(),
+    progress_time: 0,
 };
 
 const ROWSIZE = 6;
@@ -132,7 +134,7 @@ function deleteMainDisplay() {
     news_data_container.innerHTML = "";
 }
 
-function movePage() {
+function movePageEvent() {
     if (!length) length = MAXPAGE;
     const grid_left_arrow = document.querySelector(".grid_left_arrow");
     const grid_right_arrow = document.querySelector(".grid_right_arrow");
@@ -159,31 +161,17 @@ function movePage() {
     });
 
     list_left_arrow.addEventListener("click", () => {
-        show_options.list_current_page = show_options.list_current_page - 1;
-
-        if (show_options.list_current_page < 0) {
-            // category 뒤로
-            if (show_options.category === 0) {
-                show_options.category = show_options.category_size - 1;
-            } else {
-                show_options.category = show_options.category - 1;
-            }
-            show_options.list_current_page =
-                show_options.news_data[
-                    show_options.categorys[show_options.category]
-                ].length - 1;
-        }
-
-        renderListNews(
-            show_options.news_data,
-            show_options.category,
-            show_options.list_current_page
-        );
+        movePage("prev");
     });
 
     list_right_arrow.addEventListener("click", () => {
-        show_options.list_current_page = show_options.list_current_page + 1;
+        movePage("next");
+    });
+}
 
+function movePage(direction) {
+    if (direction === "next") {
+        show_options.list_current_page = show_options.list_current_page + 1;
         if (
             show_options.list_current_page >=
             show_options.news_data[
@@ -204,13 +192,36 @@ function movePage() {
             show_options.category,
             show_options.list_current_page
         );
-    });
+    }
+
+    if (direction === "prev") {
+        show_options.list_current_page = show_options.list_current_page - 1;
+
+        if (show_options.list_current_page < 0) {
+            // category 뒤로
+            if (show_options.category === 0) {
+                show_options.category = show_options.category_size - 1;
+            } else {
+                show_options.category = show_options.category - 1;
+            }
+            show_options.list_current_page =
+                show_options.news_data[
+                    show_options.categorys[show_options.category]
+                ].length - 1;
+        }
+
+        renderListNews(
+            show_options.news_data,
+            show_options.category,
+            show_options.list_current_page
+        );
+    }
 }
 
 function handleEvents() {
     optionShowPress();
     optionShowMain();
-    movePage();
+    movePageEvent();
 }
 
-export { handleEvents, toggleArrow, show_options, ROWSIZE, COLSIZE };
+export { handleEvents, toggleArrow, movePage, show_options, ROWSIZE, COLSIZE };
