@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <header class="container__header flex_row">
-        <div class="container__header__main flex_row" onclick="refresh()">
+        <div class="container__header__main flex_row">
           <img
             class="container__header__main__logo"
             src="./assets/images/logo.svg"
@@ -43,29 +43,19 @@
             >
           </wrapper>
           <wrapper class="main_section__header__button-wrapper flex_row">
-            <img
-              class="list_button"
-              src="./assets/icons/list_off.png"
-              alt=""
-              onclick="changeToList();" />
-            <img
-              class="grid_button"
-              src="./assets/icons/grid_on.png"
-              alt=""
-              onclick="changeToGrid();" />
+            <img class="list_button" src="./assets/icons/list_off.png" alt="" />
+            <img class="grid_button" src="./assets/icons/grid_on.png" alt="" />
           </wrapper>
         </header>
         <div class="main_container">
           <img
             src="./assets/icons/leftbutton.png"
             class="left_grid_button"
-            alt=""
-            onclick="showPrevGridPage()" />
+            alt="" />
           <img
             src="./assets/icons/leftbutton.png"
             class="left_list_button"
-            alt=""
-            onclick="" />
+            alt="" />
           <div class="main_content">
             <ul class="grid_container" id="page0"></ul>
             <ul class="grid_container" id="page1"></ul>
@@ -134,13 +124,11 @@
           <img
             src="./assets/icons/rightbutton.png"
             class="right_grid_button"
-            alt=""
-            onclick="showNextGridPage()" />
+            alt="" />
           <img
             src="./assets/icons/rightbutton.png"
             class="right_list_button"
-            alt=""
-            onclick="" />
+            alt="" />
         </div>
       </section>
     </div>

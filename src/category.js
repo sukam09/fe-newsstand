@@ -11,7 +11,6 @@ export function appendCategoryList() {
   const categoryListContainer = document.getElementsByClassName(
     "category_list_container"
   );
-  const suffledCategory = shuffleArray(categoryList);
   categoryList.forEach((item, idx) => {
     const newCategory = createCategoryList(item, idx);
     categoryListContainer[0].appendChild(newCategory);

@@ -159,4 +159,11 @@ function showGridPageButton() {
   }
 }
 
-export { appendGridList };
+(function init() {
+  const leftButton = document.querySelector(".left_grid_button");
+  const rightButton = document.querySelector(".right_grid_button");
+  leftButton.addEventListener("click", showPrevGridPage);
+  rightButton.addEventListener("click", showNextGridPage);
+})();
+
+export { appendGridList, showGridPageButton, now_grid_page };

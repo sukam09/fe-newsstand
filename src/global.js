@@ -1,3 +1,5 @@
+import { showGridPageButton, now_grid_page } from "./gridView.js";
+
 // 로고 새로고침
 function refresh() {
   location.reload();
@@ -80,5 +82,14 @@ function updateDate() {
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
 }
+
+(function init() {
+  const mainLogo = document.querySelector(".container__header__main");
+  const listButton = document.querySelector(".list_button");
+  const gridButton = document.querySelector(".grid_button");
+  mainLogo.addEventListener("click", refresh);
+  listButton.addEventListener("click", changeToList);
+  gridButton.addEventListener("click", changeToGrid);
+})();
 
 export { updateDate };
