@@ -1,20 +1,20 @@
-import { fetchNewsData, autoNext } from "../utils.js";
-import { show_options } from "../events.js";
+import { fetchNewsData } from "../utils.js";
+import { show_options, movePage } from "../events.js";
 
 function renderListNews(data, category, page) {
     const news_data_container = document.querySelector(".main_news_container");
     news_data_container.innerHTML = "";
+
+    // 임시
+    clearInterval(show_options.interval);
+    show_options.progress_time = 0;
 
     createMainNav(
         news_data_container,
         data[show_options.categorys[category]],
         page + 1
     );
-    autoNext(
-        show_options.progress_interval,
-        show_options.progress_time,
-        "main_nav_progress"
-    );
+    setProgress();
     createMainContent(
         news_data_container,
         data[show_options.categorys[category]],
@@ -108,6 +108,24 @@ function initNews() {
             );
         });
     });
+}
+
+function setProgress() {
+    const progress = document.querySelector(".main_nav_progress");
+
+    // clearInterval(show_options.interval);
+    // show_options.progress_time = 0;
+
+    // 1초마다 1씩 증가
+    show_options.interval = setInterval(() => {
+        show_options.progress_time += 1;
+        if (show_options.progress_time === 21) {
+            clearInterval(show_options.interval);
+            show_options.progress_time = 0;
+            movePage("next");
+        }
+        progress.value = show_options.progress_time;
+    }, 1000);
 }
 
 export { initNews, renderListNews };

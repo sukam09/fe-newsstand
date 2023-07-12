@@ -42,10 +42,9 @@ async function fetchHotTopicData() {
 
 async function fetchNewsData() {
     try {
-        const data = await fetch("./data/all_news.json").then((res) =>
-            res.json()
-        );
-
+        const data = await fetch("./data/all_news.json")
+            .then((res) => res.json())
+        
         return data;
     } catch (error) {
         console.log(error);
@@ -53,24 +52,6 @@ async function fetchNewsData() {
     }
 }
 
-function autoNext(interval, current_time, class_name) {
-    const progress = document.querySelector(`.${class_name}`);
-
-    clearInterval(interval);
-    current_time = 0;
-
-    // 1초마다 1씩 증가
-    interval = setInterval(() => {
-        current_time += 1;
-        if (current_time === 21) {
-            clearInterval(current_time);
-            current_time = 0;
-            movePage("next");
-        }
-        progress.value = current_time;
-    }, 1000);
-}
-
 document.addEventListener("DOMContentLoaded", showToday);
 
-export { fetchPressData, fetchHotTopicData, fetchNewsData, autoNext };
+export { fetchPressData, fetchHotTopicData, fetchNewsData };
