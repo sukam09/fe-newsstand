@@ -64,7 +64,7 @@ fe-newsstand
 - [x] CSS와 JS를 통해 뉴스 롤링 애니메이션 구현
 - [x] 뉴스 제목 문자열 전처리 알고리즘 구현
 - [x] 호버시 일시정지 구현
-- [ ] setInterval 대신 setTimeout 재귀적으로 사용
+- [x] setInterval 대신 setTimeout 재귀적으로 사용
 
 ### 4. 리스트 모드 틀 구현
 
