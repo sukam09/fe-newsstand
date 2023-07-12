@@ -1,3 +1,5 @@
+import { JSONDATA } from "./variable.js";
+
 async function fetchJsonFile(path) {
   return fetch(path).then((response) => {
     return response.json();
@@ -5,13 +7,13 @@ async function fetchJsonFile(path) {
 }
 
 async function fetchNewsIconData() {
-  const jsonData = await fetchJsonFile("../Data/News_Icon.json");
+  const jsonData = await fetchJsonFile(JSONDATA.NEWS_ICON);
   shuffle_id(jsonData);
   return jsonData;
 }
 
 async function fetchRollingNewsData() {
-  const jsonData = await fetchJsonFile("../Data/Rolling_News.json");
+  const jsonData = await fetchJsonFile(JSONDATA.ROLLING_NEWS);
   return jsonData;
 }
 

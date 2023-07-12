@@ -1,4 +1,5 @@
 import { moveGrid } from "./grid.js";
+import { ICON, BTN } from "./variable.js";
 
 // 날짜 관련 함수
 function initDate() {
@@ -8,32 +9,38 @@ function initDate() {
   document.querySelector(".today").innerHTML = todaystr;
 }
 
-// 좌우 버튼 관련 함수
-function initBtn() {
-  const right_btn = document.querySelector(".right-btn");
-  const left_btn = document.querySelector(".left-btn");
-  const list_btn = document.querySelector(".list-btn");
-  const grid_btn = document.querySelector(".grid-btn");
-  const grid_view = document.querySelector(".grid");
-  const list_view = document.querySelector(".list-view");
+// 버튼 관련 함수
+const right_btn = document.querySelector(".right-btn");
+const left_btn = document.querySelector(".left-btn");
+const list_btn = document.querySelector(".list-btn");
+const grid_btn = document.querySelector(".grid-btn");
+const grid_view = document.querySelector(".grid");
+const list_view = document.querySelector(".list-view");
 
+function initBtn() {
   right_btn.addEventListener("click", () => moveGrid(+1));
   left_btn.addEventListener("click", () => moveGrid(-1));
 
   list_btn.addEventListener("click", (e) => {
-    e.target.src = "./icons/ListButton-Blue.svg";
-    grid_btn.childNodes[1].src = "./icons/GridButton.svg";
-
-    grid_view.style.display = "none";
-    list_view.style.display = "inline-flex";
+    toggleView(e, BTN.LIST_VIEW);
   });
   grid_btn.addEventListener("click", (e) => {
-    e.target.src = "./icons/GridButton-Blue.svg";
-    list_btn.childNodes[1].src = "./icons/ListButton.svg";
+    toggleView(e, BTN.GRID_VIEW);
+  });
+}
 
+function toggleView(event, mode) {
+  if (mode === BTN.GRID_VIEW) {
+    event.target.src = ICON.GRID_BTN_BLUE;
+    list_btn.childNodes[1].src = ICON.LIST_BTN;
     grid_view.style.display = "flex";
     list_view.style.display = "none";
-  });
+  } else {
+    event.target.src = ICON.LIST_BTN_BLUE;
+    grid_btn.childNodes[1].src = ICON.GRID_BTN;
+    grid_view.style.display = "none";
+    list_view.style.display = "inline-flex";
+  }
 }
 
 export { initDate, initBtn };

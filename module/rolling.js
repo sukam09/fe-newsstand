@@ -1,10 +1,6 @@
 import { fetchRollingNewsData } from "./api.js";
+import { ROLLING } from "./variable.js";
 
-const LEFT = 0;
-const RIGHT = 1;
-const RollingNewsNum = 5;
-const NEWS_BAR_DELAY_TIME = 5000;
-const NEWS_BAR_DELAY_GAP = 1000;
 let rolling_news;
 let first_interval = null;
 let second_interval = null;
@@ -14,7 +10,7 @@ async function initRollingNews() {
   const second_news = document.querySelector("#second-news");
 
   startFirstInterval();
-  window.setTimeout(startSecondInterval, NEWS_BAR_DELAY_GAP);
+  window.setTimeout(startSecondInterval, ROLLING.DELAY_GAP);
 
   rolling_news = await fetchRollingNewsData();
   makeDomData();
@@ -41,13 +37,13 @@ function makeDomData() {
   const second_news = document.querySelector("#second-news>div");
 
   for (let i = 0; i < 2; i++) {
-    for (let j = 0; j < RollingNewsNum; j++) {
+    for (let j = 0; j < ROLLING.NEWS_NUM; j++) {
       const news_li = document.createElement("li");
       if (j === 0) {
         news_li.className = "current-news";
       } else if (j === 1) {
         news_li.className = "next-news";
-      } else if (j === RollingNewsNum - 1) {
+      } else if (j === ROLLING.NEWS_NUM - 1) {
         news_li.className = "prev-news";
       }
 
@@ -59,8 +55,8 @@ function makeDomData() {
 
       const news_title = document.createElement("a");
       news_title.className = "news-title available-medium14";
-      news_title.innerHTML = rolling_news[RollingNewsNum * i + j].title;
-      news_title.href = rolling_news[RollingNewsNum * i + j].url;
+      news_title.innerHTML = rolling_news[ROLLING.NEWS_NUM * i + j].title;
+      news_title.href = rolling_news[ROLLING.NEWS_NUM * i + j].url;
 
       // news_li.appendChild(news_press);
       news_li.appendChild(news_title);
@@ -75,7 +71,7 @@ function makeDomData() {
 
 function rollingCallback(dir) {
   let prev, current, next;
-  if (dir === LEFT) {
+  if (dir === ROLLING.LEFT) {
     prev = document.querySelector("#first-news .prev-news");
     current = document.querySelector("#first-news .current-news");
     next = document.querySelector("#first-news .next-news");
@@ -105,16 +101,16 @@ function rollingCallback(dir) {
 
 const startFirstInterval = () => {
   first_interval = window.setTimeout(() => {
-    rollingCallback(LEFT);
+    rollingCallback(ROLLING.LEFT);
     startFirstInterval();
-  }, NEWS_BAR_DELAY_TIME);
+  }, ROLLING.DELAY_TIME);
 };
 
 const startSecondInterval = () => {
   second_interval = window.setTimeout(() => {
-    rollingCallback(RIGHT);
+    rollingCallback(ROLLING.RIGHT);
     startSecondInterval();
-  }, NEWS_BAR_DELAY_TIME);
+  }, ROLLING.DELAY_TIME);
 };
 
 export { initRollingNews };

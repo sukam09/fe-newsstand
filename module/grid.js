@@ -1,10 +1,5 @@
 import { fetchNewsIconData } from "./api.js";
-
-const GRID_ROW_NUM = 4;
-const GRID_COL_NUM = 6;
-const GIRD_NEWS_NUM = GRID_ROW_NUM * GRID_COL_NUM;
-const GRID_MAX_PAGE = 3;
-const GRID_MIN_PAGE = 0;
+import { GRID } from "./variable.js";
 
 let current_grid_page = 0;
 let news_icon;
@@ -15,11 +10,11 @@ async function initGrid() {
   try {
     news_icon = await fetchNewsIconData();
     const grid = document.querySelector(".grid");
-    let icon_idx = current_grid_page * GIRD_NEWS_NUM;
-    for (let i = 0; i < GRID_ROW_NUM; i++) {
+    let icon_idx = current_grid_page * GRID.NEWS_NUM;
+    for (let i = 0; i < GRID.ROW_NUM; i++) {
       const grid_row = document.createElement("ul");
       grid_row.className = "grid-row";
-      for (let j = 0; j < GRID_COL_NUM; j++) {
+      for (let j = 0; j < GRID.COL_NUM; j++) {
         const grid_li = document.createElement("li");
         const press_logo = document.createElement("img");
         press_logo.className = "press-logo";
@@ -40,7 +35,7 @@ async function initGrid() {
 function updateGrid() {
   try {
     if (news_icon) {
-      let icon_idx = current_grid_page * GIRD_NEWS_NUM;
+      let icon_idx = current_grid_page * GRID.NEWS_NUM;
       const grid_row = document.querySelectorAll(".grid ul");
 
       grid_row.forEach((ul, index) => {
@@ -60,10 +55,10 @@ function updateGrid() {
 
 function moveGrid(pageDir) {
   current_grid_page += pageDir;
-  if (current_grid_page === GRID_MIN_PAGE) {
+  if (current_grid_page === GRID.MIN_PAGE) {
     left_btn.style.display = "none";
     right_btn.style.display = "block";
-  } else if (current_grid_page === GRID_MAX_PAGE) {
+  } else if (current_grid_page === GRID.MAX_PAGE) {
     right_btn.style.display = "none";
     left_btn.style.display = "block";
   } else {
