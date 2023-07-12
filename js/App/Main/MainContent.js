@@ -7,7 +7,7 @@ import Newspaper from "./MainContent/Newspaper.js";
 import News from "./MainContent/News.js";
 
 export default function MainContent($target, props, onClick) {
-  this.state = { lastPage: 4 };
+  this.state = { page: 1, lastPage: 4 };
 
   this.setState = (nextState) => {
     this.state = nextState;

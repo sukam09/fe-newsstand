@@ -24,7 +24,7 @@ export default function SubscriptionSwitch($target, props, onClick) {
         ...props,
         type: "list-all",
         inner: allButtonInner,
-        changeState: "mainContent",
+        changeState: "renderContent",
       },
       "news-navbar_newspaper",
       onClick
@@ -36,7 +36,7 @@ export default function SubscriptionSwitch($target, props, onClick) {
         ...props,
         type: "list-my",
         inner: myButtonInner,
-        changeState: "mainContent",
+        changeState: "renderContent",
       },
       "news-navbar_newspaper",
       onClick

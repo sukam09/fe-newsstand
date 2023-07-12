@@ -3,13 +3,6 @@
 */
 
 export default function Right($target, props) {
-  this.state = "light";
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   this.render = () => {
     const $div = document.createElement("div");
     const $ul = document.createElement("ul");

@@ -47,7 +47,7 @@ export default function SourceSwich($target, props, onClick) {
         ...props,
         type: "news",
         inner: newsButtonIcon,
-        changeState: "renderContent",
+        changeState: "mainContent",
       },
       "news-navbar_content",
       onClick
@@ -59,7 +59,7 @@ export default function SourceSwich($target, props, onClick) {
         ...props,
         type: "newspaper",
         inner: newspaperButtonIcon,
-        changeState: "renderContent",
+        changeState: "mainContent",
       },
       "news-navbar_content",
       onClick

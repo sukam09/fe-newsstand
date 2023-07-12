@@ -1,4 +1,3 @@
-import Button from "./Main/MainContent/Button.js";
 import ContentNav from "./Main/ContentNav.js";
 import MainContent from "./Main/MainContent.js";
 
@@ -6,7 +5,7 @@ export default function Main($target, props) {
   const mode = props.mode;
 
   this.state = {
-    mainContent: "news",
+    mainContent: "newspaper",
     renderContent: "list-all",
     page: 1,
     mode: props.mode,

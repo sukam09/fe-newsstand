@@ -1,7 +1,6 @@
 /*
 롤링 컨텐츠 컴포넌트
 */
-
 const pauseRolling = function (timer) {
   clearTimeout(timer);
 };
@@ -41,7 +40,7 @@ export default function Rolling($target, props) {
 
   this.setHoverEvent = (target) => {
     let spanList = target.getElementsByClassName("newsflash__content__title");
-    // HTMLCollection Type not NodeList
+    // HTMLCollection Type has not forEach
     HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
     spanList.forEach((elem) => {

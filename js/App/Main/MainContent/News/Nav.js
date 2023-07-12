@@ -15,28 +15,43 @@ export default function Nav($target, props, onClick, onChange) {
 
     const $ul = document.createElement("ul");
     $ul.setAttribute("class", "categoty-list");
+
+    let progress;
     //<span>${props.page + 1}/81</span>
     $ul.innerHTML = `
-    <li class="select">종합/경제 <sapn>${props.page}/81</span></li>
-    <li>방송/통신</li>
-    <li>IT</li>
-    <li>영자지</li>
-    <li>스포츠/연예</li>
-    <li>매거진/전문지</li>
-    <li>지역</li>
+    <li class="select"> 종합/경제
+    <div>${props.page}&#47;81</div>
+    <div class="progress-bar"></div>
+    </li>
+    <li><div>방송/통신</div></li>
+    <li><div>IT</div></li>
+    <li><div>영자지</div></li>
+    <li><div>스포츠/연예</div></li>
+    <li><div>매거진/전문지</div></li>
+    <li><div>지역</div></li>
     `;
 
     $ul.addEventListener("click", (e) => {
       // data fetch
-      if (e.target.tagName === "LI") {
-        const active = document.querySelector(".select");
+      let targetElement = e.target;
 
-        if (active) {
-          active.classList.remove("select");
-          active.removeChild(active.lastChild);
+      while (targetElement && targetElement.tagName !== "LI")
+        targetElement = targetElement.parentNode;
+
+      if (targetElement.tagName === "LI") {
+        const $select = document.querySelector(".select");
+        const $div = document.createElement("div");
+
+        $div.setAttribute("class", "progress-bar");
+
+        if ($select) {
+          $select.classList.remove("select");
+          $select.removeChild($select.lastElementChild);
+          $select.removeChild($select.lastElementChild);
         }
-        e.target.classList.add("select");
-        e.target.innerHTML += `<sapn>${props.page}/81</span>`;
+        targetElement.classList.add("select");
+        targetElement.innerHTML += `<div>${props.page}/81</div>`;
+        targetElement.appendChild($div);
       }
     });
 

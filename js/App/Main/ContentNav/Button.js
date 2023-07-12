@@ -5,7 +5,7 @@
 export default function Button($target, props, ClassName, onClick) {
   // debugger;
   // this.state = mode;
-  const { renderContent, mode, page } = props;
+  const { mainContent, renderContent, mode, page } = props;
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -21,7 +21,14 @@ export default function Button($target, props, ClassName, onClick) {
     });
   };
 
-  const changeRenderContent = () => {};
+  const changeRenderContent = () => {
+    onClick({
+      mainContent: mainContent,
+      renderContent: props.type,
+      mode: mode,
+      page: 1,
+    });
+  };
 
   this.render = () => {
     const $button = document.createElement("button");
@@ -31,7 +38,23 @@ export default function Button($target, props, ClassName, onClick) {
     );
 
     $button.innerHTML = props.inner;
-    $button.addEventListener("click", changeMainContent);
+
+    if (props.changeState === "mainContent") {
+      $button.addEventListener("click", changeMainContent);
+
+      let targetElement = $button;
+      while (targetElement && targetElement.tagName !== "path")
+        targetElement = targetElement.firstElementChild;
+
+      targetElement.style.fill =
+        props.type === props.mainContent ? "#4362D0" : "";
+    } else {
+      $button.addEventListener("click", changeRenderContent);
+
+      $button.style.color =
+        props.type === props.renderContent ? "#14212B" : "#879298";
+      $button.style.fontWeight = props.type === props.renderContent ? 700 : 500;
+    }
 
     $target.appendChild($button);
   };
