@@ -1,6 +1,7 @@
 import { category, news_by_category } from "../../assets/news.js";
 
 let current_page = 1;
+
 function makeCategory() {
   const $ul = document.querySelector(".category");
   category.forEach((item, index) => {
@@ -14,7 +15,6 @@ function makeCategory() {
     if (index === 0) {
       $li.classList.add("selected-category");
       $li.children[2].style.display = "flex";
-      console.log($li.children);
     }
   });
 }

@@ -17,3 +17,5 @@ window.addEventListener("DOMContentLoaded", () => {
   initGridView();
   initListView();
 });
+
+//***영역끼리 모아서 분리***

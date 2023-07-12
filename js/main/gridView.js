@@ -10,7 +10,7 @@ const main_list_ul = document.querySelector(".grid-view-ul");
 const left_btn = document.getElementById("left-btn");
 const right_btn = document.getElementById("right-btn");
 
-const imgIndex = Array(96)
+const imgIndex = Array(press.length)
   .fill()
   .map((arr, i) => i);
 
