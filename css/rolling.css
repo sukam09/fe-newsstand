@@ -31,9 +31,6 @@
 
 .rolling-banner a {
   display: block;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   color: var(--text-text-default);
   text-decoration: none;

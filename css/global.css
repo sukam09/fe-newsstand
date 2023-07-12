@@ -1,0 +1,121 @@
+/*Typography Default Value*/
+:root {
+  /*font-weight, font-style, font-size/line-height, font-family 순서 */
+  --bold-L: 700 normal 24px/normal "Pretendard";
+  --bold-M: 700 normal 16px/normal "Pretendard";
+  --bold-R: 700 normal 14px/normal "Pretendard";
+  --bold-S: 700 normal 12px/normal "Pretendard";
+
+  --medium-M: 500 normal 16px/22px "Pretendard";
+  --medium-R: 500 normal 14px/normal "Pretendard";
+  --medium-S: 500 normal 12px/normal "Pretendard";
+
+  /*Color Default Value*/
+  --grayscale-white-alt: rgba(255,255,255,0.7);
+  --grayscale-white : #FFFFFF;
+  --grayscale-50 : #F5F7F9;
+  --grayscale-100 : #D2DAE0;
+  --grayscale-200 : #879298;
+  --grayscale-300 : #6E8091;
+  --grayscale-400 : #5F6E76;
+  --grayscale-500 : #4B5966;
+  --grayscale-black : #14212B;
+  --blue-100 : #7890E7;
+  --blue-500 : #4362D0;
+
+  --border-default : var(--grayscale-100);
+  --border-bold : var(--grayscale-300);
+}
+
+/*Typography System*/
+.display-bold24 {
+  font: var(--bold-L);
+}
+.display-bold16 {
+  font: var(--bold-M);
+}
+.display-bold14 {
+  font: var(--bold-R);
+}
+.display-bold12 {
+  font: var(--bold-S);
+}
+.display-medium16 {
+  font: var(--medium-M);
+}
+.display-medium14 {
+  font: var(--medium-R);
+}
+.display-medium12 {
+  font: var(--medium-S);
+}
+.selected-bold16 {
+  font: var(--bold-M);
+}
+.selected-bold14 {
+  font: var(--bold-R);
+}
+.available-medium16 {
+  font: var(--medium-M);
+}
+.available-medium14 {
+  font: var(--medium-R);
+}
+.available-medium12 {
+  font: var(--medium-S);
+}
+.hover-medium16 {
+  font: var(--medium-M);
+  text-decoration: underline;
+}
+.hover-medium14 {
+  font: var(--medium-R);
+  text-decoration: underline;
+}
+
+/*Color System:Light Mode*/
+.text-strong {
+  color: var(--grayscale-black);
+}
+
+.text-bold {
+  color: var(--grayscale-500);
+}
+
+.text-default {
+  color: var(--grayscale-400);
+}
+
+.text-weak {
+  color: var(--grayscale-200);
+}
+
+.text-white-default {
+  color: var(--grayscale-white);
+}
+
+.text-white-weak {
+  color: var(--grayscale-white-alt);
+}
+
+.text-point {
+  color: var(--blue-500);
+}
+
+.surface-default {
+  background-color: var(--grayscale-white);
+}
+
+.surface-alt {
+  background-color: var(--grayscale-50);
+}
+
+.surface-brand-default {
+  background-color: var(--blue-500);
+}
+
+.surface-brand-alt {
+  background-color: var(--blue-100);
+}
+
+
