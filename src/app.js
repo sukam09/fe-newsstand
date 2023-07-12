@@ -36,6 +36,9 @@ export default function App({ $app }) {
 
   new PressTab({
     $target: $app,
+    initialState: {
+      pressView: 'grid',
+    },
     onClick: newPressView => {
       if (this.state.pressView === newPressView) {
         return;

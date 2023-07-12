@@ -215,6 +215,14 @@ header {
   gap: 8px;
 }
 
+.news-press-align-menu > svg:hover {
+  cursor: pointer;
+}
+
+.selected {
+  fill: #4362d0;
+}
+
 .news-press-container {
   position: relative;
 }
