@@ -1,4 +1,5 @@
-import { setTotalPress } from './press-grid.js';
+import { setTotalPressGrid } from './press-grid.js';
+import { setTotalPressList } from './press-list.js';
 
 const setPressHeader = (isLightMode) => {
   const pressHeader = document.querySelector('.press__header');
@@ -6,7 +7,8 @@ const setPressHeader = (isLightMode) => {
   pressHeader.appendChild(getNavLeftElement());
   pressHeader.appendChild(getNavRightElement());
 
-  setTotalPress(isLightMode);
+  setTotalPressGrid(isLightMode);
+  setTotalPressList(isLightMode);
 };
 
 const getNavLeftElement = () => {

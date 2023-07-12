@@ -3,7 +3,7 @@ let pageNum = 0;
 /**
  * 언론사 불러오기
  */
-const setTotalPress = (isLightMode) => {
+const setTotalPressGrid = (isLightMode) => {
   fetch('./assets/data/total-press.json')
     .then((response) => response.json())
     .then((data) => {
@@ -114,4 +114,4 @@ const setArrowVisible = () => {
   }
 };
 
-export { setTotalPress };
+export { setTotalPressGrid };
