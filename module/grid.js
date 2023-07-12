@@ -1,7 +1,5 @@
 import { fetchNewsIconData } from "./api.js";
 
-const RIGHT = 1;
-const LEFT = 0;
 const GRID_ROW_NUM = 4;
 const GRID_COL_NUM = 6;
 const GIRD_NEWS_NUM = GRID_ROW_NUM * GRID_COL_NUM;
@@ -13,7 +11,7 @@ let news_icon;
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
 
-async function printGrid() {
+async function initGrid() {
   try {
     news_icon = await fetchNewsIconData();
     const grid = document.querySelector(".grid");
@@ -60,12 +58,8 @@ function updateGrid() {
   }
 }
 
-function moveGrid(dir) {
-  if (dir === RIGHT) {
-    current_grid_page++;
-  } else {
-    current_grid_page--;
-  }
+function moveGrid(pageDir) {
+  current_grid_page += pageDir;
   if (current_grid_page === GRID_MIN_PAGE) {
     left_btn.style.display = "none";
     right_btn.style.display = "block";
@@ -79,4 +73,4 @@ function moveGrid(dir) {
   updateGrid();
 }
 
-export { printGrid, moveGrid };
+export { initGrid, moveGrid };

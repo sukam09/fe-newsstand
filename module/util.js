@@ -1,3 +1,5 @@
+import { moveGrid } from "./grid.js";
+
 // 날짜 관련 함수
 function initDate() {
   const date = new Date();
@@ -6,12 +8,13 @@ function initDate() {
   document.querySelector(".today").innerHTML = todaystr;
 }
 
+// 좌우 버튼 관련 함수
 function initBtn() {
   const right_btn = document.querySelector(".right-btn");
   const left_btn = document.querySelector(".left-btn");
 
-  right_btn.addEventListener("click", () => moveGrid(RIGHT));
-  left_btn.addEventListener("click", () => moveGrid(LEFT));
+  right_btn.addEventListener("click", () => moveGrid(+1));
+  left_btn.addEventListener("click", () => moveGrid(-1));
 }
 
 export { initDate, initBtn };

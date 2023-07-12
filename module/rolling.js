@@ -51,6 +51,7 @@ function makeDomData() {
         news_li.className = "prev-news";
       }
 
+      // 언론사도 같이 애니메이션 주고싶으면 사용하면 됨
       // const news_press = document.createElement("a");
       // news_press.className = "press display-bold14";
       // news_press.innerHTML = rolling_news[RollingNewsNum * i + j].press;
