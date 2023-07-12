@@ -1,0 +1,58 @@
+.newsstand__list-area {
+  width: 930px;
+  height: 388px;
+}
+.newsstand__category {
+  height: 45px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  background-color: #f5f7f9;
+  border: 1px solid #d2dae0;
+  color: var(--text-gray-light);
+}
+.category-item {
+  height: 30px;
+  padding-left: 3%;
+  display: flex;
+  align-items: center;
+}
+/* .newsstand__category-current {
+  border: 1px solid blue;
+  width: 16%;
+}
+.newsstand__category-current > span {
+  padding-left: 33%;
+} */
+.newsstand__list {
+  height: 343px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.newsstand__list-box {
+  height: 300px;
+  width: 95%;
+  border: 1px solid blue;
+}
+.list-header {
+  border: 1px solid red;
+
+  display: flex;
+}
+.list-header-title {
+  font-weight: bold;
+}
+.list-header-sub {
+  padding-left: 2%;
+  color: var(--text-gray-light);
+  white-space: nowrap;
+}
+.header-sub {
+  padding-right: 2%;
+  font-size: 0.9em;
+}
