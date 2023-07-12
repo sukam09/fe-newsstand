@@ -1,6 +1,6 @@
-@import "./reset.css";
-@import "./color.css";
-@import "./latest.css";
+@import "./css/reset.css";
+@import "./css/latest.css";
+@import "./css/color.css";
 
 h1,
 h2,
