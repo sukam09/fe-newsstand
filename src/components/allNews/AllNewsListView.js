@@ -1,5 +1,4 @@
 import { NEXT_PAGE_INTERVAL } from '../../constants/index.js';
-import { shufflePressOrder } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 
@@ -19,6 +18,14 @@ export default class AllNewsListView extends Component {
       currentPage: 81,
       totalPage: 81,
     };
+    this.newList = [
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+      '[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출',
+    ];
   }
 
   template() {
@@ -38,20 +45,10 @@ export default class AllNewsListView extends Component {
                   <div class='press-news-content'>
                     <div class='press-news-img'>
                       <img class='border-default available-medium16 text-strong' src='https://picsum.photos/200/300'/>
-                      <span class='available-medium16  text-strong'>이재명 '억울하고 괴로워도 의연하게 맞설 것'</span>
+                      <label class='available-medium16  text-strong'>이재명 '억울하고 괴로워도 의연하게 맞설 것'</label>
                     </div>
 
-                    <div class='press-news-detail-list'>
-                      <span class='available-medium16 text-bold'>이재명 "공개소환, 회술레같은 수치"…검찰 "비공개 출석 요구하지도 않았다"</span>
-                      <span class='available-medium16 text-bold'>[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출</span>
-                      <span class='available-medium16 text-bold'>[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출</span>
-                      <span class='available-medium16 text-bold'>[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출</span>
-                      <span class='available-medium16 text-bold'>[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출</span>
-                      <span class='available-medium16 text-bold'>[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출</span>
-
-                      <span class='display-medium14 text-weak'>아주경제 언론사에서 직접 편집한 뉴스입니다.</span>
-                      
-                    </div>
+                    <div class='press-news-detail-list'></div>
                   </div>
                   
                 </section>
@@ -64,6 +61,8 @@ export default class AllNewsListView extends Component {
 
   mounted() {
     this.navigationMount();
+    this.detailListMount();
+
     setTimeout(() => {
       this.$target.querySelector('.progress-bar').style.width = '100%';
       this.setTimer();
@@ -102,6 +101,16 @@ export default class AllNewsListView extends Component {
       },
       '',
     );
+  }
+
+  detailListMount() {
+    this.$target.querySelector('.press-news-detail-list').innerHTML =
+      this.newList.reduce(
+        (innerHTML, content, index) =>
+          innerHTML + `<span class='available-medium16 text-bold'>${content}</span>`,
+        '',
+      ) +
+      `<span class='display-medium14 text-weak'>아주경제 언론사에서 직접 편집한 뉴스입니다.</span>`;
   }
 
   setEvent() {
