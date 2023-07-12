@@ -36,7 +36,7 @@ $ npx tsc --init
 
   추가로 Typescript의 Helper function이 생성되는 것을 막기 위해서 `noEmitHelpers` 옵션을 `true`로 설정합니다.
 
-- Compile
+- **Compile**
 
   컴파일 결과물을 저장할 디렉토리를 `outDir` 옵션을 통해 설정합니다.
 
