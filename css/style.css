@@ -165,10 +165,22 @@ nav.agency .view-type button {
 
 .list-view-btn {
   background-image: url("../asset/icon/list-view.svg");
+  filter: invert(67%) sepia(16%) saturate(216%) hue-rotate(157deg)
+    brightness(84%) contrast(81%);
+}
+
+.list-view-btn[viewType="true"] {
+  filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)
+    brightness(83%) contrast(97%);
 }
 
 .grid-view-btn {
   background-image: url("../asset/icon/grid-view.svg");
+  filter: invert(67%) sepia(16%) saturate(216%) hue-rotate(157deg)
+    brightness(84%) contrast(81%);
+}
+
+.grid-view-btn[viewType="true"] {
   filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)
     brightness(83%) contrast(97%);
 }
@@ -210,6 +222,7 @@ nav.agency .view-type button {
 
 .agency-list-container {
   position: relative;
+  /* display: none; */
 }
 
 .prev-page-btn,
