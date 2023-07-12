@@ -3,7 +3,7 @@ import Icon from '../common/Icon.js';
 
 export default class AllNewHeader extends Component {
   setup() {
-    const isCurrentDarkMode = document.querySelector('#root').className === 'dark';
+    const isCurrentDarkMode = document.body.className === 'dark';
     this.state = {
       modeIcon: isCurrentDarkMode ? 'sun' : 'moon',
     };
@@ -38,10 +38,10 @@ export default class AllNewHeader extends Component {
       } else if (id === 'grid-view-icon') {
         this.props.onClick('grid');
       } else if (id === 'darkmode-icon') {
-        const isCurrentDarkMode = document.querySelector('#root').className === 'dark';
-        const nextModeIcon = isCurrentDarkMode ? 'sun' : 'moon';
+        const isCurrentDarkMode = document.body.className === 'dark';
+        const nextModeIcon = isCurrentDarkMode ? 'moon' : 'sun';
 
-        document.querySelector('#root').className = isCurrentDarkMode ? 'light' : 'dark';
+        document.body.className = isCurrentDarkMode ? 'light' : 'dark';
         this.setState({ modeIcon: nextModeIcon });
       }
     });
