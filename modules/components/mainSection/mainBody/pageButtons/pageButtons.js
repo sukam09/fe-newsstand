@@ -54,24 +54,14 @@ export function leftButton() {
 
 export function showNextPage() {
   const type = getPageType();
-  if (type === GRID) {
-    hideGridPage(gridPage);
-    incGridPage();
-    showGridPage(gridPage);
-  } else if (type === LIST) {
-    hideAllListPage();
-    if (
-      listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
-      categoryId < MAX_CATEGORY_ID - 1
-    ) {
-      setCategoryId(categoryId + 1);
-      setListPage(0);
-      highlightCategoryItem();
-    } else {
-      incListPage();
-    }
-    updatePageCount();
-    showListPage(categoryId, listPage);
+
+  switch (type) {
+    case GRID:
+      showNextGridPage();
+      break;
+    case LIST:
+      showNextListPage();
+      break;
   }
   controllButtonShowing();
 }
@@ -79,23 +69,56 @@ export function showNextPage() {
 export function showPrevPage() {
   const type = getPageType();
 
-  if (type === GRID) {
-    hideGridPage(gridPage);
-    decGridPage();
-    showGridPage(gridPage);
-  } else if (type === LIST) {
-    hideAllListPage();
-    if (listPage <= 0 && categoryId > 0) {
-      setCategoryId(categoryId - 1);
-      setListPage(MAX_LIST_PAGE[categoryId] - 1);
-      highlightCategoryItem();
-    } else {
-      decListPage();
-    }
-    showListPage(categoryId, listPage);
-    updatePageCount();
+  switch (type) {
+    case GRID:
+      showPrevGridPage();
+      break;
+    case LIST:
+      showPrevListPage();
+      break;
   }
   controllButtonShowing();
+}
+
+function showPrevListPage() {
+  hideAllListPage();
+  if (listPage <= 0 && categoryId > 0) {
+    setCategoryId(categoryId - 1);
+    setListPage(MAX_LIST_PAGE[categoryId] - 1);
+    highlightCategoryItem();
+  } else {
+    decListPage();
+  }
+  showListPage(categoryId, listPage);
+  updatePageCount();
+}
+
+function showPrevGridPage() {
+  hideGridPage(gridPage);
+  decGridPage();
+  showGridPage(gridPage);
+}
+
+function showNextListPage() {
+  hideAllListPage();
+  if (
+    listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+    categoryId < MAX_CATEGORY_ID - 1
+  ) {
+    setCategoryId(categoryId + 1);
+    setListPage(0);
+    highlightCategoryItem();
+  } else {
+    incListPage();
+  }
+  updatePageCount();
+  showListPage(categoryId, listPage);
+}
+
+function showNextGridPage() {
+  hideGridPage(gridPage);
+  incGridPage();
+  showGridPage(gridPage);
 }
 
 export function controllButtonShowing() {
