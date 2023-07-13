@@ -8,7 +8,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img1.svg",
                 press_light_src: "../styles/logo/light/img1.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "YTN 사이언스 메인 뉴스 제목",
                     url: "#",
@@ -42,7 +42,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img2.svg",
                 press_light_src: "../styles/logo/light/img2.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "Able뉴스 메인 뉴스 제목",
                     url: "#",
@@ -76,7 +76,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img3.svg",
                 press_light_src: "../styles/logo/light/img3.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "뉴스토마토 메인 뉴스 제목",
                     url: "#",
@@ -111,7 +111,7 @@ export const list_news_data = [
                 press_light_src: "../styles/logo/light/img4.svg",
                 edit_date: "2023.02.10. 18:27 편집",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "데일리한국 메인 뉴스 제목",
                     url: "#",
@@ -145,7 +145,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img5.svg",
                 press_light_src: "../styles/logo/light/img5.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "시사오늘 메인 뉴스 제목",
                     url: "#",
@@ -179,7 +179,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img6.svg",
                 press_light_src: "../styles/logo/light/img6.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "대전방송 메인 뉴스 제목",
                     url: "#",
@@ -213,7 +213,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img7.svg",
                 press_light_src: "../styles/logo/light/img7.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "이코노타임즈 메인 뉴스 제목",
                     url: "#",
@@ -247,7 +247,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img8.svg",
                 press_light_src: "../styles/logo/light/img8.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "독서신문 메인 뉴스 제목",
                     url: "#",
@@ -281,7 +281,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img9.svg",
                 press_light_src: "../styles/logo/light/img9.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "산 메인 뉴스 제목",
                     url: "#",
@@ -315,7 +315,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img10.svg",
                 press_light_src: "../styles/logo/light/img10.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "시사 IN 메인 뉴스 제목",
                     url: "#",
@@ -354,7 +354,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img11.svg",
                 press_light_src: "../styles/logo/light/img11.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "한국경제 메인 뉴스 제목",
                     url: "#",
@@ -388,7 +388,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img12.svg",
                 press_light_src: "../styles/logo/light/img12.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "NEWSIS 메인 뉴스 제목",
                     url: "#",
@@ -422,7 +422,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img13.svg",
                 press_light_src: "../styles/logo/light/img13.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "동아일보 메인 뉴스 제목",
                     url: "#",
@@ -456,7 +456,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img14.svg",
                 press_light_src: "../styles/logo/light/img14.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "KBS 메인 뉴스 제목",
                     url: "#",
@@ -490,7 +490,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img15.svg",
                 press_light_src: "../styles/logo/light/img15.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "BLOTER 메인 뉴스 제목",
                     url: "#",
@@ -524,7 +524,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img16.svg",
                 press_light_src: "../styles/logo/light/img16.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "한국경제TV 메인 뉴스 제목",
                     url: "#",
@@ -558,7 +558,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img17.svg",
                 press_light_src: "../styles/logo/light/img17.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "전자신문 메인 뉴스 제목",
                     url: "#",
@@ -592,7 +592,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img18.svg",
                 press_light_src: "../styles/logo/light/img18.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "스포츠조선 메인 뉴스 제목",
                     url: "#",
@@ -626,7 +626,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img19.svg",
                 press_light_src: "../styles/logo/light/img19.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "서울신문 메인 뉴스 제목",
                     url: "#",
@@ -660,7 +660,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img20.svg",
                 press_light_src: "../styles/logo/light/img20.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "중앙일보 메인 뉴스 제목",
                     url: "#",
@@ -699,7 +699,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img21.svg",
                 press_light_src: "../styles/logo/light/img21.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "노컷뉴스 메인 뉴스 제목",
                     url: "#",
@@ -733,7 +733,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img22.svg",
                 press_light_src: "../styles/logo/light/img22.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "프레시안 메인 뉴스 제목",
                     url: "#",
@@ -767,7 +767,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img23.svg",
                 press_light_src: "../styles/logo/light/img23.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "sportalkorea 메인 뉴스 제목",
                     url: "#",
@@ -801,7 +801,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img24.svg",
                 press_light_src: "../styles/logo/light/img24.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "한국일보 메인 뉴스 제목",
                     url: "#",
@@ -835,7 +835,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img25.svg",
                 press_light_src: "../styles/logo/light/img25.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "여성경제신문 메인 뉴스 제목",
                     url: "#",
@@ -869,7 +869,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img26.svg",
                 press_light_src: "../styles/logo/light/img26.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "IT조선 메인 뉴스 제목",
                     url: "#",
@@ -903,7 +903,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img27.svg",
                 press_light_src: "../styles/logo/light/img27.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "철강금속신문 메인 뉴스 제목",
                     url: "#",
@@ -937,7 +937,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img28.svg",
                 press_light_src: "../styles/logo/light/img28.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "정신의학신문 메인 뉴스 제목",
                     url: "#",
@@ -971,7 +971,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img29.svg",
                 press_light_src: "../styles/logo/light/img29.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "뉴스포스트 메인 뉴스 제목",
                     url: "#",
@@ -1005,7 +1005,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img30.svg",
                 press_light_src: "../styles/logo/light/img30.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "씨네21 메인 뉴스 제목",
                     url: "#",
@@ -1044,7 +1044,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img31.svg",
                 press_light_src: "../styles/logo/light/img31.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "정책브리핑 메인 뉴스 제목",
                     url: "#",
@@ -1078,7 +1078,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img32.svg",
                 press_light_src: "../styles/logo/light/img32.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "텐아시아 메인 뉴스 제목",
                     url: "#",
@@ -1112,7 +1112,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img33.svg",
                 press_light_src: "../styles/logo/light/img33.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "MK스포츠 메인 뉴스 제목",
                     url: "#",
@@ -1146,7 +1146,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img34.svg",
                 press_light_src: "../styles/logo/light/img34.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "MONDE 메인 뉴스 제목",
                     url: "#",
@@ -1180,7 +1180,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img35.svg",
                 press_light_src: "../styles/logo/light/img35.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "BBS NEWS 메인 뉴스 제목",
                     url: "#",
@@ -1214,7 +1214,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img36.svg",
                 press_light_src: "../styles/logo/light/img36.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "티브이데일리 메인 뉴스 제목",
                     url: "#",
@@ -1248,7 +1248,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img37.svg",
                 press_light_src: "../styles/logo/light/img37.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "TV Report 메인 뉴스 제목",
                     url: "#",
@@ -1282,7 +1282,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img38.svg",
                 press_light_src: "../styles/logo/light/img38.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "Forbes 메인 뉴스 제목",
                     url: "#",
@@ -1316,7 +1316,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img39.svg",
                 press_light_src: "../styles/logo/light/img39.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "주간경향 메인 뉴스 제목",
                     url: "#",
@@ -1350,7 +1350,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img40.svg",
                 press_light_src: "../styles/logo/light/img40.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "비즈한국 메인 뉴스 제목",
                     url: "#",
@@ -1389,7 +1389,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img41.svg",
                 press_light_src: "../styles/logo/light/img41.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "metro 메인 뉴스 제목",
                     url: "#",
@@ -1423,7 +1423,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img42.svg",
                 press_light_src: "../styles/logo/light/img42.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "JTBC 메인 뉴스 제목",
                     url: "#",
@@ -1457,7 +1457,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img43.svg",
                 press_light_src: "../styles/logo/light/img43.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "조선Biz 메인 뉴스 제목",
                     url: "#",
@@ -1491,7 +1491,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img44.svg",
                 press_light_src: "../styles/logo/light/img44.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "한겨레 메인 뉴스 제목",
                     url: "#",
@@ -1525,7 +1525,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img45.svg",
                 press_light_src: "../styles/logo/light/img45.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "연합뉴스TV 메인 뉴스 제목",
                     url: "#",
@@ -1559,7 +1559,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img46.svg",
                 press_light_src: "../styles/logo/light/img46.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "미디어오늘 메인 뉴스 제목",
                     url: "#",
@@ -1593,7 +1593,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img47.svg",
                 press_light_src: "../styles/logo/light/img47.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "디지털타임스 메인 뉴스 제목",
                     url: "#",
@@ -1627,7 +1627,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img48.svg",
                 press_light_src: "../styles/logo/light/img48.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "OSEN 메인 뉴스 제목",
                     url: "#",
@@ -1661,7 +1661,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img49.svg",
                 press_light_src: "../styles/logo/light/img49.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "소년한국일보 메인 뉴스 제목",
                     url: "#",
@@ -1695,7 +1695,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img50.svg",
                 press_light_src: "../styles/logo/light/img50.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "OBS 메인 뉴스 제목",
                     url: "#",
@@ -1734,7 +1734,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img51.svg",
                 press_light_src: "../styles/logo/light/img51.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "맥스무비 메인 뉴스 제목",
                     url: "#",
@@ -1768,7 +1768,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img52.svg",
                 press_light_src: "../styles/logo/light/img52.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "엑스포츠뉴스 메인 뉴스 제목",
                     url: "#",
@@ -1802,7 +1802,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img53.svg",
                 press_light_src: "../styles/logo/light/img53.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "서울파이낸스 메인 뉴스 제목",
                     url: "#",
@@ -1836,7 +1836,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img54.svg",
                 press_light_src: "../styles/logo/light/img54.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "한국대학신문 메인 뉴스 제목",
                     url: "#",
@@ -1870,7 +1870,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img55.svg",
                 press_light_src: "../styles/logo/light/img55.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "datanews 메인 뉴스 제목",
                     url: "#",
@@ -1904,7 +1904,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img56.svg",
                 press_light_src: "../styles/logo/light/img56.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "DigitalToday 메인 뉴스 제목",
                     url: "#",
@@ -1938,7 +1938,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img57.svg",
                 press_light_src: "../styles/logo/light/img57.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "시사위크 메인 뉴스 제목",
                     url: "#",
@@ -1972,7 +1972,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img58.svg",
                 press_light_src: "../styles/logo/light/img58.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "YTN 메인 뉴스 제목",
                     url: "#",
@@ -2006,7 +2006,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img59.svg",
                 press_light_src: "../styles/logo/light/img59.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "MBN 메인 뉴스 제목",
                     url: "#",
@@ -2040,7 +2040,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img60.svg",
                 press_light_src: "../styles/logo/light/img60.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "매일경제 메인 뉴스 제목",
                     url: "#",
@@ -2079,7 +2079,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img61.svg",
                 press_light_src: "../styles/logo/light/img61.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "오마이뉴스 메인 뉴스 제목",
                     url: "#",
@@ -2113,7 +2113,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img62.svg",
                 press_light_src: "../styles/logo/light/img62.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "SBS 메인 뉴스 제목",
                     url: "#",
@@ -2147,7 +2147,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img63.svg",
                 press_light_src: "../styles/logo/light/img63.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "머니투데이 메인 뉴스 제목",
                     url: "#",
@@ -2181,7 +2181,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img64.svg",
                 press_light_src: "../styles/logo/light/img64.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "마이데일리 메인 뉴스 제목",
                     url: "#",
@@ -2215,7 +2215,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img65.svg",
                 press_light_src: "../styles/logo/light/img65.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "ZDNET Korea 메인 뉴스 제목",
                     url: "#",
@@ -2249,7 +2249,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img66.svg",
                 press_light_src: "../styles/logo/light/img66.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "경향신문 메인 뉴스 제목",
                     url: "#",
@@ -2283,7 +2283,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img67.svg",
                 press_light_src: "../styles/logo/light/img67.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "일간스포츠 메인 뉴스 제목",
                     url: "#",
@@ -2317,7 +2317,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img68.svg",
                 press_light_src: "../styles/logo/light/img68.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "국민일보 메인 뉴스 제목",
                     url: "#",
@@ -2350,7 +2350,8 @@ export const list_news_data = [
                 press: "뉴데일리",
                 press_dark_src: "../styles/logo/dark/img69.svg",
                 press_light_src: "../styles/logo/light/img69.svg",
-                main_news_thu뉴데일리ail: "../styles/images/thubnail.jpeg",
+                edit_date: "2023.02.10. 18:27 편집",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "뉴데일리 메인 뉴스 제목",
                     url: "#",
@@ -2384,7 +2385,7 @@ export const list_news_data = [
                 press_dark_src: "../styles/logo/dark/img70.svg",
                 press_light_src: "../styles/logo/light/img70.svg",
                 edit_date: "2023.02.10. 18:27 편집",
-                main_news_thumbnail: "../styles/images/thubnail.jpeg",
+                main_news_thumbnail: "../styles/thumbnails/thumbnail.jpeg",
                 main_news: {
                     title: "뉴스타파 메인 뉴스 제목",
                     url: "#",

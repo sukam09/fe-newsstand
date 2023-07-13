@@ -27,3 +27,41 @@ export function createNav(className) {
 
     return newNav;
 }
+
+export function createImg(className, src, alt) {
+    const newImg = document.createElement("img");
+    if (className) newImg.setAttribute("class", className);
+    if (src) newImg.setAttribute("src", src);
+    if (alt) newImg.setAttribute("alt", alt);
+
+    return newImg;
+}
+
+export function createChild(parent, childArr) {
+    childArr.forEach((element) => {
+        parent.appendChild(element);
+    });
+}
+
+export function createUl(className) {
+    const newUl = document.createElement("ul");
+    if (className) newUl.setAttribute("class", className);
+
+    return newUl;
+}
+
+export function createLi(className) {
+    const newLi = document.createElement("li");
+    if (className) newLi.setAttribute("class", className);
+
+    return newLi;
+}
+
+export function createA(className, url, txt) {
+    const newA = document.createElement("a");
+    if (className) newA.setAttribute("class", className);
+    if (url) newA.setAttribute("href", url);
+    if (txt) newA.innerHTML = txt;
+
+    return newA;
+}

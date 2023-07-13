@@ -8,14 +8,12 @@ const main_list_view = document.querySelector(".main-list-view");
 
 async function changeToGrid() {
     clearProgressBar().then(() => {
-        console.log("clear");
         isGrid = true;
     });
 }
 
 async function changeToList() {
     initProgressBar().then(() => {
-        console.log("init");
         isGrid = false;
     });
 }

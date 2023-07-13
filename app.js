@@ -4,6 +4,8 @@ import { renderGridNews } from "./components/gridNews.js";
 import { rederProgressBtn } from "./components/progressBtn.js";
 import { renderMainNav } from "./components/mainNav.js";
 import { renderTab } from "./components/categoryTab.js";
+import { renderListNews } from "./components/listNews.js";
+import { list_news_data } from "./data/list_news_data.js";
 
 (function () {
     renderDate();
@@ -12,4 +14,5 @@ import { renderTab } from "./components/categoryTab.js";
     renderGridNews();
     renderTab();
     rederProgressBtn();
+    renderListNews(list_news_data[0].news[0]);
 })();
