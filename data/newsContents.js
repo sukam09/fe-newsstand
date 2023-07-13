@@ -89,7 +89,7 @@ const categoryList = [
         logoSrc: "./assets/light/img3.svg",
         name: "뉴스토마토",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "/assets/others/Thumbnail.png",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -121,7 +121,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 81,
+    tabs: 3,
   },
   {
     id: 2,
@@ -131,7 +131,7 @@ const categoryList = [
         logoSrc: "./assets/light/img4.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "/assets/others/Thumbnail2.png",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -167,7 +167,7 @@ const categoryList = [
         logoSrc: "./assets/light/img5.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "/assets/others/Thumbnail.png",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -200,7 +200,7 @@ const categoryList = [
         logoSrc: "./assets/light/img6.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "/assets/others/Thumbnail2.png",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -232,10 +232,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img7 편집.svg",
+        logoSrc: "./assets/light/img7.svg",
         name: "씨네21",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -267,7 +267,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 24,
+    tabs: 4,
   },
   {
     id: 3,
@@ -277,7 +277,7 @@ const categoryList = [
         logoSrc: "./assets/light/img8.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -313,7 +313,7 @@ const categoryList = [
         logoSrc: "./assets/light/img9.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -346,11 +346,11 @@ const categoryList = [
         logoSrc: "./assets/light/img10.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
-            title: "[단독]가락시장 공사 잡음···서울농수산공사 나몰라라?",
+            title: "SM 인수 하이브, 카카오 등장에 '닭 쫓던 개'",
             link: "",
           },
           {
@@ -381,7 +381,7 @@ const categoryList = [
         logoSrc: "./assets/light/img11.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -413,7 +413,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 10,
+    tabs: 3,
   },
   {
     id: 4,
@@ -423,7 +423,7 @@ const categoryList = [
         logoSrc: "./assets/light/img12.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -459,7 +459,7 @@ const categoryList = [
         logoSrc: "./assets/light/img13.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -492,11 +492,11 @@ const categoryList = [
         logoSrc: "./assets/light/img14.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
-            title: "[단독]가락시장 공사 잡음···서울농수산공사 나몰라라?",
+            title: "SM 인수 하이브, 카카오 등장에 '닭 쫓던 개'",
             link: "",
           },
           {
@@ -527,7 +527,7 @@ const categoryList = [
         logoSrc: "./assets/light/img15.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -559,7 +559,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 30,
+    tabs: 4,
   },
   {
     id: 5,
@@ -569,7 +569,7 @@ const categoryList = [
         logoSrc: "./assets/light/img16.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -605,7 +605,7 @@ const categoryList = [
         logoSrc: "./assets/light/img1.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -638,11 +638,11 @@ const categoryList = [
         logoSrc: "./assets/light/img12.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
-            title: "[단독]가락시장 공사 잡음···서울농수산공사 나몰라라?",
+            title: "SM 인수 하이브, 카카오 등장에 '닭 쫓던 개'",
             link: "",
           },
           {
@@ -673,7 +673,7 @@ const categoryList = [
         logoSrc: "./assets/light/img13.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -705,7 +705,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 15,
+    tabs: 3,
   },
   {
     id: 6,
@@ -715,7 +715,7 @@ const categoryList = [
         logoSrc: "./assets/light/img1.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -748,10 +748,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img2.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -781,10 +781,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img3.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -816,10 +816,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img4.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -851,7 +851,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 21,
+    tabs: 4,
   },
   {
     id: 7,
@@ -861,7 +861,7 @@ const categoryList = [
         logoSrc: "./assets/light/img1.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -894,10 +894,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img2.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -927,10 +927,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img3.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -962,10 +962,10 @@ const categoryList = [
         ],
       },
       {
-        logoSrc: "./assets/light/img1.svg",
+        logoSrc: "./assets/light/img4.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail3.png",
         mainTitle: '"주택 거래 늘어"…가계대출 3개월째 증가',
         subTitleList: [
           {
@@ -997,7 +997,7 @@ const categoryList = [
         ],
       },
     ],
-    tabs: 8,
+    tabs: 4,
   },
 ];
 

@@ -1,8 +1,8 @@
 /***** grid형 <-> list형 뷰 변경 *****/
 import {
-  progress_interval,
   initializeProgress,
   runProgress,
+  clearProgress,
 } from "./progressBar.js";
 
 let grid_view_selected = true;
@@ -35,7 +35,7 @@ grid_symbol.forEach((symbol) => {
       changeToGridView();
       grid_view_selected = true;
       document.querySelector(".progress-bar").classList.remove("progress-bar");
-      clearInterval(progress_interval);
+      clearProgress();
       initializeProgress();
     }
   });
