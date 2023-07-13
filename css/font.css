@@ -13,7 +13,7 @@
   font-weight: 800;
   font-display: swap;
   src: local("Pretendard ExtraBold"),
-    url("../woff2/Pretendard-ExtraBold.woff2") format("woff2"),
+    url("../asset/font/woff2/Pretendard-ExtraBold.woff2") format("woff2"),
     url("../asset/font/woff/Pretendard-ExtraBold.woff") format("woff");
 }
 
