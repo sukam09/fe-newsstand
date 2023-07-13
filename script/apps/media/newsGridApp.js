@@ -53,10 +53,10 @@ const setArrow = gridData => {
 
   // 화살표 이벤트리스너
   leftArrow.addEventListener('click', () => {
-    setPage(gridData, -1, [leftArrow, rightArrow]);
+    setPage(gridData, -1, leftArrow, rightArrow);
   });
   rightArrow.addEventListener('click', () => {
-    setPage(gridData, 1, [leftArrow, rightArrow]);
+    setPage(gridData, 1, leftArrow, rightArrow);
   });
 };
 

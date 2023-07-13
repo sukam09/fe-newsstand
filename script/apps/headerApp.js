@@ -7,7 +7,7 @@ const headerApp = () => {
     });
   };
 
-  const setTime = () => {
+  const setDate = () => {
     const timeElement = document.querySelector('time');
 
     const options = {
@@ -22,7 +22,7 @@ const headerApp = () => {
   };
 
   setHeader();
-  setTime();
+  setDate();
 };
 
 export default headerApp;

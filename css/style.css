@@ -1,7 +1,8 @@
 @import "reset.css";
 @import "global.css";
 @import "font.css";
-@import "news_list.css";
+@import "listView.css";
+@import "gridView.css";
 
 body {
     display: flex;
@@ -85,13 +86,13 @@ h2.headline_area_item {
 
 /* main */
 
-.media_wrapper {
+#media_wrapper {
     width: 100%;
 }
 
 /* main nav */
 
-.media_view_nav {
+#media_view_nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -140,7 +141,7 @@ h2.headline_area_item {
 
 /* media_view */
 
-.media_view_wrapper {
+#media_view_wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -175,48 +176,4 @@ h2.headline_area_item {
 #media_view {
     width: 930px;
     height: 388px;
-}
-
-/* grid */
-
-.media_view_grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 0;
-    border-top: 1px solid var(--border-default);
-    border-left: 1px solid var(--border-default);
-}
-
-.media_view_grid li {
-    border-right: 1px solid var(--border-default);
-    border-bottom: 1px solid var(--border-default);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-#left_arrow.page_0 {
-    display: none;
-}
-
-#right_arrow.page_3 {
-    display: none;
-}
-
-/* logo mouse hover시 */
-.media_hover {
-    display: none;
-    cursor: pointer;
-}
-
-ul li:hover .media_hover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
 }
