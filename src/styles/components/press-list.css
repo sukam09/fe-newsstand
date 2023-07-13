@@ -58,11 +58,23 @@
 
 .progress-start {
   width: 134px;
-  background-color: var(--blue-100);
+
+  background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
+  background-size: 200% 100%;
+  animation: fill-progress-bar 20s infinite linear forwards;
 }
 
 .progress-start > p {
   color: var(--grayscale-white-alt);
+}
+
+@keyframes fill-progress-bar {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -100% 0%;
+  }
 }
 
 /* 언론사 리스트의 ARTICLE */

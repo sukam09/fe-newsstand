@@ -192,6 +192,11 @@ const setProgressBar = (categoryData) => {
 };
 
 /**
+ * LIST의 NAV 화면 - Progress Bar 애니메이션
+ */
+const animateProgressBar = () => {};
+
+/**
  * 언론사 리스트의 HTML 틀
  */
 const setPressCategoryElement = () => {
