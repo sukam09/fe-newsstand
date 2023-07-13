@@ -6,7 +6,12 @@ import { handleClickViewIcon } from "./news-display/setViewMode.js";
 import { setCategories } from "./news-display/setCategory.js";
 import { setListView } from "./news-display/listView.js";
 import { initNewsPressData } from "./news-display/initNewsPressData.js";
-import { handlePageButton } from "./news-display/handlePageButton.js";
+import {
+    handleClickGridNextButton,
+    handleClickGridPrevButton,
+    handleClickListNextButton,
+    handleClickListPrevButton,
+} from "./news-display/handlePageButton.js";
 
 let newsPressData = [];
 export let gridPage = 1;
@@ -37,7 +42,10 @@ const setListPageIndex = (num) => {
     setCategories();
     setListView();
 
-    handlePageButton("grid");
+    handleClickGridPrevButton();
+    handleClickGridNextButton();
+    handleClickListPrevButton();
+    handleClickListNextButton();
 })();
 
 export { newsPressData, setGridPage, setListPageIndex };

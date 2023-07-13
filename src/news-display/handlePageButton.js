@@ -1,30 +1,60 @@
 import { gridPage, pageIndex, setGridPage, setListPageIndex } from "../app.js";
 import { showNewsPressItems } from "./gridView.js";
-import { setListViewContent } from "./listView.js";
+import { setListView } from "./listView.js";
 
 const MIN_PAGE_NUM = 1;
 const MAX_PAGE_NUM = 4;
 
 const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
 
-const prevPageButton = document.querySelector(".left-arrow-button");
-const nextPageButton = document.querySelector(".right-arrow-button");
+const prevPageButton = document.querySelector(".grid-left-arrow-button");
+const nextPageButton = document.querySelector(".grid-right-arrow-button");
+const listPrevPageButton = document.querySelector(".list-left-arrow-button");
+const listNextPageButton = document.querySelector(".list-right-arrow-button");
+
+const clickGridPrev = () => {
+    if (!validatePage(gridPage - 1)) return;
+    setGridPage(gridPage - 1);
+    showNewsPressItems();
+};
+
+const clickGridNext = () => {
+    if (!validatePage(gridPage + 1)) return;
+    setGridPage(gridPage + 1);
+    showNewsPressItems();
+};
+
+const clickListPrev = () => {
+    setListPageIndex(pageIndex - 1);
+    setListView();
+};
+
+const clickListNext = () => {
+    setListPageIndex(pageIndex + 1);
+    setListView();
+};
 
 const handleClickGridPrevButton = () => {
     prevPageButton.addEventListener("click", () => {
-        if (!validatePage(gridPage - 1)) return;
-        // gridPage--;
-        setGridPage(gridPage - 1);
-        showNewsPressItems();
+        clickGridPrev();
     });
 };
 
 const handleClickGridNextButton = () => {
     nextPageButton.addEventListener("click", () => {
-        if (!validatePage(gridPage + 1)) return;
-        // gridPage++;
-        setGridPage(gridPage + 1);
-        showNewsPressItems();
+        clickGridNext();
+    });
+};
+
+const handleClickListPrevButton = () => {
+    listPrevPageButton.addEventListener("click", () => {
+        clickListPrev();
+    });
+};
+
+const handleClickListNextButton = () => {
+    listNextPageButton.addEventListener("click", () => {
+        clickListNext();
     });
 };
 
@@ -36,41 +66,10 @@ const checkShowPageButton = (page) => {
     else if (page === MAX_PAGE_NUM) nextPageButton.classList.add("disabled");
 };
 
-// const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
-
-const handleClickListPrevButton = () => {
-    prevPageButton.addEventListener("click", () => {
-        // if (!validatePage(page - 1)) return;
-        // pageIndex--;
-        setListPageIndex(pageIndex - 1);
-        setListViewContent();
-    });
+export {
+    checkShowPageButton,
+    handleClickGridPrevButton,
+    handleClickGridNextButton,
+    handleClickListPrevButton,
+    handleClickListNextButton,
 };
-
-const handleClickListNextButton = () => {
-    nextPageButton.addEventListener("click", () => {
-        // if (!validatePage(page + 1)) return;
-        // pageIndex++;
-        setListPageIndex(pageIndex + 1);
-        setListViewContent();
-    });
-};
-
-const initPageButton = (page) => {
-    prevPageButton.classList.remove("disabled");
-    nextPageButton.classList.remove("disabled");
-};
-
-const handlePageButton = (viewMode) => {
-    // console.log(viewMode);
-    if (viewMode === "grid") {
-        handleClickGridPrevButton();
-        handleClickGridNextButton();
-    } else {
-        initPageButton();
-        handleClickListPrevButton();
-        handleClickListNextButton();
-    }
-};
-
-export { checkShowPageButton, handlePageButton };

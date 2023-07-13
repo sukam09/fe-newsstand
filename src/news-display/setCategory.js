@@ -1,11 +1,19 @@
 import { newsPressData, pageIndex, setListPageIndex } from "../app.js";
-import { setListViewContent } from "./listView.js";
+import {
+    listViewInterval,
+    setListView,
+    startListViewInterval,
+} from "./listView.js";
 
 const categoryBar = document.querySelector(".list-view-category-bar");
 
 let currentCategory = "종합/경제";
 
-const categoryList = [
+const setCurrentCategory = (newCategory) => {
+    currentCategory = newCategory;
+};
+
+export const categoryList = [
     "종합/경제",
     "방송/통신",
     "IT",
@@ -37,7 +45,7 @@ const setCategoryProgressNum = (count) => {
         `;
 };
 
-const setCategoryPageCount = (categoryElement) => {
+const setCategoryPage = (categoryElement) => {
     const category = categoryElement
         .querySelector(".category-text")
         .textContent.trim();
@@ -52,19 +60,21 @@ const initCategoryClass = (item) => {
     }
 };
 
-const setCurrentCategory = () => {
+const setCurrentCategoryActive = () => {
     const categories = categoryBar.querySelectorAll("ul > li");
 
     categories.forEach((item) => {
         item.addEventListener("click", () => {
             setListPageIndex(0);
-            currentCategory = setCategoryPageCount(item);
+            currentCategory = setCategoryPage(item);
+            clearInterval(listViewInterval);
+            startListViewInterval();
             categories.forEach((item) => initCategoryClass(item));
             item.insertAdjacentHTML(
                 "beforeend",
                 setCategoryProgressNum(getCategoryNewsCount(currentCategory))
             );
-            setListViewContent();
+            setListView();
             item.classList.add("list-view-category-selected");
             item.classList.add("selected-bold14");
         });
@@ -89,7 +99,7 @@ const setCategories = () => {
     });
     categoryBar.appendChild($ul);
     setFirstCategoryActive();
-    setCurrentCategory();
+    setCurrentCategoryActive();
 };
 
 const initCategoryNewsData = (currentCategory) => {
@@ -101,4 +111,11 @@ const getCategoryNewsCount = (currentCategory) => {
         .length;
 };
 
-export { setCategories, currentCategory, initCategoryNewsData };
+export {
+    setCategories,
+    currentCategory,
+    initCategoryNewsData,
+    setCurrentCategory,
+    setCategoryProgressNum,
+    getCategoryNewsCount,
+};

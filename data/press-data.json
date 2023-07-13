@@ -2883,7 +2883,7 @@
         "id": 65,
         "name": "텐아시아",
         "logo": "../asset/logos/light/press65.png",
-        "category": "종합/경제",
+        "category": "지역",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -2928,7 +2928,7 @@
         "id": 66,
         "name": "정책브리핑",
         "logo": "../asset/logos/light/press66.png",
-        "category": "종합/경제",
+        "category": "매거진/전문지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -2973,7 +2973,7 @@
         "id": 67,
         "name": "씨네21",
         "logo": "../asset/logos/light/press67.png",
-        "category": "종합/경제",
+        "category": "매거진/전문지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3018,7 +3018,7 @@
         "id": 68,
         "name": "뉴스포스트",
         "logo": "../asset/logos/light/press68.png",
-        "category": "종합/경제",
+        "category": "스포츠/연예",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3063,7 +3063,7 @@
         "id": 69,
         "name": "정신의학신문",
         "logo": "../asset/logos/light/press69.png",
-        "category": "종합/경제",
+        "category": "스포츠/연예",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3108,7 +3108,7 @@
         "id": 70,
         "name": "철강금속신문",
         "logo": "../asset/logos/light/press70.png",
-        "category": "종합/경제",
+        "category": "스포츠/연예",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3153,7 +3153,7 @@
         "id": 71,
         "name": "IT Chosun",
         "logo": "../asset/logos/light/press71.png",
-        "category": "종합/경제",
+        "category": "스포츠/연예",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3198,7 +3198,7 @@
         "id": 72,
         "name": "여성경제신문",
         "logo": "../asset/logos/light/press72.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3243,7 +3243,7 @@
         "id": 73,
         "name": "한국일보",
         "logo": "../asset/logos/light/press73.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3288,7 +3288,7 @@
         "id": 74,
         "name": "sportal korea",
         "logo": "../asset/logos/light/press74.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3333,7 +3333,7 @@
         "id": 75,
         "name": "프레시안",
         "logo": "../asset/logos/light/press75.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3378,7 +3378,7 @@
         "id": 76,
         "name": "노컷뉴스",
         "logo": "../asset/logos/light/press76.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3423,7 +3423,7 @@
         "id": 77,
         "name": "The JoongAng",
         "logo": "../asset/logos/light/press77.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3468,7 +3468,7 @@
         "id": 78,
         "name": "서울신문",
         "logo": "../asset/logos/light/press78.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
@@ -3513,7 +3513,7 @@
         "id": 79,
         "name": "스포츠 조선",
         "logo": "../asset/logos/light/press79.png",
-        "category": "종합/경제",
+        "category": "영자지",
         "subscribed": false,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
