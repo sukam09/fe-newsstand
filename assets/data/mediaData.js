@@ -98,6 +98,36 @@ const media = {
 };
 
 const mediaData = {
+  category: [
+    {
+      name: '종합/경제',
+      media: [0, 1, 2, 3, 4, 5],
+    },
+    {
+      name: '방송/통신',
+      media: [6, 7, 8, 9, 10],
+    },
+    {
+      name: 'IT',
+      media: [11, 12, 13, 14, 15],
+    },
+    {
+      name: '영자지',
+      media: [16, 17, 18, 19, 20],
+    },
+    {
+      name: '스포츠/연예',
+      media: [21, 22, 23, 24, 25],
+    },
+    {
+      name: '매거진/전문지',
+      media: [26, 27, 28, 29, 30],
+    },
+    {
+      name: '지역',
+      media: [31, 32, 33, 34, 35],
+    },
+  ],
   getLogoSrc: (id, theme = 'light') => `assets/images/logo/${theme}/${id}.png`,
   getName: id => media[id],
   getNews: id => {

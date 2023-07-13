@@ -1,7 +1,7 @@
 import { MEDIA, SUB_MEDIA } from '../../constants.js';
 import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
-import { createNewArrow } from '../../utils/utils.js';
+import { createNewArrow, shuffleArray } from '../../utils/utils.js';
 
 const createMediaArray = () => {
   const mediaArray = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
