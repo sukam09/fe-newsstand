@@ -3,7 +3,6 @@ import { hideGridContainer } from "../pressGrid/pressGrid.js";
 import { newsBody } from "./newsBody/newsBody.js";
 import { newsHeader } from "./newsHeader/newsHeader.js";
 
-export let listPage = 0;
 const MAX_LIST_PAGE = 7;
 
 // 하나의 카테고리의 하나의 페이지

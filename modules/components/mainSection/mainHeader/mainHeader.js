@@ -14,6 +14,7 @@ import {
   showGridContainer,
   showGridPage,
 } from "../mainBody/mainContent/pressGrid/pressGrid.js";
+import { highlightCategoryItem } from "../mainBody/mainContent/pressList/category/categoryItem.js";
 import { startProgressAnimation } from "../mainBody/mainContent/pressList/category/progressBar.js";
 import {
   hideListContainer,
@@ -58,9 +59,5 @@ export function handleListViewButton(e) {
   setPageType(LIST);
   controllButtonShowing();
   // todo : 리스트 보이기
-  const $category = qs(`#category_${categoryId}`);
-  $category.classList.add("clicked");
-  const $progressbar = $category.getElementsByClassName("progressbar")[0];
-  console.log($progressbar);
-  startProgressAnimation($progressbar);
+  highlightCategoryItem();
 }

@@ -11,6 +11,7 @@ export const MAX_LIST_PAGE = {
   0: 3,
   1: 4,
 };
+export const TOTAL_LIST_PAGE = 7;
 export let categoryId = 0;
 export let listPage = 0;
 export let gridPage = 0;

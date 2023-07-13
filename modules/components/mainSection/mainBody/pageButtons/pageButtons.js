@@ -11,12 +11,14 @@ import {
   setListPage,
   listPage,
   decListPage,
+  TOTAL_LIST_PAGE,
 } from "../../../../pageState.js";
 import { qs } from "../../../../utils.js";
 import {
   hideGridPage,
   showGridPage,
 } from "../mainContent/pressGrid/pressGrid.js";
+import { updatePageCount } from "../mainContent/pressList/category/categoryItem.js";
 import {
   hideAllListPage,
   showListPage,
@@ -55,6 +57,7 @@ export function showNextPage() {
     hideAllListPage();
     incListPage();
     showListPage(categoryId, listPage);
+    updatePageCount();
   }
   controllButtonShowing();
 }
@@ -70,6 +73,7 @@ export function showPrevPage() {
     hideAllListPage();
     decListPage();
     showListPage(categoryId, listPage);
+    updatePageCount();
   }
   controllButtonShowing();
 }
@@ -92,7 +96,7 @@ export function controllButtonShowing() {
     }
   } else if (type === LIST) {
     const listPage = getListPage();
-    const maxPage = MAX_LIST_PAGE[categoryId] - 1;
+    const maxPage = TOTAL_LIST_PAGE - 1;
     if (listPage >= maxPage) {
       $leftButton.style.display = "block";
       $rightButton.style.display = "none";
