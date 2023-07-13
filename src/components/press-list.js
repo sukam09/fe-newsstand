@@ -82,6 +82,20 @@ const getPressCategoryArticle = (categoryData, shufflePressList) => {
 const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) => {
   currentArticle += 1;
 
+  if (currentArticle + 1 > categoryArticleList.length) {
+    currentArticle = 0;
+
+    const removeLi = document.querySelector('.progress-start');
+    const addDiv = removeLi.querySelector('.press-category__div');
+    const addLi = removeLi.nextElementSibling;
+    const removeDiv = addLi.querySelector('.press-category__div');
+
+    removeLi.classList.remove('progress-start');
+    addDiv.classList.add('display-none');
+    addLi.classList.add('progress-start');
+    removeDiv.classList.remove('display-none');
+  }
+
   let changeIdx = shuffleArticle[currentArticle];
   const sectionMain = document.querySelector('.press-category__section-main');
 
@@ -100,10 +114,6 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
   });
 
   divNow.innerText = currentArticle + 1;
-
-  if (currentArticle + 1 >= categoryArticleList.length) {
-    currentArticle = 0;
-  }
 };
 
 /**
