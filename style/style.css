@@ -276,6 +276,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   color: var(--text-text-default, #5f6e76);
 }
 .press-news-wrap .press-info .subscribe-btn {
+  cursor: pointer;
   display: flex;
   height: 24px;
   padding: 0px 6px;
@@ -315,6 +316,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
 }
 
 .press-news-wrap .news-main .news-img {
+  cursor: pointer;
   width: 320px;
   height: 200px;
   border: 1px solid var(--border-border-default, #d2dae0);
@@ -330,6 +332,10 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   color: var(--text-text-strong, #14212b);
   text-overflow: ellipsis;
   word-spacing: nowrap;
+  cursor: pointer;
+}
+.press-news-wrap .news-main .news-title:hover {
+  text-decoration: underline;
 }
 
 .press-news-wrap .news-sub {
@@ -345,6 +351,10 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   flex-direction: column;
   align-self: stretch;
   color: var(--text-text-bold, #4b5966);
+  cursor: pointer;
+}
+.press-news-wrap .news-sub .each-news-title:hover {
+  text-decoration: underline;
 }
 .press-news-wrap .news-sub .explain {
   display: flex;
