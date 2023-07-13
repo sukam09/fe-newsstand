@@ -91,20 +91,6 @@ const setPressCategoryNav = (categoryData) => {
   });
 };
 
-////
-const shuffleList = (list) => {
-  list.sort(() => Math.random() - 0.5);
-};
-
-const getPressList = (pressData) => {
-  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
-  shuffleList(shufflePress);
-
-  return shufflePress;
-};
-
-///
-
 /**
  * 언론사 리스트의 HTML 틀
  */
@@ -129,5 +115,19 @@ const setPressCategoryElement = () => {
 };
 
 // const setPressCategoryElement = () => {};
+
+////
+const shuffleList = (list) => {
+  list.sort(() => Math.random() - 0.5);
+};
+
+const getPressList = (pressData) => {
+  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
+  shuffleList(shufflePress);
+
+  return shufflePress;
+};
+
+///
 
 export { setTotalPressList };
