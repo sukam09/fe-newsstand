@@ -9,80 +9,49 @@
   <body>
     <div id="root">
       <header id="header" role="banner">
-        <!-- head 태그 -->
+        <!-- head 태그 headerTag.js -->
       </header>
 
       <main id="main" role="contents">
         <section class="main__subview">
           <div class="main__content">
             <ul class="main__rolling-corp main__rolling-corp-left">
-              <!-- 왼쪽 뉴스 롤링 [발행사] -->
+              <!-- 왼쪽 뉴스 롤링 [발행사] rollingTag.js -->
             </ul>
             <ul class="main__rolling-title main__rolling-title-left">
-              <!-- 왼쪽 뉴스 롤링 [제목] -->
+              <!-- 왼쪽 뉴스 롤링 [제목] rollingTag.js -->
             </ul>
           </div>
 
           <div class="main__content">
             <ul class="main__rolling-corp main__rolling-corp-right">
-              <!-- 오른쪽 뉴스 롤링 [발행사] -->
+              <!-- 오른쪽 뉴스 롤링 [발행사] rollingTag.js -->
             </ul>
             <ul class="main__rolling-title main__rolling-title-right">
-              <!-- 왼쪽 뉴스 롤링 [제목] -->
+              <!-- 왼쪽 뉴스 롤링 [제목] rollingTag.js -->
             </ul>
           </div>
         </section>
         <!-- 뉴스스탠드 그리드 보기 -->
         <section id="newsstand">
           <div class="newsstand--grid-navigation-btn">
-            <!-- 그리드 내비게이션 버튼 -->
-            <button class="newsstand--left-btn btn-disabled">
-              <img src="./assets//basicIcon/LeftButton.png" alt="" />
-            </button>
-            <button class="newsstand--right-btn">
-              <img src="./assets/basicIcon/RightButton.svg" alt="" />
-            </button>
+            <!-- 그리드 내비게이션 버튼  buttonTag.js -->
           </div>
           <div class="newsstand__list-navigation-btn">
-            <!-- 리스트 내비게이션 버튼 -->
-            <button class="newsstand--left-btn left-list-button btn-disabled">
-              <img src="./assets//basicIcon/LeftButton.png" alt="" />
-            </button>
-            <button class="newsstand--right-btn right-list-button btn-disabled">
-              <img src="./assets/basicIcon/RightButton.svg" alt="" />
-            </button>
+            <!-- 리스트 내비게이션 버튼 buttonTag.js -->
           </div>
           <div class="newsstand__media-nav">
-            <div class="newsstand__tab">
-              <div class="newsstand—text-clicked">전체 언론사</div>
-              <div class="newsstand—text-unclicked">내가 구독한 언론사</div>
-            </div>
-            <div class="newsstand__tab">
-              <button>
-                <img
-                  class="newsstand—btn-list"
-                  src="./assets/basicIcon/list-symbol.svg"
-                  alt=""
-                />
-              </button>
-              <button>
-                <img
-                  class="newsstand-btn-thumb"
-                  src="./assets//basicIcon/grid-symbol-selected.svg"
-                  alt=""
-                />
-              </button>
-            </div>
+            <!-- main의 nav태그 생성 mediaNavTag.js -->
           </div>
           <div class="newsstand__media-area">
             <ul class="newsstand-area—six-col-list">
-              <!-- 언론사 로고 -->
+              <!-- 언론사 로고 newsstandGrid.js에서 생성. -->
             </ul>
           </div>
           <!-- 뉴스스탠드 리스트보기 -->
           <section id="newsstand__news-area" class="view-disabled">
             <ul class="newsstand__news-nav">
-              <!-- 카테고리 7개 -->
+              <!-- 카테고리 7개 categoryTag.js -->
             </ul>
             <div class="newsstand__list-content">
               <!-- newsstand 왼쪽 콘텐츠 (사진, 소제목) -->

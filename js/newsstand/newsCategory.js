@@ -1,7 +1,14 @@
 import { makeCategoryTag } from "../tag/categoryTag.js";
+import { makeButtonTag } from "../tag/buttonTag.js";
 
-// 카테고리 태그 생성
+// 카테고리 태그, 리스트 버튼 태그 생성.
 makeCategoryTag();
+makeButtonTag(
+  ".newsstand__list-navigation-btn",
+  "left-list-button btn-disabled",
+  "right-list-button btn-disabled"
+);
+
 const categoryList = Array.from(
   document.querySelectorAll(".newsstand__news-nav li")
 );

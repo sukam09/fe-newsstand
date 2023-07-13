@@ -1,7 +1,11 @@
 import { shuffle } from "../utils/util.js";
 import { pressData } from "../fetchAPI.js";
+import { makeButtonTag } from "../tag/buttonTag.js";
 
 let logoData = await pressData("./data/pressObj.json");
+
+// 그리드 버튼 태그 생성.
+makeButtonTag(".newsstand--grid-navigation-btn", "btn-disabled");
 
 const NEWS_CONTENTS = 96;
 const VIEWED_CONTENS = 24;
