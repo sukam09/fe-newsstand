@@ -4,6 +4,7 @@ import { showGridPage } from "./components/mainSection/mainBody/mainContent/pres
 import { mainSection } from "./components/mainSection/mainSection.js";
 import { titleSection } from "./components/titleSection/titleSection.js";
 import {
+  addEventsOnCategoryItem,
   addEventsOnGridItem,
   addEventsOnPageButton,
   addEventsOnSubButton,
@@ -23,5 +24,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnGridItem();
   addEventsOnSubButton(); // 미완
   addEventsOnViewButton();
+  addEventsOnCategoryItem();
   rolling();
 });

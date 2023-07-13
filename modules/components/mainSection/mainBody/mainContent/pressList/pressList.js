@@ -1,10 +1,9 @@
-import { fetchData, qs } from "../../../../../utils.js";
-import { category } from "./category/category.js";
+import { qs, qsa } from "../../../../../utils.js";
 import { newsBody } from "./newsBody/newsBody.js";
 import { newsHeader } from "./newsHeader/newsHeader.js";
 
-// ${newsHeader(news)}
-// ${newsBody(news.data)}
+export let listPage = 0;
+const MAX_LIST_PAGE = 7;
 
 // 하나의 카테고리의 하나의 페이지
 export async function pressList(categoryNews, page) {
@@ -18,12 +17,15 @@ export async function pressList(categoryNews, page) {
   `;
 }
 
-export let listPage = 0;
-const MAX_LIST_PAGE = 7;
-
 export function showListage(categoryId, page) {
-  const $newsInfo = qs(`.news_${categoryId}_${page}`);
-  $newsInfo.style.display = "block";
+  // 모든 페이지 display none
+  const $newsPageList = qsa(".news");
+  [...$newsPageList].forEach(($newsPage) => {
+    $newsPage.style.display = "none";
+  });
+  // target display block
+  const $targetNewsPage = qs(`.news_${categoryId}_${page}`);
+  $targetNewsPage.style.display = "block";
 }
 export function showNextListPage() {
   listPage >= MAX_LIST_PAGE ? MAX_LIST_PAGE : (listPage += 1);

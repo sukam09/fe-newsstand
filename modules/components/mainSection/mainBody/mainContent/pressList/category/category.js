@@ -4,9 +4,8 @@ export function category(categoryNews) {
   let categoryList = "";
   console.log(categoryNews);
   for (let i = 0; i < categoryNews.length; i++) {
-    const { categoryName, data } = categoryNews[i];
-    categoryList += categoryItem(categoryName, data.length);
-    console.log(categoryItem(categoryName, data.length));
+    const { categoryId, categoryName, data } = categoryNews[i];
+    categoryList += categoryItem(categoryName, categoryId, data.length);
   }
 
   return `

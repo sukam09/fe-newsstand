@@ -14,6 +14,9 @@ export async function mainContent() {
         ${category(newsList)}
         ${await pressList(newsList[0], 0)}
         ${await pressList(newsList[0], 1)}
+        ${await pressList(newsList[0], 2)}
+        ${await pressList(newsList[1], 0)}
+        ${await pressList(newsList[1], 1)}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}

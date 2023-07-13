@@ -1,8 +1,9 @@
+import { showListage } from "../pressList.js";
 import { progressBar, startProgressAnimation } from "./progressBar.js";
 
-export function categoryItem(categoryName, len) {
+export function categoryItem(categoryName, categoryId, len) {
   return `
-    <li class="category_item">
+    <li class="category_item" id="category_${categoryId}">
       <span>${categoryName}</span>
       <span class="page_count">
         <span class="now_page">${1}</span>
@@ -21,4 +22,8 @@ export function handleClickCategoryItem(e) {
   e.currentTarget.classList.add("clicked");
   const $progressbar = e.currentTarget.getElementsByClassName("progressbar")[0];
   startProgressAnimation($progressbar);
+
+  const id = e.currentTarget.id;
+  const [, categoryId] = id.split("_");
+  showListage(categoryId, 0);
 }

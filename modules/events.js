@@ -4,6 +4,7 @@ import {
   hideGridPage,
   showGridPage,
 } from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
+import { handleClickCategoryItem } from "./components/mainSection/mainBody/mainContent/pressList/category/categoryItem.js";
 import {
   showNextPage,
   showPrevPage,
@@ -46,6 +47,14 @@ export function addEventsOnViewButton() {
 
   $gridViewButton.addEventListener("click", (e) => handleGirdViewButton(e));
   $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
+}
+
+export function addEventsOnCategoryItem() {
+  const $categoryItems = qsa(".category_item");
+
+  [...$categoryItems].forEach(($categoryItem) => {
+    $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
+  });
 }
 
 function showSubButton(e) {
