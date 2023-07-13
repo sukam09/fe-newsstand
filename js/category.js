@@ -19,21 +19,12 @@ function setCategoryData() {
 function addInitCategory() {
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   category.forEach((key, index) => {
-    categoryHtml += `<div class="categoryItem"><li><span>${key.key}</span></li><span class="categoryCnt">${key.value}</span></div>`;
+    categoryHtml += `<div class="categoryItem"><div class="progress-bar" id=${key.key}></div><span class="category">${key.key}</span></li><span class="categoryCnt">${key.value}</span></div>`;
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
 }
 
-function increaseValue(id) {
-  setInterval(() => {
-    const progressElement = document.getElementById(key);
-    if (progressValue < progressTime) {
-      progressValue++; // 값 증가
-      progressElement.value = progressValue; // 값 업데이트
-    }
-  }, 1000);
-}
 
 setCategoryData();
 export { addInitCategory };
