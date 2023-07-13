@@ -1,1 +1,2 @@
-export const sliceData = (data) => data.agencies.slice(0, 10);
+export const sliceData = (data, startIndex, endIndex) =>
+  data.agencies.slice(startIndex, endIndex);
