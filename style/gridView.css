@@ -65,6 +65,9 @@
   border: 1px solid #d2dae0;
   background-color: #ffffff;
 }
+.sub_button:hover {
+  cursor: pointer;
+}
 .unsub_button {
   width: 72px;
   height: 24px;
@@ -73,4 +76,7 @@
   color: #879298;
   border: 1px solid #d2dae0;
   background-color: #f5f7f9;
+}
+.unsub_button:hover {
+  cursor: pointer;
 }
