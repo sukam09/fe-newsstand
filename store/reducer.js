@@ -3,7 +3,7 @@ import {
   CATEGORIES,
   CATEGORIES_TO_INDEX,
 } from "../constants/index.js";
-import { createAction } from "../core/my-redux.js";
+import { actionCreator } from "../core/zzapdux.js";
 
 // TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
 let categoryIdx = 0;
@@ -27,14 +27,14 @@ const PREV_CATEGORY = "PAGE/PREV_CATEGORY";
 const SET_CATEGORY = "PAGE/SET_CATEGORY";
 const CHANGE_THEME = "PAGE/CHANGE_THEME";
 
-export const nextPage = () => createAction(NEXT_PAGE);
-export const prevPage = () => createAction(PREV_PAGE);
-export const resetPage = () => createAction(RESET_PAGE);
-export const changeView = (viewType) => createAction(CHANGE_VIEW, viewType);
-export const nextCategory = () => createAction(NEXT_CATEGORY);
-export const prevCategory = () => createAction(PREV_CATEGORY);
-export const setCategory = (category) => createAction(SET_CATEGORY, category);
-export const changeTheme = () => createAction(CHANGE_THEME);
+export const nextPage = () => actionCreator(NEXT_PAGE);
+export const prevPage = () => actionCreator(PREV_PAGE);
+export const resetPage = () => actionCreator(RESET_PAGE);
+export const changeView = (viewType) => actionCreator(CHANGE_VIEW, viewType);
+export const nextCategory = () => actionCreator(NEXT_CATEGORY);
+export const prevCategory = () => actionCreator(PREV_CATEGORY);
+export const setCategory = (category) => actionCreator(SET_CATEGORY, category);
+export const changeTheme = () => actionCreator(CHANGE_THEME);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
