@@ -39,17 +39,6 @@ const getPressCategoryArticle = (categoryData, shufflePressList) => {
     const initCategoryArticle = categoryArticle.categoryData[initShuffleArticle];
 
     return initCategoryArticle;
-
-    li.addEventListener('click', () => {
-      const sectionMain = document.querySelector('.press-category__section-main');
-      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticle.logoSrc;
-      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticle.editTime;
-      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticle.imgSrc;
-      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticle.mainTitle;
-
-      const sectionSub = document.querySelector('.press-category__section-sub');
-      sectionSub.querySelectorAll('press-category__a-sub');
-    });
   });
 
   return initCategoryArticleList;
@@ -61,20 +50,23 @@ const getPressCategoryArticle = (categoryData, shufflePressList) => {
 const setPressCategoryArticle = (initCategoryArticleList) => {
   const liList = document.querySelectorAll('.press-category__li');
 
-  liList.forEach((li, idx) => {
+  liList.forEach((li, liIdx) => {
     li.addEventListener('click', () => {
       const sectionMain = document.querySelector('.press-category__section-main');
-      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[idx].logoSrc;
-      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[idx].editTime;
-      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[idx].imgSrc;
-      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[idx].mainTitle;
+      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[liIdx].logoSrc;
+      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[liIdx].editTime;
+      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[liIdx].imgSrc;
+      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[liIdx].mainTitle;
 
       const sectionSub = document.querySelector('.press-category__section-sub');
-      sectionSub.querySelectorAll('press-category__a-sub');
+      const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
+
+      sectionSubList.forEach((sub, subIdx) => {
+        sub.href = initCategoryArticleList[liIdx].subTitleList[subIdx].link;
+        sub.innerText = initCategoryArticleList[liIdx].subTitleList[subIdx].title;
+      });
     });
   });
-
-  console.log(initCategoryArticleList);
 };
 
 /**
