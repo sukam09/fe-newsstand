@@ -24,6 +24,44 @@
   color: var(--gray-scale-200);
 }
 
+.categroy-current {
+  width: 166px;
+  background-color: var(--blue-100);
+  position: relative;
+}
+
+.categroy-current::after {
+  position: absolute;
+  content: "";
+  height: 40px;
+  left: 0;
+  background-color: var(--blue-500);
+  animation: progressBar 20s linear;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.categroy-current .category-name {
+  color: var(--surface-default);
+  font-weight: 700;
+  width: 100%;
+  z-index: 9999;
+}
+
+.categroy-current .category-count {
+  color: var(--surface-default);
+  font-weight: 700;
+  font-size: 12px;
+  z-index: 9999;
+}
+
 .category-name {
   font-size: 14px;
   line-height: 16.71px;

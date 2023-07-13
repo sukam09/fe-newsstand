@@ -1,9 +1,13 @@
 export default class Category {
-  constructor(name) {
+  constructor(name, count, isCurrent) {
     this.$wrapper = document.createElement("li");
     this.$wrapper.className = "categories-list";
 
     this.name = name;
+    this.count = count;
+    this.isCurrent = isCurrent;
+    this.isCurrent && this.$wrapper.classList.add("categroy-current");
+
     this.render();
 
     return this.$wrapper;
@@ -11,7 +15,8 @@ export default class Category {
 
   render() {
     this.$wrapper.appendChild(this.createNameElement(this.name));
-    this.$wrapper.appendChild(this.createCountElement(1, 81));
+    this.isCurrent === true &&
+      this.$wrapper.appendChild(this.createCountElement(1, this.count));
   }
 
   /** 카테고리 이름 요소 */
@@ -29,7 +34,7 @@ export default class Category {
     const $component = document.createElement("span");
     $component.classList.add("category-count");
 
-    $component.innerText = `${current}/${total}`;
+    $component.innerHTML = `<span class="category-count__current">${current}</span>/${total}`;
 
     return $component;
   }
