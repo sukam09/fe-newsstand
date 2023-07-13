@@ -1,5 +1,5 @@
 import { fetchpressNews } from "./dataFetch.js"
-import turnNewsPage from "./turnListPage.js";
+import turnNewsPage from "./turnNewsPage.js";
 import showNews from "./showNews.js";
 import showNewsOfCategory from "./clickCategory.js";
 

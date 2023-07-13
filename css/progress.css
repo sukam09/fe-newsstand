@@ -1,6 +1,6 @@
 .press-news-list-container {
   margin-top: 25px;
-  display: block;
+  display: none;
 }
 
 .press-news-bar {
@@ -55,8 +55,7 @@
 
 /*progress 설정 class*/
 .progress-page {
-  display: none;
-  /*display: flex;*/
+  display: flex;
   align-items: center;
   gap: 2px;
 }

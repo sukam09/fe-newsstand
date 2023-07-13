@@ -19,7 +19,7 @@ async function randomizeImgs() {
   })
 }
 
-async function showPressImg() {
+async function initPressImg() {
   await randomizeImgs();
   $sectionNewsList.innerHTML = `
   ${page[FIRST_PAGE_IDX].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
@@ -27,5 +27,5 @@ async function showPressImg() {
   turnPressPage(page);
 }
 
-export default showPressImg;
+export default initPressImg;
 

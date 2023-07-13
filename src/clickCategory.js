@@ -1,5 +1,5 @@
 import showNews from "./showNews.js";
-import turnNewsPage from "./turnListPage.js";
+import turnNewsPage from "./turnNewsPage.js";
 
 const FIRST_NEWS_PAGE = 0;
 

@@ -90,7 +90,7 @@ body {
 
 .press-grid-container {
   position: relative;
-  display: none;
+  display: block;
 
 }
 
