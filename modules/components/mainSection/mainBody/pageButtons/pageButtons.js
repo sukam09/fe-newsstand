@@ -62,6 +62,8 @@ export function showNextPage() {
     case LIST:
       showNextListPage();
       break;
+    default:
+      break;
   }
   controllButtonShowing();
 }
@@ -75,6 +77,8 @@ export function showPrevPage() {
       break;
     case LIST:
       showPrevListPage();
+      break;
+    default:
       break;
   }
   controllButtonShowing();
