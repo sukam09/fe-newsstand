@@ -136,6 +136,9 @@
 }
 
 .section-main__h2 {
+  width: 320px;
+  overflow-wrap: break-word;
+
   font: var(--medium-M);
   color: var(--grayscale-black);
 }
