@@ -246,7 +246,7 @@ body {
   left: 0px;
   z-index: 2;
 
-  animation: 20s linear progress infinite;
+  animation: 20s linear progress;
 }
 
 .news-list_category div {
