@@ -25,6 +25,14 @@ function initBtn() {
   GLOBAL.DOM.field_tab.addEventListener("click", (event) => {
     movePageFromEvent(event);
   });
+
+  GLOBAL.DOM.field_tab.addEventListener("animationiteration", () => {
+    if (GLOBAL.list_cur_page === GLOBAL.total_news_num - 1) {
+      moveListPage(0);
+    } else {
+      moveListPage(GLOBAL.list_cur_page + 1);
+    }
+  });
 }
 
 function toggleView(mode) {

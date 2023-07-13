@@ -96,6 +96,7 @@ function setListNavBar() {
 
 function moveListPage(pagenum) {
   GLOBAL.list_cur_page = pagenum;
+  resetAnimation();
   setCurCategory();
   setListNews();
   setListNavBar();
@@ -164,6 +165,12 @@ function movePageFromEvent(event) {
   }
 
   moveListPage(page);
+}
+
+function resetAnimation() {
+  GLOBAL.DOM.progress_bar.style.animation = "none";
+  void GLOBAL.DOM.progress_bar.offsetWidth;
+  GLOBAL.DOM.progress_bar.style.animation = "1s linear progress infinite";
 }
 
 export { moveListPage, movePageFromEvent };
