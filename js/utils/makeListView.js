@@ -1,7 +1,8 @@
 import { CATEGORY } from "../constants/constants.js";
 
 //종합/경제 카테고리 부분 언론사 순서 임시로
-const order = ["서울경제", "SBS Biz"];
+const order_list = ["SBS Biz", "서울경제"];
+
 function getPressCount(category_news) {
   const uniquePressSet = new Set();
   category_news.forEach((news) => {
@@ -24,24 +25,26 @@ async function getNewsData(category) {
   }
 }
 
-async function drawList(page) {
+async function drawList(order, category) {
   const view_content = document.querySelector(".view-content");
-  //디폴트 카테고리
-  const DEFAULT_CATEGORY = CATEGORY[0];
+
   try {
-    let category = "";
+    //임시로 이미지
+    let imgIndex = 96;
+    if (order_list[order - 1] === "SBS Biz") imgIndex = 93;
+    let category_list = "";
     let main_news,
       sub_news = "";
-    const category_news = await getNewsData(DEFAULT_CATEGORY);
+    const category_news = await getNewsData(category);
     //카테고리 그리는 부분
     CATEGORY.forEach((ctg) => {
-      category += `<li><div><span>${ctg}</span> <span class = "entire">${
+      category_list += `<li class="category"><div><span>${ctg}</span> <span class = "entire">${
         getPressCount(category_news).length
       }</span></div></li>`;
     });
     //뉴스 그리는 부분
     category_news.forEach((news) => {
-      if (news.press === order[page - 1]) {
+      if (news.press === order_list[order - 1]) {
         if (news.thumbnail === "") {
           sub_news += ` <li>
       ${news.title}
@@ -53,7 +56,7 @@ async function drawList(page) {
       }
     });
     sub_news += `<li id="caption">
-${order[page - 1]} 언론사에서 직접 편집한 뉴스입니다.
+${order_list[order - 1]} 언론사에서 직접 편집한 뉴스입니다.
 </li>`;
 
     const list_view = `<div class="list-view">
@@ -63,11 +66,11 @@ ${order[page - 1]} 언론사에서 직접 편집한 뉴스입니다.
 <div class="main-list">
 <div class="field-tab">
   <ul>
-    ${category}
+    ${category_list}
 </ul>
 </div>
 <div class="press-news">
-<div class="press-info"><img id = "press-logo" alt="press-logo" src="../assets/images/logo/light/img96.svg"/>
+<div class="press-info"><img id = "press-logo" alt="press-logo" src="../assets/images/logo/light/img${imgIndex}.svg"/>
   <span class="edit-date">2023.07.12 16:52 편집</span>
   <button id = "subscribe"><img src="../assets/icons/plus.svg"/><span>구독하기</span></button>
 </div>
@@ -94,6 +97,16 @@ ${order[page - 1]} 언론사에서 직접 편집한 뉴스입니다.
     console.log(error);
   }
 }
-export function showListView(page) {
-  drawList(page);
+
+function handleClick(e) {
+  const target = e.target.closest("li");
+  if (target && target.classList.contains("category")) {
+    const category = target.textContent.trim(" ").split(" ")[0];
+    drawList(1, category);
+  }
+}
+
+export function showListView(order) {
+  document.addEventListener("click", handleClick);
+  drawList(order, CATEGORY[0]);
 }
