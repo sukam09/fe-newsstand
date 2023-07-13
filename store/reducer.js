@@ -1,6 +1,11 @@
-import { VIEW_TYPE, CATEGORIES } from "../constants/index.js";
+import {
+  VIEW_TYPE,
+  CATEGORIES,
+  CATEGORIES_TO_INDEX,
+} from "../constants/index.js";
 import { createAction } from "../core/my-redux.js";
 
+// TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
 let categoryIdx = 0;
 
 const categoryCount = CATEGORIES.length;
@@ -45,6 +50,7 @@ export const reducer = (state = initialState, action) => {
       };
     case NEXT_CATEGORY:
       categoryIdx = categoryIdx === categoryCount - 1 ? 0 : categoryIdx + 1;
+
       return {
         ...state,
         currentCategory: CATEGORIES[categoryIdx],
@@ -52,12 +58,15 @@ export const reducer = (state = initialState, action) => {
       };
     case PREV_CATEGORY:
       categoryIdx = categoryIdx === 0 ? categoryCount - 1 : categoryIdx - 1;
+
       return {
         ...state,
         currentCategory: CATEGORIES[categoryIdx],
         currentPage: 0,
       };
     case SET_CATEGORY:
+      categoryIdx = CATEGORIES_TO_INDEX[action.payload];
+
       return {
         ...state,
         currentCategory: action.payload,
