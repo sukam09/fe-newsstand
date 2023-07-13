@@ -32,6 +32,7 @@ function toggleView(mode) {
     GLOBAL.cur_mode = MODE.GRID;
     GLOBAL.grid_cur_page = 0;
     GLOBAL.DOM.left_btn.style.display = "none";
+    GLOBAL.DOM.right_btn.style.display = "block";
   } else {
     GLOBAL.DOM.grid_btn.childNodes[1].src = ICON.GRID_BTN;
     GLOBAL.DOM.grid_view.style.display = "none";
@@ -41,6 +42,8 @@ function toggleView(mode) {
     GLOBAL.list_cur_page = 0;
     GLOBAL.list_cur_category = CATEGORY.ECONOMY;
     GLOBAL.DOM.left_btn.style.display = "block";
+    GLOBAL.DOM.right_btn.style.display = "block";
+    moveListPage(GLOBAL.list_cur_page);
   }
 }
 
