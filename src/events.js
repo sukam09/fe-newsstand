@@ -1,5 +1,13 @@
 import { MAX_PAGE } from "./constants.js";
 import { view_option } from "./globals.js";
+import {
+    useChangeArrow,
+    useClearDisplay,
+    useToggleArrow,
+    useFetchAllData,
+    useSetProgress,
+    useMovePage,
+} from "./actions.js";
 import { renderGridView, renderSubscribe } from "./views/grid_views.js";
 import { renderListView } from "./views/list_views.js";
 
@@ -39,10 +47,66 @@ function changeCategoryEvent(data) {
             view_option.category = view_option.categorys.indexOf(
                 item.innerText
             );
-            renderListView(data, view_option.category, 0);
+            renderListView(
+                data,
+                view_option.category,
+                0,
+                useSetProgress,
+                changeCategoryEvent,
+                movePageEventHandler
+            );
             view_option.list_current_page = 0;
         });
     });
+}
+
+function arrowPagingEvent() {
+    if (!length) length = MAX_PAGE;
+    const grid_left_arrow = document.querySelector(".grid_left_arrow");
+    const grid_right_arrow = document.querySelector(".grid_right_arrow");
+    const list_left_arrow = document.querySelector(".list_left_arrow");
+    const list_right_arrow = document.querySelector(".list_right_arrow");
+
+    grid_left_arrow.addEventListener("click", () => {
+        if (view_option.grid_current_page <= 0) return;
+        movePageEventHandler("prev", "grid", view_option);
+    });
+
+    grid_right_arrow.addEventListener("click", () => {
+        if (view_option.grid_current_page >= length) return;
+        movePageEventHandler("next", "grid", view_option);
+    });
+
+    list_left_arrow.addEventListener("click", () => {
+        movePageEventHandler("prev", "list", view_option);
+    });
+
+    list_right_arrow.addEventListener("click", () => {
+        movePageEventHandler("next", "list", view_option);
+    });
+}
+
+function movePageEventHandler(direction, view, view_option) {
+    if (view === "grid") {
+        useMovePage(direction, view, view_option);
+
+        renderGridView(view_option.press_data, view_option.grid_current_page, [
+            useToggleArrow,
+            togglePressEvent,
+        ]);
+    }
+    if (view === "list") {
+        useMovePage(direction, view, view_option);
+
+        renderListView(
+            view_option.news_data,
+            view_option.category,
+            view_option.list_current_page,
+            useSetProgress,
+            changeCategoryEvent,
+            movePageEventHandler
+        );
+    }
 }
 
 function subscribeOptionEvent() {
@@ -81,12 +145,15 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("list_view_container");
                 news_data_container.classList.add("grid_view_container");
 
-                deleteMainDisplay();
-                changeArrow("grid");
+                // render(grid, is_sub)
+
+                useClearDisplay("main_news_container", view_option);
+                useChangeArrow("grid");
 
                 renderGridView(
                     view_option.press_data,
-                    view_option.grid_current_page
+                    view_option.grid_current_page,
+                    [useToggleArrow, togglePressEvent]
                 );
             }
             if (option.id === "option_list_main") {
@@ -96,148 +163,50 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("grid_view_container");
                 news_data_container.classList.add("list_view_container");
 
-                deleteMainDisplay();
-                changeArrow("list");
+                // render(list, is_sub)
+
+                useClearDisplay("main_news_container", view_option);
+                useChangeArrow("list");
 
                 renderListView(
                     view_option.news_data,
                     view_option.category,
-                    view_option.list_current_page
+                    view_option.list_current_page,
+                    useSetProgress,
+                    changeCategoryEvent,
+                    movePageEventHandler
                 );
             }
         });
     });
 }
 
-function changeArrow(mode) {
-    const current = mode === "list" ? "grid" : "list";
-    const cur_right_arrow = document.querySelector(`.${current}_right_arrow`);
-    const right_arrow = document.querySelector(`.${mode}_right_arrow`);
-    cur_right_arrow.style.display = "none";
-    right_arrow.style.display = "block";
+function initEvent() {
+    useFetchAllData().then((data) => {
+        // data[0] = press
+        // data[1] = news
+        // data[2] = hot_topic
+        view_option.press_data = data[0];
+        view_option.categorys.forEach((item) => {
+            view_option.news_data[item] = data[1].filter(
+                (news) => news.category === item
+            );
+        });
+        view_option.hot_topic = data[2];
 
-    const cur_left_arrow = document.querySelector(`.${current}_left_arrow`);
-    const left_arrow = document.querySelector(`.${mode}_left_arrow`);
-    cur_left_arrow.style.display = "none";
-    left_arrow.style.display = "block";
-}
-
-function toggleArrow(mode, page) {
-    const left_arrow = document.querySelector(`.${mode}_left_arrow`);
-    const right_arrow = document.querySelector(`.${mode}_right_arrow`);
-
-    switch (page) {
-        case 0:
-            left_arrow.style.display = "none";
-            right_arrow.style.display = "block";
-            break;
-        case MAX_PAGE:
-            left_arrow.style.display = "block";
-            right_arrow.style.display = "none";
-            break;
-        default:
-            left_arrow.style.display = "block";
-            right_arrow.style.display = "block";
-            break;
-    }
-}
-
-function deleteMainDisplay() {
-    const news_data_container = document.querySelector(".main_news_container");
-    news_data_container.innerHTML = "";
-
-    clearInterval(view_option.interval);
-    view_option.progress_time = 0;
-}
-
-function movePageEvent() {
-    if (!length) length = MAX_PAGE;
-    const grid_left_arrow = document.querySelector(".grid_left_arrow");
-    const grid_right_arrow = document.querySelector(".grid_right_arrow");
-    const list_left_arrow = document.querySelector(".list_left_arrow");
-    const list_right_arrow = document.querySelector(".list_right_arrow");
-
-    grid_left_arrow.addEventListener("click", () => {
-        if (view_option.grid_current_page <= 0) return;
-        view_option.grid_current_page = view_option.grid_current_page - 1;
-        renderGridView(view_option.press_data, view_option.grid_current_page);
+        // 처음은 grid view
+        renderGridView(view_option.press_data, view_option.grid_current_page, [
+            useToggleArrow,
+            togglePressEvent,
+        ]);
     });
-
-    grid_right_arrow.addEventListener("click", () => {
-        if (view_option.grid_current_page >= length) return;
-        view_option.grid_current_page = view_option.grid_current_page + 1;
-
-        renderGridView(view_option.press_data, view_option.grid_current_page);
-    });
-
-    list_left_arrow.addEventListener("click", () => {
-        movePage("prev");
-    });
-
-    list_right_arrow.addEventListener("click", () => {
-        movePage("next");
-    });
-}
-
-function movePage(direction) {
-    if (direction === "next") {
-        view_option.list_current_page = view_option.list_current_page + 1;
-        if (
-            view_option.list_current_page >=
-            view_option.news_data[view_option.categorys[view_option.category]]
-                .length
-        ) {
-            // category 앞으로
-            if (view_option.category === view_option.category_size - 1) {
-                view_option.category = 0;
-            } else {
-                view_option.category = view_option.category + 1;
-            }
-            view_option.list_current_page = 0;
-        }
-
-        renderListView(
-            view_option.news_data,
-            view_option.category,
-            view_option.list_current_page
-        );
-    }
-
-    if (direction === "prev") {
-        view_option.list_current_page = view_option.list_current_page - 1;
-
-        if (view_option.list_current_page < 0) {
-            // category 뒤로
-            if (view_option.category === 0) {
-                view_option.category = view_option.category_size - 1;
-            } else {
-                view_option.category = view_option.category - 1;
-            }
-            view_option.list_current_page =
-                view_option.news_data[
-                    view_option.categorys[view_option.category]
-                ].length - 1;
-        }
-
-        renderListView(
-            view_option.news_data,
-            view_option.category,
-            view_option.list_current_page
-        );
-    }
 }
 
 function handleEvents() {
+    initEvent();
     subscribeOptionEvent();
     mainOptionEvent();
-    movePageEvent();
+    arrowPagingEvent();
 }
 
-export {
-    togglePressEvent,
-    changeCategoryEvent,
-    handleEvents,
-    toggleArrow,
-    movePage,
-    toggleSubscribeEvent,
-};
+export { handleEvents };

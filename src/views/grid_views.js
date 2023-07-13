@@ -1,17 +1,13 @@
 import { COL_SIZE, ROW_SIZE } from "../constants.js";
-import { view_option } from "../globals.js";
-import { fetchPressData } from "../utils.js";
-import { toggleArrow, togglePressEvent } from "../events.js";
 
-function renderGridView(data, page) {
+function renderGridView(data, page, action) {
     const grid_press_container = document.querySelector(".main_news_container");
     grid_press_container.innerHTML = "";
 
     createPressList(grid_press_container, data, page * 24);
 
-    // 이 이벤트는 정리해야함.
-    togglePressEvent();
-    toggleArrow("grid", page);
+    action[0]("grid", page);
+    action[1]();
 }
 
 function createPressList(container, data, idx) {
@@ -51,13 +47,4 @@ function renderSubscribe(press, is_subscribe) {
     }
 }
 
-function initPress() {
-    const promise_data = fetchPressData();
-
-    promise_data.then((data) => {
-        view_option.press_data = data;
-        renderGridView(data, 0);
-    });
-}
-
-export { initPress, renderGridView, renderSubscribe };
+export { renderGridView, renderSubscribe };

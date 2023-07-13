@@ -1,8 +1,6 @@
 import { view_option } from "../globals.js";
-import { fetchNewsData } from "../utils.js";
-import { movePage, changeCategoryEvent } from "../events.js";
 
-function renderListView(data, category, page) {
+function renderListView(data, category, page, ...action) {
     const list_news_container = document.querySelector(".main_news_container");
     list_news_container.innerHTML = "";
     const main_content = document.createElement("div");
@@ -25,8 +23,13 @@ function renderListView(data, category, page) {
     );
 
     list_news_container.appendChild(main_content);
-    setProgress();
-    changeCategoryEvent(data);
+
+    action[0](
+        "main_nav_progress",
+        view_option,
+        action[2],
+    );
+    action[1](data);
 }
 
 function createNewsNav(container, data, page) {
@@ -97,35 +100,4 @@ function createMainContents(parent, data, page) {
     parent.appendChild(container);
 }
 
-function initNews() {
-    const promise_data = fetchNewsData();
-
-    promise_data.then((data) => {
-        // category 별로 분류하여 view_option.news_data에 저장
-        view_option.categorys.forEach((item) => {
-            view_option.news_data[item] = data.filter(
-                (news) => news.category === item
-            );
-        });
-    });
-}
-
-function setProgress() {
-    const progress = document.querySelector(".main_nav_progress");
-
-    // clearInterval(view_option.interval);
-    // view_option.progress_time = 0;
-
-    // 1초마다 1씩 증가
-    view_option.interval = setInterval(() => {
-        view_option.progress_time += 1;
-        if (view_option.progress_time === 21) {
-            clearInterval(view_option.interval);
-            view_option.progress_time = 0;
-            movePage("next");
-        }
-        progress.value = view_option.progress_time;
-    }, 1000);
-}
-
-export { initNews, renderListView };
+export { renderListView };

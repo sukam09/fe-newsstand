@@ -1,4 +1,5 @@
 import { fetchHotTopicData } from "../utils.js";
+import { INTERVAL, DELAY } from "../constants.js";
 
 function createList(news) {
     const list = document.createElement("ul");
@@ -84,8 +85,6 @@ function bannerMouseEvents(leftBanner, rightBanner) {
 
 function controlBanner() {
     // 전역으로 바꿀 것
-    const INTERVAL = 5000;
-    const DELAY = 1000;
 
     const left_banner =
         document.getElementById("rollingBannerLeft").childNodes[0];
