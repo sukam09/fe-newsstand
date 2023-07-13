@@ -12,7 +12,7 @@ function showNews(shuffledPressNews, category_idx, newsPage) {
     <img class="press-news-thumbnail" src="./assets/thumbnail/Thumbnail.png">
     <p class="press-news-title available-medium16 text-strong">${shuffledPressNews[category_idx][newsPage]["mainTitle"]}</p>
   `
-  /** sub-title */
+  /** sub-title 띄우기*/
   const $pressNewsSub = document.querySelector('.press-news-sub');
   $pressNewsSub.innerHTML = `
     ${shuffledPressNews[category_idx][newsPage]["subTitle"].map(sub => `<li class = "press-news-sub-list">${sub}</li>`).join('')}

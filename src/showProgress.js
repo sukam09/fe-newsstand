@@ -17,7 +17,7 @@ function removeProgress(){
 }
 
 /**
- 클릭한 카테고리에 대한 progress를 보여줌
+ 클릭한 카테고리에 대한 progress를 보여줌(미완성)
  */
 function showProgress(shuffledPressNews, clickedCategory) {
   removeProgress();

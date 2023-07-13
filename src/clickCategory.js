@@ -20,18 +20,18 @@ function showNewsOfCategory(shuffledPressNews, categories) {
  */
 function handleClickCategory(event,shuffledPressNews,categories) {
   const categoryIdx = categories.findIndex(category => category === event.target.innerText)
-  changeCategory(shuffledPressNews,categoryIdx)
+  //changeCategory(shuffledPressNews,categoryIdx)
 }
 
 /**
  클릭한 카테고리에 대해서 화면에 나타냄
  */
-function changeCategory(shuffledPressNews, categoryIdx) {
-  resetNewsTurner();
-  showNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE);
-  turnNewsPage(shuffledPressNews, categoryIdx);
-  showProgress(shuffledPressNews,categoryIdx);
-}
+ function changeCategory(shuffledPressNews, categoryIdx) {
+//    resetNewsTurner();
+//    showNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE);
+//    turnNewsPage(shuffledPressNews, categoryIdx);
+//    showProgress(shuffledPressNews,categoryIdx);
+ }
 
 /**
  카테고리가 넘어가면 NewsTurner 리셋하기

@@ -28,7 +28,6 @@ function showNewsTurner(shuffledPressNews,index){
  해당 페이지에 맞는 뉴스 띄우기
  */
 function clickNewsTurner(event, shuffledPressNews, category_index, whatButton) {
-  console.log(newsPage)
   whatButton === 'left' ? newsPage-- : newsPage++;
   showNewsTurner(shuffledPressNews, category_index);
   showNews(shuffledPressNews, category_index, newsPage);
