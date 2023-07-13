@@ -112,6 +112,22 @@
       "press": "SBS Biz",
       "thumbnail": "",
       "category": "방송/통신"
+    },
+    {
+      "id": 15,
+      "title": "[단독] 中 판매 부진 못 견딘 현대차…창저우 공장 철수 검토",
+      "url": "http://example.com/news/15",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 16,
+      "title": "'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'",
+      "url": "http://example.com/news/16",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "종합/경제"
     }
   ]
 }
