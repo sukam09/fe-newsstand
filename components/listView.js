@@ -1,32 +1,4 @@
-import { sliceData } from "../utils/slice.js";
-
-const createListCategory = (agencies) => {
-  // json 파일 카테고리 순으로 sort
-  agencies.sort((a, b) => {
-    let categoryA = a.category;
-    let categoryB = b.category;
-    if (categoryA < categoryB) return -1;
-    if (categoryA > categoryB) return 1;
-    return 0;
-  });
-
-  // category별로 array에 담기
-  const categories = [];
-  let startIndex = 0;
-  let endIndex;
-
-  for (let i = 0; i < agencies.length - 1; i++) {
-    if (i === agencies.length - 2) {
-      categories.push(sliceData(agencies, startIndex, agencies.length));
-    }
-    if (agencies[i].category !== agencies[i + 1].category) {
-      endIndex = i + 1;
-      categories.push(sliceData(agencies, startIndex, endIndex));
-      startIndex = i + 1;
-    }
-  }
-  return categories;
-};
+import { removeAllChildNodes } from "../utils/removeChild.js";
 
 const appendPress = (agency) => {
   const $press_news = document.querySelector(".press-news");
@@ -119,8 +91,10 @@ const makeSubTitle = (agency) => {
   return $news_sub;
 };
 
-const appendNewsList = (data) => {};
-
-const render = (currentPage, data) => {};
-
-export { createListCategory, appendPress };
+export const renderList = (currentPage, categories) => {
+  const press = document.querySelector(".press-news");
+  if (press.childNodes.length !== 0) {
+    removeAllChildNodes(press);
+  }
+  appendPress(categories[currentPage]);
+};
