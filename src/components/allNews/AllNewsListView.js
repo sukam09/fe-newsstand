@@ -113,7 +113,7 @@ export default class AllNewsListView extends Component {
   detailListMount() {
     this.$target.querySelector('.press-news-detail-list').innerHTML =
       this.newList.reduce(
-        (innerHTML, content, index) =>
+        (innerHTML, content) =>
           innerHTML +
           `<span class='available-medium16 text-bold news-list-hover'>${content}</span>`,
         '',

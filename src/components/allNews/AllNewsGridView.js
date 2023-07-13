@@ -16,9 +16,11 @@ export default class AllNewsGridView extends Component {
   }
 
   mounted() {
+    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+
     let innerHTML = '';
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
-      innerHTML += `<li class='border-default'><img class='press-logo' src='src/assets/logo/${this.state.pressOrder[i]}.png'/></li>`;
+      innerHTML += `<li class='border-default'><img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/></li>`;
     }
     this.$target.querySelector('.news-list-grid').innerHTML = innerHTML;
 

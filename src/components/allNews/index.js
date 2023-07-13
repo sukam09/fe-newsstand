@@ -3,9 +3,12 @@ import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 
+let curreentView = 'list';
+
 export default class AllNews extends Component {
   setup() {
-    this.state = { view: 'list' };
+    const isDarkMode = document.body.className === 'dark';
+    this.state = { isDarkMode, view: curreentView };
   }
 
   template() {
@@ -28,6 +31,7 @@ export default class AllNews extends Component {
   }
 
   onClick(viewType) {
-    this.setState({ view: viewType });
+    curreentView = viewType;
+    this.setState({ view: curreentView });
   }
 }

@@ -1,3 +1,8 @@
 import App from './components/App.js';
 
-new App(document.getElementById('root'));
+const $app = new App(document.getElementById('root'));
+
+export const toggleDarkMode = () => {
+  document.body.className = document.body.className === 'dark' ? 'light' : 'dark';
+  $app.render();
+};

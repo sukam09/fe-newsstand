@@ -25,22 +25,23 @@
   --surface-brand-alt: var(--blue-100);
   --border-bold: var(--gray-scale-300);
   --border-default: var(--gray-scale-100);
-
-  --text-strong-dark: var(--gray-scale-white);
-  --text-bold-dark: var(--gray-scale-50);
-  --text-default-dark: var(--gray-scale-100);
-  --text-weak-dark: var(--gray-scale-white-alt);
-  --text-white-default-dark: var(--gray-scale-white);
-  --text-white-weak-dark: var(--gray-scale-white-alt);
-  --text-point-dark: var(--blue-500);
-  --surface-default-dark: var(--gray-scale-black);
-  --surface-alt-dark: var(--gray-scale-500);
-  --surface-brand-default-dark: var(--blue-500);
-  --surface-brand-alt-dark: var(--blue-100);
-  --border-bold-dark: var(--gray-scale-white-alt);
-  --border-default-dark: var(--gray-scale-400);
 }
 
+.dark {
+  --text-strong: var(--gray-scale-white);
+  --text-bold: var(--gray-scale-50);
+  --text-default: var(--gray-scale-100);
+  --text-weak: var(--gray-scale-white-alt);
+  --text-white-default: var(--gray-scale-white);
+  --text-white-weak: var(--gray-scale-white-alt);
+  --text-point: var(--blue-500);
+  --surface-default: var(--gray-scale-black);
+  --surface-alt: var(--gray-scale-500);
+  --surface-brand-default: var(--blue-500);
+  --surface-brand-alt: var(--blue-100);
+  --border-bold: var(--gray-scale-white-alt);
+  --border-default: var(--gray-scale-400);
+}
 .text-strong {
   color: var(--gray-scale-black);
 }
@@ -84,7 +85,7 @@
 
 /*dark*/
 .dark {
-  background-color: var(--surface-default-dark);
+  background-color: var(--surface-default);
 }
 .dark .text-strong {
   color: var(--gray-scale-white);

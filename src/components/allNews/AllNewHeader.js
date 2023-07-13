@@ -1,11 +1,12 @@
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
+import { toggleDarkMode } from '../../index.js';
 
 export default class AllNewHeader extends Component {
   setup() {
     const isCurrentDarkMode = document.body.className === 'dark';
     this.state = {
-      modeIcon: isCurrentDarkMode ? 'sun' : 'moon',
+      modeIcon: isCurrentDarkMode ? 'moon' : 'sun',
     };
   }
   template() {
@@ -15,9 +16,9 @@ export default class AllNewHeader extends Component {
             </nav>
 
             <div class='view-type-icon'>
-            <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
-            <img id ='list-view-icon' class='icon-medium'/>
-            <img id ='grid-view-icon' class='icon-medium'/>
+              <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
+              <img id ='list-view-icon' class='icon-medium'/>
+              <img id ='grid-view-icon' class='icon-medium'/>
             </div>`;
   }
 
@@ -38,11 +39,7 @@ export default class AllNewHeader extends Component {
       } else if (id === 'grid-view-icon') {
         this.props.onClick('grid');
       } else if (id === 'darkmode-icon') {
-        const isCurrentDarkMode = document.body.className === 'dark';
-        const nextModeIcon = isCurrentDarkMode ? 'moon' : 'sun';
-
-        document.body.className = isCurrentDarkMode ? 'light' : 'dark';
-        this.setState({ modeIcon: nextModeIcon });
+        toggleDarkMode();
       }
     });
   }

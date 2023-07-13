@@ -71,9 +71,9 @@
 
   display: flex;
 
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
 }
 
 .newslist-list-view > nav > li {
