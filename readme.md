@@ -250,6 +250,7 @@
 </br>
 
 - ## 프로그레스 바 카테고리 이동 기능 구현
+  ![프로그레스 바 카테고리 이동 기능 구현](https://github.com/jjun990908/fe-newsstand/assets/39405559/a0a06015-f59d-44a0-8679-4b9c3fbbdafa)
 
   리스트뷰의 현재 페이지를 증가시켜주는 함수와 그에 따른 리스트 좌우 버튼과 카테고리를 업데이트를 해주는 함수를
   `CATEGORY_TAB_TIME`인 20초 마다 반복해주는 Interval을 멈추거나 시작하는 함수입니다.
@@ -303,6 +304,7 @@
 </br>
 
 - ## 리스트 좌우 버튼 이동 기능 구현
+  ![리스트 좌우 버튼 이동 기능 구현](https://github.com/jjun990908/fe-newsstand/assets/39405559/1b8035df-e09a-4d15-8622-0aed0ceba0de)
 
   리스트 버튼을 각각 `$(".left_list_button")`와 같이 querySelector을 통해 값을 찾은 후 클릭 이벤트 함수를 지정하여 리스트뷰의 내용을 변경하도록 구현하였습니다.
 
