@@ -6,6 +6,7 @@ let CURRENT_PAGE;
 let CURRENT_CATEGORY = 0;
 let intervalId;
 const PAGE_AUTO_MOVING_TIME = 5000;
+const PROGRESS_TAB_WIDTH = "166";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 const categoryLength = [];
@@ -48,7 +49,7 @@ function tabClassChange(targetTab, previousProgressTab, index) {
 }
 function progressWidthChange(progressTab) {
   const progressRatioTab = progressTab.querySelector(".progress-ratio");
-  progressRatioTab.style.width = `${progressTab.offsetWidth * (CURRENT_PAGE / categoryLength[CURRENT_CATEGORY]).toFixed(2)}px`;
+  progressRatioTab.style.width = `${PROGRESS_TAB_WIDTH * (CURRENT_PAGE / categoryLength[CURRENT_CATEGORY]).toFixed(2)}px`;
 }
 function prevProgressWidthChange(progressTab) {
   const progressRatio = progressTab.querySelector(".progress-ratio");
@@ -214,6 +215,7 @@ function updatePressNewsSection() {
 function updateTimer() {
   intervalId = setInterval(() => {
     //카테고리 변경
+    console.log(news_data[CURRENT_CATEGORY].press.length);
     if (CURRENT_PAGE === news_data[CURRENT_CATEGORY].press.length) {
       CURRENT_CATEGORY++;
       CURRENT_PAGE = 0;
