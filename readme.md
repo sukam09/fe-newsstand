@@ -12,7 +12,7 @@
         - variable
             - constant : `UPPERCASE`
             - function scope : `camelCase`
-            - global scope : `single tone`
+            - global scope : `single tone` || `underscore`
 
 ---
 
