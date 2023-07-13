@@ -63,6 +63,9 @@
 .grid-logo-wrapper:hover {
   background-color: #f5f7f9;
 }
+.dark .grid-logo-wrapper:hover {
+  background-color: #4b5966;
+}
 .grid-logo-wrapper:hover > img {
   display: none;
 }
