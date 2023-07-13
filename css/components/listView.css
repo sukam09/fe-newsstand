@@ -91,7 +91,7 @@
   height: 100%;
   background-color: var(--surface-brand-default);
   animation-name: progressBar;
-  animation-duration: 1s;
+  animation-duration: 20s;
   animation-timing-function: linear;
 }
 

@@ -1,7 +1,8 @@
 import { category, news_by_category } from "../../assets/news.js";
 
-const ANIMATION_DURATON = 1;
+const ANIMATION_DURATON = 20;
 
+/* 카테고리 생성 및 click 이벤트 등록*/
 function makeCategory() {
   const _ul = document.querySelector(".category");
 
@@ -25,16 +26,18 @@ function makeCategory() {
   });
 }
 
+/* 뉴스 가져오기 */
+
 function getNews(e) {
   changeCurrentPage(e);
+
   //현재 카테고리 찾고,
   const currentCategory = document.querySelector(
     ".selected-category span"
   ).innerText;
 
-  //e.elapsedTime === news_by_category[currentCategory][e]인걸로 change
+  //카테고리에 해당하는 뉴스 찾기
   let currentNews;
-  //press-info 변경
   //event가 클릭일 때랑 iteration일 때랑 구분
   if (e.type === "animationiteration") {
     currentNews =
@@ -43,24 +46,39 @@ function getNews(e) {
     currentNews = news_by_category[currentCategory][0];
   }
 
+  //press-info
+  changePressInfo(currentNews);
+
+  //main news
+  changeMain(currentNews);
+
+  //sub news
+  changeSub(currentNews);
+}
+
+function changePressInfo(currentNews) {
   const press_info = document.querySelector(".press-info");
   press_info.children[0].setAttribute("src", `${currentNews.src}`);
   press_info.children[1].innerText = `${currentNews.editDate}`;
+}
 
-  //list-view-news변경
+function changeMain(currentNews) {
   const mainNews = document.querySelector(".list-view-main");
   mainNews.children[0].setAttribute("src", `${currentNews.thumbSrc}`);
   mainNews.children[1].innerText = `${currentNews.headTitle}`;
+}
+
+function changeSub(currentNews) {
   const subNews = document.querySelector(".list-view-sub");
+  //sub news
   subNews.innerHTML = ``;
-  //sub news 추가
   const _ul = document.createElement("ul");
   currentNews.subTitle.forEach((item) => {
     const _li = document.createElement("li");
     _li.innerText = `${item}`;
     _ul.appendChild(_li);
   });
-  //copyRight 추가
+  //copyRight
   const _li_sub = document.createElement("li");
   _li_sub.classList.add("sub-caption");
   _li_sub.innerText = currentNews.copyRight;
