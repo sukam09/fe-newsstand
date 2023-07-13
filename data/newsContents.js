@@ -56,8 +56,7 @@ const categoryList = [
         logoSrc: "./assets/light/img2.svg",
         name: "Able뉴스",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc:
-          "https://mml.pstatic.net/www/mobile/edit/202307 편집06_1095/upload_1688629051112X1Ks8.gif",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -90,7 +89,7 @@ const categoryList = [
         logoSrc: "./assets/light/img3.svg",
         name: "뉴스토마토",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "/assets/others/Thumbnail2.png",
+        imgSrc: "/assets/others/Thumbnail.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -132,7 +131,7 @@ const categoryList = [
         logoSrc: "./assets/light/img4.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/536/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle:
           "윤석년 KBS 이사 해임 건의하기로... 방통위 “KBS 명예 실추시켜”",
         subTitleList: [
@@ -201,7 +200,7 @@ const categoryList = [
         logoSrc: "./assets/light/img6.svg",
         name: "아이뉴스24",
         editDate: "2023. 02. 10 18:27 편집",
-        imgSrc: "https://picsum.photos/533/354",
+        imgSrc: "/assets/others/Thumbnail2.png",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
