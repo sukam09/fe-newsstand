@@ -8,8 +8,8 @@ export const LIST_PAGE = {
   LIST_ENTIRE_PAGE: 20,
 };
 
-const RIGHT = 1;
-const LEFT = 0;
+export const RIGHT = 1;
+export const LEFT = 0;
 
 const GRID_ENTIRE_PAGE = 3;
 
@@ -65,7 +65,15 @@ function listViewBtnVisibilitySet(CURRENT_PAGE, CURRENT_CATEGORY) {
   }
 }
 
-export function ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY) {
-  LIST_PAGE.current_list_page = CURRENT_PAGE;
-  listViewBtnVisibilitySet(LIST_PAGE.current_list_page, CURRENT_CATEGORY);
+export function ArrowBtnStateChange(disabledDirection) {
+  if (disabledDirection === LEFT) {
+    left_btn.style.display = "none";
+    right_btn.style.display = "block";
+  } else if (disabledDirection === RIGHT) {
+    left_btn.style.display = "block";
+    right_btn.style.display = "none";
+  } else {
+    right_btn.style.display = "block";
+    left_btn.style.display = "block";
+  }
 }

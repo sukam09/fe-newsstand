@@ -1,5 +1,5 @@
 import { fetchCategoryNews } from "../../api.js";
-import { LIST_PAGE, ArrowBtnStateChange } from "../components/Arrow.js";
+import { LIST_PAGE, ArrowBtnStateChange, RIGHT, LEFT } from "../components/Arrow.js";
 
 let news_data;
 let CURRENT_PAGE;
@@ -74,6 +74,7 @@ function tabClickEventRegister() {
  * 카테고리 탭 스타일 변경 - 1. 배경색, 2. 프로그래스 셋팅
  * 타이머 재실행
  * 변경된 카테고리에 따른 뉴스 내용 변경
+ * 좌우 버튼 상태 변경: 첫번째 카테고리 첫번째 페이지일 경우 고려
  */
 function fieldTabClickEventHandler(targetTab, index) {
   CURRENT_PAGE = 1;
@@ -90,13 +91,14 @@ function fieldTabClickEventHandler(targetTab, index) {
   clearInterval(intervalId);
   updateTimer();
   updatePressNewsSection();
-  ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY);
+  ArrowBtnCheck();
 }
 
 /**
  * <카테고리 변경 : 자동>
  * 카테고리 탭 스타일 변경 : 프로그래스
  * 변경된 카테고리에 따른 내용 변경
+ * 좌우 버튼 상태 변경 : 첫번째 카테고리 첫번째 페이지일 경우 고려
  */
 function fieldTabAutoChange() {
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
@@ -107,8 +109,11 @@ function fieldTabAutoChange() {
   tabClassChange(nextProgressEl, progressTab);
   progressWidthChange(nextProgressEl);
 
+  //
   updatePressNewsSection();
-  ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY);
+
+  //좌우버튼 disabled
+  ArrowBtnCheck();
 }
 
 /**
@@ -153,6 +158,19 @@ export function pageMoveByBtn(current_list_page) {
 }
 
 /**
+ * 좌우 화살표 Disabled 체크
+ */
+function ArrowBtnCheck() {
+  if (CURRENT_CATEGORY === 0 && CURRENT_PAGE === 1) {
+    ArrowBtnStateChange(LEFT); //왼
+  } else if (CURRENT_CATEGORY === categoryLength.length - 1 && CURRENT_PAGE === categoryLength[CURRENT_CATEGORY]) {
+    ArrowBtnStateChange(RIGHT); //오
+  } else {
+    ArrowBtnStateChange(null);
+  }
+}
+
+/**
  * 첫 리스트 뷰 로딩 - 처음 데이터로 구성
  * 첫 프로그래스 바 셋팅 - 1. 현재페이지/페이지 개수, 2. width
  */
@@ -177,7 +195,6 @@ function autoUpdateProgressTab() {
   CURRENT_PAGE = LIST_PAGE.current_list_page;
 
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-  const progressRatio = progressTab.querySelector(".progress-ratio");
   const progressTabNumber = progressTab.querySelector(".text-category-number");
   progressTabNumber.querySelector(".present").innerHTML = `${CURRENT_PAGE} / `;
 
@@ -213,6 +230,7 @@ function updatePressNewsSection() {
  * 페이지 자동 이동 타이머 : 5초
  * 카테고리 자체가 변경되는 경우, 마지막 카테고리의 마지막 페이지일 경우도 고려
  * 페이지 자동 이동 후 카테고리 탭 & 뉴스 기사 업데이트
+ * 좌우 버튼 상태 변경
  */
 function updateTimer() {
   intervalId = setInterval(() => {
@@ -233,6 +251,7 @@ function updateTimer() {
     }
     updatePressNewsSection();
     autoUpdateProgressTab();
+    ArrowBtnCheck(); //마지막 카테고리 마지막 페이지일 경우 고려
   }, PAGE_AUTO_MOVING_TIME);
 }
 
