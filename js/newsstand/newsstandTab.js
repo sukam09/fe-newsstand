@@ -1,4 +1,6 @@
 import { restartProgressBar } from "./newsCategory.js";
+import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
+import { addListdButton, deleteListButton } from "./newsCategory.js";
 
 const VIEW_DISABLED = "view-disabled";
 
@@ -14,6 +16,9 @@ export function newsstandListTab() {
 function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
   // 뉴스 리스트 버튼 클릭됬을때.
   listButton.addEventListener("click", () => {
+    // 그리드 버튼 삭제
+    deleteGridButton();
+    addListdButton();
     // 버튼 색상 변경
     listButton.src = "./assets/basicIcon/list-symbol-selected.svg";
     thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
@@ -26,8 +31,11 @@ function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
     gridArea.classList.add(VIEW_DISABLED);
   });
 
-  // 뉴스 리스트 버튼 클릭됬을때.
+  // 뉴스 그리드 버튼 클릭됬을때.
   thumbButton.addEventListener("click", () => {
+    // 그리드 버튼 추가
+    deleteListButton();
+    addGridButton();
     // 버튼 색상 변경
     listButton.src = "./assets/basicIcon/list-symbol.svg";
     thumbButton.src = "./assets//basicIcon/grid-symbol-selected.svg";

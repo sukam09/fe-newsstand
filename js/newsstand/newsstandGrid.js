@@ -70,3 +70,17 @@ function isBtnDisabled() {
     ? rightBtn.classList.add("btn-disabled")
     : rightBtn.classList.remove("btn-disabled");
 }
+
+export function addGridButton() {
+  selectedPage === FIRST_PAGE
+    ? leftBtn.classList.add("btn-disabled")
+    : leftBtn.classList.remove("btn-disabled");
+  selectedPage === LAST_PAGE
+    ? rightBtn.classList.add("btn-disabled")
+    : rightBtn.classList.remove("btn-disabled");
+}
+
+export function deleteGridButton() {
+  leftBtn.classList.add("btn-disabled");
+  rightBtn.classList.add("btn-disabled");
+}

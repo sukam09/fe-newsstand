@@ -5,19 +5,31 @@ makeCategoryTag();
 const categoryList = Array.from(
   document.querySelectorAll(".newsstand__news-nav li")
 );
-const dummyData = [1, 2, 3, 4, 5, 6, 7];
+const dummyData = [1, 2, 1, 2, 1, 2, 2];
 const CATEROY_NUMBER = categoryList.length;
 const FIRST_CATEGORY = 0;
 
+const leftBtn = document.querySelector(".left-list-button");
+const rightBtn = document.querySelector(".right-list-button");
+let currentPage = 0;
+
 export function paintNewsCategory() {
-  categoryList.map((element, idx) => {
-    element.addEventListener("click", (e) => {
-      const childIndex = idx;
-      // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
-      removeProgressAction();
-      // 선택된 li에 프로그래스 바 추가.
-      addProgressAction(childIndex);
-    });
+  leftBtn.addEventListener("click", () => {
+    if (currentPage < 1) {
+      currentPage = CATEROY_NUMBER;
+    }
+    currentPage -= 1;
+    // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
+    removeProgressAction();
+    // 선택된 li에 프로그래스 바 추가.
+    addProgressAction(currentPage);
+  });
+  rightBtn.addEventListener("click", () => {
+    currentPage += 1;
+    // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
+    removeProgressAction();
+    // 선택된 li에 프로그래스 바 추가.
+    addProgressAction(currentPage);
   });
 }
 
@@ -33,7 +45,9 @@ export function restartProgressBar() {
 
 // 애니메이션 이벤트 추가
 // childIndex는 자식이 몇번째 위치하는지 나타냄.
-function addProgressAction(childIndex = childIndex % CATEROY_NUMBER) {
+function addProgressAction(currentPage) {
+  const childIndex = currentPage % CATEROY_NUMBER;
+
   let nowCount = 1;
   const element = categoryList[childIndex]; // 자식 찾기
   element.style.padding = 0; // 선택된 카테고리의 padding 제거
@@ -58,9 +72,16 @@ function addProgressAction(childIndex = childIndex % CATEROY_NUMBER) {
   // 프로그래스 바 진행이 완료되면 진행중이던 엘리먼트를 삭제하고 다음에 진행될 카테고리 실행.
   element.children[0].addEventListener("animationend", (e) => {
     removeProgressAction(element);
-    addProgressAction(++childIndex);
+    ++currentPage;
+    setChildIndexStatus(currentPage);
+    addProgressAction(currentPage);
   });
 }
+
+function setChildIndexStatus(value) {
+  currentPage = value;
+}
+
 function removeProgressAction() {
   const prevSelected = Array.from(
     document.querySelectorAll(".newsstand__focus")
@@ -81,4 +102,13 @@ function removeProgressAction() {
       element.children[0].style.animationIterationCount = 0;
     });
   }
+}
+
+export function addListdButton() {
+  leftBtn.classList.remove("btn-disabled");
+  rightBtn.classList.remove("btn-disabled");
+}
+export function deleteListButton() {
+  leftBtn.classList.add("btn-disabled");
+  rightBtn.classList.add("btn-disabled");
 }

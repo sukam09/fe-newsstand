@@ -9,15 +9,7 @@
   <body>
     <div id="root">
       <header id="header" role="banner">
-        <div class="header__view">
-          <div class="header—-logo">
-            <img src="./assets/basicIcon/gridSymbolSelected.svg" alt="" />
-          </div>
-          <h1 class="header—-title">
-            <a onClick="window.location.reload()">뉴스스탠드</a>
-          </h1>
-        </div>
-        <div class="header—-date"><!-- 오늘 날짜 --></div>
+        <!-- head 태그 -->
       </header>
 
       <main id="main" role="contents">
@@ -42,6 +34,24 @@
         </section>
         <!-- 뉴스스탠드 그리드 보기 -->
         <section id="newsstand">
+          <div class="newsstand--grid-navigation-btn">
+            <!-- 그리드 내비게이션 버튼 -->
+            <button class="newsstand--left-btn btn-disabled">
+              <img src="./assets//basicIcon/LeftButton.png" alt="" />
+            </button>
+            <button class="newsstand--right-btn">
+              <img src="./assets/basicIcon/RightButton.svg" alt="" />
+            </button>
+          </div>
+          <div class="newsstand__list-navigation-btn">
+            <!-- 리스트 내비게이션 버튼 -->
+            <button class="newsstand--left-btn left-list-button btn-disabled">
+              <img src="./assets//basicIcon/LeftButton.png" alt="" />
+            </button>
+            <button class="newsstand--right-btn right-list-button btn-disabled">
+              <img src="./assets/basicIcon/RightButton.svg" alt="" />
+            </button>
+          </div>
           <div class="newsstand__media-nav">
             <div class="newsstand__tab">
               <div class="newsstand—text-clicked">전체 언론사</div>
@@ -64,11 +74,10 @@
               </button>
             </div>
           </div>
-          <button class="newsstand--left-btn btn-disabled">
-            <img src="./assets//basicIcon/LeftButton.png" alt="" />
-          </button>
           <div class="newsstand__media-area">
-            <ul class="newsstand-area—six-col-list"></ul>
+            <ul class="newsstand-area—six-col-list">
+              <!-- 언론사 로고 -->
+            </ul>
           </div>
           <!-- 뉴스스탠드 리스트보기 -->
           <section id="newsstand__news-area" class="view-disabled">
@@ -115,9 +124,6 @@
               </div>
             </div>
           </section>
-          <button class="newsstand--right-btn">
-            <img src="./assets/basicIcon/RightButton.svg" alt="" />
-          </button>
         </section>
       </main>
     </div>
