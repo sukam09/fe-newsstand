@@ -17,7 +17,9 @@ export default class AllNewHeader extends Component {
             </nav>
 
             <div class='view-type-icon'>
-              <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
+              <div id='dark-mode-wrapper'>
+                <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
+              </div>
               <img id ='list-view-icon' class='icon-medium'/>
               <img id ='grid-view-icon' class='icon-medium'/>
             </div>`;
@@ -39,7 +41,7 @@ export default class AllNewHeader extends Component {
         this.props.onClick('list');
       } else if (id === 'grid-view-icon') {
         this.props.onClick('grid');
-      } else if (id === 'darkmode-icon') {
+      } else if (id === 'dark-mode-wrapper' || id === 'darkmode-icon') {
         toggleDarkMode();
       }
     });
