@@ -35,8 +35,10 @@ const getListInfo = async () => {
   });
 };
 
+/**
+ * 리스트뷰 내 화면 전환 이벤트
+ */
 const setListArrowEvent = () => {
-  // 화살표 클릭 이벤트 추가
   const $leftArrow = document.querySelector(".left-arrow");
   const $rightArrow = document.querySelector(".right-arrow");
 
@@ -174,7 +176,7 @@ const setListView = () => {
     $addSubBtn.classList.add("hidden");
     $cancelSubBtn.classList.remove("hidden");
   }
-  // 구독 관련 정보 추가 필요
+
   $mainTitle.innerText = nowMedia.main_title;
 
   const $subTitleList = document
@@ -186,12 +188,18 @@ const setListView = () => {
   });
 };
 
+/**
+ * 프로그래스바, 뉴스영역 렌더링
+ */
 const setFullList = () => {
   changeIdx();
   setListView();
   setProgressBar();
 };
 
+/**
+ * 초기 리스트뷰 세팅
+ */
 async function initListView() {
   await getListInfo();
   setCategoryBar();

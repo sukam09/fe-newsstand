@@ -31,8 +31,10 @@ const makeGrid = () => {
   }
 };
 
+/**
+ * 그리드 뷰 내 페이지 전환 이벤트
+ */
 const setGridArrowEvent = () => {
-  // 화살표 클릭 이벤트 추가
   const $leftArrow = document.querySelector(".left-arrow");
   const $rightArrow = document.querySelector(".right-arrow");
 
@@ -45,7 +47,7 @@ const setGridArrowEvent = () => {
 };
 
 /**
- * 언론사 이미지 src 변경하기
+ * 언론사 이미지 src 변경
  */
 const changeImgSrc = () => {
   let newImg = idList.slice(
@@ -95,10 +97,11 @@ const setArrowVisible = () => {
   } else if (STATE.GRID_PAGE_NUM === 3) {
     $rightArrow.classList.add("hidden");
   }
-
-  // 언론사 로고 개수 따른 hidden 여부
 };
 
+/**
+ * 초기 그리드뷰 세팅
+ */
 async function initGridView() {
   shuffleList(idList);
   setArrowVisible();
