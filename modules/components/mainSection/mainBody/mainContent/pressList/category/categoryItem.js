@@ -25,6 +25,7 @@ export function categoryItem(categoryName, categoryId, len) {
 export function handleClickCategoryItem(e) {
   const id = e.currentTarget.id;
   const [, categoryId] = id.split("_");
+
   setCategoryId(categoryId);
   setListPage(0);
   showListPage(categoryId, listPage);

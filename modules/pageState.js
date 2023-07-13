@@ -4,13 +4,14 @@ let pageType = GRID;
 
 export const MAX_GRID_PAGE = 4;
 export const NUM_IN_A_GRID = 24;
-export const MAX_CATEGORY_ID = 2;
+export const MAX_CATEGORY_ID = 3;
 export const MAX_LIST_PAGE = {
   // categoryId: maxPage
   0: 3,
   1: 4,
+  2: 3,
 };
-export const TOTAL_LIST_PAGE = 7;
+export const TOTAL_LIST_PAGE = 10;
 
 export let categoryId = 0;
 export let listPage = 0;

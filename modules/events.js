@@ -45,6 +45,7 @@ export function addEventsOnViewButton() {
 
 export function addEventsOnCategoryItem() {
   const $categoryItems = qsa(".category_item");
+  console.log($categoryItems);
 
   [...$categoryItems].forEach(($categoryItem) => {
     $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));

@@ -7,18 +7,21 @@ export async function mainContent() {
   const press = await fetchData("/data/press.json");
   const { data } = press;
   const newsList = await fetchData("/data/news.json");
+  let listContainerInnerHTML = "";
+
+  newsList.length;
+  for (let i = 0; i < newsList.length; i++) {
+    newsList[i];
+    for (let j = 0; j < newsList[i].data.length; j++) {
+      listContainerInnerHTML += pressList(newsList[i], j);
+    }
+  }
 
   return `
     <div class="main_content">
       <div id="list_container">
         ${category(newsList)}
-        ${pressList(newsList[0], 0)}
-        ${pressList(newsList[0], 1)}
-        ${pressList(newsList[0], 2)}
-        ${pressList(newsList[1], 0)}
-        ${pressList(newsList[1], 1)}
-        ${pressList(newsList[1], 2)}
-        ${pressList(newsList[1], 3)}
+        ${listContainerInnerHTML}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}
