@@ -14,6 +14,8 @@ const initialState = {
   currentPage: 0,
   currentCategory: CATEGORIES[categoryIdx],
   viewType: VIEW_TYPE.GRID,
+
+  theme: "light",
 };
 
 const NEXT_PAGE = "PAGE/NEXT_PAGE";
@@ -23,6 +25,7 @@ const CHANGE_VIEW = "PAGE/CHANGE_VIEW";
 const NEXT_CATEGORY = "PAGE/NEXT_CATEGORY";
 const PREV_CATEGORY = "PAGE/PREV_CATEGORY";
 const SET_CATEGORY = "PAGE/SET_CATEGORY";
+const CHANGE_THEME = "PAGE/CHANGE_THEME";
 
 export const nextPage = () => createAction(NEXT_PAGE);
 export const prevPage = () => createAction(PREV_PAGE);
@@ -31,6 +34,7 @@ export const changeView = (viewType) => createAction(CHANGE_VIEW, viewType);
 export const nextCategory = () => createAction(NEXT_CATEGORY);
 export const prevCategory = () => createAction(PREV_CATEGORY);
 export const setCategory = (category) => createAction(SET_CATEGORY, category);
+export const changeTheme = () => createAction(CHANGE_THEME);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -71,6 +75,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         currentCategory: action.payload,
         currentPage: 0,
+      };
+    case CHANGE_THEME:
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
     default:
       return state;

@@ -23,10 +23,11 @@ const $listViewSubNews = $listViewMain.querySelector(
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
 
 const fillArticles = (currentCategory, currentPage) => {
+  const theme = store.getState().theme;
   const { name, src, edit_date, main_news, sub_news } =
     NewsDB.queryByCategory(currentCategory)[currentPage];
 
-  $news_logo.src = src;
+  $news_logo.src = src[theme];
   $news_logo.alt = name;
   $edit_date.innerText = edit_date;
 
