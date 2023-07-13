@@ -86,6 +86,7 @@ export const renderListView = () => {
     const totalCnt = NewsDB.getCountByCategory(currentCategory);
 
     updateButtonUI();
+    activateCategory(currentCategory);
     showTabCount(currentPage, totalCnt);
     fillArticles(currentCategory, currentPage);
   });
