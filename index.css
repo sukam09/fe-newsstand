@@ -5,6 +5,7 @@
 @import url('styles/components/header.css');
 @import url('styles/components/latestNews.css');
 @import url('styles/components/allNews.css');
+@import url('styles/components/alert.css');
 
 /* common */
 .common-button {
@@ -50,6 +51,8 @@ section {
   flex-direction: column;
   gap: 20px;
   align-items: center;
+
+  position: relative;
 }
 
 .left-button,
