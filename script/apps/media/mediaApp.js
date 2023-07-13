@@ -1,23 +1,17 @@
 import gridApp from './newsGridApp.js';
 import addMediaNav from './nav/mediaNav.js';
-import { clearAllChildren } from '../../utils/utils.js';
 import listApp from './newsListApp.js';
+import { ArrowButton } from '../../components/Button.js';
 
 const createMediaViewWrapper = () => {
   const mediaViewWrapper = document.createElement('div');
   const mediaView = document.createElement('div');
-  const leftButton = document.createElement('button');
-  const rightButton = document.createElement('button');
 
   mediaViewWrapper.id = 'media_view_wrapper';
   mediaView.id = 'media_view';
-  leftButton.id = 'left_arrow';
-  rightButton.id = 'right_arrow';
-  leftButton.innerHTML = '<img src="assets/images/left.svg" alt="이전">';
-  rightButton.innerHTML = '<img src="assets/images/right.svg" alt="다음">';
-  mediaViewWrapper.appendChild(leftButton);
+  mediaViewWrapper.appendChild(ArrowButton('left'));
   mediaViewWrapper.appendChild(mediaView);
-  mediaViewWrapper.appendChild(rightButton);
+  mediaViewWrapper.appendChild(ArrowButton('right'));
 
   return mediaViewWrapper;
 };

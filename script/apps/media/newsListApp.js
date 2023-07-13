@@ -1,6 +1,7 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
 import { SUB_MEDIA } from '../../constants.js';
+import { createNewArrow } from '../../utils/utils.js';
 
 const createListNav = () => {
   const nav = document.createElement('nav');
@@ -126,7 +127,14 @@ const createListElement = () => {
 };
 
 const setArrow = () => {
-  //
+  const [leftArrow, rightArrow] = createNewArrow();
+
+  leftArrow.addEventListener('click', () => {
+    console.log('left');
+  });
+  rightArrow.addEventListener('click', () => {
+    console.log('right');
+  });
 };
 
 // initGrid와 거의 동일 (추후 통합)

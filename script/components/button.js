@@ -33,5 +33,13 @@ const SubButton = ({ isSub, withText = true, onClick }) => {
     : Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick });
 };
 
+const ArrowButton = direction => {
+  const arrowButton = document.createElement('button');
+
+  arrowButton.id = `${direction}_arrow`;
+  arrowButton.innerHTML = `<img src="assets/images/${direction}.svg" alt="${direction}">`;
+  return arrowButton;
+};
+
 export default Button;
-export { SubButton };
+export { ArrowButton, SubButton };

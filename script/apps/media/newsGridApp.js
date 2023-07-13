@@ -1,10 +1,8 @@
 import { MEDIA, SUB_MEDIA } from '../../constants.js';
 import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
+import { createNewArrow } from '../../utils/utils.js';
 
-const shuffleArray = array => {
-  array.sort(() => Math.random() - 0.5);
-};
 const createMediaArray = () => {
   const mediaArray = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
   shuffleArray(mediaArray);
@@ -48,9 +46,9 @@ const setPage = (gridData, move, leftArrow, rightArrow) => {
 };
 
 const setArrow = gridData => {
-  const leftArrow = document.querySelector('#left_arrow');
-  const rightArrow = document.querySelector('#right_arrow');
+  const [leftArrow, rightArrow] = createNewArrow();
 
+  setArrowVisible(gridData.page, leftArrow, rightArrow);
   // 화살표 이벤트리스너
   leftArrow.addEventListener('click', () => {
     setPage(gridData, -1, leftArrow, rightArrow);
