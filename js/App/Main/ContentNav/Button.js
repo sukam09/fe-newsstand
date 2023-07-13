@@ -4,15 +4,6 @@ props: inner, className, changeType, buttonType, onClick
 */
 
 export default function Button($target, props, ClassName, onClick) {
-  // debugger;
-  // this.state = mode;
-  const { mainContent, renderContent, mode, page } = props;
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   const changePressType = () => {
     props.onClick(props.buttonType);
   };

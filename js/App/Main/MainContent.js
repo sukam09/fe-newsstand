@@ -5,8 +5,8 @@ props: mode, viewerType, pressType
 state: lastPage, currentPage
 */
 import Button from "./MainContent/Button.js";
-import Newspaper from "./MainContent/Newspaper.js";
-import News from "./MainContent/News.js";
+import PressGridView from "./MainContent/PressGridView.js";
+import NewsListView from "./MainContent/NewsListView.js";
 
 let timerArr = [];
 
@@ -56,13 +56,13 @@ export default function MainContent($target, props) {
     $section.setAttribute("class", "news-section");
 
     if (props.viewerType === "grid") {
-      new Newspaper($section, {
+      new PressGridView($section, {
         mode: props.mode,
         pressType: props.pressType,
         currentPage: this.state.currentPage,
       });
     } else {
-      new News($section, {
+      new NewsListView($section, {
         mode: props.mode,
         pressType: props.pressType,
         currentPage: this.state.currentPage,

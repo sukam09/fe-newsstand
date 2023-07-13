@@ -30,14 +30,7 @@ xmlns="http://www.w3.org/2000/svg"
 />
 </svg>`;
 
-export default function ViewerType($target, props, onClick) {
-  //   this.state = mode;
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
+export default function ViewerType($target, props) {
   this.render = () => {
     const $div = document.createElement("div");
     $div.setAttribute("class", "news-navbar_content");

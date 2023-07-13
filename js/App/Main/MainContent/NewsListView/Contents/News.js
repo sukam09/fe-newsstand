@@ -2,24 +2,17 @@
 리스트 뉴스 컨테이너 컴포넌트
 */
 
-import Left from "./News/Left.js";
-import Right from "./News/Right.js";
+import MainNews from "./News/MainNews.js";
+import SubNews from "./News/SubNews.js";
 
 export default function Contents($target, props) {
-  this.state = "light";
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   this.render = () => {
     const $div = document.createElement("div");
 
     $div.setAttribute("class", "list-news");
 
-    new Left($div, props.mainNewsData);
-    new Right($div, props.subNewsData);
+    new MainNews($div, props.mainNewsData);
+    new SubNews($div, props.subNewsData);
 
     $target.appendChild($div);
   };

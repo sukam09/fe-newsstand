@@ -16,11 +16,7 @@ function formatDate(date) {
   return formattedDate;
 }
 
-// document.querySelector(".header__date").innerHTML = formattedDate;
-
 export default function Header($target, props) {
-  const mode = props.mode;
-
   this.render = () => {
     const $header = document.createElement("header");
     const today = new Date();

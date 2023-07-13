@@ -21,7 +21,7 @@ const createNewspaperList = function (page, mode) {
   return newspaperList;
 };
 
-export default function Newspaper($target, props) {
+export default function PressGridView($target, props) {
   //   this.state = mode;
 
   this.setState = (nextState) => {

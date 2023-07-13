@@ -6,8 +6,8 @@ props: pressType, currentPage, setCurrentPage, setLastPage
 state: category
 */
 
-import Nav from "./News/Nav.js";
-import Contents from "./News/Contents.js";
+import CategoryNav from "./NewsListView/CategoryNav.js";
+import Contents from "./NewsListView/Contents.js";
 
 let subTitles = [
   `"위스키 사려고 이틀전부터 줄 섰어요"`,
@@ -31,7 +31,7 @@ export default function News($target, props) {
     $div = document.createElement("div");
     $div.setAttribute("class", "news-container");
 
-    new Nav($div, {
+    new CategoryNav($div, {
       ...this.state,
       pressType: props.pressType,
       currentPage: props.currentPage,

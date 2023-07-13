@@ -24,7 +24,6 @@ const startRolling = function (rollingElement) {
 };
 
 export default function Rolling($target, props) {
-  const mode = props.mode;
   const startTime = props.startTime;
   let timeId;
 

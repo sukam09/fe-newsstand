@@ -4,11 +4,6 @@ props: lastPage, currentPage, direction, setPage
 */
 
 export default function Button($target, props) {
-  //   this.setState = (nextState) => {
-  //     this.state = nextState;
-  //     this.render();
-  //   };
-
   this.render = () => {
     const $button = document.createElement("button");
 

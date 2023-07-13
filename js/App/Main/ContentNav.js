@@ -7,13 +7,6 @@ import PressType from "./ContentNav/PressType.js";
 import ViewerType from "./ContentNav/viewerType.js";
 
 export default function ContentNav($target, props) {
-  // this.state = mode;
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   this.render = () => {
     const $nav = document.createElement("nav");
     $nav.setAttribute("class", "news-navbar");

@@ -3,7 +3,7 @@
 props: setCurrentPage, setCategory
 */
 
-export default function Nav($target, props) {
+export default function CategoryNav($target, props) {
   this.startProgress = (progressBar) => {
     const duration = 20000; // 20초
     const startWidth = 0;

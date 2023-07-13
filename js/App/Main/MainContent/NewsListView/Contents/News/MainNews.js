@@ -2,7 +2,7 @@
 리스트 뉴스 컨테이너 컴포넌트
 */
 
-export default function Left($target, props) {
+export default function MainNews($target, props) {
   this.render = () => {
     const $div = document.createElement("div");
     const $img = document.createElement("img");
