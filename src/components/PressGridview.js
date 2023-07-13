@@ -84,10 +84,10 @@ export default function PressGridView({ $target, initialState }) {
         <ul class="news-press-grid-container">
         </ul>
         <button class="left-arrow-button">
-          <img src="./asset/icons/left-button.png" alt="왼쪽 화살표" />
+          <img src="./asset/icons/left-button.svg" alt="왼쪽 화살표" />
         </button>
         <button class="right-arrow-button">
-          <img src="./asset/icons/right-button.png" alt="오른쪽 화살표" />
+          <img src="./asset/icons/right-button.svg" alt="오른쪽 화살표" />
         </button>
       </div>
     `;
