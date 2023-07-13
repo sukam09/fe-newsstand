@@ -20,19 +20,14 @@ const renderContent = () => {
   setDisplayButton();
 };
 
-const movePageLeft = () => {
-  page--;
-  renderContent();
-};
-
-const movePageRight = () => {
-  page++;
+const movePage = (amout) => {
+  page += amout;
   renderContent();
 };
 
 const setGridPageButton = () => {
-  $leftButton.addEventListener("click", movePageLeft);
-  $rightButton.addEventListener("click", movePageRight);
+  $leftButton.addEventListener("click", () => movePage(-1));
+  $rightButton.addEventListener("click", () => movePage(1));
 };
 
 export { setGridPageButton };

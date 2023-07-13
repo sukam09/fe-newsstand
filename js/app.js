@@ -5,6 +5,7 @@ import { renderNewspaper } from "./Components/NewsGrid/newspaper.js";
 import { setGridPageButton } from "./Components/NewsGrid/pageButton.js";
 import { setViewerEvent } from "./Components/NavBar/newsViewer.js";
 import { setListPageButton } from "./Components/NewsList/pageButton.js";
+import { setFieldTab } from "./Components/NewsList/fieldTab.js";
 
 const main = () => {
   setHeaderDate();
@@ -13,6 +14,7 @@ const main = () => {
   setGridPageButton();
   setViewerEvent();
   setListPageButton();
+  setFieldTab();
 };
 
 main();
