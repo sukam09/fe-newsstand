@@ -1,7 +1,7 @@
-import {startRolling, getNewsHeadline} from './rolling.js';
-import { pressViewChange } from './pressViewChange.js';
-import { showDate } from './showTodayDate.js';
-import { shuffleImgs, changePressGrid} from './pressGridList.js';
+import {startRolling, getNewsHeadline} from './newsbar/rolling.js';
+import { pressViewChange } from './pressContent/pressViewChange.js';
+import { showDate } from './header/showTodayDate.js';
+import { shuffleImgs, changePressGrid} from './pressContent/pressGridList.js';
 
 window.addEventListener('DOMContentLoaded', ()=>{
     showDate();

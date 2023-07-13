@@ -1,5 +1,5 @@
-import {getQuerySelector, getQuerySelectorAll} from "../utils/getElements.js";
-import { fetchData } from "../utils/getJson.js";
+import {getQuerySelector, getQuerySelectorAll} from "../../utils/js/getElements.js";
+import { fetchData } from "../../utils/js/getJson.js";
 
 let intervalFirstNewsbar;
 let intervalSecondNewsbar;

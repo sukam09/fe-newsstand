@@ -1,5 +1,5 @@
-import { getElemId, getElemClass } from "../utils/getElements.js";
-import { fetchData } from "../utils/getJson.js";
+import { getElemId, getElemClass } from "../../utils/js/getElements.js";
+import { fetchData } from "../../utils/js/getJson.js";
 
 const page = [[], [], [], []];
 

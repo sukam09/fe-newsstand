@@ -1,4 +1,4 @@
-import { getElemId, getElemClass } from "../utils/getElements.js";
+import { getElemId, getElemClass } from "../../utils/js/getElements.js";
 
 function pressViewChange() {
     const pressListView = getElemId(document, 'pressbar-icon-list-view');

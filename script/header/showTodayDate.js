@@ -1,4 +1,4 @@
-import { getElemClass } from "../utils/getElements.js";
+import { getElemClass } from "../../utils/js/getElements.js";
 
 function showDate() {
     const options = {
