@@ -1,7 +1,13 @@
 import { NewsDB } from "../core/index.js";
 import { store } from "../store/index.js";
-import { VIEW_TYPE } from "../constants/index.js";
+import {
+  VIEW_TYPE,
+  CATEGORIES,
+  CATEGORIES_TO_INDEX,
+} from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
+import { nextPage } from "../store/reducer.js";
+import { startProgressing } from "./progress-bar.js";
 
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
@@ -17,21 +23,6 @@ const $listViewSubNews = $listViewMain.querySelector(
   ".list-view-main_sub-news > ul"
 );
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
-
-const CATEGORIES = [
-  "종합/경제",
-  "방송/통신",
-  "IT",
-  "영자지",
-  "스포츠/연예",
-  "매거진/전문지",
-  "지역",
-];
-
-const CATEGORIES_TO_INDEX = CATEGORIES.reduce((acc, curr, idx) => {
-  acc[curr] = idx;
-  return acc;
-}, {});
 
 const fillArticles = (currentCategory, currentPage) => {
   const newsDataMap = NewsDB.getNewsDataMapByCategory();
@@ -64,13 +55,24 @@ const updateButtonUI = () => {
 
 export const renderListView = () => {
   initArticle();
-
-  store.subscribe(() => {
-    const { currentPage, currentCategory, viewType } = store.getState();
-    if (viewType !== VIEW_TYPE.LIST) return;
-
-    fillArticles(currentCategory, currentPage);
-
-    updateButtonUI();
-  });
 };
+
+store.subscribe(() => {
+  const { currentPage, currentCategory, viewType } = store.getState();
+  if (viewType !== VIEW_TYPE.LIST) return;
+
+  const currentCategoryLength =
+    NewsDB.getNewsDataMapByCategory().get(currentCategory).length;
+
+  const $categorySelected = document.querySelector(".category-selected");
+  const $tabCount = $categorySelected.querySelector(".tab-count");
+  const $tabCountCurrent = $tabCount.querySelector(".tab-count_current");
+  const $tabCountTotal = $tabCount.querySelector(".tab-count_total");
+
+  $tabCountCurrent.innerText = currentPage + 1;
+  $tabCountTotal.innerText = currentCategoryLength;
+
+  fillArticles(currentCategory, currentPage);
+  updateButtonUI();
+  startProgressing(currentPage, currentCategoryLength);
+});
