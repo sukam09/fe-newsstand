@@ -8,7 +8,7 @@ import {
 import { $, $All } from "./util.js";
 
 // 카테고리 탭 전환 시간
-const CATEGORY_TAB_TIME = 10000;
+const CATEGORY_TAB_TIME = 20000;
 // 로고 새로고침
 function refresh() {
   location.reload();

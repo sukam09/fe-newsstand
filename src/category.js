@@ -12,6 +12,7 @@ function setFirstListPage() {
   updateListButton();
   updateCategoryClicked();
   updateCategoryNum();
+  refreshInterval();
 }
 
 function refreshInterval() {
@@ -69,7 +70,7 @@ function createCategoryList(item, idx) {
   const nowPage = document.createElement("span");
   const allPage = document.createElement("span");
   nowPage.className = "now_page";
-  nowPage.innerHTML = `${now_list_page} /`;
+  nowPage.innerHTML = `${now_list_page} / `;
   allPage.className = "all_page";
   allPage.innerHTML = `${item.data.length}`;
   counterContainer.appendChild(nowPage);
@@ -95,7 +96,7 @@ function updateCategoryClicked() {
 function updateCategoryNum() {
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
-  clickedCategory.children[1].children[0].innerHTML = `${now_list_page} /`;
+  clickedCategory.children[1].children[0].innerHTML = `${now_list_page} / `;
   if (
     parseInt(now_list_page) >=
     parseInt(clickedCategory.children[1].children[1].innerHTML) + 1
@@ -169,12 +170,16 @@ function updateListButton() {
     rightListButton.style.display = "block";
   }
 }
-
 function moveListPage(increment) {
   now_list_page + increment === 0
     ? ((now_category -= 1),
       (now_list_page = categoryList[now_category].data.length))
     : (now_list_page += increment);
+  const clickedCategory = $(".category_list--clicked");
+  clickedCategory.children[2].classList.remove("progressbar");
+  clickedCategory.offsetWidth;
+  clickedCategory.children[2].classList.add("progressbar");
+  refreshInterval();
   updateCategoryClicked();
   updateListButton();
 }
