@@ -1,6 +1,6 @@
-import { MEDIA, SUB_MEDIA } from './constants.js';
-import media_data from '../assets/data/media_data.js';
-import { SubButton } from './components/Button.js';
+import { MEDIA, SUB_MEDIA } from '../../constants.js';
+import media_data from '../../../assets/data/media_data.js';
+import { SubButton } from '../../components/Button.js';
 
 const shuffleArray = array => {
   array.sort(() => Math.random() - 0.5);
@@ -11,10 +11,7 @@ const createMediaArray = () => {
   return mediaArray;
 };
 
-const mediaArray = createMediaArray();
-let page = 0;
-
-const setGrid = () => {
+const updatePage = (mediaArray, page) => {
   const mediaLogo = document.querySelectorAll('.media_logo');
   const gridIndex = Array.from(
     { length: MEDIA.PAGE_SIZE },
@@ -44,26 +41,26 @@ const setGrid = () => {
   });
 };
 
-const setPage = (index, leftArrow, rightArrow) => {
-  page += index;
-  setGrid();
-  setArrowVisible(leftArrow, rightArrow);
+const setPage = (gridData, move, leftArrow, rightArrow) => {
+  gridData.page += move;
+  updatePage(gridData.mediaArray, gridData.page);
+  setArrowVisible(gridData.page, leftArrow, rightArrow);
 };
 
-const setArrow = () => {
+const setArrow = gridData => {
   const leftArrow = document.querySelector('#left_arrow');
   const rightArrow = document.querySelector('#right_arrow');
 
   // 화살표 이벤트리스너
   leftArrow.addEventListener('click', () => {
-    setPage(-1, leftArrow, rightArrow);
+    setPage(gridData, -1, [leftArrow, rightArrow]);
   });
   rightArrow.addEventListener('click', () => {
-    setPage(1, leftArrow, rightArrow);
+    setPage(gridData, 1, [leftArrow, rightArrow]);
   });
 };
 
-const setArrowVisible = (leftArrow, rightArrow) => {
+const setArrowVisible = (page, leftArrow, rightArrow) => {
   leftArrow.className = `page_${page}`;
   rightArrow.className = `page_${page}`;
 };
@@ -95,9 +92,14 @@ const initGrid = () => {
 };
 
 const gridApp = () => {
+  const gridData = {
+    page: 0,
+    mediaArray: createMediaArray(),
+  };
+
   initGrid();
-  setGrid();
-  setArrow();
+  updatePage(gridData.mediaArray, gridData.page);
+  setArrow(gridData);
 };
 
 export default gridApp;
