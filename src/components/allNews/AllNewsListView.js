@@ -67,7 +67,7 @@ export default class AllNewsListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
-    console.log(document.body.className);
+
     setTimeout(() => {
       customQuerySelector('.progress-bar', this.$target).style.width = '100%';
       this.setTimer();

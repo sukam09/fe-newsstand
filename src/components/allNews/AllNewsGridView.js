@@ -1,6 +1,11 @@
-import { customQuerySelector, shufflePressOrder } from '../../utils/index.js';
+import {
+  customQuerySelector,
+  customQuerySelectorAll,
+  shufflePressOrder,
+} from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
+import Button from '../common/Button.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
@@ -20,9 +25,22 @@ export default class AllNewsGridView extends Component {
 
     let innerHTML = '';
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
-      innerHTML += `<li class='border-default'><img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/></li>`;
+      // console.log($button);
+      innerHTML += `<li class='grid-logo-wrapper border-default'>
+                      <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
+                      <div class='subscribe-button-wrapper'></div>
+                    </li>`;
     }
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
+
+    customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
+      new Button(node, {
+        color: 'gray',
+        text: '구독하기',
+        icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
+        states: 'default',
+      });
+    });
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
