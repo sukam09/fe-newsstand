@@ -31,7 +31,6 @@ function rollNewsRight() {
   let rightInterval = window.setTimeout(rollNewsBoth, ROLLING_INTERVAL_SPACE_TIME, 'right');
 }
 
-
 /** 
 롤링을 위한 객체의 class명 변경
 (next -> current, current -> prev)
