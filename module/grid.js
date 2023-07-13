@@ -1,6 +1,6 @@
 import { fetchNewsData } from "./api.js";
 import { GRID, GLOBAL } from "./variable.js";
-import { setListNews } from "./list.js";
+import { moveListPage } from "./list.js";
 
 async function initGrid() {
   try {
@@ -22,7 +22,7 @@ async function initGrid() {
       GLOBAL.DOM.grid_view.appendChild(grid_row);
       updateGrid();
     }
-    setListNews(0);
+    moveListPage(0);
   } catch (e) {
     console.error(e);
   }

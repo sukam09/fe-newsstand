@@ -41,17 +41,22 @@ const BTN = {
 };
 
 const CATEGORY = {
-  ECONOMY: 0,
-  BROADCAST: 1,
-  IT: 2,
-  ENGLISH: 3,
-  SPORTS: 4,
-  MAGAZINE: 5,
-  LOCAL: 6,
+  ECONOMY: "종합/경제",
+  BROADCAST: "방송/통신",
+  IT: "IT",
+  ENGLISH: "영자지",
+  SPORTS: "스포츠/연예",
+  MAGAZINE: "매거진/전문지",
+  LOCAL: "지역",
 };
 
 const LIST = {
   SUBTITLENUM: 6,
+};
+
+const MODE = {
+  GRID: 0,
+  LIST: 1,
 };
 
 // 글로벌 네임스페이스
@@ -59,8 +64,11 @@ const GLOBAL = {
   grid_cur_page: 0,
   list_cur_page: 0,
   list_cur_category: CATEGORY.ECONOMY,
+  cur_mode: MODE.GRID,
   news_data: null,
+  list_news_data: null,
   rolling_news: null,
+  total_news_num: 0,
 
   CATEGORY_NUM: {
     ECONOMY: 0,
@@ -70,6 +78,16 @@ const GLOBAL = {
     SPORTS: 0,
     MAGAZINE: 0,
     LOCAL: 0,
+  },
+
+  CATEGORY_ARR: {
+    ECONOMY: [],
+    BROADCAST: [],
+    IT: [],
+    ENGLISH: [],
+    SPORTS: [],
+    MAGAZINE: [],
+    LOCAL: [],
   },
 
   DOM: {
@@ -87,7 +105,16 @@ const GLOBAL = {
     main_news_title: document.querySelector(".main-news-title"),
     sub_news_title: document.querySelectorAll(".sub-news-title"),
     caption: document.querySelector(".caption"),
+    field_tab: document.querySelector(".field-tab"),
+    progress_bar: document.querySelector(".progress-bar"),
+    nav_economy: document.querySelector(".nav-economy"),
+    nav_broadcast: document.querySelector(".nav-broadcast"),
+    nav_it: document.querySelector(".nav-it"),
+    nav_english: document.querySelector(".nav-english"),
+    nav_sports: document.querySelector(".nav-sports"),
+    nav_magazine: document.querySelector(".nav-magazine"),
+    nav_local: document.querySelector(".nav-local"),
   },
 };
 
-export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, LIST, GLOBAL };
+export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, LIST, MODE, GLOBAL };
