@@ -1,5 +1,5 @@
 import {getJSON,shuffle } from '../util/util.js';
-import media_data from '../../assets/data/media_data.js';
+const media_data = await getJSON("../../assets/data/media_data.json");
 let categories = [];
 let category_page = 0;
 let media_page = 0;
@@ -32,19 +32,6 @@ const setNewsData = () => {
  * @returns JSON
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
-// function categorizeData(data) {
-//   let categorizedData = {};
-
-//   for(let i = 0; i < data.length; i++) {
-//     let item = data[i];
-//     let category = item.category;
-//     if(!categorizedData[category]) {
-//       categorizedData[category] = [];
-//     }
-//     categorizedData[category].push(item);
-//   }
-//   return categorizedData;
-// }
 /**
  * 
  * @param {JSON} data 
@@ -164,7 +151,7 @@ const getNewsData = async () => {
     progressBar.style.top = rect.top + "px";
     progressBar.style.left = rect.left + "px";
   }
-  const newsData = await getJSON("../assets/data/news_data.json");
+  const newsData = await getJSON("../../assets/data/news_data.json");
   categorizedData = categorizeData(newsData);
   createCategoryElements(categorizedData);
   setProgressed();
