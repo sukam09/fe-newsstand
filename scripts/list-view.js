@@ -23,9 +23,8 @@ const $listViewSubNews = $listViewMain.querySelector(
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
 
 const fillArticles = (currentCategory, currentPage) => {
-  const newsDataMap = NewsDB.getNewsDataMapByCategory();
   const { name, src, edit_date, main_news, sub_news } =
-    newsDataMap.get(currentCategory)[currentPage];
+    NewsDB.queryByCategory(currentCategory)[currentPage];
 
   $news_logo.src = src;
   $news_logo.alt = name;
@@ -85,8 +84,7 @@ export const renderListView = () => {
     const { currentPage, currentCategory, viewType } = store.getState();
     if (viewType !== VIEW_TYPE.LIST) return;
 
-    const totalCnt =
-      NewsDB.getNewsDataMapByCategory().get(currentCategory).length;
+    const totalCnt = NewsDB.getCountByCategory(currentCategory);
 
     updateButtonUI();
     showTabCount(currentPage, totalCnt);

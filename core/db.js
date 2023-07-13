@@ -53,6 +53,14 @@ class NewsDatabase {
       ...this.#instance[1]["sub_news"].slice(0, 5),
     ];
   }
+
+  queryByCategory(category) {
+    return this.#instanceMapByCategory.get(category);
+  }
+
+  getCountByCategory(category) {
+    return this.#instanceMapByCategory.get(category).length;
+  }
 }
 
 export const NewsDB = new NewsDatabase();
