@@ -5,7 +5,10 @@ export function newsBody(categoryNews) {
   const newsBody = `
     <div class="flex_row">
       ${mainNews(categoryNews)}
-      ${subNews(categoryNews.subTitleList)}
+      <div>
+        ${subNews(categoryNews.subTitleList)} 
+        <span class="caption">${categoryNews.caption}</span>
+      </div>
     </div>
     `;
 

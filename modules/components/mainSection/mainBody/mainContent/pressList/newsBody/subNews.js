@@ -6,7 +6,8 @@ export function subNews(subTitleList) {
   const subNews = `
     <ul class="sub_news">
       ${newsList}
-    </ul>`;
+    </ul>
+    `;
 
   return subNews;
 }
