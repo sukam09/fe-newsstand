@@ -1,4 +1,4 @@
-import { showGridPageButton, now_grid_page } from "./gridView.js";
+import { showGridPageButton, showGridPage } from "./gridView.js";
 import {
   setFirstListPage,
   startCategoryInterval,
@@ -6,6 +6,14 @@ import {
   updateCategoryClicked,
 } from "./category.js";
 import { $, $All } from "./util.js";
+import { listArrowButtonClicked } from "./listView.js";
+import {
+  CATEGORY_TAB_NUM,
+  IS_GRID,
+  NOW_CATEGORY_IDX,
+  NOW_GRID_PAGE,
+  NOW_LIST_PAGE,
+} from "../constant/constants.js";
 
 // 로고 새로고침
 function refreshWindow() {
@@ -16,7 +24,7 @@ function refreshWindow() {
 function getMainElements() {
   return {
     listContainer: $(".list_container"),
-    gridContainer: $All(".grid_container")[now_grid_page],
+    gridContainer: $All(".grid_container")[NOW_GRID_PAGE.getValue()],
     listButton: $(".list_button"),
     gridButton: $(".grid_button"),
     leftListButton: $(".left_list_button"),
@@ -51,6 +59,7 @@ function changeView(elements, isGrid) {
     setFirstListPage();
     updateCategoryClicked();
   }
+  IS_GRID.toggleValue();
 }
 
 function changeMainView(isGrid) {
@@ -83,6 +92,29 @@ function updateDate() {
   });
   gridButton.addEventListener("click", () => {
     changeMainView(true);
+  });
+  window.addEventListener("keydown", (e) => {
+    if (IS_GRID.getValue()) {
+      if (e.key === "ArrowRight" && NOW_GRID_PAGE.getValue() < 3) {
+        showGridPage(1);
+      } else if (e.key === "ArrowLeft" && NOW_GRID_PAGE.getValue() > 0) {
+        showGridPage(-1);
+      }
+    } else {
+      if (
+        e.key === "ArrowRight" &&
+        (NOW_CATEGORY_IDX.getValue() !== CATEGORY_TAB_NUM ||
+          NOW_LIST_PAGE.getValue() !==
+            categoryList[CATEGORY_TAB_NUM].data.length)
+      ) {
+        listArrowButtonClicked(1);
+      } else if (
+        e.key === "ArrowLeft" &&
+        (NOW_LIST_PAGE.getValue() - 1 > 0 || NOW_CATEGORY_IDX.getValue() !== 0)
+      ) {
+        listArrowButtonClicked(-1);
+      }
+    }
   });
   stopCategoryInterval();
 })();

@@ -1,5 +1,6 @@
 import {
   CATEGORY_TAB_NUM,
+  IS_GRID,
   MAX_NEWS_COUNT,
   NOW_CATEGORY_IDX,
   NOW_LIST_PAGE,
@@ -63,7 +64,7 @@ export function updateListButton() {
     rightListButton.style.display = "block";
   }
 }
-function listArrowButtonClicked(increment) {
+export function listArrowButtonClicked(increment) {
   if (NOW_LIST_PAGE.getValue() + increment === 0) {
     NOW_CATEGORY_IDX.incrementValue(-1);
     NOW_LIST_PAGE.setValue(
@@ -81,7 +82,7 @@ function listArrowButtonClicked(increment) {
 }
 
 (function init() {
-  updateListButton();
+  //   updateListButton();
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
   leftListButton.addEventListener("click", () => {

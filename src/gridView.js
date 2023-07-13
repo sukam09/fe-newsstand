@@ -1,10 +1,8 @@
+import { MAX_GRID_COUNT, NOW_GRID_PAGE } from "../constant/constants.js";
 import { $, $All, shuffleArray } from "./util.js";
 
-let now_grid_page = 0;
-const MAX_GRID_COUNT = 24;
-
 // 셔플된 리스트 그리드리스트에 append
-function appendGridList() {
+export function appendGridList() {
   const gridContainerList = $All(".grid_container");
   const shuffledArr = shuffleArray(pressObjArr);
   shuffledArr.forEach((element, idx) => {
@@ -106,32 +104,22 @@ function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
   unSubButtonContainer.style.display = "none";
 }
 
-// 그리드 다음 페이지 전환
-function showNextGridPage() {
-  showGridPage(1);
-}
-
-// 그리드 이전 페이지 전환
-function showPrevGridPage() {
-  showGridPage(-1);
-}
-
 // 그리드 페이지 업데이트
-function showGridPage(increment) {
-  const curPage = $(`#page${now_grid_page}`);
-  now_grid_page += increment;
-  const nextPage = $(`#page${now_grid_page}`);
-  now_grid_page = Math.max(0, Math.min(now_grid_page, 3));
+export function showGridPage(increment) {
+  const curPage = $(`#page${NOW_GRID_PAGE.getValue()}`);
+  NOW_GRID_PAGE.incrementValue(increment);
+  const nextPage = $(`#page${NOW_GRID_PAGE.getValue()}`);
+  NOW_GRID_PAGE.setValue(Math.max(0, Math.min(NOW_GRID_PAGE.getValue(), 3)));
   curPage.style.display = "none";
   nextPage.style.display = "grid";
   showGridPageButton();
 }
 
 // 그리뷰의 좌우 페이지 전환 버튼 업데이트
-function showGridPageButton() {
+export function showGridPageButton() {
   const left_grid_button = $(".left_grid_button");
   const right_grid_button = $(".right_grid_button");
-  switch (now_grid_page) {
+  switch (NOW_GRID_PAGE.getValue()) {
     case 0:
       left_grid_button.style.display = "none";
       right_grid_button.style.display = "block";
@@ -149,8 +137,6 @@ function showGridPageButton() {
 (function init() {
   const leftButton = document.querySelector(".left_grid_button");
   const rightButton = document.querySelector(".right_grid_button");
-  leftButton.addEventListener("click", showPrevGridPage);
-  rightButton.addEventListener("click", showNextGridPage);
+  leftButton.addEventListener("click", () => showGridPage(-1));
+  rightButton.addEventListener("click", () => showGridPage(1));
 })();
-
-export { appendGridList, showGridPageButton, now_grid_page };

@@ -40,6 +40,7 @@
 }
 .right_grid_button {
   position: absolute;
+  display: block;
   top: 50%;
   right: -48px;
   transform: translate(0%, -50%);
