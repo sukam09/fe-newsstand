@@ -1,4 +1,5 @@
 import Categories from "./Categories.js";
+import PressNews from "./PressNews.js";
 
 export default class ListView {
   constructor() {
@@ -12,5 +13,6 @@ export default class ListView {
 
   render() {
     this.$wrapper.appendChild(new Categories());
+    this.$wrapper.appendChild(new PressNews());
   }
 }
