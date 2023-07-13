@@ -15,6 +15,21 @@ let subTitles = [
   `LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”`,
 ];
 
+const pressArr = [
+  "머니투데이",
+  "경향신문",
+  "뉴스타파",
+  "오마이뉴스",
+  "데일리안",
+  "스포츠서울",
+  "스포츠동아",
+  "문화일보",
+  "KBS WORLD",
+  "한국중앙데일리",
+  "인사이트",
+  "법률방송뉴스",
+];
+
 const editDate = "2023.02.10 18:27 편집";
 
 export default function NewsListView($target, props) {
@@ -43,7 +58,7 @@ export default function NewsListView($target, props) {
       },
       subNewsData: {
         subTitles: subTitles,
-        press: "서울경제",
+        press: pressArr[props.indexArr[props.currentPage - 1]],
       },
     },
   };

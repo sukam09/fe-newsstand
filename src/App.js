@@ -29,7 +29,3 @@ export default function App($target, mode) {
 
   this.render();
 }
-
-/**
- *  State: mode (dark/light)
- * */

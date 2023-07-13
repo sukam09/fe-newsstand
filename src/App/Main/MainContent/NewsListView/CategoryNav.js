@@ -5,11 +5,12 @@ const FIRST_CATEGORY = 0;
 const LAST_CATEGORY = 6;
 
 const FIRST_PAGE = 1;
-const arrCategoryLength = [4, 12, 3, 5, 6, 4, 7, 10];
+
+const categoryLengthArr = [4, 12, 3, 5, 6, 4, 7, 10];
 
 export default function CategoryNav($target, props) {
   this.startProgress = (progressBar) => {
-    const duration = 20000; // 20초
+    const duration = 2000; // 20초
     const startWidth = 0;
     const endWidth = 100;
     const startTime = performance.now();
@@ -27,13 +28,13 @@ export default function CategoryNav($target, props) {
           if (props.category === LAST_CATEGORY) {
             props.setContentState({
               currentPage: FIRST_PAGE,
-              lastPage: arrCategoryLength[FIRST_CATEGORY],
+              lastPage: categoryLengthArr[FIRST_CATEGORY],
               category: FIRST_CATEGORY,
             });
           } else {
             props.setContentState({
               currentPage: 1,
-              lastPage: arrCategoryLength[props.category + 1],
+              lastPage: categoryLengthArr[props.category + 1],
               category: props.category + 1,
             });
           }
