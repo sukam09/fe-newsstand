@@ -4,4 +4,10 @@ async function fetchPressInfos() {
   return jsonData.pressInfoArr;
 }
 
-export {fetchPressInfos}
+async function fetchpressNews() {
+  const response = await fetch("./assets/data/pressNews.json");
+  const jsonData = await response.json();
+  return jsonData.pressNewsArr;
+}
+
+export {fetchPressInfos, fetchpressNews}
