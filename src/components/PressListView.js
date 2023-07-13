@@ -30,10 +30,10 @@ export default function PressListView({ $target, initialState }) {
 
   const initFieldTab = () => {
     $section.innerHTML = `
-    <nav class="field-tab">
-      ${categories.map(category => `<a class="text-button">${category}</a>`).join('')}
-    </nav>
-  `;
+      <nav class="field-tab">
+        ${categories.map(category => `<a class="text-button">${category}</a>`).join('')}
+      </nav>
+    `;
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
@@ -41,9 +41,14 @@ export default function PressListView({ $target, initialState }) {
     });
   };
 
-  initFieldTab();
+  let isInit = false;
 
   this.render = () => {
+    if (!isInit) {
+      initFieldTab();
+      isInit = true;
+    }
+
     $article.innerHTML = `
       <div class="press-info">
         <div class="press-name">
@@ -86,8 +91,6 @@ export default function PressListView({ $target, initialState }) {
 
     $pressImage.src = '../asset/logos/press1.png';
     $thumbnail.src = '../asset/icons/thumbnail.png';
-
-    console.log('rendered!!!');
   };
 
   this.render();
