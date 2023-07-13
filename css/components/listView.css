@@ -47,6 +47,10 @@
   height: 260px;
   margin-right: 32px;
 }
+.list-view-main img {
+  width: 320px;
+  height: 200px;
+}
 .list-view-sub {
   width: 530px;
   height: 245px;
