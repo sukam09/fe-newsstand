@@ -93,25 +93,37 @@
       <section class="press-section">
         <nav class="press-nav">
           <div class="press-option">
-            <span class="total-press font-init">전체 언론사</span>
+            <!--구독 언론사/전체 언론사 선택-->
+            <span class="total-press font-init option-selected">전체 언론사</span>
             <span class="subscribed-press">내가 구독한 언론사</span>
           </div>
 
           <div class="view-icon-div grid-selected">
+            <!--grid가 선택되었을 때-->
             <img class="list-symbol" src="/img/icons/list-symbol.svg" />
             <img class="grid-symbol" src="/img/icons/grid-symbol-selected.svg" />
           </div>
           <div class="view-icon-div list-selected">
+            <!--list가 선택되었을 때-->
             <img class="list-symbol" src="/img/icons/list-symbol-selected.svg" />
             <img class="grid-symbol" src="/img/icons/grid-symbol.svg" />
           </div>
         </nav>
         <div class="press-grid">
+          <!--grid 형태의 press list-->
           <img id="grid-prev" class="l-btn" src="/img/icons/LeftButton.svg" />
           <ul id="press-list"></ul>
           <img id="grid-next" class="r-btn" src="/img/icons/RightButton.svg" />
         </div>
+        <section class="press-grid-sub">
+          <!--grid 형태의 press list-->
+          <img id="grid-prev" class="l-btn" src="/img/icons/LeftButton.svg" />
+          <ul id="sub-press-list"></ul>
+          <img id="grid-next" class="r-btn" src="/img/icons/RightButton.svg" />
+        </section>
         <section class="press-list-section">
+          <!--list 형태의 press list-->
+          <div class="subscribe-modal">내가 구독한 언론사에 추가되었습니다.</div>
           <nav class="list-nav">
             <ul>
               <li class="progress-bar">
@@ -129,9 +141,7 @@
             <div class="press-info">
               <img class="press-brandmark" src="" />
               <span class="edit-date font-init"></span>
-              <button>
-                <img src="./img/icons/subBtn.svg" />
-              </button>
+              <img class="list-sub-btn" src="./img/icons/subBtn.svg" />
             </div>
             <div class="news">
               <img class="left-btn hidden" src="./img/icons/LeftButton.svg" />

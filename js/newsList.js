@@ -1,7 +1,7 @@
 import { category, news_by_category } from "../assets/news.js";
+import { listSubMouseClick } from "./subscribe.js";
 
 let now_category = category[0];
-
 const total_pages = {};
 let page_count = {};
 category.forEach(item => {
@@ -43,6 +43,9 @@ function drawNews(category, page) {
   $caption.classList.add("caption");
   $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
+  const $sub_btn = document.querySelector(".list-sub-btn");
+  $sub_btn.src = news[page].isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
+  $sub_btn.addEventListener("click", e => listSubMouseClick(news[page], e.target));
 }
 
 function restartAnimation() {
