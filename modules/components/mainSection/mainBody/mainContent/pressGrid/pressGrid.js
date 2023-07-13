@@ -1,6 +1,5 @@
 import { NUM_IN_A_GRID } from "../../../../../pageState.js";
 import { qs } from "../../../../../utils.js";
-import { hideListContainer } from "../pressList/pressList.js";
 import { pressItem } from "./pressItem/pressItem.js";
 
 export function pressGrid(pressDataArr, page) {

@@ -13,8 +13,6 @@ export async function mainBody() {
 }
 
 export function initGridView(pressDataArr) {
-  const $mainSection = document.getElementById("main_section");
-
   // create grid
   const $gridContainer = document.getElementById("grid_container");
   for (let i = 0; i < MAX_PAGE; i++) {

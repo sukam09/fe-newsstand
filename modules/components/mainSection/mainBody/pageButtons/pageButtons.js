@@ -14,6 +14,8 @@ import {
   TOTAL_LIST_PAGE,
   MAX_CATEGORY_ID,
   setCategoryId,
+  GRID,
+  LIST,
 } from "../../../../pageState.js";
 import { qs } from "../../../../utils.js";
 import {
@@ -28,9 +30,6 @@ import {
   hideAllListPage,
   showListPage,
 } from "../mainContent/pressList/pressList.js";
-
-const GRID = "grid";
-const LIST = "list";
 
 export function rightButton() {
   return `

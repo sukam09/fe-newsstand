@@ -1,4 +1,3 @@
-import { qs } from "../../utils.js";
 import { mainBody } from "./mainBody/mainBody.js";
 import { mainHeader } from "./mainHeader/mainHeader.js";
 

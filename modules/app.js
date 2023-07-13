@@ -10,7 +10,6 @@ import {
   addEventsOnSubButton,
   addEventsOnViewButton,
 } from "./events.js";
-import { getPageType } from "./pageState.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
   const $root = document.getElementById("root");
@@ -24,7 +23,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnPageButton();
   addEventsOnGridItem();
   addEventsOnSubButton(); // 미완
-  addEventsOnViewButton(getPageType());
+  addEventsOnViewButton();
   addEventsOnCategoryItem();
   startRollingAnimation();
 });

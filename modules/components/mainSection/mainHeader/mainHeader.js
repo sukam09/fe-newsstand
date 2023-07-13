@@ -1,8 +1,6 @@
-import { addEventsOnPageButton } from "../../../events.js";
 import {
   GRID,
   LIST,
-  MAX_GRID_PAGE,
   categoryId,
   gridPage,
   listPage,
