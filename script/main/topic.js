@@ -1,6 +1,6 @@
 import { getJSON } from "../util/util.js";
 const setTopic = async () => {
-  const mainTopic = await getJSON("../assets/data/mainTopic.json");
+  const mainTopic = await getJSON("../assets/data/main_topic.json");
 
   const firstTopics = mainTopic.slice(0, mainTopic.length / 2);
   const secondTopics = mainTopic.slice(mainTopic.length / 2);
