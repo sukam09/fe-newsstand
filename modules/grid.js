@@ -1,8 +1,7 @@
 import { MEDIA } from "../constant.js";
-import { isLightMode } from "../index.js";
+import { STATE } from "../state.js";
 import { shuffleList, setViewEvent } from "./utils.js";
 
-let pageNum = 0;
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
 
@@ -14,7 +13,7 @@ const makeGrid = () => {
 
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
-    const imgSrc = isLightMode
+    const imgSrc = STATE.IS_LIGHT
       ? `/images/light-media/${idList[i]}.png`
       : `/images/dark-media/${idList[i]}.png`;
 
@@ -30,27 +29,33 @@ const makeGrid = () => {
 
     $newsWrapper.append($li);
   }
+};
 
+const setGridArrowEvent = () => {
   // 화살표 클릭 이벤트 추가
   const $leftArrow = document.querySelector(".left-arrow");
   const $rightArrow = document.querySelector(".right-arrow");
 
-  $leftArrow.addEventListener("click", () => clickArrow(-1));
-  $rightArrow.addEventListener("click", () => clickArrow(+1));
+  $leftArrow.addEventListener("click", () => {
+    if (STATE.IS_GRID) clickArrow(-1);
+  });
+  $rightArrow.addEventListener("click", () => {
+    if (STATE.IS_GRID) clickArrow(+1);
+  });
 };
 
 /**
  * 언론사 이미지 src 변경하기
  */
-const changeImgSrc = (pageNum) => {
+const changeImgSrc = () => {
   let newImg = idList.slice(
-    pageNum * MEDIA_NUM,
-    pageNum * MEDIA_NUM + MEDIA_NUM
+    STATE.GRID_PAGE_NUM * MEDIA_NUM,
+    STATE.GRID_PAGE_NUM * MEDIA_NUM + MEDIA_NUM
   );
 
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $img = document.querySelector(`.img${i}`);
-    const imgSrc = isLightMode
+    const imgSrc = STATE.IS_LIGHT
       ? `./images/light-media/${newImg[i]}.png`
       : `./images/dark-media/${newImg[i]}.png`;
 
@@ -69,8 +74,8 @@ const changeImgSrc = (pageNum) => {
  * Grid 화살표 클릭하기
  */
 const clickArrow = (num) => {
-  pageNum += num;
-  changeImgSrc(pageNum);
+  STATE.GRID_PAGE_NUM += num;
+  changeImgSrc(STATE.GRID_PAGE_NUM);
   setArrowVisible();
 };
 
@@ -82,12 +87,12 @@ const setArrowVisible = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   // 페이지 제한 0~3에 따른 hidden 여부
-  if (pageNum === 0) {
+  if (STATE.GRID_PAGE_NUM === 0) {
     $leftArrow.classList.add("hidden");
-  } else if (pageNum > 0 && pageNum < 3) {
+  } else if (STATE.GRID_PAGE_NUM > 0 && STATE.GRID_PAGE_NUM < 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.remove("hidden");
-  } else if (pageNum === 3) {
+  } else if (STATE.GRID_PAGE_NUM === 3) {
     $rightArrow.classList.add("hidden");
   }
 
@@ -99,5 +104,6 @@ async function initGridView() {
   setArrowVisible();
   setViewEvent();
   makeGrid();
+  setGridArrowEvent();
 }
-export { initGridView };
+export { initGridView, setArrowVisible };
