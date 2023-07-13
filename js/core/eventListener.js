@@ -1,3 +1,3 @@
-const clickEventListener = (element, callback) => element.addEventListener('click', callback);
+const EventListener = (type, element, callback) => element.addEventListener(type, callback);
 
-export { clickEventListener };
+export { EventListener };

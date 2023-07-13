@@ -1,4 +1,4 @@
-import { clickEventListener } from './eventListener.js';
+import { EventListener } from './eventListener.js';
 
 function initEvent() {
   eventRefreshHeaderTitle();
@@ -9,7 +9,7 @@ const eventRefreshHeaderTitle = () => {
   const headerLogo = document.querySelector('.header—title');
   const handleTitleRefresh = () => window.location.reload();
 
-  clickEventListener(headerLogo, handleTitleRefresh);
+  EventListener('click', headerLogo, handleTitleRefresh);
 };
 
 const eventNewsTabList = () => {
@@ -34,8 +34,8 @@ const eventNewsTabList = () => {
     thumb.src = './assets/grid-view-on.svg';
   };
 
-  clickEventListener(btnList, handleBtnList);
-  clickEventListener(thumb, handleBtnThumb);
+  EventListener('click', btnList, handleBtnList);
+  EventListener('click', thumb, handleBtnThumb);
 };
 
 export { initEvent };
