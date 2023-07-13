@@ -1,8 +1,10 @@
 import { MEDIA } from "../constant.js";
-import { isLightMode, idList } from "../index.js";
+import { isLightMode } from "../index.js";
+import { shuffleList, setViewEvent } from "./utils.js";
 
 let pageNum = 0;
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
 
 /**
  * 언론사 Grid 제작하기
@@ -92,4 +94,10 @@ const setArrowVisible = () => {
   // 언론사 로고 개수 따른 hidden 여부
 };
 
-export { setArrowVisible, makeGrid };
+async function initGridView() {
+  shuffleList(idList);
+  setArrowVisible();
+  setViewEvent();
+  makeGrid();
+}
+export { initGridView };
