@@ -27,15 +27,10 @@ const UnSubButton = ({ withText, onClick }) => {
     : Button({ icon: 'close', isWhite: false, onClick });
 };
 
-const SubButton = (isSub, withText = true, onClick) => {
-  const subElement = document.createElement('div');
-  subElement.className = 'media_hover surface_alt';
-  const button = isSub
-    ? Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick })
-    : UnSubButton({ withText, onClick });
-  subElement.appendChild(button);
-
-  return subElement;
+const SubButton = ({ isSub, withText = true, onClick }) => {
+  return isSub
+    ? UnSubButton({ withText, onClick })
+    : Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick });
 };
 
 export default Button;

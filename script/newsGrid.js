@@ -41,10 +41,12 @@ const setGrid = () => {
     imageElement.src = `assets/images/logo/light/${image.src}`;
     imageElement.alt = image.name;
     // 구독 여부에 따라 구독하기 or 해지하기 버튼 추가
-    imageElement.insertAdjacentElement(
-      'afterend',
-      SubButton(!subscribed.includes(mediaArray[mediaId]))
+    const subButtonArea = document.createElement('div');
+    subButtonArea.classList.add('media_hover', 'surface_alt');
+    subButtonArea.appendChild(
+      SubButton({ isSub: !SUB_MEDIA.includes(mediaArray[mediaId]) })
     );
+    imageElement.insertAdjacentElement('afterend', subButtonArea);
   });
 };
 
