@@ -15,13 +15,6 @@ export default function PressListView({ $target, initialState }) {
 
   const { categories } = this.state;
 
-  // TODO: 나중에 데이터 연결할 때 사용
-  // const fetchPressImage = () => {
-  //   fetch('../data/press-info.json')
-  //     .then(response => response.json())
-  //     .then(json => this.setState({ ...this.state, pressImage: json[0].logo }));
-  // };
-
   const handleClickTextButton = newIndex => {
     if (this.state.index === newIndex) {
       return;
