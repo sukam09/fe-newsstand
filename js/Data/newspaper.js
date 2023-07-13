@@ -596,7 +596,7 @@ const newspaperData = [
   },
   {
     id: 86,
-    name: "소포츠서울",
+    name: "스포츠서울",
     darkSrc: "./assets/logo/dark/img86.svg",
     lightSrc: "./assets/logo/light/img86.svg",
     isSub: false,

@@ -4,17 +4,17 @@
   display: none;
   height: 388px;
   position: relative;
-  border: 1px solid #d2dae0;
+  border: 1px solid var(--color-border-default);
 }
 
 .news-list__field-tab {
   display: flex;
   height: 40px;
-  background-color: #f5f7f9;
-  border-bottom: 1px solid #d2dae0;
+  background-color: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border-default);
   text-align: center;
-  font-size: 14px;
-  color: #879298;
+  font-size: var(--font-size-regular);
+  color: var(--color-text-weak);
 }
 
 .news-list__field-tab__progress {
@@ -23,19 +23,23 @@
   align-items: center;
   width: 166px;
   padding: 0 16px;
-  background: linear-gradient(to right, #4362d0 0%, #7890e7 0%);
-  color: white;
-  font-weight: 700;
+  background: linear-gradient(
+    to right,
+    var(--color-surface-brand-default) 0%,
+    var(--color-surface-brand-alt) 0%
+  );
+  color: var(--color-text-white-default);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
 }
 
 .news-list__field-tab__progress-count {
   vertical-align: bottom;
-  font-size: 12px;
+  font-size: var(--font-size-small);
 }
 
 .news-list__field-tab__progress-entire {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-white-weak);
 }
 
 .news-list__field-tab__general {
@@ -66,8 +70,8 @@
 }
 
 .news-list__press-news__info__date {
-  font-size: 12px;
-  color: #5f6e76;
+  font-size: var(--font-size-small);
+  color: var(--color-text-default);
 }
 
 .news-list__press-news__news {
@@ -110,8 +114,8 @@
 }
 
 .news-list__press-news__title {
-  font-size: 16px;
-  color: #14212b;
+  font-size: var(--font-size-medium);
+  color: var(--color-text-strong);
 }
 
 .news-list__press-news__sub {
@@ -122,8 +126,8 @@
 }
 
 .news-list__press-news__subtitle {
-  font-size: 16px;
-  color: #4b5966;
+  font-size: var(--font-size-medium);
+  color: var(--color-text-bold);
 }
 
 .news-list__press-news__subtitle:hover {
@@ -132,6 +136,6 @@
 }
 
 .news-list__press-news__subcaption {
-  font-size: 14px;
-  color: #879298;
+  font-size: var(--font-size-regular);
+  color: var(--color-text-weak);
 }

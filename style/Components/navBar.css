@@ -17,14 +17,14 @@
 }
 
 .news-navbar_newspaper-list-all {
-  color: #14212b;
-  font-weight: bold;
+  color: var(--color-text-strong);
+  font-weight: var(--font-weight-bold);
   line-height: 22px;
   cursor: pointer;
 }
 
 .news-navbar_newspaper-list-my {
-  color: #879298;
+  color: var(--color-text-weak);
   line-height: 22px;
   cursor: pointer;
 }

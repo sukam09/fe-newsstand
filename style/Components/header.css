@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
   width: 136px;
-  font-size: 24px;
+  font-size: var(--font-size-large);
   white-space: nowrap;
 }
 
@@ -24,6 +24,6 @@
 .header__date {
   position: relative;
   top: 8.5px;
-  color: #5f6e76;
-  font-size: 16px;
+  color: var(--color-text-default);
+  font-size: var(--font-size-medium);
 }
