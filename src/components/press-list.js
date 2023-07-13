@@ -99,15 +99,7 @@ const setPressCategoryElement = () => {
 
   const pressCategoryArticle = `
   <article class='press-category__article'>
-    <section class='press-category__section-main'>
-      <nav class='section-main__nav'>
-        <img class='section-main__img-logo'>
-        <time class='section-main__time'></time>
-        <buttion class='section-main__button' />
-      </nav>
-      <img class='section-main__img-article' />
-      <h2 class='section-main__h2'></h2>
-    </section>
+    <section class='press-category__section-main'></section>
 
     <section class='press-category__section-sub'>
       <footer class='section-sub__footer'></footer>
