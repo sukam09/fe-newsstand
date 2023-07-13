@@ -108,18 +108,19 @@ h2.headline_area_item {
     display: none;
 }
 
-.media_select:checked + label {
-    /* 
-        text-strong
-        selected-bold16
-     */
-    font: var(--bold-M);
-    color: var(--grayscale-black);
-}
-
 .media_select + label,
 .view_select + label {
     cursor: pointer;
+}
+
+.view_select + label svg {
+    display: block;
+    fill: var(--grayscale-200);
+}
+
+.media_select:checked + label {
+    font: var(--bold-M);
+    color: var(--grayscale-black);
 }
 
 .view_select:checked + label svg {
