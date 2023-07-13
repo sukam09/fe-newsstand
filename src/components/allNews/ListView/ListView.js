@@ -4,7 +4,7 @@ import PressNews from "./PressNews.js";
 export default class ListView {
   constructor() {
     this.$wrapper = document.createElement("div");
-    this.$wrapper.className = "list-wrapper hidden";
+    this.$wrapper.className = "list-wrapper";
 
     this.render();
 
