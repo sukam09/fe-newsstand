@@ -98,6 +98,7 @@
 }
 .dark .text-weak {
   color: var(--gray-scale-white-alt);
+  opacity: var(--gray-scale-white-alt-opacity);
 }
 .dark .text-white-default {
   color: var(--gray-scale-white);
@@ -123,6 +124,7 @@
 }
 .dark .border-bold {
   border: 1px solid var(--gray-scale-white-alt);
+  opacity: var(--gray-scale-white-alt-opacity);
 }
 .dark .border-default {
   border: 1px solid var(--gray-scale-400);

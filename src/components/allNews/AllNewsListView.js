@@ -94,12 +94,15 @@ export default class AllNewsListView extends Component {
         if (index === this.state.currentPressIndex) {
           return (
             innerHTML +
-            `<li class='text-weak available-medium14 press-header-focus surface-brand-alt '>
+            `<li class='press-header-focus surface-brand-alt '>
                   <span class='progress-bar surface-brand-default'></span>
                   <div>
-                    <span class='selected-bold14 text-white-default'>${press}</span><span class='selected-bold14 text-white-default'>
-                    <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
-                    <span class='display-bold12 text-white-weak'> / ${this.state.totalPage}</span></span>
+                    <span class='selected-bold14 text-white-default'>${press}</span>
+                    <div>
+                      <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
+                      <span class='display-bold12 text-white-weak'> / ${this.state.totalPage}</span>
+                    </div>
+                    
                   </div>
                   </li>`
           );
