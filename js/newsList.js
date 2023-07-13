@@ -1,5 +1,6 @@
 import { category, news_by_category } from "../assets/news.js";
 import { listSubMouseClick } from "./subscribe.js";
+import presses from "../assets/light-media.js";
 
 let now_category = category[0];
 const total_pages = {};
@@ -200,4 +201,16 @@ function setFisrtCategory() {
   clickCategory($first_category);
 }
 
-export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass };
+function setSubListNav() {
+  const subscribed_presses = presses.filter(press => press.isSub === true);
+  console.log(subscribed_presses);
+  const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
+  [...subscribed_presses].forEach(press => {
+    const $li = document.createElement("li");
+    $li.classList.add("sub-nav-item");
+    $li.textContent = press.name;
+    $sub_list_nav.append($li);
+  });
+}
+
+export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, setSubListNav };

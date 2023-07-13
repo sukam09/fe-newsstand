@@ -10,4 +10,11 @@ function setDisplay(element, type, display) {
   }
 }
 
-export { setDisplay };
+function removeDisplay() {
+  setDisplay(".press-list-section", "query", "none");
+  setDisplay(".sub-press-list-section", "query", "none");
+  setDisplay(".press-grid", "query", "none");
+  setDisplay(".press-grid-sub", "query", "none");
+}
+
+export { setDisplay, removeDisplay };

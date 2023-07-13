@@ -2,10 +2,9 @@ import presses from "../assets/light-media.js";
 import { initGridItemEvent, initSubGridItemEvent, preventButtonClick } from "./subscribe.js";
 import { PAGE_SIZE } from "./const.js";
 import { setDisplay } from "./utils.js";
-import { sub_view_selected } from "./subscribe.js";
+import { changeToGrid, changeToList, addEventInSymbol } from "./viewHandler.js";
 let grid_page_count = 0;
 let sub_grid_page_count = 0;
-let grid_view_selected = true;
 
 const shuffle = () => Math.random() - 0.5;
 let shuffled_presses = [...presses].sort(shuffle);
@@ -56,36 +55,6 @@ function appendSubPressInGrid(press) {
   $button.append($sub_img);
   $list.append($image, $button);
   document.getElementById("sub-press-list").appendChild($list);
-}
-
-function changeToGrid() {
-  setDisplay(".grid-selected", "query", "flex");
-  setDisplay(".list-selected", "query", "none");
-  setDisplay(".press-list-section", "query", "none");
-  setDisplay(".sub-press-list-section", "query", "none");
-  if (sub_view_selected) {
-    setDisplay(".press-grid-sub", "query", "block");
-    setDisplay(".press-grid", "query", "none");
-  } else {
-    setDisplay(".press-grid-sub", "query", "none");
-    setDisplay(".press-grid", "query", "block");
-  }
-  grid_view_selected = true;
-}
-
-function changeToList() {
-  setDisplay(".grid-selected", "query", "none");
-  setDisplay(".list-selected", "query", "flex");
-  setDisplay(".press-grid", "query", "none");
-  setDisplay(".press-grid-sub", "query", "none");
-  if (sub_view_selected) {
-    setDisplay(".press-list-section", "query", "none");
-    setDisplay(".sub-press-list-section", "query", "block");
-  } else {
-    setDisplay(".press-list-section", "query", "block");
-    setDisplay(".sub-press-list-section", "query", "none");
-  }
-  grid_view_selected = false;
 }
 
 function turnSubGridNextPage() {
@@ -184,35 +153,4 @@ function drawSubGridView() {
   drawSubGridArrow();
 }
 
-function addEventInSymbol() {
-  let $list_symbol = document.querySelectorAll(".list-symbol");
-  let $grid_symbol = document.querySelectorAll(".grid-symbol");
-  $list_symbol.forEach(symbol => {
-    symbol.addEventListener("click", () => {
-      if (grid_view_selected) {
-        // grid 상태이면
-        changeToList();
-      }
-    });
-  });
-  $grid_symbol.forEach(symbol => {
-    symbol.addEventListener("click", () => {
-      if (!grid_view_selected) {
-        // grid 상태 아니면
-        changeToGrid();
-      }
-    });
-  });
-}
-
-export {
-  appendPressInGrid,
-  changeToGrid,
-  changeToList,
-  initPressGrid,
-  grid_view_selected,
-  sub_view_selected,
-  drawSubGridView,
-  drawGridView,
-  drawSubGridArrow,
-};
+export { appendPressInGrid, changeToList, initPressGrid, drawSubGridView, drawGridView, drawSubGridArrow };
