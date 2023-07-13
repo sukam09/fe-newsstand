@@ -25,17 +25,12 @@ export const customQuerySelector = (selector, $target = document) => {
   while (childNodes.length > 0) {
     const $node = childNodes.shift();
 
-    if (tagType === '#' && $node.id === name) {
-      return $node;
-    } else if (tagType === '.' && $node.classList && $node.classList.contains(name)) {
-      return $node;
-    } else if ($node.tagName === targetSelctor.toUpperCase()) {
-      return $node;
-    } else {
+    if (tagType === '#' && $node.id === name) return $node;
+    else if (tagType === '.' && $node.classList && $node.classList.contains(name)) return $node;
+    else if ($node.tagName === targetSelctor.toUpperCase()) return $node;
+    else {
       const $result = customQuerySelector(selector, $node);
-      if ($result) {
-        return $result;
-      }
+      if ($result) return $result;
     }
   }
 
@@ -52,15 +47,11 @@ export const customQuerySelectorAll = (selector, $target = document) => {
   while (childNodes.length > 0) {
     const $node = childNodes.shift();
 
-    if (tagType === '#' && $node.id === name) {
+    if (tagType === '#' && $node.id === name) result.push($node);
+    else if (tagType === '.' && $node.classList && $node.classList.contains(name))
       result.push($node);
-    } else if (tagType === '.' && $node.classList && $node.classList.contains(name)) {
-      result.push($node);
-    } else if ($node.tagName === targetSelctor.toUpperCase()) {
-      result.push($node);
-    } else {
-      childNodes.push(...$node.childNodes);
-    }
+    else if ($node.tagName === targetSelctor.toUpperCase()) result.push($node);
+    else childNodes.push(...$node.childNodes);
   }
   return result;
 };

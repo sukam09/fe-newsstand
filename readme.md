@@ -36,3 +36,41 @@
 ## 📌 image
 
 <img width="100%" alt="스크린샷 2023-07-06 오후 5 55 46" src="https://github.com/bae-sh/fe-newsstand/assets/37887690/4418874b-6403-4cd5-95ed-33343edeb69c">
+
+```
+fe-newsstand
+│  ├─ components
+│  │  ├─ App.js
+│  │  ├─ allNews
+│  │  │  ├─ AllNewHeader.js
+│  │  │  ├─ AllNewsGridView.js
+│  │  │  ├─ AllNewsListView.js
+│  │  │  ├─ ArrowButton.js
+│  │  │  └─ index.js
+│  │  ├─ common
+│  │  │  ├─ Alert.js
+│  │  │  ├─ Button.js
+│  │  │  └─ Icon.js
+│  │  ├─ core
+│  │  │  └─ Component.js
+│  │  ├─ header
+│  │  │  └─ index.js
+│  │  └─ latestNews
+│  │     ├─ LatestNewsComponent.js
+│  │     └─ index.js
+│  ├─ constants
+│  │  └─ index.js
+│  ├─ index.js
+│  └─ utils
+│     └─ index.js
+└─ styles
+   ├─ color.css
+   ├─ components
+   │  ├─ alert.css
+   │  ├─ allNews.css
+   │  ├─ header.css
+   │  └─ latestNews.css
+   ├─ reset.css
+   └─ typography.css
+
+```

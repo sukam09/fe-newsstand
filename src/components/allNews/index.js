@@ -4,7 +4,7 @@ import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 
-let curreentView = 'grid';
+let curreentView = 'list';
 
 export default class AllNews extends Component {
   setup() {
