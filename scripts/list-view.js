@@ -2,7 +2,7 @@ import { NewsDB } from "../core/index.js";
 import { store } from "../store/index.js";
 import { VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
-import { setCategory } from "../store/reducer.js";
+import { nextCategory, prevCategory, setCategory } from "../store/reducer.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
 const $listViewTabItems = $listViewTab.querySelectorAll("li");
@@ -84,6 +84,16 @@ export const renderListView = () => {
     if (viewType !== VIEW_TYPE.LIST) return;
 
     const totalCnt = NewsDB.getCountByCategory(currentCategory);
+
+    if (currentPage < 0) {
+      store.dispatch(prevCategory());
+      return;
+    }
+
+    if (currentPage >= totalCnt) {
+      store.dispatch(nextCategory());
+      return;
+    }
 
     updateButtonUI();
     activateCategory(currentCategory);
