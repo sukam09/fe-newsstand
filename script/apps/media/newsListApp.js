@@ -1,27 +1,50 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
 import { SUB_MEDIA } from '../../constants.js';
-import { createNewArrow } from '../../utils/utils.js';
+import { createNewArrow, shuffleArray } from '../../utils/utils.js';
 
-const createListNav = () => {
+const createMediaArray = () => {
+  const mediaArray = mediaData.category;
+
+  mediaArray.forEach(category => {
+    shuffleArray(category.media);
+  });
+  return mediaArray;
+};
+
+const updatePage = listData => {
+  const listView = document.querySelector('#list_view');
+
+  listView.replaceWith(
+    createListContent(
+      listData.categoryData[listData.category].media[listData.page]
+    )
+  );
+};
+
+const setPage = (listData, move) => {
+  listData.page += move;
+
+  if (listData.page === -1) {
+    listData.category = (listData.category - 1) % listData.categoryData.length;
+    listData.page = listData.categoryData[listData.category].media.length - 1;
+  }
+  if (listData.page === listData.categoryData[listData.category].media.length) {
+    listData.category = (listData.category + 1) % listData.categoryData.length;
+    listData.page = 0;
+  }
+  updatePage(listData);
+};
+
+const createListNav = categoryData => {
   const nav = document.createElement('nav');
-  // 임시 데이터
-  const navData = [
-    '종합/경제',
-    '방송/통신',
-    'IT',
-    '영자지',
-    '스포츠/연예',
-    '매거진/전문지',
-    '지역',
-  ];
 
   nav.id = 'list_nav';
   nav.classList.add('surface_alt');
   const navList = document.createElement('ul');
   navList.id = 'list_nav_list';
   nav.appendChild(navList);
-  navData.forEach(name => {
+  categoryData.forEach(category => {
     const navItem = document.createElement('li');
     navItem.classList.add(
       'list_view_select',
@@ -31,7 +54,7 @@ const createListNav = () => {
     );
     const navItemName = document.createElement('div');
     navItemName.classList.add('name');
-    navItemName.innerText = name;
+    navItemName.innerText = category.name;
     navItem.appendChild(navItemName);
     navList.appendChild(navItem);
   });
@@ -39,41 +62,26 @@ const createListNav = () => {
   return nav;
 };
 
-const createListContent = () => {
+const createListContent = mediaId => {
   const listContent = document.createElement('div');
   // 임시 데이터
-  const listData = {
-    id: 2,
-    updated: '2023.02.10. 18:53 편집',
-    thumbnailNews: {
-      id: 1,
-      title: '봇물처럼 터지는 공공요금 인상…꼭 지금이어야 하나',
-    },
-    newsList: [
-      '뉴스 제목',
-      '뉴스 제목2',
-      '뉴스 제목3',
-      '뉴스 제목4',
-      '뉴스 제목5',
-      '뉴스 제목6',
-    ],
-  };
-
-  listContent.classList.add('list_view');
+  const newsData = mediaData.getNews(mediaId);
 
   const mediaInfo = document.createElement('div');
   mediaInfo.classList.add('media_info');
   const mediaLogo = document.createElement('img');
   mediaLogo.classList.add('media_logo');
-  mediaLogo.src = mediaData.getLogoSrc(listData.id);
-  mediaLogo.alt = mediaData.getName(listData.id);
+  mediaLogo.src = mediaData.getLogoSrc(mediaId);
+  mediaLogo.alt = mediaData.getName(mediaId);
   const updatedTime = document.createElement('div');
+
+  listContent.id = 'list_view';
   updatedTime.classList.add('text_default', 'display_medium12');
-  updatedTime.innerText = listData.updated;
+  updatedTime.innerText = `${newsData.updated} 편집`;
   mediaInfo.appendChild(mediaLogo);
   mediaInfo.appendChild(updatedTime);
   mediaInfo.appendChild(
-    SubButton({ isSub: SUB_MEDIA.includes(listData.id), withText: false })
+    SubButton({ isSub: SUB_MEDIA.includes(mediaId), withText: false })
   );
 
   const news = document.createElement('div');
@@ -90,14 +98,14 @@ const createListContent = () => {
   thumbnailNewsImage.alt = '기사 제목';
   const thumbnailNewsTitle = document.createElement('h2');
   thumbnailNewsTitle.classList.add('title');
-  thumbnailNewsTitle.innerHTML = `<a>${listData.thumbnailNews.title}</a>`;
+  thumbnailNewsTitle.innerHTML = `<a>${newsData.thumbnailNews}</a>`;
   thumbnailNewsSection.appendChild(thumbnailNewsImage);
   thumbnailNewsSection.appendChild(thumbnailNewsTitle);
   news.appendChild(thumbnailNewsSection);
 
   const newsList = document.createElement('ul');
   newsList.classList.add('sub_news');
-  listData.newsList.forEach(title => {
+  newsData.news.forEach(title => {
     const newsItem = document.createElement('li');
     const newsLink = document.createElement('a');
     newsLink.classList.add('pointer', 'text_bold', 'hover_medium16');
@@ -107,7 +115,9 @@ const createListContent = () => {
   });
   const notice = document.createElement('li');
   notice.classList.add('text_weak', 'display_medium14');
-  notice.innerText = '***에서 직접 편집한 뉴스입니다.';
+  notice.innerText = `${mediaData.getName(
+    mediaId
+  )}에서 직접 편집한 뉴스입니다.`;
   newsList.appendChild(notice);
   news.appendChild(newsList);
 
@@ -117,38 +127,44 @@ const createListContent = () => {
   return listContent;
 };
 
-const createListElement = () => {
+const createListElement = categoryData => {
   const listElement = document.createElement('div');
 
   listElement.id = 'list_view_wrapper';
-  listElement.appendChild(createListNav());
-  listElement.appendChild(createListContent());
+  listElement.appendChild(createListNav(categoryData));
+  listElement.appendChild(createListContent(categoryData[0].media[0]));
   return listElement;
 };
 
-const setArrow = () => {
+const setArrow = listData => {
   const [leftArrow, rightArrow] = createNewArrow();
 
   leftArrow.addEventListener('click', () => {
-    console.log('left');
+    setPage(listData, -1);
   });
   rightArrow.addEventListener('click', () => {
-    console.log('right');
+    setPage(listData, 1);
   });
 };
 
 // initGrid와 거의 동일 (추후 통합)
-const initList = () => {
+const initList = categoryData => {
   const mediaView = document.querySelector('#media_view');
 
   Array.from(mediaView.childNodes).forEach(child => child.remove());
-  mediaView.appendChild(createListElement());
+  mediaView.appendChild(createListElement(categoryData));
 };
 
 const listApp = () => {
-  initList();
-  // setList();
-  setArrow();
+  const listData = {
+    category: 0,
+    page: 0,
+    categoryData: createMediaArray(),
+  };
+
+  initList(listData.categoryData);
+  updatePage(listData);
+  setArrow(listData);
 };
 
 export default listApp;

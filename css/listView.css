@@ -52,7 +52,7 @@
 
 /* content */
 
-.list_view {
+#list_view {
     display: flex;
     padding: 24px;
     flex-direction: column;
@@ -67,7 +67,7 @@
     box-sizing: border-box;
 }
 
-.list_view .news {
+#list_view .news {
     display: flex;
     gap: 32px;
     align-self: stretch;

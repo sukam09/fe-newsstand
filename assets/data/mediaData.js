@@ -133,6 +133,7 @@ const mediaData = {
   getNews: id => {
     return {
       thumbnailNews: `${media[id]}의 썸네일 기사`,
+      updated: '2023.02.10. 18:53',
       news: [
         `첫 ${media[id]}의 기사 제목`,
         `${media[id]}의 기사2 제목`,
