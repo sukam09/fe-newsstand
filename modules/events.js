@@ -8,6 +8,10 @@ import {
   showNextPage,
   showPrevPage,
 } from "./components/mainSection/mainBody/pageButtons/pageButtons.js";
+import {
+  handleGirdViewButton,
+  handleListViewButton,
+} from "./components/mainSection/mainHeader/mainHeader.js";
 import { qs, qsa } from "./utils.js";
 
 export function addEventsOnGridItem() {
@@ -21,7 +25,6 @@ export function addEventsOnGridItem() {
 export function addEventsOnPageButton() {
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
-
   $leftBtn.addEventListener("click", () => showPrevPage("grid"));
   $rightBtn.addEventListener("click", () => showNextPage("grid"));
 }
@@ -38,21 +41,11 @@ export function addEventsOnSubButton() {
 }
 
 export function addEventsOnViewButton() {
-  const $gridViewButton = qs(".grid_view_button");
   const $listViewButton = qs(".list_view_button");
+  const $gridViewButton = qs(".grid_view_button");
 
-  $gridViewButton.addEventListener("click", (e) => {
-    e.currentTarget.classList.add("view_clicked");
-    $listViewButton.classList.remove("view_clicked");
-    showGridPage(gridPage);
-  });
-  $listViewButton.addEventListener("click", (e) => {
-    e.currentTarget.classList.add("view_clicked");
-    $gridViewButton.classList.remove("view_clicked");
-    for (let i = 0; i < MAX_GRID_PAGE; i++) {
-      hideGridPage(i);
-    }
-  });
+  $gridViewButton.addEventListener("click", (e) => handleGirdViewButton(e));
+  $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
 }
 
 function showSubButton(e) {

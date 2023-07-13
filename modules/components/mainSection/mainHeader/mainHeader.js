@@ -1,3 +1,11 @@
+import { qs } from "../../../utils.js";
+import {
+  MAX_GRID_PAGE,
+  gridPage,
+  hideGridPage,
+  showGridPage,
+} from "../mainBody/mainContent/pressGrid/pressGrid.js";
+
 export function mainHeader() {
   return `
     <div class="main_header flex_row">
@@ -11,4 +19,22 @@ export function mainHeader() {
       </div>
     </div>
     `;
+}
+
+export function handleGirdViewButton(e) {
+  const $listViewButton = qs(".list_view_button");
+  e.currentTarget.classList.add("view_clicked");
+  $listViewButton.classList.remove("view_clicked");
+  showGridPage(gridPage);
+  // todo : 리스트 페이지 보이기
+}
+
+export function handleListViewButton(e) {
+  const $gridViewButton = qs(".grid_view_button");
+  e.currentTarget.classList.add("view_clicked");
+  $gridViewButton.classList.remove("view_clicked");
+  for (let i = 0; i < MAX_GRID_PAGE; i++) {
+    hideGridPage(i);
+  }
+  // todo : 리스트 숨기기
 }
