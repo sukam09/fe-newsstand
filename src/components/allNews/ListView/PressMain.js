@@ -15,6 +15,6 @@ export default class PressMain {
     this.$wrapper.appendChild(
       new PressImagesInfo("https://picsum.photos/536/354", "예시 제목")
     );
-    this.$wrapper.appendChild(new PressTitles());
+    this.$wrapper.appendChild(new PressTitles("연합뉴스", [1, 2, 3, 4, 5, 6]));
   }
 }
