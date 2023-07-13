@@ -60,6 +60,7 @@ const setPressCategoryArticle = (initCategoryArticleList) => {
 
       const sectionSub = document.querySelector('.press-category__section-sub');
       const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
+      sectionSub.querySelector('.section-sub__footer-press').innerText = initCategoryArticleList[liIdx].name;
 
       sectionSubList.forEach((sub, subIdx) => {
         sub.href = initCategoryArticleList[liIdx].subTitleList[subIdx].link;
@@ -78,7 +79,10 @@ const setPressCategorySub = (categoryData) => {
   const categoryInitDataTitle = categoryData[0].categoryData[0].subTitleList;
 
   const categoryFooter = `
-  <footer class='section-sub__footer'>${categoryInitDataName} 언론사에서 직접 편집한 뉴스입니다.</footer>
+  <footer class='section-sub__footer'> 
+    <p class='section-sub__footer-press'>${categoryInitDataName}</p> 
+    <p class='section-sub__footer-text'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
+  </footer>
   `;
 
   categoryInitDataTitle.forEach((initData) => {

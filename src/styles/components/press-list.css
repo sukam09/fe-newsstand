@@ -166,6 +166,9 @@
 }
 
 .section-sub__footer {
+  display: flex;
+  flex-direction: row;
+
   font: var(--medium-R);
   color: var(--grayscale-200);
 }
