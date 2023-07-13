@@ -13,12 +13,9 @@ import {
 
 window.addEventListener("DOMContentLoaded", async () => {
   const $root = document.getElementById("root");
-
   $root.innerHTML += titleSection();
   $root.innerHTML += await headlineSection();
   $root.innerHTML += await mainSection();
-
-  showGridPage(0);
 
   addEventsOnPageButton();
   addEventsOnGridItem();
@@ -26,4 +23,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnViewButton();
   addEventsOnCategoryItem();
   startRollingAnimation();
+
+  showGridPage(0);
 });
