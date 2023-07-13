@@ -135,8 +135,9 @@ function getCurPageInCategory() {
 
 function movePageFromEvent(event) {
   let page;
+  const target = (event.target.querySelector("span") || event.target).innerHTML;
 
-  switch (event.target.innerHTML) {
+  switch (target) {
     case CATEGORY.ECONOMY:
       page = 0;
       break;

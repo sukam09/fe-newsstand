@@ -222,12 +222,16 @@ body {
 
 .field-tab button {
   display: flex;
-  height: 40px;
+  height: 39px;
   padding: 0px 16px;
   align-items: center;
   gap: 8px;
   color: var(--text-weak);
   background: var(--surface-alt);
+}
+
+.field-tab button:hover {
+  cursor: pointer;
 }
 
 .field-tab button.progress {
