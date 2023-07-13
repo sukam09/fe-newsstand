@@ -1,3 +1,4 @@
+import { MAX_PAGE } from "./constants.js";
 import { renderGridPress } from "./views/grid_views.js";
 import { renderListNews } from "./views/list_views.js";
 
@@ -28,10 +29,6 @@ const show_options = {
     progress_max: 20,
     progress_time: 0,
 };
-
-const ROWSIZE = 6;
-const COLSIZE = 4;
-const MAXPAGE = 3;
 
 function optionShowPress() {
     const option_press = document.querySelectorAll(".option_press");
@@ -142,7 +139,7 @@ function toggleArrow(mode, page) {
             left_arrow.style.display = "none";
             right_arrow.style.display = "block";
             break;
-        case MAXPAGE:
+        case MAX_PAGE:
             left_arrow.style.display = "block";
             right_arrow.style.display = "none";
             break;
@@ -162,7 +159,7 @@ function deleteMainDisplay() {
 }
 
 function movePageEvent() {
-    if (!length) length = MAXPAGE;
+    if (!length) length = MAX_PAGE;
     const grid_left_arrow = document.querySelector(".grid_left_arrow");
     const grid_right_arrow = document.querySelector(".grid_right_arrow");
     const list_left_arrow = document.querySelector(".list_left_arrow");
@@ -251,12 +248,4 @@ function handleEvents() {
     movePageEvent();
 }
 
-export {
-    handleEvents,
-    toggleArrow,
-    movePage,
-    toggleSubscribe,
-    show_options,
-    ROWSIZE,
-    COLSIZE,
-};
+export { handleEvents, toggleArrow, movePage, toggleSubscribe, show_options };

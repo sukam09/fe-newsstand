@@ -1,11 +1,6 @@
 import { fetchPressData } from "../utils.js";
-import {
-    show_options,
-    toggleArrow,
-    toggleSubscribe,
-    ROWSIZE,
-    COLSIZE,
-} from "../events.js";
+import { show_options, toggleArrow, toggleSubscribe } from "../events.js";
+import { COL_SIZE, ROW_SIZE } from "../constants.js";
 
 // render news
 function renderGridPress(shuffledData, page) {
@@ -14,9 +9,9 @@ function renderGridPress(shuffledData, page) {
     news_data_container.innerHTML = "";
     toggleArrow("grid", page);
 
-    for (let i = 0; i < COLSIZE; i++) {
+    for (let i = 0; i < COL_SIZE; i++) {
         let ul = document.createElement("ul");
-        for (let j = 0; j < ROWSIZE; j++) {
+        for (let j = 0; j < ROW_SIZE; j++) {
             const item = shuffledData[cnt] || { name: "empty", url: "" };
             ul.innerHTML += `
             <li class="press_data_item">
@@ -50,7 +45,6 @@ function togglePress() {
             item.style.transition = "transform 0.5s";
         });
     });
-    console.log("호출");
     toggleSubscribe();
 }
 
