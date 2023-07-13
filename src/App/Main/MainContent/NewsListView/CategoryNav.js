@@ -95,7 +95,7 @@ export default function CategoryNav($target, props) {
 
         props.setContentState({
           currentPage: 1,
-          lastPage: arrCategoryLength[targetElement.dataset.key],
+          lastPage: categoryLengthArr[targetElement.dataset.key],
           category: Number(targetElement.dataset.key),
         });
       }
