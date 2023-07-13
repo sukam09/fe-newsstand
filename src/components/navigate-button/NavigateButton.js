@@ -5,8 +5,8 @@ import {
 } from "../../store/store.js";
 import { ObjectToArrayRandom } from "../../utils/utils.js";
 import { getState, setState } from "../../observer/observer.js";
-import { NEWS_COUNT, PRESS_ICON } from "../../constants/constants.js";
 import { _querySelector } from "../../utils/my-query-selector.js";
+import { NEWS_COUNT, PRESS_ICON } from "../../constants/constants.js";
 
 const $prevPageButton = _querySelector(".left-btn");
 const $nextPageButton = _querySelector(".right-btn");
