@@ -10,8 +10,13 @@ import {
   PROGRESS_TIME,
 } from "../../constants/constants.js";
 import { getState, setState } from "../../observer/observer.js";
+import {
+  _querySelector,
+  _querySelectorAll,
+} from "../../utils/my-query-selector.js";
 
-const $categoryBar = document.querySelector(".list-view_category-bar > ul");
+const $categoryBarWrapper = _querySelector(".list-view_category-bar");
+const $categoryBar = _querySelector("ul", $categoryBarWrapper);
 
 const changeCategory = (newsList, categoryList) => () => {
   const currentCategory = getState(categoryState);
@@ -60,7 +65,7 @@ const stopProgress = () => {
 };
 
 const updateProgress = () => {
-  const $progress = document.querySelector(".progress");
+  const $progress = _querySelector(".progress");
   $progress.style.width = timeElapsed + "%";
 };
 
@@ -69,7 +74,9 @@ const initProgress = () => {
 };
 
 const updateCurrentPage = () => {
-  const $stateElem = document.querySelector(".progress-component > div > span");
+  const $progressComponent = _querySelector(".progress-component");
+  const $progressComponentDiv = _querySelector("div", $progressComponent);
+  const $stateElem = _querySelector("span", $progressComponentDiv);
 
   $stateElem.innerHTML = getState(listPageState) + 1;
 };
@@ -78,7 +85,7 @@ const setCategoryBar = (categoryList) => {
   categoryList.forEach((category) => {
     const $li = document.createElement("li");
     $li.innerHTML = category;
-
+    $li.className = "hover-underline";
     $li.addEventListener("click", setCategoryState(category));
 
     $categoryBar.appendChild($li);
@@ -89,7 +96,7 @@ const setCategoryBar = (categoryList) => {
 const setCategoryState = (category) => () => setState(categoryState, category);
 
 const changeActivateCategory = (newsList, categoryList) => () => {
-  const $liList = $categoryBar.querySelectorAll("li");
+  const $liList = _querySelectorAll("li", $categoryBar);
   const maxPage = newsList[getState(categoryState)].length;
   const currentCategoryIndex = categoryList.indexOf(getState(categoryState));
 
@@ -103,7 +110,7 @@ const changeActivateCategory = (newsList, categoryList) => () => {
       );
     } else {
       if (li.classList.contains("category--selected")) {
-        li.classList = "";
+        li.classList = "hover-underline";
         li.innerHTML = categoryList[idx];
       }
     }
@@ -113,18 +120,16 @@ const changeActivateCategory = (newsList, categoryList) => () => {
 const createProgressInner = (title, state, max) => {
   return `<div class="progress"></div>
   <div class="progress-component">
-    <span class="display-bold14">${title}</span>
+    <span class="hover-underline display-bold14">${title}</span>
     <div class="display-bold12">
-      <span>${state}</span>
-      <span class="font-deactivate">/${max}</span>
+    <span class="progress-span">${state}</span>
+    <span class="progress-span">/${max}</span>
     </div>
   </div>`;
 };
 
 const setPageActivateState = (newsList) => () => {
-  const $maxPage = document.querySelectorAll(
-    ".progress-component > div > span"
-  )[1];
+  const $maxPage = _querySelectorAll(".progress-span")[1];
 
   const currentCategory = getState(categoryState);
   const currentPage = getState(listPageState);

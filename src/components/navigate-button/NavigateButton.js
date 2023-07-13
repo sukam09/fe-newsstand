@@ -6,9 +6,10 @@ import {
 import { ObjectToArrayRandom } from "../../utils/utils.js";
 import { getState, setState } from "../../observer/observer.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../constants/constants.js";
+import { _querySelector } from "../../utils/my-query-selector.js";
 
-const $prevPageButton = document.querySelector(".left-btn");
-const $nextPageButton = document.querySelector(".right-btn");
+const $prevPageButton = _querySelector(".left-btn");
+const $nextPageButton = _querySelector(".right-btn");
 const maxPage =
   Math.floor(ObjectToArrayRandom(PRESS_ICON).length / NEWS_COUNT) - 1;
 

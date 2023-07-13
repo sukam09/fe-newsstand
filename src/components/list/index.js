@@ -10,16 +10,24 @@ import {
 } from "./ProgressBar.js";
 import {
   categoryState,
+  isDarkMode,
   isListActivateState,
   listPageState,
 } from "../../store/store.js";
+import {
+  customFetch,
+  shuffleArrayRandom,
+  shuffleObject,
+} from "../../utils/utils.js";
 import { fillNewsList } from "./NewsList.js";
 import { subscribe } from "../../observer/observer.js";
 import { CATEGORY_LIST } from "../../constants/constants.js";
-import { customFetch, shuffleArrayRandom } from "../../utils/utils.js";
 
 export const setList = async () => {
-  const newsList = await customFetch("../../../mocks/newsList.json");
+  const newsList = await customFetch(
+    "../../../mocks/newsList.json",
+    shuffleObject
+  );
 
   const categoryList = shuffleArrayRandom(CATEGORY_LIST);
 
@@ -34,6 +42,8 @@ export const setList = async () => {
   subscribe(categoryState, initListPageState);
 
   subscribe(isListActivateState, initProgress);
+
+  subscribe(isDarkMode, fillNewsList(newsList));
 
   setCategoryBar(categoryList);
   fillNewsList(newsList)();

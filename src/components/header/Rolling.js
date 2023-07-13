@@ -2,13 +2,17 @@ import {
   ROLLING_WAIT_TIME,
   ROLLING_DIFF_TIME,
 } from "../../constants/constants.js";
+import {
+  _querySelector,
+  _querySelectorAll,
+} from "../../utils/my-query-selector.js";
 import { customFetch } from "../../utils/utils.js";
 
-const $newsBar = document.querySelectorAll(".container-news-bar_wrap");
+const $newsBar = _querySelectorAll(".container-news-bar_wrap");
 const $leftRollingBox = $newsBar[0];
-const $leftRollingList = $leftRollingBox.querySelector("ul");
+const $leftRollingList = _querySelector("ul", $leftRollingBox);
 const $rightRollingBox = $newsBar[1];
-const $rightRollingList = $rightRollingBox.querySelector("ul");
+const $rightRollingList = _querySelector("ul", $rightRollingBox);
 
 const fillHeadlineContents = (headlineData) => {
   headlineData.slice(0, 5).forEach(({ title, link }, idx) => {
@@ -32,7 +36,7 @@ const createHeadlineContent = (title, link, idx) => {
   else if (idx === 1) $li.className = "next";
   else if (idx === 4) $li.className = "prev";
 
-  $a.className = "available-medium14";
+  $a.className = "hover-underline available-medium14";
   $a.href = link;
   $a.innerHTML = title;
 
@@ -84,17 +88,18 @@ const rollingCallback = () => {
 };
 
 const rollingElement = (elem) => {
-  elem.querySelector(".prev").classList.remove("prev");
+  _querySelector(".prev", elem).classList.remove("prev");
 
-  const $current = elem.querySelector(".current");
+  const $current = _querySelector(".current", elem);
 
   $current.classList.remove("current");
   $current.classList.add("prev");
 
-  const $next = elem.querySelector(".next");
+  const $next = _querySelector(".next", elem);
 
   if ($next.nextElementSibling == null) {
-    elem.querySelector("ul li:first-child").classList.add("next");
+    const elElem = _querySelector("ul", elem);
+    _querySelector("li", elElem)[0].classList.add("next");
   } else {
     $next.nextElementSibling.classList.add("next");
   }

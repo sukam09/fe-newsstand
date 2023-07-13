@@ -11,12 +11,16 @@
   display: flex;
   align-items: center;
 }
+.container-header_logo span {
+  color: var(--color-text-strong);
+}
 .container-header_logo svg {
   fill: var(--color-text-point);
 }
 .container-header_date {
   color: var(--color-text-default);
 }
+
 .container-news-bar {
   margin-top: 40px;
   margin-bottom: 33px;
@@ -39,6 +43,9 @@
   background: var(--color-surface-alt);
   border: var(--border-default);
 }
+.container-news-bar > div > h2 {
+  color: var(--color-text-strong);
+}
 .container-news-bar > div > ul {
   overflow: hidden;
   color: var(--color-text-default);
@@ -47,9 +54,6 @@
   top: 100px;
 
   position: absolute;
-}
-.container-news-bar_wrap li:hover {
-  text-decoration: underline;
 }
 ul .prev {
   top: -50px;

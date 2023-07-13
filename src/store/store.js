@@ -5,6 +5,11 @@ const isListActivateState = initState({
   defaultValue: false,
 });
 
+const isDarkMode = initState({
+  key: "isDarkMode",
+  defaultValue: false,
+});
+
 const gridPageState = initState({
   key: "gridPageState",
   defaultValue: 0,
@@ -20,4 +25,10 @@ const categoryState = initState({
   defaultValue: "",
 });
 
-export { isListActivateState, gridPageState, listPageState, categoryState };
+export {
+  isListActivateState,
+  isDarkMode,
+  gridPageState,
+  listPageState,
+  categoryState,
+};

@@ -32,14 +32,31 @@ const setDate = () => {
 const ObjectToArrayRandom = (data) => {
   const newArray = [];
 
-  Object.values(data).forEach((item) =>
+  for (const key in data) {
     newArray.push({
-      name: data,
-      src: item.light,
-    })
-  );
+      name: key,
+      light: data[key].light,
+      dark: data[key].dark,
+    });
+  }
 
   return newArray;
 };
 
-export { customFetch, shuffleArrayRandom, setDate, ObjectToArrayRandom };
+const shuffleObject = (data) => {
+  const newObject = {};
+
+  for (const key in data) {
+    newObject[key] = shuffleArrayRandom(data[key]);
+  }
+
+  return newObject;
+};
+
+export {
+  customFetch,
+  shuffleArrayRandom,
+  setDate,
+  ObjectToArrayRandom,
+  shuffleObject,
+};

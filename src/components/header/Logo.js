@@ -1,5 +1,6 @@
-const $haederLogo = document.querySelector(".container-header_logo");
+import { _querySelector } from "../../utils/my-query-selector.js";
 
+const $haederLogo = _querySelector(".container-header_logo");
 const setHeaderLogo = () => {
   $haederLogo.addEventListener("click", () => window.location.reload());
 };

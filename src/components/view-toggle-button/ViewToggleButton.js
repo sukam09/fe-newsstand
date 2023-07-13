@@ -1,10 +1,15 @@
 import { isListActivateState } from "../../store/store.js";
 import { getState, setState } from "../../observer/observer.js";
+import {
+  _querySelector,
+  _querySelectorAll,
+} from "../../utils/my-query-selector.js";
 
-const $gridView = document.querySelector(".grid-view");
-const $listView = document.querySelector(".list-view");
+const $gridView = _querySelector(".grid-view");
+const $listView = _querySelector(".list-view");
 
-const $mainNavView = document.querySelectorAll(".main-nav_viewer > button");
+const $mainNavViewWrapper = _querySelector(".main-nav_viewer");
+const $mainNavView = _querySelectorAll("button", $mainNavViewWrapper);
 const $listButton = $mainNavView[0];
 const $gridButton = $mainNavView[1];
 
