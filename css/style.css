@@ -242,18 +242,19 @@ ul li:hover .media-hover {
 }
 
 .list_wrapper .category .progress_bar{
-    background-color : red;
     position: absolute;
-    width:50px;
+    width:0px;
     height:40px;
 }
 .list_wrapper .category .category_item .category_name{
     width: 100%;
     height: auto;
+    z-index:9999;
 }
 .list_wrapper .category .category_item .category_progress{
     width: auto;
     height: auto;
+    z-index:9999;
 }
 
 .category_item:not(.progressed) .category_progress{

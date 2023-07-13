@@ -1,51 +1,66 @@
+import {getJSON } from '../util/util.js';
+
+
+
 const setProgressed = () => {
-  // 모든 category_item 요소를 가져옵니다.
-  var categoryItems = document.querySelectorAll('.category_item');
+  var categoryItems = document.querySelectorAll(".category_item");
 
-  // progressed 클래스가 추가되거나 변경될 때마다 실행될 함수입니다.
   function updateProgressBar() {
-  // 현재 progressed 클래스를 가진 요소를 찾습니다.
-  var progressed = document.querySelector('.category_item.progressed');
+    var progressed = document.querySelector(".category_item.progressed");
+    var progressBar = document.querySelector(".progress_bar");
 
-  // progress_bar를 찾습니다.
-  var progressBar = document.querySelector('.progress_bar');
+    if (!progressed || !progressBar) return;
 
-  // progressed가 없거나 progressBar가 없으면 함수를 종료합니다.
-  if (!progressed || !progressBar) return;
+    var rect = progressed.getBoundingClientRect();
 
-  // progressed의 위치를 가져옵니다.
-  var rect = progressed.getBoundingClientRect();
-
-  // progressBar의 위치를 progressed의 위치에 맞춥니다.
-  progressBar.style.position = 'absolute';
-  progressBar.style.top = rect.top + 'px';  // top 위치 조정
-  progressBar.style.left = rect.left + 'px';  // left 위치 조정
-
-  // 필요하다면 right, bottom도 조정할 수 있습니다.
+    progressBar.style.position = "absolute";
+    progressBar.style.top = rect.top + "px";
+    progressBar.style.left = rect.left + "px";
   }
 
-  // 모든 category_item에 대해 클릭 이벤트 리스너를 추가합니다.
-  // 클릭 시 progressed 클래스를 추가/제거하고, progress_bar의 위치를 업데이트합니다.
   for (var i = 0; i < categoryItems.length; i++) {
-  categoryItems[i].addEventListener('click', function(event) {
-    // 모든 category_item에서 progressed를 제거합니다.
-    for (var j = 0; j < categoryItems.length; j++) {
-      categoryItems[j].classList.remove('progressed');
+    categoryItems[i].addEventListener("click", function (event) {
+      for (var j = 0; j < categoryItems.length; j++) {
+        categoryItems[j].classList.remove("progressed");
+      }
+
+      event.currentTarget.classList.add("progressed");
+      updateProgressBar();
+
+      // 클릭할 때마다 progressBarControl 호출
+      progressBarControl();
+    });
+  }
+};
+
+const progressBarControl = () => {
+  let start = null;
+  const element = document.querySelector(".progress_bar");
+  const duration = 1000;
+  const endWidth = 166;
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const elapsed = timestamp - start;
+
+    const currentWidth = Math.min((endWidth * elapsed) / duration, endWidth);
+    element.style.width = currentWidth + "px";
+
+    if (currentWidth < endWidth) {
+      requestAnimationFrame(step);
+    } else {
+      //애니메이션 끝났을 때
+      console.log("AEW");
     }
-
-    // 클릭된 요소에 progressed를 추가합니다.
-    event.currentTarget.classList.add('progressed');
-
-    // progress_bar의 위치를 업데이트합니다.
-    updateProgressBar();
-  });
   }
 
-}
-
+  element.style.width = "0px"; // 클릭할 때마다 width를 초기화
+  requestAnimationFrame(step);
+};
 
 const listViewInit = () => {
   setProgressed();
-}
+  progressBarControl();
+};
 
 export default listViewInit;

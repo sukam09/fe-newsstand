@@ -6,10 +6,10 @@ import selectorInit from './main/selector.js';
 import listViewInit from './main/listView.js';
 
 ( () => {
-  gridInit();
   headerInit();
   rollingInit();
   getTopicInit();
   selectorInit();
+  gridInit();
   listViewInit();
 })();
