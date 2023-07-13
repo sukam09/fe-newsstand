@@ -27,6 +27,25 @@
 - [X] 개발 목적 및 구조 명확하게 이해하기
 - [X] 깃 커밋 컨벤션 지키기
 - [X] fetch를 이용해 JSON객체 데이터 받아오기
+```javascript
+export async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log("Error : ", err);
+    return null;
+  }
+}
+```
+
+```javascript
+const imgPath = await fetchData("../assets/data/newspaperSrc.json");
+  const imgId = imgPath.newsList.map((elem) => {
+    return elem.id;
+  })
+```
 <br><br><br>
 ### 설계
 <a href='https://ifh.cc/v-1OMqfJ' target='_blank'><img src='https://ifh.cc/g/1OMqfJ.jpg' border='0'></a>
