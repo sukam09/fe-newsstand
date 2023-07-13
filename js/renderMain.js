@@ -1,5 +1,6 @@
 import logo from "../json/news_image.json" assert { type: "json" };
 import { shuffle, changeImageSrc } from "./utils.js";
+import { addInitCategory } from "./category.js";
 
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
@@ -17,6 +18,7 @@ function renderMain(isGrid) {
 function renderCard() {
   gridMain.style.display = "none";
   listMain.style.display = "flex";
+  addInitCategory();
 }
 
 function renderGrid(logos) {

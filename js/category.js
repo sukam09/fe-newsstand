@@ -2,10 +2,13 @@ import categoryData from "../json/category.json" assert { type: "json" };
 
 let progress = 0;
 const increment = 10;
-const totalTime = 20000; //초
+const totalTime = 2000; //초
 let category = [];
 let categoryItem;
 let currentPage = 1;
+let categoryNumber = 0;
+let interval;
+
 function setCategoryData() {
   for (const categories of categoryData) {
     for (const key in categories) {
@@ -30,32 +33,59 @@ function addInitCategory() {
 
 function initCategoryItem() {
   categoryItem = document.querySelectorAll(".categoryItem");
-  categoryItem[0].style.backgroundColor = "#7890E7";
-  categoryItem[0].style.color = "#FFFFFF";
-  categoryItem[0].style.display = "flex";
-  document.querySelectorAll(".currentCategoryPage")[0].style.display = "flex";
-  document.querySelectorAll(".categoryCnt")[0].style.display = "flex";
-  doProgress(document.querySelector(".progress-bar"));
+  clearCategoryItem();
+  categoryItem[categoryNumber].style.backgroundColor = "#7890E7";
+  categoryItem[categoryNumber].style.color = "#FFFFFF";
+  document.querySelectorAll(".currentCategoryPage")[
+    categoryNumber
+  ].style.display = "flex";
+  document.querySelectorAll(".categoryCnt")[categoryNumber].style.display =
+    "flex";
+  intervalProgress(document.querySelectorAll(".progress-bar")[categoryNumber]);
 }
 
-function addOnClickCategory() {
+function clearCategoryItem() {
   category.forEach((value, index) => {
-    document.addEventListener("click", () => {});
+    categoryItem[index].style.backgroundColor = "#f5f7f9";
+    categoryItem[index].style.color = "#5f6e76";
+    document.querySelectorAll(".currentCategoryPage")[
+      index
+    ].style.display = "none";
+    document.querySelectorAll(".categoryCnt")[index].style.display =
+      "none";
   });
 }
 
-function doProgress(progressBar) {
-  setInterval(() => {
-    if (progress >= 100) {
-      progress = 0;
-      currentPage++;
-      document.querySelectorAll(".currentCategoryPage")[0].innerHTML = currentPage;
-      return;
-    }
-    progress += increment;
-    progressBar.style.width = `${progress}%`;
+function intervalProgress(progressBar) {
+  interval = setInterval(() => {
+    doProgress(progressBar);
   }, totalTime / (100 / increment));
 }
-// const progressInterval = setInterval(doProgress,totalTime / (100 / increment), progressBar);
+
+function doProgress(progressBar) {
+  progressBar.style.transition = `width ${
+    totalTime / increment / 1000
+  }s linear`;
+  if (progress === 100) {
+    progress = 0;
+    currentPage++;
+    if (currentPage === category[categoryNumber].value + 1) {
+      currentPage = 1;
+      categoryNumber++;
+      if (categoryNumber === category.length) categoryNumber = 0;
+      clearInterval(interval);
+      initCategoryItem();
+    }
+    document.querySelectorAll(".currentCategoryPage")[
+      categoryNumber
+    ].innerHTML = currentPage;
+    progressBar.style.transition = "";
+    progressBar.style.width = "0%";
+    return;
+  }
+  progress += increment;
+  progressBar.style.width = `${progress}%`;
+}
+
 setCategoryData();
 export { addInitCategory };
