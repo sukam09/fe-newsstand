@@ -33,7 +33,7 @@ function RenderNews(shuffledData) {
             else if (j == rowSize - 1) li.setAttribute("class", "border_right");
 
             img.classList.add("news_data_img");
-            img.src = item.lightSrc;
+            img.src = item.press_light_src;
             cnt += 1;
             li.appendChild(img);
             ul.appendChild(li);
