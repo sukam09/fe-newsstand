@@ -1,3 +1,5 @@
+import { $ } from "./util.js";
+
 // 롤링에 들어갈 뉴스 수
 const ROLLING_NEWS_NUM = 5;
 // 좌우 롤링 시간 차
@@ -41,17 +43,13 @@ function stopRolling(state) {
 
 // 롤링에 들어갈 뉴스 리스트 추가
 export function appendRollingList() {
-  const rollingListContainerLeft = document.getElementsByClassName(
-    "newsbanner__list-container--left"
-  );
-  const rollingListContainerRight = document.getElementsByClassName(
-    "newsbanner__list-container--right"
-  );
+  const rollingListContainerLeft = $(".newsbanner__list-container--left");
+  const rollingListContainerRight = $(".newsbanner__list-container--right");
   for (let i = 0; i < ROLLING_NEWS_NUM; i++) {
     const leftItem = createBannerItem(i, rollingNewsContentLeft[i], "left");
     const rightItem = createBannerItem(i, rollingNewsContentRight[i], "right");
-    rollingListContainerLeft[0].appendChild(leftItem);
-    rollingListContainerRight[0].appendChild(rightItem);
+    rollingListContainerLeft.appendChild(leftItem);
+    rollingListContainerRight.appendChild(rightItem);
   }
 }
 
@@ -87,30 +85,22 @@ function createBannerItem(idx, content, state) {
 // 롤링 애니메이션
 function rollingEvent(state) {
   // 이전 값 삭제
-  document
-    .querySelector(
-      `.newsbanner__list-container--${state} .newsbanner__list--prev`
-    )
-    .classList.remove("newsbanner__list--prev");
+  $(
+    `.newsbanner__list-container--${state} .newsbanner__list--prev`
+  ).classList.remove("newsbanner__list--prev");
 
   // 현재 값 이전으로 옮기기
-  let now = document.querySelector(
-    `.newsbanner__list-container--${state} .newsbanner__list--now`
-  );
+  let now = $(`.newsbanner__list-container--${state} .newsbanner__list--now`);
   now.classList.remove("newsbanner__list--now");
   now.classList.add("newsbanner__list--prev");
   // 다음 값 현재로 옮기기
-  let next = document.querySelector(
-    `.newsbanner__list-container--${state} .newsbanner__list--next`
-  );
+  let next = $(`.newsbanner__list-container--${state} .newsbanner__list--next`);
 
   // 다음 값이 없다면 처음부터
   if (next.nextElementSibling === null) {
-    document
-      .querySelector(
-        `.newsbanner__list-container--${state} .newsbanner__list:first-child`
-      )
-      .classList.add("newsbanner__list--next");
+    $(
+      `.newsbanner__list-container--${state} .newsbanner__list:first-child`
+    ).classList.add("newsbanner__list--next");
   } else {
     next.nextElementSibling.classList.add("newsbanner__list--next");
   }

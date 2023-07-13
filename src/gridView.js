@@ -1,15 +1,11 @@
+import { $, $All, shuffleArray } from "./util.js";
+
 let now_grid_page = 0;
 const MAX_GRID_COUNT = 24;
 
-// 언론사 랜덤 셔플
-function shuffleArray(array) {
-  array.sort(() => Math.random() - 0.5);
-  return array;
-}
-
 // 셔플된 리스트 그리드리스트에 append
 function appendGridList() {
-  const gridContainerList = document.getElementsByClassName("grid_container");
+  const gridContainerList = $All(".grid_container");
   const shuffledArr = shuffleArray(pressObjArr);
   shuffledArr.forEach((element, idx) => {
     const id = Math.floor(idx / MAX_GRID_COUNT);
@@ -22,7 +18,6 @@ function appendGridList() {
 function createSubButtonContainer() {
   const subButtonContainer = document.createElement("div");
   subButtonContainer.className = "sub_button_container";
-
   return subButtonContainer;
 }
 
@@ -36,12 +31,7 @@ function createSubButton(id) {
   subButton.addEventListener("click", () => {
     const targetPress = pressObjArr.find((item) => item.id === id);
     targetPress.isSub = true;
-
     toggleSubButton(targetPress, subButtonContainer);
-  });
-
-  subButton.addEventListener("mouseover", () => {
-    subButton.style.cursor = "pointer";
   });
 
   subButtonContainer.appendChild(subButton);
@@ -60,7 +50,6 @@ function createUnSubButton(id) {
     targetPress.isSub = false;
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
-
   unSubButtonContainer.appendChild(unSubButton);
 
   return unSubButtonContainer;
@@ -129,9 +118,9 @@ function showPrevGridPage() {
 
 // 그리드 페이지 업데이트
 function showGridPage(increment) {
-  const curPage = document.getElementById(`page${now_grid_page}`);
+  const curPage = $(`#page${now_grid_page}`);
   now_grid_page += increment;
-  const nextPage = document.getElementById(`page${now_grid_page}`);
+  const nextPage = $(`#page${now_grid_page}`);
   now_grid_page = Math.max(0, Math.min(now_grid_page, 3));
   curPage.style.display = "none";
   nextPage.style.display = "grid";
@@ -140,10 +129,8 @@ function showGridPage(increment) {
 
 // 그리뷰의 좌우 페이지 전환 버튼 업데이트
 function showGridPageButton() {
-  const left_grid_button =
-    document.getElementsByClassName("left_grid_button")[0];
-  const right_grid_button =
-    document.getElementsByClassName("right_grid_button")[0];
+  const left_grid_button = $(".left_grid_button");
+  const right_grid_button = $(".right_grid_button");
   switch (now_grid_page) {
     case 0:
       left_grid_button.style.display = "none";
