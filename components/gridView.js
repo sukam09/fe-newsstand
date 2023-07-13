@@ -51,11 +51,11 @@ const appendLogo = (data) => {
 };
 
 // ul 태그 내 모든 li 태그 삭제
-function removeAllChildNodes(parent) {
+const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
-}
+};
 
 // 페이지에 따라 신문사 list 추가
 const render = (currentPage, pages) => {
