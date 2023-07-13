@@ -16,7 +16,6 @@ export let intervalId; // 모드 변경되면(그리드 뷰로 넘어가면) 타
 async function fetchCategoryNewsData() {
   try {
     news_data = await fetchCategoryNews("../Data/category_news.json");
-    console.log(news_data);
     fieldInit();
     createPressNewsSection();
   } catch (e) {
@@ -210,7 +209,7 @@ function updatePressNewsSection() {
   const subNews = document.querySelector(".press-news-wrap .news .news-sub");
 
   mainNews.querySelector(".news-title").innerHTML = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news[0];
-  mainNews.querySelector(".news-img").setAttribute("src", "https://picsum.photos/320/200");
+  mainNews.querySelector(".news-img").setAttribute("src", `https://picsum.photos/320/200?random=${Math.random()}`);
   subNews.querySelectorAll(".each-news-title").forEach((news, index) => {
     news.innerHTML = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news[index + 1];
   });
@@ -269,7 +268,7 @@ function createPressNewsSection() {
     </div>
     <div class="news">
         <div class="news-main">
-          <img class="news-img" src="https://picsum.photos/320/200"/>
+          <img class="news-img" src="https://picsum.photos/320/200?random=${Math.random()}""/>
           <span class="news-title available-medium16">${news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news[0]} </span>
         </div>
         <div class="news-sub">
