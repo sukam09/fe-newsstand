@@ -266,7 +266,9 @@ ul li:hover .media-hover {
     padding : 24px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap : 16px;
+    position: relative;
 }
 
 
@@ -306,4 +308,14 @@ ul li:hover .media-hover {
     display:flex;
     flex-direction: column;
     gap : 16px;
+}
+#arrow_wrapper_left_list{
+    position: absolute;
+    left:-72px;
+    cursor:pointer;
+}
+#arrow_wrapper_right_list{
+    position: absolute;
+    right:-72px;
+    cursor:pointer;
 }

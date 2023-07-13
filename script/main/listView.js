@@ -1,4 +1,4 @@
-import {getJSON } from '../util/util.js';
+import {getJSON,shuffle } from '../util/util.js';
 import media_data from '../../assets/data/media_data.js';
 let categories = [];
 let category_page = 0;
@@ -11,9 +11,10 @@ let animationId;
 const setNewsData = () => {
   const newsItem = categorizedData[categories[category_page]][media_page];
   const src = media_data.find(item => item.name === newsItem["name"]).src;
-  
+  console.log(categorizedData[categories[category_page]].length);
   document.querySelector(".progressed .category_progress").innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
   document.querySelector(".media_info_edited").innerHTML = newsItem["edit_date"];
+  document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
   document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
   document.querySelector(".source").innerHTML = newsItem["name"] + " 언론사에서 직접 편집한 뉴스입니다.";
   document.querySelector(".media_info img").src = `assets/images/logo/light/${src}`;
@@ -31,6 +32,25 @@ const setNewsData = () => {
  * @returns JSON
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
+// function categorizeData(data) {
+//   let categorizedData = {};
+
+//   for(let i = 0; i < data.length; i++) {
+//     let item = data[i];
+//     let category = item.category;
+//     if(!categorizedData[category]) {
+//       categorizedData[category] = [];
+//     }
+//     categorizedData[category].push(item);
+//   }
+//   return categorizedData;
+// }
+/**
+ * 
+ * @param {JSON} data 
+ * @returns JSON
+ * 데이터 가져와서 카테고리별로 분류하는 함수
+ */
 function categorizeData(data) {
   let categorizedData = {};
 
@@ -42,6 +62,12 @@ function categorizeData(data) {
     }
     categorizedData[category].push(item);
   }
+
+  // Shuffle each category's data
+  for (let category in categorizedData) {
+    shuffle(categorizedData[category]);
+  }
+  
   return categorizedData;
 }
 
@@ -81,6 +107,45 @@ function createCategoryElements(categorizedData) {
   });
 }
 
+const setArrowHandler = () => {
+  document.querySelector("#arrow_wrapper_left_list").addEventListener("click", () => {
+    if (media_page === 0) {
+      if (category_page === 0) {
+        category_page = Object.keys(categorizedData).length - 1;
+      } else {
+        category_page -= 1;
+      }
+      media_page = categorizedData[categories[category_page]].length - 1; // 해당 카테고리의 마지막 media_page로 설정
+    } else {
+      media_page -= 1;
+    }
+
+    cancelAnimationFrame(animationId);
+    progressBarControl();
+    updateCategoryProgress();
+    setNewsData();
+  });
+  
+  document.querySelector("#arrow_wrapper_right_list").addEventListener("click", () => {
+    const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
+    const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
+    console.log("T");
+    if (isLastMedia) {
+      if (isLastCategory) {
+        category_page = 0;
+      } else {
+        category_page += 1;
+      }
+      media_page = 0; // 새 카테고리의 첫 media_page로 설정
+    } else {
+      media_page += 1;
+    }
+    cancelAnimationFrame(animationId);
+    progressBarControl();
+    updateCategoryProgress();
+    setNewsData();
+  });  
+}
 /**
  * news data가져와서 기본 셋팅 함수
  */
@@ -95,6 +160,7 @@ const getNewsData = async () => {
   categorizedData = categorizeData(newsData);
   createCategoryElements(categorizedData);
   setProgressed();
+  setNewsData();
 }
 
 /**
@@ -238,7 +304,7 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progress_bar");
-  const duration = 500;
+  const duration = 1000;
   const endWidth = 166;
 
   setWidth(progressBar, 0);
@@ -248,7 +314,6 @@ const progressBarControl = () => {
 
 let categoriesWrapper;
 const listViewInit = () => {
-  // 초기화 작업
   cancelAnimationFrame(animationId);
   categories = [];
   category_page = 0;
@@ -260,9 +325,9 @@ const listViewInit = () => {
   } else {
     categoriesWrapper = document.querySelector('.category');
   }
-  
   getNewsData();
   progressBarControl();
+  setArrowHandler();
 };
 
 
