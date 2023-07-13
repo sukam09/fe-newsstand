@@ -1,6 +1,7 @@
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 import { toggleDarkMode } from '../../index.js';
+import { customQuerySelector } from '../../utils/index.js';
 
 export default class AllNewHeader extends Component {
   setup() {
@@ -26,8 +27,8 @@ export default class AllNewHeader extends Component {
     const listIconName = this.props.view === 'list' ? 'list-view-focus' : 'list-view';
     const gridIconName = this.props.view === 'grid' ? 'grid-view-focus' : 'grid-view';
 
-    new Icon(this.$target.querySelector('#list-view-icon'), { name: listIconName });
-    new Icon(this.$target.querySelector('#grid-view-icon'), { name: gridIconName });
+    new Icon(customQuerySelector('#list-view-icon'), { name: listIconName });
+    new Icon(customQuerySelector('#grid-view-icon'), { name: gridIconName });
   }
 
   setEvent() {

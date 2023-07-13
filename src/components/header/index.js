@@ -1,4 +1,4 @@
-import { getTodayDate } from '../../utils/index.js';
+import { customQuerySelector, getTodayDate } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 
@@ -16,8 +16,8 @@ export default class Header extends Component {
   }
 
   mounted() {
-    new Icon(this.$target.querySelector('.news-stand-icon'), { name: 'newspaper' });
-    new Icon(this.$target.querySelector('.news-stand-icon'), { name: 'newspaper' });
+    new Icon(customQuerySelector('.news-stand-icon'), { name: 'newspaper' });
+    new Icon(customQuerySelector('.news-stand-icon'), { name: 'newspaper' });
   }
 
   setEvent() {

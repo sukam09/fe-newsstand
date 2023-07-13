@@ -1,3 +1,4 @@
+import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
@@ -17,17 +18,17 @@ export default class AllNews extends Component {
   }
 
   mounted() {
-    new AllNewHeader(this.$target.querySelector('.all-news-header'), {
+    new AllNewHeader(customQuerySelector('.all-news-header'), {
       onClick: this.onClick.bind(this),
       view: this.state.view,
     });
 
     this.state.view === 'grid'
-      ? new AllNewsGridView(this.$target.querySelector('.all-news-wrapper'), {
+      ? new AllNewsGridView(customQuerySelector('.all-news-wrapper'), {
           page: this.state.page,
           pressOrder: this.state.pressOrder,
         })
-      : new AllNewsListView(this.$target.querySelector('.all-news-wrapper'));
+      : new AllNewsListView(customQuerySelector('.all-news-wrapper'));
   }
 
   onClick(viewType) {

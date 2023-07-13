@@ -29,7 +29,7 @@ export const customQuerySelector = (selector, $target = document) => {
       return $node;
     } else if (tagType === '.' && $node.classList && $node.classList.contains(name)) {
       return $node;
-    } else if ($node.tagName === name.toUpperCase()) {
+    } else if ($node.tagName === currentSelctor.toUpperCase()) {
       return $node;
     } else {
       const $result = customQuerySelector(selector, $node);
