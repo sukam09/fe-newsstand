@@ -1,5 +1,11 @@
 import { fetchPressData } from "../utils.js";
-import { show_options, toggleArrow, ROWSIZE, COLSIZE } from "../events.js";
+import {
+    show_options,
+    toggleArrow,
+    toggleSubscribe,
+    ROWSIZE,
+    COLSIZE,
+} from "../events.js";
 
 // render news
 function renderGridPress(shuffledData, page) {
@@ -15,7 +21,7 @@ function renderGridPress(shuffledData, page) {
             ul.innerHTML += `
             <li class="press_data_item">
                 <img class="press_item press_data_img press_front" src="${item.url}" />
-                <button class="press_item content_subscribe press_back">
+                <button class="press_item content_subscribe press_back" name="${item.name}" is_subscribe="true">
                     <img src="./assets/icons/plus.png" />
                     <span>구독하기</span>
                 </button>
@@ -36,19 +42,16 @@ function togglePress() {
             // 3d rotate
             item.style.transform = "rotateX(180deg)";
             item.style.transition = "transform 0.5s";
-
-            // show press name
-            console.log(1);
         });
 
         item.addEventListener("mouseleave", (e) => {
             // 3d rotate back
             item.style.transform = "rotateX(0deg)";
             item.style.transition = "transform 0.5s";
-            console.log(2);
         });
     });
     console.log("호출");
+    toggleSubscribe();
 }
 
 function initPress() {

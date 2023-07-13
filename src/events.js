@@ -110,6 +110,29 @@ function changeArrow(mode) {
     left_arrow.style.display = "block";
 }
 
+function toggleSubscribe() {
+    const subscribe = document.querySelectorAll(".content_subscribe");
+
+    subscribe.forEach((press) => {
+        press.addEventListener("click", (e) => {
+            if (press.is_subscribe === true) {
+                press.is_subscribe = false;
+                console.log(`${press.name}이 구독해지되었습니다.`);
+                press.innerHTML = `
+                <img src="./assets/icons/plus.png" />
+                <span>구독하기</span>
+                `;
+            } else {
+                press.is_subscribe = true;
+                console.log(`${press.name}이 구독되었습니다.`);
+                press.innerHTML = `
+                <img src="./assets/icons/symbol.png" />
+                `;
+            }
+        });
+    });
+}
+
 function toggleArrow(mode, page) {
     const left_arrow = document.querySelector(`.${mode}_left_arrow`);
     const right_arrow = document.querySelector(`.${mode}_right_arrow`);
@@ -228,4 +251,12 @@ function handleEvents() {
     movePageEvent();
 }
 
-export { handleEvents, toggleArrow, movePage, show_options, ROWSIZE, COLSIZE };
+export {
+    handleEvents,
+    toggleArrow,
+    movePage,
+    toggleSubscribe,
+    show_options,
+    ROWSIZE,
+    COLSIZE,
+};

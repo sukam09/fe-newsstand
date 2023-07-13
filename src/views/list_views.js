@@ -78,7 +78,7 @@ function createMainContent(container, data, page) {
     <div class="content_body">
         <div class="content_body_title">
             <img src="${data[page].main_url}" class="content_picture" />
-            <p class="content_title">또 국민연금의 몽니…현대百 지주사 불발</p>
+            <p class="content_title">${data[page].main_title}</p>
         </div>
         ${list_news}
     </div>`;
