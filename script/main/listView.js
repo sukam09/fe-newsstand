@@ -5,7 +5,7 @@ let media_page = 0;
 let categorizedData;
 let animationId;
 const setNewsData = () => {
-  const category_progress = document.querySelector(".category_progress");
+  const category_progress = document.querySelector(".progressed .category_progress");
   const newsItem = categorizedData[categories[category_page]][media_page];
   const media_info_edited = document.querySelector(".media_info_edited");
   const thumbnail_p = document.querySelector(".thumbnail p");
@@ -90,7 +90,26 @@ const getNewsData = async () => {
   createCategoryElements(categorizedData);
   setProgressed();
 }
+const updateCategoryProgress = () => {
+  var categoryItems = document.querySelectorAll(".category_item");
 
+  for (var j = 0; j < categoryItems.length; j++) {
+    categoryItems[j].classList.remove("progressed");
+  }
+
+  if (categoryItems[category_page]) {
+    categoryItems[category_page].classList.add("progressed");
+  }
+  var progressed = document.querySelector(".category_item.progressed");
+  var progressBar = document.querySelector(".progress_bar");
+
+  if (!progressed || !progressBar) return;
+
+  var rect = progressed.getBoundingClientRect();
+  
+  progressBar.style.top = rect.top + "px";
+  progressBar.style.left = rect.left + "px";
+};
 const setProgressed = () => {
   var categoryItems = document.querySelectorAll(".category_item");
 
@@ -146,6 +165,7 @@ const progressBarControl = () => {
       else{
         media_page+=1;
       }
+      updateCategoryProgress();
       setNewsData();
       element.style.width = "0px";
       progressBarControl();
