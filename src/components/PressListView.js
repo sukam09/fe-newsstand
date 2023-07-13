@@ -1,4 +1,8 @@
-import { ANIMATION_UPDATE_DELAY, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
+import {
+  ANIMATION_UPDATE_DELAY,
+  CATEGORY_NUMBERS,
+  PROGRESSBAR_UPDATE_DELTA,
+} from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -37,6 +41,26 @@ export default function PressListView({ $target, initialState }) {
     });
   };
 
+  const setProgressBar = $selectedButton => {
+    this.state.percentage += PROGRESSBAR_UPDATE_DELTA;
+
+    if (this.state.percentage >= 100) {
+      const { present, entire } = this.state;
+
+      if (present === entire) {
+        this.setState({
+          ...this.state,
+          index: (this.state.index + 1) % CATEGORY_NUMBERS,
+          present: 1,
+        });
+        return;
+      }
+      this.setState({ ...this.state, present: this.state.present + 1 });
+    }
+
+    $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.state.percentage}%, #7890e7 ${this.state.percentage}%)`;
+  };
+
   const initProgressBar = $selectedButton => {
     const { timer, $currentButton } = this.state;
 
@@ -48,10 +72,7 @@ export default function PressListView({ $target, initialState }) {
     $selectedButton.style.background = '#7890e7';
     this.state.percentage = 0;
 
-    this.state.timer = setInterval(() => {
-      this.state.percentage += PROGRESSBAR_UPDATE_DELTA;
-      $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.state.percentage}%, #7890e7 ${this.state.percentage}%)`;
-    }, ANIMATION_UPDATE_DELAY);
+    this.state.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
 
     this.state.$currentButton = $selectedButton;
   };
