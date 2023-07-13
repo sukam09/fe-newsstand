@@ -1,6 +1,7 @@
 {
   "pressNewsArr":[
   {
+    "id": 1,
     "name": "YTN 사이언스",
     "darkSrc": "./assets/logo/dark/img1.svg",
     "lightSrc": "./assets/logo/light/img1.svg",
@@ -382,6 +383,7 @@
     "name": "프레시안",
     "darkSrc": "./assets/logo/dark/img22.svg",
     "lightSrc": "./assets/logo/light/img22.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -399,6 +401,7 @@
     "name": "sportalkorea",
     "darkSrc": "./assets/logo/dark/img23.svg",
     "lightSrc": "./assets/logo/light/img23.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -416,6 +419,7 @@
     "name": "한국일보",
     "darkSrc": "./assets/logo/dark/img24.svg",
     "lightSrc": "./assets/logo/light/img24.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -433,6 +437,7 @@
     "name": "여성경제신문",
     "darkSrc": "./assets/logo/dark/img25.svg",
     "lightSrc": "./assets/logo/light/img25.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -450,6 +455,7 @@
     "name": "IT조선",
     "darkSrc": "./assets/logo/dark/img26.svg",
     "lightSrc": "./assets/logo/light/img26.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -467,6 +473,7 @@
     "name": "철강금속신문",
     "darkSrc": "./assets/logo/dark/img27.svg",
     "lightSrc": "./assets/logo/light/img27.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -484,6 +491,7 @@
     "name": "정신의학신문",
     "darkSrc": "./assets/logo/dark/img28.svg",
     "lightSrc": "./assets/logo/light/img28.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -501,6 +509,7 @@
     "name": "뉴스포스트",
     "darkSrc": "./assets/logo/dark/img29.svg",
     "lightSrc": "./assets/logo/light/img29.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -518,6 +527,7 @@
     "name": "씨네21",
     "darkSrc": "./assets/logo/dark/img30.svg",
     "lightSrc": "./assets/logo/light/img30.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -535,6 +545,7 @@
     "name": "정책프리핑",
     "darkSrc": "./assets/logo/dark/img31.svg",
     "lightSrc": "./assets/logo/light/img31.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -552,6 +563,7 @@
     "name": "텐아시아",
     "darkSrc": "./assets/logo/dark/img32.svg",
     "lightSrc": "./assets/logo/light/img32.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -569,6 +581,7 @@
     "name": "MK스포츠",
     "darkSrc": "./assets/logo/dark/img33.svg",
     "lightSrc": "./assets/logo/light/img33.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -586,6 +599,7 @@
     "name": "MONDE",
     "darkSrc": "./assets/logo/dark/img34.svg",
     "lightSrc": "./assets/logo/light/img34.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -603,6 +617,7 @@
     "name": "BBS NEWS",
     "darkSrc": "./assets/logo/dark/img35.svg",
     "lightSrc": "./assets/logo/light/img35.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -620,6 +635,7 @@
     "name": "티브이데일리",
     "darkSrc": "./assets/logo/dark/img36.svg",
     "lightSrc": "./assets/logo/light/img36.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -637,6 +653,7 @@
     "name": "TV Report",
     "darkSrc": "./assets/logo/dark/img37.svg",
     "lightSrc": "./assets/logo/light/img37.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -654,6 +671,7 @@
     "name": "Forbes",
     "darkSrc": "./assets/logo/dark/img38.svg",
     "lightSrc": "./assets/logo/light/img38.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -671,6 +689,7 @@
     "name": "주간경향",
     "darkSrc": "./assets/logo/dark/img39.svg",
     "lightSrc": "./assets/logo/light/img39.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -688,6 +707,7 @@
     "name": "비즈한국",
     "darkSrc": "./assets/logo/dark/img40.svg",
     "lightSrc": "./assets/logo/light/img40.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "영자지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -705,6 +725,7 @@
     "name": "metro",
     "darkSrc": "./assets/logo/dark/img41.svg",
     "lightSrc": "./assets/logo/light/img41.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -722,6 +743,7 @@
     "name": "JTBC",
     "darkSrc": "./assets/logo/dark/img42.svg",
     "lightSrc": "./assets/logo/light/img42.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -739,6 +761,7 @@
     "name": "조선Biz",
     "darkSrc": "./assets/logo/dark/img43.svg",
     "lightSrc": "./assets/logo/light/img43.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -756,6 +779,7 @@
     "name": "한겨레",
     "darkSrc": "./assets/logo/dark/img44.svg",
     "lightSrc": "./assets/logo/light/img44.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -773,6 +797,7 @@
     "name": "연합뉴스TV",
     "darkSrc": "./assets/logo/dark/img45.svg",
     "lightSrc": "./assets/logo/light/img45.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -790,6 +815,7 @@
     "name": "미디어오늘",
     "darkSrc": "./assets/logo/dark/img46.svg",
     "lightSrc": "./assets/logo/light/img46.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -807,6 +833,7 @@
     "name": "디지털타임스",
     "darkSrc": "./assets/logo/dark/img47.svg",
     "lightSrc": "./assets/logo/light/img47.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -824,6 +851,7 @@
     "name": "OSEN",
     "darkSrc": "./assets/logo/dark/img48.svg",
     "lightSrc": "./assets/logo/light/img48.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -841,6 +869,7 @@
     "name": "소년한국일보",
     "darkSrc": "./assets/logo/dark/img49.svg",
     "lightSrc": "./assets/logo/light/img49.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -858,6 +887,7 @@
     "name": "OBS",
     "darkSrc": "./assets/logo/dark/img50.svg",
     "lightSrc": "./assets/logo/light/img50.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "스포츠/연예",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -875,6 +905,7 @@
     "name": "맥스무비",
     "darkSrc": "./assets/logo/dark/img51.svg",
     "lightSrc": "./assets/logo/light/img51.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -892,6 +923,7 @@
     "name": "엑스포츠뉴스",
     "darkSrc": "./assets/logo/dark/img52.svg",
     "lightSrc": "./assets/logo/light/img52.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -909,6 +941,7 @@
     "name": "서울파이낸스",
     "darkSrc": "./assets/logo/dark/img53.svg",
     "lightSrc": "./assets/logo/light/img53.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -926,6 +959,7 @@
     "name": "한국대학신문",
     "darkSrc": "./assets/logo/dark/img54.svg",
     "lightSrc": "./assets/logo/light/img54.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -943,6 +977,7 @@
     "name": "datanews",
     "darkSrc": "./assets/logo/dark/img55.svg",
     "lightSrc": "./assets/logo/light/img55.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -960,6 +995,7 @@
     "name": "DigitalToday",
     "darkSrc": "./assets/logo/dark/img56.svg",
     "lightSrc": "./assets/logo/light/img56.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -977,6 +1013,7 @@
     "name": "시사위크",
     "darkSrc": "./assets/logo/dark/img57.svg",
     "lightSrc": "./assets/logo/light/img57.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -994,6 +1031,7 @@
     "name": "YTN",
     "darkSrc": "./assets/logo/dark/img58.svg",
     "lightSrc": "./assets/logo/light/img58.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1011,6 +1049,7 @@
     "name": "MBN",
     "darkSrc": "./assets/logo/dark/img59.svg",
     "lightSrc": "./assets/logo/light/img59.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1028,6 +1067,7 @@
     "name": "매일경제",
     "darkSrc": "./assets/logo/dark/img60.svg",
     "lightSrc": "./assets/logo/light/img60.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "매거진/전문지",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1045,6 +1085,7 @@
     "name": "오마이뉴스",
     "darkSrc": "./assets/logo/dark/img61.svg",
     "lightSrc": "./assets/logo/light/img61.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1062,6 +1103,7 @@
     "name": "SBS",
     "darkSrc": "./assets/logo/dark/img62.svg",
     "lightSrc": "./assets/logo/light/img62.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1079,6 +1121,7 @@
     "name": "머니투데이",
     "darkSrc": "./assets/logo/dark/img63.svg",
     "lightSrc": "./assets/logo/light/img63.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1096,6 +1139,7 @@
     "name": "마이데일리",
     "darkSrc": "./assets/logo/dark/img64.svg",
     "lightSrc": "./assets/logo/light/img64.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1113,6 +1157,7 @@
     "name": "ZDNET Korea",
     "darkSrc": "./assets/logo/dark/img65.svg",
     "lightSrc": "./assets/logo/light/img65.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1130,6 +1175,7 @@
     "name": "경향신문",
     "darkSrc": "./assets/logo/dark/img66.svg",
     "lightSrc": "./assets/logo/light/img66.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1147,6 +1193,7 @@
     "name": "일간스포츠",
     "darkSrc": "./assets/logo/dark/img67.svg",
     "lightSrc": "./assets/logo/light/img67.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1164,6 +1211,7 @@
     "name": "국민일보",
     "darkSrc": "./assets/logo/dark/img68.svg",
     "lightSrc": "./assets/logo/light/img68.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1181,6 +1229,7 @@
     "name": "뉴데일리",
     "darkSrc": "./assets/logo/dark/img69.svg",
     "lightSrc": "./assets/logo/light/img69.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1198,6 +1247,7 @@
     "name": "뉴스타파",
     "darkSrc": "./assets/logo/dark/img70.svg",
     "lightSrc": "./assets/logo/light/img70.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "지역",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1215,6 +1265,7 @@
     "name": "MBC",
     "darkSrc": "./assets/logo/dark/img71.svg",
     "lightSrc": "./assets/logo/light/img71.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1232,6 +1283,7 @@
     "name": "한국헤럴드",
     "darkSrc": "./assets/logo/dark/img72.svg",
     "lightSrc": "./assets/logo/light/img72.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1249,6 +1301,7 @@
     "name": "KNN",
     "darkSrc": "./assets/logo/dark/img73.svg",
     "lightSrc": "./assets/logo/light/img73.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1266,6 +1319,7 @@
     "name": "CEO스코어데일리",
     "darkSrc": "./assets/logo/dark/img74.svg",
     "lightSrc": "./assets/logo/light/img74.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1283,6 +1337,7 @@
     "name": "BUSINESS POST",
     "darkSrc": "./assets/logo/dark/img75.svg",
     "lightSrc": "./assets/logo/light/img75.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1299,7 +1354,9 @@
     "id": 76,
     "name": "에너지경제",
     "darkSrc": "./assets/logo/dark/img76.svg",
-    "lightSrc": "./assets/logo/light/img76.svg",    "category": "종합/경제",
+    "lightSrc": "./assets/logo/light/img76.svg",  
+    "editDate": "2023. 03. 10. 18:27 편집", 
+    "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
       "\"위스키 사려고 이틀 전부터 줄 섰어요\"",
@@ -1316,6 +1373,7 @@
     "name": "조이뉴스24",
     "darkSrc": "./assets/logo/dark/img77.svg",
     "lightSrc": "./assets/logo/light/img77.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1333,6 +1391,7 @@
     "name": "한국농어촌방송",
     "darkSrc": "./assets/logo/dark/img78.svg",
     "lightSrc": "./assets/logo/light/img78.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1350,6 +1409,7 @@
     "name": "시사저널e",
     "darkSrc": "./assets/logo/dark/img79.svg",
     "lightSrc": "./assets/logo/light/img79.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1367,6 +1427,7 @@
     "name": "법률방송뉴스",
     "darkSrc": "./assets/logo/dark/img80.svg",
     "lightSrc": "./assets/logo/light/img80.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "종합/경제",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1384,6 +1445,7 @@
     "name": "인사이트",
     "darkSrc": "./assets/logo/dark/img81.svg",
     "lightSrc": "./assets/logo/light/img81.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1401,6 +1463,7 @@
     "name": "한국중앙데일리",
     "darkSrc": "./assets/logo/dark/img82.svg",
     "lightSrc": "./assets/logo/light/img82.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1418,6 +1481,7 @@
     "name": "KBS WORLD",
     "darkSrc": "./assets/logo/dark/img83.svg",
     "lightSrc": "./assets/logo/light/img83.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1435,6 +1499,7 @@
     "name": "석간문화일보",
     "darkSrc": "./assets/logo/dark/img84.svg",
     "lightSrc": "./assets/logo/light/img84.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1452,6 +1517,7 @@
     "name": "스포츠동아",
     "darkSrc": "./assets/logo/dark/img85.svg",
     "lightSrc": "./assets/logo/light/img85.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1469,6 +1535,7 @@
     "name": "소포츠서울",
     "darkSrc": "./assets/logo/dark/img86.svg",
     "lightSrc": "./assets/logo/light/img86.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1486,6 +1553,7 @@
     "name": "파이낸셜뉴스",
     "darkSrc": "./assets/logo/dark/img87.svg",
     "lightSrc": "./assets/logo/light/img87.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1503,6 +1571,7 @@
     "name": "아이뉴스24",
     "darkSrc": "./assets/logo/dark/img88.svg",
     "lightSrc": "./assets/logo/light/img88.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1520,6 +1589,7 @@
     "name": "조선일보",
     "darkSrc": "./assets/logo/dark/img89.svg",
     "lightSrc": "./assets/logo/light/img89.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1537,6 +1607,7 @@
     "name": "이데일리",
     "darkSrc": "./assets/logo/dark/img90.svg",
     "lightSrc": "./assets/logo/light/img90.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "방송/통신",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1554,6 +1625,7 @@
     "name": "아시아경제",
     "darkSrc": "./assets/logo/dark/img91.svg",
     "lightSrc": "./assets/logo/light/img91.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1571,6 +1643,7 @@
     "name": "세계일보",
     "darkSrc": "./assets/logo/dark/img92.svg",
     "lightSrc": "./assets/logo/light/img92.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1588,6 +1661,7 @@
     "name": "SBS Biz",
     "darkSrc": "./assets/logo/dark/img93.svg",
     "lightSrc": "./assets/logo/light/img93.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1605,6 +1679,7 @@
     "name": "헤럴드경제",
     "darkSrc": "./assets/logo/dark/img94.svg",
     "lightSrc": "./assets/logo/light/img94.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1622,6 +1697,7 @@
     "name": "데일리안",
     "darkSrc": "./assets/logo/dark/img95.svg",
     "lightSrc": "./assets/logo/light/img95.svg",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
     "subTitle": [
@@ -1641,6 +1717,7 @@
     "lightSrc": "./assets/logo/light/img96.svg",
     "category": "IT",
     "mainTitle": "또 국민연금의 몽니…현대百 지주사 불발",
+    "editDate": "2023. 03. 10. 18:27 편집",
     "subTitle": [
       "\"위스키 사려고 이틀 전부터 줄 섰어요\"",
       "'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까",
