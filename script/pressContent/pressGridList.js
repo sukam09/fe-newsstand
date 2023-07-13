@@ -9,6 +9,7 @@ const pressContentView = getElemClass(document, 'press-content-view');
 
 let pageNumber = 0;
 
+// Json 객체로부터 받아오는 뉴스 데이터의 id값 랜덤 셔플 후 첫번째 페이지 구현
 async function shuffleImgs() {
   const imgPath = await fetchData("../assets/data/newspaperSrc.json");
   const imgId = imgPath.newsList.map((elem) => {
@@ -28,6 +29,7 @@ async function shuffleImgs() {
   pressContentView[0].innerHTML = imgSrcContent;
 }
 
+// 각각의 페이지에 올바른 뉴스데이터 나타내기
 function showPressImg(flag) {
   const pressContentView = getElemClass(document, 'press-content-view');
   pageNumber = (flag >= 0) ? ++pageNumber : --pageNumber;
@@ -41,6 +43,7 @@ function showPressImg(flag) {
   pressContentView[0].innerHTML = imgSrcContent;
 }
 
+// 이전 페이지 이동 및 다음 페이지 이동 구현
 function changePressGrid() {
   sectionPrevButton.addEventListener('click', () => showPressImg(-1));
   sectionNextButton.addEventListener('click', () => showPressImg(1));

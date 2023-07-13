@@ -4,23 +4,26 @@ import { fetchData } from "../../utils/js/getJson.js";
 let intervalFirstNewsbar;
 let intervalSecondNewsbar;
 
+// 최신 헤드라인 뉴스 자동 롤링 시작
 function startRolling() {
   intervalFirstNewsbar = setInterval(() => {
-    rollingCb('first');
+    rollingInterval('first');
   }, 5000);
 
   intervalSecondNewsbar = setInterval(() => {
     setTimeout(() => {
-      rollingCb('second');
+      rollingInterval('second');
     }, 1000)
   }, 5000);
 }
 
+// 최신 헤드라인 뉴스 자동 롤링 중지
 function stopRolling() {
   clearInterval(intervalFirstNewsbar);
   clearInterval(intervalSecondNewsbar);
 }
 
+// 헤드라인 뉴스 자동 롤링 영역 마우스 이벤트
 function mouseEventRolling(state) {
   const headlineNews = getQuerySelectorAll(document, `.newsbar-content-container-${state} li`);
 
@@ -38,7 +41,7 @@ function mouseEventRolling(state) {
     })
   })
 }
-
+// 헤드라인 뉴스 데이터 html에 입력
 function putNewsHeadline(state, headlineTitleArr) {
   let headlineSrc = "";
   headlineTitleArr.forEach((elem, id) => {
@@ -62,6 +65,7 @@ function putNewsHeadline(state, headlineTitleArr) {
   mouseEventRolling(state);
 }
 
+// 헤드라인 뉴스 데이터 받아오기
 async function getNewsHeadline() {
   const headlinePath = await fetchData("../assets/data/newsTitle.json");
   const headlineTitleFirst = headlinePath.titleFirst.map((elem) => {
@@ -75,7 +79,8 @@ async function getNewsHeadline() {
   putNewsHeadline("second", headlineTitleSecond);
 }
 
-function rollingCb(state) {
+// 헤드라인 뉴스 자동 롤링 반복
+function rollingInterval(state) {
   getQuerySelector(document, `.newsbar-content-container-${state} .prev`).classList.remove('prev');
   let current = getQuerySelector(document, `.newsbar-content-container-${state} .current`);
   current.classList.remove('current');
