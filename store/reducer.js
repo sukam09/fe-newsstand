@@ -1,9 +1,13 @@
 import { VIEW_TYPE, CATEGORIES } from "../constants/index.js";
 import { createAction } from "../core/my-redux.js";
 
+let categoryIdx = 0;
+
+const categoryCount = CATEGORIES.length;
+
 const initialState = {
   currentPage: 0,
-  currentCategory: CATEGORIES[0],
+  currentCategory: CATEGORIES[categoryIdx],
   viewType: VIEW_TYPE.GRID,
 };
 
@@ -32,11 +36,26 @@ export const reducer = (state = initialState, action) => {
     case RESET_PAGE:
       return { ...state, currentPage: 0 };
     case CHANGE_VIEW:
+      categoryIdx = 0;
       return {
         ...state,
         currentPage: 0,
-        currentCategory: "종합/경제",
+        currentCategory: CATEGORIES[categoryIdx],
         viewType: action.payload,
+      };
+    case NEXT_CATEGORY:
+      categoryIdx = categoryIdx === categoryCount - 1 ? 0 : categoryIdx + 1;
+      return {
+        ...state,
+        currentCategory: CATEGORIES[categoryIdx],
+        currentPage: 0,
+      };
+    case PREV_CATEGORY:
+      categoryIdx = categoryIdx === 0 ? categoryCount - 1 : categoryIdx - 1;
+      return {
+        ...state,
+        currentCategory: CATEGORIES[categoryIdx],
+        currentPage: 0,
       };
     case SET_CATEGORY:
       return {
