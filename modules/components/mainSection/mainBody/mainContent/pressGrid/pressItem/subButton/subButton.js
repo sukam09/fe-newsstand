@@ -16,5 +16,4 @@ export function subscribe(press) {
 export function unsubscrib(press) {
   press.isSub = false;
   toggleSubButton(press, subButtonContainer);
-  console.log(press);
 }

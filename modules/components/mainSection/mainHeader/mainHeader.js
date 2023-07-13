@@ -32,7 +32,7 @@ export function mainHeader() {
       </div>
       <div class="view_button_container flex_row">
         <img class="list_view_button" src="./assets/icons/list_off.png" alt="list view button">
-        <img class="grid_view_button" src="./assets/icons/grid_off.png" alt="grid view button">
+        <img class="grid_view_button view_clicked" src="./assets/icons/grid_off.png" alt="grid view button">
       </div>
     </div>
     `;

@@ -5,6 +5,7 @@ import {
   setListPage,
 } from "../../../../../../pageState.js";
 import { qs } from "../../../../../../utils.js";
+import { controllButtonShowing } from "../../../pageButtons/pageButtons.js";
 import { showListPage } from "../pressList.js";
 import { progressBar, startProgressAnimation } from "./progressBar.js";
 
@@ -22,10 +23,6 @@ export function categoryItem(categoryName, categoryId, len) {
 }
 
 export function handleClickCategoryItem(e) {
-  const $clickedElements = document.getElementsByClassName("clicked");
-  for (let i = 0; i < $clickedElements.length; i++) {
-    $clickedElements[i].classList.remove("clicked");
-  }
   const id = e.currentTarget.id;
   const [, categoryId] = id.split("_");
   setCategoryId(categoryId);
@@ -33,18 +30,22 @@ export function handleClickCategoryItem(e) {
   showListPage(categoryId, listPage);
   updatePageCount();
   highlightCategoryItem();
+  controllButtonShowing();
 }
 
 export function highlightCategoryItem() {
-  const $category = qs(`#category_${categoryId}`);
+  const $clickedElements = document.getElementsByClassName("clicked");
+  for (let i = 0; i < $clickedElements.length; i++) {
+    $clickedElements[i].classList.remove("clicked");
+  }
+  const $category = qs(`#category_${parseInt(categoryId)}`);
   $category.classList.add("clicked");
   const $progressbar = $category.getElementsByClassName("progressbar")[0];
-  console.log($progressbar);
   startProgressAnimation($progressbar);
 }
 
 export function updatePageCount() {
-  const $categoryItem = qs(`#category_${categoryId}`);
+  const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
   const $nowPage = $categoryItem.querySelector(".now_page");
   $nowPage.innerHTML = listPage + 1;
 }

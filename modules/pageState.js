@@ -1,17 +1,17 @@
 export const GRID = "grid";
 export const LIST = "list";
-let pageType = LIST;
+let pageType = GRID;
 
 export const MAX_GRID_PAGE = 4;
 export const NUM_IN_A_GRID = 24;
-
-const MAX_CATEGORY_ID = 2;
+export const MAX_CATEGORY_ID = 2;
 export const MAX_LIST_PAGE = {
   // categoryId: maxPage
   0: 3,
   1: 4,
 };
 export const TOTAL_LIST_PAGE = 7;
+
 export let categoryId = 0;
 export let listPage = 0;
 export let gridPage = 0;
@@ -40,7 +40,11 @@ export function getPageType() {
   return pageType;
 }
 export function setCategoryId(id) {
-  categoryId = id;
+  categoryId = parseInt(id);
+
+  if (categoryId >= MAX_CATEGORY_ID - 1) {
+    categoryId = MAX_CATEGORY_ID - 1;
+  }
 }
 export function getCategoryId() {
   return categoryId;

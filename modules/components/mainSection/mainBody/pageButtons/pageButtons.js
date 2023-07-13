@@ -12,13 +12,18 @@ import {
   listPage,
   decListPage,
   TOTAL_LIST_PAGE,
+  MAX_CATEGORY_ID,
+  setCategoryId,
 } from "../../../../pageState.js";
 import { qs } from "../../../../utils.js";
 import {
   hideGridPage,
   showGridPage,
 } from "../mainContent/pressGrid/pressGrid.js";
-import { updatePageCount } from "../mainContent/pressList/category/categoryItem.js";
+import {
+  highlightCategoryItem,
+  updatePageCount,
+} from "../mainContent/pressList/category/categoryItem.js";
 import {
   hideAllListPage,
   showListPage,
@@ -55,9 +60,18 @@ export function showNextPage() {
     showGridPage(gridPage);
   } else if (type === LIST) {
     hideAllListPage();
-    incListPage();
-    showListPage(categoryId, listPage);
+    if (
+      listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+      categoryId < MAX_CATEGORY_ID - 1
+    ) {
+      setCategoryId(categoryId + 1);
+      setListPage(0);
+      highlightCategoryItem();
+    } else {
+      incListPage();
+    }
     updatePageCount();
+    showListPage(categoryId, listPage);
   }
   controllButtonShowing();
 }
@@ -71,7 +85,13 @@ export function showPrevPage() {
     showGridPage(gridPage);
   } else if (type === LIST) {
     hideAllListPage();
-    decListPage();
+    if (listPage <= 0 && categoryId > 0) {
+      setCategoryId(categoryId - 1);
+      setListPage(MAX_LIST_PAGE[categoryId] - 1);
+      highlightCategoryItem();
+    } else {
+      decListPage();
+    }
     showListPage(categoryId, listPage);
     updatePageCount();
   }
@@ -100,7 +120,7 @@ export function controllButtonShowing() {
     if (listPage >= maxPage) {
       $leftButton.style.display = "block";
       $rightButton.style.display = "none";
-    } else if (listPage <= 0) {
+    } else if (listPage <= 0 && categoryId <= 0) {
       $leftButton.style.display = "none";
       $rightButton.style.display = "block";
     } else {

@@ -18,7 +18,7 @@ export function pressList(categoryNews, page) {
 
 export function showListPage(categoryId, page) {
   hideAllListPage();
-  const $targetNewsPage = qs(`.news_${categoryId}_${page}`);
+  const $targetNewsPage = qs(`.news_${parseInt(categoryId)}_${page}`);
   $targetNewsPage.style.display = "block";
 }
 
