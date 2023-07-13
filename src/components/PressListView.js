@@ -6,11 +6,28 @@ import {
 
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
+
+  const $div = document.createElement('div');
+  $div.classList.add('press-list-view');
+
   const $article = document.createElement('article');
   $article.classList.add('press-news');
 
+  const $leftButton = document.createElement('img');
+  const $rightButton = document.createElement('img');
+
+  $leftButton.src = '../asset/icons/left-button.svg';
+  $leftButton.classList.add('list-left-button');
+
+  $rightButton.src = '../asset/icons/right-button.svg';
+  $rightButton.classList.add('list-right-button');
+
+  $div.appendChild($leftButton);
+  $div.appendChild($article);
+  $div.appendChild($rightButton);
+
   $target.appendChild($section);
-  $target.appendChild($article);
+  $target.appendChild($div);
 
   this.state = initialState;
 
@@ -78,11 +95,26 @@ export default function PressListView({ $target, initialState }) {
     this.state.$currentButton = $selectedButton;
   };
 
+  // const handleClickLeftButton = () => {
+  //   if () {
+
+  //   }
+  //   this.setState({...this.state, })
+  // };
+
+  // const handleClickRightButton = () => {
+
+  // };
+
   let isInit = false;
 
   this.render = () => {
     if (!isInit) {
       initFieldTab();
+
+      // $leftButton.addEventListener('click', handleClickLeftButton);
+      // $rightButton.addEventListener('click', handleClickRightButton);
+
       isInit = true;
     }
 
@@ -114,9 +146,9 @@ export default function PressListView({ $target, initialState }) {
           <p class="news-sub-caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</p>
         </div>
       </div>
-      <button class="list-right-button">
+      <!-- <button class="list-right-button">
         <img width="24px" height="40px" src="../asset/icons/right-button.png" />
-      </button>
+      </button> -->
     `;
 
     const $pressImage = $article.querySelector('.press-image');

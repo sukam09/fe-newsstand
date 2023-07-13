@@ -356,6 +356,13 @@ header {
   line-height: normal;
 }
 
+.press-list-view {
+  display: flex;
+  transform: translate(-74px);
+  align-items: center;
+  gap: 48px;
+}
+
 .press-news {
   display: flex;
   position: relative;
@@ -466,10 +473,10 @@ header {
   line-height: normal;
 }
 
+.list-left-button {
+  cursor: pointer;
+}
+
 .list-right-button {
-  position: absolute;
-  top: 154px;
-  right: -72px;
-  width: 24px;
-  height: 40px;
+  cursor: pointer;
 }
