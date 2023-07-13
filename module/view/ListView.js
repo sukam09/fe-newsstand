@@ -10,12 +10,13 @@ const PROGRESS_TAB_WIDTH = "166";
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 
 export const categoryLength = [];
-export let intervalId;
+export let intervalId; // 모드 변경되면(그리드 뷰로 넘어가면) 타이머 멈추기
 
 //뉴스 데이터 패치 -> 탭 정보(언론사 개수 초기화) -> 언론사 뉴스 html 요소 생성 및 초기화
 async function fetchCategoryNewsData() {
   try {
     news_data = await fetchCategoryNews("../Data/category_news.json");
+    console.log(news_data);
     fieldInit();
     createPressNewsSection();
   } catch (e) {
@@ -124,8 +125,6 @@ function fieldTabAutoChange() {
 
 export function pageMoveByBtn(current_list_page) {
   CURRENT_PAGE = current_list_page;
-  console.log(news_data[CURRENT_CATEGORY].press);
-  console.log(CURRENT_PAGE);
   //다른 카테고리로 전환 -> LEFT
   if (CURRENT_PAGE === 0) {
     CURRENT_CATEGORY--;
@@ -141,11 +140,8 @@ export function pageMoveByBtn(current_list_page) {
     CURRENT_CATEGORY++;
     CURRENT_PAGE = 1;
     LIST_PAGE.current_list_page = 1;
-    console.log(CURRENT_CATEGORY);
-    console.log(categoryLength.length);
     //맨 처음 카테고리로 순서 변경
     if (CURRENT_CATEGORY === categoryLength.length) {
-      console.log("넘었다");
       CURRENT_CATEGORY = 0;
     }
   }

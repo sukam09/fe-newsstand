@@ -11,6 +11,9 @@ export async function fetchRollingArticle(path) {
 
 export async function fetchCategoryNews(path) {
   const jsonData = await jsonfetch(path);
+  jsonData.forEach((eachCategory) => {
+    shuffle_press(eachCategory.press);
+  });
   return jsonData;
 }
 
@@ -31,5 +34,19 @@ function shuffle_id(news_icon) {
     tempValue = news_icon[currentIndex].path;
     news_icon[currentIndex].path = news_icon[randomIndex].path;
     news_icon[randomIndex].path = tempValue;
+  }
+}
+function shuffle_press(press) {
+  console.log(press);
+  let currentIndex = press.length,
+    tempValue,
+    randomIndex;
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    tempValue = press[currentIndex];
+    press[currentIndex] = press[randomIndex];
+    press[randomIndex] = tempValue;
   }
 }
