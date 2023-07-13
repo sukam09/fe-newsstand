@@ -1,19 +1,22 @@
 import {getJSON } from '../util/util.js';
-let categories = '';
+let categories = [];
 let category_page = 0;
 let media_page = 0;
 let categorizedData;
 let animationId;
 const setNewsData = () => {
-  const newsItem = categorizedData[categories][media_page];
+  const category_progress = document.querySelector(".category_progress");
+  const newsItem = categorizedData[categories[category_page]][media_page];
   const media_info_edited = document.querySelector(".media_info_edited");
   const thumbnail_p = document.querySelector(".thumbnail p");
   const media_section_list_p_tags = document.querySelectorAll(".media_section_list p");
+  const media_section_source = document.querySelector(".source");
 
+  category_progress.innerHTML = (media_page+1)+"/" + (categorizedData[categories[category_page]].length);
   media_info_edited.innerHTML = newsItem["edit_date"];
   thumbnail_p.innerHTML = newsItem["main_title"];
 
-  for (let i = 0; i < media_section_list_p_tags.length; i++) {
+  for (let i = 0; i < media_section_list_p_tags.length-1; i++) {
     media_section_list_p_tags[i].innerHTML = "";
   }
   if (newsItem && newsItem["sub_title"].length > 0) {
@@ -23,6 +26,7 @@ const setNewsData = () => {
       }
     }
   }
+  media_section_source.innerHTML = newsItem["name"] +" 언론사에서 직접 편집한 뉴스입니다.";
 }
 
 const getNewsData = async () => {
@@ -48,16 +52,15 @@ const getNewsData = async () => {
   // 각 카테고리별 개수를 구하고 HTML 요소를 생성하는 함수
   function createCategoryElements(categorizedData) {
     let categoriesWrapper = document.querySelector('.category');
-    let firstCategory = true;
   
-    for(let category in categorizedData) {
+    Object.keys(categorizedData).forEach((category, index) => {
+      categories.push(category);
       let categoryItemCount = categorizedData[category].length;
-  
+    
       let categoryItemDiv = document.createElement('div');
       categoryItemDiv.className = "category_item";
-      if(firstCategory) {
+      if(index === 0) {
         categoryItemDiv.classList.add('progressed');
-        firstCategory = false;
       }
       let categoryNameP = document.createElement('p');
       categoryNameP.classList.add("category_name","selected-bold14");
@@ -66,19 +69,20 @@ const getNewsData = async () => {
       let categoryProgressP = document.createElement('p');
       categoryProgressP.classList.add("category_progress", "display-bold12");
       categoryProgressP.textContent = "1/" + categoryItemCount;
-  
+    
       categoryItemDiv.appendChild(categoryNameP);
       categoryItemDiv.appendChild(categoryProgressP);
-  
+    
       categoryItemDiv.addEventListener('click', function() {
-        categories = category;
+        category_page = index;
         media_page = 0;
         cancelAnimationFrame(animationId);
         setNewsData();
       });
-  
+    
       categoriesWrapper.appendChild(categoryItemDiv);
-    }
+    });
+    
   }
   
   categorizedData = categorizeData(newsData);
@@ -134,7 +138,14 @@ const progressBarControl = () => {
     if (currentWidth < endWidth) {
       animationId = requestAnimationFrame(step);
     } else {
-      media_page+=1;
+      console.log(categorizedData[categories[category_page]]);
+      if(categorizedData[categories[category_page]].length - 1 === media_page){ // 한 페이지 끝까지 돌면
+        media_page = 0;
+        category_page += 1;
+      }
+      else{
+        media_page+=1;
+      }
       setNewsData();
       element.style.width = "0px";
       progressBarControl();
