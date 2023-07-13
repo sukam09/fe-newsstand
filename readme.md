@@ -1,7 +1,10 @@
 1. 레이아웃 설계
-   ![UI - 1](./docs/test3.png)
-   ![UI - 2](./docs/test4.png)
+
+    ![UI - 1](./docs/test3.png)
+    ![UI - 2](./docs/test4.png)
+
 2. 네이밍 규칙
+
     - HTML, CSS
         - id : `camelCase`
         - class : `underscore`
@@ -13,6 +16,30 @@
             - constant : `UPPERCASE`
             - function scope : `camelCase`
             - global scope : `single tone` || `underscore`
+
+3. 디렉터리 구조
+
+-   index.html
+-   index.css
+-   app.js
+-   src
+    -   views
+        -   list_views.js
+        -   grid_views.js
+        -   rolling_views.js
+    -   utils.js
+    -   actions.js
+    -   constants.js
+    -   globals.js
+    -   events.js
+-   assets.js
+    -   icons
+    -   images
+    -   pictures
+-   data
+    -   all_news.json
+    -   hot_topic_data.json
+    -   press_data.json
 
 ---
 
