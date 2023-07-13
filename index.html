@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/src/style/style.css" />
-    <link rel="stylesheet" type="text/css" href="/src/style/utils.css" />
   </head>
   <body>
     <div id="app">
-      <div class="main__container">
+      <div class="app__container">
         <header class="header">
           <h1 class="header__title">뉴스스탠드</h1>
           <time class="header__date"></time>
@@ -48,7 +47,7 @@
           </div>
         </section>
 
-        <section class="main">
+        <section class="main__container">
           <h2 class="main__title screen-reader-only">언론사 보기</h2>
           <nav class="main__nav">
             <div class="company-type">
@@ -68,15 +67,15 @@
               </button>
             </div>
           </nav>
-          <div class="agency-list-container">
-            <button class="prev-page-btn">
+          <div class="page__container">
+            <button class="prev-page-btn move-page__btn" data-dir="prev">
               <span class="screen-reader-only">이전 페이지</span>
               <img
                 src="/public/asset/icon/left-button.svg"
                 alt="이전 페이지 버튼"
               />
             </button>
-            <button class="next-page-btn">
+            <button class="next-page-btn move-page__btn" data-dir="next">
               <span class="screen-reader-only">다음 페이지</span>
               <img
                 src="/public/asset/icon/right-button.svg"
