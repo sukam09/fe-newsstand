@@ -36,14 +36,16 @@ function getNews(e) {
     ".selected-category span"
   ).innerText;
 
-  //카테고리에 해당하는 뉴스 찾기
+  //카테고리에 해당하는 뉴스 찾고, 랜덤으로 섞기
+  const randomNews = [...news_by_category[currentCategory]].sort(
+    () => Math.random() - 0.5
+  );
   let currentNews;
   //event가 클릭일 때랑 iteration일 때랑 구분
   if (e.type === "animationiteration") {
-    currentNews =
-      news_by_category[currentCategory][e.elapsedTime / ANIMATION_DURATON];
+    currentNews = randomNews[e.elapsedTime / ANIMATION_DURATON];
   } else {
-    currentNews = news_by_category[currentCategory][0];
+    currentNews = randomNews[0];
   }
 
   //press-info
