@@ -161,11 +161,6 @@
   text-decoration: underline;
 }
 
-/* .press-news-img > img {
-  width: 320px;
-  height: 200px;
-} */
-
 .press-news-img > span {
   display: flex;
   height: 44px;

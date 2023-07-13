@@ -22,29 +22,8 @@
 .common-button:hover img {
   content: url('src/assets/icons/plus-hover.svg');
 }
-
-.common-button.gray {
-  border: 1px solid var(--border-default);
-  background-color: var(--surface-alt);
-  color: var(--text-weak);
-}
-
-.common-button.gray:hover {
-  border: 1px solid var(--border-bold);
-  background-color: var(--surface-alt);
-  color: var(--text-bold);
-}
-
-.common-button.white {
-  border: 1px solid var(--border-default);
-  background-color: var(--surface-default);
-  color: var(--text-weak);
-}
-
-.common-button.white:hover {
-  border: 1px solid var(--border-bold);
-  background-color: var(--surface-default);
-  color: var(--text-bold);
+.dark .common-button:hover img {
+  content: url('src/assets/icons/plus-hover-dark.svg');
 }
 /* class */
 

@@ -67,7 +67,7 @@ export default class AllNewsListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
-
+    console.log(document.body.className);
     setTimeout(() => {
       customQuerySelector('.progress-bar', this.$target).style.width = '100%';
       this.setTimer();
@@ -76,7 +76,7 @@ export default class AllNewsListView extends Component {
     new Button(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
       text: '구독하기',
-      icon: 'plus',
+      icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
       states: 'default',
     });
 

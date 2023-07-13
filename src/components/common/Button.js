@@ -16,8 +16,29 @@ export default class Button extends Component {
 
   mounted() {
     const $button = customQuerySelector('button', this.$target);
-    $button.className = `common-button ${this.state.color}`;
+    $button.className =
+      this.state.color === 'gray'
+        ? `common-button border-default surface-alt text-weak`
+        : `common-button border-default surface-defalut text-weak`;
 
-    new Icon(customQuerySelector('.common-button-icon', this.$target), { name: 'plus' });
+    new Icon(customQuerySelector('.common-button-icon', this.$target), { name: this.state.icon });
+  }
+
+  setEvent() {
+    const $button = customQuerySelector('button', this.$target);
+
+    $button.addEventListener('mouseover', () => {
+      $button.className =
+        this.state.color === 'gray'
+          ? `common-button border-bold surface-alt text-bold`
+          : `common-button border-bold surface-defalut text-bold`;
+    });
+
+    $button.addEventListener('mouseout', () => {
+      $button.className =
+        this.state.color === 'gray'
+          ? `common-button border-default surface-alt text-weak`
+          : `common-button border-default surface-defalut text-weak`;
+    });
   }
 }
