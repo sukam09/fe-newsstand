@@ -40,6 +40,7 @@ function toggleView(mode) {
     GLOBAL.DOM.list_view.style.display = "none";
     GLOBAL.DOM.left_btn.style.display = "none";
     GLOBAL.DOM.right_btn.style.display = "block";
+    GLOBAL.grid_cur_page = 0;
   } else {
     GLOBAL.cur_mode = MODE.LIST;
     GLOBAL.DOM.grid_btn.childNodes[1].src = ICON.GRID_BTN;
