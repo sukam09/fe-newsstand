@@ -1,8 +1,8 @@
-import { html } from "./core.js";
+import { html } from "./html.js";
 function renderGrid(page, PAGINATION_NUM) {
-    const $agencyList = document.querySelector(".agency-list");
+    const $companyList = document.querySelector(".company-list");
     // 기존 페이지 제거
-    document.querySelector(".agency-list").innerHTML = "";
+    $companyList.innerHTML = "";
     // 새로운 child append
     const newGrid = page.map((data) => {
         const $li = document.createElement("li");
@@ -26,13 +26,13 @@ function renderGrid(page, PAGINATION_NUM) {
         const $li = document.createElement("li");
         newGrid.push($li);
     }
-    $agencyList.append(...newGrid);
+    $companyList.append(...newGrid);
 }
 function renderListViewPage(data) {
-    document.querySelector(".list-view-page").innerHTML = "";
-    const $listViewPage = document.querySelector(".list-view-page");
+    const $listViewPage = document.querySelector(".list-page");
+    // $listViewPage.innerHTML = "";
     $listViewPage.innerHTML = html `
-    <div class="list-view-nav">
+    <div class="list-page__nav">
       <a href="${data.url}">
         <img
           src="/public/asset/images/light/${data.id}.png"
@@ -40,18 +40,18 @@ function renderListViewPage(data) {
           alt="${data.name}"
         />
       </a>
-      <span class="edit-date">${data.editTime} 편집</span>
-      <button class="subscribe">구독하기</button>
+      <span class="list-page__datetime">${String(data.editTime)} 편집</span>
+      <button class="subscribe__btn">구독하기</button>
     </div>
-    <div class="list-view-articles">
+    <div class="list-page__articles">
       <a href="${data.mainArticle.url}">
-        <article class="main-article-container">
+        <article class="main-article">
           <img src="${data.mainArticle.thumbnail}" />
           <span> ${data.mainArticle.title} </span>
         </article>
       </a>
-      <div class="sub-articles-container">
-        <ul class="sub-articles-list">
+      <div class="sub-articles">
+        <ul class="sub-articles__list">
           ${data.subArticles
         .slice(0, 6)
         .reduce((accumulator, article) => accumulator +
