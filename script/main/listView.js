@@ -108,7 +108,14 @@ function createCategoryElements(categorizedData) {
 }
 
 const setArrowHandler = () => {
-  document.querySelector("#arrow_wrapper_left_list").addEventListener("click", () => {
+  const leftArrowWrapper = document.querySelector("#arrow_wrapper_left_list");
+  const rightArrowWrapper = document.querySelector("#arrow_wrapper_right_list");
+  
+  // 이벤트 리스너가 이미 등록되어 있다면 리턴하여 다시 추가하지 않습니다.
+  if (leftArrowWrapper._hasClickListener || rightArrowWrapper._hasClickListener) {
+    return;
+  }
+  leftArrowWrapper.addEventListener("click", () => {
     if (media_page === 0) {
       if (category_page === 0) {
         category_page = Object.keys(categorizedData).length - 1;
@@ -126,10 +133,9 @@ const setArrowHandler = () => {
     setNewsData();
   });
   
-  document.querySelector("#arrow_wrapper_right_list").addEventListener("click", () => {
+  rightArrowWrapper.addEventListener("click", () => {
     const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
     const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
-    console.log("T");
     if (isLastMedia) {
       if (isLastCategory) {
         category_page = 0;
@@ -145,6 +151,8 @@ const setArrowHandler = () => {
     updateCategoryProgress();
     setNewsData();
   });  
+  leftArrowWrapper._hasClickListener = true;
+  rightArrowWrapper._hasClickListener = true;
 }
 /**
  * news data가져와서 기본 셋팅 함수

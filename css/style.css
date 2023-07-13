@@ -226,6 +226,10 @@ ul li:hover .media-hover {
     height: 40px;
     align-items: center;
 }
+.list_wrapper .category .category_item:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .list_wrapper .category .category_item.progressed{
     position: relative;
