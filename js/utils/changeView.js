@@ -11,13 +11,13 @@ export function changeView(target) {
     list_btn.src = "../assets/icons/list-view.svg";
     view.classList.remove("list-view");
     view.classList.add("grid-view");
-    showGridView();
+    showGridView(1);
   } else {
     const view = document.querySelector(".grid-view");
     grid_btn.src = "../assets/icons/grid-view.svg";
     list_btn.src = "../assets/icons/list-view-clicked.svg";
     view.classList.remove("grid-view");
     view.classList.add("list-view");
-    showListView();
+    showListView(1);
   }
 }

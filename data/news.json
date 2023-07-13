@@ -5,7 +5,7 @@
       "title": "또 국민연금의 몽니…현대百 지주사 불발",
       "url": "http://example.com/news/1",
       "press": "서울경제",
-      "thumbnail": "https://www.avantixlearning.ca/wp-content/uploads/2021/08/random-text-in-word-latin-lorem-ipsum.jpg",
+      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
       "category": "종합/경제"
     },
     {
@@ -115,26 +115,58 @@
     },
     {
       "id": 15,
-      "title": "[단독] 中 판매 부진 못 견딘 현대차…창저우 공장 철수 검토",
+      "title": "대통령실, 도이치모터스 1심 판결에 \"김 여사 연루 의혹, 민주당 주장 깨졌다\"",
       "url": "http://example.com/news/15",
-      "press": "SBS Biz",
-      "thumbnail": "",
+      "press": "데일리안",
+      "thumbnail": "https://armory.visualsoldiers.com/wp-content/uploads/2019/04/Lorem-Picsum-Armory-970x647.jpg",
       "category": "종합/경제"
     },
     {
       "id": 16,
-      "title": "'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'",
+      "title": "이재명 \"공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\"",
       "url": "http://example.com/news/16",
-      "press": "SBS Biz",
+      "press": "데일리안",
       "thumbnail": "",
       "category": "종합/경제"
     },
     {
       "id": 17,
-      "title": "main 뉴스~~~",
+      "title": "'위안부 후원금 횡령 의혹' 벌금형...미소 지은 윤미향 무소속 ",
       "url": "http://example.com/news/17",
-      "press": "SBS Biz",
-      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
+      "press": "데일리안",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 18,
+      "title": "민주, 이재명 검찰 출석 당일에 尹정권 맹폭…\"50억 클럽 방치, 李 수사 올인\"",
+      "url": "http://example.com/news/18",
+      "press": "데일리안",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 19,
+      "title": "[단독] \"매니저라 불러주세요\" HMM, 직급체계 5단계→2단계로 간소화",
+      "url": "http://example.com/news/19,",
+      "press": "데일리안",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 20,
+      "title": "'멍투성이' 초등생 사망 친부 \"학대, 아내가 다 했다\"…10일 구속여부 결정",
+      "url": "http://example.com/news/20",
+      "press": "데일리안",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 21,
+      "title": "러, 젤렌스키 유럽 간 새 루한스크서 집중 공세",
+      "url": "http://example.com/news/21",
+      "press": "데일리안",
+      "thumbnail": "",
       "category": "종합/경제"
     }
   ]
