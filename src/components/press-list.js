@@ -42,6 +42,11 @@ const setPressCategoryArticle = (categoryData, shufflePressList) => {
     li.addEventListener('click', () => {
       const sectionMain = document.querySelector('.press-category__section-main');
       sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticle.logoSrc;
+      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticle.editTime;
+      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticle.imgSrc;
+      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticle.mainTitle;
+
+      const sectionSub = document.querySelector('.press-category__section-sub');
     });
   });
 
