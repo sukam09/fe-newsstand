@@ -1,4 +1,5 @@
 import { ROLLING_COUNT, ROLLING_SECOND, SECOND } from '../../constants/index.js';
+import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 
 export default class LatestNewsComponent extends Component {
@@ -32,7 +33,7 @@ export default class LatestNewsComponent extends Component {
 
   timerOn() {
     this.timer = setInterval(() => {
-      const $content = this.$target.querySelector('.auto-rolling-div');
+      const $content = customQuerySelector('.auto-rolling-div');
       $content.style.top = '-18px';
 
       setTimeout(this.nextNews.bind(this), SECOND);

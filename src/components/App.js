@@ -2,6 +2,7 @@ import Component from './core/Component.js';
 import AllNews from './allNews/index.js';
 import Header from './header/index.js';
 import LatestNews from './latestNews/index.js';
+import { customQuerySelector } from '../utils/index.js';
 
 export default class App extends Component {
   template() {
@@ -11,12 +12,8 @@ export default class App extends Component {
             `;
   }
   mounted() {
-    new Header(this.$target.querySelector('.header'));
-    new LatestNews(this.$target.querySelector('.latest-main-news'));
-    new AllNews(this.$target.querySelector('.all-news'));
-  }
-
-  render2() {
-    console.log(1234);
+    new Header(customQuerySelector('.header'));
+    new LatestNews(customQuerySelector('.latest-main-news'));
+    new AllNews(customQuerySelector('.all-news'));
   }
 }
