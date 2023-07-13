@@ -1,12 +1,8 @@
 import { NewsDB } from "../core/index.js";
 import { store } from "../store/index.js";
-import {
-  VIEW_TYPE,
-  CATEGORIES,
-  CATEGORIES_TO_INDEX,
-} from "../constants/index.js";
+import { VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
-import { nextPage, setCategory } from "../store/reducer.js";
+import { setCategory } from "../store/reducer.js";
 import { startProgressing } from "./progress-bar.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
@@ -45,55 +41,56 @@ const fillArticles = (currentCategory, currentPage) => {
   $listViewNotice.innerText = `${name} 언론사에서 직접 편집한 뉴스입니다.`;
 };
 
-const initArticle = () => {
-  const { currentPage, currentCategory } = store.getState();
-  fillArticles(currentCategory, currentPage);
-};
-
 const updateButtonUI = () => {
   $prevPageButton.classList.remove("hidden");
   $nextPageButton.classList.remove("hidden");
 };
 
-const handleListViewTabClick = (e) => {
-  const $tabCategory = e.currentTarget.querySelector(".tab_category");
-  const category = $tabCategory.innerText;
-
+const activateCategory = (category) => {
   $listViewTabItems.forEach(($item) => {
-    if ($item === e.currentTarget) {
+    const tabCategory = $item.querySelector(".tab_category").innerText;
+    if (tabCategory === category) {
       $item.className = "category-selected selected-bold14";
     } else {
       $item.className = "";
     }
   });
-
-  store.dispatch(setCategory(category));
 };
 
-$listViewTabItems.forEach(($tabItem) => {
-  $tabItem.addEventListener("click", handleListViewTabClick);
-});
-
-export const renderListView = () => {
-  initArticle();
-};
-
-store.subscribe(() => {
-  const { currentPage, currentCategory, viewType } = store.getState();
-  if (viewType !== VIEW_TYPE.LIST) return;
-
-  const currentCategoryLength =
-    NewsDB.getNewsDataMapByCategory().get(currentCategory).length;
-
+const showTabCount = (currentPage, totalCnt) => {
   const $categorySelected = document.querySelector(".category-selected");
   const $tabCount = $categorySelected.querySelector(".tab-count");
   const $tabCountCurrent = $tabCount.querySelector(".tab-count_current");
   const $tabCountTotal = $tabCount.querySelector(".tab-count_total");
 
   $tabCountCurrent.innerText = currentPage + 1;
-  $tabCountTotal.innerText = currentCategoryLength;
+  $tabCountTotal.innerText = totalCnt;
+};
 
-  fillArticles(currentCategory, currentPage);
-  updateButtonUI();
-  startProgressing(currentPage, currentCategoryLength);
-});
+const handleListViewTabClick = (e) => {
+  const $tabCategory = e.currentTarget.querySelector(".tab_category");
+  const category = $tabCategory.innerText;
+
+  activateCategory(category);
+
+  store.dispatch(setCategory(category));
+};
+
+export const renderListView = () => {
+  $listViewTabItems.forEach(($tabItem) => {
+    $tabItem.addEventListener("click", handleListViewTabClick);
+  });
+
+  store.subscribe(() => {
+    const { currentPage, currentCategory, viewType } = store.getState();
+    if (viewType !== VIEW_TYPE.LIST) return;
+
+    const totalCnt =
+      NewsDB.getNewsDataMapByCategory().get(currentCategory).length;
+
+    updateButtonUI();
+    showTabCount(currentPage, totalCnt);
+    fillArticles(currentCategory, currentPage);
+    startProgressing(currentPage, totalCnt);
+  });
+};
