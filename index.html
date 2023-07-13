@@ -9,102 +9,116 @@
   </head>
   <body>
     <div id="app">
-      <div class="main-container">
-        <header>
-          <h1><a href="/">뉴스스탠드</a></h1>
-          <time id="time"></time>
+      <div class="main__container">
+        <header class="header">
+          <h1 class="header__title">뉴스스탠드</h1>
+          <time class="header__date"></time>
         </header>
-        <main>
-          <section class="container">
-            <h2 class="screen-reader-only">최신 뉴스</h2>
-            <div class="recent-news">
-              <article>
-                <h3>연합뉴스</h3>
-                <ul class="rolling">
-                  <li>
-                    <a href=""><span>뉴스내용</span></a>
-                  </li>
-                </ul>
-              </article>
-              <article>
-                <h3>연합뉴스</h3>
-                <ul>
-                  <li>
-                    <a href=""><span>뉴스내용</span></a>
-                  </li>
-                </ul>
-              </article>
-            </div>
-          </section>
-          <section class="container">
-            <h2 class="screen-reader-only">언론사 보기</h2>
-            <nav class="agency">
-              <div class="agency-type">
-                <h3>
-                  <button class="active" href="/">전체 언론사</button>
-                </h3>
-                <h3>
-                  <button href="/">내가 구독한 언론사</button>
-                </h3>
-              </div>
-              <div class="view-type">
-                <button class="list-view-btn">
-                  <span class="screen-reader-only">기사 보기</span>
-                </button>
-                <button class="grid-view-btn">
-                  <span class="screen-reader-only">언론사 보기</span>
-                </button>
-              </div>
-            </nav>
-            <div class="agency-list-container">
-              <button class="prev-page-btn">
-                <span class="screen-reader-only">이전 페이지</span>
-                <img
-                  src="/public/asset/icon/left-button.svg"
-                  alt="이전 페이지 버튼"
-                />
-              </button>
-              <button class="next-page-btn">
-                <span class="screen-reader-only">다음 페이지</span>
-                <img
-                  src="/public/asset/icon/right-button.svg"
-                  alt="다음 페이지 버튼"
-                />
-              </button>
 
-              <!-- Grid view -->
-              <div class="grid-view-container">
-                <ul class="agency-list"></ul>
+        <section class="recent-news">
+          <h2 class="recent-news__title screen-reader-only">최신 뉴스</h2>
+          <div class="recent-news__content">
+            <article class="news-article__container">
+              <div class="news-article__window">
+                <div class="news-article__bundle rolling-articles">
+                  <h3 class="news-article__company">연합뉴스</h3>
+                  <ul class="news-article__list">
+                    <li class="news-title">
+                      <a href="">
+                        구글, 2022년 10월 15일 신제품 발표회 개최…픽셀4·노트북
+                        등 발표할 예정 발표할 예정 발표할 예정</a
+                      >
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <!-- List view -->
-              <div class="list-view-container">
-                <nav class="list-view-categories">
-                  <div>종합/경제</div>
-                  <div>정치</div>
-                  <div>사회</div>
-                  <div>생활/문화</div>
-                  <div>세계</div>
-                  <div>IT/과학</div>
-                </nav>
-                <div class="list-view-page">
-                  <div class="list-view-nav">
-                    <img src="/public/asset/images/light/2.png" class="logo" />
-                    <span class="edit-date">2023.02.10. 18:57 편집</span>
-                    <button class="subscribe">구독하기</button>
-                  </div>
-                  <div class="list-view-articles">
-                    <a href="/#">
-                      <article class="main-article-container"></article>
-                    </a>
-                    <div class="sub-articles-container">
-                      <ul class="sub-articles-list"></ul>
-                    </div>
+            </article>
+            <article class="news-article__container">
+              <div class="news-article__window">
+                <div class="news-article__bundle rolling-articles">
+                  <h3 class="news-article__company">연합뉴스</h3>
+                  <ul class="news-article__list">
+                    <li class="news-title">
+                      <a href=""> 구글, 2022년 10월 15일</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="main">
+          <h2 class="main__title screen-reader-only">언론사 보기</h2>
+          <nav class="main__nav">
+            <div class="company-type">
+              <button class="company-type__option--all active">
+                전체 언론사
+              </button>
+              <button class="company-type__option--subscribe">
+                내가 구독한 언론사
+              </button>
+            </div>
+            <div class="view-type">
+              <button class="view-type__option--list">
+                <span class="screen-reader-only">기사 보기</span>
+              </button>
+              <button class="view-type__option--grid">
+                <span class="screen-reader-only">언론사 보기</span>
+              </button>
+            </div>
+          </nav>
+          <div class="agency-list-container">
+            <button class="prev-page-btn">
+              <span class="screen-reader-only">이전 페이지</span>
+              <img
+                src="/public/asset/icon/left-button.svg"
+                alt="이전 페이지 버튼"
+              />
+            </button>
+            <button class="next-page-btn">
+              <span class="screen-reader-only">다음 페이지</span>
+              <img
+                src="/public/asset/icon/right-button.svg"
+                alt="다음 페이지 버튼"
+              />
+            </button>
+
+            <!-- Grid view -->
+            <div class="grid__container">
+              <ul class="company-list"></ul>
+            </div>
+
+            <!-- List view -->
+            <div class="list__container">
+              <nav class="list__nav">
+                <div>종합/경제</div>
+                <div>정치</div>
+                <div>사회</div>
+                <div>생활/문화</div>
+                <div>세계</div>
+                <div>IT/과학</div>
+              </nav>
+              <div class="list-page">
+                <div class="list-page__nav">
+                  <img src="/public/asset/images/light/2.png" class="logo" />
+                  <span class="list-page__datetime"
+                    >2023.02.10. 18:57 편집</span
+                  >
+                  <button class="subscribe__btn">구독하기</button>
+                </div>
+                <div class="list-page__articles">
+                  <a href="/#">
+                    <article class="main-article"></article>
+                  </a>
+                  <div class="sub-articles">
+                    <ul class="sub-articles__list"></ul>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </main>
+          </div>
+        </section>
       </div>
     </div>
     <script type="module" src="/src/app.js"></script>
