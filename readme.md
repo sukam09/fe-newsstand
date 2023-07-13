@@ -1,36 +1,45 @@
 # fe-newsstand
 
-## 1. 기본 상단 영역 → header
+### 📁 프로젝트 구조
 
-뉴스스탠드 아이콘 & 제목이랑 오늘 날짜를 각각 div로 분리
+```
+fe-newsstand
+├── asset
+│   ├── fonts
+│   │   ├── Pretendard-Bold.woff
+│   │   ├── Pretendard-Bold.woff2
+│   │   ├── Pretendard-Medium.woff
+│   │   └── Pretendard-Medium.woff2
+│   ├── icons
+│   │   ├── left-button.png
+│   │   ├── list-view.svg
+│   │   ├── newsstand.svg
+│   │   └── right-button.png
+│   └── logos
+│       └── light
+├── data
+│   ├── news-bar-data-1.json
+│   ├── news-bar-data-2.json
+│   └── press-data.json
+├── index.html
+├── readme.md
+├── src
+│   ├── app.js
+│   ├── header
+│   │   ├── getDate.js
+│   │   └── handleTitleIcon.js
+│   ├── news-bar
+│   │   ├── rolling.js
+│   │   └── setNewsBar.js
+│   └── news-display
+│       ├── gridView.js
+│       ├── initNewsPressData.js
+│       ├── listView.js
+│       ├── setCategory.js
+│       └── setViewMode.js
+└── style
+    ├── common.css
+    ├── reset.css
+    └── style.css
 
-뉴스스탠드 아이콘과 제목을 각각 span으로 분리
-
-## 2. 최신 뉴스 자동롤링 영역 → section
-
-뉴스 헤드라인 2개를 각각 div로
-
-## 3. 언론사별 기사들을 확인하는 영역 → section
-
-```html
-<section>
-    <div>
-        <ul>
-            <li></li>
-            <li></li>
-        </ul>
-        <div>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <div>
-        <ul>
-            <li></li>
-            <li></li>
-            ...
-            <li></li>
-        </ul>
-    </div>
-</section>
 ```

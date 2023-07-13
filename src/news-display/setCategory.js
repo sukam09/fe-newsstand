@@ -4,7 +4,6 @@ import { setListViewContent } from "./listView.js";
 const categoryBar = document.querySelector(".list-view-category-bar");
 
 let currentCategory = "종합/경제";
-// let pageIndex = 0;
 
 const categoryList = [
     "종합/경제",
