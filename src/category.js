@@ -111,14 +111,19 @@ export function updateCategoryClicked() {
   updateCategoryTabNum();
 }
 
+// 카테고리에서 마지막 탭인지 확인
+function isTabFull(innerHTML) {
+  return parseInt(NOW_LIST_PAGE.getValue()) >= parseInt(innerHTML) + 1;
+}
+
 // 카테고리 탭 숫자 업데이트
 function updateCategoryTabNum() {
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
   clickedCategory.children[1].children[0].innerHTML = `${NOW_LIST_PAGE.getValue()} / `;
   if (
-    parseInt(NOW_LIST_PAGE.getValue()) >=
-    parseInt(clickedCategory.children[1].children[1].innerHTML) + 1
+    // 다음 카테고리로 넘어가야할 경우
+    isTabFull(clickedCategory.children[1].children[1].innerHTML)
   ) {
     if (clickedCategory.nextElementSibling === null) {
       firstCategory.classList.add("category_list--clicked");

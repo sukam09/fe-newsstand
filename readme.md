@@ -134,9 +134,9 @@
 
 ---
 
-## **기능**
+# **💻 기능**
 
-- ### 오늘 날짜 가져오기
+- ## 오늘 날짜 가져오기
 
   형식을 맞추기 위해 formatting을 하기보다 보다 편한 방법이 있지 않을까 해서 검색해보니 `toLocalDateString`이라는 함수를 알게 되었는데, 이 함수에 인자로 `options`를 주면 원하는
   Date형식으로 커스텀해주는 기능을 알게되었습니다.
@@ -154,9 +154,9 @@
 
   <br/>
 
-- ### 그리드 아이템 랜덤 배치
-  
-![그리드 아이템 랜덤 배치](https://github.com/jjun990908/fe-newsstand/assets/39405559/25ed37cb-a42d-4a8b-9972-4f727f0b6a52)
+- ## 그리드 아이템 랜덤 배치
+
+  ![그리드 아이템 랜덤 배치](https://github.com/jjun990908/fe-newsstand/assets/39405559/25ed37cb-a42d-4a8b-9972-4f727f0b6a52)
 
   셔플 함수를 이용하여 `pressObj.js`에 있는 언론사의 리스트를 섞어주었고
 
@@ -183,9 +183,9 @@
   }
   ```
 
-  </br>
+    </br>
 
-- ### 그리드 페이지 전환
+- ## 그리드 페이지 전환
   html에 미리 `grid_container`를 만들어 놓고 언론사 리스트를 넣어놓은 상태에서 `display:none`으로 보이지 않도록 막아준 후에 버튼클릭으로 각 페이지별로 `display` 속성을 바꿔주는 방식으로 페이지간 전환 기능을 구현하였습니다.
   ```javascript
   // 그리드 페이지 업데이트
@@ -202,9 +202,9 @@
 
 </br>
 
-- ### 롤링 애니메이션 구현
-  
-![롤링 애니메이션 구현](https://github.com/jjun990908/fe-newsstand/assets/39405559/9c6ed2b6-fe49-4d90-9b41-f0764c05e4ac)
+- ## 롤링 애니메이션 구현
+
+  ![롤링 애니메이션 구현](https://github.com/jjun990908/fe-newsstand/assets/39405559/9c6ed2b6-fe49-4d90-9b41-f0764c05e4ac)
 
   좌우 롤링애니메이션을 따로 호버액션을 구현하기 위해 `rollingEvent`와 `createBannerItem`함수에서 state인자로 좌우를 구분하여 받아주었고, `createBannerItem`에서 마우스 호버, 아웃 이벤트 리스너를 추가해준 후에 appendChild하는 방식으로 구현하였습니다.
 
@@ -230,7 +230,8 @@
   }
   ```
 
-  좌우 배너간의 1초 차이를 구현하기 위하여 오른쪽 배너의 `setInterval` 안에 `setTimeout`으로 1초 지연시켜주었습니다.
+  좌우 배너간의 1초 차이를 구현하기 위하여 오른쪽 배너의 `setInterval` 안에 `setTimeout`으로 </br>
+  1초 지연시켜주었습니다.
 
   ```javascript
   // 왼쪽 배너 롤링 반복
@@ -244,6 +245,59 @@
       rollingEvent("right");
     }, 1000);
   }, 5000);
+  ```
+
+</br>
+
+- ## 프로그레스 바 카테고리 이동 기능 구현
+
+  리스트뷰의 현재 페이지를 증가시켜주는 함수와 그에 따른 리스트 좌우 버튼과 카테고리를 업데이트를 해주는 함수를
+  `CATEGORY_TAB_TIME`인 20초 마다 반복해주는 Interval을 멈추거나 시작하는 함수입니다.
+
+  ```javascript
+  export function stopCategoryInterval() {
+    clearInterval(categoryInterval);
+  }
+  export function startCategoryInterval() {
+    categoryInterval = setInterval(() => {
+      listPageUp();
+      updateCategoryClicked();
+      updateListButton();
+    }, CATEGORY_TAB_TIME);
+  }
+  ```
+
+  프로그레스바가 진행중인 카테고리를 `$(".category_list--clicked")`를 사용하여 찾은 후, </br>
+  `innerHTML`로 현재와 전체 페이지를 렌더링 해준 후,
+  전체 페이지와 현재 페이지를 비교하며 다음 카테고리로 넘어가는 경우엔 `classList.remove`와 `add`를 통해 구현하였습니다.
+
+  ```javascript
+  // 카테고리 탭 숫자 업데이트
+  function updateCategoryTabNum() {
+    const firstCategory = $(".category_list");
+    const clickedCategory = $(".category_list--clicked");
+    clickedCategory.children[1].children[0].innerHTML = `${NOW_LIST_PAGE.getValue()} / `;
+    if (
+      // 다음 카테고리로 넘어가야할 경우
+      isTabFull(clickedCategory.children[1].children[1].innerHTML)
+    ) {
+      if (clickedCategory.nextElementSibling === null) {
+        firstCategory.classList.add("category_list--clicked");
+        firstCategory.children[1].children[0].innerHTML = "1 / ";
+        NOW_CATEGORY_IDX.setValue(0);
+      } else {
+        clickedCategory.nextElementSibling.classList.add(
+          "category_list--clicked"
+        );
+        clickedCategory.nextElementSibling.children[1].children[0].innerHTML =
+          "1 /";
+        NOW_CATEGORY_IDX.incrementValue(1);
+      }
+      clickedCategory.classList.remove("category_list--clicked");
+      NOW_LIST_PAGE.setValue(1);
+    }
+    appendNewsList();
+  }
   ```
 
 ###
