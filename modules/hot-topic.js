@@ -67,7 +67,7 @@ const rollingTopic = () => {
       clearInterval(rightInterval);
     });
     $hotTopicRight.addEventListener("mouseleave", () => {
-      leftInterval = startRolling("hot-topic-right");
+      rightInterval = startRolling("hot-topic-right");
     });
   });
 };
