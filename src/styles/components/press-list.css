@@ -11,7 +11,7 @@
 }
 
 /* 언론사 리스트의 NAV */
-.press-category__nav {
+.press-category__ul {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -24,13 +24,26 @@
   background-color: var(--grayscale-50);
 }
 
-.press-category__div-nav {
+.press-category__li {
+  display: flex;
+  align-items: center;
+  width: 54px;
+  height: 40px;
   padding: 0 16px;
 }
 
-.press-category__p-nav {
+.press-category__p {
   font: var(--medium-R);
   color: var(--grayscale-200);
+}
+
+.progress-start {
+  width: 134px;
+  background-color: var(--blue-100);
+}
+
+.progress-start > p {
+  color: var(--grayscale-white-alt);
 }
 
 /* 언론사 리스트의 ARTICLE */

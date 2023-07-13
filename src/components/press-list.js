@@ -75,20 +75,39 @@ const setPressCategoryMain = (data) => {
 };
 
 /**
- * 카테고리 이름을 설정하는 함수
+ * LIST의 NAV 화면 - 카테고리 이름을 설정
  */
 const setPressCategoryNav = (categoryData) => {
-  const categoryNav = document.querySelector('.press-category__nav');
+  const categoryUl = document.querySelector('.press-category__ul');
 
   categoryData.forEach((data) => {
-    const categoryDiv = `
-    <div class='press-category__div-nav'>
-      <p class='press-category__p-nav'>${data.categoryName}</p>
-    </div>
+    const categoryLi = `
+    <li class='press-category__li'>
+      <p class='press-category__p'>${data.categoryName}</p>
+    </li>
     `;
-
-    categoryNav.insertAdjacentHTML('beforeend', categoryDiv);
+    categoryUl.insertAdjacentHTML('beforeend', categoryLi);
   });
+
+  setProgressBar();
+};
+
+/**
+ * LIST의 NAV 화면 - Progress Bar 설정
+ */
+const setProgressBar = () => {
+  const liList = document.querySelectorAll('.press-category__li');
+
+  liList.forEach((li) => {
+    li.addEventListener('click', () => {
+      const resetLi = document.querySelector('.progress-start');
+      resetLi.classList.remove('progress-start');
+      li.classList.add('progress-start');
+    });
+  });
+
+  const initLi = document.querySelector('.press-category__ul');
+  initLi.firstElementChild.classList.add('progress-start');
 };
 
 /**
