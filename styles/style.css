@@ -308,10 +308,11 @@ header {
 }
 
 .text-button {
+  display: flex;
+  justify-content: space-between;
   padding: 0px 16px;
   gap: 8px;
   color: var(--text-text-weak, #879298);
-  /* available-medium14 */
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -326,6 +327,30 @@ header {
   line-height: 40px;
   background-color: #4362d0;
   color: #ffffff;
+}
+
+.text-button-count {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.text-button-present {
+  color: var(--text-text-white-default, #fff);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text-button-entire {
+  color: var(--text-text-white-weak, rgba(255, 255, 255, 0.7));
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .press-news {

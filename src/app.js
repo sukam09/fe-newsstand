@@ -65,7 +65,8 @@ export default function App({ $app }) {
           $target: $div,
           initialState: {
             index: 0,
-            page: 1,
+            present: 1,
+            entire: 81,
             categories: [
               '종합/경제',
               '방송/통신',
