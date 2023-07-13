@@ -12,7 +12,7 @@ function getRecentNewsData() {
   fetch("../data/recentNews.json")
     .then((response) => response.json())
     .then((newsData) => {
-      const news = newsData.News;
+      const news = newsData.RecentNews;
       drawRollingHtml("recent-left", news);
       drawRollingHtml("recent-right", news);
     })
