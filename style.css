@@ -25,6 +25,9 @@ body {
     align-items: center;
     gap:8px;
 }
+.header-left:hover {
+    cursor:pointer;
+}
 .icon {
     width: 24px;
     height:24px;
@@ -81,10 +84,24 @@ body {
     justify-content: center;
     align-items: center;
     background-color: white;
+    overflow:hidden;
+    position:relative;
+    height:100%;
+}
+.press-cover {
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .arrow-container {
     width:24px;
     height:40px;
+}
+.arrow-container:hover {
+    cursor:pointer;
 }
 .arrow-container > img {
     width:100%;

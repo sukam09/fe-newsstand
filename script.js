@@ -2,9 +2,26 @@ const gridContainer = document.querySelector(".grid-box");
 const dateContainer = document.querySelector(".header-right");
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
+const header = document.querySelector(".header-left");
+const pressCover = document.querySelector(".press-cover");
 
 let crntPage = 0;
 
+function listenPressHover(){
+    const pressItems = document.querySelectorAll(".pressItem");
+    pressItems.forEach((item)=>{
+        item.addEventListener("mouseover",()=>{
+            pressCover.classList.remove("hidden");
+            item.appendChild(pressCover);
+            document.body.removeChild(pressCover);
+        })
+    })
+}
+function listenReload(){
+    header.addEventListener("click", () => {
+        window.location.reload();
+    })
+}
 function listenArrow(){
     leftArrow.addEventListener("click",()=> {
         crntPage--;
@@ -33,13 +50,16 @@ function drawPress(idx){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.firstChild);
     }
+
     for (let i=24*idx;i<24*(idx+1);i++){
         const pressElem = document.createElement("li");
+        pressElem.classList.add("pressItem");
         const pressLogo = document.createElement("img");
         pressLogo.src = `./asset/logo/light/img${i+1}.svg`
         pressElem.appendChild(pressLogo);
         gridContainer.appendChild(pressElem);
     }
+    listenPressHover();
 }
 function drawDate() {
     let date = new Date();
@@ -57,6 +77,7 @@ function init(){
     drawPress(crntPage);
     updateArrow();
     listenArrow();
+    listenReload();
     
 }
 
