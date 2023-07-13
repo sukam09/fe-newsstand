@@ -74,41 +74,39 @@ export function useToggleArrow(mode, page) {
 }
 
 export function useMovePage(direction, option, view_option) {
-    const {
-        grid_current_page,
-        list_current_page,
-        categorys,
-        category,
-        category_size,
-        news_data,
-    } = view_option;
-
     if (option === "grid") {
         view_option.grid_current_page =
             direction === "next"
-                ? grid_current_page + 1
-                : grid_current_page - 1;
+                ? view_option.grid_current_page + 1
+                : view_option.grid_current_page - 1;
     }
 
     if (option === "list" && direction === "next") {
-        view_option.list_current_page = list_current_page + 1;
+        view_option.list_current_page = view_option.list_current_page + 1;
         if (
             view_option.list_current_page >=
-            news_data[categorys[category]].length
+            view_option.news_data[view_option.categorys[view_option.category]]
+                .length
         ) {
             view_option.category =
-                category === category_size - 1 ? 0 : category + 1;
+                view_option.category === view_option.category_size - 1
+                    ? 0
+                    : view_option.category + 1;
             view_option.list_current_page = 0;
         }
     }
 
     if (option === "list" && direction === "prev") {
-        view_option.list_current_page = list_current_page - 1;
+        view_option.list_current_page = view_option.list_current_page - 1;
         if (view_option.list_current_page < 0) {
             view_option.category =
-                category === 0 ? category_size - 1 : category - 1;
+                view_option.category === 0
+                    ? view_option.category_size - 1
+                    : view_option.category - 1;
             view_option.list_current_page =
-                news_data[categorys[category]].length - 1;
+                view_option.news_data[
+                    view_option.categorys[view_option.category]
+                ].length - 1;
         }
     }
 }

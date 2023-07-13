@@ -24,11 +24,7 @@ function renderListView(data, category, page, ...action) {
 
     list_news_container.appendChild(main_content);
 
-    action[0](
-        "main_nav_progress",
-        view_option,
-        action[2],
-    );
+    action[0]("main_nav_progress", view_option, action[2]);
     action[1](data);
 }
 
