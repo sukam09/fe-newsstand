@@ -196,6 +196,8 @@ section {
 }
 
 main .news-list-wrap .progress-tab {
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
   width: 166px;
   height: 40px;
@@ -210,6 +212,19 @@ main .news-list-wrap .progress-tab .text-wrap {
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+main .news-list-wrap .progress-tab .progress-ratio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--surface-surface-brand-default, #4362d0);
+  width: 0;
+  height: 40px;
+  flex-shrink: 0;
+  z-index: 0;
+  transition: width 0.5s;
 }
 main .news-list-wrap .progress-tab .text-category-name {
   display: flex;

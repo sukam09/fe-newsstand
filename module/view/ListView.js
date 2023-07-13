@@ -44,37 +44,9 @@ function tabClassChange(targetTab, previousProgressTab, index) {
   textTabNumber.querySelector(".present").innerHTML = `${CURRENT_PAGE} / `;
   textTabNumber.querySelector(".entire").innerHTML = index ? categoryLength[index] : categoryLength[CURRENT_CATEGORY];
 }
-
-/**
- * <카테고리 탭 클릭 시 이벤트>
- * 현재 페이지 1로 초기화
- * 현재 카테고리 인텍스 변경
- * 카테고리 탭 스타일 변경
- * 타이머 재실행
- * 변경된 카테고리에 따른 뉴스 내용 변경
- */
-function fieldTabClickEventHandler(targetTab, index) {
-  CURRENT_PAGE = 1;
-  CURRENT_CATEGORY = index;
-
-  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-  tabClassChange(targetTab, progressTab, index);
-  clearInterval(intervalId);
-  updateTimer();
-  updatePressNewsSection();
-}
-
-/**
- * <자동으로 다음 카테고리로 넘어갈 때>
- * 카테고리 탭 스타일 변경
- * 변경된 카테고리에 따른 내용 변경
- */
-function fieldTabAutoChange() {
-  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-  const nextProgressEl = document.querySelectorAll(".news-list-wrap .field-tab .each-tab")[CURRENT_CATEGORY];
-
-  tabClassChange(nextProgressEl, progressTab);
-  updatePressNewsSection();
+function progressWidthChange(progressTab) {
+  const progressRatioTab = progressTab.querySelector(".progress-ratio");
+  progressRatioTab.style.width = `${progressTab.offsetWidth * (CURRENT_PAGE / categoryLength[CURRENT_CATEGORY]).toFixed(2)}px`;
 }
 
 /**
@@ -89,7 +61,48 @@ function tabClickEventRegister() {
 }
 
 /**
+ * <카테고리 변경 : 클릭>
+ * 현재 페이지 1로 초기화
+ * 현재 카테고리 인텍스 변경
+ * 카테고리 탭 스타일 변경 - 1. 배경색, 2. 프로그래스 셋팅
+ * 타이머 재실행
+ * 변경된 카테고리에 따른 뉴스 내용 변경
+ */
+function fieldTabClickEventHandler(targetTab, index) {
+  CURRENT_PAGE = 1;
+  CURRENT_CATEGORY = index;
+
+  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+  const progressRatio = progressTab.querySelector(".progress-ratio");
+  progressRatio.style.width = "0px";
+
+  progressWidthChange(targetTab);
+  tabClassChange(targetTab, progressTab, index);
+
+  clearInterval(intervalId);
+  updateTimer();
+  updatePressNewsSection();
+}
+
+/**
+ * <카테고리 변경 : 자동>
+ * 카테고리 탭 스타일 변경 : 프로그래스
+ * 변경된 카테고리에 따른 내용 변경
+ */
+function fieldTabAutoChange() {
+  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+  const nextProgressEl = document.querySelectorAll(".news-list-wrap .field-tab .each-tab")[CURRENT_CATEGORY];
+
+  //프로그래스 스타일
+  tabClassChange(nextProgressEl, progressTab);
+  progressWidthChange(nextProgressEl);
+
+  updatePressNewsSection();
+}
+
+/**
  * 첫 리스트 뷰 로딩 - 처음 데이터로 구성
+ * 첫 프로그래스 바 셋팅 - 1. 현재페이지/페이지 개수, 2. width
  */
 function fieldInit() {
   news_data.forEach((data) => {
@@ -100,16 +113,21 @@ function fieldInit() {
   const firstTabNumber = firstTab.querySelector(".text-category-number");
   firstTabNumber.querySelector(".present").innerHTML = `${CURRENT_PAGE} / `;
   firstTabNumber.querySelector(".entire").innerHTML = ` ${categoryLength[0]}`;
+
+  progressWidthChange(firstTab);
 }
 
 /**
  * 현재 카테고리 페이지 정보 변경
  * 자동으로 다른 카테고리로 넘어갈 경우 고려
  */
-function updateProgressTab() {
+function autoUpdateProgressTab() {
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+  const progressRatio = progressTab.querySelector(".progress-ratio");
   const progressTabNumber = progressTab.querySelector(".text-category-number");
   progressTabNumber.querySelector(".present").innerHTML = `${CURRENT_PAGE} / `;
+
+  progressWidthChange(progressTab);
 
   if (CURRENT_PAGE === 1) {
     fieldTabAutoChange();
@@ -135,7 +153,7 @@ function updatePressNewsSection() {
 }
 
 /**
- * 페이지 자동 이동 : 5초
+ * 페이지 자동 이동 타이머 : 5초
  * 카테고리 자체가 변경되는 경우, 마지막 카테고리의 마지막 페이지일 경우도 고려
  * 페이지 자동 이동 후 카테고리 탭 & 뉴스 기사 업데이트
  */
@@ -152,9 +170,10 @@ function updateTimer() {
       CURRENT_PAGE = 1;
     } else CURRENT_PAGE++;
     updatePressNewsSection();
-    updateProgressTab();
+    autoUpdateProgressTab();
   }, PAGE_AUTO_MOVING_TIME);
 }
+
 function createPressNewsSection() {
   const pressNewsDiv = document.createElement("div");
   pressNewsDiv.className = "press-news-wrap";
@@ -209,6 +228,8 @@ function createTabs() {
                     <span class="present display-bold12"></span>
                     <span class="entire display-bold12"></span>
                 </span>
+            </div>
+            <div class="progress-ratio">
             </div>
         </div>
 `;
