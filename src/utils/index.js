@@ -18,9 +18,9 @@ const shufflePressOrder = () => {
 
 export const customQuerySelector = (selector, $target = document) => {
   const childNodes = [...$target.childNodes];
-  const currentSelctor = selector.trim();
-  const tagType = currentSelctor.charAt(0);
-  const name = currentSelctor.slice(1);
+  const targetSelctor = selector.trim();
+  const tagType = targetSelctor.charAt(0);
+  const name = targetSelctor.slice(1);
 
   while (childNodes.length > 0) {
     const $node = childNodes.shift();
@@ -29,7 +29,7 @@ export const customQuerySelector = (selector, $target = document) => {
       return $node;
     } else if (tagType === '.' && $node.classList && $node.classList.contains(name)) {
       return $node;
-    } else if ($node.tagName === currentSelctor.toUpperCase()) {
+    } else if ($node.tagName === targetSelctor.toUpperCase()) {
       return $node;
     } else {
       const $result = customQuerySelector(selector, $node);
@@ -40,6 +40,29 @@ export const customQuerySelector = (selector, $target = document) => {
   }
 
   return null;
+};
+
+export const customQuerySelectorAll = (selector, $target = document) => {
+  const result = [];
+  const childNodes = [...$target.childNodes];
+  const targetSelctor = selector.trim();
+  const tagType = targetSelctor.charAt(0);
+  const name = targetSelctor.slice(1);
+
+  while (childNodes.length > 0) {
+    const $node = childNodes.shift();
+
+    if (tagType === '#' && $node.id === name) {
+      result.push($node);
+    } else if (tagType === '.' && $node.classList && $node.classList.contains(name)) {
+      result.push($node);
+    } else if ($node.tagName === targetSelctor.toUpperCase()) {
+      result.push($node);
+    } else {
+      childNodes.push(...$node.childNodes);
+    }
+  }
+  return result;
 };
 
 export { getTodayDate, shufflePressOrder };

@@ -1,3 +1,4 @@
+import { customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
 
@@ -8,7 +9,7 @@ export default class LatestNews extends Component {
             `;
   }
   mounted() {
-    const $newsLists = this.$target.querySelectorAll('.auto-rolling-news');
+    const $newsLists = customQuerySelectorAll('.auto-rolling-news');
 
     new LatestNewsComponent($newsLists[0], {
       name: '연합뉴스',
