@@ -128,6 +128,14 @@
       "press": "SBS Biz",
       "thumbnail": "",
       "category": "종합/경제"
+    },
+    {
+      "id": 17,
+      "title": "main 뉴스~~~",
+      "url": "http://example.com/news/17",
+      "press": "SBS Biz",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "종합/경제"
     }
   ]
 }

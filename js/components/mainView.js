@@ -33,6 +33,7 @@ function changePage(target, view) {
 }
 
 function handleClick(e) {
+  const view_content = document.querySelector(".view-content");
   const target = e.target.id;
   switch (target) {
     case "grid-btn":
@@ -51,7 +52,9 @@ function handleClick(e) {
       break;
     case "left":
     case "right":
-      changePage(target);
+      view_content.getElementsByClassName("grid-view").length
+        ? changePage(target, "grid")
+        : changePage(target, "list");
       break;
     default:
       break;
