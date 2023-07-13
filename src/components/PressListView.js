@@ -7,12 +7,13 @@ export default function PressListView({ $target, initialState }) {
   $target.appendChild($article);
 
   this.state = initialState;
-  const { categories } = this.state;
 
   this.setState = nextState => {
     this.state = nextState;
     this.render();
   };
+
+  const { categories } = this.state;
 
   // TODO: 나중에 데이터 연결할 때 사용
   // const fetchPressImage = () => {
@@ -35,7 +36,7 @@ export default function PressListView({ $target, initialState }) {
       </nav>
     `;
 
-    const $textButtons = $section.querySelectorAll('.text-button');
+    const $textButtons = document.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
       $textButton.addEventListener('click', () => handleClickTextButton(index));
     });
@@ -91,6 +92,12 @@ export default function PressListView({ $target, initialState }) {
 
     $pressImage.src = '../asset/logos/press1.png';
     $thumbnail.src = '../asset/icons/thumbnail.png';
+
+    const $textButtons = $section.querySelectorAll('.text-button');
+    Array.from($textButtons).forEach($textButton => {
+      $textButton.classList.remove('text-button-selected');
+    });
+    $textButtons[this.state.index].classList.add('text-button-selected');
   };
 
   this.render();
