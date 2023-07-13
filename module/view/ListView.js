@@ -1,15 +1,16 @@
 import { fetchCategoryNews } from "../../api.js";
-import { LIST_PAGE, ArrowBtnStateChange, RIGHT, LEFT } from "../components/Arrow.js";
+import { LIST_PAGE } from "../components/Arrow.js";
 
 let news_data;
 let CURRENT_PAGE;
 let CURRENT_CATEGORY = 0;
-let intervalId;
 const PAGE_AUTO_MOVING_TIME = 5000;
 const PROGRESS_TAB_WIDTH = "166";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+
 export const categoryLength = [];
+export let intervalId;
 
 //뉴스 데이터 패치 -> 탭 정보(언론사 개수 초기화) -> 언론사 뉴스 html 요소 생성 및 초기화
 async function fetchCategoryNewsData() {
@@ -91,7 +92,6 @@ function fieldTabClickEventHandler(targetTab, index) {
   clearInterval(intervalId);
   updateTimer();
   updatePressNewsSection();
-  ArrowBtnCheck();
 }
 
 /**
@@ -111,9 +111,6 @@ function fieldTabAutoChange() {
 
   //
   updatePressNewsSection();
-
-  //좌우버튼 disabled
-  ArrowBtnCheck();
 }
 
 /**
@@ -127,10 +124,14 @@ function fieldTabAutoChange() {
 
 export function pageMoveByBtn(current_list_page) {
   CURRENT_PAGE = current_list_page;
-
+  console.log(news_data[CURRENT_CATEGORY].press);
+  console.log(CURRENT_PAGE);
   //다른 카테고리로 전환 -> LEFT
   if (CURRENT_PAGE === 0) {
     CURRENT_CATEGORY--;
+    if (CURRENT_CATEGORY === -1) {
+      CURRENT_CATEGORY = categoryLength.length - 1;
+    }
     CURRENT_PAGE = categoryLength[CURRENT_CATEGORY];
     LIST_PAGE.current_list_page = CURRENT_PAGE;
   }
@@ -140,8 +141,11 @@ export function pageMoveByBtn(current_list_page) {
     CURRENT_CATEGORY++;
     CURRENT_PAGE = 1;
     LIST_PAGE.current_list_page = 1;
+    console.log(CURRENT_CATEGORY);
+    console.log(categoryLength.length);
     //맨 처음 카테고리로 순서 변경
     if (CURRENT_CATEGORY === categoryLength.length) {
+      console.log("넘었다");
       CURRENT_CATEGORY = 0;
     }
   }
@@ -158,23 +162,14 @@ export function pageMoveByBtn(current_list_page) {
 }
 
 /**
- * 좌우 화살표 Disabled 체크
- */
-function ArrowBtnCheck() {
-  if (CURRENT_CATEGORY === 0 && CURRENT_PAGE === 1) {
-    ArrowBtnStateChange(LEFT); //왼
-  } else if (CURRENT_CATEGORY === categoryLength.length - 1 && CURRENT_PAGE === categoryLength[CURRENT_CATEGORY]) {
-    ArrowBtnStateChange(RIGHT); //오
-  } else {
-    ArrowBtnStateChange(null);
-  }
-}
-
-/**
  * 첫 리스트 뷰 로딩 - 처음 데이터로 구성
  * 첫 프로그래스 바 셋팅 - 1. 현재페이지/페이지 개수, 2. width
  */
 function fieldInit() {
+  categoryLength.length = 0;
+  CURRENT_PAGE = 1;
+  CURRENT_CATEGORY = 0;
+  LIST_PAGE.current_list_page = 1;
   news_data.forEach((data) => {
     categoryLength.push(data.press.length);
   });
@@ -251,7 +246,6 @@ function updateTimer() {
     }
     updatePressNewsSection();
     autoUpdateProgressTab();
-    ArrowBtnCheck(); //마지막 카테고리 마지막 페이지일 경우 고려
   }, PAGE_AUTO_MOVING_TIME);
 }
 
@@ -342,4 +336,6 @@ export function printList() {
   updateTimer(); // 페이지&카테고리 자동 변경
 
   CURRENT_PAGE = LIST_PAGE.current_list_page;
+  const left_btn = document.querySelector(".left-btn");
+  left_btn.style.display = "block";
 }

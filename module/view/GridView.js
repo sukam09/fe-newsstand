@@ -47,6 +47,8 @@ export async function printGrid() {
       grid.appendChild(grid_row);
       updateGrid();
     }
+    const left_btn = document.querySelector(".left-btn");
+    left_btn.style.display = "none";
   } catch (e) {
     console.error(e);
   }

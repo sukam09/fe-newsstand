@@ -46,34 +46,6 @@ function arrowBtnClickHandler(dir) {
     } else {
       LIST_PAGE.current_list_page--;
     }
-    const CURRENT_CATEGORY = pageMoveByBtn(LIST_PAGE.current_list_page);
-
-    listViewBtnVisibilitySet(LIST_PAGE.current_list_page, CURRENT_CATEGORY);
-  }
-}
-
-function listViewBtnVisibilitySet(CURRENT_PAGE, CURRENT_CATEGORY) {
-  if (CURRENT_PAGE === 1 && CURRENT_CATEGORY === 0) {
-    left_btn.style.display = "none";
-    right_btn.style.display = "block";
-  } else if (CURRENT_PAGE === categoryLength[CURRENT_CATEGORY] && CURRENT_CATEGORY === categoryLength.length - 1) {
-    right_btn.style.display = "none";
-    left_btn.style.display = "block";
-  } else {
-    right_btn.style.display = "block";
-    left_btn.style.display = "block";
-  }
-}
-
-export function ArrowBtnStateChange(disabledDirection) {
-  if (disabledDirection === LEFT) {
-    left_btn.style.display = "none";
-    right_btn.style.display = "block";
-  } else if (disabledDirection === RIGHT) {
-    left_btn.style.display = "block";
-    right_btn.style.display = "none";
-  } else {
-    right_btn.style.display = "block";
-    left_btn.style.display = "block";
+    pageMoveByBtn(LIST_PAGE.current_list_page);
   }
 }
