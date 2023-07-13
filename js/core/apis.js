@@ -4,8 +4,8 @@ async function getNewsData() {
 async function getRollingData() {
   return await fetch('./rollingData.json').then((response) => response.json());
 }
-async function getNewsLIstData() {
+async function getNewsListData() {
   return await fetch('./newsListData.json').then((response) => response.json());
 }
 
-export { getNewsData, getRollingData, getNewsLIstData };
+export { getNewsData, getRollingData, getNewsListData };

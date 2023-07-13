@@ -791,7 +791,17 @@
       "LG엔솔, 폴란드 자동차산업협회 가입...\"유럽서 목소리 키운다\""
     ]
   },
-  { "name": "맥스무비", "src": "./assets/images/light/45.png" },
+  {
+    "name": "엑스포츠뉴스",
+    "src": "./assets/images/light/44.png",
+    "category": "매거진/전문지",
+    "edit_date": "2023.02.10. 18.27",
+    "main_news": {
+      "thumbnail": "https://picsum.photos/320/200",
+      "title": "test"
+    },
+    "sub_news": ["test", "test", "test", "test", "test"]
+  },
   {
     "name": "OBS",
     "src": "./assets/images/light/46.png",
