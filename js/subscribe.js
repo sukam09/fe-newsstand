@@ -1,7 +1,7 @@
 import presses from "../assets/light-media.js";
 import { setDisplay } from "./utils.js";
 import { MODAL_POPUP_TIME } from "./const.js";
-import { grid_view_selected, initPressGrid, drawSubGridView, drawGridView } from "./gridFunction.js";
+import { grid_view_selected, initPressGrid, drawSubGridView, drawGridView, drawSubGridArrow } from "./gridFunction.js";
 
 function gridMouseOver(target) {
   const $original = target.querySelector("img");
@@ -32,7 +32,6 @@ function listSubMouseClick(news, target) {
     news.isSub = !news.isSub;
     target.src = news.isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/Button.svg";
     setDisplay(".subscribe-modal", "query", "block");
-    console.log("here");
     setTimeout(() => setDisplay(".subscribe-modal", "query", "none"), MODAL_POPUP_TIME);
     // 모달 함수 추가
   }
@@ -85,14 +84,12 @@ function checkViewStatus(target) {
 }
 
 function removeGridSubscribe(target) {
-  console.log(target);
   drawGridView();
 }
 
 function initSpanEvent() {
   const $press_options = document.querySelector(".press-option").children;
   [...$press_options].forEach(span => span.addEventListener("click", e => checkViewStatus(e.target)));
-  console.log($press_options);
 }
 
 export { initGridItemEvent, preventButtonClick, listSubMouseClick, initSpanEvent, removeGridSubscribe, initSubGridItemEvent };

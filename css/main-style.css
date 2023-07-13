@@ -311,6 +311,7 @@ h1 {
   position: absolute;
   top: 180px;
   left: -72px;
+  cursor: pointer;
 }
 
 .r-btn {
@@ -320,6 +321,7 @@ h1 {
   position: absolute;
   top: 180px;
   right: -72px;
+  cursor: pointer;
 }
 
 .press-grid > img {
@@ -566,6 +568,10 @@ h1 {
   display: none;
 }
 
+/* #sub-grid-prev {
+  display: none;
+} */
+
 .list-sub-btn {
   cursor: pointer;
 }
@@ -593,5 +599,6 @@ h1 {
 }
 
 .press-grid-sub {
+  position: relative;
   display: none;
 }
