@@ -6,7 +6,7 @@
         - id : `camelCase`
         - class : `underscore`
             - 요소 기능 포함할 것
-            - 4번 이상 참조하지 않도록 설계할 것
+            - 4번 이상 참 조하지 않도록 설계할 것
     - JS
         - function : `camelCase`
         - variable
@@ -15,6 +15,17 @@
             - global scope : `single tone`
 
 ---
+
+### 7.13 (목)
+
+-   [ ] 데이터 추가 및 확장성
+    -   [ ] all_news 데이터 추가
+    -   [ ] 중복 제거 및 함수 리팩토링
+-   [ ] grid_view 토글 구현
+    -   [ ] 구독하기 버튼 만들기
+    -   [ ] hover toggle 구현
+-   [ ] 모듈화
+    -   [ ] evnet.js 쪼개기
 
 ### 7.11 (화), 7.12 (수)
 
