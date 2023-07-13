@@ -1,13 +1,22 @@
 import categoryData from "../json/category.json" assert { type: "json" };
 
 function addInitCategory() {
-  const categories = categoryData[0].category;
-  let categoryHtml = `<div class="wrap"><ul>`;
-  for (const category in categories) {
-    categoryHtml += `<div id="${category} categoryItem"><li>${category}</li></div>`;
+  let categoryHtml = `<div class="categoryWrap"><ul>`;
+  for (const category of categoryData) {
+    for (const key in category) {
+      categoryHtml += `<div class="categoryItem" id="${key}"><li>${key}</li><span class="categoryCnt">${category[key]}</span></div>`;
+    }
   }
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
 }
 
+// function addSpanEvent(){
+//   const spanTag = document.querySelector(".categoryCnt");
+//   spanTag.addEventListener("click",()=>{
+
+//   })
+// }
+
+// addSpanEvent();
 export { addInitCategory };

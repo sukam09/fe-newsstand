@@ -1,4 +1,5 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
+
 let interval1;
 let interval2;
 const rollingTime = 5000;
@@ -28,7 +29,7 @@ function addInitRollingData(bannerNumber) {
     endIndex = news_article[0].article.length;
   }
   secondIndex = startIndex + 1;
-  let newsHTML = `<div class="wrap"><ul>`;
+  let newsHTML = `<div class="rollingWrap"><ul>`;
   for (; startIndex < endIndex; startIndex++) {
     newsHTML +=
       '<li class="' +
