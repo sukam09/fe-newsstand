@@ -42,7 +42,7 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
     interval = setInterval(() => {
       const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
       setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-    }, 3000);
+    }, 500);
   });
 
   imgGrid.addEventListener('click', () => {
@@ -55,7 +55,7 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
       interval = setInterval(() => {
         const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
         setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-      }, 3000);
+      }, 500);
       currentArticle = 0;
     });
   });
@@ -87,7 +87,9 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
 
     const removeLi = document.querySelector('.progress-start');
     const addDiv = removeLi.querySelector('.press-category__div');
-    const addLi = removeLi.nextElementSibling;
+    const addLi = removeLi.nextElementSibling
+      ? removeLi.nextElementSibling
+      : document.querySelector('.press-category__ul').firstElementChild;
     const removeDiv = addLi.querySelector('.press-category__div');
 
     removeLi.classList.remove('progress-start');
