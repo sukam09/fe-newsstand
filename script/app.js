@@ -1,5 +1,7 @@
 import {startRolling, mouseEventRolling} from './rolling.js';
 import { pressViewChange } from './pressViewChange.js';
+import { showDate } from './showTodayDate.js';
+import { shuffleImgs, changePressGrid} from './pressGridList.js';
 
 window.addEventListener('DOMContentLoaded', ()=>{
     showDate();
@@ -8,4 +10,5 @@ window.addEventListener('DOMContentLoaded', ()=>{
     pressViewChange();
     mouseEventRolling("first");
     mouseEventRolling("second");
+    changePressGrid();
 });
