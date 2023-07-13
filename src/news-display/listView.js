@@ -1,6 +1,11 @@
-import { initNewsPressData } from "./initNewsPressData.js";
+import {
+    currentCategory,
+    initCategoryNewsData,
+    pageIndex,
+} from "./setCategory.js";
+import { subscribeButton } from "./subscribeButton.js";
 
-let newsPressData = [];
+let categoryNewsData = [];
 
 const getArticleHead = (newsData) => {
     return `
@@ -9,21 +14,7 @@ const getArticleHead = (newsData) => {
             <div class="edit-time display-medium12">
                 2023.10.04. 11:22 편집
             </div>
-            <button class="subscribe-button available-medium12">
-                <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M9.5 6.49902H6.5V9.49902H5.5V6.49902H2.5V5.49902H5.5V2.49902H6.5V5.49902H9.5V6.49902Z"
-                        fill="#879298"
-                    />
-                </svg>
-                <div>구독하기</div>
-            </button>
+            ${subscribeButton(newsData.subscribed)}
         </div>
     `;
 };
@@ -53,17 +44,56 @@ const getArticleMain = (newsData) => {
     `;
 };
 
-const setListView = async () => {
-    newsPressData = await initNewsPressData();
+// const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
+
+const prevPageButton = document.querySelector(".left-arrow-button");
+
+const handleClickPrevPageButton = () => {
+    prevPageButton.addEventListener("click", () => {
+        // if (!validatePage(page - 1)) return;
+        pageIndex--;
+        setListViewContent();
+    });
+};
+
+const nextPageButton = document.querySelector(".right-arrow-button");
+
+const handleClickNextPageButton = () => {
+    nextPageButton.addEventListener("click", () => {
+        // if (!validatePage(page + 1)) return;
+        pageIndex++;
+        setListViewContent();
+    });
+};
+
+const checkShowPageButton = (page) => {
+    prevPageButton.classList.remove("disabled");
+    nextPageButton.classList.remove("disabled");
+
+    if (page === 0) prevPageButton.classList.add("disabled");
+    else if (page === 80) nextPageButton.classList.add("disabled");
+};
+
+const setListViewContent = async () => {
+    checkShowPageButton(pageIndex);
+    categoryNewsData = initCategoryNewsData(currentCategory);
     const listViewMain = document.querySelector(".list-view-main-container");
+    listViewMain.innerHTML = "";
     listViewMain.insertAdjacentHTML(
         "beforeend",
-        getArticleHead(newsPressData[0])
+        getArticleHead(categoryNewsData[pageIndex])
     );
     listViewMain.insertAdjacentHTML(
         "beforeend",
-        getArticleMain(newsPressData[0])
+        getArticleMain(categoryNewsData[pageIndex])
     );
 };
 
-export { setListView };
+const setListView = () => {
+    checkShowPageButton(pageIndex);
+    setListViewContent();
+    handleClickPrevPageButton();
+    handleClickNextPageButton();
+};
+
+export { setListView, pageIndex, setListViewContent };

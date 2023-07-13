@@ -1,3 +1,4 @@
+import { newsPressData } from "../app.js";
 import { initNewsPressData } from "./initNewsPressData.js";
 
 const MIN_PAGE_NUM = 1;
@@ -5,7 +6,7 @@ const MAX_PAGE_NUM = 4;
 const PAGE_COUNT = 24;
 
 let page = 1;
-let newsPressData = [];
+let shuffledNewsPressData = [];
 
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
@@ -24,7 +25,10 @@ const showNewsPressItems = () => {
     checkShowPageButton(page);
     const startIndex = PAGE_COUNT * (page - 1);
     const endIndex = startIndex + (PAGE_COUNT - 1);
-    const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
+    const currentNewsPressData = shuffledNewsPressData.slice(
+        startIndex,
+        endIndex + 1
+    );
 
     const newsPressGrid = document.querySelector(".news-press-grid-view");
     newsPressGrid.innerHTML = "";
@@ -43,8 +47,8 @@ const showNewsPressItems = () => {
 };
 
 const shuffleNewsPress = async () => {
-    newsPressData = await initNewsPressData();
-    newsPressData = shuffleArray(newsPressData);
+    // shuffledNewsPressData = newsPressData;
+    shuffledNewsPressData = shuffleArray([...newsPressData]);
     showNewsPressItems();
 };
 
@@ -77,12 +81,11 @@ const checkShowPageButton = (page) => {
     if (page === MIN_PAGE_NUM) prevPageButton.classList.add("disabled");
     else if (page === MAX_PAGE_NUM) nextPageButton.classList.add("disabled");
 };
-
-checkShowPageButton(page);
-
-export {
-    showNewsPressItems,
-    shuffleNewsPress,
-    handleClickPrevPageButton,
-    handleClickNextPageButton,
+const setGridView = () => {
+    checkShowPageButton(page);
+    shuffleNewsPress();
+    handleClickPrevPageButton();
+    handleClickNextPageButton();
 };
+
+export { showNewsPressItems, setGridView };
