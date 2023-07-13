@@ -33,10 +33,6 @@ const setTotalPressList = (isLightMode) => {
  * 카테고리 별 다음 언론사 화면으로 넘어가기
  */
 const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
-  /**
-   * 20초 마다 다음 뉴스로 넘어가게
-   */
-
   const imgList = document.querySelector('.press__img-list');
   const imgGrid = document.querySelector('.press__img-grid');
   const liList = document.querySelectorAll('.press-category__li');
@@ -56,6 +52,11 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
   liList.forEach((li) => {
     li.addEventListener('click', () => {
       clearInterval(interval);
+      interval = setInterval(() => {
+        const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
+        setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
+      }, 3000);
+      currentArticle = 0;
     });
   });
 };
@@ -99,7 +100,6 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
   });
 
   divNow.innerText = currentArticle + 1;
-  console.log('시작');
 
   if (currentArticle + 1 >= categoryArticleList.length) {
     currentArticle = 0;
