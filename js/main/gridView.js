@@ -13,8 +13,8 @@ const PRESS_NUM = 96;
 let main_list_page = MIN_PAGE;
 
 const main_list_ul = document.querySelector(".grid-view-ul");
-const left_btn = document.getElementById("left-btn");
-const right_btn = document.getElementById("right-btn");
+const left_btn = document.getElementById("grid-left-btn");
+const right_btn = document.getElementById("grid-right-btn");
 
 const imgIndex = Array(PRESS_NUM)
   .fill()
@@ -43,7 +43,7 @@ function showMainList(press) {
 }
 
 function changePage(e, press) {
-  if (e.target.id === "left") {
+  if (e.target.id === "grid-left") {
     main_list_page--;
   } else {
     main_list_page++;
