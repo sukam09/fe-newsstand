@@ -180,6 +180,7 @@ body {
   color: var(--color-text-weak);
 }
 .list-view_tab > ul > li {
+  position: relative;
   height: 100%;
   padding: 0px 16px;
 
@@ -252,9 +253,23 @@ body {
 .list-view-main_notice {
   color: var(--color-text-weak);
 }
+.tab_progress-bar {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-text-point);
+
+  transition: width 1s linear;
+}
+.tab_category {
+  z-index: 10;
+}
 .tab-count {
   display: none;
   color: var(--color-text-white-weak);
+
+  z-index: 10;
 }
 .tab-count_current {
   color: var(--color-text-white-default);
