@@ -1,11 +1,9 @@
+import {
+  ANIMATION_GAP,
+  ROLLING_NEWS_NUM,
+  ROLLING_TIME,
+} from "../constant/constants.js";
 import { $ } from "./util.js";
-
-// 롤링에 들어갈 뉴스 수
-const ROLLING_NEWS_NUM = 5;
-// 좌우 롤링 시간 차
-const ANIMATION_GAP = 1000;
-// 롤링되는 시간
-const ROLLING_TIME = 5000;
 
 // 왼쪽 배너 롤링 반복
 let rollingIntervalLeft = setInterval(() => {
