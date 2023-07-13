@@ -36,8 +36,8 @@ function addInitCategory() {
 function initCategoryItem() {
   const categoryItem = document.querySelectorAll(".categoryItem");
   const currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
-  categoryDisplayClear(categoryItem,currentCategoryPage);
-  categoryDisplayOn(categoryItem,currentCategoryPage);
+  categoryDisplayClear(categoryItem, currentCategoryPage);
+  categoryDisplayOn(categoryItem, currentCategoryPage);
   intervalProgress(
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
@@ -84,8 +84,7 @@ function doProgress(progressBar, currentCategoryPage) {
     }
     progressReset(progressBar, currentCategoryPage);
     return;
-  }
-  progressFill(progressBar);
+  } else progressFill(progressBar);
 }
 
 function progressReset(progressBar, currentCategoryPage) {
