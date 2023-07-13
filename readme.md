@@ -65,12 +65,15 @@ fe-newsstand
 ├─ .gitignore
 ├─ README.md
 ├─ assets
+│  ├─ img
 │  └─ newspaper
-│     ├─ dark : images
+│     ├─ dark
 ├─ css
 │  ├─ header.css
 │  ├─ index.css
+│  ├─ list.css
 │  ├─ main.css
+│  ├─ news.css
 │  ├─ reset.css
 │  ├─ section.css
 │  └─ util.css
@@ -78,29 +81,35 @@ fe-newsstand
 ├─ image.png
 ├─ index.html
 ├─ index.js
-├─ js
-│  ├─ App
-│  │  ├─ Header.js
-│  │  ├─ Main
-│  │  │  ├─ ContentNav.js
-│  │  │  ├─ MainContent
-│  │  │  │  ├─ Button.js
-│  │  │  │  ├─ News
-│  │  │  │  │  ├─ Contents
-│  │  │  │  │  │  ├─ Header.js
-│  │  │  │  │  │  ├─ Left.js
-│  │  │  │  │  │  └─ Right.js
-│  │  │  │  │  ├─ Contents.js
-│  │  │  │  │  └─ Nav.js
-│  │  │  │  ├─ News.js
-│  │  │  │  └─ Newspaper.js
-│  │  │  └─ MainContent.js
-│  │  ├─ Main.js
-│  │  ├─ Rolling.js
-│  │  └─ RollingContents
-│  │     └─ RollingContents.js
-│  └─ App.js
-└─ package.json
+├─ package.json
+└─ src
+   ├─ App.js
+   └─ App
+      ├─ Header.js
+      ├─ Rolling.js
+      ├─ Main.js
+      ├─ Rolling
+      │  └─ RollingContents.js
+      └─ Main
+         ├─ ContentNav.js
+         ├─ MainContent.js
+         ├─ ContentNav
+         │  ├─ Button.js
+         │  ├─ PressType.js
+         │  └─ ViewerType.js
+         └─ MainContent
+            ├─ NewsListView.js
+            ├─ PressGridView.js
+            ├─ Button.js
+            └─ NewsListView
+              ├─ CategoryNav.js
+              ├─ Contents.js
+              └─ Contents
+                  ├─ Header.js
+                  ├─ News.js
+                  └─ News
+                     ├─ MainNews.js
+                     └─ SubNews.js
 ```
 
 ### 컴포넌트 기능 설계
