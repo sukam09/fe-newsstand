@@ -16,6 +16,7 @@ const setTotalPressList = (isLightMode) => {
       // 초기 세팅
       setPressCategoryMain(categoryData);
       setPressCategorySub(categoryData);
+      getPressLogoElement();
 
       // setPressCategoryElement(data, shufflePress, isLightMode);ㄴ
       //   makePressGrid(data, shufflePress, isLightMode);
@@ -32,6 +33,33 @@ const setTotalPressList = (isLightMode) => {
 /**
  * List 화살표 넘겨주기
  */
+const getPressLogoElement = () => {
+  const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
+
+  const arrowImg = `
+  <img class='arrows__img-left' src='./assets/icons/chevron-left.svg' />
+  <img class='arrows__img-right' src='./assets/icons/chevron-right.svg' />
+  `;
+  arrowsWrapper.insertAdjacentHTML('beforeend', arrowImg);
+};
+
+// const arrowLeft =
+
+//   .addEventListener('click', () => {
+//     pageNum -= 1;
+//     changePressLogo(pressData, shufflePress, isLightMode);
+//     setArrowVisible();
+//   });
+
+//   $imgRight.addEventListener('click', () => {
+//     pageNum += 1;
+//     changePressLogo(pressData, shufflePress, isLightMode);
+//     setArrowVisible();
+//   });
+
+//   arrowsWrapper.appendChild($ul);
+//   arrowsWrapper.appendChild($imgLeft);
+//   arrowsWrapper.appendChild($imgRight);
 
 /**
  * 카테고리 별 다음 언론사 화면으로 넘어가기
@@ -299,31 +327,26 @@ const setProgressBar = (categoryData) => {
 };
 
 /**
- * LIST의 NAV 화면 - Progress Bar 애니메이션
- */
-const animateProgressBar = () => {};
-
-/**
  * 언론사 리스트의 HTML 틀
  */
 const setPressCategoryElement = () => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
   arrowsWrapper.classList.add('display-none');
 
-  const pressCategoryNav = `
-  <nav class='press-category__nav'>
-    <ul class='press-category__ul'></ul>
-  </nav>
-  `;
+  const pressCategory = `
+  <article class='press-category'>
+    <nav class='press-category__nav'>
+      <ul class='press-category__ul'></ul>
+    </nav>
 
-  const pressCategoryArticle = `
-  <article class='press-category__article'>
-    <section class='press-category__section-main'></section>
-    <section class='press-category__section-sub'></section>
+    <article class='press-category__article'>
+      <section class='press-category__section-main'></section>
+      <section class='press-category__section-sub'></section>
+    </article>
   </article>
   `;
 
-  arrowsWrapper.innerHTML = pressCategoryNav + pressCategoryArticle;
+  arrowsWrapper.innerHTML = pressCategory;
 };
 
 export { setTotalPressList };

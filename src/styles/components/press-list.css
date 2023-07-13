@@ -1,10 +1,19 @@
 .arrows__wrapper-list {
   position: relative;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 25px;
+
+  background-color: transparent;
+  border: none;
+}
+
+.press-category {
+  display: flex;
   flex-direction: column;
   width: 930px;
   height: 388px;
-  margin-top: 25px;
 
   border: 1px solid var(--grayscale-100);
   background-color: transparent;
@@ -81,6 +90,7 @@
 .press-category__article {
   display: flex;
   flex-direction: row;
+
   padding: 24px;
   gap: 32px;
 }
@@ -182,4 +192,23 @@
 
   font: var(--medium-R);
   color: var(--grayscale-200);
+}
+
+/* 화살표 영역 */
+.arrows__img-left {
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: -72px; /* 0 - 24 - 48 */
+}
+
+.arrows__img-right {
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: 978px; /* 930 + 48 */
 }
