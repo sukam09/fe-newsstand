@@ -277,7 +277,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    animation: ani-progress-bar 2s linear forwards;
+    animation: ani-progress-bar 5s linear;
     z-index: 1;
     background-color: #4362d0;
 }

@@ -9,7 +9,7 @@ function getCategoryBtn(category_data) {
     // 클릭했을 때
     const tab_item_clicked = elem.createDiv("tab-item-clicked");
     const btn_tab_progress = elem.createDiv("btn-tab-progress");
-    btn_tab_progress.style.animationIterationCount = category_data.news.length;
+    btn_tab_progress.style.animationIterationCount = "infinite";
 
     const btn_tab_wrapper = elem.createDiv("btn-tab-wrapper");
     const btn_tab_category = elem.createSpan("btn-tab-category selected-bold14", category_data.category);

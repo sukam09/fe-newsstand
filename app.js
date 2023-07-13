@@ -6,6 +6,7 @@ import { renderMainNav } from "./components/mainNav.js";
 import { renderTab } from "./components/categoryTab.js";
 import { renderListNews } from "./components/listNews.js";
 import { list_news_data } from "./data/list_news_data.js";
+import { listArrowEvent } from "./components/listArrow.js";
 
 (function () {
     renderDate();
@@ -15,4 +16,5 @@ import { list_news_data } from "./data/list_news_data.js";
     renderTab();
     rederProgressBtn();
     renderListNews(list_news_data[0].news[0]);
+    listArrowEvent();
 })();
