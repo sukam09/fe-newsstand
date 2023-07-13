@@ -85,7 +85,10 @@ const setPressCategoryMain = (categoryData) => {
   const categoryMainElement = `
   <nav class='section-main__nav'>
     <img class='section-main__img-logo' src=${categoryInitData.logoSrc}>
-    <time class='section-main__time'>${categoryInitData.editTime} 편집</time>
+    <div class='section-main__edit'>
+      <time class='section-main__edit-time'>${categoryInitData.editTime}</time>
+      <p class='section-main__edit-p'>&nbsp편집</p>
+    </div>
     <buttion class='section-main__button'>
       <img class='section-main__img-button' src='./assets/icons/button-plus.svg' />
       <p class='section-main__p-button'>구독하기</p>
@@ -128,7 +131,8 @@ const setPressCategoryNav = (categoryData, shufflePressList) => {
       <p class='press-category__p'>${data.categoryName}</p>
       <div class='press-category__div display-none'>
         <div class='press-category__div-now'>1</div>
-        <div class='press-category__div-sum'>/${data.categoryData.length}</div>
+        <div class='press-category__div-divide'>/</div>
+        <div class='press-category__div-sum'>${data.categoryData.length}</div>
       </div>
     </li>
     `;

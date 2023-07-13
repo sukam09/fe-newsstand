@@ -45,6 +45,12 @@
   font: var(--bold-S);
   color: var(--grayscale-white-alt);
 }
+
+.press-category__div-divide {
+  font: var(--bold-S);
+  color: var(--grayscale-white);
+}
+
 .press-category__div-sum {
   font: var(--bold-S);
   color: var(--grayscale-white);
@@ -84,7 +90,17 @@
   height: 20px;
 }
 
-.section-main__time {
+.section-main__edit {
+  display: flex;
+  flex-direction: row;
+}
+
+.section-main__edit-time {
+  font: var(--medium-S);
+  color: var(--grayscale-400);
+}
+
+.section-main__edit-p {
   font: var(--medium-S);
   color: var(--grayscale-400);
 }
