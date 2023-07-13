@@ -7,8 +7,6 @@ export default class Component {
     this.setup();
     this.render();
     this.setEvent();
-
-    // return this.$target;
   }
   setup() {}
   mounted() {}
