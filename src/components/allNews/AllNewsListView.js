@@ -46,8 +46,12 @@ export default class AllNewsListView extends Component {
 
                   <div class='press-news-content'>
                     <div class='press-news-img'>
-                      <img class='border-default available-medium16 text-strong' src='https://picsum.photos/200/300'/>
-                      <label class='available-medium16  text-strong'>이재명 '억울하고 괴로워도 의연하게 맞설 것'</label>
+                      <div>
+                        <img class='border-default available-medium16 text-strong' src='https://picsum.photos/200/300'/>
+                      </div>
+                      
+                      <label class='available-medium16  text-strong'>이재명 '억울하고 괴로워도 의연하게 맞설 것'
+                      </label>
                     </div>
 
                     <div class='press-news-detail-list'></div>

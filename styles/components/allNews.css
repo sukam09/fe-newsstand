@@ -137,11 +137,34 @@
   flex-direction: column;
   gap: 16px;
 }
+.press-news-img > div {
+  overflow: hidden;
+}
 
-.press-news-img > img {
+.press-news-img > div {
   width: 320px;
   height: 200px;
 }
+
+.press-news-img > div > img {
+  width: 100%;
+  height: 100%;
+
+  transition: all 0.2s linear;
+}
+
+.press-news-img:hover img {
+  transform: scale(1.05);
+}
+
+.press-news-img:hover label {
+  text-decoration: underline;
+}
+
+/* .press-news-img > img {
+  width: 320px;
+  height: 200px;
+} */
 
 .press-news-img > span {
   display: flex;
