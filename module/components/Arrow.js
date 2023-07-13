@@ -1,6 +1,6 @@
 import { updateGrid } from "../view/GridView.js";
 import { VIEW } from "../ViewStyle.js";
-import { pageMoveByBtn } from "../view/ListView.js";
+import { pageMoveByBtn, categoryLength } from "../view/ListView.js";
 
 export let current_grid_page = 0;
 export const LIST_PAGE = {
@@ -15,12 +15,12 @@ const GRID_ENTIRE_PAGE = 3;
 
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
-right_btn.addEventListener("click", () => movePage(RIGHT));
-left_btn.addEventListener("click", () => movePage(LEFT));
+right_btn.addEventListener("click", () => arrowBtnClickHandler(RIGHT));
+left_btn.addEventListener("click", () => arrowBtnClickHandler(LEFT));
 
-function movePage(dir) {
+function arrowBtnClickHandler(dir) {
   const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
-
+  //그리드 뷰
   if (CURRENT_VIEW == VIEW.GRID) {
     if (dir === RIGHT) {
       current_grid_page++;
@@ -38,7 +38,9 @@ function movePage(dir) {
       left_btn.style.display = "block";
     }
     updateGrid();
-  } else if (CURRENT_VIEW == VIEW.LIST) {
+  }
+  //리스트뷰
+  else if (CURRENT_VIEW == VIEW.LIST) {
     if (dir === RIGHT) {
       LIST_PAGE.current_list_page++;
     } else {
@@ -46,15 +48,24 @@ function movePage(dir) {
     }
     const CURRENT_CATEGORY = pageMoveByBtn(LIST_PAGE.current_list_page);
 
-    if (LIST_PAGE.current_list_page === 1 && CURRENT_CATEGORY === 0) {
-      left_btn.style.display = "none";
-      right_btn.style.display = "block";
-    } else if (LIST_PAGE.current_list_page === LIST_PAGE.LIST_ENTIRE_PAGE) {
-      right_btn.style.display = "none";
-      left_btn.style.display = "block";
-    } else {
-      right_btn.style.display = "block";
-      left_btn.style.display = "block";
-    }
+    listViewBtnVisibilitySet(LIST_PAGE.current_list_page, CURRENT_CATEGORY);
   }
+}
+
+function listViewBtnVisibilitySet(CURRENT_PAGE, CURRENT_CATEGORY) {
+  if (CURRENT_PAGE === 1 && CURRENT_CATEGORY === 0) {
+    left_btn.style.display = "none";
+    right_btn.style.display = "block";
+  } else if (CURRENT_PAGE === categoryLength[CURRENT_CATEGORY] && CURRENT_CATEGORY === categoryLength.length - 1) {
+    right_btn.style.display = "none";
+    left_btn.style.display = "block";
+  } else {
+    right_btn.style.display = "block";
+    left_btn.style.display = "block";
+  }
+}
+
+export function ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY) {
+  LIST_PAGE.current_list_page = CURRENT_PAGE;
+  listViewBtnVisibilitySet(LIST_PAGE.current_list_page, CURRENT_CATEGORY);
 }

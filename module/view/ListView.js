@@ -1,5 +1,5 @@
 import { fetchCategoryNews } from "../../api.js";
-import { LIST_PAGE } from "../components/Arrow.js";
+import { LIST_PAGE, ArrowBtnStateChange } from "../components/Arrow.js";
 
 let news_data;
 let CURRENT_PAGE;
@@ -9,7 +9,7 @@ const PAGE_AUTO_MOVING_TIME = 5000;
 const PROGRESS_TAB_WIDTH = "166";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
-const categoryLength = [];
+export const categoryLength = [];
 
 //뉴스 데이터 패치 -> 탭 정보(언론사 개수 초기화) -> 언론사 뉴스 html 요소 생성 및 초기화
 async function fetchCategoryNewsData() {
@@ -90,6 +90,7 @@ function fieldTabClickEventHandler(targetTab, index) {
   clearInterval(intervalId);
   updateTimer();
   updatePressNewsSection();
+  ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY);
 }
 
 /**
@@ -107,6 +108,7 @@ function fieldTabAutoChange() {
   progressWidthChange(nextProgressEl);
 
   updatePressNewsSection();
+  ArrowBtnStateChange(CURRENT_PAGE, CURRENT_CATEGORY);
 }
 
 /**
@@ -215,7 +217,6 @@ function updatePressNewsSection() {
 function updateTimer() {
   intervalId = setInterval(() => {
     //카테고리 변경
-    console.log(news_data[CURRENT_CATEGORY].press.length);
     if (CURRENT_PAGE === news_data[CURRENT_CATEGORY].press.length) {
       CURRENT_CATEGORY++;
       CURRENT_PAGE = 0;
