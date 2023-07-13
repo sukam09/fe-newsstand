@@ -1,7 +1,51 @@
 const CATEGORY_NUM = 7;
-const PROGRESS_TIME = 20000;
+const PROGRESS_TIME = 1000;
 let category_clicked = false;
 let idx = 0;
+
+let total_count = 5;
+let up_count = 2;
+let progress_interval;
+
+/***** 카테고리 count 올리기 *****/
+//카운트 올릴 시 프로그레스바 다시 차오르게 해주는 함수
+function reloadProgressAnimation() {
+  const currentCategory = document.querySelector(".progress-bar");
+  currentCategory.classList.remove("progress-bar");
+  void currentCategory.offsetWidth;
+  currentCategory.classList.add("progress-bar");
+}
+
+//카운트 올리고, total_count에 도달하면 다음 카테고리로 넘어가는 함수
+function countUp() {
+  if (up_count > total_count) {
+    up_count = 2;
+    document.querySelector(".progress-bar .now-count").innerHTML = "1";
+    if (idx <= CATEGORY_NUM - 1 && idx >= 0) {
+      if (idx == CATEGORY_NUM - 1) {
+        changeCategory(idx, 0);
+        idx = 0;
+        up_count = 2;
+      } else {
+        changeCategory(idx, idx + 1);
+        idx++;
+      }
+    }
+  } else {
+    document.querySelector(".progress-bar .now-count").innerHTML =
+      up_count.toString();
+    reloadProgressAnimation();
+    up_count++;
+  }
+}
+
+function countUpInterval() {
+  return window.setInterval(() => countUp(), PROGRESS_TIME);
+}
+
+function runProgress() {
+  progress_interval = countUpInterval();
+}
 
 /***** 프로그레스바 이동 함수 *****/
 function changeCategory(idx_1, idx_2) {
@@ -33,10 +77,10 @@ for (let i = 0; i < categories.length; i++) {
   });
 }
 
-let progress_interval;
+let interval1;
 function movingProgress() {
   while (idx <= CATEGORY_NUM - 1 && idx >= 0) {
-    progress_interval = setInterval(function () {
+    interval1 = setInterval(function () {
       if (idx == CATEGORY_NUM - 1) {
         changeCategory(idx, 0);
         idx = 0;
@@ -51,7 +95,9 @@ function movingProgress() {
 
 function initializeProgress() {
   idx = 0;
+  up_count = 2;
+  document.querySelector(".now-count").innerHTML = "1";
   document.getElementsByClassName("count")[0].style.display = "block";
 }
 
-export { movingProgress, progress_interval, initializeProgress };
+export { runProgress, initializeProgress, progress_interval };

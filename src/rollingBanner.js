@@ -60,3 +60,5 @@ function initRolling() {
     });
   });
 }
+
+export { initRolling };
