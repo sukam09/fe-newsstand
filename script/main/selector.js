@@ -1,3 +1,4 @@
+import listViewInit from "./listView.js";
 const viewSelector = () => {
   const listBtn = document.querySelector('.view_select img[src$="list_gray.svg"]');
   const gridBtn = document.querySelector('.view_select img[src$="grid_blue.svg"]');
@@ -10,6 +11,7 @@ const viewSelector = () => {
     
     listBtn.src = "assets/images/list_blue.svg";
     gridBtn.src = "assets/images/grid_gray.svg";
+    listViewInit();
   });
 
   gridBtn.addEventListener('click', () => {

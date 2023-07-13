@@ -5,7 +5,6 @@ let category_page = 0;
 let media_page = 0;
 let categorizedData;
 let animationId;
-
 /**
  * category_page, media_page에 따라 section안에 내용 바꾸는 함수
  */
@@ -86,6 +85,12 @@ function createCategoryElements(categorizedData) {
  * news data가져와서 기본 셋팅 함수
  */
 const getNewsData = async () => {
+  var progressed = document.querySelector(".category_item.progressed");
+  if (progressed && progressBar) {
+    var rect = progressed.getBoundingClientRect();
+    progressBar.style.top = rect.top + "px";
+    progressBar.style.left = rect.left + "px";
+  }
   const newsData = await getJSON("../assets/data/news_data.json");
   categorizedData = categorizeData(newsData);
   createCategoryElements(categorizedData);
@@ -241,8 +246,24 @@ const progressBarControl = () => {
 };
 
 
+let categoriesWrapper;
 const listViewInit = () => {
+  // 초기화 작업
+  cancelAnimationFrame(animationId);
+  categories = [];
+  category_page = 0;
+  media_page = 0;
+  animationId = null;
+
+  if(categoriesWrapper) {
+    categoriesWrapper.innerHTML = `<div class="progress_bar surface-brand-default"></div>`;
+  } else {
+    categoriesWrapper = document.querySelector('.category');
+  }
+  
   getNewsData();
+  progressBarControl();
 };
+
 
 export default listViewInit;

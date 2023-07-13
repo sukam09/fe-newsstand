@@ -3,7 +3,6 @@ import headerInit from './main/header.js';
 import rollingInit from './main/rolling.js';
 import getTopicInit from './main/topic.js';
 import selectorInit from './main/selector.js';
-import listViewInit from './main/listView.js';
 
 ( () => {
   headerInit();
@@ -11,5 +10,4 @@ import listViewInit from './main/listView.js';
   getTopicInit();
   selectorInit();
   gridInit();
-  listViewInit();
 })();
