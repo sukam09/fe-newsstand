@@ -1,11 +1,13 @@
+import { getElemId, getElemClass } from "../utils/getElements.js";
+
 const pageAllNum = [];
 
 const newsList = [];
 const page = [[], [], [], []];
 
-const sectionPrevButton = document.getElementById('press-content-prev');
-const sectionNextButton = document.getElementById('press-content-next');
-const pressContentView = document.getElementsByClassName('press-content-view');
+const sectionPrevButton = getElemId(document, 'press-content-prev');
+const sectionNextButton = getElemId(document, 'press-content-next');
+const pressContentView = getElemClass(document, 'press-content-view');
 
 let pageNumber = 0;
 
@@ -30,7 +32,7 @@ pageAllNum.forEach(arr => {
 })
 
 function showPressImg(flag) {
-    const pressContentView = document.getElementsByClassName('press-content-view');
+    const pressContentView = getElemClass(document, 'press-content-view');
     pageNumber = (flag >= 0) ? ++pageNumber : --pageNumber; 
 
     sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";

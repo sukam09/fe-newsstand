@@ -1,3 +1,5 @@
+import {getQuerySelector, getQuerySelectorAll} from "../utils/getElements.js";
+
 let intervalFirstNewsbar;
 let intervalSecondNewsbar;
 function startRolling() {
@@ -18,7 +20,7 @@ function stopRolling(){
 }
 
 function mouseEventRolling(state) {
-    const headlineNews = document.querySelectorAll(`.newsbar-content-container-${state} li`);
+    const headlineNews = getQuerySelectorAll(document, `.newsbar-content-container-${state} li`);
     
     headlineNews.forEach((elem) => {
         elem.addEventListener('mouseover', () => {
@@ -36,14 +38,14 @@ function mouseEventRolling(state) {
 }
 
 function rollingCb(state) {
-    document.querySelector(`.newsbar-content-container-${state} .prev`).classList.remove('prev');
-    let current = document.querySelector(`.newsbar-content-container-${state} .current`);
+    getQuerySelector(document,`.newsbar-content-container-${state} .prev`).classList.remove('prev');
+    let current = getQuerySelector(document,`.newsbar-content-container-${state} .current`);
     current.classList.remove('current');
     current.classList.add('prev');
 
-    let next = document.querySelector(`.newsbar-content-container-${state} .next`);
+    let next = getQuerySelector(document,`.newsbar-content-container-${state} .next`);
     if(next.nextElementSibling == null) {
-        document.querySelector(`.newsbar-content-container-${state} li:first-child`).classList.add('next');
+        getQuerySelector(document,`.newsbar-content-container-${state} li:first-child`).classList.add('next');
     } else {
         next.nextElementSibling.classList.add('next');
     }

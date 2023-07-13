@@ -1,3 +1,5 @@
+import { getElemClass } from "../utils/getElements.js";
+
 function showDate() {
     const options = {
         year: "numeric",
@@ -6,7 +8,7 @@ function showDate() {
         weekday: "long",
     };
     const formattedTodayDate = new Date().toLocaleDateString("ko", options);
-    const todayDate = document.getElementsByClassName('header-date');
+    const todayDate = getElemClass(document, 'header-date');
 	todayDate[0].innerHTML = formattedTodayDate;
 }
 
