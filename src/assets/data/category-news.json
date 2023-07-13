@@ -4,7 +4,7 @@
     "categoryName": "종합/경제",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스0",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -38,7 +38,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스0",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스",
         "logoSrc": "./assets/images/light-press-logo/img3.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -112,7 +112,7 @@
     "categoryName": "방송/통신",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스1",
         "logoSrc": "./assets/images/light-press-logo/img4.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스1",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -180,7 +180,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스1",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,

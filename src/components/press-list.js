@@ -7,11 +7,14 @@ const setTotalPressList = (isLightMode) => {
   fetch('./assets/data/category-news.json')
     .then((response) => response.json())
     .then((data) => {
-      const shufflePressList = getPressList(data); // 언론사 랜덤
+      const categoryData = data;
+      const shufflePressList = getPressList(categoryData); // 언론사 랜덤
       setPressCategoryElement();
-      setPressCategoryNav(data);
-      setPressCategoryMain(data);
-      setPressCategorySub(data);
+      setPressCategoryNav(categoryData, shufflePressList);
+
+      // 초기 세팅
+      setPressCategoryMain(categoryData);
+      setPressCategorySub(categoryData);
 
       // setPressCategoryElement(data, shufflePress, isLightMode);ㄴ
       //   makePressGrid(data, shufflePress, isLightMode);
@@ -19,6 +22,33 @@ const setTotalPressList = (isLightMode) => {
     .catch((error) => {
       console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
     });
+};
+
+/**
+ * 카테고리 별 랜덤 언론사 화면
+ */
+const setPressCategoryArticle = (categoryData, shufflePressList) => {
+  const liList = document.querySelectorAll('.press-category__li');
+
+  liList.forEach((li) => {
+    const categoryName = li.querySelector('.press-category__p').innerText;
+    const categoryArticle = categoryData.filter((data) => data.categoryName === categoryName)[0];
+    const shuffleArticle = shufflePressList.filter((_, idx) => categoryArticle.categoryId === idx)[0];
+
+    const initShuffleArticle = shuffleArticle[0];
+    const initCategoryArticle = categoryArticle.categoryData[initShuffleArticle];
+
+    console.log(initCategoryArticle);
+    li.addEventListener('click', () => {
+      const sectionMain = document.querySelector('.press-category__section-main');
+      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticle.logoSrc;
+    });
+  });
+
+  // const initLi = document.querySelector('.press-category__ul');
+  // initLi.firstElementChild.classList.add('progress-start');
+  // const initDiv = initLi.querySelector('.press-category__div');
+  // initDiv.classList.remove('display-none');
 };
 
 /**
@@ -78,7 +108,7 @@ const shuffleList = (list) => {
 const getPressList = (categoryData) => {
   const shfflePressList = [];
   categoryData.forEach((data) => {
-    let shufflePress = Array.from({ length: data.categoryData.length }, (_, idx) => idx + 1);
+    let shufflePress = Array.from({ length: data.categoryData.length }, (_, idx) => idx);
     shuffleList(shufflePress);
     shfflePressList.push(shufflePress);
   });
@@ -89,7 +119,7 @@ const getPressList = (categoryData) => {
 /**
  * LIST의 NAV 화면 - 카테고리 이름을 설정 - ing
  */
-const setPressCategoryNav = (categoryData) => {
+const setPressCategoryNav = (categoryData, shufflePressList) => {
   const categoryUl = document.querySelector('.press-category__ul');
 
   categoryData.forEach((data) => {
@@ -106,6 +136,7 @@ const setPressCategoryNav = (categoryData) => {
   });
 
   setProgressBar(categoryData);
+  setPressCategoryArticle(categoryData, shufflePressList);
 };
 
 /**
@@ -155,7 +186,5 @@ const setPressCategoryElement = () => {
 
   arrowsWrapper.innerHTML = pressCategoryNav + pressCategoryArticle;
 };
-
-// const setPressCategoryElement = () => {};
 
 export { setTotalPressList };
