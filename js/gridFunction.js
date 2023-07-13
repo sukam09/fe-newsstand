@@ -140,8 +140,8 @@ function drawGridView() {
     appendPressInGrid(press);
     count += 1;
   });
-  if (count < PAGE_SIZE - 1) {
-    for (let i = 0; i < PAGE_SIZE - count; i++) {
+  if (count < PAGE_SIZE) {
+    for (let i = 0; i < PAGE_SIZE - count + 1; i++) {
       const $li = document.createElement("li");
       $li.classList.add("press-item");
       $press_list.appendChild($li);
@@ -160,7 +160,7 @@ function drawSubGridView() {
     appendSubPressInGrid(press);
     count += 1;
   });
-  if (count < PAGE_SIZE - 1) {
+  if (count < PAGE_SIZE) {
     for (let i = 0; i < PAGE_SIZE - count; i++) {
       const $li = document.createElement("li");
       $li.classList.add("press-item");
