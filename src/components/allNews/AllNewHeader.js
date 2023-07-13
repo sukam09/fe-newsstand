@@ -39,6 +39,9 @@ export default class AllNewHeader {
     const $listViewIcon = new Icon({ name: this.LISTVIEW_ICON });
     const $gridViewIcon = new Icon({ name: `${this.GRIDVIEW_ICON}-selected` });
 
+    $listViewIcon.classList.add("img-icon");
+    $gridViewIcon.classList.add("img-icon");
+
     $listViewIcon.addEventListener("click", (e) => this.handleListIconClick(e));
     $gridViewIcon.addEventListener("click", (e) => this.handleGridIconClick(e));
 

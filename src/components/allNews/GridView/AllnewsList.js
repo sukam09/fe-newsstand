@@ -1,8 +1,8 @@
-import Logo from '../common/Logo.js';
+import Logo from "../../common/Logo.js";
 
 export default class AllNewsList {
   constructor(name) {
-    this.$component = document.createElement('li');
+    this.$component = document.createElement("li");
 
     this.render(name);
     return this.$component;

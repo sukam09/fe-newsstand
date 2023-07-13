@@ -25,3 +25,7 @@
   align-items: center;
   gap: 8px;
 }
+
+.img-icon {
+  cursor: pointer;
+}

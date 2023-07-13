@@ -1,11 +1,11 @@
-import { shufflePressOrder } from '../../utils/index.js';
-import AllNewsList from './AllnewsList.js';
-import ArrowButton from './ArrowButton.js';
+import { shufflePressOrder } from "../../../utils/index.js";
+import AllNewsList from "./AllnewsList.js";
+import ArrowButton from "../ArrowButton.js";
 
 export default class AllNewsGrid {
   constructor() {
-    this.$wrapper = document.createElement('div');
-    this.$wrapper.className = 'grid-wrapper';
+    this.$wrapper = document.createElement("div");
+    this.$wrapper.className = "grid-wrapper";
     this.$pressOrder = shufflePressOrder();
     this.page = 0;
 
@@ -15,10 +15,10 @@ export default class AllNewsGrid {
   }
 
   addGrid() {
-    const $newsListGrid = document.createElement('div');
-    $newsListGrid.className = 'news-list-wrapper';
-    const $newsLists = document.createElement('ul');
-    $newsLists.className = 'news-list';
+    const $newsListGrid = document.createElement("div");
+    $newsListGrid.className = "news-list-wrapper";
+    const $newsLists = document.createElement("ul");
+    $newsLists.className = "news-list";
     for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
       $newsLists.appendChild(new AllNewsList(this.$pressOrder[i]));
     }
@@ -41,18 +41,18 @@ export default class AllNewsGrid {
 
     this.$wrapper.appendChild(
       new ArrowButton({
-        name: 'LeftButton',
+        name: "LeftButton",
         isVisible: this.page !== 0,
         action: this.goPreviousPage.bind(this),
-      }),
+      })
     );
     this.addGrid();
     this.$wrapper.appendChild(
       new ArrowButton({
-        name: 'RightButton',
+        name: "RightButton",
         isVisible: this.page !== 3,
         action: this.goNextPage.bind(this),
-      }),
+      })
     );
   }
 }

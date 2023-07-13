@@ -1,6 +1,6 @@
 import AllNewHeader from "./AllNewHeader.js";
-import AllNewsGrid from "./AllNewsGrid.js";
-import ListView from "./ListView.js";
+import AllNewsGrid from "./GridView/AllNewsGrid.js";
+import ListView from "./ListView/ListView.js";
 
 export default class AllNews {
   constructor() {

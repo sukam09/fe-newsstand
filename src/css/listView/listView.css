@@ -1,0 +1,29 @@
+.list-wrapper {
+}
+
+.list-wrapper.hidden {
+  display: none;
+}
+
+.categories-wrapper {
+  display: flex;
+  align-items: center;
+  width: 930px;
+  height: 40px;
+  border: 1px solid var(--gray-scale-100);
+  background-color: var(--gray-scale-50);
+}
+
+.categories-list {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0px 16px 0px 16px;
+  gap: 8px;
+  color: var(--gray-scale-200);
+}
+
+.category-name {
+  font-size: 14px;
+  line-height: 16.71px;
+}

@@ -3,7 +3,7 @@
 @import "./css/color.css";
 @import "./css/allNewsHeader.css";
 @import "./css/gridView.css";
-@import "./css/listView.css";
+@import "./css/listView/listView.css";
 
 h1,
 h2,
