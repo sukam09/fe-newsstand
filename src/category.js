@@ -40,7 +40,7 @@ function appendCategoryList() {
 function createCategoryList(item, idx) {
   // li 생성
   const newList = document.createElement("li");
-  if (idx == 0) {
+  if (idx === 0) {
     newList.className = "category_list category_list--clicked";
   } else {
     newList.className = "category_list";
@@ -87,7 +87,7 @@ function updateCategory() {
     parseInt(now_list_page) >=
     parseInt(clickedCategory.children[1].children[1].innerHTML) + 1
   ) {
-    if (clickedCategory.nextElementSibling == null) {
+    if (clickedCategory.nextElementSibling === null) {
       firstCategory.classList.add("category_list--clicked");
       firstCategory.children[1].children[0].innerHTML = "1 /";
       now_tab = 0;

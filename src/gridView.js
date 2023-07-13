@@ -34,7 +34,7 @@ function createSubButton(id) {
   subButton.innerHTML = "+ 구독하기";
 
   subButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id == id);
+    const targetPress = pressObjArr.find((item) => item.id === id);
     targetPress.isSub = true;
 
     toggleSubButton(targetPress, subButtonContainer);
@@ -56,7 +56,7 @@ function createUnSubButton(id) {
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id == id);
+    const targetPress = pressObjArr.find((item) => item.id === id);
     targetPress.isSub = false;
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });

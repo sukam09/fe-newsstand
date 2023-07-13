@@ -1,6 +1,8 @@
 import { showGridPageButton, now_grid_page } from "./gridView.js";
 import { listPageUp, updateCategory } from "./category.js";
 
+// 카테고리 탭 전환 시간
+const CATEGORY_TAB_TIME = 20000;
 // 로고 새로고침
 function refresh() {
   location.reload();
@@ -9,7 +11,7 @@ function refresh() {
 let categoryInterval = setInterval(() => {
   listPageUp();
   updateCategory();
-}, 1000);
+}, CATEGORY_TAB_TIME);
 
 export function stopInterval() {
   clearInterval(categoryInterval);
@@ -18,7 +20,7 @@ export function startInterval() {
   categoryInterval = setInterval(() => {
     listPageUp();
     updateCategory();
-  }, 1000);
+  }, CATEGORY_TAB_TIME);
 }
 
 // 그리드 뷰로 전환

@@ -1,34 +1,38 @@
 // 롤링에 들어갈 뉴스 수
 const ROLLING_NEWS_NUM = 5;
+// 좌우 롤링 시간 차
+const ANIMATION_GAP = 1000;
+// 롤링되는 시간
+const ROLLING_TIME = 5000;
 
 // 왼쪽 배너 롤링 반복
 let rollingIntervalLeft = setInterval(() => {
   rollingEvent("left");
-}, 5000);
+}, ROLLING_TIME);
 
 // 오른쪽 배너 롤링 1초 Timeout 후 반복
 let rollingIntervalRight = setInterval(() => {
   setTimeout(() => {
     rollingEvent("right");
-  }, 1000);
-}, 5000);
+  }, ANIMATION_GAP);
+}, ROLLING_TIME);
 
 // 마우스 아웃시 반복 재시작
 function startRolling(state) {
-  if (state == "left") {
+  if (state === "left") {
     rollingIntervalLeft = setInterval(() => {
       rollingEvent("left");
-    }, 5000);
+    }, ROLLING_TIME);
   } else {
     rollingIntervalRight = setInterval(() => {
       rollingEvent("right");
-    }, 5000);
+    }, ROLLING_TIME);
   }
 }
 
 // 마우스 호버시 반복 멈춤
 function stopRolling(state) {
-  if (state == "left") {
+  if (state === "left") {
     clearInterval(rollingIntervalLeft);
   } else {
     clearInterval(rollingIntervalRight);
@@ -101,7 +105,7 @@ function rollingEvent(state) {
   );
 
   // 다음 값이 없다면 처음부터
-  if (next.nextElementSibling == null) {
+  if (next.nextElementSibling === null) {
     document
       .querySelector(
         `.newsbanner__list-container--${state} .newsbanner__list:first-child`
