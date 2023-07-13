@@ -1,15 +1,15 @@
 import { autoRollingAnimation } from "../utils/autoRolling.js";
 import { RECENT_NEWS_CNT } from "../constants/constants.js";
 function RecentNews() {
-  getNewsData();
+  getRecentNewsData();
   autoRollingAnimation();
   const headerElement = document.createElement("h1");
   headerElement.textContent = "여기에 헤더 컴포넌트의 내용을 작성하세요";
   return headerElement;
 }
 
-function getNewsData() {
-  fetch("../data/news.json")
+function getRecentNewsData() {
+  fetch("../data/recentNews.json")
     .then((response) => response.json())
     .then((newsData) => {
       const news = newsData.News;
