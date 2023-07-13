@@ -17,14 +17,6 @@
     position: relative;
 }
 
-#left_arrow.page_0 {
-    display: none;
-}
-
-#right_arrow.page_3 {
-    display: none;
-}
-
 /* logo mouse hover시 */
 .media_hover {
     display: none;

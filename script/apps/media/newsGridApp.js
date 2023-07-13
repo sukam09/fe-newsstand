@@ -61,8 +61,11 @@ const setArrow = gridData => {
 };
 
 const setArrowVisible = (page, leftArrow, rightArrow) => {
-  leftArrow.className = `page_${page}`;
-  rightArrow.className = `page_${page}`;
+  const leftDisplay = page === 0 ? 'none' : 'block';
+  const rightDisplay = page === MEDIA.MAX_PAGE ? 'none' : 'block';
+
+  leftArrow.style.display = leftDisplay;
+  rightArrow.style.display = rightDisplay;
 };
 
 const createGridItems = gridElement => {
