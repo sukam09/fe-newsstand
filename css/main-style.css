@@ -602,3 +602,7 @@ h1 {
   position: relative;
   display: none;
 }
+
+.sub-press-list-section {
+  display: none;
+}

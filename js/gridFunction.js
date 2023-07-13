@@ -2,6 +2,7 @@ import presses from "../assets/light-media.js";
 import { initGridItemEvent, initSubGridItemEvent, preventButtonClick } from "./subscribe.js";
 import { PAGE_SIZE } from "./const.js";
 import { setDisplay } from "./utils.js";
+import { sub_view_selected } from "./subscribe.js";
 let grid_page_count = 0;
 let sub_grid_page_count = 0;
 let grid_view_selected = true;
@@ -61,16 +62,29 @@ function changeToGrid() {
   setDisplay(".grid-selected", "query", "flex");
   setDisplay(".list-selected", "query", "none");
   setDisplay(".press-list-section", "query", "none");
-  setDisplay(".press-grid", "query", "block");
+  setDisplay(".sub-press-list-section", "query", "none");
+  if (sub_view_selected) {
+    setDisplay(".press-grid-sub", "query", "block");
+    setDisplay(".press-grid", "query", "none");
+  } else {
+    setDisplay(".press-grid-sub", "query", "none");
+    setDisplay(".press-grid", "query", "block");
+  }
   grid_view_selected = true;
 }
 
 function changeToList() {
   setDisplay(".grid-selected", "query", "none");
   setDisplay(".list-selected", "query", "flex");
-  setDisplay(".press-list-section", "query", "block");
   setDisplay(".press-grid", "query", "none");
   setDisplay(".press-grid-sub", "query", "none");
+  if (sub_view_selected) {
+    setDisplay(".press-list-section", "query", "none");
+    setDisplay(".sub-press-list-section", "query", "block");
+  } else {
+    setDisplay(".press-list-section", "query", "block");
+    setDisplay(".sub-press-list-section", "query", "none");
+  }
   grid_view_selected = false;
 }
 
@@ -197,6 +211,7 @@ export {
   changeToList,
   initPressGrid,
   grid_view_selected,
+  sub_view_selected,
   drawSubGridView,
   drawGridView,
   drawSubGridArrow,
