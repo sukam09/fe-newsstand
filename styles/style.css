@@ -355,6 +355,10 @@ header {
 }
 
 .subscribe-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
   width: 72px;
   height: 24px;
   border-radius: 50px;

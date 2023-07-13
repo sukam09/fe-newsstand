@@ -38,7 +38,14 @@ export default function PressListView({ $target, initialState }) {
             <img class="press-image"/>
           </div>
           <div class="edit-date">2023.02.10. 18:27 편집</div>
-          <button class="subscribe-button">구독하기</button>
+          <button class="subscribe-button">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Symbol">
+                <path id="Vector" d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99799H13V10.998H19V12.998Z" fill="#879298"/>
+              </g>
+            </svg>
+            <p>구독하기</p>
+          </button>
         </div>
         <div class="news">
           <div class="news-main">
