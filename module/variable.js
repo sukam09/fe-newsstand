@@ -103,6 +103,7 @@ const GLOBAL = {
     list_press_icon: document.querySelector(".list-press-icon"),
     edit_date: document.querySelector(".edit-date"),
     main_news_title: document.querySelector(".main-news-title"),
+    main_news_thumbnail: document.querySelector(".main-news-thumbnail"),
     sub_news_title: document.querySelectorAll(".sub-news-title"),
     caption: document.querySelector(".caption"),
     field_tab: document.querySelector(".field-tab"),

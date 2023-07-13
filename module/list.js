@@ -4,6 +4,8 @@ function setListNews() {
   GLOBAL.DOM.list_press_icon.src = GLOBAL.list_news_data[GLOBAL.list_cur_page].path;
   GLOBAL.DOM.edit_date.innerHTML = `${GLOBAL.list_news_data[GLOBAL.list_cur_page].edit_date} 편집`;
   GLOBAL.DOM.main_news_title.innerHTML = GLOBAL.list_news_data[GLOBAL.list_cur_page].main_title;
+  GLOBAL.DOM.main_news_thumbnail.src = `https://picsum.photos/id/${GLOBAL.list_cur_page + 10}/300/200`;
+
   for (let i = 0; i < LIST.SUBTITLENUM; i++) {
     GLOBAL.DOM.sub_news_title[i].innerHTML = GLOBAL.list_news_data[GLOBAL.list_cur_page].sub_title[i];
     console.log(GLOBAL.list_cur_page);
