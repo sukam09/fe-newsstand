@@ -1,4 +1,4 @@
-import { headline, rolling } from "./headline/headline.js";
+import { headline } from "./headline/headline.js";
 
 export async function headlineSection() {
   const headlineComponent = await headline();

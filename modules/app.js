@@ -1,4 +1,4 @@
-import { rolling } from "./components/headlineSection/headline/headline.js";
+import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
 import { headlineSection } from "./components/headlineSection/headlineSection.js";
 import { showGridPage } from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
 import { mainSection } from "./components/mainSection/mainSection.js";
@@ -26,5 +26,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnSubButton(); // 미완
   addEventsOnViewButton(getPageType());
   addEventsOnCategoryItem();
-  rolling();
+  startRollingAnimation();
 });

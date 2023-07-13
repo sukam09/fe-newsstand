@@ -1,15 +1,14 @@
-import { fetchData } from "../../../utils.js";
-import { rollingList } from "./rollingList/rollingList.js";
+import { fetchData, qs, qsa } from "../../../utils.js";
 
-export function rolling() {
-  const leftRollingList = document.querySelectorAll(".left_rolling_list_item");
-  const rightRollingList = document.querySelectorAll(
-    ".right_rolling_list_item"
-  );
+export function startRollingAnimation() {
+  const $leftRollingList = qsa(".left_rolling_list_item");
+  const $rightRollingList = qsa(".right_rolling_list_item");
+  const $leftContainer = qs(".left_rolling_list");
+  const $rightContainer = qs(".right_rolling_list");
 
   let leftViewIdx = 0;
   let rightViewIdx = 0;
-  const list_len = rightRollingList.length;
+  const list_len = $rightRollingList.length;
   let leftRollingId;
   let rightRollingId;
 
@@ -21,17 +20,38 @@ export function rolling() {
     nextItem.className = "view";
     topItem.className = "next";
   };
+
   setTimeout(() => {
     leftRollingId = setInterval(() => {
-      rollingAnimation(leftRollingList, leftViewIdx);
+      rollingAnimation($leftRollingList, leftViewIdx);
       leftViewIdx += 1;
     }, 5000);
   }, 1000);
 
   rightRollingId = setInterval(() => {
-    rollingAnimation(rightRollingList, rightViewIdx);
+    rollingAnimation($rightRollingList, rightViewIdx);
     rightViewIdx += 1;
   }, 5000);
+
+  $leftContainer.addEventListener("mouseover", () => {
+    clearInterval(leftRollingId);
+  });
+  $leftContainer.addEventListener("mouseout", () => {
+    leftRollingId = setInterval(() => {
+      rollingAnimation($leftRollingList, leftViewIdx);
+      leftViewIdx += 1;
+    }, 5000);
+  });
+
+  $rightContainer.addEventListener("mouseover", () => {
+    clearInterval(rightRollingId);
+  });
+  $rightContainer.addEventListener("mouseout", () => {
+    rightRollingId = setInterval(() => {
+      rollingAnimation($rightRollingList, rightViewIdx);
+      rightViewIdx += 1;
+    }, 5000);
+  });
 }
 
 export async function headline() {
