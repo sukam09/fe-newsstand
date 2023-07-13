@@ -3,6 +3,7 @@ import { CATEGORY } from "../constants/constants.js";
 //종합/경제 카테고리 부분 언론사 순서 임시로
 const order_list = ["SBS Biz", "서울경제"];
 
+let selected_category = null;
 function getPressCount(category_news) {
   const uniquePressSet = new Set();
   category_news.forEach((news) => {
@@ -42,6 +43,7 @@ async function drawList(order, category) {
         getPressCount(category_news).length
       }</span></div></li>`;
     });
+
     //뉴스 그리는 부분
     category_news.forEach((news) => {
       if (news.press === order_list[order - 1]) {
@@ -101,12 +103,18 @@ ${order_list[order - 1]} 언론사에서 직접 편집한 뉴스입니다.
 function handleClick(e) {
   const target = e.target.closest("li");
   if (target && target.classList.contains("category")) {
-    const category = target.textContent.trim(" ").split(" ")[0];
-    drawList(1, category);
+    if (selected_category) {
+      selected_category.classList.remove("selected");
+    }
+    target.classList.add("selected");
+    const category = target.textContent.trim().split(" ")[0];
+    selected_category = target;
+    // drawList(1, category);
   }
 }
 
 export function showListView(order) {
-  document.addEventListener("click", handleClick);
   drawList(order, CATEGORY[0]);
+
+  document.addEventListener("click", handleClick);
 }

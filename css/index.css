@@ -236,6 +236,16 @@ a:hover {
   height: 388px;
 }
 
+/* category */
+.selected {
+  background-color: var(--surface-brand-default);
+}
+.selected div span {
+  color: var(--text-white-default);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 /* press-info */
 .press-news {
   padding: 24px;
