@@ -268,7 +268,7 @@ nav.agency .view-type button {
   box-sizing: border-box;
 }
 
-.field-tab-progress button {
+.field-tab-progress div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -325,9 +325,10 @@ nav.agency .view-type button {
   line-height: normal;
 }
 
-.field-tab-normal span {
+.field-tab-normal {
   padding: 0 1rem;
   color: var(--text-text-weak, #879298);
+  cursor: pointer;
 
   /* available-medium14 */
   font-family: Pretendard;
