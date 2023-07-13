@@ -1,5 +1,6 @@
 .press-news-list-container {
   margin-top: 25px;
+  display: none;
 }
 
 .press-news-bar {
@@ -121,6 +122,7 @@
   position: absolute;
   top: calc(50% - 20px);
   right: calc(100% + 47px);
+  display: none;
 }
 
 .press-news-right-button {
