@@ -24,13 +24,16 @@ const setTotalPressList = (isLightMode) => {
     });
 };
 
+/**
+ * 카테고리 이름을 설정하는 함수
+ */
 const setPressCategoryNav = (categoryData) => {
   const categoryNav = document.querySelector('.press-category__nav');
 
   categoryData.forEach((data) => {
     const categoryDiv = `
     <div class='press-category__div-nav'>
-      <p class='press-category__p-div'>${data.categoryName}</p>
+      <p class='press-category__p-nav'>${data.categoryName}</p>
     </div>
     `;
 

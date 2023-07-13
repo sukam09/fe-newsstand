@@ -11,10 +11,23 @@
 }
 
 .press-category__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   width: 930px;
   height: 8px;
 
   padding: 16px 0;
   border-bottom: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
+}
+
+.press-category__div-nav {
+  padding: 0 16px;
+}
+
+.press-category__p-nav {
+  font: var(--medium-R);
+  color: var(--grayscale-200);
 }
