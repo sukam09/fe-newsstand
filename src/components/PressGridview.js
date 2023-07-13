@@ -1,3 +1,4 @@
+import { shuffleArray } from '../utils.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
 export default function PressGridView({ $target, initialState }) {
@@ -12,8 +13,6 @@ export default function PressGridView({ $target, initialState }) {
     this.state = nextState;
     this.render();
   };
-
-  const shuffleArray = array => array.sort(() => Math.random() - 0.5);
 
   const fetchNewsPressData = () => {
     fetch('../data/press-info.json')
