@@ -16,21 +16,21 @@ export default function PressListView({ $target, initialState }) {
       .then(json => this.setState({ ...this.state, pressImage: json[0].logo }));
   };
 
-  let isInit = false;
+  const handleClickTextButton = newIndex => {
+    if (this.state.index === newIndex) {
+      return;
+    }
+    this.setState({ ...this.state, index: newIndex });
+  };
+
+  fetchPressImage();
 
   this.render = () => {
-    if (!isInit) {
-      fetchPressImage();
-    }
+    const { categories } = this.state;
 
     $section.innerHTML = `
       <nav class="field-tab">
-        <a class="text-button">종합/경제</a>
-        <a class="text-button">방송/통신</a>
-        <a class="text-button">IT</a>
-        <a class="text-button">영자지</a>
-        <a class="text-button">매거진/전문지</a>
-        <a class="text-button">지역</a>
+        ${categories.map(category => `<a class="text-button">${category}</a>`).join('')}
       </nav>
       <article class="press-news">
         <div class="press-info">
@@ -70,16 +70,15 @@ export default function PressListView({ $target, initialState }) {
       </article>
     `;
 
-    if (isInit) {
-      const $pressImage = $section.querySelector('.press-image');
-      const $thumbnail = $section.querySelector('.thumbnail');
+    const $pressImage = $section.querySelector('.press-image');
+    const $thumbnail = $section.querySelector('.thumbnail');
+    const $textButtons = $section.querySelectorAll('.text-button');
 
-      $pressImage.src = this.state.pressImage;
-      $thumbnail.src = '../asset/icons/thumbnail.png';
-    }
+    $pressImage.src = this.state.pressImage === undefined ? '' : this.state.pressImage;
+    $thumbnail.src = '../asset/icons/thumbnail.png';
 
-    isInit = true;
+    Array.from($textButtons).forEach(($textButton, index) => {
+      $textButton.addEventListener('click', () => handleClickTextButton(index));
+    });
   };
-
-  this.render();
 }
