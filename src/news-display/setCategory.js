@@ -1,10 +1,10 @@
-import { newsPressData } from "../app.js";
+import { newsPressData, pageIndex, setListPageIndex } from "../app.js";
 import { setListViewContent } from "./listView.js";
 
 const categoryBar = document.querySelector(".list-view-category-bar");
 
 let currentCategory = "종합/경제";
-let pageIndex = 0;
+// let pageIndex = 0;
 
 const categoryList = [
     "종합/경제",
@@ -58,7 +58,7 @@ const setCurrentCategory = () => {
 
     categories.forEach((item) => {
         item.addEventListener("click", () => {
-            pageIndex = 0;
+            setListPageIndex(0);
             currentCategory = setCategoryPageCount(item);
             categories.forEach((item) => initCategoryClass(item));
             item.insertAdjacentHTML(
@@ -102,4 +102,4 @@ const getCategoryNewsCount = (currentCategory) => {
         .length;
 };
 
-export { setCategories, currentCategory, initCategoryNewsData, pageIndex };
+export { setCategories, currentCategory, initCategoryNewsData };

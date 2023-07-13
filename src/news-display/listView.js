@@ -1,8 +1,5 @@
-import {
-    currentCategory,
-    initCategoryNewsData,
-    pageIndex,
-} from "./setCategory.js";
+import { pageIndex } from "../app.js";
+import { currentCategory, initCategoryNewsData } from "./setCategory.js";
 import { subscribeButton } from "./subscribeButton.js";
 
 let categoryNewsData = [];
@@ -44,38 +41,38 @@ const getArticleMain = (newsData) => {
     `;
 };
 
-// const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
+// // const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
 
-const prevPageButton = document.querySelector(".left-arrow-button");
+// const prevPageButton = document.querySelector(".left-arrow-button");
 
-const handleClickPrevPageButton = () => {
-    prevPageButton.addEventListener("click", () => {
-        // if (!validatePage(page - 1)) return;
-        pageIndex--;
-        setListViewContent();
-    });
-};
+// const handleClickPrevPageButton = () => {
+//     prevPageButton.addEventListener("click", () => {
+//         // if (!validatePage(page - 1)) return;
+//         pageIndex--;
+//         setListViewContent();
+//     });
+// };
 
-const nextPageButton = document.querySelector(".right-arrow-button");
+// const nextPageButton = document.querySelector(".right-arrow-button");
 
-const handleClickNextPageButton = () => {
-    nextPageButton.addEventListener("click", () => {
-        // if (!validatePage(page + 1)) return;
-        pageIndex++;
-        setListViewContent();
-    });
-};
+// const handleClickNextPageButton = () => {
+//     nextPageButton.addEventListener("click", () => {
+//         // if (!validatePage(page + 1)) return;
+//         pageIndex++;
+//         setListViewContent();
+//     });
+// };
 
-const checkShowPageButton = (page) => {
-    prevPageButton.classList.remove("disabled");
-    nextPageButton.classList.remove("disabled");
+// const checkShowPageButton = (page) => {
+//     prevPageButton.classList.remove("disabled");
+//     nextPageButton.classList.remove("disabled");
 
-    if (page === 0) prevPageButton.classList.add("disabled");
-    else if (page === 80) nextPageButton.classList.add("disabled");
-};
+//     if (page === 0) prevPageButton.classList.add("disabled");
+//     else if (page === 80) nextPageButton.classList.add("disabled");
+// };
 
 const setListViewContent = async () => {
-    checkShowPageButton(pageIndex);
+    // checkShowPageButton(pageIndex);
     categoryNewsData = initCategoryNewsData(currentCategory);
     const listViewMain = document.querySelector(".list-view-main-container");
     listViewMain.innerHTML = "";
@@ -90,10 +87,8 @@ const setListViewContent = async () => {
 };
 
 const setListView = () => {
-    checkShowPageButton(pageIndex);
+    // checkShowPageButton(pageIndex);
     setListViewContent();
-    handleClickPrevPageButton();
-    handleClickNextPageButton();
 };
 
-export { setListView, pageIndex, setListViewContent };
+export { setListView, setListViewContent };

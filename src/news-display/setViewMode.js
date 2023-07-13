@@ -1,3 +1,5 @@
+import { handlePageButton } from "./handlePageButton.js";
+
 const gridIcon = document.querySelector(".news-display-grid-button");
 const listIcon = document.querySelector(".news-display-list-button");
 const gridView = document.querySelector(".news-press-grid-view");
@@ -5,6 +7,7 @@ const listView = document.querySelector(".news-press-list-view");
 
 const handleClickViewIcon = () => {
     gridIcon.addEventListener("click", () => {
+        handlePageButton("grid");
         listIcon.classList.remove("news-display-active");
         gridIcon.classList.add("news-display-active");
 
@@ -13,6 +16,7 @@ const handleClickViewIcon = () => {
     });
 
     listIcon.addEventListener("click", () => {
+        handlePageButton("list");
         gridIcon.classList.remove("news-display-active");
         listIcon.classList.add("news-display-active");
 

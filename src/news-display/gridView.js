@@ -1,11 +1,10 @@
-import { newsPressData } from "../app.js";
+import { gridPage, newsPressData } from "../app.js";
+import { checkShowPageButton } from "./handlePageButton.js";
 import { initNewsPressData } from "./initNewsPressData.js";
 
-const MIN_PAGE_NUM = 1;
-const MAX_PAGE_NUM = 4;
 const PAGE_COUNT = 24;
 
-let page = 1;
+// let gridPage = 1;
 let shuffledNewsPressData = [];
 
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
@@ -22,8 +21,8 @@ const fillEmptyCells = (currentNewsPressData, newsPressGrid) => {
 };
 
 const showNewsPressItems = () => {
-    checkShowPageButton(page);
-    const startIndex = PAGE_COUNT * (page - 1);
+    checkShowPageButton(gridPage);
+    const startIndex = PAGE_COUNT * (gridPage - 1);
     const endIndex = startIndex + (PAGE_COUNT - 1);
     const currentNewsPressData = shuffledNewsPressData.slice(
         startIndex,
@@ -52,40 +51,38 @@ const shuffleNewsPress = async () => {
     showNewsPressItems();
 };
 
-const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
+// const validatePage = (page) => page >= MIN_PAGE_NUM && page <= MAX_PAGE_NUM;
 
-const prevPageButton = document.querySelector(".left-arrow-button");
+// const prevPageButton = document.querySelector(".left-arrow-button");
 
-const handleClickPrevPageButton = () => {
-    prevPageButton.addEventListener("click", () => {
-        if (!validatePage(page - 1)) return;
-        page--;
-        showNewsPressItems();
-    });
-};
+// const handleClickPrevPageButton = () => {
+//     prevPageButton.addEventListener("click", () => {
+//         if (!validatePage(page - 1)) return;
+//         page--;
+//         showNewsPressItems();
+//     });
+// };
 
-const nextPageButton = document.querySelector(".right-arrow-button");
+// const nextPageButton = document.querySelector(".right-arrow-button");
 
-const handleClickNextPageButton = () => {
-    nextPageButton.addEventListener("click", () => {
-        if (!validatePage(page + 1)) return;
-        page++;
-        showNewsPressItems();
-    });
-};
+// const handleClickNextPageButton = () => {
+//     nextPageButton.addEventListener("click", () => {
+//         if (!validatePage(page + 1)) return;
+//         page++;
+//         showNewsPressItems();
+//     });
+// };
 
-const checkShowPageButton = (page) => {
-    prevPageButton.classList.remove("disabled");
-    nextPageButton.classList.remove("disabled");
+// const checkShowPageButton = (page) => {
+//     prevPageButton.classList.remove("disabled");
+//     nextPageButton.classList.remove("disabled");
 
-    if (page === MIN_PAGE_NUM) prevPageButton.classList.add("disabled");
-    else if (page === MAX_PAGE_NUM) nextPageButton.classList.add("disabled");
-};
+//     if (page === MIN_PAGE_NUM) prevPageButton.classList.add("disabled");
+//     else if (page === MAX_PAGE_NUM) nextPageButton.classList.add("disabled");
+// };
 const setGridView = () => {
-    checkShowPageButton(page);
+    checkShowPageButton(gridPage);
     shuffleNewsPress();
-    handleClickPrevPageButton();
-    handleClickNextPageButton();
 };
 
 export { showNewsPressItems, setGridView };
