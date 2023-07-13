@@ -225,11 +225,15 @@ a:hover {
   border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
 }
-.list-view .field-tab div {
+.list-view .field-tab .category {
   display: inline-block;
   padding: 16px;
   color: var(--text-weak);
   font-size: 14px;
+}
+
+.list-view .count {
+  display: inline-block;
 }
 
 .list-view {

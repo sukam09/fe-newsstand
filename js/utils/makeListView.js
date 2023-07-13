@@ -43,14 +43,10 @@ async function drawList(order, category) {
       { press: "SBS Biz", imgIndex: 93 },
     ];
   }
-  const main_list = document.querySelector(".main-list");
-
   try {
     const img = order_list[order - 1].imgIndex;
     const category_news = await getNewsData(category);
-
     drawCategory(category_news, order, category);
-
     const newDiv = document.createElement("div");
     newDiv.classList.add("press-news");
     main_list.appendChild(newDiv);
@@ -64,7 +60,7 @@ async function drawList(order, category) {
 function handleClick(e) {
   const target = e.target.closest("li");
   if (target && target.classList.contains("category")) {
-    const category = target.textContent.trim().split(" ")[0];
+    const category = target.querySelector(".ctg").textContent.trim();
     drawList(1, category);
   }
 }
@@ -76,10 +72,10 @@ function drawCategory(category_news, order, category) {
   CATEGORY.forEach((ctg) => {
     category_list +=
       category === ctg
-        ? `<li class="category selected"><div><span>${ctg}</span><span>${order}</span><span>/</span><span class = "entire">${
+        ? `<li class="category selected"><div><span class="ctg">${ctg}</span><div class="count"><span>${order}</span><span>/</span><span class = "entire">${
             getPressCount(category_news).length
-          }</span></div></li>`
-        : `<li class="category"><div><span>${ctg}</span></div></li>`;
+          }</span></div></div></li>`
+        : `<li class="category"><div><span class="ctg">${ctg}</span></div></li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${category_list}</ul></div>`;
 }
