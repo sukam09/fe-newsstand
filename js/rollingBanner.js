@@ -55,13 +55,13 @@ function changeBanner(bannerNumber) {
 
 function removePrevBanner(bannerNumber) {
   document
-    .querySelector(`#rolling-banner-0${bannerNumber} .wrap .prev`)
+    .querySelector(`#rolling-banner-0${bannerNumber} .rollingWrap .prev`)
     .classList.remove("prev");
 }
 
 function changeCurrentBanner(bannerNumber) {
   let currentBanner = document.querySelector(
-    `#rolling-banner-0${bannerNumber} .wrap .current`
+    `#rolling-banner-0${bannerNumber} .rollingWrap .current`
   );
   currentBanner.classList.remove("current");
   currentBanner.classList.add("prev");
@@ -69,11 +69,11 @@ function changeCurrentBanner(bannerNumber) {
 
 function changeNextBanner(bannerNumber) {
   let nextBanner = document.querySelector(
-    `#rolling-banner-0${bannerNumber} .wrap .next`
+    `#rolling-banner-0${bannerNumber} .rollingWrap .next`
   );
   if (nextBanner.nextElementSibling == null)
     document
-      .querySelector(`#rolling-banner-0${bannerNumber} .wrap ul li:first-child`)
+      .querySelector(`#rolling-banner-0${bannerNumber} .rollingWrap ul li:first-child`)
       .classList.add("next");
   else nextBanner.nextElementSibling.classList.add("next");
   nextBanner.classList.remove("next");

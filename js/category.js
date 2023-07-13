@@ -4,7 +4,7 @@ function addInitCategory() {
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   for (const category of categoryData) {
     for (const key in category) {
-      categoryHtml += `<div class="categoryItem" id="${key}"><li>${key}</li><span class="categoryCnt">${category[key]}</span></div>`;
+      categoryHtml += `<div class="categoryItem" id="${key}"><li><label><input type="radio" name="category">${key}</label></li><span class="categoryCnt">${category[key]}</span></div>`;
     }
   }
   categoryHtml += `</ul></div>`;
