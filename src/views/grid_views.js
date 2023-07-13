@@ -1,6 +1,7 @@
-import { fetchPressData } from "../utils.js";
-import { show_options, toggleArrow, toggleSubscribe } from "../events.js";
 import { COL_SIZE, ROW_SIZE } from "../constants.js";
+import { view_option } from "../globals.js";
+import { fetchPressData } from "../utils.js";
+import { toggleArrow, toggleSubscribe } from "../events.js";
 
 // render news
 function renderGridPress(shuffledData, page) {
@@ -52,7 +53,7 @@ function initPress() {
     const promise_data = fetchPressData();
 
     promise_data.then((data) => {
-        show_options.press_data = data;
+        view_option.press_data = data;
         renderGridPress(data, 0);
     });
 }

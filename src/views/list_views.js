@@ -1,23 +1,24 @@
+import { view_option } from "../globals.js";
 import { fetchNewsData } from "../utils.js";
-import { show_options, movePage } from "../events.js";
+import { movePage } from "../events.js";
 
 function renderListNews(data, category, page) {
     const news_data_container = document.querySelector(".main_news_container");
     news_data_container.innerHTML = "";
 
     // 임시
-    clearInterval(show_options.interval);
-    show_options.progress_time = 0;
+    clearInterval(view_option.interval);
+    view_option.progress_time = 0;
 
     createMainNav(
         news_data_container,
-        data[show_options.categorys[category]],
+        data[view_option.categorys[category]],
         page + 1
     );
     setProgress();
     createMainContent(
         news_data_container,
-        data[show_options.categorys[category]],
+        data[view_option.categorys[category]],
         page
     );
     changeCategory(data);
@@ -28,14 +29,14 @@ function createMainNav(container, data, page) {
     nav.classList.add("main_nav");
     const ul = document.createElement("ul");
 
-    show_options.categorys.forEach((item) => {
-        if (item === show_options.categorys[show_options.category]) {
+    view_option.categorys.forEach((item) => {
+        if (item === view_option.categorys[view_option.category]) {
             ul.innerHTML += `<li class="main_nav_title">
             <progress class="main_nav_progress"
-                value="${show_options.progress_time}"
+                value="${view_option.progress_time}"
                 min="0"
-                max="${show_options.progress_max}"></progress>
-            <span>${show_options.categorys[show_options.category]}</span>
+                max="${view_option.progress_max}"></progress>
+            <span>${view_option.categorys[view_option.category]}</span>
             <span class="progress_cnt">${page} / <b>${
                 data.length
             }</b></span></li>`;
@@ -91,11 +92,11 @@ function changeCategory(data) {
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            show_options.category = show_options.categorys.indexOf(
+            view_option.category = view_option.categorys.indexOf(
                 item.innerText
             );
-            renderListNews(data, show_options.category, 0);
-            show_options.list_current_page = 0;
+            renderListNews(data, view_option.category, 0);
+            view_option.list_current_page = 0;
         });
     });
 }
@@ -104,9 +105,9 @@ function initNews() {
     const promise_data = fetchNewsData();
 
     promise_data.then((data) => {
-        // category 별로 분류하여 show_options.news_data에 저장
-        show_options.categorys.forEach((item) => {
-            show_options.news_data[item] = data.filter(
+        // category 별로 분류하여 view_option.news_data에 저장
+        view_option.categorys.forEach((item) => {
+            view_option.news_data[item] = data.filter(
                 (news) => news.category === item
             );
         });
@@ -116,18 +117,18 @@ function initNews() {
 function setProgress() {
     const progress = document.querySelector(".main_nav_progress");
 
-    // clearInterval(show_options.interval);
-    // show_options.progress_time = 0;
+    // clearInterval(view_option.interval);
+    // view_option.progress_time = 0;
 
     // 1초마다 1씩 증가
-    show_options.interval = setInterval(() => {
-        show_options.progress_time += 1;
-        if (show_options.progress_time === 21) {
-            clearInterval(show_options.interval);
-            show_options.progress_time = 0;
+    view_option.interval = setInterval(() => {
+        view_option.progress_time += 1;
+        if (view_option.progress_time === 21) {
+            clearInterval(view_option.interval);
+            view_option.progress_time = 0;
             movePage("next");
         }
-        progress.value = show_options.progress_time;
+        progress.value = view_option.progress_time;
     }, 1000);
 }
 
