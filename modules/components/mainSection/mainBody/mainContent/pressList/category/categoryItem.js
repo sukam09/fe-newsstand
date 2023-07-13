@@ -29,8 +29,11 @@ export function handleClickCategoryItem(e) {
   setListPage(0);
   showListPage(categoryId, listPage);
   updatePageCount();
-  highlightCategoryItem();
   controllButtonShowing();
+
+  if (!e.currentTarget.classList.contains("clicked")) {
+    highlightCategoryItem();
+  }
 }
 
 export function highlightCategoryItem() {
