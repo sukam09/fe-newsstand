@@ -27,8 +27,8 @@ export default class AllNewHeader extends Component {
     const listIconName = this.props.view === 'list' ? 'list-view-focus' : 'list-view';
     const gridIconName = this.props.view === 'grid' ? 'grid-view-focus' : 'grid-view';
 
-    new Icon(customQuerySelector('#list-view-icon'), { name: listIconName });
-    new Icon(customQuerySelector('#grid-view-icon'), { name: gridIconName });
+    new Icon(customQuerySelector('#list-view-icon', this.$target), { name: listIconName });
+    new Icon(customQuerySelector('#grid-view-icon', this.$target), { name: gridIconName });
   }
 
   setEvent() {

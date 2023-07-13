@@ -16,8 +16,8 @@ export default class Header extends Component {
   }
 
   mounted() {
-    new Icon(customQuerySelector('.news-stand-icon'), { name: 'newspaper' });
-    new Icon(customQuerySelector('.news-stand-icon'), { name: 'newspaper' });
+    new Icon(customQuerySelector('.news-stand-icon', this.$target), { name: 'newspaper' });
+    new Icon(customQuerySelector('.news-stand-icon', this.$target), { name: 'newspaper' });
   }
 
   setEvent() {

@@ -15,9 +15,9 @@ export default class Button extends Component {
   }
 
   mounted() {
-    const $button = customQuerySelector('button');
+    const $button = customQuerySelector('button', this.$target);
     $button.className = `common-button ${this.state.color}`;
 
-    new Icon(customQuerySelector('.common-button-icon'), { name: 'plus' });
+    new Icon(customQuerySelector('.common-button-icon', this.$target), { name: 'plus' });
   }
 }

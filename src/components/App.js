@@ -12,8 +12,8 @@ export default class App extends Component {
             `;
   }
   mounted() {
-    new Header(customQuerySelector('.header'));
-    new LatestNews(customQuerySelector('.latest-main-news'));
-    new AllNews(customQuerySelector('.all-news'));
+    new Header(customQuerySelector('.header', this.$target));
+    new LatestNews(customQuerySelector('.latest-main-news', this.$target));
+    new AllNews(customQuerySelector('.all-news', this.$target));
   }
 }

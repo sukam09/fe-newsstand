@@ -65,24 +65,24 @@ export default class AllNewsListView extends Component {
     this.detailListMount();
 
     setTimeout(() => {
-      customQuerySelector('.progress-bar').style.width = '100%';
+      customQuerySelector('.progress-bar', this.$target).style.width = '100%';
       this.setTimer();
     }, 100);
 
-    new Button(customQuerySelector('.subscribe-button-wrapper'), {
+    new Button(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
       text: '구독하기',
       icon: 'plus',
       states: 'default',
     });
 
-    new ArrowButton(customQuerySelector('.left-button'), {
+    new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
       isVisible: true,
       action: this.goPrevPage.bind(this),
     });
 
-    new ArrowButton(customQuerySelector('.right-button'), {
+    new ArrowButton(customQuerySelector('.right-button', this.$target), {
       name: 'right-button',
       isVisible: true,
       action: this.goNextPage.bind(this),
@@ -90,7 +90,7 @@ export default class AllNewsListView extends Component {
   }
 
   navigationMount() {
-    customQuerySelector('nav').innerHTML = this.state.pressOrder.reduce(
+    customQuerySelector('nav', this.$target).innerHTML = this.state.pressOrder.reduce(
       (innerHTML, press, index) => {
         if (index === this.state.currentPressIndex) {
           return (
@@ -115,7 +115,7 @@ export default class AllNewsListView extends Component {
   }
 
   detailListMount() {
-    customQuerySelector('.press-news-detail-list').innerHTML =
+    customQuerySelector('.press-news-detail-list', this.$target).innerHTML =
       this.newList.reduce(
         (innerHTML, content) =>
           innerHTML +

@@ -9,7 +9,7 @@ export default class LatestNews extends Component {
             `;
   }
   mounted() {
-    const $newsLists = customQuerySelectorAll('.auto-rolling-news');
+    const $newsLists = customQuerySelectorAll('.auto-rolling-news', this.$target);
 
     new LatestNewsComponent($newsLists[0], {
       name: '연합뉴스',

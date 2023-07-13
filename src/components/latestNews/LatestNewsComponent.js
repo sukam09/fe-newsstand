@@ -33,7 +33,7 @@ export default class LatestNewsComponent extends Component {
 
   timerOn() {
     this.timer = setInterval(() => {
-      const $content = customQuerySelector('.auto-rolling-div');
+      const $content = customQuerySelector('.auto-rolling-div', this.$target);
       $content.style.top = '-18px';
 
       setTimeout(this.nextNews.bind(this), SECOND);

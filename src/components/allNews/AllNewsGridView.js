@@ -22,15 +22,15 @@ export default class AllNewsGridView extends Component {
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
       innerHTML += `<li class='border-default'><img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/></li>`;
     }
-    customQuerySelector('.news-list-grid').innerHTML = innerHTML;
+    customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
-    new ArrowButton(customQuerySelector('.left-button'), {
+    new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
       isVisible: this.state.page !== 0,
       action: this.goPreviousPage.bind(this),
     });
 
-    new ArrowButton(customQuerySelector('.right-button'), {
+    new ArrowButton(customQuerySelector('.right-button', this.$target), {
       name: 'right-button',
       isVisible: this.state.page !== 3,
       action: this.goNextPage.bind(this),

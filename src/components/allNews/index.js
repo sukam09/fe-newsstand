@@ -18,17 +18,17 @@ export default class AllNews extends Component {
   }
 
   mounted() {
-    new AllNewHeader(customQuerySelector('.all-news-header'), {
+    new AllNewHeader(customQuerySelector('.all-news-header', this.$target), {
       onClick: this.onClick.bind(this),
       view: this.state.view,
     });
 
     this.state.view === 'grid'
-      ? new AllNewsGridView(customQuerySelector('.all-news-wrapper'), {
+      ? new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
           page: this.state.page,
           pressOrder: this.state.pressOrder,
         })
-      : new AllNewsListView(customQuerySelector('.all-news-wrapper'));
+      : new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target));
   }
 
   onClick(viewType) {
