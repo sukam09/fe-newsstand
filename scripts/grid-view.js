@@ -3,6 +3,7 @@ import { store } from "../store/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const fillGridView = (newsData, currentPage) => {
+  const theme = store.getState().theme;
   const $gridView = document.querySelector(".grid-view");
   $gridView.innerHTML = "";
 
@@ -16,7 +17,7 @@ const fillGridView = (newsData, currentPage) => {
     const $img = document.createElement("img");
     $img.className = "grid-cell_news-img";
 
-    $img.src = newsData[i].src;
+    $img.src = newsData[i].src[theme];
     $img.alt = newsData[i].name;
 
     $button.appendChild($img);

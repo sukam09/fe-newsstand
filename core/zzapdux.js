@@ -1,4 +1,4 @@
-export const createAction = (type, payload) => {
+export const actionCreator = (type, payload) => {
   return { type, payload };
 };
 
@@ -12,7 +12,7 @@ export const createStore = (reducer) => {
   const subscribers = [];
 
   const getState = () => {
-    return state;
+    return { ...state };
   };
 
   const subscribe = (callback) => {

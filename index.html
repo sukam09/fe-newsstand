@@ -28,7 +28,51 @@
               <span class="display-bold24">뉴스스탠드</span>
             </a>
           </h1>
-          <span class="display-medium16 container-header_date"></span>
+          <div class="container-header_right">
+            <span class="display-medium16 container-header_date"></span>
+            <button class="theme-btn">
+              <svg
+                class="theme-btn_dark"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_243_3377)">
+                  <path
+                    d="M12.01 12C12.01 8.43 14.21 5.38 17.32 4.13C18.21 3.77 18.07 2.44 17.13 2.23C16.03 1.99 14.86 1.93 13.65 2.09C9.14003 2.69 5.53003 6.4 5.06003 10.92C4.44003 16.93 9.13003 22 15.01 22C15.74 22 16.44 21.92 17.13 21.77C18.08 21.56 18.23 20.24 17.33 19.87C14.11 18.58 12 15.46 12.01 12Z"
+                    fill="inherit"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_243_3377">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="theme-btn_light"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_243_3380)">
+                  <path
+                    d="M6.76 4.83999L4.96 3.04999L3.55 4.45999L5.34 6.24999L6.76 4.83999ZM4 10.5H1V12.5H4V10.5ZM13 0.549988H11V3.49999H13V0.549988ZM20.45 4.45999L19.04 3.04999L17.25 4.83999L18.66 6.24999L20.45 4.45999ZM17.24 18.16L19.03 19.96L20.44 18.55L18.64 16.76L17.24 18.16ZM20 10.5V12.5H23V10.5H20ZM12 5.49999C8.69 5.49999 6 8.18999 6 11.5C6 14.81 8.69 17.5 12 17.5C15.31 17.5 18 14.81 18 11.5C18 8.18999 15.31 5.49999 12 5.49999ZM11 22.45H13V19.5H11V22.45ZM3.55 18.54L4.96 19.95L6.75 18.15L5.34 16.74L3.55 18.54Z"
+                    fill="inherit"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_243_3380">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="container-news-bar">
           <div>
@@ -92,13 +136,69 @@
             <header>
               <nav class="list-view_tab">
                 <ul class="available-medium14">
-                  <li class="category-selected selected-bold14">종합/경제</li>
-                  <li>방송/통신</li>
-                  <li>IT</li>
-                  <li>영자지</li>
-                  <li>스포츠/연예</li>
-                  <li>매거진/전문지</li>
-                  <li>지역</li>
+                  <li class="category-selected selected-bold14">
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">종합/경제</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">방송/통신</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">IT</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">영자지</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">스포츠/연예</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">매거진/전문지</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tab_progress-bar"></div>
+                    <span class="tab_category">지역</span>
+                    <div class="tab-count display-bold12">
+                      <span class="tab-count_current"></span>
+                      <span>/</span>
+                      <span class="tab-count_total"></span>
+                    </div>
+                  </li>
                 </ul>
               </nav>
             </header>

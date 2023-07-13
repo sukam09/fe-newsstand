@@ -1,25 +1,21 @@
-import { VIEW_TYPE } from "../constants/index.js";
-import { createAction } from "../core/my-redux.js";
+import {
+  VIEW_TYPE,
+  CATEGORIES,
+  CATEGORIES_TO_INDEX,
+} from "../constants/index.js";
+import { actionCreator } from "../core/index.js";
 
-const CATEGORIES = [
-  "종합/경제",
-  "방송/통신",
-  "IT",
-  "영자지",
-  "스포츠/연예",
-  "매거진/전문지",
-  "지역",
-];
+// TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
+let categoryIdx = 0;
 
-const CATEGORIES_TO_INDEX = CATEGORIES.reduce((acc, curr, idx) => {
-  acc[curr] = idx;
-  return acc;
-}, {});
+const categoryCount = CATEGORIES.length;
 
 const initialState = {
   currentPage: 0,
-  currentCategory: "종합/경제",
+  currentCategory: CATEGORIES[categoryIdx],
   viewType: VIEW_TYPE.GRID,
+
+  theme: "light",
 };
 
 const NEXT_PAGE = "PAGE/NEXT_PAGE";
@@ -29,14 +25,16 @@ const CHANGE_VIEW = "PAGE/CHANGE_VIEW";
 const NEXT_CATEGORY = "PAGE/NEXT_CATEGORY";
 const PREV_CATEGORY = "PAGE/PREV_CATEGORY";
 const SET_CATEGORY = "PAGE/SET_CATEGORY";
+const CHANGE_THEME = "PAGE/CHANGE_THEME";
 
-export const nextPage = () => createAction(NEXT_PAGE);
-export const prevPage = () => createAction(PREV_PAGE);
-export const resetPage = () => createAction(RESET_PAGE);
-export const changeView = (viewType) => createAction(CHANGE_VIEW, viewType);
-export const nextCategory = () => createAction(NEXT_CATEGORY);
-export const prevCategory = () => createAction(PREV_CATEGORY);
-export const setCategory = (category) => createAction(SET_CATEGORY, category);
+export const nextPage = () => actionCreator(NEXT_PAGE);
+export const prevPage = () => actionCreator(PREV_PAGE);
+export const resetPage = () => actionCreator(RESET_PAGE);
+export const changeView = (viewType) => actionCreator(CHANGE_VIEW, viewType);
+export const nextCategory = () => actionCreator(NEXT_CATEGORY);
+export const prevCategory = () => actionCreator(PREV_CATEGORY);
+export const setCategory = (category) => actionCreator(SET_CATEGORY, category);
+export const changeTheme = () => actionCreator(CHANGE_THEME);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -47,17 +45,41 @@ export const reducer = (state = initialState, action) => {
     case RESET_PAGE:
       return { ...state, currentPage: 0 };
     case CHANGE_VIEW:
+      categoryIdx = 0;
       return {
         ...state,
         currentPage: 0,
-        currentCategory: "종합/경제",
+        currentCategory: CATEGORIES[categoryIdx],
         viewType: action.payload,
       };
+    case NEXT_CATEGORY:
+      categoryIdx = categoryIdx === categoryCount - 1 ? 0 : categoryIdx + 1;
+
+      return {
+        ...state,
+        currentCategory: CATEGORIES[categoryIdx],
+        currentPage: 0,
+      };
+    case PREV_CATEGORY:
+      categoryIdx = categoryIdx === 0 ? categoryCount - 1 : categoryIdx - 1;
+
+      return {
+        ...state,
+        currentCategory: CATEGORIES[categoryIdx],
+        currentPage: 0,
+      };
     case SET_CATEGORY:
+      categoryIdx = CATEGORIES_TO_INDEX[action.payload];
+
       return {
         ...state,
         currentCategory: action.payload,
         currentPage: 0,
+      };
+    case CHANGE_THEME:
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
     default:
       return state;
