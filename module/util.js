@@ -27,59 +27,43 @@ function initBtn() {
   });
 
   GLOBAL.DOM.field_tab.addEventListener("animationiteration", () => {
-    if (GLOBAL.list_cur_page === GLOBAL.total_news_num - 1) {
-      moveListPage(0);
-    } else {
-      moveListPage(GLOBAL.list_cur_page + 1);
-    }
+    moveListPage((GLOBAL.list_cur_page + 1) % GLOBAL.total_news_num);
   });
 }
 
 function toggleView(mode) {
   if (mode === BTN.GRID_VIEW) {
+    GLOBAL.cur_mode = MODE.GRID;
     GLOBAL.DOM.grid_btn.childNodes[1].src = ICON.GRID_BTN_BLUE;
     GLOBAL.DOM.grid_view.style.display = "flex";
     GLOBAL.DOM.list_btn.childNodes[1].src = ICON.LIST_BTN;
     GLOBAL.DOM.list_view.style.display = "none";
-    GLOBAL.cur_mode = MODE.GRID;
-    GLOBAL.grid_cur_page = 0;
     GLOBAL.DOM.left_btn.style.display = "none";
     GLOBAL.DOM.right_btn.style.display = "block";
   } else {
+    GLOBAL.cur_mode = MODE.LIST;
     GLOBAL.DOM.grid_btn.childNodes[1].src = ICON.GRID_BTN;
     GLOBAL.DOM.grid_view.style.display = "none";
     GLOBAL.DOM.list_btn.childNodes[1].src = ICON.LIST_BTN_BLUE;
     GLOBAL.DOM.list_view.style.display = "inline-flex";
-    GLOBAL.cur_mode = MODE.LIST;
-    GLOBAL.list_cur_page = 0;
-    GLOBAL.list_cur_category = CATEGORY.ECONOMY;
-    GLOBAL.DOM.left_btn.style.display = "block";
     GLOBAL.DOM.right_btn.style.display = "block";
+    GLOBAL.DOM.left_btn.style.display = "block";
+    GLOBAL.list_cur_category = CATEGORY.ECONOMY;
+    GLOBAL.list_cur_page = 0;
     moveListPage(GLOBAL.list_cur_page);
   }
 }
 
 function handleMoveBtn(dir) {
+  if (GLOBAL.cur_mode === MODE.GRID) {
+    moveGrid(dir);
+    return;
+  }
+
   if (dir === BTN.NEXT_PAGE) {
-    if (GLOBAL.cur_mode === MODE.GRID) {
-      moveGrid(dir);
-    } else {
-      if (GLOBAL.list_cur_page === GLOBAL.total_news_num - 1) {
-        moveListPage(0);
-      } else {
-        moveListPage(GLOBAL.list_cur_page + 1);
-      }
-    }
+    moveListPage((GLOBAL.list_cur_page + 1) % GLOBAL.total_news_num);
   } else {
-    if (GLOBAL.cur_mode === MODE.GRID) {
-      moveGrid(dir);
-    } else {
-      if (GLOBAL.list_cur_page === 0) {
-        moveListPage(GLOBAL.total_news_num - 1);
-      } else {
-        moveListPage(GLOBAL.list_cur_page - 1);
-      }
-    }
+    moveListPage(GLOBAL.list_cur_page === 0 ? GLOBAL.total_news_num - 1 : GLOBAL.list_cur_page - 1);
   }
 }
 

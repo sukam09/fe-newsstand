@@ -80,14 +80,14 @@ const GLOBAL = {
     LOCAL: 0,
   },
 
-  CATEGORY_ARR: {
-    ECONOMY: [],
-    BROADCAST: [],
-    IT: [],
-    ENGLISH: [],
-    SPORTS: [],
-    MAGAZINE: [],
-    LOCAL: [],
+  CATEGORY_START_INDEX: {
+    ECONOMY: 0,
+    BROADCAST: 0,
+    IT: 0,
+    ENGLISH: 0,
+    SPORTS: 0,
+    MAGAZINE: 0,
+    LOCAL: 0,
   },
 
   DOM: {

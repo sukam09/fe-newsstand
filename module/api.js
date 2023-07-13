@@ -1,4 +1,5 @@
-import { GLOBAL, JSONDATA } from "./variable.js";
+import { JSONDATA, CATEGORY, GLOBAL } from "./variable.js";
+import { strToCategory } from "./list.js";
 
 async function fetchJsonFile(path) {
   return fetch(path).then((response) => {
@@ -34,48 +35,29 @@ function shuffle_id(jsonData) {
 }
 
 function sortCategory(jsonData) {
+  const arr = {
+    [CATEGORY.ECONOMY]: [],
+    [CATEGORY.BROADCAST]: [],
+    [CATEGORY.IT]: [],
+    [CATEGORY.ENGLISH]: [],
+    [CATEGORY.SPORTS]: [],
+    [CATEGORY.MAGAZINE]: [],
+    [CATEGORY.LOCAL]: [],
+  };
+
   jsonData.forEach((data) => {
-    switch (data.category) {
-      case "종합/경제":
-        GLOBAL.CATEGORY_NUM.ECONOMY++;
-        GLOBAL.CATEGORY_ARR.ECONOMY.push(data);
-        break;
-      case "방송/통신":
-        GLOBAL.CATEGORY_NUM.BROADCAST++;
-        GLOBAL.CATEGORY_ARR.BROADCAST.push(data);
-        break;
-      case "IT":
-        GLOBAL.CATEGORY_NUM.IT++;
-        GLOBAL.CATEGORY_ARR.IT.push(data);
-        break;
-      case "영자지":
-        GLOBAL.CATEGORY_NUM.ENGLISH++;
-        GLOBAL.CATEGORY_ARR.ENGLISH.push(data);
-        break;
-      case "스포츠/연예":
-        GLOBAL.CATEGORY_NUM.SPORTS++;
-        GLOBAL.CATEGORY_ARR.SPORTS.push(data);
-        break;
-      case "매거진/전문지":
-        GLOBAL.CATEGORY_NUM.MAGAZINE++;
-        GLOBAL.CATEGORY_ARR.MAGAZINE.push(data);
-        break;
-      case "지역":
-        GLOBAL.CATEGORY_NUM.LOCAL++;
-        GLOBAL.CATEGORY_ARR.LOCAL.push(data);
-        break;
+    if (data.category in arr) {
+      arr[data.category].push(data);
+      GLOBAL.CATEGORY_NUM[strToCategory(data.category)]++;
     }
   });
 
-  GLOBAL.list_news_data = [
-    ...GLOBAL.CATEGORY_ARR.ECONOMY,
-    ...GLOBAL.CATEGORY_ARR.BROADCAST,
-    ...GLOBAL.CATEGORY_ARR.IT,
-    ...GLOBAL.CATEGORY_ARR.ENGLISH,
-    ...GLOBAL.CATEGORY_ARR.SPORTS,
-    ...GLOBAL.CATEGORY_ARR.MAGAZINE,
-    ...GLOBAL.CATEGORY_ARR.LOCAL,
-  ];
-}
+  GLOBAL.list_news_data = Array().concat(...Object.values(arr));
 
-export { fetchNewsData, fetchRollingNewsData };
+  for (const category in CATEGORY) {
+    GLOBAL.CATEGORY_START_INDEX[category] = GLOBAL.list_news_data.findIndex((news) => {
+      return news.category === CATEGORY[category];
+    });
+  }
+}
+export { fetchNewsData, fetchRollingNewsData, strToCategory };
