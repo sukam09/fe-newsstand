@@ -66,8 +66,8 @@ function optionShowMain() {
                 option.src = "./assets/icons/option_grid_main_active.png";
                 document.getElementById("option_list_main").src =
                     "./assets/icons/option_list_main.png";
-                news_data_container.classList.remove("list_news_container");
-                news_data_container.classList.add("grid_news_container");
+                news_data_container.classList.remove("list_view_container");
+                news_data_container.classList.add("grid_view_container");
 
                 deleteMainDisplay();
                 changeArrow("grid");
@@ -81,8 +81,8 @@ function optionShowMain() {
                 option.src = "./assets/icons/option_list_main_active.png";
                 document.getElementById("option_grid_main").src =
                     "./assets/icons/option_grid_main.png";
-                news_data_container.classList.remove("grid_news_container");
-                news_data_container.classList.add("list_news_container");
+                news_data_container.classList.remove("grid_view_container");
+                news_data_container.classList.add("list_view_container");
 
                 deleteMainDisplay();
                 changeArrow("list");
