@@ -27,7 +27,6 @@
 .press-category__li {
   display: flex;
   align-items: center;
-  width: 54px;
   height: 40px;
   padding: 0 16px;
 }
