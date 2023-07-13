@@ -30,8 +30,8 @@ function pagination(datas) {
   };
 
   const isBtnDisabled = () => {
-    SELECTED_PAGE ? $leftBtn.classList.remove('btn-disabled') : $leftBtn.classList.add('btn-disabled');
-    SELECTED_PAGE === 3 ? $rightBtn.classList.add('btn-disabled') : $rightBtn.classList.remove('btn-disabled');
+    SELECTED_PAGE ? $leftBtn.classList.remove('disabled') : $leftBtn.classList.add('disabled');
+    SELECTED_PAGE === 3 ? $rightBtn.classList.add('disabled') : $rightBtn.classList.remove('disabled');
   };
 
   $rightBtn.addEventListener('click', handleRightBtn);

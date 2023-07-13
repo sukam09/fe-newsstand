@@ -1,5 +1,5 @@
 async function getNewsData() {
-  return await fetch('./newsData.json').then((response) => {
+  return await fetch('./newsHeadData.json').then((response) => {
     return response.json();
   });
 }
@@ -8,4 +8,5 @@ async function getRollingData() {
     return response.json();
   });
 }
+
 export { getNewsData, getRollingData };
