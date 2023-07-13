@@ -9,6 +9,7 @@ import {
   shuffleData,
   getKRLocaleDateString,
 } from "./utils/index.js";
+import { addEventOnProgressBar } from "./scripts/progress-bar.js";
 
 const $headerDate = document.querySelector(".container-header_date");
 
@@ -34,4 +35,5 @@ const setHeaderDate = () => {
 
   addEventOnPaginationButton();
   addEventOnViewerButton();
+  addEventOnProgressBar();
 })();

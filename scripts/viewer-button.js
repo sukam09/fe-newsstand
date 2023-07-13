@@ -2,7 +2,6 @@ import { store } from "../store/index.js";
 import { changeView } from "../store/reducer.js";
 import { VIEW_TYPE } from "../constants/index.js";
 import { $gridView, $listView } from "./doms.js";
-import { stopProgressing } from "./progress-bar.js";
 
 const $mainNav = document.querySelector(".main-nav");
 const $mainNavViewerButtons = $mainNav.querySelectorAll(
@@ -29,8 +28,6 @@ export const addEventOnViewerButton = () => {
     if (viewType === VIEW_TYPE.GRID) {
       $gridView.classList.remove("hidden");
       $listView.classList.add("hidden");
-
-      stopProgressing();
     } else {
       $gridView.classList.add("hidden");
       $listView.classList.remove("hidden");

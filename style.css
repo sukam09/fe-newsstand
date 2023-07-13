@@ -259,8 +259,6 @@ body {
   width: 0;
   height: 100%;
   background-color: var(--color-text-point);
-
-  transition: width 1s linear;
 }
 .tab_category {
   z-index: 10;
@@ -284,4 +282,17 @@ body {
 }
 .category-selected > .tab-count {
   display: block;
+}
+.category-selected .tab_progress-bar {
+  animation: progress 5s linear infinite;
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
