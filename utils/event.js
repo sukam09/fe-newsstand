@@ -1,23 +1,27 @@
-import { createGridPages, render } from "../components/gridView.js";
+import { createGridPages, renderGrid } from "../components/gridView.js";
+import { renderList } from "../components/listView.js";
+import { INITIAL_PAGE } from "../constants/constant.js";
+import { filterCategory } from "./filterCategory.js";
+import { sortCategory } from "./sortCategory.js";
 
 export const viewSelectHandler = (agencies) => {
   const gridBtn = document.querySelector(".grid-view-btn");
   const listBtn = document.querySelector(".list-view-btn");
 
   const pages = createGridPages(agencies);
-  render(0, pages);
+  renderGrid(INITIAL_PAGE, pages);
 
-  let currentPage = 0;
+  let currentPage = INITIAL_PAGE;
 
   const prevBtn = document.querySelector(".prev-page-btn");
   const nextBtn = document.querySelector(".next-page-btn");
 
   prevBtn.addEventListener("click", () => {
-    render(--currentPage, pages);
+    renderGrid(--currentPage, pages);
   });
 
   nextBtn.addEventListener("click", () => {
-    render(++currentPage, pages);
+    renderGrid(++currentPage, pages);
   });
 
   const setGrid = () => {
@@ -31,20 +35,15 @@ export const viewSelectHandler = (agencies) => {
       $list.style.display = "none";
 
       const pages = createGridPages(agencies);
-      render(0, pages);
+      renderGrid(INITIAL_PAGE, pages);
 
-      let currentPage = 0;
+      let currentPage = INITIAL_PAGE;
 
       const prevBtn = document.querySelector(".prev-page-btn");
       const nextBtn = document.querySelector(".next-page-btn");
 
-      prevBtn.addEventListener("click", () => {
-        render(--currentPage, pages);
-      });
-
-      nextBtn.addEventListener("click", () => {
-        render(++currentPage, pages);
-      });
+      prevBtn.addEventListener("click", renderGrid(--currentPage, pages));
+      nextBtn.addEventListener("click", renderGrid(++currentPage, pages));
     }
   };
 
@@ -54,16 +53,22 @@ export const viewSelectHandler = (agencies) => {
       gridBtn.removeAttribute("viewtype");
 
       const $grid = document.querySelector(".agency-grid");
-      const $list = document.querySelector(".asd");
+      const $list = document.querySelector(".agency-list");
       $grid.style.display = "none";
-      $list.style.display = "block";
+      $list.style.display = "flex";
+
+      let currentPage = INITIAL_PAGE;
+
+      // list view 생성
+      const sortedAgencies = sortCategory(agencies);
+      renderList(INITIAL_PAGE, filterCategory(sortedAgencies, "종합/경제"));
     }
   };
 
   gridBtn.addEventListener("click", setGrid);
-
   listBtn.addEventListener("click", setList);
 
   // 신문사 타입에 따른 event listener 추가 예정(전체 언론사, 내가 구독한 언론사)
+
   // 구독, 해지 event listener 추가 예정
 };
