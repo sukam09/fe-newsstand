@@ -1,0 +1,128 @@
+:root {
+  --bold-L: 700 24px "Pretendard";
+  --bold-M: 700 16px "Pretendard";
+  --bold-R: 700 14px "Pretendard";
+  --bold-S: 700 12px "Pretendard";
+
+  --medium-M: 500 16px/22px "Pretendard";
+  --medium-R: 500 14px "Pretendard";
+  --medium-S: 500 12px "Pretendard";
+
+  --grayscale-white-alt: rgba(255, 255, 255, 0.7);
+  --grayscale-white: #ffffff;
+  --grayscale-50: #f5f9f9;
+  --grayscale-100: #d2dae0;
+  --grayscale-200: #879298;
+  --grayscale-300: #6e8091;
+  --grayscale-400: #5f6e76;
+  --grayscale-500: #4b5966;
+  --grayscale-black: #14212b;
+  --blue-100: #7890e7;
+  --blue-500: #4362d0;
+  --border-default: 1px solid var(--grayscale-100);
+}
+
+.display-bold24 {
+  font: var(--bold-L);
+}
+
+.display-bold16 {
+  font: var(--bold-M);
+}
+.display-bold14 {
+  font: var(--bold-R);
+}
+.display-bold12 {
+  font: var(--bold-S);
+}
+.display-medium16 {
+  font: var(--medium-M);
+}
+.display-medium14 {
+  font: var(--medium-R);
+}
+.display-medium12 {
+  font: var(--bold-S);
+}
+.selected-bold16 {
+  font: var(--bold-M);
+}
+.selected-bold14 {
+  font: var(--bold-R);
+}
+.available-medium16 {
+  font: var(--medium-M);
+}
+.available-medium14 {
+  font: var(--medium-R);
+}
+.available-medium12 {
+  font: var(--medium-S);
+}
+.hover-medium16:hover {
+  font: var(--medium-M);
+  text-decoration: underline;
+}
+.hover-medium14:hover {
+  font: var(--medium-R);
+  text-decoration: underline;
+}
+
+.text-strong {
+  color: var(--grayscale-black);
+}
+
+.text-bold {
+  color: var(--grayscale-500);
+}
+
+.text-default {
+  color: var(--grayscale-400);
+}
+
+.text-weak {
+  color: var(--grayscale-200);
+}
+
+.text-white-default {
+  color: var(--grayscale-white);
+}
+
+.text-white-weak {
+  color: var(--grayscale-white-alt);
+}
+
+.text-point {
+  color: var(--blue-500);
+}
+
+.surface-default {
+  background-color: var(--grayscale-white);
+}
+
+.surface-alt {
+  background-color: var(--grayscale-50);
+}
+
+.surface-brand-default {
+  background-color: var(--blue-500);
+}
+
+.surface-brand-alt {
+  background-color: var(--blue-100);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.display-none {
+  display: none;
+}

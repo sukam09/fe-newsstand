@@ -7,6 +7,7 @@ import {
 import { refreshInterval } from "./category.js";
 import { $ } from "./util.js";
 
+// 리스트뷰 element querySelector 함수
 function getListViewElement() {
   return {
     newsListContainer: $(".news_list__container"),

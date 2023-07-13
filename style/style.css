@@ -34,7 +34,12 @@
   height: 24px;
 }
 .container__header__main__title {
+  color: var(--text-text-strong, #14212b);
+  font-family: Pretendard;
   font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .container__header_date {

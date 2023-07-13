@@ -1,9 +1,10 @@
-import { NOW_CATEGORY_IDX, NOW_LIST_PAGE } from "../constant/constants.js";
+import {
+  CATEGORY_TAB_TIME,
+  NOW_CATEGORY_IDX,
+  NOW_LIST_PAGE,
+} from "../constant/constants.js";
 import { appendNewsList, updateListButton } from "./listView.js";
 import { $ } from "./util.js";
-
-// 카테고리 탭 전환 시간
-const CATEGORY_TAB_TIME = 20000;
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval = setInterval(() => {
