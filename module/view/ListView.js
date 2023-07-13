@@ -48,6 +48,10 @@ function progressWidthChange(progressTab) {
   const progressRatioTab = progressTab.querySelector(".progress-ratio");
   progressRatioTab.style.width = `${progressTab.offsetWidth * (CURRENT_PAGE / categoryLength[CURRENT_CATEGORY]).toFixed(2)}px`;
 }
+function prevProgressWidthChange(progressTab) {
+  const progressRatio = progressTab.querySelector(".progress-ratio");
+  progressRatio.style.width = "0px";
+}
 
 /**
  * 각 카테고리 클릭시 이벤트 리스너 등록
@@ -73,9 +77,8 @@ function fieldTabClickEventHandler(targetTab, index) {
   CURRENT_CATEGORY = index;
 
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-  const progressRatio = progressTab.querySelector(".progress-ratio");
-  progressRatio.style.width = "0px";
 
+  prevProgressWidthChange(progressTab);
   progressWidthChange(targetTab);
   tabClassChange(targetTab, progressTab, index);
 
@@ -94,6 +97,7 @@ function fieldTabAutoChange() {
   const nextProgressEl = document.querySelectorAll(".news-list-wrap .field-tab .each-tab")[CURRENT_CATEGORY];
 
   //프로그래스 스타일
+  prevProgressWidthChange(progressTab);
   tabClassChange(nextProgressEl, progressTab);
   progressWidthChange(nextProgressEl);
 
@@ -256,5 +260,5 @@ export function printList() {
 
   fetchCategoryNewsData(); // 데이터 패치 및 초기화
   tabClickEventRegister(); // 탭 클릭 이벤트
-  updateTimer();
+  updateTimer(); // 페이지&카테고리 자동 변경
 }
