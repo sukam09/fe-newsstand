@@ -30,6 +30,10 @@ const setTotalPressList = (isLightMode) => {
 };
 
 /**
+ * List 화살표 넘겨주기
+ */
+
+/**
  * 카테고리 별 다음 언론사 화면으로 넘어가기
  */
 const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
@@ -42,11 +46,20 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
     interval = setInterval(() => {
       const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
       setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-    }, 500);
+    }, 1000);
   });
 
   imgGrid.addEventListener('click', () => {
     clearInterval(interval);
+    const addLi = document.querySelector('.press-category__ul').firstElementChild;
+    const removeLi = document.querySelector('.progress-start');
+    const addDiv = removeLi.querySelector('.press-category__div');
+    const removeDiv = addLi.querySelector('.press-category__div');
+
+    removeLi.classList.remove('progress-start');
+    addDiv.classList.add('display-none');
+    addLi.classList.add('progress-start');
+    removeDiv.classList.remove('display-none');
   });
 
   liList.forEach((li) => {
@@ -55,7 +68,7 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
       interval = setInterval(() => {
         const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
         setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-      }, 500);
+      }, 1000);
       currentArticle = 0;
     });
   });
