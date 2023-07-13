@@ -176,3 +176,10 @@
   right: -48px;
   transform: translate(0%, -50%);
 }
+
+.left_list_button:hover {
+  cursor: pointer;
+}
+.right_list_button:hover {
+  cursor: pointer;
+}
