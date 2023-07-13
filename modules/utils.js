@@ -11,6 +11,7 @@ const $listView = document.querySelector(".news-list-wrapper");
  */
 const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
+  return list;
 };
 
 /**
