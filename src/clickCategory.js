@@ -1,8 +1,7 @@
+import { FIRST_NEWS_PAGE } from "./constant.js";
 import showNews from "./showNews.js";
 import turnNewsPage from "./turnNewsPage.js";
 import showProgress from "./showProgress.js";
-
-const FIRST_NEWS_PAGE = 0;
 
 /**
  카테고리를 클릭하면 handleClickCategory함수 호출
