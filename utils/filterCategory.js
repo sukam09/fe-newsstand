@@ -1,6 +1,6 @@
-export const filterCategory = (agencies, text) => {
+export const filterCategory = (agencies, focus) => {
   const filteredCategory = agencies.filter(
-    (agency) => agency.category === text
+    (agency) => agency.category === focus
   );
   return filteredCategory;
 };
