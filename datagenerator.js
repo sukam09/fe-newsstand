@@ -1,6 +1,6 @@
 // usage: node datagenerator.js > data.json
 
-const title = [
+const sub_title = [
   "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
   "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
   "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
@@ -43,6 +43,17 @@ const title = [
   "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
   "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인",
   "한국의 환경 보호 정책, 친환경 에너지로 미래를 지키다",
+];
+
+const main_title = [
+  "또 국민연금의 몽니…현대百 지주사 불발",
+  "위스키 사려고 이틀 전부터 줄 섰어요",
+  "방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까",
+  "사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다",
+  "[단독] 원희룡 해외건설 근로자 소득공제 월 500만원으로 상향할 것",
+  "태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]",
+  "LG엔솔, 폴란드 자동차산업협회 가입…유럽서 목소리 키운다",
+  "이재명 '억울하고 괴로워도 의연하게 맞설 것'",
 ];
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
@@ -156,12 +167,12 @@ for (let i = 0; i < 96; i += 7) {
     console.log(`"path_dark": "./icons/dark/d_news_logo${i + j + 1}.svg",`);
     console.log(`"category": "${category[j]}",`);
     console.log(`"edit_date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",`);
-    console.log(`"main_title": "main title",`);
+    console.log(`"main_title": "${main_title[(i + j) % 8]}",`);
     console.log(`"main_img_src": "./img/${i + j + 1}.png",`);
     console.log(
-      `"sub_title": ["${title[(i % 7) * 6]}", "${title[(i % 7) * 6 + 1]}", "${title[(i % 7) * 6 + 2]}", "${title[(i % 7) * 6 + 3]}", "${title[(i % 7) * 6 + 4]}", "${title[(i % 7) * 6 + 5]}", "${
-        title[(i % 7) * 6 + 6]
-      }"],`
+      `"sub_title": ["${sub_title[(i % 7) * 6]}", "${sub_title[(i % 7) * 6 + 1]}", "${sub_title[(i % 7) * 6 + 2]}", "${sub_title[(i % 7) * 6 + 3]}", "${sub_title[(i % 7) * 6 + 4]}", "${
+        sub_title[(i % 7) * 6 + 5]
+      }", "${sub_title[(i % 7) * 6 + 6]}"],`
     );
     console.log(`"is_subscribe": "false"`);
     console.log(`},`);
