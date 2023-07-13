@@ -133,6 +133,9 @@ function toggleArrow(mode, page) {
 function deleteMainDisplay() {
     const news_data_container = document.querySelector(".main_news_container");
     news_data_container.innerHTML = "";
+
+    clearInterval(show_options.interval);
+    show_options.progress_time = 0;
 }
 
 function movePageEvent() {
