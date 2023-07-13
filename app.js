@@ -25,12 +25,14 @@ const setHeaderDate = () => {
   $headerDate.innerText = getKRLocaleDateString(new Date());
 };
 
-const $themeButton = document.querySelector(".container-header_theme-btn");
-$themeButton.addEventListener("click", () => {
-  store.dispatch(changeTheme());
+const addEventOnThemeButton = () => {
+  const $themeButton = document.querySelector(".theme-btn");
 
-  setTheme();
-});
+  $themeButton.addEventListener("click", () => {
+    store.dispatch(changeTheme());
+    setTheme();
+  });
+};
 // main
 (async function () {
   await initDB();
@@ -42,6 +44,7 @@ $themeButton.addEventListener("click", () => {
   renderGridView(newsData);
   renderListView();
 
+  addEventOnThemeButton();
   addEventOnPaginationButton();
   addEventOnViewerButton();
   addEventOnProgressBar();
