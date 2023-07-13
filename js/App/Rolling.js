@@ -1,5 +1,6 @@
 /* 
 롤링 컨테이너 컴포넌트
+props: mode
 */
 import RollingContents from "./RollingContents/RollingContents.js";
 

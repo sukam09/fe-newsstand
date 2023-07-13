@@ -3,13 +3,6 @@
 */
 
 export default function Left($target, props) {
-  this.state = "light";
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   this.render = () => {
     const $div = document.createElement("div");
     const $img = document.createElement("img");
@@ -18,8 +11,8 @@ export default function Left($target, props) {
     $div.setAttribute("class", "main-news");
     $childDiv.setAttribute("class", "main-title");
 
-    $img.src = "./assets/img/Thumbnail.png";
-    $childDiv.innerHTML = "또 국민연금의 몽니…현대百 지주사 불발";
+    $img.src = props.mainThumbnail;
+    $childDiv.innerHTML = props.mainNewsTitle;
 
     $div.appendChild($img);
     $div.appendChild($childDiv);

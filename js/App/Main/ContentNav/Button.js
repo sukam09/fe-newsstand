@@ -1,5 +1,6 @@
 /* 
 보여줄 메인 컨텐츠를 선택하는 버튼
+props: inner, className, changeType, buttonType, onClick
 */
 
 export default function Button($target, props, ClassName, onClick) {
@@ -12,48 +13,36 @@ export default function Button($target, props, ClassName, onClick) {
     this.render();
   };
 
-  const changeMainContent = () => {
-    onClick({
-      mainContent: props.type,
-      renderContent: renderContent,
-      mode: mode,
-      page: 1,
-    });
+  const changePressType = () => {
+    props.onClick(props.buttonType);
   };
 
-  const changeRenderContent = () => {
-    onClick({
-      mainContent: mainContent,
-      renderContent: props.type,
-      mode: mode,
-      page: 1,
-    });
+  const changeViewerType = () => {
+    props.onClick(props.buttonType);
   };
 
   this.render = () => {
     const $button = document.createElement("button");
-    $button.setAttribute(
-      "class",
-      `${ClassName}-${props.type} mouse-hover-pointer`
-    );
+    $button.setAttribute("class", props.className);
 
     $button.innerHTML = props.inner;
 
-    if (props.changeState === "mainContent") {
-      $button.addEventListener("click", changeMainContent);
+    if (props.changeType === "viewer") {
+      $button.addEventListener("click", changeViewerType);
 
       let targetElement = $button;
       while (targetElement && targetElement.tagName !== "path")
         targetElement = targetElement.firstElementChild;
 
       targetElement.style.fill =
-        props.type === props.mainContent ? "#4362D0" : "";
+        props.buttonType === props.mainViewerType ? "#4362D0" : "";
     } else {
-      $button.addEventListener("click", changeRenderContent);
+      $button.addEventListener("click", changePressType);
 
       $button.style.color =
-        props.type === props.renderContent ? "#14212B" : "#879298";
-      $button.style.fontWeight = props.type === props.renderContent ? 700 : 500;
+        props.buttonType === props.mainPressType ? "#14212B" : "#879298";
+      $button.style.fontWeight =
+        props.buttonType === props.mainPressType ? 700 : 500;
     }
 
     $target.appendChild($button);

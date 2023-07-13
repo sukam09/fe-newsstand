@@ -1,11 +1,9 @@
 /*
 메인 컨텐츠 페이지 전환 버튼 컴포넌트
+props: lastPage, currentPage, direction, setPage
 */
 
-export default function Button($target, props, onClick) {
-  // console.log(props);
-  this.state = { startPage: 1, lastPage: 4 };
-  const { mainContent, renderContent, mode } = props;
+export default function Button($target, props) {
   //   this.setState = (nextState) => {
   //     this.state = nextState;
   //     this.render();
@@ -38,26 +36,17 @@ export default function Button($target, props, onClick) {
 </svg>`;
 
     if (props.direction === "left") {
-      $button.style.display = props.page === 1 ? "none" : "block";
+      $button.style.display = props.currentPage === 1 ? "none" : "block";
 
       $button.addEventListener("click", () => {
-        onClick({
-          mainContent: mainContent,
-          renderContent: renderContent,
-          mode: mode,
-          page: props.page - 1,
-        });
+        props.onClick(props.currentPage - 1);
       });
     } else {
-      $button.style.display = props.page === props.lastPage ? "none" : "block";
+      $button.style.display =
+        props.currentPage === props.lastPage ? "none" : "block";
 
       $button.addEventListener("click", () => {
-        onClick({
-          mainContent: mainContent,
-          renderContent: renderContent,
-          mode: mode,
-          page: props.page + 1,
-        });
+        props.onClick(props.currentPage + 1);
       });
     }
     $target.appendChild($button);

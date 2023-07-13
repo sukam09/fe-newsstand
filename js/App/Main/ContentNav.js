@@ -1,11 +1,12 @@
 /* 
 Main 컴포넌트의 컨텐츠를 변경하는 네비게이션 컴포넌트
+props: mode, viewer, pressType, setViewer, setPressType
 */
 
-import SourceSwich from "./ContentNav/SourceSwich.js";
-import SubscriptionSwitch from "./ContentNav/SubscriptionSwitch.js";
+import PressType from "./ContentNav/PressType.js";
+import ViewerType from "./ContentNav/viewerType.js";
 
-export default function ContentNav($target, props, onClick) {
+export default function ContentNav($target, props) {
   // this.state = mode;
 
   this.setState = (nextState) => {
@@ -17,8 +18,14 @@ export default function ContentNav($target, props, onClick) {
     const $nav = document.createElement("nav");
     $nav.setAttribute("class", "news-navbar");
 
-    new SubscriptionSwitch($nav, props, onClick);
-    new SourceSwich($nav, props, onClick);
+    new PressType($nav, {
+      mainContentType: props.pressType,
+      setPressType: props.setPressType,
+    });
+    new ViewerType($nav, {
+      mainContentType: props.viewerType,
+      setViewerType: props.setViewerType,
+    });
 
     $target.appendChild($nav);
   };

@@ -1,5 +1,6 @@
 /*
 신문사 컨텐츠 컴포넌트
+props: pressType, currentPage, setLastpage
 */
 
 const indexArr = Array.from({ length: 96 }, (_, i) => i);
@@ -32,7 +33,7 @@ export default function Newspaper($target, props) {
     const $ul = document.createElement("ul");
 
     $ul.setAttribute("class", "newspaper__list");
-    $ul.innerHTML = createNewspaperList(props.page, props.mode);
+    $ul.innerHTML = createNewspaperList(props.currentPage, props.mode);
 
     $target.innerHTML = "";
     $target.appendChild($ul);

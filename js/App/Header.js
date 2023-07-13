@@ -3,7 +3,7 @@
 크게 Title, Date로 구성
 페이지의 Light/Dark 모드의 를 저장
 
-props: dark, light
+props: mode
 */
 function formatDate(date) {
   const options = {

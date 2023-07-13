@@ -18,8 +18,8 @@ export default function Contents($target, props) {
 
     $div.setAttribute("class", "list-news");
 
-    new Left($div, props);
-    new Right($div, props);
+    new Left($div, props.mainNewsData);
+    new Right($div, props.subNewsData);
 
     $target.appendChild($div);
   };
