@@ -8,6 +8,7 @@
 
 ```
 fe-newsstand
+├─ .DS_Store
 ├─ assets
 │  ├─ icons
 │  └─ images
@@ -20,16 +21,17 @@ fe-newsstand
 │  └─ reset.css
 ├─ data
 │  ├─ news.json
-│  └─ press.json
+│  ├─ press.json
+│  └─ recentNews.json
 ├─ index.html
 ├─ js
 │  ├─ app.js
-│  ├─ components
+│  ├─ constants
+│  │  └─ constants.js
+│  ├─ sections
 │  │  ├─ header.js
 │  │  ├─ mainView.js
 │  │  └─ recentNews.js
-│  ├─ constants
-│  │  └─ constants.js
 │  └─ utils
 │     ├─ autoRolling.js
 │     ├─ changeView.js
