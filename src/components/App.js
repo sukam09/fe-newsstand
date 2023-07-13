@@ -10,7 +10,7 @@ export default class App extends Component {
     return `<header class='header'></header>
             <div class='latest-main-news'></div>
             <section class='all-news'></section>
-            <div class='alert-modal'></div>
+            <div class='alert-modal off'></div>
             `;
   }
   mounted() {

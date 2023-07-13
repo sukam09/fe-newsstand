@@ -6,6 +6,7 @@ import {
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import Button from '../common/Button.js';
+import { toggleAlert } from '../../index.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
@@ -25,7 +26,6 @@ export default class AllNewsGridView extends Component {
 
     let innerHTML = '';
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
-      // console.log($button);
       innerHTML += `<li class='grid-logo-wrapper border-default'>
                       <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
                       <div class='subscribe-button-wrapper'></div>
@@ -39,6 +39,7 @@ export default class AllNewsGridView extends Component {
         text: '구독하기',
         icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
         states: 'default',
+        action: () => toggleAlert(),
       });
     });
 

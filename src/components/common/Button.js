@@ -40,5 +40,9 @@ export default class Button extends Component {
           ? `common-button border-default surface-alt text-weak`
           : `common-button border-default surface-defalut text-weak`;
     });
+
+    $button.addEventListener('click', () => {
+      this.state.action();
+    });
   }
 }

@@ -1,4 +1,3 @@
-import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 
 export default class ArrowButton extends Component {

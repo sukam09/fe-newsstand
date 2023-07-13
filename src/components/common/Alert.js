@@ -1,6 +1,5 @@
-import { customQuerySelector } from '../../utils/index.js';
+import { toggleAlert } from '../../index.js';
 import Component from '../core/Component.js';
-import Icon from './Icon.js';
 
 export default class Alert extends Component {
   template() {
@@ -16,5 +15,15 @@ export default class Alert extends Component {
         </div>
       </div>
     `;
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', e => {
+      if (e.target.classList.contains('alert-yes')) {
+        console.log('yes');
+      } else if (e.target.classList.contains('alert-no')) {
+        toggleAlert();
+      }
+    });
   }
 }
