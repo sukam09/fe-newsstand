@@ -34,10 +34,6 @@ const initMedia = mediaWrapper => {
 const mediaApp = () => {
   const mediaWrapper = document.querySelector('#media_wrapper');
 
-  mediaWrapper.appData = {
-    subscribedOnly: false,
-    viewType: 'grid',
-  };
   mediaWrapper.mediaSelectData = [
     {
       id: 'media_select_all',
