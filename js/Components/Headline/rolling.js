@@ -17,9 +17,9 @@ const setRollingEvent = (rollingElement, index) => {
   setTimeout(() => {
     timer[index] = window.setInterval(
       () => repeatRolling(rollingElement),
-      constants.ROLLING_TIMING_SEC * 1000
+      constants.ROLLING_TIMING_MS
     );
-  }, index * constants.ROLLING_DIFF_SEC * 1000);
+  }, index * constants.ROLLING_DIFF_MS);
 };
 
 const setRollingAndStop = (rollingElement, index) => {

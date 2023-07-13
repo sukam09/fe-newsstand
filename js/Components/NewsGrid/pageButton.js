@@ -3,8 +3,12 @@ import { renderNewspaper } from "./newspaper.js";
 
 let page = 0;
 
-const $leftButton = document.querySelector(".left-button_content");
-const $rightButton = document.querySelector(".right-button_content");
+const $leftButton = document.querySelector(
+  ".news-section-grid .left-button_content"
+);
+const $rightButton = document.querySelector(
+  ".news-section-grid .right-button_content"
+);
 
 const setDisplayButton = () => {
   $leftButton.style.display = page === constants.MIN_PAGE ? "none" : "block";
@@ -26,9 +30,9 @@ const movePageRight = () => {
   renderContent();
 };
 
-const setPageButton = () => {
+const setGridPageButton = () => {
   $leftButton.addEventListener("click", movePageLeft);
   $rightButton.addEventListener("click", movePageRight);
 };
 
-export { setPageButton };
+export { setGridPageButton };

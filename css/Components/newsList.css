@@ -3,6 +3,7 @@
 .news-section-list {
   display: none;
   height: 388px;
+  position: relative;
   border: 1px solid #d2dae0;
 }
 
