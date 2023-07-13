@@ -3,7 +3,7 @@ import {
   CATEGORIES,
   CATEGORIES_TO_INDEX,
 } from "../constants/index.js";
-import { actionCreator } from "../core/zzapdux.js";
+import { actionCreator } from "../core/index.js";
 
 // TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
 let categoryIdx = 0;
