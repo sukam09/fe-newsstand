@@ -324,16 +324,11 @@ header {
 }
 
 .text-button-selected {
+  position: relative;
   width: 166px;
   height: 40px;
   align-items: center;
   line-height: 40px;
-  /* background-color: #4362d0; */
-  background-color: #7890e7;
-  color: #ffffff;
-}
-
-  background-color: #4362d0;
   color: #ffffff;
 }
 

@@ -1,3 +1,5 @@
+import { ANIMATION_UPDATE_DELAY, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
+
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
   const $article = document.createElement('article');
@@ -33,6 +35,25 @@ export default function PressListView({ $target, initialState }) {
     Array.from($textButtons).forEach(($textButton, index) => {
       $textButton.addEventListener('click', () => handleClickTextButton(index));
     });
+  };
+
+  const initProgressBar = $selectedButton => {
+    const { timer, $currentButton } = this.state;
+
+    if (timer !== undefined) {
+      $currentButton.style.background = '';
+      clearInterval(timer);
+    }
+
+    $selectedButton.style.background = '#7890e7';
+    this.state.percentage = 0;
+
+    this.state.timer = setInterval(() => {
+      this.state.percentage += PROGRESSBAR_UPDATE_DELTA;
+      $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.state.percentage}%, #7890e7 ${this.state.percentage}%)`;
+    }, ANIMATION_UPDATE_DELAY);
+
+    this.state.$currentButton = $selectedButton;
   };
 
   let isInit = false;
@@ -96,13 +117,15 @@ export default function PressListView({ $target, initialState }) {
 
     $selectedButton.classList.add('text-button-selected');
     $selectedButton.innerHTML = `
-      <div>${selectedCategory}</div>
+      <div class="text-button-name">${selectedCategory}</div>
       <div class="text-button-count">
         <p class="text-button-present">${present}</p>
-        <img src="../asset/icons/division.svg"/>
+          <img src="../asset/icons/division.svg"/>
         <p class="text-button-entire">${entire}</p>
       </div>
     `;
+
+    initProgressBar($selectedButton);
   };
 
   this.render();
