@@ -14,12 +14,16 @@ export const gridTemplate = (page) => html `
  * @param { Company } data
  * @returns { HTMLString }
  */
-export const gridItemTemplate = (data) => html `
-  <li class="company-list__item">
-    <img
-      class="logo"
-      src=${`/public/asset/images/light/${data.id}.png`}
-      alt=${data.name}
-    />
-  </li>
-`;
+export const gridItemTemplate = (data) => {
+    if (!data.name)
+        return html ` <li class="company-list__item"></li> `;
+    return html `
+    <li class="company-list__item">
+      <img
+        class="logo"
+        src=${`/public/asset/images/light/${data.id}.png`}
+        alt=${data.name}
+      />
+    </li>
+  `;
+};
