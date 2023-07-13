@@ -1,7 +1,7 @@
 .arrows__wrapper-list {
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 930px;
   height: 388px;
   margin-top: 25px;
@@ -10,12 +10,13 @@
   background-color: transparent;
 }
 
+/* 언론사 리스트의 NAV */
 .press-category__nav {
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  width: 930px;
+  width: 928px;
   height: 8px;
 
   padding: 16px 0;
@@ -30,4 +31,66 @@
 .press-category__p-nav {
   font: var(--medium-R);
   color: var(--grayscale-200);
+}
+
+/* 언론사 리스트의 ARTICLE */
+.press-category__article {
+  padding: 24px;
+}
+
+.press-category__section-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 언론사 리스트 ARTICLE-MAIN */
+.section-main__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-main__img-logo {
+  height: 20px;
+}
+
+.section-main__time {
+  font: var(--medium-S);
+  color: var(--grayscale-400);
+}
+
+.section-main__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60px;
+  height: 24px;
+  padding: 0 6px;
+
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--grayscale-100);
+  background-color: var(--grayscale-50);
+}
+
+.section-main__img-button {
+  width: 12px;
+  height: 12px;
+}
+
+.section-main__p-button {
+  font: var(--medium-S);
+  color: var(--grayscale-200);
+}
+
+.section-main__img-article {
+  width: 320px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.section-main__h2 {
+  font: var(--medium-M);
+  color: var(--grayscale-black);
 }

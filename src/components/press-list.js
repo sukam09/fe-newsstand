@@ -10,18 +10,43 @@ const setTotalPressList = (isLightMode) => {
       //
 
       let shufflePress = getPressList(data);
-      getPressCategoryElement();
-      setPressCategoryElement(data, shufflePress, isLightMode);
+      setPressCategoryElement(); //
+
+      // setPressCategoryElement(data, shufflePress, isLightMode);ㄴ
 
       //   makePressGrid(data, shufflePress, isLightMode);
 
       setPressCategoryNav(data);
+      setPressCategoryMain(data);
 
       //
     })
     .catch((error) => {
       console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
     });
+};
+
+/**
+ * 해당 카테고리의 MAIN 화면 - ing
+ */
+const setPressCategoryMain = (data) => {
+  const categoryMain = document.querySelector('.press-category__section-main');
+  const categoryInitData = data[0].data[0];
+
+  const categoryMainElement = `
+  <nav class='section-main__nav'>
+    <img class='section-main__img-logo' src=${categoryInitData.logoSrc}>
+    <time class='section-main__time'>${categoryInitData.editTime} 편집</time>
+    <buttion class='section-main__button'>
+      <img class='section-main__img-button' src='./assets/icons/button-plus.svg' />
+      <p class='section-main__p-button'>구독하기</p>
+    </button>
+  </nav>
+  <img class='section-main__img-article' src=${categoryInitData.imgSrc}/>
+  <h2 class='section-main__h2'>${categoryInitData.mainTitle}</h2>
+  `;
+
+  categoryMain.innerHTML = categoryMainElement;
 };
 
 /**
@@ -41,6 +66,10 @@ const setPressCategoryNav = (categoryData) => {
   });
 };
 
+/**
+ *
+ */
+
 ////
 const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
@@ -55,7 +84,10 @@ const getPressList = (pressData) => {
 
 ///
 
-const getPressCategoryElement = () => {
+/**
+ * 언론사 리스트의 HTML 틀
+ */
+const setPressCategoryElement = () => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
   arrowsWrapper.classList.add('displayNone');
 
@@ -87,6 +119,6 @@ const getPressCategoryElement = () => {
   arrowsWrapper.innerHTML = pressCategoryNav + pressCategoryArticle;
 };
 
-const setPressCategoryElement = () => {};
+// const setPressCategoryElement = () => {};
 
 export { setTotalPressList };
