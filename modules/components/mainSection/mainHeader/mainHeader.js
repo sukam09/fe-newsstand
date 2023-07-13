@@ -39,6 +39,6 @@ export function handleListViewButton(e) {
   }
   qs("#grid_container").style.display = "none";
   qs("#list_container").style.display = "block";
-  showListage(0);
+  showListage(0, 0);
   // todo : 리스트 보이기
 }

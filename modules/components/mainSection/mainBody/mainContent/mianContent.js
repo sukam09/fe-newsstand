@@ -1,5 +1,6 @@
 import { fetchData } from "../../../../utils.js";
 import { pressGrid } from "./pressGrid/pressGrid.js";
+import { category } from "./pressList/category/category.js";
 import { pressList } from "./pressList/pressList.js";
 
 export async function mainContent() {
@@ -10,7 +11,9 @@ export async function mainContent() {
   return `
     <div class="main_content">
       <div id="list_container">
-        ${await pressList(newsList, 0)}
+        ${category(newsList)}
+        ${await pressList(newsList[0], 0)}
+        ${await pressList(newsList[0], 1)}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}

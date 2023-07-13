@@ -1,10 +1,10 @@
 import { categoryItem } from "./categoryItem.js";
 
-export function category(newsList) {
+export function category(categoryNews) {
   let categoryList = "";
-  console.log(newsList);
-  for (let i = 0; i < newsList.length; i++) {
-    const { categoryName, data } = newsList[i];
+  console.log(categoryNews);
+  for (let i = 0; i < categoryNews.length; i++) {
+    const { categoryName, data } = categoryNews[i];
     categoryList += categoryItem(categoryName, data.length);
     console.log(categoryItem(categoryName, data.length));
   }

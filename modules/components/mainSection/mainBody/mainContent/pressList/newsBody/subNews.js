@@ -1,8 +1,7 @@
-export function subNews(newsData) {
+export function subNews(subTitleList) {
   let newsList = "";
-  console.log(newsData[0]);
-  for (let j = 0; j < newsData[0].subTitleList.length; j++) {
-    newsList += `<li>${newsData[0].subTitleList[j].title}</li>`;
+  for (let i = 0; i < subTitleList.length; i++) {
+    newsList += `<li>${subTitleList[i].title}</li>`;
   }
   const subNews = `
     <ul class="sub_news">

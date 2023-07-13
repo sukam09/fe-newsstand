@@ -6,10 +6,14 @@ import { newsHeader } from "./newsHeader/newsHeader.js";
 // ${newsHeader(news)}
 // ${newsBody(news.data)}
 
-export async function pressList(newsList, page) {
+// 하나의 카테고리의 하나의 페이지
+export async function pressList(categoryNews, page) {
+  console.log(categoryNews.data);
+  const { categoryId } = categoryNews;
   return `
-  <div class="news news_${page} flex_column">
-    ${category(newsList)}
+  <div class="news news_${categoryId}_${page}  flex_column">
+    ${newsHeader(categoryNews.data[page])}
+    ${newsBody(categoryNews.data[page])}
   </div>
   `;
 }
@@ -17,8 +21,8 @@ export async function pressList(newsList, page) {
 export let listPage = 0;
 const MAX_LIST_PAGE = 7;
 
-export function showListage(page) {
-  const $newsInfo = qs(`.news_${page}`);
+export function showListage(categoryId, page) {
+  const $newsInfo = qs(`.news_${categoryId}_${page}`);
   $newsInfo.style.display = "block";
 }
 export function showNextListPage() {

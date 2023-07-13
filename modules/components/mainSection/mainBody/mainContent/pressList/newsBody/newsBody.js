@@ -1,11 +1,11 @@
 import { mainNews } from "./mainNews.js";
 import { subNews } from "./subNews.js";
 
-export function newsBody(newsData) {
+export function newsBody(categoryNews) {
   const newsBody = `
     <div class="flex_row">
-      ${mainNews(newsData)}
-      ${subNews(newsData)}
+      ${mainNews(categoryNews)}
+      ${subNews(categoryNews.subTitleList)}
     </div>
     `;
 

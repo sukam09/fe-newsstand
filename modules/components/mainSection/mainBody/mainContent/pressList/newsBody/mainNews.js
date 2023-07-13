@@ -1,8 +1,8 @@
-export function mainNews(press) {
+export function mainNews(categoryNews) {
   const mainNews = `
     <div class="main_news flex_column">
-      <img src=${press.imgSrc} class="news_main_img"/>
-      <div class="news_info_title">${press.mainTitle}</div>
+      <img src=${categoryNews.imgSrc} class="news_main_img"/>
+      <div class="news_info_title">${categoryNews.mainTitle}</div>
     </div>`;
 
   return mainNews;
