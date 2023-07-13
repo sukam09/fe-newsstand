@@ -8,6 +8,6 @@
   --text-gray-light: #5f6e76;
 }
 
-.btn-disabled {
+.disabled {
   display: none;
 }
