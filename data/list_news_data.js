@@ -5,131 +5,342 @@ export const list_news_data = [
             {
                 press_id: 1,
                 press: "YTN 사이언스",
+                press_dark_src: "../styles/logo/dark/img1.svg",
+                press_light_src: "../styles/logo/light/img1.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "YTN 사이언스 메인 뉴스 제목",
-                sub_news_title: [
-                    "YTN 사이언스 서브 뉴스 제목1",
-                    "YTN 사이언스 서브 뉴스 제목2",
-                    "YTN 사이언스 서브 뉴스 제목3",
-                    "YTN 사이언스 서브 뉴스 제목4",
-                    "YTN 사이언스 서브 뉴스 제목5",
+                main_news: {
+                    title: "YTN 사이언스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "YTN 사이언스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 사이언스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 사이언스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 사이언스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 사이언스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 2,
                 press: "Able뉴스",
+                press_dark_src: "../styles/logo/dark/img2.svg",
+                press_light_src: "../styles/logo/light/img2.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "Able뉴스 메인 뉴스 제목",
-                sub_news_title: [
-                    "Able뉴스 서브 뉴스 제목1",
-                    "Able뉴스 서브 뉴스 제목2",
-                    "Able뉴스 서브 뉴스 제목3",
-                    "Able뉴스 서브 뉴스 제목4",
-                    "Able뉴스 서브 뉴스 제목5",
+                main_news: {
+                    title: "Able뉴스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "Able뉴스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "Able뉴스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "Able뉴스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "Able뉴스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "Able뉴스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 3,
                 press: "뉴스토마토",
+                press_dark_src: "../styles/logo/dark/img3.svg",
+                press_light_src: "../styles/logo/light/img3.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "뉴스토마토 메인 뉴스 제목",
-                sub_news_title: [
-                    "뉴스토마토 서브 뉴스 제목1",
-                    "뉴스토마토 서브 뉴스 제목2",
-                    "뉴스토마토 서브 뉴스 제목3",
-                    "뉴스토마토 서브 뉴스 제목4",
-                    "뉴스토마토 서브 뉴스 제목5",
+                main_news: {
+                    title: "뉴스토마토 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "뉴스토마토 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스토마토 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스토마토 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스토마토 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스토마토 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 4,
                 press: "데일리한국",
+                press_dark_src: "../styles/logo/dark/img4.svg",
+                press_light_src: "../styles/logo/light/img4.svg",
+                edit_date: "2023.02.10. 18:27 편집",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "데일리한국 메인 뉴스 제목",
-                sub_news_title: [
-                    "데일리한국 서브 뉴스 제목1",
-                    "데일리한국 서브 뉴스 제목2",
-                    "데일리한국 서브 뉴스 제목3",
-                    "데일리한국 서브 뉴스 제목4",
-                    "데일리한국 서브 뉴스 제목5",
+                main_news: {
+                    title: "데일리한국 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "데일리한국 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "데일리한국 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "데일리한국 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "데일리한국 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "데일리한국 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 5,
                 press: "시사오늘",
+                press_dark_src: "../styles/logo/dark/img5.svg",
+                press_light_src: "../styles/logo/light/img5.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "시사오늘 메인 뉴스 제목",
-                sub_news_title: [
-                    "시사오늘 서브 뉴스 제목1",
-                    "시사오늘 서브 뉴스 제목2",
-                    "시사오늘 서브 뉴스 제목3",
-                    "시사오늘 서브 뉴스 제목4",
-                    "시사오늘 서브 뉴스 제목5",
+                main_news: {
+                    title: "시사오늘 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "시사오늘 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "시사오늘 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "시사오늘 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "시사오늘 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "시사오늘 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 6,
                 press: "대전방송",
+                press_dark_src: "../styles/logo/dark/img6.svg",
+                press_light_src: "../styles/logo/light/img6.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "대전방송 메인 뉴스 제목",
-                sub_news_title: [
-                    "대전방송 서브 뉴스 제목1",
-                    "대전방송 서브 뉴스 제목2",
-                    "대전방송 서브 뉴스 제목3",
-                    "대전방송 서브 뉴스 제목4",
-                    "대전방송 서브 뉴스 제목5",
+                main_news: {
+                    title: "대전방송 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "대전방송 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "대전방송 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "대전방송 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "대전방송 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "대전방송 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 7,
                 press: "이코노타임즈",
+                press_dark_src: "../styles/logo/dark/img7.svg",
+                press_light_src: "../styles/logo/light/img7.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "이코노타임즈 메인 뉴스 제목",
-                sub_news_title: [
-                    "이코노타임즈 서브 뉴스 제목1",
-                    "이코노타임즈 서브 뉴스 제목2",
-                    "이코노타임즈 서브 뉴스 제목3",
-                    "이코노타임즈 서브 뉴스 제목4",
-                    "이코노타임즈 서브 뉴스 제목5",
+                main_news: {
+                    title: "이코노타임즈 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "이코노타임즈 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "이코노타임즈 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "이코노타임즈 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "이코노타임즈 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "이코노타임즈 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 8,
                 press: "독서신문",
+                press_dark_src: "../styles/logo/dark/img8.svg",
+                press_light_src: "../styles/logo/light/img8.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "독서신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "독서신문 서브 뉴스 제목1",
-                    "독서신문 서브 뉴스 제목2",
-                    "독서신문 서브 뉴스 제목3",
-                    "독서신문 서브 뉴스 제목4",
-                    "독서신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "독서신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "독서신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "독서신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "독서신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "독서신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "독서신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 9,
                 press: "산",
+                press_dark_src: "../styles/logo/dark/img9.svg",
+                press_light_src: "../styles/logo/light/img9.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "산 메인 뉴스 제목",
-                sub_news_title: [
-                    "산 서브 뉴스 제목1",
-                    "산 서브 뉴스 제목2",
-                    "산 서브 뉴스 제목3",
-                    "산 서브 뉴스 제목4",
-                    "산 서브 뉴스 제목5",
+                main_news: {
+                    title: "산 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "산 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "산 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "산 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "산 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "산 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 10,
                 press: "시사 IN",
+                press_dark_src: "../styles/logo/dark/img10.svg",
+                press_light_src: "../styles/logo/light/img10.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "시사 IN 메인 뉴스 제목",
-                sub_news_title: [
-                    "시사 IN 서브 뉴스 제목1",
-                    "시사 IN 서브 뉴스 제목2",
-                    "시사 IN 서브 뉴스 제목3",
-                    "시사 IN 서브 뉴스 제목4",
-                    "시사 IN 서브 뉴스 제목5",
+                main_news: {
+                    title: "시사 IN 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "시사 IN 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "시사 IN 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "시사 IN 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "시사 IN 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "시사 IN 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -140,131 +351,341 @@ export const list_news_data = [
             {
                 press_id: 11,
                 press: "한국경제",
+                press_dark_src: "../styles/logo/dark/img11.svg",
+                press_light_src: "../styles/logo/light/img11.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "한국경제 메인 뉴스 제목",
-                sub_news_title: [
-                    "한국경제 서브 뉴스 제목1",
-                    "한국경제 서브 뉴스 제목2",
-                    "한국경제 서브 뉴스 제목3",
-                    "한국경제 서브 뉴스 제목4",
-                    "한국경제 서브 뉴스 제목5",
+                main_news: {
+                    title: "한국경제 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "한국경제 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 12,
                 press: "NEWSIS",
+                press_dark_src: "../styles/logo/dark/img12.svg",
+                press_light_src: "../styles/logo/light/img12.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "NEWSIS 메인 뉴스 제목",
-                sub_news_title: [
-                    "NEWSIS 서브 뉴스 제목1",
-                    "NEWSIS 서브 뉴스 제목2",
-                    "NEWSIS 서브 뉴스 제목3",
-                    "NEWSIS 서브 뉴스 제목4",
-                    "NEWSIS 서브 뉴스 제목5",
+                main_news: {
+                    title: "NEWSIS 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "NEWSIS 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "NEWSIS 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "NEWSIS 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "NEWSIS 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "NEWSIS 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 13,
                 press: "동아일보",
+                press_dark_src: "../styles/logo/dark/img13.svg",
+                press_light_src: "../styles/logo/light/img13.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "동아일보 메인 뉴스 제목",
-                sub_news_title: [
-                    "동아일보 서브 뉴스 제목1",
-                    "동아일보 서브 뉴스 제목2",
-                    "동아일보 서브 뉴스 제목3",
-                    "동아일보 서브 뉴스 제목4",
-                    "동아일보 서브 뉴스 제목5",
+                main_news: {
+                    title: "동아일보 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "동아일보 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "동아일보 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "동아일보 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "동아일보 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "동아일보 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 14,
                 press: "KBS",
+                press_dark_src: "../styles/logo/dark/img14.svg",
+                press_light_src: "../styles/logo/light/img14.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "KBS 메인 뉴스 제목",
-                sub_news_title: [
-                    "KBS 서브 뉴스 제목1",
-                    "KBS 서브 뉴스 제목2",
-                    "KBS 서브 뉴스 제목3",
-                    "KBS 서브 뉴스 제목4",
-                    "KBS 서브 뉴스 제목5",
+                main_news: {
+                    title: "KBS 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "KBS 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "KBS 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "KBS 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "KBS 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "KBS 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 15,
                 press: "BLOTER",
+                press_dark_src: "../styles/logo/dark/img15.svg",
+                press_light_src: "../styles/logo/light/img15.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "BLOTER 메인 뉴스 제목",
-                sub_news_title: [
-                    "BLOTER 서브 뉴스 제목1",
-                    "BLOTER 서브 뉴스 제목2",
-                    "BLOTER 서브 뉴스 제목3",
-                    "BLOTER 서브 뉴스 제목4",
-                    "BLOTER 서브 뉴스 제목5",
+                main_news: {
+                    title: "BLOTER 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "BLOTER 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "BLOTER 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "BLOTER 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "BLOTER 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "BLOTER 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 16,
                 press: "한국경제TV",
+                press_dark_src: "../styles/logo/dark/img16.svg",
+                press_light_src: "../styles/logo/light/img16.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "한국경제TV 메인 뉴스 제목",
-                sub_news_title: [
-                    "한국경제TV 서브 뉴스 제목1",
-                    "한국경제TV 서브 뉴스 제목2",
-                    "한국경제TV 서브 뉴스 제목3",
-                    "한국경제TV 서브 뉴스 제목4",
-                    "한국경제TV 서브 뉴스 제목5",
+                main_news: {
+                    title: "한국경제TV 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "한국경제TV 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제TV 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제TV 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제TV 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "한국경제TV 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 17,
                 press: "전자신문",
+                press_dark_src: "../styles/logo/dark/img17.svg",
+                press_light_src: "../styles/logo/light/img17.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "전자신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "전자신문 서브 뉴스 제목1",
-                    "전자신문 서브 뉴스 제목2",
-                    "전자신문 서브 뉴스 제목3",
-                    "전자신문 서브 뉴스 제목4",
-                    "전자신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "전자신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "전자신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "전자신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "전자신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "전자신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "전자신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 18,
                 press: "스포츠조선",
+                press_dark_src: "../styles/logo/dark/img18.svg",
+                press_light_src: "../styles/logo/light/img18.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "스포츠조선 메인 뉴스 제목",
-                sub_news_title: [
-                    "스포츠조선 서브 뉴스 제목1",
-                    "스포츠조선 서브 뉴스 제목2",
-                    "스포츠조선 서브 뉴스 제목3",
-                    "스포츠조선 서브 뉴스 제목4",
-                    "스포츠조선 서브 뉴스 제목5",
+                main_news: {
+                    title: "스포츠조선 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "스포츠조선 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "스포츠조선 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "스포츠조선 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "스포츠조선 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "스포츠조선 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 19,
                 press: "서울신문",
+                press_dark_src: "../styles/logo/dark/img19.svg",
+                press_light_src: "../styles/logo/light/img19.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "서울신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "서울신문 서브 뉴스 제목1",
-                    "서울신문 서브 뉴스 제목2",
-                    "서울신문 서브 뉴스 제목3",
-                    "서울신문 서브 뉴스 제목4",
-                    "서울신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "서울신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "서울신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "서울신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "서울신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "서울신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "서울신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 20,
                 press: "중앙일보",
+                press_dark_src: "../styles/logo/dark/img20.svg",
+                press_light_src: "../styles/logo/light/img20.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "중앙일보 메인 뉴스 제목",
-                sub_news_title: [
-                    "중앙일보 서브 뉴스 제목1",
-                    "중앙일보 서브 뉴스 제목2",
-                    "중앙일보 서브 뉴스 제목3",
-                    "중앙일보 서브 뉴스 제목4",
-                    "중앙일보 서브 뉴스 제목5",
+                main_news: {
+                    title: "중앙일보 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "중앙일보 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "중앙일보 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "중앙일보 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "중앙일보 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "중앙일보 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -275,131 +696,341 @@ export const list_news_data = [
             {
                 press_id: 21,
                 press: "노컷뉴스",
+                press_dark_src: "../styles/logo/dark/img21.svg",
+                press_light_src: "../styles/logo/light/img21.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "노컷뉴스 메인 뉴스 제목",
-                sub_news_title: [
-                    "노컷뉴스 서브 뉴스 제목1",
-                    "노컷뉴스 서브 뉴스 제목2",
-                    "노컷뉴스 서브 뉴스 제목3",
-                    "노컷뉴스 서브 뉴스 제목4",
-                    "노컷뉴스 서브 뉴스 제목5",
+                main_news: {
+                    title: "노컷뉴스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "노컷뉴스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "노컷뉴스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "노컷뉴스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "노컷뉴스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "노컷뉴스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 22,
                 press: "프레시안",
+                press_dark_src: "../styles/logo/dark/img22.svg",
+                press_light_src: "../styles/logo/light/img22.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "프레시안 메인 뉴스 제목",
-                sub_news_title: [
-                    "프레시안 서브 뉴스 제목1",
-                    "프레시안 서브 뉴스 제목2",
-                    "프레시안 서브 뉴스 제목3",
-                    "프레시안 서브 뉴스 제목4",
-                    "프레시안 서브 뉴스 제목5",
+                main_news: {
+                    title: "프레시안 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "프레시안 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "프레시안 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "프레시안 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "프레시안 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "프레시안 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 23,
                 press: "sportalkorea",
+                press_dark_src: "../styles/logo/dark/img23.svg",
+                press_light_src: "../styles/logo/light/img23.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "sportalkorea 메인 뉴스 제목",
-                sub_news_title: [
-                    "sportalkorea 서브 뉴스 제목1",
-                    "sportalkorea 서브 뉴스 제목2",
-                    "sportalkorea 서브 뉴스 제목3",
-                    "sportalkorea 서브 뉴스 제목4",
-                    "sportalkorea 서브 뉴스 제목5",
+                main_news: {
+                    title: "sportalkorea 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "sportalkorea 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "sportalkorea 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "sportalkorea 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "sportalkorea 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "sportalkorea 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 24,
                 press: "한국일보",
+                press_dark_src: "../styles/logo/dark/img24.svg",
+                press_light_src: "../styles/logo/light/img24.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "한국일보 메인 뉴스 제목",
-                sub_news_title: [
-                    "한국일보 서브 뉴스 제목1",
-                    "한국일보 서브 뉴스 제목2",
-                    "한국일보 서브 뉴스 제목3",
-                    "한국일보 서브 뉴스 제목4",
-                    "한국일보 서브 뉴스 제목5",
+                main_news: {
+                    title: "한국일보 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "한국일보 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "한국일보 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "한국일보 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "한국일보 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "한국일보 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 25,
                 press: "여성경제신문",
+                press_dark_src: "../styles/logo/dark/img25.svg",
+                press_light_src: "../styles/logo/light/img25.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "여성경제신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "여성경제신문 서브 뉴스 제목1",
-                    "여성경제신문 서브 뉴스 제목2",
-                    "여성경제신문 서브 뉴스 제목3",
-                    "여성경제신문 서브 뉴스 제목4",
-                    "여성경제신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "여성경제신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "여성경제신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "여성경제신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "여성경제신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "여성경제신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "여성경제신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 26,
                 press: "IT조선",
+                press_dark_src: "../styles/logo/dark/img26.svg",
+                press_light_src: "../styles/logo/light/img26.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "IT조선 메인 뉴스 제목",
-                sub_news_title: [
-                    "IT조선 서브 뉴스 제목1",
-                    "IT조선 서브 뉴스 제목2",
-                    "IT조선 서브 뉴스 제목3",
-                    "IT조선 서브 뉴스 제목4",
-                    "IT조선 서브 뉴스 제목5",
+                main_news: {
+                    title: "IT조선 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "IT조선 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "IT조선 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "IT조선 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "IT조선 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "IT조선 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 27,
                 press: "철강금속신문",
+                press_dark_src: "../styles/logo/dark/img27.svg",
+                press_light_src: "../styles/logo/light/img27.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "철강금속신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "철강금속신문 서브 뉴스 제목1",
-                    "철강금속신문 서브 뉴스 제목2",
-                    "철강금속신문 서브 뉴스 제목3",
-                    "철강금속신문 서브 뉴스 제목4",
-                    "철강금속신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "철강금속신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "철강금속신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "철강금속신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "철강금속신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "철강금속신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "철강금속신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 28,
                 press: "정신의학신문",
+                press_dark_src: "../styles/logo/dark/img28.svg",
+                press_light_src: "../styles/logo/light/img28.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "정신의학신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "정신의학신문 서브 뉴스 제목1",
-                    "정신의학신문 서브 뉴스 제목2",
-                    "정신의학신문 서브 뉴스 제목3",
-                    "정신의학신문 서브 뉴스 제목4",
-                    "정신의학신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "정신의학신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "정신의학신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "정신의학신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "정신의학신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "정신의학신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "정신의학신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 29,
                 press: "뉴스포스트",
+                press_dark_src: "../styles/logo/dark/img29.svg",
+                press_light_src: "../styles/logo/light/img29.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "뉴스포스트 메인 뉴스 제목",
-                sub_news_title: [
-                    "뉴스포스트 서브 뉴스 제목1",
-                    "뉴스포스트 서브 뉴스 제목2",
-                    "뉴스포스트 서브 뉴스 제목3",
-                    "뉴스포스트 서브 뉴스 제목4",
-                    "뉴스포스트 서브 뉴스 제목5",
+                main_news: {
+                    title: "뉴스포스트 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "뉴스포스트 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스포스트 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스포스트 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스포스트 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스포스트 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 30,
                 press: "씨네21",
+                press_dark_src: "../styles/logo/dark/img30.svg",
+                press_light_src: "../styles/logo/light/img30.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "씨네21 메인 뉴스 제목",
-                sub_news_title: [
-                    "씨네21 서브 뉴스 제목1",
-                    "씨네21 서브 뉴스 제목2",
-                    "씨네21 서브 뉴스 제목3",
-                    "씨네21 서브 뉴스 제목4",
-                    "씨네21 서브 뉴스 제목5",
+                main_news: {
+                    title: "씨네21 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "씨네21 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "씨네21 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "씨네21 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "씨네21 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "씨네21 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -409,132 +1040,342 @@ export const list_news_data = [
         news: [
             {
                 press_id: 31,
-                press: "정책프리핑",
+                press: "정책브리핑",
+                press_dark_src: "../styles/logo/dark/img31.svg",
+                press_light_src: "../styles/logo/light/img31.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "정책프리핑 메인 뉴스 제목",
-                sub_news_title: [
-                    "정책프리핑 서브 뉴스 제목1",
-                    "정책프리핑 서브 뉴스 제목2",
-                    "정책프리핑 서브 뉴스 제목3",
-                    "정책프리핑 서브 뉴스 제목4",
-                    "정책프리핑 서브 뉴스 제목5",
+                main_news: {
+                    title: "정책브리핑 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "정책브리핑 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "정책브리핑 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "정책브리핑 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "정책브리핑 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "정책브리핑 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 32,
                 press: "텐아시아",
+                press_dark_src: "../styles/logo/dark/img32.svg",
+                press_light_src: "../styles/logo/light/img32.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "텐아시아 메인 뉴스 제목",
-                sub_news_title: [
-                    "텐아시아 서브 뉴스 제목1",
-                    "텐아시아 서브 뉴스 제목2",
-                    "텐아시아 서브 뉴스 제목3",
-                    "텐아시아 서브 뉴스 제목4",
-                    "텐아시아 서브 뉴스 제목5",
+                main_news: {
+                    title: "텐아시아 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "텐아시아 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "텐아시아 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "텐아시아 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "텐아시아 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "텐아시아 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 33,
                 press: "MK스포츠",
+                press_dark_src: "../styles/logo/dark/img33.svg",
+                press_light_src: "../styles/logo/light/img33.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "MK스포츠 메인 뉴스 제목",
-                sub_news_title: [
-                    "MK스포츠 서브 뉴스 제목1",
-                    "MK스포츠 서브 뉴스 제목2",
-                    "MK스포츠 서브 뉴스 제목3",
-                    "MK스포츠 서브 뉴스 제목4",
-                    "MK스포츠 서브 뉴스 제목5",
+                main_news: {
+                    title: "MK스포츠 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "MK스포츠 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "MK스포츠 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "MK스포츠 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "MK스포츠 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "MK스포츠 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 34,
                 press: "MONDE",
+                press_dark_src: "../styles/logo/dark/img34.svg",
+                press_light_src: "../styles/logo/light/img34.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "MONDE 메인 뉴스 제목",
-                sub_news_title: [
-                    "MONDE 서브 뉴스 제목1",
-                    "MONDE 서브 뉴스 제목2",
-                    "MONDE 서브 뉴스 제목3",
-                    "MONDE 서브 뉴스 제목4",
-                    "MONDE 서브 뉴스 제목5",
+                main_news: {
+                    title: "MONDE 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "MONDE 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "MONDE 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "MONDE 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "MONDE 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "MONDE 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 35,
                 press: "BBS NEWS",
+                press_dark_src: "../styles/logo/dark/img35.svg",
+                press_light_src: "../styles/logo/light/img35.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "BBS NEWS 메인 뉴스 제목",
-                sub_news_title: [
-                    "BBS NEWS 서브 뉴스 제목1",
-                    "BBS NEWS 서브 뉴스 제목2",
-                    "BBS NEWS 서브 뉴스 제목3",
-                    "BBS NEWS 서브 뉴스 제목4",
-                    "BBS NEWS 서브 뉴스 제목5",
+                main_news: {
+                    title: "BBS NEWS 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "BBS NEWS 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "BBS NEWS 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "BBS NEWS 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "BBS NEWS 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "BBS NEWS 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 36,
                 press: "티브이데일리",
+                press_dark_src: "../styles/logo/dark/img36.svg",
+                press_light_src: "../styles/logo/light/img36.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "티브이데일리 메인 뉴스 제목",
-                sub_news_title: [
-                    "티브이데일리 서브 뉴스 제목1",
-                    "티브이데일리 서브 뉴스 제목2",
-                    "티브이데일리 서브 뉴스 제목3",
-                    "티브이데일리 서브 뉴스 제목4",
-                    "티브이데일리 서브 뉴스 제목5",
+                main_news: {
+                    title: "티브이데일리 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "티브이데일리 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "티브이데일리 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "티브이데일리 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "티브이데일리 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "티브이데일리 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 37,
                 press: "TV Report",
+                press_dark_src: "../styles/logo/dark/img37.svg",
+                press_light_src: "../styles/logo/light/img37.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "TV Report 메인 뉴스 제목",
-                sub_news_title: [
-                    "TV Report 서브 뉴스 제목1",
-                    "TV Report 서브 뉴스 제목2",
-                    "TV Report 서브 뉴스 제목3",
-                    "TV Report 서브 뉴스 제목4",
-                    "TV Report 서브 뉴스 제목5",
+                main_news: {
+                    title: "TV Report 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "TV Report 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "TV Report 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "TV Report 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "TV Report 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "TV Report 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 38,
                 press: "Forbes",
+                press_dark_src: "../styles/logo/dark/img38.svg",
+                press_light_src: "../styles/logo/light/img38.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "Forbes 메인 뉴스 제목",
-                sub_news_title: [
-                    "Forbes 서브 뉴스 제목1",
-                    "Forbes 서브 뉴스 제목2",
-                    "Forbes 서브 뉴스 제목3",
-                    "Forbes 서브 뉴스 제목4",
-                    "Forbes 서브 뉴스 제목5",
+                main_news: {
+                    title: "Forbes 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "Forbes 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "Forbes 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "Forbes 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "Forbes 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "Forbes 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 39,
                 press: "주간경향",
+                press_dark_src: "../styles/logo/dark/img39.svg",
+                press_light_src: "../styles/logo/light/img39.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "주간경향 메인 뉴스 제목",
-                sub_news_title: [
-                    "주간경향 서브 뉴스 제목1",
-                    "주간경향 서브 뉴스 제목2",
-                    "주간경향 서브 뉴스 제목3",
-                    "주간경향 서브 뉴스 제목4",
-                    "주간경향 서브 뉴스 제목5",
+                main_news: {
+                    title: "주간경향 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "주간경향 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "주간경향 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "주간경향 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "주간경향 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "주간경향 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 40,
                 press: "비즈한국",
+                press_dark_src: "../styles/logo/dark/img40.svg",
+                press_light_src: "../styles/logo/light/img40.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "비즈한국 메인 뉴스 제목",
-                sub_news_title: [
-                    "비즈한국 서브 뉴스 제목1",
-                    "비즈한국 서브 뉴스 제목2",
-                    "비즈한국 서브 뉴스 제목3",
-                    "비즈한국 서브 뉴스 제목4",
-                    "비즈한국 서브 뉴스 제목5",
+                main_news: {
+                    title: "비즈한국 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "비즈한국 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "비즈한국 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "비즈한국 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "비즈한국 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "비즈한국 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -545,131 +1386,341 @@ export const list_news_data = [
             {
                 press_id: 41,
                 press: "metro",
+                press_dark_src: "../styles/logo/dark/img41.svg",
+                press_light_src: "../styles/logo/light/img41.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "metro 메인 뉴스 제목",
-                sub_news_title: [
-                    "metro 서브 뉴스 제목1",
-                    "metro 서브 뉴스 제목2",
-                    "metro 서브 뉴스 제목3",
-                    "metro 서브 뉴스 제목4",
-                    "metro 서브 뉴스 제목5",
+                main_news: {
+                    title: "metro 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "metro 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "metro 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "metro 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "metro 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "metro 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 42,
                 press: "JTBC",
+                press_dark_src: "../styles/logo/dark/img42.svg",
+                press_light_src: "../styles/logo/light/img42.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "JTBC 메인 뉴스 제목",
-                sub_news_title: [
-                    "JTBC 서브 뉴스 제목1",
-                    "JTBC 서브 뉴스 제목2",
-                    "JTBC 서브 뉴스 제목3",
-                    "JTBC 서브 뉴스 제목4",
-                    "JTBC 서브 뉴스 제목5",
+                main_news: {
+                    title: "JTBC 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "JTBC 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "JTBC 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "JTBC 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "JTBC 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "JTBC 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 43,
                 press: "조선Biz",
+                press_dark_src: "../styles/logo/dark/img43.svg",
+                press_light_src: "../styles/logo/light/img43.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "조선Biz 메인 뉴스 제목",
-                sub_news_title: [
-                    "조선Biz 서브 뉴스 제목1",
-                    "조선Biz 서브 뉴스 제목2",
-                    "조선Biz 서브 뉴스 제목3",
-                    "조선Biz 서브 뉴스 제목4",
-                    "조선Biz 서브 뉴스 제목5",
+                main_news: {
+                    title: "조선Biz 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "조선Biz 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "조선Biz 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "조선Biz 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "조선Biz 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "조선Biz 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 44,
                 press: "한겨레",
+                press_dark_src: "../styles/logo/dark/img44.svg",
+                press_light_src: "../styles/logo/light/img44.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "한겨레 메인 뉴스 제목",
-                sub_news_title: [
-                    "한겨레 서브 뉴스 제목1",
-                    "한겨레 서브 뉴스 제목2",
-                    "한겨레 서브 뉴스 제목3",
-                    "한겨레 서브 뉴스 제목4",
-                    "한겨레 서브 뉴스 제목5",
+                main_news: {
+                    title: "한겨레 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "한겨레 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "한겨레 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "한겨레 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "한겨레 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "한겨레 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 45,
                 press: "연합뉴스TV",
+                press_dark_src: "../styles/logo/dark/img45.svg",
+                press_light_src: "../styles/logo/light/img45.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "연합뉴스TV 메인 뉴스 제목",
-                sub_news_title: [
-                    "연합뉴스TV 서브 뉴스 제목1",
-                    "연합뉴스TV 서브 뉴스 제목2",
-                    "연합뉴스TV 서브 뉴스 제목3",
-                    "연합뉴스TV 서브 뉴스 제목4",
-                    "연합뉴스TV 서브 뉴스 제목5",
+                main_news: {
+                    title: "연합뉴스TV 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "연합뉴스TV 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "연합뉴스TV 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "연합뉴스TV 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "연합뉴스TV 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "연합뉴스TV 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 46,
                 press: "미디어오늘",
+                press_dark_src: "../styles/logo/dark/img46.svg",
+                press_light_src: "../styles/logo/light/img46.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "미디어오늘 메인 뉴스 제목",
-                sub_news_title: [
-                    "미디어오늘 서브 뉴스 제목1",
-                    "미디어오늘 서브 뉴스 제목2",
-                    "미디어오늘 서브 뉴스 제목3",
-                    "미디어오늘 서브 뉴스 제목4",
-                    "미디어오늘 서브 뉴스 제목5",
+                main_news: {
+                    title: "미디어오늘 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "미디어오늘 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "미디어오늘 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "미디어오늘 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "미디어오늘 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "미디어오늘 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 47,
                 press: "디지털타임스",
+                press_dark_src: "../styles/logo/dark/img47.svg",
+                press_light_src: "../styles/logo/light/img47.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "디지털타임스 메인 뉴스 제목",
-                sub_news_title: [
-                    "디지털타임스 서브 뉴스 제목1",
-                    "디지털타임스 서브 뉴스 제목2",
-                    "디지털타임스 서브 뉴스 제목3",
-                    "디지털타임스 서브 뉴스 제목4",
-                    "디지털타임스 서브 뉴스 제목5",
+                main_news: {
+                    title: "디지털타임스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "디지털타임스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "디지털타임스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "디지털타임스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "디지털타임스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "디지털타임스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 48,
                 press: "OSEN",
+                press_dark_src: "../styles/logo/dark/img48.svg",
+                press_light_src: "../styles/logo/light/img48.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "OSEN 메인 뉴스 제목",
-                sub_news_title: [
-                    "OSEN 서브 뉴스 제목1",
-                    "OSEN 서브 뉴스 제목2",
-                    "OSEN 서브 뉴스 제목3",
-                    "OSEN 서브 뉴스 제목4",
-                    "OSEN 서브 뉴스 제목5",
+                main_news: {
+                    title: "OSEN 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "OSEN 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "OSEN 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "OSEN 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "OSEN 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "OSEN 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 49,
                 press: "소년한국일보",
+                press_dark_src: "../styles/logo/dark/img49.svg",
+                press_light_src: "../styles/logo/light/img49.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "소년한국일보 메인 뉴스 제목",
-                sub_news_title: [
-                    "소년한국일보 서브 뉴스 제목1",
-                    "소년한국일보 서브 뉴스 제목2",
-                    "소년한국일보 서브 뉴스 제목3",
-                    "소년한국일보 서브 뉴스 제목4",
-                    "소년한국일보 서브 뉴스 제목5",
+                main_news: {
+                    title: "소년한국일보 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "소년한국일보 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "소년한국일보 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "소년한국일보 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "소년한국일보 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "소년한국일보 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 50,
                 press: "OBS",
+                press_dark_src: "../styles/logo/dark/img50.svg",
+                press_light_src: "../styles/logo/light/img50.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "OBS 메인 뉴스 제목",
-                sub_news_title: [
-                    "OBS 서브 뉴스 제목1",
-                    "OBS 서브 뉴스 제목2",
-                    "OBS 서브 뉴스 제목3",
-                    "OBS 서브 뉴스 제목4",
-                    "OBS 서브 뉴스 제목5",
+                main_news: {
+                    title: "OBS 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "OBS 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "OBS 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "OBS 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "OBS 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "OBS 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -680,131 +1731,341 @@ export const list_news_data = [
             {
                 press_id: 51,
                 press: "맥스무비",
+                press_dark_src: "../styles/logo/dark/img51.svg",
+                press_light_src: "../styles/logo/light/img51.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "맥스무비 메인 뉴스 제목",
-                sub_news_title: [
-                    "맥스무비 서브 뉴스 제목1",
-                    "맥스무비 서브 뉴스 제목2",
-                    "맥스무비 서브 뉴스 제목3",
-                    "맥스무비 서브 뉴스 제목4",
-                    "맥스무비 서브 뉴스 제목5",
+                main_news: {
+                    title: "맥스무비 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "맥스무비 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "맥스무비 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "맥스무비 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "맥스무비 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "맥스무비 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 52,
                 press: "엑스포츠뉴스",
+                press_dark_src: "../styles/logo/dark/img52.svg",
+                press_light_src: "../styles/logo/light/img52.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "엑스포츠뉴스 메인 뉴스 제목",
-                sub_news_title: [
-                    "엑스포츠뉴스 서브 뉴스 제목1",
-                    "엑스포츠뉴스 서브 뉴스 제목2",
-                    "엑스포츠뉴스 서브 뉴스 제목3",
-                    "엑스포츠뉴스 서브 뉴스 제목4",
-                    "엑스포츠뉴스 서브 뉴스 제목5",
+                main_news: {
+                    title: "엑스포츠뉴스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "엑스포츠뉴스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "엑스포츠뉴스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "엑스포츠뉴스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "엑스포츠뉴스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "엑스포츠뉴스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 53,
                 press: "서울파이낸스",
+                press_dark_src: "../styles/logo/dark/img53.svg",
+                press_light_src: "../styles/logo/light/img53.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "서울파이낸스 메인 뉴스 제목",
-                sub_news_title: [
-                    "서울파이낸스 서브 뉴스 제목1",
-                    "서울파이낸스 서브 뉴스 제목2",
-                    "서울파이낸스 서브 뉴스 제목3",
-                    "서울파이낸스 서브 뉴스 제목4",
-                    "서울파이낸스 서브 뉴스 제목5",
+                main_news: {
+                    title: "서울파이낸스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "서울파이낸스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "서울파이낸스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "서울파이낸스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "서울파이낸스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "서울파이낸스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 54,
                 press: "한국대학신문",
+                press_dark_src: "../styles/logo/dark/img54.svg",
+                press_light_src: "../styles/logo/light/img54.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "한국대학신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "한국대학신문 서브 뉴스 제목1",
-                    "한국대학신문 서브 뉴스 제목2",
-                    "한국대학신문 서브 뉴스 제목3",
-                    "한국대학신문 서브 뉴스 제목4",
-                    "한국대학신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "한국대학신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "한국대학신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "한국대학신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "한국대학신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "한국대학신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "한국대학신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 55,
                 press: "datanews",
+                press_dark_src: "../styles/logo/dark/img55.svg",
+                press_light_src: "../styles/logo/light/img55.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "datanews 메인 뉴스 제목",
-                sub_news_title: [
-                    "datanews 서브 뉴스 제목1",
-                    "datanews 서브 뉴스 제목2",
-                    "datanews 서브 뉴스 제목3",
-                    "datanews 서브 뉴스 제목4",
-                    "datanews 서브 뉴스 제목5",
+                main_news: {
+                    title: "datanews 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "datanews 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "datanews 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "datanews 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "datanews 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "datanews 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 56,
                 press: "DigitalToday",
+                press_dark_src: "../styles/logo/dark/img56.svg",
+                press_light_src: "../styles/logo/light/img56.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "DigitalToday 메인 뉴스 제목",
-                sub_news_title: [
-                    "DigitalToday 서브 뉴스 제목1",
-                    "DigitalToday 서브 뉴스 제목2",
-                    "DigitalToday 서브 뉴스 제목3",
-                    "DigitalToday 서브 뉴스 제목4",
-                    "DigitalToday 서브 뉴스 제목5",
+                main_news: {
+                    title: "DigitalToday 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "DigitalToday 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "DigitalToday 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "DigitalToday 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "DigitalToday 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "DigitalToday 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 57,
                 press: "시사위크",
+                press_dark_src: "../styles/logo/dark/img57.svg",
+                press_light_src: "../styles/logo/light/img57.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "시사위크 메인 뉴스 제목",
-                sub_news_title: [
-                    "시사위크 서브 뉴스 제목1",
-                    "시사위크 서브 뉴스 제목2",
-                    "시사위크 서브 뉴스 제목3",
-                    "시사위크 서브 뉴스 제목4",
-                    "시사위크 서브 뉴스 제목5",
+                main_news: {
+                    title: "시사위크 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "시사위크 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "시사위크 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "시사위크 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "시사위크 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "시사위크 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 58,
                 press: "YTN",
+                press_dark_src: "../styles/logo/dark/img58.svg",
+                press_light_src: "../styles/logo/light/img58.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "YTN 메인 뉴스 제목",
-                sub_news_title: [
-                    "YTN 서브 뉴스 제목1",
-                    "YTN 서브 뉴스 제목2",
-                    "YTN 서브 뉴스 제목3",
-                    "YTN 서브 뉴스 제목4",
-                    "YTN 서브 뉴스 제목5",
+                main_news: {
+                    title: "YTN 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "YTN 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "YTN 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 59,
                 press: "MBN",
+                press_dark_src: "../styles/logo/dark/img59.svg",
+                press_light_src: "../styles/logo/light/img59.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "MBN 메인 뉴스 제목",
-                sub_news_title: [
-                    "MBN 서브 뉴스 제목1",
-                    "MBN 서브 뉴스 제목2",
-                    "MBN 서브 뉴스 제목3",
-                    "MBN 서브 뉴스 제목4",
-                    "MBN 서브 뉴스 제목5",
+                main_news: {
+                    title: "MBN 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "MBN 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "MBN 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "MBN 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "MBN 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "MBN 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 60,
                 press: "매일경제",
+                press_dark_src: "../styles/logo/dark/img60.svg",
+                press_light_src: "../styles/logo/light/img60.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "매일경제 메인 뉴스 제목",
-                sub_news_title: [
-                    "매일경제 서브 뉴스 제목1",
-                    "매일경제 서브 뉴스 제목2",
-                    "매일경제 서브 뉴스 제목3",
-                    "매일경제 서브 뉴스 제목4",
-                    "매일경제 서브 뉴스 제목5",
+                main_news: {
+                    title: "매일경제 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "매일경제 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "매일경제 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "매일경제 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "매일경제 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "매일경제 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
@@ -815,131 +2076,340 @@ export const list_news_data = [
             {
                 press_id: 61,
                 press: "오마이뉴스",
+                press_dark_src: "../styles/logo/dark/img61.svg",
+                press_light_src: "../styles/logo/light/img61.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "오마이뉴스 메인 뉴스 제목",
-                sub_news_title: [
-                    "오마이뉴스 서브 뉴스 제목1",
-                    "오마이뉴스 서브 뉴스 제목2",
-                    "오마이뉴스 서브 뉴스 제목3",
-                    "오마이뉴스 서브 뉴스 제목4",
-                    "오마이뉴스 서브 뉴스 제목5",
+                main_news: {
+                    title: "오마이뉴스 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "오마이뉴스 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "오마이뉴스 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "오마이뉴스 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "오마이뉴스 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "오마이뉴스 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 62,
                 press: "SBS",
+                press_dark_src: "../styles/logo/dark/img62.svg",
+                press_light_src: "../styles/logo/light/img62.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "SBS 메인 뉴스 제목",
-                sub_news_title: [
-                    "SBS 서브 뉴스 제목1",
-                    "SBS 서브 뉴스 제목2",
-                    "SBS 서브 뉴스 제목3",
-                    "SBS 서브 뉴스 제목4",
-                    "SBS 서브 뉴스 제목5",
+                main_news: {
+                    title: "SBS 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "SBS 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "SBS 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "SBS 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "SBS 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "SBS 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 63,
                 press: "머니투데이",
+                press_dark_src: "../styles/logo/dark/img63.svg",
+                press_light_src: "../styles/logo/light/img63.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "머니투데이 메인 뉴스 제목",
-                sub_news_title: [
-                    "머니투데이 서브 뉴스 제목1",
-                    "머니투데이 서브 뉴스 제목2",
-                    "머니투데이 서브 뉴스 제목3",
-                    "머니투데이 서브 뉴스 제목4",
-                    "머니투데이 서브 뉴스 제목5",
+                main_news: {
+                    title: "머니투데이 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "머니투데이 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "머니투데이 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "머니투데이 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "머니투데이 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "머니투데이 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 64,
                 press: "마이데일리",
+                press_dark_src: "../styles/logo/dark/img64.svg",
+                press_light_src: "../styles/logo/light/img64.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "마이데일리 메인 뉴스 제목",
-                sub_news_title: [
-                    "마이데일리 서브 뉴스 제목1",
-                    "마이데일리 서브 뉴스 제목2",
-                    "마이데일리 서브 뉴스 제목3",
-                    "마이데일리 서브 뉴스 제목4",
-                    "마이데일리 서브 뉴스 제목5",
+                main_news: {
+                    title: "마이데일리 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "마이데일리 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "마이데일리 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "마이데일리 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "마이데일리 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "마이데일리 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 65,
                 press: "ZDNET Korea",
+                press_dark_src: "../styles/logo/dark/img65.svg",
+                press_light_src: "../styles/logo/light/img65.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "ZDNET Korea 메인 뉴스 제목",
-                sub_news_title: [
-                    "ZDNET Korea 서브 뉴스 제목1",
-                    "ZDNET Korea 서브 뉴스 제목2",
-                    "ZDNET Korea 서브 뉴스 제목3",
-                    "ZDNET Korea 서브 뉴스 제목4",
-                    "ZDNET Korea 서브 뉴스 제목5",
+                main_news: {
+                    title: "ZDNET Korea 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "ZDNET Korea 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "ZDNET Korea 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "ZDNET Korea 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "ZDNET Korea 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "ZDNET Korea 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 66,
                 press: "경향신문",
+                press_dark_src: "../styles/logo/dark/img66.svg",
+                press_light_src: "../styles/logo/light/img66.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "경향신문 메인 뉴스 제목",
-                sub_news_title: [
-                    "경향신문 서브 뉴스 제목1",
-                    "경향신문 서브 뉴스 제목2",
-                    "경향신문 서브 뉴스 제목3",
-                    "경향신문 서브 뉴스 제목4",
-                    "경향신문 서브 뉴스 제목5",
+                main_news: {
+                    title: "경향신문 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "경향신문 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "경향신문 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "경향신문 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "경향신문 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "경향신문 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 67,
                 press: "일간스포츠",
+                press_dark_src: "../styles/logo/dark/img67.svg",
+                press_light_src: "../styles/logo/light/img67.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "일간스포츠 메인 뉴스 제목",
-                sub_news_title: [
-                    "일간스포츠 서브 뉴스 제목1",
-                    "일간스포츠 서브 뉴스 제목2",
-                    "일간스포츠 서브 뉴스 제목3",
-                    "일간스포츠 서브 뉴스 제목4",
-                    "일간스포츠 서브 뉴스 제목5",
+                main_news: {
+                    title: "일간스포츠 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "일간스포츠 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "일간스포츠 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "일간스포츠 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "일간스포츠 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "일간스포츠 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 68,
                 press: "국민일보",
+                press_dark_src: "../styles/logo/dark/img68.svg",
+                press_light_src: "../styles/logo/light/img68.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "국민일보 메인 뉴스 제목",
-                sub_news_title: [
-                    "국민일보 서브 뉴스 제목1",
-                    "국민일보 서브 뉴스 제목2",
-                    "국민일보 서브 뉴스 제목3",
-                    "국민일보 서브 뉴스 제목4",
-                    "국민일보 서브 뉴스 제목5",
+                main_news: {
+                    title: "국민일보 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "국민일보 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "국민일보 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "국민일보 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "국민일보 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "국민일보 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 69,
                 press: "뉴데일리",
+                press_dark_src: "../styles/logo/dark/img69.svg",
+                press_light_src: "../styles/logo/light/img69.svg",
                 main_news_thu뉴데일리ail: "../styles/images/thubnail.jpeg",
-                main_news_title: "뉴데일리 메인 뉴스 제목",
-                sub_news_title: [
-                    "뉴데일리 서브 뉴스 제목1",
-                    "뉴데일리 서브 뉴스 제목2",
-                    "뉴데일리 서브 뉴스 제목3",
-                    "뉴데일리 서브 뉴스 제목4",
-                    "뉴데일리 서브 뉴스 제목5",
+                main_news: {
+                    title: "뉴데일리 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "뉴데일리 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴데일리 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴데일리 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴데일리 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴데일리 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
             {
                 press_id: 70,
                 press: "뉴스타파",
+                press_dark_src: "../styles/logo/dark/img70.svg",
+                press_light_src: "../styles/logo/light/img70.svg",
+                edit_date: "2023.02.10. 18:27 편집",
                 main_news_thumbnail: "../styles/images/thubnail.jpeg",
-                main_news_title: "뉴스타파 메인 뉴스 제목",
-                sub_news_title: [
-                    "뉴스타파 서브 뉴스 제목1",
-                    "뉴스타파 서브 뉴스 제목2",
-                    "뉴스타파 서브 뉴스 제목3",
-                    "뉴스타파 서브 뉴스 제목4",
-                    "뉴스타파 서브 뉴스 제목5",
+                main_news: {
+                    title: "뉴스타파 메인 뉴스 제목",
+                    url: "#",
+                },
+                sub_news: [
+                    {
+                        title: "뉴스타파 서브 뉴스 제목1",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스타파 서브 뉴스 제목2",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스타파 서브 뉴스 제목3",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스타파 서브 뉴스 제목4",
+                        url: "#",
+                    },
+                    {
+                        title: "뉴스타파 서브 뉴스 제목5",
+                        url: "#",
+                    },
                 ],
             },
         ],
