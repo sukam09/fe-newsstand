@@ -170,9 +170,9 @@ for (let i = 0; i < 96; i += 7) {
     console.log(`"main_title": "${main_title[(i + j) % 8]}",`);
     console.log(`"main_img_src": "./img/${i + j + 1}.png",`);
     console.log(
-      `"sub_title": ["${sub_title[(i % 7) * 6]}", "${sub_title[(i % 7) * 6 + 1]}", "${sub_title[(i % 7) * 6 + 2]}", "${sub_title[(i % 7) * 6 + 3]}", "${sub_title[(i % 7) * 6 + 4]}", "${
-        sub_title[(i % 7) * 6 + 5]
-      }", "${sub_title[(i % 7) * 6 + 6]}"],`
+      `"sub_title": ["${sub_title[(i + j) % 36]}", "${sub_title[((i + j) % 36) + 1]}", "${sub_title[((i + j) % 36) + 2]}", "${sub_title[((i + j) % 36) + 3]}", "${sub_title[((i + j) % 36) + 4]}", "${
+        sub_title[((i + j) % 36) + 5]
+      }", "${sub_title[((i + j) % 36) + 6]}"],`
     );
     console.log(`"is_subscribe": "false"`);
     console.log(`},`);
