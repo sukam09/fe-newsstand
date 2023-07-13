@@ -29,12 +29,15 @@
   height: 24px;
 }
 
-.view-type__option--list {
+.view-type__option[data-option="list"] {
   background-image: url("/public/asset/icon/list-view.svg");
 }
 
-.view-type__option--grid {
+.view-type__option[data-option="grid"] {
   background-image: url("/public/asset/icon/grid-view.svg");
+}
+
+.view-type__option.active {
   filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)
     brightness(83%) contrast(97%);
 }

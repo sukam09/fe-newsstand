@@ -40,8 +40,6 @@
 .move-page__btn {
   position: absolute;
   top: 50%;
-
-  transform: translateY(-50%);
 }
 
 .move-page__btn:disabled {
@@ -50,12 +48,12 @@
 
 .move-page__btn[data-dir="prev"] {
   left: -3rem;
-  transform: translateX(-100%);
+  transform: translate(-100%, -50%);
 }
 
 .move-page__btn[data-dir="next"] {
   right: -3rem;
-  transform: translateX(100%);
+  transform: translate(100%, -50%);
 }
 
 .subscribe__btn {
@@ -71,4 +69,15 @@
   color: var(--color-text-weak);
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
+}
+
+.view {
+  margin-top: 1.5rem;
+  height: 388px;
+}
+
+.grid-view,
+.list-view {
+  margin-top: 1.5rem;
+  height: 388px;
 }

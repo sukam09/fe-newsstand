@@ -59,14 +59,15 @@
               </button>
             </div>
             <div class="view-type">
-              <button class="view-type__option--list">
-                <span class="screen-reader-only">기사 보기</span>
+              <button class="view-type__option" data-option="list">
+                <span class="screen-reader-only">리스트 보기</span>
               </button>
-              <button class="view-type__option--grid">
-                <span class="screen-reader-only">언론사 보기</span>
+              <button class="view-type__option" data-option="grid">
+                <span class="screen-reader-only">그리드 보기</span>
               </button>
             </div>
           </nav>
+
           <div class="page__container">
             <button class="prev-page-btn move-page__btn" data-dir="prev">
               <span class="screen-reader-only">이전 페이지</span>
@@ -83,14 +84,16 @@
               />
             </button>
 
-            <!-- Grid view -->
-            <div class="grid__container">
-              <ul class="company-list"></ul>
-            </div>
+            <main class="view">
+              <!-- Grid view -->
+              <div class="grid-view">
+                <ul class="company-list"></ul>
+              </div>
 
-            <!-- List view -->
-            <div class="list__container">
-              <nav class="list__nav">
+              <!-- List view -->
+              <div class="list-view">
+                <!-- <div class="list__container"> -->
+                <!-- <nav class="list__nav">
                 <div>종합/경제</div>
                 <div>정치</div>
                 <div>사회</div>
@@ -114,8 +117,10 @@
                     <ul class="sub-articles__list"></ul>
                   </div>
                 </div>
+              </div> -->
+                <!-- </div> -->
               </div>
-            </div>
+            </main>
           </div>
         </section>
       </div>

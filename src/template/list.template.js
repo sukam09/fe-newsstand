@@ -1,18 +1,10 @@
-import { html } from "../lib/html";
-/**
- * HTML 형태 Template Literal을 입력받아 List View Template Literal을 return 합니다.
- * @param { HTMLString } page
- * @returns { HTMLString }
- */
-export const ListTemplate = (page) => html `
-  <div class="list-view">${page}</div>
-`;
+import { html } from "../lib/html.js";
 /**
  * Company Data를 입력받아 List Page Template Literal을 return 합니다.
  * @param { Company } data
  * @returns { HTMLString }
  */
-export const ListPageTemplate = (data) => html `
+export const ListTemplate = (data) => html `
     <div class="list-page__nav">
       <a href="${data.url}">
         <img
