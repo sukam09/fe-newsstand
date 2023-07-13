@@ -1,5 +1,6 @@
 let pageNum = 0;
 let currentArticle = 0;
+let currentCategory = 0;
 
 /**
  * 언론사 불러오기
@@ -46,20 +47,31 @@ const setPressArrowElement = (initCategoryArticleList) => {
   const arrowRight = document.querySelector('.arrows__wrapper-list .arrows__img-right');
 
   arrowRight.addEventListener('click', () => {
-    const removeLi = document.querySelector('.progress-start');
-    const addDiv = removeLi.querySelector('.press-category__div');
-    const removeDiv = li.querySelector('.press-category__div');
+    currentCategory += 1;
+    const currentLi = document.querySelector('.progress-start');
+    const nextLi = currentLi.nextElementSibling;
 
-    removeLi.classList.remove('progress-start');
-    addDiv.classList.add('display-none');
-    li.classList.add('progress-start');
-    removeDiv.classList.remove('display-none');
+    currentLi.classList.remove('progress-start');
+    nextLi.classList.add('progress-start');
+    currentLi.querySelector('.press-category__div').classList.add('display-none');
+    nextLi.querySelector('.press-category__div').classList.remove('display-none');
+
+    ///
+    const sectionMain = document.querySelector('.press-category__section-main');
+    sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[currentCategory].logoSrc;
+    sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[currentCategory].editTime;
+    sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[currentCategory].imgSrc;
+    sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[currentCategory].mainTitle;
+
+    const sectionSub = document.querySelector('.press-category__section-sub');
+    const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
+    sectionSub.querySelector('.section-sub__footer-press').innerText = initCategoryArticleList[currentCategory].name;
+
+    sectionSubList.forEach((sub, subIdx) => {
+      sub.href = initCategoryArticleList[currentCategory].subTitleList[subIdx].link;
+      sub.innerText = initCategoryArticleList[currentCategory].subTitleList[subIdx].title;
+    });
   });
-
-  const initLi = document.querySelector('.press-category__ul');
-  initLi.firstElementChild.classList.add('progress-start');
-  const initDiv = initLi.querySelector('.press-category__div');
-  initDiv.classList.remove('display-none');
 };
 
 /**
@@ -75,7 +87,7 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
     interval = setInterval(() => {
       const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
       setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-    }, 22000);
+    }, 20000);
   });
 
   imgGrid.addEventListener('click', () => {
@@ -97,7 +109,7 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
       interval = setInterval(() => {
         const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
         setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-      }, 22000);
+      }, 20000);
       currentArticle = 0;
     });
   });
@@ -126,6 +138,7 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
 
   if (currentArticle + 1 > categoryArticleList.length) {
     currentArticle = 0;
+    currentCategory += 1;
 
     const removeLi = document.querySelector('.progress-start');
     const addDiv = removeLi.querySelector('.press-category__div');
@@ -300,7 +313,7 @@ const setPressCategoryNav = (categoryData, shufflePressList) => {
   setProgressBar(categoryData);
   const initCategoryArticleList = getPressCategoryArticleInit(categoryData, shufflePressList);
   setPressCategoryArticleInit(initCategoryArticleList);
-  // setPressArrowElement(initCategoryArticleList);
+  setPressArrowElement(initCategoryArticleList);
 };
 
 /**
