@@ -28,14 +28,23 @@ export default function PressListView({ $target, initialState }) {
     this.setState({ ...this.state, index: newIndex });
   };
 
-  $section.innerHTML = `
+  const initFieldTab = () => {
+    $section.innerHTML = `
     <nav class="field-tab">
       ${categories.map(category => `<a class="text-button">${category}</a>`).join('')}
     </nav>
   `;
 
+    const $textButtons = $section.querySelectorAll('.text-button');
+    Array.from($textButtons).forEach(($textButton, index) => {
+      $textButton.addEventListener('click', () => handleClickTextButton(index));
+    });
+  };
+
+  initFieldTab();
+
   this.render = () => {
-    $article.innerHTML += `
+    $article.innerHTML = `
       <div class="press-info">
         <div class="press-name">
           <img class="press-image"/>
@@ -74,14 +83,11 @@ export default function PressListView({ $target, initialState }) {
 
     const $pressImage = $article.querySelector('.press-image');
     const $thumbnail = $article.querySelector('.thumbnail');
-    const $textButtons = $article.querySelectorAll('.text-button');
 
     $pressImage.src = '../asset/logos/press1.png';
     $thumbnail.src = '../asset/icons/thumbnail.png';
 
-    Array.from($textButtons).forEach(($textButton, index) => {
-      $textButton.addEventListener('click', () => handleClickTextButton(index));
-    });
+    console.log('rendered!!!');
   };
 
   this.render();
