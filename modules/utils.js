@@ -1,4 +1,7 @@
 import { IMAGE } from "../constant.js";
+import { STATE } from "../state.js";
+import { setArrowVisible } from "./grid.js";
+// import { viewMode } from "../index.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -32,7 +35,6 @@ const setDate = () => {
   $p.innerText = today.toLocaleDateString("ko-KR", options);
   $systemDate.append($p);
 };
-const subscribed = Array.from({ length: 27 }, (_, idx) => idx + 1);
 
 /**
  * 로고를 클릭하면 새로고침
@@ -60,6 +62,9 @@ const moveGridView = () => {
 
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
+
+  STATE.IS_GRID = true;
+  setArrowVisible();
 };
 
 const moveListView = () => {
@@ -68,6 +73,14 @@ const moveListView = () => {
 
   $listView.classList.remove("hidden");
   $gridView.classList.add("hidden");
+
+  const $leftArrow = document.querySelector(".left-arrow");
+  const $rightArrow = document.querySelector(".right-arrow");
+
+  $leftArrow.classList.remove("hidden");
+  $rightArrow.classList.remove("hidden");
+
+  STATE.IS_GRID = false;
 };
 
 export { shuffleList, setDate, setReload, setViewEvent };

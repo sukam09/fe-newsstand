@@ -1,5 +1,6 @@
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
+import { STATE } from "../state.js";
 
 let mediaInfo;
 let categoryInfo = {
@@ -13,18 +14,86 @@ let categoryInfo = {
 };
 
 const $categoryBar = document.querySelector(".news-list_category");
+const categoryKeys = Object.keys(categoryInfo);
+
+let [cateIdx, mediaIdx] = [0, 0];
+
+/**
+ * 리스트뷰 렌더링 전 데이터 가져오기
+ */
+const getListInfo = async () => {
+  mediaInfo = await getJSON("/assets/media-content.json");
+
+  // 미디어 정보 필터링해서 카테고리 정보에 넣기
+  mediaInfo.forEach((media, idx) => {
+    let cate = media.category;
+    categoryInfo[cate].push(idx);
+  });
+
+  categoryKeys.forEach((key) => {
+    categoryInfo[key] = shuffleList(categoryInfo[key]);
+  });
+};
+
+const setListArrowEvent = () => {
+  // 화살표 클릭 이벤트 추가
+  const $leftArrow = document.querySelector(".left-arrow");
+  const $rightArrow = document.querySelector(".right-arrow");
+
+  $leftArrow.addEventListener("click", () => {
+    if (!STATE.IS_GRID) {
+      mediaIdx--;
+      setFullList();
+    }
+  });
+  $rightArrow.addEventListener("click", () => {
+    if (!STATE.IS_GRID) {
+      mediaIdx++;
+      setFullList();
+    }
+  });
+};
+
+/**
+ * cateIdx, mediaIdx 변경 시 범위 벗어나는 idx 예외처리
+ *
+ * 1. 이전 페이지 이동했을 때
+ * 1-1. cate: -1, media: -1
+ * 1-2. cate: 0~6: media: -1
+ *
+ * 2. 다음 페이지 이동했을 때
+ * 2-1. cate: 0~5, media: length
+ * 2-2. cate: 6, media: length
+ */
+const changeIdx = () => {
+  let cateLen = categoryInfo[categoryKeys[cateIdx]].length;
+
+  if (cateIdx === 0 && mediaIdx <= -1) {
+    cateIdx = 6;
+    mediaIdx = cateLen - 1;
+  } else if (cateIdx > 0 && cateIdx <= 6 && mediaIdx === -1) {
+    cateIdx--;
+    mediaIdx = cateLen - 1;
+  } else if (cateIdx >= 0 && cateIdx <= 5 && mediaIdx === cateLen) {
+    cateIdx++;
+    mediaIdx = 0;
+  } else if (cateIdx === 6 && mediaIdx === cateLen) {
+    cateIdx = 0;
+    mediaIdx = 0;
+  }
+};
 
 /**
  * 모든 카테고리를 unselected 상태로 세팅
  */
 const setCategoryBar = () => {
-  Object.keys(categoryInfo).forEach((key, cateIdx) => {
+  categoryKeys.forEach((key, idx) => {
     let cateHTML;
-    // 카테고리 이름 넣는 건 디폴트
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
-      setProgressBar(cateIdx, 0);
-      setListView(cateIdx, 0);
+      cateIdx = idx;
+      mediaIdx = 0;
+      setFullList();
     });
     $li.classList.add("category_unselected");
     cateHTML = `
@@ -41,9 +110,8 @@ const setCategoryBar = () => {
  * @param cateIdx 현재 카테고리 순서
  * @param mediaIdx 현재 카테고리 리스트 내 미디어 순서
  */
-const setProgressBar = (cateIdx, mediaIdx) => {
-  const cate = Object.keys(categoryInfo)[cateIdx];
-
+const setProgressBar = () => {
+  const cate = categoryKeys[cateIdx];
   const $cateList = document
     .querySelector(".news-list_category")
     .querySelectorAll("li");
@@ -73,19 +141,10 @@ const setProgressBar = (cateIdx, mediaIdx) => {
 
   $li.append($progressBar);
 
-  if (mediaIdx + 1 === categoryInfo[cate].length) {
-    // 해당 카테고리의 마지막 페이지일 때
-    $progressBar.addEventListener("animationend", () => {
-      setListView((cateIdx + 1) % 7, 0);
-      setProgressBar((cateIdx + 1) % 7, 0);
-    });
-  } else {
-    // 해당 카테고리 내에서 다음 페이지로 이동할 때
-    $progressBar.addEventListener("animationend", () => {
-      setListView(cateIdx, mediaIdx + 1);
-      setProgressBar(cateIdx, mediaIdx + 1);
-    });
-  }
+  $progressBar.addEventListener("animationend", () => {
+    mediaIdx++;
+    setFullList();
+  });
 };
 
 /**
@@ -93,8 +152,8 @@ const setProgressBar = (cateIdx, mediaIdx) => {
  * @param cateIdx 현재 카테고리 순서
  * @param mediaIdx 현재 카테고리 리스트 내 미디어 순서
  */
-const setListView = (cateIdx, mediaIdx) => {
-  const cate = Object.keys(categoryInfo)[cateIdx];
+const setListView = () => {
+  const cate = categoryKeys[cateIdx];
   const mediaId = categoryInfo[cate][mediaIdx];
 
   const nowMedia = mediaInfo[mediaId];
@@ -127,28 +186,17 @@ const setListView = (cateIdx, mediaIdx) => {
   });
 };
 
-/**
- * 리스트뷰 렌더링 전 데이터 가져오기
- */
-const getListInfo = async () => {
-  mediaInfo = await getJSON("/assets/media-content.json");
-
-  // 미디어 정보 필터링해서 카테고리 정보에 넣기
-  mediaInfo.forEach((media, idx) => {
-    let cate = media.category;
-    categoryInfo[cate].push(idx);
-  });
-
-  Object.keys(categoryInfo).forEach((key, idx) => {
-    categoryInfo[key] = shuffleList(categoryInfo[key]);
-  });
+const setFullList = () => {
+  changeIdx();
+  setListView();
+  setProgressBar();
 };
 
 async function initListView() {
   await getListInfo();
   setCategoryBar();
-  setListView(0, 0);
-  setProgressBar(0, 0);
+  setFullList();
+  setListArrowEvent();
 }
 
 export { initListView };
