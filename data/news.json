@@ -1,0 +1,117 @@
+{
+  "News": [
+    {
+      "id": 1,
+      "title": "또 국민연금의 몽니…현대百 지주사 불발",
+      "url": "http://example.com/news/1",
+      "press": "서울경제",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "종합/경제"
+    },
+    {
+      "id": 2,
+      "title": "위스키 사려고 이틀 전부터 줄 섰어요",
+      "url": "http://example.com/news/2",
+      "press": "서울경제",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 3,
+      "title": "'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까",
+      "url": "http://example.com/news/3",
+      "press": "서울경제",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 4,
+      "title": "사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다",
+      "url": "http://example.com/news/4",
+      "press": "서울경제",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 5,
+      "title": "[단독] 원희룡 \"해외건설 근로자 소득공제 월 500만원으로 상향할 것\"",
+      "url": "http://example.com/news/5",
+      "press": "서울경제",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 6,
+      "title": "태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]",
+      "url": "http://example.com/news/6",
+      "press": "서울경제",
+      "thumbnail": "",
+      "category": "종합/경제"
+    },
+    {
+      "id": 7,
+      "title": "LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”",
+      "url": "http://example.com/news/7",
+      "press": "서울경제",
+
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "종합/경제"
+    },
+    {
+      "id": 8,
+      "title": "봇물처럼 터지는 공공요금 인상…꼭 지금이어야 하나",
+      "url": "http://example.com/news/8",
+      "press": "SBS Biz",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "방송/통신"
+    },
+    {
+      "id": 9,
+      "title": "[단독] 美복권 키오스크 \"불법\"인데…정부 방치에 '우후죽순'",
+      "url": "http://example.com/news/9",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    },
+    {
+      "id": 10,
+      "title": "서울 버스·지하철도 4월부터 '쑥'…\"인상 철회\" 촉구",
+      "url": "http://example.com/news/10",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    },
+    {
+      "id": 11,
+      "title": "SM 인수 카카오, 하이브 등장에 '닭 쫒던 개'",
+      "url": "http://example.com/news/11",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    },
+    {
+      "id": 12,
+      "title": "이자 선택권 생기는 보험계약대출…득실 따져봤습니다",
+      "url": "http://example.com/news/12",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    },
+    {
+      "id": 13,
+      "title": "[단독] 中 판매 부진 못 견딘 현대차…창저우 공장 철수 검토",
+      "url": "http://example.com/news/13",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    },
+    {
+      "id": 14,
+      "title": "'쪼개기 후원' KT 2심도 벌금…구현모 연임 '빨간불'",
+      "url": "http://example.com/news/14",
+      "press": "SBS Biz",
+      "thumbnail": "",
+      "category": "방송/통신"
+    }
+  ]
+}
