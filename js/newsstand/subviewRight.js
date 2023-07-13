@@ -1,5 +1,5 @@
 import { shuffle } from "../utils/util.js";
-import { fetchHeadline } from "../fetchAPI.js";
+import { getHeadline } from "../fetchAPI.js";
 import {
   makeRightCorpViewTag,
   makeRightTitleViewTag,
@@ -61,7 +61,7 @@ export function paintSubViewRight() {
 }
 
 async function makeHeadlineData() {
-  const data = await fetchHeadline("./data/headline.json");
+  const data = await getHeadline("./data/headline.json");
   return shuffle(data.slice(data.length / 2, data.length));
 }
 

@@ -1,8 +1,8 @@
 import { shuffle } from "../utils/util.js";
-import { pressData } from "../fetchAPI.js";
+import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 
-let logoData = await pressData("./data/pressObj.json");
+let logoData = await getPressData("./data/pressObj.json");
 
 // 그리드 버튼 태그 생성.
 makeButtonTag(".newsstand--grid-navigation-btn", "btn-disabled");

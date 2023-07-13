@@ -43,7 +43,14 @@
 .newsstand__current-view {
   display: flex;
   align-items: center;
+  /* background-color: aliceblue; */
 }
+
+.title-image {
+  width: 320px;
+  height: 200px;
+}
+
 .newsstand__current-edit {
   font-size: 12px;
   margin: 0 16px;
@@ -71,6 +78,7 @@
 }
 
 .newsstand--subtitle {
+  width: 320px;
   margin-top: 16px;
   height: 44px;
 }

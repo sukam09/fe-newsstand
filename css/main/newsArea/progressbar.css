@@ -1,6 +1,6 @@
 .newsstand__progress {
   height: 40px;
-  animation: progress 1s;
+  animation: progress 20s;
   background-color: blue;
 }
 .newsstand__progress-category {
