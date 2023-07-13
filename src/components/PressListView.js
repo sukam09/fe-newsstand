@@ -25,7 +25,7 @@ export default function PressListView({ $target, initialState }) {
   const initFieldTab = () => {
     $section.innerHTML = `
       <nav class="field-tab">
-        ${categories.map(category => `<a class="text-button">${category}</a>`).join('')}
+        ${categories.map(category => `<button class="text-button">${category}</button>`).join('')}
       </nav>
     `;
 

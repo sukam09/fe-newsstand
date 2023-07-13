@@ -310,6 +310,8 @@ header {
 .text-button {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 40px;
   padding: 0px 16px;
   gap: 8px;
   color: var(--text-text-weak, #879298);
@@ -324,7 +326,13 @@ header {
 .text-button-selected {
   width: 166px;
   height: 40px;
+  align-items: center;
   line-height: 40px;
+  /* background-color: #4362d0; */
+  background-color: #7890e7;
+  color: #ffffff;
+}
+
   background-color: #4362d0;
   color: #ffffff;
 }
