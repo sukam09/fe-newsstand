@@ -300,4 +300,86 @@
   }
   ```
 
+</br>
+
+- ## 리스트 좌우 버튼 이동 기능 구현
+
+  리스트 버튼을 각각 `$(".left_list_button")`와 같이 querySelector을 통해 값을 찾은 후 클릭 이벤트 함수를 지정하여 리스트뷰의 내용을 변경하도록 구현하였습니다.
+
+  ```javascript
+  leftListButton.addEventListener("click", () => {
+    listArrowButtonClicked(-1);
+  });
+  rightListButton.addEventListener("click", () => {
+    listArrowButtonClicked(1);
+  });
+  ```
+
+  좌우간에 리스트 페이지의 변화가 카테고리에도 적용되야하므로 프로그레스 바의 애니메이션 타이밍도 재조정이 필요했는데, `offsetWidth`를 사용하여 프로그레스 애니메이션과 interval을 refresh 해주도록 구현하였습니다.
+
+  ```javascript
+  export function listArrowButtonClicked(increment) {
+    if (NOW_LIST_PAGE.getValue() + increment === 0) {
+      NOW_CATEGORY_IDX.incrementValue(-1);
+      NOW_LIST_PAGE.setValue(
+        categoryList[NOW_CATEGORY_IDX.getValue()].data.length
+      );
+    } else {
+      NOW_LIST_PAGE.incrementValue(increment);
+    }
+    const clickedCategory = $(".category_list--clicked");
+    clickedCategory.children[2].classList.remove("progressbar");
+    clickedCategory.offsetWidth;
+    clickedCategory.children[2].classList.add("progressbar");
+    refreshInterval();
+    updateListButton();
+  }
+  ```
+
+  처음에는 프로그레스바를 삭제한 후 다시 추가하는 방식으로 애니메이션을 초기화해주고 싶었지만 </br>
+  변화가 없어 검색을 해보니 브라우저는 아래의 순서로 렌더링을 진행하기 때문에 그렇다고 합니다.</br>
+
+  > 1.  클래스가 존재하면 지운다</br>
+  > 2.  브라우저는 변화를 감지하지만 바로 적용하지 않고 일단 넘어간다.</br>
+  > 3.  클래스 다시 추가한다.</br>
+  > 4.  모든 로직이 종료되고 보니 아무런 변화가 없다. 브라우저는 변화가 없으므로 렌더링을 하지 않는다.</br>
+
+  이를 해결하기 위해 중간에 `offsetWidth`를 요청하면 강제로 브라우저가 계산하게 되어 로직이 바로 적용되는 원리입니다.
+
+</br>
+
+- ## 리스트 키보드 방향키를 통한 이동 기능 구현
+
+  리스트와 그리드뷰에 공통적으로 좌우 이동 버튼이 있고 이를 개발하면서 결과를 확인할때 일일히 클릭하며 확인하기가 번거로워 키보드의 방향키를 입력받아 이동하는 기능이 있으면 좋겠다고 생각하여 추가기능으로 넣게 되었습니다.
+
+  ```javascript
+  window.addEventListener("keydown", (e) => {
+    if (IS_GRID.getValue()) {
+      if (e.key === "ArrowRight" && NOW_GRID_PAGE.getValue() < 3) {
+        showGridPage(1);
+      } else if (e.key === "ArrowLeft" && NOW_GRID_PAGE.getValue() > 0) {
+        showGridPage(-1);
+      }
+    } else {
+      if (
+        e.key === "ArrowRight" &&
+        (NOW_CATEGORY_IDX.getValue() !== CATEGORY_TAB_NUM ||
+          NOW_LIST_PAGE.getValue() !==
+            categoryList[CATEGORY_TAB_NUM].data.length)
+      ) {
+        listArrowButtonClicked(1);
+      } else if (
+        e.key === "ArrowLeft" &&
+        (NOW_LIST_PAGE.getValue() - 1 > 0 || NOW_CATEGORY_IDX.getValue() !== 0)
+      ) {
+        listArrowButtonClicked(-1);
+      }
+    }
+  });
+  ```
+
+  `IS_GRID`라는 현재 뷰의 상태를 보여주는 전역변수를 반환하는 객체를 통해 현재 보여지는 뷰에 대한 이동만 적용되도록 나누어주고, 인덱스를 넘어가지 않게 if문으로 조건을 걸어주어 구현하였습니다.</br></br>
+
+  반환값인 `e`에서 `key`값을 통해 키보드의 버튼을 구분하는 것이 신기했고, 함수로 많이 구현하다 보니 함수를 재사용하여 금방 구현할 수 있어서, 다시 한 번 함수형 프로그래밍과 재사용성의 중요성을 알게되었습니다.
+
 ###
