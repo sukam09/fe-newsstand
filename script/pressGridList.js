@@ -16,11 +16,10 @@ async function shuffleImgs() {
     })
     
     const shuffledArray = [...imgId].sort(() => Math.random() - 0.5);
-    console.log(shuffledArray);
     shuffledArray.forEach((arr, idx) => {
         const pageIndex = Math.floor(idx / 24);
         page[pageIndex].push(arr);
-      });
+    });
 
     let imgSrcContent = "";
     page[0].forEach((elem)=> {
