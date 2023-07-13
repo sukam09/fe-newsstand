@@ -26,6 +26,10 @@ fe-newsstand
 │     ├─ d_news_logo1.svg
 │     ├─ ...
 │     └─ d_news_logo96.svg
+├─ img
+│  ├─ thumbnail1.jpg
+│  ├─ ...
+│  └─ thumbnail96.jpg
 ├─ module
 │  ├─ api.js
 │  ├─ app.js
@@ -39,10 +43,9 @@ fe-newsstand
 │  ├─ style.css
 │  ├─ typography.css
 │  └─ variable.css
-├─ index.html
 ├─ datagenerator.js
+├─ index.html
 └─ readme.md
-
 ```
 
 ## 2주차 To Do List
@@ -89,7 +92,7 @@ fe-newsstand
 - [x] 리스트 모드 데이터 JSON 파일 작성
 - [x] 리스트 모드 JSON 파일 fetch
 - [x] 리스트 모드 JSON 파일 main-title 수정
-- [ ] 뉴스 이미지 정리
+- [x] 뉴스 이미지 정리
 
 ### 7. 리스트 모드 언론사 내용 DOM 구현
 

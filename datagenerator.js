@@ -168,7 +168,7 @@ for (let i = 0; i < 96; i += 7) {
     console.log(`"category": "${category[j]}",`);
     console.log(`"edit_date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",`);
     console.log(`"main_title": "${main_title[(i + j) % 8]}",`);
-    console.log(`"main_img_src": "./img/${i + j + 1}.png",`);
+    console.log(`"main_img_src": "./img/thumbnail${i + j + 1}.jpg",`);
     console.log(
       `"sub_title": ["${sub_title[(i + j) % 36]}", "${sub_title[((i + j) % 36) + 1]}", "${sub_title[((i + j) % 36) + 2]}", "${sub_title[((i + j) % 36) + 3]}", "${sub_title[((i + j) % 36) + 4]}", "${
         sub_title[((i + j) % 36) + 5]
