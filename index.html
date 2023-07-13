@@ -10,30 +10,39 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
     />
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./global-style.css" />
   </head>
   <body>
     <header class="header">
       <div class="header-left">
         <img src="./asset/icons/newspaper.png" class="icon" />
-        <h1 class="header-title">뉴스스탠드</h1>
+        <h1 class="header-title display-bold24">뉴스스탠드</h1>
       </div>
-      <span class="header-right">2023.02.10 금요일</span>
+      <div class="header-right light-text-default display-medium16">
+        2023.02.10 금요일
+      </div>
     </header>
     <section class="rolling-section">
-      <div class="rolling-container">
-        <span>연합뉴스</span>
-        <span>[1보] 김기헌.안철수.천하람.황교안 전대 본경선 진출</span>
+      <div class="rolling-container light-border-default light-surface-alt">
+        <span class="display-bold14 light-text-strong">연합뉴스</span>
+        <span class="available-medium14 light-text-default"
+          >[1보] 김기헌.안철수.천하람.황교안 전대 본경선 진출</span
+        >
       </div>
-      <div class="rolling-container">
-        <span>연합뉴스</span
-        ><span>[속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼</span>
+      <div class="rolling-container light-surface-alt light-border-default">
+        <span class="display-bold14 light-text-strong">연합뉴스</span
+        ><span class="available-medium14 light-text-default"
+          >[속보] 최고위원 본경선, 김병민.김용태.김재원.민영삼</span
+        >
       </div>
     </section>
     <section class="grid-section">
       <div class="grid-section-nav">
         <div class="nav-left">
-          <span>전체 언론사</span>
-          <span>내가 구독한 언론사</span>
+          <span class="light-text-strong selected-bold16">전체 언론사</span>
+          <span class="light-text-weak available-medium16"
+            >내가 구독한 언론사</span
+          >
         </div>
         <div class="nav-right">
           <img src="./asset/icons/list-view.png" class="icon" />

@@ -1,3 +1,5 @@
+@import url("./global-style.css");
+
 *{
     box-sizing: border-box;
     font-family: "Pretendard";
@@ -12,7 +14,6 @@ body {
 .header {
     display:flex;
     width:930px;
-   
     margin:58px auto 0px;
     justify-content: space-between;
     align-items: center;
@@ -38,9 +39,8 @@ body {
     display:flex;
     align-items: center;
     padding:16px;
-    border: 1px solid gray
+    gap:16px;
 }
-
 .grid-section-nav {
     width:930px;
     margin:32px auto 0px;
@@ -49,6 +49,7 @@ body {
 }
 .nav-left {
     display:flex;
+    align-items: center;
     gap:24px;
 }
 .nav-right {
@@ -70,7 +71,7 @@ body {
     padding-inline-start:0px;
     gap:1px;
     padding:1px;
-    background-color: gray;
+    background-color: var(--grayscale-100);
     
 }
 .grid-box > li {
