@@ -3,6 +3,7 @@ import { store } from "../store/index.js";
 import { VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 import { nextCategory, prevCategory, setCategory } from "../store/reducer.js";
+import { resetProgress } from "./progress-bar.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
 const $listViewTabItems = $listViewTab.querySelectorAll("li");
@@ -99,5 +100,6 @@ export const renderListView = () => {
     activateCategory(currentCategory);
     showTabCount(currentPage, totalCnt);
     fillArticles(currentCategory, currentPage);
+    resetProgress();
   });
 };
