@@ -40,12 +40,10 @@ async function drawList(order, category) {
     CATEGORY.forEach((ctg) => {
       category_list +=
         category === ctg
-          ? `<li class="category selected"><div><span>${ctg}</span> <span class = "entire">${
+          ? `<li class="category selected"><div><span>${ctg}</span><span>${order}</span><span>/</span><span class = "entire">${
               getPressCount(category_news).length
             }</span></div></li>`
-          : `<li class="category"><div><span>${ctg}</span> <span class = "entire">${
-              getPressCount(category_news).length
-            }</span></div></li>`;
+          : `<li class="category"><div><span>${ctg}</span></div></li>`;
     });
 
     //뉴스 그리는 부분

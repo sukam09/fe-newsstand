@@ -295,6 +295,8 @@ a:hover {
 
 .main-news img {
   padding-bottom: 16px;
+  width: 320px;
+  height: 200px;
 }
 
 .thumbnail-title {
