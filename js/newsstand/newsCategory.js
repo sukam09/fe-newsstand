@@ -10,6 +10,7 @@ makeButtonTag(
   "right-list-button btn-disabled"
 );
 
+// 뉴스 데이터 가져오기
 const economyData = await getCategoryData("./data/category/economy.json");
 const broadCastData = await getCategoryData("./data/category/broadcast.json");
 const itData = await getCategoryData("./data/category/it.json");
@@ -48,7 +49,7 @@ const rightBtn = document.querySelector(".right-list-button");
 let currentPage = 0;
 
 export function paintNewsCategory() {
-  makeNewsList(0);
+  makeNewsList();
   // 사용자가 직접 카테고리를 클릭하면 움직이는 기능.
   categoryList.map((element, idx) => {
     element.addEventListener("click", (e) => {
@@ -60,7 +61,7 @@ export function paintNewsCategory() {
       addProgressAction(idx % 7);
 
       // 목록에 맞는 데이터 생성
-      makeNewsList(0);
+      makeNewsList();
     });
   });
 
@@ -76,7 +77,7 @@ export function paintNewsCategory() {
     addProgressAction(currentPage);
 
     // 목록에 맞는 데이터 생성
-    makeNewsList(0);
+    makeNewsList();
   });
   rightBtn.addEventListener("click", () => {
     currentPage += 1;
@@ -86,7 +87,7 @@ export function paintNewsCategory() {
     addProgressAction(currentPage);
 
     // 목록에 맞는 데이터 생성
-    makeNewsList(0);
+    makeNewsList();
   });
 }
 
@@ -132,7 +133,7 @@ function addProgressAction(currentPage) {
     ++currentPage;
     setChildIndexStatus(currentPage);
     addProgressAction(currentPage);
-    makeNewsList(0);
+    makeNewsList();
   });
 }
 
@@ -190,9 +191,9 @@ function makeMainNews(img, title) {
   newsMainContentParent.innerHTML += contentTitle;
 }
 
-function makeNewsList(idx) {
+// idx는 뉴스 콘텐츠의 순서를 의미함. 처음 시작할때는 무조건 0, 진행중일때는 값이 변경될 수 있음.
+function makeNewsList(page = 0) {
   const newsListParent = document.querySelector(".newsstand__list-right");
-  const page = idx;
 
   const data = categoryDataList[currentPage % CATEROY_NUMBER];
   const img = data[page].imgSrc;
