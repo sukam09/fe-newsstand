@@ -1,12 +1,17 @@
+import pressList from "./asset/logo/pressList.js";
+
 const gridContainer = document.querySelector(".grid-box");
 const dateContainer = document.querySelector(".header-right");
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 const header = document.querySelector(".header-left");
 const pressCover = document.querySelector(".press-cover");
+const subBtn = document.querySelector(".sub-btn");
+const unsubBtn = document.querySelector(".unsub-btn");
 
 let crntPage = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
+let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
 
 
 function shuffleArray(arr){
@@ -16,13 +21,23 @@ function shuffleArray(arr){
     }
     return arr;
 }
+
+function checkSubscription(item){
+    if (subscribedPress.includes(parseInt(item.getAttribute("index")))){
+        subBtn.classList.add("hide");
+        unsubBtn.classList.remove("hide");
+    } else {
+        subBtn.classList.remove("hide");
+        unsubBtn.classList.add("hide");
+    }
+}
 function listenPressHover(){
     const pressItems = document.querySelectorAll(".pressItem");
     pressItems.forEach((item)=>{
         item.addEventListener("mouseover",()=>{
+            checkSubscription(item);
             pressCover.classList.remove("hidden");
             item.appendChild(pressCover);
-            document.body.removeChild(pressCover);
         })
     })
 }
@@ -64,6 +79,7 @@ function drawPress(idx){
     for (let i=24*idx;i<24*(idx+1);i++){
         const pressElem = document.createElement("li");
         pressElem.classList.add("pressItem");
+        pressElem.setAttribute("index", shuffledArray[i+1])
         const pressLogo = document.createElement("img");
         pressLogo.src = `./asset/logo/light/img${shuffledArray[i+1]}.svg`
         pressElem.appendChild(pressLogo);

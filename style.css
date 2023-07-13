@@ -13,6 +13,12 @@ body {
 .hidden {
     visibility: hidden;
 }
+.hide {
+    display:none;
+}
+.btn:hover {
+    cursor:pointer;
+}
 .header {
     display:flex;
     width:930px;
@@ -99,9 +105,6 @@ body {
 .arrow-container {
     width:24px;
     height:40px;
-}
-.arrow-container:hover {
-    cursor:pointer;
 }
 .arrow-container > img {
     width:100%;
