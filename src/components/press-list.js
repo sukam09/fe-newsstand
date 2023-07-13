@@ -7,20 +7,14 @@ const setTotalPressList = (isLightMode) => {
   fetch('./assets/data/category-news.json')
     .then((response) => response.json())
     .then((data) => {
-      //
-
-      let shufflePress = getPressList(data);
-      setPressCategoryElement(); //
-
-      // setPressCategoryElement(data, shufflePress, isLightMode);ㄴ
-
-      //   makePressGrid(data, shufflePress, isLightMode);
-
+      const shufflePressList = getPressList(data); // 언론사 랜덤
+      setPressCategoryElement();
       setPressCategoryNav(data);
       setPressCategoryMain(data);
       setPressCategorySub(data);
 
-      //
+      // setPressCategoryElement(data, shufflePress, isLightMode);ㄴ
+      //   makePressGrid(data, shufflePress, isLightMode);
     })
     .catch((error) => {
       console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
@@ -72,6 +66,24 @@ const setPressCategoryMain = (categoryData) => {
   `;
 
   categoryMain.innerHTML = categoryMainElement;
+};
+
+/**
+ * 카테고리 별 랜덤 언론사 반환
+ */
+const shuffleList = (list) => {
+  list.sort(() => Math.random() - 0.5);
+};
+
+const getPressList = (categoryData) => {
+  const shfflePressList = [];
+  categoryData.forEach((data) => {
+    let shufflePress = Array.from({ length: data.categoryData.length }, (_, idx) => idx + 1);
+    shuffleList(shufflePress);
+    shfflePressList.push(shufflePress);
+  });
+
+  return shfflePressList;
 };
 
 /**
@@ -145,19 +157,5 @@ const setPressCategoryElement = () => {
 };
 
 // const setPressCategoryElement = () => {};
-
-////
-const shuffleList = (list) => {
-  list.sort(() => Math.random() - 0.5);
-};
-
-const getPressList = (pressData) => {
-  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
-  shuffleList(shufflePress);
-
-  return shufflePress;
-};
-
-///
 
 export { setTotalPressList };
