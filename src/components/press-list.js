@@ -18,6 +18,7 @@ const setTotalPressList = (isLightMode) => {
 
       setPressCategoryNav(data);
       setPressCategoryMain(data);
+      setPressCategorySub(data);
 
       //
     })
@@ -27,7 +28,31 @@ const setTotalPressList = (isLightMode) => {
 };
 
 /**
- * 해당 카테고리의 MAIN 화면 - ing
+ * 해당 카테고리의 SUB 화면
+ */
+const setPressCategorySub = (data) => {
+  const categorySub = document.querySelector('.press-category__section-sub');
+  const categoryInitDataName = data[0].data[0].name;
+  const categoryInitDataTitle = data[0].data[0].subTitleList;
+
+  const categoryFooter = `
+  <footer class='section-sub__footer'>${categoryInitDataName} 언론사에서 직접 편집한 뉴스입니다.</footer>
+  `;
+
+  categoryInitDataTitle.forEach((initData) => {
+    const subTitle = `
+    <h4 class='press-category__h4-sub'>
+      <a class='press-category__a-sub' href=${initData.link}>${initData.title}</a>
+    </h4>
+    `;
+    categorySub.insertAdjacentHTML('beforeend', subTitle);
+  });
+
+  categorySub.insertAdjacentHTML('beforeend', categoryFooter);
+};
+
+/**
+ * 해당 카테고리의 MAIN 화면
  */
 const setPressCategoryMain = (data) => {
   const categoryMain = document.querySelector('.press-category__section-main');
@@ -66,10 +91,6 @@ const setPressCategoryNav = (categoryData) => {
   });
 };
 
-/**
- *
- */
-
 ////
 const shuffleList = (list) => {
   list.sort(() => Math.random() - 0.5);
@@ -100,11 +121,7 @@ const setPressCategoryElement = () => {
   const pressCategoryArticle = `
   <article class='press-category__article'>
     <section class='press-category__section-main'></section>
-
-    <section class='press-category__section-sub'>
-      <footer class='section-sub__footer'></footer>
-    </section>
-
+    <section class='press-category__section-sub'></section>
   </article>
   `;
 

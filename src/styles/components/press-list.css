@@ -35,7 +35,10 @@
 
 /* 언론사 리스트의 ARTICLE */
 .press-category__article {
+  display: flex;
+  flex-direction: row;
   padding: 24px;
+  gap: 32px;
 }
 
 .press-category__section-main {
@@ -93,4 +96,17 @@
 .section-main__h2 {
   font: var(--medium-M);
   color: var(--grayscale-black);
+}
+
+/* 언론사 리스트 ARTICLE-SUB */
+
+.press-category__section-sub {
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.press-category__a-sub {
+  font: var(--medium-M);
+  color: var(--grayscale-500);
+  text-decoration: none;
 }
