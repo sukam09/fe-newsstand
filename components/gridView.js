@@ -3,6 +3,7 @@ import {
   MAX_PAGE_NUM,
   PAGINATION_NUM,
 } from "../constants/constant.js";
+import { removeAllChildNodes } from "../utils/removeChild.js";
 
 const prevBtn = document.querySelector(".prev-page-btn");
 const nextBtn = document.querySelector(".next-page-btn");
@@ -50,15 +51,8 @@ const appendLogo = (data) => {
   document.querySelector(".agency-grid").appendChild(li);
 };
 
-// ul 태그 내 모든 li 태그 삭제
-const removeAllChildNodes = (parent) => {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-};
-
 // 페이지에 따라 신문사 list 추가
-const render = (currentPage, pages) => {
+const renderGrid = (currentPage, pages) => {
   const agencyList = document.querySelector(".agency-grid");
   // 기존 child nodes 모두 제거
   removeAllChildNodes(agencyList);
@@ -76,4 +70,4 @@ const render = (currentPage, pages) => {
   if (isLastPage(currentPage)) nextBtn.setAttribute("disabled", "");
 };
 
-export { createGridPages, render };
+export { createGridPages, renderGrid };
