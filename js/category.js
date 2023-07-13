@@ -4,8 +4,6 @@ let progress = 0;
 const increment = 10;
 const totalTime = 2000;
 let category = []; //json파일을 받아와 배열 형태로 관리
-let categoryItem;
-let currentCategoryPage;
 let currentPage = 1;
 let currentCategoryNumber = 0;
 let progressInterval;
@@ -36,21 +34,26 @@ function addInitCategory() {
 }
 
 function initCategoryItem() {
-  categoryItem = document.querySelectorAll(".categoryItem");
-  currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
-  clearCategoryItem();
+  const categoryItem = document.querySelectorAll(".categoryItem");
+  const currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
+  categoryDisplayClear(categoryItem,currentCategoryPage);
+  categoryDisplayOn(categoryItem,currentCategoryPage);
+  intervalProgress(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    currentCategoryPage
+  );
+}
+
+function categoryDisplayOn(categoryItem, currentCategoryPage) {
   categoryItem[currentCategoryNumber].style.backgroundColor = "#7890E7";
   categoryItem[currentCategoryNumber].style.color = "#FFFFFF";
   currentCategoryPage[currentCategoryNumber].style.display = "flex";
   document.querySelectorAll(".categoryCnt")[
     currentCategoryNumber
   ].style.display = "flex";
-  intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber]
-  );
 }
 
-function clearCategoryItem() {
+function categoryDisplayClear(categoryItem, currentCategoryPage) {
   category.forEach((value, index) => {
     categoryItem[index].style.backgroundColor = "#f5f7f9";
     categoryItem[index].style.color = "#5f6e76";
@@ -59,13 +62,13 @@ function clearCategoryItem() {
   });
 }
 
-function intervalProgress(progressBar) {
+function intervalProgress(progressBar, currentCategoryPage) {
   progressInterval = setInterval(() => {
-    doProgress(progressBar);
+    doProgress(progressBar, currentCategoryPage);
   }, totalTime / (100 / increment));
 }
 
-function doProgress(progressBar) {
+function doProgress(progressBar, currentCategoryPage) {
   progressBar.style.transition = `width ${
     totalTime / increment / 1000
   }s linear`;
@@ -79,13 +82,13 @@ function doProgress(progressBar) {
       clearInterval(progressInterval);
       initCategoryItem();
     }
-    progressReset(progressBar);
+    progressReset(progressBar, currentCategoryPage);
     return;
   }
   progressFill(progressBar);
 }
 
-function progressReset(progressBar) {
+function progressReset(progressBar, currentCategoryPage) {
   currentCategoryPage[currentCategoryNumber].innerHTML = currentPage;
   progressBar.style.transition = "";
   progressBar.style.width = "0%";
