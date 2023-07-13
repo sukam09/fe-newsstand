@@ -119,7 +119,7 @@
 .button {
   display: inline-flex;
   height: 24px;
-  padding: 0px 6px;
+  padding: 0px 5px;
   justify-content: center;
   align-items: center;
   gap: 2px;
