@@ -36,6 +36,11 @@ body {
 .container-header_logo svg {
   fill: var(--color-text-point);
 }
+.container-header_right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 .container-header_date {
   color: var(--color-text-default);
 }
@@ -293,6 +298,37 @@ body {
 }
 .category-selected .tab_progress-bar {
   animation: progress 5s linear infinite;
+}
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0px 0px 8px 4px var(--color-text-default);
+
+  background: var(--color-text-default);
+  color: var(--color-surface-default);
+
+  transition: box-shadow 0.5s ease-in-out;
+}
+.theme-btn:active {
+  box-shadow: 0px 0px 8px 2px var(--color-text-default);
+}
+.theme-btn_dark {
+  display: block;
+}
+.theme-btn_light {
+  display: none;
+}
+.dark .theme-btn_dark {
+  display: none;
+}
+.dark .theme-btn_light {
+  display: block;
 }
 
 @keyframes progress {
