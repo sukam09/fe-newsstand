@@ -1,0 +1,20 @@
+.header {
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  font: var(--display-bold24);
+  padding-left: 2rem;
+  text-decoration: none;
+  color: var(--color-text-strong);
+  background-image: url("/public/asset/icon/news-paper.svg");
+  background-repeat: no-repeat;
+  background-position-y: center;
+}
+
+.header__date {
+  color: var(--color-text-default);
+}
