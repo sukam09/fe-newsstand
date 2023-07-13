@@ -1,7 +1,8 @@
 import { fetchCategoryNews } from "../../api.js";
+import { LIST_PAGE } from "../components/Arrow.js";
 
 let news_data;
-let CURRENT_PAGE = 1;
+let CURRENT_PAGE;
 let CURRENT_CATEGORY = 0;
 let intervalId;
 const PAGE_AUTO_MOVING_TIME = 5000;
@@ -24,6 +25,7 @@ async function fetchCategoryNewsData() {
  * 카테고리 변경시 tab 스타일 변경
  */
 function tabClassChange(targetTab, previousProgressTab, index) {
+  CURRENT_PAGE = LIST_PAGE.current_list_page;
   const progressTabName = previousProgressTab.querySelector(".text-category-name");
   const progressTabNumber = previousProgressTab.querySelector(".text-category-number");
 
@@ -74,6 +76,8 @@ function tabClickEventRegister() {
  */
 function fieldTabClickEventHandler(targetTab, index) {
   CURRENT_PAGE = 1;
+  LIST_PAGE.current_list_page = 1;
+
   CURRENT_CATEGORY = index;
 
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
@@ -105,6 +109,47 @@ function fieldTabAutoChange() {
 }
 
 /**
+ * <카테고리 변경 : 화살표 버튼>
+ * Arrow.js에서 현재 리스트뷰에 페이지 정보를 받아서 CURRENT_PAGE 변수에 업데이트
+ * 타이머 다시 시작
+ * 탭 업데이트 & 언론사 내용 변경
+ * 다른 카테고리로 넘어갈 경우(오른쪽&왼쪽) 현재 페이지 초기화 및 카테고리 변경
+ * 마지막 카테고리&마지막 페이지일 경우에 오른쪽 버튼 클릭 시 처리
+ */
+
+export function pageMoveByBtn(current_list_page) {
+  CURRENT_PAGE = current_list_page;
+
+  //다른 카테고리로 전환 -> LEFT
+  if (CURRENT_PAGE === 0) {
+    CURRENT_CATEGORY--;
+    CURRENT_PAGE = categoryLength[CURRENT_CATEGORY];
+    LIST_PAGE.current_list_page = CURRENT_PAGE;
+  }
+
+  //다른 카테고리로 전환 - > RIGHT
+  else if (CURRENT_PAGE === news_data[CURRENT_CATEGORY].press.length + 1) {
+    CURRENT_CATEGORY++;
+    CURRENT_PAGE = 1;
+    LIST_PAGE.current_list_page = 1;
+    //맨 처음 카테고리로 순서 변경
+    if (CURRENT_CATEGORY === categoryLength.length) {
+      CURRENT_CATEGORY = 0;
+    }
+  }
+
+  // 타이머 다시시작
+  clearInterval(intervalId);
+  updateTimer();
+
+  //탭 & 내용 변경
+  updatePressNewsSection();
+  fieldTabAutoChange();
+
+  return CURRENT_CATEGORY;
+}
+
+/**
  * 첫 리스트 뷰 로딩 - 처음 데이터로 구성
  * 첫 프로그래스 바 셋팅 - 1. 현재페이지/페이지 개수, 2. width
  */
@@ -126,6 +171,8 @@ function fieldInit() {
  * 자동으로 다른 카테고리로 넘어갈 경우 고려
  */
 function autoUpdateProgressTab() {
+  CURRENT_PAGE = LIST_PAGE.current_list_page;
+
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
   const progressRatio = progressTab.querySelector(".progress-ratio");
   const progressTabNumber = progressTab.querySelector(".text-category-number");
@@ -142,6 +189,8 @@ function autoUpdateProgressTab() {
  * 언론사 변경(페이지 변경)에 따른 뉴스 내용 업데이트
  */
 function updatePressNewsSection() {
+  // CURRENT_PAGE = LIST_PAGE.current_list_page;
+
   const pressInfo = document.querySelector(".press-news-wrap .press-info");
   const pressLogo = pressInfo.querySelector(".press-icon");
   pressLogo.src = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].path;
@@ -154,6 +203,7 @@ function updatePressNewsSection() {
   subNews.querySelectorAll(".each-news-title").forEach((news, index) => {
     news.innerHTML = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news[index + 1];
   });
+  subNews.querySelector(".explain").innerHTML = `${news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].name}에서 직접 편집한 뉴스입니다.`;
 }
 
 /**
@@ -167,12 +217,17 @@ function updateTimer() {
     if (CURRENT_PAGE === news_data[CURRENT_CATEGORY].press.length) {
       CURRENT_CATEGORY++;
       CURRENT_PAGE = 0;
+      LIST_PAGE.current_list_page = 0;
     }
     //카테고리 처음으로
     if (CURRENT_CATEGORY === categoryLength.length) {
       CURRENT_CATEGORY = 0;
       CURRENT_PAGE = 1;
-    } else CURRENT_PAGE++;
+      LIST_PAGE.current_list_page = 1;
+    } else {
+      CURRENT_PAGE++;
+      LIST_PAGE.current_list_page++;
+    }
     updatePressNewsSection();
     autoUpdateProgressTab();
   }, PAGE_AUTO_MOVING_TIME);
@@ -185,6 +240,8 @@ function createPressNewsSection() {
     if (!news_data) {
       throw Error("Empty Data");
     }
+    CURRENT_PAGE = LIST_PAGE.current_list_page;
+
     const firstPress = news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].news.slice(1);
 
     pressNewsDiv.innerHTML = `
@@ -205,7 +262,7 @@ function createPressNewsSection() {
         </div>
         <div class="news-sub">
            ${firstPress.map((news) => `<span class="each-news-title available-medium16">${news}</span>`).join("")}
-          <span class="explain display-medium14"> ~ 언론사에서 직접 편집한 뉴스입니다.</span>
+          <span class="explain display-medium14"> ${news_data[CURRENT_CATEGORY].press[CURRENT_PAGE - 1].name} 언론사에서 직접 편집한 뉴스입니다.</span>
         </div>
     </div>
 
@@ -261,4 +318,6 @@ export function printList() {
   fetchCategoryNewsData(); // 데이터 패치 및 초기화
   tabClickEventRegister(); // 탭 클릭 이벤트
   updateTimer(); // 페이지&카테고리 자동 변경
+
+  CURRENT_PAGE = LIST_PAGE.current_list_page;
 }

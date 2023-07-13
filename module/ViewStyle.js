@@ -1,10 +1,11 @@
 import { printGrid } from "./view/GridView.js";
 import { printList } from "./view/ListView.js";
 
-const GRID_BTN_ID = "grid-btn";
-const LIST_BTN_ID = "list-btn";
 const GRID = "grid";
 const LIST = "list";
+
+const GRID_BTN_ID = "grid-btn";
+const LIST_BTN_ID = "list-btn";
 
 function btnColorChange(targetBtn, InActiveBtn) {
   const rootStyles = getComputedStyle(document.documentElement);
@@ -28,9 +29,11 @@ function layoutChange(targetBtn) {
   if (ID === GRID_BTN_ID) {
     layout.className = GRID;
     InActiveBtn = document.getElementById(LIST_BTN_ID);
+    VIEW.CURRENT_VIEW_MODE = GRID;
   } else if (ID === LIST_BTN_ID) {
     layout.className = LIST;
     InActiveBtn = document.getElementById(GRID_BTN_ID);
+    VIEW.CURRENT_VIEW_MODE = LIST;
   }
   btnColorChange(targetBtn, InActiveBtn);
 }
@@ -47,3 +50,8 @@ export default function SelectViewStyle() {
     printGrid();
   });
 }
+export const VIEW = {
+  CURRENT_VIEW_MODE: GRID,
+  GRID,
+  LIST,
+};

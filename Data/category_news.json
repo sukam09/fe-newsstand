@@ -3,7 +3,7 @@
     "category": "종합/경제",
     "press": [
       {
-        "name": "서울경제",
+        "name": "머니투데이",
         "path": "../../asset/icons/basic/news_logo1.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -16,7 +16,7 @@
         ]
       },
       {
-        "name": "이데일리",
+        "name": "경향신문",
         "path": "../../asset/icons/basic/news_logo2.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -29,7 +29,7 @@
         ]
       },
       {
-        "name": "서울경제",
+        "name": "뉴스타파",
         "path": "../../asset/icons/basic/news_logo3.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
@@ -47,7 +47,7 @@
     "category": "방송/통신",
     "press": [
       {
-        "name": "서울경제",
+        "name": "오마이뉴스",
         "path": "../../asset/icons/basic/news_logo4.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "name": "이데일리",
+        "name": "데일리안",
         "path": "../../asset/icons/basic/news_logo5.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -74,7 +74,7 @@
         ]
       },
       {
-        "name": "이데일리",
+        "name": "헤드럴경제",
         "path": "../../asset/icons/basic/news_logo6.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
@@ -87,7 +87,7 @@
         ]
       },
       {
-        "name": "서울경제",
+        "name": "세계일보",
         "path": "../../asset/icons/basic/news_logo7.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -106,7 +106,7 @@
     "category": "IT",
     "press": [
       {
-        "name": "세계일보",
+        "name": "아시아경제",
         "path": "../../asset/icons/basic/news_logo8.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -119,7 +119,7 @@
         ]
       },
       {
-        "name": "YTN",
+        "name": "이데일리",
         "path": "../../asset/icons/basic/news_logo9.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -133,7 +133,7 @@
         ]
       },
       {
-        "name": "전기신문",
+        "name": "한국일보",
         "path": "../../asset/icons/basic/news_logo10.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "name": "데일리안",
+        "name": "아이뉴스24",
         "path": "../../asset/icons/basic/news_logo11.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -160,7 +160,7 @@
         ]
       },
       {
-        "name": "시사저넏e",
+        "name": "파이낸셜뉴스",
         "path": "../../asset/icons/basic/news_logo12.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
@@ -178,7 +178,7 @@
     "category": "영자지",
     "press": [
       {
-        "name": "뉴스타파",
+        "name": "스포츠서울",
         "path": "../../asset/icons/basic/news_logo13.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -192,7 +192,7 @@
         ]
       },
       {
-        "name": "석간 문화일보",
+        "name": "스포츠동아",
         "path": "../../asset/icons/basic/news_logo14.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -210,7 +210,7 @@
     "category": "스포츠/연예",
     "press": [
       {
-        "name": "엑스포츠뉴스",
+        "name": "석간 문화일보",
         "path": "../../asset/icons/basic/news_logo15.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -223,7 +223,7 @@
         ]
       },
       {
-        "name": "일간스포츠",
+        "name": "KBS WORLD",
         "path": "../../asset/icons/basic/news_logo16.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -241,7 +241,7 @@
     "category": "매거진/전문지",
     "press": [
       {
-        "name": "맥스무비",
+        "name": "Korea JoongAng Daily",
         "path": "../../asset/icons/basic/news_logo17.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -254,7 +254,7 @@
         ]
       },
       {
-        "name": "NewDaily",
+        "name": "Insight",
         "path": "../../asset/icons/basic/news_logo18.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
@@ -272,7 +272,7 @@
     "category": "지역",
     "press": [
       {
-        "name": "힌겨례",
+        "name": "법률방송뉴스",
         "path": "../../asset/icons/basic/news_logo19.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
@@ -286,7 +286,7 @@
         ]
       },
       {
-        "name": "OSEN",
+        "name": "시사저널e",
         "path": "../../asset/icons/basic/news_logo20.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
