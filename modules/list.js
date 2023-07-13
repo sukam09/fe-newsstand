@@ -18,10 +18,14 @@ const $categoryBar = document.querySelector(".news-list_category");
  * 모든 카테고리를 unselected 상태로 세팅
  */
 const setCategoryBar = () => {
-  Object.keys(categoryInfo).forEach((key) => {
+  Object.keys(categoryInfo).forEach((key, cateIdx) => {
     let cateHTML;
     // 카테고리 이름 넣는 건 디폴트
     const $li = document.createElement("li");
+    $li.addEventListener("click", () => {
+      setProgressBar(cateIdx, 0);
+      setListView(cateIdx, 0);
+    });
     $li.classList.add("category_unselected");
     cateHTML = `
           <p>${key}</p>
