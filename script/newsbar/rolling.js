@@ -57,7 +57,6 @@ function putNewsHeadline(state, headlineTitleArr) {
         break;
     }
   });
-
   const headlineContainer = getQuerySelector(document, `.newsbar-content-container-${state}`);
   headlineContainer.innerHTML = headlineSrc;
   mouseEventRolling(state);
@@ -65,11 +64,9 @@ function putNewsHeadline(state, headlineTitleArr) {
 
 async function getNewsHeadline() {
   const headlinePath = await fetchData("../assets/data/newsTitle.json");
-
   const headlineTitleFirst = headlinePath.titleFirst.map((elem) => {
     return elem.name;
   })
-
   const headlineTitleSecond = headlinePath.titleSecond.map((elem) => {
     return elem.name;
   })

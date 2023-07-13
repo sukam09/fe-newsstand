@@ -21,8 +21,8 @@ function showPressView(status) {
   const pressContentContainer = getElemClass(document, "press-content-view");
   const pressContentListView = getElemClass(document, "press-content-list-view");
 
-  pressContentContainer[0].style.display = (status == "grid") ? "grid" : "none";
-  pressContentListView[0].style.display = (status == "list") ? "block" : "none";
+  pressContentContainer[0].style.display = (status === "grid") ? "grid" : "none";
+  pressContentListView[0].style.display = (status === "list") ? "block" : "none";
 
 }
 export { pressViewChange };
