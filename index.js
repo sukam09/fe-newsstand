@@ -5,17 +5,16 @@ import { viewSelectHandler } from "./utils/event.js";
 import { fetchData } from "./utils/fetch.js";
 import { shuffleData } from "./utils/shuffle.js";
 import { sliceData } from "./utils/slice.js";
-import { setTime } from "./utils/time.js";
+import { TimeComponent } from "./components/time.js";
 
 // time 설정
-setTime();
+TimeComponent();
 
 fetchData().then((data) => {
   // response로 받은 data shuffle
   const agencies = shuffleData(data);
-
   // rolling할 뉴스 slice
-  const slicedData = sliceData(data, 0, RECENT_NEWS_NUM);
+  const slicedData = sliceData(agencies, 0, RECENT_NEWS_NUM);
 
   // 뉴스 rolling
   rollNews(slicedData);
