@@ -1,4 +1,3 @@
-import { stopCategoryInterval, startCategoryInterval } from "./global.js";
 import { $ } from "./util.js";
 
 let now_list_page = 1;
@@ -6,19 +5,39 @@ let now_category = 0;
 const MAX_NEWS_COUNT = 6;
 const CATEGORY_TAB_NUM = categoryList.length - 1;
 
-function setFirstListPage() {
-  now_list_page = 1;
-  now_category = 0;
-  updateListButton();
+// 카테고리 탭 전환 시간
+const CATEGORY_TAB_TIME = 20000;
+
+// 프로그레스에 맞춘 탭 자동 넘김 Interval
+let categoryInterval = setInterval(() => {
+  listPageUp();
   updateCategoryClicked();
-  updateCategoryNum();
-  refreshInterval();
+  updateListButton();
+}, CATEGORY_TAB_TIME);
+
+function stopCategoryInterval() {
+  clearInterval(categoryInterval);
+}
+function startCategoryInterval() {
+  categoryInterval = setInterval(() => {
+    listPageUp();
+    updateCategoryClicked();
+    updateListButton();
+  }, CATEGORY_TAB_TIME);
 }
 
+// 자동 탭 넘김 인터벌 새로고침
 function refreshInterval() {
   stopCategoryInterval();
   startCategoryInterval();
   updateListButton();
+  updateCategoryClicked();
+}
+
+function setFirstListPage() {
+  now_list_page = 1;
+  now_category = 0;
+  refreshInterval();
 }
 
 // 카테고리 메뉴 클릭시 전환
@@ -29,7 +48,6 @@ function categoryClicked(item) {
   targetOn.classList.add("category_list--clicked");
   now_list_page = 1;
   now_category = item.id - 1;
-  updateCategoryNum();
   refreshInterval();
 }
 
@@ -84,16 +102,17 @@ function createCategoryList(item, idx) {
   return newList;
 }
 
-// 카테고리 업데이트
+// 현재 리스트 페이지에 카테고리 동기화
 function updateCategoryClicked() {
   const clickedCategory = $(".category_list--clicked");
   clickedCategory.classList.remove("category_list--clicked");
   const targetOn = $(".category_list_container");
   targetOn.children[now_category].classList.add("category_list--clicked");
-  updateCategoryNum();
+  updateCategoryTabNum();
 }
 
-function updateCategoryNum() {
+// 카테고리 탭 숫자 업데이트
+function updateCategoryTabNum() {
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
   clickedCategory.children[1].children[0].innerHTML = `${now_list_page} / `;
@@ -153,6 +172,7 @@ function createNewsList(content) {
   return newList;
 }
 
+// 좌우 리스트 버튼 display 변경
 function updateListButton() {
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
@@ -170,7 +190,7 @@ function updateListButton() {
     rightListButton.style.display = "block";
   }
 }
-function moveListPage(increment) {
+function listArrowButtonClicked(increment) {
   now_list_page + increment === 0
     ? ((now_category -= 1),
       (now_list_page = categoryList[now_category].data.length))
@@ -180,7 +200,6 @@ function moveListPage(increment) {
   clickedCategory.offsetWidth;
   clickedCategory.children[2].classList.add("progressbar");
   refreshInterval();
-  updateCategoryClicked();
   updateListButton();
 }
 
@@ -189,10 +208,10 @@ function moveListPage(increment) {
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
   leftListButton.addEventListener("click", () => {
-    moveListPage(-1);
+    listArrowButtonClicked(-1);
   });
   rightListButton.addEventListener("click", () => {
-    moveListPage(1);
+    listArrowButtonClicked(1);
   });
 })();
 
@@ -200,7 +219,7 @@ export {
   appendCategoryList,
   appendNewsList,
   updateCategoryClicked,
-  listPageUp,
-  updateListButton,
   setFirstListPage,
+  stopCategoryInterval,
+  startCategoryInterval,
 };

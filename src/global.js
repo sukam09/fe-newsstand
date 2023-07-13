@@ -1,35 +1,15 @@
 import { showGridPageButton, now_grid_page } from "./gridView.js";
 import {
-  listPageUp,
   setFirstListPage,
+  startCategoryInterval,
+  stopCategoryInterval,
   updateCategoryClicked,
-  updateListButton,
 } from "./category.js";
 import { $, $All } from "./util.js";
 
-// 카테고리 탭 전환 시간
-const CATEGORY_TAB_TIME = 20000;
 // 로고 새로고침
-function refresh() {
+function refreshWindow() {
   location.reload();
-}
-
-// 프로그레스에 맞춘 탭 자동 넘김 Interval
-let categoryInterval = setInterval(() => {
-  listPageUp();
-  updateCategoryClicked();
-  updateListButton();
-}, CATEGORY_TAB_TIME);
-
-export function stopCategoryInterval() {
-  clearInterval(categoryInterval);
-}
-export function startCategoryInterval() {
-  categoryInterval = setInterval(() => {
-    listPageUp();
-    updateCategoryClicked();
-    updateListButton();
-  }, CATEGORY_TAB_TIME);
 }
 
 // 메인 요소 가져오기
@@ -97,7 +77,7 @@ function updateDate() {
   const mainLogo = $(".container__header__main");
   const listButton = $(".list_button");
   const gridButton = $(".grid_button");
-  mainLogo.addEventListener("click", refresh);
+  mainLogo.addEventListener("click", refreshWindow);
   listButton.addEventListener("click", () => {
     changeMainView(false);
   });

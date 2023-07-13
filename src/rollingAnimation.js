@@ -42,7 +42,7 @@ function stopRolling(state) {
 }
 
 // 롤링에 들어갈 뉴스 리스트 추가
-export function appendRollingList() {
+function appendRollingList() {
   const rollingListContainerLeft = $(".newsbanner__list-container--left");
   const rollingListContainerRight = $(".newsbanner__list-container--right");
   for (let i = 0; i < ROLLING_NEWS_NUM; i++) {
@@ -107,3 +107,5 @@ function rollingEvent(state) {
   next.classList.remove("newsbanner__list--next");
   next.classList.add("newsbanner__list--now");
 }
+
+export { appendRollingList };
