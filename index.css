@@ -168,32 +168,22 @@ section.main {
   border: 1px #d2dae0 solid;
   margin-top: 20px;
 }
-
 .categoryWrap > ul {
   width: 100%;
   display: flex;
   align-items: flex-start;
   border: solid 1px;
 }
-
 .categoryItem {
   display: flex;
   padding: 16px;
 }
-
 .categoryItem > span {
   margin-left: 12px;
 }
-
 input[type="radio"]:checked + label {
   font-weight: bold;
 }
-
-input[type="radio"]:checked{
-  background-color: red;
-  font-weight: bold;
-}
-
 
 #header-div-01:hover {
   cursor: pointer;
