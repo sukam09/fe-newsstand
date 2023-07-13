@@ -3,7 +3,6 @@ import { CATEGORY } from "../constants/constants.js";
 //종합/경제 카테고리 부분 언론사 순서 임시로
 const order_list = ["SBS Biz", "서울경제"];
 
-let selected_category = null;
 function getPressCount(category_news) {
   const uniquePressSet = new Set();
   category_news.forEach((news) => {
@@ -39,9 +38,14 @@ async function drawList(order, category) {
     const category_news = await getNewsData(category);
     //카테고리 그리는 부분
     CATEGORY.forEach((ctg) => {
-      category_list += `<li class="category"><div><span>${ctg}</span> <span class = "entire">${
-        getPressCount(category_news).length
-      }</span></div></li>`;
+      category_list +=
+        category === ctg
+          ? `<li class="category selected"><div><span>${ctg}</span> <span class = "entire">${
+              getPressCount(category_news).length
+            }</span></div></li>`
+          : `<li class="category"><div><span>${ctg}</span> <span class = "entire">${
+              getPressCount(category_news).length
+            }</span></div></li>`;
     });
 
     //뉴스 그리는 부분
@@ -95,14 +99,9 @@ ${order_list[order - 1]} 언론사에서 직접 편집한 뉴스입니다.
 function handleClick(e) {
   const target = e.target.closest("li");
   if (target && target.classList.contains("category")) {
-    if (selected_category) {
-      selected_category.classList.remove("selected");
-    }
-    target.classList.add("selected");
     const category = target.textContent.trim().split(" ")[0];
-    selected_category = target;
 
-    // drawList(1, category);
+    drawList(1, category);
   }
 }
 
