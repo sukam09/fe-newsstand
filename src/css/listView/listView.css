@@ -24,19 +24,19 @@
   color: var(--gray-scale-200);
 }
 
-.categroy-current {
+.category-current {
   width: 166px;
   background-color: var(--blue-100);
   position: relative;
 }
 
-.categroy-current::after {
+.category-current::after {
   position: absolute;
   content: "";
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 20s linear;
+  animation: progressBar 10s linear infinite;
 }
 
 @keyframes progressBar {
@@ -48,14 +48,14 @@
   }
 }
 
-.categroy-current .category-name {
+.category-current .category-name {
   color: var(--surface-default);
   font-weight: 700;
   width: 100%;
   z-index: 9999;
 }
 
-.categroy-current .category-count {
+.category-current .category-count {
   color: var(--surface-default);
   font-weight: 700;
   font-size: 12px;
