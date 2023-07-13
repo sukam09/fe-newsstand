@@ -1,41 +1,50 @@
 import { shuffle } from '../utils/utils.js';
 import { getNewsData } from '../core/apis.js';
 import { paintNewsstand } from '../components/newStandGrid.js';
+import { addEventListener, removeEventListener } from '../core/eventListener.js';
 
 let SELECTED_PAGE = 0;
 const $ul = document.querySelector('.newsstand-area—six-col-list');
 const $rightBtn = document.querySelector('.newsstand--right-btn');
 const $leftBtn = document.querySelector('.newsstand--left-btn');
+let datas = [];
 
 async function initNewsStand() {
+  SELECTED_PAGE = 0;
+
+  removeEventListener('click', $rightBtn, handleRightBtn);
+  removeEventListener('click', $leftBtn, handleLeftBtn);
+
   const newsData = await getNewsData();
-  const datas = newsDataPaser(shuffle(newsData));
+  datas = newsDataPaser(shuffle(newsData));
   paintNewsstand(datas, SELECTED_PAGE);
-  pagination(datas);
+  pagination();
 }
 
-function pagination(datas) {
-  const handleRightBtn = () => {
-    $ul.innerHTML = '';
-    ++SELECTED_PAGE;
-    paintNewsstand(datas, SELECTED_PAGE);
-    isBtnDisabled();
-  };
+function pagination() {
+  isBtnDisabled();
+  addEventListener('click', $rightBtn, handleRightBtn);
+  addEventListener('click', $leftBtn, handleLeftBtn);
+}
 
-  const handleLeftBtn = () => {
-    $ul.innerHTML = '';
-    --SELECTED_PAGE;
-    paintNewsstand(datas, SELECTED_PAGE);
-    isBtnDisabled();
-  };
+function handleRightBtn() {
+  $ul.innerHTML = '';
+  ++SELECTED_PAGE;
+  console.log(SELECTED_PAGE);
+  paintNewsstand(datas, SELECTED_PAGE);
+  isBtnDisabled();
+}
 
-  const isBtnDisabled = () => {
-    SELECTED_PAGE ? $leftBtn.classList.remove('disabled') : $leftBtn.classList.add('disabled');
-    SELECTED_PAGE === 3 ? $rightBtn.classList.add('disabled') : $rightBtn.classList.remove('disabled');
-  };
+function handleLeftBtn() {
+  $ul.innerHTML = '';
+  --SELECTED_PAGE;
+  paintNewsstand(datas, SELECTED_PAGE);
+  isBtnDisabled();
+}
 
-  $rightBtn.addEventListener('click', handleRightBtn);
-  $leftBtn.addEventListener('click', handleLeftBtn);
+function isBtnDisabled() {
+  SELECTED_PAGE ? $leftBtn.classList.remove('disabled') : $leftBtn.classList.add('disabled');
+  SELECTED_PAGE === 3 ? $rightBtn.classList.add('disabled') : $rightBtn.classList.remove('disabled');
 }
 
 function newsDataPaser(datas) {

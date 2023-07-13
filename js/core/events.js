@@ -1,4 +1,5 @@
-import { EventListener } from './eventListener.js';
+import { addEventListener } from './eventListener.js';
+import { initNewsStand } from '../main/newsstnad.js';
 
 function initEvent() {
   eventRefreshHeaderTitle();
@@ -9,7 +10,7 @@ const eventRefreshHeaderTitle = () => {
   const headerLogo = document.querySelector('.header—title');
   const handleTitleRefresh = () => window.location.reload();
 
-  EventListener('click', headerLogo, handleTitleRefresh);
+  addEventListener('click', headerLogo, handleTitleRefresh);
 };
 
 const eventNewsTabList = () => {
@@ -24,9 +25,13 @@ const eventNewsTabList = () => {
 
     btnList.src = './assets/list-view-on.svg';
     thumb.src = './assets/grid-view-off.svg';
+
+    document.querySelector('.newsstand-area—six-col-list').innerHTML = '';
   };
 
   const handleBtnThumb = () => {
+    initNewsStand();
+
     mediaArea.classList.remove('disabled');
     listArea.classList.add('disabled');
 
@@ -34,8 +39,10 @@ const eventNewsTabList = () => {
     thumb.src = './assets/grid-view-on.svg';
   };
 
-  EventListener('click', btnList, handleBtnList);
-  EventListener('click', thumb, handleBtnThumb);
+  addEventListener('click', btnList, handleBtnList);
+  addEventListener('click', thumb, handleBtnThumb);
+
+  // 버튼기능이 바뀜
 };
 
 export { initEvent };
