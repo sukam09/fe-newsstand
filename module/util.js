@@ -1,6 +1,6 @@
 import { moveGrid } from "./grid.js";
 import { ICON, MODE, BTN, GLOBAL, CATEGORY } from "./variable.js";
-import { moveListPage } from "./list.js";
+import { moveListPage, movePageFromEvent } from "./list.js";
 
 // 날짜 관련 함수
 function initDate() {
@@ -20,6 +20,10 @@ function initBtn() {
   });
   GLOBAL.DOM.grid_btn.addEventListener("click", () => {
     toggleView(BTN.GRID_VIEW);
+  });
+
+  GLOBAL.DOM.field_tab.addEventListener("click", (event) => {
+    movePageFromEvent(event);
   });
 }
 

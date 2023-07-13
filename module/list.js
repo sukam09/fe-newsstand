@@ -106,7 +106,7 @@ function setCurCategory() {
 }
 
 function getCurPageInCategory() {
-  let page = GLOBAL.list_cur_page;
+  let page = GLOBAL.list_cur_page + 1;
   switch (GLOBAL.list_cur_category) {
     case CATEGORY.ECONOMY:
       break;
@@ -133,4 +133,36 @@ function getCurPageInCategory() {
   return page;
 }
 
-export { moveListPage };
+function movePageFromEvent(event) {
+  let page;
+
+  switch (event.target.innerHTML) {
+    case CATEGORY.ECONOMY:
+      page = 0;
+      break;
+    case CATEGORY.BROADCAST:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY;
+      break;
+    case CATEGORY.IT:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY + GLOBAL.CATEGORY_NUM.BROADCAST;
+      break;
+    case CATEGORY.ENGLISH:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY + GLOBAL.CATEGORY_NUM.BROADCAST + GLOBAL.CATEGORY_NUM.IT;
+      break;
+    case CATEGORY.SPORTS:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY + GLOBAL.CATEGORY_NUM.BROADCAST + GLOBAL.CATEGORY_NUM.IT + GLOBAL.CATEGORY_NUM.ENGLISH;
+      break;
+    case CATEGORY.MAGAZINE:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY + GLOBAL.CATEGORY_NUM.BROADCAST + GLOBAL.CATEGORY_NUM.IT + GLOBAL.CATEGORY_NUM.ENGLISH + GLOBAL.CATEGORY_NUM.SPORTS;
+      break;
+    case CATEGORY.LOCAL:
+      page = GLOBAL.CATEGORY_NUM.ECONOMY + GLOBAL.CATEGORY_NUM.BROADCAST + GLOBAL.CATEGORY_NUM.IT + GLOBAL.CATEGORY_NUM.ENGLISH + GLOBAL.CATEGORY_NUM.SPORTS + GLOBAL.CATEGORY_NUM.MAGAZINE;
+      break;
+    default:
+      return;
+  }
+
+  moveListPage(page);
+}
+
+export { moveListPage, movePageFromEvent };
