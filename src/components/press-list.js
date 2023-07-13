@@ -30,10 +30,10 @@ const setTotalPressList = (isLightMode) => {
 /**
  * 해당 카테고리의 SUB 화면
  */
-const setPressCategorySub = (data) => {
+const setPressCategorySub = (categoryData) => {
   const categorySub = document.querySelector('.press-category__section-sub');
-  const categoryInitDataName = data[0].data[0].name;
-  const categoryInitDataTitle = data[0].data[0].subTitleList;
+  const categoryInitDataName = categoryData[0].categoryData[0].name;
+  const categoryInitDataTitle = categoryData[0].categoryData[0].subTitleList;
 
   const categoryFooter = `
   <footer class='section-sub__footer'>${categoryInitDataName} 언론사에서 직접 편집한 뉴스입니다.</footer>
@@ -54,9 +54,9 @@ const setPressCategorySub = (data) => {
 /**
  * 해당 카테고리의 MAIN 화면
  */
-const setPressCategoryMain = (data) => {
+const setPressCategoryMain = (categoryData) => {
   const categoryMain = document.querySelector('.press-category__section-main');
-  const categoryInitData = data[0].data[0];
+  const categoryInitData = categoryData[0].categoryData[0];
 
   const categoryMainElement = `
   <nav class='section-main__nav'>
@@ -75,7 +75,7 @@ const setPressCategoryMain = (data) => {
 };
 
 /**
- * LIST의 NAV 화면 - 카테고리 이름을 설정
+ * LIST의 NAV 화면 - 카테고리 이름을 설정 - ing
  */
 const setPressCategoryNav = (categoryData) => {
   const categoryUl = document.querySelector('.press-category__ul');
@@ -84,30 +84,41 @@ const setPressCategoryNav = (categoryData) => {
     const categoryLi = `
     <li class='press-category__li'>
       <p class='press-category__p'>${data.categoryName}</p>
+      <div class='press-category__div display-none'>
+        <div class='press-category__div-now'>1</div>
+        <div class='press-category__div-sum'>/${data.categoryData.length}</div>
+      </div>
     </li>
     `;
     categoryUl.insertAdjacentHTML('beforeend', categoryLi);
   });
 
-  setProgressBar();
+  setProgressBar(categoryData);
 };
 
 /**
  * LIST의 NAV 화면 - Progress Bar 설정
  */
-const setProgressBar = () => {
+const setProgressBar = (categoryData) => {
   const liList = document.querySelectorAll('.press-category__li');
 
   liList.forEach((li) => {
     li.addEventListener('click', () => {
-      const resetLi = document.querySelector('.progress-start');
-      resetLi.classList.remove('progress-start');
+      const removeLi = document.querySelector('.progress-start');
+      const addDiv = removeLi.querySelector('.press-category__div');
+      const removeDiv = li.querySelector('.press-category__div');
+
+      removeLi.classList.remove('progress-start');
+      addDiv.classList.add('display-none');
       li.classList.add('progress-start');
+      removeDiv.classList.remove('display-none');
     });
   });
 
   const initLi = document.querySelector('.press-category__ul');
   initLi.firstElementChild.classList.add('progress-start');
+  const initDiv = initLi.querySelector('.press-category__div');
+  initDiv.classList.remove('display-none');
 };
 
 /**
@@ -115,7 +126,7 @@ const setProgressBar = () => {
  */
 const setPressCategoryElement = () => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
-  arrowsWrapper.classList.add('displayNone');
+  arrowsWrapper.classList.add('display-none');
 
   const pressCategoryNav = `
   <nav class='press-category__nav'>

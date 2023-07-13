@@ -61,7 +61,7 @@ const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
 
   const $imgLeft = document.createElement('img');
   $imgLeft.classList.add('arrows__img-left');
-  $imgLeft.classList.add('displayNone');
+  $imgLeft.classList.add('display-none');
   $imgLeft.src = './assets/icons/chevron-left.svg';
   $imgLeft.addEventListener('click', () => {
     pageNum -= 1;
@@ -103,14 +103,14 @@ const setArrowVisible = () => {
   const rightArrow = document.querySelector('.arrows__img-right');
 
   if (pageNum === 0) {
-    leftArrow.classList.add('displayNone');
+    leftArrow.classList.add('display-none');
   }
   if (pageNum > 0 && pageNum < 3) {
-    leftArrow.classList.remove('displayNone');
-    rightArrow.classList.remove('displayNone');
+    leftArrow.classList.remove('display-none');
+    rightArrow.classList.remove('display-none');
   }
   if (pageNum === 3) {
-    rightArrow.classList.add('displayNone');
+    rightArrow.classList.add('display-none');
   }
 };
 

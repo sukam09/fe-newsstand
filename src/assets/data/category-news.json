@@ -2,7 +2,7 @@
   {
     "categoryId": 0,
     "categoryName": "종합/경제",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
@@ -110,10 +110,10 @@
   {
     "categoryId": 1,
     "categoryName": "방송/통신",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
-        "logoSrc": "./assets/images/light-press-logo/img1.svg",
+        "logoSrc": "./assets/images/light-press-logo/img4.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
         "imgSrc": "https://picsum.photos/536/354",
@@ -218,10 +218,10 @@
   {
     "categoryId": 2,
     "categoryName": "IT",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
-        "logoSrc": "./assets/images/light-press-logo/img1.svg",
+        "logoSrc": "./assets/images/light-press-logo/img5.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
         "imgSrc": "https://picsum.photos/536/354",
@@ -326,7 +326,7 @@
   {
     "categoryId": 3,
     "categoryName": "영자지",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
@@ -434,7 +434,7 @@
   {
     "categoryId": 4,
     "categoryName": "스포츠/연예",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
@@ -542,7 +542,7 @@
   {
     "categoryId": 5,
     "categoryName": "매거진/전문지",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
@@ -650,7 +650,7 @@
   {
     "categoryId": 6,
     "categoryName": "지역",
-    "data": [
+    "categoryData": [
       {
         "name": "아이뉴스24",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",

@@ -46,10 +46,10 @@ const getNavRightElement = () => {
     $imgGrid.src = './assets/icons/grid-hide.svg';
 
     const gridWrapper = document.querySelector('.arrows__wrapper-grid');
-    gridWrapper.classList.add('displayNone');
+    gridWrapper.classList.add('display-none');
 
     const listWrapper = document.querySelector('.arrows__wrapper-list');
-    listWrapper.classList.remove('displayNone');
+    listWrapper.classList.remove('display-none');
   }); //
 
   $imgGrid.addEventListener('click', () => {
@@ -57,10 +57,10 @@ const getNavRightElement = () => {
     $imgList.src = './assets/icons/list-hide.svg';
 
     const listWrapper = document.querySelector('.arrows__wrapper-list');
-    listWrapper.classList.add('displayNone');
+    listWrapper.classList.add('display-none');
 
     const gridWrapper = document.querySelector('.arrows__wrapper-grid');
-    gridWrapper.classList.remove('displayNone');
+    gridWrapper.classList.remove('display-none');
   }); //
 
   $navRight.appendChild($imgList);

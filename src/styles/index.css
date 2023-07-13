@@ -21,6 +21,6 @@ body {
 }
 
 /* 재사용 CSS */
-.displayNone {
+.display-none {
   display: none;
 }

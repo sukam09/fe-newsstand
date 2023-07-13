@@ -27,6 +27,7 @@
 .press-category__li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 40px;
   padding: 0 16px;
 }
@@ -34,6 +35,19 @@
 .press-category__p {
   font: var(--medium-R);
   color: var(--grayscale-200);
+}
+
+.press-category__div {
+  display: flex;
+}
+
+.press-category__div-now {
+  font: var(--bold-S);
+  color: var(--grayscale-white-alt);
+}
+.press-category__div-sum {
+  font: var(--bold-S);
+  color: var(--grayscale-white);
 }
 
 .progress-start {
