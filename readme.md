@@ -1,17 +1,36 @@
-# JavaScript
-
-### 언론사 랜덤화
-0. 언론사의 id(0~95)를 담은 json 형태의 객체 리터럴을 만든다.
-
-1. 언론사가 96개 이므로 숫자를 0~95까지 랜덤으로 돌려서 새로운 배열을 만든다.    
-
-2. 랜덤으로 생성된 숫자들이 들어가 있는 배열을 이용해서 4개의 페이지 생성  
-    -> 1페이지: 인덱스가 0~23에 해당하는 id값을 가진 이미지가 각 그리드에 나타남
-    -> 2페이지: 인덱스가 24~47에 해당하는 id값을 가진 이미지가 각 그리드에 나타남 
-    -> 3페이지: 인덱스가 48~71에 해당하는 id값을 가진 이미지가 각 그리드에 나타남   
-    -> 4페이지: 인덱스가 72~95에 해당하는 id값을 가진 이미지가 각 그리드에 나타남 
-
-
-3. 페이지 이동 버튼을 누르면 이벤트가 발생한다.   
- -> 기존의 li태그를 DOM에서 모두 삭제 후 전환되는 페이지에 해당하는 id 값을 가지는 이미지들을 li태그를 이용해 DOM API를 이용해서 화면에 나타낸다.   
- >  >조건:가장 첫 페이지에는 왼쪽 페이지 이동 버튼 visibility: hidden 설정. 마지막 페이지에서는 오른쪽 페이지 이동 버튼 visibility: hidden
+```bash
+├── assets
+│   ├── data
+│   │   ├── newsTitle.json (헤드라인 뉴스 자동롤링 구현 시 필요한 데이터)
+│   │   └── newspaperSrc.json (언론사 그리드 뷰에서 필요한 데이터)
+│   └── images
+│       ├── pressLogo
+│       │   ├── dark (다크모드에서 사용하는 언론사 이미지)
+│       │   └── light (라이트모드에서 사용하는 언론사 이미지)
+│       └── symbols (언론사 이미지를 제외하고 사용하는 여러 심볼 이미지)
+├── css
+│   ├── header (헤더에서 사용하는 css)
+│   │   └── header.css
+│   ├── newsbar (자동롤링 구현 시 사용하는 css)
+│   │   └── rolling.css
+│   ├── pressContent (언론사 그리드/리스트 뷰 구현 시 사용하는 css)
+│   │   └── pressContent.css
+│   └── style.css (공통으로 사용하는 css)
+├── index.html (메인 html 파일)
+├── readme.md
+├── script
+│   ├── app.js (html 파일과 이어주는 js파일)
+│   ├── header (헤더에서 사용하는 js)
+│   │   └── showTodayDate.js
+│   ├── newsbar (자동롤링 구현 시 사용하는 js)
+│   │   └── rolling.js
+│   └── pressContent (언론사 그리드/리스트 뷰 구현 시 사용하는 js)
+│       ├── pressGridList.js
+│       └── pressViewChange.js
+└── utils (범용성을 고려해 다른 프로젝트에서도 사용할 수 있는 파일)
+    ├── css 
+    │   └── reset.css (css 초기화 파일)
+    └── js
+        ├── getElements.js (원하는 요소를 얻을 수 있는 함수 재구조화)
+        └── getJson.js (fetch를 이용해 데이터를 주고 받는 js파일)
+```
