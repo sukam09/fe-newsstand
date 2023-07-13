@@ -71,11 +71,11 @@ grid_wrapper
 ```bash
 list_wrapper
 │
-├── nav
+├── list_nav
 │   └── media_select * n
 │       └── indicator
 │
-└── media_view
+└── list_view
     ├── media_info
     │   ├── logo
     │   ├── last_updated
@@ -85,8 +85,8 @@ list_wrapper
     │   ├── img
     │   └── title
     │
-    └── sub_news
-        ├── li * 6
-        │   └── description
+    └── sub_news_wrapper
+        │── sub_news
+        │   └── li * 6
         └── notice
 ```
