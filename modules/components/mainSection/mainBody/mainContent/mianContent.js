@@ -1,13 +1,16 @@
 import { fetchData } from "../../../../utils.js";
 import { pressGrid } from "./pressGrid/pressGrid.js";
+import { pressList } from "./pressList/pressList.js";
 
 export async function mainContent() {
   const press = await fetchData("/data/press.json");
   const { data } = press;
+  const newsList = await fetchData("/data/news.json");
 
   return `
     <div class="main_content">
       <div id="list_container">
+        ${await pressList(newsList, 0)}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}

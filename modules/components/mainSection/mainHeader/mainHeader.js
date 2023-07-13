@@ -5,6 +5,7 @@ import {
   hideGridPage,
   showGridPage,
 } from "../mainBody/mainContent/pressGrid/pressGrid.js";
+import { showListage } from "../mainBody/mainContent/pressList/pressList.js";
 
 export function mainHeader() {
   return `
@@ -26,7 +27,7 @@ export function handleGirdViewButton(e) {
   e.currentTarget.classList.add("view_clicked");
   $listViewButton.classList.remove("view_clicked");
   showGridPage(gridPage);
-  // todo : 리스트 페이지 보이기
+  // todo : 리스트 페이지 숨기기
 }
 
 export function handleListViewButton(e) {
@@ -36,5 +37,8 @@ export function handleListViewButton(e) {
   for (let i = 0; i < MAX_GRID_PAGE; i++) {
     hideGridPage(i);
   }
-  // todo : 리스트 숨기기
+  qs("#grid_container").style.display = "none";
+  qs("#list_container").style.display = "block";
+  showListage(0);
+  // todo : 리스트 보이기
 }
