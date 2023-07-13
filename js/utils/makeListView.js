@@ -27,7 +27,7 @@ async function getNewsData(category) {
 }
 
 async function drawList(order, category) {
-  const view_content = document.querySelector(".view-content");
+  const main_list = document.querySelector(".main-list");
 
   try {
     //임시로 이미지
@@ -61,10 +61,7 @@ async function drawList(order, category) {
 ${order_list[order - 1]} 언론사에서 직접 편집한 뉴스입니다.
 </li>`;
 
-    const list_view = `<div class="list-view">
-<button id="left-btn">
-  <img id="left" src="../assets/icons/left-btn.svg" />
-</button>
+    const list_view = `
 <div class="main-list">
 <div class="field-tab">
   <ul>
@@ -88,13 +85,8 @@ ${order_list[order - 1]} 언론사에서 직접 편집한 뉴스입니다.
 </div>
 </div>
 </div>
-<button id="right-btn">
-  <img id="right" src="../assets/icons/right-btn.svg" />
-</div>
-</button>
-</div>
 `;
-    view_content.innerHTML = list_view;
+    main_list.innerHTML = list_view;
   } catch (error) {
     console.log(error);
   }
@@ -109,6 +101,7 @@ function handleClick(e) {
     target.classList.add("selected");
     const category = target.textContent.trim().split(" ")[0];
     selected_category = target;
+
     // drawList(1, category);
   }
 }

@@ -10,22 +10,14 @@ function shuffleImgIndex() {
 }
 
 const grid_view = `
-    <div class="grid-view">
-              <button id="left-btn">
-                <img id="left" src="../assets/icons/left-btn.svg" />
-              </button>
               <div class="main-list">
                 <ul class="main-list-ul"></ul>
               </div>
-              <button id="right-btn">
-                <img id="right" src="../assets/icons/right-btn.svg" />
-              </button>
-            </div>
     `;
 
 export function showGridView(page) {
-  const view_content = document.querySelector(".view-content");
-  view_content.innerHTML = grid_view;
+  const main_list = document.querySelector(".main-list");
+  main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
   main_list_ul.innerHTML = "";
   for (
