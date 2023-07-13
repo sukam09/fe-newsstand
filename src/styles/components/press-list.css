@@ -101,7 +101,10 @@
 /* 언론사 리스트 ARTICLE-SUB */
 
 .press-category__section-sub {
+  display: flex;
+  flex-direction: column;
   margin-top: 40px;
+
   gap: 16px;
 }
 
@@ -109,4 +112,15 @@
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: none;
+}
+
+.press-category__a-sub:hover {
+  font: var(--medium-M);
+  color: var(--grayscale-500);
+  text-decoration: underline;
+}
+
+.section-sub__footer {
+  font: var(--medium-R);
+  color: var(--grayscale-200);
 }
