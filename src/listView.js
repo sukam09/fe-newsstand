@@ -82,7 +82,6 @@ export function listArrowButtonClicked(increment) {
 }
 
 (function init() {
-  //   updateListButton();
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
   leftListButton.addEventListener("click", () => {

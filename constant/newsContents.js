@@ -21,7 +21,8 @@ const categoryList = [
       {
         logoSrc: "./assets/logo/light/img1.svg",
         name: "YTN 사이언스",
-        imgSrc: "/assets/images/dog.jpeg",
+        imgSrc:
+          "https://img1.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202211/24/catlab/20221124080217131azjg.jpg",
         mainTitle: "[단독]양평군, '국 토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
@@ -165,7 +166,8 @@ const categoryList = [
       {
         logoSrc: "./assets/logo/light/img5.svg",
         name: "아이뉴스24",
-        imgSrc: "/assets/images/dog.jpeg",
+        imgSrc:
+          "https://img1.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202211/24/catlab/20221124080217131azjg.jpg",
         mainTitle: "[단독]양평군, '국토부안'에 끝까지 미온적이었다",
         subTitleList: [
           {
