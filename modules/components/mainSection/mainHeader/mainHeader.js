@@ -1,8 +1,12 @@
+import { addEventsOnPageButton } from "../../../events.js";
 import {
+  GRID,
+  LIST,
   MAX_GRID_PAGE,
   categoryId,
   gridPage,
   listPage,
+  setPageType,
 } from "../../../pageState.js";
 import { qs } from "../../../utils.js";
 import {
@@ -10,11 +14,13 @@ import {
   showGridContainer,
   showGridPage,
 } from "../mainBody/mainContent/pressGrid/pressGrid.js";
+import { startProgressAnimation } from "../mainBody/mainContent/pressList/category/progressBar.js";
 import {
   hideListContainer,
   showListContainer,
   showListPage,
 } from "../mainBody/mainContent/pressList/pressList.js";
+import { controllButtonShowing } from "../mainBody/pageButtons/pageButtons.js";
 
 export function mainHeader() {
   return `
@@ -38,6 +44,8 @@ export function handleGirdViewButton(e) {
   hideListContainer();
   showGridContainer();
   showGridPage(gridPage);
+  setPageType(GRID);
+  controllButtonShowing();
 }
 
 export function handleListViewButton(e) {
@@ -47,5 +55,12 @@ export function handleListViewButton(e) {
   hideGridContainer();
   showListContainer();
   showListPage(categoryId, listPage);
+  setPageType(LIST);
+  controllButtonShowing();
   // todo : 리스트 보이기
+  const $category = qs(`#category_${categoryId}`);
+  $category.classList.add("clicked");
+  const $progressbar = $category.getElementsByClassName("progressbar")[0];
+  console.log($progressbar);
+  startProgressAnimation($progressbar);
 }

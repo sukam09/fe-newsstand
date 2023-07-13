@@ -20,8 +20,8 @@ export function addEventsOnGridItem() {
 export function addEventsOnPageButton() {
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
-  $leftBtn.addEventListener("click", () => showPrevPage("list"));
-  $rightBtn.addEventListener("click", () => showNextPage("list"));
+  $leftBtn.addEventListener("click", () => showPrevPage());
+  $rightBtn.addEventListener("click", () => showNextPage());
 }
 
 export function addEventsOnSubButton() {

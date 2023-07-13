@@ -1,20 +1,26 @@
 import {
+  MAX_GRID_PAGE,
   MAX_LIST_PAGE,
   categoryId,
   decGridPage,
-  decListPage,
   getListPage,
+  getPageType,
   gridPage,
   incGridPage,
   incListPage,
   setListPage,
+  listPage,
+  decListPage,
 } from "../../../../pageState.js";
 import { qs } from "../../../../utils.js";
 import {
   hideGridPage,
   showGridPage,
 } from "../mainContent/pressGrid/pressGrid.js";
-import { showListPage } from "../mainContent/pressList/pressList.js";
+import {
+  hideAllListPage,
+  showListPage,
+} from "../mainContent/pressList/pressList.js";
 
 const GRID = "grid";
 const LIST = "list";
@@ -39,46 +45,39 @@ export function leftButton() {
         `;
 }
 
-export function showNextPage(type) {
+export function showNextPage() {
+  const type = getPageType();
   if (type === GRID) {
     hideGridPage(gridPage);
     incGridPage();
     showGridPage(gridPage);
-    controllButtonShowing(GRID);
   } else if (type === LIST) {
-    const listPage = getListPage();
-    let nextPage = listPage + 1;
-    const maxPage = MAX_LIST_PAGE[categoryId] - 1;
-    if (nextPage >= maxPage) {
-      nextPage = maxPage;
-    }
-    setListPage(nextPage);
-    showListPage(categoryId, nextPage);
-    controllButtonShowing(LIST);
+    hideAllListPage();
+    incListPage();
+    showListPage(categoryId, listPage);
   }
+  controllButtonShowing();
 }
 
-export function showPrevPage(type) {
+export function showPrevPage() {
+  const type = getPageType();
+
   if (type === GRID) {
     hideGridPage(gridPage);
     decGridPage();
     showGridPage(gridPage);
-    controllButtonShowing(GRID);
   } else if (type === LIST) {
-    const listPage = getListPage();
-    let prevPage = listPage - 1;
-    if (prevPage <= 0) {
-      prevPage = 0;
-    }
-    setListPage(prevPage);
-    showListPage(categoryId, prevPage);
-    controllButtonShowing(LIST);
+    hideAllListPage();
+    decListPage();
+    showListPage(categoryId, listPage);
   }
+  controllButtonShowing();
 }
 
-function controllButtonShowing(type) {
+export function controllButtonShowing() {
   const $leftButton = qs(".left_button");
   const $rightButton = qs(".right_button");
+  const type = getPageType();
 
   if (type === GRID) {
     if (gridPage >= MAX_GRID_PAGE - 1) {

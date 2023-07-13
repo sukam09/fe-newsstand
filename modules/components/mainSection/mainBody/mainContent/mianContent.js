@@ -17,6 +17,8 @@ export async function mainContent() {
         ${pressList(newsList[0], 2)}
         ${pressList(newsList[1], 0)}
         ${pressList(newsList[1], 1)}
+        ${pressList(newsList[1], 2)}
+        ${pressList(newsList[1], 3)}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}
