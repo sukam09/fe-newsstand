@@ -8,8 +8,6 @@ function setListNews() {
 
   for (let i = 0; i < LIST.SUBTITLENUM; i++) {
     GLOBAL.DOM.sub_news_title[i].innerHTML = GLOBAL.list_news_data[GLOBAL.list_cur_page].sub_title[i];
-    console.log(GLOBAL.list_cur_page);
-    console.log(GLOBAL.list_news_data[GLOBAL.list_cur_page].sub_title[i]);
   }
   GLOBAL.DOM.caption.innerHTML = `${GLOBAL.list_news_data[GLOBAL.list_cur_page].name} 언론사에서 직접 편집한 뉴스입니다.`;
 }
