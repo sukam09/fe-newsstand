@@ -1,9 +1,51 @@
 import { MAX_PAGE } from "./constants.js";
 import { view_option } from "./globals.js";
-import { renderGridPress } from "./views/grid_views.js";
-import { renderListNews } from "./views/list_views.js";
+import { renderGridView, renderSubscribe } from "./views/grid_views.js";
+import { renderListView } from "./views/list_views.js";
 
-function optionShowPress() {
+function togglePressEvent() {
+    const press_container = document.querySelectorAll(".press_data_item");
+    press_container.forEach((item) => {
+        //hover event
+        item.addEventListener("mouseenter", (e) => {
+            // 3d rotate
+            item.style.transform = "rotateX(180deg)";
+            item.style.transition = "transform 0.5s";
+        });
+
+        item.addEventListener("mouseleave", (e) => {
+            // 3d rotate back
+            item.style.transform = "rotateX(0deg)";
+            item.style.transition = "transform 0.5s";
+        });
+    });
+    toggleSubscribeEvent();
+}
+
+function toggleSubscribeEvent() {
+    const subscribe = document.querySelectorAll(".content_subscribe");
+    subscribe.forEach((press) => {
+        press.addEventListener("click", (e) => {
+            renderSubscribe(press, press.is_subscribe === true);
+        });
+    });
+}
+
+function changeCategoryEvent(data) {
+    const main_nav_item = document.querySelectorAll(".main_nav_item");
+
+    main_nav_item.forEach((item) => {
+        item.addEventListener("click", () => {
+            view_option.category = view_option.categorys.indexOf(
+                item.innerText
+            );
+            renderListView(data, view_option.category, 0);
+            view_option.list_current_page = 0;
+        });
+    });
+}
+
+function subscribeOptionEvent() {
     const option_press = document.querySelectorAll(".option_press");
     option_press.forEach((option) => {
         option.addEventListener("click", (e) => {
@@ -25,7 +67,7 @@ function optionShowPress() {
     });
 }
 
-function optionShowMain() {
+function mainOptionEvent() {
     const option_main = document.querySelectorAll(".option_main");
     const news_data_container = document.querySelector(".main_news_container");
 
@@ -42,7 +84,7 @@ function optionShowMain() {
                 deleteMainDisplay();
                 changeArrow("grid");
 
-                renderGridPress(
+                renderGridView(
                     view_option.press_data,
                     view_option.grid_current_page
                 );
@@ -57,7 +99,7 @@ function optionShowMain() {
                 deleteMainDisplay();
                 changeArrow("list");
 
-                renderListNews(
+                renderListView(
                     view_option.news_data,
                     view_option.category,
                     view_option.list_current_page
@@ -78,29 +120,6 @@ function changeArrow(mode) {
     const left_arrow = document.querySelector(`.${mode}_left_arrow`);
     cur_left_arrow.style.display = "none";
     left_arrow.style.display = "block";
-}
-
-function toggleSubscribe() {
-    const subscribe = document.querySelectorAll(".content_subscribe");
-
-    subscribe.forEach((press) => {
-        press.addEventListener("click", (e) => {
-            if (press.is_subscribe === true) {
-                press.is_subscribe = false;
-                console.log(`${press.name}이 구독해지되었습니다.`);
-                press.innerHTML = `
-                <img src="./assets/icons/plus.png" />
-                <span>구독하기</span>
-                `;
-            } else {
-                press.is_subscribe = true;
-                console.log(`${press.name}이 구독되었습니다.`);
-                press.innerHTML = `
-                <img src="./assets/icons/symbol.png" />
-                `;
-            }
-        });
-    });
 }
 
 function toggleArrow(mode, page) {
@@ -141,14 +160,14 @@ function movePageEvent() {
     grid_left_arrow.addEventListener("click", () => {
         if (view_option.grid_current_page <= 0) return;
         view_option.grid_current_page = view_option.grid_current_page - 1;
-        renderGridPress(view_option.press_data, view_option.grid_current_page);
+        renderGridView(view_option.press_data, view_option.grid_current_page);
     });
 
     grid_right_arrow.addEventListener("click", () => {
         if (view_option.grid_current_page >= length) return;
         view_option.grid_current_page = view_option.grid_current_page + 1;
 
-        renderGridPress(view_option.press_data, view_option.grid_current_page);
+        renderGridView(view_option.press_data, view_option.grid_current_page);
     });
 
     list_left_arrow.addEventListener("click", () => {
@@ -177,7 +196,7 @@ function movePage(direction) {
             view_option.list_current_page = 0;
         }
 
-        renderListNews(
+        renderListView(
             view_option.news_data,
             view_option.category,
             view_option.list_current_page
@@ -200,7 +219,7 @@ function movePage(direction) {
                 ].length - 1;
         }
 
-        renderListNews(
+        renderListView(
             view_option.news_data,
             view_option.category,
             view_option.list_current_page
@@ -209,9 +228,16 @@ function movePage(direction) {
 }
 
 function handleEvents() {
-    optionShowPress();
-    optionShowMain();
+    subscribeOptionEvent();
+    mainOptionEvent();
     movePageEvent();
 }
 
-export { handleEvents, toggleArrow, movePage, toggleSubscribe };
+export {
+    togglePressEvent,
+    changeCategoryEvent,
+    handleEvents,
+    toggleArrow,
+    movePage,
+    toggleSubscribeEvent,
+};

@@ -1,19 +1,24 @@
 import { COL_SIZE, ROW_SIZE } from "../constants.js";
 import { view_option } from "../globals.js";
 import { fetchPressData } from "../utils.js";
-import { toggleArrow, toggleSubscribe } from "../events.js";
+import { toggleArrow, togglePressEvent } from "../events.js";
 
-// render news
-function renderGridPress(shuffledData, page) {
-    const news_data_container = document.querySelector(".main_news_container");
-    let cnt = page * 24;
-    news_data_container.innerHTML = "";
+function renderGridView(data, page) {
+    const grid_press_container = document.querySelector(".main_news_container");
+    grid_press_container.innerHTML = "";
+
+    createPressList(grid_press_container, data, page * 24);
+
+    // 이 이벤트는 정리해야함.
+    togglePressEvent();
     toggleArrow("grid", page);
+}
 
+function createPressList(container, data, idx) {
     for (let i = 0; i < COL_SIZE; i++) {
         let ul = document.createElement("ul");
         for (let j = 0; j < ROW_SIZE; j++) {
-            const item = shuffledData[cnt] || { name: "empty", url: "" };
+            const item = data[idx] || { name: "empty", url: "" };
             ul.innerHTML += `
             <li class="press_data_item">
                 <img class="press_item press_data_img press_front" src="${item.url}" />
@@ -23,30 +28,27 @@ function renderGridPress(shuffledData, page) {
                 </button>
             </li>
             `;
-            cnt += 1;
+            idx += 1;
         }
-        news_data_container.appendChild(ul);
+        container.appendChild(ul);
     }
-    togglePress();
 }
 
-function togglePress() {
-    const press_container = document.querySelectorAll(".press_data_item");
-    press_container.forEach((item) => {
-        //hover event
-        item.addEventListener("mouseenter", (e) => {
-            // 3d rotate
-            item.style.transform = "rotateX(180deg)";
-            item.style.transition = "transform 0.5s";
-        });
-
-        item.addEventListener("mouseleave", (e) => {
-            // 3d rotate back
-            item.style.transform = "rotateX(0deg)";
-            item.style.transition = "transform 0.5s";
-        });
-    });
-    toggleSubscribe();
+function renderSubscribe(press, is_subscribe) {
+    if (is_subscribe) {
+        press.is_subscribe = false;
+        console.log(`${press.name}이 구독해지되었습니다.`);
+        press.innerHTML = `
+        <img src="./assets/icons/plus.png" />
+        <span>구독하기</span>
+        `;
+    } else {
+        press.is_subscribe = true;
+        console.log(`${press.name}이 구독되었습니다.`);
+        press.innerHTML = `
+        <img src="./assets/icons/symbol.png" />
+        `;
+    }
 }
 
 function initPress() {
@@ -54,8 +56,8 @@ function initPress() {
 
     promise_data.then((data) => {
         view_option.press_data = data;
-        renderGridPress(data, 0);
+        renderGridView(data, 0);
     });
 }
 
-export { initPress, renderGridPress };
+export { initPress, renderGridView, renderSubscribe };

@@ -1,30 +1,35 @@
 import { view_option } from "../globals.js";
 import { fetchNewsData } from "../utils.js";
-import { movePage } from "../events.js";
+import { movePage, changeCategoryEvent } from "../events.js";
 
-function renderListNews(data, category, page) {
-    const news_data_container = document.querySelector(".main_news_container");
-    news_data_container.innerHTML = "";
+function renderListView(data, category, page) {
+    const list_news_container = document.querySelector(".main_news_container");
+    list_news_container.innerHTML = "";
+    const main_content = document.createElement("div");
+    main_content.classList.add("main_content");
 
     // 임시
     clearInterval(view_option.interval);
     view_option.progress_time = 0;
 
-    createMainNav(
-        news_data_container,
+    createNewsNav(
+        list_news_container,
         data[view_option.categorys[category]],
         page + 1
     );
-    setProgress();
-    createMainContent(
-        news_data_container,
+    createNewsHeader(main_content, data[view_option.categorys[category]], page);
+    createMainContents(
+        main_content,
         data[view_option.categorys[category]],
         page
     );
-    changeCategory(data);
+
+    list_news_container.appendChild(main_content);
+    setProgress();
+    changeCategoryEvent(data);
 }
 
-function createMainNav(container, data, page) {
+function createNewsNav(container, data, page) {
     const nav = document.createElement("nav");
     nav.classList.add("main_nav");
     const ul = document.createElement("ul");
@@ -48,9 +53,24 @@ function createMainNav(container, data, page) {
     container.appendChild(nav);
 }
 
-function createMainContent(container, data, page) {
-    const main_content = document.createElement("div");
-    main_content.classList.add("main_content");
+function createNewsHeader(parent, data, page) {
+    const container = document.createElement("div");
+    container.classList.add("content_header");
+
+    container.innerHTML = `
+        <img src="${data[page].press_url}" class="content_press" />
+        <p class="content_edit">${data[page].last_edit} 편집</p>
+        <button class="content_subscribe">
+            <img src="./assets/icons/plus.png" />
+            <span>구독하기</span>
+        </button>`;
+
+    parent.appendChild(container);
+}
+
+function createMainContents(parent, data, page) {
+    const container = document.createElement("div");
+    container.classList.add("content_body");
 
     const ul = document.createElement("ul");
     ul.classList.add("content_body_contents");
@@ -67,38 +87,14 @@ function createMainContent(container, data, page) {
     ul.appendChild(li);
     const list_news = ul.outerHTML;
 
-    main_content.innerHTML = `
-    <div class="content_header">
-        <img src="${data[page].press_url}" class="content_press" />
-        <p class="content_edit">${data[page].last_edit} 편집</p>
-        <button class="content_subscribe">
-            <img src="./assets/icons/plus.png" />
-            <span>구독하기</span>
-        </button>
-    </div>
-    <div class="content_body">
+    container.innerHTML = `
         <div class="content_body_title">
             <img src="${data[page].main_url}" class="content_picture" />
             <p class="content_title">${data[page].main_title}</p>
         </div>
-        ${list_news}
-    </div>`;
+        ${list_news}`;
 
-    container.appendChild(main_content);
-}
-
-function changeCategory(data) {
-    const main_nav_item = document.querySelectorAll(".main_nav_item");
-
-    main_nav_item.forEach((item) => {
-        item.addEventListener("click", () => {
-            view_option.category = view_option.categorys.indexOf(
-                item.innerText
-            );
-            renderListNews(data, view_option.category, 0);
-            view_option.list_current_page = 0;
-        });
-    });
+    parent.appendChild(container);
 }
 
 function initNews() {
@@ -132,4 +128,4 @@ function setProgress() {
     }, 1000);
 }
 
-export { initNews, renderListNews };
+export { initNews, renderListView };
