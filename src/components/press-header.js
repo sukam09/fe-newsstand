@@ -34,11 +34,11 @@ const getNavRightElement = () => {
   $navRight.classList.add('press__nav-right');
 
   const $imgList = document.createElement('img');
-  $imgList.classList.add('press__img');
+  $imgList.classList.add('press__img-list');
   $imgList.src = './assets/icons/list-hide.svg';
 
   const $imgGrid = document.createElement('img');
-  $imgGrid.classList.add('press__img');
+  $imgGrid.classList.add('press__img-grid');
   $imgGrid.src = './assets/icons/grid-view.svg';
 
   $imgList.addEventListener('click', () => {

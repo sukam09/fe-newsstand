@@ -21,6 +21,7 @@ const setTotalPressList = (isLightMode) => {
       //   makePressGrid(data, shufflePress, isLightMode);
 
       // interval 설정
+
       setPressCategoryArticleNext(categoryData, shufflePressList);
     })
     .catch((error) => {
@@ -36,10 +37,27 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
    * 20초 마다 다음 뉴스로 넘어가게
    */
 
-  setInterval(() => {
-    const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
-    setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-  }, 3000);
+  const imgList = document.querySelector('.press__img-list');
+  const imgGrid = document.querySelector('.press__img-grid');
+  const liList = document.querySelectorAll('.press-category__li');
+  let interval;
+
+  imgList.addEventListener('click', () => {
+    interval = setInterval(() => {
+      const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
+      setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
+    }, 3000);
+  });
+
+  imgGrid.addEventListener('click', () => {
+    clearInterval(interval);
+  });
+
+  liList.forEach((li) => {
+    li.addEventListener('click', () => {
+      clearInterval(interval);
+    });
+  });
 };
 
 /**
@@ -81,6 +99,7 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
   });
 
   divNow.innerText = currentArticle + 1;
+  console.log('시작');
 
   if (currentArticle + 1 >= categoryArticleList.length) {
     currentArticle = 0;
