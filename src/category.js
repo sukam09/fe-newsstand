@@ -4,10 +4,20 @@ import { $ } from "./util.js";
 let now_list_page = 1;
 let now_category = 0;
 const MAX_NEWS_COUNT = 6;
+const CATEGORY_TAB_NUM = categoryList.length - 1;
+
+function setFirstListPage() {
+  now_list_page = 1;
+  now_category = 0;
+  updateListButton();
+  updateCategoryClicked();
+  updateCategoryNum();
+}
 
 function refreshInterval() {
   stopCategoryInterval();
   startCategoryInterval();
+  updateListButton();
 }
 
 // 카테고리 메뉴 클릭시 전환
@@ -18,7 +28,7 @@ function categoryClicked(item) {
   targetOn.classList.add("category_list--clicked");
   now_list_page = 1;
   now_category = item.id - 1;
-  updateCategory();
+  updateCategoryNum();
   refreshInterval();
 }
 
@@ -74,7 +84,15 @@ function createCategoryList(item, idx) {
 }
 
 // 카테고리 업데이트
-function updateCategory() {
+function updateCategoryClicked() {
+  const clickedCategory = $(".category_list--clicked");
+  clickedCategory.classList.remove("category_list--clicked");
+  const targetOn = $(".category_list_container");
+  targetOn.children[now_category].classList.add("category_list--clicked");
+  updateCategoryNum();
+}
+
+function updateCategoryNum() {
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
   clickedCategory.children[1].children[0].innerHTML = `${now_list_page} /`;
@@ -134,4 +152,50 @@ function createNewsList(content) {
   return newList;
 }
 
-export { appendCategoryList, appendNewsList, updateCategory, listPageUp };
+function updateListButton() {
+  const leftListButton = $(".left_list_button");
+  const rightListButton = $(".right_list_button");
+  if (now_list_page === 1 && now_category === 0) {
+    leftListButton.style.display = "none";
+    rightListButton.style.display = "block";
+  } else if (
+    now_category === CATEGORY_TAB_NUM &&
+    now_list_page === categoryList[CATEGORY_TAB_NUM].data.length
+  ) {
+    rightListButton.style.display = "none";
+    leftListButton.style.display = "block";
+  } else {
+    leftListButton.style.display = "block";
+    rightListButton.style.display = "block";
+  }
+}
+
+function moveListPage(increment) {
+  now_list_page + increment === 0
+    ? ((now_category -= 1),
+      (now_list_page = categoryList[now_category].data.length))
+    : (now_list_page += increment);
+  updateCategoryClicked();
+  updateListButton();
+}
+
+(function init() {
+  updateListButton();
+  const leftListButton = $(".left_list_button");
+  const rightListButton = $(".right_list_button");
+  leftListButton.addEventListener("click", () => {
+    moveListPage(-1);
+  });
+  rightListButton.addEventListener("click", () => {
+    moveListPage(1);
+  });
+})();
+
+export {
+  appendCategoryList,
+  appendNewsList,
+  updateCategoryClicked,
+  listPageUp,
+  updateListButton,
+  setFirstListPage,
+};
