@@ -1,4 +1,4 @@
-import { MEDIA } from './constants.js';
+import { MEDIA, SUB_MEDIA } from './constants.js';
 import media_data from '../assets/data/media_data.js';
 import { SubButton } from './components/Button.js';
 
@@ -13,12 +13,6 @@ const createMediaArray = () => {
 
 const mediaArray = createMediaArray();
 let page = 0;
-
-// (임시) 구독한 언론사 배열
-const subscribed = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-  23, 24, 25, 26, 27,
-];
 
 const setGrid = () => {
   const mediaLogo = document.querySelectorAll('.media_logo');
@@ -44,7 +38,7 @@ const setGrid = () => {
     const subButtonArea = document.createElement('div');
     subButtonArea.classList.add('media_hover', 'surface_alt');
     subButtonArea.appendChild(
-      SubButton({ isSub: !SUB_MEDIA.includes(mediaArray[mediaId]) })
+      SubButton({ isSub: SUB_MEDIA.includes(mediaArray[mediaId]) })
     );
     imageElement.insertAdjacentElement('afterend', subButtonArea);
   });
