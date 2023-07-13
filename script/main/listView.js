@@ -1,180 +1,245 @@
 import {getJSON } from '../util/util.js';
+import media_data from '../../assets/data/media_data.js';
 let categories = [];
 let category_page = 0;
 let media_page = 0;
 let categorizedData;
 let animationId;
+
+/**
+ * category_page, media_page에 따라 section안에 내용 바꾸는 함수
+ */
 const setNewsData = () => {
-  const category_progress = document.querySelector(".progressed .category_progress");
   const newsItem = categorizedData[categories[category_page]][media_page];
-  const media_info_edited = document.querySelector(".media_info_edited");
-  const thumbnail_p = document.querySelector(".thumbnail p");
+  const src = media_data.find(item => item.name === newsItem["name"]).src;
+  
+  document.querySelector(".progressed .category_progress").innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
+  document.querySelector(".media_info_edited").innerHTML = newsItem["edit_date"];
+  document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
+  document.querySelector(".source").innerHTML = newsItem["name"] + " 언론사에서 직접 편집한 뉴스입니다.";
+  document.querySelector(".media_info img").src = `assets/images/logo/light/${src}`;
+
   const media_section_list_p_tags = document.querySelectorAll(".media_section_list p");
-  const media_section_source = document.querySelector(".source");
-
-  category_progress.innerHTML = (media_page+1)+"/" + (categorizedData[categories[category_page]].length);
-  media_info_edited.innerHTML = newsItem["edit_date"];
-  thumbnail_p.innerHTML = newsItem["main_title"];
-
-  for (let i = 0; i < media_section_list_p_tags.length-1; i++) {
-    media_section_list_p_tags[i].innerHTML = "";
+  
+  for (let i = 0; i < media_section_list_p_tags.length - 1; i++) {
+    media_section_list_p_tags[i].innerHTML = newsItem["sub_title"][i] || "";
   }
-  if (newsItem && newsItem["sub_title"].length > 0) {
-    for (let i = 0; i < newsItem["sub_title"].length; i++) { 
-      if (media_section_list_p_tags[i]) { 
-        media_section_list_p_tags[i].innerHTML = newsItem["sub_title"][i];
-      }
-    }
-  }
-  media_section_source.innerHTML = newsItem["name"] +" 언론사에서 직접 편집한 뉴스입니다.";
 }
 
+/**
+ * 
+ * @param {JSON} data 
+ * @returns JSON
+ * 데이터 가져와서 카테고리별로 분류하는 함수
+ */
+function categorizeData(data) {
+  let categorizedData = {};
+
+  for(let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let category = item.category;
+    if(!categorizedData[category]) {
+      categorizedData[category] = [];
+    }
+    categorizedData[category].push(item);
+  }
+  return categorizedData;
+}
+
+/**
+ * 
+ * @param {JSON} categorizedData 
+ * 각 카테고리별 개수를 구하고 HTML 요소를 생성하는 함수
+ */
+function createCategoryElements(categorizedData) {
+  let categoriesWrapper = document.querySelector('.category');
+  Object.keys(categorizedData).forEach((category, index) => {
+    categories.push(category);
+    
+    let categoryItemDiv = document.createElement('div');
+    if (index === 0) {
+      categoryItemDiv.classList.add('progressed');
+    }
+    categoryItemDiv.classList.add('category_item');
+
+    let categoryNameP = document.createElement('p');
+    categoryNameP.classList.add("category_name", "selected-bold14");
+    categoryNameP.textContent = category;
+  
+    let categoryProgressP = document.createElement('p');
+    categoryProgressP.classList.add("category_progress", "display-bold12");
+    categoryProgressP.textContent = `1/${categorizedData[category].length}`;
+
+    [categoryNameP, categoryProgressP].forEach(p => categoryItemDiv.appendChild(p));
+    
+    categoryItemDiv.addEventListener('click', function() {
+      category_page = index;
+      media_page = 0;
+      cancelAnimationFrame(animationId);
+      setNewsData();
+    });
+    categoriesWrapper.appendChild(categoryItemDiv);
+  });
+}
+
+/**
+ * news data가져와서 기본 셋팅 함수
+ */
 const getNewsData = async () => {
   const newsData = await getJSON("../assets/data/news_data.json");
-  // 데이터를 카테고리별로 분류하는 함수
-  function categorizeData(data) {
-    let categorizedData = {};
-
-    for(let i = 0; i < data.length; i++) {
-      let item = data[i];
-      let category = item.category;
-
-      if(!categorizedData[category]) {
-        categorizedData[category] = [];
-      }
-
-      categorizedData[category].push(item);
-    }
-
-    return categorizedData;
-  }
-
-  // 각 카테고리별 개수를 구하고 HTML 요소를 생성하는 함수
-  function createCategoryElements(categorizedData) {
-    let categoriesWrapper = document.querySelector('.category');
-  
-    Object.keys(categorizedData).forEach((category, index) => {
-      categories.push(category);
-      let categoryItemCount = categorizedData[category].length;
-    
-      let categoryItemDiv = document.createElement('div');
-      categoryItemDiv.className = "category_item";
-      if(index === 0) {
-        categoryItemDiv.classList.add('progressed');
-      }
-      let categoryNameP = document.createElement('p');
-      categoryNameP.classList.add("category_name","selected-bold14");
-      categoryNameP.textContent = category;
-      
-      let categoryProgressP = document.createElement('p');
-      categoryProgressP.classList.add("category_progress", "display-bold12");
-      categoryProgressP.textContent = "1/" + categoryItemCount;
-    
-      categoryItemDiv.appendChild(categoryNameP);
-      categoryItemDiv.appendChild(categoryProgressP);
-    
-      categoryItemDiv.addEventListener('click', function() {
-        category_page = index;
-        media_page = 0;
-        cancelAnimationFrame(animationId);
-        setNewsData();
-      });
-    
-      categoriesWrapper.appendChild(categoryItemDiv);
-    });
-    
-  }
-  
   categorizedData = categorizeData(newsData);
-  console.log(categorizedData);
   createCategoryElements(categorizedData);
   setProgressed();
 }
+
+/**
+ * 현재 category_page에 해당되는 div에 progressed class를 추가하는 함수
+ */
 const updateCategoryProgress = () => {
   var categoryItems = document.querySelectorAll(".category_item");
+  var progressedItem = document.querySelector(".category_item.progressed");
+  var progressBar = document.querySelector(".progress_bar");
 
-  for (var j = 0; j < categoryItems.length; j++) {
-    categoryItems[j].classList.remove("progressed");
+  if (progressedItem) {
+    progressedItem.classList.remove("progressed");
   }
 
   if (categoryItems[category_page]) {
     categoryItems[category_page].classList.add("progressed");
   }
+
   var progressed = document.querySelector(".category_item.progressed");
-  var progressBar = document.querySelector(".progress_bar");
 
-  if (!progressed || !progressBar) return;
-
-  var rect = progressed.getBoundingClientRect();
-  
-  progressBar.style.top = rect.top + "px";
-  progressBar.style.left = rect.left + "px";
-};
-const setProgressed = () => {
-  var categoryItems = document.querySelectorAll(".category_item");
-
-  function updateProgressBar() {
-    var progressed = document.querySelector(".category_item.progressed");
-    var progressBar = document.querySelector(".progress_bar");
-
-    if (!progressed || !progressBar) return;
-
+  if (progressed && progressBar) {
     var rect = progressed.getBoundingClientRect();
-
-    progressBar.style.position = "absolute";
     progressBar.style.top = rect.top + "px";
     progressBar.style.left = rect.left + "px";
   }
-
-  for (var i = 0; i < categoryItems.length; i++) {
-    categoryItems[i].addEventListener("click", function (event) {
-      for (var j = 0; j < categoryItems.length; j++) {
-        categoryItems[j].classList.remove("progressed");
-      }
-
-      event.currentTarget.classList.add("progressed");
-      updateProgressBar();
-
-      // 클릭할 때마다 progressBarControl 호출
-      progressBarControl();
-    });
-  }
 };
 
-const progressBarControl = () => {
-  let start = null;
-  const element = document.querySelector(".progress_bar");
-  const duration = 1000;
-  const endWidth = 166;
+/**
+ * 
+ * @param {Object} items 
+ * @param {number} index 
+ * 카테고리 클릭하면 progressed class 추가하는 함수
+ */
+const toggleProgressedClass = (items, index) => {
+  items.forEach(item => item.classList.remove("progressed"));
+  items[index].classList.add("progressed");
+};
 
-  function step(timestamp) {
-    if (!start) start = timestamp;
+/**
+ * 
+ * @param {Object} progressed 
+ * @param {querySelector} progressBar 
+ * progressBar의 기본 위치 설정하는 함수
+ */
+const setProgressBarPosition = (progressed, progressBar) => {
+  if (!progressed || !progressBar) return;
+
+  const rect = progressed.getBoundingClientRect();
+  
+  Object.assign(progressBar.style, {
+    position: "absolute",
+    top: `${rect.top}px`,
+    left: `${rect.left}px`
+  });
+};
+
+/**
+ * 
+ * @param {*} item 
+ * @param {*} index 
+ * @param {*} items 
+ * category 클릭시 애니메이션 설정하는 함수
+ */
+const addClickListenerToCategoryItem = (item, index, items) => {
+  item.addEventListener("click", () => {
+    toggleProgressedClass(items, index);
+    setProgressBarPosition(items[index], document.querySelector(".progress_bar"));
+    progressBarControl();
+  });
+};
+
+/**
+ * 카테고리 클릭 이벤트 추가하는 함수
+ */
+const setProgressed = () => {
+  const categoryItems = Array.from(document.querySelectorAll(".category_item"));
+  categoryItems.forEach(addClickListenerToCategoryItem);
+};
+
+/**
+ * 
+ * @param {element} element 
+ * @param {number} width 
+ * progress bar 기본 width 설정하는 함수
+ */
+const setWidth = (element, width) => {
+  element.style.width = `${width}px`;
+};
+
+const incrementPageOrReset = (current, max) => {
+  return current < max ? current + 1 : 0;
+};
+
+/**
+ * 페이지 번호 로직 구현한 함수
+ */
+const updatePageAndData = () => {
+  const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
+  const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
+
+  if (isLastMedia) {
+    media_page = 0;
+    category_page = isLastCategory ? 0 : category_page + 1;
+  } else {
+    media_page += 1;
+  }
+
+  updateCategoryProgress();
+  setNewsData();
+};
+
+/**
+ * 
+ * @param {*} element 
+ * @param {*} endWidth 
+ * @param {*} duration 
+ * rAF를 이용하여 progress bar animation 추가한 함수
+ */
+const animateProgressBar = (element, endWidth, duration) => {
+  const start = performance.now();
+
+  const step = (timestamp) => {
     const elapsed = timestamp - start;
-
     const currentWidth = Math.min((endWidth * elapsed) / duration, endWidth);
-    element.style.width = currentWidth + "px";
+    setWidth(element, currentWidth);
 
     if (currentWidth < endWidth) {
       animationId = requestAnimationFrame(step);
     } else {
-      console.log(categorizedData[categories[category_page]]);
-      if(categorizedData[categories[category_page]].length - 1 === media_page){ // 한 페이지 끝까지 돌면
-        media_page = 0;
-        category_page += 1;
-      }
-      else{
-        media_page+=1;
-      }
-      updateCategoryProgress();
-      setNewsData();
-      element.style.width = "0px";
+      updatePageAndData();
+      setWidth(element, 0);
       progressBarControl();
     }
-  }
+  };
 
-  element.style.width = "0px"; // 클릭할 때마다 width를 초기화
   animationId = requestAnimationFrame(step);
 };
+
+/**
+ * progressBar 관련하여 초기 설정, 세팅하는 함수
+ */
+const progressBarControl = () => {
+  const progressBar = document.querySelector(".progress_bar");
+  const duration = 500;
+  const endWidth = 166;
+
+  setWidth(progressBar, 0);
+  animateProgressBar(progressBar, endWidth, duration);
+};
+
 
 const listViewInit = () => {
   getNewsData();
