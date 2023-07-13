@@ -25,7 +25,7 @@ export default function PressListView({ $target, initialState }) {
     if (this.state.index === newIndex) {
       return;
     }
-    this.setState({ ...this.state, index: newIndex });
+    this.setState({ ...this.state, index: newIndex, present: 1 });
   };
 
   const initFieldTab = () => {
@@ -44,6 +44,7 @@ export default function PressListView({ $target, initialState }) {
   const setProgressBar = $selectedButton => {
     this.state.percentage += PROGRESSBAR_UPDATE_DELTA;
 
+    // percentage가 정확히 100이 안될 수가 있으므로 등호가 아닌 부등호를 써야 함
     if (this.state.percentage >= 100) {
       const { present, entire } = this.state;
 
