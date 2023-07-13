@@ -70,7 +70,10 @@ function createMainContent(container, data, page) {
     <div class="content_header">
         <img src="${data[page].press_url}" class="content_press" />
         <p class="content_edit">${data[page].last_edit} 편집</p>
-        <img src="./assets/icons/subscribe_btn.png" class="content_subscribe" />
+        <button class="content_subscribe">
+            <img src="./assets/icons/plus.png" />
+            <span>구독하기</span>
+        </button>
     </div>
     <div class="content_body">
         <div class="content_body_title">
