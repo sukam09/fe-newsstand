@@ -155,6 +155,8 @@
   <br/>
 
 - ### 그리드 아이템 랜덤 배치
+  
+![그리드 아이템 랜덤 배치](https://github.com/jjun990908/fe-newsstand/assets/39405559/25ed37cb-a42d-4a8b-9972-4f727f0b6a52)
 
   셔플 함수를 이용하여 `pressObj.js`에 있는 언론사의 리스트를 섞어주었고
 
@@ -201,6 +203,8 @@
 </br>
 
 - ### 롤링 애니메이션 구현
+  
+![롤링 애니메이션 구현](https://github.com/jjun990908/fe-newsstand/assets/39405559/9c6ed2b6-fe49-4d90-9b41-f0764c05e4ac)
 
   좌우 롤링애니메이션을 따로 호버액션을 구현하기 위해 `rollingEvent`와 `createBannerItem`함수에서 state인자로 좌우를 구분하여 받아주었고, `createBannerItem`에서 마우스 호버, 아웃 이벤트 리스너를 추가해준 후에 appendChild하는 방식으로 구현하였습니다.
 
