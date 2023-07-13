@@ -1,5 +1,6 @@
 @import "./css/reset.css";
 @import "./css/rollingBanner.css";
+@import "./css/category.css";
 img {
   width: 24px;
   height: 24px;
@@ -168,37 +169,6 @@ section.main {
   margin-top: 20px;
 }
 
-.categoryWrap > ul {
-  padding: 0;
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  border-bottom: solid 1px #d2dae0;
-}
-.categoryItem progress {
-  flex-grow: 1;
-  width: 100%;
-  height: 20px;
-  border: 2px black solid;
-}
-
-#category {
-  width: 100%;
-}
-
-.categoryWrap{
-  background-color: #f5f7f9;
-}
-
-.categoryCnt {
-  display: none;
-}
-
-.currentCategoryPage {
-  display: none;
-  margin-right: 10px;
-}
-
 .progress-bar {
   position: absolute;
   top: 0;
@@ -208,21 +178,6 @@ section.main {
   background-color: #4362d0;
   z-index: 0;
 }
-
-.categoryItem {
-  position: relative;
-  display: flex;
-  padding: 16px;
-  height: 100%;
-  align-items: center;
-  color: #5f6e76;
-}
-
-.categoryItem > span {
-  z-index: 1;
-  margin-right:10px;
-}
-
 input[type="radio"]:checked + label {
   font-weight: bold;
 }

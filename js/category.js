@@ -2,12 +2,13 @@ import categoryData from "../json/category.json" assert { type: "json" };
 
 let progress = 0;
 const increment = 10;
-const totalTime = 2000; //초
-let category = [];
+const totalTime = 2000;
+let category = []; //json파일을 받아와 배열 형태로 관리
 let categoryItem;
+let currentCategoryPage;
 let currentPage = 1;
-let categoryNumber = 0;
-let interval;
+let currentCategoryNumber = 0;
+let progressInterval;
 
 function setCategoryData() {
   for (const categories of categoryData) {
@@ -22,6 +23,9 @@ function setCategoryData() {
 }
 
 function addInitCategory() {
+  progress = 0;
+  currentPage = 1;
+  currentCategoryNumber = 0;
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   category.forEach((key, index) => {
     categoryHtml += `<div class="categoryItem" id="category${index}"><div class="progress-bar" id=${key.key}></div><span class="category">${key.key}</span></li><span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${key.value}</span></div>`;
@@ -33,31 +37,30 @@ function addInitCategory() {
 
 function initCategoryItem() {
   categoryItem = document.querySelectorAll(".categoryItem");
+  currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryItem();
-  categoryItem[categoryNumber].style.backgroundColor = "#7890E7";
-  categoryItem[categoryNumber].style.color = "#FFFFFF";
-  document.querySelectorAll(".currentCategoryPage")[
-    categoryNumber
+  categoryItem[currentCategoryNumber].style.backgroundColor = "#7890E7";
+  categoryItem[currentCategoryNumber].style.color = "#FFFFFF";
+  currentCategoryPage[currentCategoryNumber].style.display = "flex";
+  document.querySelectorAll(".categoryCnt")[
+    currentCategoryNumber
   ].style.display = "flex";
-  document.querySelectorAll(".categoryCnt")[categoryNumber].style.display =
-    "flex";
-  intervalProgress(document.querySelectorAll(".progress-bar")[categoryNumber]);
+  intervalProgress(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber]
+  );
 }
 
 function clearCategoryItem() {
   category.forEach((value, index) => {
     categoryItem[index].style.backgroundColor = "#f5f7f9";
     categoryItem[index].style.color = "#5f6e76";
-    document.querySelectorAll(".currentCategoryPage")[
-      index
-    ].style.display = "none";
-    document.querySelectorAll(".categoryCnt")[index].style.display =
-      "none";
+    currentCategoryPage[index].style.display = "none";
+    document.querySelectorAll(".categoryCnt")[index].style.display = "none";
   });
 }
 
 function intervalProgress(progressBar) {
-  interval = setInterval(() => {
+  progressInterval = setInterval(() => {
     doProgress(progressBar);
   }, totalTime / (100 / increment));
 }
@@ -69,23 +72,29 @@ function doProgress(progressBar) {
   if (progress === 100) {
     progress = 0;
     currentPage++;
-    if (currentPage === category[categoryNumber].value + 1) {
+    if (currentPage === category[currentCategoryNumber].value + 1) {
       currentPage = 1;
-      categoryNumber++;
-      if (categoryNumber === category.length) categoryNumber = 0;
-      clearInterval(interval);
+      currentCategoryNumber++;
+      if (currentCategoryNumber === category.length) currentCategoryNumber = 0;
+      clearInterval(progressInterval);
       initCategoryItem();
     }
-    document.querySelectorAll(".currentCategoryPage")[
-      categoryNumber
-    ].innerHTML = currentPage;
-    progressBar.style.transition = "";
-    progressBar.style.width = "0%";
+    progressReset(progressBar);
     return;
   }
+  progressFill(progressBar);
+}
+
+function progressReset(progressBar) {
+  currentCategoryPage[currentCategoryNumber].innerHTML = currentPage;
+  progressBar.style.transition = "";
+  progressBar.style.width = "0%";
+}
+
+function progressFill(progressBar) {
   progress += increment;
   progressBar.style.width = `${progress}%`;
 }
 
 setCategoryData();
-export { addInitCategory };
+export { addInitCategory, progressInterval };
