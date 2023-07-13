@@ -1,5 +1,5 @@
 const CATEGORY_NUM = 7;
-const PROGRESS_TIME = 1000;
+const PROGRESS_TIME = 20000;
 let category_clicked = false;
 let idx = 0;
 
@@ -22,13 +22,15 @@ function countUp() {
     up_count = 2;
     document.querySelector(".progress-bar .now-count").innerHTML = "1";
     if (idx <= CATEGORY_NUM - 1 && idx >= 0) {
-      if (idx == CATEGORY_NUM - 1) {
+      if (idx === CATEGORY_NUM - 1) {
         changeCategory(idx, 0);
         idx = 0;
         up_count = 2;
+        console.log(up_count);
       } else {
         changeCategory(idx, idx + 1);
         idx++;
+        console.log(up_count);
       }
     }
   } else {
@@ -36,6 +38,7 @@ function countUp() {
       up_count.toString();
     reloadProgressAnimation();
     up_count++;
+    console.log(up_count);
   }
 }
 
@@ -71,26 +74,13 @@ for (let i = 0; i < categories.length; i++) {
       count.style.display = "none";
     });
     counts[i].style.display = "block";
-
+    clearInterval(progress_interval);
+    document.querySelector(".progress-bar .now-count").innerHTML = "1";
     document.querySelector(".progress-bar").classList.remove("progress-bar");
     categories[i].classList.add("progress-bar");
+    idx = i;
+    runProgress();
   });
-}
-
-let interval1;
-function movingProgress() {
-  while (idx <= CATEGORY_NUM - 1 && idx >= 0) {
-    interval1 = setInterval(function () {
-      if (idx == CATEGORY_NUM - 1) {
-        changeCategory(idx, 0);
-        idx = 0;
-      } else {
-        changeCategory(idx, idx + 1);
-        idx++;
-      }
-    }, PROGRESS_TIME);
-    break;
-  }
 }
 
 function initializeProgress() {
@@ -100,4 +90,4 @@ function initializeProgress() {
   document.getElementsByClassName("count")[0].style.display = "block";
 }
 
-export { runProgress, initializeProgress, progress_interval };
+export { runProgress, initializeProgress, progress_interval, CATEGORY_NUM };

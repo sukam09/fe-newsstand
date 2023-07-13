@@ -375,6 +375,7 @@ h1 {
   border: 1px solid var(--border-default);
   background: url(<path-to-image>),
     lightgray 0px -11.561px / 100% 106.561% no-repeat;
+  overflow: hidden;
 }
 
 .news-main > img:hover {

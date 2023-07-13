@@ -32,7 +32,7 @@ function appendPressInGrid(press) {
   document.getElementById("press-list").appendChild($list);
 }
 
-function initGrid() {
+function setGrid() {
   const slice_shuffled_presses = shuffled_presses.slice(0, PRESS_NUM_IN_GRID);
   slice_shuffled_presses.forEach((press) => {
     appendPressInGrid(press);
@@ -80,4 +80,4 @@ grid_prev.addEventListener("click", () => {
   }
 });
 
-export { initGrid };
+export { setGrid };
