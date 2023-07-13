@@ -1,9 +1,6 @@
 /*
 기사 컨텐츠 컴포넌트
 카테고리 변경시 MainContents의 lastPage변경
-
-props: pressType, currentPage, setCurrentPage, setLastPage
-state: category
 */
 
 import CategoryNav from "./NewsListView/CategoryNav.js";
@@ -20,7 +17,37 @@ let subTitles = [
 
 const editDate = "2023.02.10 18:27 편집";
 
-export default function News($target, props) {
+export default function NewsListView($target, props) {
+  const categoryNavProps = {
+    pressType: props.pressType,
+    currentPage: props.currentPage,
+    lastPage: props.lastPage,
+    category: props.category,
+    setContentState: props.setContentState,
+    timerArr: props.timerArr,
+  };
+
+  const contentsProps = {
+    headerData: {
+      pressLogo: `./assets/newspaper/${props.mode}/${
+        props.indexArr[props.currentPage - 1] + 1
+      }.png`,
+      editDate: editDate,
+    },
+    newsData: {
+      mainNewsData: {
+        mainThumbnail: "https://picsum.photos/320/200",
+        mainNewsTitle: `또 국민연금의 몽니…현대百 지주사 불발 ${
+          props.indexArr[props.currentPage - 1]
+        }`,
+      },
+      subNewsData: {
+        subTitles: subTitles,
+        press: "서울경제",
+      },
+    },
+  };
+
   this.render = () => {
     let $div = document.querySelector(".news-container");
 
@@ -31,36 +58,8 @@ export default function News($target, props) {
     $div = document.createElement("div");
     $div.setAttribute("class", "news-container");
 
-    new CategoryNav($div, {
-      ...this.state,
-      pressType: props.pressType,
-      currentPage: props.currentPage,
-      lastPage: props.lastPage,
-      category: props.category,
-      setContentState: props.setContentState,
-      timerArr: props.timerArr,
-    });
-
-    new Contents($div, {
-      headerData: {
-        pressLogo: `./assets/newspaper/${props.mode}/${
-          props.indexArr[props.currentPage - 1] + 1
-        }.png`,
-        editDate: editDate,
-      },
-      newsData: {
-        mainNewsData: {
-          mainThumbnail: "./assets/img/Thumbnail.png",
-          mainNewsTitle: `또 국민연금의 몽니…현대百 지주사 불발 ${
-            props.indexArr[props.currentPage - 1]
-          }`,
-        },
-        subNewsData: {
-          subTitles: subTitles,
-          press: "서울경제",
-        },
-      },
-    });
+    new CategoryNav($div, categoryNavProps);
+    new Contents($div, contentsProps);
 
     $target.innerHtml = "";
     $target.appendChild($div);

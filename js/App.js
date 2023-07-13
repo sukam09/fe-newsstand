@@ -1,7 +1,6 @@
 /* 
 모든 컴포넌트의 중심이 되는 파일
 크게 Header, Rolling, Main 컴포넌트로 구성
-페이지의 Light/Dark 모드의 상태를 저장
 
 state: dark, light
 */

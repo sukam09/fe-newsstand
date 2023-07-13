@@ -1,6 +1,5 @@
 /* 
 Main 컴포넌트의 컨텐츠를 변경하는 네비게이션 컴포넌트
-props: viewer, perssType, setViewer, setPressType
 */
 import Button from "./Button.js";
 
@@ -35,23 +34,28 @@ export default function ViewerType($target, props) {
     const $div = document.createElement("div");
     $div.setAttribute("class", "news-navbar_content");
 
-    new Button($div, {
+    const commonButtonProps = {
+      changeType: "viewer",
+      mainViewerType: props.mainContentType,
+      onClick: props.setViewerType,
+    };
+
+    const listButtonProps = {
+      ...commonButtonProps,
       inner: listButtonIcon,
       className: "news-navbar_content-news",
-      changeType: "viewer",
       buttonType: "list",
-      mainViewerType: props.mainContentType,
-      onClick: props.setViewerType,
-    });
+    };
 
-    new Button($div, {
+    const gridButtonProps = {
+      ...commonButtonProps,
       inner: gridButtonIcon,
       className: "news-navbar_content-newspaper",
-      changeType: "viewer",
       buttonType: "grid",
-      mainViewerType: props.mainContentType,
-      onClick: props.setViewerType,
-    });
+    };
+
+    new Button($div, listButtonProps);
+    new Button($div, gridButtonProps);
 
     $target.appendChild($div);
   };

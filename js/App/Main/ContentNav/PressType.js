@@ -11,23 +11,29 @@ export default function PressType($target, props) {
     const $div = document.createElement("div");
     $div.setAttribute("class", "news-navbar_newspaper");
 
-    new Button($div, {
+    const commonButtonProps = {
+      mainPressType: props.mainContentType,
+      onClick: props.setPressType,
+    };
+
+    const allButtonProps = {
+      ...commonButtonProps,
       inner: allButtonInner,
       className: "news-navbar_newspaper-list-all",
       changeType: "press",
       buttonType: "all",
-      mainPressType: props.mainContentType,
-      onClick: props.setPressType,
-    });
+    };
 
-    new Button($div, {
+    const myButtonProps = {
+      ...commonButtonProps,
       inner: myButtonInner,
       className: "news-navbar_newspaper-list-my",
       changeType: "press",
       buttonType: "my",
-      mainPressType: props.mainContentType,
-      onClick: props.setPressType,
-    });
+    };
+
+    new Button($div, allButtonProps);
+    new Button($div, myButtonProps);
 
     $target.appendChild($div);
   };

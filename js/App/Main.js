@@ -1,7 +1,5 @@
 /**
  * 메인 컨튼츠의 컨테이너 컴포넌트
- * props: mode
- * state: viewer(grid/list), pressType(subscription/all)
  */
 import ContentNav from "./Main/ContentNav.js";
 import MainContent from "./Main/MainContent.js";

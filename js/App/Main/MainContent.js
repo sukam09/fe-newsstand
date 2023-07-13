@@ -1,14 +1,14 @@
 /* 
 메인 컨텐츠 컴포넌트
-언론사, 기사를 보여주는 컴포넌트
-props: mode, viewerType, pressType
-state: lastPage, currentPage
+그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";
 
 let timerArr = [];
+let indexArr = Array.from({ length: 4 }, (_, i) => i);
+indexArr.sort(() => Math.random() - 0.5);
 
 const cancelAnimation = () => {
   timerArr.forEach((timer) => {
@@ -16,7 +16,10 @@ const cancelAnimation = () => {
   });
 };
 
-let indexArr = Array.from({ length: 4 }, (_, i) => i);
+const suffile = (len) => {
+  indexArr = Array.from({ length: len }, (_, i) => i);
+  indexArr.sort(() => Math.random() - 0.5);
+};
 
 export default function MainContent($target, props) {
   this.state = { currentPage: 1, lastPage: 4, category: 0 };
@@ -25,13 +28,13 @@ export default function MainContent($target, props) {
 
   this.setState = (nextState) => {
     this.state = nextState;
-    indexArr.sort(() => Math.random() - 0.5);
+    suffile(this.state.lastPage);
     this.render();
   };
 
   this.setCategory = (nextCategory) => {
     this.state = { ...this.state, category: nextCategory % 7 };
-    indexArr.sort(() => Math.random() - 0.5);
+    suffile(this.state.lastPage);
     this.render();
   };
 
@@ -55,38 +58,39 @@ export default function MainContent($target, props) {
     $section = document.createElement("section");
     $section.setAttribute("class", "news-section");
 
+    const commonProps = {
+      mode: props.mode,
+      pressType: props.pressType,
+      currentPage: this.state.currentPage,
+    };
+
     if (props.viewerType === "grid") {
-      new PressGridView($section, {
-        mode: props.mode,
-        pressType: props.pressType,
-        currentPage: this.state.currentPage,
-      });
+      const gridProps = {
+        ...commonProps,
+      };
+
+      new PressGridView($section, gridProps);
     } else {
-      new NewsListView($section, {
-        mode: props.mode,
-        pressType: props.pressType,
-        currentPage: this.state.currentPage,
+      const listProps = {
+        ...commonProps,
         lastPage: this.state.lastPage,
         category: this.state.category,
         setContentState: this.setState,
         timerArr: timerArr,
         indexArr: indexArr,
-      });
+      };
+
+      new NewsListView($section, listProps);
     }
 
-    new Button($section, {
+    const commonButtonProps = {
       mode: props.mode,
-      direction: "left",
       ...this.state,
       onClick: this.setCurrentPage,
-    });
+    };
 
-    new Button($section, {
-      mode: props.mode,
-      direction: "right",
-      ...this.state,
-      onClick: this.setCurrentPage,
-    });
+    new Button($section, { ...commonButtonProps, direction: "left" });
+    new Button($section, { ...commonButtonProps, direction: "right" });
 
     $target.appendChild($section);
   };

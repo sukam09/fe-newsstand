@@ -1,9 +1,11 @@
 /*
 신문사 컨텐츠 컴포넌트
-props: pressType, currentPage, setLastpage
 */
 
-const indexArr = Array.from({ length: 96 }, (_, i) => i);
+const TOTAL_PRESS_NUMBER = 96;
+const GRID_PRESS_NUBER = 24;
+
+const indexArr = Array.from({ length: TOTAL_PRESS_NUMBER }, (_, i) => i);
 indexArr.sort(() => Math.random() - 0.5);
 
 const createNewspaperItem = function (index, mode) {
@@ -14,26 +16,23 @@ const createNewspaperItem = function (index, mode) {
     `;
 };
 
-const createNewspaperList = function (page, mode) {
-  const nowPageIndexArr = indexArr.slice((page - 1) * 24, page * 24);
+const createPressList = function (page, mode) {
+  const nowPageIndexArr = indexArr.slice(
+    (page - 1) * GRID_PRESS_NUBER,
+    page * GRID_PRESS_NUBER
+  );
   const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
-  let newspaperList = liArr.reduce((news, currentIndex) => news + currentIndex);
-  return newspaperList;
+  let pressList = liArr.reduce((news, currentIndex) => news + currentIndex);
+
+  return pressList;
 };
 
 export default function PressGridView($target, props) {
-  //   this.state = mode;
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
   this.render = () => {
     const $ul = document.createElement("ul");
 
     $ul.setAttribute("class", "newspaper__list");
-    $ul.innerHTML = createNewspaperList(props.currentPage, props.mode);
+    $ul.innerHTML = createPressList(props.currentPage, props.mode);
 
     $target.innerHTML = "";
     $target.appendChild($ul);

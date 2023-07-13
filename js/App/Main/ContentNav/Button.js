@@ -1,9 +1,20 @@
 /* 
-보여줄 메인 컨텐츠를 선택하는 버튼
-props: inner, className, changeType, buttonType, onClick
+메인 컨텐츠를 선택하는 버튼(전체/구독, 리스트 뷰/그리드를 선택 가능)
 */
 
-export default function Button($target, props, ClassName, onClick) {
+const findTargetChildNode = (element, targetTagName) => {
+  if (!element) {
+    return null;
+  }
+
+  if (element.tagName === targetTagName) {
+    return element;
+  }
+
+  return findTargetChildNode(element.firstElementChild, targetTagName);
+};
+
+export default function Button($target, props) {
   const changePressType = () => {
     props.onClick(props.buttonType);
   };
@@ -21,9 +32,7 @@ export default function Button($target, props, ClassName, onClick) {
     if (props.changeType === "viewer") {
       $button.addEventListener("click", changeViewerType);
 
-      let targetElement = $button;
-      while (targetElement && targetElement.tagName !== "path")
-        targetElement = targetElement.firstElementChild;
+      let targetElement = findTargetChildNode($button, "path");
 
       targetElement.style.fill =
         props.buttonType === props.mainViewerType ? "#4362D0" : "";

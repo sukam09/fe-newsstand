@@ -1,7 +1,7 @@
 /*
-메인 컨텐츠 페이지 전환 버튼 컴포넌트
-props: lastPage, currentPage, direction, setPage
+메인 컨텐츠 페이지 전환 버튼
 */
+const FIRST_PAGE_NUMBER = 1;
 
 export default function Button($target, props) {
   this.render = () => {
@@ -31,7 +31,8 @@ export default function Button($target, props) {
 </svg>`;
 
     if (props.direction === "left") {
-      $button.style.display = props.currentPage === 1 ? "none" : "block";
+      $button.style.display =
+        props.currentPage === FIRST_PAGE_NUMBER ? "none" : "block";
 
       $button.addEventListener("click", () => {
         props.onClick(props.currentPage - 1);

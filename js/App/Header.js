@@ -1,9 +1,6 @@
 /* 
-페이지에서 렌더링 할 헤더파일
-크게 Title, Date로 구성
-페이지의 Light/Dark 모드의 를 저장
-
-props: mode
+페이지 헤더 컴포넌트
+Title, Date로 구성
 */
 function formatDate(date) {
   const options = {
@@ -20,7 +17,7 @@ export default function Header($target, props) {
   this.render = () => {
     const $header = document.createElement("header");
     const today = new Date();
-    const formattedDate = formatDate(today);
+    const formattedDate = formatDate(today); // 오늘 날짜 구하기
 
     $header.setAttribute("class", "header");
     $header.innerHTML = `

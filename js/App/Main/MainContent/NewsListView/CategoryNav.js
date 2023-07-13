@@ -1,7 +1,11 @@
 /*
 기사 컨텐츠 네비게이션 컴포넌트
-props: setCurrentPage, setCategory
 */
+const FIRST_CATEGORY = 0;
+const LAST_CATEGORY = 6;
+
+const FIRST_PAGE = 1;
+const arrCategoryLength = [4, 12, 3, 5, 6, 4, 7, 10];
 
 export default function CategoryNav($target, props) {
   this.startProgress = (progressBar) => {
@@ -20,16 +24,16 @@ export default function CategoryNav($target, props) {
 
       if (width >= endWidth) {
         if (props.currentPage === props.lastPage) {
-          if (props.category === 6) {
+          if (props.category === LAST_CATEGORY) {
             props.setContentState({
-              currentPage: 1,
-              lastPage: props.lastPage,
-              category: 0,
+              currentPage: FIRST_PAGE,
+              lastPage: arrCategoryLength[FIRST_CATEGORY],
+              category: FIRST_CATEGORY,
             });
           } else {
             props.setContentState({
               currentPage: 1,
-              lastPage: props.lastPage,
+              lastPage: arrCategoryLength[props.category + 1],
               category: props.category + 1,
             });
           }
@@ -90,7 +94,7 @@ export default function CategoryNav($target, props) {
 
         props.setContentState({
           currentPage: 1,
-          lastPage: 4,
+          lastPage: arrCategoryLength[targetElement.dataset.key],
           category: Number(targetElement.dataset.key),
         });
       }

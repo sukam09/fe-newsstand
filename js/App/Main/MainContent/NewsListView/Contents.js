@@ -1,6 +1,5 @@
 /* 
 리스트 뷰  컨테이너 컴포넌트
-props: category, currentPage
 */
 
 import Header from "./Contents/Header.js";

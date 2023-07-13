@@ -1,8 +1,10 @@
 /* 
-롤링 컨테이너 컴포넌트
-props: mode
+롤링 컨텐츠 컨테이너 컴포넌트
 */
 import RollingContents from "./RollingContents/RollingContents.js";
+
+const IMMEDIATELY = 0;
+const ONE_SECOND_LATER = 1;
 
 export default function Rolling($target, props) {
   const mode = props.mode;
@@ -11,8 +13,8 @@ export default function Rolling($target, props) {
     const $rolling = document.createElement("section");
     $rolling.setAttribute("class", "newsflash");
 
-    new RollingContents($rolling, { mode: mode, startTime: 0 });
-    new RollingContents($rolling, { mode: mode, startTime: 1 });
+    new RollingContents($rolling, { mode: mode, startTime: IMMEDIATELY }); //즉시 롤링
+    new RollingContents($rolling, { mode: mode, startTime: ONE_SECOND_LATER }); // 1초후 롤링
 
     $target.appendChild($rolling);
   };
