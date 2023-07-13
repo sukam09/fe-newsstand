@@ -1,16 +1,22 @@
 // 랜덤 그리드 && 버튼
-import { press } from "../../assets/press.js";
+
+import { fetchData } from "../fetchData.js";
+
+function initGridView() {
+  fetchData(".././assets/press.json").then((press) => makeGridView(press));
+}
 
 const GRID_NUM = 24;
 const MIN_PAGE = 1;
 const MAX_PAGE = 4;
-
+const PRESS_NUM = 96;
 let main_list_page = MIN_PAGE;
+
 const main_list_ul = document.querySelector(".grid-view-ul");
 const left_btn = document.getElementById("left-btn");
 const right_btn = document.getElementById("right-btn");
 
-const imgIndex = Array(press.length)
+const imgIndex = Array(PRESS_NUM)
   .fill()
   .map((arr, i) => i);
 
@@ -20,7 +26,7 @@ function shuffleImgIndex() {
 
 const shuffledPress = shuffleImgIndex();
 
-function showMainList() {
+function showMainList(press) {
   main_list_ul.innerHTML = "";
   for (
     let i = GRID_NUM * (main_list_page - 1);
@@ -36,13 +42,13 @@ function showMainList() {
   }
 }
 
-function changePage(e) {
+function changePage(e, press) {
   if (e.target.id === "left") {
     main_list_page--;
   } else {
     main_list_page++;
   }
-  showMainList();
+  showMainList(press);
   checkPage();
 }
 
@@ -55,10 +61,10 @@ function checkPage() {
   }
 }
 
-function initGridView() {
-  right_btn.addEventListener("click", (e) => changePage(e));
-  left_btn.addEventListener("click", (e) => changePage(e));
-  showMainList();
+function makeGridView(press) {
+  right_btn.addEventListener("click", (e) => changePage(e, press));
+  left_btn.addEventListener("click", (e) => changePage(e, press));
+  showMainList(press);
   checkPage();
 }
 export { initGridView };
