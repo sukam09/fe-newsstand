@@ -22,11 +22,11 @@ export default function PressTab({ $target, initialState, onClick }) {
   };
 
   const setViewIcon = ($gridViewIcon, $listViewIcon) => {
-    $gridViewIcon.classList.remove('selected');
-    $listViewIcon.classList.remove('selected');
+    $gridViewIcon.classList.remove('press-view-selected');
+    $listViewIcon.classList.remove('press-view-selected');
     this.state.pressView === 'grid'
-      ? $gridViewIcon.classList.add('selected')
-      : $listViewIcon.classList.add('selected');
+      ? $gridViewIcon.classList.add('press-view-selected')
+      : $listViewIcon.classList.add('press-view-selected');
   };
 
   this.render = () => {

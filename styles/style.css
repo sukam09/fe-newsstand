@@ -219,7 +219,7 @@ header {
   cursor: pointer;
 }
 
-.selected {
+.press-view-selected {
   fill: #4362d0;
 }
 
