@@ -4,6 +4,17 @@ import { nextCategory, nextPage } from "../store/reducer.js";
 
 const $listViewTab = document.querySelector(".list-view_tab");
 
+const handleProgressAnimationIteration = () => {
+  const { currentCategory, currentPage } = store.getState();
+  const totalCount = NewsDB.getCountByCategory(currentCategory);
+
+  if (totalCount - 1 === currentPage) {
+    store.dispatch(nextCategory());
+  } else {
+    store.dispatch(nextPage());
+  }
+};
+
 export const resetProgress = () => {
   const $categorySelected = $listViewTab.querySelector(".category-selected");
   const $progressBar = $categorySelected.querySelector(
@@ -15,14 +26,8 @@ export const resetProgress = () => {
 };
 
 export const addEventOnProgressBar = () => {
-  $listViewTab.addEventListener("animationiteration", () => {
-    const { currentCategory, currentPage } = store.getState();
-    const currentCategoryCount = NewsDB.getCountByCategory(currentCategory);
-
-    if (currentCategoryCount - 1 === currentPage) {
-      store.dispatch(nextCategory());
-    } else {
-      store.dispatch(nextPage());
-    }
-  });
+  $listViewTab.addEventListener(
+    "animationiteration",
+    handleProgressAnimationIteration
+  );
 };
