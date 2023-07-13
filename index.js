@@ -1,6 +1,6 @@
 import { rollNews } from "./components/roller.js";
 import { RECENT_NEWS_NUM } from "./constants/constant.js";
-import { viewSelectHandler } from "./utils/event.js";
+import { viewSelectHandler } from "./utils/setViewMode.js";
 import { fetchData } from "./utils/fetch.js";
 import { shuffleData } from "./utils/shuffle.js";
 import { sliceData } from "./utils/slice.js";

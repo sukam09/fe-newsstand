@@ -1,15 +1,17 @@
-import { createGridPages, renderGrid } from "../components/gridView.js";
-import { renderList } from "../components/listView.js";
-import { INITIAL_PAGE } from "../constants/constant.js";
+import { GridComponent } from "../components/GridComponent.js";
+import { ListComponent } from "../components/ListComponent.js";
+import { FIELDTAB_LIST, INITIAL_PAGE } from "../constants/constant.js";
 import { filterCategory } from "./filterCategory.js";
+import { removeAllChildNodes } from "./removeChild.js";
 import { sortCategory } from "./sortCategory.js";
+import { sortPages } from "./sortPage.js";
 
 export const viewSelectHandler = (agencies) => {
   const gridBtn = document.querySelector(".grid-view-btn");
   const listBtn = document.querySelector(".list-view-btn");
 
-  const pages = createGridPages(agencies);
-  renderGrid(INITIAL_PAGE, pages);
+  const pages = sortPages(agencies);
+  GridComponent(INITIAL_PAGE, pages);
 
   let currentPage = INITIAL_PAGE;
 
@@ -17,11 +19,11 @@ export const viewSelectHandler = (agencies) => {
   const nextBtn = document.querySelector(".next-page-btn");
 
   prevBtn.addEventListener("click", () => {
-    renderGrid(--currentPage, pages);
+    GridComponent(--currentPage, pages);
   });
 
   nextBtn.addEventListener("click", () => {
-    renderGrid(++currentPage, pages);
+    GridComponent(++currentPage, pages);
   });
 
   const setGrid = () => {
@@ -34,16 +36,21 @@ export const viewSelectHandler = (agencies) => {
       $grid.style.display = "grid";
       $list.style.display = "none";
 
-      const pages = createGridPages(agencies);
-      renderGrid(INITIAL_PAGE, pages);
+      const pages = sortPages(agencies);
+      console.log(pages);
+      GridComponent(INITIAL_PAGE, pages);
 
       let currentPage = INITIAL_PAGE;
 
       const prevBtn = document.querySelector(".prev-page-btn");
       const nextBtn = document.querySelector(".next-page-btn");
 
-      prevBtn.addEventListener("click", renderGrid(--currentPage, pages));
-      nextBtn.addEventListener("click", renderGrid(++currentPage, pages));
+      prevBtn.addEventListener("click", () => {
+        GridComponent(--currentPage, pages);
+      });
+      nextBtn.addEventListener("click", () => {
+        GridComponent(++currentPage, pages);
+      });
     }
   };
 
@@ -57,11 +64,11 @@ export const viewSelectHandler = (agencies) => {
       $grid.style.display = "none";
       $list.style.display = "flex";
 
-      let currentPage = INITIAL_PAGE;
+      // let currentPage = INITIAL_PAGE;
 
       // list view 생성
       const sortedAgencies = sortCategory(agencies);
-      renderList(INITIAL_PAGE, filterCategory(sortedAgencies, "종합/경제"));
+      ListComponent(INITIAL_PAGE, sortedAgencies);
     }
   };
 
