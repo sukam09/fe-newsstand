@@ -60,8 +60,6 @@ const setArrow = () => {
   const leftArrow = document.querySelector('#left_arrow');
   const rightArrow = document.querySelector('#right_arrow');
 
-  // setArrowVisible(leftArrow, rightArrow);
-
   // 화살표 이벤트리스너
   leftArrow.addEventListener('click', () => {
     setPage(-1, leftArrow, rightArrow);
