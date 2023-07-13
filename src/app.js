@@ -9,6 +9,6 @@ import initNews from "./initPressNews.js";
 handleClickLogo();
 showDate();
 rollNews();
-changeView();
 initPressImg();
 initNews();
+changeView();
