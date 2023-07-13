@@ -292,11 +292,26 @@ nav.agency .view-type button {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
+  color: var(--text-text-white-default, #fff);
+  font-family: Pretendard;
+  font-size: var(--font-size-regular);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
 }
 
 .progress-count-wrapper {
   display: flex;
   gap: 0.125rem;
+}
+
+.progress-count {
+  color: var(--text-text-white-default, #fff);
+  font-family: Pretendard;
+  font-size: var(--font-size-small);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
 }
 .division,
 .progress-total-count {
@@ -376,10 +391,8 @@ nav.agency .view-type button {
 
 .subscribe-text {
   color: var(--text-text-weak, #879298);
-
-  /* available-medium12 */
   font-family: Pretendard;
-  font-size: var(--font-size-regular);
+  font-size: var(--font-size-small);
   font-style: normal;
   font-weight: var(--font-weight-medium);
   line-height: normal;
