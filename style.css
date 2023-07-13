@@ -10,7 +10,9 @@ body {
     justify-content:center;
     
 }
-
+.hidden {
+    visibility: hidden;
+}
 .header {
     display:flex;
     width:930px;
