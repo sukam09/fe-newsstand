@@ -71,7 +71,7 @@ const setPressCategoryArticle = (initCategoryArticleList) => {
 };
 
 /**
- * 해당 카테고리의 SUB 화면
+ * 해당 카테고리의 SUB 화면 - 초기설정 수정
  */
 const setPressCategorySub = (categoryData) => {
   const categorySub = document.querySelector('.press-category__section-sub');
@@ -98,7 +98,7 @@ const setPressCategorySub = (categoryData) => {
 };
 
 /**
- * 해당 카테고리의 MAIN 화면
+ * 해당 카테고리의 MAIN 화면 - 초기설정 수정
  */
 const setPressCategoryMain = (categoryData) => {
   const categoryMain = document.querySelector('.press-category__section-main');
