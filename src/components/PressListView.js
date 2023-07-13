@@ -113,20 +113,7 @@ export default function PressListView({ $target, initialState }) {
       <div>${selectedCategory}</div>
       <div class="text-button-count">
         <p class="text-button-present">${present}</p>
-        <svg
-          width="5"
-          height="12"
-          viewBox="0 0 5 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            id="Division"
-            d="M5 0.919922H3.5L0.769531 11.0801H2.25781L5 0.919922Z"
-            fill="white"
-            fill-opacity="0.7"
-          />
-        </svg>
+        <img src="../asset/icons/division.svg"/>
         <p class="text-button-entire">${entire}</p>
       </div>
     `;
