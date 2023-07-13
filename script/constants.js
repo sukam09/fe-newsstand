@@ -42,8 +42,4 @@ const SUB_MEDIA = [
   23, 24, 25, 26, 27,
 ];
 
-const MEDIA_DATA = {
-  //
-};
-
 export { BUTTON, HEADLINE, MEDIA, HEADLINE_DATA, SNACKBAR_DELAY, SUB_MEDIA };

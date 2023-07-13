@@ -1,5 +1,5 @@
 import { MEDIA, SUB_MEDIA } from '../../constants.js';
-import media_data from '../../../assets/data/media_data.js';
+import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
 
 const shuffleArray = array => {
@@ -19,25 +19,25 @@ const updatePage = (mediaArray, page) => {
   );
   gridIndex.forEach((mediaIndex, index) => {
     const mediaId = mediaArray[mediaIndex];
-    const image = media_data[mediaId];
-    const imageElement = mediaLogo[index];
+    const logoSrc = mediaData.getLogoSrc(mediaId);
+    const logoElement = mediaLogo[index];
     // 구독하기 or 해지하기 버튼 제거
-    imageElement.nextElementSibling?.remove();
-    if (!image) {
-      imageElement.className = 'media_logo';
-      imageElement.src = '';
+    logoElement.nextElementSibling?.remove();
+    if (!logoSrc) {
+      logoElement.className = 'media_logo';
+      logoElement.src = '';
       return;
     }
-    imageElement.className = `media_logo media_${mediaId}`;
-    imageElement.src = `assets/images/logo/light/${image.src}`;
-    imageElement.alt = image.name;
+    logoElement.className = `media_logo media_${mediaId}`;
+    logoElement.src = logoSrc;
+    logoElement.alt = mediaData.getName(mediaId);
     // 구독 여부에 따라 구독하기 or 해지하기 버튼 추가
     const subButtonArea = document.createElement('div');
     subButtonArea.classList.add('media_hover', 'surface_alt');
     subButtonArea.appendChild(
       SubButton({ isSub: SUB_MEDIA.includes(mediaArray[mediaId]) })
     );
-    imageElement.insertAdjacentElement('afterend', subButtonArea);
+    logoElement.insertAdjacentElement('afterend', subButtonArea);
   });
 };
 

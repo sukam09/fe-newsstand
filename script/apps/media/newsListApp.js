@@ -1,4 +1,4 @@
-import media_data from '../../../assets/data/media_data.js';
+import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
 import { SUB_MEDIA } from '../../constants.js';
 
@@ -64,8 +64,8 @@ const createListContent = () => {
   mediaInfo.classList.add('media_info');
   const mediaLogo = document.createElement('img');
   mediaLogo.classList.add('media_logo');
-  mediaLogo.src = `assets/images/logo/light/${media_data[listData.id].src}`;
-  mediaLogo.alt = media_data[listData.id].name;
+  mediaLogo.src = mediaData.getLogoSrc(listData.id);
+  mediaLogo.alt = mediaData.getName(listData.id);
   const updatedTime = document.createElement('div');
   updatedTime.classList.add('text_default', 'display_medium12');
   updatedTime.innerText = listData.updated;
