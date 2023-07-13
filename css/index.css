@@ -318,3 +318,7 @@ a:hover {
   line-height: normal;
   font-size: 14px;
 }
+
+#caption:hover {
+  cursor: default;
+}
