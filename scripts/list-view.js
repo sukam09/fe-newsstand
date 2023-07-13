@@ -6,9 +6,11 @@ import {
   CATEGORIES_TO_INDEX,
 } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
-import { nextPage } from "../store/reducer.js";
+import { nextPage, setCategory } from "../store/reducer.js";
 import { startProgressing } from "./progress-bar.js";
 
+const $listViewTab = document.querySelector(".list-view_tab > ul");
+const $listViewTabItems = $listViewTab.querySelectorAll("li");
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
 const $news_logo = $listViewHeader.querySelector("img");
@@ -52,6 +54,25 @@ const updateButtonUI = () => {
   $prevPageButton.classList.remove("hidden");
   $nextPageButton.classList.remove("hidden");
 };
+
+const handleListViewTabClick = (e) => {
+  const $tabCategory = e.currentTarget.querySelector(".tab_category");
+  const category = $tabCategory.innerText;
+
+  $listViewTabItems.forEach(($item) => {
+    if ($item === e.currentTarget) {
+      $item.className = "category-selected selected-bold14";
+    } else {
+      $item.className = "";
+    }
+  });
+
+  store.dispatch(setCategory(category));
+};
+
+$listViewTabItems.forEach(($tabItem) => {
+  $tabItem.addEventListener("click", handleListViewTabClick);
+});
 
 export const renderListView = () => {
   initArticle();
