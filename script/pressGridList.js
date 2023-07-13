@@ -1,8 +1,6 @@
 import { getElemId, getElemClass } from "../utils/getElements.js";
+import { fetchData } from "../utils/getJson.js";
 
-const pageAllNum = [];
-
-const newsList = [];
 const page = [[], [], [], []];
 
 const sectionPrevButton = getElemId(document, 'press-content-prev');
@@ -11,25 +9,25 @@ const pressContentView = getElemClass(document, 'press-content-view');
 
 let pageNumber = 0;
 
-function shuffleImgs() {
-	const shuffledArray = [...newsList].sort(() => Math.random() - 0.5);
-
-	shuffledArray.forEach((arr, idx) => {
+async function shuffleImgs() {
+    const imgPath = await fetchData("../assets/data/newspaperSrc.json");
+    const imgId = imgPath.newsList.map((elem)=> {
+        return elem.id;
+    })
+    
+    const shuffledArray = [...imgId].sort(() => Math.random() - 0.5);
+    console.log(shuffledArray);
+    shuffledArray.forEach((arr, idx) => {
         const pageIndex = Math.floor(idx / 24);
         page[pageIndex].push(arr);
       });
-	pressContentView[0].innerHTML = `
-    ${page[0].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
-	`
-}
 
-for (let i = 1; i < 97; i++) {
-	pageAllNum.push(i);
+    let imgSrcContent = "";
+    page[0].forEach((elem)=> {
+        imgSrcContent +=`<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
+    })
+    pressContentView[0].innerHTML = imgSrcContent;
 }
-
-pageAllNum.forEach(arr => {
-	newsList.push({ "id": arr });
-})
 
 function showPressImg(flag) {
     const pressContentView = getElemClass(document, 'press-content-view');
@@ -37,15 +35,16 @@ function showPressImg(flag) {
 
     sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";
     sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
-	pressContentView[0].innerHTML = `
-		${page[pageNumber].map(arr => `<li><img src="../assets/images/pressLogo/light/img${arr["id"]}.svg"</li>`).join('')};
-	`
+	let imgSrcContent = "";
+    page[pageNumber].forEach((elem)=> {
+        imgSrcContent +=`<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
+    })
+    pressContentView[0].innerHTML = imgSrcContent;
 }
 
 function changePressGrid() {
     sectionPrevButton.addEventListener('click',()=>showPressImg(-1));
     sectionNextButton.addEventListener('click', () => showPressImg(1));
 }
-
 
 export {shuffleImgs, changePressGrid};
