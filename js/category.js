@@ -35,6 +35,7 @@ function initCategoryItem() {
   categoryItem[0].style.display = "flex";
   document.querySelectorAll(".currentCategoryPage")[0].style.display = "flex";
   document.querySelectorAll(".categoryCnt")[0].style.display = "flex";
+  doProgress(document.querySelector(".progress-bar"));
 }
 
 function addOnClickCategory() {
@@ -44,13 +45,16 @@ function addOnClickCategory() {
 }
 
 function doProgress(progressBar) {
-  console.log(progressBar);
-  if (progress >= 100) {
-    clearInterval(progressInterval);
-    return;
-  }
-  progress += increment;
-  progressBar.style.width = `${progress}%`;
+  setInterval(() => {
+    if (progress >= 100) {
+      progress = 0;
+      currentPage++;
+      document.querySelectorAll(".currentCategoryPage")[0].innerHTML = currentPage;
+      return;
+    }
+    progress += increment;
+    progressBar.style.width = `${progress}%`;
+  }, totalTime / (100 / increment));
 }
 // const progressInterval = setInterval(doProgress,totalTime / (100 / increment), progressBar);
 setCategoryData();

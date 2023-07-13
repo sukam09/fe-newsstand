@@ -214,9 +214,7 @@ section.main {
   background-color: #f5f7f9;
   color: #5f6e76;
 }
-/* 
-  background-color: #7890e7;
- */
+
 .categoryItem > span {
   z-index: 1;
 }
