@@ -1,64 +1,66 @@
 .newsbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 930px;
-    padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
+  padding-top: 40px;
 
 }
 
 .newsbar-container h4 {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    color: #14212b;
-    padding: 16px 16px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #14212b;
+  padding: 16px 16px;
 }
 
 .newsbar-content-container {
-    width: 461px;
-    height: 49px;
-    background-color: #F5F7F9;
-    border: 1px solid #D2DAE0;
-    align-items: center; 
-    position: relative;   
+  width: 461px;
+  height: 49px;
+  background-color: #F5F7F9;
+  border: 1px solid #D2DAE0;
+  align-items: center;
+  position: relative;
 }
 
-.newsbar-content-container > .wrap {
-    position: absolute;
-    width: 100%;
-    height: 16.5px;
-    top: 35%;
-    left: 40px;
-    box-sizing: border-box;
-    overflow: hidden;
+.newsbar-content-container>.wrap {
+  position: absolute;
+  width: 100%;
+  height: 16.5px;
+  top: 35%;
+  left: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .newsbar-content-container ul {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 .newsbar-content-container li {
-    position: absolute;
-    top: 100px;
-    left: 40px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #5f6e76;
+  position: absolute;
+  top: 100px;
+  left: 40px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #5f6e76;
 }
 
 .newsbar-content-container li.prev {
-    top: -18px;
-    transition: top 0.5s ease;
+  top: -18px;
+  transition: top 0.5s ease;
 }
+
 .newsbar-content-container li.current {
-    top: 0px;
-    transition: top 0.5s ease;
+  top: 0px;
+  transition: top 0.5s ease;
 }
+
 .newsbar-content-container li.next {
-    top: 18px;
+  top: 18px;
 }

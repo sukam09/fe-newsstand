@@ -4,45 +4,45 @@
 @import "./header/header.css";
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .pressbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 33px;
-    width: 930px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 33px;
+  width: 930px;
 }
 
 .pressbar-name-all {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    color: #14212b;
-    
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #14212b;
+
 }
 
 .pressbar-name-subscribe {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px;
-    color: #879298;
-    padding-left: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  color: #879298;
+  padding-left: 24px;
 }
 
 #pressbar-icon-grid-view {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 #pressbar-icon-list-view {
-    padding-right: 8px;
-    height: 24px;
-    width: 24px;
+  padding-right: 8px;
+  height: 24px;
+  width: 24px;
 }
