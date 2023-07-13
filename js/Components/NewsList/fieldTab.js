@@ -1,17 +1,21 @@
 import { constants } from "../../Data/constants.js";
 import { changePageTarget } from "./pageButton.js";
+import { fetchNewsData, getCategoryData } from "./pressNews.js";
 import { startProgress, stopProgress } from "./progress.js";
 
 let result = "";
+let nowCategoryNewsData;
 
 const makeTag = (event, item) => {
   if (event.target.innerHTML.includes(item)) {
+    nowCategoryNewsData = getCategoryData(item);
+
     result += `
     <li class="news-list__field-tab__progress">
       <span>${item}</span>
       <span class="news-list__field-tab__progress-count">
         1
-        <span class="news-list__field-tab__progress-entire">/ 81</span>
+        <span class="news-list__field-tab__progress-entire">/ ${nowCategoryNewsData.length}</span>
       </span>
     </li>`;
   } else {
@@ -33,6 +37,9 @@ const convertTab = (amout) => {
 };
 
 const setFieldTab = () => {
+  if (!nowCategoryNewsData)
+    fetchNewsData("종합/경제").then((res) => (nowCategoryNewsData = res));
+
   result = "";
   const $fieldTabList = document.querySelectorAll(".news-list__field-tab > li");
   [...$fieldTabList].forEach((item) => {
@@ -47,4 +54,4 @@ const setFieldTab = () => {
   });
 };
 
-export { setFieldTab, convertTab };
+export { setFieldTab, convertTab, nowCategoryNewsData };

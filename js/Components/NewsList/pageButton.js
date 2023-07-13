@@ -1,4 +1,4 @@
-import { convertTab } from "./fieldTab.js";
+import { convertTab, nowCategoryNewsData } from "./fieldTab.js";
 import { clearProgress } from "./progress.js";
 
 let page = 1;
@@ -27,7 +27,7 @@ const movePage = (amout) => {
 const movePageLeft = () => {
   if (page === 1) {
     convertTab(-1);
-    page = 10;
+    page = nowCategoryNewsData.length;
     renderContent();
   } else {
     movePage(-1);
@@ -35,7 +35,7 @@ const movePageLeft = () => {
 };
 
 const movePageRight = () => {
-  if (page === 10) {
+  if (page === nowCategoryNewsData.length) {
     convertTab(1);
   } else {
     movePage(1);
@@ -59,4 +59,4 @@ const setListPageButton = () => {
   $rightButton.addEventListener("click", movePageRight);
 };
 
-export { setListPageButton, movePageRight, changePageTarget };
+export { setListPageButton, movePageRight, changePageTarget, setNowPageTag };
