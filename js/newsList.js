@@ -1,6 +1,6 @@
 import { category, news_by_category } from "../assets/news.js";
 
-let now_category = "종합/경제";
+let now_category = category[0];
 
 const total_pages = {};
 let page_count = {};
@@ -14,7 +14,6 @@ function getNews(category) {
 }
 
 function drawArrow() {
-  console.log(page_count[now_category], total_pages[now_category]);
   if (page_count[now_category] === total_pages[now_category] - 1) {
     hideArrow("right");
     showArrow("left");
@@ -40,10 +39,10 @@ function drawNews(category, page) {
     $li.innerText = subnews;
     subList.append($li);
   });
-  const caption = document.createElement("li");
-  caption.classList.add("caption");
-  caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
-  subList.append(caption);
+  const $caption = document.createElement("li");
+  $caption.classList.add("caption");
+  $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
+  subList.append($caption);
 }
 
 function restartAnimation() {
@@ -108,12 +107,13 @@ function initCategoryClass() {
   const $progress_bar = document.querySelector(".progress-bar");
   insertCountDiv($progress_bar);
   addProgressIterEvent($progress_bar);
+  document.querySelector(".right-btn").addEventListener("click", () => clickListRightBtn(now_category));
+  document.querySelector(".left-btn").addEventListener("click", () => clickListLeftBtn(now_category));
 }
 
 function nextNewsWhenProgressEnd() {
   if (page_count[now_category] === total_pages[now_category] - 1) {
     if (checkLastCategory()) {
-      console.log("good");
       setFisrtCategory();
     } else {
       page_count[now_category] = 0;
@@ -194,7 +194,6 @@ function checkLastCategory() {
 function setFisrtCategory() {
   now_category = category[0];
   const $first_category = document.querySelector(".nav-item").parentElement;
-  console.log($first_category);
   clickCategory($first_category);
 }
 

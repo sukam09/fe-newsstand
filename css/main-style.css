@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 :root {
   --text-weak: #879298;
   --text-strong: #14212b;
@@ -7,6 +8,7 @@
   --text-white-weak: rgba(255, 255, 255, 0.7);
   --progress-before: #7890e7;
   --progress-after: #4362d0;
+  --text-white-default: #fff;
 }
 
 ul,
@@ -165,7 +167,7 @@ h1 {
   justify-content: space-between;
   gap: 8px;
   flex-shrink: 0;
-  color: white !important;
+  color: var(--text-white-default) !important;
   position: relative;
   z-index: 2;
   pointer-events: none;
@@ -178,7 +180,7 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: progress 10s linear infinite;
+  animation: progress 1s linear infinite;
   z-index: -1;
 }
 .nav-item {
@@ -538,4 +540,16 @@ h1 {
 .news-main > div > img:hover {
   transform: scale(1.05);
   transition: 0.3s linear;
+}
+
+.list-selected {
+  display: none;
+}
+
+.press-list-section {
+  display: none;
+}
+
+#grid-prev {
+  display: none;
 }
