@@ -4,7 +4,7 @@
     "categoryName": "종합/경제",
     "categoryData": [
       {
-        "name": "아이뉴스0",
+        "name": "아이뉴스 종합",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -38,7 +38,7 @@
         ]
       },
       {
-        "name": "아이뉴스0",
+        "name": "아이뉴스 종합",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.03.10 18:27",
         "isSub": false,
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "name": "아이뉴스",
+        "name": "아이뉴스 종합",
         "logoSrc": "./assets/images/light-press-logo/img3.svg",
         "editTime": "2023.04.10 18:27",
         "isSub": false,
@@ -112,7 +112,7 @@
     "categoryName": "방송/통신",
     "categoryData": [
       {
-        "name": "아이뉴스1",
+        "name": "아이뉴스 방송",
         "logoSrc": "./assets/images/light-press-logo/img4.svg",
         "editTime": "2023.05.10 18:27",
         "isSub": false,
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "name": "아이뉴스1",
+        "name": "아이뉴스 방송",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.06.10 18:27",
         "isSub": false,
@@ -180,7 +180,7 @@
         ]
       },
       {
-        "name": "아이뉴스1",
+        "name": "아이뉴스 방송",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.07.10 18:27",
         "isSub": false,
@@ -220,7 +220,7 @@
     "categoryName": "IT",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 IT",
         "logoSrc": "./assets/images/light-press-logo/img5.svg",
         "editTime": "2023.08.10 18:27",
         "isSub": false,
@@ -254,7 +254,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 IT",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.10.10 18:27",
         "isSub": false,
@@ -288,7 +288,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 IT",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.11.10 18:27",
         "isSub": false,
@@ -328,7 +328,7 @@
     "categoryName": "영자지",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 영자지",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.12.10 18:27",
         "isSub": false,
@@ -362,7 +362,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 영자지",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.01.10 18:27",
         "isSub": false,
@@ -396,7 +396,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 영자지",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -436,7 +436,7 @@
     "categoryName": "스포츠/연예",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 스포츠",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.03.10 18:27",
         "isSub": false,
@@ -470,7 +470,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 스포츠",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.04.10 18:27",
         "isSub": false,
@@ -504,7 +504,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 스포츠",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.05.10 18:27",
         "isSub": false,
@@ -544,7 +544,7 @@
     "categoryName": "매거진/전문지",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 매거진",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.06.10 18:27",
         "isSub": false,
@@ -578,7 +578,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 매거진",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.07.10 18:27",
         "isSub": false,
@@ -612,7 +612,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 매거진",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -652,7 +652,7 @@
     "categoryName": "지역",
     "categoryData": [
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 지역",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -686,7 +686,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 지역",
         "logoSrc": "./assets/images/light-press-logo/img2.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,
@@ -720,7 +720,7 @@
         ]
       },
       {
-        "name": "아이뉴스24",
+        "name": "아이뉴스 지역",
         "logoSrc": "./assets/images/light-press-logo/img1.svg",
         "editTime": "2023.02.10 18:27",
         "isSub": false,

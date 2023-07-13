@@ -25,12 +25,12 @@ const setTotalPressList = (isLightMode) => {
 };
 
 /**
- * 카테고리 별 랜덤 언론사 화면
+ * 카테고리 별 랜덤 언론사 화면 가져오기
  */
-const setPressCategoryArticle = (categoryData, shufflePressList) => {
+const getPressCategoryArticle = (categoryData, shufflePressList) => {
   const liList = document.querySelectorAll('.press-category__li');
 
-  liList.forEach((li) => {
+  const initCategoryArticleList = [...liList].map((li) => {
     const categoryName = li.querySelector('.press-category__p').innerText;
     const categoryArticle = categoryData.filter((data) => data.categoryName === categoryName)[0];
     const shuffleArticle = shufflePressList.filter((_, idx) => categoryArticle.categoryId === idx)[0];
@@ -38,7 +38,8 @@ const setPressCategoryArticle = (categoryData, shufflePressList) => {
     const initShuffleArticle = shuffleArticle[0];
     const initCategoryArticle = categoryArticle.categoryData[initShuffleArticle];
 
-    console.log(initCategoryArticle);
+    return initCategoryArticle;
+
     li.addEventListener('click', () => {
       const sectionMain = document.querySelector('.press-category__section-main');
       sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticle.logoSrc;
@@ -47,13 +48,33 @@ const setPressCategoryArticle = (categoryData, shufflePressList) => {
       sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticle.mainTitle;
 
       const sectionSub = document.querySelector('.press-category__section-sub');
+      sectionSub.querySelectorAll('press-category__a-sub');
     });
   });
 
-  // const initLi = document.querySelector('.press-category__ul');
-  // initLi.firstElementChild.classList.add('progress-start');
-  // const initDiv = initLi.querySelector('.press-category__div');
-  // initDiv.classList.remove('display-none');
+  return initCategoryArticleList;
+};
+
+/**
+ * 카테고리 별 랜덤 언론사 화면 적용하기
+ */
+const setPressCategoryArticle = (initCategoryArticleList) => {
+  const liList = document.querySelectorAll('.press-category__li');
+
+  liList.forEach((li, idx) => {
+    li.addEventListener('click', () => {
+      const sectionMain = document.querySelector('.press-category__section-main');
+      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[idx].logoSrc;
+      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[idx].editTime;
+      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[idx].imgSrc;
+      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[idx].mainTitle;
+
+      const sectionSub = document.querySelector('.press-category__section-sub');
+      sectionSub.querySelectorAll('press-category__a-sub');
+    });
+  });
+
+  console.log(initCategoryArticleList);
 };
 
 /**
@@ -145,7 +166,8 @@ const setPressCategoryNav = (categoryData, shufflePressList) => {
   });
 
   setProgressBar(categoryData);
-  setPressCategoryArticle(categoryData, shufflePressList);
+  const initCategoryArticleList = getPressCategoryArticle(categoryData, shufflePressList);
+  setPressCategoryArticle(initCategoryArticleList);
 };
 
 /**
