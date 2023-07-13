@@ -7,9 +7,6 @@ export function rolling() {
     ".right_rolling_list_item"
   );
 
-  console.log(leftRollingList);
-  console.log(rightRollingList);
-
   let leftViewIdx = 0;
   let rightViewIdx = 0;
   const list_len = rightRollingList.length;

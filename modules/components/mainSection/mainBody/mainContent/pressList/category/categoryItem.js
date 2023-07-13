@@ -1,4 +1,5 @@
-import { showListage } from "../pressList.js";
+import { setCategoryId } from "../../../../../../pageState.js";
+import { showListPage } from "../pressList.js";
 import { progressBar, startProgressAnimation } from "./progressBar.js";
 
 export function categoryItem(categoryName, categoryId, len) {
@@ -25,5 +26,6 @@ export function handleClickCategoryItem(e) {
 
   const id = e.currentTarget.id;
   const [, categoryId] = id.split("_");
-  showListage(categoryId, 0);
+  setCategoryId(categoryId);
+  showListPage(categoryId, 0);
 }

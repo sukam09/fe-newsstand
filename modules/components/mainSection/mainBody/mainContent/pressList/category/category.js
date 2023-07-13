@@ -2,7 +2,6 @@ import { categoryItem } from "./categoryItem.js";
 
 export function category(categoryNews) {
   let categoryList = "";
-  console.log(categoryNews);
   for (let i = 0; i < categoryNews.length; i++) {
     const { categoryId, categoryName, data } = categoryNews[i];
     categoryList += categoryItem(categoryName, categoryId, data.length);

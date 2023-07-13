@@ -33,9 +33,13 @@
   align-items: flex-start;
 }
 
-.news_main_img {
+.main_news_img {
   width: 320px;
   height: 200px;
+}
+.main_news_title {
+  width: 320px;
+  margin-top: 16px;
 }
 
 /* category */

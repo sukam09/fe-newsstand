@@ -1,11 +1,20 @@
-import { qs } from "../../../utils.js";
 import {
   MAX_GRID_PAGE,
+  categoryId,
   gridPage,
-  hideGridPage,
+  listPage,
+} from "../../../pageState.js";
+import { qs } from "../../../utils.js";
+import {
+  hideGridContainer,
+  showGridContainer,
   showGridPage,
 } from "../mainBody/mainContent/pressGrid/pressGrid.js";
-import { showListage } from "../mainBody/mainContent/pressList/pressList.js";
+import {
+  hideListContainer,
+  showListContainer,
+  showListPage,
+} from "../mainBody/mainContent/pressList/pressList.js";
 
 export function mainHeader() {
   return `
@@ -26,19 +35,17 @@ export function handleGirdViewButton(e) {
   const $listViewButton = qs(".list_view_button");
   e.currentTarget.classList.add("view_clicked");
   $listViewButton.classList.remove("view_clicked");
+  hideListContainer();
+  showGridContainer();
   showGridPage(gridPage);
-  // todo : 리스트 페이지 숨기기
 }
 
 export function handleListViewButton(e) {
   const $gridViewButton = qs(".grid_view_button");
   e.currentTarget.classList.add("view_clicked");
   $gridViewButton.classList.remove("view_clicked");
-  for (let i = 0; i < MAX_GRID_PAGE; i++) {
-    hideGridPage(i);
-  }
-  qs("#grid_container").style.display = "none";
-  qs("#list_container").style.display = "block";
-  showListage(0, 0);
+  hideGridContainer();
+  showListContainer();
+  showListPage(categoryId, listPage);
   // todo : 리스트 보이기
 }

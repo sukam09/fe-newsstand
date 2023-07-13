@@ -1,18 +1,9 @@
+import { NUM_IN_A_GRID } from "../../../../../pageState.js";
+import { qs } from "../../../../../utils.js";
+import { hideListContainer } from "../pressList/pressList.js";
 import { pressItem } from "./pressItem/pressItem.js";
 
-export const MAX_GRID_PAGE = 4;
-const NUM_IN_A_GRID = 24;
-export let gridPage = 0;
-
-export function incGridPage() {
-  gridPage >= MAX_GRID_PAGE - 1 ? (gridPage = MAX_GRID_PAGE - 1) : gridPage++;
-}
-export function decGridPage() {
-  gridPage <= 0 ? (gridPage = 0) : gridPage--;
-}
-
 export function pressGrid(pressDataArr, page) {
-  console.log(pressDataArr);
   let pressGridItems = "";
   for (let i = 0; i < NUM_IN_A_GRID; i++) {
     const idx = page * NUM_IN_A_GRID + i;
@@ -34,4 +25,13 @@ export function showGridPage(page) {
 export function hideGridPage(page) {
   const pressGrid = document.getElementById(`grid_page_${page}`);
   pressGrid.style.display = "none";
+}
+
+export function hideGridContainer() {
+  const $gridContainer = qs("#grid_container");
+  $gridContainer.style.display = "none";
+}
+export function showGridContainer() {
+  const $gridContainer = qs("#grid_container");
+  $gridContainer.style.display = "block";
 }

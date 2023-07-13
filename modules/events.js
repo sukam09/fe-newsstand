@@ -1,9 +1,3 @@
-import {
-  MAX_GRID_PAGE,
-  gridPage,
-  hideGridPage,
-  showGridPage,
-} from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
 import { handleClickCategoryItem } from "./components/mainSection/mainBody/mainContent/pressList/category/categoryItem.js";
 import {
   showNextPage,
@@ -26,8 +20,8 @@ export function addEventsOnGridItem() {
 export function addEventsOnPageButton() {
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
-  $leftBtn.addEventListener("click", () => showPrevPage("grid"));
-  $rightBtn.addEventListener("click", () => showNextPage("grid"));
+  $leftBtn.addEventListener("click", () => showPrevPage("list"));
+  $rightBtn.addEventListener("click", () => showNextPage("list"));
 }
 
 export function addEventsOnSubButton() {

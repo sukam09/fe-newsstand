@@ -12,11 +12,11 @@ export async function mainContent() {
     <div class="main_content">
       <div id="list_container">
         ${category(newsList)}
-        ${await pressList(newsList[0], 0)}
-        ${await pressList(newsList[0], 1)}
-        ${await pressList(newsList[0], 2)}
-        ${await pressList(newsList[1], 0)}
-        ${await pressList(newsList[1], 1)}
+        ${pressList(newsList[0], 0)}
+        ${pressList(newsList[0], 1)}
+        ${pressList(newsList[0], 2)}
+        ${pressList(newsList[1], 0)}
+        ${pressList(newsList[1], 1)}
       </div>
       <div id="grid_container">
         ${pressGrid(data, 0)}
