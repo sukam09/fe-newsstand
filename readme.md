@@ -1,18 +1,28 @@
 # FE-newsstand
 
-## 구현된 기능
+## 파일 구조
 
-- [ ] 로고 클릭 새로 고침
-- [ ] 현재 날짜 표시
-- [ ] 그리드 <-> 리스트 화면 전환
-- [ ] grid 셔플
-- [ ] grid 페이징
-- [ ] 구독하기
-- [ ] list 페이징
-- [ ] progress 애니메이션
-- [ ] roilling 애니메이션
-
-## 리팩토링
-
-- [ ] 리스트 페이지 컴포넌트화
-- [ ] 리스트, 그리드 페이지 전환
+```
+├─ assets
+│  ├─ icons
+│  ├─ images
+│  └─ etc
+├─ data
+│  ├─ headlone.json
+│  ├─ news.json
+│  └─ press.json
+├─ modules
+│  ├─ components
+│  │  ├─ headlineSection
+│  │  ├─ mainSection
+│  │  └─ titleSection
+│  ├─ app.js
+│  ├─ events.js
+│  ├─ utils.js
+│  └─ pageState.js
+├─ style
+│  ├─ global-style.css
+│  └─ reset.css
+├─ server.js
+└─ index.html
+```
