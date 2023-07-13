@@ -1,5 +1,6 @@
 /***** 뉴스 배너 롤링 *****/
 const ROLLING_TIME = 5000;
+const SECOND_BANNER_DELAY = 1000;
 
 function rollingCallback(idx) {
   //.prev 클래스 삭제
@@ -34,34 +35,28 @@ function secondRolling() {
 }
 
 /***** 롤링 배너 호버시 멈추기 & 재시작 *****/
-//첫번째 배너
-function initFirstRolling() {
+function initRolling() {
   let interval1 = firstRolling();
-
-  const banner = document.querySelector(".rollingbanner");
-  banner.addEventListener("mouseenter", () => {
-    window.clearInterval(interval1);
-  });
-
-  banner.addEventListener("mouseleave", function () {
-    interval1 = firstRolling();
-  });
-}
-
-//두번째 배너
-function initSecondRolling() {
   let interval2;
-  let time_out = setTimeout(() => (interval2 = secondRolling()), 1000);
+  let time_out = setTimeout(
+    () => (interval2 = secondRolling()),
+    SECOND_BANNER_DELAY
+  );
 
-  const banner = document.querySelectorAll(".rollingbanner")[1];
-  banner.addEventListener("mouseenter", () => {
-    window.clearInterval(interval2);
-    window.clearTimeout(time_out);
-  });
+  const banners = document.querySelectorAll(".rollingbanner");
+  banners.forEach((banner) => {
+    banner.addEventListener("mouseenter", () => {
+      window.clearInterval(interval1);
+      window.clearInterval(interval2);
+      window.clearTimeout(time_out);
+    });
 
-  banner.addEventListener("mouseleave", function () {
-    secondRolling();
+    banner.addEventListener("mouseleave", function () {
+      interval1 = firstRolling();
+      time_out = setTimeout(
+        () => (interval2 = secondRolling()),
+        SECOND_BANNER_DELAY
+      );
+    });
   });
 }
-
-export { initFirstRolling, initSecondRolling };
