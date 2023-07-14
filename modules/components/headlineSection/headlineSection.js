@@ -1,10 +1,9 @@
-import { headline } from "./headline/headline.js";
+import { createHeadline } from "./headline/headline.js";
 
-export async function headlineSection() {
-  const headlineComponent = await headline();
+export async function createHeadlineSection() {
   return `
     <section id="headline_section" class="flex_row">
-      ${headlineComponent}
+      ${await createHeadline()}
     </section>
     `;
 }

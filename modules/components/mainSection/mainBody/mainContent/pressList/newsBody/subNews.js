@@ -1,4 +1,4 @@
-export function subNews(subTitleList) {
+export function createSubNews(subTitleList) {
   let newsList = "";
   for (let i = 0; i < subTitleList.length; i++) {
     newsList += `<li>${subTitleList[i].title}</li>`;

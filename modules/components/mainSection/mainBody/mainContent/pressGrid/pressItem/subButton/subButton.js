@@ -1,5 +1,5 @@
 // 구독버튼 생성
-export function subButton() {
+export function createSubButton() {
   return `
   <div class="sub_button_container">
     <button class="sub_button"> + 구독하기</button>

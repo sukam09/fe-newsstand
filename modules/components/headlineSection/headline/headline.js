@@ -45,7 +45,7 @@ export function setRightViewIdx(value) {
   rightViewIdx = value;
 }
 
-export async function headline() {
+export async function createHeadline() {
   const headlineData = await fetchData("/data/headline.json");
 
   let leftRollingList = "";
@@ -94,14 +94,12 @@ export async function headline() {
   return `
     <div class="headline_container flex_row">
       <ul class=${"left_rolling_list"}>
-
         ${leftRollingList}
       </ul>
       
     </div>
     <div class="headline_container flex_row">
       <ul class=${"right_rolling_list"}>
-
         ${rightRollingList}
       </ul>
     </div>

@@ -2,7 +2,7 @@ import { NUM_IN_A_GRID } from "../../../../../pageState.js";
 import { qs, shuffleArray } from "../../../../../utils.js";
 import { pressItem } from "./pressItem/pressItem.js";
 
-export function pressGrid(pressDataArr, page) {
+export function createPressGrid(pressDataArr, page) {
   let pressGridItems = "";
   const shuffledPressDataArr = shuffleArray(pressDataArr);
   for (let i = 0; i < NUM_IN_A_GRID; i++) {

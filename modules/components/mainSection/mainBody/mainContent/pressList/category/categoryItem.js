@@ -7,9 +7,9 @@ import {
 import { qs } from "../../../../../../utils.js";
 import { controllButtonShowing } from "../../../pageButtons/pageButtons.js";
 import { showListPage } from "../pressList.js";
-import { progressBar, startProgressAnimation } from "./progressBar.js";
+import { createProgressBar, startProgressAnimation } from "./progressBar.js";
 
-export function categoryItem(categoryName, categoryId, len) {
+export function createCategoryItem(categoryName, categoryId, len) {
   return `
     <li class="category_item" id="category_${categoryId}">
       <span>${categoryName}</span>
@@ -17,7 +17,7 @@ export function categoryItem(categoryName, categoryId, len) {
         <span class="now_page">${listPage + 1}</span>
         <span class="all_page">/ ${len}</span>
       </span>
-      ${progressBar()}
+      ${createProgressBar()}
     </li>
     `;
 }

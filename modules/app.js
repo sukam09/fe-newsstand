@@ -1,8 +1,8 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
-import { headlineSection } from "./components/headlineSection/headlineSection.js";
+import { createHeadlineSection } from "./components/headlineSection/headlineSection.js";
 import { showGridPage } from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
-import { mainSection } from "./components/mainSection/mainSection.js";
-import { titleSection } from "./components/titleSection/titleSection.js";
+import { createMainSection } from "./components/mainSection/mainSection.js";
+import { createTitleSection } from "./components/titleSection/titleSection.js";
 import {
   addEventsOnCategoryItem,
   addEventsOnGridItem,
@@ -15,9 +15,9 @@ import {
 
 window.addEventListener("DOMContentLoaded", async () => {
   const $root = document.getElementById("root");
-  $root.innerHTML += titleSection();
-  $root.innerHTML += await headlineSection();
-  $root.innerHTML += await mainSection();
+  $root.innerHTML += createTitleSection();
+  $root.innerHTML += await createHeadlineSection();
+  $root.innerHTML += await createMainSection();
 
   addEventsOnPageButton();
   addEventsOnGridItem();

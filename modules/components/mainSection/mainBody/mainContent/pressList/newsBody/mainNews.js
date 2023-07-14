@@ -1,4 +1,4 @@
-export function mainNews(categoryNews) {
+export function createMainNews(categoryNews) {
   const mainNews = `
     <div class="main_news flex_column">
       <div class="main_news_img_container"> 

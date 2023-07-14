@@ -1,17 +1,16 @@
 import { qs, qsa } from "../../../../../utils.js";
-import { hideGridContainer } from "../pressGrid/pressGrid.js";
-import { newsBody } from "./newsBody/newsBody.js";
-import { newsHeader } from "./newsHeader/newsHeader.js";
+import { createNewsBody } from "./newsBody/newsBody.js";
+import { createNewsHeader } from "./newsHeader/newsHeader.js";
 
 const MAX_LIST_PAGE = 7;
 
 // 하나의 카테고리의 하나의 페이지
-export function pressList(categoryNews, page) {
+export function createPressList(categoryNews, page) {
   const { categoryId } = categoryNews;
   return `
   <div class="news news_${categoryId}_${page}  flex_column">
-    ${newsHeader(categoryNews.data[page])}
-    ${newsBody(categoryNews.data[page])}
+    ${createNewsHeader(categoryNews.data[page])}
+    ${createNewsBody(categoryNews.data[page])}
   </div>
   `;
 }

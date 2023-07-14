@@ -11,7 +11,7 @@ import {
 import { showListPage } from "../pressList.js";
 import { highlightCategoryItem, updatePageCount } from "./categoryItem.js";
 
-export function progressBar() {
+export function createProgressBar() {
   return `
   <div class="progressbar"></div>
   `;

@@ -1,11 +1,11 @@
-import { mainBody } from "./mainBody/mainBody.js";
-import { mainHeader } from "./mainHeader/mainHeader.js";
+import { createMainBody } from "./mainBody/mainBody.js";
+import { createMainHeader } from "./mainHeader/mainHeader.js";
 
-export async function mainSection() {
+export async function createMainSection() {
   return `
     <section id="main_section">
-      ${mainHeader()}
-      ${await mainBody()}
+      ${createMainHeader()}
+      ${await createMainBody()}
     </section>
     `;
 }

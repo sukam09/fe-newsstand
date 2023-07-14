@@ -31,7 +31,7 @@ import {
   showListPage,
 } from "../mainContent/pressList/pressList.js";
 
-export function rightButton() {
+export function createRightPageButton() {
   return `
     <img
       src="./assets/icons/rightbutton.png"
@@ -41,7 +41,7 @@ export function rightButton() {
     `;
 }
 
-export function leftButton() {
+export function createLeftPageButton() {
   return `
         <img
           src="./assets/icons/leftbutton.png"

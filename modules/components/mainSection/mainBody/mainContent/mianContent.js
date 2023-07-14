@@ -1,9 +1,9 @@
 import { fetchData } from "../../../../utils.js";
-import { pressGrid } from "./pressGrid/pressGrid.js";
-import { category } from "./pressList/category/category.js";
-import { pressList } from "./pressList/pressList.js";
+import { createPressGrid } from "./pressGrid/pressGrid.js";
+import { createCategory } from "./pressList/category/category.js";
+import { createPressList } from "./pressList/pressList.js";
 
-export async function mainContent() {
+export async function createMainContent() {
   const press = await fetchData("/data/press.json");
   const { data } = press;
   const newsList = await fetchData("/data/news.json");
@@ -13,21 +13,21 @@ export async function mainContent() {
   for (let i = 0; i < newsList.length; i++) {
     newsList[i];
     for (let j = 0; j < newsList[i].data.length; j++) {
-      listContainerInnerHTML += pressList(newsList[i], j);
+      listContainerInnerHTML += createPressList(newsList[i], j);
     }
   }
 
   return `
     <div class="main_content">
       <div id="list_container">
-        ${category(newsList)}
+        ${createCategory(newsList)}
         ${listContainerInnerHTML}
       </div>
       <div id="grid_container">
-        ${pressGrid(data, 0)}
-        ${pressGrid(data, 1)}
-        ${pressGrid(data, 2)}
-        ${pressGrid(data, 3)}
+        ${createPressGrid(data, 0)}
+        ${createPressGrid(data, 1)}
+        ${createPressGrid(data, 2)}
+        ${createPressGrid(data, 3)}
       </div>
     </div>
     `;

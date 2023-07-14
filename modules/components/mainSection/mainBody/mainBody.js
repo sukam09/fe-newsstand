@@ -1,13 +1,16 @@
-import { mainContent } from "./mainContent/mianContent.js";
-import { pressGrid } from "./mainContent/pressGrid/pressGrid.js";
-import { leftButton, rightButton } from "./pageButtons/pageButtons.js";
+import { createMainContent } from "./mainContent/mianContent.js";
+import { createPressGrid } from "./mainContent/pressGrid/pressGrid.js";
+import {
+  createLeftPageButton,
+  createRightPageButton,
+} from "./pageButtons/pageButtons.js";
 
-export async function mainBody() {
+export async function createMainBody() {
   return `
     <div class="main_body">
-      ${rightButton()}
-      ${await mainContent()}
-      ${leftButton()}
+      ${createRightPageButton()}
+      ${await createMainContent()}
+      ${createLeftPageButton()}
     </div>
   `;
 }
@@ -16,7 +19,7 @@ export function initGridView(pressDataArr) {
   // create grid
   const $gridContainer = document.getElementById("grid_container");
   for (let i = 0; i < MAX_PAGE; i++) {
-    $gridContainer.innerHTML += pressGrid(pressDataArr, i);
+    $gridContainer.innerHTML += createPressGrid(pressDataArr, i);
   }
 
   // addEvent

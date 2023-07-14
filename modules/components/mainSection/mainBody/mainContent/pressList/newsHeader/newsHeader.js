@@ -1,4 +1,4 @@
-export function newsHeader(categoryNews) {
+export function createNewsHeader(categoryNews) {
   const newsHeader = `
     <div class="news_header flex_row">
       <img src=${categoryNews.logoSrc} />

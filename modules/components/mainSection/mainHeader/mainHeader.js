@@ -13,7 +13,6 @@ import {
   showGridPage,
 } from "../mainBody/mainContent/pressGrid/pressGrid.js";
 import { highlightCategoryItem } from "../mainBody/mainContent/pressList/category/categoryItem.js";
-import { startProgressAnimation } from "../mainBody/mainContent/pressList/category/progressBar.js";
 import {
   hideListContainer,
   showListContainer,
@@ -21,7 +20,7 @@ import {
 } from "../mainBody/mainContent/pressList/pressList.js";
 import { controllButtonShowing } from "../mainBody/pageButtons/pageButtons.js";
 
-export function mainHeader() {
+export function createMainHeader() {
   return `
     <div class="main_header flex_row">
       <div class="main_title_container flex_row">
