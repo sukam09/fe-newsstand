@@ -34,3 +34,43 @@
   width: auto;
   height: 20px;
 }
+
+.card {
+  perspective: 500px;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotate3d(-1, 1, 0, 180deg);
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+
+  line-height: 300px;
+  text-align: center;
+  font-size: 60px;
+
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotate3d(-1, 1, 0, 180deg);
+}

@@ -47,6 +47,7 @@ body {
   border-radius: 50px;
   border: var(--border-default);
   background: var(--color-surface-default);
+  color: var(--color-text-bold);
 
   cursor: pointer;
 }
