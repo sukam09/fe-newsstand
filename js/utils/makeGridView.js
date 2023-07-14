@@ -16,14 +16,15 @@ const grid_view = `
     `;
 
 function handleEvent(event, img, button) {
+  const li = img.parentNode;
   if (event === "over") {
     img.style.display = "none";
     button.style.display = "flex";
-    img.parentNode.style.backgroundColor = "#F5F7F9";
+    li.style.backgroundColor = "var(--surface-alt)";
   } else {
     img.style.display = "block";
     button.style.display = "none";
-    img.parentNode.style.backgroundColor = "#FFF";
+    li.style.backgroundColor = "var(--surface-default)";
   }
 }
 
