@@ -105,4 +105,9 @@ const rollingCallback = (sectionClass) => {
   next.classList.add("current");
 };
 
-export { setHotTopic, rollingTopic };
+async function initHotTopicView() {
+  setHotTopic();
+  rollingTopic();
+}
+
+export { initHotTopicView };

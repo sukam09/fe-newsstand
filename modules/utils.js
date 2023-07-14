@@ -1,7 +1,6 @@
 import { IMAGE } from "../constant.js";
 import { STATE } from "../state.js";
 import { setArrowVisible } from "./grid.js";
-// import { viewMode } from "../index.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -83,4 +82,9 @@ const moveListView = () => {
   STATE.IS_GRID = false;
 };
 
-export { shuffleList, setDate, setReload, setViewEvent };
+async function initCommonView() {
+  setReload();
+  setDate();
+}
+
+export { initCommonView, shuffleList, setDate, setReload, setViewEvent };
