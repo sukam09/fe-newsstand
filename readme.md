@@ -44,7 +44,7 @@ fe-newsstand
 
 ```
 
-### 구현한 기능
+### Feature list
 
 #### 개발 완료한 기능
 
