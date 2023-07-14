@@ -9,12 +9,67 @@
   background-color: var(--color-surface-alt);
 }
 
-.list__nav div {
+.list__nav > div {
   padding: 0 1rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   color: var(--color-text-weak);
   font-size: var(--font-size-regular);
+  cursor: pointer;
+}
+
+.list__nav > div:not(.active):hover {
+  text-decoration: underline;
+}
+
+.list__nav > div.active {
+  position: relative;
+  width: 10.75rem;
+  background-color: var(--color-surface-brand-alt);
+  font: var(--font-bold-r);
+}
+
+.category-name {
+  color: var(--color-text-white-default);
+  z-index: 10;
+}
+
+.category-idx {
+  display: none;
+  z-index: 10;
+}
+
+.list__nav div.active .category-idx {
+  display: inline-block;
+  color: var(--color-text-white-weak);
+}
+
+.category-idx--active {
+  color: var(--color-text-white-default);
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.category--progress {
+  transition: width;
+  transition-duration: 5s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background-color: var(--color-surface-brand-default);
+  animation-name: progress;
+  animation-timing-function: linear;
+  animation-duration: 20s;
 }
 
 .list-page {
