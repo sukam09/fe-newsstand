@@ -27,8 +27,14 @@ export default class AllNewsGridView extends Component {
     let innerHTML = '';
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
       innerHTML += `<li class='grid-logo-wrapper border-default'>
-                      <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
-                      <div class='subscribe-button-wrapper'></div>
+                      <div class="flip-card-inner">
+                        <div class="flip-card-front surface-default">
+                          <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
+                        </div>
+                        <div class="flip-card-back surface-alt">
+                          <div class='subscribe-button-wrapper'></div>
+                        </div>
+                      </div>
                     </li>`;
     }
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
@@ -63,4 +69,13 @@ export default class AllNewsGridView extends Component {
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
   }
+}
+
+{
+  /* <div class='flip-card-inner'>
+                        <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
+                      </div>
+                      <div class='flip-card-back'>
+                        <div class='subscribe-button-wrapper'></div>
+                      </div> */
 }
