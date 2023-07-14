@@ -5,14 +5,11 @@ import {
 } from "../../constants/index.js";
 import { actionCreator } from "../../core/index.js";
 
-// TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
-let categoryIdx = 0;
-
 const categoryCount = CATEGORIES.length;
 
 const initialState = {
   currentPage: 0,
-  currentCategory: CATEGORIES[categoryIdx],
+  currentCategoryIdx: 0,
   viewType: VIEW_TYPE.GRID,
 };
 
@@ -35,44 +32,54 @@ export const setCategory = (category) => actionCreator(SET_CATEGORY, category);
 export const page = (state = initialState, action) => {
   switch (action.type) {
     case NEXT_PAGE:
-      return { ...state, currentPage: state.currentPage + 1 };
+      return {
+        ...state,
+        currentPage: state.currentPage + 1,
+      };
     case PREV_PAGE:
-      return { ...state, currentPage: state.currentPage - 1 };
+      return {
+        ...state,
+        currentPage: state.currentPage - 1,
+      };
     case RESET_PAGE:
-      return { ...state, currentPage: 0 };
-    case CHANGE_VIEW:
-      categoryIdx = 0;
       return {
         ...state,
         currentPage: 0,
-        currentCategory: CATEGORIES[categoryIdx],
+      };
+    case CHANGE_VIEW:
+      return {
+        ...state,
+        currentPage: 0,
+        currentCategoryIdx: 0,
         viewType: action.payload,
       };
     case NEXT_CATEGORY:
-      categoryIdx = categoryIdx === categoryCount - 1 ? 0 : categoryIdx + 1;
-
       return {
         ...state,
-        currentCategory: CATEGORIES[categoryIdx],
+        currentCategoryIdx: getNextCategoryIdx(state.currentCategoryIdx),
         currentPage: 0,
       };
     case PREV_CATEGORY:
-      categoryIdx = categoryIdx === 0 ? categoryCount - 1 : categoryIdx - 1;
-
       return {
         ...state,
-        currentCategory: CATEGORIES[categoryIdx],
+        currentCategoryIdx: getPrevCategoryIdx(state.currentCategoryIdx),
         currentPage: 0,
       };
     case SET_CATEGORY:
-      categoryIdx = CATEGORIES_TO_INDEX[action.payload];
-
       return {
         ...state,
-        currentCategory: action.payload,
+        currentCategoryIdx: CATEGORIES_TO_INDEX[action.payload],
         currentPage: 0,
       };
     default:
       return state;
+  }
+
+  function getPrevCategoryIdx(idx) {
+    return idx === 0 ? categoryCount - 1 : idx - 1;
+  }
+
+  function getNextCategoryIdx(idx) {
+    return idx === categoryCount - 1 ? 0 : idx + 1;
   }
 };

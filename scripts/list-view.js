@@ -1,6 +1,6 @@
 import { NewsDB } from "../core/index.js";
 import { store, useSelector } from "../store/index.js";
-import { VIEW_TYPE } from "../constants/index.js";
+import { CATEGORIES, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 import {
   nextCategory,
@@ -86,11 +86,12 @@ export const renderListView = () => {
   });
 
   store.subscribe(() => {
-    const { currentPage, currentCategory, viewType } = useSelector(
+    const { currentPage, currentCategoryIdx, viewType } = useSelector(
       (state) => state.page
     );
     if (viewType !== VIEW_TYPE.LIST) return;
 
+    const currentCategory = CATEGORIES[currentCategoryIdx];
     const totalCnt = NewsDB.getCountByCategory(currentCategory);
 
     if (currentPage < 0) {
