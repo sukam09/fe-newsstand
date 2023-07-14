@@ -22,6 +22,7 @@
   padding: 0px 16px 0px 16px;
   gap: 8px;
   color: var(--gray-scale-200);
+  cursor: pointer;
 }
 
 .category-current {
@@ -36,7 +37,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 10s linear infinite;
+  animation: progressBar 3s linear infinite;
 }
 
 @keyframes progressBar {

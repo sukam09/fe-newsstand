@@ -15,7 +15,7 @@ export default class PressTitles {
     $subText.classList.add("pressTitles-subText");
 
     this.titles.forEach((title) => {
-      this.$wrapper.appendChild(this.createPressTitle(title));
+      this.$wrapper.appendChild(this.createPressTitle(title.title));
     });
     $subText.innerText = `${this.name} 언론사에서 직접 편집한 뉴스입니다.`;
     this.$wrapper.appendChild($subText);

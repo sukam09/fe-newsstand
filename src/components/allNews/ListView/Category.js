@@ -35,7 +35,7 @@ export default class Category {
         clearInterval(inerval);
         this.goNextCategory();
       }
-    }, 10000);
+    }, 3000);
   }
 
   goNextCategory() {

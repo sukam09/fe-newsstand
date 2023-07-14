@@ -2,19 +2,21 @@ import PressImagesInfo from "./PressImagesInfo.js";
 import PressTitles from "./PressTitles.js";
 
 export default class PressMain {
-  constructor() {
+  constructor(imgSrc, name, mainTitle, subTitleList) {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "press-main";
 
+    this.imgSrc = imgSrc;
+    this.name = name;
+    this.mainTitle = mainTitle;
+    this.subTitleList = subTitleList;
     this.render();
 
     return this.$wrapper;
   }
 
   render() {
-    this.$wrapper.appendChild(
-      new PressImagesInfo("https://picsum.photos/536/354", "예시 제목")
-    );
-    this.$wrapper.appendChild(new PressTitles("연합뉴스", [1, 2, 3, 4, 5, 6]));
+    this.$wrapper.appendChild(new PressImagesInfo(this.imgSrc, this.mainTitle));
+    this.$wrapper.appendChild(new PressTitles(this.name, this.subTitleList));
   }
 }
