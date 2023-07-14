@@ -8,29 +8,29 @@ let newsPage = 0;
 /**
 페이지 넘기는 버튼의 클릭 이벤트 핸들링
 */
-function turnNewsPage(shuffledPressNews, index) {
+function turnNewsPage(shuffledPressNews, categoryIndex) {
   newsPage = 0;
   $newsPrevButton.addEventListener('click',(event) => 
-  clickNewsTurner(event,shuffledPressNews,index,'left'));
+  clickNewsTurner(event,shuffledPressNews,categoryIndex,'left'));
   $newsNextButton.addEventListener('click',(event) => 
-  clickNewsTurner(event,shuffledPressNews,index,'right'));
+  clickNewsTurner(event,shuffledPressNews,categoryIndex,'right'));
 }
 
 /**
 페이지 넘기는 버튼 유무 설정
  */
-function showNewsTurner(shuffledPressNews,index){
+function showNewsTurner(shuffledPressNews,categoryIndex){
   $newsPrevButton.style.display = newsPage !== 0 ? 'block' : 'none';
-  $newsNextButton.style.display = newsPage === shuffledPressNews[index].length - 1 ? 'none' : 'block';
+  $newsNextButton.style.display = newsPage === shuffledPressNews[categoryIndex].length - 1 ? 'none' : 'block';
 }
 
 /**
  해당 페이지에 맞는 뉴스 띄우기
  */
-function clickNewsTurner(event, shuffledPressNews, category_index, whatButton) {
+function clickNewsTurner(event, shuffledPressNews, categoryIndex, whatButton) {
   whatButton === 'left' ? newsPage-- : newsPage++;
-  showNewsTurner(shuffledPressNews, category_index);
-  showNews(shuffledPressNews, category_index, newsPage);
+  showNewsTurner(shuffledPressNews, categoryIndex);
+  showNews(shuffledPressNews, categoryIndex, newsPage);
 }
 
 export default turnNewsPage
