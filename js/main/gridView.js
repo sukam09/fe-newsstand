@@ -53,11 +53,11 @@ function changePage(e, press) {
 }
 
 function checkPage() {
-  if (main_list_page === MIN_PAGE) left_btn.style.visibility = "hidden";
-  else if (main_list_page === MAX_PAGE) right_btn.style.visibility = "hidden";
+  if (main_list_page === MIN_PAGE) left_btn.style.display = "none"; //display
+  else if (main_list_page === MAX_PAGE) right_btn.style.display = "none";
   else {
-    left_btn.style.visibility = "visible";
-    right_btn.style.visibility = "visible";
+    left_btn.style.display = "block";
+    right_btn.style.display = "block";
   }
 }
 

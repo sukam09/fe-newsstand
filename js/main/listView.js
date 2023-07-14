@@ -1,25 +1,39 @@
 import { category, news_by_category } from "../../assets/news.js";
 
-const ANIMATION_DURATON = 1.5;
-let randomNews;
+let currentPage = 0;
 
-/* 카테고리 생성 및 click 이벤트 등록*/
+function makeRandomNews() {
+  category.forEach((cate) => {
+    news_by_category[cate].sort(() => Math.random() - 0.5);
+  });
+}
+
 function makeCategory() {
   const _ul = document.querySelector(".category");
-
   category.forEach((item, index) => {
     const _li = document.createElement("li");
-
     _li.innerHTML = `
-      <div style="animation-iteration-count:${news_by_category[item].length}"></div>
-      <span class="category-item">${item}</span> 
-      <span class="category-num">1/${news_by_category[item].length}</span>
-    `;
-
-    _li.addEventListener("click", (e) => getNews(e));
+       <div></div>
+       <span class="category-item">${item}</span> 
+       <span class="category-num"></span>
+     `;
 
     _ul.appendChild(_li);
 
+    _li.dataset.category = item;
+
+    _li.addEventListener("click", (e) => handleCategoryClick(e));
+    _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
+    _li.addEventListener("animationiteration", (e) =>
+      handleAniamtionIteration(e)
+    );
+
+    //span 클릭 시 li 클릭으로 처리
+    _li.children[1].addEventListener("click", (e) => {
+      e.stopPropagation();
+      _li.click();
+    });
+    //default로 첫번째 카테고리
     if (index === 0) {
       _li.classList.add("selected-category");
       _li.children[2].style.display = "flex";
@@ -27,58 +41,91 @@ function makeCategory() {
   });
 }
 
-//start랑 click 됐을 때 random 뉴스
-function shuffleNews() {
-  let currentCategory = document.querySelector(
-    ".selected-category span"
-  ).innerText;
-  const shuffled = [...news_by_category[currentCategory]].sort(
-    () => Math.random() - 0.5
-  );
-  return shuffled;
+/* handleCategoryClick 관련 */
+function handleCategoryClick(e) {
+  currentPage = 0;
+  removeAnimation();
+  addAnimation(e, "Current");
 }
 
-/* 뉴스 가져오기 */
+function removeAnimation() {
+  const prevSelected = document.querySelector(".selected-category");
+  prevSelected.children[2].style.display = "none";
+  prevSelected.classList.remove("selected-category");
+}
 
-function getNews(e) {
-  changeCurrentPage(e);
-
-  let currentNews;
-  //event가 클릭일 때랑 iteration일 때랑 구분
-  if (e.type === "animationiteration") {
-    currentNews = randomNews[e.elapsedTime / ANIMATION_DURATON];
-  } else {
-    currentNews = randomNews[0];
+function addAnimation(e, to) {
+  if (to === "Next") {
+    removeAnimation();
+    if (e.target.parentElement.nextElementSibling === null) {
+      document
+        .querySelector(".category li:first-child")
+        .classList.add("selected-category");
+    } else {
+      e.target.parentElement.nextElementSibling.classList.add(
+        "selected-category"
+      );
+    }
+  } else if (to === "Prev") {
+  } else if (to === "Current") {
+    e.target.classList.add("selected-category");
   }
+}
 
+/* handleAniamtionStart관련 */
+function handleAniamtionStart(e) {
+  chageNews(e);
+}
+/* handleAniamtionIteration 관련 */
+function handleAniamtionIteration(e) {
+  const totalPageNum = getPagesNum(e);
+
+  if (currentPage + 1 < totalPageNum) {
+    currentPage += 1;
+    chageNews(e);
+  }
+  //다음 카테고리로 넘어갈 때
+  else {
+    currentPage = 0;
+    addAnimation(e, "Next");
+  }
+  //currentPage > totalNum => passAnimation
+}
+
+/* change */
+function chageNews(e) {
+  const news = getNews(e);
   //press-info
-  changePressInfo(currentNews);
+  changePressInfo(news[currentPage]);
 
   //main news
-  changeMain(currentNews);
+  changeMain(news[currentPage]);
 
   //sub news
-  changeSub(currentNews);
+  changeSub(news[currentPage]);
+
+  //pagenum info
+  changePageInfo(e);
 }
 
-function changePressInfo(currentNews) {
+function changePressInfo(news) {
   const press_info = document.querySelector(".press-info");
-  press_info.children[0].setAttribute("src", `${currentNews.src}`);
-  press_info.children[1].innerText = `${currentNews.editDate}`;
+  press_info.children[0].setAttribute("src", `${news.src}`);
+  press_info.children[1].innerText = `${news.editDate}`;
 }
 
-function changeMain(currentNews) {
+function changeMain(news) {
   const mainNews = document.querySelector(".list-view-main");
-  mainNews.children[0].setAttribute("src", `${currentNews.thumbSrc}`);
-  mainNews.children[1].innerText = `${currentNews.headTitle}`;
+  mainNews.children[0].setAttribute("src", `${news.thumbSrc}`);
+  mainNews.children[1].innerText = `${news.headTitle}`;
 }
 
-function changeSub(currentNews) {
+function changeSub(news) {
   const subNews = document.querySelector(".list-view-sub");
   //sub news
   subNews.innerHTML = ``;
   const _ul = document.createElement("ul");
-  currentNews.subTitle.forEach((item) => {
+  news.subTitle.forEach((item) => {
     const _li = document.createElement("li");
     _li.innerText = `${item}`;
     _ul.appendChild(_li);
@@ -86,67 +133,254 @@ function changeSub(currentNews) {
   //copyRight
   const _li_sub = document.createElement("li");
   _li_sub.classList.add("sub-caption");
-  _li_sub.innerText = currentNews.copyRight;
+  _li_sub.innerText = news.copyRight;
   _ul.appendChild(_li_sub);
   subNews.appendChild(_ul);
 }
 
-function changeCurrentPage(e) {
-  const totalNum = document
-    .querySelectorAll(".selected-category span")[1]
-    .innerText.split("/")[1];
-
-  document.querySelectorAll(".selected-category span")[1].innerText = `${
-    e.elapsedTime / ANIMATION_DURATON + 1
-  }/${totalNum}`;
+function changePageInfo(e) {
+  e.target.parentElement.children[2].style.display = "flex";
+  e.target.parentElement.children[2].innerText = `${
+    currentPage + 1
+  }/${getPagesNum(e)}`;
 }
 
-/* 애니메이션 */
-
-function addAniToCategory() {
-  //이전에 selected-category 요소 찾고 있으면 지우고 추가
-  const categoryList = document.querySelectorAll(".category li");
-  categoryList.forEach((item) => {
-    item.addEventListener("click", () => passAnimation("Clicked", item));
-    item.addEventListener("animationend", () => passAnimation("Next", null));
-    item.addEventListener("animationiteration", (e) => getNews(e));
-    item.addEventListener("animationstart", (e) => handleAniStart(e));
-  });
+/* GET */
+function getNews(e) {
+  return news_by_category[e.currentTarget.dataset.category];
 }
 
-function handleAniStart(e) {
-  randomNews = shuffleNews();
-  getNews(e);
+function getPagesNum(e) {
+  return getNews(e).length;
 }
 
-function passAnimation(type, item) {
-  //이전 요소 애니메이션 중지
-  const prevSelected = document.querySelector(".selected-category");
-  // prevCategory = prevSelected.children[1].innerText;
-  prevSelected.children[2].style.display = "none";
-  prevSelected.classList.remove("selected-category");
-
-  //자동으로 넘어갈 때
-  if (type === "Next") {
-    if (prevSelected.nextElementSibling === null) {
-      document
-        .querySelector(".category li:first-child")
-        .classList.add("selected-category");
-    } else {
-      prevSelected.nextElementSibling.classList.add("selected-category");
-    }
-    document.querySelector(".selected-category").children[2].style.display =
-      "flex";
-  }
-  // 클릭 했을 때
-  else if ("Clicked") {
-    item.classList.add("selected-category");
-    item.querySelector(".category-num").style.display = "flex";
-  }
+function getClickedCategory(e) {
+  // if (e.target.tagName !== "LI") {
+  //   return e.target.innerText;
+  // } else {
+  //   return e.target.id;
+  // }
+  return e.target.innerText;
 }
+// let randomNews;
+// let currentPage = 0;
+// let isBtnClick = false;
+
+/* 카테고리 생성 및 click 이벤트 등록*/
+// function makeCategory() {
+//   const _ul = document.querySelector(".category");
+
+//   category.forEach((item, index) => {
+//     const _li = document.createElement("li");
+
+//     _li.innerHTML = `
+//       <div style="animation-iteration-count:${news_by_category[item].length}"></div>
+//       <span class="category-item">${item}</span>
+//       <span class="category-num">1/${news_by_category[item].length}</span>
+//     `;
+
+//     _li.addEventListener("click", (e) => getNews(e));
+
+//     _ul.appendChild(_li);
+
+//     if (index === 0) {
+//       _li.classList.add("selected-category");
+//       _li.children[2].style.display = "flex";
+//     }
+//   });
+// }
+
+// //start랑 click 됐을 때 random 뉴스
+// function shuffleNews() {
+//   let currentCategory = document.querySelector(
+//     ".selected-category span"
+//   ).innerText;
+//   const shuffled = [...news_by_category[currentCategory]].sort(
+//     () => Math.random() - 0.5
+//   );
+//   return shuffled;
+// }
+
+// /* 뉴스 가져오기 */
+
+// function getNews(e) {
+//   changeCurrentPage(e);
+//   let currentNews;
+
+//   //버튼 클릭할 때랑 자동으로 넘어갈 때
+//   if (e.type === "animationiteration" || e.type === "click") {
+//     currentNews = randomNews[currentPage];
+//   }
+//   // 처음 시작할 때,  todo : but isBtnClick에 따라 cyrrentNews
+//   else {
+//     if (isBtnClick) {
+//       currentNews = randomNews[currentPage];
+//     } else {
+//       currentNews = randomNews[0];
+//     }
+//   }
+//   //press-info
+//   changePressInfo(currentNews);
+
+//   //main news
+//   changeMain(currentNews);
+
+//   //sub news
+//   changeSub(currentNews);
+
+//   if (e.type === "animationiteration" || e.type === "animationstart")
+//     currentPage += 1;
+// }
+
+// function changePressInfo(currentNews) {
+//   const press_info = document.querySelector(".press-info");
+//   press_info.children[0].setAttribute("src", `${currentNews.src}`);
+//   press_info.children[1].innerText = `${currentNews.editDate}`;
+// }
+
+// function changeMain(currentNews) {
+//   const mainNews = document.querySelector(".list-view-main");
+//   mainNews.children[0].setAttribute("src", `${currentNews.thumbSrc}`);
+//   mainNews.children[1].innerText = `${currentNews.headTitle}`;
+// }
+
+// function changeSub(currentNews) {
+//   const subNews = document.querySelector(".list-view-sub");
+//   //sub news
+//   subNews.innerHTML = ``;
+//   const _ul = document.createElement("ul");
+//   currentNews.subTitle.forEach((item) => {
+//     const _li = document.createElement("li");
+//     _li.innerText = `${item}`;
+//     _ul.appendChild(_li);
+//   });
+//   //copyRight
+//   const _li_sub = document.createElement("li");
+//   _li_sub.classList.add("sub-caption");
+//   _li_sub.innerText = currentNews.copyRight;
+//   _ul.appendChild(_li_sub);
+//   subNews.appendChild(_ul);
+// }
+
+// function changeCurrentPage(e) {
+//   const totalNum = document
+//     .querySelectorAll(".selected-category span")[1]
+//     .innerText.split("/")[1];
+
+//   document.querySelectorAll(".selected-category span")[1].innerText = `${
+//     // e.elapsedTime / ANIMATION_DURATON + 1
+//     currentPage + 1
+//   }/${totalNum}`;
+// }
+
+// /* 애니메이션 */
+
+// function addAniToCategory() {
+//   //이전에 selected-category 요소 찾고 있으면 지우고 추가
+//   const categoryList = document.querySelectorAll(".category li");
+//   categoryList.forEach((item) => {
+//     item.addEventListener("click", () => passAnimation("Clicked", item));
+//     item.addEventListener("animationend", () => passAnimation("Next", null));
+//     item.addEventListener("animationiteration", (e) => getNews(e));
+//     item.addEventListener("animationstart", (e) => handleAniStart(e));
+//   });
+// }
+
+// function handleAniStart(e) {
+//   if (!isBtnClick) {
+//     currentPage = 0;
+//     randomNews = shuffleNews();
+//   }
+
+//   getNews(e);
+//   isBtnClick = false;
+// }
+
+// function passAnimation(type, item) {
+//   //이전 요소 애니메이션 중지
+//   const prevSelected = document.querySelector(".selected-category");
+//   prevSelected.children[2].style.display = "none";
+//   prevSelected.classList.remove("selected-category");
+
+//   //자동으로 넘어갈 때
+//   if (type === "Next") {
+//     if (prevSelected.nextElementSibling === null) {
+//       document
+//         .querySelector(".category li:first-child")
+//         .classList.add("selected-category");
+//     } else {
+//       prevSelected.nextElementSibling.classList.add("selected-category");
+//     }
+//     document.querySelector(".selected-category").children[2].style.display =
+//       "flex";
+//   } else if (type === "Prev") {
+//     if (prevSelected.previousElementSibling === null) {
+//       document
+//         .querySelector(".category li:last-child")
+//         .classList.add("selected-category");
+//     } else {
+//       prevSelected.previousElementSibling.classList.add("selected-category");
+//     }
+//   }
+
+//   // 클릭 했을 때
+//   else if ("Clicked") {
+//     item.classList.add("selected-category");
+//     //클릭요소 카테고리 iteration 초기화
+//     item.style.animationIterationCount =
+//       news_by_category[item.children[1].innerText].length;
+
+//     item.querySelector(".category-num").style.display = "flex";
+//   }
+// }
+
+// /* 버튼 */
+// const right_btn = document.getElementById("list-right-btn");
+// const left_btn = document.getElementById("list-left-btn");
+
+// right_btn.addEventListener("click", (e) => handleBtnClick(e, "right"));
+// left_btn.addEventListener("click", (e) => handleBtnClick(e, "left"));
+
+// function handleBtnClick(e, type) {
+//   const _div = document.querySelector(".selected-category div");
+//   let leftedCount;
+//   //오른쪽
+//   if (type === "right") {
+//     if (
+//       currentPage + 1 >
+//       news_by_category[
+//         document.querySelector(".selected-category span").innerText
+//       ].length
+//     ) {
+//       passAnimation("Next", null);
+//     }
+//     leftedCount = _div.style.animationIterationCount - 1;
+//   }
+//   //왼쪽
+//   else {
+//     if (currentPage - 1 < 1) {
+//       //이전 카테고리한테 애니메이션 pass
+//       passAnimation("Prev", null);
+//     }
+//     currentPage -= 2;
+//     leftedCount = _div.style.animationIterationCount + 1;
+//   }
+//   getNews(e);
+//   const selectedCategory = document.querySelector(".selected-category");
+
+//   //애니메이션 초기화
+//   selectedCategory.classList.remove("selected-category");
+//   void selectedCategory.offsetWidth;
+//   isBtnClick = true;
+//   selectedCategory.classList.add("selected-category");
+
+//   selectedCategory.children[0].style.animationIterationCount = leftedCount;
+// }
 
 function initListView() {
+  makeRandomNews();
   makeCategory();
-  addAniToCategory();
+  // addAniToCategory();
 }
+
 export { initListView };
