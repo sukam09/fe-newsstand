@@ -151,22 +151,6 @@ list_prev.addEventListener("click", () => {
   drawListView(0, current_page - 1);
 });
 
-let interval1;
-function movingProgress() {
-  while (current_page <= CATEGORY_NUM - 1 && current_page >= 0) {
-    interval1 = setInterval(function () {
-      if (current_page == CATEGORY_NUM - 1) {
-        changeCategory(current_page, 0);
-        current_page = 0;
-      } else {
-        changeCategory(current_page, current_page + 1);
-        current_page++;
-      }
-    }, PROGRESS_TIME);
-    break;
-  }
-}
-
 function initializeProgress() {
   current_page = 0;
   up_count = 2;

@@ -1,4 +1,3 @@
-/***** grid형 <-> list형 뷰 변경 *****/
 import {
   initializeProgress,
   runProgress,
@@ -7,6 +6,7 @@ import {
 
 let grid_view_selected = true;
 
+/***** grid형 <-> list형 뷰 변경 *****/
 //grid형 보기로 바꾸기
 function changeToGridView() {
   document.getElementsByClassName("list-selected")[0].style.display = "none";
