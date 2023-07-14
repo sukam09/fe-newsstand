@@ -1,10 +1,10 @@
 import categoryData from "../json/category.json" assert { type: "json" };
 import news from "../json/news.json" assert { type: "json" };
 import { leftAsideButton, rightAsideButton } from "./renderMain.js";
+import { increment, totalTime } from "./constants.js";
 
 let progress = 0;
-const increment = 10;
-const totalTime = 2000;
+
 let categoryCnt = []; //json파일을 받아와 배열 형태로 관리
 let categoryNews = {};
 let currentCategoryPageNumber = 1;
