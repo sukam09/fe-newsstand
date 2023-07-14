@@ -1,7 +1,7 @@
 1. 레이아웃 설계
 
-    ![UI - 1](./docs/test3.png)
-    ![UI - 2](./docs/test4.png)
+    ![UI - 1](./docs/test5.png)
+    ![UI - 2](./docs/test6.png)
 
 2. 네이밍 규칙
 
@@ -19,27 +19,29 @@
 
 3. 디렉터리 구조
 
--   index.html
--   index.css
--   app.js
--   src
-    -   views
-        -   list_views.js
-        -   grid_views.js
-        -   rolling_views.js
-    -   utils.js
-    -   actions.js
-    -   constants.js
-    -   globals.js
-    -   events.js
--   assets.js
-    -   icons
-    -   images
-    -   pictures
--   data
-    -   all_news.json
-    -   hot_topic_data.json
-    -   press_data.json
+```
+fe-newsstand
+├── app.js
+├── assets
+│   ├── icons
+│   ├── images
+│   └── pictures
+├── data
+│   ├── all_news.json
+│   ├── hot_topic_data.json
+│   └── press_data.json
+├── docs
+├── index.css
+├── index.html
+├── readme.md
+└── src
+    ├── actions.js
+    ├── constants.js
+    ├── events.js
+    ├── globals.js
+    ├── utils.js
+    └── views
+```
 
 4. 구현 체크리스트
 
@@ -62,6 +64,15 @@
     -   [ ] 반응형 (모바일)
 
 ---
+
+### 7.14 (금)
+
+-   list_view 호버 이벤트 구현
+    -   카테고리 호버 이벤트
+    -   썸네일 호버 이벤트
+-   querySelector 구현해보기
+-   다크모드 구현
+    -   css 모듈화
 
 ### 7.13 (목)
 
