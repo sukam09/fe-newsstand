@@ -11,7 +11,7 @@ const initNewsStandHeader = () => {
 /**
  * 뉴스스탠드의 ELEMENT
  */
-const setNewsStandHeader = () => {
+const setHeader = () => {
   const headerWrapper = document.querySelector('.header__wrapper');
   const headerElement = `
     <button class='header__button'>
