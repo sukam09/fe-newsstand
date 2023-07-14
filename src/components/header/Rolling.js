@@ -96,10 +96,8 @@ const rollingElement = (elem) => {
   $current.classList.add("prev");
 
   const $next = _querySelector(".next", elem);
-
   if ($next.nextElementSibling == null) {
-    const elElem = _querySelector("ul", elem);
-    _querySelector("li", elElem)[0].classList.add("next");
+    _querySelectorAll("li", elem)[0].classList.add("next");
   } else {
     $next.nextElementSibling.classList.add("next");
   }
