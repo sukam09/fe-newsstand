@@ -10,6 +10,20 @@ function showToday() {
     });
 }
 
+// brute force로 구현 - 순차탐색
+function myQuerySelector(selector, element = document) {
+    const matchesSelector = (el) => el.matches(selector);
+
+    return Array.from(element.children).reduce((found_el, cur_el) => {
+        return (
+            found_el ||
+            (matchesSelector(cur_el)
+                ? cur_el
+                : myQuerySelector(selector, cur_el))
+        );
+    }, null);
+}
+
 async function fetchPressData() {
     try {
         const data = await fetch("./data/press_data.json")
@@ -42,9 +56,10 @@ async function fetchHotTopicData() {
 
 async function fetchNewsData() {
     try {
-        const data = await fetch("./data/all_news.json")
-            .then((res) => res.json())
-        
+        const data = await fetch("./data/all_news.json").then((res) =>
+            res.json()
+        );
+
         return data;
     } catch (error) {
         console.log(error);
@@ -54,4 +69,4 @@ async function fetchNewsData() {
 
 document.addEventListener("DOMContentLoaded", showToday);
 
-export { fetchPressData, fetchHotTopicData, fetchNewsData };
+export { fetchPressData, fetchHotTopicData, fetchNewsData, myQuerySelector };
