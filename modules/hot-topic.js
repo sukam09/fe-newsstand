@@ -45,7 +45,7 @@ const rollingTopic = () => {
       rightInterval = null;
 
     clearInterval(leftInterval);
-    clearInterval(leftInterval);
+    clearInterval(rightInterval);
 
     leftInterval = startRolling("hot-topic-left");
 
