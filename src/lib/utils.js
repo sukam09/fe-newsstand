@@ -1,15 +1,13 @@
-// Time 설정
-const setTime = function () {
-    const today = new Date();
-    const options = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        weekday: "long",
-    };
-    const todayString = today.toLocaleDateString("ko-KR", options);
-    const $time = document.getElementById("time");
-    $time.setAttribute("datetime", String(today));
-    $time.textContent = todayString;
-};
-export { setTime };
+function convertIdx(idx, categories) {
+    const result = { convertedIdx: 0, category: "" };
+    for (const category of categories) {
+        if (idx <= category.amount - 1) {
+            result.convertedIdx = idx;
+            result.category = category.name;
+            break;
+        }
+        idx -= category.amount;
+    }
+    return result;
+}
+export { convertIdx };
