@@ -5,17 +5,22 @@ import { ListComponent } from "../ListComponent.js";
 const makeFocusTab = (currentPage, filteredAgencies, item) => {
   const $field_tab_progress = document.createElement("li");
   $field_tab_progress.className = "field-tab-progress";
+
   const $progress_count_wrapper = document.createElement("div");
   $progress_count_wrapper.className = "progress-count-wrapper";
+
   const $progress_category = document.createElement("span");
   $progress_category.className = "progress-category";
   $progress_category.innerText = item;
+
   const $progress_count = document.createElement("span");
   $progress_count.className = "progress-count";
   $progress_count.innerText = currentPage + 1;
+
   const $division = document.createElement("span");
   $division.className = "division";
   $division.innerText = "/";
+
   const $progress_total_count = document.createElement("span");
   $progress_total_count.className = "progress-total-count";
   $progress_total_count.innerText = `${filteredAgencies.length}`;
