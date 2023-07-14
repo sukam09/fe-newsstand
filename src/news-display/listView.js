@@ -1,4 +1,5 @@
 import { pageIndex, setListPageIndex } from "../app.js";
+import insertHTML from "../utils/insertHTML.js";
 import {
     categoryList,
     currentCategory,
@@ -6,6 +7,7 @@ import {
     initCategoryNewsData,
     setCategoryProgressNum,
     setCurrentCategory,
+    updateListView,
 } from "./setCategory.js";
 import { subscribeButton } from "./subscribeButton.js";
 
@@ -48,18 +50,18 @@ const getArticleMain = (newsData) => {
     `;
 };
 
+const getArticle = (newsData) => {
+    return `
+        ${getArticleHead(newsData)}
+        ${getArticleMain(newsData)}
+    `;
+};
+
 const listViewMain = document.querySelector(".list-view-main-container");
 
 const renderListView = () => {
     listViewMain.innerHTML = "";
-    listViewMain.insertAdjacentHTML(
-        "beforeend",
-        getArticleHead(categoryNewsData[pageIndex])
-    );
-    listViewMain.insertAdjacentHTML(
-        "beforeend",
-        getArticleMain(categoryNewsData[pageIndex])
-    );
+    insertHTML(listViewMain, getArticle(categoryNewsData[pageIndex]));
 };
 
 const getNextCategoryIndex = (currentCategory) => {
@@ -70,7 +72,29 @@ const getNextCategoryIndex = (currentCategory) => {
 
 const categoryBar = document.querySelector(".list-view-category-bar");
 
-export let listViewInterval;
+const setNextCategoryActive = () => {
+    const currentCategoryElement = categoryBar.querySelector(
+        ".list-view-category-selected"
+    );
+
+    let nextCategoryElement = currentCategoryElement.nextElementSibling;
+    if (nextCategoryElement === null) {
+        nextCategoryElement = categoryBar.querySelector("ul").firstElementChild;
+    }
+
+    currentCategoryElement.classList.remove("list-view-category-selected");
+    currentCategoryElement.classList.remove("selected-bold14");
+    currentCategoryElement.lastElementChild.remove();
+
+    updateListView(nextCategoryElement);
+};
+
+const updateCurrentIndex = (pageIndex) => {
+    const progressNumber = document.querySelector(".category-progress-number");
+    progressNumber.innerHTML = pageIndex + 1;
+};
+
+let listViewInterval;
 const startListViewInterval = () => {
     listViewInterval = window.setInterval(() => {
         renderListView();
@@ -81,38 +105,12 @@ const startListViewInterval = () => {
             );
             categoryNewsData = initCategoryNewsData(currentCategory);
             setListPageIndex(0);
-
-            const currentCategoryElement = categoryBar.querySelector(
-                ".list-view-category-selected"
-            );
-
-            let nextCategoryElement = currentCategoryElement.nextElementSibling;
-            if (nextCategoryElement === null) {
-                nextCategoryElement =
-                    categoryBar.querySelector("ul").firstElementChild;
-            }
-
-            currentCategoryElement.classList.remove(
-                "list-view-category-selected"
-            );
-            currentCategoryElement.classList.remove("selected-bold14");
-            currentCategoryElement.lastElementChild.remove();
-
-            nextCategoryElement.insertAdjacentHTML(
-                "beforeend",
-                setCategoryProgressNum(getCategoryNewsCount(currentCategory))
-            );
-            setListView();
-            nextCategoryElement.classList.add("list-view-category-selected");
-            nextCategoryElement.classList.add("selected-bold14");
+            setNextCategoryActive();
         } else {
             setListPageIndex(pageIndex + 1);
         }
-        const progressNumber = document.querySelector(
-            ".category-progress-number"
-        );
-        progressNumber.innerHTML = pageIndex;
-    }, 1000);
+        updateCurrentIndex(pageIndex);
+    }, 2000);
 };
 
 const setListView = () => {
@@ -123,4 +121,4 @@ const setListView = () => {
     startListViewInterval();
 };
 
-export { setListView, startListViewInterval };
+export { setListView, startListViewInterval, listViewInterval };

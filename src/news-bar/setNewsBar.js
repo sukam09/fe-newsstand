@@ -1,3 +1,5 @@
+import insertHTML from "../utils/insertHTML.js";
+
 const getNewsBarElement = (newData) => {
     const { press, headline } = newData;
     return `
@@ -14,7 +16,7 @@ const createNewsBar = (item, index) => {
         .then((response) => response.json())
         .then((jsonData) => {
             jsonData.forEach((item) =>
-                $ul.insertAdjacentHTML("beforeend", getNewsBarElement(item))
+                insertHTML($ul, getNewsBarElement(item))
             );
         });
     item.appendChild($ul);

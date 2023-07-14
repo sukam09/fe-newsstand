@@ -40,7 +40,7 @@ const setListPageIndex = (num) => {
     setGridView();
 
     setCategories();
-    setListView();
+    // setListView();
 
     handleClickGridPrevButton();
     handleClickGridNextButton();

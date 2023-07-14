@@ -1,4 +1,5 @@
-import { newsPressData, pageIndex, setListPageIndex } from "../app.js";
+import { newsPressData, setListPageIndex } from "../app.js";
+import insertHTML from "../utils/insertHTML.js";
 import {
     listViewInterval,
     setListView,
@@ -60,6 +61,16 @@ const initCategoryClass = (item) => {
     }
 };
 
+const updateListView = (categoryElement) => {
+    insertHTML(
+        categoryElement,
+        setCategoryProgressNum(getCategoryNewsCount(currentCategory))
+    );
+    setListView();
+    categoryElement.classList.add("list-view-category-selected");
+    categoryElement.classList.add("selected-bold14");
+};
+
 const setCurrentCategoryActive = () => {
     const categories = categoryBar.querySelectorAll("ul > li");
 
@@ -70,13 +81,7 @@ const setCurrentCategoryActive = () => {
             clearInterval(listViewInterval);
             startListViewInterval();
             categories.forEach((item) => initCategoryClass(item));
-            item.insertAdjacentHTML(
-                "beforeend",
-                setCategoryProgressNum(getCategoryNewsCount(currentCategory))
-            );
-            setListView();
-            item.classList.add("list-view-category-selected");
-            item.classList.add("selected-bold14");
+            updateListView(item);
         });
     });
 };
@@ -86,8 +91,8 @@ const setFirstCategoryActive = () => {
 
     firstCategory.classList.add("list-view-category-selected");
     firstCategory.classList.add("selected-bold14");
-    firstCategory.insertAdjacentHTML(
-        "beforeend",
+    insertHTML(
+        firstCategory,
         setCategoryProgressNum(getCategoryNewsCount(currentCategory))
     );
 };
@@ -95,10 +100,10 @@ const setFirstCategoryActive = () => {
 const setCategories = () => {
     const $ul = document.createElement("ul");
     categoryList.forEach((category) => {
-        $ul.insertAdjacentHTML("beforeend", getCategoryList(category));
+        insertHTML($ul, getCategoryList(category));
     });
     categoryBar.appendChild($ul);
-    setFirstCategoryActive();
+    // setFirstCategoryActive();
     setCurrentCategoryActive();
 };
 
@@ -118,4 +123,7 @@ export {
     setCurrentCategory,
     setCategoryProgressNum,
     getCategoryNewsCount,
+    updateListView,
+    setFirstCategoryActive,
+    initCategoryClass,
 };
