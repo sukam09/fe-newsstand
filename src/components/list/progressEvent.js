@@ -5,9 +5,9 @@ import { renderPressNews } from "../../container/listViewTemplate.js";
 
 const progress_bar_info = {
     interval: 0,
-    page_num_now: 0,
-    page_num_old: 0,
-    press_num_arr: [0, 0, 0, 0, 0, 0, 0],
+    category_now: 0,
+    category_old: 0,
+    press_num: [0, 0, 0, 0, 0, 0, 0],
 };
 
 // interval 초기화
@@ -17,7 +17,6 @@ function initInterval() {
 
 // interval 제거
 export function removeInterval() {
-    console.log("clear");
     clearInterval(progress_bar_info.interval);
 }
 
@@ -27,17 +26,17 @@ function createInterval() {
         // 새로 페이지 넘겨줌 // 페이지 번호 변경  // 리스트뷰 생성
         changePage().then(() => {
             changeCategoryTab();
-            const page_num_now = progress_bar_info.page_num_now;
-            renderPressNews(list_news_data[page_num_now].news[progress_bar_info.press_num_arr[page_num_now]]);
+            const category_now = progress_bar_info.category_now;
+            renderPressNews(list_news_data[category_now].news[progress_bar_info.press_num[category_now]]);
         });
     }, SET_TIME);
 }
 
 // progress_bar_info 초기화
 async function initProgressBarInfo() {
-    progress_bar_info.page_num_now = 0;
-    progress_bar_info.page_num_old = 0;
-    progress_bar_info.press_num_arr = [0, 0, 0, 0, 0, 0, 0];
+    progress_bar_info.category_now = 0;
+    progress_bar_info.category_old = 0;
+    progress_bar_info.press_num = [0, 0, 0, 0, 0, 0, 0];
     createInterval();
 }
 
@@ -45,10 +44,10 @@ async function initProgressBarInfo() {
 export function changeCategoryTab() {
     const list_view_btn = document.querySelectorAll(".list-view-btn");
 
-    const old_tab_item = list_view_btn[progress_bar_info.page_num_old].querySelector(".tab-item");
-    const old_btn_tab_item = list_view_btn[progress_bar_info.page_num_old].querySelector(".tab-item-clicked");
-    const new_tab_item = list_view_btn[progress_bar_info.page_num_now].querySelector(".tab-item");
-    const new_btn_tab_item = list_view_btn[progress_bar_info.page_num_old].querySelector(".tab-item-clicked");
+    const old_tab_item = list_view_btn[progress_bar_info.category_old].querySelector(".tab-item");
+    const old_btn_tab_item = list_view_btn[progress_bar_info.category_old].querySelector(".tab-item-clicked");
+    const new_tab_item = list_view_btn[progress_bar_info.category_now].querySelector(".tab-item");
+    const new_btn_tab_item = list_view_btn[progress_bar_info.category_old].querySelector(".tab-item-clicked");
 
     old_tab_item.style.display = "flex";
     old_btn_tab_item.style.display = "none";
@@ -61,43 +60,43 @@ export function changeCategoryTab() {
 export function initCategoryTab() {
     initProgressBarInfo().then(() => {
         updatePage().then(() => {
-            const page_num_now = progress_bar_info.page_num_now;
-            renderPressNews(list_news_data[page_num_now].news[progress_bar_info.press_num_arr[page_num_now]]);
+            const category_now = progress_bar_info.category_now;
+            renderPressNews(list_news_data[category_now].news[progress_bar_info.press_num[category_now]]);
         });
         changeCategoryTab();
     });
 }
 
 async function updatePage() {
-    const page_num_now = progress_bar_info.page_num_now;
-    const nowBtn = document.querySelectorAll(".list-view-btn")[page_num_now];
+    const category_now = progress_bar_info.category_now;
+    const nowBtn = document.querySelectorAll(".list-view-btn")[category_now];
     const count_present = nowBtn.querySelector(".btn-tab-count-present");
-    count_present.innerHTML = progress_bar_info.press_num_arr[page_num_now] + 1;
+    count_present.innerHTML = progress_bar_info.press_num[category_now] + 1;
 }
 
 // page_num 변경
 async function changePageNum(new_idx) {
-    progress_bar_info.page_num_old = progress_bar_info.page_num_now;
-    progress_bar_info.page_num_now = new_idx;
+    progress_bar_info.category_old = progress_bar_info.category_now;
+    progress_bar_info.category_now = new_idx;
     updatePage();
 }
 
 // 페이지 넘김
 export async function changePage() {
-    const page_num_now = progress_bar_info.page_num_now;
+    const category_now = progress_bar_info.category_now;
 
     if (
         // 현재 카테고리에 있는 언론사 다 보여줌
-        progress_bar_info.press_num_arr[page_num_now] ===
-        CATEGORY_COUNT_ARR[page_num_now] - 1
+        progress_bar_info.press_num[category_now] ===
+        CATEGORY_COUNT_ARR[category_now] - 1
     ) {
-        const nextPage = page_num_now !== CATEGORY_SIZE - 1 ? page_num_now + 1 : 0;
+        const nextPage = category_now !== CATEGORY_SIZE - 1 ? category_now + 1 : 0;
         changePageNum(nextPage);
     } else {
         // 현재 카테고리 있는 언론사+1
-        const nowBtn = document.querySelectorAll(".list-view-btn")[page_num_now];
+        const nowBtn = document.querySelectorAll(".list-view-btn")[category_now];
         const count_present = nowBtn.querySelector(".btn-tab-count-present");
-        count_present.innerHTML = progress_bar_info.press_num_arr[page_num_now] + 2;
-        progress_bar_info.press_num_arr[page_num_now] += 1;
+        count_present.innerHTML = progress_bar_info.press_num[category_now] + 2;
+        progress_bar_info.press_num[category_now] += 1;
     }
 }
