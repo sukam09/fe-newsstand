@@ -1,31 +1,42 @@
-const setNewsStandHeader = () => {
-  const headerWrapper = document.querySelector('.header__wrapper');
-
-  const $button = document.createElement('button');
-  $button.classList.add('header__button');
-  $button.addEventListener('click', () => {
-    location.reload();
-  });
-
-  const $img = document.createElement('img');
-  $img.classList.add('header__img');
-  $img.src = './assets/icons/newspaper.svg';
-
-  const $h1 = document.createElement('h1');
-  $h1.classList.add('header__h1');
-  $h1.innerText = '뉴스스탠드';
-
-  const $time = document.createElement('time');
-  $time.classList.add('header__time');
-
-  $button.appendChild($img);
-  $button.appendChild($h1);
-  headerWrapper.appendChild($button);
-  headerWrapper.appendChild($time);
-  setHeaderTime();
+/**
+ * 뉴스스탠드의 INIT
+ */
+const initNewsStandHeader = () => {
+  setNewsStandHeader();
+  setHeaderButton();
+  const dateFormat = getHeaderTime();
+  setHeaderTime(dateFormat);
 };
 
-const setHeaderTime = () => {
+/**
+ * 뉴스스탠드의 ELEMENT
+ */
+const setNewsStandHeader = () => {
+  const headerWrapper = document.querySelector('.header__wrapper');
+  const headerElement = `
+    <button class='header__button'>
+      <img class='header__img' src='./assets/icons/newspaper.svg'></img>
+      <h1 class='header__h1'>뉴스스탠드</h1>
+    </button>
+    <time class='header__time'></time>
+  `;
+  headerWrapper.innerHTML = headerElement;
+};
+
+/**
+ * 뉴스스탠드의 로고 이벤트
+ */
+const setHeaderButton = () => {
+  const headerButton = document.querySelector('.header__button');
+  headerButton.addEventListener('click', () => {
+    location.reload();
+  });
+};
+
+/**
+ * 뉴스스탠드의 시간 반환
+ */
+const getHeaderTime = () => {
   const options = {
     year: 'numeric',
     month: '2-digit',
@@ -33,8 +44,15 @@ const setHeaderTime = () => {
     weekday: 'long',
   };
 
-  const headerTime = document.querySelector('.header__time');
-  headerTime.innerHTML = Intl.DateTimeFormat('ko-KR', options).format(new Date());
+  return Intl.DateTimeFormat('ko-KR', options).format(new Date());
 };
 
-export { setNewsStandHeader };
+/**
+ * 뉴스스탠드의 시간 설정
+ */
+const setHeaderTime = (dateFormat) => {
+  const headerTime = document.querySelector('.header__time');
+  headerTime.innerText = dateFormat;
+};
+
+export { initNewsStandHeader };
