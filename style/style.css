@@ -70,6 +70,10 @@ img.title_logo {
   white-space: nowrap;
 }
 
+.headline_title {
+  font-weight: bold;
+  margin-right: 20px;
+}
 .left_rolling_list :hover,
 .right_rolling_list :hover {
   text-decoration-line: underline;

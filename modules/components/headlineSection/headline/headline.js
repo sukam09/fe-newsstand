@@ -49,63 +49,59 @@ export async function headline() {
   const headlineData = await fetchData("/data/headline.json");
 
   let leftRollingList = "";
+  let rightRollingList = "";
 
   for (let i = 0; i < headlineData.length / 2; i++) {
     if (i === 0) {
       leftRollingList += `
       <li class="left_rolling_list_item view">
-        ${headlineData[i].title}
-      </li>
       `;
     } else if (i === 1) {
       leftRollingList += `
       <li class="left_rolling_list_item next">
-        ${headlineData[i].title}
-      </li>
       `;
     } else {
       leftRollingList += `
       <li class="left_rolling_list_item top">
-        ${headlineData[i].title}
-      </li>
       `;
     }
+    leftRollingList += `
+      <span class="headline_title">연합뉴스</span>
+        ${headlineData[i].title}
+      </li>`;
   }
-  let rightRollingList = "";
 
   for (let i = headlineData.length / 2; i < headlineData.length; i++) {
     if (i === headlineData.length / 2) {
       rightRollingList += `
       <li class="right_rolling_list_item view">
-        ${headlineData[i].title}
-      </li>
       `;
     } else if (i === headlineData.length / 2 + 1) {
       rightRollingList += `
       <li class="right_rolling_list_item next">
-        ${headlineData[i].title}
-      </li>
       `;
     } else {
       rightRollingList += `
       <li class="right_rolling_list_item top">
-        ${headlineData[i].title}
-      </li>
       `;
     }
+    rightRollingList += `
+        <span class="headline_title">연합뉴스</span>
+        ${headlineData[i].title}
+      </li>`;
   }
 
   return `
     <div class="headline_container flex_row">
-      <h2>연합뉴스</h2>
       <ul class=${"left_rolling_list"}>
+
         ${leftRollingList}
       </ul>
       
     </div>
     <div class="headline_container flex_row">
-      <h2>연합뉴스</h2>
       <ul class=${"right_rolling_list"}>
+
         ${rightRollingList}
       </ul>
     </div>
