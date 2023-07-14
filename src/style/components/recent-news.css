@@ -12,14 +12,12 @@
 
 .news-article__window {
   height: 1rem;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .news-article__bundle {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
   gap: 1rem;
 }
 
@@ -30,8 +28,21 @@
   margin: 0;
 }
 
+@keyframes rolling {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
 .news-article__list {
   flex: 1;
+  animation: rolling 5s linear infinite;
 }
 
 .news-article__list li {
@@ -52,4 +63,7 @@
 
 .news-article__list li:hover {
   text-decoration: underline;
+}
+
+.news-article__list {
 }
