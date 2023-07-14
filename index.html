@@ -10,54 +10,17 @@
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
         />
         <link rel="stylesheet" type="text/css" href="index.css" />
-        <script type="module" src="./app.js"></script>
+        <link rel="stylesheet" type="text/css" href="./styles/font.css" />
+        <script type="module" src="./src/app.js"></script>
     </head>
     <body>
         <div class="container">
-            <header class="container_header">
-                <div class="header-left bold24">
-                    <img
-                        class="header-left-icon-newspaper icon"
-                        src="./styles/icon/newspaper.svg"
-                        alt="icon-newspaper"
-                    />
-                    <span>뉴스스탠드</span>
-                </div>
-                <div class="header-right medium16"></div>
-            </header>
+            <header class="container_header"></header>
             <section class="container_section"></section>
             <div class="container_main">
-                <nav class="container_main_nav">
-                    <div class="container_main_nav-left">
-                        <span class="nav-left bold16">전체 언론사</span>
-                        <span class="nav-left medium16">내가 구독한 언론사</span>
-                    </div>
-                    <div class="container_main_nav-right">
-                        <img class="nav-right_list_icon icon" src="./styles/icons/list_view.svg" alt="icon-list-view" />
-                        <img class="nav-right_grid_icon icon" src="./styles/icons/grid_view.svg" alt="icon-grid-view" />
-                    </div>
-                </nav>
-                <div class="main-grid-view">
-                    <button class="grid_view_btn-left btn-arrow">
-                        <img class="arrow" src="./styles/icons/left_arrow_btn.svg" />
-                    </button>
-                    <main class="main_news_container"></main>
-                    <button class="grid_view_btn-right btn-arrow">
-                        <img class="arrow" src="./styles/icons/right_arrow_btn.svg" />
-                    </button>
-                </div>
-                <div class="main-list-view">
-                    <button class="list_view_btn-left btn-arrow">
-                        <img class="arrow" src="./styles/icons/left_arrow_btn.svg" />
-                    </button>
-                    <main class="main-list-view-news-list">
-                        <nav class="list-view-tab"></nav>
-                        <div class="list-view-press-news"></div>
-                    </main>
-                    <button class="list_view_btn-right btn-arrow">
-                        <img class="arrow" src="./styles/icons/right_arrow_btn.svg" />
-                    </button>
-                </div>
+                <nav class="container_main_nav"></nav>
+                <div class="main-grid-view"></div>
+                <div class="main-list-view"></div>
             </div>
         </div>
     </body>

@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5em;
+    margin-bottom: 40px;
     width: inherit;
 }
 
@@ -43,7 +43,7 @@ body {
 /* section */
 .container_section {
     width: 930px;
-    margin-bottom: 1.5em;
+    margin-bottom: 32px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -58,7 +58,7 @@ body {
 
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
 
     /* style */
     border: 1px solid #d2dae0;
@@ -67,7 +67,7 @@ body {
 
 .container_section-banner-press {
     display: block;
-    margin-left: 8px;
+    margin-left: 16px;
 }
 
 .container_sec-banner-list {
@@ -138,7 +138,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 24px;
     /* 상수 따로 정의 */
     width: 930px;
 }
@@ -150,6 +150,10 @@ body {
     justify-content: center;
 }
 
+.container_main_nav-right {
+    display: flex;
+    gap: 8px;
+}
 .nav-left {
     display: block;
 }
@@ -209,6 +213,10 @@ body {
 .main-list-view {
     display: none;
     align-items: center;
+}
+
+.title-main-news {
+    text-decoration: none;
 }
 
 .main-list-view-news-list {
@@ -342,6 +350,7 @@ body {
     width: 882px;
     height: 260px;
     display: flex;
+
     gap: 32px;
 }
 
