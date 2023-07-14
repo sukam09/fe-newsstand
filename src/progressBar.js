@@ -75,7 +75,7 @@ function clearProgress() {
 
 function setNowCount(increment) {
   let now_count = document.querySelector(".progress-bar .now-count").innerHTML;
-  if (now_count == 1) {
+  if (now_count === 1) {
     up_count = 2;
     document.querySelector(".progress-bar .now-count").innerHTML = up_count;
   } else {
