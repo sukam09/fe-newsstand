@@ -64,18 +64,31 @@
 
 - store
 
-  ```ts
-  설계 예정
-  ```
+  - `observe` & `observable` 사용하여 데이터 패칭시 함수 실행 가능
 
-- `customFetch`(@asdf99245님 아이디어)
-  - `shuffle()` : 처음 데이터 가져오면서 데이터 shuffle
-  - `pagination()` :
-  - `categorize()` :
+- api
+
+  - `customFetch`(@asdf99245님 아이디어)
+  - DB 변수에 저장 후, 있으면 가져오고 아닐 경우 fetch
+
+- helper functions
+  - `shuffle()`
+  - `pagination()`
+  - `categorize()`
+
+1. 데이터 Fetch
+
+- 초기에 JSON 파일에서 데이터 받아오기
+- DB 생성
+- Pagination
+  - option: subscribe
+- Category 별로 가져오기
+- RecentNews 가져오기
+- 내가 구독한 언론사 가져오기
 
 ### 🔀 Flow
 
-1. Initialize `init()`
+1. Initialize
    - Header 시스템 날짜 설정
    - Store 초기화
    - localStorage에서 구독 정보 가져오기
