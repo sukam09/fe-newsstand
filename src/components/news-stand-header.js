@@ -2,7 +2,7 @@
  * 뉴스스탠드의 INIT
  */
 const initNewsStandHeader = () => {
-  setNewsStandHeader();
+  setHeader();
   setHeaderButton();
   const dateFormat = getHeaderTime();
   setHeaderTime(dateFormat);
