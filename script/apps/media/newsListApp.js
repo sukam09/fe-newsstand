@@ -25,8 +25,8 @@ const updatePage = listData => {
   listNav.replaceWith(createListNav(listData));
 };
 
-const setPage = (listData, move) => {
-  listData.page += move;
+const setPage = (listData, newPage) => {
+  listData.page = newPage;
 
   if (listData.page === -1) {
     listData.category = (listData.category - 1) % listData.categoryData.length;
@@ -59,8 +59,10 @@ const createListNav = listData => {
         onClick: () => {
           if (listData.category === index) return;
           listData.category = index;
-          listData.page = 0;
-          updatePage(listData);
+          setPage(listData, 0);
+        },
+        afterDelay: () => {
+          setPage(listData, listData.page + 1);
         },
       })
     );
@@ -147,10 +149,10 @@ const setArrow = listData => {
   const [leftArrow, rightArrow] = createNewArrow();
 
   leftArrow.addEventListener('click', () => {
-    setPage(listData, -1);
+    setPage(listData, listData.page - 1);
   });
   rightArrow.addEventListener('click', () => {
-    setPage(listData, 1);
+    setPage(listData, listData.page + 1);
   });
 };
 
@@ -170,7 +172,6 @@ const listApp = () => {
   };
 
   initList(listData);
-  updatePage(listData);
   setArrow(listData);
 };
 

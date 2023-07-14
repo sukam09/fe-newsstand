@@ -1,22 +1,24 @@
-const HEADLINE = {
+export const HEADLINE = {
   DELAY: 1000,
   INTERVAL: 5000,
 };
 
-const BUTTON = {
+export const BUTTON = {
   SUBSCRIBE: '구독하기',
   UNSUBSCRIBE: '해지하기',
 };
 
-const SNACKBAR_DELAY = 5000;
+export const PROGRESS_BAR_DELAY = 20000;
 
-const MEDIA = {
+export const SNACKBAR_DELAY = 5000;
+
+export const MEDIA = {
   TOTAL: 96,
   PAGE_SIZE: 24,
   MAX_PAGE: 3,
 };
 
-const HEADLINE_DATA = {
+export const HEADLINE_DATA = {
   MEDIA: '연합뉴스',
   NEWS: [
     [
@@ -37,9 +39,7 @@ const HEADLINE_DATA = {
 };
 
 // (임시) 구독한 언론사 배열
-const SUB_MEDIA = [
+export const SUB_MEDIA = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27,
 ];
-
-export { BUTTON, HEADLINE, MEDIA, HEADLINE_DATA, SNACKBAR_DELAY, SUB_MEDIA };

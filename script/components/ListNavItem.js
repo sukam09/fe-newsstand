@@ -1,7 +1,7 @@
 import NavPageIndicator from './NavPageIndicator.js';
 import ListProgressBar from './Progress.js';
 
-const ListNavItem = ({ title, selected, indicator, onClick }) => {
+const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
   const listNavItem = document.createElement('li');
   const listNavItemContent = document.createElement('div');
   const listNavItemName = document.createElement('div');
@@ -17,7 +17,7 @@ const ListNavItem = ({ title, selected, indicator, onClick }) => {
     listNavItemContent.id = 'selected_nav_item';
     listNavItemContent.classList.add('text_white_default');
     listNavItemContent.appendChild(NavPageIndicator(indicator));
-    listNavItem.appendChild(ListProgressBar({ progress: 0.5 }));
+    listNavItem.appendChild(ListProgressBar(afterDelay));
   } else {
     listNavItemContent.classList.add('hover_medium14', 'text_weak');
   }
