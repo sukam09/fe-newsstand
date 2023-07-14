@@ -1,4 +1,4 @@
-![ezgif com-video-to-gif (1)](https://github.com/jjun990908/fe-newsstand/assets/39405559/2cc0b229-7ca7-4999-b125-1da558a9dac7)# FE-newsstand
+# FE-newsstand
 
 ## 설계
 
@@ -155,6 +155,7 @@
   <br/>
 
 - ## 그리드 아이템 랜덤 배치
+
   ![ezgif com-video-to-gif](https://github.com/jjun990908/fe-newsstand/assets/39405559/99764878-6ae3-4711-af50-ad7f2ba7ac3a)
 
   셔플 함수를 이용하여 `pressObj.js`에 있는 언론사의 리스트를 섞어주었고
@@ -202,6 +203,7 @@
 </br>
 
 - ## 롤링 애니메이션 구현
+
   ![ezgif com-video-to-gif (3)](https://github.com/jjun990908/fe-newsstand/assets/39405559/32d1af9b-6865-4301-a2aa-3b971056a1a3)
 
   좌우 롤링애니메이션을 따로 호버액션을 구현하기 위해 `rollingEvent`와 `createBannerItem`함수에서 state인자로 좌우를 구분하여 받아주었고, `createBannerItem`에서 마우스 호버, 아웃 이벤트 리스너를 추가해준 후에 appendChild하는 방식으로 구현하였습니다.
@@ -248,6 +250,7 @@
 </br>
 
 - ## 프로그레스 바 카테고리 이동 기능 구현
+
   ![ezgif com-video-to-gif (2)](https://github.com/jjun990908/fe-newsstand/assets/39405559/7134d305-77a8-4e2a-b145-7d49175e0940)
 
   리스트뷰의 현재 페이지를 증가시켜주는 함수와 그에 따른 리스트 좌우 버튼과 카테고리를 업데이트를 해주는 함수를
@@ -302,6 +305,7 @@
 </br>
 
 - ## 리스트 좌우 버튼 이동 기능 구현
+
   ![ezgif com-video-to-gif (1)](https://github.com/jjun990908/fe-newsstand/assets/39405559/3d7a1ded-7dc1-482a-8ab5-9de5b296052a)
 
   리스트 버튼을 각각 `$(".left_list_button")`와 같이 querySelector을 통해 값을 찾은 후 클릭 이벤트 함수를 지정하여 리스트뷰의 내용을 변경하도록 구현하였습니다.
