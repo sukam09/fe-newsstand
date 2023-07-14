@@ -1,6 +1,7 @@
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 import { customQuerySelector } from '../../utils/index.js';
+import { toggleDarkMode } from '../../index.js';
 
 export default class AllNewHeader extends Component {
   setup() {
@@ -39,7 +40,7 @@ export default class AllNewHeader extends Component {
       } else if (id === 'grid-view-icon') {
         this.props.onClick('grid');
       } else if (id === 'darkmode-icon') {
-        document.body.className = document.body.className === 'dark' ? 'light' : 'dark';
+        toggleDarkMode();
       }
     });
   }

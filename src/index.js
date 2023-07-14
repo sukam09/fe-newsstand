@@ -1,7 +1,12 @@
 import App from './components/App.js';
 import { customQuerySelector } from './utils/index.js';
 
-new App(customQuerySelector('#root'));
+const $app = new App(customQuerySelector('#root'));
+
+export const toggleDarkMode = () => {
+  document.body.className = document.body.className === 'dark' ? 'light' : 'dark';
+  $app.render();
+};
 
 export const toggleAlert = () => {
   const $alertModal = customQuerySelector('.alert-modal');
