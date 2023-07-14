@@ -54,8 +54,9 @@ function categorizeData(data) {
   for (let category in categorizedData) {
     shuffle(categorizedData[category]);
   }
-  
+  console.log(categorizedData);
   return categorizedData;
+  
 }
 
 /**
