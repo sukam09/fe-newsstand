@@ -37,9 +37,7 @@ function reloadProgressAnimation() {
 //카운트 올리고, total_count에 도달하면 다음 카테고리로 넘어가는 함수
 function countUp() {
   checkTotalCount();
-  console.log(up_count);
   if (up_count > total_count) {
-    console.log("yes");
     up_count = 2;
     document.querySelector(".progress-bar .now-count").innerHTML = "1";
     if (current_page <= CATEGORY_NUM - 1 && current_page >= 0) {
@@ -55,7 +53,6 @@ function countUp() {
       }
     }
   } else {
-    console.log("in");
     document.querySelector(".progress-bar .now-count").innerHTML =
       up_count.toString();
     reloadProgressAnimation();
