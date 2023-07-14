@@ -255,6 +255,13 @@ body {
     padding: 0 16px;
     color: var(--text-default);
     font-weight: 500;
+    cursor: pointer;
+}
+
+.main_nav_item:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--text-brand-default);
+    line-height: normal;
 }
 
 .main_content {
@@ -276,6 +283,7 @@ body {
 }
 
 .content_subscribe {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,9 +298,15 @@ body {
     background-color: var(--surface-alt);
 }
 
-.content_picture {
+.content_picture_container {
     width: 320px;
     height: 200px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.content_picture:hover {
+    transform: scale(1.05);
 }
 
 .content_body {
@@ -320,6 +334,12 @@ body {
     width: 100%;
 }
 
+.content_title:hover,
+.content_body_contents_item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .content_body_contents_item {
     color: var(--text-bold);
 }
@@ -331,6 +351,7 @@ body {
 
 .arrow {
     text-align: center;
+    cursor: pointer;
 }
 
 .arrow img {
@@ -346,11 +367,16 @@ body {
 .option_press {
     font-weight: normal;
     color: var(--text-default);
+    cursor: pointer;
 }
 
 .option_press_active {
     font-weight: bold;
     color: var(--text-strong);
+}
+
+.option_main {
+    cursor: pointer;
 }
 
 @keyframes roll-up-left {

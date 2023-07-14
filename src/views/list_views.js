@@ -88,7 +88,9 @@ function createMainContents(parent, data, page) {
 
     container.innerHTML = `
         <div class="content_body_title">
-            <img src="${data[page].main_url}" class="content_picture" />
+            <div class="content_picture_container">
+                <img src="${data[page].main_url}" class="content_picture" />
+            </div>
             <p class="content_title">${data[page].main_title}</p>
         </div>
         ${list_news}`;
