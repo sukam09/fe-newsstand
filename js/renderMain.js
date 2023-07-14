@@ -4,9 +4,9 @@ import { addInitCategory, progressInterval } from "./category.js";
 import news from "../json/news.json" assert { type: "json" };
 console.log(news.News[0]);
 
-let MAX_PAGE_NUMBER = 3;
-let MIN_PAGE_NUMBER = 0;
-let currentPageNumber = 0;
+let MAX_PAGE_NUMBER;
+const MIN_PAGE_NUMBER = 0;
+let currentPageNumber;
 const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
 const gridMain = document.getElementById("main-grid-01");
@@ -18,7 +18,8 @@ function renderMain(isGrid) {
 }
 
 function renderCard() {
-  MAX_PAGE_NUMBER = news.length;
+  currentPageNumber = 0;
+  MAX_PAGE_NUMBER = news.News.length - 1;
   gridMain.style.display = "none";
   listMain.style.display = "flex";
   addInitCategory();
@@ -33,6 +34,8 @@ function addNewsHeader() {
 }
 
 function renderGrid(logos) {
+  currentPageNumber = 0;
+  MAX_PAGE_NUMBER = 3;
   const COUNT_PER_PAGE = 24;
   const mainGrid = document.getElementById("main-grid-01");
   clearInterval(progressInterval);
@@ -136,6 +139,7 @@ function decreaseGridPage() {
 }
 
 function decreaseListPage() {
+  console.log(currentPageNumber);
   if (currentPageNumber === MIN_PAGE_NUMBER + 1) {
     leftAsideButton.style.visibility = "hidden";
     currentPageNumber--;
