@@ -38,13 +38,6 @@ export default function PressListView({ $target, initialState }) {
 
   const { categories } = this.state;
 
-  const handleClickTextButton = newIndex => {
-    if (this.state.index === newIndex) {
-      return;
-    }
-    this.setState({ ...this.state, index: newIndex, present: 1 });
-  };
-
   const initFieldTab = () => {
     $section.innerHTML = `
       <nav class="field-tab">
@@ -56,6 +49,19 @@ export default function PressListView({ $target, initialState }) {
     Array.from($textButtons).forEach(($textButton, index) => {
       $textButton.addEventListener('click', () => handleClickTextButton(index));
     });
+  };
+
+  const initProgressBar = $selectedButton => {
+    if (this.timer !== undefined) {
+      this.$currentButton.style.background = '';
+      clearInterval(this.timer);
+    }
+
+    $selectedButton.style.background = '#7890e7';
+    this.percentage = 0;
+    this.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
+
+    this.$currentButton = $selectedButton;
   };
 
   const setProgressBar = $selectedButton => {
@@ -79,17 +85,11 @@ export default function PressListView({ $target, initialState }) {
     $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
   };
 
-  const initProgressBar = $selectedButton => {
-    if (this.timer !== undefined) {
-      this.$currentButton.style.background = '';
-      clearInterval(this.timer);
+  const handleClickTextButton = newIndex => {
+    if (this.state.index === newIndex) {
+      return;
     }
-
-    $selectedButton.style.background = '#7890e7';
-    this.percentage = 0;
-    this.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
-
-    this.$currentButton = $selectedButton;
+    this.setState({ ...this.state, index: newIndex, present: 1 });
   };
 
   const handleClickLeftButton = () => {
