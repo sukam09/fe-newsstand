@@ -29,17 +29,24 @@ fe-newsstand
 │  ├─ darkmode_logo
 │  ├─ others
 │  └─ press_logo
-├─ main-style.css
 ├─ main.html
 ├─ app.js
-└─ src
-   ├─ bringDate.js
-   ├─ changeView.js
-   ├─ initialDisplay.js
-   ├─ listNews.js
-   ├─ progressBar.js
-   ├─ randomGrid.js
-   └─ rollingBanner.js
+├─ src
+│  ├─ bringDate.js
+│  ├─ changeView.js
+│  ├─ initialDisplay.js
+│  ├─ listNews.js
+│  ├─ progressBar.js
+│  ├─ randomGrid.js
+│  └─ rollingBanner.js
+└─ style
+   ├─ arrow-style.css
+   ├─ grid-style.css
+   ├─ header.css
+   ├─ list-style.css
+   ├─ main-style.css
+   ├─ rolling-banner.css
+   └─ view-option.css
 ```
 
 ## 📌 CSS 고려사항
