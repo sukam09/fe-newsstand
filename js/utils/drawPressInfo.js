@@ -7,7 +7,7 @@ export function drawPressInfo(img) {
         src="../assets/images/logo/light/img${img}.svg"
       />
       <span class="edit-date">2023.07.12 16:52 편집</span>
-      <button id="subscribe">
+      <button class="subscribe">
         <img src="../assets/icons/plus.svg" />
         <span>구독하기</span>
       </button>

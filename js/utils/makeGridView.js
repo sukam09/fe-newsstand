@@ -16,15 +16,17 @@ const grid_view = `
     `;
 
 function handleEvent(event, img, button) {
-  console.log(event);
   if (event === "over") {
     img.style.display = "none";
     button.style.display = "block";
+    img.parentNode.style.backgroundColor = "#F5F7F9";
   } else {
     img.style.display = "block";
     button.style.display = "none";
+    img.parentNode.style.backgroundColor = "#FFF";
   }
 }
+
 export function showGridView(page) {
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
@@ -37,7 +39,9 @@ export function showGridView(page) {
   ) {
     const li = document.createElement("li");
     const img = document.createElement("img");
+    img.setAttribute("class", "logo-img");
     const button = document.createElement("button");
+    button.setAttribute("class", "subscribe");
     button.innerHTML = `
     <img src="../assets/icons/plus.svg" />
     <span>구독하기</span>
@@ -46,9 +50,10 @@ export function showGridView(page) {
       "src",
       `../assets/images/logo/light/img${shuffledPress[i]}.svg`
     );
+    button.style.display = "none";
     main_list_ul.appendChild(li);
     li.append(img, button);
-    // li.addEventListener("mouseover", () => handleEvent("over", img, button));
-    // li.addEventListener("mouseout", () => handleEvent("out", img, button));
+    li.addEventListener("mouseover", () => handleEvent("over", img, button));
+    li.addEventListener("mouseout", () => handleEvent("out", img, button));
   }
 }
