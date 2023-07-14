@@ -95,16 +95,39 @@ export default function PressListView({ $target, initialState }) {
     this.state.$currentButton = $selectedButton;
   };
 
-  // const handleClickLeftButton = () => {
-  //   if () {
+  const handleClickLeftButton = () => {
+    const { present, entire } = this.state;
 
-  //   }
-  //   this.setState({...this.state, })
-  // };
+    if (present === 1) {
+      this.setState({
+        ...this.state,
+        index: (this.state.index + CATEGORY_NUMBERS - 1) % CATEGORY_NUMBERS,
+        present: entire,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        present: this.state.present - 1,
+      });
+    }
+  };
 
-  // const handleClickRightButton = () => {
+  const handleClickRightButton = () => {
+    const { present, entire } = this.state;
 
-  // };
+    if (present === entire) {
+      this.setState({
+        ...this.state,
+        index: (this.state.index + 1) % CATEGORY_NUMBERS,
+        present: 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        present: this.state.present + 1,
+      });
+    }
+  };
 
   let isInit = false;
 
@@ -112,8 +135,8 @@ export default function PressListView({ $target, initialState }) {
     if (!isInit) {
       initFieldTab();
 
-      // $leftButton.addEventListener('click', handleClickLeftButton);
-      // $rightButton.addEventListener('click', handleClickRightButton);
+      $leftButton.addEventListener('click', handleClickLeftButton);
+      $rightButton.addEventListener('click', handleClickRightButton);
 
       isInit = true;
     }
@@ -146,9 +169,6 @@ export default function PressListView({ $target, initialState }) {
           <p class="news-sub-caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</p>
         </div>
       </div>
-      <!-- <button class="list-right-button">
-        <img width="24px" height="40px" src="../asset/icons/right-button.png" />
-      </button> -->
     `;
 
     const $pressImage = $article.querySelector('.press-image');
