@@ -42,6 +42,6 @@ function removeElement($element) {
 function qs(selectors) {
     return document.querySelector(selectors);
 }
-export { createElement, createElements, removeElement };
+export { createElement, createElements, removeElement, qs };
 const DOM = { createElement, createElements, removeElement, qs };
 export default DOM;
