@@ -1,4 +1,3 @@
-import pressList from "./asset/logo/pressList.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const dateContainer = document.querySelector(".header-right");
@@ -40,10 +39,13 @@ function listenPressHover(){
             item.appendChild(pressCover);
         })
     })
+    gridContainer.addEventListener("mouseout", () => {
+        pressCover.classList.add("hidden");
+    })
 }
 function listenReload(){
     header.addEventListener("click", () => {
-        window.location.reload();
+        location.reload();
     })
 }
 function listenArrow(){
@@ -71,31 +73,27 @@ function updateArrow(){
   
 }
 function drawPress(idx){
-    while (gridContainer.firstChild){
-        gridContainer.removeChild(gridContainer.firstChild);
-    }
+    gridContainer.innerHTML = "";
     let shuffledArray = shuffleArray(pressIdxArray);
 
     for (let i=24*idx;i<24*(idx+1);i++){
-        const pressElem = document.createElement("li");
-        pressElem.classList.add("pressItem");
-        pressElem.setAttribute("index", shuffledArray[i+1])
-        const pressLogo = document.createElement("img");
-        pressLogo.src = `./asset/logo/light/img${shuffledArray[i+1]}.svg`
-        pressElem.appendChild(pressLogo);
-        gridContainer.appendChild(pressElem);
+        gridContainer.innerHTML += `
+            <li class="pressItem" index=${shuffledArray[i]+1}>
+                <img src="./asset/logo/light/img${shuffledArray[i]+1}.svg" />
+            </li>
+        `
     }
     listenPressHover();
 }
 function drawDate() {
-    let date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let weekDay = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const weekDay = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
 
-    let fullDate = year + ". " + month + ". " + day + " " + weekDay[date.getDay()];
-    let dateContent = document.createTextNode(fullDate);
+    const fullDate = `${year}. ${month}. ${day}. ${weekDay[date.getDay()]}`;
+    const dateContent = document.createTextNode(fullDate);
     dateContainer.appendChild(dateContent);
 }
 function init(){
