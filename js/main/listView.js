@@ -1,6 +1,7 @@
 import { category, news_by_category } from "../../assets/news.js";
 
 const ANIMATION_DURATON = 1.5;
+let randomNews;
 
 /* 카테고리 생성 및 click 이벤트 등록*/
 function makeCategory() {
@@ -26,11 +27,9 @@ function makeCategory() {
   });
 }
 
-let randomNews;
-
 //start랑 click 됐을 때 random 뉴스
 function shuffleNews() {
-  const currentCategory = document.querySelector(
+  let currentCategory = document.querySelector(
     ".selected-category span"
   ).innerText;
   const shuffled = [...news_by_category[currentCategory]].sort(
@@ -43,11 +42,6 @@ function shuffleNews() {
 
 function getNews(e) {
   changeCurrentPage(e);
-
-  //클릭한 카테고리가 현재와 같다면 새로 뉴스를 가져오고, 애니메이션 새로 시작
-  if (e.type === "animationstart" || e.type === "click") {
-    randomNews = shuffleNews();
-  }
 
   let currentNews;
   //event가 클릭일 때랑 iteration일 때랑 구분
@@ -65,7 +59,6 @@ function getNews(e) {
 
   //sub news
   changeSub(currentNews);
-  console.log(currentNews);
 }
 
 function changePressInfo(currentNews) {
@@ -117,8 +110,13 @@ function addAniToCategory() {
     item.addEventListener("click", () => passAnimation("Clicked", item));
     item.addEventListener("animationend", () => passAnimation("Next", null));
     item.addEventListener("animationiteration", (e) => getNews(e));
-    item.addEventListener("animationstart", (e) => getNews(e));
+    item.addEventListener("animationstart", (e) => handleAniStart(e));
   });
+}
+
+function handleAniStart(e) {
+  randomNews = shuffleNews();
+  getNews(e);
 }
 
 function passAnimation(type, item) {
