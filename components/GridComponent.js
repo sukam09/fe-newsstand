@@ -2,9 +2,6 @@ import { MAX_PAGE_IDX, PAGINATION_NUM } from "../constants/constant.js";
 import { removeAllChildNodes } from "../utils/removeChild.js";
 import { makeGrid } from "./Grid/gridElement.js";
 
-const prevBtn = document.querySelector(".prev-page-btn");
-const nextBtn = document.querySelector(".next-page-btn");
-
 const isFirstPage = (currentPage) => currentPage === 0;
 const isLastPage = (currentPage) => currentPage === MAX_PAGE_IDX;
 
@@ -19,6 +16,10 @@ export const GridComponent = (currentPage, pages) => {
   while (agencyList.childNodes.length < PAGINATION_NUM) {
     makeGrid({ name: "", logo: "" });
   }
+
+  const prevBtn = document.querySelector(".prev-page-btn");
+  const nextBtn = document.querySelector(".next-page-btn");
+
   // 첫페이지와 마지막페이지 버튼 disable
   // button disabled 처리
   prevBtn.removeAttribute("disabled");
