@@ -1,5 +1,7 @@
 # FE-newsstand
 
+소프티어 2기 news stand 프로젝트입니다.
+
 ## 파일 구조
 
 ```

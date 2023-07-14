@@ -9,6 +9,7 @@ import {
   addEventsOnPageButton,
   addEventsOnRollingList,
   addEventsOnSubButton,
+  addEventsOnTitle,
   addEventsOnViewButton,
 } from "./events.js";
 
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnSubButton(); // 미완
   addEventsOnViewButton();
   addEventsOnCategoryItem();
+  addEventsOnTitle();
   startRollingAnimation();
   addEventsOnRollingList();
   showGridPage(0);

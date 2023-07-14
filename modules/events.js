@@ -18,6 +18,7 @@ import {
   handleGirdViewButton,
   handleListViewButton,
 } from "./components/mainSection/mainHeader/mainHeader.js";
+import { handleLogoButton } from "./components/titleSection/titleSection.js";
 import { qs, qsa } from "./utils.js";
 
 export function addEventsOnGridItem() {
@@ -89,6 +90,11 @@ export function addEventsOnRollingList() {
     }, 5000);
     setRightRollingId(id);
   });
+}
+
+export function addEventsOnTitle() {
+  const $titleContainer = qs(".title_container");
+  $titleContainer.addEventListener("click", handleLogoButton);
 }
 
 function showSubButton(e) {
