@@ -18,7 +18,7 @@ const grid_view = `
 function handleEvent(event, img, button) {
   if (event === "over") {
     img.style.display = "none";
-    button.style.display = "block";
+    button.style.display = "flex";
     img.parentNode.style.backgroundColor = "#F5F7F9";
   } else {
     img.style.display = "block";
@@ -50,7 +50,6 @@ export function showGridView(page) {
       "src",
       `../assets/images/logo/light/img${shuffledPress[i]}.svg`
     );
-    button.style.display = "none";
     main_list_ul.appendChild(li);
     li.append(img, button);
     li.addEventListener("mouseover", () => handleEvent("over", img, button));
