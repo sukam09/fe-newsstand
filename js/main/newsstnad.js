@@ -12,8 +12,7 @@ let datas = [];
 async function initNewsStand() {
   SELECTED_PAGE = 0;
 
-  removeEventListener('click', $rightBtn, handleRightBtn);
-  removeEventListener('click', $leftBtn, handleLeftBtn);
+  removeGridBtn();
 
   const newsData = await getNewsData();
   datas = newsDataPaser(shuffle(newsData));
@@ -23,6 +22,15 @@ async function initNewsStand() {
 
 function pagination() {
   isBtnDisabled();
+  addEventListener('click', $rightBtn, handleRightBtn);
+  addEventListener('click', $leftBtn, handleLeftBtn);
+}
+
+function removeGridBtn() {
+  removeEventListener('click', $rightBtn, handleRightBtn);
+  removeEventListener('click', $leftBtn, handleLeftBtn);
+}
+function addGridBtn() {
   addEventListener('click', $rightBtn, handleRightBtn);
   addEventListener('click', $leftBtn, handleLeftBtn);
 }
@@ -51,4 +59,4 @@ function newsDataPaser(datas) {
   return datas.map((data) => [data.name, data.src]);
 }
 
-export { initNewsStand };
+export { initNewsStand, removeGridBtn, addGridBtn };
