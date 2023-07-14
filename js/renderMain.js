@@ -18,15 +18,17 @@ function renderMain(isGrid) {
 }
 
 function renderCard() {
+  MAX_PAGE_NUMBER = news.length;
   gridMain.style.display = "none";
   listMain.style.display = "flex";
   addInitCategory();
-  addInitNewsHeader();
+  addNewsHeader();
 }
 
-function addInitNewsHeader() {
+function addNewsHeader() {
   const news_header = document.querySelector(".news_header");
-  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${news.News[0].thumbnail}"><span class="newsEditTime">${news.News[0].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
+  news_header.innerHTML = "";
+  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${news.News[currentPageNumber].thumbnail}"><span class="newsEditTime">${news.News[currentPageNumber].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
   news_header.innerHTML = new_div;
 }
 
@@ -94,8 +96,8 @@ function increaseGridPage() {
     renderGrid(logo);
     return;
   }
-  currentPageNumber++;
   leftAsideButton.style.visibility = "visible";
+  currentPageNumber++;
   renderGrid(logo);
 }
 
@@ -103,10 +105,12 @@ function increaseListPage() {
   if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
     rightAsideButton.style.visibility = "hidden";
     currentPageNumber++;
+    addNewsHeader();
     return;
   }
-  currentPageNumber++;
   leftAsideButton.style.visibility = "visible";
+  currentPageNumber++;
+  addNewsHeader();
 }
 
 function clickRightAsideButton(isGrid) {
@@ -126,8 +130,8 @@ function decreaseGridPage() {
     renderGrid(logo);
     return;
   }
-  currentPageNumber--;
   rightAsideButton.style.visibility = "visible";
+  currentPageNumber--;
   renderGrid(logo);
 }
 
@@ -135,10 +139,12 @@ function decreaseListPage() {
   if (currentPageNumber === MIN_PAGE_NUMBER + 1) {
     leftAsideButton.style.visibility = "hidden";
     currentPageNumber--;
+    addNewsHeader();
     return;
   }
-  currentPageNumber--;
   rightAsideButton.style.visibility = "visible";
+  currentPageNumber--;
+  addNewsHeader();
 }
 
 function clickLeftAsideButton(isGrid) {

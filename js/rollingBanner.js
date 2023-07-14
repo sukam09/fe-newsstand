@@ -13,7 +13,8 @@ function rollingBanner() {
       interval2 = setInterval(changeBanner, rollingTime, 2);
     }, 1000);
   });
-  addRollingHoverEvent(interval1, interval2);
+  addRollingHoverEvent(1);
+  addRollingHoverEvent(2);
 }
 
 function addInitRollingData(bannerNumber) {
@@ -21,7 +22,7 @@ function addInitRollingData(bannerNumber) {
     `rolling-banner-0${bannerNumber}`
   );
   let startIndex, endIndex, secondIndex;
-  if (bannerNumber == 1) {
+  if (bannerNumber === 1) {
     startIndex = 0;
     endIndex = parseInt(news_article[0].article.length / 2);
   } else {
@@ -73,28 +74,36 @@ function changeNextBanner(bannerNumber) {
   );
   if (nextBanner.nextElementSibling == null)
     document
-      .querySelector(`#rolling-banner-0${bannerNumber} .rollingWrap ul li:first-child`)
+      .querySelector(
+        `#rolling-banner-0${bannerNumber} .rollingWrap ul li:first-child`
+      )
       .classList.add("next");
   else nextBanner.nextElementSibling.classList.add("next");
   nextBanner.classList.remove("next");
   nextBanner.classList.add("current");
 }
 
-function addRollingHoverEvent() {
-  const bannerHover01 = document.getElementById("rolling-banner-01");
-  const bannerHover02 = document.getElementById("rolling-banner-02");
-  bannerHover01.addEventListener("mouseover", () => {
-    clearInterval(interval1);
-  });
-  bannerHover01.addEventListener("mouseleave", () => {
-    interval1 = setInterval(changeBanner, rollingTime, 1);
-  });
-  bannerHover02.addEventListener("mouseover", () => {
-    clearInterval(interval2);
-  });
-  bannerHover02.addEventListener("mouseleave", () => {
-    interval2 = setInterval(changeBanner, rollingTime, 2);
-  });
+function addRollingHoverEvent(bannerNumber) {
+  const bannerHover = {};
+  bannerHover[`bannerHover0${bannerNumber}`] = document.getElementById(
+    `rolling-banner-0${bannerNumber}`
+  );
+  bannerHover[`bannerHover0${bannerNumber}`].addEventListener(
+    "mouseover",
+    () => {
+      clearInterval(`interval${bannerNumber}`);
+    }
+  );
+  bannerHover[`bannerHover0${bannerNumber}`].addEventListener(
+    "mouseleave",
+    () => {
+      window[`interval${bannerNumber}`] = setInterval(
+        changeBanner,
+        rollingTime,
+        bannerNumber
+      );
+    }
+  );
 }
 
 export { rollingBanner };
