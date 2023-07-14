@@ -72,9 +72,16 @@
 }
 
 body {
+  height: 100vh;
+  align-items: center;
   width: 930px;
-  margin: 58px auto;
+  display: flex;
+  margin: auto;
   font-family: Pretendard;
+}
+
+main {
+  width: 930px;
 }
 
 header {
