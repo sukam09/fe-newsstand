@@ -34,7 +34,7 @@ export default function App({ $app }) {
     },
   });
 
-  new PressTab({
+  const pressTab = new PressTab({
     $target: $app,
     initialState: {
       pressView: 'grid',
@@ -44,6 +44,7 @@ export default function App({ $app }) {
         return;
       }
       this.setState({ ...this.state, pressView: newPressView });
+      pressTab.setState({ ...this.state, pressView: newPressView });
     },
   });
 

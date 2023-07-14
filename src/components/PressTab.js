@@ -12,12 +12,10 @@ export default function PressTab({ $target, initialState, onClick }) {
   };
 
   const handleClickListViewButton = () => {
-    this.setState({ ...this.state, pressView: 'list' });
     onClick('list');
   };
 
   const handleClickGridViewButton = () => {
-    this.setState({ ...this.state, pressView: 'grid' });
     onClick('grid');
   };
 
