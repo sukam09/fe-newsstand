@@ -7,7 +7,6 @@
 ```
 ├─ assets
 │  ├─ icons
-│  ├─ images
 │  └─ etc
 ├─ data
 │  ├─ headlone.json

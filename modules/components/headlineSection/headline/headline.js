@@ -4,47 +4,6 @@ export let leftRollingId;
 export let rightRollingId;
 export let leftViewIdx = 0;
 export let rightViewIdx = 0;
-
-export function startRollingAnimation() {
-  const $leftRollingList = qsa(".left_rolling_list_item");
-  const $rightRollingList = qsa(".right_rolling_list_item");
-
-  setTimeout(() => {
-    leftRollingId = setInterval(() => {
-      rollingAnimation($leftRollingList, leftViewIdx);
-      leftViewIdx += 1;
-    }, 5000);
-  }, 1000);
-
-  rightRollingId = setInterval(() => {
-    rollingAnimation($rightRollingList, rightViewIdx);
-    rightViewIdx += 1;
-  }, 5000);
-}
-
-export const rollingAnimation = (rollingList, viewIdx) => {
-  const list_len = rollingList.length;
-  const viewItem = rollingList[viewIdx % list_len];
-  const nextItem = rollingList[(viewIdx + 1) % list_len];
-  const topItem = rollingList[(viewIdx + 2) % list_len];
-  viewItem.className = "top";
-  nextItem.className = "view";
-  topItem.className = "next";
-};
-
-export function setLeftRollingId(value) {
-  leftRollingId = value;
-}
-export function setRightRollingId(value) {
-  rightRollingId = value;
-}
-export function setLeftViewIdx(value) {
-  leftViewIdx = value;
-}
-export function setRightViewIdx(value) {
-  rightViewIdx = value;
-}
-
 export async function createHeadline() {
   const headlineData = await fetchData("/data/headline.json");
 
@@ -104,4 +63,44 @@ export async function createHeadline() {
       </ul>
     </div>
   `;
+}
+
+export function startRollingAnimation() {
+  const $leftRollingList = qsa(".left_rolling_list_item");
+  const $rightRollingList = qsa(".right_rolling_list_item");
+
+  setTimeout(() => {
+    leftRollingId = setInterval(() => {
+      rollingAnimation($leftRollingList, leftViewIdx);
+      leftViewIdx += 1;
+    }, 5000);
+  }, 1000);
+
+  rightRollingId = setInterval(() => {
+    rollingAnimation($rightRollingList, rightViewIdx);
+    rightViewIdx += 1;
+  }, 5000);
+}
+
+export const rollingAnimation = (rollingList, viewIdx) => {
+  const list_len = rollingList.length;
+  const viewItem = rollingList[viewIdx % list_len];
+  const nextItem = rollingList[(viewIdx + 1) % list_len];
+  const topItem = rollingList[(viewIdx + 2) % list_len];
+  viewItem.className = "top";
+  nextItem.className = "view";
+  topItem.className = "next";
+};
+
+export function setLeftRollingId(value) {
+  leftRollingId = value;
+}
+export function setRightRollingId(value) {
+  rightRollingId = value;
+}
+export function setLeftViewIdx(value) {
+  leftViewIdx = value;
+}
+export function setRightViewIdx(value) {
+  rightViewIdx = value;
 }

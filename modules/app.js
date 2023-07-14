@@ -13,7 +13,7 @@ import {
   addEventsOnViewButton,
 } from "./events.js";
 
-window.addEventListener("DOMContentLoaded", async () => {
+(async function init() {
   const $root = document.getElementById("root");
   $root.innerHTML += createTitleSection();
   $root.innerHTML += await createHeadlineSection();
@@ -25,7 +25,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnViewButton();
   addEventsOnCategoryItem();
   addEventsOnTitle();
-  startRollingAnimation();
   addEventsOnRollingList();
+
+  startRollingAnimation();
   showGridPage(0);
-});
+})();

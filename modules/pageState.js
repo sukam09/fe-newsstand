@@ -5,17 +5,23 @@ let pageType = GRID;
 export const MAX_GRID_PAGE = 4;
 export const NUM_IN_A_GRID = 24;
 export const MAX_CATEGORY_ID = 3;
+export let TOTAL_LIST_PAGE;
 export const MAX_LIST_PAGE = {
   // categoryId: maxPage
   0: 3,
   1: 4,
   2: 3,
 };
-export const TOTAL_LIST_PAGE = 10;
-
 export let categoryId = 0;
 export let listPage = 0;
 export let gridPage = 0;
+
+(function setTotalListPage() {
+  const total = Object.values(MAX_LIST_PAGE).reduce((sum, val) => {
+    return (sum += val);
+  });
+  TOTAL_LIST_PAGE = total;
+})();
 
 export function incGridPage() {
   gridPage >= MAX_GRID_PAGE - 1 ? (gridPage = MAX_GRID_PAGE - 1) : gridPage++;

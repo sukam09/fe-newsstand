@@ -5,11 +5,10 @@ import { createPressList } from "./pressList/pressList.js";
 
 export async function createMainContent() {
   const press = await fetchData("/data/press.json");
-  const { data } = press;
   const newsList = await fetchData("/data/news.json");
+  const { data } = press;
   let listContainerInnerHTML = "";
 
-  newsList.length;
   for (let i = 0; i < newsList.length; i++) {
     newsList[i];
     for (let j = 0; j < newsList[i].data.length; j++) {
