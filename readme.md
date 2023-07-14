@@ -68,6 +68,13 @@ fe-newsstand
 #### 남은 기능
 
 - [ ] 구독하기/해지하기 버튼
+- [ ] 리스트 뷰 메인 로고 썸네일에 마우스 호버 시 5% 확대
 - [ ] 구독한 언론사 탭 버튼 이벤트
 - [ ] 구독한 언론사 페이지 구현
 - [ ] 다크모드 (추가 미션)
+
+### 개발한 기능 시연
+
+#### [FE-NEWSSTAND 2주차]
+
+https://github.com/kimdaye77/fe-newsstand/assets/63107805/f91beb05-26bd-4da3-8c3d-ce7bb4ad8dd0
