@@ -7,6 +7,7 @@ import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 let page = FIRST_PAGE_NUM;
 
 function MainView() {
+  console.log(page);
   document.addEventListener("click", handleClick);
   showGridView(page);
   checkPage(page, "grid");
@@ -25,6 +26,7 @@ function changePage(target, view) {
   }
   if (view === "grid") {
     showGridView(page);
+    checkPage(page, "grid");
   } else {
     showListView(page);
     checkPage(page, "list");

@@ -42,6 +42,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* 그리드 뷰 */
 .grid-view ul {
   width: 100%;
   height: 100%;
@@ -81,6 +82,7 @@ body {
 .grid-view ul li:nth-last-child(-n + 6) {
   border-bottom: 1px solid var(--border-default);
 }
+
 .grid-view ul li img {
   position: absolute;
   top: 50%;

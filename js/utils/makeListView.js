@@ -25,7 +25,6 @@ async function getNewsData(category) {
 }
 
 async function drawList(order, category) {
-  console.log(order, category);
   if (category !== "종합/경제")
     order_list = [
       { press: "SBS Biz", imgIndex: 93 },
