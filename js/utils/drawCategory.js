@@ -2,14 +2,25 @@ import { CATEGORY } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 import { getPressCount } from "./getPressCount.js";
 
+// function checkProgress(order, category) {
+//   const progress = document.getElementById("play-animation");
+//   progress.addEventListener("animationend", () =>
+//     showListView(++order, category)
+//   );
+// }
+
 function checkProgress(order, category) {
   const progress = document.getElementById("play-animation");
-  progress.addEventListener("animationend", () =>
-    showListView(++order, category)
-  );
+  if (progress) {
+    progress.addEventListener("animationend", () =>
+      showListView(++order, category)
+    );
+  }
 }
-
 export function drawCategory(category_news, order, category) {
+  document.addEventListener("DOMContentLoaded", () => {
+    checkProgress(order, category);
+  });
   const main_list = document.querySelector(".main-list");
   let category_list = "";
   //카테고리 그리는 부분

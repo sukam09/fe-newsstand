@@ -25,6 +25,7 @@ async function getNewsData(category) {
 }
 
 async function drawList(order, category) {
+  console.log(order, category);
   if (category !== "종합/경제")
     order_list = [
       { press: "SBS Biz", imgIndex: 93 },
@@ -66,12 +67,16 @@ async function drawList(order, category) {
 function handleClick(e) {
   const target = e.target.closest("li");
   if (target && target.classList.contains("category")) {
-    const category = target.querySelector(".ctg-wrapper").textContent.trim();
+    const category = target.querySelector(".ctg").textContent.trim();
     drawList(1, category);
   }
 }
 
-export function showListView(order, category) {
+export function showListView(order, category = "") {
+  if (category === "") {
+    const selected_category = document.querySelector(".category.selected .ctg");
+    category = selected_category.textContent;
+  }
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = "";
   drawList(order, category);

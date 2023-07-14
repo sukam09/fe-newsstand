@@ -25,9 +25,8 @@ function changePage(target, view) {
   }
   if (view === "grid") {
     showGridView(page);
-    checkPage(page, "grid");
   } else {
-    showListView(page, CATEGORY); //TODO: showList에서 해당 category 마지막 언론사면 다음 카테고리로
+    showListView(page);
     checkPage(page, "list");
   }
 }
