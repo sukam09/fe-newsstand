@@ -23,6 +23,7 @@ export const GridComponent = (currentPage, pages) => {
   // button disabled 처리
   prevBtn.removeAttribute("disabled");
   nextBtn.removeAttribute("disabled");
+
   if (isFirstPage(currentPage)) prevBtn.setAttribute("disabled", "");
   if (isLastPage(currentPage)) nextBtn.setAttribute("disabled", "");
 };
