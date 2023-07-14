@@ -6,7 +6,7 @@ body {
     margin: 58px auto;
 }
 
-header {
+.news-stand-header {
     display: flex;
     justify-content: space-between;
     align-items: center;

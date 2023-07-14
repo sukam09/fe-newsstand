@@ -6,8 +6,7 @@ const getDate = () => {
         day: "2-digit",
         weekday: "long",
     };
-    const $date = document.querySelector(".date");
-    $date.textContent = today.toLocaleDateString("ko-KR", options);
+    return today.toLocaleDateString("ko-KR", options);
 };
 
 export default getDate;
