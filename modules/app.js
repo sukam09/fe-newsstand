@@ -7,6 +7,7 @@ import {
   addEventsOnCategoryItem,
   addEventsOnGridItem,
   addEventsOnPageButton,
+  addEventsOnRollingList,
   addEventsOnSubButton,
   addEventsOnViewButton,
 } from "./events.js";
@@ -23,6 +24,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   addEventsOnViewButton();
   addEventsOnCategoryItem();
   startRollingAnimation();
-
+  addEventsOnRollingList();
   showGridPage(0);
 });

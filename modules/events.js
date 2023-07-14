@@ -1,3 +1,14 @@
+import {
+  leftRollingId,
+  leftViewIdx,
+  rightRollingId,
+  rightViewIdx,
+  rollingAnimation,
+  setLeftRollingId,
+  setLeftViewIdx,
+  setRightRollingId,
+  setRightViewIdx,
+} from "./components/headlineSection/headline/headline.js";
 import { handleClickCategoryItem } from "./components/mainSection/mainBody/mainContent/pressList/category/categoryItem.js";
 import {
   showNextPage,
@@ -48,6 +59,35 @@ export function addEventsOnCategoryItem() {
 
   [...$categoryItems].forEach(($categoryItem) => {
     $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
+  });
+}
+
+export function addEventsOnRollingList() {
+  const $leftContainer = qs(".left_rolling_list");
+  const $rightContainer = qs(".right_rolling_list");
+  const $leftRollingList = qsa(".left_rolling_list_item");
+  const $rightRollingList = qsa(".right_rolling_list_item");
+
+  $leftContainer.addEventListener("mouseover", () => {
+    clearInterval(leftRollingId);
+  });
+  $leftContainer.addEventListener("mouseout", () => {
+    const id = setInterval(() => {
+      rollingAnimation($leftRollingList, leftViewIdx);
+      setLeftViewIdx(leftViewIdx + 1);
+    }, 5000);
+    setLeftRollingId(id);
+  });
+
+  $rightContainer.addEventListener("mouseover", () => {
+    clearInterval(rightRollingId);
+  });
+  $rightContainer.addEventListener("mouseout", () => {
+    const id = setInterval(() => {
+      rollingAnimation($rightRollingList, rightViewIdx);
+      setRightViewIdx(rightViewIdx + 1);
+    }, 5000);
+    setRightRollingId(id);
   });
 }
 

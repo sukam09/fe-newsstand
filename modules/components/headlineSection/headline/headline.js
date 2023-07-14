@@ -1,25 +1,13 @@
-import { fetchData, qs, qsa } from "../../../utils.js";
+import { fetchData, qsa } from "../../../utils.js";
+
+export let leftRollingId;
+export let rightRollingId;
+export let leftViewIdx = 0;
+export let rightViewIdx = 0;
 
 export function startRollingAnimation() {
   const $leftRollingList = qsa(".left_rolling_list_item");
   const $rightRollingList = qsa(".right_rolling_list_item");
-  const $leftContainer = qs(".left_rolling_list");
-  const $rightContainer = qs(".right_rolling_list");
-
-  let leftViewIdx = 0;
-  let rightViewIdx = 0;
-  const list_len = $rightRollingList.length;
-  let leftRollingId;
-  let rightRollingId;
-
-  const rollingAnimation = (rollingList, viewIdx) => {
-    const viewItem = rollingList[viewIdx % list_len];
-    const nextItem = rollingList[(viewIdx + 1) % list_len];
-    const topItem = rollingList[(viewIdx + 2) % list_len];
-    viewItem.className = "top";
-    nextItem.className = "view";
-    topItem.className = "next";
-  };
 
   setTimeout(() => {
     leftRollingId = setInterval(() => {
@@ -32,26 +20,29 @@ export function startRollingAnimation() {
     rollingAnimation($rightRollingList, rightViewIdx);
     rightViewIdx += 1;
   }, 5000);
+}
 
-  $leftContainer.addEventListener("mouseover", () => {
-    clearInterval(leftRollingId);
-  });
-  $leftContainer.addEventListener("mouseout", () => {
-    leftRollingId = setInterval(() => {
-      rollingAnimation($leftRollingList, leftViewIdx);
-      leftViewIdx += 1;
-    }, 5000);
-  });
+export const rollingAnimation = (rollingList, viewIdx) => {
+  const list_len = rollingList.length;
+  const viewItem = rollingList[viewIdx % list_len];
+  const nextItem = rollingList[(viewIdx + 1) % list_len];
+  const topItem = rollingList[(viewIdx + 2) % list_len];
+  viewItem.className = "top";
+  nextItem.className = "view";
+  topItem.className = "next";
+};
 
-  $rightContainer.addEventListener("mouseover", () => {
-    clearInterval(rightRollingId);
-  });
-  $rightContainer.addEventListener("mouseout", () => {
-    rightRollingId = setInterval(() => {
-      rollingAnimation($rightRollingList, rightViewIdx);
-      rightViewIdx += 1;
-    }, 5000);
-  });
+export function setLeftRollingId(value) {
+  leftRollingId = value;
+}
+export function setRightRollingId(value) {
+  rightRollingId = value;
+}
+export function setLeftViewIdx(value) {
+  leftViewIdx = value;
+}
+export function setRightViewIdx(value) {
+  rightViewIdx = value;
 }
 
 export async function headline() {
