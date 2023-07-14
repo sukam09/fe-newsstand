@@ -7,7 +7,6 @@ import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 let page = FIRST_PAGE_NUM;
 
 function MainView() {
-  console.log(page);
   document.addEventListener("click", handleClick);
   showGridView(page);
   checkPage(page, "grid");

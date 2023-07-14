@@ -244,6 +244,7 @@ a:hover {
 }
 
 /* category */
+
 .selected {
   background-color: var(--surface-brand-alt);
 }
@@ -285,6 +286,11 @@ a:hover {
 .ctg-wrapper {
   position: relative;
   z-index: 10;
+}
+.selected .ctg-wrapper {
+  width: 166px;
+  display: flex;
+  justify-content: space-between;
 }
 /* press-info */
 .press-news {
