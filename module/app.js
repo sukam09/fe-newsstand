@@ -1,12 +1,12 @@
+import { initNewsData } from "./api.js";
 import { initDate, initBtn } from "./util.js";
-import { initGrid } from "./grid.js";
 import { initRollingNews } from "./rolling.js";
+import { initGrid } from "./grid.js";
 
-function init() {
+(async function init() {
+  await initNewsData();
   initDate();
-  initRollingNews();
   initBtn();
+  initRollingNews();
   initGrid();
-}
-
-init();
+})();

@@ -1,24 +1,22 @@
-import { fetchNewsData } from "./api.js";
 import { GRID, GLOBAL } from "./variable.js";
 
-async function initGrid() {
+function initGrid() {
   try {
-    GLOBAL.news_data = await fetchNewsData();
-    let icon_idx = GLOBAL.grid_cur_page * GRID.NEWS_NUM;
+    let iconIndex = GLOBAL.GRID_CURRENT_PAGE * GRID.NEWS_NUM;
     for (let i = 0; i < GRID.ROW_NUM; i++) {
-      const grid_row = document.createElement("ul");
-      grid_row.className = "grid-row";
+      const gridRow = document.createElement("ul");
+      gridRow.className = "grid-row";
       for (let j = 0; j < GRID.COL_NUM; j++) {
-        const grid_li = document.createElement("li");
-        const press_logo = document.createElement("img");
-        press_logo.className = "press-logo";
+        const gridLi = document.createElement("li");
+        const PressLogo = document.createElement("img");
+        PressLogo.className = "press-logo";
 
-        press_logo.src = GLOBAL.news_data[icon_idx++].path;
+        PressLogo.src = GLOBAL.NEWS_DATA[iconIndex++].path;
 
-        grid_li.appendChild(press_logo);
-        grid_row.appendChild(grid_li);
+        gridLi.appendChild(PressLogo);
+        gridRow.appendChild(gridLi);
       }
-      GLOBAL.DOM.grid_view.appendChild(grid_row);
+      GLOBAL.DOM.GRID_VIEW.appendChild(gridRow);
       updateGrid();
     }
   } catch (e) {
@@ -28,15 +26,15 @@ async function initGrid() {
 
 function updateGrid() {
   try {
-    if (GLOBAL.news_data) {
-      let icon_idx = GLOBAL.grid_cur_page * GRID.NEWS_NUM;
-      const grid_row = document.querySelectorAll(".grid ul");
+    if (GLOBAL.NEWS_DATA) {
+      let iconIndex = GLOBAL.GRID_CURRENT_PAGE * GRID.NEWS_NUM;
+      const gridRow = document.querySelectorAll(".grid ul");
 
-      grid_row.forEach((ul, index) => {
-        const grid_li = ul.querySelectorAll("li");
-        grid_li.forEach((li) => {
-          const press_logo = li.querySelector(".press-logo");
-          press_logo.src = GLOBAL.news_data[icon_idx++].path;
+      gridRow.forEach((ul) => {
+        const gridLi = ul.querySelectorAll("li");
+        gridLi.forEach((li) => {
+          const PressLogo = li.querySelector(".press-logo");
+          PressLogo.src = GLOBAL.NEWS_DATA[iconIndex++].path;
         });
       });
     } else {
@@ -47,17 +45,15 @@ function updateGrid() {
   }
 }
 
-function moveGrid(pageDir) {
-  GLOBAL.grid_cur_page += pageDir;
-  if (GLOBAL.grid_cur_page === GRID.MIN_PAGE) {
-    GLOBAL.DOM.left_btn.style.display = "none";
-    GLOBAL.DOM.right_btn.style.display = "block";
-  } else if (GLOBAL.grid_cur_page === GRID.MAX_PAGE) {
-    GLOBAL.DOM.right_btn.style.display = "none";
-    GLOBAL.DOM.left_btn.style.display = "block";
+function moveGrid(direction) {
+  GLOBAL.GRID_CURRENT_PAGE += direction;
+  if (GLOBAL.GRID_CURRENT_PAGE === GRID.MIN_PAGE) {
+    GLOBAL.DOM.LEFT_BTN.style.display = "none";
+  } else if (GLOBAL.GRID_CURRENT_PAGE === GRID.MAX_PAGE) {
+    GLOBAL.DOM.RIGHT_BTN.style.display = "none";
   } else {
-    GLOBAL.DOM.right_btn.style.display = "block";
-    GLOBAL.DOM.left_btn.style.display = "block";
+    GLOBAL.DOM.RIGHT_BTN.style.display = "block";
+    GLOBAL.DOM.LEFT_BTN.style.display = "block";
   }
   updateGrid();
 }

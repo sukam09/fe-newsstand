@@ -52,6 +52,7 @@ const CATEGORY = {
 
 const LIST = {
   SUBTITLENUM: 6,
+  PROGRESS_SEC: 20,
 };
 
 const MODE = {
@@ -61,14 +62,14 @@ const MODE = {
 
 // 글로벌 네임스페이스
 const GLOBAL = {
-  grid_cur_page: 0,
-  list_cur_page: 0,
-  list_cur_category: CATEGORY.ECONOMY,
-  cur_mode: MODE.GRID,
-  news_data: null,
-  list_news_data: null,
-  rolling_news: null,
-  total_news_num: 0,
+  GRID_CURRENT_PAGE: 0,
+  LIST_CURRENT_PAGE: 0,
+  LIST_CURRENT_CATEGORY: CATEGORY.ECONOMY,
+  CURRENT_MODE: MODE.GRID,
+  NEWS_DATA: null,
+  LIST_NEWS_DATA: null,
+  ROLLING_NEWS: null,
+  TOTAL_NEWS_NUM: 0,
 
   CATEGORY_NUM: {
     ECONOMY: 0,
@@ -91,30 +92,35 @@ const GLOBAL = {
   },
 
   DOM: {
-    right_btn: document.querySelector(".right-btn"),
-    left_btn: document.querySelector(".left-btn"),
-    list_btn: document.querySelector(".list-btn"),
-    grid_btn: document.querySelector(".grid-btn"),
-    grid_view: document.querySelector(".grid"),
-    list_view: document.querySelector(".list-view"),
-    today: document.querySelector(".today"),
-    first_news: document.querySelector("#first-news"),
-    second_news: document.querySelector("#second-news"),
-    list_press_icon: document.querySelector(".list-press-icon"),
-    edit_date: document.querySelector(".edit-date"),
-    main_news_title: document.querySelector(".main-news-title"),
-    main_news_thumbnail: document.querySelector(".main-news-thumbnail"),
-    sub_news_title: document.querySelectorAll(".sub-news-title"),
-    caption: document.querySelector(".caption"),
-    field_tab: document.querySelector(".field-tab"),
-    progress_bar: document.querySelector(".progress-bar"),
-    nav_economy: document.querySelector(".nav-economy"),
-    nav_broadcast: document.querySelector(".nav-broadcast"),
-    nav_it: document.querySelector(".nav-it"),
-    nav_english: document.querySelector(".nav-english"),
-    nav_sports: document.querySelector(".nav-sports"),
-    nav_magazine: document.querySelector(".nav-magazine"),
-    nav_local: document.querySelector(".nav-local"),
+    TODAY: document.querySelector(".today"),
+
+    RIGHT_BTN: document.querySelector(".right-btn"),
+    LEFT_BTN: document.querySelector(".left-btn"),
+    LIST_BNT: document.querySelector(".list-btn"),
+    GRID_BTN: document.querySelector(".grid-btn"),
+
+    GRID_VIEW: document.querySelector(".grid"),
+    LIST_VIEW: document.querySelector(".list-view"),
+
+    FIRST_NEWS: document.querySelector("#first-news"),
+    SECOND_NEWS: document.querySelector("#second-news"),
+
+    FIELD_TAB: document.querySelector(".field-tab"),
+    PROGRESS_BAR: document.querySelector(".progress-bar"),
+    NAV_ECONOMY: document.querySelector(".nav-economy"),
+    NAV_BROADCAST: document.querySelector(".nav-broadcast"),
+    NAV_IT: document.querySelector(".nav-it"),
+    NAV_ENGLISH: document.querySelector(".nav-english"),
+    NAV_SPORTS: document.querySelector(".nav-sports"),
+    NAV_MAGAZINE: document.querySelector(".nav-magazine"),
+    NAV_LOCAL: document.querySelector(".nav-local"),
+
+    LIST_PRESS_ICON: document.querySelector(".list-press-icon"),
+    EDIT_DATE: document.querySelector(".edit-date"),
+    MAIN_NEWS_THUMBNAIL: document.querySelector(".main-news-thumbnail"),
+    MANI_NEWS_TITLE: document.querySelector(".main-news-title"),
+    SUB_NEWS_TITLE_ALL: document.querySelectorAll(".sub-news-title"),
+    CAPTION: document.querySelector(".caption"),
   },
 };
 
