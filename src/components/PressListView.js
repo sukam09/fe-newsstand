@@ -59,10 +59,10 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const setProgressBar = $selectedButton => {
-    this.state.percentage += PROGRESSBAR_UPDATE_DELTA;
+    this.percentage += PROGRESSBAR_UPDATE_DELTA;
 
     // percentage가 정확히 100이 안될 수가 있으므로 등호가 아닌 부등호를 써야 함
-    if (this.state.percentage >= 100) {
+    if (this.percentage >= 100) {
       const { present, entire } = this.state;
 
       if (present === entire) {
@@ -76,23 +76,20 @@ export default function PressListView({ $target, initialState }) {
       this.setState({ ...this.state, present: this.state.present + 1 });
     }
 
-    $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.state.percentage}%, #7890e7 ${this.state.percentage}%)`;
+    $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
   };
 
   const initProgressBar = $selectedButton => {
-    const { timer, $currentButton } = this.state;
-
-    if (timer !== undefined) {
-      $currentButton.style.background = '';
-      clearInterval(timer);
+    if (this.timer !== undefined) {
+      this.$currentButton.style.background = '';
+      clearInterval(this.timer);
     }
 
     $selectedButton.style.background = '#7890e7';
-    this.state.percentage = 0;
+    this.percentage = 0;
+    this.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
 
-    this.state.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
-
-    this.state.$currentButton = $selectedButton;
+    this.$currentButton = $selectedButton;
   };
 
   const handleClickLeftButton = () => {
