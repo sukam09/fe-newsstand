@@ -3,15 +3,19 @@ import showNews from "./showNews.js";
 import turnNewsPage from "./turnNewsPage.js";
 import showProgress from "./showProgress.js";
 
+let categoryClickEventFlag = false;
 /**
  카테고리를 클릭하면 handleClickCategory함수 호출
  */
 function showNewsOfCategory(shuffledPressNews, categories) {
   const $progressCategory = document.querySelectorAll('.progress-category');
   const allCategory = Array.from($progressCategory);
-  allCategory.forEach(category => {
+  if(categoryClickEventFlag === false){
+    allCategory.forEach(category => {
     category.addEventListener('click', (event) => handleClickCategory(event,shuffledPressNews,categories));
-  })
+    })
+  }
+  categoryClickEventFlag = true;
 }
 
 /**
@@ -19,17 +23,17 @@ function showNewsOfCategory(shuffledPressNews, categories) {
  */
 function handleClickCategory(event,shuffledPressNews,categories) {
   const categoryIdx = categories.findIndex(category => category === event.target.innerText)
-  //changeCategory(shuffledPressNews,categoryIdx)
+  changeCategory(shuffledPressNews,categoryIdx)
 }
 
 /**
  클릭한 카테고리에 대해서 화면에 나타냄
  */
  function changeCategory(shuffledPressNews, categoryIdx) {
-//    resetNewsTurner();
-//    showNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE);
-//    turnNewsPage(shuffledPressNews, categoryIdx);
-//    showProgress(shuffledPressNews,categoryIdx);
+   resetNewsTurner();
+   showNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE);
+   turnNewsPage(shuffledPressNews, categoryIdx);
+   showProgress(shuffledPressNews,categoryIdx);
  }
 
 /**
