@@ -137,9 +137,6 @@ newsstand
                   ├─ Header.js
                   ├─ News.js
 
-                  └─ News
-                     ├─ MainNews.js
-                     └─ SubNews.js
 ```
 
 ### 컴포넌트 기능 설계
