@@ -1,5 +1,5 @@
 import { store } from "../store/index.js";
-import { nextPage, prevPage } from "../store/reducer.js";
+import { nextPage, prevPage } from "../store/reducer/page.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const handlePrevButtonClick = () => {

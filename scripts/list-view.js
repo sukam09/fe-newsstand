@@ -1,8 +1,12 @@
 import { NewsDB } from "../core/index.js";
-import { store } from "../store/index.js";
-import { VIEW_TYPE } from "../constants/index.js";
+import { store, useSelector } from "../store/index.js";
+import { CATEGORIES, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
-import { nextCategory, prevCategory, setCategory } from "../store/reducer.js";
+import {
+  nextCategory,
+  prevCategory,
+  setCategory,
+} from "../store/reducer/page.js";
 import { resetProgress } from "./progress-bar.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
@@ -23,7 +27,7 @@ const $listViewSubNews = $listViewMain.querySelector(
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
 
 const fillArticles = (currentCategory, currentPage) => {
-  const theme = store.getState().theme;
+  const theme = useSelector((state) => state.theme.currentTheme);
   const { name, src, edit_date, main_news, sub_news } =
     NewsDB.queryByCategory(currentCategory)[currentPage];
 
@@ -82,9 +86,12 @@ export const renderListView = () => {
   });
 
   store.subscribe(() => {
-    const { currentPage, currentCategory, viewType } = store.getState();
+    const { currentPage, currentCategoryIdx, viewType } = useSelector(
+      (state) => state.page
+    );
     if (viewType !== VIEW_TYPE.LIST) return;
 
+    const currentCategory = CATEGORIES[currentCategoryIdx];
     const totalCnt = NewsDB.getCountByCategory(currentCategory);
 
     if (currentPage < 0) {

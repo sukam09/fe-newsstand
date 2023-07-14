@@ -11,7 +11,7 @@ import {
   setTheme,
 } from "./utils/index.js";
 import { addEventOnProgressBar } from "./scripts/progress-bar.js";
-import { changeTheme } from "./store/reducer.js";
+import { changeTheme } from "./store/reducer/theme.js";
 import { store } from "./store/index.js";
 
 const $headerDate = document.querySelector(".container-header_date");

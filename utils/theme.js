@@ -1,11 +1,12 @@
-import { store } from "../store/index.js";
+import { THEME } from "../constants/index.js";
+import { useSelector } from "../store/index.js";
 
 export const setTheme = () => {
-  const theme = store.getState().theme;
+  const theme = useSelector((state) => state.theme.currentTheme);
 
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
+  if (theme === THEME.DARK) {
+    document.documentElement.classList.add(THEME.DARK);
   } else {
-    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.remove(THEME.DARK);
   }
 };

@@ -1,5 +1,5 @@
-import { store } from "../store/index.js";
-import { changeView } from "../store/reducer.js";
+import { store, useSelector } from "../store/index.js";
+import { changeView } from "../store/reducer/page.js";
 import { VIEW_TYPE } from "../constants/index.js";
 import { $gridView, $listView } from "./doms.js";
 
@@ -15,7 +15,7 @@ const handleViewerButtonClick = (e) => {
 
 export const addEventOnViewerButton = () => {
   store.subscribe(() => {
-    const viewType = store.getState().viewType;
+    const viewType = useSelector((state) => state.page.viewType);
 
     $mainNavViewerButtons.forEach(($button) => {
       if (viewType !== $button.dataset.view) {

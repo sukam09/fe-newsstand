@@ -7,6 +7,11 @@ export const VIEW_TYPE = freeze({
   LIST: "list",
 });
 
+export const THEME = freeze({
+  LIGHT: "light",
+  DARK: "dark",
+});
+
 export const CATEGORIES = freeze([
   "종합/경제",
   "방송/통신",
