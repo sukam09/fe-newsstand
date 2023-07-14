@@ -1,18 +1,15 @@
 .DS_Store
 .vscode
 .idea
+
 node_modules
 package.json
 pnpm-lock.yaml
-.husky
-.prettierrc
-.prettierignore
-.eslintrc.json
-.eslintignore
-.lintstagedrc
-vite.config.js
+
 tsconfig.json
+typescript/
 *.ts
+
 .gitignore
 
-
+.prettierignore
