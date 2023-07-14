@@ -50,6 +50,7 @@ const imgPath = await fetchData("../assets/data/newspaperSrc.json");
 <br><br><br>
 ### 설계
 <a href='https://ifh.cc/v-1OMqfJ' target='_blank'><img src='https://ifh.cc/g/1OMqfJ.jpg' border='0'></a>
+<a href='https://ifh.cc/v-ozkAbJ' target='_blank'><img src='https://ifh.cc/g/ozkAbJ.jpg' border='0'></a>
 <br><br><br>
 ### 구조   
 ```bash
