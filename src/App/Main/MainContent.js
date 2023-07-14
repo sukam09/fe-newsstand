@@ -60,7 +60,6 @@ export default function MainContent($target, props) {
 
     const commonProps = {
       mode: props.mode,
-      pressType: props.pressType,
       currentPage: this.state.currentPage,
     };
 

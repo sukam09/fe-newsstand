@@ -20,9 +20,9 @@ export default function App($target, mode) {
     const $app = document.createElement("div");
     $app.setAttribute("id", "container");
 
-    new Header($app, { mode: mode });
-    new Rolling($app, { mode: mode });
-    new Main($app, { mode: mode });
+    new Header($app, { mode: this.state });
+    new Rolling($app, { mode: this.state });
+    new Main($app, { mode: this.state });
 
     $target.appendChild($app);
   };
