@@ -2,9 +2,11 @@ import { gridItemTemplate, gridTemplate } from "../template/grid.template.js";
 import { ListTemplate } from "../template/list.template.js";
 import { qs } from "./dom.js";
 import { html } from "./html.js";
-import { getGridPageData, getListPageData } from "../api/index.js";
+import { getCategories, getGridPageData, getListPageData, } from "../api/index.js";
 import { PAGINATION_UNIT } from "../config.js";
+import { convertIdx } from "./utils.js";
 const $view = qs(".view");
+const categories = [];
 async function renderGridView(idx) {
     // grid data fetching
     const data = await getGridPageData(idx);
@@ -20,8 +22,14 @@ async function renderGridView(idx) {
 }
 async function renderListView(idx) {
     // list data fetching
-    const data = await getListPageData("종합/경제", idx);
-    $view.innerHTML = ListTemplate(data);
+    if (categories.length === 0) {
+        categories.push(...(await getCategories()));
+    }
+    const { convertedIdx, category } = convertIdx(idx, categories);
+    console.log(convertedIdx, category);
+    const data = await getListPageData(category, convertedIdx);
+    // render
+    $view.innerHTML = ListTemplate(categories, category, convertedIdx, data);
     // $view.innerHTML = ListTemplate(data);
 }
 function renderView(type, idx) {
