@@ -89,6 +89,10 @@ function showPrevListPage() {
     setCategoryId(categoryId - 1);
     setListPage(MAX_LIST_PAGE[categoryId] - 1);
     highlightCategoryItem();
+  } else if (categoryId <= 0 && listPage <= 0) {
+    setCategoryId(MAX_CATEGORY_ID - 1);
+    setListPage(MAX_LIST_PAGE[categoryId] - 1);
+    highlightCategoryItem();
   } else {
     decListPage();
   }
@@ -105,10 +109,18 @@ function showPrevGridPage() {
 function showNextListPage() {
   hideAllListPage();
   if (
+    // 카테고리 마지막 페이지 일때,카테고리 이동
     listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
     categoryId < MAX_CATEGORY_ID - 1
   ) {
     setCategoryId(categoryId + 1);
+    setListPage(0);
+    highlightCategoryItem();
+  } else if (
+    listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+    categoryId >= MAX_CATEGORY_ID - 1
+  ) {
+    setCategoryId(0);
     setListPage(0);
     highlightCategoryItem();
   } else {
@@ -143,15 +155,18 @@ export function controllButtonShowing() {
   } else if (type === LIST) {
     const listPage = getListPage();
     const maxPage = TOTAL_LIST_PAGE - 1;
-    if (listPage >= maxPage) {
-      $leftButton.style.display = "block";
-      $rightButton.style.display = "none";
-    } else if (listPage <= 0 && categoryId <= 0) {
-      $leftButton.style.display = "none";
-      $rightButton.style.display = "block";
-    } else {
-      $leftButton.style.display = "block";
-      $rightButton.style.display = "block";
-    }
+    // if (listPage >= maxPage) {
+    //   $leftButton.style.display = "block";
+    //   $rightButton.style.display = "none";
+    // } else if (listPage <= 0 && categoryId <= 0) {
+    //   $leftButton.style.display = "none";
+    //   $rightButton.style.display = "block";
+    // } else {
+    //   $leftButton.style.display = "block";
+    //   $rightButton.style.display = "block";
+    // }
+
+    $leftButton.style.display = "block";
+    $rightButton.style.display = "block";
   }
 }
