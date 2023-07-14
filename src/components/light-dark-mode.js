@@ -2,15 +2,11 @@
  * 뉴스스탠드의 INIT
  * 기본은 Light 모드 ☀️
  */
-const initLightDarkMode = () => {
-  //   setNewsStandHeader();
-  //   setHeaderButton();
-  //   const dateFormat = getHeaderTime();
-  //   setHeaderTime(dateFormat);
+const initLightMode = () => {
   localStorage.setItem('mode', 'light');
 
   setMode();
-  setModeLabel();
+  setModeEvent();
 };
 
 /**
@@ -27,24 +23,21 @@ const setMode = () => {
 /**
  *  라이트/다크모드의 이벤트
  */
-const setModeImg = () => {
+const setModeEvent = () => {
   const modeImg = document.querySelector('.mode__img');
-  modeImg.addEventListener('click', () => {});
+  modeImg.addEventListener('click', isLightMode);
 };
 
 /**
  *  라이트/다크모드 변경
  */
-const changeMode = (e) => {
-  //   if (e.target.checked) {
-  //     localStorage.setItem('data-theme', 'dark');
-  //     document.documentElement.setAttribute('data-theme', 'dark');
-  //   } else {
-  //     localStorage.setItem('data-theme', 'light');
-  //     document.documentElement.setAttribute('data-theme', 'light');
-  //   }
+const isLightMode = () => {
+  let mode = localStorage.getItem('mode');
+  console.log(mode);
+  if (mode === 'light') localStorage.setItem('mode', 'dark');
+  if (mode === 'dark') localStorage.setItem('mode', 'light');
 };
 
 // 뉴스스탠드 함수이름 수정
 
-export { initLightDarkMode };
+export { initLightMode };
