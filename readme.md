@@ -114,7 +114,7 @@ fe-newsstand
 
 ## 📌 JAVASCRIPT 모듈 설명
 
-### 1. `bringDate.js - 날짜를 불러오는 모듈`
+#### 1. `bringDate.js - 날짜를 불러오는 모듈`
 
 - 날짜를 가져올 때 0을 더해주는 함수를 추가하였습니다.
 
@@ -128,7 +128,7 @@ function addZero(date) {
 }
 ```
 
-### 2. `changeView.js - 그리드뷰 <-> 리스트뷰 이동 모듈`
+#### 2. `changeView.js - 그리드뷰 <-> 리스트뷰 이동 모듈`
 
 - 아래와 같이 style.display = "none" / "block"을 사용하여 구현하였습니다.
 
@@ -143,21 +143,21 @@ function changeToGridView() {
 }
 ```
 
-### 3. `initialDisplay.js - 초기화면 세팅 모듈`
+#### 3. `initialDisplay.js - 초기화면 세팅 모듈`
 
 - 마찬가지로 style.display = "none"을 사용하여 작성하였습니다.
 
-### 4. `listNews.js - html에 리스트뷰 아티클을 추가해주는 모듈`
+#### 4. `listNews.js - html에 리스트뷰 아티클을 추가해주는 모듈`
 
 - html을 복잡하게 만들지 않기 위해 listNews.js에서 news-article 섹션을 그려주는 함수를 구현하였습니다.
 - innerHTML을 조작하여 구현하였습니다.
 
-### 5. `progressBar.js - 프로그레스바 관련 모듈`
+#### 5. `progressBar.js - 프로그레스바 관련 모듈`
 
 - progress-bar 클래스를 제거하고, 더해주는 방식으로 구현하였습니다.
 - 프로그레스바 구현 시 그리드 뷰에서 리스트 뷰로 돌아오면 처음으로 초기화 될 수 있도록 progressBar.js에 initializeProgress 함수를 구현하였습니다.
 
-### 6. `randomGrid.js - 언론사 그리드 관련 모듈`
+#### 6. `randomGrid.js - 언론사 그리드 관련 모듈`
 
 - Math.random()을 사용하여 언론사 사진을 셔플하였습니다.
 
@@ -166,7 +166,7 @@ const shuffle = () => Math.random() - 0.5;
 let shuffled_presses = [...presses].sort(shuffle);
 ```
 
-### 7. `rollingBanner.js - 무한 롤링 배너 관련 모듈`
+#### 7. `rollingBanner.js - 무한 롤링 배너 관련 모듈`
 
 - 무한 롤링 구현 시 prev, current, next와 같은 클래스를 제거하고, 더해주는 방식으로 구현하였습니다.
 - 이벤트리스너를 추가하여 호버 시 멈춤을 구현하였습니다.
