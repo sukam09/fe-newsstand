@@ -1,14 +1,15 @@
 import { categoryList } from "../data/NewsContents.js";
-import { runProgress, setNowCount, CATEGORY_NUM } from "./progressBar.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 
 let list_page_count = 0;
 
+//기사 셔플
 function shuffle(category_count_idx) {
   categoryList[category_count_idx].data.sort(() => Math.random() - 0.5);
 }
 
+/***** 리스트뷰 아티클 섹션 그리기 *****/
 function drawListView(category_count_idx, title_idx) {
   shuffle(category_count_idx);
   appendPressInfo(category_count_idx, title_idx);
