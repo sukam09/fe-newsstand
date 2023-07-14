@@ -34,7 +34,7 @@ media_0.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:11",
-    thumbSrc: "../images/light/img1.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...111",
     subTitle: [
       "위스키 사려고 전부터..11",
@@ -54,7 +54,7 @@ media_1.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:22",
-    thumbSrc: "../images/light/img2.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...222",
     subTitle: [
       "위스키 사려고 전부터..22",
@@ -73,7 +73,7 @@ media_2.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:33",
-    thumbSrc: "../images/light/img3.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...333",
     subTitle: [
       "위스키 사려고 전부터..33",
@@ -92,7 +92,7 @@ media_3.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:444",
-    thumbSrc: "../images/light/img4.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...444",
     subTitle: [
       "위스키 사려고 전부터..4",
@@ -111,7 +111,7 @@ media_4.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:55",
-    thumbSrc: "../images/light/img5.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...555",
     subTitle: [
       "위스키 사려고 전부터..55",
@@ -130,7 +130,7 @@ media_5.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:66",
-    thumbSrc: "../images/light/img6.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...666",
     subTitle: [
       "위스키 사려고 전부터..66",
@@ -149,7 +149,7 @@ media_6.forEach((media) => {
     src: media.lightSrc,
     isSub: media.isSub,
     editDate: "2023. 02. 10 18:77",
-    thumbSrc: "../images/light/img7.svg",
+    thumbSrc: "https://picsum.photos/320/200",
     headTitle: "또 국민연금의 몽니...7777",
     subTitle: [
       "위스키 사려고 전부터..777",
@@ -159,7 +159,7 @@ media_6.forEach((media) => {
       "태평양에는...777",
       "LG엔솔...777",
     ],
-    copyRight: "서울경제 언론사에서 직접 편집한 뉴스입니다.6666",
+    copyRight: "서울경제 언론사에서 직접 편집한 뉴스입니다.7777",
   });
 });
 

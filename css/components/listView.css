@@ -85,13 +85,14 @@
   padding: 0;
   width: 15%;
   background-color: var(--surface-brand-alt);
+  pointer-events: none;
 }
 
 .category .selected-category div {
   height: 100%;
   background-color: var(--surface-brand-default);
   animation-name: progressBar;
-  animation-duration: 20s;
+  animation-duration: 1.5s;
   animation-timing-function: linear;
 }
 

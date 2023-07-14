@@ -1,6 +1,6 @@
 import { category, news_by_category } from "../../assets/news.js";
 
-const ANIMATION_DURATON = 20;
+const ANIMATION_DURATON = 1.5;
 
 /* 카테고리 생성 및 click 이벤트 등록*/
 function makeCategory() {
@@ -26,20 +26,29 @@ function makeCategory() {
   });
 }
 
+let randomNews;
+
+//start랑 click 됐을 때 random 뉴스
+function shuffleNews() {
+  const currentCategory = document.querySelector(
+    ".selected-category span"
+  ).innerText;
+  const shuffled = [...news_by_category[currentCategory]].sort(
+    () => Math.random() - 0.5
+  );
+  return shuffled;
+}
+
 /* 뉴스 가져오기 */
 
 function getNews(e) {
   changeCurrentPage(e);
 
-  //현재 카테고리 찾고,
-  const currentCategory = document.querySelector(
-    ".selected-category span"
-  ).innerText;
+  //클릭한 카테고리가 현재와 같다면 새로 뉴스를 가져오고, 애니메이션 새로 시작
+  if (e.type === "animationstart" || e.type === "click") {
+    randomNews = shuffleNews();
+  }
 
-  //카테고리에 해당하는 뉴스 찾고, 랜덤으로 섞기
-  const randomNews = [...news_by_category[currentCategory]].sort(
-    () => Math.random() - 0.5
-  );
   let currentNews;
   //event가 클릭일 때랑 iteration일 때랑 구분
   if (e.type === "animationiteration") {
@@ -56,6 +65,7 @@ function getNews(e) {
 
   //sub news
   changeSub(currentNews);
+  console.log(currentNews);
 }
 
 function changePressInfo(currentNews) {
@@ -111,14 +121,15 @@ function addAniToCategory() {
   });
 }
 
-function passAnimation(To, item) {
+function passAnimation(type, item) {
   //이전 요소 애니메이션 중지
   const prevSelected = document.querySelector(".selected-category");
+  // prevCategory = prevSelected.children[1].innerText;
   prevSelected.children[2].style.display = "none";
   prevSelected.classList.remove("selected-category");
 
   //자동으로 넘어갈 때
-  if (To === "Next") {
+  if (type === "Next") {
     if (prevSelected.nextElementSibling === null) {
       document
         .querySelector(".category li:first-child")
@@ -126,14 +137,14 @@ function passAnimation(To, item) {
     } else {
       prevSelected.nextElementSibling.classList.add("selected-category");
     }
+    document.querySelector(".selected-category").children[2].style.display =
+      "flex";
   }
   // 클릭 했을 때
   else if ("Clicked") {
     item.classList.add("selected-category");
     item.querySelector(".category-num").style.display = "flex";
   }
-  document.querySelector(".selected-category").children[2].style.display =
-    "flex";
 }
 
 function initListView() {
