@@ -1,5 +1,6 @@
 /**
  * 로컬 path 내의 데이터 가져오는 함수
+ * @param url json 파일이 위치하는 로컬 경로
  */
 const getJSON = async (url) => {
   try {

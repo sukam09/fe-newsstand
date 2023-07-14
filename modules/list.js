@@ -109,8 +109,6 @@ const setCategoryBar = () => {
 
 /**
  * 페이지 전환 따른 카테고리바 변경
- * @param cateIdx 현재 카테고리 순서
- * @param mediaIdx 현재 카테고리 리스트 내 미디어 순서
  */
 const setProgressBar = () => {
   const cate = categoryKeys[cateIdx];
@@ -151,8 +149,6 @@ const setProgressBar = () => {
 
 /**
  * 페이지 전환 따른 뉴스 영역 변경
- * @param cateIdx 현재 카테고리 순서
- * @param mediaIdx 현재 카테고리 리스트 내 미디어 순서
  */
 const setListView = () => {
   const cate = categoryKeys[cateIdx];

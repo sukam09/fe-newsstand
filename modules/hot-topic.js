@@ -105,6 +105,9 @@ const rollingCallback = (sectionClass) => {
   next.classList.add("current");
 };
 
+/**
+ * 초기 핫토픽 동작 세팅
+ */
 async function initHotTopicView() {
   setHotTopic();
   rollingTopic();

@@ -17,7 +17,7 @@ const shuffleList = (list) => {
 };
 
 /**
- * 시스템 날짜 표시하기
+ * 시스템 날짜 표시
  */
 const setDate = () => {
   const today = new Date();
@@ -55,6 +55,9 @@ const setViewEvent = () => {
   });
 };
 
+/**
+ * 그리드뷰로 이동할 수 있는 함수
+ */
 const moveGridView = () => {
   $gridIcon.src = IMAGE.BLUE_GRID_ICON;
   $listIcon.src = IMAGE.GRAY_LIST_ICON;
@@ -66,6 +69,9 @@ const moveGridView = () => {
   setArrowVisible();
 };
 
+/**
+ * 리스트뷰로 이동할 수 있는 함수
+ */
 const moveListView = () => {
   $gridIcon.src = IMAGE.GRAY_GRID_ICON;
   $listIcon.src = IMAGE.BLUE_LIST_ICON;
@@ -82,6 +88,9 @@ const moveListView = () => {
   STATE.IS_GRID = false;
 };
 
+/**
+ * 헤더의 공통뷰를 세팅하는 함수
+ */
 async function initCommonView() {
   setReload();
   setDate();

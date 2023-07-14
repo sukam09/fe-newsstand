@@ -74,6 +74,7 @@ const changeImgSrc = () => {
 
 /**
  * Grid 화살표 클릭하기
+ * @param num 페이지 이동을 위한 카운트 변수
  */
 const clickArrow = (num) => {
   STATE.GRID_PAGE_NUM += num;
