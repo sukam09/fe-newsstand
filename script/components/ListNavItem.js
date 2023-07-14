@@ -8,11 +8,12 @@ const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
 
   listNavItem.classList.add('list_view_select');
   listNavItemContent.classList.add('list_view_select_content', 'pointer');
-  listNavItemName.classList.add('name', 'selected_bold14');
+  listNavItemName.classList.add('name');
   listNavItemName.innerText = title;
   listNavItemContent.addEventListener('click', onClick);
   listNavItemContent.appendChild(listNavItemName);
   if (selected) {
+    listNavItemName.classList.add('selected_bold14');
     listNavItem.classList.add('surface_brand_alt');
     listNavItemContent.id = 'selected_nav_item';
     listNavItemContent.classList.add('text_white_default');
