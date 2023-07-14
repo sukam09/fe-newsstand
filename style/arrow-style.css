@@ -1,0 +1,38 @@
+/***** grid & list 넘기는 화살표 버튼 style *****/
+.press-grid {
+  position: relative;
+}
+
+.l-btn {
+  width: 24px;
+  height: 40px;
+  position: absolute;
+  top: 180px;
+  left: -72px;
+  cursor: pointer;
+}
+
+.r-btn {
+  width: 24px;
+  height: 40px;
+  position: absolute;
+  top: 180px;
+  right: -72px;
+  cursor: pointer;
+}
+
+.left-btn,
+.right-btn {
+  position: absolute;
+  transform: translateY(150%);
+}
+
+.left-btn {
+  left: -72px;
+  cursor: pointer;
+}
+
+.right-btn {
+  right: -72px;
+  cursor: pointer;
+}

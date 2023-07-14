@@ -1,0 +1,42 @@
+/***** 공통 부분 *****/
+:root {
+  --text-weak: #879298;
+  --text-strong: #14212b;
+  --text-default: #5f6e76;
+  --border-default: #d2dae0;
+  --surface-alt: #f5f7f9;
+  --text-white-weak: rgba(255, 255, 255, 0.7);
+  --progress-before: #7890e7;
+  --progress-after: #4362d0;
+}
+
+.font-init {
+  color: var(--text-text-default, #5f6e76);
+  font-family: Pretendard;
+  font-style: normal;
+}
+
+.bold-font-init {
+  color: var(--text-text-strong, #14212b);
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+ul,
+li {
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 930px;
+  margin: 0 auto;
+}
