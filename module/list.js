@@ -76,7 +76,7 @@ function strToCategory(str) {
 function resetAnimation() {
   GLOBAL.DOM.PROGRESS_BAR.style.animation = "none";
   void GLOBAL.DOM.PROGRESS_BAR.offsetWidth;
-  GLOBAL.DOM.PROGRESS_BAR.style.animation = "1s linear progress infinite";
+  GLOBAL.DOM.PROGRESS_BAR.style.animation = `${LIST.PROGRESS_SEC}s linear progress infinite`;
 }
 
 export { moveListPage, movePageFromEvent, strToCategory };

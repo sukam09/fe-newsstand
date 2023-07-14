@@ -281,7 +281,7 @@ body {
   position: absolute;
   height: 100%;
   background: var(--surface-brand-default);
-  animation: 1s linear progress infinite;
+  animation: 20s linear progress infinite;
 }
 
 .list-press-news {

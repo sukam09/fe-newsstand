@@ -52,7 +52,7 @@ const CATEGORY = {
 
 const LIST = {
   SUBTITLENUM: 6,
-  PROGRESS_SEC: 20,
+  PROGRESS_SEC: 1,
 };
 
 const MODE = {
