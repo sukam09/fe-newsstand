@@ -45,7 +45,6 @@ export const createStore = (reducer) => {
   const dispatch = (action) => {
     const newState = reducer(state, action);
 
-    console.log(newState);
     if (state === newState) return;
     if (JSON.stringify(state) === JSON.stringify(newState)) return;
 
