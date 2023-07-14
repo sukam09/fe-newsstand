@@ -9,8 +9,6 @@ let order_list = [
   { press: "SBS Biz", imgIndex: 93 },
 ];
 
-const main_list = document.querySelector(".main-list");
-
 async function getNewsData(category) {
   try {
     const response = await fetch("../data/news.json");
@@ -40,6 +38,7 @@ async function drawList(order, category) {
     ];
   }
   try {
+    const main_list = document.querySelector(".main-list");
     const img = order_list[order - 1].imgIndex;
     const category_news = await getNewsData(category);
     drawCategory(category_news, order, category);
@@ -62,6 +61,8 @@ function handleClick(e) {
 }
 
 export function showListView(order) {
+  const main_list = document.querySelector(".main-list");
+  main_list.innerHTML = "";
   drawList(order, CATEGORY[0]);
   document.addEventListener("click", handleClick);
 }

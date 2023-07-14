@@ -12,7 +12,6 @@ export function changeView(target) {
       list_btn.src = "../assets/icons/list-view.svg";
       view.classList.remove("list-view");
       view.classList.add("grid-view");
-      showGridView(1);
     }
   } else {
     const view = document.querySelector(".grid-view");
@@ -22,7 +21,6 @@ export function changeView(target) {
       list_btn.src = "../assets/icons/list-view-clicked.svg";
       view.classList.remove("grid-view");
       view.classList.add("list-view");
-      showListView(1);
     }
   }
 }
