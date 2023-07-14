@@ -1,6 +1,3 @@
-import { showGridView } from "./makeGridView.js";
-import { showListView } from "./makeListView.js";
-
 export function changeView(target) {
   const grid_btn = document.getElementById("grid-btn");
   const list_btn = document.getElementById("list-btn");

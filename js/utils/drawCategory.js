@@ -1,11 +1,12 @@
 import { CATEGORY } from "../constants/constants.js";
+import { showListView } from "./makeListView.js";
+import { getPressCount } from "./getPressCount.js";
 
-function getPressCount(category_news) {
-  const uniquePressSet = new Set();
-  category_news.forEach((news) => {
-    uniquePressSet.add(news.press);
-  });
-  return Array.from(uniquePressSet);
+function checkProgress(order, category) {
+  const progress = document.getElementById("play-animation");
+  progress.addEventListener("animationend", () =>
+    showListView(++order, category)
+  );
 }
 
 export function drawCategory(category_news, order, category) {
@@ -21,4 +22,5 @@ export function drawCategory(category_news, order, category) {
         : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${ctg}</span></div></li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${category_list}</ul></div>`;
+  checkProgress(order, category);
 }

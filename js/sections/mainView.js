@@ -2,13 +2,13 @@ import { checkPage } from "../utils/checkPage.js";
 import { changeView } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
-import { FIRST_PAGE_NUM } from "../constants/constants.js";
+import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
 
 function MainView() {
   document.addEventListener("click", handleClick);
-  showGridView(page, "grid");
+  showGridView(page);
   checkPage(page, "grid");
 
   const headerElement = document.createElement("h1");
@@ -27,7 +27,7 @@ function changePage(target, view) {
     showGridView(page);
     checkPage(page, "grid");
   } else {
-    showListView(page);
+    showListView(page, CATEGORY); //TODO: showList에서 해당 category 마지막 언론사면 다음 카테고리로
     checkPage(page, "list");
   }
 }
@@ -47,7 +47,7 @@ function handleClick(e) {
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page);
+      showListView(page, CATEGORY[0]);
       checkPage(page, "list");
       break;
     case "left":

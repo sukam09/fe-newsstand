@@ -258,6 +258,7 @@ a:hover {
   position: relative;
 }
 .progress-bar {
+  display: none;
   z-index: 5;
   position: absolute;
   top: 0;
@@ -266,8 +267,9 @@ a:hover {
 }
 
 #play-animation {
+  display: block;
   background-color: var(--surface-brand-default);
-  animation: progress-animation 2s forwards;
+  animation: progress-animation 20s forwards;
 }
 
 @keyframes progress-animation {

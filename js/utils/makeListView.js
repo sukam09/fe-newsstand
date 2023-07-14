@@ -1,7 +1,8 @@
-import { CATEGORY } from "../constants/constants.js";
 import { drawCategory } from "./drawCategory.js";
 import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
+import { getPressCount } from "./getPressCount.js";
+import { CATEGORY } from "../constants/constants.js";
 //임시로
 let order_list = [
   { press: "서울경제", imgIndex: 96 },
@@ -40,7 +41,17 @@ async function drawList(order, category) {
   try {
     const main_list = document.querySelector(".main-list");
     const img = order_list[order - 1].imgIndex;
-    const category_news = await getNewsData(category);
+    let category_news = await getNewsData(category);
+    if (
+      getPressCount(category_news).length !== 0 &&
+      getPressCount(category_news).length < order
+    ) {
+      order = 1;
+      const currentIndex = CATEGORY.indexOf(category);
+      const nextIndex = (currentIndex + 1) % CATEGORY.length;
+      category = CATEGORY[nextIndex];
+      category_news = await getNewsData(category);
+    }
     drawCategory(category_news, order, category);
     const newDiv = document.createElement("div");
     newDiv.classList.add("press-news");
@@ -55,14 +66,14 @@ async function drawList(order, category) {
 function handleClick(e) {
   const target = e.target.closest("li");
   if (target && target.classList.contains("category")) {
-    const category = target.querySelector(".ctg").textContent.trim();
+    const category = target.querySelector(".ctg-wrapper").textContent.trim();
     drawList(1, category);
   }
 }
 
-export function showListView(order) {
+export function showListView(order, category) {
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = "";
-  drawList(order, CATEGORY[0]);
+  drawList(order, category);
   document.addEventListener("click", handleClick);
 }
