@@ -1,5 +1,6 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import { SubButton } from '../../components/Button.js';
+import ListNavItem from '../../components/ListNavItem.js';
 import { SUB_MEDIA } from '../../constants.js';
 import { createNewArrow, shuffleArray } from '../../utils/utils.js';
 
@@ -14,12 +15,14 @@ const createMediaArray = () => {
 
 const updatePage = listData => {
   const listView = document.querySelector('#list_view');
+  const listNav = document.querySelector('#list_nav');
 
   listView.replaceWith(
     createListContent(
       listData.categoryData[listData.category].media[listData.page]
     )
   );
+  listNav.replaceWith(createListNav(listData));
 };
 
 const setPage = (listData, move) => {
@@ -36,7 +39,7 @@ const setPage = (listData, move) => {
   updatePage(listData);
 };
 
-const createListNav = categoryData => {
+const createListNav = listData => {
   const nav = document.createElement('nav');
 
   nav.id = 'list_nav';
@@ -44,19 +47,23 @@ const createListNav = categoryData => {
   const navList = document.createElement('ul');
   navList.id = 'list_nav_list';
   nav.appendChild(navList);
-  categoryData.forEach(category => {
-    const navItem = document.createElement('li');
-    navItem.classList.add(
-      'list_view_select',
-      'pointer',
-      'hover_medium14',
-      'text_weak'
+  listData.categoryData.forEach((category, index) => {
+    navList.appendChild(
+      ListNavItem({
+        selected: listData.category === index,
+        indicator: {
+          index: listData.page,
+          total: listData.categoryData[index].media.length,
+        },
+        title: category.name,
+        onClick: () => {
+          if (listData.category === index) return;
+          listData.category = index;
+          listData.page = 0;
+          updatePage(listData);
+        },
+      })
     );
-    const navItemName = document.createElement('div');
-    navItemName.classList.add('name');
-    navItemName.innerText = category.name;
-    navItem.appendChild(navItemName);
-    navList.appendChild(navItem);
   });
 
   return nav;
@@ -64,7 +71,6 @@ const createListNav = categoryData => {
 
 const createListContent = mediaId => {
   const listContent = document.createElement('div');
-  // 임시 데이터
   const newsData = mediaData.getNews(mediaId);
 
   const mediaInfo = document.createElement('div');
@@ -127,12 +133,13 @@ const createListContent = mediaId => {
   return listContent;
 };
 
-const createListElement = categoryData => {
+const createListElement = listData => {
+  const firstMedia = listData.categoryData[0].media[0];
   const listElement = document.createElement('div');
 
   listElement.id = 'list_view_wrapper';
-  listElement.appendChild(createListNav(categoryData));
-  listElement.appendChild(createListContent(categoryData[0].media[0]));
+  listElement.appendChild(createListNav(listData));
+  listElement.appendChild(createListContent(firstMedia));
   return listElement;
 };
 
@@ -148,11 +155,11 @@ const setArrow = listData => {
 };
 
 // initGrid와 거의 동일 (추후 통합)
-const initList = categoryData => {
+const initList = listData => {
   const mediaView = document.querySelector('#media_view');
 
   Array.from(mediaView.childNodes).forEach(child => child.remove());
-  mediaView.appendChild(createListElement(categoryData));
+  mediaView.appendChild(createListElement(listData));
 };
 
 const listApp = () => {
@@ -162,7 +169,7 @@ const listApp = () => {
     categoryData: createMediaArray(),
   };
 
-  initList(listData.categoryData);
+  initList(listData);
   updatePage(listData);
   setArrow(listData);
 };
