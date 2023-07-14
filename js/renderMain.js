@@ -1,6 +1,8 @@
 import logo from "../json/news_image.json" assert { type: "json" };
 import { shuffle, changeImageSrc } from "./utils.js";
 import { addInitCategory, progressInterval } from "./category.js";
+import news from "../json/news.json" assert { type: "json" };
+console.log(news.News[0]);
 
 let MAX_PAGE_NUMBER = 3;
 let MIN_PAGE_NUMBER = 0;
@@ -19,15 +21,22 @@ function renderCard() {
   gridMain.style.display = "none";
   listMain.style.display = "flex";
   addInitCategory();
+  addInitNewsHeader();
+}
+
+function addInitNewsHeader() {
+  const news_header = document.querySelector(".news_header");
+  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${news.News[0].thumbnail}"><span class="newsEditTime">${news.News[0].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
+  news_header.innerHTML = new_div;
 }
 
 function renderGrid(logos) {
+  const COUNT_PER_PAGE = 24;
+  const mainGrid = document.getElementById("main-grid-01");
   clearInterval(progressInterval);
   shuffle(logos);
   gridMain.style.display = "grid";
   listMain.style.display = "none";
-  const COUNT_PER_PAGE = 24;
-  const mainGrid = document.getElementById("main-grid-01");
   mainGrid.innerHTML = "";
   for (
     let PAGE_INDEX = currentPageNumber * COUNT_PER_PAGE;
@@ -41,6 +50,7 @@ function renderGrid(logos) {
     outerDiv.append(newsLogo);
     mainGrid.append(outerDiv);
   }
+  addAsideClickEvent(1);
 }
 
 function clickGridImage() {
@@ -65,12 +75,16 @@ function clickCardListImage() {
 }
 
 function setMainContent(isGrid) {
-  clickRightAsideButton(isGrid);
-  clickLeftAsideButton(isGrid);
+  addAsideClickEvent(isGrid);
   currentPageNumber = 0;
   leftAsideButton.style.visibility = "hidden";
   rightAsideButton.style.visibility = "visible";
   renderMain(isGrid);
+}
+
+function addAsideClickEvent(isGrid) {
+  clickRightAsideButton(isGrid);
+  clickLeftAsideButton(isGrid);
 }
 
 function increaseGridPage() {
@@ -139,5 +153,6 @@ function clickLeftAsideButton(isGrid) {
 
 clickCardListImage();
 clickGridImage();
+clickRightAsideButton();
 
 export { renderMain };
