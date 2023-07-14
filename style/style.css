@@ -278,11 +278,28 @@ header {
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    cursor: pointer;
 }
 
-.main-article > img {
+.main-article:hover .main-image > img {
+    transform: scale(1.05);
+}
+
+.main-article:hover .main-title {
+    text-decoration: underline;
+}
+
+.main-image {
     width: 320px;
     height: 200px;
+    overflow: hidden;
+}
+
+.main-image > img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s linear;
 }
 
 .main-title {

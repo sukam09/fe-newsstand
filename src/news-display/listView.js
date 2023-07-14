@@ -29,9 +29,11 @@ const getArticleMain = (newsData) => {
     return `
         <div class="articles-container available-medium16">
             <div class="main-article">
-                <img src=${newsData.mainArticle.thumbnail} alt=${
+                <div class="main-image">
+                    <img src=${newsData.mainArticle.thumbnail} alt=${
         newsData.mainArticle.title
     } />
+                </div>
                 <div class="main-title">
                     ${newsData.mainArticle.title}
                 </div>
@@ -110,7 +112,7 @@ const startListViewInterval = () => {
             setListPageIndex(pageIndex + 1);
         }
         updateCurrentIndex(pageIndex);
-    }, 2000);
+    }, 20000);
 };
 
 const setListView = () => {
