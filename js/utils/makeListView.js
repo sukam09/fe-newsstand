@@ -72,10 +72,10 @@ function drawCategory(category_news, order, category) {
   CATEGORY.forEach((ctg) => {
     category_list +=
       category === ctg
-        ? `<li class="category selected"><div><span class="ctg">${ctg}</span><div class="count"><span>${order}</span><span>/</span><span class = "entire">${
+        ? `<li class="category selected"><div class="progress-bar" id="play-animation"></div><div class="ctg-wrapper"><span class="ctg">${ctg}</span><div class="count"><span>${order}</span><span>/</span><span class = "entire">${
             getPressCount(category_news).length
           }</span></div></div></li>`
-        : `<li class="category"><div><span class="ctg">${ctg}</span></div></li>`;
+        : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${ctg}</span></div></li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${category_list}</ul></div>`;
 }

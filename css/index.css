@@ -229,7 +229,6 @@ a:hover {
 }
 .list-view .field-tab .category {
   display: inline-block;
-  padding: 16px;
   color: var(--text-weak);
   font-size: 14px;
 }
@@ -244,7 +243,7 @@ a:hover {
 
 /* category */
 .selected {
-  background-color: var(--surface-brand-default);
+  background-color: var(--surface-brand-alt);
 }
 .selected div span {
   color: var(--text-white-default);
@@ -252,6 +251,37 @@ a:hover {
   font-weight: 700;
 }
 
+/* progress-bar */
+.category {
+  padding: 16px;
+  box-sizing: content-box;
+  position: relative;
+}
+.progress-bar {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+#play-animation {
+  background-color: var(--surface-brand-default);
+  animation: progress-animation 20s forwards;
+}
+
+@keyframes progress-animation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.ctg-wrapper {
+  position: relative;
+  z-index: 10;
+}
 /* press-info */
 .press-news {
   padding: 24px;
