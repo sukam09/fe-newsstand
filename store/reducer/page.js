@@ -2,8 +2,8 @@ import {
   VIEW_TYPE,
   CATEGORIES,
   CATEGORIES_TO_INDEX,
-} from "../constants/index.js";
-import { actionCreator } from "../core/index.js";
+} from "../../constants/index.js";
+import { actionCreator } from "../../core/index.js";
 
 // TODO: reducer가 외부 변수를 참조하고 있음. 추후 순수함수로 만들어야 함.
 let categoryIdx = 0;
@@ -14,8 +14,6 @@ const initialState = {
   currentPage: 0,
   currentCategory: CATEGORIES[categoryIdx],
   viewType: VIEW_TYPE.GRID,
-
-  theme: "light",
 };
 
 const NEXT_PAGE = "PAGE/NEXT_PAGE";
@@ -25,7 +23,6 @@ const CHANGE_VIEW = "PAGE/CHANGE_VIEW";
 const NEXT_CATEGORY = "PAGE/NEXT_CATEGORY";
 const PREV_CATEGORY = "PAGE/PREV_CATEGORY";
 const SET_CATEGORY = "PAGE/SET_CATEGORY";
-const CHANGE_THEME = "PAGE/CHANGE_THEME";
 
 export const nextPage = () => actionCreator(NEXT_PAGE);
 export const prevPage = () => actionCreator(PREV_PAGE);
@@ -34,9 +31,8 @@ export const changeView = (viewType) => actionCreator(CHANGE_VIEW, viewType);
 export const nextCategory = () => actionCreator(NEXT_CATEGORY);
 export const prevCategory = () => actionCreator(PREV_CATEGORY);
 export const setCategory = (category) => actionCreator(SET_CATEGORY, category);
-export const changeTheme = () => actionCreator(CHANGE_THEME);
 
-export const reducer = (state = initialState, action) => {
+export const page = (state = initialState, action) => {
   switch (action.type) {
     case NEXT_PAGE:
       return { ...state, currentPage: state.currentPage + 1 };
@@ -75,11 +71,6 @@ export const reducer = (state = initialState, action) => {
         ...state,
         currentCategory: action.payload,
         currentPage: 0,
-      };
-    case CHANGE_THEME:
-      return {
-        ...state,
-        theme: state.theme === "light" ? "dark" : "light",
       };
     default:
       return state;

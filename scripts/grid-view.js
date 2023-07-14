@@ -1,9 +1,9 @@
 import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
-import { store } from "../store/index.js";
+import { store, useSelector } from "../store/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const fillGridView = (newsData, currentPage) => {
-  const theme = store.getState().theme;
+  const theme = useSelector((state) => state.theme.currentTheme);
   const $gridView = document.querySelector(".grid-view");
   $gridView.innerHTML = "";
 
@@ -28,7 +28,7 @@ const fillGridView = (newsData, currentPage) => {
 };
 
 const initGridView = (newsData) => {
-  const currentPage = store.getState().currentPage;
+  const currentPage = useSelector((state) => state.page.currentPage);
   fillGridView(newsData, currentPage);
 };
 
@@ -55,7 +55,7 @@ export const renderGridView = (newsData) => {
   initGridView(newsData);
 
   store.subscribe(() => {
-    const { currentPage, viewType } = store.getState();
+    const { currentPage, viewType } = useSelector((state) => state.page);
     if (viewType !== VIEW_TYPE.GRID) return;
 
     fillGridView(newsData, currentPage);

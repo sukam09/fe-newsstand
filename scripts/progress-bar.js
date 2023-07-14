@@ -1,11 +1,11 @@
 import { NewsDB } from "../core/db.js";
-import { store } from "../store/index.js";
-import { nextCategory, nextPage } from "../store/reducer.js";
+import { store, useSelector } from "../store/index.js";
+import { nextCategory, nextPage } from "../store/reducer/page.js";
 
 const $listViewTab = document.querySelector(".list-view_tab");
 
 const handleProgressAnimationIteration = () => {
-  const { currentCategory, currentPage } = store.getState();
+  const { currentCategory, currentPage } = useSelector((state) => state.page);
   const totalCount = NewsDB.getCountByCategory(currentCategory);
 
   if (totalCount - 1 === currentPage) {
