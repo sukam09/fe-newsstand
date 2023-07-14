@@ -267,7 +267,7 @@ a:hover {
 
 #play-animation {
   background-color: var(--surface-brand-default);
-  animation: progress-animation 20s forwards;
+  animation: progress-animation 2s forwards;
 }
 
 @keyframes progress-animation {
