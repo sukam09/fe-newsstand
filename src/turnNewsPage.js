@@ -1,15 +1,16 @@
 import handleClickLogo from "./clickTitleLogo.js";
+import { FIRST_NEWS_PAGE } from "./constant.js";
 import showNews from "./showNews.js";
 
 const $newsPrevButton = document.querySelector('.press-news-left-button');
 const $newsNextButton = document.querySelector('.press-news-right-button');
-let newsPage = 0;
+let newsPage = FIRST_NEWS_PAGE;
 
 /**
 페이지 넘기는 버튼의 클릭 이벤트 핸들링
 */
 function turnNewsPage(shuffledPressNews, categoryIndex) {
-  newsPage = 0;
+  newsPage = FIRST_NEWS_PAGE;
   $newsPrevButton.addEventListener('click',(event) => 
   clickNewsTurner(event,shuffledPressNews,categoryIndex,'left'));
   $newsNextButton.addEventListener('click',(event) => 
