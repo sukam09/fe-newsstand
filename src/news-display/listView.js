@@ -80,38 +80,30 @@ const getNextCategoryIndex = (currentCategory) => {
 
 const categoryBar = document.querySelector(".list-view-category-bar");
 
-const setPrevCategoryActive = () => {
-    const currentCategoryElement = categoryBar.querySelector(
-        ".list-view-category-selected"
-    );
-
-    let prevCategoryElement = currentCategoryElement.previousElementSibling;
-    if (prevCategoryElement === null) {
-        prevCategoryElement = categoryBar.querySelector("ul").lastElementChild;
+const getNewCategoryElement = (state, currentCategory) => {
+    if (state === "prev") {
+        return currentCategory.previousElementSibling === null
+            ? categoryBar.querySelector("ul").lastElementChild
+            : currentCategory.previousElementSibling;
+    } else {
+        return currentCategory.nextElementSibling === null
+            ? categoryBar.querySelector("ul").firstElementChild
+            : currentCategory.nextElementSibling;
     }
-
-    currentCategoryElement.classList.remove("list-view-category-selected");
-    currentCategoryElement.classList.remove("selected-bold14");
-    currentCategoryElement.lastElementChild.remove();
-
-    updateListView(prevCategoryElement);
 };
 
-const setNextCategoryActive = () => {
+const updateCategoryActive = (state) => {
     const currentCategoryElement = categoryBar.querySelector(
         ".list-view-category-selected"
     );
 
-    let nextCategoryElement = currentCategoryElement.nextElementSibling;
-    if (nextCategoryElement === null) {
-        nextCategoryElement = categoryBar.querySelector("ul").firstElementChild;
-    }
+    const newCategory = getNewCategoryElement(state, currentCategoryElement);
 
     currentCategoryElement.classList.remove("list-view-category-selected");
     currentCategoryElement.classList.remove("selected-bold14");
     currentCategoryElement.lastElementChild.remove();
 
-    updateListView(nextCategoryElement);
+    updateListView(newCategory);
 };
 
 const updateCurrentIndex = (pageIndex) => {
@@ -124,7 +116,7 @@ const updatePrevListPageIndex = (pageIndex) => {
         setCurrentCategory(categoryList[getPrevCategoryIndex(currentCategory)]);
         categoryNewsData = initCategoryNewsData(currentCategory);
         setListPageIndex(categoryNewsData.length - 1);
-        setPrevCategoryActive();
+        updateCategoryActive("prev");
     } else {
         setListPageIndex(pageIndex - 1);
     }
@@ -135,7 +127,7 @@ const updateNextListPageIndex = (pageIndex) => {
         setCurrentCategory(categoryList[getNextCategoryIndex(currentCategory)]);
         categoryNewsData = initCategoryNewsData(currentCategory);
         setListPageIndex(0);
-        setNextCategoryActive();
+        updateCategoryActive("next");
     } else {
         setListPageIndex(pageIndex + 1);
     }
