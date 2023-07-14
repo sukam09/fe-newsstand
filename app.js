@@ -5,7 +5,7 @@ import { renderMain } from "./js/renderMain.js";
 
 function init() {
   clickNewsStand();
-  setDate();
+  setDate(document.getElementById("header-div-02"));
   rollingBanner();
   renderMain(1);
 }

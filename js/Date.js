@@ -2,20 +2,16 @@ function calcDate() {
   const weekend = ["일", "월", "화", "수", "목", "금", "토"];
   const today = new Date();
   const year = today.getFullYear();
-  let month = `0${today.getMonth() + 1}`;
-  month = month.slice(-2);
-  let date = `0${today.getDate()}`;
-  date = date.slice(-2);
+  const month = `0${today.getMonth() + 1}`.slice(-2);
+  const date = `0${today.getDate()}`.slice(-2);
   const day = weekend[today.getDay()];
-  const time = `${year}. ${month}. ${date}. ${day}요일`;
-  return time;
+  const totalTime = `${year}. ${month}. ${date}. ${day}요일`;
+  return totalTime;
 }
 
-function setDate() {
-  let time = calcDate();
-  const dateDiv = document.getElementById("header-div-02");
+function setDate(dateDiv) {
   const timeDiv = document.createElement("div");
-  timeDiv.innerText = time;
+  timeDiv.innerText = calcDate();
   dateDiv.appendChild(timeDiv);
 }
 
