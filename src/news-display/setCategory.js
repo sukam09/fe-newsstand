@@ -103,7 +103,6 @@ const setCategories = () => {
         insertHTML($ul, getCategoryList(category));
     });
     categoryBar.appendChild($ul);
-    // setFirstCategoryActive();
     setCurrentCategoryActive();
 };
 

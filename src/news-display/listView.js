@@ -66,6 +66,12 @@ const renderListView = () => {
     insertHTML(listViewMain, getArticle(categoryNewsData[pageIndex]));
 };
 
+const getPrevCategoryIndex = (currentCategory) => {
+    const currentCategoryIndex = categoryList.indexOf(currentCategory);
+    if (currentCategoryIndex === 0) return categoryList.length - 1;
+    return currentCategoryIndex - 1;
+};
+
 const getNextCategoryIndex = (currentCategory) => {
     const currentCategoryIndex = categoryList.indexOf(currentCategory);
     if (currentCategoryIndex + 1 === categoryList.length) return 0;
@@ -73,6 +79,23 @@ const getNextCategoryIndex = (currentCategory) => {
 };
 
 const categoryBar = document.querySelector(".list-view-category-bar");
+
+const setPrevCategoryActive = () => {
+    const currentCategoryElement = categoryBar.querySelector(
+        ".list-view-category-selected"
+    );
+
+    let prevCategoryElement = currentCategoryElement.previousElementSibling;
+    if (prevCategoryElement === null) {
+        prevCategoryElement = categoryBar.querySelector("ul").lastElementChild;
+    }
+
+    currentCategoryElement.classList.remove("list-view-category-selected");
+    currentCategoryElement.classList.remove("selected-bold14");
+    currentCategoryElement.lastElementChild.remove();
+
+    updateListView(prevCategoryElement);
+};
 
 const setNextCategoryActive = () => {
     const currentCategoryElement = categoryBar.querySelector(
@@ -96,23 +119,36 @@ const updateCurrentIndex = (pageIndex) => {
     progressNumber.innerHTML = pageIndex + 1;
 };
 
+const updatePrevListPageIndex = (pageIndex) => {
+    if (pageIndex === 0) {
+        setCurrentCategory(categoryList[getPrevCategoryIndex(currentCategory)]);
+        categoryNewsData = initCategoryNewsData(currentCategory);
+        setListPageIndex(categoryNewsData.length - 1);
+        setPrevCategoryActive();
+    } else {
+        setListPageIndex(pageIndex - 1);
+    }
+};
+
+const updateNextListPageIndex = (pageIndex) => {
+    if (pageIndex === categoryNewsData.length - 1) {
+        setCurrentCategory(categoryList[getNextCategoryIndex(currentCategory)]);
+        categoryNewsData = initCategoryNewsData(currentCategory);
+        setListPageIndex(0);
+        setNextCategoryActive();
+    } else {
+        setListPageIndex(pageIndex + 1);
+    }
+};
+
 let listViewInterval;
 const startListViewInterval = () => {
     listViewInterval = window.setInterval(() => {
         renderListView();
 
-        if (pageIndex === categoryNewsData.length - 1) {
-            setCurrentCategory(
-                categoryList[getNextCategoryIndex(currentCategory)]
-            );
-            categoryNewsData = initCategoryNewsData(currentCategory);
-            setListPageIndex(0);
-            setNextCategoryActive();
-        } else {
-            setListPageIndex(pageIndex + 1);
-        }
+        updateNextListPageIndex(pageIndex);
         updateCurrentIndex(pageIndex);
-    }, 20000);
+    }, 2000);
 };
 
 const setListView = () => {
@@ -123,4 +159,11 @@ const setListView = () => {
     startListViewInterval();
 };
 
-export { setListView, startListViewInterval, listViewInterval };
+export {
+    setListView,
+    startListViewInterval,
+    listViewInterval,
+    updateNextListPageIndex,
+    updatePrevListPageIndex,
+    updateCurrentIndex,
+};

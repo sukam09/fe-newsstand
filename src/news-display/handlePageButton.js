@@ -1,6 +1,11 @@
 import { gridPage, pageIndex, setGridPage, setListPageIndex } from "../app.js";
 import { showNewsPressItems } from "./gridView.js";
-import { setListView } from "./listView.js";
+import {
+    setListView,
+    updateCurrentIndex,
+    updateNextListPageIndex,
+    updatePrevListPageIndex,
+} from "./listView.js";
 
 const MIN_PAGE_NUM = 1;
 const MAX_PAGE_NUM = 4;
@@ -25,12 +30,17 @@ const clickGridNext = () => {
 };
 
 const clickListPrev = () => {
-    setListPageIndex(pageIndex - 1);
+    // setListPageIndex(pageIndex - 1);
+    updatePrevListPageIndex(pageIndex);
+    updateCurrentIndex(pageIndex);
     setListView();
 };
 
 const clickListNext = () => {
-    setListPageIndex(pageIndex + 1);
+    // console.log("click next");
+    // setListPageIndex(pageIndex + 1);
+    updateNextListPageIndex(pageIndex);
+    updateCurrentIndex(pageIndex);
     setListView();
 };
 

@@ -208,6 +208,10 @@ header {
     cursor: pointer;
 }
 
+.list-view-category-bar > ul > li:hover .category-text {
+    text-decoration: underline;
+}
+
 .list-view-category-selected {
     display: flex;
     justify-content: space-between;
