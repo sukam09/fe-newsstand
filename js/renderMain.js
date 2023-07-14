@@ -1,8 +1,13 @@
 import logo from "../json/news_image.json" assert { type: "json" };
 import { shuffle, changeImageSrc } from "./utils.js";
-import { addInitCategory, progressInterval } from "./category.js";
+import {
+  addInitCategory,
+  progressInterval,
+  addNewsHeader,
+  increaseListPage,
+  decreaseListPage,
+} from "./category.js";
 import news from "../json/news.json" assert { type: "json" };
-console.log(news.News[0]);
 
 let MAX_PAGE_NUMBER;
 const MIN_PAGE_NUMBER = 0;
@@ -12,6 +17,8 @@ const leftAsideButton = document.getElementById("aside-left");
 const gridMain = document.getElementById("main-grid-01");
 const listMain = document.getElementById("main-grid-02");
 
+const increment = 10;
+const totalTime = 2000;
 function renderMain(isGrid) {
   if (isGrid) renderGrid(logo);
   else renderCard();
@@ -24,13 +31,6 @@ function renderCard() {
   listMain.style.display = "flex";
   addInitCategory();
   addNewsHeader();
-}
-
-function addNewsHeader() {
-  const news_header = document.querySelector(".news_header");
-  news_header.innerHTML = "";
-  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${news.News[currentPageNumber].thumbnail}"><span class="newsEditTime">${news.News[currentPageNumber].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
-  news_header.innerHTML = new_div;
 }
 
 function renderGrid(logos) {
@@ -104,18 +104,6 @@ function increaseGridPage() {
   renderGrid(logo);
 }
 
-function increaseListPage() {
-  if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
-    rightAsideButton.style.visibility = "hidden";
-    currentPageNumber++;
-    addNewsHeader();
-    return;
-  }
-  leftAsideButton.style.visibility = "visible";
-  currentPageNumber++;
-  addNewsHeader();
-}
-
 function clickRightAsideButton(isGrid) {
   if (isGrid === 1) {
     rightAsideButton.removeEventListener("click", increaseListPage);
@@ -138,19 +126,6 @@ function decreaseGridPage() {
   renderGrid(logo);
 }
 
-function decreaseListPage() {
-  console.log(currentPageNumber);
-  if (currentPageNumber === MIN_PAGE_NUMBER + 1) {
-    leftAsideButton.style.visibility = "hidden";
-    currentPageNumber--;
-    addNewsHeader();
-    return;
-  }
-  rightAsideButton.style.visibility = "visible";
-  currentPageNumber--;
-  addNewsHeader();
-}
-
 function clickLeftAsideButton(isGrid) {
   if (isGrid === 1) {
     leftAsideButton.removeEventListener("click", decreaseListPage);
@@ -165,4 +140,4 @@ clickCardListImage();
 clickGridImage();
 clickRightAsideButton();
 
-export { renderMain };
+export { renderMain, leftAsideButton, rightAsideButton };

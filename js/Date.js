@@ -1,5 +1,4 @@
-function getDate() {
-  let time;
+function calcDate() {
   const weekend = ["일", "월", "화", "수", "목", "금", "토"];
   const today = new Date();
   const year = today.getFullYear();
@@ -8,12 +7,12 @@ function getDate() {
   let date = `0${today.getDate()}`;
   date = date.slice(-2);
   const day = weekend[today.getDay()];
-  time = `${year}. ${month}. ${date}. ${day}요일`;
+  const time = `${year}. ${month}. ${date}. ${day}요일`;
   return time;
 }
 
 function setDate() {
-  let time = getDate();
+  let time = calcDate();
   const dateDiv = document.getElementById("header-div-02");
   const timeDiv = document.createElement("div");
   timeDiv.innerText = time;
