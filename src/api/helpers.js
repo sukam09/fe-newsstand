@@ -1,4 +1,4 @@
-import { MAX_PAGE_NUM } from "../config.js";
+import { MAX_GRID_PAGE_NUM } from "../config.js";
 /**
  * company 데이터 배열을 입력받아 pagination을 적용한 데이터 배열을 return 합니다.
  * @param {[]} data
@@ -7,7 +7,7 @@ import { MAX_PAGE_NUM } from "../config.js";
  */
 function pagination(data, PAGINATION_NUM) {
     const pages = [];
-    let pageNumber = Math.min(Math.ceil(data?.length / PAGINATION_NUM), MAX_PAGE_NUM);
+    let pageNumber = Math.min(Math.ceil(data?.length / PAGINATION_NUM), MAX_GRID_PAGE_NUM);
     for (let i = 0; i < pageNumber; i++) {
         pages.push(data.slice(i * PAGINATION_NUM, (i + 1) * PAGINATION_NUM));
     }
@@ -28,12 +28,12 @@ function shuffle(data) {
  */
 function categorize(data) {
     const categorizedData = {};
-    data.forEach((agency) => {
-        const category = agency.category;
+    data.forEach((company) => {
+        const category = company.category;
         if (categorizedData[category])
-            categorizedData[category].push(agency);
+            categorizedData[category].push(company);
         else
-            categorizedData[category] = [agency];
+            categorizedData[category] = [company];
     });
     return categorizedData;
 }
