@@ -3,7 +3,10 @@
     ![UI - 1](./docs/test5.png)
     ![UI - 2](./docs/test6.png)
 
-2. 네이밍 규칙
+2. 시연 영상
+   [![IU(아이유) _ Into the I-LAND](./docs/screen1.png)](https://www.youtube.com/watch?v=KOVuUW7YreQ)
+
+3. 네이밍 규칙
 
     - HTML, CSS
         - id : `camelCase`
@@ -17,7 +20,7 @@
             - function scope : `camelCase`
             - global scope : `single tone` || `underscore`
 
-3. 디렉터리 구조
+4. 디렉터리 구조
 
 ```
 fe-newsstand
@@ -43,7 +46,7 @@ fe-newsstand
     └── views
 ```
 
-4. 구현 체크리스트
+5. 구현 체크리스트
 
 -   [x] 레이아웃 영역 나누기
 -   최신 뉴스 오토 롤링
