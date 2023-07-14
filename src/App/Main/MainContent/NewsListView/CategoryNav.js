@@ -9,8 +9,26 @@ const FIRST_PAGE = 1;
 const categoryLengthArr = [4, 12, 3, 5, 6, 4, 7, 10];
 
 export default function CategoryNav($target, props) {
+  const initCategoryState = {
+    currentPage: FIRST_PAGE,
+    lastPage: categoryLengthArr[FIRST_CATEGORY],
+    category: FIRST_CATEGORY,
+  };
+
+  const nextCategoryState = {
+    currentPage: 1,
+    lastPage: categoryLengthArr[props.category + 1],
+    category: props.category + 1,
+  };
+
+  const nextPageState = {
+    currentPage: props.currentPage + 1,
+    lastPage: props.lastPage,
+    category: props.category,
+  };
+
   this.startProgress = (progressBar) => {
-    const duration = 2000; // 20초
+    const duration = 20000; // 20초
     const startWidth = 0;
     const endWidth = 100;
     const startTime = performance.now();
@@ -19,31 +37,23 @@ export default function CategoryNav($target, props) {
       const elapsed = timestamp - startTime;
       const width = Math.min(
         (elapsed / duration) * (endWidth - startWidth) + startWidth,
-        endWidth
+        100
       );
+
       progressBar.style.width = width + "%";
 
       if (width >= endWidth) {
+        // when progress bar withd 100%
         if (props.currentPage === props.lastPage) {
+          // change category
           if (props.category === LAST_CATEGORY) {
-            props.setContentState({
-              currentPage: FIRST_PAGE,
-              lastPage: categoryLengthArr[FIRST_CATEGORY],
-              category: FIRST_CATEGORY,
-            });
+            props.setContentState(initCategoryState);
           } else {
-            props.setContentState({
-              currentPage: 1,
-              lastPage: categoryLengthArr[props.category + 1],
-              category: props.category + 1,
-            });
+            props.setContentState(nextCategoryState);
           }
         } else {
-          props.setContentState({
-            currentPage: props.currentPage + 1,
-            lastPage: props.lastPage,
-            category: props.category,
-          });
+          // change page
+          props.setContentState(nextPageState);
         }
       }
 

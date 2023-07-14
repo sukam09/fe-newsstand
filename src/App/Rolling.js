@@ -1,7 +1,7 @@
 /* 
 롤링 컨텐츠 컨테이너 컴포넌트
 */
-import RollingContents from "./RollingContents/RollingContents.js";
+import RollingContents from "./Rolling/RollingContents.js";
 
 const IMMEDIATELY = 0;
 const ONE_SECOND_LATER = 1;

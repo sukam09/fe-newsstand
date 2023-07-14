@@ -3,8 +3,8 @@
 */
 const WAITING_TIME = 1000;
 const ANIMATION_TIME = 400;
-const MOVE_TIME = ANIMATION_TIME;
 const MOVE_PIXEL = -16;
+
 const ROLLING_INTERVAL = 5000;
 
 const pauseRolling = function (timer) {
@@ -12,7 +12,7 @@ const pauseRolling = function (timer) {
 };
 
 const startRolling = function (rollingElement) {
-  const removeRollingMotion = () => {
+  const stopMoveUp = () => {
     rollingElement.removeAttribute("style");
     rollingElement.appendChild(rollingElement.firstElementChild);
     /*
@@ -27,7 +27,7 @@ const startRolling = function (rollingElement) {
     rollingElement.style.transitionDuration = `${ANIMATION_TIME}ms`;
     rollingElement.style.marginTop = `${MOVE_PIXEL}px`;
 
-    setTimeout(removeRollingMotion, MOVE_TIME);
+    setTimeout(stopMoveUp, ANIMATION_TIME);
   };
 
   return setInterval(moveUpElement, ROLLING_INTERVAL);
