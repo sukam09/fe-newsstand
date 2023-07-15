@@ -1,4 +1,4 @@
-import { initListView } from "./listView.js";
+import { initListView } from "../main/listView/listView.js";
 import { initGridView } from "./gridView.js";
 import { initRolling } from "./newsRolling.js";
 import { initViewChange } from "./changeView.js";
