@@ -33,11 +33,20 @@ const setModeEvent = () => {
  */
 const isLightMode = () => {
   let mode = localStorage.getItem('mode');
-  console.log(mode);
-  if (mode === 'light') localStorage.setItem('mode', 'dark');
-  if (mode === 'dark') localStorage.setItem('mode', 'light');
+
+  if (mode === 'light') {
+    localStorage.setItem('mode', 'dark');
+    changeMode('');
+  }
+  if (mode === 'dark') {
+    localStorage.setItem('mode', 'light');
+    changeMode('./styles/dark.css');
+  }
 };
 
-// 뉴스스탠드 함수이름 수정
+const changeMode = (href) => {
+  const darkMode = document.querySelector('.dark-mode');
+  darkMode.href = href;
+};
 
 export { initLightMode };

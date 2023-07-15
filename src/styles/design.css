@@ -1,15 +1,13 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
-
 :root {
   /* Typography Default Value */
-  --bold-L: 700 24px/1.5 "Pretendard";
-  --bold-M: 700 16px/1.5 "Pretendard";
-  --bold-R: 700 14px/1.5 "Pretendard";
-  --bold-S: 700 12px/1.5 "Pretendard";
+  --bold-L: 700 24px/1.5 'Pretendard';
+  --bold-M: 700 16px/1.5 'Pretendard';
+  --bold-R: 700 14px/1.5 'Pretendard';
+  --bold-S: 700 12px/1.5 'Pretendard';
 
-  --medium-M: 500 16px/22px "Pretendard";
-  --medium-R: 500 14px/1.5 "Pretendard";
-  --medium-S: 500 12px/1.5 "Pretendard";
+  --medium-M: 500 16px/22px 'Pretendard';
+  --medium-R: 500 14px/1.5 'Pretendard';
+  --medium-S: 500 12px/1.5 'Pretendard';
 
   /* Color Default Value */
   --grayscale-white-alt: #ffffff;
