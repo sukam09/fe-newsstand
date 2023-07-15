@@ -52,7 +52,7 @@ const setWrapper = (latestNews, side) => {
 const setWrapperElement = (newsWrapper, news) => {
   const newsElement = `
     <li class=${HEADER_CLASS.LI}>
-      <h2 class=${HEADER_CLASS.H2}'>${news.press}</h2>
+      <h2 class=${HEADER_CLASS.H2}>${news.press}</h2>
       <p class=${HEADER_CLASS.P}>${news.title}</p>
     </li>
   `;

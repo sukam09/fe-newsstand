@@ -11,3 +11,18 @@ body {
 .header__time {
   color: var(--grayscale-100);
 }
+
+/* 최신 뉴스 자동롤링 영역 */
+.latest_news__wrapper-left,
+.latest_news__wrapper-right {
+  background-color: var(--grayscale-500);
+  border: 1px solid var(--grayscale-400);
+}
+
+.latest_news__h2 {
+  color: var(--grayscale-white);
+}
+
+.latest_news__p {
+  color: var(--grayscale-100);
+}

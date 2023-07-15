@@ -64,8 +64,3 @@
 .next {
   top: 63px;
 }
-
-.stop {
-  top: 14px;
-  /* transition: top 0.5s ease; */
-}
