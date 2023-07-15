@@ -1,7 +1,9 @@
 import { getFetchData } from '../utils/fetch.js';
 
-let intervalLeft;
-let intervalRight;
+const interval = {
+  left: null,
+  right: null,
+};
 
 /**
  * 최신 뉴스의 INIT
@@ -50,6 +52,23 @@ const setWrapperElement = (newsWrapper, news) => {
   newsWrapper.insertAdjacentHTML('beforeend', newsElement);
 };
 
+const setHover = (side) => {
+  const newsWrapper = getWrapper(side);
+  const liList = newsWrapper.querySelectorAll(`.latest_news__li`);
+
+  liList.forEach((li) => {
+    li.addEventListener('mouseover', () => {
+      clearInterval(interval[side]);
+    });
+    li.addEventListener('mouseout', () => {
+      clearInterval(interval.left);
+      clearInterval(interval.right);
+      interval.left = startInterval('left');
+      setTimeout(() => (interval.right = startInterval('right')), 1000);
+    });
+  });
+};
+
 /**
  * 최신 뉴스의 롤링 설정
  */
@@ -93,8 +112,8 @@ const startInterval = (side) => {
 };
 
 const startRolling = (side) => {
-  if (side === 'left') intervalLeft = startInterval(side);
-  if (side === 'right') setTimeout(() => (intervalRight = startInterval(side)), 1000);
+  if (side === 'left') interval.left = startInterval(side);
+  if (side === 'right') setTimeout(() => (interval.right = startInterval(side)), 1000);
 };
 
 export { initLatestNews };
