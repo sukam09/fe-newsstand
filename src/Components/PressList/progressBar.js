@@ -1,4 +1,4 @@
-import { FIRST_NEWS_PAGE_INDEX } from "./constant.js";
+import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
 
 const $pageInfo = document.createElement('div');
 

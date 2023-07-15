@@ -1,13 +1,12 @@
-import rollNews from "./rollNews.js";
-import showDate from "./showDate.js";
-import handleClickLogo from "./clickTitleLogo.js";
-import initPressImg from "./initPressImg.js";
-import changeView from "./clickViewIcon.js";
-import initNews from "./initPressNews.js";
+import showDate from "./Components/Header/date.js";
+import handleClickLogo from "./Components/Header/titleLogo.js"
+import rollNews from "./Components/RollingNews/RollingNews.js";
+import {initPressImg} from "./Components/PressGrid/pressLogos.js"
+import changeView from "./Components/PressTab/pressTab.js";
+import {initNews} from "./Components/PressList/pressNews.js";
 
-
-handleClickLogo();
 showDate();
+handleClickLogo();
 rollNews();
 initPressImg();
 initNews();

@@ -1,4 +1,4 @@
-import { TEXT_WEAK , TEXT_POINT} from "./constant.js";
+import { TEXT_WEAK , TEXT_POINT} from "../../constant.js";
 
 const $listIcon = document.querySelector('.list-button');
 const $gridIcon = document.querySelector('.grid-button');

@@ -1,13 +1,13 @@
-import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "./constant.js";
-import { fetchPressInfos } from "./dataFetch.js";
-import turnPressPage from "./turnPressPage.js";
+import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
+import { fetchPressInfos } from "../../dataFetch.js";
+import turnPressPage from "./pageMoveButton.js";
 
 const $sectionNewsList = document.querySelector('.press-lists');
 const pressList = [];
 const page = [[], [], [], []];
 
 /**
- 언론사 정보를 가져오고 id를 배열에 넣음
+ 언론사 id 순서 랜덤화해서 각 페이지에 id할당
  */
 async function randomizeImgs() {
   const pressInfoArr = await fetchPressInfos();
@@ -15,9 +15,6 @@ async function randomizeImgs() {
     pressList.push({ "id": pressInfo["id"] })
   })
 
-  /**
-   id가 들어있는 배열을 랜덤화함
-   */
   const shuffledArray = [...pressList].sort(() => Math.random() - 0.5);
   shuffledArray.forEach((pressId, idx) => {
     const pageIndex = Math.floor(idx / ONE_PRESS_CNT);
@@ -26,15 +23,18 @@ async function randomizeImgs() {
 }
 
 /**
- 맨 처음 화면을 구성하는 전체 언론사 그리드 페이지 만듦
+ 맨 처음 화면을 구성하는 전체 언론사 그리드 페이지 띄우기
  */
 async function initPressImg() {
   await randomizeImgs();
-  $sectionNewsList.innerHTML = `
-  ${page[FIRST_PAGE_IDX].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
-`
+  drawPressImg(page, FIRST_PAGE_IDX);
   turnPressPage(page);
 }
 
-export default initPressImg;
+function drawPressImg(page, gridPageIndex) {
+  $sectionNewsList.innerHTML = `
+  ${page[gridPageIndex].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
+`
+}
 
+export { initPressImg, drawPressImg }

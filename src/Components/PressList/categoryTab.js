@@ -1,7 +1,7 @@
-import { FIRST_NEWS_PAGE_INDEX } from "./constant.js";
-import showNews from "./showNews.js";
-import turnNewsPage from "./turnNewsPage.js";
-import {initProgress} from "./showProgress.js";
+import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import {drawPressNews} from "./pressNews.js";
+import turnNewsPage from "./pageMoveButton.js";
+import {initProgress} from "./progressBar.js";
 
 let categoryClickEventFlag = false;
 /**
@@ -31,7 +31,7 @@ function handleClickCategory(event,shuffledPressNews,categories) {
  */
  function changeCategory(shuffledPressNews, categoryIdx) {
    resetNewsTurner();
-   showNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE_INDEX);
+   drawPressNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE_INDEX);
    turnNewsPage(shuffledPressNews, categoryIdx);
    initProgress(shuffledPressNews,categoryIdx, FIRST_NEWS_PAGE_INDEX);
  }

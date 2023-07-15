@@ -1,7 +1,7 @@
 /**
  년, 월, 일, 요일 화면에 띄우기
  */
-function showDate() {
+ function showDate() {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, 0);
@@ -12,4 +12,4 @@ function showDate() {
   $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
-export default showDate
+export default showDate;

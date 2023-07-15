@@ -1,4 +1,4 @@
-import { ROLLING_INTERVAL_SPACE_TIME, ROLLING_INTERVAL_TIME } from "./constant.js";
+import { ROLLING_INTERVAL_SPACE_TIME, ROLLING_INTERVAL_TIME } from "../../constant.js";
 
 /**
  뉴스 자동 롤링 설정
