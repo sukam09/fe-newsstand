@@ -58,6 +58,10 @@ body {
     flex-direction: column;
     margin-top:-3px;
 }
+.rolling-content span:hover {
+    cursor:pointer;
+    text-decoration: underline;
+}
 @keyframes roll {
     from {
 

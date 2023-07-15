@@ -14,27 +14,43 @@ let crntPage = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
 
-
+function listenHeadlineHover(target){
+    target.addEventListener("mouseover", () => {
+        target.classList.add("paused");
+    })
+    target.addEventListener("mouseout", () => {
+        target.classList.remove("paused")
+    })
+}
 function drawHeadline(target, data){
     target.innerHTML = "";
     data.forEach((item) => {
         target.innerHTML += `<span>${item.title}</span>`
     })
-    target.innerHTML += `<span>${data[0].title}</span>`
+    target.innerHTML += `<span>${data[0].title}</span>` // repeat drawHeadline instantly when rolling-window shows the last headline
 }
-function rollHeadline(target, data, rollIdx) {
-    if (rollIdx >= rollingList.length){
+function rollHeadline(target, data, headlineIdx, sectionIdx, isFirstRoll) {
+    if (headlineIdx >= rollingList.length){
         drawHeadline(target, data);
-        rollIdx = 0;
+        headlineIdx = 0;
     }
-        target.children[rollIdx].classList.add("roll");
-        target.children[rollIdx].addEventListener("animationend", (headline) => {
-            setTimeout(()=> {
-                rollIdx++;
-                target.children[rollIdx].classList.add("roll");
-                rollHeadline(target,data,rollIdx);
-            },1000)
-        })
+    const crntHeadline = target.children[headlineIdx];
+
+    // add 1 sec gap between left and right rolling sections
+    if (isFirstRoll && sectionIdx == 1){ // right rolling section (inital roll)
+        setTimeout(() => {
+            crntHeadline.classList.add("roll");
+        }, 1000);
+    } else if (sectionIdx == 0 || (!isFirstRoll && sectionIdx == 1)){ // left rolling section & right rolling section from second round roll
+        crntHeadline.classList.add("roll");
+    }
+    listenHeadlineHover(crntHeadline);
+    crntHeadline.addEventListener("animationend", () => {
+            headlineIdx++;
+            target.children[headlineIdx].classList.add("roll");
+            isFirstRoll = false
+            rollHeadline(target,data,headlineIdx, sectionIdx, isFirstRoll);
+    })
     
 }
 
@@ -124,8 +140,9 @@ function drawDate() {
 function init(){
     drawDate();
     drawPress(crntPage);
-    rollingContent.forEach((item) => {
-        rollHeadline(item,rollingList, rollingList.length);
+    rollingContent.forEach((item, index) => {
+        const isFirstRoll = true;
+        rollHeadline(item,rollingList, rollingList.length, index, isFirstRoll);
     })
     updateArrow();
     listenArrow();
