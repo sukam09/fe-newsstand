@@ -1,3 +1,4 @@
+import { HEADER_CLASS, NEWS_SLICE, SIDE, ROLLING, URL, ERROR } from '../constants/latest-news.js';
 import { getFetchData } from '../utils/fetch.js';
 
 const wrapperElements = {
@@ -11,46 +12,19 @@ const interval = {
   timeOut: null,
 };
 
-const HEADER_CLASS = {
-  LI: 'latest_news__li',
-  H2: 'latest_news__h2',
-  P: 'latest_news__p',
-};
-
-const SIDE = {
-  RIGHT: 'right',
-  LEFT: 'left',
-};
-
-const NEWS_SLICE = {
-  MIN: 0,
-  MAX: 10,
-};
-
-const ROLLING = {
-  INTERVAL: 5000,
-  DELAY: 1000,
-  PREV: 'prev',
-  CURRENT: 'current',
-  NEXT: 'next',
-};
-
-const DATA_URL = './assets/data/latest-news.json';
-const ERROR_MESSES = '최신 뉴스를 불러오는 중에 오류가 발생했습니다.';
-
 /**
  * 최신 뉴스의 INIT
  */
 const initLatestNews = async () => {
   try {
-    const fetchData = await getFetchData(DATA_URL);
+    const fetchData = await getFetchData(URL.DATA);
     const latestNews = fetchData.latestNews;
     const newsLeft = divideNews(latestNews, SIDE.LEFT);
     const newsRight = divideNews(latestNews, SIDE.RIGHT);
     setNews(newsLeft, SIDE.LEFT);
     setNews(newsRight, SIDE.RIGHT);
   } catch (error) {
-    console.error(ERROR_MESSES, error);
+    console.error(ERROR.MESSAGES, error);
   }
 };
 
