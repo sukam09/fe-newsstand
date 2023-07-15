@@ -5,7 +5,7 @@
 @import url('./design.css');
 @import url('./global.css');
 
-@import url('./components/news-stand-header-light.css');
+@import url('./components/news-stand-header.css');
 
 @import url('./components/latest-news.css');
 @import url('./components/light-dark-mode.css');

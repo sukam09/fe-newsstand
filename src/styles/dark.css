@@ -2,3 +2,12 @@ body {
   background-color: var(--grayscale-black);
   transition: background-color 0.5s ease;
 }
+
+/* 기본 상단 영역 */
+.header__h1 {
+  color: var(--grayscale-white);
+}
+
+.header__time {
+  color: var(--grayscale-100);
+}
