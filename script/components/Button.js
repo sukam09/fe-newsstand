@@ -16,22 +16,18 @@ const Button = ({ icon, isWhite, text, onClick }) => {
   return buttonElement;
 };
 
-const UnSubButton = ({ withText, onClick }) => {
-  return withText
-    ? Button({
-        icon: 'close',
-        isWhite: false,
-        text: BUTTON.UNSUBSCRIBE,
-        onClick,
-      })
-    : Button({ icon: 'close', isWhite: false, onClick });
-};
+const UnSubButton = ({ withText, onClick }) =>
+  Button({
+    icon: 'close',
+    isWhite: false,
+    text: withText ? BUTTON.UNSUBSCRIBE : null,
+    onClick,
+  });
 
-const SubButton = ({ isSub, withText = true, onClick }) => {
-  return isSub
+const SubButton = ({ isSub, withText = true, onClick }) =>
+  isSub
     ? UnSubButton({ withText, onClick })
     : Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick });
-};
 
 const ArrowButton = direction => {
   const arrowButton = document.createElement('button');
