@@ -23,6 +23,15 @@ async function randomizeImgs() {
 }
 
 /**
+ 언론사 이미지 띄우기
+ */
+function drawPressImg(page, gridPageIndex) {
+  $sectionNewsList.innerHTML = `
+  ${page[gridPageIndex].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
+`
+}
+
+/**
  맨 처음 화면을 구성하는 전체 언론사 그리드 페이지 띄우기
  */
 async function initPressImg() {
@@ -31,10 +40,5 @@ async function initPressImg() {
   turnPressPage(page);
 }
 
-function drawPressImg(page, gridPageIndex) {
-  $sectionNewsList.innerHTML = `
-  ${page[gridPageIndex].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
-`
-}
 
 export { initPressImg, drawPressImg }
