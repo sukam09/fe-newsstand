@@ -1,10 +1,11 @@
 import handleClickLogo from "./clickTitleLogo.js";
-import { FIRST_NEWS_PAGE } from "./constant.js";
+import { FIRST_NEWS_PAGE_INDEX } from "./constant.js";
 import showNews from "./showNews.js";
+import { setProgressPage } from "./showProgress.js";
 
 const $newsPrevButton = document.querySelector('.press-news-left-button');
 const $newsNextButton = document.querySelector('.press-news-right-button');
-let newsPage = FIRST_NEWS_PAGE;
+let newsPage = FIRST_NEWS_PAGE_INDEX;
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
@@ -15,7 +16,7 @@ let categoryIdx = 0;
 */
 function turnNewsPage(shuffledPressNews, categoryIndex) {
   categoryIdx = categoryIndex;
-  newsPage = FIRST_NEWS_PAGE;
+  newsPage = FIRST_NEWS_PAGE_INDEX;
 
   if ((!newsPrevBtnClickEventFlag) && (!newsNextBtnClickEventFlag)) {
     $newsPrevButton.addEventListener('click', (event) => {
@@ -44,6 +45,7 @@ function clickNewsTurner(shuffledPressNews, categoryIndex, whatButton) {
   whatButton === 'left' ? newsPage-- : newsPage++;
   showNewsTurner(shuffledPressNews, categoryIndex);
   showNews(shuffledPressNews, categoryIndex, newsPage);
+  setProgressPage(shuffledPressNews, categoryIndex, newsPage);
 }
 
 export default turnNewsPage

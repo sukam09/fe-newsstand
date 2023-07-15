@@ -12,5 +12,5 @@ export const IT = 2;
 export const ENGLISHCOCK = 3;
 export const SPORTS_ENTERTAIN = 4;
 export const MAGAZINE_PROFESSION = 5;
-export const FIRST_NEWS_PAGE = 0;
+export const FIRST_NEWS_PAGE_INDEX = 0;
 

@@ -1,3 +1,5 @@
+import { FIRST_NEWS_PAGE_INDEX } from "./constant.js";
+
 const $pageInfo = document.createElement('div');
 
 /**
@@ -16,10 +18,30 @@ function removeProgress(){
   })
 }
 
+/** 
+ progressbar의 현재 페이지 업데이트
+ */
+
+function drawProgressPage(shuffledPressNews, clickedCategory, newsPageIndex){
+  $pageInfo.innerHTML =  `
+  <div class="display-bold12 text-white-default">${newsPageIndex + 1}</div>
+  <img src="./assets/Icon/division.svg">
+  <div class="display-bold12 text-white-weak">${shuffledPressNews[clickedCategory].length}</div>
+`
+}
+
+/**
+ 페이지 넘기면 progressbar의 현재 페이지 업데이트
+ */
+
+function setProgressPage(shuffledPressNews, clickedCategory, newsPage) {
+  drawProgressPage(shuffledPressNews, clickedCategory, newsPage);
+}
+
 /**
  클릭한 카테고리에 대한 progress를 보여줌(미완성)
  */
-function showProgress(shuffledPressNews, clickedCategory) {
+function showProgress(shuffledPressNews, clickedCategory, newsPage) {
   removeProgress();
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1})`);
   const $Category = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1}) .progress-category`);
@@ -28,12 +50,9 @@ function showProgress(shuffledPressNews, clickedCategory) {
   $CategoryContainer.classList.remove('non-progress')
   
   $pageInfo.classList.add('progress-page');
-  $pageInfo.innerHTML =  `
-    <div class="display-bold12 text-white-default">1</div>
-    <img src="./assets/Icon/division.svg">
-    <div class="display-bold12 text-white-weak">${shuffledPressNews[clickedCategory].length}</div>
-  `
+
+  drawProgressPage(shuffledPressNews, clickedCategory, FIRST_NEWS_PAGE_INDEX);
   $CategoryContainer.appendChild($pageInfo);
 }
 
-export default showProgress;
+export  {showProgress, setProgressPage};
