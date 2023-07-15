@@ -7,7 +7,7 @@ const progress_bar_info = {
     interval: 0,
     category_now: 0,
     category_old: 0,
-    press_num: [0, 0, 0, 0, 0, 0, 0],
+    page_num: 0,
 };
 
 // interval 초기화

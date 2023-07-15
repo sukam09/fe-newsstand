@@ -1,9 +1,4 @@
-import { removeInterval, initCategoryTab } from "../list/progressEvent.js";
-
-const grid_icon = document.querySelector(".nav-right_grid_icon");
-const list_icon = document.querySelector(".nav-right_list_icon");
-const main_grid_view = document.querySelector(".main-grid-view");
-const main_list_view = document.querySelector(".main-list-view");
+import { removeInterval, initProgressBar } from "../list/progressBarEvent.js";
 
 const view_info = {
     is_grid_view: true,
@@ -36,7 +31,7 @@ const view_info = {
             list_icon.style.filter = "none";
         } else {
             // 리스트 뷰
-            initCategoryTab();
+            initProgressBar(1, 1, 1);
             main_grid_view.style.display = "none";
             main_list_view.style.display = "flex";
             list_icon.style.filter =

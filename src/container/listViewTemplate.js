@@ -3,6 +3,7 @@ import { ICON_LEFT_ARROW_BTN_URL, ICON_RIGHT_ARROW_BTN_URL } from "../utils/icon
 import { createSubscribeBtn } from "../components/common/subscribeBtn.js";
 import { news_category } from "../../data/newsCategory.js";
 import { CATEGORY_SIZE, CATEGORY_COUNT_ARR } from "../utils/constant.js";
+import { initProgressBar, getCategoryNow, onClickArrowBtn } from "../components/list/progressBarEvent.js";
 
 // 좌우 화살표 생성
 function createArrowBtn(direction) {
@@ -11,11 +12,13 @@ function createArrowBtn(direction) {
         className: "arrow",
         src: direction === "right" ? ICON_RIGHT_ARROW_BTN_URL : ICON_LEFT_ARROW_BTN_URL,
     });
-
+    btn.addEventListener("click", () => {
+        direction === "right" ? onClickArrowBtn(true) : onClickArrowBtn(false);
+    });
     return elem.createChild(btn, [img]);
 }
 
-function createCategoryBtn(category_name, category_size) {
+function createCategoryBtn(category_name, category_size, idx) {
     const list_view_btn = elem.createBtn({ className: "list-view-btn" });
     const tab_item = elem.createDiv({ className: "tab-item available-medium14", txt: category_name });
     const tab_item_clicked = elem.createDiv({ className: "tab-item-clicked" });
@@ -34,6 +37,10 @@ function createCategoryBtn(category_name, category_size) {
         className: "btn-tab-count-entire display-bold12",
         txt: category_size,
     });
+
+    list_view_btn.addEventListener("click", () => {
+        initProgressBar(getCategoryNow(), idx + 1, 1);
+    });
     elem.createChild(btn_tab_count, [btn_tab_count_present, btn_tab_count_division, btn_tab_count_entire]);
     elem.createChild(btn_tab_wrapper, [btn_tab_category, btn_tab_count]);
     elem.createChild(tab_item_clicked, [btn_tab_wrapper, btn_tab_progress]);
@@ -45,7 +52,7 @@ function createCategoryBtn(category_name, category_size) {
 function createNewsNav() {
     const container = elem.createNav({ className: "list-view-tab" });
     news_category.forEach((category_data, idx) => {
-        elem.createChild(container, [createCategoryBtn(category_data, CATEGORY_COUNT_ARR[idx])]);
+        elem.createChild(container, [createCategoryBtn(category_data, CATEGORY_COUNT_ARR[idx], idx)]);
     });
     return container;
 }

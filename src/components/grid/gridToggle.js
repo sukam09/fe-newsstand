@@ -5,6 +5,8 @@ import { press_list } from "../../../data/pressList.js";
 export const grid_view_info = {
     current_page: 0,
     shuffle_press_list: press_list.slice().sort(() => Math.random() - 0.5),
+
+    // 클래스 or return 할 수 있도록 바꾸기!
     getCurrentPage: function () {
         return this.current_page;
     },
