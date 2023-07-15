@@ -106,7 +106,7 @@ body {
     color: var(--color-text-weak);
 }
 
-.news-display-active {
+.display-active {
     color: var(--color-text-point);
 }
 
