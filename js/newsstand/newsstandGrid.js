@@ -1,6 +1,7 @@
 import { shuffle } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
+import { removeChildElement } from "../utils/util.js";
 
 let logoData = await getPressData("./data/pressObj.json");
 
@@ -21,7 +22,7 @@ export async function paintGridNewsstand() {
   pagination();
 }
 
-async function paintNews() {
+function paintNews() {
   logoData = shuffle(logoData);
   const ul = document.querySelector(".newsstand-area—six-col-list");
   for (
@@ -58,12 +59,6 @@ function pagination() {
     paintNews();
     isBtnDisabled();
   });
-}
-
-function removeChildElement(parent) {
-  while (parent.firstChild) {
-    parent.firstChild.remove();
-  }
 }
 
 function isBtnDisabled() {

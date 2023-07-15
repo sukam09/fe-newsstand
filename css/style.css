@@ -5,11 +5,17 @@
 #root {
   width: 930px;
 
-  --text-text-default: #5f6e76;
   --border-border-default: #d2dae0;
+  --surface-surface-alt: #f5f7f9;
+
+  --text-text-default: #5f6e76;
+  --text-text-strong: #14212b;
   --text-text-bold: #4b5966;
   --text-text-weak: #879298;
   --text-white-default: #ffffff;
+
+  --blue-100: #7890e7;
+  --blue-500: #4362d0;
 }
 
 .btn-disabled {

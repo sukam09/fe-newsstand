@@ -2,7 +2,7 @@ export function navTag() {
   const parent = document.querySelector(".newsstand__media-nav");
 
   const nav = `
-    <div class="newsstand__tab">
+    <div class="newsstand__tab newsstand__tab-left">
         <div class="newsstand—text-clicked">전체 언론사</div>
         <div class="newsstand—text-unclicked">내가 구독한 언론사</div>
     </div>

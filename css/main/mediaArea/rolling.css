@@ -11,9 +11,9 @@
 
   width: 100%;
   height: 100%;
-  transition: 1s;
+  transition: 0.5s;
   position: absolute;
-  transition: top 1s;
+  transition: top 0.5s;
   top: 100%;
   z-index: 1;
 
@@ -22,10 +22,13 @@
 }
 .main__rolling-corp {
   padding-left: 0px;
-  width: 100%;
+  min-width: 49px;
+  width: auto;
   height: 20px;
   overflow: hidden;
   position: relative;
+
+  text-align: center;
 }
 
 .main__rolling-corp li {
@@ -33,9 +36,9 @@
 
   width: 100%;
   height: 100%;
-  transition: 1s;
+  transition: 0.5s;
   position: absolute;
-  transition: top 1s;
+  transition: top 0.5s;
   top: 100%;
   z-index: 1;
 
@@ -70,10 +73,4 @@
 
 .after_slide {
   transform: translateY(0);
-}
-
-.main__rolling-corp {
-  padding-left: 0px;
-  width: 20%;
-  /* background-color: aqua; */
 }

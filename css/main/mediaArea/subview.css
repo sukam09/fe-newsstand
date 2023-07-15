@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 70px;
+  gap: 16px;
 }
 .main__content {
   display: flex;
@@ -10,22 +10,30 @@
   flex: 1;
   align-items: center;
 
-  background-color: #f5f7f9;
-  flex: 0.495;
-  border: 1px solid #d2dae0;
-  height: 13px;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-alt, #f5f7f9);
 
+  height: 17px;
   padding: 16px;
-  font-size: 0.85em;
+  gap: 16px;
 }
 .main-—corp-name {
-  text-align: center;
-  font-weight: bold;
+  color: var(--text-text-strong);
+
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 .main—-news-box {
-  width: 100%;
-  margin-left: 3%;
-  text-align: center;
-  font-weight: 500;
   color: var(--text-text-default);
+
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 16px;
 }

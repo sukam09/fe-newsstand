@@ -15,6 +15,7 @@ export function makeCategoryTag() {
       <div></div>
       <span>${item}</span>
       <span></span>
+      <span></span>
     </li>`;
     parentNode.innerHTML += li;
   });

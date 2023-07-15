@@ -1,26 +1,57 @@
 .newsstand__progress {
   height: 40px;
-  animation: progress 2s;
-  background-color: blue;
+  animation: progress 1s linear;
 }
 .newsstand__progress-category {
   position: absolute;
   top: 13px;
   left: 10px;
+
+  color: var(--text-text-white-default, #fff);
+
+  /* selected-bold14 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.newsstand__progress-now {
+  position: absolute;
+  top: 13px;
+  right: 33px;
+
+  color: var(--text-text-white-default, #fff);
+
+  /* display-bold12 */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 .newsstand__progress-total {
   position: absolute;
   top: 13px;
   right: 20px;
+
+  color: var(--text-text-white-weak, rgba(255, 255, 255, 0.7));
+
+  /* display-bold12 */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 @keyframes progress {
   0% {
     width: 0%;
-    background-color: blue;
+    background-color: var(--blue-500);
   }
   100% {
     width: 100%;
-    background-color: blue;
+    background-color: var(--blue-500);
   }
 }

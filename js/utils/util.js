@@ -1,5 +1,9 @@
-function shuffle(arr) {
+export function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
 
-export { shuffle };
+export function removeChildElement(parent) {
+  while (parent.firstChild) {
+    parent.firstChild.remove();
+  }
+}
