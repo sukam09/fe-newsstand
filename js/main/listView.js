@@ -33,6 +33,7 @@ function makeCategory() {
       e.stopPropagation();
       _li.click();
     });
+
     //default로 첫번째 카테고리
     if (index === 0) {
       _li.classList.add("selected-category");
@@ -41,11 +42,11 @@ function makeCategory() {
   });
 }
 
-/* handleCategoryClick 관련 */
+/* handleCategoryClick */
 function handleCategoryClick(e) {
   currentPage = 0;
   removeAnimation();
-  addAnimation(e, "Current");
+  addAnimation(e.target, "Current");
 }
 
 function removeAnimation() {
@@ -54,32 +55,32 @@ function removeAnimation() {
   prevSelected.classList.remove("selected-category");
 }
 
-function addAnimation(e, to) {
+function addAnimation(domObj, to) {
   if (to === "Next") {
     removeAnimation();
-    if (e.target.parentElement.nextElementSibling === null) {
+    if (domObj === null) {
       document
         .querySelector(".category li:first-child")
         .classList.add("selected-category");
     } else {
-      e.target.parentElement.nextElementSibling.classList.add(
-        "selected-category"
-      );
+      domObj.classList.add("selected-category");
     }
   } else if (to === "Prev") {
+    removeAnimation();
+    domObj.classList.add("selected-category");
   } else if (to === "Current") {
-    e.target.classList.add("selected-category");
+    domObj.classList.add("selected-category");
   }
 }
 
-/* handleAniamtionStart관련 */
+/* handleAniamtionStart */
 function handleAniamtionStart(e) {
   chageNews(e);
 }
-/* handleAniamtionIteration 관련 */
+
+/* handleAniamtionIteration */
 function handleAniamtionIteration(e) {
   const totalPageNum = getPagesNum(e);
-
   if (currentPage + 1 < totalPageNum) {
     currentPage += 1;
     chageNews(e);
@@ -87,7 +88,7 @@ function handleAniamtionIteration(e) {
   //다음 카테고리로 넘어갈 때
   else {
     currentPage = 0;
-    addAnimation(e, "Next");
+    addAnimation(e.target.parentElement.nextElementSibling, "Next");
   }
   //currentPage > totalNum => passAnimation
 }
@@ -139,6 +140,8 @@ function changeSub(news) {
 }
 
 function changePageInfo(e) {
+  //e.target => span (class = category-num)
+  //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
   e.target.parentElement.children[2].innerText = `${
     currentPage + 1
@@ -152,6 +155,52 @@ function getNews(e) {
 
 function getPagesNum(e) {
   return getNews(e).length;
+}
+
+function addEventToBtn() {
+  const left_btn = document.getElementById("list-left-btn");
+  const right_btn = document.getElementById("list-right-btn");
+
+  left_btn.addEventListener("click", () => handleBtnClick("Left"));
+  right_btn.addEventListener("click", () => handleBtnClick("Right"));
+}
+
+function handleBtnClick(type) {
+  //애니메이션 초기화
+  const currentCategory = document.querySelector(".selected-category");
+  currentCategory.classList.remove("selected-category");
+  void currentCategory.offsetWidth;
+  currentCategory.classList.add("selected-category");
+
+  //depend on btn type
+  //currentPage는 0부터 시작
+  if (type === "Left") {
+    //이전 카테고리로 넘어갈 때
+    //첫번째 카테고리 1page에서 마지막 카테고리로
+    if (currentPage - 1 < 0) {
+      let prevCategory;
+      if (currentCategory.previousElementSibling === null) {
+        prevCategory = document.querySelector(".category li:last-child");
+      } else {
+        prevCategory = currentCategory.previousElementSibling;
+      }
+
+      const prevMaxPage = news_by_category[prevCategory.innerText].length;
+      currentPage = prevMaxPage - 1;
+      addAnimation(prevCategory, "Prev");
+    } else {
+      currentPage -= 1;
+    }
+  } else if (type === "Right") {
+    const maxPage = currentCategory.children[2].innerText.split("/")[1];
+    //다음 카테고리로 넘어갈 때
+    if (currentPage + 1 >= maxPage) {
+      currentPage = 0;
+      addAnimation(currentCategory.nextElementSibling, "Next");
+    } else {
+      currentPage += 1;
+    }
+  }
 }
 
 function getClickedCategory(e) {
@@ -380,7 +429,7 @@ function getClickedCategory(e) {
 function initListView() {
   makeRandomNews();
   makeCategory();
-  // addAniToCategory();
+  addEventToBtn();
 }
 
 export { initListView };
