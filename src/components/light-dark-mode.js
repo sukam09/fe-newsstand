@@ -5,6 +5,11 @@ const MODE_IMG_SRC_LIGHT = './assets/icons/mode-light.svg';
 const MODE_IMG_SRC_DARK = './assets/icons/mode-dark.svg';
 const LIGHT_MODE_STYLESHEET = '';
 const DARK_MODE_STYLESHEET = './styles/dark.css';
+const MODE_CLASS = {
+  NAV: 'press__nav-right',
+  IMG: 'mode__img',
+  DARK_MODE: 'dark-mode',
+};
 
 /**
  * 뉴스스탠드의 INIT
@@ -17,15 +22,15 @@ const initMode = () => {
 };
 
 const setMode = () => {
-  const navRight = document.querySelector('.press__nav-right');
+  const navRight = document.querySelector(`.${MODE_CLASS.NAV}`);
   const modeElement = `
-    <img class='mode__img' src=${MODE_IMG_SRC_LIGHT}></img>
+    <img class=${MODE_CLASS.IMG} src=${MODE_IMG_SRC_LIGHT}></img>
     `;
   navRight.insertAdjacentHTML('afterbegin', modeElement);
 };
 
 const setModeEvent = () => {
-  const modeImg = document.querySelector('.mode__img');
+  const modeImg = document.querySelector(`.${MODE_CLASS.IMG}`);
   modeImg.addEventListener('click', toggleMode);
 };
 
@@ -33,7 +38,7 @@ const setModeEvent = () => {
  *  라이트/다크모드 변경
  */
 const toggleMode = () => {
-  let mode = localStorage.getItem('mode');
+  let mode = localStorage.getItem(MODE);
 
   if (mode === LIGHT_MODE) {
     localStorage.setItem(MODE, DARK_MODE);
@@ -48,12 +53,12 @@ const toggleMode = () => {
 };
 
 const changeStyle = (href) => {
-  const darkMode = document.querySelector('.dark-mode');
+  const darkMode = document.querySelector(`.${MODE_CLASS.DARK_MODE}`);
   darkMode.href = href;
 };
 
 const changeIcon = (src) => {
-  const modeImg = document.querySelector('.mode__img');
+  const modeImg = document.querySelector(`.${MODE_CLASS.IMG}`);
   modeImg.src = src;
 };
 
