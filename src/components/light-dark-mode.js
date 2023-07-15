@@ -1,52 +1,60 @@
+const MODE = 'mode';
+const LIGHT_MODE = 'light';
+const DARK_MODE = 'dark';
+const MODE_IMG_SRC_LIGHT = './assets/icons/mode-light.svg';
+const MODE_IMG_SRC_DARK = './assets/icons/mode-dark.svg';
+const LIGHT_MODE_STYLESHEET = '';
+const DARK_MODE_STYLESHEET = './styles/dark.css';
+
 /**
  * 뉴스스탠드의 INIT
- * 기본은 Light 모드 ☀️
+ * 기본은 Light 모드 🌈
  */
-const initLightMode = () => {
-  localStorage.setItem('mode', 'light');
-
+const initMode = () => {
+  localStorage.setItem(MODE, LIGHT_MODE);
   setMode();
   setModeEvent();
 };
 
-/**
- *  라이트/다크모드의 ELEMENT
- */
 const setMode = () => {
   const navRight = document.querySelector('.press__nav-right');
   const modeElement = `
-    <img class='mode__img' src='./assets/icons/mode-light.svg'></img>
+    <img class='mode__img' src=${MODE_IMG_SRC_LIGHT}></img>
     `;
   navRight.insertAdjacentHTML('afterbegin', modeElement);
 };
 
-/**
- *  라이트/다크모드의 이벤트
- */
 const setModeEvent = () => {
   const modeImg = document.querySelector('.mode__img');
-  modeImg.addEventListener('click', isLightMode);
+  modeImg.addEventListener('click', toggleMode);
 };
 
 /**
  *  라이트/다크모드 변경
  */
-const isLightMode = () => {
+const toggleMode = () => {
   let mode = localStorage.getItem('mode');
 
-  if (mode === 'light') {
-    localStorage.setItem('mode', 'dark');
-    changeMode('');
+  if (mode === LIGHT_MODE) {
+    localStorage.setItem(MODE, DARK_MODE);
+    changeStyle(DARK_MODE_STYLESHEET);
+    changeIcon(MODE_IMG_SRC_DARK);
   }
-  if (mode === 'dark') {
-    localStorage.setItem('mode', 'light');
-    changeMode('./styles/dark.css');
+  if (mode === DARK_MODE) {
+    localStorage.setItem(MODE, LIGHT_MODE);
+    changeStyle(LIGHT_MODE_STYLESHEET);
+    changeIcon(MODE_IMG_SRC_LIGHT);
   }
 };
 
-const changeMode = (href) => {
+const changeStyle = (href) => {
   const darkMode = document.querySelector('.dark-mode');
   darkMode.href = href;
 };
 
-export { initLightMode };
+const changeIcon = (src) => {
+  const modeImg = document.querySelector('.mode__img');
+  modeImg.src = src;
+};
+
+export { initMode };
