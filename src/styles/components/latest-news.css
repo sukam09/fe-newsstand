@@ -36,7 +36,6 @@
 }
 
 .latest_news__h2 {
-  cursor: pointer;
   font: var(--bold-R);
   color: var(--grayscale-black);
 }
@@ -45,6 +44,10 @@
   cursor: pointer;
   font: var(--medium-R);
   color: var(--grayscale-400);
+}
+
+.latest_news__p:hover {
+  text-decoration: underline;
 }
 
 /* 롤링 영역 */
@@ -60,4 +63,9 @@
 
 .next {
   top: 63px;
+}
+
+.stop {
+  top: 14px;
+  /* transition: top 0.5s ease; */
 }
