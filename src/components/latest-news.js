@@ -1,29 +1,62 @@
 import { getFetchData } from '../utils/fetch.js';
 
+const wrapperElements = {
+  left: document.querySelector('.latest_news__wrapper-left'),
+  right: document.querySelector('.latest_news__wrapper-right'),
+};
+
 const interval = {
   left: null,
   right: null,
+  timeOut: null,
 };
+
+const HEADER_CLASS = {
+  LI: 'latest_news__li',
+  H2: 'latest_news__h2',
+  P: 'latest_news__p',
+};
+
+const SIDE = {
+  RIGHT: 'right',
+  LEFT: 'left',
+};
+
+const NEWS_SLICE = {
+  MIN: 0,
+  MAX: 10,
+};
+
+const ROLLING = {
+  INTERVAL: 5000,
+  DELAY: 1000,
+  PREV: 'prev',
+  CURRENT: 'current',
+  NEXT: 'next',
+};
+
+const DATA_URL = './assets/data/latest-news.json';
+const ERROR_MESSES = '최신 뉴스를 불러오는 중에 오류가 발생했습니다.';
 
 /**
  * 최신 뉴스의 INIT
  */
 const initLatestNews = async () => {
   try {
-    const fetchData = await getFetchData('./assets/data/latest-news.json');
+    const fetchData = await getFetchData(DATA_URL);
     const latestNews = fetchData.latestNews;
-    const newsLeft = divideNews(latestNews, 'left');
-    const newsRight = divideNews(latestNews, 'right');
-    setNews(newsLeft, 'left');
-    setNews(newsRight, 'right');
+    const newsLeft = divideNews(latestNews, SIDE.LEFT);
+    const newsRight = divideNews(latestNews, SIDE.RIGHT);
+    setNews(newsLeft, SIDE.LEFT);
+    setNews(newsRight, SIDE.RIGHT);
   } catch (error) {
-    console.error('최신 뉴스를 불러오는 중에 오류가 발생했습니다.', error);
+    console.error(ERROR_MESSES, error);
   }
 };
 
 const divideNews = (latestNews, side) => {
-  if (side === 'left') return latestNews.slice(0, 5);
-  if (side === 'right') return latestNews.slice(5, 10);
+  if (side === SIDE.LEFT) return latestNews.slice(NEWS_SLICE.MIN, NEWS_SLICE.MAX / 2);
+  if (side === SIDE.RIGHT) return latestNews.slice(NEWS_SLICE.MAX / 2, NEWS_SLICE.MAX);
 };
 
 const setNews = (latestNews, side) => {
@@ -34,7 +67,7 @@ const setNews = (latestNews, side) => {
 };
 
 const getWrapper = (side) => {
-  return document.querySelector(`.latest_news__wrapper-${side}`);
+  return wrapperElements[side];
 };
 
 const setWrapper = (latestNews, side) => {
@@ -44,9 +77,9 @@ const setWrapper = (latestNews, side) => {
 
 const setWrapperElement = (newsWrapper, news) => {
   const newsElement = `
-    <li class='latest_news__li'>
-      <h2 class='latest_news__h2'>${news.press}</h2>
-      <p class='latest_news__p'>${news.title}</p>
+    <li class=${HEADER_CLASS.LI}>
+      <h2 class=${HEADER_CLASS.H2}'>${news.press}</h2>
+      <p class=${HEADER_CLASS.P}>${news.title}</p>
     </li>
   `;
   newsWrapper.insertAdjacentHTML('beforeend', newsElement);
@@ -57,16 +90,21 @@ const setHover = (side) => {
   const liList = newsWrapper.querySelectorAll(`.latest_news__li`);
 
   liList.forEach((li) => {
-    li.addEventListener('mouseover', () => {
-      clearInterval(interval[side]);
-    });
-    li.addEventListener('mouseout', () => {
-      clearInterval(interval.left);
-      clearInterval(interval.right);
-      interval.left = startInterval('left');
-      setTimeout(() => (interval.right = startInterval('right')), 1000);
-    });
+    li.addEventListener('mouseover', setHoverOver, side);
+    li.addEventListener('mouseout', setHoverOut);
   });
+};
+
+const setHoverOver = (side) => {
+  clearInterval(interval[side]);
+};
+
+const setHoverOut = () => {
+  clearInterval(interval.left);
+  clearInterval(interval.right);
+  clearTimeout(interval.timeOut);
+  interval.left = startInterval(SIDE.LEFT);
+  interval.timeOut = setTimeout(() => (interval.right = startInterval(SIDE.RIGHT)), ROLLING.DELAY);
 };
 
 /**
@@ -75,9 +113,9 @@ const setHover = (side) => {
 const setRolling = (side) => {
   const liElements = getWrapper(side).querySelectorAll('li');
 
-  liElements[0].classList.add(`prev`);
-  liElements[1].classList.add(`current`);
-  liElements[2].classList.add(`next`);
+  liElements[0].classList.add(ROLLING.PREV);
+  liElements[1].classList.add(ROLLING.CURRENT);
+  liElements[2].classList.add(ROLLING.NEXT);
 };
 
 const setRollingName = (side) => {
@@ -87,33 +125,33 @@ const setRollingName = (side) => {
 };
 
 const setRollingPrev = (side) => {
-  const prev = getWrapper(side).querySelector(`.prev`);
-  prev.classList.remove('prev');
+  const prev = getWrapper(side).querySelector(`.${ROLLING.PREV}`);
+  prev.classList.remove(ROLLING.PREV);
 };
 
 const setRollingCurrent = (side) => {
-  const current = getWrapper(side).querySelector(`.current`);
-  current.classList.remove('current');
-  current.classList.add('prev');
+  const current = getWrapper(side).querySelector(`.${ROLLING.CURRENT}`);
+  current.classList.remove(ROLLING.CURRENT);
+  current.classList.add(ROLLING.PREV);
 };
 
 const setRollingNext = (side) => {
-  const next = getWrapper(side).querySelector(`.next`);
+  const next = getWrapper(side).querySelector(`.${ROLLING.NEXT}`);
   const nextSibling = next?.nextElementSibling;
 
-  if (nextSibling) nextSibling.classList.add('next');
-  if (!nextSibling) getWrapper(side).querySelector(`li:first-child`).classList.add('next');
-  next.classList.remove('next');
-  next.classList.add('current');
+  if (nextSibling) nextSibling.classList.add(ROLLING.NEXT);
+  if (!nextSibling) getWrapper(side).querySelector(`li:first-child`).classList.add(ROLLING.NEXT);
+  next.classList.remove(ROLLING.NEXT);
+  next.classList.add(ROLLING.CURRENT);
 };
 
 const startInterval = (side) => {
-  return setInterval(setRollingName, 5000, side);
+  return setInterval(setRollingName, ROLLING.INTERVAL, side);
 };
 
 const startRolling = (side) => {
-  if (side === 'left') interval.left = startInterval(side);
-  if (side === 'right') setTimeout(() => (interval.right = startInterval(side)), 1000);
+  if (side === SIDE.LEFT) interval.left = startInterval(SIDE.LEFT);
+  if (side === SIDE.RIGHT) setTimeout(() => (interval.right = startInterval(SIDE.RIGHT)), ROLLING.DELAY);
 };
 
 export { initLatestNews };
