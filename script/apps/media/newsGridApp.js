@@ -1,55 +1,55 @@
-import { MEDIA, SUB_MEDIA } from '../../constants.js';
 import mediaData from '../../../assets/data/mediaData.js';
-import { SubButton } from '../../components/Button.js';
-import { createNewArrow, shuffleArray } from '../../utils/utils.js';
+import MediaGrid from '../../components/media/MediaGrid.js';
+import { MEDIA, SUB_MEDIA } from '../../constants.js';
+import { SubButtonArea } from '../../components/Button.js';
+import {
+  clearAllChildren,
+  createNewArrow,
+  shuffleArray,
+} from '../../utils/utils.js';
 
 const createMediaArray = () => {
   const mediaArray = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
+
   shuffleArray(mediaArray);
   return mediaArray;
 };
 
+const updateLogo = (logoElement, mediaId) => {
+  logoElement.nextElementSibling?.remove();
+  logoElement.className = 'media_logo';
+  if (mediaId === undefined) {
+    logoElement.src = '';
+    logoElement.alt = '';
+    return;
+  }
+  logoElement.classList.add(`media_${mediaId}`);
+  logoElement.src = mediaData.getLogoSrc(mediaId);
+  logoElement.alt = mediaData.getName(mediaId);
+  logoElement.insertAdjacentElement(
+    'afterend',
+    SubButtonArea(SUB_MEDIA.includes(mediaId))
+  );
+};
+
 const updatePage = (mediaArray, page) => {
   const mediaLogo = document.querySelectorAll('.media_logo');
-  const gridIndex = Array.from(
-    { length: MEDIA.PAGE_SIZE },
-    (_, index) => page * MEDIA.PAGE_SIZE + index
-  );
-  gridIndex.forEach((mediaIndex, index) => {
-    const mediaId = mediaArray[mediaIndex];
-    const logoSrc = mediaData.getLogoSrc(mediaId);
-    const logoElement = mediaLogo[index];
-    // 구독하기 or 해지하기 버튼 제거
-    logoElement.nextElementSibling?.remove();
-    if (!logoSrc) {
-      logoElement.className = 'media_logo';
-      logoElement.src = '';
-      return;
-    }
-    logoElement.className = `media_logo media_${mediaId}`;
-    logoElement.src = logoSrc;
-    logoElement.alt = mediaData.getName(mediaId);
-    // 구독 여부에 따라 구독하기 or 해지하기 버튼 추가
-    const subButtonArea = document.createElement('div');
-    subButtonArea.classList.add('media_hover', 'surface_alt');
-    subButtonArea.appendChild(
-      SubButton({ isSub: SUB_MEDIA.includes(mediaArray[mediaId]) })
-    );
-    logoElement.insertAdjacentElement('afterend', subButtonArea);
+
+  mediaLogo.forEach((logo, index) => {
+    updateLogo(logo, mediaArray[page * MEDIA.PAGE_SIZE + index]);
   });
 };
 
 const setPage = (gridData, move, leftArrow, rightArrow) => {
   gridData.page += move;
   updatePage(gridData.mediaArray, gridData.page);
-  setArrowVisible(gridData.page, leftArrow, rightArrow);
+  setArrowDisplay(gridData.page, leftArrow, rightArrow);
 };
 
-const setArrow = gridData => {
+const initArrow = gridData => {
   const [leftArrow, rightArrow] = createNewArrow();
 
-  setArrowVisible(gridData.page, leftArrow, rightArrow);
-  // 화살표 이벤트리스너
+  setArrowDisplay(gridData.page, leftArrow, rightArrow);
   leftArrow.addEventListener('click', () => {
     setPage(gridData, -1, leftArrow, rightArrow);
   });
@@ -58,7 +58,7 @@ const setArrow = gridData => {
   });
 };
 
-const setArrowVisible = (page, leftArrow, rightArrow) => {
+const setArrowDisplay = (page, leftArrow, rightArrow) => {
   const leftDisplay = page === 0 ? 'none' : 'block';
   const rightDisplay = page === MEDIA.MAX_PAGE ? 'none' : 'block';
 
@@ -66,30 +66,11 @@ const setArrowVisible = (page, leftArrow, rightArrow) => {
   rightArrow.style.display = rightDisplay;
 };
 
-const createGridItems = gridElement => {
-  Array.from({ length: MEDIA.PAGE_SIZE }, (_, index) => {
-    const gridItem = document.createElement('li');
-    const gridItemImage = document.createElement('img');
-
-    gridItemImage.classList.add('media_logo');
-    gridItem.appendChild(gridItemImage);
-    gridElement.appendChild(gridItem);
-  });
-};
-
-const createGridElement = () => {
-  const gridElement = document.createElement('ul');
-
-  gridElement.classList.add('media_view_grid');
-  createGridItems(gridElement);
-  return gridElement;
-};
-
 const initGrid = () => {
   const mediaView = document.querySelector('#media_view');
 
-  Array.from(mediaView.childNodes).forEach(child => child.remove());
-  mediaView.appendChild(createGridElement());
+  clearAllChildren(mediaView);
+  mediaView.appendChild(MediaGrid());
 };
 
 const gridApp = () => {
@@ -100,7 +81,7 @@ const gridApp = () => {
 
   initGrid();
   updatePage(gridData.mediaArray, gridData.page);
-  setArrow(gridData);
+  initArrow(gridData);
 };
 
 export default gridApp;

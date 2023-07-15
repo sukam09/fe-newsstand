@@ -29,6 +29,14 @@ const SubButton = ({ isSub, withText = true, onClick }) =>
     ? UnSubButton({ withText, onClick })
     : Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick });
 
+const SubButtonArea = isSub => {
+  const subButtonArea = document.createElement('div');
+
+  subButtonArea.classList.add('media_hover', 'surface_alt');
+  subButtonArea.appendChild(SubButton({ isSub }));
+  return subButtonArea;
+};
+
 const ArrowButton = direction => {
   const arrowButton = document.createElement('button');
 
@@ -38,4 +46,4 @@ const ArrowButton = direction => {
 };
 
 export default Button;
-export { ArrowButton, SubButton };
+export { ArrowButton, SubButton, SubButtonArea };

@@ -71,6 +71,18 @@
     height: 200px;
     border: 1px solid var(--border-default);
     box-sizing: border-box;
+    overflow: hidden;
+}
+
+.thumbnail_news .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.thumbnail_news:hover .thumbnail img {
+    transform: scale(1.05);
 }
 
 #list_view .news {

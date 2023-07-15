@@ -1,9 +1,10 @@
+import MediaNav from '../../components/media/MediaNav.js';
 import gridApp from './newsGridApp.js';
-import addMediaNav from './nav/mediaNav.js';
 import listApp from './newsListApp.js';
 import { ArrowButton } from '../../components/Button.js';
+import Icon from '../../components/Icon.js';
 
-const createMediaViewWrapper = () => {
+const MediaViewWrapper = () => {
   const mediaViewWrapper = document.createElement('div');
   const mediaView = document.createElement('div');
 
@@ -12,17 +13,14 @@ const createMediaViewWrapper = () => {
   mediaViewWrapper.appendChild(ArrowButton('left'));
   mediaViewWrapper.appendChild(mediaView);
   mediaViewWrapper.appendChild(ArrowButton('right'));
-
   return mediaViewWrapper;
 };
 
-const setLayout = mediaWrapper => {
-  addMediaNav(mediaWrapper);
-  mediaWrapper.appendChild(createMediaViewWrapper());
-};
-
 const initMedia = mediaWrapper => {
-  setLayout(mediaWrapper);
+  mediaWrapper.appendChild(
+    MediaNav(mediaWrapper.mediaSelectData, mediaWrapper.viewSelectData)
+  );
+  mediaWrapper.appendChild(MediaViewWrapper());
 };
 
 const mediaApp = () => {
@@ -31,16 +29,16 @@ const mediaApp = () => {
   mediaWrapper.mediaSelectData = [
     {
       id: 'media_select_all',
-      text: '전체 언론사',
-      handler: () => {
+      innerHTML: '전체 언론사',
+      onChange: () => {
         console.log('전체');
       },
-      checked: true,
+      defaultChecked: true,
     },
     {
       id: 'media_select_subscribed',
-      text: '내가 구독한 언론사',
-      handler: () => {
+      innerHTML: '내가 구독한 언론사',
+      onChange: () => {
         console.log('구독');
       },
     },
@@ -48,14 +46,14 @@ const mediaApp = () => {
   mediaWrapper.viewSelectData = [
     {
       id: 'view_list',
-      icon: 'listView',
-      handler: listApp,
+      innerHTML: Icon.listView,
+      onChange: listApp,
     },
     {
       id: 'view_grid',
-      icon: 'gridView',
-      handler: gridApp,
-      checked: true,
+      innerHTML: Icon.gridView,
+      onChange: gridApp,
+      defaultChecked: true,
     },
   ];
   initMedia(mediaWrapper);

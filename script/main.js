@@ -1,5 +1,5 @@
-import headerApp from './apps/headerApp.js';
-import headlineApp from './apps/headlineApp.js';
+import headerApp from './apps/header/headerApp.js';
+import headlineApp from './apps/headline/headlineApp.js';
 import mediaApp from './apps/media/mediaApp.js';
 
 (() => {

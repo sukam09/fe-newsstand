@@ -1,5 +1,5 @@
-import NewsTitle from '../components/NewsTitle.js';
-import { HEADLINE, HEADLINE_DATA } from '../constants.js';
+import NewsTitle from '../../components/NewsTitle.js';
+import { HEADLINE, HEADLINE_DATA } from '../../constants.js';
 
 const startRolling = newsTitleWrapper => {
   const newsTitle = newsTitleWrapper.querySelector('.news_title');
@@ -24,7 +24,6 @@ const startLoop = (newsTitleWrapper, index) => {
     news: HEADLINE_DATA.NEWS[index],
     loop: null,
   };
-
   const updateNews = () => {
     if (!newsTitleWrapper.classList.contains('rolling')) {
       startRolling(newsTitleWrapper);
