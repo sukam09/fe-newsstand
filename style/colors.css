@@ -1,0 +1,30 @@
+:root {
+  --light-logo-display: block;
+  --dark-logo-display: none;
+
+  --surface-surface-default: #ffffff;
+  --surface-surface-alt: #f5f7f9;
+  --border-border-default: #d2dae0;
+  --text-text-default: #5f6e76;
+  --text-text-strong: #14212b;
+  --text-text-weak: #879298;
+  --text-text-bold: #4b5966;
+  --text-text-strong: #14212b;
+
+  --surface-surface-brand-default: #4362d0;
+  --surface-surface-brand-alt: #7890e7;
+}
+
+:root[data-theme="dark"] {
+  --light-logo-display: none;
+  --dark-logo-display: block;
+
+  --surface-surface-default: #14212b;
+  --surface-surface-alt: #4b5966;
+  --border-border-default: #5f6e76;
+  --text-text-default: #d2dae0;
+  --text-text-strong: #ffffff;
+  --text-text-weak: #ffffff;
+  --text-text-bold: #ffffff;
+  --text-text-strong: #ffffff;
+}

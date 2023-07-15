@@ -4,7 +4,7 @@
     "categoryName": "종합/경제",
     "data": [
       {
-        "logoSrc": "/assets/images/img1.png",
+        "logoSrc": "assets/logo/light/img1.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/536/354",
         "editTime": "2023.01.01 18:00:01",
@@ -38,7 +38,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img2.png",
+        "logoSrc": "assets/logo/light/img2.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/538/354",
         "editTime": "2023.01.01 18:00:01",
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img3.png",
+        "logoSrc": "assets/logo/light/img3.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/533/354",
         "editTime": "2023.01.01 18:00:01",
@@ -112,7 +112,7 @@
     "categoryName": "방송/통신",
     "data": [
       {
-        "logoSrc": "/assets/images/img1.png",
+        "logoSrc": "assets/logo/light/img1.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/116/354",
         "editTime": "2023.01.01 18:00:01",
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img2.png",
+        "logoSrc": "assets/logo/light/img2.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/536/354",
         "editTime": "2023.01.01 18:00:01",
@@ -180,7 +180,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img3.png",
+        "logoSrc": "assets/logo/light/img3.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/533/354",
         "editTime": "2023.01.01 18:00:01",
@@ -214,7 +214,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img3.png",
+        "logoSrc": "assets/logo/light/img3.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/533/222",
         "editTime": "2023.01.01 18:00:01",
@@ -254,7 +254,7 @@
     "categoryName": "IT",
     "data": [
       {
-        "logoSrc": "/assets/images/img1.png",
+        "logoSrc": "assets/logo/light/img1.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/536/354",
         "editTime": "2023.01.01 18:00:01",
@@ -288,7 +288,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img2.png",
+        "logoSrc": "assets/logo/light/img2.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/538/354",
         "editTime": "2023.01.01 18:00:01",
@@ -322,7 +322,7 @@
         ]
       },
       {
-        "logoSrc": "/assets/images/img3.png",
+        "logoSrc": "assets/logo/light/img3.svg",
         "name": "아이뉴스24",
         "imgSrc": "https://picsum.photos/533/354",
         "editTime": "2023.01.01 18:00:01",

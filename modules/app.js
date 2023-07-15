@@ -4,7 +4,7 @@ import { showGridPage } from "./components/mainSection/mainBody/mainContent/pres
 import { createMainSection } from "./components/mainSection/mainSection.js";
 import { createTitleSection } from "./components/titleSection/titleSection.js";
 import {
-  addEventOnThemeButton,
+  addEventsOnThemeButton,
   addEventsOnCategoryItem,
   addEventsOnGridItem,
   addEventsOnPageButton,
@@ -20,7 +20,7 @@ import {
   $root.innerHTML += await createHeadlineSection();
   $root.innerHTML += await createMainSection();
 
-  addEventOnThemeButton();
+  addEventsOnThemeButton();
   addEventsOnPageButton();
   addEventsOnGridItem();
   addEventsOnSubButton(); // 미완

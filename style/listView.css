@@ -6,7 +6,7 @@
 /* news container */
 .news {
   display: none;
-  border: solid 1px #d2dae0;
+  border: solid 1px var(--border-border-default);
   border-top: none;
   padding: 24px;
 }
@@ -16,14 +16,13 @@
 }
 .news_header > span {
   font-size: 12px;
-  color: #5f6e76;
 }
 .news_header > button {
   font-size: 12px;
-  color: #879298;
-  background-color: #f5f7fb;
+  color: var(--text-text-weak);
+  background-color: var(--surface-surface-alt);
   border-radius: 12px;
-  border: solid 1px #d2dae0;
+  border: solid 1px var(--border-border-default);
   padding: 5px 10px 5px 8.5px;
   height: 24px;
   line-height: 12px;
@@ -53,12 +52,13 @@
 .main_news_title {
   width: 320px;
   margin-top: 16px;
+  color: var(--text-text-strong);
 }
 
 /* category */
 .category {
-  background-color: #f5f7fb;
-  border: solid 1px #d2dae0;
+  background-color: var(--surface-surface-alt);
+  border: solid 1px var(--border-border-default);
 }
 
 .category_list {
@@ -75,7 +75,7 @@
   position: relative;
   padding: 11.5px 16px 11.5px 16px;
   list-style: none;
-  color: #879298;
+  color: var(--text-text-weak);
 }
 
 .category_list > li:hover {
@@ -87,7 +87,7 @@
   z-index: 100;
 }
 .category_list > .clicked {
-  background-color: #7890e7;
+  background-color: var(--surface-surface-brand-alt);
   width: 166px;
   color: #ffffff;
   display: flex;
@@ -114,7 +114,7 @@
 .progressbar {
   display: none;
   position: absolute;
-  background-color: #4362d0;
+  background-color: var(--surface-surface-brand-default);
   height: 100%;
   width: 0px;
   top: 0;
@@ -153,7 +153,8 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: 16px;
-  color: #4b5966;
+  color: var(--text-text-bold);
+
   margin-bottom: 16px;
   gap: 16px;
 }
@@ -164,7 +165,8 @@
 }
 .caption {
   font-size: 14px;
-  color: grey;
+  color: var(--text-text-weak);
+  font-weight: lighter;
 }
 
 /* page buttons */

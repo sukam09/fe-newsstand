@@ -8,7 +8,8 @@ export function createTitleSection() {
         <img class="title_logo" src="/assets/logo/logo.png" alt="" />
         <h1 class="title">뉴스스탠드</h1>
       </div>
-      <button id="theme_button">dark/light</button>
+      <div id="moon" class="theme_button"></div>
+      <div id="sun" class="theme_button"></div>
       <span class="date">${getDate()}</span>
     </section>
     `;

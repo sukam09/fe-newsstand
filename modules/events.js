@@ -66,9 +66,11 @@ export function addEventsOnCategoryItem() {
   });
 }
 
-export function addEventOnThemeButton() {
-  const $themeButton = qs("#theme_button");
-  $themeButton.addEventListener("click", handleThemeButtonClick);
+export function addEventsOnThemeButton() {
+  const $themeButtons = qsa(".theme_button");
+  [...$themeButtons].forEach(($button) => {
+    $button.addEventListener("click", handleThemeButtonClick);
+  });
 }
 
 export function addEventsOnRollingList() {
@@ -110,7 +112,6 @@ function showSubButton(e) {
   const $logo = target.querySelector("img");
   const $subButtonContainer = target.querySelector(".sub_button_container");
   $subButtonContainer.style.display = "flex";
-  $logo.style.display = "none";
 }
 
 function showLogo(e) {
@@ -118,5 +119,4 @@ function showLogo(e) {
   const $logo = target.querySelector("img");
   const $subButtonContainer = target.querySelector(".sub_button_container");
   $subButtonContainer.style.display = "none";
-  $logo.style.display = "flex";
 }
