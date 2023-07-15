@@ -1,15 +1,14 @@
 import categoryData from "../json/category.json" assert { type: "json" };
 import news from "../json/news.json" assert { type: "json" };
-import { leftAsideButton, rightAsideButton } from "./renderMain.js";
 import { increment, totalTime } from "./constants.js";
 
 let progress = 0;
-
-let categoryCnt = []; //json파일을 받아와 배열 형태로 관리
-let categoryNews = {};
+let categoryCnt = []; //카테고리별 data개수
+let categoryNews = {}; //카테고리별 담긴 기사뉴스
 let currentCategoryPageNumber = 1;
 let currentCategoryNumber = 0;
 let progressInterval;
+let currentCategoryPage;
 
 function setCategoryCnt() {
   for (const categories of categoryData) {
@@ -31,13 +30,11 @@ function setCategoryNews() {
     });
     categoryNews[categoryCntIndex] = item;
   });
-  console.log(categoryNews);
 }
 setCategoryCnt();
 setCategoryNews();
 
-function addInitCategory() {
-  progress = 0;
+function drawInitCategory() {
   currentCategoryPageNumber = 1;
   currentCategoryNumber = 0;
   let categoryHtml = `<div class="categoryWrap"><ul>`;
@@ -51,16 +48,23 @@ function addInitCategory() {
 
 function initCategoryItem() {
   const categoryItem = document.querySelectorAll(".categoryItem");
-  const currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
-  categoryDisplayClear(categoryItem, currentCategoryPage);
-  categoryDisplayOn(categoryItem, currentCategoryPage);
+  currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
+  categoryDisplayClear(categoryItem);
+  categoryDisplayOn(categoryItem);
+  if (progressInterval != undefined) {
+    clearInterval(progressInterval);
+    progressReset(
+      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      currentCategoryPage
+    );
+  }
   intervalProgress(
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
   );
 }
 
-function categoryDisplayOn(categoryItem, currentCategoryPage) {
+function categoryDisplayOn(categoryItem) {
   categoryItem[currentCategoryNumber].style.backgroundColor = "#7890E7";
   categoryItem[currentCategoryNumber].style.color = "#FFFFFF";
   currentCategoryPage[currentCategoryNumber].style.display = "flex";
@@ -69,7 +73,7 @@ function categoryDisplayOn(categoryItem, currentCategoryPage) {
   ].style.display = "flex";
 }
 
-function categoryDisplayClear(categoryItem, currentCategoryPage) {
+function categoryDisplayClear(categoryItem) {
   categoryCnt.forEach((value, index) => {
     categoryItem[index].style.backgroundColor = "#f5f7f9";
     categoryItem[index].style.color = "#5f6e76";
@@ -79,6 +83,7 @@ function categoryDisplayClear(categoryItem, currentCategoryPage) {
 }
 
 function intervalProgress(progressBar, currentCategoryPage) {
+  progress = 0;
   progressInterval = setInterval(() => {
     doProgress(progressBar, currentCategoryPage);
   }, totalTime / (100 / increment));
@@ -89,16 +94,15 @@ function doProgress(progressBar, currentCategoryPage) {
     totalTime / increment / 1000
   }s linear`;
   if (progress === 100) {
-    progress = 0;
     currentCategoryPageNumber++;
     if (
       currentCategoryPageNumber ===
       categoryCnt[currentCategoryNumber].value + 1
     ) {
       currentCategoryPageNumber = 1;
-      currentCategoryNumber++;
-      if (currentCategoryNumber === categoryCnt.length)
+      if (currentCategoryNumber === categoryCnt.length - 1)
         currentCategoryNumber = 0;
+      else currentCategoryNumber++;
       clearInterval(progressInterval);
       initCategoryItem();
     }
@@ -112,6 +116,7 @@ function progressReset(progressBar, currentCategoryPage) {
     currentCategoryPageNumber;
   progressBar.style.transition = "";
   progressBar.style.width = "0%";
+  progress = 0;
 }
 
 function progressFill(progressBar) {
@@ -120,39 +125,85 @@ function progressFill(progressBar) {
 }
 
 function addNewsHeader() {
+  let PageNumberIndex = currentCategoryPageNumber - 1;
   const news_header = document.querySelector(".news_header");
   news_header.innerHTML = "";
-  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${categoryNews[currentCategoryNumber][currentCategoryPageNumber].thumbnail}"><span class="newsEditTime">${categoryNews[currentCategoryNumber][currentCategoryPageNumber].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
+  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}"><span class="newsEditTime">${categoryNews[currentCategoryNumber][PageNumberIndex].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
   news_header.innerHTML = new_div;
-  console.log(`currentPageNumber: ${currentCategoryPageNumber}`);
-  console.log(`currentCategoryNumber: ${currentCategoryNumber}`);
+}
+
+function delCategoryNumber() {
+  const categoryItem = document.querySelectorAll(".categoryItem");
+  categoryDisplayClear(categoryItem);
+  categoryDisplayOn(categoryItem);
 }
 
 function increaseListPage() {
-  if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
-    rightAsideButton.style.visibility = "hidden";
-    currentCategoryNumber++;
+  if (currentCategoryPageNumber == categoryCnt[currentCategoryNumber].value) {
+    currentCategoryPageNumber = 1;
     addNewsHeader();
+    clearInterval(progressInterval);
+    progressReset(
+      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      currentCategoryPage
+    );
+    if (currentCategoryNumber === categoryCnt.length - 1)
+      currentCategoryNumber = 0;
+    else currentCategoryNumber++;
+    delCategoryNumber();
+    intervalProgress(
+      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      currentCategoryPage
+    );
     return;
   }
-  leftAsideButton.style.visibility = "visible";
+  currentCategoryPageNumber++;
+  clearInterval(progressInterval);
+  progressReset(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    currentCategoryPage
+  );
+  intervalProgress(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    currentCategoryPage
+  );
   addNewsHeader();
 }
 
 function decreaseListPage() {
-  console.log(currentPageNumber);
-  if (currentPageNumber === MIN_PAGE_NUMBER + 1) {
-    leftAsideButton.style.visibility = "hidden";
-    currentCategoryNumber--;
+  if (currentCategoryPageNumber === 1) {
+    currentCategoryPageNumber = 1;
     addNewsHeader();
+    clearInterval(progressInterval);
+    progressReset(
+      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      currentCategoryPage
+    );
+    if (currentCategoryNumber === 0)
+      currentCategoryNumber = categoryCnt.length - 1;
+    else currentCategoryNumber--;
+    delCategoryNumber();
+    intervalProgress(
+      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      currentCategoryPage
+    );
     return;
   }
-  rightAsideButton.style.visibility = "visible";
+  currentCategoryPageNumber--;
+  clearInterval(progressInterval);
+  progressReset(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    currentCategoryPage
+  );
+  intervalProgress(
+    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    currentCategoryPage
+  );
   addNewsHeader();
 }
 
 export {
-  addInitCategory,
+  drawInitCategory,
   progressInterval,
   addNewsHeader,
   increaseListPage,

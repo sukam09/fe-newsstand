@@ -1,41 +1,36 @@
 import logo from "../json/news_image.json" assert { type: "json" };
 import { shuffle, changeImageSrc } from "./utils.js";
 import {
-  addInitCategory,
+  drawInitCategory,
   progressInterval,
   addNewsHeader,
   increaseListPage,
   decreaseListPage,
 } from "./category.js";
-import news from "../json/news.json" assert { type: "json" };
 
-let MAX_PAGE_NUMBER;
+const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;
-let currentPageNumber;
+let currentPageNumber = 0;
 const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
 const gridMain = document.getElementById("main-grid-01");
 const listMain = document.getElementById("main-grid-02");
 
-const increment = 10;
-const totalTime = 2000;
 function renderMain(isGrid) {
   if (isGrid) renderGrid(logo);
   else renderCard();
 }
 
 function renderCard() {
-  currentPageNumber = 0;
-  MAX_PAGE_NUMBER = news.News.length - 1;
   gridMain.style.display = "none";
   listMain.style.display = "flex";
-  addInitCategory();
+  leftAsideButton.style.visibility = "visible";
+  rightAsideButton.style.visibility = "visible";
+  drawInitCategory();
   addNewsHeader();
 }
 
 function renderGrid(logos) {
-  currentPageNumber = 0;
-  MAX_PAGE_NUMBER = 3;
   const COUNT_PER_PAGE = 24;
   const mainGrid = document.getElementById("main-grid-01");
   clearInterval(progressInterval);
@@ -66,6 +61,7 @@ function clickGridImage() {
       "./img/card_list.svg"
     );
     changeImageSrc(e.target, "./img/clicked_grid.png");
+    currentPageNumber = 0;
     setMainContent(1);
   });
 }
@@ -81,9 +77,6 @@ function clickCardListImage() {
 
 function setMainContent(isGrid) {
   addAsideClickEvent(isGrid);
-  currentPageNumber = 0;
-  leftAsideButton.style.visibility = "hidden";
-  rightAsideButton.style.visibility = "visible";
   renderMain(isGrid);
 }
 
@@ -93,7 +86,7 @@ function addAsideClickEvent(isGrid) {
 }
 
 function increaseGridPage() {
-  if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
+  if (currentPageNumber == MAX_PAGE_NUMBER - 1) {
     rightAsideButton.style.visibility = "hidden";
     currentPageNumber++;
     renderGrid(logo);
@@ -139,5 +132,5 @@ function clickLeftAsideButton(isGrid) {
 clickCardListImage();
 clickGridImage();
 clickRightAsideButton();
-
+clickLeftAsideButton();
 export { renderMain, leftAsideButton, rightAsideButton };
