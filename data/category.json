@@ -1,0 +1,19 @@
+{
+  "categoryList": [
+    {
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "pressIdList": [88, 90]
+    },
+    {
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "pressIdList": [89]
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "IT",
+      "pressIdList": [90]
+    }
+  ]
+}

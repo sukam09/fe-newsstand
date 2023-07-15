@@ -9,7 +9,7 @@ export async function createMainBody() {
   return `
     <div class="main_body">
       ${createRightPageButton()}
-      ${await createMainContent()}
+      ${createMainContent()}
       ${createLeftPageButton()}
     </div>
   `;

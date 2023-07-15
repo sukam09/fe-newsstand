@@ -13,8 +13,14 @@ import {
   addEventsOnTitle,
   addEventsOnViewButton,
 } from "./events.js";
+import { setCategoryData, setPressData } from "./state/dataState.js";
+import { initState } from "./state/pageState.js";
 
 (async function init() {
+  await setCategoryData();
+  await setPressData();
+  initState();
+
   const $root = document.getElementById("root");
   $root.innerHTML += createTitleSection();
   $root.innerHTML += await createHeadlineSection();
