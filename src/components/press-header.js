@@ -1,72 +1,69 @@
 import { setTotalPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
 
-const setPressHeader = (isLightMode) => {
+const initPressHeader = () => {
+  setNav(getNavLeft());
+  setNav(getNavRight());
+
+  setNavList();
+  setNavGrid();
+
+  setTotalPressGrid();
+  setTotalPressList();
+};
+
+const setNav = (pressElement) => {
   const pressHeader = document.querySelector('.press__header');
-
-  pressHeader.appendChild(getNavLeftElement());
-  pressHeader.appendChild(getNavRightElement());
-
-  setTotalPressGrid(isLightMode);
-  setTotalPressList(isLightMode);
+  pressHeader.insertAdjacentHTML('beforeend', pressElement);
 };
 
-const getNavLeftElement = () => {
-  const $navLeft = document.createElement('nav');
-  $navLeft.classList.add('press__nav-left');
-
-  const $h2Select = document.createElement('h2');
-  $h2Select.classList.add('press__h2-select');
-  $h2Select.innerText = '전체 언론사';
-
-  const $h2UnSelect = document.createElement('h2');
-  $h2UnSelect.classList.add('press__h2-unselect');
-  $h2UnSelect.innerText = '내가 구독한 언론사';
-
-  $navLeft.appendChild($h2Select);
-  $navLeft.appendChild($h2UnSelect);
-
-  return $navLeft;
+const getNavLeft = () => {
+  return `
+    <nav class='press__nav-left'>
+      <h2 class='press__h2-entire'>전체 언론사</h2>
+      <h2 class='press__h2-subscribe'>내가 구독한 언론사</h2>
+    </nav>
+  `;
 };
 
-const getNavRightElement = () => {
-  const $navRight = document.createElement('nav');
-  $navRight.classList.add('press__nav-right');
+const getNavRight = () => {
+  return `
+    <nav class='press__nav-right'>
+      <img class='press__img-list' src='./assets/icons/list-hide.svg' />
+      <img class='press__img-grid' src='./assets/icons/grid-view.svg' />
+    </nav>
+  `;
+};
 
-  const $imgList = document.createElement('img');
-  $imgList.classList.add('press__img-list');
-  $imgList.src = './assets/icons/list-hide.svg';
-
-  const $imgGrid = document.createElement('img');
-  $imgGrid.classList.add('press__img-grid');
-  $imgGrid.src = './assets/icons/grid-view.svg';
-
-  $imgList.addEventListener('click', () => {
-    $imgList.src = './assets/icons/list-view.svg';
-    $imgGrid.src = './assets/icons/grid-hide.svg';
+///
+const setNavList = () => {
+  const imgList = document.querySelector('.press__img-list');
+  const imgGrid = document.querySelector('.press__img-grid');
+  imgList.addEventListener('click', () => {
+    imgList.src = './assets/icons/list-view.svg';
+    imgGrid.src = './assets/icons/grid-hide.svg';
 
     const gridWrapper = document.querySelector('.arrows__wrapper-grid');
     gridWrapper.classList.add('display-none');
 
     const listWrapper = document.querySelector('.arrows__wrapper-list');
     listWrapper.classList.remove('display-none');
-  }); //
+  });
+};
 
-  $imgGrid.addEventListener('click', () => {
-    $imgGrid.src = './assets/icons/grid-view.svg';
-    $imgList.src = './assets/icons/list-hide.svg';
+const setNavGrid = () => {
+  const imgList = document.querySelector('.press__img-list');
+  const imgGrid = document.querySelector('.press__img-grid');
+  imgGrid.addEventListener('click', () => {
+    imgGrid.src = './assets/icons/grid-view.svg';
+    imgList.src = './assets/icons/list-hide.svg';
 
     const listWrapper = document.querySelector('.arrows__wrapper-list');
     listWrapper.classList.add('display-none');
 
     const gridWrapper = document.querySelector('.arrows__wrapper-grid');
     gridWrapper.classList.remove('display-none');
-  }); //
-
-  $navRight.appendChild($imgList);
-  $navRight.appendChild($imgGrid);
-
-  return $navRight;
+  });
 };
 
-export { setPressHeader };
+export { initPressHeader };

@@ -18,12 +18,12 @@
   gap: 24px;
 }
 
-.press__h2-select {
+.press__h2-entire {
   font: var(--bold-M);
   color: var(--grayscale-black);
 }
 
-.press__h2-unselect {
+.press__h2-subscribe {
   font: var(--medium-M);
   color: var(--grayscale-400);
 }

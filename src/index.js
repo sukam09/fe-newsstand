@@ -1,16 +1,15 @@
 import { initNewsStandHeader } from './components/news-stand-header.js';
 import { initLightDarkMode } from './components/light-dark-mode.js';
 import { initLatestNews } from './components/latest-news.js';
-import { setPressHeader } from './components/press-header.js';
+import { initPressHeader } from './components/press-header.js';
 
 let isGridMode = true;
 
 (function init() {
   initNewsStandHeader();
+  initLatestNews();
 
-  initLatestNews(); // 수정중
-
-  setPressHeader();
+  initPressHeader(); // 수정중
 
   initLightDarkMode();
 })();
