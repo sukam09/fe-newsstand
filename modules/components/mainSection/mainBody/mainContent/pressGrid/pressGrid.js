@@ -1,4 +1,4 @@
-import { NUM_IN_A_GRID } from "../../../../../pageState.js";
+import { NUM_IN_A_GRID } from "../../../../../state/pageState.js";
 import { qs, shuffleArray } from "../../../../../utils.js";
 import { pressItem } from "./pressItem/pressItem.js";
 

@@ -31,6 +31,14 @@
   height: 100%;
 }
 
+.light_press_logo {
+  display: var(--light-logo-display);
+}
+
+.dark_press_logo {
+  display: var(--dark-logo-display);
+}
+
 .grid_item:hover {
   background-color: #f5f7f9;
   z-index: 0;

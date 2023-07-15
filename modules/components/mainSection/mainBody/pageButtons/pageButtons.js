@@ -16,7 +16,7 @@ import {
   setCategoryId,
   GRID,
   LIST,
-} from "../../../../pageState.js";
+} from "../../../../state/pageState.js";
 import { qs } from "../../../../utils.js";
 import {
   hideGridPage,

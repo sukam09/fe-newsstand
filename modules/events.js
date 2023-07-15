@@ -18,7 +18,10 @@ import {
   handleGirdViewButton,
   handleListViewButton,
 } from "./components/mainSection/mainHeader/mainHeader.js";
-import { handleLogoButton } from "./components/titleSection/titleSection.js";
+import {
+  handleLogoButton,
+  handleThemeButtonClick,
+} from "./components/titleSection/titleSection.js";
 import { qs, qsa } from "./utils.js";
 
 export function addEventsOnGridItem() {
@@ -61,6 +64,11 @@ export function addEventsOnCategoryItem() {
   [...$categoryItems].forEach(($categoryItem) => {
     $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
   });
+}
+
+export function addEventOnThemeButton() {
+  const $themeButton = qs("#theme_button");
+  $themeButton.addEventListener("click", handleThemeButtonClick);
 }
 
 export function addEventsOnRollingList() {

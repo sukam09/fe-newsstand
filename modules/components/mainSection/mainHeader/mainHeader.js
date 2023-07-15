@@ -5,7 +5,7 @@ import {
   gridPage,
   listPage,
   setPageType,
-} from "../../../pageState.js";
+} from "../../../state/pageState.js";
 import { qs } from "../../../utils.js";
 import {
   hideGridContainer,

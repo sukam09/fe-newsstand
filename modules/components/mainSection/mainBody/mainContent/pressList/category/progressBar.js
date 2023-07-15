@@ -7,7 +7,7 @@ import {
   listPage,
   setCategoryId,
   setListPage,
-} from "../../../../../../pageState.js";
+} from "../../../../../../state/pageState.js";
 import { showListPage } from "../pressList.js";
 import { highlightCategoryItem, updatePageCount } from "./categoryItem.js";
 

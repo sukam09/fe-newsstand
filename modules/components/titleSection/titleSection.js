@@ -1,10 +1,14 @@
+import { DARK, LIGHT } from "../../state/themeState.js";
+import { qs } from "../../utils.js";
+
 export function createTitleSection() {
   return `
     <section id="title_section">
       <div class="title_container flex_row">
-        <img class="title_logo" src="./assets/images/logo.png" alt="" />
+        <img class="title_logo" src="/assets/logo/logo.png" alt="" />
         <h1 class="title">뉴스스탠드</h1>
       </div>
+      <button id="theme_button">dark/light</button>
       <span class="date">${getDate()}</span>
     </section>
     `;
@@ -25,4 +29,12 @@ function getDate() {
 
 export function handleLogoButton() {
   location.reload();
+}
+
+export function handleThemeButtonClick() {
+  const $html = qs("html");
+
+  $html.dataset.theme === DARK
+    ? ($html.dataset.theme = LIGHT)
+    : ($html.dataset.theme = DARK);
 }
