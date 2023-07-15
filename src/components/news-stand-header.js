@@ -1,3 +1,18 @@
+const ICON_NEWS = './assets/icons/newspaper.svg';
+const HEADER_CLASS = {
+  WRAPPER: 'header__wrapper',
+  BUTTON: 'header__button',
+  IMAGE: 'header__img',
+  H1: 'header__h1',
+  TIME: 'header__time',
+};
+const DATE_OPTIONS = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  weekday: 'long',
+};
+
 /**
  * 뉴스스탠드의 INIT
  */
@@ -8,50 +23,37 @@ const initNewsStandHeader = () => {
   setHeaderTime(dateFormat);
 };
 
-/**
- * 뉴스스탠드의 ELEMENT
- */
 const setHeader = () => {
-  const headerWrapper = document.querySelector('.header__wrapper');
+  const headerWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER}`);
   const headerElement = `
-    <button class='header__button'>
-      <img class='header__img' src='./assets/icons/newspaper.svg'></img>
-      <h1 class='header__h1'>뉴스스탠드</h1>
+    <button class=${HEADER_CLASS.BUTTON}>
+      <img class=${HEADER_CLASS.IMAGE} src=${ICON_NEWS}></img>
+      <h1 class=${HEADER_CLASS.H1}>뉴스스탠드</h1>
     </button>
-    <time class='header__time'></time>
+    <time class=${HEADER_CLASS.TIME}></time>
   `;
   headerWrapper.innerHTML = headerElement;
 };
 
 /**
- * 뉴스스탠드의 로고 이벤트
+ * 뉴스스탠드의 로고 설정
  */
 const setHeaderButton = () => {
-  const headerButton = document.querySelector('.header__button');
+  const headerButton = document.querySelector(`.${HEADER_CLASS.BUTTON}`);
   headerButton.addEventListener('click', () => {
     location.reload();
   });
 };
 
 /**
- * 뉴스스탠드의 시간 반환
- */
-const getHeaderTime = () => {
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    weekday: 'long',
-  };
-
-  return Intl.DateTimeFormat('ko-KR', options).format(new Date());
-};
-
-/**
  * 뉴스스탠드의 시간 설정
  */
+const getHeaderTime = () => {
+  return new Date().toLocaleDateString('ko-KR', DATE_OPTIONS);
+};
+
 const setHeaderTime = (dateFormat) => {
-  const headerTime = document.querySelector('.header__time');
+  const headerTime = document.querySelector(`.${HEADER_CLASS.TIME}`);
   headerTime.innerText = dateFormat;
 };
 
