@@ -15,7 +15,7 @@ const MODE_CLASS = {
  * 뉴스스탠드의 INIT
  * 기본은 Light 모드 🌈
  */
-const initMode = () => {
+const initLightDarkMode = () => {
   localStorage.setItem(MODE, LIGHT_MODE);
   setMode();
   setModeEvent();
@@ -62,4 +62,4 @@ const changeIcon = (src) => {
   modeImg.src = src;
 };
 
-export { initMode };
+export { initLightDarkMode };
