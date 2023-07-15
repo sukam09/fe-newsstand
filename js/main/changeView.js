@@ -1,4 +1,5 @@
 //뷰 타입 변경
+import { main_list_page, MIN_PAGE, MAX_PAGE } from "./gridView/gridView.js";
 function initViewChange() {
   const view_type = document.querySelectorAll(".viewer-btn button");
   //view_type[0] : listview, view_type[1] : gridview
@@ -24,10 +25,10 @@ function initViewChange() {
     list_view.style.display = "block";
 
     //button 교체
-    grid_left_btn.style.display = "none";
-    grid_right_btn.style.display = "none";
-    list_left_btn.style.display = "block";
-    list_right_btn.style.display = "block";
+    grid_left_btn.style.visibility = "hidden";
+    grid_right_btn.style.visibility = "hidden";
+    list_left_btn.style.visibility = "visible";
+    list_right_btn.style.visibility = "visible";
   });
   view_type[1].addEventListener("click", () => {
     view_type[0].innerHTML = `<img
@@ -41,10 +42,12 @@ function initViewChange() {
     list_view.style.display = "none";
     grid_view.style.display = "flex";
 
-    grid_left_btn.style.display = "block";
-    grid_right_btn.style.display = "block";
-    list_left_btn.style.display = "none";
-    list_right_btn.style.display = "none";
+    if (main_list_page !== MIN_PAGE) grid_left_btn.style.visibility = "visible";
+    if (main_list_page !== MAX_PAGE)
+      grid_right_btn.style.visibility = "visible";
+    list_left_btn.style.visibility = "hidden";
+    list_right_btn.style.visibility = "hidden";
   });
 }
+/**/
 export { initViewChange };

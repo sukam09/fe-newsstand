@@ -1,5 +1,3 @@
-//롤링 뉴스바
-
 const SET_INTERVAL_TIME = 5000;
 const SET_TIMEOUT_TIME = 1000;
 const LEFT = 0;
@@ -20,6 +18,7 @@ function addEventToRolling() {
           SET_INTERVAL_TIME
         );
       });
+      // addEventToNews(news, leftInterval, LEFT);
     } else {
       news.addEventListener("mouseover", () => {
         clearInterval(rightInterval);
@@ -30,9 +29,18 @@ function addEventToRolling() {
           SET_INTERVAL_TIME
         );
       });
+      // addEventToNews(news, rightInterval, RIGHT);
     }
   });
 }
+// function addEventToNews(news, interval, type) {
+//   news.addEventListener("mouseover", () => {
+//     clearInterval(interval);
+//   });
+//   news.addEventListener("mouseout", () => {
+//     interval = setInterval(() => rollingNewsBar(type), SET_INTERVAL_TIME);
+//   });
+// }
 
 function rollingNewsBar(side) {
   document.querySelectorAll(".prev")[side].classList.remove("prev");

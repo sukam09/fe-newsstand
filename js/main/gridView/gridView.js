@@ -1,6 +1,6 @@
 // 랜덤 그리드 && 버튼
 
-import { fetchData } from "../fetchData.js";
+import { fetchData } from "../../utils/fetchData.js";
 
 function initGridView() {
   fetchData(".././assets/press.json").then((press) => makeGridView(press));
@@ -53,11 +53,12 @@ function changePage(e, press) {
 }
 
 function checkPage() {
-  if (main_list_page === MIN_PAGE) left_btn.style.display = "none"; //display
-  else if (main_list_page === MAX_PAGE) right_btn.style.display = "none";
+  if (main_list_page === MIN_PAGE)
+    left_btn.style.visibility = "hidden"; //display
+  else if (main_list_page === MAX_PAGE) right_btn.style.visibility = "hidden";
   else {
-    left_btn.style.display = "block";
-    right_btn.style.display = "block";
+    left_btn.style.visibility = "visible";
+    right_btn.style.visibility = "visible";
   }
 }
 
@@ -67,4 +68,4 @@ function makeGridView(press) {
   showMainList(press);
   checkPage();
 }
-export { initGridView };
+export { initGridView, main_list_page, MIN_PAGE, MAX_PAGE };

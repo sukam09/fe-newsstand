@@ -1,8 +1,8 @@
-import { initReload } from "./reload.js";
-import { initDate } from "./getDate.js";
+import { refreshPage } from "../utils/refreshPage.js";
+import { getDate } from "../utils/getDate.js";
 
 function initHeader() {
-  initDate();
-  initReload();
+  getDate(".date", 60000);
+  refreshPage(".title");
 }
 export { initHeader };

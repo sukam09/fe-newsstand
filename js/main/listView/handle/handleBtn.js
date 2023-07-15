@@ -31,11 +31,9 @@ function handleLeftBtn(currentCategory) {
       prevCategory = document.querySelector(".category li:last-child");
     }
     const prevMaxPage = news_by_category[prevCategory.innerText].length;
-    // currentPage = prevMaxPage - 1;
     changeCurrentPage(prevMaxPage - 1);
     addAnimation(prevCategory, "Prev");
   } else {
-    // currentPage -= 1;
     changeCurrentPage(currentPage - 1);
   }
 }
@@ -44,11 +42,9 @@ function handleRightBtn(currentCategory) {
   const maxPage = currentCategory.children[2].innerText.split("/")[1];
   //다음 카테고리로 넘어갈 때
   if (currentPage + 1 >= maxPage) {
-    // currentPage = 0;
     changeCurrentPage(0);
     addAnimation(currentCategory.nextElementSibling, "Next");
   } else {
-    // currentPage += 1;
     changeCurrentPage(currentPage + 1);
   }
 }

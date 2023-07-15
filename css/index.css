@@ -35,7 +35,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.title-wrapper,
+.auto-rolling-news-bar {
   margin-bottom: 36px;
+}
+.main-tab-viewer {
+  margin-bottom: 25px;
 }
 
 button:hover,
