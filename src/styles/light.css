@@ -18,6 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Pretendard'; /* 폰트 수정 */
+  transition: background-color 0.5s ease;
 }
 
 .news-stand__container {
