@@ -1,5 +1,6 @@
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
+import { HEADLINE_ROLLING_NEWS_NUM, HEADLINE_ROLLING_TIME_GAP, HEADLINE_ROLLING_TIME } from "../constant/constants.js";
 
 let intervalFirstNewsbar;
 let intervalSecondNewsbar;
@@ -8,13 +9,13 @@ let intervalSecondNewsbar;
 function startRolling() {
   intervalFirstNewsbar = setInterval(() => {
     rollingInterval('first');
-  }, 5000);
+  }, HEADLINE_ROLLING_TIME);
 
   intervalSecondNewsbar = setInterval(() => {
     setTimeout(() => {
       rollingInterval('second');
-    }, 1000)
-  }, 5000);
+    }, HEADLINE_ROLLING_TIME_GAP)
+  }, HEADLINE_ROLLING_TIME);
 }
 
 // 최신 헤드라인 뉴스 자동 롤링 중지
@@ -28,31 +29,22 @@ function mouseEventRolling(state) {
   const headlineNews = getQuerySelectorAll(document, `.newsbar-content-container-${state} li`);
 
   headlineNews.forEach((elem) => {
-    elem.addEventListener('mouseover', () => {
-      elem.style.textDecoration = "underline";
-      elem.style.cursor = "pointer";
-      stopRolling();
-    })
-
-    elem.addEventListener('mouseout', () => {
-      elem.style.textDecoration = "none";
-      elem.style.cursor = "auto";
-      startRolling();
-    })
+    elem.addEventListener('mouseover', stopRolling);
+    elem.addEventListener('mouseout', startRolling);
   })
 }
 // 헤드라인 뉴스 데이터 html에 입력
 function putNewsHeadline(state, headlineTitleArr) {
   let headlineSrc = "";
-  headlineTitleArr.forEach((elem, id) => {
-    switch (id) {
+  headlineTitleArr.forEach((elem, rollingOrder) => {
+    switch (rollingOrder) {
       case 0:
         headlineSrc += `<li class="current"><a>${elem}</a></li>`;
         break;
       case 1:
         headlineSrc += `<li class="next"><a>${elem}</a></li>`;
         break;
-      case 4:
+      case HEADLINE_ROLLING_NEWS_NUM-1:
         headlineSrc += `<li class="prev"><a>${elem}</a></li>`;
         break;
       default:
@@ -68,12 +60,8 @@ function putNewsHeadline(state, headlineTitleArr) {
 // 헤드라인 뉴스 데이터 받아오기
 async function getNewsHeadline() {
   const headlinePath = await fetchData("../assets/data/newsTitle.json");
-  const headlineTitleFirst = headlinePath.titleFirst.map((elem) => {
-    return elem.name;
-  })
-  const headlineTitleSecond = headlinePath.titleSecond.map((elem) => {
-    return elem.name;
-  })
+  const headlineTitleFirst = headlinePath.titleFirst.map((elem) => elem.name);
+  const headlineTitleSecond = headlinePath.titleSecond.map((elem) => elem.name);
 
   putNewsHeadline("first", headlineTitleFirst);
   putNewsHeadline("second", headlineTitleSecond);
@@ -82,11 +70,11 @@ async function getNewsHeadline() {
 // 헤드라인 뉴스 자동 롤링 반복
 function rollingInterval(state) {
   getQuerySelector(document, `.newsbar-content-container-${state} .prev`).classList.remove('prev');
-  let current = getQuerySelector(document, `.newsbar-content-container-${state} .current`);
+  const current = getQuerySelector(document, `.newsbar-content-container-${state} .current`);
   current.classList.remove('current');
   current.classList.add('prev');
 
-  let next = getQuerySelector(document, `.newsbar-content-container-${state} .next`);
+  const next = getQuerySelector(document, `.newsbar-content-container-${state} .next`);
   if (next.nextElementSibling == null) {
     getQuerySelector(document, `.newsbar-content-container-${state} li:first-child`).classList.add('next');
   } else {

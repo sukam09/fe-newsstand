@@ -64,3 +64,23 @@
 .newsbar-content-container li.next {
   top: 18px;
 }
+
+.newsbar-content-container-first li {
+  text-decoration: none;
+  cursor: auto;
+}
+
+.newsbar-content-container-first li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.newsbar-content-container-second li {
+  text-decoration: none;
+  cursor: auto;
+}
+
+.newsbar-content-container-second li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
