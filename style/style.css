@@ -140,7 +140,7 @@ body {
     height: 20px;
 }
 
-.grid-left-arrow-button {
+.left-button {
     position: absolute;
     top: 50%;
     bottom: 50%;
@@ -154,12 +154,12 @@ body {
     cursor: pointer;
 }
 
-.grid-left-arrow-button > img {
+.left-button > img {
     width: 100%;
     height: 100%;
 }
 
-.grid-right-arrow-button {
+.right-button {
     position: absolute;
     top: 50%;
     bottom: 50%;
@@ -169,7 +169,7 @@ body {
     height: 40px;
 }
 
-.grid-right-arrow-button > img {
+.right-button > img {
     width: 100%;
     height: 100%;
 }

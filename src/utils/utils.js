@@ -1,4 +1,4 @@
-const getDate = () => {
+export const getDate = () => {
     const today = new Date();
     const options = {
         year: "numeric",
@@ -9,4 +9,6 @@ const getDate = () => {
     return today.toLocaleDateString("ko-KR", options);
 };
 
-export default getDate;
+export const shuffleNewsPress = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+};

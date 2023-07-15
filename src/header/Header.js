@@ -1,5 +1,5 @@
 import Component from "../core/Component.js";
-import getDate from "../utils/getDate.js";
+import { getDate } from "../utils/utils.js";
 
 export default class Header extends Component {
     setup() {

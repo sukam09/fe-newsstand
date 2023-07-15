@@ -17,10 +17,13 @@ export default class NewsDisplay extends Component {
         `;
     }
 
-    mounted() {
+    async mounted() {
         const newsDisplayTab = this.$target.querySelector(
             ".news-press-tab-container"
         );
+
+        const response = await fetch(`../data/press-data.json`);
+        const jsonData = await response.json();
 
         new NewsDisplayTab(newsDisplayTab, {
             view: this.state.view,
@@ -29,7 +32,8 @@ export default class NewsDisplay extends Component {
 
         this.state.view === "grid"
             ? new NewsGridView(
-                  this.$target.querySelector(".news-display-container")
+                  this.$target.querySelector(".news-display-container"),
+                  { newsData: jsonData, page: 0 }
               )
             : new NewsListView(
                   this.$target.querySelector(".news-display-container")
