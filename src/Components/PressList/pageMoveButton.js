@@ -4,12 +4,11 @@ import { setProgressPage } from "./progressBar.js";
 
 const $newsPrevButton = document.querySelector('.press-news-left-button');
 const $newsNextButton = document.querySelector('.press-news-right-button');
-let newsPage = FIRST_NEWS_PAGE_INDEX;
+let newsPage = null;
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
 let categoryIdx = 0;
-
 /**
 페이지 넘기는 버튼의 클릭 이벤트 핸들링
 */
@@ -33,7 +32,7 @@ function turnNewsPage(shuffledPressNews, categoryIndex) {
 페이지 넘기는 버튼 유무 설정
  */
 function showNewsTurner(shuffledPressNews, categoryIndex) {
-  $newsPrevButton.style.display = newsPage !== 0 ? 'block' : 'none';
+  $newsPrevButton.style.display = newsPage === 0 ? 'none' : 'block';
   $newsNextButton.style.display = newsPage === shuffledPressNews[categoryIndex].length - 1 ? 'none' : 'block';
 }
 

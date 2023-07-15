@@ -27,8 +27,8 @@ let pageCnt = FIRST_PAGE_IDX;
  페이지 넘기는 버튼 유무 설정
  */
  function showPageTurner() {
-  $pagePrevButton.style.display = pageCnt !== LEFT_UNDISPLAY ? "block" : "none";
-  $pageNextButton.style.display = pageCnt >= RIGHT_UNDISPLAY ? "none" : "block"
+  $pagePrevButton.style.display = pageCnt === LEFT_UNDISPLAY ? "none" : "block";
+  $pageNextButton.style.display = pageCnt === RIGHT_UNDISPLAY ? "none" : "block"
 }
 
 export default turnPressPage;

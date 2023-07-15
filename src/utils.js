@@ -10,6 +10,7 @@ function _changeDispay(element1, displayType1, element2, displayType2){
   element2.style.display = displayType2;
 }
 
+/** json 데이터 가져오기 */
 async function dataFetch(path){
   const response = await fetch(path);
   const jsonData = await response.json();
