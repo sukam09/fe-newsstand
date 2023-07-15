@@ -1,4 +1,5 @@
-import { TEXT_WEAK , TEXT_POINT} from "../../constant.js";
+import { TEXT_WEAK, TEXT_POINT } from "../../constant.js";
+import { _changeDispay } from "../../utils.js";
 
 const $listIcon = document.querySelector('.list-button');
 const $gridIcon = document.querySelector('.grid-button');
@@ -25,13 +26,11 @@ function handleChangeView(clickedButton) {
   const $newsList = document.querySelector('.press-news-list-container');
 
   if (clickedButton === 'list-button') {
-    $pressGrid.style.display = 'none';
-    $newsList.style.display = 'block';
+    _changeDispay($pressGrid, 'none', $newsList, 'block')
     changeIconColor(clickedButton, 'grid-button')
   }
   else {
-    $pressGrid.style.display = 'block';
-    $newsList.style.display = 'none';
+    _changeDispay($newsList,'none', $pressGrid, 'block');
     changeIconColor(clickedButton, 'list-button');
   }
 }
@@ -40,9 +39,9 @@ function handleChangeView(clickedButton) {
  그리드, 리스트 아이콘 클릭 시 아이콘의 색 변화 주기
  */
 function changeIconColor(clickedButton, unClickedButton) {
-  const $whatButtonContent = document.querySelector(`.${clickedButton}-content`);
+  const $clickedButtonContent = document.querySelector(`.${clickedButton}-content`);
   const $unClickedButtonContent = document.querySelector(`.${unClickedButton}-content`);
-  $whatButtonContent.setAttribute('fill', TEXT_POINT);
+  $clickedButtonContent.setAttribute('fill', TEXT_POINT);
   $unClickedButtonContent.setAttribute('fill', TEXT_WEAK);
 }
 

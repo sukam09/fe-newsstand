@@ -1,4 +1,5 @@
 import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { _changeClass } from "../../utils.js";
 
 const $pageInfo = document.createElement('div');
 
@@ -11,8 +12,7 @@ function removeProgress(){
   const allCategoryContainer = Array.from($allCategoryContainer);
   allCategoryContainer.forEach(categoryContainer => {
     if(categoryContainer.classList.contains('progress')){
-      categoryContainer.classList.remove('progress');
-      categoryContainer.classList.add('non-progress')
+      _changeClass(categoryContainer, 'progress', 'non-progress');
       categoryContainer.removeChild($pageInfo);
     }
   })
@@ -46,8 +46,7 @@ function initProgress(shuffledPressNews, clickedCategory, newsPageIndex) {
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1})`);
   const $Category = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1}) .progress-category`);
 
-  $CategoryContainer.classList.add('progress');
-  $CategoryContainer.classList.remove('non-progress')
+  _changeClass($CategoryContainer, 'non-progress', 'progress');
   
   $pageInfo.classList.add('progress-page');
 
