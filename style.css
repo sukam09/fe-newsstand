@@ -51,6 +51,31 @@ body {
     align-items: center;
     padding:16px;
     gap:16px;
+    overflow: hidden;
+}
+.rolling-content {
+    display:flex;
+    flex-direction: column;
+    margin-top:-3px;
+}
+@keyframes roll {
+    from {
+
+    }
+    to {
+        margin-top:-21px;
+    }
+}
+.roll {
+    animation : roll 1s linear forwards;
+    animation-delay: 1s;
+}
+.paused {
+    animation-play-state: paused;
+  }
+.rolling-window {
+    overflow: hidden;
+    height:100%;
 }
 .grid-section-nav {
     width:930px;

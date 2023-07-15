@@ -1,3 +1,4 @@
+import rollingList from "./asset/data/rollingList.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const dateContainer = document.querySelector(".header-right");
@@ -7,11 +8,35 @@ const header = document.querySelector(".header-left");
 const pressCover = document.querySelector(".press-cover");
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
+const rollingContent = document.querySelectorAll(".rolling-content");
 
 let crntPage = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
 
+
+function drawHeadline(target, data){
+    target.innerHTML = "";
+    data.forEach((item) => {
+        target.innerHTML += `<span>${item.title}</span>`
+    })
+    target.innerHTML += `<span>${data[0].title}</span>`
+}
+function rollHeadline(target, data, rollIdx) {
+    if (rollIdx >= rollingList.length){
+        drawHeadline(target, data);
+        rollIdx = 0;
+    }
+        target.children[rollIdx].classList.add("roll");
+        target.children[rollIdx].addEventListener("animationend", (headline) => {
+            setTimeout(()=> {
+                rollIdx++;
+                target.children[rollIdx].classList.add("roll");
+                rollHeadline(target,data,rollIdx);
+            },1000)
+        })
+    
+}
 
 function shuffleArray(arr){
     for (let i = arr.length - 1; i>0;i--){
@@ -99,6 +124,9 @@ function drawDate() {
 function init(){
     drawDate();
     drawPress(crntPage);
+    rollingContent.forEach((item) => {
+        rollHeadline(item,rollingList, rollingList.length);
+    })
     updateArrow();
     listenArrow();
     listenReload();   

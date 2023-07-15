@@ -1,4 +1,4 @@
-let pressList = [
+const pressList = [
   {
     id: 1,
     name: "YTN 사이언스",
