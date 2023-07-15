@@ -3,7 +3,7 @@ import { fetchpressNews } from "./dataFetch.js"
 import turnNewsPage from "./turnNewsPage.js";
 import showNews from "./showNews.js";
 import showNewsOfCategory from "./clickCategory.js";
-import {showProgress} from "./showProgress.js";
+import {initProgress} from "./showProgress.js";
 
 const pressNewsList = [[], [], [], [], [], [], []];
 const shuffledPressNews = [[], [], [], [], [], [], []];
@@ -28,7 +28,7 @@ async function randomizeNews() {
 async function initNews() {
   const category = await randomizeNews();
   showNews(shuffledPressNews, ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX);
-  showProgress(shuffledPressNews, ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX);
+  initProgress(shuffledPressNews, ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX);
   turnNewsPage(shuffledPressNews, ALL_ECONOMY);
   showNewsOfCategory(shuffledPressNews, category)
 }

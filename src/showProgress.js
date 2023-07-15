@@ -34,14 +34,14 @@ function drawProgressPage(shuffledPressNews, clickedCategory, newsPageIndex){
  페이지 넘기면 progressbar의 현재 페이지 업데이트
  */
 
-function setProgressPage(shuffledPressNews, clickedCategory, newsPage) {
-  drawProgressPage(shuffledPressNews, clickedCategory, newsPage);
+function setProgressPage(shuffledPressNews, clickedCategory, newsPageIndex) {
+  drawProgressPage(shuffledPressNews, clickedCategory, newsPageIndex);
 }
 
 /**
  클릭한 카테고리에 대한 progress를 보여줌(미완성)
  */
-function showProgress(shuffledPressNews, clickedCategory, newsPage) {
+function initProgress(shuffledPressNews, clickedCategory, newsPageIndex) {
   removeProgress();
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1})`);
   const $Category = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1}) .progress-category`);
@@ -51,8 +51,8 @@ function showProgress(shuffledPressNews, clickedCategory, newsPage) {
   
   $pageInfo.classList.add('progress-page');
 
-  drawProgressPage(shuffledPressNews, clickedCategory, FIRST_NEWS_PAGE_INDEX);
+  drawProgressPage(shuffledPressNews, clickedCategory, newsPageIndex);
   $CategoryContainer.appendChild($pageInfo);
 }
 
-export  {showProgress, setProgressPage};
+export  {initProgress, setProgressPage};
