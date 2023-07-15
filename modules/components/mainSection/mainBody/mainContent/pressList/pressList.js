@@ -1,9 +1,8 @@
 import { categoryData, pressData } from "../../../../../state/dataState.js";
+import { MAX_LIST_PAGE } from "../../../../../state/pageState.js";
 import { qs, qsa } from "../../../../../utils.js";
 import { createNewsBody } from "./newsBody/newsBody.js";
 import { createNewsHeader } from "./newsHeader/newsHeader.js";
-
-const MAX_LIST_PAGE = 7;
 
 // 하나의 카테고리의 하나의 페이지
 export function createPressList(categoryId, page) {
@@ -17,7 +16,6 @@ export function createPressList(categoryId, page) {
     [...pressIdList].includes(press.id)
   );
 
-  console.log(targetPressList);
   return `
   <div class="news news_${categoryId}_${page}  flex_column">
     ${createNewsHeader(targetPressList[page])}

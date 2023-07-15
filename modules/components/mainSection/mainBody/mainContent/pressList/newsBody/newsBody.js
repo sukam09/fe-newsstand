@@ -2,7 +2,6 @@ import { createMainNews } from "./mainNews.js";
 import { createSubNews } from "./subNews.js";
 
 export function createNewsBody(press) {
-  console.log(press);
   const newsBody = `
     <div class="flex_row">
       ${createMainNews(press)}

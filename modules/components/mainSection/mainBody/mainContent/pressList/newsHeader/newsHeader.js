@@ -1,4 +1,5 @@
 export function createNewsHeader(press) {
+  console.log(press);
   const newsHeader = `
     <div class="news_header flex_row">
       <img src=${press.lightSrc} />
