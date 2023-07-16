@@ -1,0 +1,58 @@
+@import "./css/reset.css";
+@import "./css/latest.css";
+@import "./css/color.css";
+@import "./css/allNewsHeader.css";
+@import "./css/gridView.css";
+@import "./css/listView/listView.css";
+
+h1,
+h2,
+h3 {
+  display: inline;
+}
+
+h1 > button {
+  color: var(--text-strong);
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  background-color: transparent;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
+}
+
+.date {
+  color: var(--text-default);
+}
+
+.news-stand-logo {
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 24px;
+}

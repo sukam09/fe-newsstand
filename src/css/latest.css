@@ -1,0 +1,90 @@
+@import "./color.css";
+
+.latest-main-news {
+  width: 930px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.latest--container {
+  padding: 16px;
+  border: 1px solid var(--gray-scale-100);
+  background-color: var(--gray-scale-50);
+  width: 100%;
+  position: relative;
+  height: 17px;
+  line-height: 16.71px;
+  display: flex;
+  gap: 16px;
+}
+
+.latest--container span {
+  font-weight: 700;
+  color: var(--gray-scale-black);
+  font-size: 14px;
+}
+
+.text--wrapper {
+  overflow: hidden;
+}
+
+.auto-rolling-news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 17px;
+  line-height: 16.71px;
+}
+
+.auto-rolling-news p {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-scale-400);
+  cursor: pointer;
+  width: 100%;
+}
+
+.latest--content {
+  display: flex;
+  font-size: 14px;
+  gap: 16px;
+  width: 100%;
+  transition: transform 1s linear;
+}
+
+.auto-rolling-news.right {
+  transition-delay: 1s;
+}
+
+.right-play0,
+.left-play0 {
+  transform: translateY(0%);
+  transition: none;
+}
+.right-play1,
+.left-play1 {
+  transform: translateY(-100%);
+  transition: transform 1s;
+}
+.right-play2,
+.left-play2 {
+  transform: translateY(-200%);
+  transition: transform 1s;
+}
+.right-play3,
+.left-play3 {
+  transform: translateY(-300%);
+  transition: transform 1s;
+}
+.right-play4,
+.left-play4 {
+  transform: translateY(-400%);
+  transition: transform 1s;
+}
+.right-play5,
+.left-play5 {
+  transform: translateY(-500%);
+  transition: transform 1s;
+}

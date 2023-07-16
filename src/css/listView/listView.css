@@ -1,0 +1,142 @@
+.list-wrapper {
+  width: 930px;
+}
+
+.list-wrapper.hidden {
+  display: none;
+}
+
+.categories-wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid var(--gray-scale-100);
+  border-bottom: none;
+  background-color: var(--gray-scale-50);
+}
+
+.categories-list {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0px 16px 0px 16px;
+  gap: 8px;
+  color: var(--gray-scale-200);
+  cursor: pointer;
+}
+
+.category-current {
+  width: 166px;
+  background-color: var(--blue-100);
+  position: relative;
+}
+
+.category-current::after {
+  position: absolute;
+  content: "";
+  height: 40px;
+  left: 0;
+  background-color: var(--blue-500);
+  animation: progressBar 3s linear infinite;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.category-current .category-name {
+  color: var(--surface-default);
+  font-weight: 700;
+  width: 100%;
+  z-index: 9999;
+}
+
+.category-current .category-count {
+  color: var(--surface-default);
+  font-weight: 700;
+  font-size: 12px;
+  z-index: 9999;
+}
+
+.category-name {
+  font-size: 14px;
+  line-height: 16.71px;
+}
+
+.press-news {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--gray-scale-100);
+  padding: 24px;
+}
+
+.press-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pressInfo-date {
+  font-size: 12px;
+  color: var(--gray-scale-400);
+}
+
+.pressInfo-subButton {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  border: 1px solid var(--gray-scale-100);
+  background-color: var(--gray-scale-50);
+  padding: 0px 6px 0px 6px;
+  border-radius: 100px;
+  cursor: pointer;
+  color: gray;
+  gap: 2px;
+}
+
+.press-main {
+  display: flex;
+  gap: 32px;
+}
+
+.press-imageInfo {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pressImage {
+  width: 320px;
+  height: 200px;
+  border: 1px solid var(--gray-scale-100);
+}
+
+.pressImage-title {
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--gray-scale-black);
+}
+
+.press-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.pressTitles-title {
+  color: var(--gray-scale-500);
+  font-size: 16px;
+}
+
+.pressTitles-subText {
+  color: var(--gray-scale-200);
+  font-size: 14px;
+}
