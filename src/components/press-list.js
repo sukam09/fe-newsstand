@@ -3,6 +3,20 @@ let currentArticle = 0;
 let currentCategory = 0;
 
 /**
+ * 언론사 리스트의 INIT
+ */
+const initPressList = async () => {
+  try {
+    const fetchData = await getFetchData('./assets/data/category-news.json');
+    console.log(fetchData);
+
+    // const latestNews = fetchData.latestNews;
+  } catch (error) {
+    console.error('언론사 리스트를 불러오는 중에 오류가 발생했습니다.', error);
+  }
+};
+
+/**
  * 언론사 불러오기
  */
 const setTotalPressList = (isLightMode) => {

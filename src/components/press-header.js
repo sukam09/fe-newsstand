@@ -1,6 +1,8 @@
 import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
-import { setTotalPressGrid } from './press-grid.js';
+import { setTotalPressGrid, initPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
+
+// 여기서 언론사 데이터 받아와서 Grid, List한테 뿌려주기
 
 /**
  * 언론사의 INIT
@@ -12,6 +14,8 @@ const initPressHeader = () => {
 
   setTotalPressList(); //
   setTotalPressGrid(); //
+
+  initPressGrid();
 };
 
 const setNav = (pressElement) => {
