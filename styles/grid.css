@@ -1,0 +1,22 @@
+/* news-grid-wrapper */
+.news-grid-wrapper {
+  display: grid;
+  width: 930px;
+  height: 388px;
+
+  grid-template-columns: repeat(6, 1fr);
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+}
+.news-grid-wrapper > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 154px;
+  height: 96px;
+  list-style-type: none;
+  border-right: 1px solid #d2dae0;
+  border-bottom: 1px solid #d2dae0;
+}
