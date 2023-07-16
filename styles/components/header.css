@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
+}
+.icon-small {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.icon-medium {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}

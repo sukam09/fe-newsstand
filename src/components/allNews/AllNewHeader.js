@@ -1,45 +1,47 @@
+import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
+import { customQuerySelector } from '../../utils/index.js';
+import { toggleDarkMode } from '../../index.js';
 
-export default class AllNewHeader {
-  constructor() {
-    this.$header = document.createElement('div');
-    this.$header.className = 'all-news-header';
+export default class AllNewHeader extends Component {
+  setup() {
+    const isCurrentDarkMode = document.body.className === 'dark';
+    this.state = {
+      modeIcon: isCurrentDarkMode ? 'moon' : 'sun',
+    };
+  }
+  template() {
+    return `<nav class='view-type-wrapper'>
+            <span class='selected-bold16 text-strong'>전체 언론사</span>        
+            <span class='available-medium16 text-weak'>내가 구독한 언론사</span>
+            </nav>
 
-    this.render();
-
-    return this.$header;
+            <div class='view-type-icon'>
+              <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
+              <img id ='list-view-icon' class='icon-medium'/>
+              <img id ='grid-view-icon' class='icon-medium'/>
+            </div>`;
   }
 
-  render() {
-    this.addTitleNavigator();
-    this.addIconNavigator();
+  mounted() {
+    const listIconName = this.props.view === 'list' ? 'list-view-focus' : 'list-view';
+    const gridIconName = this.props.view === 'grid' ? 'grid-view-focus' : 'grid-view';
+
+    new Icon(customQuerySelector('#list-view-icon', this.$target), { name: listIconName });
+    new Icon(customQuerySelector('#grid-view-icon', this.$target), { name: gridIconName });
   }
 
-  addTitleNavigator() {
-    const $titleNavigation = document.createElement('nav');
-    $titleNavigation.className = 'view-type-wrapper';
+  setEvent() {
+    this.$target.addEventListener('click', e => {
+      const id = e.target.id;
 
-    const $allPress = document.createElement('span');
-    const $subscibedPress = document.createElement('span');
-
-    $allPress.innerText = '전체 언론사';
-    $subscibedPress.innerText = '내가 구독한 언론사';
-
-    $titleNavigation.appendChild($allPress);
-    $titleNavigation.appendChild($subscibedPress);
-    this.$header.appendChild($titleNavigation);
-  }
-
-  addIconNavigator() {
-    const $iconNavigation = document.createElement('div');
-    $iconNavigation.className = 'view-type-icon';
-
-    const $listViewIcon = new Icon({ name: 'list-view' });
-    const $gridViewIcon = new Icon({ name: 'grid-view' });
-
-    $iconNavigation.appendChild($listViewIcon);
-    $iconNavigation.appendChild($gridViewIcon);
-
-    this.$header.appendChild($iconNavigation);
+      if (id === 'list-view-icon') {
+        this.props.onClick('list');
+      } else if (id === 'grid-view-icon') {
+        this.props.onClick('grid');
+      } else if (id === 'darkmode-icon') {
+        toggleDarkMode();
+      }
+    });
   }
 }

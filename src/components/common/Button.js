@@ -1,23 +1,48 @@
+import { customQuerySelector } from '../../utils/index.js';
+import Component from '../core/Component.js';
 import Icon from './Icon.js';
 
-export default class Button {
-  constructor({ colors, states, icon, text = '' }) {
-    this.$button = document.createElement('button');
-    this.$button.className = 'news-stand-logo ';
-
-    this.colors = colors;
-    this.states = states;
-    this.icon = icon;
-    this.text = text;
-
-    this.render();
-
-    return this.$button;
+export default class Button extends Component {
+  setup() {
+    this.state = { ...this.props };
+  }
+  template() {
+    return `
+      <button class="common-button border-default surface-alt text-weak">
+        <img class='common-button-icon'/><span>${this.state.text}</span>
+      </button>
+    `;
   }
 
-  render() {
-    const $iconImg = new Icon({ name: this.icon });
+  mounted() {
+    const $button = customQuerySelector('button', this.$target);
+    $button.className =
+      this.state.color === 'gray'
+        ? `common-button border-default surface-alt text-weak`
+        : `common-button border-default surface-defalut text-weak`;
 
-    this.$button.innerHTML = `${$iconImg.outerHTML} ${this.text}`;
+    new Icon(customQuerySelector('.common-button-icon', this.$target), { name: this.state.icon });
+  }
+
+  setEvent() {
+    const $button = customQuerySelector('button', this.$target);
+
+    $button.addEventListener('mouseover', () => {
+      $button.className =
+        this.state.color === 'gray'
+          ? `common-button border-bold surface-alt text-bold`
+          : `common-button border-bold surface-defalut text-bold`;
+    });
+
+    $button.addEventListener('mouseout', () => {
+      $button.className =
+        this.state.color === 'gray'
+          ? `common-button border-default surface-alt text-weak`
+          : `common-button border-default surface-defalut text-weak`;
+    });
+
+    $button.addEventListener('click', () => {
+      this.state.action();
+    });
   }
 }

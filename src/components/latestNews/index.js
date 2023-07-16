@@ -1,30 +1,39 @@
-export default class LatestNews {
-  constructor() {
-    this.$wrapper = document.createElement('div');
-    this.$wrapper.className = 'latest-main-news';
+import { customQuerySelectorAll } from '../../utils/index.js';
+import Component from '../core/Component.js';
+import LatestNewsComponent from './LatestNewsComponent.js';
 
-    this.render();
-    return this.$wrapper;
+export default class LatestNews extends Component {
+  template() {
+    return `<div class='auto-rolling-news border-default surface-alt'></div>
+            <div class='auto-rolling-news border-default surface-alt'></div>
+            `;
   }
+  mounted() {
+    const $newsLists = customQuerySelectorAll('.auto-rolling-news', this.$target);
 
-  render() {
-    this.$wrapper.appendChild(this.createLatestNewsComponent('연합뉴스', '[1보] !'));
-    this.$wrapper.appendChild(this.createLatestNewsComponent('연합뉴스', '[1보] !'));
-  }
-
-  createLatestNewsComponent(name, content) {
-    const $component = document.createElement('div');
-    $component.className = 'auto-rolling-news';
-
-    const $newsName = document.createElement('span');
-    const $newsContent = document.createElement('p');
-
-    $newsName.innerText = name;
-    $newsContent.innerText = '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출';
-
-    $component.appendChild($newsName);
-    $component.appendChild($newsContent);
-
-    return $component;
+    new LatestNewsComponent($newsLists[0], {
+      name: '연합뉴스',
+      content: [
+        '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+      ],
+      currentIndex: 0,
+      delay: 0,
+    });
+    new LatestNewsComponent($newsLists[1], {
+      name: '연합뉴스',
+      content: [
+        '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+        '[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
+      ],
+      currentIndex: 0,
+      delay: 1,
+    });
   }
 }

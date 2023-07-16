@@ -1,0 +1,49 @@
+/* alert-button */
+.alert-modal {
+  position: absolute;
+  top: 240px;
+  z-index: 10;
+}
+.alert-modal.off {
+  display: none;
+}
+.alert-wrapper {
+  display: flex;
+  width: 320px;
+  flex-direction: column;
+}
+.alert-content-wrapper {
+  padding: 24px;
+  text-align: center;
+}
+
+.alert-confirm-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.alert-yes,
+.alert-no {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.alert-yes:hover,
+.alert-no:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.alert-yes {
+  border-bottom: 0px;
+  border-left: 0px;
+  border-top: 0px;
+}

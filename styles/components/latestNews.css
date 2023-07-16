@@ -1,0 +1,42 @@
+/* latest news*/
+
+.latest-main-news {
+  width: 930px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.auto-rolling-news {
+  padding: 16px;
+  gap: 16px;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.auto-rolling-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  position: absolute;
+  top: 16px;
+  transition: top 0.3s ease-in-out;
+}
+
+.auto-rolling-news p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.news-stand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}

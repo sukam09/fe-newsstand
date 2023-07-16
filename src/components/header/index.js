@@ -1,26 +1,26 @@
-import { getTodayDate } from '../../utils/index.js';
-import Button from '../common/Button.js';
+import { customQuerySelector, getTodayDate } from '../../utils/index.js';
+import Component from '../core/Component.js';
+import Icon from '../common/Icon.js';
 
-export default class Header {
-  constructor() {
-    this.$header = document.createElement('header');
-    this.$header.className = 'header';
-    this.render();
-
-    return this.$header;
+export default class Header extends Component {
+  setup() {
+    this.todayDate = getTodayDate();
+  }
+  template() {
+    return `<h1>
+              <button class='news-stand-logo display-bold24 text-strong'>
+              <img class='news-stand-icon'/>뉴스스탠드</button>
+            </h1>
+            <span class='date display-medium16 text-default'>${this.todayDate}</span>
+            `;
   }
 
-  render() {
-    const $headerName = document.createElement('h1');
-    const $date = document.createElement('span');
-    const $icon = new Button({ icon: 'newspaper', text: '뉴스스탠드' });
+  mounted() {
+    new Icon(customQuerySelector('.news-stand-icon', this.$target), { name: 'newspaper' });
+    new Icon(customQuerySelector('.news-stand-icon', this.$target), { name: 'newspaper' });
+  }
 
-    $headerName.appendChild($icon);
-    $date.innerText = getTodayDate();
-    $date.className = 'date';
-    $icon.src = '../../assets/icons/news-stand-simbol.svg';
-
-    this.$header.appendChild($headerName);
-    this.$header.appendChild($date);
+  setEvent() {
+    this.$target.addEventListener('click', () => location.reload());
   }
 }
