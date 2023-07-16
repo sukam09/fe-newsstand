@@ -1,0 +1,29 @@
+/* header */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 136px;
+  font-size: var(--font-size-large);
+  white-space: nowrap;
+}
+
+.header__title__logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header__date {
+  position: relative;
+  top: 8.5px;
+  color: var(--color-text-default);
+  font-size: var(--font-size-medium);
+}

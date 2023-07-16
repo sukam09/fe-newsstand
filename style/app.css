@@ -1,0 +1,10 @@
+@import url("./Basic/font.css");
+@import url("./Basic/color.css");
+@import url("./Basic/global.css");
+@import url("./Basic/reset.css");
+@import url("./Components/header.css");
+@import url("./Components/headline.css");
+@import url("./Components/navBar.css");
+@import url("./Components/newsGrid.css");
+@import url("./Components/newsList.css");
+@import url("./Components/pageButton.css");

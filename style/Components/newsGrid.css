@@ -1,0 +1,25 @@
+/* news grid layout */
+
+.news-section-grid {
+  height: 388px;
+  position: relative;
+}
+
+.newspaper__list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(96.25px, auto));
+  border-top: 1px solid var(--color-border-default);
+  border-left: 1px solid var(--color-border-default);
+}
+
+.newspaper__item {
+  height: 96.25px;
+  border-bottom: 1px solid var(--color-border-default);
+  border-right: 1px solid var(--color-border-default);
+  text-align: center;
+  line-height: 96.25px;
+}
+
+.newspaper__item > img {
+  vertical-align: middle;
+}

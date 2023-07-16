@@ -1,0 +1,21 @@
+/* grid page button */
+
+.right-button_content {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(61px, -21px);
+  cursor: pointer;
+}
+
+.left-button_content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-61px, -21px);
+  cursor: pointer;
+}
+
+.news-section-grid .left-button_content {
+  display: none;
+}
