@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/gridView.css" />
+    <link rel="stylesheet" href="./style/listView.css" />
+    <title>뉴스 스탠드</title>
+    <script src="./constant/pressObj.js"></script>
+    <script src="./constant/newsContents.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="container__header flex_row">
+        <div class="container__header__main flex_row">
+          <img
+            class="container__header__main__logo"
+            src="./assets/logo/logo.svg"
+            alt="" />
+          <h1 class="container__header__main__title">뉴스스탠드</h1>
+        </div>
+        <span class="container__header_date"></span>
+      </header>
+      <section class="banner_section flex_row">
+        <wrap class="newsbanner flex_row">
+          <h2 class="newsbanner__title">연합뉴스</h2>
+          <ul
+            class="newsbanner__list-container newsbanner__list-container--left"></ul>
+        </wrap>
+        <wrap class="newsbanner flex_row">
+          <h2 class="newsbanner__title">연합뉴스</h2>
+          <ul
+            class="newsbanner__list-container newsbanner__list-container--right"></ul>
+        </wrap>
+      </section>
+      <section class="main_section">
+        <header class="main_section__header flex_row">
+          <wrapper class="main_section__header__title flex_row">
+            <h2 class="main_section__header__title--all">전체 언론사</h2>
+            <span class="main_section__header__title--sub"
+              >내가 구독한 언론사</span
+            >
+          </wrapper>
+          <wrapper class="main_section__header__button-wrapper flex_row">
+            <img class="list_button" src="./assets/icons/list_off.png" alt="" />
+            <img class="grid_button" src="./assets/icons/grid_on.png" alt="" />
+          </wrapper>
+        </header>
+        <div class="main_container">
+          <img
+            src="./assets/icons/leftbutton.png"
+            class="left_grid_button"
+            alt="" />
+          <img
+            src="./assets/icons/leftbutton.png"
+            class="left_list_button"
+            alt="" />
+          <div class="main_content">
+            <ul class="grid_container" id="page0"></ul>
+            <ul class="grid_container" id="page1"></ul>
+            <ul class="grid_container" id="page2"></ul>
+            <ul class="grid_container" id="page3"></ul>
+            <div class="list_container">
+              <header class="category_container_header">
+                <ul class="category_list_container flex_row"></ul>
+              </header>
+              <wrapper class="list_container__wrapper flex_column">
+                <header class="list_container__wrapper__header flex_row">
+                  <img class="list_container__wrapper__header__logo" />
+                  <span class="list_container__wrapper__header__time"
+                    >2023.07.06 19:00 편집</span
+                  >
+                  <button class="list_container__wrapper__header__button">
+                    + 구독하기&#32;
+                  </button>
+                </header>
+                <wrapper class="list_container__wrapper__main flex_row">
+                  <div class="topic flex_column">
+                    <wrapper class="topic__thumbnail_frame">
+                      <img
+                        class="topic__thumbnail"
+                        alt=""
+                        width="320px"
+                        height="200px" />
+                    </wrapper>
+                    <span class="topic_mainTitle"></span>
+                  </div>
+                  <wrapper class="news_list_container__wrapper flex_column">
+                    <ul class="news_list__container flex_column"></ul>
+                    <small class="news_list_detail"></small>
+                  </wrapper>
+                </wrapper>
+              </wrapper>
+            </div>
+          </div>
+          <img
+            src="./assets/icons/rightbutton.png"
+            class="right_grid_button"
+            alt="" />
+          <img
+            src="./assets/icons/rightbutton.png"
+            class="right_list_button"
+            alt="" />
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

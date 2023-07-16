@@ -1,0 +1,135 @@
+.flex_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1000px;
+}
+
+/* 메인 헤더 부분 */
+.container__header {
+  width: 100%;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.container__header__main {
+  gap: 8px;
+  justify-content: space-between;
+}
+.container__header__main:hover {
+  cursor: pointer;
+}
+
+.container__header__main__logo {
+  width: 24px;
+  height: 24px;
+}
+.container__header__main__title {
+  color: var(--text-text-strong, #14212b);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.container__header_date {
+  color: #5f6e76;
+}
+
+section {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* 중간 배너 부분 */
+.banner_section {
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.newsbanner {
+  background-color: #f5f7f9;
+  width: 100%;
+  border: 1px solid #d2dae0;
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 14px;
+  height: 49px;
+}
+
+.newsbanner__title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.newsbanner__list-container {
+  padding: 0;
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+  height: 17px;
+}
+
+.newsbanner__list {
+  position: absolute;
+  display: none;
+  color: #5f6e76;
+  list-style: none;
+}
+
+.newsbanner__list--prev {
+  top: -20px;
+  display: block;
+  transition: top 1s ease;
+}
+.newsbanner__list--now {
+  top: 0px;
+  display: block;
+  transition: top 1s ease;
+}
+.newsbanner__list--next {
+  top: 20px;
+  display: block;
+}
+
+/* 메인 뉴스 헤더 부분 */
+.main_section__header {
+  justify-content: space-between;
+}
+
+.main_section__header__title {
+  gap: 24px;
+}
+
+.main_section__header__title--all {
+  font-size: 16px;
+}
+.main_section__header__title--sub {
+  font-size: 16px;
+  color: #879298;
+}
+
+.main_section__header__button-wrapper {
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* 메인 뉴스 부분 */
+.main_container {
+  position: relative;
+}
+
+.main_content {
+  height: 388px;
+}
