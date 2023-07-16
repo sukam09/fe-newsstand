@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뉴스스탠드</title>
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+    <script src="../js/app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="title-wrapper">
+          <div class="title">
+            <img src="../assets/icons/newsstand-logo.svg" />
+            <span class="display-text">뉴스스탠드</span>
+          </div>
+
+          <span class="date"></span>
+        </div>
+      </header>
+      <main>
+        <div class="auto-rolling-news-bar">
+          <div class="auto-rolling-news" id="recent-left"></div>
+          <div class="auto-rolling-news" id="recent-right"></div>
+        </div>
+
+        <section>
+          <div class="main-container">
+            <div class="main-tab-viewer">
+              <div class="main-tab-btn">
+                <button><span class="all-press">전체 언론사</span></button>
+                <button class="subscribe-press">
+                  <span>내가 구독한 언론사</span>
+                </button>
+              </div>
+              <div class="viewer-btn">
+                <button id="list-view-btn">
+                  <img
+                    id="list-btn"
+                    src="../assets/icons/list-view.svg"
+                    alt="images"
+                  />
+                </button>
+                <button id="grid-view-btn">
+                  <img
+                    id="grid-btn"
+                    src="../assets/icons/grid-view-clicked.svg"
+                    alt="images"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div class="view-content">
+              <div class="grid-view">
+                <button id="left-btn">
+                  <img id="left" src="../assets/icons/left-btn.svg" />
+                </button>
+                <div class="main-list">
+                  <ul class="main-list-ul"></ul>
+                </div>
+                <button id="right-btn">
+                  <img id="right" src="../assets/icons/right-btn.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
