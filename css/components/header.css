@@ -1,0 +1,18 @@
+.title-wrapper img {
+  width: 24px;
+  height: 24px;
+}
+.date {
+  color: var(--text-default);
+  font-size: 16px;
+}
+.display-text {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 24px;
+  margin-left: 6px;
+}
+.title {
+  display: flex;
+  align-items: center;
+}

@@ -5,29 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>뉴스스탠드</title>
     <link rel="stylesheet" href="../css/index.css" type="text/css" />
-    <script src="../js/index.js" type="module"></script>
+    <script src="../js/app.js" type="module"></script>
   </head>
   <body>
     <div class="wrapper">
       <header>
         <div class="title-wrapper">
           <div class="title">
-            <img src="../images/icon/newsstandLogo.svg" />
+            <img src="../images/icon/NewsstandLogo.svg" />
             <span class="display-text">뉴스스탠드</span>
           </div>
 
           <span class="date"></span>
         </div>
       </header>
+
       <main>
         <div class="auto-rolling-news-bar">
           <div class="auto-rolling-news">
-            <span class="press">연합뉴스</span>
-            <span class="news-title">[1보] 김기현,안철수~~</span>
+            <ul id="left-rolling">
+              <li class="current">
+                <span class="press">연합뉴스1</span>
+                <span class="news-title">[1111보] 김기현,안철수~~</span>
+              </li>
+              <li class="next">
+                <span class="press">연합뉴스2</span>
+                <span class="news-title">[2222보] 김기현,안철수~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스3</span>
+                <span class="news-title">[3333보] 김기현,안철수~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스4</span>
+                <span class="news-title">[4444보] 김기현,안철수~~</span>
+              </li>
+              <li class="prev">
+                <span class="press">연합뉴스5</span>
+                <span class="news-title">[5555보] 김기현,안철수~~</span>
+              </li>
+            </ul>
           </div>
           <div class="auto-rolling-news">
-            <span class="press">연합뉴스</span>
-            <span class="news-title">[속보] 최고위원 본경선,~~</span>
+            <ul id="right-rolling">
+              <li class="current">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보1] 최고위원 본경선,~~</span>
+              </li>
+              <li class="next">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보2] 최고위원 본경선,~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보3] 최고위원 본경선,~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보4] 최고위원 본경선,~~</span>
+              </li>
+              <li class="prev">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보5] 최고위원 본경선,~~</span>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -40,25 +81,62 @@
                   <span>내가 구독한 언론사</span>
                 </button>
               </div>
+
               <div class="viewer-btn">
                 <button>
-                  <img src="../images/icon/list-view.png" alt="images" />
+                  <img
+                    src="../images/icon/List-view-unchecked.svg"
+                    alt="images"
+                  />
                 </button>
                 <button>
-                  <img src="../images/icon/grid-view.png" alt="images" />
+                  <img
+                    src="../images/icon/Grid-view-checked.svg"
+                    alt="images"
+                  />
                 </button>
               </div>
             </div>
 
-            <div class="grid-view">
-              <button id="left-btn">
-                <img id="left" src="../images/icon/LeftButton.png" />
+            <div class="main">
+              <button id="grid-left-btn">
+                <img id="grid-left" src="../images/icon/LeftButton.svg" />
               </button>
-              <div class="main-list">
-                <ul class="main-list-ul"></ul>
+
+              <button id="list-left-btn" style="visibility: hidden">
+                <img id="list-left" src="../images/icon/LeftButton.svg" />
+              </button>
+
+              <div class="grid-view">
+                <ul class="grid-view-ul"></ul>
               </div>
-              <button id="right-btn">
-                <img id="right" src="../images/icon/RightButton.png" />
+
+              <div class="list-view" style="display: none">
+                <ul class="category"></ul>
+
+                <div class="press-info">
+                  <img class="press-info-img" />
+                  <span></span>
+                  <button>
+                    <img src="../images/icon/Subscribe.svg" />
+                  </button>
+                </div>
+
+                <div class="list-view-news">
+                  <div class="list-view-main">
+                    <img />
+                    <div class="list-main-title"></div>
+                  </div>
+                  <div class="list-view-sub"></div>
+                </div>
+              </div>
+
+              <button id="grid-right-btn">
+                <img id="grid-right" src="../images/icon/RightButton.svg" />
+              </button>
+
+              <button id="list-right-btn" style="visibility: hidden">
+                <img id="list-right" src="../images/icon/RightButton.svg" />
               </button>
             </div>
           </div>
