@@ -1,7 +1,10 @@
 import rollingList from "./asset/data/rollingList.js";
+import listViewData from "./asset/data/listViewData.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const listContainer = document.querySelector(".list-box");
+const listNav = document.querySelector(".list-nav");
+const listContent = document.querySelector(".list-content");
 const dateContainer = document.querySelector(".header-right");
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
@@ -14,19 +17,40 @@ const viewChangeBtns = document.querySelectorAll(".nav-right .btn")
 const viewContainer = document.querySelector(".view-section-content")
 
 let crntPage = 0;
+let crntListIdx = 0;
+let crntListPressIdx = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
 let crntView = "grid";
+const categoryList = ["종합/경제","방송/통신","IT","영자지","스포츠/연예","매거진/전문지","지역"]
 
+
+function listenCategoryChange(catBtns){
+    Array.prototype.forEach.call(catBtns, (btn, index) => {
+        btn.addEventListener("click", () => {
+            catBtns[crntListIdx].classList.remove("selected")
+            crntListIdx = index;
+            catBtns[crntListIdx].classList.add("selected");
+            // drawList(crntListIdx); // list section 내 전부 지우고 다시 그리기
+        })
+    })
+}
+function drawList(crntListIdx) {
+    listNav.innerHTML = "";
+    categoryList.forEach((category, index) => {
+        listNav.innerHTML += `<li class="${crntListIdx == index ? "selected category" : "category"}">${category}</li>`
+    })
+    
+}
 function listenChangeView(btn, type) {
     btn.addEventListener("click", () => {
         if (crntView !== type){
             crntView = type;
             Array.prototype.forEach.call(viewContainer.children, (view) => {
                 if (view.getAttribute("type") == type){
-                    view.classList.remove("hidden");
+                    view.classList.remove("hide");
                 } else {
-                    view.classList.add("hidden")
+                    view.classList.add("hide")
                 }      
             })
         }
@@ -158,6 +182,7 @@ function drawDate() {
 function init(){
     drawDate();
     drawPress(crntPage);
+    drawList(crntListIdx);
     rollingContent.forEach((item, index) => {
         const isFirstRoll = true;
         rollHeadline(item,rollingList, rollingList.length, index, isFirstRoll);
@@ -168,6 +193,7 @@ function init(){
     viewChangeBtns.forEach((btn) => {
         listenChangeView(btn, btn.getAttribute("type"));
     })
+    listenCategoryChange(listNav.children);
 }
 
 window.onload = init;
