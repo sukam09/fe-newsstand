@@ -1,0 +1,33 @@
+/***** 헤더 style *****/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 930px;
+  margin-top: 54px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  padding-left: 8px;
+  font-size: 24px;
+}
+
+.date {
+  font-weight: 500;
+  line-height: 22px;
+  font-size: 16px;
+}
+
+.rollingbanner {
+  position: relative;
+  width: 461px;
+  height: 17px;
+  padding: 16px;
+  border: 1px solid var(--border-default);
+  background: var(--surface-alt);
+}

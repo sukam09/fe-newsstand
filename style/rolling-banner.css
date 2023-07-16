@@ -1,0 +1,93 @@
+/***** 롤링 배너 style *****/
+.news-rolling-div {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 930px;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.rolling {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  background-color: var(--surface-alt);
+  width: 429px;
+  height: 17px;
+  border: 1px solid var(--border-default);
+}
+.rolling-press {
+  color: var(--text-strong, #14212b);
+  font-size: 14px;
+  line-height: normal;
+}
+.rolling-title {
+  color: var(--text-default);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.rollingbanner > .wrap {
+  position: relative;
+  width: auto;
+  height: 17px;
+  box-sizing: border-box;
+  overflow: hidden;
+  gap: 16px;
+}
+.rolling ul {
+  list-style: none;
+}
+.rollingbanner li {
+  position: absolute;
+  top: -17px;
+  left: 0;
+  z-index: 10;
+}
+
+.rolling-title:hover {
+  text-decoration: underline;
+}
+
+/* 이전, 현재, 다음 롤링 배너 표시 */
+.rollingbanner li.prev {
+  top: 17px;
+  transition: top 0.5s linear;
+}
+.rollingbanner li.current {
+  top: 0;
+  transition: top 0.5s linear;
+}
+.rollingbanner li.next {
+  top: -17px;
+}
+.rollingbanner a {
+  display: block;
+  display: -webkit-box;
+  text-decoration: none;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #000;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
+.rollingbanner.reverse li.prev {
+  top: -17px;
+  transition: top 0.5s linear;
+}
+.rollingbanner.reverse li.next {
+  top: 17px;
+}
+.rollingbanner > ul > li {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
