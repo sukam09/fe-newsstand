@@ -1,5 +1,6 @@
 import { MAX_GRID_PAGENUM } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
+import { class_name } from "../../utils/domClassName.js";
 
 // grid view page 정보
 export const grid_view_info = {
@@ -10,11 +11,8 @@ export const grid_view_info = {
     getCurrentPage: function () {
         return this.current_page;
     },
-    setNextPage: function () {
-        this.current_page += 1;
-    },
-    setPrevPage: function () {
-        this.current_page -= 1;
+    setPage: function (isRight) {
+        isRight ? (this.current_page += 1) : (this.current_page -= 1);
     },
     getShuffleList: function () {
         return this.shuffle_press_list;
@@ -23,8 +21,8 @@ export const grid_view_info = {
 
 // 페이지 넘길 때 첫번째 마지막 페이지 화살표 숨김
 export function toggleArrow() {
-    const left_btn = document.querySelector(".grid_view_btn-left");
-    const right_btn = document.querySelector(".grid_view_btn-right");
+    const left_btn = document.querySelector(`.${class_name.GRID_LEFT_BTN}`);
+    const right_btn = document.querySelector(`.${class_name.GRID_RIGHT_BTN}`);
 
     switch (grid_view_info.current_page) {
         case 0:

@@ -98,9 +98,9 @@ async function resetProgressBar() {
 }
 
 // 화살표 버튼 클릭
-export function onClickArrowBtn(isRight) {
+export function onClickArrowBtn() {
     removeInterval();
-    changePageNum(isRight).then(() => {
+    changePageNum(this.isRight).then(() => {
         resetProgressBar();
         renderPressNews(list_news_data[progress_bar_info.category_now - 1].news[progress_bar_info.page_num - 1]);
         startInterval();

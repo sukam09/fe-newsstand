@@ -41,8 +41,8 @@ const view_info = {
     },
 };
 
-export function viewIconClickEvent(is_grid_icon) {
-    is_grid_icon
+export function viewIconClickEvent() {
+    this.is_grid_icon
         ? view_info.changeToGridView().then(() => {
               view_info.changeView();
           })
