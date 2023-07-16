@@ -1,5 +1,6 @@
 import { getShuffleList, getSliceList } from '../utils/shuffle.js';
 
+const ARROW_DISPLAY_THRESHOLD = 3; // 최대 화살표 표시 개수 상수로 정의
 /**
  * 언론사 그리드의 INIT
  */
@@ -75,22 +76,16 @@ const setGridArrowEvent = (pressData, pressList, arrow, page, direction, section
   });
 };
 
-/// 수정
 const setGridArrowNone = (pressList, pageNum, section) => {
   const arrowLeft = document.querySelector(`.arrows-logo__img-left__${section}`);
   const arrowRight = document.querySelector(`.arrows-logo__img-right__${section}`);
   const arrowNumber = Math.ceil(pressList.length / 24);
 
-  if (pageNum === 0) {
-    arrowLeft.classList.add('none');
-  }
-  if (pageNum > 0 && pageNum < 3) {
-    arrowLeft.classList.remove('none');
-    arrowRight.classList.remove('none');
-  }
-  if (pageNum === 3) {
-    arrowRight.classList.add('none');
-  }
+  const showLeftArrow = pageNum > 0;
+  const showRightArrow = pageNum < ARROW_DISPLAY_THRESHOLD - 1;
+
+  arrowLeft.classList.toggle('none', !(arrowNumber > 1) || !showLeftArrow);
+  arrowRight.classList.toggle('none', !(arrowNumber > 1) || !showRightArrow);
 };
 
 const setGridLogo = (pressData, pressList, pageNum, section) => {
@@ -100,7 +95,7 @@ const setGridLogo = (pressData, pressList, pageNum, section) => {
 
 const getGridLogo = (pressData, pressList, section) => {
   pressList.forEach((pressNum, idx) => {
-    const selectPress = pressData.find((data) => data.id === pressNum); // 언론사 데이터 찾기
+    const selectPress = pressData.find((data) => data.id === pressNum);
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
     logoWapper.src = selectPress.lightSrc;
   });
