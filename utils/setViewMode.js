@@ -1,10 +1,15 @@
 import { setGridButton } from "../components/Grid/setGridButton.js";
 import { GridComponent } from "../components/GridComponent.js";
 import { ListComponent } from "../components/ListComponent.js";
-import { INITIAL_PAGE } from "../constants/constant.js";
-import { removeButton } from "./removeButton.js";
+import {
+  FIELDTAB_LIST,
+  INITIAL_CATEGORY,
+  INITIAL_PAGE,
+} from "../constants/constant.js";
+import { removeButton } from "../components/Button/removeButton.js";
 import { sortCategory } from "./sortCategory.js";
 import { sortPages } from "./sortPage.js";
+import { setListButton } from "../components/List/setListButton.js";
 
 const gridBtn = document.querySelector(".grid-view-btn");
 const listBtn = document.querySelector(".list-view-btn");
@@ -16,6 +21,8 @@ export const viewSelectHandler = (agencies) => {
     if (gridBtn.getAttribute("viewtype") == null) {
       gridBtn.setAttribute("viewtype", true);
       listBtn.removeAttribute("viewtype");
+
+      removeButton();
 
       const $grid = document.querySelector(".agency-grid");
       const $list = document.querySelector(".agency-list");
@@ -36,6 +43,9 @@ export const viewSelectHandler = (agencies) => {
 
       removeButton();
 
+      let currentPage = INITIAL_PAGE;
+      let currentCategory = INITIAL_CATEGORY;
+
       const $grid = document.querySelector(".agency-grid");
       const $list = document.querySelector(".agency-list");
       $grid.style.display = "none";
@@ -43,7 +53,13 @@ export const viewSelectHandler = (agencies) => {
 
       // list view 생성
       const sortedAgencies = sortCategory(agencies);
-      ListComponent(INITIAL_PAGE, sortedAgencies);
+
+      ListComponent(
+        INITIAL_PAGE,
+        sortedAgencies,
+        FIELDTAB_LIST[currentCategory],
+        currentCategory
+      );
     }
   };
 

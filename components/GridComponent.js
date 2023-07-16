@@ -1,5 +1,5 @@
 import { MAX_PAGE_IDX, PAGINATION_NUM } from "../constants/constant.js";
-import { removeAllChildNodes } from "../utils/removeChild.js";
+import { removeAllChildNodes } from "../utils/utils.js";
 import { makeGrid } from "./Grid/gridElement.js";
 
 const isFirstPage = (currentPage) => currentPage === 0;

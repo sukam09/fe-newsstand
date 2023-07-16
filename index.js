@@ -1,11 +1,9 @@
-import { rollNews } from "./components/roller.js";
+import { rollNews } from "./components/Roller.js";
 import { RECENT_NEWS_NUM } from "./constants/constant.js";
 import { viewSelectHandler } from "./utils/setViewMode.js";
-import { fetchData } from "./utils/fetch.js";
-import { shuffleData } from "./utils/shuffle.js";
-import { sliceData } from "./utils/slice.js";
-import { TimeComponent } from "./components/time.js";
-import { initGrid } from "./components/initGrid.js";
+import { TimeComponent } from "./components/Time.js";
+import { initGrid } from "./components/InitGrid.js";
+import { fetchData, shuffleData, sliceData } from "./utils/utils.js";
 
 // time 설정
 TimeComponent();

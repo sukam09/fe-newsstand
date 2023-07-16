@@ -37,11 +37,15 @@ const makeTab = (sortedAgencies, item) => {
   const $li = document.createElement("li");
   $li.className = "field-tab-normal";
   $li.innerText = item;
-  console.log(item);
   $li.addEventListener("click", () => {
-    ListComponent(INITIAL_PAGE, sortedAgencies, item);
+    let currentCategory = FIELDTAB_LIST.findIndex((tag) => tag === item);
+    ListComponent(
+      INITIAL_PAGE,
+      sortedAgencies,
+      FIELDTAB_LIST[currentCategory],
+      currentCategory
+    );
   });
-  console.log($li);
   return $li;
 };
 
