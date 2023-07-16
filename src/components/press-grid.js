@@ -34,7 +34,7 @@ const initSubscribePressGrid = (pressData) => {
   setGridLogo(pressData, subscribePress, 0, 'subscribe');
   changeIcon('subscribe');
 
-  document.querySelector('.press__wrapper-grid__subscribe').classList.add('none'); //
+  document.querySelector('.press__wrapper-grid__subscribe').classList.add('none');
 };
 
 /**
@@ -68,6 +68,8 @@ const setGridFrame = (section) => {
 const setGridArrow = (pressData, pressList, page, section) => {
   const arrowLeft = document.querySelector(`.arrows-logo__img-left__${section}`);
   const arrowRight = document.querySelector(`.arrows-logo__img-right__${section}`);
+  const arrowNumber = Math.ceil(pressList.length / 24);
+  if (!(arrowNumber > 1)) arrowRight.classList.add('none');
 
   setGridArrowEvent(pressData, pressList, arrowLeft, page, -1, section);
   setGridArrowEvent(pressData, pressList, arrowRight, page, +1, section);
@@ -89,7 +91,7 @@ const setGridArrowNone = (pressList, pageNum, section) => {
   const arrowNumber = Math.ceil(pressList.length / 24);
 
   const showLeftArrow = pageNum > 0;
-  const showRightArrow = pageNum < ARROW_DISPLAY_THRESHOLD - 1;
+  const showRightArrow = pageNum < ARROW_DISPLAY_THRESHOLD;
 
   arrowLeft.classList.toggle('none', !(arrowNumber > 1) || !showLeftArrow);
   arrowRight.classList.toggle('none', !(arrowNumber > 1) || !showRightArrow);
@@ -114,14 +116,14 @@ const getGridLogo = (pressData, pressList, section) => {
 /**
  * 언론사 그리드의 라이트/다크모드
  */
-const changeIcon = (section) => {
-  const modeImg = document.querySelector('.mode__img');
-  modeImg.addEventListener('click', () => toggleMode(section));
-};
-
 const toggleMode = (section) => {
   const pressLogos = document.querySelectorAll(`.press-logo__wrapper-grid__${section} img`);
   pressLogos.forEach((logo) => changeSrc(logo));
+};
+
+const changeIcon = (section) => {
+  const modeImg = document.querySelector('.mode__img');
+  modeImg.addEventListener('click', () => toggleMode(section));
 };
 
 const changeSrc = (logo) => {
