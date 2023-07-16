@@ -18,8 +18,8 @@ const initPressHeader = async () => {
     setNav(getNavRight());
     setNavImg();
 
-    initLightDarkMode(); //
-    setTotalPressList(); // 수정중
+    initLightDarkMode();
+    setTotalPressList();
     // setTotalPressGrid(); // 수정중
     initPressGrid(pressData);
   } catch (error) {

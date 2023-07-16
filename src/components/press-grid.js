@@ -1,23 +1,12 @@
 import { getShuffleList, getSliceList } from '../utils/shuffle.js';
 
-const ARROW_DISPLAY_THRESHOLD = 3; // 최대 화살표 표시 개수 상수로 정의
+const ARROW_DISPLAY_THRESHOLD = 3;
 /**
  * 언론사 그리드의 INIT
  */
 const initPressGrid = (pressData) => {
   initEntirePressGrid(pressData);
-
-  //
-  // console.log(pressData);
-
-  // const shufflePress = getShuffleList(pressData.length);
-
-  // setGrid();
-  // setGridImg(pressData, shufflePress); // 전체 언론사
-
-  // setGridFrame();
-  // setGridLogo(pressData, shufflePress);
-  // // setGridLogo(pressData, shufflePress); ////
+  // initSubscribePressGrid(pressData);
 };
 
 const initEntirePressGrid = (pressData) => {
@@ -29,6 +18,16 @@ const initEntirePressGrid = (pressData) => {
   setGridArrow(pressData, shufflePress, 'entirePage', 'entire'); // 전체 언론사
   setGridLogo(pressData, shufflePress, 0, 'entire');
   changeIcon('entire');
+};
+
+const initSubscribePressGrid = (pressData) => {
+  // const shufflePress = getShuffleList(pressData.length);
+  // localStorage.setItem('entirePage', 0);
+  // setGrid('entire');
+  // setGridFrame('entire');
+  // setGridArrow(pressData, shufflePress, 'entirePage', 'entire'); // 전체 언론사
+  // setGridLogo(pressData, shufflePress, 0, 'entire');
+  // changeIcon('entire');
 };
 
 /**
