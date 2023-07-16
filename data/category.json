@@ -1,0 +1,39 @@
+{
+  "categoryList": [
+    {
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "pressIdList": [88, 90]
+    },
+    {
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "pressIdList": [1, 8, 92, 24, 55]
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "IT",
+      "pressIdList": [3, 33, 66, 65]
+    },
+    {
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "pressIdList": [8, 9, 20, 30, 72]
+    },
+    {
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "pressIdList": [11, 92]
+    },
+    {
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "pressIdList": [3, 5, 6, 22, 26, 29, 30]
+    },
+    {
+      "categoryId": 6,
+      "categoryName": "지역",
+      "pressIdList": [44, 48, 55, 77]
+    }
+  ]
+}
