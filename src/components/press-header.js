@@ -4,15 +4,15 @@ import { initLightDarkMode } from '../components/light-dark-mode.js';
 import { setTotalPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
 
-// 여기서 언론사 데이터 받아와서 Grid, List한테 뿌려주기
-
 /**
  * 언론사의 INIT
+ * 언론사 데이터를 받아와서 GRID, LIST에게 전달 📁
  */
 const initPressHeader = async () => {
   try {
     const fetchData = await getFetchData('./assets/data/press-news.json');
-    console.log(fetchData);
+    const categoryData = fetchData.category;
+    let pressData = fetchData.press;
 
     setNav(getNavLeft());
     setNav(getNavRight());
@@ -21,8 +21,6 @@ const initPressHeader = async () => {
     setTotalPressList(); // 수정중
     setTotalPressGrid(); // 수정중
     initLightDarkMode();
-
-    // const latestNews = fetchData.latestNews;
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }
