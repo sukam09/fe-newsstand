@@ -12,4 +12,6 @@ export const class_name = {
     LIST_LEFT_BTN: "list_view_btn-left",
     LIST_RIGHT_BTN: "list_view_btn-right",
     LIST_PRESS_NEWS: "list-view-press-news",
+    LIST_TAB_ITEM: "tab-item",
+    LIST_TAB_ITEM_CLICKED: "tab-item-clicked",
 };

@@ -1,7 +1,7 @@
 import { news_category } from "../../data/newsCategory.js";
 import { CATEGORY_COUNT_ARR } from "../utils/constant.js";
 import { class_name } from "../utils/domClassName.js";
-import { initProgressBar, getCategoryNow, onClickArrowBtn } from "../components/list/progressBarEvent.js";
+import { progress_bar_info } from "../components/list/progressBarEvent.js";
 import { create } from "../utils/createElement.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 const btnFactory = new buttonFacotry();
@@ -10,7 +10,12 @@ function createCategoryBtn(category_name, category_size, idx) {
     const $list_view_btn = create.button({
         className: "list-view-btn",
         events: {
-            click: () => initProgressBar(getCategoryNow(), idx + 1, 1),
+            click: () =>
+                progress_bar_info.initProgressBar({
+                    category_old: progress_bar_info.getCategoryNow(),
+                    category_now: idx + 1,
+                    page_num: 1,
+                }),
         },
     });
     const $tab_item = create.div({ className: "tab-item available-medium14", txt: category_name });
@@ -137,7 +142,7 @@ function createListArrowBtn(btnFactory, isRight) {
     return btnFactory.create({
         type: "arrow",
         className: isRight ? class_name.LIST_RIGHT_BTN : class_name.LIST_LEFT_BTN,
-        events: { click: onClickArrowBtn.bind({ isRight: isRight }) },
+        events: { click: progress_bar_info.onClickArrowBtn.bind({ isRight: isRight }) },
         isRight: isRight,
     });
 }

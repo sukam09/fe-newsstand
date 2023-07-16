@@ -1,4 +1,4 @@
-import { removeInterval, initProgressBar } from "../list/progressBarEvent.js";
+import { progress_bar_info } from "../list/progressBarEvent.js";
 
 const view_info = {
     is_grid_view: true,
@@ -23,7 +23,7 @@ const view_info = {
 
         if (this.is_grid_view) {
             // 그리드 뷰
-            removeInterval();
+            progress_bar_info.removeInterval();
             main_grid_view.style.display = "flex";
             main_list_view.style.display = "none";
             grid_icon.style.filter =
@@ -31,7 +31,7 @@ const view_info = {
             list_icon.style.filter = "none";
         } else {
             // 리스트 뷰
-            initProgressBar(1, 1, 1);
+            progress_bar_info.initProgressBar({ category_old: 1, category_now: 1, page_num: 1 });
             main_grid_view.style.display = "none";
             main_list_view.style.display = "flex";
             list_icon.style.filter =
