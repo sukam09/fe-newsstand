@@ -1,88 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF_8">
+    <meta name="viewport" content="width=device_width, initial_scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script defer type="module" src="script/grid.js"></script>
-    <script defer src="script/header.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer type="module" src="script/main.js"></script>
 </head>
+
 <body>
     <div class="news_stand_wrapper">
-        <header>
+        <header class="news_stand_header">
             <div class="title_wrapper">
                 <img src="assets/images/newsstand.svg" alt="뉴스스탠드 아이콘">
-                <h1 class="text-strong display-bold24">뉴스스탠드</h1>
+                <h1 class="text_strong display_bold24">뉴스스탠드</h1>
             </div>
-            <time class="display-medium16 text-default">
-                2023.02.10. 금요일
-            </time>
+            <time class="display_medium16 text_default"></time>
         </header>
-        <div class="article_wrapper">
-            <article class="surface-alt">
-                <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper">
-                    <p class="text-default available-medium14">[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출</p>
+        <div id="headline_news_wrapper">
+            <article class="headline_news surface_alt">
+                <div class="headline_area">
+                    <h2 class="headline_area_item text_strong display_bold14">연합뉴스</h2>
+                    <div class="headline_area_item news_title_wrapper">
+                    </div>
                 </div>
             </article>
-            <article class="surface-alt">
-                <h2 class="text-strong display-bold14">연합뉴스</h2>
-                <div class="news_title_wrapper">
-                    <p class="text-default available-medium14">[속보] 與최고위원 본경선, 김병민·김용태·김재원·민영삼</p>
+            <article class="headline_news surface_alt">
+                <div class="headline_area">
+                    <h2 class="headline_area_item text_strong display_bold14">연합뉴스</h2>
+                    <div class="headline_area_item news_title_wrapper">
+                    </div>
                 </div>
             </article>
         </div>
-        <main>
-            <div class = "media_wrapper">
-                <nav>
-                    <div class="media_select_wrapper">
-                        <div class="media_select text-strong selected-bold16">전체 언론사</div>
-                        <div class="media_select text-weak available-medium16">내가 구독한 언론사</div>
-                    </div>
-                    <div class="view_select">
-                        <img src="assets/images/list.svg" alt="리스트 보기">
-                        <img src="assets/images/grid.svg" alt="그리드 보기">
-                    </div>
-                </nav>
-                <div class = "grid_wrapper">
-
-                    <div id="arrow_wrapper_left">
-                        <img src="assets/images/left.svg" alt="화살표">
-                    </div>
-                    <ul>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                        <li><img src="" alt="" class="media_logo"></li>
-                    </ul>
-                    <div id="arrow_wrapper_right">
-                        <img src="assets/images/right.svg" alt="화살표">
-                    </div>
-                </div>
-            </div>
+        <main id="media_wrapper">
+            <div id="media_view_wrapper"></div>
         </main>
     </div>
 </body>
-</html>
 
+</html>

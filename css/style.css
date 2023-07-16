@@ -1,6 +1,8 @@
 @import "reset.css";
-@import "constant.css";
+@import "global.css";
 @import "font.css";
+@import "listView.css";
+@import "gridView.css";
 
 body {
     display: flex;
@@ -19,7 +21,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
 .title_wrapper {
@@ -36,35 +37,62 @@ header {
 
 /* article content */
 
-.article_wrapper {
+#headline_news_wrapper {
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
-article {
+.headline_news {
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
-    width: 100%;
-    border: var(--border-default);
+    width: calc(50% - 5px);
+    border: 1px solid var(--border-default);
     margin: 40px 0 32px;
     padding: 16px;
 }
 
-.news_title_wrapper {
-    margin-left: 10px;
-}
-
-/* main grid */
-main {
+.headline_area {
     display: flex;
     width: 100%;
+    gap: 16px;
+    height: 17.5px;
 }
 
-.media_wrapper {
+h2.headline_area_item {
+    flex-shrink: 0;
+}
+
+.headline_area_item {
+    flex-grow: 0;
+    overflow: hidden;
+}
+
+.news_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_title a {
+    white-space: nowrap;
+}
+
+.rolling .news_title {
+    animation-duration: 0.5s;
+    animation-name: news_rolling_animation;
+    animation-fill-mode: forwards;
+}
+
+/* main */
+
+#media_wrapper {
     width: 100%;
 }
 
-nav {
+/* main nav */
+
+#media_view_nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -77,11 +105,31 @@ nav {
     gap : 24px;
 }
 
-.media_select{
-    cursor:pointer;
+.media_select, .view_select {
+    display: none;
 }
 
-.view_select {
+.media_select + label,
+.view_select + label {
+    cursor: pointer;
+}
+
+.view_select + label svg {
+    display: block;
+    fill: var(--grayscale-200);
+}
+
+.media_select:checked + label {
+    font: var(--bold-M);
+    color: var(--grayscale-black);
+}
+
+.view_select:checked + label svg {
+    fill: var(--blue-500);
+}
+
+
+.view_select_wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -91,65 +139,41 @@ nav {
     cursor:pointer;
 }
 
-.grid_wrapper{
+/* media_view */
+
+#media_view_wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-/* 로고 표시하는 list */
-ul {
-    display: grid;
+#media_view {
     width: 930px;
     height: 388px;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 0;
-    border-top: var(--border-default);
-    border-left: var(--border-default);
 }
 
-ul li {
-    border-right: var(--border-default);
-    border-bottom: var(--border-default);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* page 이동시키는 화살표 img */
-#arrow_wrapper_left{
+#left_arrow, #right_arrow {
     position: absolute;
+    padding: 0;
+    width: 24px;
+    height: 40px;
+}
+
+#left_arrow {
     left:-72px;
-    cursor:pointer;
 }
 
-#arrow_wrapper_left.page_0{
-    display: none;
-}
-
-#arrow_wrapper_right{
-    position: absolute;
+#right_arrow {
     right:-72px;
-    cursor:pointer;
 }
 
-#arrow_wrapper_right.page_3{
-    display:none;
-}
-
-/* logo mouse hover시 */
-.media-hover {
-    display: none;
-}
-
-ul li:hover .media-hover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
+#left_arrow img, #right_arrow img {
     width: 100%;
     height: 100%;
-    z-index: 9999;
+}
+
+/* main */
+#media_view {
+    width: 930px;
+    height: 388px;
 }
