@@ -23,11 +23,11 @@ const insertClassname = (tag) => {
 const rollingHandler = (tag) => {
   tag.querySelector(".prev").classList.remove("prev");
 
-  let current = tag.querySelector(".current");
+  const current = tag.querySelector(".current");
   current.classList.remove("current");
   current.classList.add("prev");
 
-  let next = tag.querySelector(".next");
+  const next = tag.querySelector(".next");
   if (next.nextElementSibling == null) {
     tag.querySelector("li:first-child").classList.add("next");
   } else {
