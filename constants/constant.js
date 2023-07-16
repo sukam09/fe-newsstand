@@ -4,6 +4,7 @@ export const MAX_PAGE_IDX = 3;
 export const RECENT_NEWS_NUM = 10;
 export const INITIAL_PAGE = 0;
 export const INITIAL_CATEGORY = 0;
+export const PROGRESS_DURATION_MS = 5000;
 export const FIELDTAB_LIST = [
   "종합/경제",
   "방송/통신",

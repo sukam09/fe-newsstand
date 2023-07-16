@@ -10,6 +10,7 @@ import { removeButton } from "../components/Button/removeButton.js";
 import { sortCategory } from "./sortCategory.js";
 import { sortPages } from "./sortPage.js";
 import { setListButton } from "../components/List/setListButton.js";
+import { setButton } from "../components/Button/setButton.js";
 
 const gridBtn = document.querySelector(".grid-view-btn");
 const listBtn = document.querySelector(".list-view-btn");
