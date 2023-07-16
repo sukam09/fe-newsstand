@@ -1,0 +1,78 @@
+.list-content {
+  border: 1px solid #d2dae0;
+  border-top: none;
+  padding: 24px;
+  height: 348px;
+}
+
+.list-content .list-header {
+  display: flex;
+  align-items: center;
+  width: 882px;
+  height: 24px;
+  gap: 16px;
+}
+
+.list-content .list-header .list-edit {
+  height: 14px;
+  line-height: 14.32px;
+  font-size: 14px;
+  color: #5f6e76;
+}
+
+.list-content .list-header .subscribe-btn {
+  border: 1px solid #d2dae0;
+  border-radius: 50px;
+  background-color: #f5f7f9;
+  color: #879298;
+  font-size: 12px;
+  width: 72px;
+  height: 100%;
+  padding: 0 6px 0 6px;
+  gap: 2px;
+}
+
+.list-content .list-header .subscribe-btn svg {
+  padding-top: 3px;
+}
+
+.list-content .list-news {
+  display: flex;
+  justify-content: space-between;
+  width: 882px;
+  height: 260px;
+  margin-top: 15px;
+}
+
+.list-content .list-news .main-news {
+  width: 320px;
+  height: 260px;
+}
+
+.list-content .list-news .main-title {
+  width: 320px;
+  height: 44px;
+  margin-top: 10px;
+  color: #14212b;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.list-content .list-news .sub-news {
+  width: 530px;
+  height: 245px;
+}
+
+.list-content .list-news .sub-news ul {
+  height: 100%;
+  color: #4b5966;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.list-content .list-news .sub-news ul .caption {
+  font-size: 14px;
+  color: #879298;
+}

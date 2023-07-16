@@ -1,0 +1,51 @@
+/* display.
+list-style.
+position.
+float.
+clear.
+width / height.
+padding / margin.
+border / background.
+color / font
+text-decoration
+text-align / vertical-align
+white-space
+other text
+content
+ */
+.categoty-nav {
+  border: solid 1px #d2dae0;
+  background-color: #f5f7f9;
+}
+
+.news-container .categoty-nav .categoty-list {
+  display: flex;
+}
+
+.news-container .categoty-nav .categoty-list .select {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 166px;
+  background-color: #7890e7;
+  color: #ffffff;
+}
+
+.news-container .categoty-nav .categoty-list .select span {
+  z-index: 1;
+}
+.news-container .categoty-nav .categoty-list .select .progress-bar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  background-color: #4362d0;
+  z-index: 0;
+}
+
+.news-container .categoty-nav .categoty-list li {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 16px 0 16px;
+  color: #879298;
+  cursor: pointer;
+}
