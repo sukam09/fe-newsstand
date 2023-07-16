@@ -8,7 +8,7 @@ let nowCategoryNewsData;
 
 const makeTag = (event, item) => {
   if (event.target.innerHTML.includes(item)) {
-    nowCategoryNewsData = getCategoryData(item);
+    nowCategoryNewsData = getCategoryData(item).sort(() => Math.random() - 0.5);
 
     result += `
     <li class="news-list__field-tab__progress">
