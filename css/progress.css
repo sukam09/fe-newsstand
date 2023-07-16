@@ -66,6 +66,10 @@
   left: 0;
   height: 40px;
   background-color: var(--blue-500);
+  
+}
+
+.progress.effect::after {
   animation: progressBar 2s ease infinite;
 }
 

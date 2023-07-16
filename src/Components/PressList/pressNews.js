@@ -24,6 +24,7 @@ async function randomizeNews() {
 뉴스 띄우기
  */
 function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
+  console.log(newsPage)
   /** 언론사 로고, 편집 날짜 띄우기 */
   const $pressNewsInfo = document.querySelector('.press-news-info');
   $pressNewsInfo.innerHTML = `
@@ -55,9 +56,9 @@ async function initNews() {
 
   drawPressNews(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   $listIcon.addEventListener('click', (event) => {
-    initProgress(shuffledPressNews, START_CATEGORY_IDX);
+    initProgress(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   })
-  turnNewsPage(shuffledPressNews, START_CATEGORY_IDX);
+  turnNewsPage(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   showNewsOfCategory(shuffledPressNews, categories)
 }
 

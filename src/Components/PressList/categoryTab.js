@@ -35,7 +35,7 @@ function handleClickCategory(event, shuffledPressNews, categories) {
 function changeCategory(shuffledPressNews, categoryIdx) {
   resetNewsTurner();
   drawPressNews(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE_INDEX);
-  turnNewsPage(shuffledPressNews, categoryIdx);
+  turnNewsPage(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE_INDEX);
   initProgress(shuffledPressNews, categoryIdx, FIRST_NEWS_PAGE_INDEX);
 }
 

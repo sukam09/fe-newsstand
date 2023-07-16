@@ -13,9 +13,9 @@ function removeProgress() {
   const $allCategoryContainer = document.querySelectorAll('.progress');
   const allCategoryContainer = Array.from($allCategoryContainer);
   allCategoryContainer.forEach(categoryContainer => {
-    if(categoryContainer.classList.contains('progress')){
+    if (categoryContainer.classList.contains('progress')) {
       _changeClass(categoryContainer, 'progress', 'non-progress');
-      categoryContainer.classList.add('pointer')
+      _changeClass(categoryContainer, 'effect', 'pointer');
     }
     categoryContainer.removeChild($pageInfo);
   })
@@ -28,7 +28,7 @@ function setProgress(clickedCategory) {
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1})`);
 
   _changeClass($CategoryContainer, 'non-progress', 'progress');
-  $CategoryContainer.classList.remove('pointer')
+  _changeClass($CategoryContainer, 'pointer', 'effect');
   $pageInfo.classList.add('progress-page');
   $CategoryContainer.appendChild($pageInfo);
 }
@@ -45,23 +45,29 @@ function setProgressPage(shuffledPressNews, clickedCategory, newsPageIndex) {
 }
 
 /**
- progressBar animation이 시작되면 알맞은 타이밍에 뉴스 페이지 넘기기
+ progressBar animation이 시작되면 알맞은 타이밍에 뉴스 페이지 넘기기,
+ 버튼으로 뉴스 페이지 넘기면 애니메이션 재시작, 뉴스 페이지 정보 유지
  */
-function startProgressAnimation(shuffledPressNews, clickedCategory) {
+function startProgressAnimation(shuffledPressNews, clickedCategory, newsPageIndex) {
+  const $effect = document.querySelector('.effect');
+  $effect.classList.remove('effect');
+  void $effect.offsetWidth;
+  $effect.classList.add('effect');
+
   const $progrsesAnimation = document.querySelector('.progress');
   $progrsesAnimation.addEventListener('animationstart', (event) => {
-    turnNewsPage(shuffledPressNews, clickedCategory, 1)
+    turnNewsPage(shuffledPressNews, clickedCategory, newsPageIndex, 1)
   })
 }
 
 /**
  클릭한 카테고리에 대한 progress를 보여줌
  */
-function initProgress(shuffledPressNews, clickedCategory) {
+function initProgress(shuffledPressNews, clickedCategory, newsPageIndex) {
   removeProgress();
   setProgress(clickedCategory);
-  setProgressPage(shuffledPressNews, clickedCategory, FIRST_NEWS_PAGE_INDEX);
-  startProgressAnimation(shuffledPressNews, clickedCategory);
+  setProgressPage(shuffledPressNews, clickedCategory, newsPageIndex);
+  startProgressAnimation(shuffledPressNews, clickedCategory, newsPageIndex);
 }
 
-export { initProgress, setProgressPage };
+export { initProgress, setProgressPage, startProgressAnimation };
