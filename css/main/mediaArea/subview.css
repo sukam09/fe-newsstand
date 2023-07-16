@@ -1,0 +1,39 @@
+.main__subview {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+.main__content {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
+  align-items: center;
+
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-alt, #f5f7f9);
+
+  height: 17px;
+  padding: 16px;
+  gap: 16px;
+}
+.main-—corp-name {
+  color: var(--text-text-strong);
+
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.main—-news-box {
+  color: var(--text-text-default);
+
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 16px;
+}

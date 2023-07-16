@@ -1,5 +1,5 @@
 function date() {
-  const headerDate = document.querySelector(".header—date");
+  const headerDate = document.querySelector(".header—-date");
   const today = new Date();
 
   const dayList = ["일", "월", "화", "수", "목", "금", "토"];
