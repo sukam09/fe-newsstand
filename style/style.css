@@ -212,7 +212,7 @@ body {
     text-decoration: underline;
 }
 
-.list-view-category-selected {
+.category-selected {
     display: flex;
     justify-content: space-between;
     width: 166px;
@@ -221,14 +221,14 @@ body {
 }
 
 .category-progress-number-container {
-    display: none;
+    display: flex;
     gap: 2px;
     color: var(--color-text-white-weak);
 }
 
-.list-view-category-selected .category-progress-number-container {
+/* .list-view-category-selected .category-progress-number-container {
     display: flex;
-}
+} */
 
 .category-progress-number {
     color: var(--color-text-white-default);

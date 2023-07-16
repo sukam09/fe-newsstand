@@ -36,7 +36,8 @@ export default class NewsDisplay extends Component {
                   { newsData: jsonData, page: 0 }
               )
             : new NewsListView(
-                  this.$target.querySelector(".news-display-container")
+                  this.$target.querySelector(".news-display-container"),
+                  { newsData: jsonData }
               );
     }
 
