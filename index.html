@@ -34,8 +34,8 @@
         </div>
       </div>
     </section>
-    <section class="grid-section">
-      <div class="grid-section-nav">
+    <section class="view-section">
+      <div class="view-section-nav">
         <div class="nav-left">
           <span class="light-text-strong selected-bold16">전체 언론사</span>
           <span class="light-text-weak available-medium16"
@@ -43,16 +43,26 @@
           >
         </div>
         <div class="nav-right">
-          <img src="./asset/icons/list-view.png" class="icon btn" />
-          <img src="./asset/icons/grid-view.png" class="icon btn" />
+          <img
+            src="./asset/icons/list-view.png"
+            class="icon btn list-btn"
+            type="list"
+          />
+          <img
+            src="./asset/icons/grid-view.png"
+            class="icon btn grid-btn"
+            type="grid"
+          />
         </div>
       </div>
-      <div class="grid-section-container">
+      <div class="view-section-container">
         <div class="arrow-container arrow-left btn">
           <img src="./asset/icons/LeftButton.png" />
         </div>
-        <ul class="grid-box"></ul>
-
+        <div class="view-section-content">
+          <ul class="grid-box" type="grid"></ul>
+          <div class="list-box hide" type="list"></div>
+        </div>
         <div class="arrow-container arrow-right btn">
           <img src="./asset/icons/RightButton.png" />
         </div>
@@ -62,7 +72,7 @@
       <img src="./asset/icons/subscribe-button.png" class="btn sub-btn hide" />
       <img
         src="./asset/icons/unsubscribe-button.png"
-        class="btn unsub-btn hide"
+        class="btn unsub-btn hidden"
       />
     </div>
     <script type="module" src="./script.js"></script>

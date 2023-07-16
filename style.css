@@ -81,7 +81,7 @@ body {
     overflow: hidden;
     height:100%;
 }
-.grid-section-nav {
+.view-section-nav {
     width:930px;
     margin:32px auto 0px;
     display:flex;
@@ -97,7 +97,7 @@ body {
     gap:8px;
 }
 
-.grid-section-container {
+.view-section-container {
     display:flex;
     align-items: center;
     justify-content: center;

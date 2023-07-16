@@ -1,6 +1,7 @@
 import rollingList from "./asset/data/rollingList.js";
 
 const gridContainer = document.querySelector(".grid-box");
+const listContainer = document.querySelector(".list-box");
 const dateContainer = document.querySelector(".header-right");
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
@@ -9,11 +10,28 @@ const pressCover = document.querySelector(".press-cover");
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 const rollingContent = document.querySelectorAll(".rolling-content");
+const viewChangeBtns = document.querySelectorAll(".nav-right .btn")
+const viewContainer = document.querySelector(".view-section-content")
 
 let crntPage = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
+let crntView = "grid";
 
+function listenChangeView(btn, type) {
+    btn.addEventListener("click", () => {
+        if (crntView !== type){
+            crntView = type;
+            Array.prototype.forEach.call(viewContainer.children, (view) => {
+                if (view.getAttribute("type") == type){
+                    view.classList.remove("hidden");
+                } else {
+                    view.classList.add("hidden")
+                }      
+            })
+        }
+    })
+}
 function listenHeadlineHover(target){
     target.addEventListener("mouseover", () => {
         target.classList.add("paused");
@@ -146,7 +164,10 @@ function init(){
     })
     updateArrow();
     listenArrow();
-    listenReload();   
+    listenReload();
+    viewChangeBtns.forEach((btn) => {
+        listenChangeView(btn, btn.getAttribute("type"));
+    })
 }
 
 window.onload = init;
