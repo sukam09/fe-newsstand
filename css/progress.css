@@ -51,6 +51,26 @@
   font: var(--bold-R);
   color: var(--grayscale-white);
   background-color: var(--blue-100);
+  position: relative;
+}
+
+.progress::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  background-color: var(--blue-500);
+  animation: progressBar 2s ease infinite;
+}
+
+@keyframes progressBar {
+ 0% {
+  width: 0%;
+ }
+ 100% {
+  width: 100%;
+ }
 }
 
 /*progress 설정 class*/
@@ -58,21 +78,20 @@
   display: flex;
   align-items: center;
   gap: 2px;
+  z-index: 999;
 }
 
 .non-progress {
   font: var(--medium-R);
   color: var(--grayscale-200);
-
 }
 
 .progress-category {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
+  z-index: 999;
 }
-
-
 
 .press-news-content {
   display: flex;
@@ -135,4 +154,5 @@
   position: absolute;
   top: calc(50% - 20px);
   left: calc(100% + 47px);
+  display: none;
 }

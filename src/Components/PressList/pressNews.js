@@ -1,7 +1,7 @@
-import { ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
 import { fetchpressNews } from "../../dataFetch.js"
-import turnNewsPage from "./pageMoveButton.js";
-import showNewsOfCategory from "./categoryTab.js";
+import {turnNewsPage} from "./pageMoveButton.js";
+import {showNewsOfCategory} from "./categoryTab.js";
 import {initProgress} from "./progressBar.js";
 
 /**
@@ -34,8 +34,8 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
   /**썸네일, main-title 띄우기*/
   const $pressNewsMain = document.querySelector('.press-news-main');
   $pressNewsMain.innerHTML = `
-    <img class="press-news-thumbnail" src="./assets/thumbnail/Thumbnail.png">
-    <p class="press-news-title available-medium16 text-strong">${shuffledPressNews[categoryIdx][newsPage]["mainTitle"]}</p>
+  <img class="press-news-thumbnail" src="./assets/thumbnail/Thumbnail.png">
+  <p class="press-news-title available-medium16 text-strong">${shuffledPressNews[categoryIdx][newsPage]["mainTitle"]}</p>
   `
   /** sub-title 띄우기*/
   const $pressNewsSub = document.querySelector('.press-news-sub');
@@ -48,13 +48,16 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
 초기값으로 첫번 째 종합/경제 뉴스 보여주기
  */
 async function initNews() {
+  const $listIcon = document.querySelector('.list-button');
   const newsInfo = await randomizeNews();
   const shuffledPressNews = newsInfo.shuffledPressNews;
   const categories = newsInfo.categories;
-  
-  drawPressNews(shuffledPressNews, ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX);
-  initProgress(shuffledPressNews, ALL_ECONOMY, FIRST_NEWS_PAGE_INDEX);
-  turnNewsPage(shuffledPressNews, ALL_ECONOMY);
+
+  drawPressNews(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
+  $listIcon.addEventListener('click', (event) => {
+    initProgress(shuffledPressNews, START_CATEGORY_IDX);
+  })
+  turnNewsPage(shuffledPressNews, START_CATEGORY_IDX);
   showNewsOfCategory(shuffledPressNews, categories)
 }
 
