@@ -37,7 +37,7 @@ export default class NewsGridView extends Component {
             gridList += `<li class="news-press-item">
                             <img class="news-press-item-logo" 
                                 src=${this.state.pressData[i].logo} 
-                                alt=${this.state.pressData[i].name} 
+                                alt="${this.state.pressData[i].name}"
                             />
                         </li>`;
         }

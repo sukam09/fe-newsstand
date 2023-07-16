@@ -39,7 +39,7 @@ export default class NewsListView extends Component {
                 </nav>
                 <div class="list-view-main-container">
                     <div class="press-head-container">
-                        <img src=${newsData.logo} alt=${newsData.name} />
+                        <img src=${newsData.logo} alt="${newsData.name}" />
                         <div class="edit-time display-medium12">
                             ${this.getEditTime(newsData.editTime)} 편집
                         </div>
@@ -50,7 +50,7 @@ export default class NewsListView extends Component {
                             <div class="main-image">
                                 <img src=${
                                     newsData.mainArticle.thumbnail
-                                } alt=${newsData.mainArticle.title} />
+                                } alt="${newsData.mainArticle.title}" />
                             </div>
                             <div class="main-title">
                                 ${newsData.mainArticle.title}

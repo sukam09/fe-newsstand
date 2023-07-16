@@ -15,7 +15,9 @@ export default class PageButton extends Component {
         return `
             <img
                 src="./asset/icons/${this.state.type}-button.png"
-                alt="이전 페이지"
+                alt="${
+                    this.state.type === "left" ? "이전 페이지" : "다음 페이지"
+                }"
             />
         `;
     }
