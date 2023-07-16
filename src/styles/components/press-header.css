@@ -1,7 +1,6 @@
 /* 언론사별 기사들을 확인하는 영역 */
 .press__wrapper {
   margin-top: 33px;
-  background-color: var(--grayscale-white);
 }
 
 .press__header {

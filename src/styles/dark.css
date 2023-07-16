@@ -28,10 +28,6 @@ body {
 }
 
 /* 언론사별 기사들을 확인하는 영역 */
-.press__wrapper {
-  background-color: var(--grayscale-black);
-}
-
 .press__h2-entire {
   color: var(--grayscale-white);
 }
