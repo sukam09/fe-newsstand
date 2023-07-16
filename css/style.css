@@ -342,6 +342,11 @@ nav.agency .view-type button {
   line-height: normal;
 }
 
+.field-tab-normal:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .press-news {
   display: flex;
   flex-direction: column;
@@ -417,6 +422,7 @@ nav.agency .view-type button {
   align-items: flex-start;
   gap: 1rem;
   align-self: stretch;
+  overflow: hidden;
 }
 
 .thumbnail {
@@ -424,8 +430,15 @@ nav.agency .view-type button {
   height: 12.5rem;
   border: 1px solid var(--border-border-default, #d2dae0);
   box-sizing: border-box;
+  transition: all 0.2s linear;
+  cursor: pointer;
+
   /* background: url(<path-to-image>), */
   /* lightgray 0px -11.561px / 100% 106.561% no-repeat; */
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
 }
 
 .title {
@@ -441,6 +454,11 @@ nav.agency .view-type button {
   font-style: normal;
   font-weight: var(--font-weight-medium);
   line-height: 1.375rem;
+}
+
+.title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .news-sub {
@@ -460,6 +478,11 @@ nav.agency .view-type button {
   font-style: normal;
   font-weight: var(--font-weight-medium);
   line-height: 1.375rem;
+}
+
+.sub-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .caption {
