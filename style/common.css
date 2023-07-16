@@ -1,0 +1,157 @@
+:root {
+    /* font size */
+    --text-size-large: 24px;
+    --text-size-medium: 16px;
+    --text-size-regular: 14px;
+    --text-size-small: 12px;
+
+    /* font weight */
+    --text-weight-bold: 700;
+    --text-weight-medium: 500;
+
+    /* grayscale */
+    --color-grayscale-white-alt: #ffffffb2;
+    --color-grayscale-white: #ffffff;
+    --color-grayscale-50: #f5f7f9;
+    --color-grayscale-100: #d2dae0;
+    --color-grayscale-200: #879298;
+    --color-grayscale-300: #6e8091;
+    --color-grayscale-400: #5f6e76;
+    --color-grayscale-500: #4b5966;
+    --color-grayscale-black: #14212b;
+
+    /* blue */
+    --color-blue-100: #7890e7;
+    --color-blue-500: #4362d0;
+
+    /* semantic colors */
+    --color-text-strong: var(--color-grayscale-black);
+    --color-text-bold: var(--color-grayscale-500);
+    --color-text-default: var(--color-grayscale-400);
+    --color-text-weak: var(--color-grayscale-200);
+    --color-text-white-default: var(--color-grayscale-white);
+    --color-text-white-weak: var(--color-grayscale-white-alt);
+    --color-text-point: var(--color-blue-500);
+    --color-surface-default: var(--color-grayscale-white);
+    --color-surface-alt: var(--color-grayscale-50);
+    --color-surface-brand-default: var(--color-blue-500);
+    --color-surface-brand-alt: var(--color-blue-100);
+    --color-border-bold: var(--color-grayscale-300);
+    --color-border-default: var(--color-grayscale-100);
+}
+
+/* dark mode */
+.dark {
+    --color-text-strong: var(--color-grayscale-white);
+    --color-text-bold: var(--color-grayscale-50);
+    --color-text-default: var(--color-grayscale-100);
+    --color-text-weak: var(--color-grayscale-white-alt);
+    --color-text-white-default: var(--color-grayscale-white);
+    --color-text-white-weak: var(--color-grayscale-white-alt);
+    --color-text-point: var(--color-blue-500);
+    --color-surface-default: var(--color-grayscale-black);
+    --color-surface-alt: var(--color-grayscale-500);
+    --color-surface-brand-default: var(--color-blue-500);
+    --color-surface-brand-alt: var(--color-blue-100);
+    --color-border-bold: var(--color-grayscale-white-alt);
+    --color-border-default: var(--color-grayscale-400);
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Pretendard Bold"),
+        url("../asset/fonts/Pretendard-Bold.woff2") format("woff2"),
+        url("../asset/fonts/Pretendard-Bold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local("Pretendard Medium"),
+        url("../asset/fonts/Pretendard-Medium.woff2") format("woff2"),
+        url("../asset/fonts/Pretendard-Medium.woff") format("woff");
+}
+
+* {
+    font-family: Pretendard;
+}
+
+.display-bold24 {
+    font-size: var(--text-size-large);
+    font-weight: var(--text-weight-bold);
+}
+
+.display-bold16 {
+    font-size: var(--text-size-medium);
+    font-weight: var(--text-weight-bold);
+}
+
+.display-bold14 {
+    font-size: var(--text-size-regular);
+    font-weight: var(--text-weight-bold);
+}
+
+.display-bold12 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-bold);
+}
+
+.display-medium16 {
+    font-size: var(--text-size-medium);
+    font-weight: var(--text-weight-medium);
+    line-height: 22px;
+}
+
+.display-medium14 {
+    font-size: var(--text-size-regular);
+    font-weight: var(--text-weight-medium);
+}
+
+.display-medium12 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-medium);
+}
+
+.selected-bold16 {
+    font-size: var(--text-size-medium);
+    font-weight: var(--text-weight-bold);
+}
+
+.selected-bold14 {
+    font-size: var(--text-size-regular);
+    font-weight: var(--text-weight-bold);
+}
+
+.available-medium16 {
+    font-size: var(--text-size-medium);
+    font-weight: var(--text-weight-medium);
+    line-height: 22px;
+}
+
+.available-medium14 {
+    font-size: var(--text-size-regular);
+    font-weight: var(--text-weight-medium);
+}
+
+.available-medium12 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-medium);
+}
+
+.hover-medium16 {
+    font-size: var(--text-size-medium);
+    font-weight: var(--text-weight-medium);
+    line-height: 22px;
+    text-decoration-line: underline;
+}
+
+.hover-medium14 {
+    font-size: var(--text-size-regular);
+    font-weight: var(--text-weight-medium);
+    text-decoration-line: underline;
+}
