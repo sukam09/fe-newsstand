@@ -6,7 +6,7 @@ const ARROW_DISPLAY_THRESHOLD = 3;
  */
 const initPressGrid = (pressData) => {
   initEntirePressGrid(pressData);
-  // initSubscribePressGrid(pressData);
+  initSubscribePressGrid(pressData);
 };
 
 const initEntirePressGrid = (pressData) => {
@@ -15,19 +15,24 @@ const initEntirePressGrid = (pressData) => {
 
   setGrid('entire');
   setGridFrame('entire');
-  setGridArrow(pressData, shufflePress, 'entirePage', 'entire'); // 전체 언론사
+  setGridArrow(pressData, shufflePress, 'entirePage', 'entire');
   setGridLogo(pressData, shufflePress, 0, 'entire');
   changeIcon('entire');
 };
 
 const initSubscribePressGrid = (pressData) => {
-  // const shufflePress = getShuffleList(pressData.length);
-  // localStorage.setItem('entirePage', 0);
-  // setGrid('entire');
-  // setGridFrame('entire');
-  // setGridArrow(pressData, shufflePress, 'entirePage', 'entire'); // 전체 언론사
-  // setGridLogo(pressData, shufflePress, 0, 'entire');
-  // changeIcon('entire');
+  pressData[0].isSub = true; // test
+  pressData[1].isSub = true; // test
+
+  let subscribePress = pressData.filter((item) => item.isSub === true);
+  subscribePress = subscribePress.map((press) => press.id);
+  localStorage.setItem('subscribePage', 0);
+
+  setGrid('subscribe');
+  setGridFrame('subscribe');
+  setGridArrow(pressData, subscribePress, 'subscribePage', 'subscribe');
+  setGridLogo(pressData, subscribePress, 0, 'subscribe');
+  changeIcon('subscribe');
 };
 
 /**
@@ -114,13 +119,20 @@ const changeIcon = (section) => {
 
 const toggleMode = (section) => {
   const pressLogos = document.querySelectorAll(`.press-logo__wrapper-grid__${section} img`);
-  pressLogos.forEach((logo) => {
-    const newIogoSrc = logo.src.includes('light-press-logo')
+  pressLogos.forEach((logo) => changeSrc(logo));
+};
+
+const changeSrc = (logo) => {
+  const isLightMode = logo.src.includes('light-press-logo');
+  const isDarkMode = logo.src.includes('dark-press-logo');
+
+  if (isLightMode || isDarkMode) {
+    const newLogoSrc = isLightMode
       ? logo.src.replace('light-press-logo', 'dark-press-logo')
       : logo.src.replace('dark-press-logo', 'light-press-logo');
 
-    logo.src = newIogoSrc;
-  });
+    logo.src = newLogoSrc;
+  }
 };
 
 export { initPressGrid };

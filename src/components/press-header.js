@@ -19,8 +19,7 @@ const initPressHeader = async () => {
     setNavImg();
 
     initLightDarkMode();
-    setTotalPressList();
-    // setTotalPressGrid(); // 수정중
+    setTotalPressList(); // 수정해야 함
     initPressGrid(pressData);
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
@@ -53,6 +52,15 @@ const getNavRight = () => {
 /**
  * 언론사의 헤더 설정
  */
+const setNavH2 = () => {
+  const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
+  const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
+};
+
+const setNavEntire = () => {};
+
+const setNavSubscribe = () => {};
+
 const setNavImg = () => {
   const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
   const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
