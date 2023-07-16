@@ -1,6 +1,8 @@
 import Component from "../core/Component.js";
 import PageButton from "./PageButton.js";
 
+const PROGRESS_DURATION = 20000;
+
 const categoryList = [
     "종합/경제",
     "방송/통신",
@@ -90,6 +92,8 @@ export default class NewsListView extends Component {
     mounted() {
         this.mountCategory();
         this.mountPageButton();
+
+        this.progressInterval();
     }
 
     mountCategory() {
@@ -219,5 +223,25 @@ export default class NewsListView extends Component {
         return this.props.newsData.filter(
             (item) => item.category === categoryList[currentCategoryIndex]
         );
+    }
+
+    progressInterval() {
+        clearInterval(this.interval);
+
+        const activeCategory = this.$target.querySelector(".category-selected");
+
+        let progress = 0;
+
+        const increment = 100 / (PROGRESS_DURATION / 16);
+
+        this.interval = setInterval(() => {
+            if (progress < 100) {
+                activeCategory.style.background = `linear-gradient(to right, #4362d0 ${progress}%, #7890e7 0%)`;
+                progress += increment;
+            } else {
+                clearInterval(this.interval);
+                this.setNextPage();
+            }
+        }, 16);
     }
 }
