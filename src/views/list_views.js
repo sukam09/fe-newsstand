@@ -1,4 +1,5 @@
 import { view_option } from "../globals.js";
+import { ASSETS_IMAGE_PATH } from "../constants.js";
 
 function renderListView(data, category, page, ...action) {
     const list_news_container = document.querySelector(".main_news_container");
@@ -56,8 +57,15 @@ function createNewsHeader(parent, data, page) {
     const container = document.createElement("div");
     container.classList.add("content_header");
 
+    let press_url = 0;
+
+    view_option.press_data.forEach((item) => {
+        if (item.name === data[page].press_name) {
+            press_url = item.url;
+        }
+    });
     container.innerHTML = `
-        <img src="${data[page].press_url}" class="content_press" />
+        <img src="${ASSETS_IMAGE_PATH}${view_option.mode}${press_url}" class="content_press" />
         <p class="content_edit">${data[page].last_edit} 편집</p>
         <button class="content_subscribe">
             <img src="./assets/icons/plus.png" />
@@ -98,4 +106,4 @@ function createMainContents(parent, data, page) {
     parent.appendChild(container);
 }
 
-export { renderListView };
+export { renderListView, createNewsHeader };

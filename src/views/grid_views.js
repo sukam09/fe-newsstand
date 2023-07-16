@@ -1,4 +1,5 @@
-import { COL_SIZE, ROW_SIZE } from "../constants.js";
+import { COL_SIZE, ROW_SIZE, ASSETS_IMAGE_PATH } from "../constants.js";
+import { view_option } from "../globals.js";
 
 function renderGridView(data, page, action) {
     const grid_press_container = document.querySelector(".main_news_container");
@@ -17,7 +18,7 @@ function createPressList(container, data, idx) {
             const item = data[idx] || { name: "empty", url: "" };
             ul.innerHTML += `
             <li class="press_data_item">
-                <img class="press_item press_data_img press_front" src="${item.url}" />
+                <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${view_option.mode}${item.url}" />
                 <button class="press_item content_subscribe press_back" name="${item.name}" is_subscribe="true">
                     <img src="./assets/icons/plus.png" />
                     <span>구독하기</span>

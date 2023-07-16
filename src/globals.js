@@ -2,6 +2,7 @@ const view_option = {
     // initalize
     press: "all",
     main: "grid",
+    mode: "light-mode",
 
     //grid view
     press_data: [],
