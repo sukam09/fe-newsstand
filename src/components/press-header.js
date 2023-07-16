@@ -18,11 +18,10 @@ const initPressHeader = async () => {
     setNav(getNavRight());
     setNavImg();
 
+    initLightDarkMode(); //
     setTotalPressList(); // 수정중
     // setTotalPressGrid(); // 수정중
     initPressGrid(pressData);
-
-    initLightDarkMode();
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }

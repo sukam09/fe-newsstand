@@ -28,6 +28,7 @@ const initEntirePressGrid = (pressData) => {
   setGridFrame('entire');
   setGridArrow(pressData, shufflePress, 'entirePage', 'entire'); // 전체 언론사
   setGridLogo(pressData, shufflePress, 0, 'entire');
+  changeIcon('entire');
 };
 
 /**
@@ -97,7 +98,29 @@ const getGridLogo = (pressData, pressList, section) => {
   pressList.forEach((pressNum, idx) => {
     const selectPress = pressData.find((data) => data.id === pressNum);
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
-    logoWapper.src = selectPress.lightSrc;
+
+    let mode = localStorage.getItem('mode');
+    if (mode === 'light') logoWapper.src = selectPress.lightSrc;
+    if (mode === 'dark') logoWapper.src = selectPress.darkSrc;
+  });
+};
+
+/**
+ * 언론사 그리드의 라이트/다크모드
+ */
+const changeIcon = (section) => {
+  const modeImg = document.querySelector('.mode__img');
+  modeImg.addEventListener('click', () => toggleMode(section));
+};
+
+const toggleMode = (section) => {
+  const pressLogos = document.querySelectorAll(`.press-logo__wrapper-grid__${section} img`);
+  pressLogos.forEach((logo) => {
+    const newIogoSrc = logo.src.includes('light-press-logo')
+      ? logo.src.replace('light-press-logo', 'dark-press-logo')
+      : logo.src.replace('dark-press-logo', 'light-press-logo');
+
+    logo.src = newIogoSrc;
   });
 };
 
