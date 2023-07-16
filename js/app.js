@@ -7,7 +7,7 @@ import { setViewerEvent } from "./Components/NavBar/newsViewer.js";
 import { setListPageButton } from "./Components/NewsList/pageButton.js";
 import { setFieldTab } from "./Components/NewsList/fieldTab.js";
 
-const main = () => {
+window.addEventListener("DOMContentLoaded", () => {
   setHeaderDate();
   setRolling();
   renderNewspaper(constants.MIN_PAGE, constants.LIGHT_MODE);
@@ -15,6 +15,4 @@ const main = () => {
   setViewerEvent();
   setListPageButton();
   setFieldTab();
-};
-
-main();
+});

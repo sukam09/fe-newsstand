@@ -23,12 +23,12 @@ const makeTag = (event, item) => {
   }
 };
 
-const convertTab = (amout) => {
+const convertTab = (amount) => {
   const $liAll = document.querySelectorAll(".news-list__field-tab > li");
   [...$liAll].forEach((item, index) => {
     if (item.className === "news-list__field-tab__progress") {
       $liAll[
-        (index + amout + constants.FIELDTAB_LIST.length) %
+        (index + amount + constants.FIELDTAB_LIST.length) %
           constants.FIELDTAB_LIST.length
       ].click();
       return;

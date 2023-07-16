@@ -8,8 +8,9 @@ const constants = {
   ROLLING_TRANSITION_DURATION_MS: 400,
   LIGHT_MODE: "light",
   DARK_MODE: "dark",
-  // PROGRESS_DURATION_MS: 20000,
-  PROGRESS_DURATION_MS: 5000,
+  SHOW_LIST: "list",
+  SHOW_GRID: "grid",
+  PROGRESS_DURATION_MS: 20000,
   FIELDTAB_LIST: [
     "종합/경제",
     "방송/통신",

@@ -9,7 +9,7 @@ const repeatRolling = (rollingElement, index) => {
     constants.ROLLING_TRANSITION_DURATION_MS + "ms";
   rollingElement.style.marginTop = "-16px";
 
-  window.setTimeout(() => {
+  setTimeout(() => {
     rollingElement.removeAttribute("style");
     rollingElement.appendChild(rollingElement.firstElementChild);
   }, constants.ROLLING_TRANSITION_DURATION_MS);
@@ -17,7 +17,7 @@ const repeatRolling = (rollingElement, index) => {
 
 const setRollingEvent = (rollingElement, index) => {
   setTimeout(() => {
-    window.setInterval(
+    setInterval(
       () => repeatRolling(rollingElement, index),
       constants.ROLLING_TIMING_MS
     );

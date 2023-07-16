@@ -16,7 +16,7 @@ const $pressNews = document.querySelector(".news-list__press-news");
 const renderContent = () => {
   $nowPage.data = page + " ";
   clearProgress();
-  console.log(nowCategoryNewsData[page - 1].category);
+
   $pressNews.innerHTML = `
     <div class="news-list__press-news__info">
       <img
@@ -58,8 +58,8 @@ const renderContent = () => {
     `;
 };
 
-const movePage = (amout) => {
-  page += amout;
+const movePage = (amount) => {
+  page += amount;
   renderContent();
 };
 
@@ -74,11 +74,7 @@ const movePageLeft = () => {
 };
 
 const movePageRight = () => {
-  if (page === nowCategoryNewsData.length) {
-    convertTab(1);
-  } else {
-    movePage(1);
-  }
+  page === nowCategoryNewsData.length ? convertTab(1) : movePage(1);
 };
 
 const setNowPageTag = () => {
