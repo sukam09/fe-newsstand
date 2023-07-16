@@ -64,10 +64,10 @@
   gap: 16px;
 }
 
-.news-list__press-news__info__Brandmark {
+/* .news-list__press-news__info__Brandmark {
   width: 53px;
   height: 20px;
-}
+} */
 
 .news-list__press-news__info__date {
   font-size: var(--font-size-small);

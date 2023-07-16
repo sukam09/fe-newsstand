@@ -1,5 +1,5 @@
 import { constants } from "../../Data/constants.js";
-import { changePageTarget } from "./pageButton.js";
+import { changePageTarget, renderContent } from "./pageButton.js";
 import { fetchNewsData, getCategoryData } from "./pressNews.js";
 import { startProgress, stopProgress } from "./progress.js";
 
@@ -38,7 +38,9 @@ const convertTab = (amout) => {
 
 const setFieldTab = () => {
   if (!nowCategoryNewsData)
-    fetchNewsData("종합/경제").then((res) => (nowCategoryNewsData = res));
+    fetchNewsData(constants.FIELDTAB_LIST[0])
+      .then((res) => (nowCategoryNewsData = res))
+      .then(() => renderContent());
 
   result = "";
   const $fieldTabList = document.querySelectorAll(".news-list__field-tab > li");
