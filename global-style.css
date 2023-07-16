@@ -1,0 +1,147 @@
+:root {
+    /* Typography Default Value */
+    --bold-L: 700 24px/1.5 "Pretendard";
+    --bold-M: 700 16px/1.5 "Pretendard";
+    --bold-R: 700 14px/1.5 "Pretendard";
+    --bold-S: 700 12px/1.5 "Pretendard";
+  
+    --medium-M: 500 16px/1.5 "Pretendard";
+    --medium-R: 500 14px/1.5 "Pretendard";
+    --medium-S: 500 12px/1.5 "Pretendard";
+  
+    /* Color Default Value */
+    --grayscale-white-alt: #ffffff;
+    --grayscale-white: rgba(255, 255, 255, 0.7);
+    --grayscale-50: #f5f7f9;
+    --grayscale-100: #d2dae0;
+    --grayscale-200: #879298;
+    --grayscale-300: #6e8091;
+    --grayscale-400: #5f6e76;
+    --grayscale-500: #4b5966;
+    --grayscale-black: #14212b;
+  
+    --blue-100: #7890e7;
+    --blue-500: #4362d0;
+  
+    /* Color System: Light Mode */
+    --text-strong: var(--grayscale-black);
+    --text-bold: var(--grayscale-500);
+    --text-default: var(--grayscale-400);
+    --text-weak: var(--grayscale-200);
+    --text-white-default: var(--grayscale-white);
+    --text-point: var(--blue-500);
+    --surface-default: var(--grayscale-white);
+    --surface-alt: var(--grayscale-50);
+    --surface-brand-default: var(--blue-500);
+    --surface-brand-alt: var(--blue-100);
+    --border-bold: var(--grayscale-300);
+    --border-default: var(--grayscale-100);
+  
+    /* Color System: Dark Mode */
+    --text-stong: var(--grayscale-white);
+    --text-bold: var(--grayscale-50);
+    --text-default: var(--grayscale-100);
+    --text-weak: var(--grayscale-white-alt);
+    --text-white-default: var(--grayscale-white);
+    --text-white-weak: var(--grayscale-white-alt);
+    --text-point: var(--blue-500);
+    --surface-default: var(--grayscale-black);
+    --surface-alt: var(--grayscale-black);
+    --surface-brand-default: var(--blue-500);
+    --surface-brand-alt: var(--blue-100);
+    --border-bold: var(--grayscale-white-alt);
+    --border-default: var(--grayscale-400);
+  }
+  
+  /* Typography System */
+  .light-text-strong {
+    color : var(--grayscale-black)
+  }
+  .light-text-bold {
+    color: var(--grayscale-500);
+  }
+  .light-text-default {
+    color: var(--grayscale-400)
+  }
+  .light-text-weak {
+    color:var(--grayscale-200);
+  }
+  .light-text-white-default {
+    color:var(--grayscale-white);
+  }
+  .light-surface-default {
+    background-color:var(--grayscale-white);
+  }
+  .light-surface-alt {
+    background-color:var(--grayscale-50);
+  }
+  .light-surface-brand-default {
+    font:var(--blue-500);
+  }
+  .light-surface-brand-alt {
+    font:var(--blue-100);
+  }
+  .light-border-bold {
+    border: 1px solid var(--grayscale-300);
+  }
+  .light-border-default {
+    border: 1px solid var(--grayscale-100);
+  }
+
+
+  .display-bold24 {
+    font: var(--bold-L);
+  }
+  .display-bold16 {
+    font: var(--bold-M);
+  }
+  
+  .display-bold14 {
+    font: var(--bold-R);
+  }
+  
+  .display-bold12 {
+    font: var(--bold-S);
+  }
+  
+  .display-medium16 {
+    font: var(--medium-M);
+  }
+  
+  .display-medium14 {
+    font: var(--medium-R);
+  }
+  
+  .display-medium12 {
+    font: var(--medium-S);
+  }
+  
+  .selected-bold16 {
+    font: var(--bold-M);
+  }
+  
+  .selected-bold14 {
+    font: var(--bold-R);
+  }
+  
+  .available-medium16 {
+    font: var(--medium-M);
+  }
+  
+  .available-medium14 {
+    font: var(--medium-R);
+  }
+  
+  .available-medium12 {
+    font: var(--medium-S);
+  }
+  
+  .hover-medium16 {
+    font: var(--medium-M);
+    text-decoration: underline;
+  }
+  
+  .hover-medium14 {
+    font: var(--medium-R);
+    text-decoration: underline;
+  }

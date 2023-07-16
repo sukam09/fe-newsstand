@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./global-style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <img src="./asset/icons/newspaper.png" class="icon" />
+        <h1 class="header-title display-bold24">뉴스스탠드</h1>
+      </div>
+      <div class="header-right light-text-default display-medium16"></div>
+    </header>
+    <section class="rolling-section">
+      <div class="rolling-container light-surface-alt light-border-default">
+        <span class="display-bold14 light-text-strong">연합뉴스</span>
+        <div class="rolling-window available-medium14 light-text-default">
+          <div class="rolling-content"></div>
+        </div>
+      </div>
+      <div class="rolling-container light-surface-alt light-border-default">
+        <span class="display-bold14 light-text-strong">연합뉴스</span>
+        <div class="rolling-window available-medium14 light-text-default">
+          <div class="rolling-content"></div>
+        </div>
+      </div>
+    </section>
+    <section class="grid-section">
+      <div class="grid-section-nav">
+        <div class="nav-left">
+          <span class="light-text-strong selected-bold16">전체 언론사</span>
+          <span class="light-text-weak available-medium16"
+            >내가 구독한 언론사</span
+          >
+        </div>
+        <div class="nav-right">
+          <img src="./asset/icons/list-view.png" class="icon btn" />
+          <img src="./asset/icons/grid-view.png" class="icon btn" />
+        </div>
+      </div>
+      <div class="grid-section-container">
+        <div class="arrow-container arrow-left btn">
+          <img src="./asset/icons/LeftButton.png" />
+        </div>
+        <ul class="grid-box"></ul>
+
+        <div class="arrow-container arrow-right btn">
+          <img src="./asset/icons/RightButton.png" />
+        </div>
+      </div>
+    </section>
+    <div class="press-cover light-surface-alt hidden">
+      <img src="./asset/icons/subscribe-button.png" class="btn sub-btn hide" />
+      <img
+        src="./asset/icons/unsubscribe-button.png"
+        class="btn unsub-btn hide"
+      />
+    </div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
