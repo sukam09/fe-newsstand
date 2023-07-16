@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>News Stand</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-header">
+        <header class="title" onClick="window.location.reload()">
+          <img src="./icons/NewsLogo.svg" class="news-logo" />
+          <h1 class="display-bold24">뉴스스탠드</h1>
+        </header>
+        <time class="today display-medium16"></time>
+      </div>
+      <section class="news-bar">
+        <ul class="news" id="first-news">
+          <div class="press display-bold14">연합뉴스</div>
+        </ul>
+        <ul class="news" id="second-news">
+          <div class="press display-bold14">연합뉴스</div>
+        </ul>
+      </section>
+      <nav class="tab-and-viewer">
+        <div class="tabs">
+          <span class="all-press-btn selected-bold16 selected-tab">전체 언론사</span>
+          <span class="sub-press-btn available-medium16 available-tab">내가 구독한 언론사</span>
+        </div>
+        <div class="viewer">
+          <button class="list-btn">
+            <img src="./icons/ListButton.svg" />
+          </button>
+          <button class="grid-btn">
+            <img src="./icons/GridButton-Blue.svg" />
+          </button>
+        </div>
+      </nav>
+      <button class="left-btn">
+        <img src="./icons/LeftButton.svg" />
+      </button>
+      <button class="right-btn">
+        <img src="./icons/RightButton.svg" />
+      </button>
+      <main>
+        <div class="grid"></div>
+        <div class="list-view">
+          <nav class="field-tab">
+            <button class="selected-bold14 progress nav-economy">
+              <span>종합/경제</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-broadcast">
+              <span>방송/통신</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-it">
+              <span>IT</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-english">
+              <span>영자지</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-sports">
+              <span>스포츠/연예</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-magazine">
+              <span>매거진/전문지</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <button class="available-medium14 nav-local">
+              <span>지역</span>
+              <div>
+                <span class="progress-curr-num display-bold12"></span>
+                <img src="./icons/SymbolDivision.svg" />
+                <span class="progress-total-num display-bold12"></span>
+              </div>
+            </button>
+            <div class="progress-bar"></div>
+          </nav>
+          <div class="list-press-news">
+            <div class="list-press">
+              <img src="icons/basic/news_logo1.svg" class="list-press-icon" />
+              <span class="edit-date display-medium12"></span>
+              <button class="list-sub-btn"><img src="./icons/SymbolPlus.svg" /><span class="available-medium12">구독하기</span></button>
+            </div>
+            <div class="list-news">
+              <div class="list-main-news">
+                <img src="" class="main-news-thumbnail" />
+                <h2 class="main-news-title available-medium16"></h2>
+              </div>
+              <ul class="list-sub-news">
+                <li class="sub-news-title available-medium16"></li>
+                <li class="sub-news-title available-medium16"></li>
+                <li class="sub-news-title available-medium16"></li>
+                <li class="sub-news-title available-medium16"></li>
+                <li class="sub-news-title available-medium16"></li>
+                <li class="sub-news-title available-medium16"></li>
+                <li class="caption display-medium14"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./module/app.js"></script>
+  </body>
+</html>

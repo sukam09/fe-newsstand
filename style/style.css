@@ -1,0 +1,435 @@
+@import url(./reset.css);
+@import url(./variable.css);
+@import url(./typography.css);
+
+/* common css */
+html {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+body {
+  width: 1280px;
+  height: 720px;
+  margin: 65px auto;
+  font-family: "Pretendard";
+  position: relative;
+}
+
+.container {
+  width: 930px;
+  margin: 0 auto;
+  padding: 58px 0 76px 0;
+}
+
+/* main header */
+.main-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.today {
+  color: var(--text-default);
+}
+
+/* news-bar */
+.news-bar {
+  display: flex;
+  width: 930px;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.news {
+  display: flex;
+  height: 17px;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-alt);
+}
+
+.news li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.press {
+  cursor: pointer;
+  color: var(--text-strong);
+}
+
+.news-title {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  color: var(--text-default);
+}
+
+.news-title:hover {
+  text-decoration: var(--line-style-underline);
+}
+
+.news-bar > .news {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-bar li {
+  position: absolute;
+  left: 81px;
+  top: -36px;
+  left: 0;
+  overflow: hidden;
+}
+
+.news-bar li.prev-news {
+  left: 81px;
+  top: -36px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.current-news {
+  left: 81px;
+  top: 16px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.next-news {
+  left: 81px;
+  top: 52px;
+}
+
+.news-bar a {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  width: 360px;
+}
+
+/* tab-and-viewer */
+.tab-and-viewer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.all-press-btn,
+.sub-press-btn {
+  cursor: pointer;
+}
+
+.viewer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.list-btn,
+.grid-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+}
+
+.selected-tab {
+  color: var(--text-strong);
+}
+
+.available-tab {
+  color: var(--text-weak);
+}
+
+/* grid */
+.grid {
+  display: flex;
+  height: 388px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  flex-shrink: 0;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--border-default);
+}
+
+.grid .grid-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.grid .grid-row li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: var(--surface-default);
+  cursor: pointer;
+}
+
+/* list-mode */
+.list-view {
+  /* display: inline-flex; */
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--surface-default);
+}
+
+.field-tab {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 930px;
+  height: 40px;
+  align-items: center;
+  border: var(--border-border-default) solid var(--border-default);
+  border-bottom: none;
+  background: var(--surface-alt);
+}
+
+.field-tab button {
+  display: flex;
+  height: 100%;
+  padding: 0px 16px;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-weak);
+  background: var(--surface-alt);
+}
+
+.field-tab button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.field-tab button.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+  width: 166px;
+  background: var(--surface-brand-alt);
+  color: var(--text-white-default);
+}
+
+.field-tab button.progress:hover {
+  text-decoration: none;
+}
+
+.field-tab button.progress span {
+  z-index: 1;
+}
+
+.field-tab button.progress div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  z-index: 1;
+}
+
+.field-tab button.progress .progress-curr-num {
+  color: var(--text-white-default);
+}
+
+.field-tab button.progress .progress-total-num {
+  color: var(--text-white-weak);
+}
+
+@keyframes progress {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 166px;
+  }
+}
+
+.progress-bar {
+  position: absolute;
+  height: 100%;
+  background: var(--surface-brand-default);
+  animation: 20s linear progress infinite;
+}
+
+.list-press-news {
+  display: flex;
+  width: 930px;
+  box-sizing: border-box;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border: var(--border-border-default) solid var(--border-default);
+}
+
+.list-press {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.list-press-icon {
+  display: flex;
+  width: 53px;
+  height: 20px;
+  padding-right: 0px;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-date {
+  color: var(--text-default);
+}
+
+.list-sub-btn {
+  display: flex;
+  height: 24px;
+  padding: 0px 6px;
+  margin: 1px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-alt);
+}
+
+.list-sub-btn img {
+  display: flex;
+  width: 12px;
+  height: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-sub-btn span {
+  display: flex;
+  padding-right: 4px;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-weak);
+}
+
+.list-news {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.list-main-news {
+  display: flex;
+  width: 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+
+  .main-news-thumbnail {
+    transition: transform 1s;
+  }
+}
+
+.list-main-news:hover {
+  text-decoration: underline;
+  cursor: pointer;
+
+  .main-news-thumbnail {
+    transform: scale(1.05);
+    transition: transform 1s;
+  }
+}
+
+.main-news-thumbnail {
+  width: 320px;
+  height: 200px;
+  border: var(--border-border-default) solid var(--border-default);
+}
+
+.main-news-title {
+  display: flex;
+  height: 44px;
+  flex-direction: column;
+  align-self: stretch;
+  overflow: hidden;
+  color: var(--text-strong);
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+.list-sub-news {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
+
+.list-sub-news li {
+  color: var(--text-bold);
+}
+
+.list-sub-news li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.list-sub-news .caption {
+  color: var(--text-weak);
+}
+
+/* left-button, right-button */
+.left-btn,
+.right-btn {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 430px;
+}
+
+.left-btn {
+  left: 103px;
+  display: none;
+}
+
+.right-btn {
+  right: 103px;
+}
