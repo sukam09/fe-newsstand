@@ -1,6 +1,6 @@
 import { printGrid } from "./view/GridView.js";
-import { printList } from "./view/ListView.js";
-import { intervalId } from "./view/ListView.js";
+import { printList } from "./view/ListView/ListView.js";
+import { timerId } from "./view/ListView/Timer.js";
 
 const GRID = "grid";
 const LIST = "list";
@@ -31,8 +31,8 @@ function layoutChange(targetBtn) {
     layout.className = GRID;
     InActiveBtn = document.getElementById(LIST_BTN_ID);
     VIEW.CURRENT_VIEW_MODE = GRID;
-    if (intervalId) {
-      clearInterval(intervalId);
+    if (timerId) {
+      clearInterval(timerId);
     }
   } else if (ID === LIST_BTN_ID) {
     layout.className = LIST;

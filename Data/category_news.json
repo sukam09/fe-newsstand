@@ -4,7 +4,7 @@
     "press": [
       {
         "name": "머니투데이",
-        "path": "../../asset/icons/basic/news_logo1.svg",
+        "path": "news_logo1.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -17,7 +17,7 @@
       },
       {
         "name": "경향신문",
-        "path": "../../asset/icons/basic/news_logo2.svg",
+        "path": "news_logo2.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -30,7 +30,7 @@
       },
       {
         "name": "뉴스타파",
-        "path": "../../asset/icons/basic/news_logo3.svg",
+        "path": "news_logo3.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
           " [단독] 외교부 \"튀르키예 2차 구호대 파견 확정…부상자 치료·시신수습 초점\" ",
@@ -48,7 +48,7 @@
     "press": [
       {
         "name": "오마이뉴스",
-        "path": "../../asset/icons/basic/news_logo4.svg",
+        "path": "news_logo4.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -62,7 +62,7 @@
       },
       {
         "name": "데일리안",
-        "path": "../../asset/icons/basic/news_logo5.svg",
+        "path": "news_logo5.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -75,7 +75,7 @@
       },
       {
         "name": "헤드럴경제",
-        "path": "../../asset/icons/basic/news_logo6.svg",
+        "path": "news_logo6.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
           " [단독] 외교부 \"튀르키예 2차 구호대 파견 확정…부상자 치료·시신수습 초점\" ",
@@ -88,7 +88,7 @@
       },
       {
         "name": "세계일보",
-        "path": "../../asset/icons/basic/news_logo7.svg",
+        "path": "news_logo7.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -107,7 +107,7 @@
     "press": [
       {
         "name": "아시아경제",
-        "path": "../../asset/icons/basic/news_logo8.svg",
+        "path": "news_logo8.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -120,7 +120,7 @@
       },
       {
         "name": "이데일리",
-        "path": "../../asset/icons/basic/news_logo9.svg",
+        "path": "news_logo9.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -134,7 +134,7 @@
       },
       {
         "name": "한국일보",
-        "path": "../../asset/icons/basic/news_logo10.svg",
+        "path": "news_logo10.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
           " [단독] 외교부 \"튀르키예 2차 구호대 파견 확정…부상자 치료·시신수습 초점\" ",
@@ -147,7 +147,7 @@
       },
       {
         "name": "아이뉴스24",
-        "path": "../../asset/icons/basic/news_logo11.svg",
+        "path": "news_logo11.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -161,7 +161,7 @@
       },
       {
         "name": "파이낸셜뉴스",
-        "path": "../../asset/icons/basic/news_logo12.svg",
+        "path": "news_logo12.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
           " [단독] 외교부 \"튀르키예 2차 구호대 파견 확정…부상자 치료·시신수습 초점\" ",
@@ -179,7 +179,7 @@
     "press": [
       {
         "name": "스포츠서울",
-        "path": "../../asset/icons/basic/news_logo13.svg",
+        "path": "news_logo13.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -193,7 +193,7 @@
       },
       {
         "name": "스포츠동아",
-        "path": "../../asset/icons/basic/news_logo14.svg",
+        "path": "news_logo14.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -211,7 +211,7 @@
     "press": [
       {
         "name": "석간 문화일보",
-        "path": "../../asset/icons/basic/news_logo15.svg",
+        "path": "news_logo15.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -224,7 +224,7 @@
       },
       {
         "name": "KBS WORLD",
-        "path": "../../asset/icons/basic/news_logo16.svg",
+        "path": "news_logo16.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -242,7 +242,7 @@
     "press": [
       {
         "name": "Korea JoongAng Daily",
-        "path": "../../asset/icons/basic/news_logo17.svg",
+        "path": "news_logo17.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -255,7 +255,7 @@
       },
       {
         "name": "Insight",
-        "path": "../../asset/icons/basic/news_logo18.svg",
+        "path": "news_logo18.svg",
         "news": [
           "이재명 \" 공개소환, 회술레같은 수치\"…검찰 \"비공개 출석 요구하지도 않았다\" ",
           " \" 위안부 후원금 횡령 의혹 \" 벌금형...미소 지은 윤미향 무소속  ",
@@ -273,7 +273,7 @@
     "press": [
       {
         "name": "법률방송뉴스",
-        "path": "../../asset/icons/basic/news_logo19.svg",
+        "path": "news_logo19.svg",
         "news": [
           "또 국민연금의 몽니…현대百 지주사 불발",
           " \" 위스키 사려고 이틀 전부터 줄 섰어요 \" ",
@@ -287,7 +287,7 @@
       },
       {
         "name": "시사저널e",
-        "path": "../../asset/icons/basic/news_logo20.svg",
+        "path": "news_logo20.svg",
         "news": [
           "[與 당권경쟁] 김기현·안철수·천하람·황교안, 본경선 진출",
           " [단독] 외교부 \"튀르키예 2차 구호대 파견 확정…부상자 치료·시신수습 초점\" ",

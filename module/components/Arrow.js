@@ -1,6 +1,6 @@
 import { updateGrid } from "../view/GridView.js";
 import { VIEW } from "../ViewStyle.js";
-import { pageMoveByBtn, categoryLength } from "../view/ListView.js";
+import { pageMoveByBtn } from "../view/ListView/ListView.js";
 
 export let current_grid_page = 0;
 export const LIST_PAGE = {

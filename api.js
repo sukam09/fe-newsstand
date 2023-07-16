@@ -37,7 +37,6 @@ function shuffle_id(news_icon) {
   }
 }
 function shuffle_press(press) {
-  console.log(press);
   let currentIndex = press.length,
     tempValue,
     randomIndex;
