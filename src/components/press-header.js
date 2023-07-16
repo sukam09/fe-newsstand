@@ -1,7 +1,7 @@
-import { getFetchData } from '../utils/fetch.js';
 import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
+import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from '../components/light-dark-mode.js';
-import { setTotalPressGrid } from './press-grid.js';
+import { setTotalPressGrid, initPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
 
 /**
@@ -20,6 +20,8 @@ const initPressHeader = async () => {
 
     setTotalPressList(); // 수정중
     setTotalPressGrid(); // 수정중
+    initPressGrid(pressData);
+
     initLightDarkMode();
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);

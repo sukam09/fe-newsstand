@@ -1,11 +1,15 @@
-import { getFetchData } from '../utils/fetch.js';
+import { getShuffleList } from '../utils/shuffle.js';
 
 let pageNum = 0; //
 
 /**
  * 언론사 그리드의 INIT
  */
-const initPressGrid = () => {};
+const initPressGrid = (pressData) => {
+  console.log(pressData);
+
+  const shufflePress = getShuffleList(pressData.length);
+};
 
 /**
  * 언론사 불러오기
@@ -14,24 +18,13 @@ const setTotalPressGrid = (isLightMode) => {
   fetch('./assets/data/total-press.json')
     .then((response) => response.json())
     .then((data) => {
-      let shufflePress = setPressList(data);
+      let shufflePress = getShuffleList(data.length);
       getPressLogoElement(data, shufflePress, isLightMode);
       makePressGrid(data, shufflePress, isLightMode);
     })
     .catch((error) => {
       console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
     });
-};
-
-const shuffleList = (list) => {
-  list.sort(() => Math.random() - 0.5);
-};
-
-const setPressList = (pressData) => {
-  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
-  shuffleList(shufflePress);
-
-  return shufflePress;
 };
 
 const makePressGrid = (pressData, shufflePress, isLightMode) => {
@@ -121,4 +114,4 @@ const setArrowVisible = () => {
   }
 };
 
-export { setTotalPressGrid };
+export { setTotalPressGrid, initPressGrid };
