@@ -1,6 +1,6 @@
 import Component from "../core/Component.js";
 import { shuffleNewsPress } from "../utils/utils.js";
-import PageButton from "./PageButton.js";
+import PageButton from "../common/PageButton.js";
 
 const MIN_PAGE = 0;
 const MAX_PAGE = 3;

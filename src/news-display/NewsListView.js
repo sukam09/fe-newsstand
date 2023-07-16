@@ -1,5 +1,6 @@
 import Component from "../core/Component.js";
-import PageButton from "./PageButton.js";
+import PageButton from "../common/PageButton.js";
+import SubscribeButton from "../common/SubscribeButton.js";
 
 const PROGRESS_DURATION = 20000;
 
@@ -42,21 +43,7 @@ export default class NewsListView extends Component {
                         <div class="edit-time display-medium12">
                             2023.10.04. 11:22 편집
                         </div>
-                        <button class="subscribe-button available-medium12">
-                            <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M9.5 6.49902H6.5V9.49902H5.5V6.49902H2.5V5.49902H5.5V2.49902H6.5V5.49902H9.5V6.49902Z"
-                                    fill="#879298"
-                                />
-                            </svg>
-                            <div>구독하기</div>
-                        </button>
+                        <div class="subscribe-button-wrapper"></div>
                     </div>
                     <div class="articles-container available-medium16">
                         <div class="main-article">
@@ -94,6 +81,14 @@ export default class NewsListView extends Component {
         this.mountPageButton();
 
         this.progressInterval();
+
+        const subscribeButton = this.$target.querySelector(
+            ".subscribe-button-wrapper"
+        );
+        new SubscribeButton(subscribeButton, {
+            viewMode: "list",
+            subscribed: false,
+        });
     }
 
     mountCategory() {

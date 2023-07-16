@@ -264,13 +264,16 @@ body {
     display: flex;
     gap: 2px;
     height: 24px;
-    padding: 0 10px 0 6px;
+    padding: 0 6px;
     align-items: center;
     color: var(--color-text-weak);
 
     border-radius: 50px;
     border: 1px solid var(--color-border-default);
     background: var(--color-surface-alt);
+}
+.subscribe-button > div {
+    padding-right: 4px;
 }
 
 .articles-container {
