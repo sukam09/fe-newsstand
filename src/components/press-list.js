@@ -53,8 +53,8 @@ const setPressArrowElement = (initCategoryArticleList) => {
 
     currentLi.classList.remove('progress-start');
     nextLi.classList.add('progress-start');
-    currentLi.querySelector('.press-category__div').classList.add('display-none');
-    nextLi.querySelector('.press-category__div').classList.remove('display-none');
+    currentLi.querySelector('.press-category__div').classList.add('none');
+    nextLi.querySelector('.press-category__div').classList.remove('none');
 
     ///
     const sectionMain = document.querySelector('.press-category__section-main');
@@ -98,9 +98,9 @@ const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
     const removeDiv = addLi.querySelector('.press-category__div');
 
     removeLi.classList.remove('progress-start');
-    addDiv.classList.add('display-none');
+    addDiv.classList.add('none');
     addLi.classList.add('progress-start');
-    removeDiv.classList.remove('display-none');
+    removeDiv.classList.remove('none');
   });
 
   liList.forEach((li) => {
@@ -148,9 +148,9 @@ const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) =>
     const removeDiv = addLi.querySelector('.press-category__div');
 
     removeLi.classList.remove('progress-start');
-    addDiv.classList.add('display-none');
+    addDiv.classList.add('none');
     addLi.classList.add('progress-start');
-    removeDiv.classList.remove('display-none');
+    removeDiv.classList.remove('none');
   }
 
   let changeIdx = shuffleArticle[currentArticle];
@@ -300,7 +300,7 @@ const setPressCategoryNav = (categoryData, shufflePressList) => {
     const categoryLi = `
     <li class='press-category__li'>
       <p class='press-category__p'>${data.categoryName}</p>
-      <div class='press-category__div display-none'>
+      <div class='press-category__div none'>
         <div class='press-category__div-now'>1</div>
         <div class='press-category__div-divide'>/</div>
         <div class='press-category__div-sum'>${data.categoryData.length}</div>
@@ -329,16 +329,16 @@ const setProgressBar = (categoryData) => {
       const removeDiv = li.querySelector('.press-category__div');
 
       removeLi.classList.remove('progress-start');
-      addDiv.classList.add('display-none');
+      addDiv.classList.add('none');
       li.classList.add('progress-start');
-      removeDiv.classList.remove('display-none');
+      removeDiv.classList.remove('none');
     });
   });
 
   const initLi = document.querySelector('.press-category__ul');
   initLi.firstElementChild.classList.add('progress-start');
   const initDiv = initLi.querySelector('.press-category__div');
-  initDiv.classList.remove('display-none');
+  initDiv.classList.remove('none');
 };
 
 /**
@@ -346,7 +346,7 @@ const setProgressBar = (categoryData) => {
  */
 const setPressCategoryElement = () => {
   const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
-  arrowsWrapper.classList.add('display-none');
+  arrowsWrapper.classList.add('none');
 
   const pressCategory = `
   <article class='press-category'>
