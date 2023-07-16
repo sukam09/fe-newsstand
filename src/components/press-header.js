@@ -40,7 +40,6 @@ const getNavRight = () => {
 /**
  * 언론사의 헤더 설정
  */
-
 const setNavImg = () => {
   const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
   const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
