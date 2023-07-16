@@ -1,8 +1,8 @@
 import { GRID_ROW_SIZE, GRID_COL_SIZE } from "../utils/constant.js";
 import { grid_view_info, toggleArrow } from "../components/grid/gridToggle.js";
 import { create } from "../utils/createElement.js";
-import { createArrowBtn } from "../components/common/arrowBtn.js";
 import { class_name } from "../utils/domClassName.js";
+import { buttonFacotry } from "../components/common/btnfactory.js";
 
 function createMainGrid(shuffle_press_list, isInit) {
     const $container = isInit
@@ -40,16 +40,25 @@ function clickArrowEvent() {
     createMainGrid(grid_view_info.getShuffleList(), false);
 }
 
+function createGridArrowBtn(btnFactory, isRight) {
+    return btnFactory.create({
+        type: "arrow",
+        className: isRight ? class_name.GRID_RIGHT_BTN : class_name.GRID_LEFT_BTN,
+        events: { click: clickArrowEvent.bind({ isRight: isRight }) },
+        isRight: isRight,
+    });
+}
+
 export function createGridView() {
     const $container = document.querySelector(`.${class_name.GRID_VIEW}`);
+    const btnFactory = new buttonFacotry();
+    const leftArrowBtn = createGridArrowBtn(btnFactory, false);
+    const rightArrowBtn = createGridArrowBtn(btnFactory, true);
+
     $container.append(
-        createArrowBtn(class_name.GRID_LEFT_BTN, false, {
-            click: clickArrowEvent.bind({ isRight: false }),
-        }),
+        leftArrowBtn.getButton(),
         createMainGrid(grid_view_info.getShuffleList(), true),
-        createArrowBtn(class_name.GRID_RIGHT_BTN, true, {
-            click: clickArrowEvent.bind({ isRight: true }),
-        })
+        rightArrowBtn.getButton()
     );
     toggleArrow();
 }

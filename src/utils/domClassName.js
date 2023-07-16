@@ -1,6 +1,7 @@
 export const class_name = {
     // mainNav
     MAIN_NAV: "container_main_nav",
+
     // grid
     GRID_VIEW: "main-grid-view",
     GRID_LEFT_BTN: "grid_view_btn-left",

@@ -2,9 +2,9 @@ import { news_category } from "../../data/newsCategory.js";
 import { CATEGORY_COUNT_ARR } from "../utils/constant.js";
 import { class_name } from "../utils/domClassName.js";
 import { initProgressBar, getCategoryNow, onClickArrowBtn } from "../components/list/progressBarEvent.js";
-import { createArrowBtn } from "../components/common/arrowBtn.js";
-import { createSubscribeBtn } from "../components/common/subscribeBtn.js";
 import { create } from "../utils/createElement.js";
+import { buttonFacotry } from "../components/common/btnfactory.js";
+const btnFactory = new buttonFacotry();
 
 function createCategoryBtn(category_name, category_size, idx) {
     const $list_view_btn = create.button({
@@ -53,7 +53,7 @@ function createPressInfo(press_src, press_edit_date) {
     const $container = create.div({ className: "list-view-press-info" });
     const $img = create.img({ className: "press_img", attributes: { src: press_src, alt: "press-logo" } });
     const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_edit_date });
-    const $subscribe_btn = createSubscribeBtn();
+    const $subscribe_btn = btnFactory.create({ type: "subscribe" }).getButton();
 
     $container.append($img, $edit_date, $subscribe_btn);
     return $container;
@@ -133,16 +133,20 @@ function createListViewMain(news_category_press) {
     return $container;
 }
 
+function createListArrowBtn(btnFactory, isRight) {
+    return btnFactory.create({
+        type: "arrow",
+        className: isRight ? class_name.LIST_RIGHT_BTN : class_name.LIST_LEFT_BTN,
+        events: { click: onClickArrowBtn.bind({ isRight: isRight }) },
+        isRight: isRight,
+    });
+}
+
 // 리스트 뷰 뉴스 생성
 export function createListView(news_category_press) {
     const $container = document.querySelector(`.${class_name.LIST_VIEW}`);
-    $container.append(
-        createArrowBtn(class_name.LIST_LEFT_BTN, false, {
-            click: onClickArrowBtn.bind({ isRight: false }),
-        }),
-        createListViewMain(news_category_press),
-        createArrowBtn(class_name.LIST_RIGHT_BTN, true, {
-            click: onClickArrowBtn.bind({ isRight: true }),
-        })
-    );
+    const leftArrowBtn = createListArrowBtn(btnFactory, false);
+    const rightArrowBtn = createListArrowBtn(btnFactory, true);
+
+    $container.append(leftArrowBtn.getButton(), createListViewMain(news_category_press), rightArrowBtn.getButton());
 }
