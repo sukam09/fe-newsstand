@@ -24,7 +24,6 @@ async function randomizeNews() {
 뉴스 띄우기
  */
 function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
-  console.log(newsPage)
   /** 언론사 로고, 편집 날짜 띄우기 */
   const $pressNewsInfo = document.querySelector('.press-news-info');
   $pressNewsInfo.innerHTML = `
@@ -46,6 +45,21 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
 }
 
 /**
+ 썸네일에 마우스 올리면 메인 제목에 밑줄
+ */
+function underlineNewsTitle() {
+  const $newsThumbnail = document.querySelector('.press-news-thumbnail');
+  $newsThumbnail.addEventListener('mouseenter',() => handlerHoverNewsTitle('underline'));
+  $newsThumbnail.addEventListener('mouseleave',() => handlerHoverNewsTitle('none'));
+}
+
+function handlerHoverNewsTitle(whatStyle) {
+  const $newsMainTitle = document.querySelector('.press-news-title');
+  $newsMainTitle.style.textDecoration = `${whatStyle}`;
+}
+
+
+/**
 초기값으로 첫번 째 종합/경제 뉴스 보여주기
  */
 async function initNews() {
@@ -60,6 +74,7 @@ async function initNews() {
   })
   turnNewsPage(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   showNewsOfCategory(shuffledPressNews, categories)
+  underlineNewsTitle();
 }
 
 export  {initNews, drawPressNews}

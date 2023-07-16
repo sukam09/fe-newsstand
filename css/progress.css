@@ -70,7 +70,7 @@
 }
 
 .progress.effect::after {
-  animation: progressBar 2s ease infinite;
+  animation: progressBar 20s ease infinite;
 }
 
 @keyframes progressBar {
@@ -168,4 +168,13 @@
   top: calc(50% - 20px);
   left: calc(100% + 47px);
   display: none;
+}
+
+
+.press-news-thumbnail{
+  transition: all 0.2s linear;
+}
+
+.press-news-thumbnail:hover{
+  transform: scale(1.05);
 }

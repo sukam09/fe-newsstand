@@ -17,9 +17,9 @@ let categoryIdx = 0;
 페이지 이동 버튼 누르면 애니메이션 재시작
 */
 function turnNewsPage(shuffledPressNews, categoryIndex, newsPageIndex ,progressFlag) {
-  showNewsTurner(shuffledPressNews, categoryIndex);
   categoryIdx = categoryIndex;
   newsPage = newsPageIndex;
+  showNewsTurner(shuffledPressNews, categoryIndex);
 
   if ((!newsPrevBtnClickEventFlag) && (!newsNextBtnClickEventFlag)) {
     $newsPrevButton.addEventListener('click', (event) => {
