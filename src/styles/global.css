@@ -1,0 +1,8 @@
+/* 재사용 CSS */
+.none {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}

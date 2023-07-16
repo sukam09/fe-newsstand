@@ -1,0 +1,50 @@
+/* 화살표 영역 */
+.arrows__wrapper-grid {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 25px;
+
+  background-color: transparent;
+  border: none;
+}
+
+.arrows__img-left {
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: -72px; /* 0 - 24 - 48 */
+}
+
+.arrows__img-right {
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 40px;
+
+  left: 978px; /* 930 + 48 */
+}
+
+/* 언론사 로고 영역 */
+.press-logo__wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid var(--grayscale-100);
+  border-left: 1px solid var(--grayscale-100);
+}
+.press-logo__li {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 154px;
+  height: 96px;
+  list-style-type: none;
+  border-right: 1px solid var(--grayscale-100);
+  border-bottom: 1px solid var(--grayscale-100);
+}

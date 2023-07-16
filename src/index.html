@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280" />
+    <meta name="description" content="소프티어부트캠프2기 뉴스스탠드 미션" />
+    <title>뉴스스탠드</title>
+    <link rel="stylesheet" class="light-mode" href="./styles/light.css" />
+    <link rel="stylesheet" class="dark-mode" href="" />
+  </head>
+
+  <body>
+    <div class="news-stand__container">
+      <!-- 기본 상단 영역 -->
+      <header class="header__wrapper"></header>
+
+      <!-- 최신 뉴스 자동롤링 영역 -->
+      <div class="latest_news__wrapper">
+        <ul class="latest_news__wrapper-left"></ul>
+        <ul class="latest_news__wrapper-right"></ul>
+      </div>
+
+      <!-- 언론사별 기사들을 확인하는 영역 -->
+      <article class="press__wrapper">
+        <header class="press__header"></header>
+        <section class="arrows__wrapper-grid"></section>
+        <section class="arrows__wrapper-list"></section>
+      </article>
+    </div>
+  </body>
+  <script src="index.js" type="module"></script>
+</html>

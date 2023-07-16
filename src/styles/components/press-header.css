@@ -1,0 +1,37 @@
+/* 언론사별 기사들을 확인하는 영역 */
+.press__wrapper {
+  margin-top: 33px;
+  background-color: var(--grayscale-white);
+}
+
+.press__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.press__nav-left {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.press__h2-entire {
+  font: var(--bold-M);
+  color: var(--grayscale-black);
+}
+
+.press__h2-subscribe {
+  font: var(--medium-M);
+  color: var(--grayscale-400);
+}
+
+.press__nav-right {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}

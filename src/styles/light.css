@@ -1,0 +1,26 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+/* 폰트 다운받은 파일로 수정 */
+
+@import url('./reset.css');
+@import url('./design.css');
+@import url('./global.css');
+
+@import url('./components/news-stand-header.css');
+
+@import url('./components/latest-news.css');
+@import url('./components/light-dark-mode.css');
+@import url('./components/press-header.css');
+@import url('./components/press-grid.css');
+@import url('./components/press-list.css');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pretendard'; /* 폰트 수정 */
+  transition: background-color 0.5s ease;
+}
+
+.news-stand__container {
+  width: 930px;
+}

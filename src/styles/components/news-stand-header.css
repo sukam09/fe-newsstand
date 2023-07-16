@@ -1,0 +1,29 @@
+/* 기본 상단 영역 */
+.header__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 58px;
+}
+
+.header__button {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  background-color: transparent;
+  border: none;
+}
+
+.header__h1 {
+  font: var(--bold-L);
+  color: var(--grayscale-black);
+}
+
+.header__time {
+  font: var(--medium-M);
+  color: var(--grayscale-400);
+}
