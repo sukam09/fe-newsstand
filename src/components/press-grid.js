@@ -5,16 +5,16 @@ let pageNum = 0; //
 /**
  * 언론사 그리드의 INIT
  */
-const initPressGrid = async () => {
-  try {
-    const fetchData = await getFetchData('./assets/data/total-press.json');
-    console.log(fetchData);
+// const initPressGrid = async () => {
+//   try {
+//     const fetchData = await getFetchData('./assets/data/total-press.json');
+//     console.log(fetchData);
 
-    // const latestNews = fetchData.latestNews;
-  } catch (error) {
-    console.error('언론사 그리드를 불러오는 중에 오류가 발생했습니다.', error);
-  }
-};
+//     // const latestNews = fetchData.latestNews;
+//   } catch (error) {
+//     console.error('언론사 그리드를 불러오는 중에 오류가 발생했습니다.', error);
+//   }
+// };
 
 /**
  * 언론사 불러오기
@@ -130,4 +130,4 @@ const setArrowVisible = () => {
   }
 };
 
-export { setTotalPressGrid, initPressGrid };
+export { setTotalPressGrid };

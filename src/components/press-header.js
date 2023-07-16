@@ -1,5 +1,7 @@
+import { getFetchData } from '../utils/fetch.js';
 import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
-import { setTotalPressGrid, initPressGrid } from './press-grid.js';
+import { initLightDarkMode } from '../components/light-dark-mode.js';
+import { setTotalPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
 
 // 여기서 언론사 데이터 받아와서 Grid, List한테 뿌려주기
@@ -7,15 +9,23 @@ import { setTotalPressList } from './press-list.js';
 /**
  * 언론사의 INIT
  */
-const initPressHeader = () => {
-  setNav(getNavLeft());
-  setNav(getNavRight());
-  setNavImg();
+const initPressHeader = async () => {
+  try {
+    const fetchData = await getFetchData('./assets/data/press-news.json');
+    console.log(fetchData);
 
-  setTotalPressList(); //
-  setTotalPressGrid(); //
+    setNav(getNavLeft());
+    setNav(getNavRight());
+    setNavImg();
 
-  initPressGrid();
+    setTotalPressList(); // 수정중
+    setTotalPressGrid(); // 수정중
+    initLightDarkMode();
+
+    // const latestNews = fetchData.latestNews;
+  } catch (error) {
+    console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
+  }
 };
 
 const setNav = (pressElement) => {
