@@ -13,7 +13,10 @@ function removeProgress() {
   const $allCategoryContainer = document.querySelectorAll('.progress');
   const allCategoryContainer = Array.from($allCategoryContainer);
   allCategoryContainer.forEach(categoryContainer => {
-    _changeClass(categoryContainer, 'progress', 'non-progress');
+    if(categoryContainer.classList.contains('progress')){
+      _changeClass(categoryContainer, 'progress', 'non-progress');
+      categoryContainer.classList.add('pointer')
+    }
     categoryContainer.removeChild($pageInfo);
   })
 }
@@ -25,6 +28,7 @@ function setProgress(clickedCategory) {
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${clickedCategory + 1})`);
 
   _changeClass($CategoryContainer, 'non-progress', 'progress');
+  $CategoryContainer.classList.remove('pointer')
   $pageInfo.classList.add('progress-page');
   $CategoryContainer.appendChild($pageInfo);
 }

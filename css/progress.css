@@ -52,6 +52,11 @@
   color: var(--grayscale-white);
   background-color: var(--blue-100);
   position: relative;
+  pointer-events: none;
+}
+
+.progress:hover{
+  text-decoration: none;
 }
 
 .progress::after{
@@ -84,6 +89,10 @@
 .non-progress {
   font: var(--medium-R);
   color: var(--grayscale-200);
+}
+
+.non-progress:hover{
+  text-decoration: underline;
 }
 
 .progress-category {

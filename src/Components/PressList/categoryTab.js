@@ -3,6 +3,8 @@ import { drawPressNews } from "./pressNews.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { initProgress } from "./progressBar.js";
 
+let categoryClickEventFlag = Array.from({ length: 7 }, () => false);
+
 /**
  카테고리를 클릭하면 handleClickCategory함수 호출
  */
@@ -10,9 +12,12 @@ function showNewsOfCategory(shuffledPressNews, categories) {
   const $progressCategory = document.querySelectorAll('.progress-category');
   const allCategory = Array.from($progressCategory);
   allCategory.forEach((category, idx) => {
-    category.addEventListener('click', (event) => {
-    handleClickCategory(event, shuffledPressNews, categories)
-    });
+    if (categoryClickEventFlag[idx] === false) {
+      category.addEventListener('click', (event) => {
+        handleClickCategory(event, shuffledPressNews, categories)
+      });
+      categoryClickEventFlag[idx] = true;
+    }
   })
 }
 
