@@ -16,12 +16,31 @@
     --border-bold: #6e8091;
     --border-default: #d2dae0;
 }
+
+.dark_mode {
+    --text-strong: #ffffff;
+    --text-bold: #f5f7f9;
+    --text-default: #d2dae0;
+    --text-weak: rgba(255, 255, 255, 0.7);
+    --text-white-default: #ffffff;
+    --text-white-weak: rgba(255, 255, 255, 0.7);
+    --text-point: #4362d0;
+    --surface-default: #14212b;
+    --surface-alt: #4b5966;
+    --surface-brand-default: #4362d0;
+    --surface-brand-alt: #4f6ae6;
+    --border-bold: rgba(255, 255, 255, 0.7);
+    --border-default: #5f6e76;
+}
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
     font-family: Pretendard;
-
-    margin: 0;
+    margin: 10vh;
+    height: 100vh;
+    background-color: var(--surface-default);
 }
 
 .container_row {
@@ -33,12 +52,14 @@ body {
     display: grid;
     grid-template-columns: 1fr 7fr 1fr;
     align-items: center;
+    height: 70px;
 }
 
 .container_between {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    width: 930px;
 }
 
 .container_center {
@@ -62,6 +83,7 @@ body {
 .header_left h1 {
     font-weight: 700;
     font-size: 24px;
+    color: var(--text-strong);
 }
 
 .header_left img {
@@ -75,6 +97,27 @@ body {
     color: var(--text-default);
     font-size: 16px;
     font-weight: 500;
+    gap: 8px;
+}
+
+.toggle_mode_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle_mode {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background-color: transparent;
+}
+
+.toggle_mode img {
+    width: 100%;
+    height: 100%;
+    color: var(--surface-brand-default);
 }
 
 .sec_hot_topics {
@@ -117,7 +160,7 @@ body {
 }
 
 .hot_list li a span {
-    color: #1c1e1f;
+    color: var(--text-strong);
     font-weight: 700;
 }
 
@@ -332,6 +375,10 @@ body {
     list-style: none;
     gap: 16px;
     width: 100%;
+}
+
+.content_title {
+    color: var(--text-strong);
 }
 
 .content_title:hover,

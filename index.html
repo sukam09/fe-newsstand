@@ -3,54 +3,59 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>NewsStand</title>
         <link rel="stylesheet" type="text/css" href="index.css" />
     </head>
     <body>
         <!-- Grid 3x3 Layout -->
         <div class="container_row">
             <header class="container_col">
-                <div class="grid_border"></div>
-                <div class="grid_border">
+                <div></div>
+                <header class="container_between">
                     <!-- header, newsstand -->
-                    <header class="container_between">
-                        <div class="header_left">
-                            <img
-                                src="./assets/icons/newspaper.png"
-                                alt="logo"
-                                onClick="location.href='index.html'"
-                            />
-                            <h1>뉴스스탠드</h1>
+
+                    <div class="header_left">
+                        <img
+                            src="./assets/icons/newspaper.png"
+                            alt="logo"
+                            onClick="location.href='index.html'"
+                        />
+                        <h1>뉴스스탠드</h1>
+                    </div>
+                    <!-- header right, today -->
+                    <div class="header_right">
+                        <div class="toggle_mode_container">
+                            <button class="toggle_mode">
+                                <img
+                                    src="./assets/icons/moon.svg"
+                                    alt="dark_mode"
+                                />
+                            </button>
                         </div>
-                        <!-- header right, today -->
-                        <div class="header_right">
-                            <p class="today"></p>
-                        </div>
-                    </header>
-                </div>
-                <div class="grid_border"></div>
+                        <p class="today"></p>
+                    </div>
+                </header>
+                <div></div>
             </header>
             <div class="container_col">
-                <div class="grid_border"></div>
-                <div class="grid_border">
-                    <!-- banner, rolling -->
-                    <section class="container_between">
-                        <div class="sec_hot_topics">
-                            <div
-                                class="rolling_banner"
-                                id="rollingBannerLeft"
-                            ></div>
-                            <div
-                                class="rolling_banner"
-                                id="rollingBannerRight"
-                            ></div>
-                        </div>
-                    </section>
-                </div>
-                <div class="grid_border"></div>
+                <div></div>
+                <!-- banner, rolling -->
+                <section class="container_between">
+                    <div class="sec_hot_topics">
+                        <div
+                            class="rolling_banner"
+                            id="rollingBannerLeft"
+                        ></div>
+                        <div
+                            class="rolling_banner"
+                            id="rollingBannerRight"
+                        ></div>
+                    </div>
+                </section>
+                <div></div>
             </div>
             <div class="container_col">
-                <div class="grid_border">
+                <div>
                     <!-- left arrow button -->
                     <i class="arrow grid_left_arrow">
                         <img
@@ -65,7 +70,7 @@
                         />
                     </i>
                 </div>
-                <div class="grid_border">
+                <div>
                     <!-- navbar -->
                     <nav class="nav_container">
                         <div id="navLeft">
@@ -112,7 +117,7 @@
                     </div>
                 </div>
 
-                <div class="grid_border">
+                <div>
                     <!-- right arrow button -->
                     <i class="arrow grid_right_arrow">
                         <img
