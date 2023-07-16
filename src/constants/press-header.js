@@ -6,8 +6,8 @@ const HEADER_CLASS = {
   H2_SUBSCRIBE: 'press__h2-subscribe',
   IMG_LIST: 'press__img-list',
   IMG_GRID: 'press__img-grid',
-  WRAPPER_GRID: 'arrows__wrapper-grid',
-  WRAPPER_LIST: 'arrows__wrapper-list',
+  WRAPPER_GRID: 'press__wrapper-grid',
+  WRAPPER_LIST: 'press__wrapper-list',
 };
 
 const PATH = {
