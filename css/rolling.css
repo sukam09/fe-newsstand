@@ -1,0 +1,43 @@
+.rolling-banner {
+  position: relative;
+}
+
+.rolling-banner > .wrap {
+  position: relative;
+  height: 16px;
+  width: 360px;
+  overflow: hidden;
+}
+
+.rolling-banner li {
+  position: absolute;
+  top: -36px;
+  left: 0;
+}
+
+.rolling-banner li.prev {
+  top: -36px;
+  transition: top 1s ease;;
+}
+
+.rolling-banner li.current {
+  top: 0;
+  transition: top 1s ease;
+}
+
+.rolling-banner li.next {
+  top: 36px;
+}
+
+.rolling-banner a {
+  display: block;
+  overflow: hidden;
+  color: var(--text-text-default);
+  text-decoration: none;
+}
+
+.rolling-banner a:hover {
+  text-decoration: underline;
+}
+
+

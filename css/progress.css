@@ -1,0 +1,138 @@
+.press-news-list-container {
+  margin-top: 25px;
+  display: none;
+}
+
+.press-news-bar {
+  display: flex;
+  width: 930px;
+  height: 8px;
+  padding: 16px 0px;
+  align-items: center;
+  border: 1px solid var(--border-default);
+}
+
+.press-news-bar li {
+  display: flex;
+  height: 40px;
+  padding: 0px 16px;
+  align-items: center;
+  gap: 8px;
+}
+
+.press-news {
+  display: flex;
+  width: 882px;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-left: 1px solid var(--border-default);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.press-news-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+/*progress 설정 class*/
+.progress {
+  display: flex;
+  width: 134px;
+  height: 40px;
+  padding: 0px 16px;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font: var(--bold-R);
+  color: var(--grayscale-white);
+  background-color: var(--blue-100);
+}
+
+/*progress 설정 class*/
+.progress-page {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.non-progress {
+  font: var(--medium-R);
+  color: var(--grayscale-200);
+
+}
+
+.progress-category {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+}
+
+
+
+.press-news-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.press-news-main {
+  display: flex;
+  width: 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.press-news-thumbnail {
+  border: 1px solid var(--border-default);
+  background: lightgray 0px -11.561px / 100% 106.561% no-repeat;
+}
+
+.press-news-title {
+  display: flex;
+  height: 44px;
+  flex-direction: column;
+  align-self: stretch;
+  overflow: hidden;
+  color: var(--grayscale-black);
+  text-overflow: ellipsis;
+  flex-wrap: nowrap
+}
+
+.press-news-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+}
+
+.press-news-sub-list {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.press-news-list-container {
+  position: relative;
+}
+
+.press-news-left-button {
+  position: absolute;
+  top: calc(50% - 20px);
+  right: calc(100% + 47px);
+  display: none;
+}
+
+.press-news-right-button {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(100% + 47px);
+}
