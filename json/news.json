@@ -1,0 +1,76 @@
+{
+  "News": [
+    {
+      "id": 1,
+      "title": "또 국민연금의 몽니…현대百 지주사 불발",
+      "url": "http://example.com/news/1",
+      "press": "서울경제",
+      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
+      "category": "종합/경제",
+      "editTime": "2023.02.10. 18:27"
+    },
+    {
+      "id": 2,
+      "title": "[단독] 원희룡 \"해외건설 근로자 소득공제 월 500만원으로 상향할 것\"",
+      "url": "http://example.com/news/5",
+      "press": "서울경제",
+      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
+      "category": "종합/경제",
+      "editTime": "2023.06.10. 18:27"
+    },
+    {
+      "id": 3,
+      "title": "LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”",
+      "url": "http://example.com/news/7",
+      "press": "SBS Biz",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "방송/통신",
+      "editTime": "2023.09.10. 18:27"
+    },
+    {
+      "id": 4,
+      "title": "봇물처럼 터지는 공공요금 인상…꼭 지금이어야 하나",
+      "url": "http://example.com/news/8",
+      "press": "SBS Biz",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "IT",
+      "editTime": "2023.11.10. 18:27"
+    },
+    {
+      "id": 5,
+      "title": "대통령실, 도이치모터스 1심 판결에 \"김 여사 연루 의혹, 민주당 주장 깨졌다\"",
+      "url": "http://example.com/news/15",
+      "press": "데일리안",
+      "thumbnail": "https://armory.visualsoldiers.com/wp-content/uploads/2019/04/Lorem-Picsum-Armory-970x647.jpg",
+      "category": "영자지",
+      "editTime": "2023.02.15. 18:27"
+    },
+    {
+      "id": 6,
+      "title": "민주, 이재명 검찰 출석 당일에 尹정권 맹폭…\"50억 클럽 방치, 李 수사 올인\"",
+      "url": "http://example.com/news/18",
+      "press": "데일리안",
+      "thumbnail": "https://picsum.photos/320/200",
+      "category": "스포츠/연예",
+      "editTime": "2023.02.18. 18:27"
+    },
+    {
+      "id": 7,
+      "title": "[단독] \"매니저라 불러주세요\" HMM, 직급체계 5단계→2단계로 간소화",
+      "url": "http://example.com/news/19,",
+      "press": "데일리안",
+      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
+      "category": "매거지/전문지",
+      "editTime": "2023.02.19. 18:27"
+    },
+    {
+      "id": 8,
+      "title": "'멍투성이' 초등생 사망 친부 \"학대, 아내가 다 했다\"…10일 구속여부 결정",
+      "url": "http://example.com/news/20",
+      "press": "데일리안",
+      "thumbnail": "https://i.ytimg.com/vi/ZYVX0wviSgQ/maxresdefault.jpg",
+      "category": "지역",
+      "editTime": "2023.02.20. 18:27"
+    }
+  ]
+}

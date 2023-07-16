@@ -1,0 +1,58 @@
+.rolling-banner {
+  position: relative;
+  width: 460px;
+  height: 20px;
+  font-size: 0.875rem;
+  letter-spacing: -1px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-default);
+  background-color: var(--surface-alt);
+}
+.rolling-banner > .rollingWrap {
+  position: relative;
+  width: auto;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.rolling-banner ul {
+  list-style: none;
+}
+
+.rolling-banner li {
+  position: absolute;
+  top: -36px;
+  left: 0;
+}
+.rolling-banner li.prev {
+  top: -36px;
+  transition: top 0.5s ease;
+}
+.rolling-banner li.current {
+  top: 50%;
+  transition: top 0.5s ease;
+  transform: translate(0, -50%);
+}
+.rolling-banner li.next {
+  top: 36px;
+}
+
+.rollingWrap > ul {
+  position: relative;
+  height: 100%;
+}
+.rolling-banner a {
+  display: block;
+  display: -webkit-box;
+  text-decoration: none;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #5f6e76;
+}
+
+.rolling-banner a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
