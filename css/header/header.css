@@ -1,0 +1,29 @@
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin: 0 auto; */
+
+  /* padding: 0px 10px; */
+  /* background-color: rgb(255, 194, 194); */
+}
+
+.header__view {
+  display: flex;
+  align-items: center;
+  flex: 0.5;
+}
+
+.header—title {
+  margin-left: 3%;
+}
+.header—title a {
+  cursor: pointer;
+}
+.header—date {
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+  justify-content: flex-end;
+  color: #5f6e76;
+}

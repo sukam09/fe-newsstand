@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <header id="header" role="banner">
+        <div class="header__view">
+          <div class="header—logo">
+            <img src="./assets/Symbol.svg" alt="" />
+          </div>
+          <h1 class="header—title">
+            <a>뉴스스탠드</a>
+          </h1>
+        </div>
+        <div class="header—date"></div>
+      </header>
+      <main id="main" role="contents">
+        <section class="main__subview"></section>
+        <section id="newsstand">
+          <div class="newsstand__media-nav">
+            <div class="newsstand__tab">
+              <div class="newsstand—text-clicked">전체 언론사</div>
+              <div class="newsstand—text-unclicked">내가 구독한 언론사</div>
+            </div>
+            <div class="newsstand__tab">
+              <button class="newsstand__tab-list">
+                <img class="newsstand—btn-list" src="./assets/list-view-off.svg" alt="뉴스리스트 보기" />
+              </button>
+              <button class="newsstand__tab-thumb" disabled>
+                <img class="newsstand-btn-thumb" src="./assets/grid-view-on.svg" alt="뉴스언론사 보기" />
+              </button>
+            </div>
+          </div>
+          <button class="news-Lbtn newsstand--left-btn disabled">
+            <img src="./assets/LeftButton.png" alt="" />
+          </button>
+          <div class="newsstand__media-area">
+            <ul class="newsstand-area—six-col-list"></ul>
+          </div>
+          <div class="newsstand__list-area disabled">
+            <div class="newsstand__category"></div>
+            <div class="newsstand__list">
+              <div class="newsstand__list-box"></div>
+            </div>
+          </div>
+          <button class="news-Rbtn newsstand--right-btn">
+            <img src="./assets/RightButton.svg" alt="" />
+          </button>
+        </section>
+      </main>
+    </div>
+  </body>
+
+  <script src="./js/app.js" type="module"></script>
+</html>

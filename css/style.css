@@ -1,0 +1,13 @@
+@import 'reset.css';
+@import './main/main.css';
+@import './header/header.css';
+@import './main/newslist.css';
+#root {
+  width: 930px;
+
+  --text-gray-light: #5f6e76;
+}
+
+.disabled {
+  display: none;
+}
