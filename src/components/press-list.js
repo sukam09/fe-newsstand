@@ -45,7 +45,7 @@ const setTotalPressList = (isLightMode) => {
  * List 화살표 생성
  */
 const getPressArrowElement = () => {
-  const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
+  const arrowsWrapper = document.querySelector('.press__wrapper-list');
 
   const arrowImg = `
   <img class='arrows__img-left' src='./assets/icons/chevron-left.svg' />
@@ -58,7 +58,7 @@ const getPressArrowElement = () => {
  * List 화살표 넘겨주기
  */
 const setPressArrowElement = (initCategoryArticleList) => {
-  const arrowRight = document.querySelector('.arrows__wrapper-list .arrows__img-right');
+  const arrowRight = document.querySelector('.press__wrapper-list .arrows__img-right');
 
   arrowRight.addEventListener('click', () => {
     currentCategory += 1;
@@ -359,7 +359,7 @@ const setProgressBar = (categoryData) => {
  * 언론사 리스트의 HTML 틀
  */
 const setPressCategoryElement = () => {
-  const arrowsWrapper = document.querySelector('.arrows__wrapper-list');
+  const arrowsWrapper = document.querySelector('.press__wrapper-list');
   arrowsWrapper.classList.add('none');
 
   const pressCategory = `

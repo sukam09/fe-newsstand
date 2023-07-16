@@ -1,7 +1,7 @@
 import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
 import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from '../components/light-dark-mode.js';
-import { setTotalPressGrid, initPressGrid } from './press-grid.js';
+import { initPressGrid } from './press-grid.js';
 import { setTotalPressList } from './press-list.js';
 
 /**
@@ -19,7 +19,7 @@ const initPressHeader = async () => {
     setNavImg();
 
     setTotalPressList(); // 수정중
-    setTotalPressGrid(); // 수정중
+    // setTotalPressGrid(); // 수정중
     initPressGrid(pressData);
 
     initLightDarkMode();

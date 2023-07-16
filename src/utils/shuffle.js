@@ -7,4 +7,8 @@ const getShuffleList = (listLength) => {
   return getShuffle(initList);
 };
 
-export { getShuffleList };
+const getSliceList = (shufflePress, pageNum, sliceNum) => {
+  return shufflePress.slice(pageNum * sliceNum, pageNum * sliceNum + sliceNum);
+};
+
+export { getShuffleList, getSliceList };

@@ -1,5 +1,6 @@
 /* 화살표 영역 */
-.arrows__wrapper-grid {
+.press__wrapper-grid__entire,
+.press__wrapper-grid__subscribe {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -10,7 +11,8 @@
   border: none;
 }
 
-.arrows__img-left {
+.arrows-logo__img-left__entire,
+.arrows-logo__img-left__subscribe {
   cursor: pointer;
   position: absolute;
   width: 24px;
@@ -19,7 +21,8 @@
   left: -72px; /* 0 - 24 - 48 */
 }
 
-.arrows__img-right {
+.arrows-logo__img-right__entire,
+.arrows-logo__img-right__subscribe {
   cursor: pointer;
   position: absolute;
   width: 24px;
@@ -29,7 +32,8 @@
 }
 
 /* 언론사 로고 영역 */
-.press-logo__wrapper {
+.press-logo__wrapper-grid__entire,
+.press-logo__wrapper-grid__subscribe {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   list-style-type: none;
@@ -37,7 +41,9 @@
   border-top: 1px solid var(--grayscale-100);
   border-left: 1px solid var(--grayscale-100);
 }
-.press-logo__li {
+
+.press-logo__li__entire,
+.press-logo__li__subscribe {
   cursor: pointer;
   display: flex;
   justify-content: center;
