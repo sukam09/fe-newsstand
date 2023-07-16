@@ -41,7 +41,7 @@ export default class NewsListView extends Component {
                     <div class="press-head-container">
                         <img src=${newsData.logo} alt=${newsData.name} />
                         <div class="edit-time display-medium12">
-                            2023.10.04. 11:22 편집
+                            ${this.getEditTime(newsData.editTime)} 편집
                         </div>
                         <div class="subscribe-button-wrapper"></div>
                     </div>
@@ -220,13 +220,20 @@ export default class NewsListView extends Component {
         );
     }
 
+    getEditTime(editTime) {
+        const [datePart, timePart] = editTime.split(" ");
+        const [year, month, day] = datePart.split("-");
+        const [hours, minutes, _] = timePart.split(":");
+
+        return `${year}.${month}.${day}. ${hours}:${minutes}`;
+    }
+
     progressInterval() {
         clearInterval(this.interval);
 
         const activeCategory = this.$target.querySelector(".category-selected");
 
         let progress = 0;
-
         const increment = 100 / (PROGRESS_DURATION / 16);
 
         this.interval = setInterval(() => {
