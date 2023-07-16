@@ -1,3 +1,5 @@
+import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
+
 function showToday() {
     const date = new Date();
 
@@ -26,7 +28,7 @@ function myQuerySelector(selector, element = document) {
 
 async function fetchPressData() {
     try {
-        const data = await fetch("./data/press_data.json")
+        const data = await fetch(PRESS_DATA_PATH)
             .then((res) => res.json())
             .then((data) => data.sort(() => Math.random() - 0.5));
         // then return data
@@ -39,7 +41,7 @@ async function fetchPressData() {
 
 async function fetchHotTopicData() {
     try {
-        const data = await fetch("./data/hot_topic_data.json")
+        const data = await fetch(HOT_DATA_PATH)
             .then((res) => res.json())
             .then((data) => data.sort(() => Math.random() - 0.5));
         // then data.location = "left" or "right" two arr return
@@ -56,9 +58,7 @@ async function fetchHotTopicData() {
 
 async function fetchNewsData() {
     try {
-        const data = await fetch("./data/all_news.json").then((res) =>
-            res.json()
-        );
+        const data = await fetch(NEWS_DATA_PATH).then((res) => res.json());
 
         return data;
     } catch (error) {
