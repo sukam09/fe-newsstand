@@ -1,6 +1,7 @@
 import { findCurrentCategory } from "./handleData.js";
 import { news_by_category } from "../../../../assets/news.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
+
 /* about Btn */
 import { currentPage, changeCurrentPage } from "./handlePage.js";
 

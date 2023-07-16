@@ -113,3 +113,6 @@
   right: 10px;
   display: none;
 }
+.category li:hover {
+  text-decoration: underline;
+}
