@@ -33,6 +33,8 @@ const initSubscribePressGrid = (pressData) => {
   setGridArrow(pressData, subscribePress, 'subscribePage', 'subscribe');
   setGridLogo(pressData, subscribePress, 0, 'subscribe');
   changeIcon('subscribe');
+
+  document.querySelector('.press__wrapper-grid__subscribe').classList.add('none'); //
 };
 
 /**

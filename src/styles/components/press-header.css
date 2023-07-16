@@ -17,12 +17,12 @@
   gap: 24px;
 }
 
-.press__h2-entire {
+.press__h2-select {
   font: var(--bold-M);
   color: var(--grayscale-black);
 }
 
-.press__h2-subscribe {
+.press__h2-unselect {
   font: var(--medium-M);
   color: var(--grayscale-400);
 }
