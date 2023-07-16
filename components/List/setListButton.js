@@ -7,11 +7,8 @@ import { filterCategory } from "../../utils/filterCategory.js";
 import { setButton } from "../Button/setButton.js";
 import { ListComponent } from "../ListComponent.js";
 
-// let currentPage;
-// let currentCategory;
-const [prevBtn, nextBtn] = setButton();
-
 export const setListButton = (sortedAgencies, currentPage, currentCategory) => {
+  const [prevBtn, nextBtn] = setButton();
   prevBtn.addEventListener("click", () => {
     moveToPrevPage(sortedAgencies, currentPage, currentCategory);
   });
@@ -20,7 +17,11 @@ export const setListButton = (sortedAgencies, currentPage, currentCategory) => {
   });
 };
 
-const moveToPrevPage = (sortedAgencies, currentPage, currentCategory) => {
+export const moveToPrevPage = (
+  sortedAgencies,
+  currentPage,
+  currentCategory
+) => {
   if (currentPage === 0 && currentCategory === 0) {
     currentCategory = FIELDTAB_LIST.length - 1;
 

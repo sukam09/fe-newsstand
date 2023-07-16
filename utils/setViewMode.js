@@ -55,6 +55,7 @@ export const viewSelectHandler = (agencies) => {
       // list view 생성
       const sortedAgencies = sortCategory(agencies);
 
+      setListButton(sortedAgencies, currentPage, currentCategory);
       ListComponent(
         INITIAL_PAGE,
         sortedAgencies,

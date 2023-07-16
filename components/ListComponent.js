@@ -4,7 +4,11 @@ import { removeAllChildNodes } from "../utils/utils.js";
 import { makeFieldTab } from "./List/fieldTab.js";
 import { makePressNews } from "./List/pressNews.js";
 import { startProgress, stopProgress } from "./List/progress.js";
-import { setListButton } from "./List/setListButton.js";
+import {
+  moveToNextPage,
+  moveToPrevPage,
+  setListButton,
+} from "./List/setListButton.js";
 
 export const ListComponent = (
   currentPage,
@@ -21,7 +25,7 @@ export const ListComponent = (
   if (field.childNodes.length > 0) {
     removeAllChildNodes(field);
   }
-  setListButton(sortedAgencies, currentPage, currentCategory);
+  // setListButton(sortedAgencies, currentPage, currentCategory);
   // 해당 카테고리 언론사의 뉴스를 렌더하기 위해 필터링
   const filteredAgencies = filterCategory(sortedAgencies, focus);
   // 카테고리 FieldTab, 메인 및 서브 뉴스 생성
@@ -29,4 +33,14 @@ export const ListComponent = (
   makePressNews(filteredAgencies[currentPage]);
   stopProgress();
   startProgress(sortedAgencies, currentPage, currentCategory);
+
+  const prevBtn = document.querySelector(".prev-page-btn");
+  const nextBtn = document.querySelector(".next-page-btn");
+
+  prevBtn.addEventListener("click", () => {
+    moveToPrevPage(sortedAgencies, currentPage, currentCategory);
+  });
+  nextBtn.addEventListener("click", () => {
+    moveToNextPage(sortedAgencies, currentPage, currentCategory);
+  });
 };
