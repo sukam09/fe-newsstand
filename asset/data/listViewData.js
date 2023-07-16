@@ -6,16 +6,16 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img1.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:47",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/1.png",
       "sub_title": [
-        "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
-        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
-        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
-        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
-        "한국의 의료 기술 혁신, 국제적으로 주목받다",
-        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        "\"위스키 사려고 이틀 전부터 줄 섰어요\"",
+        "'방시혁 제국'이냐 '카카오 왕국'이냐...K엔터 누가 거머쥘까",
+        "사용후핵연료 저장시설 포화... 이대론 7년 뒤 원전 멈춘다",
+        "[단독] 원희롱 \"해외건설 근로자 소득공제 월 500만원으로 상향할 것\"",
+        "태퍙양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]",
+        "LG엔솔, 폴란드 자동차산업협회 가입...\"유럽서 목소리 키운다\"",
+        
       ],
       "is_subscribe": "false"
     },
@@ -26,7 +26,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img2.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:31",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/2.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -35,7 +35,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -46,7 +46,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img3.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:25",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/3.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -55,7 +55,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -66,7 +66,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img4.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:49",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/4.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -75,7 +75,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -86,7 +86,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img5.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:49",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/5.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -95,7 +95,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -106,7 +106,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img6.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:19",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/6.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -115,7 +115,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -126,7 +126,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img7.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:52",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/7.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -135,7 +135,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -146,16 +146,16 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img8.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:34",
-      "main_title": "main title",
+      "main_title": "[속보] 중대본 호우 사망 36명·실종 9명…사망자 1명 줄어",
       "main_img_src": "./img/8.png",
       "sub_title": [
-        "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
-        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
         "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        ,
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
       ],
       "is_subscribe": "false"
     },
@@ -166,7 +166,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img9.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:20",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/9.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -175,7 +175,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -186,7 +186,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img10.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:53",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/10.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -195,7 +195,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -206,7 +206,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img11.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:22",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/11.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -215,7 +215,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -226,7 +226,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img12.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/12.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -235,7 +235,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -246,7 +246,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img13.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:43",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/13.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -255,7 +255,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -266,7 +266,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img14.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:49",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/14.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -275,7 +275,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -286,7 +286,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img15.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:47",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/15.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -295,7 +295,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -306,7 +306,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img16.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:23",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/16.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -315,7 +315,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -326,7 +326,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img17.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:37",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/17.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -335,7 +335,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -346,7 +346,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img18.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:48",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/18.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -355,7 +355,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -366,7 +366,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img19.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:11",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/19.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -375,7 +375,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -386,7 +386,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img20.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:10",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/20.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -395,7 +395,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -406,7 +406,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img21.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:57",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/21.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -415,7 +415,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -426,7 +426,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img22.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:16",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/22.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -435,7 +435,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -446,7 +446,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img23.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:18",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/23.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -455,7 +455,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -466,7 +466,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img24.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:54",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/24.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -475,7 +475,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -486,7 +486,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img25.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:31",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/25.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -495,7 +495,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -506,7 +506,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img26.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:27",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/26.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -515,7 +515,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -526,7 +526,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img27.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:30",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/27.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -535,7 +535,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -546,7 +546,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img28.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:27",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/28.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -555,7 +555,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -566,7 +566,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img29.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:38",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/29.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -575,7 +575,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -586,7 +586,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img30.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:27",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/30.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -595,7 +595,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -606,7 +606,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img31.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:47",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/31.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -615,7 +615,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -626,7 +626,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img32.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:44",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/32.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -635,7 +635,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -646,7 +646,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img33.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:40",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/33.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -655,7 +655,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -666,7 +666,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img34.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/34.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -675,7 +675,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -686,7 +686,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img35.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:42",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/35.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -695,7 +695,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -706,7 +706,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img36.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:23",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/36.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -715,7 +715,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -726,7 +726,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img37.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:29",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/37.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -735,7 +735,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -746,7 +746,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img38.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:36",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/38.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -755,7 +755,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -766,7 +766,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img39.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:47",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/39.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -775,7 +775,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -786,7 +786,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img40.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/40.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -795,7 +795,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -806,7 +806,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img41.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:49",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/41.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -815,7 +815,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -826,7 +826,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img42.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:41",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/42.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -835,7 +835,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -846,7 +846,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img43.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:35",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/43.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -855,7 +855,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -866,7 +866,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img44.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:55",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/44.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -875,7 +875,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -886,7 +886,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img45.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:11",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/45.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -895,7 +895,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -906,7 +906,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img46.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:43",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/46.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -915,7 +915,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -926,7 +926,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img47.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:51",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/47.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -935,7 +935,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -946,7 +946,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img48.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:12",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/48.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -955,7 +955,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -966,7 +966,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img49.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:37",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/49.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -975,7 +975,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -986,7 +986,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img50.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:28",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/50.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -995,7 +995,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1006,7 +1006,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img51.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/51.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1015,7 +1015,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1026,7 +1026,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img52.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:19",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/52.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1035,7 +1035,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1046,7 +1046,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img53.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:21",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/53.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1055,7 +1055,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1066,7 +1066,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img54.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:23",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/54.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1075,7 +1075,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1086,7 +1086,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img55.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:38",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/55.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1095,7 +1095,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1106,7 +1106,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img56.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:34",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/56.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1115,7 +1115,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1126,7 +1126,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img57.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:21",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/57.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1135,7 +1135,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1146,7 +1146,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img58.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:54",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/58.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1155,7 +1155,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1166,7 +1166,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img59.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:45",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/59.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1175,7 +1175,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1186,7 +1186,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img60.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:14",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/60.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1195,7 +1195,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1206,7 +1206,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img61.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:25",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/61.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1215,7 +1215,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1226,7 +1226,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img62.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:30",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/62.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1235,7 +1235,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1246,7 +1246,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img63.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:12",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/63.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1255,7 +1255,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1266,7 +1266,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img64.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:56",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/64.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1275,7 +1275,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1286,7 +1286,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img65.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:45",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/65.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1295,7 +1295,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1306,7 +1306,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img66.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:11",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/66.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1315,7 +1315,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1326,7 +1326,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img67.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/67.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1335,7 +1335,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1346,7 +1346,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img68.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:41",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/68.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1355,7 +1355,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1366,7 +1366,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img69.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:30",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/69.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1375,7 +1375,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1386,7 +1386,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img70.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:22",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/70.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1395,7 +1395,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1406,7 +1406,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img71.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:54",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/71.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1415,7 +1415,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1426,7 +1426,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img72.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:34",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/72.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1435,7 +1435,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1446,7 +1446,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img73.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:17",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/73.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1455,7 +1455,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1466,7 +1466,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img74.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:13",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/74.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1475,7 +1475,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1486,7 +1486,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img75.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:47",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/75.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1495,7 +1495,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1506,7 +1506,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img76.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/76.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1515,7 +1515,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1526,7 +1526,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img77.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:18",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/77.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1535,7 +1535,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1546,7 +1546,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img78.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:42",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/78.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1555,7 +1555,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1566,7 +1566,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img79.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:45",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/79.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1575,7 +1575,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1586,7 +1586,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img80.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:41",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/80.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1595,7 +1595,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1606,7 +1606,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img81.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:31",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/81.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1615,7 +1615,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1626,7 +1626,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img82.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:48",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/82.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1635,7 +1635,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1646,7 +1646,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img83.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:56",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/83.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1655,7 +1655,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1666,7 +1666,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img84.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:45",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/84.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1675,7 +1675,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1686,7 +1686,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img85.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:53",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/85.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1695,7 +1695,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1706,7 +1706,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img86.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:11",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/86.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1715,7 +1715,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1726,7 +1726,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img87.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:20",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/87.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1735,7 +1735,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1746,7 +1746,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img88.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:29",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/88.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1755,7 +1755,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1766,7 +1766,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img89.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:46",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/89.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1775,7 +1775,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1786,7 +1786,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img90.svg",
       "category": "매거진/전문지",
       "edit_date": "2023.07.10. 18:13",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/90.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1795,7 +1795,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1806,7 +1806,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img91.svg",
       "category": "지역",
       "edit_date": "2023.07.10. 18:29",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/91.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1815,7 +1815,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1826,7 +1826,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img92.svg",
       "category": "종합/경제",
       "edit_date": "2023.07.10. 18:23",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/92.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1835,7 +1835,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1846,7 +1846,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img93.svg",
       "category": "방송/통신",
       "edit_date": "2023.07.10. 18:52",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/93.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1855,7 +1855,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1866,7 +1866,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img94.svg",
       "category": "IT",
       "edit_date": "2023.07.10. 18:58",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/94.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1875,7 +1875,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1886,7 +1886,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img95.svg",
       "category": "영자지",
       "edit_date": "2023.07.10. 18:20",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/95.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1895,7 +1895,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     },
@@ -1906,7 +1906,7 @@ const listViewData = [
       "path_dark": "/asset/logo/dark/img96.svg",
       "category": "스포츠/연예",
       "edit_date": "2023.07.10. 18:38",
-      "main_title": "main title",
+      "main_title": "이스라엘 예비역 군인 '사법정비' 항의 복무거부 다시 확산",
       "main_img_src": "./img/96.png",
       "sub_title": [
         "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
@@ -1915,7 +1915,7 @@ const listViewData = [
         "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
         "한국의 의료 기술 혁신, 국제적으로 주목받다",
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
-        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+        
       ],
       "is_subscribe": "false"
     }

@@ -1,5 +1,6 @@
 import rollingList from "./asset/data/rollingList.js";
 import listViewData from "./asset/data/listViewData.js";
+import pressList from "./asset/data/pressList.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const listContainer = document.querySelector(".list-box");
@@ -18,7 +19,6 @@ const viewContainer = document.querySelector(".view-section-content")
 
 let crntPage = 0;
 let crntListIdx = 0;
-let crntListPressIdx = 0;
 let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
 let crntView = "grid";
@@ -31,21 +31,45 @@ function listenCategoryChange(catBtns){
             catBtns[crntListIdx].classList.remove("selected")
             crntListIdx = index;
             catBtns[crntListIdx].classList.add("selected");
-            // drawList(crntListIdx); // list section 내 전부 지우고 다시 그리기
+            // drawList(crntListIdx); // empty list section, draw again
         })
     })
 }
+function drawListPage(crntListIdx, crntPageIdx) {
+    const filteredByCat = listViewData.filter(item => item.category == categoryList[crntListIdx]);
+    const crntData = filteredByCat[crntPageIdx]
+    listContent.innerHTML = `
+    <div class="list-page" index=${crntPageIdx}>
+        <header class="list-page-header display-medium12 light-text-default">
+            <img src=${crntData.path}></img>
+            <span>${crntData.edit_date} 편집</span>
+        </header>
+        <section class="list-page-section">
+            <section class="list-page-left available-medium16 light-text-strong">
+                <img></img>
+                <span>${crntData.main_title}</span>
+            </section>
+            <section class="list-page-right">
+                ${crntData.sub_title.map((title) => `<span class="available-medium16 light-text-bold">${title}</span>`).join('')}
+            </section>
+        </section>
+    </div>`
+}
 function drawList(crntListIdx) {
-    listNav.innerHTML = "";
+    // listNav.innerHTML = "";
     categoryList.forEach((category, index) => {
         listNav.innerHTML += `<li class="${crntListIdx == index ? "selected category" : "category"}">${category}</li>`
     })
     
+    drawListPage(crntListIdx, crntPage);
 }
-function listenChangeView(btn, type) {
+function listenViewChange(btn, type) {
     btn.addEventListener("click", () => {
         if (crntView !== type){
             crntView = type;
+            crntPage = 0;
+            updateArrow(); // initialize current page index and arrow
+            // listenArrow(crntListIdx);
             Array.prototype.forEach.call(viewContainer.children, (view) => {
                 if (view.getAttribute("type") == type){
                     view.classList.remove("hide");
@@ -131,29 +155,53 @@ function listenReload(){
         location.reload();
     })
 }
-function listenArrow(){
+function listenArrow(listIdx = 0){
     leftArrow.addEventListener("click",()=> {
         crntPage--;
-        updateArrow();
-        drawPress(crntPage);
+        switch (crntView){
+            case "grid":
+                drawPress(crntPage);
+                updateArrow();
+                break;
+            case "list":
+                drawListPage(crntListIdx, crntPage);
+                updateArrow()
+                break;
+        }
+        
     })
     rightArrow.addEventListener("click",() => {
         crntPage++;
-        updateArrow();
-        drawPress(crntPage);
+        switch (crntView){
+            case "grid":
+                drawPress(crntPage);
+                updateArrow();
+                break;
+            case "list":
+                drawListPage(crntListIdx, crntPage);
+                updateArrow()
+                break;
+        }
     })
     
 }
 function updateArrow(){
+    let maxPage;
+    switch (crntView){
+        case "grid":
+            maxPage = pressList.length/24;
+            break;
+        case "list":
+            maxPage = listViewData.filter(data => data.category == categoryList[crntListIdx]);
+            break;
+    }
+    leftArrow.classList.remove("hidden");
+    rightArrow.classList.remove("hidden");
     if (crntPage == 0){
         leftArrow.classList.add("hidden");
-    } else if (crntPage == 3){
+    } else if (crntPage == maxPage-1){
         rightArrow.classList.add("hidden");
-    } else {
-        leftArrow.classList.remove("hidden");
-        rightArrow.classList.remove("hidden");
     }
-  
 }
 function drawPress(idx){
     gridContainer.innerHTML = "";
@@ -191,7 +239,7 @@ function init(){
     listenArrow();
     listenReload();
     viewChangeBtns.forEach((btn) => {
-        listenChangeView(btn, btn.getAttribute("type"));
+        listenViewChange(btn, btn.getAttribute("type"));
     })
     listenCategoryChange(listNav.children);
 }
