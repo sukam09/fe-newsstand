@@ -1,0 +1,26 @@
+.container-header_main {
+  margin-bottom: 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-header_logo > a {
+  gap: 8px;
+
+  display: flex;
+  align-items: center;
+
+  color: var(--color-text-strong);
+}
+.container-header_logo svg {
+  fill: var(--color-text-point);
+}
+.container-header_right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.container-header_date {
+  color: var(--color-text-default);
+}

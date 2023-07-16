@@ -1,0 +1,120 @@
+@import url("styles/reset.css");
+@import url("styles/foundations.css");
+@import url("styles/typography.css");
+
+@import url("styles/components/header.css");
+@import url("styles/components/news-bar.css");
+@import url("styles/components/main-nav.css");
+@import url("styles/components/grid-view.css");
+@import url("styles/components/list-view.css");
+
+/* main css */
+html {
+  background: var(--color-surface-default);
+}
+body {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  max-width: 930px;
+  width: 100%;
+}
+.container-main {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+.container-main_left-btn {
+  right: 100%;
+
+  position: absolute;
+
+  transform: translateX(-48px);
+}
+.container-main_right-btn {
+  left: 100%;
+
+  position: absolute;
+
+  transform: translateX(48px);
+}
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0px 0px 8px 4px var(--color-text-default);
+
+  background: var(--color-text-default);
+  color: var(--color-surface-default);
+
+  transition: box-shadow 0.5s ease-in-out;
+}
+.tab_progress-bar {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-text-point);
+}
+.tab_category {
+  z-index: 10;
+}
+.tab-count {
+  display: none;
+  color: var(--color-text-white-weak);
+
+  z-index: 10;
+}
+.tab-count_current {
+  color: var(--color-text-white-default);
+}
+.category-selected {
+  width: 166px;
+  color: var(--color-text-white-default);
+  background: var(--color-surface-brand-alt);
+}
+.category-selected > .tab-count {
+  display: block;
+}
+.category-selected .tab_progress-bar {
+  animation: progress 5s linear infinite;
+}
+.theme-btn:hover {
+  box-shadow: 0px 0px 8px 6px var(--color-text-default);
+}
+.theme-btn_dark {
+  display: block;
+}
+.theme-btn_light {
+  display: none;
+}
+.dark .theme-btn_dark {
+  display: none;
+}
+.dark .theme-btn_light {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
