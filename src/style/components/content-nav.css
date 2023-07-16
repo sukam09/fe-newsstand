@@ -1,0 +1,43 @@
+.main__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company-type {
+  display: flex;
+  gap: 1rem;
+}
+
+.company-type button {
+  font: var(--font-medium-m);
+  color: var(--color-text-weak);
+}
+
+.company-type .active {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-strong);
+}
+
+.view-type {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-type button {
+  width: 24px;
+  height: 24px;
+}
+
+.view-type__option[data-option="list"] {
+  background-image: url("/public/asset/icon/list-view.svg");
+}
+
+.view-type__option[data-option="grid"] {
+  background-image: url("/public/asset/icon/grid-view.svg");
+}
+
+.view-type__option.active {
+  filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)
+    brightness(83%) contrast(97%);
+}
