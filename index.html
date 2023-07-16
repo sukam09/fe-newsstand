@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="main-container">
+        <header>
+          <h1><a href="/">뉴스스탠드</a></h1>
+          <div class="time">
+            <time></time>
+          </div>
+        </header>
+        <main>
+          <section class="container">
+            <h2 class="screen-reader-only">최신 뉴스</h2>
+            <div class="recent-news">
+              <article>
+                <div class="wrap">
+                  <h3>연합뉴스</h3>
+                  <ul></ul>
+                </div>
+              </article>
+              <article>
+                <div class="wrap">
+                  <h3>연합뉴스</h3>
+                  <ul></ul>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section class="container">
+            <h2 class="screen-reader-only">언론사 보기</h2>
+            <nav class="agency">
+              <div class="agency-type">
+                <h3><button class="active" href="/">전체 언론사</button></h3>
+                <h3><button href="/">내가 구독한 언론사</button></h3>
+              </div>
+              <div class="view-type">
+                <button class="list-view-btn">
+                  <span class="screen-reader-only">기사 보기</span>
+                </button>
+                <button class="grid-view-btn" viewtype="true">
+                  <span class="screen-reader-only">언론사 보기</span>
+                </button>
+              </div>
+            </nav>
+            <div class="agency-container">
+              <ul class="agency-grid"></ul>
+              <div class="agency-list">
+                <ul class="field-tab"></ul>
+                <div class="press-news"></div>
+              </div>
+              <button class="prev-page-btn">
+                <span class="screen-reader-only">이전 페이지</span>
+                <img
+                  src="./asset/icon/left-button.svg"
+                  alt="이전 페이지 버튼"
+                />
+              </button>
+              <button class="next-page-btn">
+                <span class="screen-reader-only">다음 페이지</span>
+                <img
+                  src="./asset/icon/right-button.svg"
+                  alt="다음 페이지 버튼"
+                />
+              </button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js" type="module"></script>
+</html>
