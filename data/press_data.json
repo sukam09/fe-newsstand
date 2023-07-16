@@ -1,386 +1,386 @@
 [
     {
-        "name": "서울경제",
-        "url": "./assets/images/서울경제.png"
+        "name": "mbc",
+        "url": "/press0.png"
     },
     {
         "name": "데일리안",
-        "url": "./assets/images/데일리안.png"
+        "url": "/press1.png"
     },
     {
         "name": "헤럴드경제",
-        "url": "./assets/images/헤럴드경제.png"
+        "url": "/press2.png"
     },
     {
         "name": "sbsbiz",
-        "url": "./assets/images/sbsbiz.png"
+        "url": "/press3.png"
     },
     {
         "name": "세계일보",
-        "url": "./assets/images/세계일보.png"
+        "url": "/press4.png"
     },
     {
         "name": "아시아경제",
-        "url": "./assets/images/아시아경제.png"
+        "url": "/press5.png"
     },
     {
         "name": "이데일리",
-        "url": "./assets/images/이데일리.png"
+        "url": "/press6.png"
     },
     {
         "name": "조선일보",
-        "url": "./assets/images/조선일보.png"
+        "url": "/press7.png"
     },
     {
         "name": "아이뉴스24",
-        "url": "./assets/images/아이뉴스24.png"
+        "url": "/press8.png"
     },
     {
         "name": "파이낸셜뉴스",
-        "url": "./assets/images/파이낸셜뉴스.png"
+        "url": "/press9.png"
     },
     {
         "name": "스포츠서울",
-        "url": "./assets/images/스포츠서울.png"
+        "url": "/press10.png"
     },
     {
         "name": "스포츠동아",
-        "url": "./assets/images/스포츠동아.png"
+        "url": "/press11.png"
     },
     {
         "name": "문화일보",
-        "url": "./assets/images/문화일보.png"
+        "url": "/press12.png"
     },
     {
         "name": "kbsworld",
-        "url": "./assets/images/kbsworld.png"
+        "url": "/press13.png"
     },
     {
         "name": "중앙일보",
-        "url": "./assets/images/중앙일보.png"
+        "url": "/press14.png"
     },
     {
         "name": "insight",
-        "url": "./assets/images/insight.png"
+        "url": "/press15.png"
     },
     {
         "name": "법률방송",
-        "url": "./assets/images/법률방송.png"
+        "url": "/press16.png"
     },
     {
         "name": "시사저널",
-        "url": "./assets/images/시사저널.png"
+        "url": "/press17.png"
     },
     {
         "name": "한국농어촌방송",
-        "url": "./assets/images/한국농어촌방송.png"
+        "url": "/press18.png"
     },
     {
         "name": "조이뉴스",
-        "url": "./assets/images/조이뉴스.png"
+        "url": "/press19.png"
     },
     {
         "name": "에너지경제",
-        "url": "./assets/images/에너지경제.png"
+        "url": "/press20.png"
     },
     {
         "name": "businesspost",
-        "url": "./assets/images/businesspost.png"
+        "url": "/press21.png"
     },
     {
         "name": "ceo스코어데일리",
-        "url": "./assets/images/ceo스코어데일리.png"
+        "url": "/press22.png"
     },
     {
         "name": "knn",
-        "url": "./assets/images/knn.png"
+        "url": "/press23.png"
     },
     {
         "name": "코리아헤럴드",
-        "url": "./assets/images/코리아헤럴드.png"
-    },
-    {
-        "name": "mbc",
-        "url": "./assets/images/mbc.png"
+        "url": "/press24.png"
     },
     {
         "name": "뉴스타파",
-        "url": "./assets/images/뉴스타파.png"
+        "url": "/press25.png"
     },
     {
         "name": "newdaily",
-        "url": "./assets/images/newdaily.png"
+        "url": "/press26.png"
     },
     {
         "name": "국민일보",
-        "url": "./assets/images/국민일보.png"
+        "url": "/press27.png"
     },
     {
         "name": "일간스포츠",
-        "url": "./assets/images/일간스포츠.png"
+        "url": "/press28.png"
     },
     {
         "name": "경향신문",
-        "url": "./assets/images/경향신문.png"
+        "url": "/press29.png"
     },
     {
         "name": "2dnetkorea",
-        "url": "./assets/images/2dnetkorea.png"
+        "url": "/press30.png"
     },
     {
         "name": "mydaily",
-        "url": "./assets/images/mydaily.png"
+        "url": "/press31.png"
     },
     {
         "name": "미니투데이",
-        "url": "./assets/images/미니투데이.png"
+        "url": "/press32.png"
     },
     {
         "name": "sbs",
-        "url": "./assets/images/sbs.png"
+        "url": "/press33.png"
     },
     {
         "name": "ohmynews",
-        "url": "./assets/images/ohmynews.png"
+        "url": "/press34.png"
     },
     {
         "name": "매일경제",
-        "url": "./assets/images/매일경제.png"
+        "url": "/press35.png"
     },
     {
         "name": "mbn",
-        "url": "./assets/images/mbn.png"
+        "url": "/press36.png"
     },
     {
         "name": "ytn",
-        "url": "./assets/images/ytn.png"
+        "url": "/press37.png"
     },
     {
         "name": "시사위크",
-        "url": "./assets/images/시사위크.png"
+        "url": "/press38.png"
     },
     {
         "name": "digitaltoday",
-        "url": "./assets/images/digitaltoday.png"
+        "url": "/press39.png"
     },
     {
         "name": "datanews",
-        "url": "./assets/images/datanews.png"
+        "url": "/press40.png"
     },
     {
         "name": "한국대학신문",
-        "url": "./assets/images/한국대학신문.png"
+        "url": "/press41.png"
     },
     {
         "name": "서울파이낸스",
-        "url": "./assets/images/서울파이낸스.png"
+        "url": "/press42.png"
     },
     {
         "name": "엑스포츠뉴스",
-        "url": "./assets/images/엑스포츠뉴스.png"
+        "url": "/press43.png"
     },
     {
         "name": "맥스무비",
-        "url": "./assets/images/맥스무비.png"
+        "url": "/press44.png"
     },
     {
         "name": "obs",
-        "url": "./assets/images/obs.png"
+        "url": "/press45.png"
     },
     {
         "name": "소년한국일보",
-        "url": "./assets/images/소년한국일보.png"
+        "url": "/press46.png"
     },
     {
         "name": "티브이데일리",
-        "url": "./assets/images/티브이데일리.png"
+        "url": "/press47.png"
     },
     {
         "name": "bbsnews",
-        "url": "./assets/images/bbsnews.png"
+        "url": "/press48.png"
     },
     {
         "name": "mondediplo",
-        "url": "./assets/images/mondediplo.png"
+        "url": "/press49.png"
     },
     {
         "name": "mk스포츠",
-        "url": "./assets/images/mk스포츠.png"
+        "url": "/press50.png"
     },
     {
         "name": "텐아시아",
-        "url": "./assets/images/텐아시아.png"
+        "url": "/press51.png"
     },
     {
         "name": "정책브리핑",
-        "url": "./assets/images/정책브리핑.png"
+        "url": "/press52.png"
     },
     {
         "name": "씨네21",
-        "url": "./assets/images/씨네21.png"
+        "url": "/press53.png"
     },
     {
         "name": "뉴스포스트",
-        "url": "./assets/images/뉴스포스트.png"
+        "url": "/press54.png"
     },
     {
         "name": "정신의학신문",
-        "url": "./assets/images/정신의학신문.png"
+        "url": "/press55.png"
     },
     {
         "name": "철강금속신문",
-        "url": "./assets/images/철강금속신문.png"
+        "url": "/press56.png"
     },
     {
         "name": "itchosun",
-        "url": "./assets/images/itchosun.png"
+        "url": "/press57.png"
     },
     {
         "name": "여성경제신문",
-        "url": "./assets/images/여성경제신문.png"
+        "url": "/press58.png"
     },
     {
         "name": "sportalkorea",
-        "url": "./assets/images/sportalkorea.png"
+        "url": "/press59.png"
     },
     {
         "name": "한국일보",
-        "url": "./assets/images/한국일보.png"
+        "url": "/press60.png"
     },
     {
         "name": "프레시안",
-        "url": "./assets/images/프레시안.png"
+        "url": "/press61.png"
     },
     {
         "name": "노컷뉴스",
-        "url": "./assets/images/노컷뉴스.png"
+        "url": "/press62.png"
     },
     {
         "name": "thejoongang",
-        "url": "./assets/images/thejoongang.png"
+        "url": "/press63.png"
     },
     {
         "name": "서울신문",
-        "url": "./assets/images/서울신문.png"
+        "url": "/press64.png"
     },
     {
         "name": "스포츠조선",
-        "url": "./assets/images/스포츠조선.png"
+        "url": "/press65.png"
     },
     {
         "name": "전자신문",
-        "url": "./assets/images/전자신문.png"
+        "url": "/press66.png"
     },
     {
         "name": "한국경제tv",
-        "url": "./assets/images/한국경제tv.png"
+        "url": "/press67.png"
     },
     {
         "name": "bloter",
-        "url": "./assets/images/bloter.png"
+        "url": "/press68.png"
     },
     {
         "name": "kbs",
-        "url": "./assets/images/kbs.png"
+        "url": "/press69.png"
     },
     {
         "name": "동아일보",
-        "url": "./assets/images/동아일보.png"
+        "url": "/press70.png"
     },
     {
         "name": "newsis",
-        "url": "./assets/images/newsis.png"
+        "url": "/press71.png"
     },
     {
         "name": "한국경제",
-        "url": "./assets/images/한국경제.png"
+        "url": "/press72.png"
     },
     {
         "name": "시사in",
-        "url": "./assets/images/시사in.png"
+        "url": "/press73.png"
     },
     {
         "name": "산",
-        "url": "./assets/images/산.png"
+        "url": "/press74.png"
     },
     {
         "name": "독서신문",
-        "url": "./assets/images/독서신문.png"
+        "url": "/press75.png"
     },
     {
         "name": "econotimes",
-        "url": "./assets/images/econotimes.png"
+        "url": "/press76.png"
     },
     {
         "name": "대전방송",
-        "url": "./assets/images/대전방송.png"
+        "url": "/press77.png"
     },
     {
         "name": "시사오늘시사",
-        "url": "./assets/images/시사오늘시사.png"
+        "url": "/press78.png"
     },
     {
         "name": "데일리한국",
-        "url": "./assets/images/데일리한국.png"
+        "url": "/press79.png"
     },
     {
         "name": "뉴스토마토",
-        "url": "./assets/images/뉴스토마토.png"
+        "url": "/press80.png"
     },
     {
         "name": "에이블뉴스",
-        "url": "./assets/images/에이블뉴스.png"
+        "url": "/press81.png"
     },
     {
         "name": "ytn사이언스",
-        "url": "./assets/images/ytn사이언스.png"
+        "url": "/press82.png"
     },
     {
         "name": "reporttv",
-        "url": "./assets/images/reporttv.png"
+        "url": "/press83.png"
     },
     {
         "name": "forbes",
-        "url": "./assets/images/forbes.png"
+        "url": "/press84.png"
     },
     {
         "name": "주간경향",
-        "url": "./assets/images/주간경향.png"
+        "url": "/press85.png"
     },
     {
         "name": "비즈한국",
-        "url": "./assets/images/비즈한국.png"
+        "url": "/press86.png"
     },
     {
         "name": "metro",
-        "url": "./assets/images/metro.png"
+        "url": "/press87.png"
     },
     {
         "name": "jtbc",
-        "url": "./assets/images/jtbc.png"
+        "url": "/press88.png"
     },
     {
         "name": "chosunbiz",
-        "url": "./assets/images/chosunbiz.png"
+        "url": "/press89.png"
     },
     {
         "name": "한겨레",
-        "url": "./assets/images/한겨레.png"
+        "url": "/press90.png"
     },
     {
         "name": "연합뉴스tv",
-        "url": "./assets/images/연합뉴스tv.png"
+        "url": "/press91.png"
     },
     {
         "name": "미디어오늘",
-        "url": "./assets/images/미디어오늘.png"
+        "url": "/press92.png"
     },
     {
         "name": "디지털타임스",
-        "url": "./assets/images/디지털타임스.png"
+        "url": "/press93.png"
     },
     {
         "name": "osen",
-        "url": "./assets/images/osen.png"
+        "url": "/press94.png"
+    },
+    {
+        "name": "서울경제",
+        "url": "/press95.png"
     }
 ]
