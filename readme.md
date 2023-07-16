@@ -11,9 +11,10 @@ fe-newsstand
 │   │   ├── Pretendard-Medium.woff
 │   │   └── Pretendard-Medium.woff2
 │   ├── icons
+│   │   ├── closed.svg
 │   │   ├── left-button.png
-│   │   ├── list-view.svg
 │   │   ├── newsstand.svg
+│   │   ├── plus.svg
 │   │   └── right-button.png
 │   └── logos
 │       └── light
@@ -25,18 +26,23 @@ fe-newsstand
 ├── readme.md
 ├── src
 │   ├── app.js
+│   ├── common
+│   │   ├── PageButton.js
+│   │   └── SubscribeButton.js
+│   ├── core
+│   │   └── Component.js
 │   ├── header
-│   │   ├── getDate.js
-│   │   └── handleTitleIcon.js
+│   │   └── Header.js
 │   ├── news-bar
-│   │   ├── rolling.js
-│   │   └── setNewsBar.js
-│   └── news-display
-│       ├── gridView.js
-│       ├── initNewsPressData.js
-│       ├── listView.js
-│       ├── setCategory.js
-│       └── setViewMode.js
+│   │   ├── NewsBar.js
+│   │   └── NewsBarItem.js
+│   ├── news-display
+│   │   ├── NewsDisplay.js
+│   │   ├── NewsDisplayTab.js
+│   │   ├── NewsGridView.js
+│   │   └── NewsListView.js
+│   └── utils
+│       └── utils.js
 └── style
     ├── common.css
     ├── reset.css
