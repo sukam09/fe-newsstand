@@ -5,7 +5,7 @@ import { initProgress, setProgressPage, startProgressAnimation } from "./progres
 
 const $newsPrevButton = document.querySelector('.press-news-left-button');
 const $newsNextButton = document.querySelector('.press-news-right-button');
-let newsPage = null;
+let newsPage = FIRST_NEWS_PAGE_INDEX;
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
@@ -17,6 +17,7 @@ let categoryIdx = 0;
 페이지 이동 버튼 누르면 애니메이션 재시작
 */
 function turnNewsPage(shuffledPressNews, categoryIndex, newsPageIndex ,progressFlag) {
+  showNewsTurner(shuffledPressNews, categoryIndex);
   categoryIdx = categoryIndex;
   newsPage = newsPageIndex;
 
