@@ -1,7 +1,7 @@
 import { initListView } from "../main/listView/listView.js";
 import { initGridView } from "../main/gridView/gridView.js";
 import { initRolling } from "../main/newsRolling/newsRolling.js";
-import { initViewChange } from "./changeView.js";
+import { initViewChange } from "../main/changeView/changeView.js";
 
 function initMain() {
   initRolling();

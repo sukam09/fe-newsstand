@@ -10,6 +10,7 @@ const GRID_NUM = 24;
 const MIN_PAGE = 1;
 const MAX_PAGE = 4;
 const PRESS_NUM = 96;
+
 let main_list_page = MIN_PAGE;
 
 const main_list_ul = document.querySelector(".grid-view-ul");
@@ -53,8 +54,7 @@ function changePage(e, press) {
 }
 
 function checkPage() {
-  if (main_list_page === MIN_PAGE)
-    left_btn.style.visibility = "hidden"; //display
+  if (main_list_page === MIN_PAGE) left_btn.style.visibility = "hidden";
   else if (main_list_page === MAX_PAGE) right_btn.style.visibility = "hidden";
   else {
     left_btn.style.visibility = "visible";
