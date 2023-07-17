@@ -3,7 +3,8 @@ import { shuffle, changeImageSrc } from "./utils.js";
 import {
   drawInitCategory,
   progressInterval,
-  addNewsHeader,
+  drawNewsHeader,
+  drawNewsDiv,
   increaseListPage,
   decreaseListPage,
 } from "./category.js";
@@ -27,7 +28,8 @@ function renderCard() {
   leftAsideButton.style.visibility = "visible";
   rightAsideButton.style.visibility = "visible";
   drawInitCategory();
-  addNewsHeader();
+  drawNewsHeader();
+  drawNewsDiv();
 }
 
 function renderGrid(logos) {

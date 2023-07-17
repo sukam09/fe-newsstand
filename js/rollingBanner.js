@@ -1,5 +1,4 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
-
 let interval1;
 let interval2;
 const rollingTime = 5000;
@@ -24,10 +23,10 @@ function addInitRollingData(bannerNumber) {
   let startIndex, endIndex, secondIndex;
   if (bannerNumber === 1) {
     startIndex = 0;
-    endIndex = parseInt(news_article[0].article.length / 2);
+    endIndex = parseInt(news_article.article.length / 2);
   } else {
-    startIndex = Math.ceil(news_article[0].article.length / 2);
-    endIndex = news_article[0].article.length;
+    startIndex = Math.ceil(news_article.article.length / 2);
+    endIndex = news_article.article.length;
   }
   secondIndex = startIndex + 1;
   let newsHTML = `<div class="rollingWrap"><ul>`;
@@ -42,7 +41,7 @@ function addInitRollingData(bannerNumber) {
         ? "current"
         : "") +
       '">';
-    newsHTML += '<a href="#">' + news_article[0].article[startIndex] + "</a>";
+    newsHTML += '<a href="#">' + news_article.article[startIndex] + "</a>";
   }
   newsHTML += "</ul></div>";
   rollingBanner.innerHTML = newsHTML;

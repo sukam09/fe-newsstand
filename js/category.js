@@ -1,5 +1,6 @@
 import categoryData from "../json/category.json" assert { type: "json" };
 import news from "../json/news.json" assert { type: "json" };
+import news_article from "../json/news_article.json" assert { type: "json" };
 import { increment, totalTime } from "./constants.js";
 
 let progress = 0;
@@ -43,14 +44,16 @@ function drawInitCategory() {
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  initCategoryItem();
+  drawCategoryItem();
 }
 
-function initCategoryItem() {
+function drawCategoryItem() {
   const categoryItem = document.querySelectorAll(".categoryItem");
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
+  drawNewsDiv();
+  drawNewsHeader();
   if (progressInterval != undefined) {
     clearInterval(progressInterval);
     progressReset(
@@ -104,8 +107,8 @@ function doProgress(progressBar, currentCategoryPage) {
         currentCategoryNumber = 0;
       else currentCategoryNumber++;
       clearInterval(progressInterval);
-      initCategoryItem();
     }
+    drawCategoryItem();
     progressReset(progressBar, currentCategoryPage);
     return;
   } else progressFill(progressBar);
@@ -124,12 +127,25 @@ function progressFill(progressBar) {
   progressBar.style.width = `${progress}%`;
 }
 
-function addNewsHeader() {
+function drawNewsHeader() {
   let PageNumberIndex = currentCategoryPageNumber - 1;
   const news_header = document.querySelector(".news_header");
   news_header.innerHTML = "";
   let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}"><span class="newsEditTime">${categoryNews[currentCategoryNumber][PageNumberIndex].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
   news_header.innerHTML = new_div;
+}
+
+function drawNewsDiv() {
+  let PageNumberIndex = currentCategoryPageNumber - 1;
+  const listDiv = document.querySelector(".news_content");
+  listDiv.innerHTML = "";
+  let article_div = "";
+  for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
+    article_div += `<div class="newsMainArticle">${news_article.article[article_cnt]}</div>`;
+  }
+  article_div += `<div class="newsMainArticlePress">${categoryNews[currentCategoryNumber][PageNumberIndex].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
+  let new_div = `<div class="newsMainLeftDiv"><img class="newsMainImage" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryNumber][PageNumberIndex].title}</div><div class="newsMainRightDiv">${article_div}</div>`;
+  listDiv.innerHTML = new_div;
 }
 
 function delCategoryNumber() {
@@ -141,7 +157,6 @@ function delCategoryNumber() {
 function increaseListPage() {
   if (currentCategoryPageNumber == categoryCnt[currentCategoryNumber].value) {
     currentCategoryPageNumber = 1;
-    addNewsHeader();
     clearInterval(progressInterval);
     progressReset(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
@@ -150,6 +165,8 @@ function increaseListPage() {
     if (currentCategoryNumber === categoryCnt.length - 1)
       currentCategoryNumber = 0;
     else currentCategoryNumber++;
+    drawNewsHeader();
+    drawNewsDiv();
     delCategoryNumber();
     intervalProgress(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
@@ -167,13 +184,14 @@ function increaseListPage() {
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
   );
-  addNewsHeader();
+  drawNewsHeader();
+  drawNewsDiv();
 }
 
 function decreaseListPage() {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
-    addNewsHeader();
+
     clearInterval(progressInterval);
     progressReset(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
@@ -183,6 +201,8 @@ function decreaseListPage() {
       currentCategoryNumber = categoryCnt.length - 1;
     else currentCategoryNumber--;
     delCategoryNumber();
+    drawNewsHeader();
+    drawNewsDiv();
     intervalProgress(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
       currentCategoryPage
@@ -199,13 +219,15 @@ function decreaseListPage() {
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
   );
-  addNewsHeader();
+  drawNewsHeader();
+  drawNewsDiv();
 }
 
 export {
   drawInitCategory,
   progressInterval,
-  addNewsHeader,
+  drawNewsHeader,
+  drawNewsDiv,
   increaseListPage,
   decreaseListPage,
 };
