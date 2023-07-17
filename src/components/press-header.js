@@ -2,7 +2,7 @@ import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
 import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from '../components/light-dark-mode.js';
 import { initPressGrid } from './press-grid.js';
-import { setTotalPressList } from './press-list.js';
+import { initPressList } from './press-list.js';
 
 /**
  * 언론사의 INIT
@@ -12,6 +12,8 @@ const initPressHeader = async () => {
   try {
     const fetchData = await getFetchData('./assets/data/press-news.json');
     let pressData = fetchData.press;
+    let categoryData = fetchData.category;
+
     // let subscribeIds = [1, 32, 42, 54, 55, 70, 92, 95];
 
     // setInterval(() => {
@@ -24,8 +26,8 @@ const initPressHeader = async () => {
     setNavLeft();
 
     initLightDarkMode();
-    setTotalPressList(); // 수정해야 함
     initPressGrid(pressData);
+    initPressList(pressData, categoryData);
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }

@@ -118,8 +118,6 @@ const getGridLogo = (pressData, pressIds, section) => {
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
     logoWapper.setAttribute('pressid', pressId);
 
-    console.log(selectPress);
-
     let mode = localStorage.getItem('mode');
     if (mode === 'light') logoWapper.src = selectPress.lightSrc;
     if (mode === 'dark') logoWapper.src = selectPress.darkSrc;

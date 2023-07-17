@@ -1,4 +1,5 @@
-.press__wrapper-list {
+.press__wrapper-list__entire,
+.press__wrapper-list__subscribe {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -9,7 +10,8 @@
   border: none;
 }
 
-.press-category {
+.press-category__entire,
+.press-category__subscribe {
   display: flex;
   flex-direction: column;
   width: 930px;
@@ -20,7 +22,8 @@
 }
 
 /* 언론사 리스트의 NAV */
-.press-category__ul {
+.press-category__ul__entire,
+.press-category__ul__subscribe {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,7 +36,8 @@
   background-color: var(--grayscale-50);
 }
 
-.press-category__li {
+.press-category__li__entire,
+.press-category__li__subscribe {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,31 +45,37 @@
   padding: 0 16px;
 }
 
-.press-category__p {
+.press-category__p__entire,
+.press-category__p__subscribe {
   font: var(--medium-R);
   color: var(--grayscale-200);
 }
 
-.press-category__div {
+.press-category__div__entire,
+.press-category__div__subscribe {
   display: flex;
 }
 
-.press-category__div-now {
+.press-category__div-now__entire,
+.press-category__div-now__subscribe {
   font: var(--bold-S);
   color: var(--grayscale-white-alt);
 }
 
-.press-category__div-divide {
+.press-category__div-divide__entire,
+.press-category__div-divide__subscribe {
   font: var(--bold-S);
   color: var(--grayscale-white);
 }
 
-.press-category__div-sum {
+.press-category__div-sum__entire,
+.press-category__div-sum__subscribe {
   font: var(--bold-S);
   color: var(--grayscale-white);
 }
 
-.progress-start {
+.progress-start__entire,
+.progress-start__subscribe {
   width: 134px;
 
   background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
@@ -73,7 +83,8 @@
   animation: fill-progress-bar 20s infinite linear forwards;
 }
 
-.progress-start > p {
+.progress-start__entire > p,
+.progress-start__subscribe > p {
   color: var(--grayscale-white-alt);
 }
 
@@ -87,7 +98,8 @@
 }
 
 /* 언론사 리스트의 ARTICLE */
-.press-category__article {
+.press-category__article__entire,
+.press-category__article__subscribe {
   display: flex;
   flex-direction: row;
 
@@ -95,39 +107,46 @@
   gap: 32px;
 }
 
-.press-category__section-main {
+.press-category__section-main__entire,
+.press-category__section-main__subscribe {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
 /* 언론사 리스트 ARTICLE-MAIN */
-.section-main__nav {
+.section-main__nav__entire,
+.section-main__nav__subscribe {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.section-main__img-logo {
+.section-main__img-logo__entire,
+.section-main__img-logo__subscribe {
   height: 20px;
 }
 
-.section-main__edit {
+.section-main__edit__entire,
+.section-main__edit__subscribe {
   display: flex;
   flex-direction: row;
 }
 
-.section-main__edit-time {
+.section-main__edit-time__entire,
+.section-main__edit-time__subscribe {
   font: var(--medium-S);
   color: var(--grayscale-400);
 }
 
-.section-main__edit-p {
+.section-main__edit-p__entire,
+.section-main__edit-p__subscribe {
   font: var(--medium-S);
   color: var(--grayscale-400);
 }
 
-.section-main__button {
+.section-main__button__entire,
+.section-main__button__subscribe {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -141,23 +160,27 @@
   background-color: var(--grayscale-50);
 }
 
-.section-main__img-button {
+.section-main__img-button__entire,
+.section-main__img-button__subscribe {
   width: 12px;
   height: 12px;
 }
 
-.section-main__p-button {
+.section-main__p-button__entire,
+.section-main__p-button__subscribe {
   font: var(--medium-S);
   color: var(--grayscale-200);
 }
 
-.section-main__img-article {
+.section-main__img-article__entire,
+.section-main__img-article__subscribe {
   width: 320px;
   height: 200px;
   object-fit: cover;
 }
 
-.section-main__h2 {
+.section-main__h2__entire,
+.section-main__h2__subscribe {
   width: 320px;
   overflow-wrap: break-word;
 
@@ -166,7 +189,8 @@
 }
 
 /* 언론사 리스트 ARTICLE-SUB */
-.press-category__section-sub {
+.press-category__section-sub__entire,
+.press-category__section-sub__subscribe {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -174,19 +198,21 @@
   gap: 16px;
 }
 
-.press-category__a-sub {
+.press-category__a-sub__entire,
+.press-category__a-sub__subscribe {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: none;
 }
 
-.press-category__a-sub:hover {
+.press-category__a-sub__entire:hover .press-category__a-sub__subscribe:hover {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: underline;
 }
 
-.section-sub__footer {
+.section-sub__footer__entire,
+.section-sub__footer__subscribe {
   display: flex;
   flex-direction: row;
 
@@ -195,7 +221,8 @@
 }
 
 /* 화살표 영역 */
-.arrows__img-left {
+.arrows__img-left__entire,
+.arrows__img-left__subscribe {
   cursor: pointer;
   position: absolute;
   width: 24px;
@@ -204,7 +231,8 @@
   left: -72px; /* 0 - 24 - 48 */
 }
 
-.arrows__img-right {
+.arrows__img-right__entire,
+.arrows__img-right__subscribe {
   cursor: pointer;
   position: absolute;
   width: 24px;

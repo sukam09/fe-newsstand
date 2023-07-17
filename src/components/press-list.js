@@ -7,54 +7,137 @@ let currentCategory = 0;
 /**
  * 언론사 리스트의 INIT
  */
-const initPressList = async () => {
-  try {
-    const fetchData = await getFetchData('./assets/data/category-news.json');
-    console.log(fetchData);
+const initPressList = (pressData, categoryData) => {
+  initEntirePressList(pressData, categoryData);
+  initSubscribePressList(pressData, categoryData);
+};
 
-    // const latestNews = fetchData.latestNews;
-  } catch (error) {
-    console.error('언론사 리스트를 불러오는 중에 오류가 발생했습니다.', error);
-  }
+const initEntirePressList = (pressData, categoryData) => {
+  const shuffleIds = getShuffleIds(pressData.length);
+  localStorage.setItem('entireList', 0);
+
+  console.log(pressData);
+  /**
+   * 해당 카테고리 filter 하기
+   * filter한거 셔플하기
+   *
+   */
+
+  setList('entire');
+  setListMain('entire');
+  setListSub('entire');
+  setListCategory(categoryData, 'entire');
+};
+
+const initSubscribePressList = (pressData, categoryData) => {
+  setList('subscribe');
+  setListMain('subscribe');
+  setListSub('subscribe');
+  setListCategory(categoryData, 'subscribe');
 };
 
 /**
- * 언론사 불러오기
+ * 언론사 그리드의 설정
  */
-const setTotalPressList = (isLightMode) => {
-  fetch('./assets/data/category-news.json')
-    .then((response) => response.json())
-    .then((data) => {
-      const categoryData = data;
-      const shufflePressList = getPressList(categoryData); // 언론사 랜덤
-      setPressCategoryElement();
+const setList = (section) => {
+  const listWrapper = document.querySelector(`.press__wrapper-list__${section}`);
+  const listElement = `
+  <article class='press-category__${section}'>
+    <nav class='press-category__nav__${section}'>
+      <ul class='press-category__ul__${section}'></ul>
+    </nav>
 
-      // 초기 세팅
-      setPressCategoryMain(categoryData);
-      setPressCategorySub(categoryData);
-      getPressArrowElement();
-      setPressCategoryNav(categoryData, shufflePressList);
-
-      // interval 설정
-      setPressCategoryArticleNext(categoryData, shufflePressList);
-    })
-    .catch((error) => {
-      console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
-    });
-};
-
-/**
- * List 화살표 생성
- */
-const getPressArrowElement = () => {
-  const arrowsWrapper = document.querySelector('.press__wrapper-list');
-
-  const arrowImg = `
-  <img class='arrows__img-left' src='./assets/icons/chevron-left.svg' />
-  <img class='arrows__img-right' src='./assets/icons/chevron-right.svg' />
+    <article class='press-category__article__${section}'>
+      <section class='press-category__section-main__${section}'></section>
+      <section class='press-category__section-sub__${section}'></section>
+    </article>
+  </article>
+  <img class='arrows__img-left__${section}' src='./assets/icons/chevron-left.svg' />
+  <img class='arrows__img-right__${section}' src='./assets/icons/chevron-right.svg' />
   `;
-  arrowsWrapper.insertAdjacentHTML('beforeend', arrowImg);
+
+  listWrapper.innerHTML = listElement;
 };
+
+const setListMain = (section) => {
+  const mainSection = document.querySelector(`.press-category__section-main__${section}`);
+  const mainElement = `
+  <nav class='section-main__nav__${section}'>
+    <img class='section-main__img-logo__${section}' src=''>
+    <div class='section-main__edit__${section}'>
+      <time class='section-main__edit-time__${section}'></time>
+      <p class='section-main__edit-p__${section}'>&nbsp편집</p>
+    </div>
+    <buttion class='section-main__button__${section}'>
+      <img class='section-main__img-button__${section}' src='' />
+      <p class='section-main__p-button__${section}'>구독하기</p>
+    </button>
+  </nav>
+  <img class='section-main__img-article__${section}' src=''/>
+  <h2 class='section-main__h2__${section}'></h2>
+  `;
+
+  mainSection.innerHTML = mainElement;
+};
+
+const setListSub = (section) => {
+  const subSection = document.querySelector(`.press-category__section-sub__${section}`);
+  const subFrame = Array.from({ length: 6 }, (_, idx) => idx);
+  const subElement = `
+  <footer class='section-sub__footer__${section}'> 
+    <p class='section-sub__footer-press__${section}'></p> 
+    <p class='section-sub__footer-text__${section}'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
+  </footer>
+  `;
+
+  subFrame.forEach((_) => {
+    const subTitle = `
+    <h4 class='press-category__h4-sub__${section}'>
+      <a class='press-category__a-sub__${section}' href=''></a>
+    </h4>
+    `;
+    subSection.insertAdjacentHTML('beforeend', subTitle);
+  });
+  subSection.insertAdjacentHTML('beforeend', subElement);
+};
+
+const setListCategory = (categoryData, section) => {
+  const categorySection = document.querySelector(`.press-category__ul__${section}`);
+  categoryData.forEach((data) => {
+    const categoryElement = `
+    <li class='press-category__li__${section}'>
+      <p class='press-category__p__${section}'>${data}</p>
+      <div class='press-category__div__${section} none'>
+        <div class='press-category__div-now__${section}'>1</div>
+        <div class='press-category__div-divide__${section}'>/</div>
+        <div class='press-category__div-sum__${section}'></div>
+      </div>
+    </li>
+    `;
+    categorySection.insertAdjacentHTML('beforeend', categoryElement);
+  });
+};
+
+///////////////////////////////////////////////////////////////
+
+/**
+ * 언론사 리스트의 화살표
+ */
+const setGridArrow = () => {
+  const arrowLeft = document.querySelector(`.arrows-logo__img-left__${section}`);
+  const arrowRight = document.querySelector(`.arrows-logo__img-right__${section}`);
+
+  // 이벤트 설정
+};
+
+/**
+ * 언론사 리스트의 카테고리
+ */
+const setGridCategory = (pressData, pressIds, pageNum, section) => {
+  //
+};
+
+///////////////////////////////////////////////////////////////
 
 /**
  * List 화살표 넘겨주기
@@ -235,66 +318,6 @@ const setPressCategoryArticleInit = (initCategoryArticleList) => {
   });
 };
 
-/**
- * 해당 카테고리의 SUB 화면 - 초기설정 수정
- */
-const setPressCategorySub = (categoryData) => {
-  const categorySub = document.querySelector('.press-category__section-sub');
-  const categoryInitDataName = categoryData[0].categoryData[0].name;
-  const categoryInitDataTitle = categoryData[0].categoryData[0].subTitleList;
-
-  const categoryFooter = `
-  <footer class='section-sub__footer'> 
-    <p class='section-sub__footer-press'>${categoryInitDataName}</p> 
-    <p class='section-sub__footer-text'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
-  </footer>
-  `;
-
-  categoryInitDataTitle.forEach((initData) => {
-    const subTitle = `
-    <h4 class='press-category__h4-sub'>
-      <a class='press-category__a-sub' href=${initData.link}>${initData.title}</a>
-    </h4>
-    `;
-    categorySub.insertAdjacentHTML('beforeend', subTitle);
-  });
-
-  categorySub.insertAdjacentHTML('beforeend', categoryFooter);
-};
-
-/**
- * 해당 카테고리의 MAIN 화면 - 초기설정 수정
- */
-const setPressCategoryMain = (categoryData) => {
-  const categoryMain = document.querySelector('.press-category__section-main');
-  const categoryInitData = categoryData[0].categoryData[0];
-
-  const categoryMainElement = `
-  <nav class='section-main__nav'>
-    <img class='section-main__img-logo' src=${categoryInitData.logoSrc}>
-    <div class='section-main__edit'>
-      <time class='section-main__edit-time'>${categoryInitData.editTime}</time>
-      <p class='section-main__edit-p'>&nbsp편집</p>
-    </div>
-    <buttion class='section-main__button'>
-      <img class='section-main__img-button' src='./assets/icons/button-plus.svg' />
-      <p class='section-main__p-button'>구독하기</p>
-    </button>
-  </nav>
-  <img class='section-main__img-article' src=${categoryInitData.imgSrc}/>
-  <h2 class='section-main__h2'>${categoryInitData.mainTitle}</h2>
-  `;
-
-  categoryMain.innerHTML = categoryMainElement;
-};
-
-/**
- * 카테고리 별 랜덤 언론사 반환
- */
-const shuffleList = (list) => {
-  list.sort(() => Math.random() - 0.5);
-};
-
 const getPressList = (categoryData) => {
   const shfflePressList = [];
   categoryData.forEach((data) => {
@@ -304,32 +327,6 @@ const getPressList = (categoryData) => {
   });
 
   return shfflePressList;
-};
-
-/**
- * LIST의 NAV 화면 - 카테고리 이름을 설정 - ing
- */
-const setPressCategoryNav = (categoryData, shufflePressList) => {
-  const categoryUl = document.querySelector('.press-category__ul');
-
-  categoryData.forEach((data) => {
-    const categoryLi = `
-    <li class='press-category__li'>
-      <p class='press-category__p'>${data.categoryName}</p>
-      <div class='press-category__div none'>
-        <div class='press-category__div-now'>1</div>
-        <div class='press-category__div-divide'>/</div>
-        <div class='press-category__div-sum'>${data.categoryData.length}</div>
-      </div>
-    </li>
-    `;
-    categoryUl.insertAdjacentHTML('beforeend', categoryLi);
-  });
-
-  setProgressBar(categoryData);
-  const initCategoryArticleList = getPressCategoryArticleInit(categoryData, shufflePressList);
-  setPressCategoryArticleInit(initCategoryArticleList);
-  setPressArrowElement(initCategoryArticleList);
 };
 
 /**
@@ -357,27 +354,4 @@ const setProgressBar = (categoryData) => {
   initDiv.classList.remove('none');
 };
 
-/**
- * 언론사 리스트의 HTML 틀
- */
-const setPressCategoryElement = () => {
-  const arrowsWrapper = document.querySelector('.press__wrapper-list');
-  arrowsWrapper.classList.add('none');
-
-  const pressCategory = `
-  <article class='press-category'>
-    <nav class='press-category__nav'>
-      <ul class='press-category__ul'></ul>
-    </nav>
-
-    <article class='press-category__article'>
-      <section class='press-category__section-main'></section>
-      <section class='press-category__section-sub'></section>
-    </article>
-  </article>
-  `;
-
-  arrowsWrapper.innerHTML = pressCategory;
-};
-
-export { setTotalPressList };
+export { initPressList };
