@@ -198,6 +198,10 @@ body {
   cursor: pointer;
 }
 
+.grid .grid-row li:hover {
+  background: var(--surface-alt);
+}
+
 /* list-mode */
 .list-view {
   /* display: inline-flex; */

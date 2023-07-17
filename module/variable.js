@@ -10,6 +10,8 @@ const ICON = {
   DIVISION: "/icons/SymbolDivision.svg",
   PLUS: "/icons/SymbolPlus.svg",
   X: "/icons/SymbolX.svg",
+  SUBSCRIBE: "/icons/Subscribe.svg",
+  UNSUBSCRIBE: "/icons/Unsubscribe.svg",
 };
 
 const JSONDATA = {
