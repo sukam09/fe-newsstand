@@ -16,15 +16,16 @@
   border-right: 1px solid #d2dae0;
   border-bottom: 1px solid #d2dae0;
 }
-.grid-cell > button {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.grid-cell > .subscribe-btn {
+  display: none;
+  background: var(--color-surface-default);
 }
-.grid-cell_news-img {
-  width: auto;
-  height: 20px;
+.grid-cell:hover {
+  background: var(--color-surface-alt);
+}
+.grid-cell:hover > .brand-mark {
+  display: none;
+}
+.grid-cell:hover > .subscribe-btn {
+  display: flex;
 }
