@@ -1,27 +1,18 @@
 /*
 신문사 컨텐츠 컴포넌트
 */
-
+import findTargetParentNode from "../../../api/findTargetParentNode.js";
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
 const indexArr = Array.from({ length: TOTAL_PRESS_NUMBER }, (_, i) => i);
 indexArr.sort(() => Math.random() - 0.5);
 
-const findTargetParentNode = (element, targetTagName) => {
-  if (!element) {
-    return null;
-  }
-
-  if (element.tagName === targetTagName) {
-    return element;
-  }
-
-  return findTargetParentNode(element.parentNode, targetTagName);
-};
-
 const findTargetChildNode = (element, targetTagName) => {
   if (!element) return null;
+
+  if (element.tagName.toLowerCase() === targetTagName.toLowerCase())
+    return element;
 
   const children = Array.from(element.children);
 
@@ -38,10 +29,12 @@ const findTargetChildNode = (element, targetTagName) => {
 };
 
 const viewSubscriptionButton = (e) => {
+  if (e.target === e.currentTarget) return;
+
   let target = e.target;
   let img, btn;
 
-  target = findTargetParentNode(target, "LI");
+  target = findTargetParentNode(target, "li");
   img = findTargetChildNode(target, "img");
   btn = findTargetChildNode(target, "button");
 
@@ -49,8 +42,8 @@ const viewSubscriptionButton = (e) => {
   if (btn) btn.style.display = "inline";
 };
 
-const isSubscribed = (pressid) => {
-  return true;
+const isSubscribed = (pressId) => {
+  return false;
 };
 
 const createNewspaperItem = function (index, mode) {
@@ -86,20 +79,7 @@ export default function PressGridView($target, props) {
     const $ul = document.createElement("ul");
 
     $ul.setAttribute("class", "newspaper__list");
-
-    $ul.addEventListener("mouseover", viewSubscriptionButton);
-
     $ul.innerHTML = createPressList(props.currentPage, props.mode);
-
-    $ul.childNodes.forEach((elem) => {
-      elem.addEventListener("mouseout", (e) => {
-        const img = findTargetChildNode(e.target, "img");
-        const btn = findTargetChildNode(e.target, "button");
-
-        if (img) img.style.display = "inline";
-        if (btn) btn.style.display = "none";
-      });
-    });
 
     $target.innerHTML = "";
     $target.appendChild($ul);

@@ -31,8 +31,6 @@ export default function MainNews($target, props) {
     $childDiv.setAttribute("class", "main-title");
 
     $imgContainer.style.overflow = "hidden";
-    console.log($imgContainer.style);
-
     $img.src = props.mainThumbnail;
     $childDiv.innerHTML = props.mainNewsTitle;
 
@@ -49,6 +47,7 @@ export default function MainNews($target, props) {
       $img.style.scale = "none";
       $childDiv.style.textDecoration = "none";
     });
+
     $target.appendChild($div);
   };
 

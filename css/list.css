@@ -59,7 +59,7 @@
 }
 
 .list-content .list-news .main-news .img-container img {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .list-content .list-news .main-title {
@@ -84,12 +84,15 @@
   flex-wrap: wrap;
   align-content: space-between;
 }
+
 .list-content .list-news .sub-news .sub-title {
   cursor: pointer;
 }
+
 .list-content .list-news .sub-news .sub-title:hover {
   text-decoration: underline;
 }
+
 .list-content .list-news .sub-news ul .caption {
   font-size: 14px;
   color: #879298;

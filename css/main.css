@@ -71,6 +71,14 @@
   background-color: #f5f7f9;
   cursor: pointer;
 }
+
+.newspaper__list .newspaper__item:hover img {
+  display: none;
+}
+
+.newspaper__list .newspaper__item:hover button {
+  display: inline-block;
+}
 /*  page button */
 
 .news-section {
