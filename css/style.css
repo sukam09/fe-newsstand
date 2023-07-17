@@ -211,6 +211,9 @@ nav.agency .view-type button {
   height: 20px;
 }
 .agency-btn-hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -393,6 +396,13 @@ nav.agency .view-type button {
 }
 
 .plus {
+  width: 0.75rem;
+  height: 0.75rem;
+  filter: invert(58%) sepia(16%) saturate(191%) hue-rotate(157deg)
+    brightness(94%) contrast(91%);
+}
+
+.minus {
   width: 0.75rem;
   height: 0.75rem;
   filter: invert(58%) sepia(16%) saturate(191%) hue-rotate(157deg)
