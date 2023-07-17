@@ -8,4 +8,5 @@ export const TEXT_WEAK = '#879298';
 export const TEXT_POINT = '#4362D0';
 export const START_CATEGORY_IDX = 0;
 export const FIRST_NEWS_PAGE_INDEX = 0;
+export const NEWS_PAGE_CNT = 7;
 

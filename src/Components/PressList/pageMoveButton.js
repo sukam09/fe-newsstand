@@ -1,4 +1,4 @@
-import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { FIRST_NEWS_PAGE_INDEX, NEWS_PAGE_CNT } from "../../constant.js";
 import { changeCategory } from "./categoryTab.js";
 import { drawPressNews } from "./pressNews.js";
 import { initProgress, setProgressPage, startProgressAnimation } from "./progressBar.js";
@@ -9,7 +9,7 @@ let newsPage = FIRST_NEWS_PAGE_INDEX;
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
-let progressEventFlagPerCategory = Array.from({ length: 7 }, () => false);
+let progressEventFlagPerCategory = Array.from({ length: NEWS_PAGE_CNT }, () => false);
 let categoryIdx = 0;
 
 /**
@@ -58,7 +58,7 @@ function showNewsTurner(shuffledPressNews, categoryIndex) {
  */
 function moveNextCategoryOfProgress(shuffledPressNews, categoryIndex) {
   if (newsPage === shuffledPressNews[categoryIndex].length) {
-    changeCategory(shuffledPressNews, (categoryIndex + 1) % 7);
+    changeCategory(shuffledPressNews, (categoryIndex + 1) % NEWS_PAGE_CNT);
   }
 }
 
