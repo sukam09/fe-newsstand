@@ -3,27 +3,26 @@ import {
   runProgress,
   clearProgress,
 } from "./progressBar.js";
+import { setDisplayWithIdx } from "./utils.js";
 
 let grid_view_selected = true;
 
 /***** grid형 <-> list형 뷰 변경 *****/
 //grid형 보기로 바꾸기
 function changeToGridView() {
-  document.getElementsByClassName("list-selected")[0].style.display = "none";
-  document.getElementsByClassName("grid-selected")[0].style.display = "block";
-  document.getElementsByClassName("press-list-section")[0].style.display =
-    "none";
-  document.getElementsByClassName("press-grid")[0].style.display = "block";
+  setDisplayWithIdx(".list-selected", 0, "none");
+  setDisplayWithIdx(".grid-selected", 0, "block");
+  setDisplayWithIdx(".press-list-section", 0, "none");
+  setDisplayWithIdx(".press-grid", 0, "block");
   grid_view_selected = true;
 }
 
 //list형 보기로 바꾸기
 function changeToListView() {
-  document.getElementsByClassName("grid-selected")[0].style.display = "none";
-  document.getElementsByClassName("list-selected")[0].style.display = "block";
-  document.getElementsByClassName("press-list-section")[0].style.display =
-    "block";
-  document.getElementsByClassName("press-grid")[0].style.display = "none";
+  setDisplayWithIdx(".grid-selected", 0, "none");
+  setDisplayWithIdx(".list-selected", 0, "block");
+  setDisplayWithIdx(".press-list-section", 0, "block");
+  setDisplayWithIdx(".press-grid", 0, "none");
   grid_view_selected = false;
 }
 
