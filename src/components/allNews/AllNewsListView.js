@@ -1,7 +1,9 @@
+import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Button from '../common/Button.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
+import SubscribeButton from './SubscribeButton.js';
 
 export default class AllNewsListView extends Component {
   setup() {
@@ -77,11 +79,9 @@ export default class AllNewsListView extends Component {
       this.goNextPage.bind(this),
     );
 
-    new Button(customQuerySelector('.subscribe-button-wrapper', this.$target), {
+    new SubscribeButton(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
-      text: '구독하기',
-      icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
-      states: 'default',
+      text: TEXT.SUBSCRIBE,
     });
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
