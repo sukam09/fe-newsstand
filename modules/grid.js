@@ -3,7 +3,9 @@ import { getJSON } from "./data.js";
 import { shuffleList, setViewEvent } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+// 전체 언론사 영역
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
+// 내가 구독한 언론사 -> STATE.SUBSCRIBE_LIST
 let mediaInfo;
 
 const $newsWrapper = document.querySelector(".news-grid-wrapper");
@@ -15,8 +17,8 @@ const makeGrid = () => {
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
     const imgSrc = STATE.MODE.IS_LIGHT
-      ? `${mediaInfo[i].path_light}`
-      : `${mediaInfo[i].path_dark}`;
+      ? `${mediaInfo[idList[i]].path_light}`
+      : `${mediaInfo[idList[i]].path_dark}`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
@@ -100,6 +102,45 @@ const setGridArrowEvent = () => {
   });
 };
 
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
+
+/**
+ * 그리드 뷰 내 전체 언론사 / 내가 구독한 언론사 전환 이벤트
+ */
+const setGridModeEvent = () => {
+  $totalMedia.addEventListener("click", () => {
+    if (STATE.MODE.IS_GRID) {
+      onClickGridMode({ className: "main-nav_total" });
+    }
+  });
+  $subscribeMedia.addEventListener("click", () => {
+    if (STATE.MODE.IS_GRID) {
+      onClickGridMode({ className: "main-nav_subscribe" });
+    }
+  });
+};
+
+const onClickGridMode = ({ className }) => {
+  const $selected =
+    className === "main-nav_total" ? $totalMedia : $subscribeMedia;
+  const $unselected =
+    className === "main-nav_total" ? $subscribeMedia : $totalMedia;
+
+  $selected.classList.remove("main-nav_unselected");
+  $selected.classList.add("main-nav_selected");
+
+  $unselected.classList.remove("main-nav_selected");
+  $unselected.classList.add("main-nav_unselected");
+
+  STATE.MODE.IS_TOTAL = $selected === $totalMedia ? true : false;
+  STATE.GRID_PAGE_NUM = 0;
+
+  changeImgSrc(0, MEDIA_NUM);
+  changeButtonView(0, MEDIA_NUM);
+  setArrowVisible();
+};
+
 /**
  * 언론사 이미지 src 변경
  */
@@ -160,10 +201,12 @@ const setArrowVisible = () => {
   // 페이지 제한 0~3에 따른 hidden 여부
   if (STATE.GRID_PAGE_NUM === 0) {
     $leftArrow.classList.add("hidden");
+    $rightArrow.classList.remove("hidden");
   } else if (STATE.GRID_PAGE_NUM > 0 && STATE.GRID_PAGE_NUM < 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.remove("hidden");
   } else if (STATE.GRID_PAGE_NUM === 3) {
+    $leftArrow.classList.remove("hidden");
     $rightArrow.classList.add("hidden");
   }
 };
@@ -182,5 +225,6 @@ async function initGridView() {
   setViewEvent();
   makeGrid();
   setGridArrowEvent();
+  setGridModeEvent();
 }
 export { initGridView, setArrowVisible };
