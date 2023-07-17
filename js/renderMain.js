@@ -1,14 +1,11 @@
 import logo from "../json/news_image.json" assert { type: "json" };
-import { shuffle, changeImageSrc } from "./utils.js";
+import { shuffle, changeImageSrc } from "../utils/utils.js";
+import { renderCardList } from "./renderCardList.js";
 import {
-  drawInitCategory,
-  progressInterval,
-  drawNewsHeader,
-  drawNewsDiv,
   increaseListPage,
   decreaseListPage,
+  progressInterval,
 } from "./category.js";
-
 const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;
 let currentPageNumber = 0;
@@ -19,27 +16,16 @@ const listMain = document.getElementById("main-grid-02");
 
 function renderMain(isGrid) {
   if (isGrid) renderGrid(logo);
-  else renderCard();
-}
-
-function renderCard() {
-  gridMain.style.display = "none";
-  listMain.style.display = "flex";
-  leftAsideButton.style.visibility = "visible";
-  rightAsideButton.style.visibility = "visible";
-  drawInitCategory();
-  drawNewsHeader();
-  drawNewsDiv();
+  else renderCardList();
 }
 
 function renderGrid(logos) {
   const COUNT_PER_PAGE = 24;
-  const mainGrid = document.getElementById("main-grid-01");
   clearInterval(progressInterval);
   shuffle(logos);
   gridMain.style.display = "grid";
   listMain.style.display = "none";
-  mainGrid.innerHTML = "";
+  gridMain.innerHTML = "";
   for (
     let LOGO_INDEX = currentPageNumber * COUNT_PER_PAGE;
     LOGO_INDEX < COUNT_PER_PAGE * currentPageNumber + 24;
@@ -47,7 +33,7 @@ function renderGrid(logos) {
   ) {
     const outerDiv = document.createElement("div");
     outerDiv.append(drawLogo(logos, LOGO_INDEX));
-    mainGrid.append(outerDiv);
+    gridMain.append(outerDiv);
   }
   addAsideClickEvent(1);
 }
@@ -141,4 +127,4 @@ clickCardListImage();
 clickGridImage();
 clickRightAsideButton();
 clickLeftAsideButton();
-export { renderMain, leftAsideButton, rightAsideButton };
+export { renderMain, leftAsideButton, rightAsideButton, gridMain, listMain };

@@ -1,7 +1,7 @@
 import categoryData from "../json/category.json" assert { type: "json" };
 import news from "../json/news.json" assert { type: "json" };
 import news_article from "../json/news_article.json" assert { type: "json" };
-import { increment, totalTime } from "./constants.js";
+import { increment, totalTime } from "../utils/constants.js";
 
 let progress = 0;
 let categoryCnt = []; //카테고리별 data개수
