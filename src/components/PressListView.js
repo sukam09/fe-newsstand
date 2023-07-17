@@ -22,9 +22,7 @@ export default function PressListView({ $target, initialState }) {
   $rightButton.src = '../asset/icons/right-button.svg';
   $rightButton.classList.add('list-right-button');
 
-  $div.appendChild($leftButton);
-  $div.appendChild($article);
-  $div.appendChild($rightButton);
+  $div.append($leftButton, $article, $rightButton);
 
   $target.appendChild($section);
   $target.appendChild($div);
