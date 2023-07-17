@@ -151,7 +151,9 @@ export default function PressListView({ $target, initialState }) {
       </div>
       <div class="news">
         <div class="news-main">
-          <img class="thumbnail" />
+          <div class="thumbnail-box">
+            <img class="thumbnail" />
+          </div>
           <p class="news-main-title">또 국민연금의 몽니…현대百 지주사 불발</p>
         </div>
         <div class="news-sub">

@@ -441,9 +441,21 @@ header {
   gap: 16px;
 }
 
+.thumbnail-box {
+  width: 320px;
+  height: 200px;
+  overflow: hidden;
+}
+
 .thumbnail {
   width: 320px;
   height: 200px;
+  transition: transform 0.5s ease;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .news-main-title {
