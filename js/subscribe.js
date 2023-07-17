@@ -1,7 +1,7 @@
-import { setDisplay, removeDisplay, getJSON } from "./utils.js";
-import { MODAL_POPUP_TIME, getSubData, setSubData } from "./const.js";
+import { setDisplay, getJSON } from "./utils.js";
+import { MODAL_POPUP_TIME, STATE, setSubData } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
-import { checkViewStatus } from "./viewHandler.js";
+import { handleView } from "./viewHandler.js";
 import { onUndiscribeModal } from "./modal.js";
 
 let presses;
@@ -81,7 +81,7 @@ async function initSpanEvent() {
   });
 
   const $press_options = document.querySelector(".press-option").children;
-  [...$press_options].forEach(span => span.addEventListener("click", e => checkViewStatus(e.target)));
+  [...$press_options].forEach(span => span.addEventListener("click", e => handleView(e.target)));
 }
 
 export {

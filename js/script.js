@@ -5,11 +5,13 @@ import { now_category, drawNews, initCategoryClass, initNewsInfo } from "./newsL
 import { initSpanEvent } from "./subscribe.js";
 import { initModalBtn } from "./modal.js";
 import { initUtilData } from "./utils.js";
+import { addEventInSymbol } from "./viewHandler.js";
 
 const init = async () => {
   setDate();
   await initUtilData();
   await initPressGrid();
+  await addEventInSymbol();
   initRolling();
   initCategoryClass();
   await initSpanEvent();

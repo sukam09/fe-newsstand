@@ -1,7 +1,7 @@
 import { initGridItemEvent, initSubGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE, getSubData } from "./const.js";
+import { PAGE_SIZE, STATE } from "./const.js";
 import { setDisplay, getJSON } from "./utils.js";
-import { changeToGrid, changeToList, addEventInSymbol } from "./viewHandler.js";
+import { handleView } from "./viewHandler.js";
 let grid_page_count = 0;
 let sub_grid_page_count = 0;
 
@@ -33,7 +33,7 @@ function appendPressInGrid(press) {
   $button.classList.add("hidden");
   preventButtonClick($button, false);
   const $sub_img = document.createElement("img");
-  $sub_img.src = getSubData().some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+  $sub_img.src = STATE.SUB_DATA.some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
   $button.append($sub_img);
 
   $list.append($image, $button);
@@ -119,7 +119,6 @@ async function initPressGrid() {
     appendPressInGrid(press);
   });
   addEventGridArrow();
-  addEventInSymbol();
 }
 
 async function drawGridView() {
@@ -144,7 +143,7 @@ async function drawSubGridView() {
   let count = 0;
   const $sub_press_list = document.getElementById("sub-press-list");
   $sub_press_list.innerHTML = "";
-  const sub_press = getSubData();
+  const sub_press = STATE.SUB_DATA;
   const subscribed_presses = sub_press.slice(sub_grid_page_count * PAGE_SIZE, (sub_grid_page_count + 1) * PAGE_SIZE);
   subscribed_presses.forEach(press => {
     appendSubPressInGrid(press);
@@ -160,4 +159,4 @@ async function drawSubGridView() {
   drawSubGridArrow();
 }
 
-export { appendPressInGrid, changeToList, initPressGrid, drawSubGridView, drawGridView, drawSubGridArrow };
+export { appendPressInGrid, initPressGrid, drawSubGridView, drawGridView, drawSubGridArrow };

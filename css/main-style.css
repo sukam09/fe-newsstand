@@ -304,8 +304,8 @@ h1 {
   position: relative;
 }
 
-.news-main > img {
-  width: 320px;
+.news-main > .thumbnail {
+  width: 320px !important;
   height: 200px;
   border: 1px solid var(--border-default);
   background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
@@ -314,10 +314,10 @@ h1 {
   overflow: hidden;
   color: var(--text-strong, #14212b);
   text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: 16px;
   font-weight: 500;
   line-height: 22px;
+  word-wrap: break-word;
 }
 .news-sub-list {
   display: flex;

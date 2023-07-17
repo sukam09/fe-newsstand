@@ -1,5 +1,5 @@
 import { setDisplay, findPress, findSpanNearby } from "../js/utils.js";
-import { getSubData, setSubData } from "./const.js";
+import { STATE, setSubData } from "./const.js";
 import { gridMouseClick, drawSubGridView } from "./subscribe.js";
 
 function onUndiscribeModal(target) {

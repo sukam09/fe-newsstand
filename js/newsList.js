@@ -1,6 +1,6 @@
-import { getSubData } from "./const.js";
 import { listSubMouseClick } from "./subscribe.js";
 import { getJSON } from "./utils.js";
+import { STATE } from "./const.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let presses;
@@ -211,52 +211,4 @@ function setFisrtCategory() {
   clickCategory($first_category);
 }
 
-function setSubListNav() {
-  const subscribed_presses = getSubData();
-  const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
-  $sub_list_nav.innerHTML = ""; // 첫뻔째 li에 list-스타일넣기
-  subscribed_presses.forEach(press => {
-    const $li = document.createElement("li");
-    $li.classList.add("sub-nav-item");
-    $li.textContent = press.name;
-    $sub_list_nav.append($li);
-  });
-  $sub_list_nav.firstChild.classList.add("list-progress-bar");
-}
-
-function drawSubNews(page) {
-  const $ul = document.querySelector(".sub-news-article");
-  const news = getSubData()[page];
-  $ul.querySelector(".press-brandmark").src = news.path_light;
-  $ul.querySelector(".edit-date").textContent = news.editDate;
-  $ul.querySelector(".thumbnail").src = news.thumbSrc;
-  $ul.querySelector(".news-main .font-init").textContent = news.headTitle;
-  const subList = $ul.querySelector(".news-sub-list");
-  subList.innerHTML = "";
-  news.subTitle.forEach(subnews => {
-    const $li = document.createElement("li");
-    $li.innerText = subnews;
-    subList.append($li);
-  });
-  const $caption = document.createElement("li");
-  $caption.classList.add("caption");
-  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  subList.append($caption);
-  const $sub_btn = $ul.querySelector(".list-sub-btn");
-  $sub_btn.src = "../img/icons/cancelSubBtn.svg";
-  $sub_btn.addEventListenecr("click", e => {
-    listSubMouseClick(getSubData(), e.target);
-  });
-}
-
-export {
-  now_category,
-  drawNews,
-  clickListRightBtn,
-  clickListLeftBtn,
-  clickCategory,
-  initCategoryClass,
-  setSubListNav,
-  initNewsInfo,
-  drawSubNews,
-};
+export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, initNewsInfo };
