@@ -16,9 +16,9 @@ const initEntirePressGrid = (pressData) => {
 
   setGrid('entire');
   setGridFrame('entire');
-  setGridButton('entire', shuffleIdsLen);
   setGridArrow(pressData, shuffleIds, 'entirePage', 'entire');
   setGridLogo(pressData, shuffleIds, 0, 'entire');
+  setGridButton(pressData, shuffleIdsLen, 'entire'); // 실행순서
   changeIcon('entire');
 };
 
@@ -35,9 +35,9 @@ const initSubscribePressGrid = (pressData) => {
 
   setGrid('subscribe');
   setGridFrame('subscribe');
-  setGridButton('subscribe', subscribeIdsLen);
   setGridArrow(pressData, subscribeIds, 'subscribePage', 'subscribe');
   setGridLogo(pressData, subscribeIds, 0, 'subscribe');
+  setGridButton(pressData, subscribeIdsLen, 'subscribe'); // 실행순서
   changeIcon('subscribe');
 
   document.querySelector('.press__wrapper-grid__subscribe').classList.add('none');
@@ -122,7 +122,7 @@ const getGridLogo = (pressData, pressIds, section) => {
   pressIds.forEach((pressId, idx) => {
     const selectPress = pressData.find((data) => data.id === pressId);
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
-    logoWapper.setAttribute('pressId', pressId); //////// 수정중
+    logoWapper.setAttribute('pressid', pressId); //////// 수정중
 
     let mode = localStorage.getItem('mode');
     if (mode === 'light') logoWapper.src = selectPress.lightSrc;
@@ -159,13 +159,13 @@ const changeSrc = (logo) => {
 /**
  * 언론사 그리드의 구독하기 버튼
  */
-const setGridButton = (section, pressIdsLen) => {
+const setGridButton = (pressData, pressIdsLen, section) => {
   const pressLis = document.querySelectorAll(`.press-logo__li__${section}`);
   const slicePressLis = [];
   pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
   slicePressLis.forEach((li) => {
     setGridButtonEvent(section, li);
-    setGridButtonClick(section, li);
+    setGridButtonClick(pressData, section, li);
   });
 };
 
@@ -187,25 +187,35 @@ const setGridButtonEvent = (section, li) => {
 };
 
 // 구독 상태도 전달해주고 처리해야함
-const setGridButtonClick = (section, li) => {
+const setGridButtonClick = (pressData, section, li) => {
   li.addEventListener('click', () => {
-    const buttonImg = li.querySelector(`.press-logo__li-img__${section}`);
-    const buttonP = li.querySelector(`.press-logo__li-p__${section}`);
-    const isSubscribe = buttonImg.src.includes('button-plus');
-
-    const newButtonSrc = isSubscribe
-      ? buttonImg.src.replace('plus', 'closed')
-      : buttonImg.src.replace('closed', 'plus');
-    const newButtonP = isSubscribe ? '해지하기' : '구독하기';
-
-    buttonImg.src = newButtonSrc;
-    buttonP.innerText = newButtonP;
+    const isSubscribe = getSubscribeState(pressData, li);
+    setGridButtonChange(isSubscribe, section, li);
   });
 };
 
+const setGridButtonChange = (isSubscribe, section, li) => {
+  const buttonImg = li.querySelector(`.press-logo__li-img__${section}`);
+  const buttonP = li.querySelector(`.press-logo__li-p__${section}`);
+
+  const newButtonSrc = isSubscribe ? buttonImg.src.replace('closed', 'plus') : buttonImg.src.replace('plus', 'closed');
+  const newButtonP = isSubscribe ? '구독하기' : '해지하기';
+
+  buttonImg.src = newButtonSrc;
+  buttonP.innerText = newButtonP;
+};
+
 //현재 구독 상태에 따른 버튼 업데이트
-const setGridButtonState = () => {
-  //현재 구독 상태에 따른 버튼 업데이트
+const getSubscribeState = (pressData, li) => {
+  const pressImg = li.querySelector('img');
+  const pressId = Number(pressImg.getAttribute('pressid'));
+  const pressSub = pressData.find((data) => data.id === pressId).isSub;
+
+  pressSub
+    ? (pressData.find((data) => data.id === pressId).isSub = false)
+    : (pressData.find((data) => data.id === pressId).isSub = true);
+
+  return pressSub;
 };
 
 export { initPressGrid };
