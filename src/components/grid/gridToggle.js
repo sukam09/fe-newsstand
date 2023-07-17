@@ -53,18 +53,12 @@ export const grid_view_info_sub = new gridViewInfo(subscribe_press_list, class_n
 export function toggleArrow(grid_view_info) {
     const left_btn = document.querySelector(grid_view_info.getLeftBtn());
     const right_btn = document.querySelector(grid_view_info.getRightBtn());
-
-    switch (grid_view_info.getCurrentPage()) {
-        case 0:
-            left_btn.style.visibility = "hidden";
-            right_btn.style.visibility = "visible";
-            break;
-        case grid_view_info.getMaxPage():
-            left_btn.style.visibility = "visible";
-            right_btn.style.visibility = "hidden";
-            break;
-        default:
-            left_btn.style.visibility = "visible";
-            right_btn.style.visibility = "visible";
+    const current_page = grid_view_info.getCurrentPage();
+    const max_page = grid_view_info.getMaxPage();
+    if (current_page === 0) left_btn.style.visibility = "hidden";
+    if (current_page === max_page) right_btn.style.visibility = "hidden";
+    if (current_page !== 0 && current_page !== max_page) {
+        left_btn.style.visibility = "visible";
+        right_btn.style.visibility = "visible";
     }
 }

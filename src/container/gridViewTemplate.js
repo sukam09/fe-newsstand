@@ -40,10 +40,12 @@ function createMainGrid(grid_view_info, isInit) {
     return $container;
 }
 
-function createGridArrowBtn(btnFactory, isRight, isSub, grid_view_info) {
+function createGridArrowBtn(btnFactory, isRight, is_subscribe, grid_view_info) {
     return btnFactory.create({
         type: "arrow",
-        className: isRight ? `${class_name.GRID_RIGHT_BTN}-${isSub}` : `${class_name.GRID_LEFT_BTN}-${isSub}`,
+        className: isRight
+            ? `${class_name.GRID_RIGHT_BTN}-${is_subscribe}`
+            : `${class_name.GRID_LEFT_BTN}-${is_subscribe}`,
         events: {
             click: () => {
                 grid_view_info.setPage(isRight);
@@ -54,12 +56,12 @@ function createGridArrowBtn(btnFactory, isRight, isSub, grid_view_info) {
     });
 }
 
-function createGridView(isSubscribe, grid_view_info) {
-    const $container = document.querySelector(`.grid-${isSubscribe}`);
+function createGridView(is_subscribe, grid_view_info) {
+    const $container = document.querySelector(`.grid-${is_subscribe}`);
     $container.append(
-        createGridArrowBtn(btnFactory, false, isSubscribe, grid_view_info).getButton(),
+        createGridArrowBtn(btnFactory, false, is_subscribe, grid_view_info).getButton(),
         createMainGrid(grid_view_info, true),
-        createGridArrowBtn(btnFactory, true, isSubscribe, grid_view_info).getButton()
+        createGridArrowBtn(btnFactory, true, is_subscribe, grid_view_info).getButton()
     );
     toggleArrow(grid_view_info);
 }
