@@ -2,39 +2,37 @@ import { categoryList } from "../data/NewsContents.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 
-let list_page_count = 0;
-
 //기사 셔플
-function shuffle(category_count_idx) {
-  categoryList[category_count_idx].data.sort(() => Math.random() - 0.5);
+function articleShuffle(category_idx) {
+  categoryList[category_idx].data.sort(() => Math.random() - 0.5);
 }
 
 /***** 리스트뷰 아티클 섹션 그리기 *****/
-function drawListView(category_count_idx, title_idx) {
-  shuffle(category_count_idx);
-  appendPressInfo(category_count_idx, title_idx);
-  appendNewsMain(category_count_idx, title_idx);
+function drawListView(category_idx, count_idx) {
+  articleShuffle(category_idx);
+  appendPressInfo(category_idx, count_idx);
+  appendNewsMain(category_idx, count_idx);
 }
 
-function appendPressInfo(category_count_idx, title_idx) {
-  document.querySelector(".press-brandmark").src =
-    categoryList[category_count_idx].data[title_idx].logoSrc;
-  document.querySelector(".edit-date").innerHTML =
-    categoryList[category_count_idx].data[title_idx].editDate;
+function appendPressInfo(category_idx, count_idx) {
+  const press_logo = categoryList[category_idx].data[count_idx].logoSrc;
+  document.querySelector(".press-brandmark").src = press_logo;
+  const edit_date = categoryList[category_idx].data[count_idx].editDate;
+  document.querySelector(".edit-date").innerHTML = edit_date;
 }
 
-function appendNewsMain(category_count_idx, title_idx) {
-  document.querySelector(".thumbnail").src =
-    categoryList[category_count_idx].data[title_idx].imgSrc;
-  document.querySelector(".news-main .font-init").innerHTML =
-    categoryList[category_count_idx].data[title_idx].mainTitle;
+function appendNewsMain(category_idx, count_idx) {
+  const thumbnail = categoryList[category_idx].data[count_idx].imgSrc;
+  document.querySelector(".thumbnail").src = thumbnail;
+  const main_title = categoryList[category_idx].data[count_idx].mainTitle;
+  document.querySelector(".news-main .font-init").innerHTML = main_title;
   for (let i = 0; i < SUB_NEWS_TITLE_NUM; i++) {
-    const lists = document.querySelectorAll(".news-sub-list li");
-    lists[i].innerHTML =
-      categoryList[category_count_idx].data[title_idx].subTitleList[i].title;
+    const sub_title =
+      categoryList[category_idx].data[count_idx].subTitleList[i].title;
+    document.querySelectorAll(".news-sub-list li")[i].innerHTML = sub_title;
   }
-  const list_caption = document.querySelector(".caption");
-  list_caption.innerHTML = `${categoryList[category_count_idx].data[title_idx].name} 언론사에서 직접 편집한 뉴스입니다.`;
+  const list_caption = `${categoryList[category_idx].data[count_idx].name} 언론사에서 직접 편집한 뉴스입니다.`;
+  document.querySelector(".caption").innerHTML = list_caption;
 }
 
 export { drawListView };
