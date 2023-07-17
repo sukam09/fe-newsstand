@@ -63,7 +63,6 @@ function handleClick(e) {
         : changePage(target, "list");
       break;
     case "all":
-      console.log(target);
       document.getElementById("subscribe").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
       break;
