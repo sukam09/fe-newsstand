@@ -1,8 +1,8 @@
 import MediaNav from '../../components/media/MediaNav.js';
 import gridApp from './newsGridApp.js';
 import listApp from './newsListApp.js';
-import { ArrowButton } from '../../components/Button.js';
 import Icon from '../../components/Icon.js';
+import Arrow from '../../components/media/Arrow.js';
 
 const MediaViewWrapper = () => {
   const mediaViewWrapper = document.createElement('div');
@@ -10,9 +10,9 @@ const MediaViewWrapper = () => {
 
   mediaViewWrapper.id = 'media_view_wrapper';
   mediaView.id = 'media_view';
-  mediaViewWrapper.appendChild(ArrowButton('left'));
+  mediaViewWrapper.appendChild(Arrow('left'));
   mediaViewWrapper.appendChild(mediaView);
-  mediaViewWrapper.appendChild(ArrowButton('right'));
+  mediaViewWrapper.appendChild(Arrow('right'));
   return mediaViewWrapper;
 };
 

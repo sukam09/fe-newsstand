@@ -1,12 +1,12 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import MediaGrid from '../../components/media/MediaGrid.js';
-import { MEDIA, SUB_MEDIA } from '../../constants.js';
-import { SubButtonArea } from '../../components/Button.js';
+import { MEDIA } from '../../constants.js';
 import {
   clearAllChildren,
   createNewArrow,
   shuffleArray,
 } from '../../utils/utils.js';
+import { SubButtonArea } from '../../components/media/SubButton.js';
 
 const createMediaArray = () => {
   const mediaArray = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
@@ -26,10 +26,7 @@ const updateLogo = (logoElement, mediaId) => {
   logoElement.classList.add(`media_${mediaId}`);
   logoElement.src = mediaData.getLogoSrc(mediaId);
   logoElement.alt = mediaData.getName(mediaId);
-  logoElement.insertAdjacentElement(
-    'afterend',
-    SubButtonArea(SUB_MEDIA.includes(mediaId))
-  );
+  logoElement.insertAdjacentElement('afterend', SubButtonArea(mediaId));
 };
 
 const updatePage = (mediaArray, page) => {
@@ -59,8 +56,8 @@ const initArrow = gridData => {
 };
 
 const setArrowDisplay = (page, leftArrow, rightArrow) => {
-  const leftDisplay = page === 0 ? 'none' : 'block';
-  const rightDisplay = page === MEDIA.MAX_PAGE ? 'none' : 'block';
+  const leftDisplay = page === 0 ? 'none' : null;
+  const rightDisplay = page === MEDIA.MAX_PAGE ? 'none' : null;
 
   leftArrow.style.display = leftDisplay;
   rightArrow.style.display = rightDisplay;

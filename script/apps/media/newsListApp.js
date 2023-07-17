@@ -16,13 +16,16 @@ const createMediaArray = () => {
 };
 
 const setPage = (listData, newPage) => {
+  const categoryLength = listData.categoryData.length;
+
   listData.page = newPage;
   if (listData.page === -1) {
-    listData.category = (listData.category - 1) % listData.categoryData.length;
+    listData.category =
+      (listData.category - 1 + categoryLength) % categoryLength;
     listData.page = listData.categoryData[listData.category].media.length - 1;
   }
   if (listData.page === listData.categoryData[listData.category].media.length) {
-    listData.category = (listData.category + 1) % listData.categoryData.length;
+    listData.category = (listData.category + 1) % categoryLength;
     listData.page = 0;
   }
   initList(listData);

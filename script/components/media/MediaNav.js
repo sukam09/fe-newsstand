@@ -2,8 +2,8 @@ import RadioInputWrapper from '../RadioInput.js';
 
 const NavSelector = (selectData, name) => {
   const navSelector = document.createElement('div');
-  navSelector.classList.add(`${name}_wrapper`);
 
+  navSelector.classList.add(`${name}_wrapper`);
   selectData.forEach(data => {
     navSelector.appendChild(RadioInputWrapper({ selectData: data, name }));
   });
