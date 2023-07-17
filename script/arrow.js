@@ -1,7 +1,7 @@
 import pressList from "../asset/data/pressList.js"
 import listViewData from "../asset/data/listViewData.js";
 import { drawPress } from "./grid-view.js";
-import { drawList } from "./list-view.js";
+import { drawList, drawListNav, drawListPage } from "./list-view.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");

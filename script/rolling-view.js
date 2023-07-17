@@ -40,4 +40,6 @@ function rollHeadline(target, headlineIdx, sectionIdx, isFirstRoll) {
     
 }
 
+
+
 export {rollHeadline};

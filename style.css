@@ -158,6 +158,7 @@ ul {
     align-items: center;
     padding:0px 16px;
     height:100%;
+    position: relative;
 }
 .list-nav > li:hover {
     cursor:pointer;
@@ -192,7 +193,6 @@ ul {
     width:320px;
     height:200px;
     background-color: var(--surface-alt);
-    /* margin-bottom:16px; */
 }
 .list-page-right {
     display:flex;
@@ -213,6 +213,7 @@ ul {
 .category:hover {
     text-decoration: underline;
 }
+
 .selected {
     display:flex;
     justify-content: space-between;
@@ -223,4 +224,24 @@ ul {
 }
 .list-page-info > span {
     color : var(--border-default);
+}
+.progress-bar {
+    position:absolute;
+    width:0%;
+    height:100%;
+    margin-left:-16px;
+    z-index: 0;
+    background-color: var(--surface-brand-default);
+    animation : progress 5s linear ;
+}
+@keyframes progress {
+    from {
+        width:0%;
+    }
+    to {
+        width:100%;
+    }
+}
+.category-title, .list-page-info {
+    z-index:3;
 }

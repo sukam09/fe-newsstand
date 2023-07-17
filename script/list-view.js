@@ -1,5 +1,6 @@
 import listViewData from "../asset/data/listViewData.js";
 import { listenArrow } from "./arrow.js";
+import { drawProgressBar } from "./progress-bar.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
@@ -47,9 +48,9 @@ function drawListNav(crntListIdx, crntPage){
         let numOfPages = listViewData.filter(data => data.category == category).length;
         listNav.innerHTML += `
         <li class="${crntListIdx == index ? "selected category" : "category"}">
-            <div>${category}</div>
-            <div class="${crntListIdx == index ? "" : "hide"} ">
-                <span class="list-page-info display-bold12">
+            <div class="category-title">${category}</div>
+            <div class="${crntListIdx == index ? "" : "hide"} list-page-info">
+                <span class=" display-bold12">
                     ${crntPage+1}<span>/${numOfPages}</span>
                 </span>
             </div>
@@ -58,8 +59,9 @@ function drawListNav(crntListIdx, crntPage){
 }
 function drawList(crntListIdx, crntPage = 0) {
     drawListNav(crntListIdx, crntPage)
+    drawProgressBar(listNav.children[crntListIdx], crntPage, crntListIdx)
     drawListPage(crntListIdx, crntPage);
     listenCategoryChange(listNav.children, crntListIdx, crntPage);
 }
 
-export {drawList}
+export {drawList, drawListNav, drawListPage}
