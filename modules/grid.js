@@ -1,20 +1,22 @@
 import { MEDIA, STATE } from "../constant.js";
+import { getJSON } from "./data.js";
 import { shuffleList, setViewEvent } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
+let mediaInfo;
+
+const $newsWrapper = document.querySelector(".news-grid-wrapper");
 
 /**
  * 언론사 Grid 제작하기
  */
 const makeGrid = () => {
-  const $newsWrapper = document.querySelector(".news-grid-wrapper");
-
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
     const imgSrc = STATE.MODE.IS_LIGHT
-      ? `/images/light-media/${idList[i]}.png`
-      : `/images/dark-media/${idList[i]}.png`;
+      ? `${mediaInfo[i].path_light}`
+      : `${mediaInfo[i].path_dark}`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
@@ -26,8 +28,61 @@ const makeGrid = () => {
       $li.appendChild($img);
     };
 
+    const $buttonWrapper = addSubscribeButton(i);
+
+    $li.append($buttonWrapper);
     $newsWrapper.append($li);
   }
+};
+
+/**
+ * 구독 버튼 영역 추가
+ */
+const addSubscribeButton = (idx) => {
+  const mediaId = idList[idx];
+  const $buttonWrapper = document.createElement("div");
+  $buttonWrapper.classList.add("news-grid_button_wrapper");
+
+  const $button = document.createElement("button");
+  $button.classList.add(
+    STATE.SUBSCRIBE_LIST.includes(mediaId)
+      ? "news-grid_subscribed_btn"
+      : "news-grid_unsubscribed_btn"
+  );
+  $button.innerText = STATE.SUBSCRIBE_LIST.includes(mediaId)
+    ? "x 해지하기"
+    : "+ 구독하기";
+
+  $button.addEventListener("click", () => {
+    clickSubButton(idx);
+  });
+
+  $buttonWrapper.append($button);
+
+  return $buttonWrapper;
+};
+
+/**
+ * 구독 버튼 이벤트 추가
+ * @parm idx - idList 내에 위치한 미디어 idx
+ */
+const clickSubButton = (idx) => {
+  const mediaId = idList[idx];
+  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
+
+  if (subIdx !== -1) {
+    STATE.SUBSCRIBE_LIST.splice(subIdx);
+    alert("구독해지되었습니다.");
+  } else {
+    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
+  }
+
+  const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
+    ".news-grid_button_wrapper"
+  );
+
+  $buttonWrapper.remove();
+  $newsWrapper.children[idx % MEDIA_NUM].append(addSubscribeButton(idx));
 };
 
 /**
@@ -48,17 +103,12 @@ const setGridArrowEvent = () => {
 /**
  * 언론사 이미지 src 변경
  */
-const changeImgSrc = () => {
-  let newImg = idList.slice(
-    STATE.GRID_PAGE_NUM * MEDIA_NUM,
-    STATE.GRID_PAGE_NUM * MEDIA_NUM + MEDIA_NUM
-  );
-
-  for (let i = 0; i < MEDIA_NUM; i++) {
-    const $img = document.querySelector(`.img${i}`);
-    const imgSrc = STATE.MODE.LIGHT
-      ? `./images/light-media/${newImg[i]}.png`
-      : `./images/dark-media/${newImg[i]}.png`;
+const changeImgSrc = (start, end) => {
+  for (let i = start; i < end; i++) {
+    const $img = document.querySelector(`.img${i - start}`);
+    const imgSrc = STATE.MODE.IS_LIGHT
+      ? `${mediaInfo[idList[i]].path_light}`
+      : `${mediaInfo[idList[i]].path_dark}`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
@@ -72,12 +122,31 @@ const changeImgSrc = () => {
 };
 
 /**
+ * @param {현재 페이지 media 정보} mediaList
+ */
+const changeButtonView = (start, end) => {
+  const $newsList = $newsWrapper.querySelectorAll("li");
+
+  $newsList.forEach((li, idx) => {
+    const $buttonWrapper = li.querySelector(".news-grid_button_wrapper");
+    $buttonWrapper.remove();
+    li.append(addSubscribeButton(start + idx));
+  });
+};
+
+/**
  * Grid 화살표 클릭하기
  * @param num 페이지 이동을 위한 카운트 변수
  */
 const clickArrow = (num) => {
   STATE.GRID_PAGE_NUM += num;
-  changeImgSrc(STATE.GRID_PAGE_NUM);
+
+  let [start, end] = [
+    STATE.GRID_PAGE_NUM * MEDIA_NUM,
+    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM,
+  ];
+  changeImgSrc(start, end);
+  changeButtonView(start, end);
   setArrowVisible();
 };
 
@@ -99,11 +168,16 @@ const setArrowVisible = () => {
   }
 };
 
+const getGridInfo = async () => {
+  mediaInfo = await getJSON("/assets/media-content.json");
+};
+
 /**
  * 초기 그리드뷰 세팅
  */
 async function initGridView() {
-  shuffleList(idList);
+  await getGridInfo();
+  idList = shuffleList(idList);
   setArrowVisible();
   setViewEvent();
   makeGrid();
