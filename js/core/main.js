@@ -2,12 +2,8 @@ import { paintGridNewsstand } from "../newsstand/newsstandGrid.js";
 import { paintSubView } from "../newsstand/newsRolling.js";
 import { newsstandListTab } from "../newsstand/newsstandTab.js";
 import { paintNewsCategory } from "../newsstand/newsCategory.js";
-import { navTag } from "../tag/mediaNavTag.js";
 
 export function renderMain() {
-  // newsstand__media-nav 탭 태그 생성.
-  navTag();
-
   // 뉴스 롤링
   paintSubView();
 

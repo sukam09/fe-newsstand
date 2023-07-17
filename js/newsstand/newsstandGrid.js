@@ -2,23 +2,30 @@ import { shuffle } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { subscribeState } from "../store/subscribeState.js";
+import { navTag } from "../tag/mediaNavTag.js";
 
 let publisherData = await getPressData("./data/pressObj.json");
 
-// 그리드 버튼 태그 생성.
+// 그리드 버튼 태그 / nav 태그 (전체 언론사 / 내가 구독한 언론사 ~~ 아이콘) 생성
 makeButtonTag(".newsstand--grid-navigation-btn", "btn-disabled");
+navTag();
 
 const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
 const LAST_PAGE = 3;
 let selectedPage = 0;
 
+const ul = document.querySelector(".newsstand-area—six-col-list");
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
+const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
+const allPublisher = document.querySelector(".newsstand-all-publisher");
+let isMySubscribe = false;
 
 export async function paintGridNewsstand() {
   initPaintNews();
   pagination();
+  addEventOnMySubAndAllSub();
 }
 
 // 시작할때 img태그를 만들어서 뉴스 로고를 화면에 띄어줌.
@@ -51,25 +58,70 @@ function initPaintNews() {
 }
 
 // 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
-function paintNews(element) {
-  let idx = selectedPage * VIEWED_CONTENS;
-  let elementIdx = 0;
+function paintNews(element, paintData = []) {
+  // 전체 언론사일때.
+  if (!isMySubscribe) {
+    let idx = selectedPage * VIEWED_CONTENS;
+    let elementIdx = 0;
 
-  element.map((imgTag) => {
-    const icon = publisherData[idx].lightSrc;
-    const alt = publisherData[idx].name;
+    element.map((imgTag) => {
+      const icon = publisherData[idx].lightSrc;
+      const alt = publisherData[idx].name;
 
-    // 구독중일때.
-    if (subscribeState.getSubscribeByName(alt).length) {
-      element[elementIdx].children[1].textContent = "x 해지하기";
-    } else {
-      element[elementIdx].children[1].textContent = "+ 구독하기";
-    }
+      element[elementIdx].children[1].classList.remove("btn-disabled");
+      // 구독중일때.
+      if (subscribeState.getSubscribeByName(alt).length) {
+        element[elementIdx].children[1].textContent = "x 해지하기";
+      } else {
+        element[elementIdx].children[1].textContent = "+ 구독하기";
+      }
 
-    imgTag.children[0].src = icon;
-    imgTag.children[0].alt = alt;
-    idx++;
-    elementIdx++;
+      imgTag.children[0].src = icon;
+      imgTag.children[0].alt = alt;
+      idx++;
+      elementIdx++;
+    });
+  } else {
+    let idx = selectedPage * VIEWED_CONTENS;
+    let elementIdx = 0;
+
+    element.map((imgTag) => {
+      if (elementIdx < paintData.length) {
+        const [alt, icon] = paintData[idx];
+        element[elementIdx].children[1].textContent = "x 해지하기";
+
+        imgTag.children[0].src = icon;
+        imgTag.children[0].alt = alt;
+        idx++;
+        elementIdx++;
+      } else {
+        // 구독중일때.
+        element[elementIdx].children[1].classList.add("btn-disabled");
+
+        imgTag.children[0].src = "";
+        imgTag.children[0].alt = "";
+        idx++;
+        elementIdx++;
+      }
+    });
+  }
+}
+
+// 전체 언론사 / 내가 구독한 언론사에 이벤트리스너 등록
+function addEventOnMySubAndAllSub() {
+  const childUl = Array.from(ul.children);
+  mySubscribe.addEventListener("click", () => {
+    selectedPage = 0;
+    isBtnDisabled();
+
+    isMySubscribe = true;
+    const mySubscribeData = subscribeState.getSubscribeState();
+    paintNews(childUl, mySubscribeData);
+  });
+
+  allPublisher.addEventListener("click", () => {
+    isMySubscribe = false;
+    paintNews(childUl);
   });
 }
 
@@ -101,32 +153,21 @@ function mouseOutOnPublisher(element) {
 function userClickSubscribeButton(liElement) {
   return function () {
     const name = liElement.children[0].alt;
+    const src = liElement.children[0].attributes.src.nodeValue;
 
     // 해지하기 버튼을 눌렀을때.
     if (subscribeState.getSubscribeByName(name)[0]) {
-      console.log("해지하기 버튼 클릭");
       liElement.children[1].textContent = "+ 구독하기";
       subscribeState.setUnSubscribeState(name);
     } else {
-      console.log("구독하기 버튼 클릭");
       liElement.children[1].textContent = "x 해지하기";
-      subscribeState.setSubscribeState(name);
+      subscribeState.setSubscribeState(name, src);
     }
   };
 }
 
-// 언론사 이름이 주어졌을때 해당 언론사의 id 찾기.
-function findPublisherId(name) {
-  const [data] = publisherData.filter((item) => item.name === name);
-
-  return data.id;
-}
-
 // 페이지네이션
 function pagination() {
-  const ul = document.querySelector(".newsstand-area—six-col-list");
-  const rightBtn = document.querySelector(".newsstand--right-btn");
-  const leftBtn = document.querySelector(".newsstand--left-btn");
   const childUl = Array.from(ul.children);
 
   leftBtn.addEventListener("click", (e) => {
@@ -144,9 +185,11 @@ function pagination() {
 
 // 페이지에 따라 버튼을 비활성화
 function isBtnDisabled() {
+  // 보고있는 페이지가 첫 페이지라면 좌측 버튼 삭제.
   selectedPage === FIRST_PAGE
     ? leftBtn.classList.add("btn-disabled")
     : leftBtn.classList.remove("btn-disabled");
+  // 보고있는 페이지가 마지막 페이지라면 우측 버튼 삭제.
   selectedPage === LAST_PAGE
     ? rightBtn.classList.add("btn-disabled")
     : rightBtn.classList.remove("btn-disabled");
