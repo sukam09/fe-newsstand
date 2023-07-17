@@ -383,6 +383,20 @@ input[type="radio"]:checked + label
     z-index: 99;
 }
 
+.gridSubscribeBtn{
+    display: flex;
+    height: 24px;
+    padding: 0px 6px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    border-radius: 50px;
+    border: 1px solid #D2DAE0;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    color: #879298;
+}
+
 @keyframes progressAnimation {
     from { width: 0 }
     to   { width: 100% }
