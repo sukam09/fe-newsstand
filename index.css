@@ -112,8 +112,9 @@ main.main{
     grid-template-rows: repeat(4, minmax(97px, auto));
     grid-auto-flow: dense;
     place-items: center;
-    border-right: 1px black solid;
-    border-bottom: 1px black solid;
+    border: 1px solid #D2DAE0;
+    gap: 1px;
+    background-color: #D2DAE0;
 }
 
 #main-grid>div{
@@ -121,9 +122,8 @@ main.main{
     height: 100%;
     width: 100%;
     align-items: center;
+    background-color: #FFFFFF;
     justify-content: center;
-    border-left: 1px black solid;
-    border-top: 1px black solid;
 }
 
 #aside-left{
@@ -389,7 +389,6 @@ input[type="radio"]:checked + label
     padding: 0px 6px;
     justify-content: center;
     align-items: center;
-    gap: 2px;
     border-radius: 50px;
     border: 1px solid #D2DAE0;
     background-color: #FFFFFF;
