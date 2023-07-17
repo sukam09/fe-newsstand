@@ -33,8 +33,6 @@ const initSubscribePressGrid = (pressData) => {
   const subscribeIdsLen = subscribeIds.length;
   localStorage.setItem('subscribePage', 0);
 
-  console.log(subscribeIds);
-
   setGrid('subscribe');
   setGridFrame('subscribe');
   setGridButton('subscribe', subscribeIdsLen);
@@ -165,23 +163,43 @@ const setGridButton = (section, pressIdsLen) => {
   const pressLis = document.querySelectorAll(`.press-logo__li__${section}`);
   const slicePressLis = [];
   pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
-  slicePressLis.forEach((li) => setGridButtonEvent(li));
+  slicePressLis.forEach((li) => {
+    setGridButtonEvent(section, li);
+    setGridButtonClick(section, li);
+  });
 };
 
-const setGridButtonEvent = (li) => {
+const setGridButtonEvent = (section, li) => {
   const pressImg = li.querySelector('img');
   const pressButton = li.querySelector('button');
 
   li.addEventListener('mouseover', () => {
     pressImg.classList.add('none');
     pressButton.classList.remove('none');
-    li.classList.add('press-logo__li__entire-hover');
+    li.classList.add(`press-logo__li__${section}-hover`);
   });
 
   li.addEventListener('mouseout', () => {
     pressImg.classList.remove('none');
     pressButton.classList.add('none');
-    li.classList.remove('press-logo__li__entire-hover');
+    li.classList.remove(`press-logo__li__${section}-hover`);
+  });
+};
+
+// 구독 상태도 전달해주고 처리해야함
+const setGridButtonClick = (section, li) => {
+  li.addEventListener('click', () => {
+    const buttonImg = li.querySelector(`.press-logo__li-img__${section}`);
+    const buttonP = li.querySelector(`.press-logo__li-p__${section}`);
+    const isSubscribe = buttonImg.src.includes('button-plus');
+
+    const newButtonSrc = isSubscribe
+      ? buttonImg.src.replace('plus', 'closed')
+      : buttonImg.src.replace('closed', 'plus');
+    const newButtonP = isSubscribe ? '해지하기' : '구독하기';
+
+    buttonImg.src = newButtonSrc;
+    buttonP.innerText = newButtonP;
   });
 };
 
