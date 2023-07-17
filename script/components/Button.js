@@ -1,4 +1,3 @@
-import { BUTTON } from '../constants.js';
 import Icon from './Icon.js';
 
 const Button = ({ icon, isWhite, text, onClick }) => {
@@ -16,39 +15,4 @@ const Button = ({ icon, isWhite, text, onClick }) => {
   return buttonElement;
 };
 
-const UnSubButton = ({ withText, unsubAction }) =>
-  Button({
-    icon: 'close',
-    isWhite: false,
-    text: withText ? BUTTON.UNSUBSCRIBE : null,
-    onClick: unsubAction,
-  });
-
-const SubButton = ({ isSub, withText = true, subAction, unsubAction }) =>
-  isSub
-    ? UnSubButton({ withText, unsubAction })
-    : Button({
-        icon: 'plus',
-        isWhite: true,
-        text: BUTTON.SUBSCRIBE,
-        onClick: subAction,
-      });
-
-const SubButtonArea = (isSub, subAction, unsubAction) => {
-  const subButtonArea = document.createElement('div');
-
-  subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubButton({ isSub, subAction, unsubAction }));
-  return subButtonArea;
-};
-
-const ArrowButton = direction => {
-  const arrowButton = document.createElement('button');
-
-  arrowButton.id = `${direction}_arrow`;
-  arrowButton.innerHTML = `<img src="assets/images/${direction}.svg" alt="${direction}">`;
-  return arrowButton;
-};
-
 export default Button;
-export { ArrowButton, SubButton, SubButtonArea };

@@ -1,7 +1,6 @@
 import mediaData from '../../../assets/data/mediaData.js';
-import { SUB_MEDIA } from '../../constants.js';
-import { SubButton } from '../Button.js';
 import ListNavItem from '../ListNavItem.js';
+import SubButton from './SubButton.js';
 
 const MediaLogoImg = (src, name) => {
   const mediaLogoElement = document.createElement('img');
@@ -26,12 +25,7 @@ const MediaInfo = (id, newsData) => {
   mediaInfo.classList.add('media_info');
   mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id), newsData.name));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
-  mediaInfo.appendChild(
-    SubButton({
-      isSub: SUB_MEDIA.includes(id),
-      withText: false,
-    })
-  );
+  mediaInfo.appendChild(SubButton(id));
   return mediaInfo;
 };
 

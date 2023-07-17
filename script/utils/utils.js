@@ -1,4 +1,4 @@
-import { ArrowButton } from '../components/Button.js';
+import Arrow from '../components/media/Arrow.js';
 
 export const clearAllChildren = element => {
   Array.from(element.childNodes).forEach(child => child.remove());
@@ -9,12 +9,10 @@ export const shuffleArray = array => {
 };
 
 export const createNewArrow = () => {
-  const leftArrow = document.querySelector('#left_arrow');
-  const rightArrow = document.querySelector('#right_arrow');
-  const newLeftArrow = ArrowButton('left');
-  const newRightArrow = ArrowButton('right');
+  const leftArrow = Arrow('left');
+  const rightArrow = Arrow('right');
 
-  leftArrow.replaceWith(newLeftArrow);
-  rightArrow.replaceWith(newRightArrow);
-  return [newLeftArrow, newRightArrow];
+  document.querySelector('#left_arrow').replaceWith(leftArrow);
+  document.querySelector('#right_arrow').replaceWith(rightArrow);
+  return [leftArrow, rightArrow];
 };
