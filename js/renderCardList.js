@@ -1,4 +1,5 @@
-import { drawInitCategory, drawNewsHeader, drawNewsDiv } from "./category.js";
+import { drawInitCategory } from "./category.js";
+import { drawNews } from "./drawNews.js";
 
 import {
   leftAsideButton,
@@ -13,8 +14,7 @@ function renderCardList() {
   leftAsideButton.style.visibility = "visible";
   rightAsideButton.style.visibility = "visible";
   drawInitCategory();
-  drawNewsHeader();
-  drawNewsDiv();
+  drawNews();
 }
 
 export { renderCardList };
