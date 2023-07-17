@@ -90,6 +90,9 @@ body {
 .category-selected .tab_progress-bar {
   animation: progress 5s linear infinite;
 }
+:not(.category-selected):hover > .tab_category {
+  text-decoration-line: underline;
+}
 .theme-btn:hover {
   box-shadow: 0px 0px 8px 6px var(--color-text-default);
 }
