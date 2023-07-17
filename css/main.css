@@ -40,6 +40,7 @@
 .news .news-navbar_content .select {
   fill: #4362d0;
 }
+
 /* newspapers section */
 .newspaper__list {
   display: grid;
@@ -54,6 +55,21 @@
   border-right: 1px solid #d2dae0;
   text-align: center;
   line-height: 96.25px;
+}
+
+.newspaper__list .newspaper__item button {
+  width: 72px;
+  height: 24px;
+  top: 36px;
+  left: 41px;
+  padding: 0px 6px 0px 6px;
+  border-radius: 50px;
+  border: 1px solid #d2dae0;
+}
+
+.newspaper__list .newspaper__item:hover {
+  background-color: #f5f7f9;
+  cursor: pointer;
 }
 /*  page button */
 

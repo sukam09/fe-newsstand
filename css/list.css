@@ -20,7 +20,7 @@
   color: #5f6e76;
 }
 
-.list-content .list-header .subscribe-btn {
+.news-section .subscribe-btn {
   border: 1px solid #d2dae0;
   border-radius: 50px;
   background-color: #f5f7f9;
@@ -32,8 +32,13 @@
   gap: 2px;
 }
 
-.list-content .list-header .subscribe-btn svg {
+.news-section .subscribe-btn svg {
   padding-top: 3px;
+}
+
+.news-section .newspaper__item .subscribe-btn {
+  display: none;
+  background-color: #ffffff;
 }
 
 .list-content .list-news {
