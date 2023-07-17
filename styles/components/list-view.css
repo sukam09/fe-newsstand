@@ -70,6 +70,9 @@
 .list-view-main_subscribe-btn > span {
   padding-right: 4px;
 }
+.list-view-main_main-news {
+  cursor: pointer;
+}
 .list-view-main_main-news > img {
   margin-bottom: 16px;
 
@@ -99,6 +102,12 @@
   gap: 16px;
 
   color: var(--color-text-bold);
+}
+.list-view-main_sub-news > ul > li {
+  cursor: pointer;
+}
+.list-view-main_sub-news > ul > li:hover {
+  text-decoration-line: underline;
 }
 .list-view-main_notice {
   color: var(--color-text-weak);
