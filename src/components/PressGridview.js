@@ -14,16 +14,14 @@ export default function PressGridView({ $target, initialState }) {
     this.render();
   };
 
-  const fetchNewsPressData = () => {
-    fetch('../data/press-info.json')
-      .then(response => response.json())
-      .then(json => {
-        const shufffledNewsPressData = shuffleArray(json);
-        this.setState({
-          ...this.state,
-          newsPressData: shufffledNewsPressData,
-        });
-      });
+  const fetchNewsPressData = async () => {
+    const res = await fetch('../data/press-info.json');
+    const json = await res.json();
+    const shufffledNewsPressData = shuffleArray(json);
+    this.setState({
+      ...this.state,
+      newsPressData: shufffledNewsPressData,
+    });
   };
 
   const initNewsPressItems = () => {
