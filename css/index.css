@@ -120,15 +120,18 @@ body {
   color: var(--text-default);
   font-size: 16px;
 }
-.all-press {
+.main-tab-btn .clicked {
   color: var(--text-strong);
   font-size: 16px;
   font-weight: 700;
 }
+.all-press,
 .subscribe-press {
   color: var(--text-weak);
   font-size: 16px;
   font-weight: 500;
+}
+.subscribe-press {
   margin-left: 24px;
 }
 .press {

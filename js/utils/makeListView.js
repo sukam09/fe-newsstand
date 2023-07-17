@@ -10,12 +10,13 @@ let order_list = [
   { press: "SBS Biz", imgIndex: 93 },
 ];
 
-async function getNewsData(category) {
+async function getNewsData(category, mode) {
   try {
+    mode === "all" ? (mode = category) : null;
     const response = await fetch("../data/news.json");
     const newsData = await response.json();
     const category_news = newsData.News.filter(
-      (news) => news.category === category
+      (news) => news.category === mode
     );
     return category_news;
   } catch (error) {
@@ -24,8 +25,11 @@ async function getNewsData(category) {
   }
 }
 
-async function drawList(order, category, subscribedPress) {
-  if (category !== "종합/경제")
+async function drawList(order, category, subscribedPress, mode) {
+  if (mode === "subscribe") {
+    subscribedPress.length ? (category = subscribedPress[0]) : (category = "");
+    console.log(category);
+  } else if (category !== "종합/경제")
     order_list = [
       { press: "SBS Biz", imgIndex: 93 },
       { press: "데일리안", imgIndex: 95 },
@@ -41,7 +45,7 @@ async function drawList(order, category, subscribedPress) {
   try {
     const main_list = document.querySelector(".main-list");
     const img = order_list[order - 1].imgIndex;
-    let category_news = await getNewsData(category);
+    let category_news = await getNewsData(category, mode);
     if (
       getPressCount(category_news).length !== 0 &&
       getPressCount(category_news).length < order
@@ -71,14 +75,14 @@ function handleClick(e, subscribedPress) {
   }
 }
 
-export function showListView(order, subscribedPress, category = "") {
+export function showListView(order, subscribedPress, mode, category = "") {
   if (!category) {
     const selected_category = document.querySelector(".category.selected .ctg");
     category = selected_category.textContent;
   }
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = "";
-  drawList(order, category, subscribedPress);
+  drawList(order, category, subscribedPress, mode);
 
   document.addEventListener("click", (e) => handleClick(e, subscribedPress));
 }

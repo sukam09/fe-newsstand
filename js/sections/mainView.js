@@ -29,7 +29,7 @@ function changePage(target, view) {
     showGridView(page, subscribedPress);
     checkPage(page, "grid");
   } else {
-    showListView(page, subscribedPress);
+    showListView(page, subscribedPress, "all");
     checkPage(page, "list");
   }
 }
@@ -49,7 +49,7 @@ function handleClick(e) {
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page, subscribedPress, CATEGORY[0]);
+      showListView(page, subscribedPress, "all", CATEGORY[0]);
       checkPage(page, "list");
       break;
     case "left":
@@ -57,6 +57,19 @@ function handleClick(e) {
       view_content.getElementsByClassName("grid-view").length
         ? changePage(target, "grid")
         : changePage(target, "list");
+      break;
+    case "all":
+      console.log(target);
+      document.getElementById("subscribe").classList.remove("clicked");
+      document.getElementById(`${target}`).classList.add("clicked");
+      break;
+    case "subscribe":
+      document.getElementById("all").classList.remove("clicked");
+      document.getElementById(`${target}`).classList.add("clicked");
+
+      // subscribedPress.length
+      //   ? showListView(page, subscribedPress)
+      //   : showListView(page, subscribedPress, "subscribe", subscribedPress[0]);
       break;
     default:
       break;
