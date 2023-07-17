@@ -12,32 +12,26 @@ const initPressGrid = (pressData) => {
 const initEntirePressGrid = (pressData) => {
   const shuffleIds = getShuffleIds(pressData.length);
   localStorage.setItem('entirePage', 0);
-  const shuffleIdsLen = shuffleIds.length;
 
   setGrid('entire');
   setGridFrame('entire');
   setGridArrow(pressData, shuffleIds, 'entirePage', 'entire');
   setGridLogo(pressData, shuffleIds, 0, 'entire');
-  setGridButton(pressData, shuffleIdsLen, 'entire'); // 실행순서
+  setGridButton(pressData, shuffleIds, 'entire'); // 실행순서
   changeIcon('entire');
 };
 
 const initSubscribePressGrid = (pressData) => {
-  pressData[0].isSub = true; // test
-  pressData[1].isSub = true; // test
   // 구독한 순서대로 처리해야함
-  // subscribePress는 구독한 순서 배열 [언론사id, id, ...]
-
   let subscribeIds = pressData.filter((item) => item.isSub === true);
   subscribeIds = subscribeIds.map((press) => press.id);
-  const subscribeIdsLen = subscribeIds.length;
   localStorage.setItem('subscribePage', 0);
 
   setGrid('subscribe');
   setGridFrame('subscribe');
   setGridArrow(pressData, subscribeIds, 'subscribePage', 'subscribe');
   setGridLogo(pressData, subscribeIds, 0, 'subscribe');
-  setGridButton(pressData, subscribeIdsLen, 'subscribe'); // 실행순서
+  setGridButton(pressData, subscribeIds, 'subscribe'); // 실행순서
   changeIcon('subscribe');
 
   document.querySelector('.press__wrapper-grid__subscribe').classList.add('none');
@@ -122,7 +116,9 @@ const getGridLogo = (pressData, pressIds, section) => {
   pressIds.forEach((pressId, idx) => {
     const selectPress = pressData.find((data) => data.id === pressId);
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
-    logoWapper.setAttribute('pressid', pressId); //////// 수정중
+    logoWapper.setAttribute('pressid', pressId);
+
+    console.log(selectPress);
 
     let mode = localStorage.getItem('mode');
     if (mode === 'light') logoWapper.src = selectPress.lightSrc;
@@ -159,16 +155,16 @@ const changeSrc = (logo) => {
 /**
  * 언론사 그리드의 구독하기 버튼
  */
-const setGridButton = (pressData, pressIdsLen, section) => {
+const setGridButton = (pressData, pressIds, section) => {
   const pressLis = document.querySelectorAll(`.press-logo__li__${section}`);
+  const pressIdsLen = pressIds.length;
   const slicePressLis = [];
   pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
   slicePressLis.forEach((li) => {
     const isSubscribe = getSubscribeState(pressData, li);
     setGridButtonChange(isSubscribe, section, li);
-
     setGridButtonEvent(section, li);
-    setGridButtonClick(pressData, section, li);
+    setGridButtonClick(pressData, pressIds, section, li);
   });
 };
 
@@ -189,7 +185,7 @@ const setGridButtonEvent = (section, li) => {
   });
 };
 
-const setGridButtonClick = (pressData, section, li) => {
+const setGridButtonClick = (pressData, pressIds, section, li) => {
   li.addEventListener('click', () => {
     const pressImg = li.querySelector('img');
     const pressId = Number(pressImg.getAttribute('pressid'));
@@ -200,6 +196,10 @@ const setGridButtonClick = (pressData, section, li) => {
       : (pressData.find((data) => data.id === pressId).isSub = true);
 
     setGridButtonChange(!isSubscribe, section, li);
+
+    // let subscribeIds = pressData.filter((item) => item.isSub === true);
+    // subscribeIds = subscribeIds.map((press) => press.id);
+    // setGridLogo(pressData, subscribeIds, 0, 'subscribe');
   });
 };
 
@@ -221,8 +221,5 @@ const getSubscribeState = (pressData, li) => {
 
   return pressSub;
 };
-
-// 구독한 순서대로
-const getSubscribeQueue = () => {};
 
 export { initPressGrid };

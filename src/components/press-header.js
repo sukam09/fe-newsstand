@@ -11,8 +11,12 @@ import { setTotalPressList } from './press-list.js';
 const initPressHeader = async () => {
   try {
     const fetchData = await getFetchData('./assets/data/press-news.json');
-    const categoryData = fetchData.category;
     let pressData = fetchData.press;
+    // let subscribeIds = [1, 32, 42, 54, 55, 70, 92, 95];
+
+    // setInterval(() => {
+    //   console.log(pressData);
+    // }, 5000);
 
     setNav(getNavLeft());
     setNav(getNavRight());
