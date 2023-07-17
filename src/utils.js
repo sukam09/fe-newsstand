@@ -1,6 +1,6 @@
 import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
 
-function showToday() {
+export function showToday() {
     const date = new Date();
 
     const today = document.querySelector(".today");
@@ -13,7 +13,7 @@ function showToday() {
 }
 
 // brute force로 구현 - 순차탐색
-function myQuerySelector(selector, element = document) {
+export function myQuerySelector(selector, element = document) {
     const matchesSelector = (el) => el.matches(selector);
 
     return Array.from(element.children).reduce((found_el, cur_el) => {
@@ -26,7 +26,7 @@ function myQuerySelector(selector, element = document) {
     }, null);
 }
 
-async function fetchPressData() {
+export async function fetchPressData() {
     try {
         const data = await fetch(PRESS_DATA_PATH)
             .then((res) => res.json())
@@ -39,7 +39,7 @@ async function fetchPressData() {
     }
 }
 
-async function fetchHotTopicData() {
+export async function fetchHotTopicData() {
     try {
         const data = await fetch(HOT_DATA_PATH)
             .then((res) => res.json())
@@ -56,7 +56,7 @@ async function fetchHotTopicData() {
     }
 }
 
-async function fetchNewsData() {
+export async function fetchNewsData() {
     try {
         const data = await fetch(NEWS_DATA_PATH).then((res) => res.json());
 
@@ -66,7 +66,3 @@ async function fetchNewsData() {
         return null;
     }
 }
-
-document.addEventListener("DOMContentLoaded", showToday);
-
-export { fetchPressData, fetchHotTopicData, fetchNewsData, myQuerySelector };
