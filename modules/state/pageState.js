@@ -2,7 +2,7 @@ import { categoryData, pressData } from "./dataState.js";
 
 export const GRID = "grid";
 export const LIST = "list";
-let pageType = GRID;
+// let pageType = GRID;
 
 export const NUM_IN_A_GRID = 24;
 export let MAX_GRID_PAGE = 0;
@@ -13,7 +13,7 @@ export let categoryId = 0;
 export let listPage = 0;
 export let gridPage = 0;
 
-export function initState() {
+export function initPageState() {
   const { categoryList } = categoryData;
   const { pressList } = pressData;
 
@@ -45,14 +45,14 @@ export function setListPage(value) {
   listPage = value;
 }
 
-export function setPageType(type) {
-  if (type === GRID || LIST) {
-    pageType = type;
-  }
-}
-export function getPageType() {
-  return pageType;
-}
+// export function setPageType(type) {
+//   if (type === GRID || LIST) {
+//     pageType = type;
+//   }
+// }
+// export function getPageType() {
+//   return pageType;
+// }
 export function setCategoryId(id) {
   categoryId = parseInt(id);
 

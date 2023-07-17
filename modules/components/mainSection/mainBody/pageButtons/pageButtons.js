@@ -1,10 +1,10 @@
+import { getState } from "../../../../core/observer.js";
 import {
   MAX_GRID_PAGE,
   MAX_LIST_PAGE,
   categoryId,
   decGridPage,
   getListPage,
-  getPageType,
   gridPage,
   incGridPage,
   incListPage,
@@ -17,6 +17,7 @@ import {
   GRID,
   LIST,
 } from "../../../../state/pageState.js";
+import { pageTypeState } from "../../../../state/pageState2.js";
 import { qs } from "../../../../utils.js";
 import {
   hideGridPage,
@@ -52,7 +53,7 @@ export function createLeftPageButton() {
 }
 
 export function showNextPage() {
-  const type = getPageType();
+  const type = getState(pageTypeState);
 
   switch (type) {
     case GRID:
@@ -68,7 +69,7 @@ export function showNextPage() {
 }
 
 export function showPrevPage() {
-  const type = getPageType();
+  const type = getState(pageTypeState);
 
   switch (type) {
     case GRID:
@@ -139,7 +140,7 @@ function showNextGridPage() {
 export function controllButtonShowing() {
   const $leftButton = qs(".left_button");
   const $rightButton = qs(".right_button");
-  const type = getPageType();
+  const type = getState(pageTypeState);
 
   if (type === GRID) {
     if (gridPage >= MAX_GRID_PAGE - 1) {

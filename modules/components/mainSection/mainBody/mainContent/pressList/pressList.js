@@ -8,9 +8,7 @@ import { createNewsHeader } from "./newsHeader/newsHeader.js";
 export function createPressList(categoryId, page) {
   const { categoryList } = categoryData;
   const { pressList } = pressData;
-
-  const category = categoryList[categoryId];
-  const { pressIdList } = category;
+  const { pressIdList } = categoryList[categoryId];
 
   const targetPressList = [...pressList].filter((press) =>
     [...pressIdList].includes(press.id)

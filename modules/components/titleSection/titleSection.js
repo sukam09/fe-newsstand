@@ -3,16 +3,16 @@ import { qs } from "../../utils.js";
 
 export function createTitleSection() {
   return `
-    <section id="title_section">
-      <div class="title_container flex_row">
-        <img class="title_logo" src="/assets/logo/logo.png" alt="" />
-        <h1 class="title">뉴스스탠드</h1>
-      </div>
-      <div id="moon" class="theme_button"></div>
-      <div id="sun" class="theme_button"></div>
-      <span class="date">${getDate()}</span>
-    </section>
-    `;
+  <section id="title_section">
+    <div class="title_container flex_row">
+      <img class="title_logo" src="/assets/logo/logo.png" alt="" />
+      <h1 class="title">뉴스스탠드</h1>
+    </div>
+    <div id="moon" class="theme_button"></div>
+    <div id="sun" class="theme_button"></div>
+    <span class="date">${getDate()}</span>
+  </section>
+  `;
 }
 
 function getDate() {
@@ -39,3 +39,5 @@ export function handleThemeButtonClick() {
     ? ($html.dataset.theme = LIGHT)
     : ($html.dataset.theme = DARK);
 }
+
+export function handleTest() {}
