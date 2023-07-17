@@ -1,5 +1,6 @@
 import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
+import { addSubscribe } from "../store/reducer/subscribe-list.js";
 import { SubscribeButton } from "./components.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
@@ -13,14 +14,26 @@ const fillGridView = (newsData, currentPage) => {
     { length: NEWS_COUNT },
     (_, i) => i + startIdx
   ).reduce((acc, curr) => {
+    const subscribeList = useSelector((state) => state.subscribeList);
+    const isSubscribed = subscribeList.includes(newsData[curr].name);
+
     return (acc += `<li class="grid-cell">
       <img
         class="brand-mark"
         src="${newsData[curr].src[theme]}" 
         alt="${newsData[curr].name}" />
-      ${SubscribeButton()}
+      ${SubscribeButton(isSubscribed)}
     </li>`);
   }, "");
+
+  const $buttons = $gridView.querySelectorAll(".subscribe-btn");
+  $buttons.forEach(($button) => {
+    $button.addEventListener("click", (e) => {
+      const name = e.currentTarget.previousElementSibling.alt;
+
+      store.dispatch(addSubscribe(name));
+    });
+  });
 };
 
 const initGridView = (newsData) => {
