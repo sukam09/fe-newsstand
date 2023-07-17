@@ -14,9 +14,69 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
+
   width: 154px;
   height: 96px;
+
   list-style-type: none;
   border-right: 1px solid #d2dae0;
   border-bottom: 1px solid #d2dae0;
+}
+
+.news-grid-wrapper > li:hover .news-grid_button_wrapper {
+  display: flex;
+}
+
+.news-grid_button_wrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 154px;
+  height: 96px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: var(--grayscale-50);
+}
+
+.news-grid_unsubscribed_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 24px;
+  padding: 0px 6px;
+  gap: 2px;
+
+  color: var(--grayscale-200);
+  border-radius: 50px;
+  border: 1px solid var(--grayscale-100);
+  background-color: var(--grayscale-white);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.news-grid_subscribed_btn {
+  display: flex;
+  height: 24px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+
+  color: var(--grayscale-200);
+  border-radius: 50px;
+  border: 1px solid var(--grayscale-100);
+  background-color: var(--grayscale-50);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
