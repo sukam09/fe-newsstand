@@ -1,3 +1,4 @@
+import presses from "../assets/light-media.js";
 import { removeDisplay, setDisplay } from "./utils.js";
 import { setSubListNav } from "./newsList.js";
 import { drawSubGridView } from "./gridFunction.js";
@@ -13,7 +14,13 @@ function checkViewStatus(target) {
   if (target.textContent === "내가 구독한 언론사") {
     setDisplay(".grid-selected", "query", "none");
     setDisplay(".list-selected", "query", "flex");
-    setDisplay(".sub-press-list-section", "query", "block");
+    if (presses.filter(press => press.isSub === true).length === 0) {
+      setDisplay(".no-sub-item-div", "query", "block");
+    } else {
+      setDisplay(".sub-press-list-section", "query", "block");
+      setSubListNav();
+    }
+
     sub_view_selected = true;
     grid_view_selected = false;
   } else {
@@ -49,9 +56,13 @@ function changeToList() {
   removeDisplay();
   if (sub_view_selected) {
     // svs true면
-    setDisplay(".sub-press-list-section", "query", "block");
-    sub_view_selected = true;
-    setSubListNav();
+    if (presses.filter(press => press.isSub === true).length === 0) {
+      setDisplay(".no-sub-item-div", "query", "block");
+    } else {
+      setDisplay(".sub-press-list-section", "query", "block");
+      sub_view_selected = true;
+      setSubListNav();
+    }
   } else {
     // svs false면
     setDisplay(".press-list-section", "query", "block");

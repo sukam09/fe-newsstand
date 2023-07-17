@@ -188,6 +188,8 @@ function checkSameCategory(target) {
   }
 }
 
+function insertNavArrow() {}
+
 function checkLastCategory() {
   if (now_category === category[category.length - 1] && page_count[now_category] === total_pages[now_category] - 1) {
     return true;
@@ -205,12 +207,18 @@ function setSubListNav() {
   const subscribed_presses = presses.filter(press => press.isSub === true);
   console.log(subscribed_presses);
   const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
+  $sub_list_nav.innerHTML = ""; // 첫뻔째 li에 list-스타일넣기
   [...subscribed_presses].forEach(press => {
     const $li = document.createElement("li");
     $li.classList.add("sub-nav-item");
     $li.textContent = press.name;
     $sub_list_nav.append($li);
   });
+  $sub_list_nav.firstChild.classList.add("list-progress-bar");
+}
+
+function drawSubListNews() {
+  const subscribed_presses = presses.filter(press => press.isSub === true);
 }
 
 export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, setSubListNav };

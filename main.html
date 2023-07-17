@@ -4,6 +4,7 @@
     <title>뉴스스탠드</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/css/main-style.css" />
+    <link rel="stylesheet" href="/css/init-style.css" />
   </head>
   <body>
     <div class="container">
@@ -117,6 +118,13 @@
         </div>
         <section class="press-grid-sub">
           <!--grid 형태의 sub press list-->
+          <div class="grid-subscribe-modal pop-up">
+            <div class="pop-up-top">서울경제을(를)<br />구독해지하시겠습니까?</div>
+            <div class="pop-up-btn-div">
+              <button class="pop-up-btn pos">예, 해지합니다</button>
+              <button class="pop-up-btn neg">아니오</button>
+            </div>
+          </div>
           <img id="sub-grid-prev" class="l-btn" src="/img/icons/LeftButton.svg" />
           <ul id="sub-press-list"></ul>
           <img id="sub-grid-next" class="r-btn" src="/img/icons/RightButton.svg" />
@@ -152,20 +160,13 @@
                 <h2 class="font-init"></h2>
               </div>
               <div class="news-sub">
-                <ul class="news-sub-list">
-                  <!-- <li>"위스키 사려고 이틀 전부터 줄 섰어요"</li>
-                  <li>'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까</li>
-                  <li>사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다</li>
-                  <li>[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"</li>
-                  <li>태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]</li>
-                  <li>LG엔솔, 폴란드 자동차산업협회 가입…유럽서 목소리 키운다</li>
-                  <li class="caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</li> -->
-                </ul>
+                <ul class="news-sub-list"></ul>
               </div>
               <img class="right-btn" src="./img/icons/RightButton.svg" />
             </div>
           </article>
         </section>
+        <div class="no-sub-item-div">구독한 언론사가 없습니다.<br />지금 바로 구독해보세요!</div>
         <section class="sub-press-list-section">
           <!--list 형태의 sub press list-->
           <nav class="sub-list-nav">
@@ -186,15 +187,7 @@
                 <h2 class="font-init"></h2>
               </div>
               <div class="news-sub">
-                <ul class="news-sub-list">
-                  <!-- <li>"위스키 사려고 이틀 전부터 줄 섰어요"</li>
-                  <li>'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까</li>
-                  <li>사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다</li>
-                  <li>[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"</li>
-                  <li>태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]</li>
-                  <li>LG엔솔, 폴란드 자동차산업협회 가입…유럽서 목소리 키운다</li>
-                  <li class="caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</li> -->
-                </ul>
+                <ul class="news-sub-list"></ul>
               </div>
               <img class="right-btn" src="./img/icons/RightButton.svg" />
             </div>
