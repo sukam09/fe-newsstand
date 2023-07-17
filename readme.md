@@ -8,7 +8,7 @@
     ![UI - 2](./docs/test6.png)
 
 2. 시연 영상
-   [![IU(아이유) _ Into the I-LAND](./docs/screen1.png)](https://www.youtube.com/watch?v=KOVuUW7YreQ)
+   [![NEWSSTAND 2주차 시연](./docs/screen1.png)](https://www.youtube.com/watch?v=KOVuUW7YreQ)
 
 3. 네이밍 규칙
 
@@ -71,6 +71,12 @@ fe-newsstand
     -   [ ] 반응형 (모바일)
 
 ---
+
+### 7.17 (월)
+
+-   grid toggle table 수정
+-   렌더링 최적화
+    -   다크모드에서 렌더링 되는 요소
 
 ### 7.14 (금)
 
