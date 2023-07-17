@@ -46,7 +46,9 @@ function showMainList(press) {
       handleMouseOut(_img, ` ${press[shuffledPress[i]].lightSrc}`)
     );
 
-    _img.addEventListener("click", (e) => handleImgClick(e));
+    _img.addEventListener("click", (e) =>
+      handleSubscribeClick(e.target.parentElement.dataset.press)
+    );
 
     main_list_ul.appendChild(_li);
     _li.appendChild(_img);
@@ -54,6 +56,11 @@ function showMainList(press) {
 }
 
 function handleMouseOver(_img, _li) {
+  //local에 아무것도 없을 때
+  if (!localStorage.getItem("press")) {
+    localStorage.setItem("press", JSON.stringify([]));
+  }
+
   let SubscribePress = JSON.parse(localStorage.getItem("press"));
 
   //구독 X
@@ -70,8 +77,7 @@ function handleMouseOut(_img, originImg) {
   _img.setAttribute("src", originImg);
 }
 
-function handleImgClick(e) {
-  const selectedPress = e.target.parentElement.dataset.press;
+function handleSubscribeClick(selectedPress) {
   //local에 아무것도 없을 때
   if (!localStorage.getItem("press")) {
     localStorage.setItem("press", JSON.stringify([]));

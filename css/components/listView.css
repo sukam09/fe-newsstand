@@ -51,9 +51,13 @@
   width: 320px;
   height: 200px;
 }
+
 .list-view-sub {
   width: 530px;
   height: 245px;
+}
+.list-view-sub li:hover {
+  text-decoration: underline;
 }
 
 .list-view-sub li {
@@ -92,7 +96,7 @@
   height: 100%;
   background-color: var(--surface-brand-default);
   animation-name: progressBar;
-  animation-duration: 1s;
+  animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }

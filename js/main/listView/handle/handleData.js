@@ -116,10 +116,32 @@ function getPagesNum(category) {
   return getNews(category).length;
 }
 
+/* transform */
+function transformMainNews() {
+  const mainNews = document.querySelector(".list-view-main");
+  mainNews.addEventListener("mouseover", () =>
+    handleMouseOverAndOut(mainNews, "over")
+  );
+  mainNews.addEventListener("mouseout", () =>
+    handleMouseOverAndOut(mainNews, "out")
+  );
+}
+
+function handleMouseOverAndOut(mainNews, type) {
+  if (type === "over") {
+    mainNews.children[0].style.transform = `scale(1.05)`;
+    mainNews.children[1].style.textDecoration = "underline";
+  } else {
+    mainNews.children[0].style.transform = `scale(1)`;
+    mainNews.children[1].style.textDecoration = "none";
+  }
+}
+
 export {
   makeCategory,
   makeRandomNews,
   getPagesNum,
   findCurrentCategory,
   chageNews,
+  transformMainNews,
 };
