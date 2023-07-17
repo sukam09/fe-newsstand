@@ -13,17 +13,15 @@ const initPressHeader = async () => {
   try {
     const fetchData = await getFetchData('./assets/data/press-news.json');
     let pressData = fetchData.press;
-    let categoryData = fetchData.category;
+    let categoryData = fetchData.category; ////
 
     setNav(getNavLeft());
     setNav(getNavRight());
-    setNavLeft(pressData);
-    setNavRight();
+    setNavClick(pressData);
 
     initLightDarkMode();
     initPressGrid(pressData, LIST.SUFFLE);
 
-    ///
     // initPressList(pressData, categoryData); //
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
@@ -56,53 +54,94 @@ const getNavRight = () => {
 /**
  * 언론사의 헤더 설정
  */
-const setNavLeft = (pressData) => {
+const setNavClick = (pressData) => {
   const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
   const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
-  const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
-  const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
-  const gridWrapper = document.querySelector('.press__wrapper-grid');
-
-  h2Entire.addEventListener('click', () => {
-    toggleNavLeft(true, h2Entire, h2Subscribe, imgList, imgGrid);
-    initPressGrid(pressData, LIST.SUFFLE);
-    gridWrapper.classList.remove('none');
-  });
-  h2Subscribe.addEventListener('click', () => {
-    toggleNavLeft(false, h2Entire, h2Subscribe, imgList, imgGrid);
-    gridWrapper.classList.add('none');
-  });
-};
-
-const toggleNavLeft = (isSelected, h2Entire, h2Subscribe, imgList, imgGrid) => {
-  h2Entire.classList.toggle('press__h2-select', isSelected);
-  h2Entire.classList.toggle('press__h2-unselect', !isSelected);
-  h2Subscribe.classList.toggle('press__h2-select', !isSelected);
-  h2Subscribe.classList.toggle('press__h2-unselect', isSelected);
-  imgList.src = isSelected ? PATH.LIST_ICON : PATH.HIDE_LIST_ICON;
-  imgGrid.src = isSelected ? PATH.GRID_ICON : PATH.HIDE_GRID_ICON;
-};
-
-const setNavRight = () => {
   const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
   const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
   const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
   const listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
 
-  imgList.addEventListener('click', () => {
-    toggleNavRight(true, imgList, imgGrid, gridWrapper, listWrapper);
-  });
-
-  imgGrid.addEventListener('click', () => {
-    toggleNavRight(false, imgList, imgGrid, gridWrapper, listWrapper);
-  });
+  h2Entire.addEventListener('click', () =>
+    entireEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper)
+  );
+  h2Subscribe.addEventListener('click', () =>
+    subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper)
+  );
+  imgList.addEventListener('click', () => listEvent(pressData, imgList, imgGrid, gridWrapper, listWrapper));
+  imgGrid.addEventListener('click', () => gridEvent(pressData, imgList, imgGrid, gridWrapper, listWrapper));
 };
 
-const toggleNavRight = (isSelected, imgList, imgGrid, gridWrapper, listWrapper) => {
-  imgList.src = isSelected ? PATH.LIST_ICON : PATH.HIDE_LIST_ICON;
-  imgGrid.src = isSelected ? PATH.HIDE_GRID_ICON : PATH.GRID_ICON;
-  listWrapper.classList.toggle(STYLE.NONE, !isSelected);
-  gridWrapper.classList.toggle(STYLE.NONE, isSelected);
+const entireEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper) => {
+  gridWrapper.classList.remove('none');
+  listWrapper.classList.add('none');
+
+  h2Entire.classList.add('press__h2-select');
+  h2Entire.classList.remove('press__h2-unselect');
+  h2Subscribe.classList.add('press__h2-unselect');
+  h2Subscribe.classList.remove('press__h2-select');
+
+  imgList.src = PATH.HIDE_LIST_ICON;
+  imgGrid.src = PATH.GRID_ICON;
+
+  STATE.IS_GRID = true;
+  STATE.IS_TOTAL = true;
+
+  initPressGrid(pressData, LIST.SUFFLE);
+};
+
+const subscribeEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper) => {
+  listWrapper.classList.remove('none');
+  gridWrapper.classList.add('none');
+
+  h2Entire.classList.add('press__h2-unselect');
+  h2Entire.classList.remove('press__h2-select');
+  h2Subscribe.classList.add('press__h2-select');
+  h2Subscribe.classList.remove('press__h2-unselect');
+
+  imgList.src = PATH.LIST_ICON;
+  imgGrid.src = PATH.HIDE_GRID_ICON;
+
+  STATE.IS_GRID = false;
+  STATE.IS_TOTAL = false;
+
+  initPressGrid(pressData, LIST.SUBSCRIBE);
+};
+
+const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
+  if (STATE.IS_TOTAL) {
+    listWrapper.classList.remove('none');
+    gridWrapper.classList.add('none');
+
+    imgList.src = PATH.LIST_ICON;
+    imgGrid.src = PATH.HIDE_GRID_ICON;
+  }
+  if (!STATE.IS_TOTAL) {
+    listWrapper.classList.remove('none');
+    gridWrapper.classList.add('none');
+
+    imgList.src = PATH.LIST_ICON;
+    imgGrid.src = PATH.HIDE_GRID_ICON;
+  }
+};
+
+const gridEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
+  if (STATE.IS_TOTAL) {
+    gridWrapper.classList.remove('none');
+    listWrapper.classList.add('none');
+
+    imgList.src = PATH.HIDE_LIST_ICON;
+    imgGrid.src = PATH.GRID_ICON;
+    initPressGrid(pressData, LIST.SUFFLE);
+  }
+  if (!STATE.IS_TOTAL) {
+    gridWrapper.classList.remove('none');
+    listWrapper.classList.add('none');
+
+    imgList.src = PATH.HIDE_LIST_ICON;
+    imgGrid.src = PATH.GRID_ICON;
+    initPressGrid(pressData, LIST.SUBSCRIBE);
+  }
 };
 
 export { initPressHeader };
