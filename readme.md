@@ -48,7 +48,20 @@ fe-newsstand
 └─ readme.md
 ```
 
+## 3주차 To Do List
+
+### 1. [2주차 코드 리팩토링](https://github.com/tommya98/fe-newsstand/issues/1#issue-1806831166)
+
+- [x] 화살표 함수 간략화
+- [x] 배열 swap시 구조 분해 할당 사용
+- [x] 반복문 대신 카테고리 대응 구조체 사용
+- [x] 클래스 삭제후 추가가 아닌 한 번에 세팅
+
 ## 2주차 To Do List
+
+<details>
+<summary>2주차 To Do List 정리</summary>
+<div markdown="1">
 
 ### 1. 1주차 코드 리팩토링
 
@@ -71,7 +84,6 @@ fe-newsstand
 - [x] 뉴스 제목 문자열 전처리 알고리즘 구현
 - [x] 호버시 일시정지 구현
 - [x] setInterval 대신 setTimeout 재귀적으로 사용
-- [ ] 두개의 뉴스 롤링 1초 차이 맞추기
 
 ### 4. 리스트 모드 틀 구현
 
@@ -112,4 +124,6 @@ fe-newsstand
 - [x] 뉴스 데이터 JSON 생성 프로그램 구현
 - [x] 반복되는 동작 함수로 정리
 - [x] 카테고리 별로 자료구조 개선
-- [ ] fetch함수 promise로 병렬적으로 수행
+
+</div>
+</details>
