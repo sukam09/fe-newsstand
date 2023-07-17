@@ -111,6 +111,20 @@ export function useMovePage(direction, option, view_option) {
     }
 }
 
+export function useAnimationSnackBar() {
+    const snack_bar_container = document.querySelector(".snack_bar_container");
+
+    snack_bar_container.style.display = "block";
+    snack_bar_container.style.animation = "appear 0.5s forwards";
+
+    const snack_animation_time = setTimeout(() => {
+        // disappear animation
+        snack_bar_container.style.animation = "disappear 0.5s forwards";
+    }, 3000);
+
+    return snack_animation_time;
+}
+
 export function useControlBanner() {
     const banner_left =
         document.getElementById("rollingBannerLeft").childNodes[0];

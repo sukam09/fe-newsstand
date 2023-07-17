@@ -8,6 +8,7 @@ import {
     useSetProgress,
     useMovePage,
     useControlBanner,
+    useAnimationSnackBar,
 } from "./actions.js";
 import {
     renderGridView,
@@ -15,7 +16,11 @@ import {
     renderPressItem,
 } from "./views/grid_views.js";
 import { renderListView, renderNewsItem } from "./views/list_views.js";
-import { renderHotTopics } from "./views/rolling_views.js";
+import { renderHotTopicsView } from "./views/rolling_views.js";
+import {
+    renderSnackBarView,
+    createSnackBarView,
+} from "./views/snack_bar_views.js";
 
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
@@ -38,9 +43,19 @@ function togglePressEvent() {
 
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
+    let snack_animation_time;
+
     subscribe.forEach((press) => {
         press.addEventListener("click", (e) => {
-            renderSubscribe(press, press.is_subscribe === true);
+            clearTimeout(snack_animation_time);
+            const snack_bar = document.querySelector(".snack_bar_text");
+            snack_animation_time = useAnimationSnackBar();
+            if (!press.is_subscribe) {
+                renderSnackBarView(snack_bar, true);
+            } else {
+                renderSnackBarView(snack_bar, false);
+            }
+            renderSubscribe(press, press.is_subscribe);
         });
     });
 }
@@ -249,9 +264,11 @@ function initEvent() {
             togglePressEvent,
         ]);
 
-        renderHotTopics(data[2][0], data[2][1], () => {
+        renderHotTopicsView(data[2][0], data[2][1], () => {
             bannerMouseEvent(useControlBanner());
         });
+
+        createSnackBarView("container_center");
     });
 }
 
