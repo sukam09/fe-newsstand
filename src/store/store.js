@@ -26,4 +26,28 @@ const categoryState = initState({
   defaultValue: "",
 });
 
-export { viewState, isDarkMode, gridPageState, listPageState, categoryState };
+const subscribeState = initState({
+  key: "subscribeState",
+  defaultValue: [],
+});
+
+const snackBarMsgState = initState({
+  key: "snackBarMsgState",
+  defaultValue: "",
+});
+
+const alertMsgState = initState({
+  key: "alertMsgState",
+  defaultValue: "",
+});
+
+export {
+  viewState,
+  isDarkMode,
+  gridPageState,
+  listPageState,
+  categoryState,
+  subscribeState,
+  snackBarMsgState,
+  alertMsgState,
+};
