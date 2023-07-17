@@ -42,4 +42,4 @@ function actionCreator(type, data) {
 
 const store = createStore(reducer);
 
-export { store, dispatch };
+export { store, actionCreator };
