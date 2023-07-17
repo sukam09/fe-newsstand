@@ -1,6 +1,7 @@
 // 랜덤 그리드 && 버튼
-
+import { clickSubscribe } from "../../utils/clickSubscribe.js";
 import { fetchData } from "../../utils/fetchData.js";
+import { checkPressInLocal } from "../../utils/checkPressInLocal.js";
 
 function initGridView() {
   fetchData(".././assets/press.json").then((press) => makeGridView(press));
@@ -41,13 +42,15 @@ function showMainList(press) {
     _img.setAttribute("src", `${press[shuffledPress[i]].lightSrc}`);
 
     /* li hover 이벤트 리스너 */
-    _li.addEventListener("mouseover", () => handleMouseOver(_img, _li));
+    _li.addEventListener("mouseover", () =>
+      handleMouseOver(_img, _li.dataset.press)
+    );
     _li.addEventListener("mouseout", () =>
       handleMouseOut(_img, ` ${press[shuffledPress[i]].lightSrc}`)
     );
 
     _img.addEventListener("click", (e) =>
-      handleSubscribeClick(e.target.parentElement.dataset.press)
+      clickSubscribe(e.target.parentElement.dataset.press)
     );
 
     main_list_ul.appendChild(_li);
@@ -55,43 +58,16 @@ function showMainList(press) {
   }
 }
 
-function handleMouseOver(_img, _li) {
-  //local에 아무것도 없을 때
-  if (!localStorage.getItem("press")) {
-    localStorage.setItem("press", JSON.stringify([]));
-  }
-
-  let SubscribePress = JSON.parse(localStorage.getItem("press"));
-
-  //구독 X
-  if (!SubscribePress.includes(`${_li.dataset.press}`)) {
+function handleMouseOver(_img, press) {
+  if (checkPressInLocal(press)) {
+    _img.setAttribute("src", `../images/icon/Unsubscribe.svg`);
+  } else {
     _img.setAttribute("src", "../images/icon/Subscribe.svg");
-  }
-  // 구독 O
-  else {
-    _img.setAttribute("src", "../images/icon/Unsubscribe.svg");
   }
 }
 
 function handleMouseOut(_img, originImg) {
   _img.setAttribute("src", originImg);
-}
-
-function handleSubscribeClick(selectedPress) {
-  //local에 아무것도 없을 때
-  if (!localStorage.getItem("press")) {
-    localStorage.setItem("press", JSON.stringify([]));
-  }
-
-  //local에 없으면 추가 있으면 삭제
-  let SubscribePress = JSON.parse(localStorage.getItem("press"));
-
-  if (SubscribePress.includes(selectedPress)) {
-    SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
-  } else {
-    SubscribePress.push(selectedPress);
-  }
-  localStorage.setItem("press", JSON.stringify(SubscribePress));
 }
 
 function changePage(e, press) {

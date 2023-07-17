@@ -1,10 +1,13 @@
 import { category, news_by_category } from "../../../../assets/news.js";
+import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
+  handleMouseOverAndOut,
 } from "./handleEvent.js";
 import { currentPage } from "./handlePage.js";
+import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
 
 function makeRandomNews() {
   category.forEach((cate) => {
@@ -70,7 +73,24 @@ function chageNews(e) {
 function changePressInfo(news) {
   const press_info = document.querySelector(".press-info");
   press_info.children[0].setAttribute("src", `${news.src}`);
+  press_info.children[0].setAttribute("data-press", `${news.name}`);
   press_info.children[1].innerText = `${news.editDate}`;
+
+  if (checkPressInLocal(news.name)) {
+    press_info.children[2].children[0].setAttribute(
+      "src",
+      `../images/icon/Unsubscribe2.svg`
+    );
+  } else {
+    press_info.children[2].children[0].setAttribute(
+      "src",
+      "../images/icon/Subscribe.svg"
+    );
+  }
+
+  press_info.children[2].addEventListener("click", () =>
+    clickSubscribe(news.name)
+  );
 }
 
 function changeMain(news) {
@@ -117,6 +137,7 @@ function getPagesNum(category) {
 }
 
 /* transform */
+
 function transformMainNews() {
   const mainNews = document.querySelector(".list-view-main");
   mainNews.addEventListener("mouseover", () =>
@@ -127,21 +148,11 @@ function transformMainNews() {
   );
 }
 
-function handleMouseOverAndOut(mainNews, type) {
-  if (type === "over") {
-    mainNews.children[0].style.transform = `scale(1.05)`;
-    mainNews.children[1].style.textDecoration = "underline";
-  } else {
-    mainNews.children[0].style.transform = `scale(1)`;
-    mainNews.children[1].style.textDecoration = "none";
-  }
-}
-
 export {
   makeCategory,
   makeRandomNews,
+  transformMainNews,
   getPagesNum,
   findCurrentCategory,
   chageNews,
-  transformMainNews,
 };

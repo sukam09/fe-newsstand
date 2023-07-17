@@ -1,6 +1,7 @@
 import { addAnimation, removeAnimation } from "./handleAnimation.js";
 import { chageNews, getPagesNum } from "./handleData.js";
 import { currentPage, changeCurrentPage } from "./handlePage.js";
+import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 /* category event listeners */
 
 function handleCategoryClick(e) {
@@ -27,4 +28,21 @@ function handleAniamtionIteration(e) {
   //currentPage > totalNum => passAnimation
 }
 
-export { handleAniamtionIteration, handleCategoryClick, handleAniamtionStart };
+/* main news eventlisteners */
+
+function handleMouseOverAndOut(mainNews, type) {
+  if (type === "over") {
+    mainNews.children[0].style.transform = `scale(1.05)`;
+    mainNews.children[1].style.textDecoration = "underline";
+  } else {
+    mainNews.children[0].style.transform = `scale(1)`;
+    mainNews.children[1].style.textDecoration = "none";
+  }
+}
+
+export {
+  handleAniamtionIteration,
+  handleCategoryClick,
+  handleAniamtionStart,
+  handleMouseOverAndOut,
+};
