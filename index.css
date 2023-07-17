@@ -198,6 +198,8 @@ body {
     height: 388px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    border-top: 1px solid var(--border-default);
+    border-left: 1px solid var(--border-default);
 }
 
 .grid_view_container ul {
@@ -208,17 +210,20 @@ body {
     padding: 0;
 }
 
-.grid_view_container .press_data_item {
+.grid_view_container .press_data_container {
     list-style-type: none;
+    border-bottom: 1px solid var(--border-default);
+    border-right: 1px solid var(--border-default);
+}
+
+.press_data_item {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--border-default);
     display: flex;
     justify-content: center;
     align-items: center;
     transform-style: preserve-3d;
 }
-
 .press_item {
     position: absolute;
     backface-visibility: hidden;

@@ -17,12 +17,14 @@ function createPressList(container, data, idx) {
         for (let j = 0; j < ROW_SIZE; j++) {
             const item = data[idx] || { name: "empty", url: "" };
             ul.innerHTML += `
-            <li class="press_data_item">
-                <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${view_option.mode}${item.url}" />
-                <button class="press_item content_subscribe press_back" name="${item.name}" is_subscribe="true">
-                    <img src="./assets/icons/plus.png" />
-                    <span>구독하기</span>
-                </button>
+            <li class="press_data_container">
+                <div class="press_data_item">
+                    <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${view_option.mode}${item.url}" />
+                    <button class="press_item content_subscribe press_back" name="${item.name}" is_subscribe="true">
+                        <img src="./assets/icons/plus.png" />
+                        <span>구독하기</span>
+                    </button>
+                </div>
             </li>
             `;
             idx += 1;
