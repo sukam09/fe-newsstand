@@ -95,12 +95,10 @@ function replaceText(
   dataCnt,
   headlineData
 ) {
-  document.getElementsByClassName(whereCorp)[0].children[
-    currentChildIndex
-  ].textContent = headlineData[dataCnt].publisher;
-  document.getElementsByClassName(whereTitle)[0].children[
-    currentChildIndex
-  ].textContent = headlineData[dataCnt].title;
+  document.querySelector(whereCorp).children[currentChildIndex].textContent =
+    headlineData[dataCnt].publisher;
+  document.querySelector(whereTitle).children[currentChildIndex].textContent =
+    headlineData[dataCnt].title;
 }
 
 function rollingAction(position, action1, class1, action2, class2) {

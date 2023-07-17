@@ -1,6 +1,5 @@
 import { paintGridNewsstand } from "../newsstand/newsstandGrid.js";
-import { paintSubView } from "../newsstand/subView.js";
-import { paintSubViewRight } from "../newsstand/subviewRight.js";
+import { paintSubView } from "../newsstand/newsRolling.js";
 import { newsstandListTab } from "../newsstand/newsstandTab.js";
 import { paintNewsCategory } from "../newsstand/newsCategory.js";
 import { navTag } from "../tag/mediaNavTag.js";
@@ -11,7 +10,6 @@ export function renderMain() {
 
   // 뉴스 롤링
   paintSubView();
-  paintSubViewRight();
 
   // 뉴스 그리드
   paintGridNewsstand();

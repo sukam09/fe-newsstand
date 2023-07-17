@@ -47,9 +47,17 @@
   align-items: center;
 }
 
-.title-image {
+.thumbnail--box {
   width: 320px;
   height: 200px;
+  overflow: hidden;
+}
+.thumbnail-image {
+  width: 100%;
+  transition: all 0.75s;
+}
+.thumbnail-image:hover {
+  transform: scale(1.05);
 }
 .newsstand--publisher-logo {
   display: flex;

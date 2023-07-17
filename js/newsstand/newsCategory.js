@@ -1,13 +1,16 @@
+import { CATEGORY } from "../state/categoryState.js";
+
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
-import { removeChildElement } from "../utils/util.js";
 import {
   nextContents,
-  activeProgressClass,
-  deactiveProgressClass,
   makeNewsList,
+  startProgressAction,
   removeProgressAction,
+  onUserRightClickCategory,
+  onUserLeftClickCategory,
+  onUserClickCategory,
 } from "../utils/category.js";
 
 // console.log(CATEGORY);
@@ -41,7 +44,7 @@ const categoryDataList = [
   magazineData,
   localData,
 ];
-const dummyData = [
+const categoryDataLength = [
   economyData.length,
   broadCastData.length,
   itData.length,
@@ -52,93 +55,55 @@ const dummyData = [
 ];
 
 const CATEROY_NUMBER = categoryList.length;
-const FIRST_CATEGORY = 0;
-const FIRST_PAGE = 0;
 
 const leftBtn = document.querySelector(".left-list-button");
 const rightBtn = document.querySelector(".right-list-button");
-let currentCategory = 0;
-let currentContents = 1;
-let goBefore = false;
-export function paintNewsCategory() {
-  addAnimationEvent();
-  makeNewsList(FIRST_PAGE, CATEROY_NUMBER, currentCategory, categoryDataList);
-  // 사용자가 직접 카테고리를 클릭하면 움직이는 기능.
-  categoryList.map((element, idx) => {
-    element.addEventListener("click", (e) => {
-      // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
-      removeProgressAction();
-      currentCategory = idx % 7;
-      startProgressAction(currentCategory);
 
-      // 목록에 맞는 데이터 생성
-      makeNewsList(
-        FIRST_PAGE,
-        CATEROY_NUMBER,
-        currentCategory,
-        categoryDataList
-      );
-    });
-  });
+export async function paintNewsCategory() {
+  addAnimationEvent();
+  makeNewsList(CATEGORY.FIRST_PAGE, CATEROY_NUMBER, categoryDataList);
+  // 사용자가 직접 카테고리를 클릭하면 움직이는 기능.
+  onUserClickCategory(
+    CATEROY_NUMBER,
+    categoryDataList,
+    categoryList,
+    categoryDataLength
+  );
 
   // 이전 또는 다음 콘텐츠를 보여주도록 함.
-  leftBtn.addEventListener("click", () => {
-    --currentContents;
-
-    if (currentContents <= 0) {
-      goBefore = true;
-      currentContents = 1;
-    }
-    currentContents = currentContents <= 0 ? 1 : currentContents;
-    nextContents(
-      "left",
-      currentCategory,
-      currentContents,
-      CATEROY_NUMBER,
-      categoryList,
-      dummyData,
-      categoryDataList,
-      goBefore
-    );
-  });
-  rightBtn.addEventListener("click", () => {
-    ++currentContents;
-    nextContents(
-      "right",
-      currentCategory,
-      currentContents,
-      CATEROY_NUMBER,
-      categoryList,
-      dummyData,
-      categoryDataList
-    );
-  });
+  onUserLeftClickCategory(
+    leftBtn,
+    CATEROY_NUMBER,
+    categoryList,
+    categoryDataLength,
+    categoryDataList
+  );
+  onUserRightClickCategory(
+    rightBtn,
+    CATEROY_NUMBER,
+    categoryList,
+    categoryDataLength,
+    categoryDataList
+  );
 }
 
 // 그리드 뷰에서 리스트 뷰로 전환시 프로그래스 바를 처음부터 진행시켜주는 함수.
 export function restartProgressBar() {
+  CATEGORY.currentCategory = 0;
   // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
   removeProgressAction();
 
   // 종합/경제 카테고리 li에 클래스 추가.
-  startProgressAction(FIRST_CATEGORY);
+  startProgressAction(categoryList, categoryDataLength);
 }
 
-// 프로그래스 바 액션을 추가.
-
-// 카테고리 변경시 프로그래스 바 진행.
-function startProgressAction(currentCategory) {
-  currentContents = 1;
-
-  const childIndex = currentCategory;
-  const element = categoryList[childIndex]; // 자식 찾기
-
-  activeProgressClass(element, childIndex, currentContents, dummyData);
+export function addListdButton() {
+  leftBtn.classList.remove("btn-disabled");
+  rightBtn.classList.remove("btn-disabled");
 }
-
-// 현재 보고있는 카테고리의 인덱스의 상태를 관리해주는 함수.
-function setCurrentCategorystatus(value) {
-  currentCategory = value;
+export function deleteListButton() {
+  leftBtn.classList.add("btn-disabled");
+  rightBtn.classList.add("btn-disabled");
 }
 
 // 카테고리에 애니메이션과 관련된 이벤트리스너 등록
@@ -157,52 +122,40 @@ function handlProgressAnimationEnd() {
   return function () {
     removeProgressAction();
 
-    goBefore ? --currentCategory : ++currentCategory;
+    CATEGORY.goBefore ? --CATEGORY.currentCategory : ++CATEGORY.currentCategory;
 
-    currentCategory =
-      currentCategory < 0 ? CATEROY_NUMBER - 1 : currentCategory;
+    CATEGORY.currentCategory =
+      CATEGORY.currentCategory < 0
+        ? CATEROY_NUMBER - 1
+        : CATEGORY.currentCategory;
 
-    currentCategory %= CATEROY_NUMBER;
+    CATEGORY.currentCategory %= CATEROY_NUMBER;
 
-    setCurrentCategorystatus(currentCategory);
+    startProgressAction(categoryList, categoryDataLength);
 
-    startProgressAction(currentCategory);
+    makeNewsList(CATEGORY.FIRST_PAGE, CATEROY_NUMBER, categoryDataList);
 
-    makeNewsList(FIRST_PAGE, CATEROY_NUMBER, currentCategory, categoryDataList);
-
-    goBefore = false;
+    CATEGORY.goBefore = 0;
   };
 }
 
 // 프로그래스 바가 진행중일때 실행되는 함수.
 function handleProgressAnimationIteration(element, idx) {
   return function () {
-    ++currentContents;
+    ++CATEGORY.currentContents;
     nextContents(
       "auto",
-      currentCategory,
-      currentContents,
       CATEROY_NUMBER,
       categoryList,
-      dummyData,
+      categoryDataLength,
       categoryDataList
     );
-    element.children[2].textContent = `${currentContents}`;
-    element.children[3].textContent = `/${dummyData[idx]}`;
+    element.children[2].textContent = `${CATEGORY.currentContents}`;
+    element.children[3].textContent = `/${categoryDataLength[idx]}`;
     makeNewsList(
-      currentContents - 1,
+      CATEGORY.currentContents - 1,
       CATEROY_NUMBER,
-      currentCategory,
       categoryDataList
     );
   };
-}
-
-export function addListdButton() {
-  leftBtn.classList.remove("btn-disabled");
-  rightBtn.classList.remove("btn-disabled");
-}
-export function deleteListButton() {
-  leftBtn.classList.add("btn-disabled");
-  rightBtn.classList.add("btn-disabled");
 }

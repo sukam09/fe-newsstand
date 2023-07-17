@@ -1,6 +1,6 @@
 .newsstand__progress {
   height: 40px;
-  animation: progress 1s linear;
+  animation: progress 20s linear;
 }
 .newsstand__progress-category {
   position: absolute;
