@@ -1,8 +1,9 @@
 import { initState } from "../observer/observer.js";
+import { VIEW_TYPE } from "../constants/constants.js";
 
-const isListActivateState = initState({
-  key: "isListActivateState",
-  defaultValue: false,
+const viewState = initState({
+  key: "viewState",
+  defaultValue: VIEW_TYPE.GRID,
 });
 
 const isDarkMode = initState({
@@ -25,10 +26,4 @@ const categoryState = initState({
   defaultValue: "",
 });
 
-export {
-  isListActivateState,
-  isDarkMode,
-  gridPageState,
-  listPageState,
-  categoryState,
-};
+export { viewState, isDarkMode, gridPageState, listPageState, categoryState };

@@ -43,7 +43,7 @@ const ObjectToArrayRandom = (data) => {
   return newArray;
 };
 
-const shuffleObject = (data) => {
+const shuffleObjectRandom = (data) => {
   const newObject = {};
 
   for (const key in data) {
@@ -58,5 +58,5 @@ export {
   shuffleArrayRandom,
   setDate,
   ObjectToArrayRandom,
-  shuffleObject,
+  shuffleObjectRandom,
 };

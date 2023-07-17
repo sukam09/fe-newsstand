@@ -1,19 +1,16 @@
 import {
-  categoryState,
-  isListActivateState,
-  listPageState,
-} from "../../store/store.js";
-import {
   CATEGORY_LENGTH,
   PROGRESS_DIFF,
   PROGRESS_MAX,
   PROGRESS_TIME,
+  VIEW_TYPE,
 } from "../../constants/constants.js";
-import { getState, setState } from "../../observer/observer.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../utils/my-query-selector.js";
+import { getState, setState } from "../../observer/observer.js";
+import { categoryState, viewState, listPageState } from "../../store/store.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
 const $categoryBar = _querySelector("ul", $categoryBarWrapper);
@@ -66,11 +63,14 @@ const stopProgress = () => {
 
 const updateProgress = () => {
   const $progress = _querySelector(".progress");
+
   $progress.style.width = timeElapsed + "%";
 };
 
 const initProgress = () => {
-  getState(isListActivateState) ? startProgress() : stopProgress();
+  const currentViewState = getState(viewState);
+
+  currentViewState === VIEW_TYPE.LIST ? startProgress() : stopProgress();
 };
 
 const updateCurrentPage = () => {
@@ -118,14 +118,15 @@ const changeActivateCategory = (newsList, categoryList) => () => {
 };
 
 const createProgressInner = (title, state, max) => {
-  return `<div class="progress"></div>
-  <div class="progress-component">
-    <span class="hover-underline display-bold14">${title}</span>
-    <div class="display-bold12">
-    <span class="progress-span">${state}</span>
-    <span class="progress-span">/${max}</span>
-    </div>
-  </div>`;
+  return `
+    <div class="progress"></div>
+    <div class="progress-component">
+      <span class="hover-underline display-bold14">${title}</span>
+      <div class="display-bold12">
+        <span class="progress-span">${state}</span>
+        <span class="progress-span font-deactivate">/${max}</span>
+      </div>
+    </div>`;
 };
 
 const setPageActivateState = (newsList) => () => {

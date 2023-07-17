@@ -10,18 +10,22 @@ const toggleMode = () => {
   const $toggleBtn = _querySelector(".darkmode-toggle");
 
   if (currentMode) {
-    if (!$toggleBtn.classList.contains("input-checked"))
+    !$toggleBtn.classList.contains("input-checked") &&
       $toggleBtn.classList.add("input-checked");
+
     $body.className = "dark";
   } else {
-    if ($toggleBtn.classList.contains("input-checked"))
+    $toggleBtn.classList.contains("input-checked") &&
       $toggleBtn.classList.remove("input-checked");
+
     $body.className = "";
   }
 };
 
 const handleToggleButtonClick = () => {
-  setState(isDarkMode, !getState(isDarkMode));
+  const currentMode = getState(isDarkMode);
+
+  setState(isDarkMode, !currentMode);
 };
 
 const setEvents = () => {

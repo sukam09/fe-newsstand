@@ -13,8 +13,12 @@ const CATEGORY_LIST = [
   "매거진/전문지",
   "지역",
 ];
-const CATEGORY_LENGTH = 7;
-const PRESS_ICON = {
+const CATEGORY_LENGTH = CATEGORY_LIST.length;
+const VIEW_TYPE = Object.freeze({
+  LIST: "LIST",
+  GRID: "GRID",
+});
+const PRESS_ICON = Object.freeze({
   오마이뉴스: {
     light: "./src/assets/images/light/0.png",
     dark: "./src/assets/images/dark/0.png",
@@ -399,7 +403,7 @@ const PRESS_ICON = {
     light: "./src/assets/images/light/95.png",
     dark: "./src/assets/images/dark/95.png",
   },
-};
+});
 
 export {
   NEWS_COUNT,
@@ -411,4 +415,5 @@ export {
   PROGRESS_DIFF,
   PROGRESS_MAX,
   CATEGORY_LENGTH,
+  VIEW_TYPE,
 };
