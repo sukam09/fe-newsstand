@@ -24,3 +24,13 @@ img.logo {
   box-shadow: var(--shadow-popup);
   z-index: 50;
 }
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-s {
+  width: 0.75rem;
+  height: 0.75rem;
+}

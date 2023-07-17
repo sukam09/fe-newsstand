@@ -18,6 +18,7 @@
 @import url("/src/style/components/content-grid.css");
 @import url("/src/style/components/alert/alert.css");
 @import url("/src/style/components/subscribe/snackbar/snackbar.css");
+@import url("/src/style/components/subscribe/button.css");
 
 /* global */
 #app {
