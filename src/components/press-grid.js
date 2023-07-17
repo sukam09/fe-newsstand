@@ -1,4 +1,3 @@
-import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
 import { STATE, LIST, PAGE, ARROW } from '../constants/press-data.js';
 import { subscribeEvent } from './press-header.js';
 import { getSliceIds } from '../utils/shuffle.js';
@@ -186,30 +185,17 @@ const setGridButtonClick = (pressData, pressIds, li) => {
     const isSubscribe = LIST.SUBSCRIBE.includes(pressId);
     isSubscribe ? (LIST.SUBSCRIBE = LIST.SUBSCRIBE.filter((id) => id !== pressId)) : LIST.SUBSCRIBE.push(pressId);
     setGridButtonChange(!isSubscribe, li);
-
-    if (isSubscribe) {
-      //취소
-      if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
-    }
-    if (!isSubscribe) {
-      //구독
-      getSnackBar();
-      const snackBar = document.querySelector('.snack-bar');
-      snackBar.classList.remove('hidden');
-
-      setTimeout(() => {
-        snackBar.classList.add('hidden');
-        const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
-        const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
-        const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
-        const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
-        const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
-        const listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
-
-        subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper);
-      }, 5000);
-    }
+    setSubscribe(pressData, pressIds, isSubscribe);
   });
+};
+
+const setSubscribe = (pressData, pressIds, isSubscribe) => {
+  if (isSubscribe) {
+    // 구독해지
+
+    if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
+  }
+  if (!isSubscribe) getSnackBar(pressData);
 };
 
 export { initPressGrid };
