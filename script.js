@@ -34,8 +34,7 @@ function listenCategoryChange(catBtns){
             catBtns[crntListIdx].classList.remove("selected")
             crntListIdx = index;
             catBtns[crntListIdx].classList.add("selected");
-            drawListPage(crntListIdx,crntPage); // empty list content section, draw again
-            updateArrow();
+            drawList(crntListIdx); // empty list content section, draw again
         })
     })
 }
@@ -61,11 +60,23 @@ function drawListPage(crntListIdx, crntPageIdx) {
 
     
 }
-function drawList(crntListIdx) {
+function drawListNav(crntListIdx){
     listNav.innerHTML = "";
     categoryList.forEach((category, index) => {
-        listNav.innerHTML += `<li class="${crntListIdx == index ? "selected category" : "category"}">${category}</li>`
+        let numOfPages = listViewData.filter(data => data.category == category).length;
+        listNav.innerHTML += `
+        <li class="${crntListIdx == index ? "selected category" : "category"}">
+            <div>${category}</div>
+            <div class="${crntListIdx == index ? "" : "hide"} ">
+                <span class="list-page-info display-bold12">
+                    ${crntPage+1}<span>/${numOfPages}</span>
+                </span>
+            </div>
+        </li>`
     })
+}
+function drawList(crntListIdx) {
+    drawListNav(crntListIdx)
     drawListPage(crntListIdx, crntPage);
     listenCategoryChange(listNav.children);
 }
@@ -75,7 +86,7 @@ function listenViewChange(btn, type) {
             crntView = type;
             crntPage = 0;
             crntListIdx = 0;
-            updateArrow(); // initialize current page index and arrow
+            updateArrow(); // initialize current page index, category index (if crntView == "list") and arrow
             switch (type){
                 case "grid":
                     drawPress(crntPage);

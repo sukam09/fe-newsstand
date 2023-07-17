@@ -213,6 +213,14 @@ ul {
 .category:hover {
     text-decoration: underline;
 }
+.selected {
+    display:flex;
+    justify-content: space-between;
+    gap:30px;
+}
 .selected:hover {
     text-decoration: none;
+}
+.list-page-info > span {
+    color : var(--border-default);
 }

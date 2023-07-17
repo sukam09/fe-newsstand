@@ -28,6 +28,7 @@
     --text-bold: var(--grayscale-500);
     --text-default: var(--grayscale-400);
     --text-weak: var(--grayscale-200);
+    --text-white-weak: var(--grayscale-white-alt);
     --text-white-default: var(--grayscale-white);
     --text-point: var(--blue-500);
     --surface-default: var(--grayscale-white);
@@ -38,7 +39,7 @@
     --border-default: var(--grayscale-100);
   
     /* Color System: Dark Mode */
-    --text-stong: var(--grayscale-white);
+    /* --text-stong: var(--grayscale-white);
     --text-bold: var(--grayscale-50);
     --text-default: var(--grayscale-100);
     --text-weak: var(--grayscale-white-alt);
@@ -50,7 +51,7 @@
     --surface-brand-default: var(--blue-500);
     --surface-brand-alt: var(--blue-100);
     --border-bold: var(--grayscale-white-alt);
-    --border-default: var(--grayscale-400);
+    --border-default: var(--grayscale-400); */
   }
   
   /* Typography System */
