@@ -11,6 +11,8 @@ export default class AllNews extends Component {
   setup() {
     const isDarkMode = document.body.className === 'dark';
     this.state = { isDarkMode, view: currentView, pressType: currentPressType };
+
+    this.state.myPress = [];
   }
 
   template() {
