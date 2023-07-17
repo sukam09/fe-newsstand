@@ -65,7 +65,7 @@ function createUnSubButton(id) {
 }
 
 // 그리드 아이템 리스트 태그 생성
-async function createGridItem(element) {
+function createGridItem(element) {
   const newImg = document.createElement("img");
   const li = document.createElement("li");
   const subButtonContainer = createSubButton(element.id);
@@ -79,11 +79,11 @@ async function createGridItem(element) {
   // li 생성
   li.className = "grid_item";
   li.append(subButtonContainer, unSubButtonContainer);
-  await li.addEventListener("mouseover", () => {
+  li.addEventListener("mouseover", () => {
     toggleSubButton(element, subButtonContainer);
     toggleUnSubButton(element, unSubButtonContainer);
   });
-  await li.addEventListener("mouseout", () =>
+  li.addEventListener("mouseout", () =>
     hiddenSubButtons(subButtonContainer, unSubButtonContainer)
   );
 
