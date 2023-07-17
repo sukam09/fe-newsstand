@@ -1,5 +1,8 @@
-import { LIST, PAGE, ARROW } from '../constants/press-data.js';
+import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
+import { STATE, LIST, PAGE, ARROW } from '../constants/press-data.js';
+import { subscribeEvent } from './press-header.js';
 import { getSliceIds } from '../utils/shuffle.js';
+import { getSnackBar } from '../utils/snack-bar.js';
 
 /**
  * 언론사 그리드의 INIT
@@ -137,7 +140,7 @@ const setGridButton = (pressData, pressIds) => {
     const isSubscribe = getSubscribeState(li);
     setGridButtonChange(isSubscribe, li);
     setGridButtonEvent(li);
-    setGridButtonClick(pressData, li);
+    setGridButtonClick(pressData, pressIds, li);
   });
 };
 
@@ -176,7 +179,7 @@ const setGridButtonEvent = (li) => {
   });
 };
 
-const setGridButtonClick = (pressData, li) => {
+const setGridButtonClick = (pressData, pressIds, li) => {
   li.addEventListener('click', () => {
     const pressImg = li.querySelector('img');
     const pressId = Number(pressImg.getAttribute('pressid'));
@@ -184,9 +187,27 @@ const setGridButtonClick = (pressData, li) => {
     isSubscribe ? (LIST.SUBSCRIBE = LIST.SUBSCRIBE.filter((id) => id !== pressId)) : LIST.SUBSCRIBE.push(pressId);
     setGridButtonChange(!isSubscribe, li);
 
-    // 구독 아니면 없어지게
     if (isSubscribe) {
-      initPressGrid(pressData, LIST.SUBSCRIBE);
+      //취소
+      if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
+    }
+    if (!isSubscribe) {
+      //구독
+      getSnackBar();
+      const snackBar = document.querySelector('.snack-bar');
+      snackBar.classList.remove('hidden');
+
+      setTimeout(() => {
+        snackBar.classList.add('hidden');
+        const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
+        const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
+        const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
+        const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
+        const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
+        const listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
+
+        subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper);
+      }, 5000);
     }
   });
 };

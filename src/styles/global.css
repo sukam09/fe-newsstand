@@ -6,3 +6,23 @@
 .hidden {
   visibility: hidden;
 }
+
+/* utils CSS */
+.snack-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin-left: 320px;
+  margin-top: -320px;
+  padding: 16px 24px;
+  height: 22px;
+
+  position: fixed;
+  z-index: 1;
+
+  background-color: var(--blue-500);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  color: var(--grayscale-white-alt);
+}

@@ -105,7 +105,7 @@ const subscribeEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, grid
   STATE.IS_GRID = false;
   STATE.IS_TOTAL = false;
 
-  initPressGrid(pressData, LIST.SUBSCRIBE);
+  // initPressGrid(pressData, LIST.SUBSCRIBE);
 };
 
 const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
@@ -144,4 +144,4 @@ const gridEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
   }
 };
 
-export { initPressHeader };
+export { initPressHeader, subscribeEvent };
