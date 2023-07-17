@@ -18,19 +18,19 @@ async function getNewsData(category, mode) {
   }
 }
 
-async function drawList(order, category, subscribedPress, mode) {
+async function drawList(order, current, subscribedPress, mode) {
   try {
     const main_list = document.querySelector(".main-list");
-    let category_news = await getNewsData(category, mode);
+    let category_news = await getNewsData(current, mode);
     if (category_news.length !== 0 && category_news.length < order) {
-      const currentIndex = CATEGORY.indexOf(category);
-      const nextIndex = (currentIndex + 1) % CATEGORY.length;
-      category = CATEGORY[nextIndex];
-      showListView(1, subscribedPress, mode, category);
-      resetPage();
+      // const currentIndex = CATEGORY.indexOf(category);
+      // const nextIndex = (currentIndex + 1) % CATEGORY.length;
+      // category = CATEGORY[nextIndex];
+      // showListView(1, subscribedPress, mode, category);
+      // resetPage();
       // category_news = await getNewsData(category, "all");
     } else {
-      drawCategory(category_news, order, category);
+      drawCategory(order, CATEGORY, current);
       const newDiv = document.createElement("div");
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
@@ -54,10 +54,16 @@ function handleClick(e, subscribedPress) {
   }
 }
 
-export function showListView(order, subscribedPress, mode, category = "") {
+export function showListView(order, subscribedPress, mode = "", category = "") {
   if (!category) {
     const selected_category = document.querySelector(".category.selected .ctg");
     category = selected_category.textContent;
+  }
+  const _mode = document.querySelector(".main-tab-btn .clicked");
+  console.log(_mode);
+  if (!mode) {
+    const _mode = document.querySelector(".main-tab-btn .clicked");
+    console.log(_mode);
   }
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = "";
