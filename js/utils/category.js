@@ -1,5 +1,8 @@
 import { removeChildElement } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
+
+const CATEGORY_NUMBER = 7;
+
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.style.padding = 0; // 선택된 카테고리의 padding 제거
@@ -196,7 +199,7 @@ export function onUserClickCategory(
     element.addEventListener("click", (e) => {
       // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
       removeProgressAction();
-      CATEGORY.currentCategory = idx % 7;
+      CATEGORY.currentCategory = idx % CATEGORY_NUMBER;
       startProgressAction(categoryList, categoryDataLength);
 
       // 목록에 맞는 데이터 생성

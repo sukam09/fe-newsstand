@@ -1,3 +1,5 @@
+const NEWS_STAND = "뉴스스탠드";
+
 export function makeHeaderTag() {
   const parentNode = document.querySelector("#header");
   const head = `
@@ -6,7 +8,7 @@ export function makeHeaderTag() {
     <img src="./assets/basicIcon/gridSymbolSelected.svg" alt="" />
   </div>
   <h1 class="header—-title">
-    <a onClick="window.location.reload()">뉴스스탠드</a>
+    <a onClick="window.location.reload()">${NEWS_STAND}</a>
   </h1>
 </div>
 <div class="header—-date"><!-- 오늘 날짜 --></div>

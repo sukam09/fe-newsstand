@@ -1,7 +1,6 @@
 import { restartProgressBar } from "./newsCategory.js";
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
-import { subscribeState } from "../state/subscribeState.js";
 
 const VIEW_DISABLED = "view-disabled";
 
