@@ -21,33 +21,3 @@ export function createPressList(categoryId, page) {
   </div>
   `;
 }
-
-export function showListPage(categoryId, page) {
-  hideAllListPage();
-  const $targetNewsPage = qs(`.news_${parseInt(categoryId)}_${page}`);
-  $targetNewsPage.style.display = "block";
-}
-
-export function showNextListPage() {
-  listPage >= MAX_LIST_PAGE ? MAX_LIST_PAGE : (listPage += 1);
-}
-
-export function showPrevListPage() {
-  listPage <= 0 ? 0 : (listPage -= 1);
-}
-
-export function hideAllListPage() {
-  const $newsPageList = qsa(".news");
-  [...$newsPageList].forEach(($newsPage) => {
-    $newsPage.style.display = "none";
-  });
-}
-
-export function hideListContainer() {
-  const $listContainer = qs("#list_container");
-  $listContainer.style.display = "none";
-}
-export function showListContainer() {
-  const $listContainer = qs("#list_container");
-  $listContainer.style.display = "block";
-}

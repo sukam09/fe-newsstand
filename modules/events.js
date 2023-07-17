@@ -19,16 +19,20 @@ import {
   handleLogoButton,
   handleThemeButtonClick,
 } from "./components/titleSection/titleSection.js";
-import { showNextPage, showPrevPage } from "./controller/pageController.js";
 import { getState, setState } from "./core/observer.js";
-import { MAX_GRID_PAGE } from "./state/pageState.js";
+import {
+  MAX_CATEGORY_ID,
+  MAX_GRID_PAGE,
+  MAX_LIST_PAGE,
+} from "./state/pageState.js";
 import {
   GRID,
   LIST,
+  categoryIdState,
   gridPageState,
   listPageState,
   pageTypeState,
-} from "./state/pageState2.js";
+} from "./state/pageState.js";
 import { qs, qsa } from "./utils.js";
 
 export function addEventsOnGridItem() {
@@ -40,28 +44,65 @@ export function addEventsOnGridItem() {
 }
 
 export function addEventsOnPageButton() {
-  const gridPage = getState(gridPageState);
-  const listPage = getState(listPageState);
-
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
 
   $leftBtn.addEventListener("click", () => {
     const pageType = getState(pageTypeState);
+
     if (pageType === GRID) {
       const prevPage = Math.max(getState(gridPageState) - 1, 0);
       setState(gridPageState, prevPage);
-    } else {
-      setState(listPageState, listPage - 1);
+    } else if (pageType === LIST) {
+      const categoryId = getState(categoryIdState);
+      const listPage = getState(listPageState);
+      let prevListPage;
+      let prevCategoryId;
+
+      if (listPage <= 0 && categoryId > 0) {
+        prevCategoryId = categoryId - 1;
+        prevListPage = MAX_LIST_PAGE[categoryId - 1] - 1;
+      } else if (categoryId <= 0 && listPage <= 0) {
+        prevCategoryId = MAX_CATEGORY_ID - 1;
+        prevListPage = MAX_LIST_PAGE[categoryId] - 1;
+      } else {
+        prevCategoryId = categoryId;
+        prevListPage = listPage - 1;
+      }
+      setState(categoryIdState, prevCategoryId);
+      setState(listPageState, prevListPage);
     }
   });
+
   $rightBtn.addEventListener("click", () => {
     const pageType = getState(pageTypeState);
+    const categoryId = getState(categoryIdState);
+
     if (pageType === GRID) {
       const nextPage = Math.min(getState(gridPageState) + 1, MAX_GRID_PAGE - 1);
       setState(gridPageState, nextPage);
     } else if (pageType === LIST) {
-      setState(listPageState, listPage + 1);
+      let nextListPage;
+      let nextCategoryId;
+      const listPage = getState(listPageState);
+      if (
+        listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+        categoryId < MAX_CATEGORY_ID - 1
+      ) {
+        nextCategoryId = categoryId + 1;
+        nextListPage = 0;
+      } else if (
+        listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+        categoryId >= MAX_CATEGORY_ID - 1
+      ) {
+        nextCategoryId = 0;
+        nextListPage = 0;
+      } else {
+        nextCategoryId = categoryId;
+        nextListPage = listPage + 1;
+      }
+      setState(categoryIdState, nextCategoryId);
+      setState(listPageState, nextListPage);
     }
   });
 }
