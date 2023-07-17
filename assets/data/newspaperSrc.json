@@ -221,7 +221,8 @@
       "name": "정신의학신문",
       "darkSrc": "./assets/images/pressLogo/dark/img28.svg",
       "lightSrc": "./assets/images/pressLogo/light/img28.svg",
-      "isSub": false
+      "isSub": false,
+      "category": "종합/경제"
     },
     {
       "id": 29,

@@ -41,39 +41,46 @@
 
 }
 
-#category-all-economy {
+.press-content-category {
   display: flex;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
-  width: 134px;
-  background-color: #7890E7;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.press-content-category-name {
-  color: #ffffff;
-}
-
-.press-content-category-num-now {
-  color: #ffffff;
-}
-
-.press-content-category-num-all {
-  color: #FFFFFFB2;
-}
-
-.press-content-category {
-  justify-content: flex-start;
+  height: 40px;
   padding: 0px 16px;
   color: #879298;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.selected {
+  width: 166px;
+  background-color: blue;
+  color: #ffffff;
+  
+}
+
+.selected > .press-content-category-cnt {
+  display: block;
+}
+
+.unselected {
+  width: auto;
+  background-color: none;
+  color: #879298;
+}
+
+.press-content-category-cnt-now {
+  color: #ffffff;
+}
+
+.press-content-category-cnt {
+  display: none;
+}
+
+.press-content-category-cnt-all {
+  color: #FFFFFFB2;
 }
 
 #press-content-prev {
