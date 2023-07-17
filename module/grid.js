@@ -68,16 +68,24 @@ function moveGrid(direction) {
 function gridHover(event) {
   if (event.type === "mouseenter") {
     const isSubscribe = checkSubscribe(event.target.firstChild.src);
-    const subscribeBtn = document.createElement("img");
-    subscribeBtn.className = "subscribe-btn";
-    subscribeBtn.src = isSubscribe ? ICON.UNSUBSCRIBE : ICON.SUBSCRIBE;
+    const subscribeBtn = document.createElement("button");
+    subscribeBtn.className = "list-sub-btn";
+    const subscribeImg = document.createElement("img");
+    subscribeImg.src = "./icons/SymbolPlus.svg";
+    const subscribeSpan = document.createElement("span");
+    subscribeSpan.className = "available-medium12";
+    subscribeSpan.innerHTML = isSubscribe ? "해지하기" : "구독하기";
+    subscribeBtn.appendChild(subscribeImg);
+    subscribeBtn.appendChild(subscribeSpan);
     subscribeBtn.addEventListener("click", (event) => {
-      toggleSubscribe(event.target.parentNode.firstChild.src);
+      const targetSrc = event.target.localName === "button" ? event.target.parentNode.firstChild.src : event.target.parentNode.parentNode.firstChild.src;
+      const result = toggleSubscribe(targetSrc);
+      event.target.innerHTML = result === "true" ? "해지하기" : "구독하기";
     });
     event.target.appendChild(subscribeBtn);
     event.target.querySelector(".press-logo").style.display = "none";
   } else if (event.type === "mouseleave") {
-    event.target.querySelector(".subscribe-btn").remove();
+    event.target.querySelector(".list-sub-btn").remove();
     event.target.querySelector(".press-logo").style.display = "block";
   }
 }
