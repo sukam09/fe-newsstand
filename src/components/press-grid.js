@@ -164,6 +164,9 @@ const setGridButton = (pressData, pressIdsLen, section) => {
   const slicePressLis = [];
   pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
   slicePressLis.forEach((li) => {
+    const isSubscribe = getSubscribeState(pressData, li);
+    setGridButtonChange(isSubscribe, section, li);
+
     setGridButtonEvent(section, li);
     setGridButtonClick(pressData, section, li);
   });
@@ -186,11 +189,17 @@ const setGridButtonEvent = (section, li) => {
   });
 };
 
-// 구독 상태도 전달해주고 처리해야함
 const setGridButtonClick = (pressData, section, li) => {
   li.addEventListener('click', () => {
+    const pressImg = li.querySelector('img');
+    const pressId = Number(pressImg.getAttribute('pressid'));
     const isSubscribe = getSubscribeState(pressData, li);
-    setGridButtonChange(isSubscribe, section, li);
+
+    isSubscribe
+      ? (pressData.find((data) => data.id === pressId).isSub = false)
+      : (pressData.find((data) => data.id === pressId).isSub = true);
+
+    setGridButtonChange(!isSubscribe, section, li);
   });
 };
 
@@ -198,24 +207,22 @@ const setGridButtonChange = (isSubscribe, section, li) => {
   const buttonImg = li.querySelector(`.press-logo__li-img__${section}`);
   const buttonP = li.querySelector(`.press-logo__li-p__${section}`);
 
-  const newButtonSrc = isSubscribe ? buttonImg.src.replace('closed', 'plus') : buttonImg.src.replace('plus', 'closed');
-  const newButtonP = isSubscribe ? '구독하기' : '해지하기';
+  const newButtonSrc = isSubscribe ? buttonImg.src.replace('plus', 'closed') : buttonImg.src.replace('closed', 'plus');
+  const newButtonP = isSubscribe ? '해지하기' : '구독하기';
 
   buttonImg.src = newButtonSrc;
   buttonP.innerText = newButtonP;
 };
 
-//현재 구독 상태에 따른 버튼 업데이트
 const getSubscribeState = (pressData, li) => {
   const pressImg = li.querySelector('img');
   const pressId = Number(pressImg.getAttribute('pressid'));
   const pressSub = pressData.find((data) => data.id === pressId).isSub;
 
-  pressSub
-    ? (pressData.find((data) => data.id === pressId).isSub = false)
-    : (pressData.find((data) => data.id === pressId).isSub = true);
-
   return pressSub;
 };
+
+// 구독한 순서대로
+const getSubscribeQueue = () => {};
 
 export { initPressGrid };
