@@ -1,5 +1,5 @@
 import { addAnimation, removeAnimation } from "./handleAnimation.js";
-import { chageNews, getPagesNum } from "./handleData.js";
+import { chageNews, getPagesNum } from "./handleNewsData.js";
 import { currentPage, changeCurrentPage } from "./handlePage.js";
 
 /* category event listeners */

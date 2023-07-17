@@ -23,9 +23,6 @@ function moveToSubList(snackbar) {
   document.querySelector(".viewer-btn button").click();
 
   //change contents
-  // const spans = document.querySelectorAll(".main-tab-btn button span");
-  // spans[0].classList.replace("clicked-press", "unclicked-press");
-  // spans[1].classList.replace("unclicked-press", "clicked-press");
 }
 
 export { clickSubscribe };

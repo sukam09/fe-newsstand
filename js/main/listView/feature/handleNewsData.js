@@ -1,12 +1,11 @@
-// import { category, news_by_category } from "../../../../assets/news.js";
-import { category, news_by_category } from "../listView.js";
+import { category, news_by_category } from "./transformNews.js";
 import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
   handleMouseOverAndOut,
-} from "./handleEvent.js";
+} from "./handleCategoryEvent.js";
 import { currentPage } from "./handlePage.js";
 import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
 

@@ -1,6 +1,5 @@
-import { findCurrentCategory } from "./handleData.js";
-// import { news_by_category } from "../../../../assets/news.js";
-import { news_by_category } from "../listView.js";
+import { findCurrentCategory } from "./handleNewsData.js";
+import { news_by_category } from "./transformNews.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
 
 /* about list view left, right Btn */
