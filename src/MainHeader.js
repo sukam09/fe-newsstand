@@ -1,4 +1,4 @@
-import main from "./main/Main.js";
+import main from "./main/main.js";
 import listArticle from "../data/list_article.json" assert { type: "json" };
 import changeImageSrc from "./utils/changeImageSrc.js";
 

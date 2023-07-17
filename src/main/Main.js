@@ -1,10 +1,10 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
 import listArticle from "../../data/list_article.json" assert { type: "json"};
 
-import mainGrid from "./MainGrid.js";
-import mainList from "./MainList.js";
-import clickLeftAsideButton from "./ClickLeftAsideButton.js";
-import clickRightAsideButton from "./ClickRightAsideButton.js";
+import mainGrid from "./mainGrid.js";
+import mainList from "./mainList.js";
+import clickLeftAsideButton from "./clickLeftAsideButton.js";
+import clickRightAsideButton from "./clickRightAsideButton.js";
 
 let categoryProgress;
 

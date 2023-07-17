@@ -1,4 +1,4 @@
-import main from "./Main.js";
+import main from "./main.js";
 export default function clickLeftAsideButton(isAll, view, currentPageNum, categoryNum){
     const leftAsideButton = document.getElementById("aside-left");
     const rightAsideButton = document.getElementById("aside-right");

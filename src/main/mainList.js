@@ -1,5 +1,5 @@
 import listArticle from "../../data/list_article.json" assert { type: "json" };
-import main from "./Main.js";
+import main from "./main.js";
 
 let subscribedNews = [];
 
