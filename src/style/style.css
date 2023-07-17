@@ -17,6 +17,7 @@
 @import url("/src/style/components/content-list.css");
 @import url("/src/style/components/content-grid.css");
 @import url("/src/style/components/alert/alert.css");
+@import url("/src/style/components/subscribe/snackbar/snackbar.css");
 
 /* global */
 #app {
@@ -56,21 +57,6 @@
 .move-page__btn[data-dir="next"] {
   right: -3rem;
   transform: translate(100%, -50%);
-}
-
-.subscribe__btn {
-  display: flex;
-  height: 24px;
-  padding: 0px 6px;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  border-radius: 50px;
-  border: 1px solid var(--color-border-default);
-  background-color: var(--color-surface-alt);
-  color: var(--color-text-weak);
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-medium);
 }
 
 .view {
