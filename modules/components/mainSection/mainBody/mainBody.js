@@ -1,9 +1,4 @@
-import { createPressGrid } from "./content/pressGrid/pressGrid.js";
 import { createContent } from "./content/content.js";
-import {
-  createLeftPageButton,
-  createRightPageButton,
-} from "./pageButtons/pageButtons.js";
 
 export async function createMainBody() {
   return `
@@ -13,4 +8,24 @@ export async function createMainBody() {
       ${createLeftPageButton()}
     </div>
   `;
+}
+
+function createRightPageButton() {
+  return `
+    <img
+      src="/assets/icons/rightbutton.png"
+      class="right_button"
+      alt=""
+    />
+    `;
+}
+
+function createLeftPageButton() {
+  return `
+        <img
+          src="/assets/icons/leftbutton.png"
+          class="left_button"
+          alt=""
+        />
+        `;
 }

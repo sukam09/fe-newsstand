@@ -10,6 +10,7 @@ import {
 } from "../state/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { highlightCategoryItem } from "./categoryController.js";
+
 export function addObserverOnPageType() {
   addObserver(pageTypeState, () => {
     const gridPage = getState(gridPageState);

@@ -1,6 +1,5 @@
 import { NUM_IN_A_GRID } from "../../../../../state/pageState.js";
-import { qs, shuffleArray } from "../../../../../utils.js";
-import { pressItem } from "./pressItem/pressItem.js";
+import { shuffleArray } from "../../../../../utils.js";
 
 export function createPressGrid(pressList, page) {
   let pressGridItems = "";
@@ -15,4 +14,24 @@ export function createPressGrid(pressList, page) {
       ${pressGridItems}
     </ul>
     `;
+}
+
+function pressItem(press) {
+  return `
+  <li class="grid_item" id=${press.id}>
+    <img class="light_press_logo" src=${press.lightSrc}  / >
+    <img class="dark_press_logo" src=${press.darkSrc}  / >
+    ${createSubButton()}
+  </li>
+  `;
+}
+
+// 구독버튼 생성
+function createSubButton() {
+  return `
+  <div class="sub_button_container">
+    <button class="sub_button"> + 구독하기</button>
+    <button class="unsub_button"> x 해지하기</button>
+  </div>
+  `;
 }

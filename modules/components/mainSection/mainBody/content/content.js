@@ -5,7 +5,7 @@ import {
   MAX_LIST_PAGE,
 } from "../../../../state/pageState.js";
 import { createPressGrid } from "./pressGrid/pressGrid.js";
-import { createCategory } from "./pressList/category/category.js";
+import { createCategory } from "./pressList/category.js";
 import { createPressList } from "./pressList/pressList.js";
 
 export function createContent() {
@@ -25,8 +25,8 @@ export function createContent() {
   return `
     <div class="content">
       <div id="list_container">
-      ${createCategory(categoryList)}
-      ${allPressListPage}
+        ${createCategory(categoryList)}
+        ${allPressListPage}
       </div>
       <div id="grid_container">
         ${allPressGridPage}
