@@ -7,6 +7,7 @@
    
 ![ezgif com-video-to-gif](https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/62049151/3e41cd92-644d-4daa-90d4-b8e7f4bff87e)   
 (시연을 위해 자동롤링 시간을 3초로 변경)
+
 #### 전체 언론사 : 리스트 보기
 - [X] 언론사 리스트 뷰 html, css 구현
 - [X] 언론사 리스트 뷰와 그리드 뷰 전환 가능
