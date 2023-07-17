@@ -44,9 +44,16 @@ function showPressImg({pageValue}) {
 }
 
 // 이전 페이지 이동 및 다음 페이지 이동 구현
-function changePressGrid() {
-  sectionPrevButton.addEventListener('click', () => showPressImg({pageValue:-1}));
-  sectionNextButton.addEventListener('click', () => showPressImg({pageValue:1}));
+function changePressGrid(state) {
+  if (state === "grid") {
+    pageNumber = 0;
+    console.log("grid");
+    sectionPrevButton.style.visibility = "hidden";
+    sectionPrevButton.addEventListener('click', () => showPressImg({ pageValue: -1 }));
+    sectionNextButton.addEventListener('click', () => showPressImg({ pageValue: 1 }));
+  }
+  else return false;
 }
+
 
 export { shuffleImgs, changePressGrid };

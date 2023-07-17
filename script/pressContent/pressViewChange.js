@@ -1,5 +1,6 @@
 import { getElemId, getElemClass } from "../../utils/js/getElements.js";
-
+import { changePressGrid } from "./pressGridList.js";
+import { changePressCategory } from "./pressCategory.js";
 // 언론사 뷰 전환시 아이콘 색상 변경(UI)
 function pressViewChange() {
   const pressListView = getElemId(document, 'pressbar-icon-list-view');
@@ -9,12 +10,16 @@ function pressViewChange() {
     pressListView.childNodes[1].setAttribute("fill", "#4362D0");
     pressGridView.childNodes[1].setAttribute("fill", "#879298");
     showPressView("list");
+    changePressCategory("list");
+    changePressGrid("list");
   });
 
   pressGridView.addEventListener('click', () => {
     pressListView.childNodes[1].setAttribute("fill", "#879298");
     pressGridView.childNodes[1].setAttribute("fill", "#4362D0");
     showPressView("grid");
+    changePressGrid("grid");
+    changePressCategory("grid");
   });
 }
 
