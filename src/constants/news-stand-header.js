@@ -16,4 +16,8 @@ const PATH = {
   LOGO: './assets/icons/newspaper.svg',
 };
 
-export { HEADER_CLASS, DATE_OPTIONS, PATH };
+const TITLE = {
+  NAME: '뉴스스탠드',
+};
+
+export { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE };

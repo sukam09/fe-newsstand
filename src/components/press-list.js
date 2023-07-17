@@ -1,3 +1,5 @@
+import { getShuffleIds, getSliceIds } from '../utils/shuffle.js';
+
 let pageNum = 0;
 let currentArticle = 0;
 let currentCategory = 0;

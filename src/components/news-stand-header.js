@@ -1,4 +1,4 @@
-import { HEADER_CLASS, DATE_OPTIONS, PATH } from '../constants/news-stand-header.js';
+import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../constants/news-stand-header.js';
 
 /**
  * 뉴스스탠드의 INIT
@@ -15,7 +15,7 @@ const setHeader = () => {
   const headerElement = `
     <button class=${HEADER_CLASS.BUTTON}>
       <img class=${HEADER_CLASS.IMAGE} src=${PATH.LOGO}></img>
-      <h1 class=${HEADER_CLASS.H1}>뉴스스탠드</h1>
+      <h1 class=${HEADER_CLASS.H1}>${TITLE.NAME}</h1>
     </button>
     <time class=${HEADER_CLASS.TIME}></time>
   `;
