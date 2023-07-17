@@ -3,7 +3,6 @@ import { listenArrow } from "./arrow.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
-
 const categoryList = ["종합/경제","방송/통신","IT","영자지","스포츠/연예","매거진/전문지","지역"]
 
 function listenCategoryChange(catBtns, crntListIdx, crntPage){

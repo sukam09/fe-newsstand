@@ -40,7 +40,7 @@ function listenArrow(crntView, crntPage, crntListIdx = 0){
                     crntPage = 0;
                 }
                 drawList(crntListIdx, crntPage);
-                updateArrow(crntView, crntPage)
+                updateArrow(crntView, crntPage, crntListIdx);
                 break;
         }
         

@@ -8,16 +8,16 @@ function listenHeadlineHover(target){
         target.classList.remove("paused")
     })
 }
-function drawHeadline(target, data){
+function drawHeadline(target){
     target.innerHTML = "";
-    data.forEach((item) => {
+    rollingList.forEach((item) => {
         target.innerHTML += `<span>${item.title}</span>`
     })
-    target.innerHTML += `<span>${data[0].title}</span>` // repeat drawHeadline instantly when rolling-window shows the last headline
+    target.innerHTML += `<span>${rollingList[0].title}</span>` // repeat drawHeadline instantly when rolling-window shows the last headline
 }
-function rollHeadline(target, data, headlineIdx, sectionIdx, isFirstRoll) {
+function rollHeadline(target, headlineIdx, sectionIdx, isFirstRoll) {
     if (headlineIdx >= rollingList.length){
-        drawHeadline(target, data);
+        drawHeadline(target);
         headlineIdx = 0;
     }
     const crntHeadline = target.children[headlineIdx];
@@ -35,7 +35,7 @@ function rollHeadline(target, data, headlineIdx, sectionIdx, isFirstRoll) {
             headlineIdx++;
             target.children[headlineIdx].classList.add("roll");
             isFirstRoll = false
-            rollHeadline(target,data,headlineIdx, sectionIdx, isFirstRoll);
+            rollHeadline(target,headlineIdx, sectionIdx, isFirstRoll);
     })
     
 }

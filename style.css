@@ -216,7 +216,7 @@ ul {
 .selected {
     display:flex;
     justify-content: space-between;
-    gap:30px;
+    width:166px;
 }
 .selected:hover {
     text-decoration: none;
