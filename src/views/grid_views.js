@@ -19,7 +19,7 @@ function createPressList(container, data, idx) {
             ul.innerHTML += `
             <li class="press_data_container">
                 <div class="press_data_item">
-                    <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${view_option.mode}${item.url}" />
+                    <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${view_option.mode}${item.url}" alt="${item.url}"/>
                     <button class="press_item content_subscribe press_back" name="${item.name}" is_subscribe="true">
                         <img src="./assets/icons/plus.png" />
                         <span>구독하기</span>
@@ -31,6 +31,14 @@ function createPressList(container, data, idx) {
         }
         container.appendChild(ul);
     }
+}
+
+function renderPressItem(mode) {
+    const press_items = document.querySelectorAll(".press_data_img");
+
+    press_items.forEach((item) => {
+        item.src = `${ASSETS_IMAGE_PATH}${mode}${item.alt}`;
+    });
 }
 
 function renderSubscribe(press, is_subscribe) {
@@ -50,4 +58,4 @@ function renderSubscribe(press, is_subscribe) {
     }
 }
 
-export { renderGridView, renderSubscribe };
+export { renderGridView, renderSubscribe, renderPressItem };

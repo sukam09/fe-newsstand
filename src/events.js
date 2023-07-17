@@ -8,7 +8,11 @@ import {
     useSetProgress,
     useMovePage,
 } from "./actions.js";
-import { renderGridView, renderSubscribe } from "./views/grid_views.js";
+import {
+    renderGridView,
+    renderSubscribe,
+    renderPressItem,
+} from "./views/grid_views.js";
 import { renderListView, createNewsHeader } from "./views/list_views.js";
 
 function togglePressEvent() {
@@ -197,11 +201,7 @@ function toggleModeEvent() {
         }
         // current view re render
         if (view_option.main === "grid") {
-            renderGridView(
-                view_option.press_data,
-                view_option.grid_current_page,
-                [useToggleArrow, togglePressEvent]
-            );
+            renderPressItem(view_option.mode);
         }
         if (view_option.main === "list") {
             renderListView(
