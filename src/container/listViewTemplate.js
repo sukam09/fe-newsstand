@@ -149,7 +149,7 @@ function createListArrowBtn(btnFactory, isRight) {
 
 // 리스트 뷰 뉴스 생성
 export function createListView(news_category_press) {
-    const $container = document.querySelector(`.${class_name.LIST_VIEW}`);
+    const $container = document.querySelector(`.${class_name.LIST_ENTIRE_VIEW}`);
     const leftArrowBtn = createListArrowBtn(btnFactory, false);
     const rightArrowBtn = createListArrowBtn(btnFactory, true);
 

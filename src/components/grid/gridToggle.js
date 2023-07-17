@@ -1,38 +1,65 @@
-import { MAX_GRID_PAGENUM } from "../../utils/constant.js";
+import { GRID_SIZE } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
 import { class_name } from "../../utils/domClassName.js";
+import { subscribe_press_list } from "../../../data/subscribeIdxList.js";
 
-// grid view page 정보
-export const grid_view_info = (function () {
-    let current_page = 0;
-    const shuffle_press_list = press_list.slice().sort(() => Math.random() - 0.5);
-
-    function getCurrentPage() {
-        return current_page;
+class gridViewInfo {
+    constructor(data, isSub) {
+        this.current_page = 0;
+        this.data = data;
+        this.left_btn_name = `.${class_name.GRID_LEFT_BTN}-${isSub}`;
+        this.right_btn_name = `.${class_name.GRID_RIGHT_BTN}-${isSub}`;
+        this.class_name = `.grid-${isSub}`;
     }
 
-    function getShuffleList() {
-        return shuffle_press_list;
-    }
+    getCurrentPage = function () {
+        return this.current_page;
+    };
 
-    function setPage(isRight) {
-        isRight ? (current_page += 1) : (current_page -= 1);
-    }
+    getMaxPage = function () {
+        return Math.ceil(this.data.length / GRID_SIZE) - 1;
+    };
 
-    return { getCurrentPage, getShuffleList, setPage };
-})();
+    getData = function () {
+        return this.data;
+    };
+
+    getLeftBtn = function () {
+        return this.left_btn_name;
+    };
+
+    getRightBtn = function () {
+        return this.right_btn_name;
+    };
+
+    getClassName = function () {
+        return this.class_name;
+    };
+
+    setPage = function (isRight) {
+        isRight ? (this.current_page += 1) : (this.current_page -= 1);
+    };
+}
+
+// grid view page 정보 (main)
+export const grid_view_info_entire = new gridViewInfo(
+    press_list.slice().sort(() => Math.random() - 0.5),
+    class_name.ENTIRE
+);
+// grid view page 정보 (sub)
+export const grid_view_info_sub = new gridViewInfo(subscribe_press_list, class_name.SUBSCRIBE);
 
 // 페이지 넘길 때 첫번째 마지막 페이지 화살표 숨김
-export function toggleArrow() {
-    const left_btn = document.querySelector(`.${class_name.GRID_LEFT_BTN}`);
-    const right_btn = document.querySelector(`.${class_name.GRID_RIGHT_BTN}`);
+export function toggleArrow(grid_view_info) {
+    const left_btn = document.querySelector(grid_view_info.getLeftBtn());
+    const right_btn = document.querySelector(grid_view_info.getRightBtn());
 
     switch (grid_view_info.getCurrentPage()) {
         case 0:
             left_btn.style.visibility = "hidden";
             right_btn.style.visibility = "visible";
             break;
-        case MAX_GRID_PAGENUM:
+        case grid_view_info.getMaxPage():
             left_btn.style.visibility = "visible";
             right_btn.style.visibility = "hidden";
             break;

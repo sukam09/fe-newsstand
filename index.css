@@ -462,3 +462,19 @@ body {
     line-height: 22px;
     color: #5f6e76;
 }
+
+/* view */
+.grid-entire {
+    display: none;
+}
+
+.grid-subscribe {
+    display: flex;
+}
+.list-entire {
+    display: none;
+}
+
+.list-subscribe {
+    display: none;
+}
