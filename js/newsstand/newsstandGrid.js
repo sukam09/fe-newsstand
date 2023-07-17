@@ -126,8 +126,8 @@ function addEventOnMySubAndAllSub() {
 
 // 각 언론사에 이벤트리스너 등록
 function addEventOnPublisher(liElement, btnElement) {
-  liElement.addEventListener("mouseover", mouseOverOnPublisher(liElement));
-  liElement.addEventListener("mouseout", mouseOutOnPublisher(liElement));
+  liElement.addEventListener("mouseenter", mouseOverOnPublisher(liElement));
+  liElement.addEventListener("mouseleave", mouseOutOnPublisher(liElement));
   btnElement.addEventListener("click", userClickSubscribeButton(liElement));
 }
 
