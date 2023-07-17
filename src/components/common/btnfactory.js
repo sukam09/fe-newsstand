@@ -1,5 +1,10 @@
 import { create } from "../../utils/createElement.js";
-import { ICON_LEFT_ARROW_BTN_URL, ICON_RIGHT_ARROW_BTN_URL, ICON_PLUS_URL } from "../../utils/iconURL.js";
+import {
+    ICON_LEFT_ARROW_BTN_URL,
+    ICON_RIGHT_ARROW_BTN_URL,
+    ICON_PLUS_URL,
+    ICON_CLOSED_URL,
+} from "../../utils/iconURL.js";
 
 class button {
     constructor({ className, events }) {
@@ -37,6 +42,18 @@ class subscribeBtn extends button {
     }
 }
 
+class closedBtn extends button {
+    constructor({ events }) {
+        super({ className: "btn-subscribe closed-icon", events: events });
+        this.$img = create.img({
+            className: "btn-closed-icon",
+            attributes: { src: ICON_CLOSED_URL, alt: "closed-icon" },
+        });
+
+        this.$btn.append(this.$img);
+    }
+}
+
 export class buttonFacotry {
     create(props) {
         switch (props.type) {
@@ -44,6 +61,8 @@ export class buttonFacotry {
                 return new arrowBtn({ className: props.className, events: props.events, isRight: props.isRight });
             case "subscribe":
                 return new subscribeBtn({ className: props.className, events: props.events });
+            case "closed":
+                return new closedBtn({ className: props.className, events: props.events });
             default:
                 return new button({ className: props.className, events: props.events });
         }

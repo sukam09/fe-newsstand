@@ -105,7 +105,7 @@ export const progress_bar_info = (function () {
 
     // 화살표 버튼 클릭
     function onClickArrowBtn() {
-        changePageNum(this.isRight).then(() => {
+        changePageNum(this.is_right).then(() => {
             resetProgressBar();
             renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
             startInterval();
