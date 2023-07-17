@@ -1,17 +1,22 @@
+import { checkPressInLocal } from "./checkPressInLocal";
+
+const SET_TIME = 5000;
+
 function clickSubscribe(selectedPress) {
-  //local에 아무것도 없을 때
-  if (!localStorage.getItem("press")) {
-    localStorage.setItem("press", JSON.stringify([]));
-  }
-
-  //local에 없으면 추가 있으면 삭제
-  let SubscribePress = JSON.parse(localStorage.getItem("press"));
-
-  if (SubscribePress.includes(selectedPress)) {
+  if (checkPressInLocal(selectedPress)) {
     SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
   } else {
     SubscribePress.push(selectedPress);
   }
   localStorage.setItem("press", JSON.stringify(SubscribePress));
+
+  const snackbar = document.querySelector(".snackbar");
+  snackbar.style.display = "block";
+  setTimeout(() => moveToSubList(snackbar), SET_TIME);
 }
+
+function moveToSubList(snackbar) {
+  snackbar.style.display = "none";
+}
+
 export { clickSubscribe };

@@ -50,3 +50,10 @@ li:hover,
 .news-title:hover {
   cursor: pointer;
 }
+
+.snackbar {
+  display: none;
+  position: fixed;
+  top: 55%;
+  left: 39.5%;
+}
