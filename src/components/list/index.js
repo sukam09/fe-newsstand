@@ -13,6 +13,7 @@ import {
   isDarkMode,
   viewState,
   listPageState,
+  subscribeState,
 } from "../../store/store.js";
 import {
   customFetch,
@@ -41,8 +42,11 @@ export const setList = async () => {
   subscribe(categoryState, initListPageState);
 
   subscribe(viewState, initProgress);
+  subscribe(viewState, fillNewsList(newsList));
 
   subscribe(isDarkMode, fillNewsList(newsList));
+
+  subscribe(subscribeState, fillNewsList(newsList));
 
   setCategoryBar(categoryList);
   fillNewsList(newsList)();

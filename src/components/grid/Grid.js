@@ -18,24 +18,30 @@ const fillPressIcons = () => {
   pressIcons
     .slice(startIndex, startIndex + NEWS_COUNT)
     .forEach(({ name, light, dark }) => {
-      $gridView.innerHTML += createGridContent(
-        name,
-        currentMode ? dark : light
+      $gridView.appendChild(
+        createGridContent(name, currentMode ? dark : light)
       );
     });
 };
 
 const createGridContent = (name, light) => {
-  return `<li class="grid-cell card">
+  const $gridContent = document.createElement("li");
+
+  $gridContent.className = "grid-cell card";
+  $gridContent.innerHTML = `
     <div class="content">
       <div class="front">
         <button>
           <img class="grid-cell_news-img" src=${light} alt=${name} />
         </button>
       </div>
-      <div class="back">${createSubscribeButton()}</div>
-    </div>
-  </li>`;
+      <div class="back"></div>
+    </div>`;
+
+  const $subBox = _querySelector(".back", $gridContent);
+  $subBox.appendChild(createSubscribeButton(name));
+
+  return $gridContent;
 };
 
 export { fillPressIcons };

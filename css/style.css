@@ -55,8 +55,22 @@ body {
   background: var(--color-surface-alt);
 }
 
+.subscribe-circle-btn {
+  display: flex;
+  height: 24px;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: var(--border-default);
+  background: var(--color-surface-default);
+}
+.subscribe-circle-btn:hover {
+  background: var(--color-surface-alt);
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 .font-deactivate {
   color: var(--color-text-white-weak);
@@ -139,4 +153,99 @@ body {
   background: linear-gradient(180deg, #777, #3a3a3a);
 
   transform: translateX(-100%);
+}
+
+.snackbar {
+  display: flex;
+  padding: 16px 24px;
+  align-items: flex-start;
+  position: absolute;
+
+  background: var(--color-surface-brand-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+
+  z-index: 10;
+}
+
+.snackbar-body {
+  color: var(--color-text-white-default);
+}
+.snackbar-progress {
+  width: calc(100% - 8px);
+  height: 3px;
+  left: 2px;
+  bottom: 4px;
+
+  position: absolute;
+
+  background: linear-gradient(to right, #fff, var(--color-text-bold));
+  border-radius: inherit;
+
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: progress 4.5s 0.3s linear;
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.visible {
+  display: block !important;
+}
+.invisible {
+  display: none !important;
+}
+
+.alert {
+  width: 320px;
+  position: absolute;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  z-index: 10;
+}
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+}
+.alert-buttons {
+  display: flex;
+  height: 48px;
+  align-items: flex-start;
+  align-self: stretch;
+  background: var(--color-surface-alt);
+}
+.alert-buttons button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: var(--border-default);
+}
+.alert-buttons button:hover {
+  text-decoration: underline;
+}
+.alert-font-activate {
+  color: var(--color-text-strong);
+}
+.alert-font-deactivate {
+  color: var(--color-text-default);
+}
+.alert-buttons button:nth-child(1) {
+  color: var(--color-text-default);
+}
+.alert-buttons button:nth-child(2) {
+  color: var(--color-text-strong);
 }
