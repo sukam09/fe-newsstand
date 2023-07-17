@@ -29,6 +29,12 @@ function renderListView(data, category, page, ...action) {
     action[1](data);
 }
 
+function renderNewsItem(mode) {
+    const content_press = document.querySelector(".content_press");
+
+    content_press.src = `${ASSETS_IMAGE_PATH}${mode}${content_press.alt}`;
+}
+
 function createNewsNav(container, data, page) {
     const nav = document.createElement("nav");
     nav.classList.add("main_nav");
@@ -65,7 +71,8 @@ function createNewsHeader(parent, data, page) {
         }
     });
     container.innerHTML = `
-        <img src="${ASSETS_IMAGE_PATH}${view_option.mode}${press_url}" class="content_press" />
+        <img src="${ASSETS_IMAGE_PATH}${view_option.mode}${press_url}"
+        class="content_press" alt="${press_url}"/>
         <p class="content_edit">${data[page].last_edit} 편집</p>
         <button class="content_subscribe">
             <img src="./assets/icons/plus.png" />
@@ -106,4 +113,4 @@ function createMainContents(parent, data, page) {
     parent.appendChild(container);
 }
 
-export { renderListView, createNewsHeader };
+export { renderListView, createNewsHeader, renderNewsItem };

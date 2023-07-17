@@ -13,7 +13,7 @@ import {
     renderSubscribe,
     renderPressItem,
 } from "./views/grid_views.js";
-import { renderListView, createNewsHeader } from "./views/list_views.js";
+import { renderListView, renderNewsItem } from "./views/list_views.js";
 
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
@@ -204,14 +204,7 @@ function toggleModeEvent() {
             renderPressItem(view_option.mode);
         }
         if (view_option.main === "list") {
-            renderListView(
-                view_option.news_data,
-                view_option.category,
-                view_option.list_current_page,
-                useSetProgress,
-                changeCategoryEvent,
-                movePageEventHandler
-            );
+            renderNewsItem(view_option.mode);
         }
     });
 }
@@ -222,13 +215,11 @@ function initEvent() {
         // data[1] = news
         // data[2] = hot_topic
         view_option.press_data = data[0];
-        console.log(view_option.press_data);
         view_option.categorys.forEach((item) => {
             view_option.news_data[item] = data[1].filter(
                 (news) => news.category === item
             );
         });
-        console.log(view_option.news_data);
         view_option.hot_topic = data[2];
 
         // 처음은 grid view
