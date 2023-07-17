@@ -43,7 +43,9 @@ export default class NewsListView extends Component {
                         <div class="edit-time display-medium12">
                             ${this.getEditTime(newsData.editTime)} 편집
                         </div>
-                        <div class="subscribe-button-wrapper"></div>
+                        <div class="subscribe-button-wrapper" data-name=${
+                            newsData.name
+                        }></div>
                     </div>
                     <div class="articles-container available-medium16">
                         <div class="main-article">
@@ -88,6 +90,7 @@ export default class NewsListView extends Component {
         new SubscribeButton(subscribeButton, {
             viewMode: "list",
             subscribed: false,
+            pressName: subscribeButton.dataset.name,
         });
     }
 

@@ -6,6 +6,7 @@ export default class SubscribeButton extends Component {
         this.state = {
             viewMode: this.props.viewMode,
             subscribed: this.props.subscribed,
+            pressName: this.props.pressName,
         };
     }
     template() {
@@ -26,10 +27,22 @@ export default class SubscribeButton extends Component {
     }
 
     setEvent() {
-        const snackBar = $app.querySelector(".news-snack-bar");
+        const toast = $app.querySelector(".snack-bar-container");
+        const alert = $app.querySelector(".alert-container");
+
         this.$target.addEventListener("click", () => {
-            snackBar.classList.remove("hidden");
-            setTimeout(() => snackBar.classList.add("hidden"), 5000);
+            if (this.state.subscribed === false) {
+                toast.classList.remove("hidden");
+                setTimeout(() => toast.classList.add("hidden"), 5000);
+                // 구독하기 리스트에 추가
+            } else {
+                alert.classList.remove("hidden");
+
+                const alertPressName = alert.querySelector(
+                    ".alert-message > span"
+                );
+                alertPressName.innerHTML = this.state.pressName;
+            }
         });
     }
 }

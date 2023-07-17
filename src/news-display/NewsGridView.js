@@ -35,7 +35,10 @@ export default class NewsGridView extends Component {
             i < 24 * (this.state.page + 1);
             i++
         ) {
-            gridList += `<li class="news-press-item">
+            gridList += `<li class="news-press-item" 
+                            data-id=${this.state.pressData[i].id} 
+                            data-name=${this.state.pressData[i].name}
+                            >
                             <div class="flip-card-container">
                                 <div class="flip-front">
                                     <img class="news-press-item-logo" 
@@ -63,13 +66,13 @@ export default class NewsGridView extends Component {
         });
 
         const subscribeButtons = this.$target.querySelectorAll(".flip-back");
-        subscribeButtons.forEach(
-            (item) =>
-                new SubscribeButton(item, {
-                    viewMode: "grid",
-                    subscribed: false,
-                })
-        );
+        subscribeButtons.forEach((item) => {
+            new SubscribeButton(item, {
+                viewMode: "grid",
+                subscribed: true,
+                pressName: item.parentNode.parentNode.dataset.name,
+            }); // test시에는 true
+        });
     }
 
     setPrevPage() {

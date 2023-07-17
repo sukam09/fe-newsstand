@@ -1,3 +1,5 @@
+import { $app } from "../app.js";
+import Alert from "../common/Alert.js";
 import Component from "../core/Component.js";
 import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
@@ -14,8 +16,9 @@ export default class NewsDisplay extends Component {
         return `
             <div class="news-press-tab-container"></div>
             <div class="news-display-container"></div>
-            <div class="news-snack-bar hidden">
-                <div class="snack-bar-container display-medium16">내가 구독한 언론사에 추가되었습니다.</div>
+            <div class="news-modal-container">
+                <div class="snack-bar-container display-medium16 hidden">내가 구독한 언론사에 추가되었습니다.</div>
+                <div class="alert-container display-medium16 hidden"></div>
             </div> 
         `;
     }
@@ -42,6 +45,9 @@ export default class NewsDisplay extends Component {
                   this.$target.querySelector(".news-display-container"),
                   { newsData: jsonData }
               );
+
+        const modal = $app.querySelector(".alert-container");
+        new Alert(modal);
     }
 
     onClick(viewMode) {
