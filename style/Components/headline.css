@@ -23,6 +23,7 @@
   margin-right: 10px;
   color: var(--color-text-strong);
   font-weight: var(--font-weight-bold);
+  white-space: nowrap;
 }
 
 .headline__content__title {

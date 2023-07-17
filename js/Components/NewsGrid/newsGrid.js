@@ -1,13 +1,4 @@
-import { constants } from "../../Data/constants.js";
-import { renderNewspaper } from "./newspaper.js";
-import { setGridPageButton } from "./pageButton.js";
-
 export function NewsGrid() {
-  document.addEventListener("DOMContentLoaded", () => {
-    renderNewspaper(constants.MIN_PAGE, constants.LIGHT_MODE);
-    setGridPageButton();
-  });
-
   return `
     <section class="news-section-grid">
       <ul class="newspaper__list"></ul>

@@ -1,14 +1,4 @@
-import { setViewerEvent } from "../NavBar/newsViewer.js";
-import { setFieldTab } from "./fieldTab.js";
-import { setListPageButton } from "./pageButton.js";
-
 export function NewsList() {
-  document.addEventListener("DOMContentLoaded", () => {
-    setListPageButton();
-    setFieldTab();
-    setViewerEvent();
-  });
-
   return `
     <section class="news-section-list">
       <ul class="news-list__field-tab">

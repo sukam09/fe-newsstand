@@ -1,77 +1,30 @@
-import { setRolling } from "./rolling.js";
+import { useEffect, useState } from "../../core/index.js";
+import { HeadlineContent } from "./headlineContent.js";
+import { setRolling } from "./Function/rolling.js";
+import { getRollingData } from "./Function/getRollingData.js";
 
 export function Headline() {
+  const [rollingData, setRollingData] = useState([]);
+
+  useEffect(async () => {
+    const getData = await getRollingData();
+    setRollingData(getData);
+  }, []);
+
   document.addEventListener("DOMContentLoaded", () => {
-    setRolling();
+    const timer = setInterval(() => {
+      const $ul = document.querySelector(".headline__content_rolling > ul");
+      if ($ul) {
+        setRolling();
+        clearInterval(timer);
+      }
+    }, 100);
   });
 
   return `
     <section class="headline">
-      <div class="headline__content">
-        <div class="headline__content__newspaper">연합뉴스</div>
-        <div class="headline__content_rolling">
-          <ul>
-            <li>
-              <span class="headline__content__title">
-                [1보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [2보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [3보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [4보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [5보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="headline__content">
-        <div class="headline__content__newspaper">연합뉴스</div>
-        <div class="headline__content_rolling">
-          <ul>
-            <li>
-              <span class="headline__content__title">
-                [1보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [2보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [3보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [4보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
-              </span>
-            </li>
-            <li>
-              <span class="headline__content__title">
-                [5보] 최고위원 본경선, 김병민•김용태•김재원•민영삼
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      ${HeadlineContent({ rollingData: rollingData.slice(0, 5) })}
+      ${HeadlineContent({ rollingData: rollingData.slice(5) })}
     </section>
   `;
 }
