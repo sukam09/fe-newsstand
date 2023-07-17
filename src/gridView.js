@@ -82,11 +82,7 @@ function createGridItem(element) {
 
 // 구독버튼 토글
 function toggleSubButton(element, subButtonContainer) {
-  if (element.isSub) {
-    subButtonContainer.style.display = "none";
-  } else {
-    subButtonContainer.style.display = "flex";
-  }
+  subButtonContainer.style.display = element.isSub ? "none" : "flex";
 }
 
 // 해지버튼 토글
