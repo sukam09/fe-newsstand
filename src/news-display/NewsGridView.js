@@ -1,6 +1,7 @@
 import Component from "../core/Component.js";
 import { shuffleNewsPress } from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
+import SubscribeButton from "../common/SubscribeButton.js";
 
 const MIN_PAGE = 0;
 const MAX_PAGE = 3;
@@ -35,10 +36,16 @@ export default class NewsGridView extends Component {
             i++
         ) {
             gridList += `<li class="news-press-item">
-                            <img class="news-press-item-logo" 
-                                src=${this.state.pressData[i].logo} 
-                                alt="${this.state.pressData[i].name}"
-                            />
+                            <div class="flip-card-container">
+                                <div class="flip-front">
+                                    <img class="news-press-item-logo" 
+                                        src=${this.state.pressData[i].logo} 
+                                        alt="${this.state.pressData[i].name}"
+                                    />
+                                </div>
+                                <div class="flip-back">
+                                </div>
+                            </div>
                         </li>`;
         }
 
@@ -54,6 +61,15 @@ export default class NewsGridView extends Component {
             hidden: this.state.page === MAX_PAGE,
             onClick: this.setNextPage.bind(this),
         });
+
+        const subscribeButtons = this.$target.querySelectorAll(".flip-back");
+        subscribeButtons.forEach(
+            (item) =>
+                new SubscribeButton(item, {
+                    viewMode: "grid",
+                    subscribed: false,
+                })
+        );
     }
 
     setPrevPage() {
