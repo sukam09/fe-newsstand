@@ -1,4 +1,7 @@
-import { showListPage } from "../../../../../../controller/pageController.js";
+import {
+  showListPage,
+  updatePageCount,
+} from "../../../../../../controller/pageController.js";
 import { getState, setState } from "../../../../../../core/observer.js";
 import {
   MAX_CATEGORY_ID,
@@ -8,7 +11,7 @@ import {
   categoryIdState,
   listPageState,
 } from "../../../../../../state/pageState.js";
-import { highlightCategoryItem, updatePageCount } from "./categoryItem.js";
+import { highlightCategoryItem } from "./categoryItem.js";
 
 export function createProgressBar() {
   return `

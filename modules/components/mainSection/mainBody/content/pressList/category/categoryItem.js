@@ -47,11 +47,3 @@ export function highlightCategoryItem() {
   const $progressbar = $category.getElementsByClassName("progressbar")[0];
   startProgressAnimation($progressbar);
 }
-
-export function updatePageCount() {
-  const listPage = getState(listPageState);
-  const categoryId = getState(categoryIdState);
-  const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
-  const $nowPage = $categoryItem.querySelector(".now_page");
-  $nowPage.innerHTML = listPage + 1;
-}

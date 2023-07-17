@@ -16,22 +16,3 @@ export function createPressGrid(pressList, page) {
     </ul>
     `;
 }
-
-export function showGridPage(page) {
-  const pressGrid = document.getElementById(`grid_page_${page}`);
-  pressGrid.style.display = "grid";
-}
-
-export function hideGridPage(page) {
-  const pressGrid = document.getElementById(`grid_page_${page}`);
-  pressGrid.style.display = "none";
-}
-
-export function hideGridContainer() {
-  const $gridContainer = qs("#grid_container");
-  $gridContainer.style.display = "none";
-}
-export function showGridContainer() {
-  const $gridContainer = qs("#grid_container");
-  $gridContainer.style.display = "block";
-}

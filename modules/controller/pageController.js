@@ -1,7 +1,4 @@
-import {
-  highlightCategoryItem,
-  updatePageCount,
-} from "../components/mainSection/mainBody/content/pressList/category/categoryItem.js";
+import { highlightCategoryItem } from "../components/mainSection/mainBody/content/pressList/category/categoryItem.js";
 import { addObserver, getState } from "../core/observer.js";
 import { MAX_GRID_PAGE } from "../state/pageState.js";
 import {
@@ -72,7 +69,7 @@ export function controllButtonShowing() {
   }
 }
 
-function showGridPage(page) {
+export function showGridPage(page) {
   const $gridPages = qsa(".press_grid");
   [...$gridPages].forEach((grid) => {
     grid.style.display = "none";
@@ -112,4 +109,12 @@ function hideListContainer() {
 function showListContainer() {
   const $listContainer = qs("#list_container");
   $listContainer.style.display = "block";
+}
+
+export function updatePageCount() {
+  const listPage = getState(listPageState);
+  const categoryId = getState(categoryIdState);
+  const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
+  const $nowPage = $categoryItem.querySelector(".now_page");
+  $nowPage.innerHTML = listPage + 1;
 }
