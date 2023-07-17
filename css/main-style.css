@@ -576,6 +576,7 @@ h1 {
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .list-nav > ul > li:hover {
@@ -738,16 +739,20 @@ h1 {
   align-items: flex-start;
   position: absolute;
   z-index: 3;
+  transform: translate(95.5%, 89%);
+  display: none;
 }
 
 .pop-up-top {
-  display: flex;
   padding: 24px;
   align-items: flex-start;
   gap: 10px;
   align-self: stretch;
   border: 1px solid var(--border-border-default, #d2dae0);
+  border-bottom: none;
   background: var(--surface-surface-default, #fff);
+  text-align: center;
+  flex: 1 0 0;
 }
 
 .pop-up-btn-div {
@@ -765,4 +770,9 @@ h1 {
   gap: 10px;
   flex: 1 0 0;
   align-self: stretch;
+  cursor: pointer;
+}
+
+.pos {
+  border-right: none !important;
 }

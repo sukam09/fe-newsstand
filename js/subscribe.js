@@ -3,6 +3,7 @@ import { setDisplay } from "./utils.js";
 import { MODAL_POPUP_TIME } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
 import { checkViewStatus } from "./viewHandler.js";
+import { onUndiscribeModal } from "./modal.js";
 
 function gridMouseOver(target) {
   const $original = target.querySelector("img");
@@ -48,8 +49,7 @@ function initSubGridItemEvent(item) {
   item.addEventListener("mouseenter", e => gridMouseOver(e.target));
   item.addEventListener("mouseleave", e => gridMouseOut(e.target));
   item.addEventListener("click", e => {
-    gridMouseClick(e.target);
-    drawSubGridView();
+    onUndiscribeModal(e.target);
   });
 }
 
@@ -77,4 +77,13 @@ function initSpanEvent() {
   [...$press_options].forEach(span => span.addEventListener("click", e => checkViewStatus(e.target)));
 }
 
-export { initGridItemEvent, preventButtonClick, listSubMouseClick, initSpanEvent, removeGridSubscribe, initSubGridItemEvent };
+export {
+  initGridItemEvent,
+  preventButtonClick,
+  listSubMouseClick,
+  initSpanEvent,
+  removeGridSubscribe,
+  initSubGridItemEvent,
+  gridMouseClick,
+  drawSubGridView,
+};
