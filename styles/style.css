@@ -330,6 +330,10 @@ header {
   cursor: pointer;
 }
 
+.text-button:hover:not(.text-button-selected) {
+  text-decoration: underline;
+}
+
 .text-button-selected {
   position: relative;
   width: 166px;
