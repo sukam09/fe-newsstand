@@ -40,8 +40,11 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
   /** sub-title 띄우기*/
   const $pressNewsSub = document.querySelector('.press-news-sub');
   $pressNewsSub.innerHTML = `
-    ${shuffledPressNews[categoryIdx][newsPage]["subTitle"].map(sub => `<li class = "press-news-sub-list">${sub}</li>`).join('')}
+    ${shuffledPressNews[categoryIdx][newsPage]["subTitle"].map(sub => `<p class = "press-news-sub-list">${sub}</p>`).join('')}
   `
+
+  /** 편집권 안내문구 띄우기 */
+  $pressNewsSub.innerHTML +=`<p class = "text-weak display-medium14"> 편집 권한에 대한 문구</p>`
 }
 
 /**
@@ -71,6 +74,7 @@ async function initNews() {
   drawPressNews(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   $listIcon.addEventListener('click', (event) => {
     initProgress(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
+    drawPressNews(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   })
   turnNewsPage(shuffledPressNews, START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX);
   showNewsOfCategory(shuffledPressNews, categories)
