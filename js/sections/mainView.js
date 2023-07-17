@@ -34,6 +34,10 @@ function changePage(target, view) {
   }
 }
 
+export function resetPage() {
+  page = 1;
+}
+
 function handleClick(e) {
   const view_content = document.querySelector(".view-content");
   const target = e.target.id;

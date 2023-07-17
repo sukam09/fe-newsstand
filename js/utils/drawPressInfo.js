@@ -67,15 +67,15 @@ function showSubscribeButton(subscribedPress, press) {
     cancel_btn.style.display = "none";
   }
 }
-export function drawPressInfo(img, subscribedPress, press) {
+export function drawPressInfo(category_news, subscribedPress, press) {
   const press_news = document.querySelector(".press-news");
   press_news.innerHTML = `<div class="press-info">
       <img
         id="press-logo"
         alt="press-logo"
-        src="../assets/images/logo/light/img${img}.svg"
+        src="${category_news.src}"
       />
-      <span class="edit-date">2023.07.12 16:52 편집</span>
+      <span class="edit-date">${category_news.edit_date} 편집</span>
       <div class="sub">
         <button class="sub subscribe">
           <img src="../assets/icons/plus.svg" />
