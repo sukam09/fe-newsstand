@@ -1,0 +1,41 @@
+.alert {
+  min-width: 320px;
+  border: 1px solid var(--color-border-default);
+}
+
+.alert__content {
+  padding: 1.5rem;
+  background-color: var(--color-surface-default);
+  color: var(--color-text-default);
+  text-align: center;
+}
+
+.alert__company {
+  color: var(--color-text-strong);
+  font: var(--font-bold-m);
+}
+
+.alert__buttons {
+  background-color: var(--color-surface-alt);
+  display: flex;
+}
+
+.alert__button {
+  flex: 1;
+  padding: 0.625rem;
+  text-align: center;
+  border-top: 1px solid var(--color-border-default);
+  border-left: 1px solid var(--color-border-default);
+}
+
+.alert__button:first-child {
+  border-left: none;
+}
+
+.alert__button--unsubscribe {
+  color: var(--color-text-default);
+}
+
+.alert__button--cancel {
+  color: var(--color-text-strong);
+}

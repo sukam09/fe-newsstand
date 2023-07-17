@@ -74,4 +74,8 @@
 
   --hover-medium16: var(--font-medium-m);
   --hover-medium14: var(--font-medium-r);
+
+  /* Box Shadow */
+  --shadow-popup: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }

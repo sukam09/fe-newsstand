@@ -16,6 +16,7 @@
 @import url("/src/style/components/content-nav.css");
 @import url("/src/style/components/content-list.css");
 @import url("/src/style/components/content-grid.css");
+@import url("/src/style/components/alert/alert.css");
 
 /* global */
 #app {
