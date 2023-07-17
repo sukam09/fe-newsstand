@@ -203,4 +203,9 @@ const setGridButtonClick = (section, li) => {
   });
 };
 
+//현재 구독 상태에 따른 버튼 업데이트
+const setGridButtonState = () => {
+  //현재 구독 상태에 따른 버튼 업데이트
+};
+
 export { initPressGrid };

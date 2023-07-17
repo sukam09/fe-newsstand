@@ -12,7 +12,7 @@ body {
   color: var(--grayscale-100);
 }
 
-/* 최신 뉴스 자동롤링 영역 */
+/* 자동 롤링 영역 */
 .latest_news__wrapper-left,
 .latest_news__wrapper-right {
   background-color: var(--grayscale-500);
@@ -27,11 +27,22 @@ body {
   color: var(--grayscale-100);
 }
 
-/* 언론사별 기사들을 확인하는 영역 */
+/* 언론사 헤더 영역 */
 .press__h2-entire {
   color: var(--grayscale-white);
 }
 
 .press__h2-subscribe {
   color: var(--grayscale-100);
+}
+
+/* 언론사 그리드 영역 */
+.press-logo__li-button__entire,
+.press-logo__li-button__subscribe {
+  background-color: var(--grayscale-50);
+}
+
+.press-logo__li__entire-hover,
+.press-logo__li__subscribe-hover {
+  background-color: var(--grayscale-500);
 }
