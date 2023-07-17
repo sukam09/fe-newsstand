@@ -3,12 +3,12 @@ import { getJSON } from "./data.js";
 import { shuffleList, setViewEvent } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-// 전체 언론사 영역
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
-// 내가 구독한 언론사 -> STATE.SUBSCRIBE_LIST
 let mediaInfo;
 
 const $newsWrapper = document.querySelector(".news-grid-wrapper");
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 /**
  * 언론사 Grid 제작하기
@@ -41,7 +41,7 @@ const makeGrid = () => {
  * 구독 버튼 영역 추가
  */
 const addSubscribeButton = (idx) => {
-  const mediaId = idList[idx];
+  const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
   const $buttonWrapper = document.createElement("div");
   $buttonWrapper.classList.add("news-grid_button_wrapper");
 
@@ -57,6 +57,10 @@ const addSubscribeButton = (idx) => {
 
   $button.addEventListener("click", () => {
     clickSubButton(idx);
+    setNewPage(
+      STATE.GRID_PAGE_NUM * MEDIA_NUM,
+      (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+    );
   });
 
   $buttonWrapper.append($button);
@@ -69,11 +73,11 @@ const addSubscribeButton = (idx) => {
  * @parm idx - idList 내에 위치한 미디어 idx
  */
 const clickSubButton = (idx) => {
-  const mediaId = idList[idx];
+  const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
   const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
 
   if (subIdx !== -1) {
-    STATE.SUBSCRIBE_LIST.splice(subIdx);
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
     alert("구독해지되었습니다.");
   } else {
     STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
@@ -102,9 +106,6 @@ const setGridArrowEvent = () => {
   });
 };
 
-const $totalMedia = document.querySelector(".main-nav_total");
-const $subscribeMedia = document.querySelector(".main-nav_subscribe");
-
 /**
  * 그리드 뷰 내 전체 언론사 / 내가 구독한 언론사 전환 이벤트
  */
@@ -121,6 +122,10 @@ const setGridModeEvent = () => {
   });
 };
 
+/**
+ *
+ * @param {언론사 토글 중 선택한 클래스 이름} className
+ */
 const onClickGridMode = ({ className }) => {
   const $selected =
     className === "main-nav_total" ? $totalMedia : $subscribeMedia;
@@ -136,20 +141,41 @@ const onClickGridMode = ({ className }) => {
   STATE.MODE.IS_TOTAL = $selected === $totalMedia ? true : false;
   STATE.GRID_PAGE_NUM = 0;
 
-  changeImgSrc(0, MEDIA_NUM);
-  changeButtonView(0, MEDIA_NUM);
+  // 모드 재세팅
+  setNewPage(0, MEDIA_NUM);
   setArrowVisible();
 };
 
 /**
+ * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
+ */
+const setNewPage = (start, end) => {
+  changeButtonView(start, end);
+  changeImgSrc(start, end);
+};
+
+/**
  * 언론사 이미지 src 변경
+ * @param {언론사 리스트 중 시작 idx} start
+ * @param {언론사 리스트 중 끝 idx} end
  */
 const changeImgSrc = (start, end) => {
   for (let i = start; i < end; i++) {
+    const mediaIdx = STATE.MODE.IS_TOTAL ? idList[i] : STATE.SUBSCRIBE_LIST[i];
     const $img = document.querySelector(`.img${i - start}`);
+    const $buttonWrapper = $img.nextSibling;
+
+    if (mediaIdx === undefined) {
+      $img.src = "";
+      $buttonWrapper.style.display = "none";
+      continue;
+    }
+
+    $buttonWrapper.style.display = "";
+
     const imgSrc = STATE.MODE.IS_LIGHT
-      ? `${mediaInfo[idList[i]].path_light}`
-      : `${mediaInfo[idList[i]].path_dark}`;
+      ? `${mediaInfo[mediaIdx].path_light}`
+      : `${mediaInfo[mediaIdx].path_dark}`;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
@@ -157,7 +183,7 @@ const changeImgSrc = (start, end) => {
       $img.src = imgSrc;
     };
     checkImg.onerror = () => {
-      $img.remove();
+      $img.src = "";
     };
   }
 };
@@ -186,8 +212,7 @@ const clickArrow = (num) => {
     STATE.GRID_PAGE_NUM * MEDIA_NUM,
     (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM,
   ];
-  changeImgSrc(start, end);
-  changeButtonView(start, end);
+  setNewPage(start, end);
   setArrowVisible();
 };
 
@@ -207,6 +232,17 @@ const setArrowVisible = () => {
     $rightArrow.classList.remove("hidden");
   } else if (STATE.GRID_PAGE_NUM === 3) {
     $leftArrow.classList.remove("hidden");
+    $rightArrow.classList.add("hidden");
+  }
+
+  // 미디어 개수에 따른 hidden 여부
+  const totalPage = STATE.MODE.IS_TOTAL
+    ? Math.floor(idList.length / MEDIA_NUM)
+    : Math.floor(STATE.SUBSCRIBE_LIST.length / MEDIA_NUM);
+
+  if (STATE.GRID_PAGE_NUM < totalPage - 1) {
+    $rightArrow.classList.remove("hidden");
+  } else {
     $rightArrow.classList.add("hidden");
   }
 };
