@@ -1,6 +1,6 @@
 import { getRollingData } from '../core/apis.js';
 import { createSubView } from '../components/subView.js';
-import { addEventListener } from '../core/eventListener.js';
+import { attachEventListener } from '../core/eventListener.js';
 
 let RollingData = [];
 let Lidx = 1;
@@ -41,11 +41,11 @@ function setLeftRolling(element, index, data) {
 
   startInterval();
 
-  addEventListener('mouseenter', element, () => {
+  attachEventListener('mouseenter', element, () => {
     clearInterval(interval);
   });
 
-  addEventListener('mouseleave', element, () => {
+  attachEventListener('mouseleave', element, () => {
     clearInterval(interval);
     startInterval();
   });
@@ -70,11 +70,11 @@ function setRightRolling(element, index, data) {
     startInterval();
   }, 2000);
 
-  addEventListener('mouseenter', element, () => {
+  attachEventListener('mouseenter', element, () => {
     clearInterval(interval);
   });
 
-  addEventListener('mouseleave', element, () => {
+  attachEventListener('mouseleave', element, () => {
     clearInterval(interval);
     startInterval();
   });

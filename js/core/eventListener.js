@@ -1,4 +1,4 @@
-const addEventListener = (type, element, callback) => element.addEventListener(type, callback);
-const removeEventListener = (type, element, callback) => element.removeEventListener(type, callback);
+const attachEventListener = (type, element, callback) => element.addEventListener(type, callback);
+const detachEventListener = (type, element, callback) => element.removeEventListener(type, callback);
 
-export { addEventListener, removeEventListener };
+export { attachEventListener, detachEventListener };

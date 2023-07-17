@@ -1,7 +1,7 @@
 import { shuffle } from '../utils/utils.js';
 import { getNewsData } from '../core/apis.js';
 import { paintNewsstand } from '../components/newStandGrid.js';
-import { addEventListener, removeEventListener } from '../core/eventListener.js';
+import { attachEventListener, detachEventListener } from '../core/eventListener.js';
 
 let SELECTED_PAGE = 0;
 const $ul = document.querySelector('.newsstand-area—six-col-list');
@@ -9,10 +9,10 @@ const $rightBtn = document.querySelector('.newsstand--right-btn');
 const $leftBtn = document.querySelector('.newsstand--left-btn');
 let datas = [];
 
-async function initNewsStand() {
+async function initNewsStandGrid() {
   SELECTED_PAGE = 0;
 
-  removeGridBtn();
+  toggleGridEventListner('detach');
 
   const newsData = await getNewsData();
   datas = newsDataPaser(shuffle(newsData));
@@ -22,17 +22,18 @@ async function initNewsStand() {
 
 function pagination() {
   isBtnDisabled();
-  addEventListener('click', $rightBtn, handleRightBtn);
-  addEventListener('click', $leftBtn, handleLeftBtn);
+  attachEventListener('click', $rightBtn, handleRightBtn);
+  attachEventListener('click', $leftBtn, handleLeftBtn);
 }
 
-function removeGridBtn() {
-  removeEventListener('click', $rightBtn, handleRightBtn);
-  removeEventListener('click', $leftBtn, handleLeftBtn);
-}
-function addGridBtn() {
-  addEventListener('click', $rightBtn, handleRightBtn);
-  addEventListener('click', $leftBtn, handleLeftBtn);
+function toggleGridEventListner(type) {
+  if (type === 'attach') {
+    attachEventListener('click', $rightBtn, handleRightBtn);
+    attachEventListener('click', $leftBtn, handleLeftBtn);
+  } else if (type === 'detach') {
+    detachEventListener('click', $rightBtn, handleRightBtn);
+    detachEventListener('click', $leftBtn, handleLeftBtn);
+  }
 }
 
 function handleRightBtn() {
@@ -58,5 +59,4 @@ function isBtnDisabled() {
 function newsDataPaser(datas) {
   return datas.map((data) => [data.name, data.src]);
 }
-
-export { initNewsStand, removeGridBtn, addGridBtn };
+export { initNewsStandGrid, toggleGridEventListner };
