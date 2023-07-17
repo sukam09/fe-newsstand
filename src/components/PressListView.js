@@ -1,3 +1,4 @@
+import { fetchListView, getPressLogo } from '../api.js';
 import {
   ANIMATION_UPDATE_DELAY,
   CATEGORY_NUMBERS,
@@ -35,6 +36,24 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const { categories } = this.state;
+
+  const initListView = async (index, present) => {
+    const { materials, name, regDate } = await fetchListView(index, present);
+    const pressLogo = await getPressLogo(name);
+
+    console.log(materials.slice(1));
+
+    this.setState({
+      ...this.state,
+      entire: materials.length,
+      pressLogo,
+      pressName: name,
+      regDate,
+      thumbnail: materials[0].image.url,
+      mainNews: materials[0].title,
+      subNews: materials.slice(1).map(news => news.title),
+    });
+  };
 
   const initFieldTab = () => {
     $section.innerHTML = `
@@ -125,6 +144,7 @@ export default function PressListView({ $target, initialState }) {
   };
 
   let isInit = false;
+  this.isFetch = false;
 
   this.render = () => {
     if (!isInit) {
@@ -136,12 +156,33 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
+    const {
+      index,
+      present,
+      entire,
+      categories,
+      pressLogo,
+      pressName,
+      regDate,
+      thumbnail,
+      mainNews,
+      subNews,
+    } = this.state;
+
+    console.log(pressLogo);
+    console.log(thumbnail);
+
+    if (!this.isFetch) {
+      initListView(index, present);
+      this.isFetch = true;
+    }
+
     $article.innerHTML = `
       <div class="press-info">
         <div class="press-name">
-          <img class="press-image" />
+          <img class="press-image" src="${pressLogo}"/>
         </div>
-        <div class="edit-date">2023.02.10. 18:27 편집</div>
+        <div class="edit-date">${regDate} 편집</div>
         <button class="subscribe-button">
           <img src="../asset/icons/plus.svg" />
           <p>구독하기</p>
@@ -150,31 +191,16 @@ export default function PressListView({ $target, initialState }) {
       <div class="news">
         <div class="news-main">
           <div class="thumbnail-box">
-            <img class="thumbnail" />
+            <img class="thumbnail" src="${thumbnail}"/>
           </div>
-          <p class="news-main-title">또 국민연금의 몽니…현대百 지주사 불발</p>
+          <p class="news-main-title">${mainNews}</p>
         </div>
         <div class="news-sub">
-          <a class="news-sub-title">"위스키 사려고 이틀 전부터 줄 섰어요"</a>
-          <a class="news-sub-title">"'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까"</a>
-          <a class="news-sub-title">사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다</a>
-          <a class="news-sub-title"
-            >[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"</a
-          >
-          <a class="news-sub-title">태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]</a>
-          <a class="news-sub-title">LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”</a>
-          <p class="news-sub-caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</p>
+          ${subNews.map(title => `<a class="news-sub-title">${title}</a>`).join('')}
+          <p class="news-sub-caption">${pressName} 언론사에서 직접 편집한 뉴스입니다.</p>
         </div>
       </div>
     `;
-
-    const $pressImage = $article.querySelector('.press-image');
-    const $thumbnail = $article.querySelector('.thumbnail');
-
-    $pressImage.src = '../asset/logos/press1.png';
-    $thumbnail.src = '../asset/icons/thumbnail.png';
-
-    const { index, present, entire, categories } = this.state;
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
