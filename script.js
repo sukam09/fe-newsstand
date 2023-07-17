@@ -56,11 +56,10 @@ function drawListPage(crntListIdx, crntPageIdx) {
     </div>`
 }
 function drawList(crntListIdx) {
-    // listNav.innerHTML = "";
+    listNav.innerHTML = "";
     categoryList.forEach((category, index) => {
         listNav.innerHTML += `<li class="${crntListIdx == index ? "selected category" : "category"}">${category}</li>`
     })
-    
     drawListPage(crntListIdx, crntPage);
 }
 function listenViewChange(btn, type) {
@@ -68,8 +67,16 @@ function listenViewChange(btn, type) {
         if (crntView !== type){
             crntView = type;
             crntPage = 0;
+            crntListIdx = 0;
             updateArrow(); // initialize current page index and arrow
-            // listenArrow(crntListIdx);
+            switch (type){
+                case "grid":
+                    drawPress(crntPage);
+                    break;
+                case "list":
+                    drawList(crntListIdx);
+                    break;
+            }
             Array.prototype.forEach.call(viewContainer.children, (view) => {
                 if (view.getAttribute("type") == type){
                     view.classList.remove("hide");
@@ -155,7 +162,7 @@ function listenReload(){
         location.reload();
     })
 }
-function listenArrow(listIdx = 0){
+function listenArrow(){
     leftArrow.addEventListener("click",()=> {
         crntPage--;
         switch (crntView){
@@ -192,7 +199,7 @@ function updateArrow(){
             maxPage = pressList.length/24;
             break;
         case "list":
-            maxPage = listViewData.filter(data => data.category == categoryList[crntListIdx]);
+            maxPage = listViewData.filter(data => data.category == categoryList[crntListIdx]).length;
             break;
     }
     leftArrow.classList.remove("hidden");
