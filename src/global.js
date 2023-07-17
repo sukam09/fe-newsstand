@@ -81,6 +81,25 @@ function updateDate() {
   dateHtml.innerHTML = today;
 }
 
+function keyboardClicked(event) {
+  if (IS_GRID.getValue()) {
+    if (event.key === "ArrowRight" && NOW_GRID_PAGE.getValue() < 3) {
+      showGridPage(1);
+    } else if (event.key === "ArrowLeft" && NOW_GRID_PAGE.getValue() > 0) {
+      showGridPage(-1);
+    }
+  } else {
+    if (event.key === "ArrowRight") {
+      listArrowButtonClicked(1);
+    } else if (
+      event.key === "ArrowLeft" &&
+      (NOW_LIST_PAGE.getValue() - 1 > 0 || NOW_CATEGORY_IDX.getValue() !== 0)
+    ) {
+      listArrowButtonClicked(-1);
+    }
+  }
+}
+
 (function init() {
   const mainLogo = $(".container__header__main");
   const listButton = $(".list_button");
@@ -93,26 +112,7 @@ function updateDate() {
     changeMainView(true);
   });
   window.addEventListener("keydown", (e) => {
-    if (IS_GRID.getValue()) {
-      if (e.key === "ArrowRight" && NOW_GRID_PAGE.getValue() < 3) {
-        showGridPage(1);
-      } else if (e.key === "ArrowLeft" && NOW_GRID_PAGE.getValue() > 0) {
-        showGridPage(-1);
-      }
-    } else {
-      if (
-        e.key === "ArrowRight" &&
-        (NOW_CATEGORY_IDX.getValue() !== 8 ||
-          NOW_LIST_PAGE.getValue() !== categoryList[8].data.length)
-      ) {
-        listArrowButtonClicked(1);
-      } else if (
-        e.key === "ArrowLeft" &&
-        (NOW_LIST_PAGE.getValue() - 1 > 0 || NOW_CATEGORY_IDX.getValue() !== 0)
-      ) {
-        listArrowButtonClicked(-1);
-      }
-    }
+    keyboardClicked(e);
   });
   stopCategoryInterval();
 })();
