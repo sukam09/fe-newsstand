@@ -2,7 +2,7 @@ import Header from "./header/Header.js";
 import NewsBar from "./news-bar/NewsBar.js";
 import NewsDisplay from "./news-display/NewsDisplay.js";
 
-const $app = document.querySelector(".root");
+export const $app = document.querySelector(".root");
 
 new Header($app.querySelector(".news-stand-header"));
 new NewsBar($app.querySelector(".news-bar-container"));

@@ -1,3 +1,4 @@
+import { $app } from "../app.js";
 import Component from "../core/Component.js";
 
 export default class SubscribeButton extends Component {
@@ -22,5 +23,13 @@ export default class SubscribeButton extends Component {
                 ${showText ? `<div>${subscribeText}</div>` : ""}
             </button>
         `;
+    }
+
+    setEvent() {
+        const snackBar = $app.querySelector(".news-snack-bar");
+        this.$target.addEventListener("click", () => {
+            snackBar.classList.remove("hidden");
+            setTimeout(() => snackBar.classList.add("hidden"), 5000);
+        });
     }
 }
