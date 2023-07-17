@@ -1,8 +1,6 @@
-import { checkPressInLocal } from "./checkPressInLocal";
-
-const SET_TIME = 5000;
-
+import { checkPressInLocal } from "./checkPressInLocal.js";
 function clickSubscribe(selectedPress) {
+  let SubscribePress = JSON.parse(localStorage.getItem("press"));
   if (checkPressInLocal(selectedPress)) {
     SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
   } else {
@@ -12,11 +10,13 @@ function clickSubscribe(selectedPress) {
 
   const snackbar = document.querySelector(".snackbar");
   snackbar.style.display = "block";
-  setTimeout(() => moveToSubList(snackbar), SET_TIME);
+  setTimeout(() => moveToSubList(snackbar), 5000);
 }
 
 function moveToSubList(snackbar) {
   snackbar.style.display = "none";
+  //move to ListView
+  document.querySelector(".viewer-btn button").click();
 }
 
 export { clickSubscribe };
