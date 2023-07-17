@@ -191,7 +191,7 @@ ul {
 .list-page-left > img {
     width:320px;
     height:200px;
-    background-color: beige;
+    background-color: var(--surface-alt);
     /* margin-bottom:16px; */
 }
 .list-page-right {
