@@ -69,6 +69,7 @@ body {
     flex-direction: row;
     width: 932px;
     height: 390px;
+    padding: 0;
 }
 
 .header_left {
@@ -431,6 +432,25 @@ body {
     cursor: pointer;
 }
 
+.snack_bar_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    padding: 16px 24px;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: var(--surface-brand-default);
+}
+
+.snack_bar_container p {
+    color: var(--text-white-default);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
 @keyframes roll-up-left {
     0% {
         transform: translateY(0);
@@ -446,5 +466,23 @@ body {
     }
     100% {
         transform: translateY(calc(-100% / var(--hot-topic-right-length)));
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
