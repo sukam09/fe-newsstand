@@ -7,8 +7,8 @@
   width: 24px;
   height: 40px;
   position: absolute;
-  top: 180px;
-  left: -72px;
+  top: 171.5px;
+  left: -71px;
   cursor: pointer;
 }
 
@@ -16,8 +16,8 @@
   width: 24px;
   height: 40px;
   position: absolute;
-  top: 180px;
-  right: -72px;
+  top: 171.5px;
+  right: -71px;
   cursor: pointer;
 }
 
@@ -25,6 +25,8 @@
 .right-btn {
   position: absolute;
   transform: translateY(150%);
+  width: 24px;
+  height: 40px;
 }
 
 .left-btn {

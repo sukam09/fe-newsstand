@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  width: 930px;
+  width: 929px;
   height: 388px;
   gap: 1px;
   border-top: 1px solid var(--border-border-default, #d2dae0);
