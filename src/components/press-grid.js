@@ -164,31 +164,24 @@ const changeSrc = (logo) => {
 const setGridButton = (section, pressIdsLen) => {
   const pressLis = document.querySelectorAll(`.press-logo__li__${section}`);
   const slicePressLis = [];
-  pressLis.forEach((li, idx) => {
-    if (idx < pressIdsLen) slicePressLis.push(li);
+  pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
+  slicePressLis.forEach((li) => setGridButtonEvent(li));
+};
+
+const setGridButtonEvent = (li) => {
+  const pressImg = li.querySelector('img');
+  const pressButton = li.querySelector('button');
+
+  li.addEventListener('mouseover', () => {
+    pressImg.classList.add('none');
+    pressButton.classList.remove('none');
+    li.classList.add('press-logo__li__entire-hover');
   });
 
-  slicePressLis.forEach((li) => {
-    const pressImg = li.querySelector('img');
-    const pressButton = li.querySelector('button');
-
-    // console.log(pressImg);
-    // console.log(pressImg.src);
-    // console.log(pressImg.getAttribute('src') !== '');
-
-    li.addEventListener('mouseover', () => {
-      pressImg.classList.add('none');
-      pressButton.classList.remove('none');
-      li.classList.add('press-logo__li__entire-hover');
-    });
-
-    li.addEventListener('mouseout', () => {
-      pressImg.classList.remove('none');
-      pressButton.classList.add('none');
-      li.classList.remove('press-logo__li__entire-hover');
-    });
-
-    // if (pressImg.getAttribute('src') !== '') {}
+  li.addEventListener('mouseout', () => {
+    pressImg.classList.remove('none');
+    pressButton.classList.add('none');
+    li.classList.remove('press-logo__li__entire-hover');
   });
 };
 
