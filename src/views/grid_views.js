@@ -54,6 +54,7 @@ function renderSubscribe(press, is_subscribe) {
         console.log(`${press.name}이 구독되었습니다.`);
         press.innerHTML = `
         <img src="./assets/icons/symbol.png" />
+        <span>해지하기</span>
         `;
     }
 }

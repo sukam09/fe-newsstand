@@ -7,6 +7,7 @@ import {
     useFetchAllData,
     useSetProgress,
     useMovePage,
+    useControlBanner,
 } from "./actions.js";
 import {
     renderGridView,
@@ -14,6 +15,7 @@ import {
     renderPressItem,
 } from "./views/grid_views.js";
 import { renderListView, renderNewsItem } from "./views/list_views.js";
+import { renderHotTopics } from "./views/rolling_views.js";
 
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
@@ -185,6 +187,24 @@ function mainOptionEvent() {
     });
 }
 
+function bannerMouseEvent(action) {
+    action["banner_left"].addEventListener("mouseover", function () {
+        action["banner_left"].style.animationPlayState = "paused";
+    });
+
+    action["banner_left"].addEventListener("mouseout", function () {
+        action["banner_left"].style.animationPlayState = "running";
+    });
+
+    action["banner_right"].addEventListener("mouseover", function () {
+        action["banner_right"].style.animationPlayState = "paused";
+    });
+
+    action["banner_right"].addEventListener("mouseout", function () {
+        action["banner_right"].style.animationPlayState = "running";
+    });
+}
+
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
 
@@ -215,6 +235,7 @@ function initEvent() {
         // data[1] = news
         // data[2] = hot_topic
         view_option.press_data = data[0];
+
         view_option.categorys.forEach((item) => {
             view_option.news_data[item] = data[1].filter(
                 (news) => news.category === item
@@ -227,6 +248,10 @@ function initEvent() {
             useToggleArrow,
             togglePressEvent,
         ]);
+
+        renderHotTopics(data[2][0], data[2][1], () => {
+            bannerMouseEvent(useControlBanner());
+        });
     });
 }
 
