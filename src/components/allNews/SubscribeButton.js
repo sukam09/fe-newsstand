@@ -20,8 +20,9 @@ export default class SubscribeButton extends Component {
   }
 
   action() {
-    if (this.state.text === TEXT.SUBSCRIBE) {
-      showSnackBar(TEXT.SUBSCRIBE);
+    if (this.state.text === TEXT.SUBSCRIBE_KO) {
+      showSnackBar(TEXT.SUBSCRIBE_KO);
+      //구독 추가 기능
     } else if (this.state.text === TEXT.UNSUBSCRIBE) {
       toggleAlert();
       //구독 취소

@@ -45,7 +45,7 @@ export default class AllNewsGridView extends Component {
     customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
       new SubscribeButton(node, {
         color: 'gray',
-        text: TEXT.SUBSCRIBE,
+        text: TEXT.SUBSCRIBE_KO,
       });
     });
 

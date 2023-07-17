@@ -2,6 +2,7 @@ import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 import { customQuerySelector } from '../../utils/index.js';
 import { toggleDarkMode } from '../../index.js';
+import { TEXT } from '../../constants/index.js';
 
 export default class AllNewHeader extends Component {
   setup() {
@@ -31,8 +32,8 @@ export default class AllNewHeader extends Component {
   }
 
   mounted() {
-    const listIconName = this.props.view === 'list' ? 'list-view-focus' : 'list-view';
-    const gridIconName = this.props.view === 'grid' ? 'grid-view-focus' : 'grid-view';
+    const listIconName = this.props.view === TEXT.LIST ? 'list-view-focus' : 'list-view';
+    const gridIconName = this.props.view === TEXT.GRID ? 'grid-view-focus' : 'grid-view';
 
     new Icon(customQuerySelector('#list-view-icon', this.$target), { name: listIconName });
     new Icon(customQuerySelector('#grid-view-icon', this.$target), { name: gridIconName });
@@ -42,19 +43,19 @@ export default class AllNewHeader extends Component {
     this.$target.addEventListener('click', e => {
       switch (e.target.id) {
         case 'list-view-icon':
-          this.props.onClick({ view: 'list' });
+          this.props.onClick({ view: TEXT.LIST });
           break;
         case 'grid-view-icon':
-          this.props.onClick({ view: 'grid' });
+          this.props.onClick({ view: TEXT.GRID });
           break;
         case 'darkmode-icon':
           toggleDarkMode();
           break;
         case 'all-press':
-          this.props.onClick({ pressType: 'all' });
+          this.props.onClick({ pressType: TEXT.ALL });
           break;
         case 'my-press':
-          this.props.onClick({ pressType: 'subscribed' });
+          this.props.onClick({ pressType: TEXT.SUBSCRIBE_EN });
           break;
         default:
       }
