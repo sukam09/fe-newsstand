@@ -128,6 +128,7 @@
 .news-main {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .news-main > img {
@@ -136,7 +137,6 @@
   height: 200px;
   border: 1px solid var(--border-default);
   background: lightgray 0px -11.561px / 100% 106.561% no-repeat;
-  overflow: hidden;
 }
 
 .news-main > img:hover {
