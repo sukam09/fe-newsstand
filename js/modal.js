@@ -1,4 +1,5 @@
 import { setDisplay, findPress, findSpanNearby } from "../js/utils.js";
+import { getSubData, setSubData } from "./const.js";
 import { gridMouseClick, drawSubGridView } from "./subscribe.js";
 
 function onUndiscribeModal(target) {
@@ -22,7 +23,7 @@ function handleModalBtn(target) {
   if ($target_class.contains("pos")) {
     const $press_name_span = findSpanNearby(target);
     const $find_press = findPress("name", $press_name_span);
-    $find_press.isSub = !$find_press.isSub;
+    setSubData($find_press);
     drawSubGridView();
     offUndiscribeModal();
   } else if ($target_class.contains("neg")) {

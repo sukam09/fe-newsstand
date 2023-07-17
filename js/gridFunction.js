@@ -1,15 +1,15 @@
-import presses from "../assets/light-media.js";
 import { initGridItemEvent, initSubGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE } from "./const.js";
-import { setDisplay } from "./utils.js";
+import { PAGE_SIZE, getSubData } from "./const.js";
+import { setDisplay, getJSON } from "./utils.js";
 import { changeToGrid, changeToList, addEventInSymbol } from "./viewHandler.js";
 let grid_page_count = 0;
 let sub_grid_page_count = 0;
 
 const shuffle = () => Math.random() - 0.5;
-let shuffled_presses = [...presses].sort(shuffle);
+let presses;
+let shuffled_presses;
 
-function drawSubGridArrow() {
+async function drawSubGridArrow() {
   const subscribed_presses = presses.filter(press => press.isSub === true);
   const total_sub_grid_page = parseInt(subscribed_presses.length / PAGE_SIZE);
   setDisplay("sub-grid-next", "id", "block");
@@ -27,13 +27,13 @@ function appendPressInGrid(press) {
   $list.classList.add("press-item");
   initGridItemEvent($list);
   const $image = document.createElement("img");
-  $image.src = `${press.src}`;
+  $image.src = `${press.path_light}`;
   $image.classList.add("original");
   const $button = document.createElement("button");
   $button.classList.add("hidden");
   preventButtonClick($button, false);
   const $sub_img = document.createElement("img");
-  $sub_img.src = press.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+  $sub_img.src = getSubData().some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
   $button.append($sub_img);
 
   $list.append($image, $button);
@@ -45,11 +45,11 @@ function appendSubPressInGrid(press) {
   $list.classList.add("press-item");
   initSubGridItemEvent($list);
   const $image = document.createElement("img");
-  $image.src = `${press.src}`;
+  $image.src = `${press.path_light}`;
   $image.classList.add("original");
   const $button = document.createElement("button");
   $button.classList.add("hidden");
-  preventButtonClick($button, true);
+  preventButtonClick($button);
   const $sub_img = document.createElement("img");
   $sub_img.src = "../img/icons/unsubBtn.svg";
   $button.append($sub_img);
@@ -67,7 +67,9 @@ function turnSubGridPrevPage() {
   drawSubGridView();
 }
 
-function turnGridNextPage() {
+async function turnGridNextPage() {
+  let shuffled_presses = [...presses].sort(shuffle);
+
   if (grid_page_count + 1 === parseInt(presses.length / PAGE_SIZE) - 1) {
     setDisplay("grid-next", "id", "none");
   }
@@ -82,7 +84,9 @@ function turnGridNextPage() {
   }
 }
 
-function turnGridPrevPage() {
+async function turnGridPrevPage() {
+  let shuffled_presses = [...presses].sort(shuffle);
+
   if (grid_page_count - 1 === 0) {
     setDisplay("grid-prev", "id", "none");
   }
@@ -104,8 +108,12 @@ function addEventGridArrow() {
   document.getElementById("sub-grid-prev").addEventListener("click", turnSubGridPrevPage);
 }
 
-function initPressGrid() {
-  let shuffled_presses = [...presses].sort(shuffle);
+async function initPressGrid() {
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
+  });
+  shuffled_presses = [...presses].sort(shuffle);
   const slice_shuffled_presses = shuffled_presses.slice(0, PAGE_SIZE);
   slice_shuffled_presses.forEach(press => {
     appendPressInGrid(press);
@@ -114,7 +122,7 @@ function initPressGrid() {
   addEventInSymbol();
 }
 
-function drawGridView() {
+async function drawGridView() {
   let count = 0;
   const $press_list = document.getElementById("press-list");
   $press_list.innerHTML = "";
@@ -132,13 +140,12 @@ function drawGridView() {
   }
 }
 
-function drawSubGridView() {
+async function drawSubGridView() {
   let count = 0;
   const $sub_press_list = document.getElementById("sub-press-list");
   $sub_press_list.innerHTML = "";
-  const subscribed_presses = presses
-    .filter(press => press.isSub === true)
-    .slice(sub_grid_page_count * PAGE_SIZE, (sub_grid_page_count + 1) * PAGE_SIZE);
+  const sub_press = getSubData();
+  const subscribed_presses = sub_press.slice(sub_grid_page_count * PAGE_SIZE, (sub_grid_page_count + 1) * PAGE_SIZE);
   subscribed_presses.forEach(press => {
     appendSubPressInGrid(press);
     count += 1;

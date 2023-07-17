@@ -1,9 +1,10 @@
-import presses from "../assets/light-media.js";
-import { setDisplay } from "./utils.js";
-import { MODAL_POPUP_TIME } from "./const.js";
+import { setDisplay, removeDisplay, getJSON } from "./utils.js";
+import { MODAL_POPUP_TIME, getSubData, setSubData } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
 import { checkViewStatus } from "./viewHandler.js";
 import { onUndiscribeModal } from "./modal.js";
+
+let presses;
 
 function gridMouseOver(target) {
   const $original = target.querySelector("img");
@@ -17,16 +18,14 @@ function gridMouseOut(target) {
   addRemoveHidden($button, $original);
 }
 
-function gridMouseClick(target, isSubPage) {
+function gridMouseClick(target) {
   const $original = target.getElementsByTagName("img")[0];
   const $sub_image = target.getElementsByTagName("img")[1];
   const $original_path = ".." + $original.src.split("5500")[1];
-  const $target_object = presses.find(target => target.src === $original_path);
-  $target_object.isSub = !$target_object.isSub;
-  $sub_image.src = $target_object.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
-  if (isSubPage) {
-    drawSubGridView();
-  }
+  const $target_object = presses.find(target => target.path_light === $original_path);
+  setSubData($target_object);
+  drawGridView();
+  // $sub_image.src = $target_object.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
 }
 
 function listSubMouseClick(news, target) {
@@ -34,7 +33,10 @@ function listSubMouseClick(news, target) {
     news.isSub = !news.isSub;
     target.src = news.isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/Button.svg";
     setDisplay(".subscribe-modal", "query", "block");
-    setTimeout(() => setDisplay(".subscribe-modal", "query", "none"), MODAL_POPUP_TIME);
+    setTimeout(() => {
+      setDisplay(".subscribe-modal", "query", "none");
+      checkViewStatus(document.querySelector(".subscribed-press"));
+    }, MODAL_POPUP_TIME);
     // 모달 함수 추가
   }
 }
@@ -53,12 +55,12 @@ function initSubGridItemEvent(item) {
   });
 }
 
-function preventButtonClick(button, isSubPage) {
+function preventButtonClick(button) {
   button.addEventListener("click", e => {
     e.stopPropagation();
     const $li_element = e.target.closest("li");
     if ($li_element) {
-      gridMouseClick($li_element, isSubPage);
+      gridMouseClick($li_element);
     }
   });
 }
@@ -72,7 +74,12 @@ function removeGridSubscribe(target) {
   drawGridView();
 }
 
-function initSpanEvent() {
+async function initSpanEvent() {
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
+  });
+
   const $press_options = document.querySelector(".press-option").children;
   [...$press_options].forEach(span => span.addEventListener("click", e => checkViewStatus(e.target)));
 }

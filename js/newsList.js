@@ -1,17 +1,25 @@
-import { category, news_by_category } from "../assets/news.js";
+import { getSubData } from "./const.js";
 import { listSubMouseClick } from "./subscribe.js";
-import presses from "../assets/light-media.js";
+import { getJSON } from "./utils.js";
 
+const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+let presses;
+let news_by_category;
 let now_category = category[0];
-const total_pages = {};
+let total_pages = {};
 let page_count = {};
-category.forEach(item => {
-  total_pages[item] = news_by_category[item].length;
-  page_count[item] = 0;
-});
+let sub_news_page = 0;
 
 function getNews(category) {
   return news_by_category[category];
+}
+async function initNewsInfo() {
+  presses = await getJSON("/assets/media.json");
+  news_by_category = await getJSON("/assets/media.json");
+  category.forEach(item => {
+    total_pages[item] = news_by_category[item].length;
+    page_count[item] = 0;
+  });
 }
 
 function drawArrow() {
@@ -29,7 +37,7 @@ function drawArrow() {
 
 function drawNews(category, page) {
   const news = getNews(category);
-  document.querySelector(".press-brandmark").src = news[page].src;
+  document.querySelector(".press-brandmark").src = news[page].path_light;
   document.querySelector(".edit-date").textContent = news[page].editDate;
   document.querySelector(".thumbnail").src = news[page].thumbSrc;
   document.querySelector(".news-main .font-init").textContent = news[page].headTitle;
@@ -46,7 +54,9 @@ function drawNews(category, page) {
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");
   $sub_btn.src = news[page].isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
-  $sub_btn.addEventListener("click", e => listSubMouseClick(news[page], e.target));
+  $sub_btn.addEventListener("click", e => {
+    listSubMouseClick(news[page], e.target);
+  });
 }
 
 function restartAnimation() {
@@ -188,8 +198,6 @@ function checkSameCategory(target) {
   }
 }
 
-function insertNavArrow() {}
-
 function checkLastCategory() {
   if (now_category === category[category.length - 1] && page_count[now_category] === total_pages[now_category] - 1) {
     return true;
@@ -204,11 +212,10 @@ function setFisrtCategory() {
 }
 
 function setSubListNav() {
-  const subscribed_presses = presses.filter(press => press.isSub === true);
-  console.log(subscribed_presses);
+  const subscribed_presses = getSubData();
   const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
   $sub_list_nav.innerHTML = ""; // 첫뻔째 li에 list-스타일넣기
-  [...subscribed_presses].forEach(press => {
+  subscribed_presses.forEach(press => {
     const $li = document.createElement("li");
     $li.classList.add("sub-nav-item");
     $li.textContent = press.name;
@@ -217,8 +224,39 @@ function setSubListNav() {
   $sub_list_nav.firstChild.classList.add("list-progress-bar");
 }
 
-function drawSubListNews() {
-  const subscribed_presses = presses.filter(press => press.isSub === true);
+function drawSubNews(page) {
+  const $ul = document.querySelector(".sub-news-article");
+  const news = getSubData()[page];
+  $ul.querySelector(".press-brandmark").src = news.path_light;
+  $ul.querySelector(".edit-date").textContent = news.editDate;
+  $ul.querySelector(".thumbnail").src = news.thumbSrc;
+  $ul.querySelector(".news-main .font-init").textContent = news.headTitle;
+  const subList = $ul.querySelector(".news-sub-list");
+  subList.innerHTML = "";
+  news.subTitle.forEach(subnews => {
+    const $li = document.createElement("li");
+    $li.innerText = subnews;
+    subList.append($li);
+  });
+  const $caption = document.createElement("li");
+  $caption.classList.add("caption");
+  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
+  subList.append($caption);
+  const $sub_btn = $ul.querySelector(".list-sub-btn");
+  $sub_btn.src = "../img/icons/cancelSubBtn.svg";
+  $sub_btn.addEventListenecr("click", e => {
+    listSubMouseClick(getSubData(), e.target);
+  });
 }
 
-export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, setSubListNav };
+export {
+  now_category,
+  drawNews,
+  clickListRightBtn,
+  clickListLeftBtn,
+  clickCategory,
+  initCategoryClass,
+  setSubListNav,
+  initNewsInfo,
+  drawSubNews,
+};

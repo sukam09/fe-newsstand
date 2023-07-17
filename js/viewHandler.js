@@ -1,11 +1,12 @@
-import presses from "../assets/light-media.js";
-import { removeDisplay, setDisplay } from "./utils.js";
-import { setSubListNav } from "./newsList.js";
-import { drawSubGridView } from "./gridFunction.js";
+import { removeDisplay, setDisplay, getJSON } from "./utils.js";
+import { drawSubNews, setSubListNav } from "./newsList.js";
+import { drawGridView, drawSubGridView } from "./gridFunction.js";
+import { getSubData } from "./const.js";
 
 let sub_view_selected = false;
 let grid_view_selected = true;
 
+let presses;
 function checkViewStatus(target) {
   // option 선택
   document.querySelector(".option-selected").classList.remove("option-selected");
@@ -14,11 +15,12 @@ function checkViewStatus(target) {
   if (target.textContent === "내가 구독한 언론사") {
     setDisplay(".grid-selected", "query", "none");
     setDisplay(".list-selected", "query", "flex");
-    if (presses.filter(press => press.isSub === true).length === 0) {
+    if (getSubData().length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
       setDisplay(".sub-press-list-section", "query", "block");
       setSubListNav();
+      drawSubNews(0);
     }
 
     sub_view_selected = true;
@@ -27,13 +29,13 @@ function checkViewStatus(target) {
     setDisplay(".grid-selected", "query", "flex");
     setDisplay(".list-selected", "query", "none");
     setDisplay(".press-grid", "query", "block");
+    drawGridView();
     sub_view_selected = false;
     grid_view_selected = true;
   }
 }
 
 function changeToGrid() {
-  console.log("click");
   //그리드 클릭 시
   setDisplay(".grid-selected", "query", "flex");
   setDisplay(".list-selected", "query", "none");
@@ -44,6 +46,7 @@ function changeToGrid() {
     sub_view_selected = true;
   } else {
     setDisplay(".press-grid", "query", "block");
+    drawGridView();
     sub_view_selected = false;
   }
   grid_view_selected = true;
@@ -56,12 +59,13 @@ function changeToList() {
   removeDisplay();
   if (sub_view_selected) {
     // svs true면
-    if (presses.filter(press => press.isSub === true).length === 0) {
+    if (getSubData().length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
       setDisplay(".sub-press-list-section", "query", "block");
       sub_view_selected = true;
       setSubListNav();
+      drawSubNews(0);
     }
   } else {
     // svs false면
@@ -71,7 +75,12 @@ function changeToList() {
   grid_view_selected = false;
 }
 
-function addEventInSymbol() {
+async function addEventInSymbol() {
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
+  });
+
   let $list_symbol = document.querySelectorAll(".list-symbol");
   let $grid_symbol = document.querySelectorAll(".grid-symbol");
   $list_symbol.forEach(symbol => {

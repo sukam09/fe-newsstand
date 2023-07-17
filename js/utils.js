@@ -1,4 +1,15 @@
-import presses from "../assets/light-media.js";
+let presses;
+
+const getJSON = async url => {
+  try {
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (err) {
+    console.error("Error : ", err);
+    return null;
+  }
+};
 
 function setDisplay(element, type, display) {
   //display = ['none' , 'block', 'flex']
@@ -24,7 +35,7 @@ function findPress(type, target) {
   if (type === "src") {
     let $target_src = target.getElementsByTagName("img")[0].src;
     $target_src = ".." + $target_src.split("5500")[1];
-    const press_name = presses.find(press => press.src === $target_src).name;
+    const press_name = presses.find(press => press.path_light === $target_src).name;
     return press_name;
   } else if (type === "name") {
     return presses.find(press => press.name === target.textContent); // 객체반환
@@ -52,4 +63,11 @@ function findSpanNearby(element) {
   return null; // 근처에 <span> 태그가 없을 경우 null 반환
 }
 
-export { setDisplay, removeDisplay, findPress, findSpanNearby };
+async function initUtilData() {
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
+  });
+}
+
+export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData };
