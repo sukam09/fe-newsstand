@@ -26,6 +26,16 @@ export default class NewsListView extends Component {
         this.state.newsData = this.getCategoryNewsData(
             this.state.currentCategoryIndex
         );
+
+        // const subscribeList = [];
+        // const localSubscribeList = JSON.parse(
+        //     localStorage.getItem("subscribeList")
+        // );
+        // localSubscribeList.forEach((data) =>
+        //     subscribeList.push({ id: data.id, name: data.name })
+        // );
+        // console.log(subscribeList);
+        // this.state.subscribeButton = subscribeList;
     }
 
     template() {

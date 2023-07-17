@@ -21,7 +21,7 @@ export default class Alert extends Component {
 
                 // 구독하기 리스트에서 삭제
                 this.unsubscribePress();
-                this.setState({ subscribed: false }); // 여기 말고 subscribeButton에서 ..
+                // this.setState({ subscribed: false }); // 여기 말고 subscribeButton에서 ..
             } else if (e.target.classList.contains("alert-cancel")) {
                 this.$target.classList.add("hidden");
             }

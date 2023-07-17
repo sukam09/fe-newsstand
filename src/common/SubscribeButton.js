@@ -42,6 +42,11 @@ export default class SubscribeButton extends Component {
             } else {
                 alert.classList.remove("hidden");
 
+                const alertConfirm = alert.querySelector(".alert-confirm");
+                alertConfirm.addEventListener("click", () => {
+                    this.setState({ subscribed: false });
+                });
+
                 const alertPressName = alert.querySelector(
                     ".alert-message > span"
                 );
