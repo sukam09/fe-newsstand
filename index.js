@@ -4,6 +4,7 @@ import { viewSelectHandler } from "./utils/setViewMode.js";
 import { TimeComponent } from "./components/Time.js";
 import { initGrid } from "./components/InitGrid.js";
 import { fetchData, shuffleData, sliceData } from "./utils/utils.js";
+import { initialize } from "./store/store.js";
 
 // time 설정
 TimeComponent();
@@ -17,6 +18,7 @@ fetchData().then((data) => {
   // 뉴스 rolling
   rollNews(slicedData);
   // 상태에 따라 grid, list view render
+  initialize(data);
   initGrid(agencies);
   viewSelectHandler(agencies);
 });
