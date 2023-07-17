@@ -2,7 +2,8 @@
 
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
-import { GridComponent } from "../GridComponent.js";
+
+// 구독 or 해지 버튼 누르고 버튼 다시 렌더시키는 것 필요
 
 // const render = () => {
 //   const $agency_btn_hover = document.querySelector(".agency-btn-hover");

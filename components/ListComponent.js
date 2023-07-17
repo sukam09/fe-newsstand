@@ -4,11 +4,7 @@ import { removeAllChildNodes } from "../utils/utils.js";
 import { makeFieldTab } from "./List/fieldTab.js";
 import { makePressNews } from "./List/pressNews.js";
 import { startProgress, stopProgress } from "./List/progress.js";
-import {
-  moveToNextPage,
-  moveToPrevPage,
-  setListButton,
-} from "./List/setListButton.js";
+import { moveToNextPage, moveToPrevPage } from "./List/setListButton.js";
 
 export const ListComponent = (
   currentPage,
