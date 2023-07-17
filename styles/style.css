@@ -474,6 +474,10 @@ header {
   line-height: 22px;
 }
 
+.news-main-title:hover {
+  cursor: pointer;
+}
+
 .news-sub {
   display: flex;
   flex-direction: column;
