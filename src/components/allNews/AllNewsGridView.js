@@ -14,11 +14,12 @@ export default class AllNewsGridView extends Component {
   }
 
   template() {
-    return `<div class='news-list-wrapper'>
-              <button class='left-button'></button>
-              <ul class='news-list-grid border-default'></ul>
-              <button class='right-button'></button>
-            </div>`;
+    return `
+    <div class="news-list-wrapper">
+      <button class="left-button"></button>
+      <ul class="news-list-grid border-default"></ul>
+      <button class="right-button"></button>
+    </div>`;
   }
 
   mounted() {
@@ -26,16 +27,17 @@ export default class AllNewsGridView extends Component {
 
     let innerHTML = '';
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
-      innerHTML += `<li class='grid-logo-wrapper border-default'>
-                      <div class="flip-card-inner">
-                        <div class="flip-card-front surface-default">
-                          <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
-                        </div>
-                        <div class="flip-card-back surface-alt">
-                          <div class='subscribe-button-wrapper'></div>
-                        </div>
-                      </div>
-                    </li>`;
+      innerHTML += ` 
+      <li class="grid-logo-wrapper border-default">
+        <div class="flip-card-inner">
+          <div class="flip-card-front surface-default">
+            <img class="press-logo" src="src/assets/${logoMode}/${this.state.pressOrder[i]}.png" />
+          </div>
+          <div class="flip-card-back surface-alt">
+            <div class="subscribe-button-wrapper"></div>
+          </div>
+        </div>
+      </li>`;
     }
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
@@ -69,13 +71,4 @@ export default class AllNewsGridView extends Component {
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
   }
-}
-
-{
-  /* <div class='flip-card-inner'>
-                        <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
-                      </div>
-                      <div class='flip-card-back'>
-                        <div class='subscribe-button-wrapper'></div>
-                      </div> */
 }

@@ -26,12 +26,12 @@ export const customQuerySelector = (selector, $target = document) => {
     const $node = childNodes.shift();
 
     if (tagType === '#' && $node.id === name) return $node;
-    else if (tagType === '.' && $node.classList && $node.classList.contains(name)) return $node;
-    else if ($node.tagName === targetSelctor.toUpperCase()) return $node;
-    else {
-      const $result = customQuerySelector(selector, $node);
-      if ($result) return $result;
-    }
+    if (tagType === '.' && $node.classList && $node.classList.contains(name)) return $node;
+    if ($node.tagName === targetSelctor.toUpperCase()) return $node;
+
+    const $result = customQuerySelector(selector, $node);
+
+    if ($result) return $result;
   }
 
   return null;

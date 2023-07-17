@@ -1,4 +1,3 @@
-import { NEXT_PAGE_INTERVAL } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Button from '../common/Button.js';
 import Component from '../core/Component.js';
@@ -31,47 +30,52 @@ export default class AllNewsListView extends Component {
   }
 
   template() {
-    return `<div class='news-list-wrapper'>
-              <button class='left-button'></button>
+    return `
+      <div class="news-list-wrapper">
+        <button class="left-button"></button>
 
-              <div class='newslist-list-view border-default'>
-                <nav class='border-default surface-alt'></nav>
+        <div class="newslist-list-view border-default">
+          <nav class="border-default surface-alt"></nav>
 
-                <section class='press-news-section'>
-                  <div class='press-news-info'>
-                    <img class='press-logo' src='src/assets/logo/${0}.png'/>
-                    <span class='display-medium12 text-default'>2023.02.10. 19:38 편집</span>
-                    <div class='subscribe-button-wrapper'></div>
-                  </div>
-
-                  <div class='press-news-content'>
-                    <div class='press-news-img'>
-                      <div>
-                        <img class='border-default available-medium16 text-strong' src='https://picsum.photos/200/300'/>
-                      </div>
-                      
-                      <label class='available-medium16  text-strong'>이재명 '억울하고 괴로워도 의연하게 맞설 것'
-                      </label>
-                    </div>
-
-                    <div class='press-news-detail-list'></div>
-                  </div>
-                </section>
-              </div>
-              
-              <button class='right-button'></button>
+          <section class="press-news-section">
+            <div class="press-news-info">
+              <img class="press-logo" src="src/assets/logo/${0}.png" />
+              <span class="display-medium12 text-default">2023.02.10. 19:38 편집</span>
+              <div class="subscribe-button-wrapper"></div>
             </div>
-            `;
+
+            <div class="press-news-content">
+              <div class="press-news-img">
+                <div>
+                  <img
+                    class="border-default available-medium16 text-strong"
+                    src="https://picsum.photos/200/300"
+                  />
+                </div>
+
+                <label class="available-medium16  text-strong"
+                  >이재명 '억울하고 괴로워도 의연하게 맞설 것'
+                </label>
+              </div>
+
+              <div class="press-news-detail-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <button class="right-button"></button>
+      </div>
+    `;
   }
 
   mounted() {
     this.navigationMount();
     this.detailListMount();
 
-    setTimeout(() => {
-      customQuerySelector('.progress-bar', this.$target).style.width = '100%';
-      this.setTimer();
-    }, 100);
+    customQuerySelector('.press-header-focus', this.$target).addEventListener(
+      'animationiteration',
+      this.goNextPage.bind(this),
+    );
 
     new Button(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
@@ -99,17 +103,13 @@ export default class AllNewsListView extends Component {
         if (index === this.state.currentPressIndex) {
           return (
             innerHTML +
-            `<li class='press-header-focus surface-brand-alt '>
-                  <span class='progress-bar surface-brand-default'></span>
-                  <div>
-                    <span class='selected-bold14 text-white-default'>${press}</span>
-                    <div>
-                      <span class='display-bold12 text-white-default'>${this.state.currentPage}</span>
-                      <span class='display-bold12 text-white-weak'> / ${this.state.totalPage}</span>
-                    </div>
-                    
-                  </div>
-                  </li>`
+            `<li class="press-header-focus surface-brand-alt ">
+              <span class="selected-bold14 text-white-default">${press}</span>
+              <div>
+                <span class="display-bold12 text-white-default">${this.state.currentPage}</span>
+                <span class="display-bold12 text-white-weak"> / ${this.state.totalPage}</span>
+              </div>
+            </li>`
           );
         }
         return innerHTML + `<li class="text-weak available-medium14 press-type-name">${press}</li>`;
@@ -159,15 +159,5 @@ export default class AllNewsListView extends Component {
     } else {
       this.setState({ currentPage: this.state.currentPage + 1 });
     }
-  }
-
-  setTimer() {
-    this.resetTimer();
-
-    this.timer = setInterval(this.goNextPage.bind(this), NEXT_PAGE_INTERVAL);
-  }
-
-  resetTimer() {
-    clearInterval(this.timer);
   }
 }

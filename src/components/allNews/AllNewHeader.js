@@ -11,16 +11,17 @@ export default class AllNewHeader extends Component {
     };
   }
   template() {
-    return `<nav class='view-type-wrapper'>
-            <span class='selected-bold16 text-strong'>전체 언론사</span>        
-            <span class='available-medium16 text-weak'>내가 구독한 언론사</span>
-            </nav>
+    return `
+      <nav class="view-type-wrapper">
+        <span class="selected-bold16 text-strong">전체 언론사</span>
+        <span class="available-medium16 text-weak">내가 구독한 언론사</span>
+      </nav>
 
-            <div class='view-type-icon'>
-              <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
-              <img id ='list-view-icon' class='icon-medium'/>
-              <img id ='grid-view-icon' class='icon-medium'/>
-            </div>`;
+      <div class="view-type-icon">
+        <img id="darkmode-icon" src="src/assets/icons/${this.state.modeIcon}.png" />
+        <img id="list-view-icon" class="icon-medium" />
+        <img id="grid-view-icon" class="icon-medium" />
+      </div>`;
   }
 
   mounted() {
