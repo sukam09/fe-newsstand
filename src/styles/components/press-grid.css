@@ -44,7 +44,6 @@
 
 .press-logo__li__entire,
 .press-logo__li__subscribe {
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,4 +52,33 @@
   list-style-type: none;
   border-right: 1px solid var(--grayscale-100);
   border-bottom: 1px solid var(--grayscale-100);
+}
+
+.press-logo__li__entire-hover,
+.press-logo__li__subscribe-hover {
+  background-color: var(--grayscale-50);
+}
+
+/* 언론사 버튼 영역 */
+.press-logo__li-button__entire,
+.press-logo__li-button__subscribe {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  border-radius: 50px;
+  width: 72px;
+  height: 24px;
+  padding: 0 6px;
+  gap: 2px;
+
+  background-color: var(--grayscale-white-alt);
+  border: 1px solid var(--grayscale-100);
+}
+
+.press-logo__li-p__entire,
+.press-logo__li-p__subscribe {
+  font: var(--medium-S);
+  color: var(--grayscale-200);
 }

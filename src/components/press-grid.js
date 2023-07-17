@@ -12,9 +12,11 @@ const initPressGrid = (pressData) => {
 const initEntirePressGrid = (pressData) => {
   const shuffleIds = getShuffleIds(pressData.length);
   localStorage.setItem('entirePage', 0);
+  const shuffleIdsLen = shuffleIds.length;
 
   setGrid('entire');
   setGridFrame('entire');
+  setGridButton('entire', shuffleIdsLen);
   setGridArrow(pressData, shuffleIds, 'entirePage', 'entire');
   setGridLogo(pressData, shuffleIds, 0, 'entire');
   changeIcon('entire');
@@ -28,10 +30,14 @@ const initSubscribePressGrid = (pressData) => {
 
   let subscribeIds = pressData.filter((item) => item.isSub === true);
   subscribeIds = subscribeIds.map((press) => press.id);
+  const subscribeIdsLen = subscribeIds.length;
   localStorage.setItem('subscribePage', 0);
+
+  console.log(subscribeIds);
 
   setGrid('subscribe');
   setGridFrame('subscribe');
+  setGridButton('subscribe', subscribeIdsLen);
   setGridArrow(pressData, subscribeIds, 'subscribePage', 'subscribe');
   setGridLogo(pressData, subscribeIds, 0, 'subscribe');
   changeIcon('subscribe');
@@ -57,18 +63,23 @@ const setGridFrame = (section) => {
   const initFrame = Array.from({ length: 24 }, (_, idx) => idx);
   initFrame.sort((a, b) => b - a);
 
-  ///// 버튼추가
   initFrame.forEach((frame) => {
     const pressElement = `
       <li class='press-logo__li__${section}'>
         <img class=${section}Img${frame} src=''></img>
-        <button class=${section}button${frame}></button>
+        <button class="press-logo__li-button__${section} none">
+          <img class="press-logo__li-img__${section}" src='./assets/icons/button-plus.svg' />
+          <p class="press-logo__li-p__${section}">구독하기</p>
+        </button>
       </li>
     `;
     pressWrapper.insertAdjacentHTML('afterbegin', pressElement);
   });
 };
 
+/**
+ * 언론사 그리드의 화살표
+ */
 const setGridArrow = (pressData, pressIds, page, section) => {
   const arrowLeft = document.querySelector(`.arrows-logo__img-left__${section}`);
   const arrowRight = document.querySelector(`.arrows-logo__img-right__${section}`);
@@ -101,6 +112,9 @@ const setGridArrowNone = (pressIds, pageNum, section) => {
   arrowRight.classList.toggle('none', !(arrowNumber > 1) || !showRightArrow);
 };
 
+/**
+ * 언론사 그리드의 로고
+ */
 const setGridLogo = (pressData, pressIds, pageNum, section) => {
   const sliceIds = getSliceIds(pressIds, pageNum, 24);
   getGridLogo(pressData, sliceIds, section);
@@ -110,7 +124,7 @@ const getGridLogo = (pressData, pressIds, section) => {
   pressIds.forEach((pressId, idx) => {
     const selectPress = pressData.find((data) => data.id === pressId);
     const logoWapper = document.querySelector(`.${section}Img${idx}`);
-    logoWapper.setAttribute('pressId', pressId); ///
+    logoWapper.setAttribute('pressId', pressId); //////// 수정중
 
     let mode = localStorage.getItem('mode');
     if (mode === 'light') logoWapper.src = selectPress.lightSrc;
@@ -142,6 +156,40 @@ const changeSrc = (logo) => {
 
     logo.src = newLogoSrc;
   }
+};
+
+/**
+ * 언론사 그리드의 구독하기 버튼
+ */
+const setGridButton = (section, pressIdsLen) => {
+  const pressLis = document.querySelectorAll(`.press-logo__li__${section}`);
+  const slicePressLis = [];
+  pressLis.forEach((li, idx) => {
+    if (idx < pressIdsLen) slicePressLis.push(li);
+  });
+
+  slicePressLis.forEach((li) => {
+    const pressImg = li.querySelector('img');
+    const pressButton = li.querySelector('button');
+
+    // console.log(pressImg);
+    // console.log(pressImg.src);
+    // console.log(pressImg.getAttribute('src') !== '');
+
+    li.addEventListener('mouseover', () => {
+      pressImg.classList.add('none');
+      pressButton.classList.remove('none');
+      li.classList.add('press-logo__li__entire-hover');
+    });
+
+    li.addEventListener('mouseout', () => {
+      pressImg.classList.remove('none');
+      pressButton.classList.add('none');
+      li.classList.remove('press-logo__li__entire-hover');
+    });
+
+    // if (pressImg.getAttribute('src') !== '') {}
+  });
 };
 
 export { initPressGrid };
