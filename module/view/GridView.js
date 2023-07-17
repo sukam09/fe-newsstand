@@ -1,10 +1,12 @@
 import { fetchPressData } from "../../api.js";
 import { GRID_PAGE } from "../../global.js";
+import { DoSubScribe } from "../components/SubscribeBtn.js";
 
 let news_icon;
 const ICONS_PER_PAGE = 24;
+const COL_CNT = 6;
 
-function createSubscribeDiv(li) {
+function createSubscribeDiv(li, row, col) {
   const subscribeModeDiv = `
   <div class="subscribe-wrap">
 
@@ -15,12 +17,14 @@ function createSubscribeDiv(li) {
   </div>`;
 
   li.innerHTML += subscribeModeDiv;
+  const SubscribeBtn = li.querySelector(".subscribe-btn");
+  DoSubScribe(SubscribeBtn, news_icon[COL_CNT * row + col].id);
 }
 
-function pressMouseOver(li) {
+function pressMouseOver(li, row, col) {
   const subscribeMode = li.querySelector("div");
   if (!subscribeMode) {
-    createSubscribeDiv(li);
+    createSubscribeDiv(li, row, col);
     const pressLogo = li.querySelector(".press-logo");
     pressLogo.classList.add("hidden");
   }
@@ -39,12 +43,12 @@ export function updateGrid() {
     if (news_icon) {
       let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
-      grid_row.forEach((ul) => {
+      grid_row.forEach((ul, row) => {
         const grid_li = ul.querySelectorAll("li");
-        grid_li.forEach((li) => {
+        grid_li.forEach((li, col) => {
           const press_logo = li.querySelector(".press-logo");
           press_logo.src = news_icon[icon_idx++].path;
-          li.addEventListener("mouseenter", () => pressMouseOver(li));
+          li.addEventListener("mouseenter", () => pressMouseOver(li, row, col));
           li.addEventListener("mouseleave", () => pressMouseOut(li));
         });
       });

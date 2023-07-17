@@ -2,7 +2,7 @@ import { RollingRender } from "./module/components/Rolling.js";
 import { printGrid } from "./module/view/GridView.js";
 import { initDate } from "./module/utility/Date.js";
 import { PressFilterTab } from "./module/components/PressFilterTab.js";
-import SelectViewStyle from "./module/ViewStyle.js";
+import SelectViewStyle from "./module/components/LayoutBtn.js";
 import { BtnEventHandlerRegister } from "./module/components/Arrow.js";
 
 function main() {

@@ -1,12 +1,11 @@
 import { updateGrid } from "./module/view/GridView.js";
-// import { updatePressNewsSection } from "./module/view/ListView/Actions/UpdateSection.js";
 import { changePageInfo, changeCategory, changePressNewsSection } from "./module/view/ListView/Actions/ChangePress.js";
 
 // 리스트뷰 현재 페이지 & 현재 카테고리
 export const LIST_PAGE = {
   CURRENT_PAGE: 1,
   CURRENT_CATEGORY: 0,
-  ENTIRE_PAGE: 20,
+  // ENTIRE_PAGE: 20,
   setPage: (page) => {
     LIST_PAGE.CURRENT_PAGE = page;
     // 부분 렌더링

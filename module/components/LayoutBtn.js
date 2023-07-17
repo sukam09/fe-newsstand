@@ -1,8 +1,8 @@
-import { printGrid } from "./view/GridView.js";
-import { printList } from "./view/ListView/ListView.js";
-import { timerId } from "./view/ListView/Timer.js";
-import { LIST_PAGE, GRID_PAGE } from "../global.js";
-import { arrowStateInit } from "../module/components/Arrow.js";
+import { printGrid } from "../view/GridView.js";
+import { printList } from "../view/ListView/ListView.js";
+import { timerId } from "../view/ListView/Timer.js";
+import { LIST_PAGE, GRID_PAGE } from "../../global.js";
+import { arrowStateInit } from "./Arrow.js";
 
 const GRID = "grid";
 const LIST = "list";

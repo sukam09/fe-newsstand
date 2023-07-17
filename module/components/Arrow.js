@@ -1,4 +1,4 @@
-import { VIEW } from "../ViewStyle.js";
+import { VIEW } from "./LayoutBtn.js";
 import { categoryLength, news_data, tabsAndTimerReset } from "../view/ListView/ListView.js";
 import { LIST_PAGE, GRID_PAGE } from "../../global.js";
 

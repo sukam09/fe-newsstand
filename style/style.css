@@ -120,6 +120,7 @@ section {
 }
 
 .grid {
+  position: relative;
   display: flex;
   height: 388px;
   flex-direction: column;
@@ -374,4 +375,22 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   flex-direction: column;
   align-self: stretch;
   color: var(--text-text-weak, #879298);
+}
+
+.snack-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  padding: 16px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-surface-brand-default, #4362d0);
+
+  /* popup */
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+.snack-bar-text {
+  color: var(--text-text-white-default, #fff);
 }
