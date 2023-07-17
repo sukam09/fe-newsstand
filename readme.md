@@ -36,6 +36,7 @@ fe-newsstand
 │  ├─ grid.js
 │  ├─ list.js
 │  ├─ rolling.js
+│  ├─ subscribe.js
 │  ├─ util.js
 │  └─ variable.js
 ├─ style
