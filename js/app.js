@@ -1,7 +1,7 @@
 import { date } from './header/date.js';
-import { initNewsStand } from './main/newsstnad.js';
+import { initNewsStandGrid } from './main/newsstnadGrid.js';
 import { initSubView } from './main/rollingSubView.js';
-import { initEvent } from './core/events.js';
+import { initEvent } from './events.js';
 import { initNewsStandList } from './main/newsstandList.js';
 
 // 기능
@@ -14,7 +14,7 @@ function headerRender() {
 }
 
 function mainRender() {
-  initNewsStand();
+  initNewsStandGrid();
   initNewsStandList();
   initSubView();
 }
