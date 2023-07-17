@@ -4,7 +4,7 @@
         "name": "서울경제",
         "logo": "../asset/logos/light/press1.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",
@@ -49,7 +49,7 @@
         "name": "데일리안",
         "logo": "../asset/logos/light/press2.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",
@@ -94,7 +94,7 @@
         "name": "헤럴드경제",
         "logo": "../asset/logos/light/press3.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",
@@ -139,7 +139,7 @@
         "name": "SBS Biz",
         "logo": "../asset/logos/light/press4.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",
@@ -184,7 +184,7 @@
         "name": "세계일보",
         "logo": "../asset/logos/light/press5.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",
@@ -229,7 +229,7 @@
         "name": "아시아경제",
         "logo": "../asset/logos/light/press6.png",
         "category": "종합/경제",
-        "subscribed": false,
+        "subscribed": true,
         "editTime": "2023-10-04 00:11:22",
         "mainArticle": {
             "title": "[Why요?] 비 오면 파전과 막걸리가 생각나는 이유는?",

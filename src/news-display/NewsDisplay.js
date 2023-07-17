@@ -31,6 +31,9 @@ export default class NewsDisplay extends Component {
         const response = await fetch(`../data/press-data.json`);
         const jsonData = await response.json();
 
+        const subscribeList = [];
+        this.mountSubscribe(jsonData, subscribeList);
+
         new NewsDisplayTab(newsDisplayTab, {
             view: this.state.view,
             onClick: this.onClick.bind(this),
@@ -39,11 +42,11 @@ export default class NewsDisplay extends Component {
         this.state.view === "grid"
             ? new NewsGridView(
                   this.$target.querySelector(".news-display-container"),
-                  { newsData: jsonData, page: 0 }
+                  { newsData: jsonData, subscribeList: subscribeList, page: 0 }
               )
             : new NewsListView(
                   this.$target.querySelector(".news-display-container"),
-                  { newsData: jsonData }
+                  { newsData: jsonData, subscribeList: subscribeList }
               );
 
         const modal = $app.querySelector(".alert-container");
@@ -53,5 +56,26 @@ export default class NewsDisplay extends Component {
     onClick(viewMode) {
         currentViewMode = viewMode;
         this.setState({ view: currentViewMode });
+    }
+
+    mountSubscribe(jsonData, subscribeList) {
+        if (localStorage.getItem("subscribeList") === null) {
+            jsonData.forEach((data) => {
+                if (data.subscribed === true) {
+                    subscribeList.push({ id: data.id, name: data.name });
+                }
+            });
+            localStorage.setItem(
+                "subscribeList",
+                JSON.stringify(subscribeList)
+            );
+        } else {
+            const localSubscribeList = JSON.parse(
+                localStorage.getItem("subscribeList")
+            );
+            localSubscribeList.forEach((data) =>
+                subscribeList.push({ id: data.id, name: data.name })
+            );
+        }
     }
 }

@@ -20,6 +20,7 @@ export default class NewsListView extends Component {
             currentCategoryIndex: 0,
             currentPage: 1,
             newsData: [],
+            subscribeList: this.props.subscribeList,
         };
 
         this.state.newsData = this.getCategoryNewsData(
@@ -43,9 +44,9 @@ export default class NewsListView extends Component {
                         <div class="edit-time display-medium12">
                             ${this.getEditTime(newsData.editTime)} 편집
                         </div>
-                        <div class="subscribe-button-wrapper" data-name=${
-                            newsData.name
-                        }></div>
+                        <div class="subscribe-button-wrapper" data-id=${
+                            newsData.id
+                        } data-name=${newsData.name}></div>
                     </div>
                     <div class="articles-container available-medium16">
                         <div class="main-article">
@@ -89,7 +90,7 @@ export default class NewsListView extends Component {
         );
         new SubscribeButton(subscribeButton, {
             viewMode: "list",
-            subscribed: false,
+            subscribed: this.isSubscribed(subscribeButton.dataset.id),
             pressName: subscribeButton.dataset.name,
         });
     }
@@ -229,6 +230,10 @@ export default class NewsListView extends Component {
         const [hours, minutes, _] = timePart.split(":");
 
         return `${year}.${month}.${day}. ${hours}:${minutes}`;
+    }
+
+    isSubscribed(id) {
+        return this.state.subscribeList.some((data) => data.id === Number(id));
     }
 
     progressInterval() {

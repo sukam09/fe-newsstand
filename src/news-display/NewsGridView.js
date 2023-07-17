@@ -10,6 +10,7 @@ export default class NewsGridView extends Component {
     setup() {
         this.state = {
             pressData: shuffleNewsPress(this.props.newsData),
+            subscribeList: this.props.subscribeList,
             page: 0,
         };
     }
@@ -67,11 +68,15 @@ export default class NewsGridView extends Component {
 
         const subscribeButtons = this.$target.querySelectorAll(".flip-back");
         subscribeButtons.forEach((item) => {
+            // console.log(item.parentNode.parentNode.dataset.id);
             new SubscribeButton(item, {
                 viewMode: "grid",
-                subscribed: true,
+                subscribed: this.isSubscribed(
+                    item.parentNode.parentNode.dataset.id
+                ),
                 pressName: item.parentNode.parentNode.dataset.name,
-            }); // test시에는 true
+                pressId: item.parentNode.parentNode.dataset.id,
+            });
         });
     }
 
@@ -81,5 +86,9 @@ export default class NewsGridView extends Component {
 
     setNextPage() {
         this.setState({ page: this.state.page + 1 });
+    }
+
+    isSubscribed(id) {
+        return this.state.subscribeList.some((data) => data.id === Number(id));
     }
 }
