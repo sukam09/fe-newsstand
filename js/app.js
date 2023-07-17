@@ -1,18 +1,11 @@
-import { constants } from "./Data/constants.js";
-import { setHeaderDate } from "./Components/Header/headerDate.js";
-import { setRolling } from "./Components/Headline/rolling.js";
-import { renderNewspaper } from "./Components/NewsGrid/newspaper.js";
-import { setGridPageButton } from "./Components/NewsGrid/pageButton.js";
-import { setViewerEvent } from "./Components/NavBar/newsViewer.js";
-import { setListPageButton } from "./Components/NewsList/pageButton.js";
-import { setFieldTab } from "./Components/NewsList/fieldTab.js";
+import { Header } from "./Components/Header/header.js";
+import { Headline } from "./Components/Headline/headline.js";
+import { News } from "./Components/News/news.js";
 
-window.addEventListener("DOMContentLoaded", () => {
-  setHeaderDate();
-  setRolling();
-  renderNewspaper(constants.MIN_PAGE, constants.LIGHT_MODE);
-  setGridPageButton();
-  setViewerEvent();
-  setListPageButton();
-  setFieldTab();
-});
+export const App = () => `
+  <div id="app">
+    ${Header()}
+    ${Headline()}
+    ${News()}
+  </div>
+`;

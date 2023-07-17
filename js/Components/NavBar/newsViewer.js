@@ -1,12 +1,12 @@
 import { startProgress, stopProgress } from "../NewsList/progress.js";
 import { constants } from "../../Data/constants.js";
 
-const $listButton = document.querySelector(".news-navbar_content__list");
-const $gridButton = document.querySelector(".news-navbar_content__grid");
-const $listButtonElem = $listButton.childNodes[1].childNodes[1];
-const $gridButtonElem = $gridButton.childNodes[1].childNodes[1];
-const $listSection = document.querySelector(".news-section-list");
-const $gridSection = document.querySelector(".news-section-grid");
+let $listButton;
+let $gridButton;
+let $listButtonElem;
+let $gridButtonElem;
+let $listSection;
+let $gridSection;
 
 const clickViewer = (target) => {
   const isList = target === constants.SHOW_LIST;
@@ -18,6 +18,13 @@ const clickViewer = (target) => {
 };
 
 const setViewerEvent = () => {
+  $listButton = document.querySelector(".news-navbar_content__list");
+  $gridButton = document.querySelector(".news-navbar_content__grid");
+  $listButtonElem = $listButton.childNodes[1].childNodes[1];
+  $gridButtonElem = $gridButton.childNodes[1].childNodes[1];
+  $listSection = document.querySelector(".news-section-list");
+  $gridSection = document.querySelector(".news-section-grid");
+
   $listButton.addEventListener("click", () => clickViewer(constants.SHOW_LIST));
   $gridButton.addEventListener("click", () => clickViewer(constants.SHOW_GRID));
 };

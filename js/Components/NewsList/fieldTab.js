@@ -11,13 +11,14 @@ const makeTag = (event, item) => {
     nowCategoryNewsData = getCategoryData(item).sort(() => Math.random() - 0.5);
 
     result += `
-    <li class="news-list__field-tab__progress">
-      <span>${item}</span>
-      <span class="news-list__field-tab__progress-count">
-        1
-        <span class="news-list__field-tab__progress-entire">/ ${nowCategoryNewsData.length}</span>
-      </span>
-    </li>`;
+      <li class="news-list__field-tab__progress">
+        <span>${item}</span>
+        <span class="news-list__field-tab__progress-count">
+          1
+          <span class="news-list__field-tab__progress-entire">/ ${nowCategoryNewsData.length}</span>
+        </span>
+      </li>
+    `;
   } else {
     result += `<li class="news-list__field-tab__general">${item}</li>`;
   }

@@ -1,7 +1,7 @@
 import { constants } from "../../Data/constants.js";
 import newspaperData from "../../Data/newspaper.js";
 
-const $newspaperList = document.querySelector(".newspaper__list");
+let $newspaperList;
 
 const newspaperRandom = [...newspaperData];
 newspaperRandom.sort(() => Math.random() - 0.5);
@@ -9,11 +9,11 @@ newspaperRandom.sort(() => Math.random() - 0.5);
 const createNewspaperItem = (item, mode) => {
   return `
     <li class="newspaper__item">
-    <img src=${
-      mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
-    } alt=${item.name} />
+      <img src=${
+        mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
+      } alt=${item.name} />
     </li>
-    `;
+  `;
 };
 
 const createNewspaperList = (page, mode) => {
@@ -29,6 +29,7 @@ const createNewspaperList = (page, mode) => {
 };
 
 const renderNewspaper = (page, mode) => {
+  $newspaperList = document.querySelector(".newspaper__list");
   $newspaperList.innerHTML = createNewspaperList(page, mode);
 };
 

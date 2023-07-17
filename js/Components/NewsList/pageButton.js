@@ -4,14 +4,9 @@ import { clearProgress } from "./progress.js";
 let page = 1;
 let $nowPage;
 
-const $leftButton = document.querySelector(
-  ".news-section-list .left-button_content"
-);
-const $rightButton = document.querySelector(
-  ".news-section-list .right-button_content"
-);
-
-const $pressNews = document.querySelector(".news-list__press-news");
+let $leftButton;
+let $rightButton;
+let $pressNews;
 
 const renderContent = () => {
   $nowPage.data = page + " ";
@@ -89,6 +84,14 @@ const changePageTarget = () => {
 };
 
 const setListPageButton = () => {
+  $leftButton = document.querySelector(
+    ".news-section-list .left-button_content"
+  );
+  $rightButton = document.querySelector(
+    ".news-section-list .right-button_content"
+  );
+  $pressNews = document.querySelector(".news-list__press-news");
+
   setNowPageTag();
 
   $leftButton.addEventListener("click", movePageLeft);
