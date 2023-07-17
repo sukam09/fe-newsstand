@@ -3,6 +3,10 @@ export const HEADLINE = {
   INTERVAL: 5000,
 };
 
+export const MSG = {
+  SUBSCRIBE: '내가 구독한 언론사에 추가되었습니다.',
+};
+
 export const BUTTON = {
   SUBSCRIBE: '구독하기',
   UNSUBSCRIBE: '해지하기',

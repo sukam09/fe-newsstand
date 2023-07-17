@@ -16,24 +16,29 @@ const Button = ({ icon, isWhite, text, onClick }) => {
   return buttonElement;
 };
 
-const UnSubButton = ({ withText, onClick }) =>
+const UnSubButton = ({ withText, unsubAction }) =>
   Button({
     icon: 'close',
     isWhite: false,
     text: withText ? BUTTON.UNSUBSCRIBE : null,
-    onClick,
+    onClick: unsubAction,
   });
 
-const SubButton = ({ isSub, withText = true, onClick }) =>
+const SubButton = ({ isSub, withText = true, subAction, unsubAction }) =>
   isSub
-    ? UnSubButton({ withText, onClick })
-    : Button({ icon: 'plus', isWhite: true, text: BUTTON.SUBSCRIBE, onClick });
+    ? UnSubButton({ withText, unsubAction })
+    : Button({
+        icon: 'plus',
+        isWhite: true,
+        text: BUTTON.SUBSCRIBE,
+        onClick: subAction,
+      });
 
-const SubButtonArea = isSub => {
+const SubButtonArea = (isSub, subAction, unsubAction) => {
   const subButtonArea = document.createElement('div');
 
   subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubButton({ isSub }));
+  subButtonArea.appendChild(SubButton({ isSub, subAction, unsubAction }));
   return subButtonArea;
 };
 

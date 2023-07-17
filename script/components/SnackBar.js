@@ -1,6 +1,6 @@
-import { SNACKBAR_DELAY } from '../constants';
+import { SNACKBAR_DELAY } from '../constants.js';
 
-const SnackBar = msg => {
+const SnackBar = (msg, action) => {
   const snackBar = document.createElement('div');
 
   snackBar.className =
@@ -8,6 +8,7 @@ const SnackBar = msg => {
   snackBar.innerHTML = msg;
   setTimeout(() => {
     snackBar.remove();
+    if (action) action();
   }, SNACKBAR_DELAY);
   return snackBar;
 };

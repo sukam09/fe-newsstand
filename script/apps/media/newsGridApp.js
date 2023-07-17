@@ -1,12 +1,13 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import MediaGrid from '../../components/media/MediaGrid.js';
-import { MEDIA, SUB_MEDIA } from '../../constants.js';
+import { MEDIA, MSG, SUB_MEDIA } from '../../constants.js';
 import { SubButtonArea } from '../../components/Button.js';
 import {
   clearAllChildren,
   createNewArrow,
   shuffleArray,
 } from '../../utils/utils.js';
+import SnackBar from '../../components/snackBar.js';
 
 const createMediaArray = () => {
   const mediaArray = Array.from({ length: MEDIA.TOTAL }, (_, index) => index);
@@ -16,6 +17,8 @@ const createMediaArray = () => {
 };
 
 const updateLogo = (logoElement, mediaId) => {
+  const mediaView = document.querySelector('#media_view');
+
   logoElement.nextElementSibling?.remove();
   logoElement.className = 'media_logo';
   if (mediaId === undefined) {
@@ -28,7 +31,16 @@ const updateLogo = (logoElement, mediaId) => {
   logoElement.alt = mediaData.getName(mediaId);
   logoElement.insertAdjacentElement(
     'afterend',
-    SubButtonArea(SUB_MEDIA.includes(mediaId))
+    SubButtonArea(
+      SUB_MEDIA.includes(mediaId),
+      () => {
+        mediaView.appendChild(SnackBar(MSG.SUBSCRIBE));
+      },
+      () => {
+        // TODO: 구독 취소 alert
+        console.log('unsubscribe alert');
+      }
+    )
   );
 };
 
