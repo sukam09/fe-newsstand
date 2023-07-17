@@ -35,7 +35,7 @@
         }
       ],
       "logo": "./asset/logo/조선일보.png",
-      "subscribe": false,
+      "subscribe": true,
       "category": "종합/경제",
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
