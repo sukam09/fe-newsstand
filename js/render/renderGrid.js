@@ -4,9 +4,9 @@ import {
   gridMain,
   listMain,
 } from "./renderMain.js";
-import { shuffle } from "../utils/utils.js";
-import { progressInterval } from "./category.js";
-import logo from "../json/news_image.json" assert { type: "json" };
+import { shuffle } from "../../utils/utils.js";
+import { progressInterval } from "../category.js";
+import logo from "../../json/news_image.json" assert { type: "json" };
 
 const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;
@@ -15,7 +15,7 @@ let logos = logo;
 
 function renderGrid(currentPageNumber) {
   const COUNT_PER_PAGE = 24;
-  clearInterval(progressInterval);
+  if (clearInterval != undefined) clearInterval(progressInterval);
   shuffle(logos);
   gridMain.style.display = "grid";
   listMain.style.display = "none";
@@ -41,7 +41,7 @@ function drawLogo(LOGO_INDEX) {
 }
 
 function increaseGridPage() {
-  if (currentPageNumber == MAX_PAGE_NUMBER - 1) {
+  if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
     rightAsideButton.style.visibility = "hidden";
     currentPageNumber++;
     renderGrid(currentPageNumber);

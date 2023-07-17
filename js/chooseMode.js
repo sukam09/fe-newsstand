@@ -1,7 +1,8 @@
 import { changeImageSrc } from "../utils/utils.js";
 import { addAsideClickEvent } from "./asideButton.js";
-import { renderMain } from "./renderMain.js";
-import { leftAsideButton } from "./renderMain.js";
+import { renderCardList } from "./render/renderCardList.js";
+import { renderGrid } from "./render/renderGrid.js";
+import { leftAsideButton } from "./render/renderMain.js";
 
 function clickGridImage() {
   const gridImage = document.getElementById("grid-image");
@@ -12,7 +13,8 @@ function clickGridImage() {
     );
     changeImageSrc(e.target, "./img/clicked_grid.png");
     leftAsideButton.style.visibility = "hidden";
-    setMainContent(true);
+    addAsideClickEvent(true);
+    renderGrid(0);
   });
 }
 
@@ -21,13 +23,9 @@ function clickCardListImage() {
   cardListImage.addEventListener("click", (e) => {
     changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
     changeImageSrc(e.target, "./img/clicked_card_list.png");
-    setMainContent(false);
+    addAsideClickEvent(false);
+    renderCardList();
   });
-}
-
-function setMainContent(isGrid) {
-  addAsideClickEvent(isGrid);
-  renderMain(isGrid);
 }
 
 export { clickCardListImage, clickGridImage };

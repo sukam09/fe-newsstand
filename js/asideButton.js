@@ -1,6 +1,6 @@
-import { rightAsideButton, leftAsideButton } from "./renderMain.js";
+import { rightAsideButton, leftAsideButton } from "./render/renderMain.js";
 import { increaseListPage, decreaseListPage } from "./category.js";
-import { increaseGridPage, decreaseGridPage } from "./renderGrid.js";
+import { increaseGridPage, decreaseGridPage } from "./render/renderGrid.js";
 
 function addAsideClickEvent(isGrid) {
   clickRightAsideButton(isGrid);

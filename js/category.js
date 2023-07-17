@@ -1,43 +1,16 @@
-import categoryData from "../json/category.json" assert { type: "json" };
-import news from "../json/news.json" assert { type: "json" };
 import { increment, totalTime } from "../utils/constants.js";
 import { drawNews } from "./drawNews.js";
+import { categoryCnt, categoryNews } from "./setData.js/setCategoryData.js";
 
 let progress = 0;
-let categoryCnt = []; //카테고리별 data개수
-let categoryNews = {}; //카테고리별 담긴 기사뉴스
 let currentCategoryPageNumber = 1;
-let currentCategoryNumber = 0;
+let currentCategoryIndex = 0;
 let progressInterval;
 let currentCategoryPage;
 
-function setCategoryCnt() {
-  for (const categories of categoryData) {
-    for (const key in categories) {
-      const item = {
-        key: key,
-        value: categories[key],
-      };
-      categoryCnt.push(item);
-    }
-  }
-}
-
-function setCategoryNews() {
-  categoryCnt.forEach((categoryCntValue, categoryCntIndex) => {
-    const item = [];
-    news.News.forEach((newsValue) => {
-      if (newsValue.category == categoryCntValue.key) item.push(newsValue);
-    });
-    categoryNews[categoryCntIndex] = item;
-  });
-}
-setCategoryCnt();
-setCategoryNews();
-
 function drawInitCategory() {
   currentCategoryPageNumber = 1;
-  currentCategoryNumber = 0;
+  currentCategoryIndex = 0;
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   categoryCnt.forEach((key, index) => {
     categoryHtml += `<div class="categoryItem" id="category${index}"><div class="progress-bar" id=${key.key}></div><span class="category">${key.key}</span></li><span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${key.value}</span></div>`;
@@ -56,22 +29,22 @@ function drawCategoryItem() {
   if (progressInterval != undefined) {
     clearInterval(progressInterval);
     progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
       currentCategoryPage
     );
   }
   intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
     currentCategoryPage
   );
 }
 
 function categoryDisplayOn(categoryItem) {
-  categoryItem[currentCategoryNumber].style.backgroundColor = "#7890E7";
-  categoryItem[currentCategoryNumber].style.color = "#FFFFFF";
-  currentCategoryPage[currentCategoryNumber].style.display = "flex";
+  categoryItem[currentCategoryIndex].style.backgroundColor = "#7890E7";
+  categoryItem[currentCategoryIndex].style.color = "#FFFFFF";
+  currentCategoryPage[currentCategoryIndex].style.display = "flex";
   document.querySelectorAll(".categoryCnt")[
-    currentCategoryNumber
+    currentCategoryIndex
   ].style.display = "flex";
 }
 
@@ -99,12 +72,12 @@ function doProgress(progressBar, currentCategoryPage) {
     currentCategoryPageNumber++;
     if (
       currentCategoryPageNumber ===
-      categoryCnt[currentCategoryNumber].value + 1
+      categoryCnt[currentCategoryIndex].value + 1
     ) {
       currentCategoryPageNumber = 1;
-      if (currentCategoryNumber === categoryCnt.length - 1)
-        currentCategoryNumber = 0;
-      else currentCategoryNumber++;
+      if (currentCategoryIndex === categoryCnt.length - 1)
+        currentCategoryIndex = 0;
+      else currentCategoryIndex++;
       clearInterval(progressInterval);
     }
     drawCategoryItem();
@@ -114,7 +87,7 @@ function doProgress(progressBar, currentCategoryPage) {
 }
 
 function progressReset(progressBar, currentCategoryPage) {
-  currentCategoryPage[currentCategoryNumber].innerHTML =
+  currentCategoryPage[currentCategoryIndex].innerHTML =
     currentCategoryPageNumber;
   progressBar.style.transition = "";
   progressBar.style.width = "0%";
@@ -132,68 +105,57 @@ function clearCategoryNumber() {
   categoryDisplayOn(categoryItem);
 }
 
+function clearNewsInterval() {
+  drawNews();
+  clearInterval(progressInterval);
+  intervalProgress(
+    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
+    currentCategoryPage
+  );
+}
+
 function increaseListPage() {
-  if (currentCategoryPageNumber === categoryCnt[currentCategoryNumber].value) {
+  if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
-    if (currentCategoryNumber === categoryCnt.length - 1)
-      currentCategoryNumber = 0;
-    else currentCategoryNumber++;
-    drawNews();
-    clearCategoryNumber();
-    clearInterval(progressInterval);
     progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
       currentCategoryPage
     );
-    intervalProgress(
-      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
-      currentCategoryPage
-    );
+    if (currentCategoryIndex === categoryCnt.length - 1)
+      currentCategoryIndex = 0;
+    else currentCategoryIndex++;
+    clearCategoryNumber();
+    clearNewsInterval();
     return;
   }
   currentCategoryPageNumber++;
-  clearInterval(progressInterval);
   progressReset(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
     currentCategoryPage
   );
-  intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
-    currentCategoryPage
-  );
-  drawNews();
+  clearNewsInterval();
 }
 
 function decreaseListPage() {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
-    if (currentCategoryNumber === 0)
-      currentCategoryNumber = categoryCnt.length - 1;
-    else currentCategoryNumber--;
-    clearCategoryNumber();
-    drawNews();
-    clearInterval(progressInterval);
     progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
       currentCategoryPage
     );
-    intervalProgress(
-      document.querySelectorAll(".progress-bar")[currentCategoryNumber],
-      currentCategoryPage
-    );
+    if (currentCategoryIndex === 0)
+      currentCategoryIndex = categoryCnt.length - 1;
+    else currentCategoryIndex--;
+    clearCategoryNumber();
+    clearNewsInterval();
     return;
   }
   currentCategoryPageNumber--;
-  clearInterval(progressInterval);
   progressReset(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
+    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
     currentCategoryPage
   );
-  intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryNumber],
-    currentCategoryPage
-  );
-  drawNews();
+  clearNewsInterval();
 }
 
 export {
@@ -201,7 +163,6 @@ export {
   progressInterval,
   increaseListPage,
   decreaseListPage,
-  currentCategoryNumber,
+  currentCategoryIndex,
   currentCategoryPageNumber,
-  categoryNews,
 };
