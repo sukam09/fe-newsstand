@@ -27,11 +27,15 @@ const categoryList = ["종합/경제","방송/통신","IT","영자지","스포�
 
 function listenCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", () => {        
+            if (crntListIdx !== index){
+                crntPage = 0;
+            }
             catBtns[crntListIdx].classList.remove("selected")
             crntListIdx = index;
             catBtns[crntListIdx].classList.add("selected");
-            // drawList(crntListIdx); // empty list section, draw again
+            drawListPage(crntListIdx,crntPage); // empty list content section, draw again
+            updateArrow();
         })
     })
 }
@@ -54,6 +58,8 @@ function drawListPage(crntListIdx, crntPageIdx) {
             </section>
         </section>
     </div>`
+
+    
 }
 function drawList(crntListIdx) {
     listNav.innerHTML = "";
@@ -61,6 +67,7 @@ function drawList(crntListIdx) {
         listNav.innerHTML += `<li class="${crntListIdx == index ? "selected category" : "category"}">${category}</li>`
     })
     drawListPage(crntListIdx, crntPage);
+    listenCategoryChange(listNav.children);
 }
 function listenViewChange(btn, type) {
     btn.addEventListener("click", () => {
@@ -237,7 +244,6 @@ function drawDate() {
 function init(){
     drawDate();
     drawPress(crntPage);
-    drawList(crntListIdx);
     rollingContent.forEach((item, index) => {
         const isFirstRoll = true;
         rollHeadline(item,rollingList, rollingList.length, index, isFirstRoll);
@@ -248,7 +254,7 @@ function init(){
     viewChangeBtns.forEach((btn) => {
         listenViewChange(btn, btn.getAttribute("type"));
     })
-    listenCategoryChange(listNav.children);
+    
 }
 
 window.onload = init;
