@@ -3,6 +3,7 @@ import {
   ROLLING_NEWS_NUM,
   ROLLING_TIME,
 } from "../constant/constants.js";
+import { getRollingList } from "./api.js";
 import { $ } from "./util.js";
 
 // 왼쪽 배너 롤링 반복
@@ -40,12 +41,13 @@ function stopRolling(state) {
 }
 
 // 롤링에 들어갈 뉴스 리스트 추가
-function appendRollingList() {
+export async function appendRollingList() {
+  const headlineData = await getRollingList();
   const rollingListContainerLeft = $(".newsbanner__list-container--left");
   const rollingListContainerRight = $(".newsbanner__list-container--right");
   for (let i = 0; i < ROLLING_NEWS_NUM; i++) {
-    const leftItem = createBannerItem(i, rollingNewsContentLeft[i], "left");
-    const rightItem = createBannerItem(i, rollingNewsContentRight[i], "right");
+    const leftItem = createBannerItem(i, headlineData[i].title, "left");
+    const rightItem = createBannerItem(i, headlineData[i + 5].title, "right");
     rollingListContainerLeft.appendChild(leftItem);
     rollingListContainerRight.appendChild(rightItem);
   }
@@ -105,5 +107,3 @@ function rollingEvent(state) {
   next.classList.remove("newsbanner__list--next");
   next.classList.add("newsbanner__list--now");
 }
-
-export { appendRollingList };

@@ -1,13 +1,19 @@
 import { MAX_GRID_COUNT, NOW_GRID_PAGE } from "../constant/constants.js";
+import { getPressObj } from "./api.js";
 import { $, $All, shuffleArray } from "./util.js";
 
+let cachedpressObj = null;
+
 // 셔플된 리스트 그리드리스트에 append
-export function appendGridList() {
+export async function appendGridList() {
   const gridContainerList = $All(".grid_container");
-  const shuffledArr = shuffleArray(pressObjArr);
-  shuffledArr.forEach((element, idx) => {
+  if (cachedpressObj === null) {
+    cachedpressObj = await getPressObj();
+  }
+  const shuffledArr = shuffleArray(cachedpressObj);
+  await shuffledArr.forEach(async (element, idx) => {
     const id = Math.floor(idx / MAX_GRID_COUNT);
-    const gridItem = createGridItem(element);
+    const gridItem = await createGridItem(element);
     gridContainerList[id].appendChild(gridItem);
   });
 }
@@ -21,30 +27,35 @@ function createSubButtonContainer() {
 
 // 구독버튼 생성
 function createSubButton(id) {
+  if (cachedpressObj === null) {
+    cachedpressObj = getPressObj();
+  }
   const subButtonContainer = createSubButtonContainer();
   const subButton = document.createElement("button");
   subButton.className = "sub_button";
   subButton.innerHTML = "+ 구독하기";
 
   subButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id === id);
+    const targetPress = cachedpressObj.find((item) => item.id === id);
     targetPress.isSub = true;
     toggleSubButton(targetPress, subButtonContainer);
   });
-
   subButtonContainer.appendChild(subButton);
   return subButtonContainer;
 }
 
 // 해지버튼 생성
 function createUnSubButton(id) {
+  if (cachedpressObj === null) {
+    cachedpressObj = getPressObj();
+  }
   const unSubButtonContainer = createSubButtonContainer();
   const unSubButton = document.createElement("button");
   unSubButton.className = "unsub_button";
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id === id);
+    const targetPress = cachedpressObj.find((item) => item.id === id);
     targetPress.isSub = false;
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
@@ -54,7 +65,7 @@ function createUnSubButton(id) {
 }
 
 // 그리드 아이템 리스트 태그 생성
-function createGridItem(element) {
+async function createGridItem(element) {
   const newImg = document.createElement("img");
   const li = document.createElement("li");
   const subButtonContainer = createSubButton(element.id);
@@ -68,11 +79,11 @@ function createGridItem(element) {
   // li 생성
   li.className = "grid_item";
   li.append(subButtonContainer, unSubButtonContainer);
-  li.addEventListener("mouseover", () => {
+  await li.addEventListener("mouseover", () => {
     toggleSubButton(element, subButtonContainer);
     toggleUnSubButton(element, unSubButtonContainer);
   });
-  li.addEventListener("mouseout", () =>
+  await li.addEventListener("mouseout", () =>
     hiddenSubButtons(subButtonContainer, unSubButtonContainer)
   );
 
