@@ -27,7 +27,9 @@ export function createPressNewsSection(news_data) {
       </div>
       <div class="news">
           <div class="news-main">
-            <img class="news-img" src="https://picsum.photos/320/200?random=${Math.random()}""/>
+            <div class="main-img-wrap">
+               <img class="news-img" src="https://picsum.photos/320/200?random=${Math.random()}""/>
+            </div>
             <span class="news-title available-medium16">${news_data[FIRST_CATEGORY].press[FIRST_PAGE - 1].news[0]} </span>
           </div>
           <div class="news-sub">

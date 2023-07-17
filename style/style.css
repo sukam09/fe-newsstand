@@ -194,6 +194,9 @@ section {
 .text-tab .text-category-name {
   color: var(--text-text-weak);
 }
+.text-tab .text-category-name:hover {
+  text-decoration: underline;
+}
 
 main .news-list-wrap .progress-tab {
   position: relative;
@@ -314,13 +317,17 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   gap: 16px;
   align-self: stretch;
 }
-
-.press-news-wrap .news-main .news-img {
+.press-news-wrap .news-main .main-img-wrap {
   cursor: pointer;
   width: 320px;
   height: 200px;
   border: 1px solid var(--border-border-default, #d2dae0);
-  background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
+  overflow: hidden;
+}
+
+.press-news-wrap .news-main .news-img:hover {
+  scale: 1.05;
+  /* background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat; */
 }
 
 .press-news-wrap .news-main .news-title {
