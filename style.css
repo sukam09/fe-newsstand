@@ -200,9 +200,19 @@ ul {
     flex-grow:1;
     gap:16px;
 }
+.list-right-title:hover {
+    text-decoration: underline;
+    cursor:pointer;
+}
 .hidden {
     visibility: hidden;
 }
 .hide {
     display:none;
+}
+.category:hover {
+    text-decoration: underline;
+}
+.selected:hover {
+    text-decoration: none;
 }

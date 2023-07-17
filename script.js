@@ -54,7 +54,7 @@ function drawListPage(crntListIdx, crntPageIdx) {
                 <span>${crntData.main_title}</span>
             </section>
             <section class="list-page-right">
-                ${crntData.sub_title.map((title) => `<span class="available-medium16 light-text-bold">${title}</span>`).join('')}
+                ${crntData.sub_title.map((title) => `<span class="list-right-title available-medium16 light-text-bold">${title}</span>`).join('')}
             </section>
         </section>
     </div>`
@@ -178,7 +178,11 @@ function listenArrow(){
                 updateArrow();
                 break;
             case "list":
-                drawListPage(crntListIdx, crntPage);
+                if (crntPage == -1){
+                    crntListIdx = crntListIdx == 0 ? categoryList.length-1 : crntListIdx-1;
+                    crntPage = 0;
+                }
+                drawList(crntListIdx);
                 updateArrow()
                 break;
         }
@@ -192,7 +196,11 @@ function listenArrow(){
                 updateArrow();
                 break;
             case "list":
-                drawListPage(crntListIdx, crntPage);
+                if (crntPage >= listViewData.filter(data => data.category == categoryList[crntListIdx]).length){
+                    crntListIdx = crntListIdx == categoryList.length-1 ? 0 : crntListIdx+1;
+                    crntPage = 0;
+                }
+                drawList(crntListIdx);
                 updateArrow()
                 break;
         }
@@ -201,21 +209,21 @@ function listenArrow(){
 }
 function updateArrow(){
     let maxPage;
+    leftArrow.classList.remove("hidden");
+    rightArrow.classList.remove("hidden");
     switch (crntView){
         case "grid":
             maxPage = pressList.length/24;
+            if (crntPage == 0){
+                leftArrow.classList.add("hidden");
+            } else if (crntPage == maxPage-1){
+                rightArrow.classList.add("hidden");
+            }
             break;
         case "list":
-            maxPage = listViewData.filter(data => data.category == categoryList[crntListIdx]).length;
             break;
     }
-    leftArrow.classList.remove("hidden");
-    rightArrow.classList.remove("hidden");
-    if (crntPage == 0){
-        leftArrow.classList.add("hidden");
-    } else if (crntPage == maxPage-1){
-        rightArrow.classList.add("hidden");
-    }
+    
 }
 function drawPress(idx){
     gridContainer.innerHTML = "";
