@@ -32,7 +32,7 @@ async function fieldInit() {
   startTimer(categoryLength, news_data);
 }
 
-function tabsAndTimerChange() {
+export function tabsAndTimerReset() {
   //기존 프로그래스바 해제
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
   prevProgressWidthChange(progressTab);
@@ -41,25 +41,19 @@ function tabsAndTimerChange() {
   clearInterval(timerId);
   startTimer(categoryLength, news_data);
 }
-
 function categoryClickEventHandler(index) {
   //페이지 & 카테고리 변수 세팅
   LIST_PAGE.setCategory(index);
   LIST_PAGE.setPage(1);
 
-  tabsAndTimerChange();
+  tabsAndTimerReset();
 }
-
 function tabClickEventRegister() {
   const tabs = document.querySelectorAll("main .news-list-wrap .each-tab");
 
   tabs.forEach((tab, index) => {
     tab.addEventListener("click", categoryClickEventHandler.bind(this, index));
   });
-}
-
-export function pageMoveByBtn() {
-  tabsAndTimerChange();
 }
 
 export function printList() {

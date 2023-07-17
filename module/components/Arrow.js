@@ -1,6 +1,5 @@
-import { updateGrid } from "../view/GridView.js";
 import { VIEW } from "../ViewStyle.js";
-import { pageMoveByBtn, categoryLength, news_data } from "../view/ListView/ListView.js";
+import { categoryLength, news_data, tabsAndTimerReset } from "../view/ListView/ListView.js";
 import { LIST_PAGE, GRID_PAGE } from "../../global.js";
 
 export const RIGHT = 1;
@@ -49,7 +48,7 @@ function arrowBtnClickHandler(dir) {
       }
     }
 
-    pageMoveByBtn();
+    tabsAndTimerReset();
   }
 }
 export function arrowStateInit() {
