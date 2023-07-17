@@ -11,8 +11,11 @@ export default class ListView {
     return this.$wrapper;
   }
 
-  render() {
-    this.$wrapper.appendChild(new Categories());
-    this.$wrapper.appendChild(new PressNews());
+  async render() {
+    const response = await fetch("/src/data/press-data.json");
+    const pressData = await response.json();
+
+    this.$wrapper.appendChild(new Categories(pressData));
+    this.$wrapper.appendChild(new PressNews(pressData));
   }
 }
