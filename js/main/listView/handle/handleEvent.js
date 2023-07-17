@@ -1,7 +1,7 @@
 import { addAnimation, removeAnimation } from "./handleAnimation.js";
 import { chageNews, getPagesNum } from "./handleData.js";
 import { currentPage, changeCurrentPage } from "./handlePage.js";
-import { clickSubscribe } from "../../../utils/clickSubscribe.js";
+
 /* category event listeners */
 
 function handleCategoryClick(e) {

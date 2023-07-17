@@ -62,4 +62,18 @@ function initViewChange() {
     changeBtnAndView("grid");
   });
 }
+
+function addEventMainTabBtn() {
+  // const spans = document.querySelectorAll(".main-tab-btn button span");
+  // spans[0].addEventListener("click", () => {
+  //   if (spans[0].classList.value === "clicked-press")
+  //   else {
+  //   }
+  //   spans[0].classList.replace("clicked-press", "unclicked-press");
+  // });
+  // spans[1].addEventListener("click", () => {
+  //   spans[1].classList.replace("unclicked-press", "clicked-press");
+  // });
+}
+
 export { initViewChange };

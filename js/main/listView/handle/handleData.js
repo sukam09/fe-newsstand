@@ -1,4 +1,5 @@
-import { category, news_by_category } from "../../../../assets/news.js";
+// import { category, news_by_category } from "../../../../assets/news.js";
+import { category, news_by_category } from "../listView.js";
 import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 import {
   handleAniamtionIteration,

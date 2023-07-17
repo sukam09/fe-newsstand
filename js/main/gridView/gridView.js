@@ -4,7 +4,7 @@ import { fetchData } from "../../utils/fetchData.js";
 import { checkPressInLocal } from "../../utils/checkPressInLocal.js";
 
 function initGridView() {
-  fetchData(".././assets/press.json").then((press) => makeGridView(press));
+  fetchData(".././assets/news.json").then((press) => makeGridView(press));
 }
 
 const GRID_NUM = 24;
@@ -95,4 +95,5 @@ function makeGridView(press) {
   showMainList(press);
   checkPage();
 }
+
 export { initGridView, main_list_page, MIN_PAGE, MAX_PAGE };
