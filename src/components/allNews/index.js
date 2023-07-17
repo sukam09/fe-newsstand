@@ -4,12 +4,13 @@ import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 
-let curreentView = 'grid';
+let currentView = 'grid';
+let currentPressType = 'all';
 
 export default class AllNews extends Component {
   setup() {
     const isDarkMode = document.body.className === 'dark';
-    this.state = { isDarkMode, view: curreentView };
+    this.state = { isDarkMode, view: currentView, pressType: currentPressType };
   }
 
   template() {
@@ -21,6 +22,7 @@ export default class AllNews extends Component {
     new AllNewHeader(customQuerySelector('.all-news-header', this.$target), {
       onClick: this.onClick.bind(this),
       view: this.state.view,
+      type: this.state.pressType,
     });
 
     this.state.view === 'grid'
@@ -31,8 +33,7 @@ export default class AllNews extends Component {
       : new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target));
   }
 
-  onClick(viewType) {
-    curreentView = viewType;
-    this.setState({ view: curreentView });
+  onClick(props) {
+    this.setState(props);
   }
 }

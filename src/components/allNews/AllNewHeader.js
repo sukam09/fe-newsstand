@@ -13,8 +13,14 @@ export default class AllNewHeader extends Component {
   template() {
     return `
       <nav class="view-type-wrapper">
-        <span class="selected-bold16 text-strong">전체 언론사</span>
-        <span class="available-medium16 text-weak">내가 구독한 언론사</span>
+        <span id='all-press' class="${
+          this.props.type === 'all' ? 'selected-bold16 text-strong' : 'available-medium16 text-weak'
+        }">전체 언론사</span>
+        <span id='my-press' class="${
+          this.props.type === 'subscribed'
+            ? 'selected-bold16 text-strong'
+            : 'available-medium16 text-weak'
+        }">내가 구독한 언론사</span>
       </nav>
 
       <div class="view-type-icon">
@@ -34,14 +40,23 @@ export default class AllNewHeader extends Component {
 
   setEvent() {
     this.$target.addEventListener('click', e => {
-      const id = e.target.id;
-
-      if (id === 'list-view-icon') {
-        this.props.onClick('list');
-      } else if (id === 'grid-view-icon') {
-        this.props.onClick('grid');
-      } else if (id === 'darkmode-icon') {
-        toggleDarkMode();
+      switch (e.target.id) {
+        case 'list-view-icon':
+          this.props.onClick({ view: 'list' });
+          break;
+        case 'grid-view-icon':
+          this.props.onClick({ view: 'grid' });
+          break;
+        case 'darkmode-icon':
+          toggleDarkMode();
+          break;
+        case 'all-press':
+          this.props.onClick({ pressType: 'all' });
+          break;
+        case 'my-press':
+          this.props.onClick({ pressType: 'subscribed' });
+          break;
+        default:
       }
     });
   }
