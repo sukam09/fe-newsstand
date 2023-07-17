@@ -491,6 +491,11 @@ header {
   line-height: 22px;
 }
 
+.news-sub-title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .news-sub-caption {
   color: var(--text-text-weak, #879298);
   font-family: Pretendard;
