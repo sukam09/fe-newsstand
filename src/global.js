@@ -8,7 +8,6 @@ import {
 import { $, $All } from "./util.js";
 import { listArrowButtonClicked } from "./listView.js";
 import {
-  CATEGORY_TAB_NUM,
   IS_GRID,
   NOW_CATEGORY_IDX,
   NOW_GRID_PAGE,

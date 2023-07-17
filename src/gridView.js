@@ -1,10 +1,12 @@
 import { MAX_GRID_COUNT, NOW_GRID_PAGE } from "../constant/constants.js";
+import { getPressObj } from "./api.js";
 import { $, $All, shuffleArray } from "./util.js";
 
 // 셔플된 리스트 그리드리스트에 append
-export function appendGridList() {
+export async function appendGridList() {
   const gridContainerList = $All(".grid_container");
-  const shuffledArr = shuffleArray(pressObjArr);
+  const pressObj = await getPressObj();
+  const shuffledArr = shuffleArray(pressObj);
   shuffledArr.forEach((element, idx) => {
     const id = Math.floor(idx / MAX_GRID_COUNT);
     const gridItem = createGridItem(element);
@@ -27,7 +29,7 @@ function createSubButton(id) {
   subButton.innerHTML = "+ 구독하기";
 
   subButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id === id);
+    const targetPress = pressObj.find((item) => item.id === id);
     targetPress.isSub = true;
     toggleSubButton(targetPress, subButtonContainer);
   });
@@ -44,7 +46,7 @@ function createUnSubButton(id) {
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const targetPress = pressObjArr.find((item) => item.id === id);
+    const targetPress = pressObj.find((item) => item.id === id);
     targetPress.isSub = false;
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });

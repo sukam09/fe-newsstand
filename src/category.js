@@ -3,6 +3,7 @@ import {
   NOW_CATEGORY_IDX,
   NOW_LIST_PAGE,
 } from "../constant/constants.js";
+import { getNewsContents } from "./api.js";
 import { appendNewsList, updateListButton } from "./listView.js";
 import { $ } from "./util.js";
 
@@ -54,7 +55,8 @@ function listPageUp() {
 }
 
 // 카테고리 리스트 추가
-export function appendCategoryList() {
+export async function appendCategoryList() {
+  const categoryList = await getNewsContents();
   const categoryListContainer = $(".category_list_container");
   categoryList.forEach((item, idx) => {
     const newCategory = createCategoryList(item, idx);

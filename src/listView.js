@@ -1,10 +1,9 @@
 import {
-  CATEGORY_TAB_NUM,
-  IS_GRID,
   MAX_NEWS_COUNT,
   NOW_CATEGORY_IDX,
   NOW_LIST_PAGE,
 } from "../constant/constants.js";
+import { getNewsContents } from "./api.js";
 import { refreshInterval } from "./category.js";
 import { $ } from "./util.js";
 
@@ -20,14 +19,14 @@ function getListViewElement() {
 }
 
 // 리스트 뷰의 뉴스 append
-export function appendNewsList() {
+export async function appendNewsList() {
   const elements = getListViewElement();
+  const categoryList = await getNewsContents();
   elements.newsListContainer.innerHTML = "";
   const nowData =
     categoryList[NOW_CATEGORY_IDX.getValue()].data[
       NOW_LIST_PAGE.getValue() - 1
     ];
-
   elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
   elements.topicHeaderLogo.src = nowData.logoSrc;
   elements.topicThumbnail.src = nowData.imgSrc;
@@ -47,15 +46,17 @@ function createNewsList(content) {
 }
 
 // 좌우 리스트 버튼 display 변경
-export function updateListButton() {
+export async function updateListButton() {
+  const categoryList = await getNewsContents();
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
   if (NOW_LIST_PAGE.getValue() === 1 && NOW_CATEGORY_IDX.getValue() === 0) {
     leftListButton.style.display = "none";
     rightListButton.style.display = "block";
   } else if (
-    NOW_CATEGORY_IDX.getValue() === CATEGORY_TAB_NUM &&
-    NOW_LIST_PAGE.getValue() === categoryList[CATEGORY_TAB_NUM].data.length
+    NOW_CATEGORY_IDX.getValue() === categoryList.length - 1 &&
+    NOW_LIST_PAGE.getValue() ===
+      categoryList[categoryList.length - 1].data.length
   ) {
     rightListButton.style.display = "none";
     leftListButton.style.display = "block";
@@ -64,7 +65,8 @@ export function updateListButton() {
     rightListButton.style.display = "block";
   }
 }
-export function listArrowButtonClicked(increment) {
+export async function listArrowButtonClicked(increment) {
+  const categoryList = await getNewsContents();
   if (NOW_LIST_PAGE.getValue() + increment === 0) {
     NOW_CATEGORY_IDX.incrementValue(-1);
     NOW_LIST_PAGE.setValue(
