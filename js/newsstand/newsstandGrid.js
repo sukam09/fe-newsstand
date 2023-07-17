@@ -63,9 +63,9 @@ function paintNews(paintData = publisherData) {
   let idx = selectedPage * VIEWED_CONTENS; // 데이터의 인덱스 순서
   let elementIdx = 0; // 로고를 새로 등록할 li 순서
 
-  element.map((imgTag) => {
+  element.map((child) => {
     if (idx < paintData.length) {
-      const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].lightSrc;
+      const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].name;
       const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
 
       element[elementIdx].children[1].classList.remove("btn-disabled");
@@ -76,8 +76,8 @@ function paintNews(paintData = publisherData) {
         element[elementIdx].children[1].textContent = "+ 구독하기";
       }
 
-      imgTag.children[0].src = icon;
-      imgTag.children[0].alt = alt;
+      child.children[0].src = icon;
+      child.children[0].alt = alt;
       idx++;
       elementIdx++;
     } else {
@@ -88,8 +88,8 @@ function paintNews(paintData = publisherData) {
 
       element[elementIdx].children[1].textContent = "";
 
-      imgTag.children[0].src = icon;
-      imgTag.children[0].alt = alt;
+      child.children[0].src = icon;
+      child.children[0].alt = alt;
       idx++;
       elementIdx++;
     }
@@ -161,9 +161,12 @@ function userClickSubscribeButton(liElement) {
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
       isMySubscribe ? paintNews(subscribeState.getSubscribeState()) : () => {};
-    } else {
+    }
+    // 구독하기 버튼을 눌렀을때.
+    else {
       liElement.children[1].textContent = "x 해지하기";
       subscribeState.setSubscribeState(name, src);
+      console.log(subscribeState.getSubscribeState());
     }
   };
 }

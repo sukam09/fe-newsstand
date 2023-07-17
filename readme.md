@@ -131,3 +131,20 @@
 
 1. mouseover 타입의 이벤트리스너를 등록할때 버블링이 일어남. -> mouserenter 타입으로 변경했지만 별 소용없음.
    (가끔 오류발생나던 과정에서 제대로 동작할때도 있어서 위와같은 오류를 예상해봤음)
+
+### 문제해결
+
+생각보다 문제는 쉽게 해결됬다. 바로 코드를 잘못 작성해서 그렇다.
+
+```javascript
+// 변경전
+const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].imgSrc;
+const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+
+// 변경후
+const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].name;
+const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+```
+
+변경전 alt 값에 imgSrc를 넣어줘서 발생한 문제였다. 당연히 구독목록에 존재하지 않는 값을 넣어주니 발생한 문제점이였다.
+그래도 설계를 구체적으로해서 코드가 흘러가는 흐름을 잘 찾을 수 있어서 금방 오류를 해결했다.
