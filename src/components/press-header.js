@@ -1,4 +1,5 @@
 import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
+import { STATE, LIST } from '../constants/press-data.js';
 import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from '../components/light-dark-mode.js';
 import { initPressGrid } from './press-grid.js';
@@ -14,20 +15,16 @@ const initPressHeader = async () => {
     let pressData = fetchData.press;
     let categoryData = fetchData.category;
 
-    // let subscribeIds = [1, 32, 42, 54, 55, 70, 92, 95];
-
-    // setInterval(() => {
-    //   console.log(pressData);
-    // }, 5000);
-
     setNav(getNavLeft());
     setNav(getNavRight());
+    setNavLeft(pressData);
     setNavRight();
-    setNavLeft();
 
     initLightDarkMode();
-    initPressGrid(pressData);
-    initPressList(pressData, categoryData);
+    initPressGrid(pressData, LIST.SUFFLE);
+
+    ///
+    // initPressList(pressData, categoryData); //
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }
@@ -59,27 +56,31 @@ const getNavRight = () => {
 /**
  * 언론사의 헤더 설정
  */
-const setNavLeft = () => {
+const setNavLeft = (pressData) => {
   const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
   const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
-  const entireWrapper = document.querySelector('.press__wrapper-grid__entire');
-  const subscribeWrapper = document.querySelector('.press__wrapper-grid__subscribe');
+  const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
+  const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
+  const gridWrapper = document.querySelector('.press__wrapper-grid');
 
   h2Entire.addEventListener('click', () => {
-    toggleNavLeft(true, h2Entire, h2Subscribe, entireWrapper, subscribeWrapper);
+    toggleNavLeft(true, h2Entire, h2Subscribe, imgList, imgGrid);
+    initPressGrid(pressData, LIST.SUFFLE);
+    gridWrapper.classList.remove('none');
   });
   h2Subscribe.addEventListener('click', () => {
-    toggleNavLeft(false, h2Entire, h2Subscribe, entireWrapper, subscribeWrapper);
+    toggleNavLeft(false, h2Entire, h2Subscribe, imgList, imgGrid);
+    gridWrapper.classList.add('none');
   });
 };
 
-const toggleNavLeft = (isSelected, h2Entire, h2Subscribe, entireWrapper, subscribeWrapper) => {
+const toggleNavLeft = (isSelected, h2Entire, h2Subscribe, imgList, imgGrid) => {
   h2Entire.classList.toggle('press__h2-select', isSelected);
   h2Entire.classList.toggle('press__h2-unselect', !isSelected);
   h2Subscribe.classList.toggle('press__h2-select', !isSelected);
   h2Subscribe.classList.toggle('press__h2-unselect', isSelected);
-  entireWrapper.classList.toggle('none', !isSelected);
-  subscribeWrapper.classList.toggle('none', isSelected);
+  imgList.src = isSelected ? PATH.LIST_ICON : PATH.HIDE_LIST_ICON;
+  imgGrid.src = isSelected ? PATH.GRID_ICON : PATH.HIDE_GRID_ICON;
 };
 
 const setNavRight = () => {
