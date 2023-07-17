@@ -441,6 +441,10 @@ header {
   gap: 16px;
 }
 
+.news-main:hover {
+  text-decoration: underline;
+}
+
 .thumbnail-box {
   width: 320px;
   height: 200px;
