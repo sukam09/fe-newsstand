@@ -1,51 +1,62 @@
 import { updateGrid } from "../view/GridView.js";
 import { VIEW } from "../ViewStyle.js";
-import { pageMoveByBtn } from "../view/ListView/ListView.js";
-
-export let current_grid_page = 0;
-export const LIST_PAGE = {
-  current_list_page: 1,
-  LIST_ENTIRE_PAGE: 20,
-};
+import { pageMoveByBtn, categoryLength, news_data } from "../view/ListView/ListView.js";
+import { LIST_PAGE, GRID_PAGE } from "../../global.js";
 
 export const RIGHT = 1;
 export const LEFT = 0;
 
 const GRID_ENTIRE_PAGE = 3;
-
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
-right_btn.addEventListener("click", () => arrowBtnClickHandler(RIGHT));
-left_btn.addEventListener("click", () => arrowBtnClickHandler(LEFT));
 
 function arrowBtnClickHandler(dir) {
   const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
   //그리드 뷰
   if (CURRENT_VIEW == VIEW.GRID) {
     if (dir === RIGHT) {
-      current_grid_page++;
+      GRID_PAGE.setState(GRID_PAGE.CURRENT_PAGE + 1);
     } else {
-      current_grid_page--;
+      GRID_PAGE.setState(GRID_PAGE.CURRENT_PAGE - 1);
     }
-    if (current_grid_page === 0) {
+    if (GRID_PAGE.CURRENT_PAGE === 0) {
       left_btn.style.display = "none";
       right_btn.style.display = "block";
-    } else if (current_grid_page === GRID_ENTIRE_PAGE) {
+    } else if (GRID_PAGE.CURRENT_PAGE === GRID_ENTIRE_PAGE) {
       right_btn.style.display = "none";
       left_btn.style.display = "block";
-    } else {
-      right_btn.style.display = "block";
-      left_btn.style.display = "block";
     }
-    updateGrid();
   }
   //리스트뷰
   else if (CURRENT_VIEW == VIEW.LIST) {
     if (dir === RIGHT) {
-      LIST_PAGE.current_list_page++;
+      if (LIST_PAGE.CURRENT_PAGE === news_data[LIST_PAGE.CURRENT_CATEGORY].press.length) {
+        LIST_PAGE.setCategory((LIST_PAGE.CURRENT_CATEGORY + 1) % categoryLength.length);
+        LIST_PAGE.setPage(1);
+      } else {
+        LIST_PAGE.setPage(LIST_PAGE.CURRENT_PAGE + 1);
+      }
     } else {
-      LIST_PAGE.current_list_page--;
+      if (LIST_PAGE.CURRENT_PAGE === 1) {
+        if (LIST_PAGE.CURRENT_CATEGORY === 0) {
+          LIST_PAGE.setCategory(categoryLength.length - 1);
+        } else {
+          LIST_PAGE.setCategory(LIST_PAGE.CURRENT_CATEGORY - 1);
+        }
+        LIST_PAGE.setPage(categoryLength[LIST_PAGE.CURRENT_CATEGORY]);
+      } else {
+        LIST_PAGE.setPage(LIST_PAGE.CURRENT_PAGE - 1);
+      }
     }
-    pageMoveByBtn(LIST_PAGE.current_list_page);
+
+    pageMoveByBtn();
   }
+}
+export function arrowStateInit() {
+  right_btn.style.display = "block";
+  left_btn.style.display = "block";
+}
+export function BtnEventHandlerRegister() {
+  right_btn.addEventListener("click", () => arrowBtnClickHandler(RIGHT));
+  left_btn.addEventListener("click", () => arrowBtnClickHandler(LEFT));
 }

@@ -1,5 +1,5 @@
 import { fetchPressData } from "../../api.js";
-import { current_grid_page } from "../components/Arrow.js";
+import { GRID_PAGE } from "../../global.js";
 
 let news_icon;
 const ICONS_PER_PAGE = 24;
@@ -37,7 +37,7 @@ function pressMouseOut(li) {
 export function updateGrid() {
   try {
     if (news_icon) {
-      let icon_idx = current_grid_page * ICONS_PER_PAGE;
+      let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
       grid_row.forEach((ul) => {
         const grid_li = ul.querySelectorAll("li");
@@ -56,11 +56,11 @@ export function updateGrid() {
   }
 }
 
-export async function printGrid() {
+export async function printGrid(mode = "") {
   try {
     news_icon = await fetchPressData("./Data/grid_icon.json");
     const grid = document.querySelector(".grid");
-    let icon_idx = current_grid_page * ICONS_PER_PAGE;
+    let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
     for (let i = 0; i < 4; i++) {
       const grid_row = document.createElement("ul");
       grid_row.className = "grid-row";
@@ -84,3 +84,5 @@ export async function printGrid() {
     console.error(e);
   }
 }
+
+export async function printSubscribeGrid() {}

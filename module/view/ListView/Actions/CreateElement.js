@@ -10,7 +10,6 @@ export function createPressNewsSection(news_data) {
     if (!news_data) {
       throw Error("Empty Data");
     }
-    // CURRENT_PAGE = LIST_PAGE.current_list_page;
 
     const firstPress = news_data[FIRST_CATEGORY].press[FIRST_PAGE - 1].news.slice(1);
 

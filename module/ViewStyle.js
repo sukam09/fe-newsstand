@@ -1,6 +1,8 @@
 import { printGrid } from "./view/GridView.js";
 import { printList } from "./view/ListView/ListView.js";
 import { timerId } from "./view/ListView/Timer.js";
+import { LIST_PAGE, GRID_PAGE } from "../global.js";
+import { arrowStateInit } from "../module/components/Arrow.js";
 
 const GRID = "grid";
 const LIST = "list";
@@ -39,6 +41,7 @@ function layoutChange(targetBtn) {
     InActiveBtn = document.getElementById(GRID_BTN_ID);
     VIEW.CURRENT_VIEW_MODE = LIST;
   }
+  arrowStateInit();
   btnColorChange(targetBtn, InActiveBtn);
 }
 
@@ -47,13 +50,17 @@ export default function SelectViewStyle() {
   const grid_Btn = document.querySelector("#grid-btn");
   list_Btn.addEventListener("click", () => {
     layoutChange(list_Btn);
+    GRID_PAGE.CURRENT_PAGE = 0;
     printList();
   });
   grid_Btn.addEventListener("click", () => {
     layoutChange(grid_Btn);
+    LIST_PAGE.CURRENT_PAGE = 1;
+    LIST_PAGE.CURRENT_CATEGORY = 0;
     printGrid();
   });
 }
+
 export const VIEW = {
   CURRENT_VIEW_MODE: GRID,
   GRID,

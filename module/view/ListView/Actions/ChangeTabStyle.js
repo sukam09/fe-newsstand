@@ -1,9 +1,12 @@
 /**
  * 카테고리 변경시 tab 스타일 변경
  */
-export function tabClassChange(targetTab, previousProgressTab, categoryLength, listState) {
-  const CURRENT_PAGE = listState.CURRENT_PAGE;
-  const CURRENT_CATEGORY = listState.CURRENT_CATEGORY;
+import { LIST_PAGE } from "../../../../global.js";
+import { categoryLength } from "../ListView.js";
+
+export function tabClassChange(targetTab, previousProgressTab) {
+  const CURRENT_PAGE = LIST_PAGE.CURRENT_PAGE;
+  const CURRENT_CATEGORY = LIST_PAGE.CURRENT_CATEGORY;
 
   const progressTabName = previousProgressTab.querySelector(".text-category-name");
   const progressTabNumber = previousProgressTab.querySelector(".text-category-number");

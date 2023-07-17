@@ -1,14 +1,11 @@
-import { updatePressNewsSection } from "./Actions/UpdateSection.js";
-import { LIST_PAGE } from "../../components/Arrow.js";
-import { changeCategory, changePageInfo } from "./Actions/ChangePress.js";
-import { setCategory, setPage } from "./ListView.js";
+import { LIST_PAGE } from "../../../global.js";
 
 const PAGE_AUTO_MOVING_TIME = 20000;
 const PROGRESS_TAB_WIDTH = "166";
 
 let timerId;
 
-function startTimer(categoryLength, news_data, listState) {
+function startTimer(categoryLength, news_data) {
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
   const progressRatioTab = progressTab.querySelector(".progress-ratio");
 
@@ -37,32 +34,15 @@ function startTimer(categoryLength, news_data, listState) {
     resetProgressBar();
 
     //페이지 & 카테고리 변수 변경
-    if (listState.CURRENT_PAGE === news_data[listState.CURRENT_CATEGORY].press.length) {
-      setCategory(++listState.CURRENT_CATEGORY);
-      setPage(0);
-      LIST_PAGE.current_list_page = 0;
-    }
-    if (listState.CURRENT_CATEGORY === categoryLength.length) {
-      setCategory(0);
-      setPage(1);
-      LIST_PAGE.current_list_page = 1;
+    if (LIST_PAGE.CURRENT_PAGE === news_data[LIST_PAGE.CURRENT_CATEGORY].press.length) {
+      LIST_PAGE.setCategory((LIST_PAGE.CURRENT_CATEGORY + 1) % categoryLength.length);
+      LIST_PAGE.setPage(1);
     } else {
-      setPage(++listState.CURRENT_PAGE);
-      LIST_PAGE.current_list_page++;
+      LIST_PAGE.setPage(LIST_PAGE.CURRENT_PAGE + 1);
     }
 
-    //프로그래스바 정보 업데이트
-    changePageInfo(listState);
-
-    if (listState.CURRENT_PAGE === 1) {
-      //카테고리 변경 후 내용 업데이트
-      changeCategory(news_data, listState, categoryLength);
-    } else {
-      //내용 업데이트
-      updatePressNewsSection(news_data, listState);
-    }
     //타이머 다시 시작
-    startTimer(categoryLength, news_data, listState);
+    startTimer(categoryLength, news_data);
   }
 
   fillProgressBar();
