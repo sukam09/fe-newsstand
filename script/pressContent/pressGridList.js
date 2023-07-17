@@ -30,9 +30,9 @@ async function shuffleImgs() {
 }
 
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
-function showPressImg(flag) {
+function showPressImg({pageValue}) {
   const pressContentView = getElemClass(document, 'press-content-view');
-  pageNumber = (flag >= 0) ? ++pageNumber : --pageNumber;
+  pageNumber = (pageValue >= 0) ? ++pageNumber : --pageNumber;
 
   sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";
   sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
@@ -45,8 +45,8 @@ function showPressImg(flag) {
 
 // 이전 페이지 이동 및 다음 페이지 이동 구현
 function changePressGrid() {
-  sectionPrevButton.addEventListener('click', () => showPressImg(-1));
-  sectionNextButton.addEventListener('click', () => showPressImg(1));
+  sectionPrevButton.addEventListener('click', () => showPressImg({pageValue:-1}));
+  sectionNextButton.addEventListener('click', () => showPressImg({pageValue:1}));
 }
 
 export { shuffleImgs, changePressGrid };
