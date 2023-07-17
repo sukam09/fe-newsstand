@@ -12,7 +12,7 @@ navTag();
 
 const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
-const LAST_PAGE = 3;
+let LAST_PAGE = 3;
 let selectedPage = 0;
 
 const ul = document.querySelector(".newsstand-area—six-col-list");
@@ -58,15 +58,15 @@ function initPaintNews() {
 }
 
 // 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
-function paintNews(element, paintData = []) {
-  // 전체 언론사일때.
-  if (!isMySubscribe) {
-    let idx = selectedPage * VIEWED_CONTENS;
-    let elementIdx = 0;
+function paintNews(paintData = publisherData) {
+  const element = Array.from(ul.children);
+  let idx = selectedPage * VIEWED_CONTENS; // 데이터의 인덱스 순서
+  let elementIdx = 0; // 로고를 새로 등록할 li 순서
 
-    element.map((imgTag) => {
-      const icon = publisherData[idx].lightSrc;
-      const alt = publisherData[idx].name;
+  element.map((imgTag) => {
+    if (idx < paintData.length) {
+      const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].lightSrc;
+      const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
 
       element[elementIdx].children[1].classList.remove("btn-disabled");
       // 구독중일때.
@@ -80,48 +80,47 @@ function paintNews(element, paintData = []) {
       imgTag.children[0].alt = alt;
       idx++;
       elementIdx++;
-    });
-  } else {
-    let idx = selectedPage * VIEWED_CONTENS;
-    let elementIdx = 0;
+    } else {
+      const alt = "";
+      const icon = "";
 
-    element.map((imgTag) => {
-      if (elementIdx < paintData.length) {
-        const [alt, icon] = paintData[idx];
-        element[elementIdx].children[1].textContent = "x 해지하기";
+      element[elementIdx].children[1].classList.add("btn-disabled");
 
-        imgTag.children[0].src = icon;
-        imgTag.children[0].alt = alt;
-        idx++;
-        elementIdx++;
-      } else {
-        // 구독중일때.
-        element[elementIdx].children[1].classList.add("btn-disabled");
+      element[elementIdx].children[1].textContent = "";
 
-        imgTag.children[0].src = "";
-        imgTag.children[0].alt = "";
-        idx++;
-        elementIdx++;
-      }
-    });
-  }
+      imgTag.children[0].src = icon;
+      imgTag.children[0].alt = alt;
+      idx++;
+      elementIdx++;
+    }
+  });
 }
 
-// 전체 언론사 / 내가 구독한 언론사에 이벤트리스너 등록
+// 전체 언론사 & 내가 구독한 언론사에 이벤트리스너 등록
 function addEventOnMySubAndAllSub() {
-  const childUl = Array.from(ul.children);
+  // 내가 구독한 언론사 클릭됬을때.
   mySubscribe.addEventListener("click", () => {
-    selectedPage = 0;
-    isBtnDisabled();
+    // 현재 구독중인 리스트.
+    const subscribeList = subscribeState.getSubscribeState();
 
     isMySubscribe = true;
-    const mySubscribeData = subscribeState.getSubscribeState();
-    paintNews(childUl, mySubscribeData);
+    // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
+    selectedPage = 0; // selectedPage 0에서 시작
+    LAST_PAGE = subscribeList.length / VIEWED_CONTENS; // 마지막 페이지 수정.
+    isBtnDisabled(); // 버튼 활성화 조건 실행.
+    paintNews(subscribeList);
+    // store에서 구독중인 목록을 가져와서 그려준다. [paint 함수 실행] 이때, 남는 영역은 빈칸으로 채운다. [이때, 마우스오버 효과 삭제]
   });
 
+  // 전체 언론사 클릭했을떄.
   allPublisher.addEventListener("click", () => {
     isMySubscribe = false;
-    paintNews(childUl);
+
+    selectedPage = 0; // selectedPage 0에서 시작
+    LAST_PAGE = 3;
+    isBtnDisabled(); // 버튼 활성화 조건 실행.
+
+    paintNews();
   });
 }
 
@@ -159,6 +158,9 @@ function userClickSubscribeButton(liElement) {
     if (subscribeState.getSubscribeByName(name)[0]) {
       liElement.children[1].textContent = "+ 구독하기";
       subscribeState.setUnSubscribeState(name);
+
+      // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
+      isMySubscribe ? paintNews(subscribeState.getSubscribeState()) : () => {};
     } else {
       liElement.children[1].textContent = "x 해지하기";
       subscribeState.setSubscribeState(name, src);
@@ -168,17 +170,15 @@ function userClickSubscribeButton(liElement) {
 
 // 페이지네이션
 function pagination() {
-  const childUl = Array.from(ul.children);
-
   leftBtn.addEventListener("click", (e) => {
     selectedPage -= 1;
-    paintNews(childUl);
+    paintNews();
     isBtnDisabled();
   });
 
   rightBtn.addEventListener("click", (e) => {
     selectedPage += 1;
-    paintNews(childUl);
+    paintNews();
     isBtnDisabled();
   });
 }
@@ -193,6 +193,12 @@ function isBtnDisabled() {
   selectedPage === LAST_PAGE
     ? rightBtn.classList.add("btn-disabled")
     : rightBtn.classList.remove("btn-disabled");
+  // 첫 페이지와 마지막 페이지가 같다면 모든 버튼 삭제.
+
+  if (FIRST_PAGE === LAST_PAGE) {
+    leftBtn.classList.add("btn-disabled");
+    rightBtn.classList.add("btn-disabled");
+  }
 }
 
 export function addGridButton() {
