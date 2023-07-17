@@ -35,24 +35,21 @@
 body {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     font-family: Pretendard;
-    margin: 10vh;
     height: 100vh;
     background-color: var(--surface-default);
+    margin: 0;
+    gap: 16px;
 }
 
-.container_row {
+.container_block {
     display: grid;
-    grid-template-rows: 1fr 1fr 5fr;
-}
-
-.container_col {
-    display: grid;
-    grid-template-columns: 1fr 7fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
     align-items: center;
-    height: 70px;
+    justify-items: center;
+    gap: 24px;
 }
 
 .container_between {
@@ -70,6 +67,7 @@ body {
     width: 932px;
     height: 390px;
     padding: 0;
+    position: relative;
 }
 
 .header_left {
@@ -403,13 +401,8 @@ body {
 }
 
 .arrow {
-    text-align: center;
     cursor: pointer;
-}
-
-.arrow img {
-    /* 밑으로 조금 이동 */
-    margin-top: 40px;
+    transform: translateY(50%);
 }
 
 .list_right_arrow,
@@ -433,7 +426,7 @@ body {
 }
 
 .snack_bar_container {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
