@@ -1,0 +1,20 @@
+.tap-viewer-container {
+  display: flex;
+  width: 930px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.tap-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.view-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
