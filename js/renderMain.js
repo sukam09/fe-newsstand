@@ -41,18 +41,24 @@ function renderGrid(logos) {
   listMain.style.display = "none";
   mainGrid.innerHTML = "";
   for (
-    let PAGE_INDEX = currentPageNumber * COUNT_PER_PAGE;
-    PAGE_INDEX < COUNT_PER_PAGE * currentPageNumber + 24 &&
-    PAGE_INDEX < logos.length;
-    PAGE_INDEX++
+    let LOGO_INDEX = currentPageNumber * COUNT_PER_PAGE;
+    LOGO_INDEX < COUNT_PER_PAGE * currentPageNumber + 24;
+    LOGO_INDEX++
   ) {
     const outerDiv = document.createElement("div");
-    const newsLogo = document.createElement("img");
-    newsLogo.src = `${logos[PAGE_INDEX].logo}`;
-    outerDiv.append(newsLogo);
+    outerDiv.append(drawLogo(logos, LOGO_INDEX));
     mainGrid.append(outerDiv);
   }
   addAsideClickEvent(1);
+}
+
+function drawLogo(logos, LOGO_INDEX) {
+  if (logos[LOGO_INDEX] != undefined) {
+    const newsLogo = document.createElement("img");
+    newsLogo.src = `${logos[LOGO_INDEX].logo}`;
+    return newsLogo;
+  }
+  return "";
 }
 
 function clickGridImage() {

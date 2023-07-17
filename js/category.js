@@ -52,8 +52,7 @@ function drawCategoryItem() {
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
-  drawNewsDiv();
-  drawNewsHeader();
+  drawNews();
   if (progressInterval != undefined) {
     clearInterval(progressInterval);
     progressReset(
@@ -129,45 +128,61 @@ function progressFill(progressBar) {
 
 function drawNewsHeader() {
   let PageNumberIndex = currentCategoryPageNumber - 1;
-  const news_header = document.querySelector(".news_header");
+  const news_header = document.querySelector(".news-header");
   news_header.innerHTML = "";
-  let new_div = `<div class="news-header-div"><img class="newsThumbnail" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}"><span class="newsEditTime">${categoryNews[currentCategoryNumber][PageNumberIndex].editTime}</span><img class="subscribeButton" src="./img/subscribeButton.svg"></div>`;
+  let new_div = `<div class="news-header-div"><img class="news-thumbnail" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}"><span class="news-edit-time">${categoryNews[currentCategoryNumber][PageNumberIndex].editTime}</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
 }
 
 function drawNewsDiv() {
-  let PageNumberIndex = currentCategoryPageNumber - 1;
-  const listDiv = document.querySelector(".news_content");
+  const PageNumberIndex = currentCategoryPageNumber - 1;
+  const listDiv = document.querySelector(".news-content");
   listDiv.innerHTML = "";
-  let article_div = "";
-  for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
-    article_div += `<div class="newsMainArticle">${news_article.article[article_cnt]}</div>`;
-  }
-  article_div += `<div class="newsMainArticlePress">${categoryNews[currentCategoryNumber][PageNumberIndex].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
-  let new_div = `<div class="newsMainLeftDiv"><img class="newsMainImage" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryNumber][PageNumberIndex].title}</div><div class="newsMainRightDiv">${article_div}</div>`;
+  let new_div = `<div class="news-main-left-div">${drawNewsImage(
+    PageNumberIndex
+  )}</div><div class="news-main-right-div">${drawNewsArticle(
+    PageNumberIndex
+  )}</div>`;
   listDiv.innerHTML = new_div;
 }
 
-function delCategoryNumber() {
+function drawNewsImage(PageNumberIndex) {
+  return `<img class="news-main-image" src="${categoryNews[currentCategoryNumber][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryNumber][PageNumberIndex].title}`;
+}
+
+function drawNewsArticle(PageNumberIndex) {
+  let article_div = "";
+  for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
+    article_div += `<div class="news-main-article">${news_article.article[article_cnt]}</div>`;
+  }
+  article_div += `<div class="news-main-article-press">${categoryNews[currentCategoryNumber][PageNumberIndex].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
+  return article_div;
+}
+
+function drawNews() {
+  drawNewsDiv();
+  drawNewsHeader();
+}
+
+function clearCategoryNumber() {
   const categoryItem = document.querySelectorAll(".categoryItem");
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
 }
 
 function increaseListPage() {
-  if (currentCategoryPageNumber == categoryCnt[currentCategoryNumber].value) {
+  if (currentCategoryPageNumber === categoryCnt[currentCategoryNumber].value) {
     currentCategoryPageNumber = 1;
+    if (currentCategoryNumber === categoryCnt.length - 1)
+      currentCategoryNumber = 0;
+    else currentCategoryNumber++;
+    drawNews();
+    clearCategoryNumber();
     clearInterval(progressInterval);
     progressReset(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
       currentCategoryPage
     );
-    if (currentCategoryNumber === categoryCnt.length - 1)
-      currentCategoryNumber = 0;
-    else currentCategoryNumber++;
-    drawNewsHeader();
-    drawNewsDiv();
-    delCategoryNumber();
     intervalProgress(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
       currentCategoryPage
@@ -184,25 +199,22 @@ function increaseListPage() {
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
   );
-  drawNewsHeader();
-  drawNewsDiv();
+  drawNews();
 }
 
 function decreaseListPage() {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
-
+    if (currentCategoryNumber === 0)
+      currentCategoryNumber = categoryCnt.length - 1;
+    else currentCategoryNumber--;
+    clearCategoryNumber();
+    drawNews();
     clearInterval(progressInterval);
     progressReset(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
       currentCategoryPage
     );
-    if (currentCategoryNumber === 0)
-      currentCategoryNumber = categoryCnt.length - 1;
-    else currentCategoryNumber--;
-    delCategoryNumber();
-    drawNewsHeader();
-    drawNewsDiv();
     intervalProgress(
       document.querySelectorAll(".progress-bar")[currentCategoryNumber],
       currentCategoryPage
@@ -219,8 +231,7 @@ function decreaseListPage() {
     document.querySelectorAll(".progress-bar")[currentCategoryNumber],
     currentCategoryPage
   );
-  drawNewsHeader();
-  drawNewsDiv();
+  drawNews();
 }
 
 export {

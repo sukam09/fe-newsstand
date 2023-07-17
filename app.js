@@ -7,5 +7,5 @@ import { renderMain } from "./js/renderMain.js";
   clickNewsStand();
   setDate(document.getElementById("header-div-02"));
   rollingBanner();
-  renderMain(1);
+  renderMain(true);
 })();
