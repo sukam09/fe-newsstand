@@ -37,7 +37,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 3s linear infinite;
+  animation: progressBar 1s linear infinite;
 }
 
 @keyframes progressBar {
@@ -47,6 +47,10 @@
   100% {
     width: 100%;
   }
+}
+
+.category-count {
+  display: none;
 }
 
 .category-current .category-name {
@@ -61,6 +65,7 @@
   font-weight: 700;
   font-size: 12px;
   z-index: 9999;
+  display: block;
 }
 
 .category-name {
