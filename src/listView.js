@@ -7,6 +7,8 @@ import { getNewsContents } from "./api.js";
 import { refreshInterval } from "./category.js";
 import { $ } from "./util.js";
 
+let cachedCategoryList = null;
+
 // 리스트뷰 element querySelector 함수
 function getListViewElement() {
   return {
@@ -21,10 +23,12 @@ function getListViewElement() {
 // 리스트 뷰의 뉴스 append
 export async function appendNewsList() {
   const elements = getListViewElement();
-  const categoryList = await getNewsContents();
+  if (cachedCategoryList === null) {
+    cachedCategoryList = await getNewsContents();
+  }
   elements.newsListContainer.innerHTML = "";
   const nowData =
-    categoryList[NOW_CATEGORY_IDX.getValue()].data[
+    cachedCategoryList[NOW_CATEGORY_IDX.getValue()].data[
       NOW_LIST_PAGE.getValue() - 1
     ];
   elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
@@ -47,16 +51,18 @@ function createNewsList(content) {
 
 // 좌우 리스트 버튼 display 변경
 export async function updateListButton() {
-  const categoryList = await getNewsContents();
+  if (cachedCategoryList === null) {
+    cachedCategoryList = await getNewsContents();
+  }
   const leftListButton = $(".left_list_button");
   const rightListButton = $(".right_list_button");
   if (NOW_LIST_PAGE.getValue() === 1 && NOW_CATEGORY_IDX.getValue() === 0) {
     leftListButton.style.display = "none";
     rightListButton.style.display = "block";
   } else if (
-    NOW_CATEGORY_IDX.getValue() === categoryList.length - 1 &&
+    NOW_CATEGORY_IDX.getValue() === cachedCategoryList.length - 1 &&
     NOW_LIST_PAGE.getValue() ===
-      categoryList[categoryList.length - 1].data.length
+      cachedCategoryList[cachedCategoryList.length - 1].data.length
   ) {
     rightListButton.style.display = "none";
     leftListButton.style.display = "block";
@@ -66,11 +72,13 @@ export async function updateListButton() {
   }
 }
 export async function listArrowButtonClicked(increment) {
-  const categoryList = await getNewsContents();
+  if (cachedCategoryList === null) {
+    cachedCategoryList = await getNewsContents();
+  }
   if (NOW_LIST_PAGE.getValue() + increment === 0) {
     NOW_CATEGORY_IDX.incrementValue(-1);
     NOW_LIST_PAGE.setValue(
-      categoryList[NOW_CATEGORY_IDX.getValue()].data.length
+      cachedCategoryList[NOW_CATEGORY_IDX.getValue()].data.length
     );
   } else {
     NOW_LIST_PAGE.incrementValue(increment);

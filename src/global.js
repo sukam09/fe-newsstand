@@ -102,9 +102,8 @@ function updateDate() {
     } else {
       if (
         e.key === "ArrowRight" &&
-        (NOW_CATEGORY_IDX.getValue() !== CATEGORY_TAB_NUM ||
-          NOW_LIST_PAGE.getValue() !==
-            categoryList[CATEGORY_TAB_NUM].data.length)
+        (NOW_CATEGORY_IDX.getValue() !== 8 ||
+          NOW_LIST_PAGE.getValue() !== categoryList[8].data.length)
       ) {
         listArrowButtonClicked(1);
       } else if (
