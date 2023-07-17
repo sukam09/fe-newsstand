@@ -130,8 +130,9 @@ body {
   background-color: var(--color-surface-brand-default);
   color: var(--color-text-white-default);
 
-  border-radius: 4px;
-  padding: 24px;
+  padding: 16px 24px;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 .theme-btn:hover {
   box-shadow: 0px 0px 8px 6px var(--color-text-default);
