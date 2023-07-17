@@ -1,5 +1,5 @@
 import { getJSON } from "./data.js";
-import { shuffleList } from "./utils.js";
+import { onClickSubscribeMode, shuffleList } from "./utils.js";
 import { STATE } from "../constant.js";
 
 let mediaInfo;
@@ -12,6 +12,9 @@ let categoryInfo = {
   "매거진/전문지": [],
   지역: [],
 };
+
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(categoryInfo);
@@ -193,6 +196,29 @@ const setFullList = () => {
   setProgressBar();
 };
 
+const setListModeEvent = () => {
+  $totalMedia.addEventListener("click", () => {
+    if (!STATE.MODE.IS_GRID) {
+      onClickListMode({ className: "main-nav_total" });
+    }
+  });
+  $subscribeMedia.addEventListener("click", () => {
+    if (!STATE.MODE.IS_GRID) {
+      onClickListMode({ className: "main-nav_subscribe" });
+    }
+  });
+};
+
+/**
+ *
+ * @param {언론사 토글 중 선택한 클래스 이름} className
+ */
+const onClickListMode = ({ className }) => {
+  onClickSubscribeMode({ className });
+  [cateIdx, mediaIdx] = [0, 0];
+  setFullList();
+};
+
 /**
  * 초기 리스트뷰 세팅
  */
@@ -201,6 +227,7 @@ async function initListView() {
   setCategoryBar();
   setFullList();
   setListArrowEvent();
+  setListModeEvent();
 }
 
 export { initListView };

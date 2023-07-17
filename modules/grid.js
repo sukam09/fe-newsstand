@@ -1,6 +1,6 @@
 import { MEDIA, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
-import { shuffleList, setViewEvent } from "./utils.js";
+import { shuffleList, setViewEvent, onClickSubscribeMode } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -127,18 +127,7 @@ const setGridModeEvent = () => {
  * @param {언론사 토글 중 선택한 클래스 이름} className
  */
 const onClickGridMode = ({ className }) => {
-  const $selected =
-    className === "main-nav_total" ? $totalMedia : $subscribeMedia;
-  const $unselected =
-    className === "main-nav_total" ? $subscribeMedia : $totalMedia;
-
-  $selected.classList.remove("main-nav_unselected");
-  $selected.classList.add("main-nav_selected");
-
-  $unselected.classList.remove("main-nav_selected");
-  $unselected.classList.add("main-nav_unselected");
-
-  STATE.MODE.IS_TOTAL = $selected === $totalMedia ? true : false;
+  onClickSubscribeMode({ className });
   STATE.GRID_PAGE_NUM = 0;
 
   // 모드 재세팅
@@ -263,4 +252,4 @@ async function initGridView() {
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, setArrowVisible };
+export { initGridView, setNewPage, setArrowVisible };

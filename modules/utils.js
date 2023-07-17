@@ -1,11 +1,14 @@
-import { IMAGE, STATE } from "../constant.js";
-import { setArrowVisible } from "./grid.js";
+import { IMAGE, MEDIA, STATE } from "../constant.js";
+import { setArrowVisible, setNewPage } from "./grid.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
 
 const $gridView = document.querySelector(".news-grid-wrapper");
 const $listView = document.querySelector(".news-list-wrapper");
+
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 /**
  * 배열을 섞는 함수
@@ -65,6 +68,11 @@ const moveGridView = () => {
   $listView.classList.add("hidden");
 
   STATE.MODE.IS_GRID = true;
+  const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+  setNewPage(
+    STATE.GRID_PAGE_NUM * MEDIA_NUM,
+    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+  );
   setArrowVisible();
 };
 
@@ -88,6 +96,28 @@ const moveListView = () => {
 };
 
 /**
+ *
+ * @param {언론사 토글 중 선택한 클래스 이름} className
+ */
+const onClickSubscribeMode = ({ className }) => {
+  const $selected =
+    className === "main-nav_total" ? $totalMedia : $subscribeMedia;
+  const $unselected =
+    className === "main-nav_total" ? $subscribeMedia : $totalMedia;
+
+  $selected.classList.remove("main-nav_unselected");
+  $selected.classList.add("main-nav_selected");
+
+  $unselected.classList.remove("main-nav_selected");
+  $unselected.classList.add("main-nav_unselected");
+
+  STATE.MODE.IS_TOTAL = $selected === $totalMedia ? true : false;
+
+  // 전체 언론사 -> 그리드 / 내가 구독한 언론사 -> 리스트뷰 디폴트
+  className === "main-nav_total" ? moveGridView() : moveListView();
+};
+
+/**
  * 헤더의 공통뷰를 세팅하는 함수
  */
 async function initCommonView() {
@@ -95,4 +125,11 @@ async function initCommonView() {
   setDate();
 }
 
-export { initCommonView, shuffleList, setDate, setReload, setViewEvent };
+export {
+  initCommonView,
+  shuffleList,
+  setDate,
+  setReload,
+  setViewEvent,
+  onClickSubscribeMode,
+};
