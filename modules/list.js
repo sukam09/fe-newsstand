@@ -19,8 +19,6 @@ const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(categoryInfo);
 
-let [cateIdx, mediaIdx] = [0, 0];
-
 /**
  * 리스트뷰 렌더링 전 데이터 가져오기
  */
@@ -47,20 +45,20 @@ const setListArrowEvent = () => {
 
   $leftArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      mediaIdx--;
+      STATE.LIST_MODE.MEDIA_IDX--;
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      mediaIdx++;
+      STATE.LIST_MODE.MEDIA_IDX++;
       setFullList();
     }
   });
 };
 
 /**
- * cateIdx, mediaIdx 변경 시 범위 벗어나는 idx 예외처리
+ * STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.MEDIA_IDX 변경 시 범위 벗어나는 idx 예외처리
  *
  * 1. 이전 페이지 이동했을 때
  * 1-1. cate: -1, media: -1
@@ -71,20 +69,31 @@ const setListArrowEvent = () => {
  * 2-2. cate: 6, media: length
  */
 const changeIdx = () => {
-  let cateLen = categoryInfo[categoryKeys[cateIdx]].length;
+  let cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
 
-  if (cateIdx === 0 && mediaIdx <= -1) {
-    cateIdx = 6;
-    mediaIdx = cateLen - 1;
-  } else if (cateIdx > 0 && cateIdx <= 6 && mediaIdx === -1) {
-    cateIdx--;
-    mediaIdx = cateLen - 1;
-  } else if (cateIdx >= 0 && cateIdx <= 5 && mediaIdx === cateLen) {
-    cateIdx++;
-    mediaIdx = 0;
-  } else if (cateIdx === 6 && mediaIdx === cateLen) {
-    cateIdx = 0;
-    mediaIdx = 0;
+  if (STATE.LIST_MODE.CATE_IDX === 0 && STATE.LIST_MODE.MEDIA_IDX <= -1) {
+    STATE.LIST_MODE.CATE_IDX = 6;
+    STATE.LIST_MODE.MEDIA_IDX = cateLen - 1;
+  } else if (
+    STATE.LIST_MODE.CATE_IDX > 0 &&
+    STATE.LIST_MODE.CATE_IDX <= 6 &&
+    STATE.LIST_MODE.MEDIA_IDX === -1
+  ) {
+    STATE.LIST_MODE.CATE_IDX--;
+    STATE.LIST_MODE.MEDIA_IDX = cateLen - 1;
+  } else if (
+    STATE.LIST_MODE.CATE_IDX >= 0 &&
+    STATE.LIST_MODE.CATE_IDX <= 5 &&
+    STATE.LIST_MODE.MEDIA_IDX === cateLen
+  ) {
+    STATE.LIST_MODE.CATE_IDX++;
+    STATE.LIST_MODE.MEDIA_IDX = 0;
+  } else if (
+    STATE.LIST_MODE.CATE_IDX === 6 &&
+    STATE.LIST_MODE.MEDIA_IDX === cateLen
+  ) {
+    STATE.LIST_MODE.CATE_IDX = 0;
+    STATE.LIST_MODE.MEDIA_IDX = 0;
   }
 };
 
@@ -96,8 +105,8 @@ const setCategoryBar = () => {
     let cateHTML;
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
-      cateIdx = idx;
-      mediaIdx = 0;
+      STATE.LIST_MODE.CATE_IDX = idx;
+      STATE.LIST_MODE.MEDIA_IDX = 0;
       setFullList();
     });
     $li.classList.add("category_unselected");
@@ -114,7 +123,7 @@ const setCategoryBar = () => {
  * 페이지 전환 따른 카테고리바 변경
  */
 const setProgressBar = () => {
-  const cate = categoryKeys[cateIdx];
+  const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
   const $cateList = document
     .querySelector(".news-list_category")
     .querySelectorAll("li");
@@ -129,13 +138,13 @@ const setProgressBar = () => {
     }
   });
 
-  // 2. 해당 cateIdx 위치에 프로그래스바 추가
-  const $li = $categoryBar.children[cateIdx];
+  // 2. 해당 STATE.LIST_MODE.CATE_IDX 위치에 프로그래스바 추가
+  const $li = $categoryBar.children[STATE.LIST_MODE.CATE_IDX];
   $li.className = "category_selected";
 
   const $cntDiv = $li.children[1];
   $cntDiv.innerHTML = `
-    <p>${mediaIdx + 1}</p>
+    <p>${STATE.LIST_MODE.MEDIA_IDX + 1}</p>
     <p>&nbsp; / ${categoryInfo[cate].length}</p>
   `;
 
@@ -145,7 +154,7 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    mediaIdx++;
+    STATE.LIST_MODE.MEDIA_IDX++;
     setFullList();
   });
 };
@@ -154,8 +163,8 @@ const setProgressBar = () => {
  * 페이지 전환 따른 뉴스 영역 변경
  */
 const setListView = () => {
-  const cate = categoryKeys[cateIdx];
-  const mediaId = categoryInfo[cate][mediaIdx];
+  const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
+  const mediaId = categoryInfo[cate][STATE.LIST_MODE.MEDIA_IDX];
 
   const nowMedia = mediaInfo[mediaId];
 
@@ -168,7 +177,7 @@ const setListView = () => {
   $logo.src = nowMedia.path_light;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
-  if (nowMedia.is_subscribe) {
+  if (STATE.SUBSCRIBE_LIST.includes(mediaId)) {
     $addSubBtn.classList.remove("hidden");
     $cancelSubBtn.classList.add("hidden");
   } else {
@@ -180,10 +189,13 @@ const setListView = () => {
 
   const $subTitleList = document
     .querySelector(".news-list_media_content_sub")
-    .querySelectorAll("li");
+    .querySelectorAll("*");
 
   $subTitleList.forEach(($li, idx) => {
-    $li.innerText = nowMedia.sub_title[idx];
+    $li.innerText =
+      idx !== 6
+        ? nowMedia.sub_title[idx]
+        : `${nowMedia.name}에서 직접 편집한 뉴스입니다.`;
   });
 };
 
@@ -215,7 +227,7 @@ const setListModeEvent = () => {
  */
 const onClickListMode = ({ className }) => {
   onClickSubscribeMode({ className });
-  [cateIdx, mediaIdx] = [0, 0];
+  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.MEDIA_IDX] = [0, 0];
   setFullList();
 };
 

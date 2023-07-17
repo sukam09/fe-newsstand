@@ -27,6 +27,10 @@ const STATE = {
     IS_GRID: true,
     IS_TOTAL: true,
   },
+  LIST_MODE: {
+    CATE_IDX: 0,
+    MEDIA_IDX: 0,
+  },
 };
 
 export { MEDIA, TOPIC, IMAGE, STATE };
