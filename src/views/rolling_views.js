@@ -1,4 +1,4 @@
-function renderHotTopics(data1, data2, callback) {
+function renderHotTopicsView(data1, data2, callback) {
     const banner_left = document.getElementById("rollingBannerLeft");
     const banner_right = document.getElementById("rollingBannerRight");
 
@@ -29,4 +29,4 @@ function createHotTopicList(news) {
     return list;
 }
 
-export { renderHotTopics };
+export { renderHotTopicsView };
