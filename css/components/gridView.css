@@ -51,6 +51,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.grid-view ul li:hover {
+  background-color: var(--surface-alt);
+}
 
 .all-press {
   color: var(--text-strong);

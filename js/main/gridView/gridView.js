@@ -34,13 +34,58 @@ function showMainList(press) {
     i < GRID_NUM * main_list_page;
     i++
   ) {
-    const li = document.createElement("li");
-    const img = document.createElement("img");
+    const _li = document.createElement("li");
+    const _img = document.createElement("img");
 
-    img.setAttribute("src", `${press[shuffledPress[i]].lightSrc}`);
-    main_list_ul.appendChild(li);
-    li.appendChild(img);
+    _li.setAttribute("data-press", `${press[shuffledPress[i]].name}`);
+    _img.setAttribute("src", `${press[shuffledPress[i]].lightSrc}`);
+
+    /* li hover 이벤트 리스너 */
+    _li.addEventListener("mouseover", () => handleMouseOver(_img, _li));
+    _li.addEventListener("mouseout", () =>
+      handleMouseOut(_img, ` ${press[shuffledPress[i]].lightSrc}`)
+    );
+
+    _img.addEventListener("click", (e) => handleImgClick(e));
+
+    main_list_ul.appendChild(_li);
+    _li.appendChild(_img);
   }
+}
+
+function handleMouseOver(_img, _li) {
+  let SubscribePress = JSON.parse(localStorage.getItem("press"));
+
+  //구독 X
+  if (!SubscribePress.includes(`${_li.dataset.press}`)) {
+    _img.setAttribute("src", "../images/icon/Subscribe.svg");
+  }
+  // 구독 O
+  else {
+    _img.setAttribute("src", "../images/icon/Unsubscribe.svg");
+  }
+}
+
+function handleMouseOut(_img, originImg) {
+  _img.setAttribute("src", originImg);
+}
+
+function handleImgClick(e) {
+  const selectedPress = e.target.parentElement.dataset.press;
+  //local에 아무것도 없을 때
+  if (!localStorage.getItem("press")) {
+    localStorage.setItem("press", JSON.stringify([]));
+  }
+
+  //local에 없으면 추가 있으면 삭제
+  let SubscribePress = JSON.parse(localStorage.getItem("press"));
+
+  if (SubscribePress.includes(selectedPress)) {
+    SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
+  } else {
+    SubscribePress.push(selectedPress);
+  }
+  localStorage.setItem("press", JSON.stringify(SubscribePress));
 }
 
 function changePage(e, press) {
