@@ -31,9 +31,14 @@ content
   color: #ffffff;
 }
 
+.news-container .categoty-nav .categoty-list .select:hover {
+  text-decoration: none;
+}
+
 .news-container .categoty-nav .categoty-list .select span {
   z-index: 1;
 }
+
 .news-container .categoty-nav .categoty-list .select .progress-bar {
   position: absolute;
   height: 100%;
@@ -48,4 +53,8 @@ content
   padding: 0 16px 0 16px;
   color: #879298;
   cursor: pointer;
+}
+
+.news-container .categoty-nav .categoty-list li:hover {
+  text-decoration: underline;
 }

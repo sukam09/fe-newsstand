@@ -10,7 +10,8 @@ export default function SubNews($target, props) {
     $div.setAttribute("class", "sub-news");
 
     let inner = props.subTitles.reduce(
-      (accumulator, currentValue) => accumulator + `<li>${currentValue}</li>`,
+      (accumulator, currentValue) =>
+        accumulator + `<li class="sub-title">${currentValue}</li>`,
       ""
     );
 

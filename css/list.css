@@ -54,10 +54,18 @@
   height: 260px;
 }
 
+.list-content .list-news .main-news .img-container {
+  height: 200px;
+}
+
+.list-content .list-news .main-news .img-container img {
+  transition: 0.5s;
+}
+
 .list-content .list-news .main-title {
   width: 320px;
   height: 44px;
-  margin-top: 10px;
+  margin-top: 15px;
   color: #14212b;
   font-weight: 500;
   font-size: 16px;
@@ -76,7 +84,12 @@
   flex-wrap: wrap;
   align-content: space-between;
 }
-
+.list-content .list-news .sub-news .sub-title {
+  cursor: pointer;
+}
+.list-content .list-news .sub-news .sub-title:hover {
+  text-decoration: underline;
+}
 .list-content .list-news .sub-news ul .caption {
   font-size: 14px;
   color: #879298;

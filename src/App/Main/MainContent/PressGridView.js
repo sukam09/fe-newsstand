@@ -49,7 +49,13 @@ const viewSubscriptionButton = (e) => {
   if (btn) btn.style.display = "inline";
 };
 
+const isSubscribed = (pressid) => {
+  return true;
+};
+
 const createNewspaperItem = function (index, mode) {
+  const buttonText = isSubscribed(index + 1) ? "해지하기" : "구독하기";
+
   return `
     <li class="newspaper__item">
     <img src="./assets/newspaper/${mode}/${index + 1}.png" alt=${"name"} />
@@ -57,7 +63,9 @@ const createNewspaperItem = function (index, mode) {
       index + 1
     }><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none">
     <path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99799H13V10.998H19V12.998Z" fill="#879298"/>
-    </svg>구독하기</button>
+    </svg>
+    ${buttonText}
+    </button>
     </li>
     `;
 };
