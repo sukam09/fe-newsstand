@@ -39,6 +39,11 @@
   color: #5f6e76;
 }
 
+.categoryItem:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .categoryItem > span {
   z-index: 1;
   margin-right: 10px;
