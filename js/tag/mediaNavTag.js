@@ -6,8 +6,12 @@ export function navTag() {
 
   const nav = `
     <div class="newsstand__tab newsstand__tab-left">
-        <div class="newsstand—text-clicked">${ALL_PUBLISHER}</div>
-        <div class="newsstand—text-unclicked">${SUBSCRIBE_PUBLISHER}</div>
+        <div class="newsstand-all-publisher newsstand—text-clicked">
+          ${ALL_PUBLISHER}
+        </div>
+        <div class="newsstand-subscribe-publisher newsstand—text-unclicked">
+          ${SUBSCRIBE_PUBLISHER}
+        </div>
     </div>
     <div class="newsstand__tab">
         <button>

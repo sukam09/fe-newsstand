@@ -5,13 +5,13 @@ class SubscribeState {
   }
 
   // 구독 등록
-  setSubscribeState(id, name) {
-    this.subList.push([id, name]);
+  setSubscribeState(name) {
+    this.subList.push(name);
   }
 
   // 구독 해지
-  setUnSubscribeState(id) {
-    this.subList = this.subList.filter((item) => item[0] !== id);
+  setUnSubscribeState(name) {
+    this.subList = this.subList.filter((item) => item !== name);
   }
 
   // 현재 구독중인 상태
@@ -20,9 +20,8 @@ class SubscribeState {
   }
 
   // id값으로 구독중인지 확인
-  getSubscribeById(id) {
-    this.subList = this.subList.filter((item) => item[0] === id);
-    return this.subList;
+  getSubscribeByName(name) {
+    return this.subList.filter((item) => item === name);
   }
 }
 

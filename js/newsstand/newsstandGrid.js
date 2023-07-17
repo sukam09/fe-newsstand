@@ -1,7 +1,7 @@
 import { shuffle } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
-import { subscribeState } from "../state/subscribeState.js";
+import { subscribeState } from "../store/subscribeState.js";
 
 let publisherData = await getPressData("./data/pressObj.json");
 
@@ -50,6 +50,29 @@ function initPaintNews() {
   }
 }
 
+// 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
+function paintNews(element) {
+  let idx = selectedPage * VIEWED_CONTENS;
+  let elementIdx = 0;
+
+  element.map((imgTag) => {
+    const icon = publisherData[idx].lightSrc;
+    const alt = publisherData[idx].name;
+
+    // 구독중일때.
+    if (subscribeState.getSubscribeByName(alt).length) {
+      element[elementIdx].children[1].textContent = "x 해지하기";
+    } else {
+      element[elementIdx].children[1].textContent = "+ 구독하기";
+    }
+
+    imgTag.children[0].src = icon;
+    imgTag.children[0].alt = alt;
+    idx++;
+    elementIdx++;
+  });
+}
+
 // 각 언론사에 이벤트리스너 등록
 function addEventOnPublisher(liElement, btnElement) {
   liElement.addEventListener("mouseover", mouseOverOnPublisher(liElement));
@@ -78,16 +101,16 @@ function mouseOutOnPublisher(element) {
 function userClickSubscribeButton(liElement) {
   return function () {
     const name = liElement.children[0].alt;
-    const id = findPublisherId(name);
-    const subScribeStatus = liElement.children[1].textContent.toString();
 
-    // 구독버튼을 눌렀다면
-    if (subScribeStatus === "+ 구독하기") {
-      liElement.children[1].textContent = "x 해지하기";
-      subscribeState.setSubscribeState(id, name);
-    } else {
+    // 해지하기 버튼을 눌렀을때.
+    if (subscribeState.getSubscribeByName(name)[0]) {
+      console.log("해지하기 버튼 클릭");
       liElement.children[1].textContent = "+ 구독하기";
-      subscribeState.setUnSubscribeState(id);
+      subscribeState.setUnSubscribeState(name);
+    } else {
+      console.log("구독하기 버튼 클릭");
+      liElement.children[1].textContent = "x 해지하기";
+      subscribeState.setSubscribeState(name);
     }
   };
 }
@@ -97,18 +120,6 @@ function findPublisherId(name) {
   const [data] = publisherData.filter((item) => item.name === name);
 
   return data.id;
-}
-
-// 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
-function paintNews(element) {
-  let idx = selectedPage * VIEWED_CONTENS;
-  element.map((imgTag) => {
-    const icon = publisherData[idx].lightSrc;
-    const alt = publisherData[idx].name;
-    imgTag.children[0].src = icon;
-    imgTag.children[0].alt = alt;
-    idx++;
-  });
 }
 
 // 페이지네이션
