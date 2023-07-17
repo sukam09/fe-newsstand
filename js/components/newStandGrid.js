@@ -6,7 +6,14 @@ function paintNewsstand(datas, SELECTED_PAGE) {
     const [name, src] = datas[idx];
     htmls += html`
       <li class="newsstand—subscrtion-box">
-        <img src="${src}" alt="${name}" />
+        <div class="inner">
+          <div class="inner-front">
+            <img class="front" src="${src}" alt="${name}" />
+          </div>
+          <div class="inner-back">
+            <button class="back">+ 구독하기</button>
+          </div>
+        </div>
       </li>
     `;
   }
