@@ -7,9 +7,7 @@ async function initNewsData() {
 }
 
 async function fetchJsonFile(path) {
-  return fetch(path).then((response) => {
-    return response.json();
-  });
+  return fetch(path).then((response) => response.json());
 }
 
 async function fetchRollingNewsData() {
@@ -28,9 +26,7 @@ async function fetchNewsData() {
 function shuffleId(jsonData) {
   for (let currentIndex = jsonData.length - 1; currentIndex >= 0; currentIndex--) {
     const randomIndex = Math.floor(Math.random() * currentIndex);
-    const tempValue = jsonData[currentIndex];
-    jsonData[currentIndex] = jsonData[randomIndex];
-    jsonData[randomIndex] = tempValue;
+    [jsonData[currentIndex], jsonData[randomIndex]] = [jsonData[randomIndex], jsonData[currentIndex]];
   }
 }
 

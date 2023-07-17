@@ -32,9 +32,7 @@ function setListNavBar() {
   const curPageInCategory = getCurPageInCategory();
 
   const progressRemoveTarget = GLOBAL.DOM.FIELD_TAB.querySelector(".progress");
-  progressRemoveTarget.classList.remove("progress");
-  progressRemoveTarget.classList.remove("selected-bold14");
-  progressRemoveTarget.classList.add("available-medium14");
+  progressRemoveTarget.className = "available-medium14";
 
   GLOBAL.DOM.FIELD_TAB.querySelectorAll("div").forEach((element) => {
     if (element.className != "progress-bar") {
@@ -46,9 +44,7 @@ function setListNavBar() {
   const targetDom = GLOBAL.DOM[`NAV_${Object.keys(CATEGORY)[categoryIndex].toUpperCase()}`];
 
   targetDom.querySelector("div").style.display = "flex";
-  targetDom.classList.add("progress");
-  targetDom.classList.remove("available-medium14");
-  targetDom.classList.add("selected-bold14");
+  targetDom.className = "progress selected-bold14";
   targetDom.querySelectorAll("span")[1].innerHTML = curPageInCategory;
   targetDom.querySelectorAll("span")[2].innerHTML = GLOBAL.CATEGORY_NUM[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)];
   GLOBAL.DOM.PROGRESS_BAR.style.left = `${targetDom.getBoundingClientRect().left - navBarDefaultLeft}px`;
@@ -66,11 +62,17 @@ function getCurPageInCategory() {
 }
 
 function strToCategory(str) {
-  for (let key in CATEGORY) {
-    if (CATEGORY[key] === str) {
-      return key;
-    }
-  }
+  const categoryMapping = {
+    [CATEGORY.ECONOMY]: "ECONOMY",
+    [CATEGORY.BROADCAST]: "BROADCAST",
+    [CATEGORY.IT]: "IT",
+    [CATEGORY.ENGLISH]: "ENGLISH",
+    [CATEGORY.SPORTS]: "SPORTS",
+    [CATEGORY.MAGAZINE]: "MAGAZINE",
+    [CATEGORY.LOCAL]: "LOCAL",
+  };
+
+  return categoryMapping[str];
 }
 
 function resetAnimation() {
