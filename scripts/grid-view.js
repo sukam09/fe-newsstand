@@ -1,30 +1,26 @@
 import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
+import { SubscribeButton } from "./components.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const fillGridView = (newsData, currentPage) => {
   const theme = useSelector((state) => state.theme.currentTheme);
   const $gridView = document.querySelector(".grid-view");
-  $gridView.innerHTML = "";
 
   const startIdx = currentPage * NEWS_COUNT;
-  for (let i = startIdx; i < startIdx + NEWS_COUNT; i++) {
-    const $li = document.createElement("li");
-    $li.className = "grid-cell";
 
-    const $button = document.createElement("button");
-
-    const $img = document.createElement("img");
-    $img.className = "grid-cell_news-img";
-
-    $img.src = newsData[i].src[theme];
-    $img.alt = newsData[i].name;
-
-    $button.appendChild($img);
-    $li.appendChild($button);
-
-    $gridView.appendChild($li);
-  }
+  $gridView.innerHTML = Array.from(
+    { length: NEWS_COUNT },
+    (_, i) => i + startIdx
+  ).reduce((acc, curr) => {
+    return (acc += `<li class="grid-cell">
+      <img
+        class="brand-mark"
+        src="${newsData[curr].src[theme]}" 
+        alt="${newsData[curr].name}" />
+      ${SubscribeButton()}
+    </li>`);
+  }, "");
 };
 
 const initGridView = (newsData) => {
