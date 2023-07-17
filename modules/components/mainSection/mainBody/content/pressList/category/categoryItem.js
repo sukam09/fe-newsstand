@@ -1,15 +1,17 @@
+import { controllButtonShowing } from "../../../../../../controller/pageController.js";
+import { getState } from "../../../../../../core/observer.js";
 import {
   categoryId,
-  listPage,
   setCategoryId,
-  setListPage,
 } from "../../../../../../state/pageState.js";
+import { listPageState } from "../../../../../../state/pageState2.js";
 import { qs } from "../../../../../../utils.js";
-import { controllButtonShowing } from "../../../pageButtons/pageButtons.js";
 import { showListPage } from "../pressList.js";
 import { createProgressBar, startProgressAnimation } from "./progressBar.js";
 
 export function createCategoryItem(categoryName, categoryId, len) {
+  const listPage = getState(listPageState);
+
   return `
     <li class="category_item" id="category_${categoryId}">
       <span>${categoryName}</span>
@@ -49,6 +51,7 @@ export function highlightCategoryItem() {
 }
 
 export function updatePageCount() {
+  const listPage = getState(listPageState);
   const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
   const $nowPage = $categoryItem.querySelector(".now_page");
   $nowPage.innerHTML = listPage + 1;

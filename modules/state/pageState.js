@@ -1,7 +1,7 @@
+import { getState } from "../core/observer.js";
 import { categoryData, pressData } from "./dataState.js";
+import { gridPageState, listPageState } from "./pageState2.js";
 
-export const GRID = "grid";
-export const LIST = "list";
 // let pageType = GRID;
 
 export const NUM_IN_A_GRID = 24;
@@ -10,8 +10,6 @@ export let MAX_CATEGORY_ID = 0;
 export let TOTAL_LIST_PAGE;
 export const MAX_LIST_PAGE = {};
 export let categoryId = 0;
-export let listPage = 0;
-export let gridPage = 0;
 
 export function initPageState() {
   const { categoryList } = categoryData;
@@ -28,21 +26,6 @@ export function initPageState() {
   MAX_GRID_PAGE = parseInt(pressList.length / NUM_IN_A_GRID);
   MAX_CATEGORY_ID = parseInt(categoryList.length);
   TOTAL_LIST_PAGE = total;
-}
-
-export function incGridPage() {
-  gridPage >= MAX_GRID_PAGE - 1 ? (gridPage = MAX_GRID_PAGE - 1) : gridPage++;
-}
-export function decGridPage() {
-  gridPage <= 0 ? (gridPage = 0) : gridPage--;
-}
-
-export function getListPage() {
-  return listPage;
-}
-
-export function setListPage(value) {
-  listPage = value;
 }
 
 // export function setPageType(type) {
@@ -65,18 +48,3 @@ export function getCategoryId() {
 }
 
 //
-
-export function incListPage() {
-  listPage = listPage + 1;
-  const maxPage = MAX_LIST_PAGE[categoryId] - 1;
-  if (listPage >= maxPage) {
-    listPage = maxPage;
-  }
-}
-
-export function decListPage() {
-  listPage = listPage - 1;
-  if (listPage <= 0) {
-    listPage = 0;
-  }
-}

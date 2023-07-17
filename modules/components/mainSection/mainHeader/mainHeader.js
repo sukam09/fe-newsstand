@@ -1,25 +1,7 @@
 import { addObserver, getState, setState } from "../../../core/observer.js";
-import {
-  GRID,
-  LIST,
-  categoryId,
-  gridPage,
-  listPage,
-} from "../../../state/pageState.js";
+import { GRID, LIST } from "../../../state/pageState2.js";
 import { pageTypeState } from "../../../state/pageState2.js";
 import { qs } from "../../../utils.js";
-import {
-  hideGridContainer,
-  showGridContainer,
-  showGridPage,
-} from "../mainBody/mainContent/pressGrid/pressGrid.js";
-import { highlightCategoryItem } from "../mainBody/mainContent/pressList/category/categoryItem.js";
-import {
-  hideListContainer,
-  showListContainer,
-  showListPage,
-} from "../mainBody/mainContent/pressList/pressList.js";
-import { controllButtonShowing } from "../mainBody/pageButtons/pageButtons.js";
 
 export function createMainHeader() {
   return `
@@ -48,21 +30,4 @@ export function handleListViewButton(e) {
   e.currentTarget.classList.add("view_clicked");
   $gridViewButton.classList.remove("view_clicked");
   setState(pageTypeState, LIST);
-}
-
-export function initObserver() {
-  addObserver(pageTypeState, () => {
-    const pageType = getState(pageTypeState);
-    if (pageType === GRID) {
-      hideListContainer();
-      showGridContainer();
-      showGridPage(gridPage);
-    } else if (pageType === LIST) {
-      hideGridContainer();
-      showListContainer();
-      showListPage(categoryId, listPage);
-      highlightCategoryItem();
-    }
-    controllButtonShowing();
-  });
 }

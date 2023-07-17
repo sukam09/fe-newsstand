@@ -8,7 +8,7 @@ import { createPressGrid } from "./pressGrid/pressGrid.js";
 import { createCategory } from "./pressList/category/category.js";
 import { createPressList } from "./pressList/pressList.js";
 
-export function createMainContent() {
+export function createContent() {
   const { pressList } = pressData;
   const { categoryList } = categoryData;
   let allPressGridPage = "";
@@ -23,7 +23,7 @@ export function createMainContent() {
     }
   }
   return `
-    <div class="main_content">
+    <div class="content">
       <div id="list_container">
       ${createCategory(categoryList)}
       ${allPressListPage}

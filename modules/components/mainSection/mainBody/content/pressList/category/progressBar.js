@@ -1,13 +1,11 @@
+import { getState, setState } from "../../../../../../core/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_LIST_PAGE,
   categoryId,
-  getListPage,
-  incListPage,
-  listPage,
   setCategoryId,
-  setListPage,
 } from "../../../../../../state/pageState.js";
+import { listPageState } from "../../../../../../state/pageState2.js";
 import { showListPage } from "../pressList.js";
 import { highlightCategoryItem, updatePageCount } from "./categoryItem.js";
 
@@ -22,6 +20,7 @@ export function startProgressAnimation($progressbar) {
   let runningTime = 3000;
   let percentage = 0;
   let start;
+  const listPage = getState(listPageState);
   const startPage = listPage;
 
   const performAnimation = (timestamp) => {
@@ -38,9 +37,9 @@ export function startProgressAnimation($progressbar) {
         } else {
           setCategoryId(categoryId + 1);
         }
-        setListPage(0);
+        setState(listPageState, 0);
       } else {
-        incListPage();
+        setState(listPageState, listPage + 1);
       }
       showListPage(categoryId, listPage);
       updatePageCount();
@@ -56,7 +55,7 @@ export function startProgressAnimation($progressbar) {
     }
 
     // 페이지 변화
-    if (startPage !== getListPage()) {
+    if (startPage !== getState(listPageState)) {
       cancelAnimationFrame(raf);
       highlightCategoryItem();
       return;

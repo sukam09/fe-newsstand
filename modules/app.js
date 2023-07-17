@@ -1,14 +1,13 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
 import { createHeadlineSection } from "./components/headlineSection/headlineSection.js";
-import { showGridPage } from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
-import { subscribe } from "./components/mainSection/mainBody/mainContent/pressGrid/pressItem/subButton/subButton.js";
-import { initObserver } from "./components/mainSection/mainHeader/mainHeader.js";
+import { showGridPage } from "./components/mainSection/mainBody/content/pressGrid/pressGrid.js";
 import { createMainSection } from "./components/mainSection/mainSection.js";
+import { createTitleSection } from "./components/titleSection/titleSection.js";
 import {
-  createTitleSection,
-  handleTest,
-} from "./components/titleSection/titleSection.js";
-import { addObserver, getState, setState } from "./core/observer.js";
+  addObserverOnGridPage,
+  addObserverOnListPage,
+  addObserverOnPageType,
+} from "./controller/pageController.js";
 import {
   addEventsOnThemeButton,
   addEventsOnCategoryItem,
@@ -35,7 +34,11 @@ import { qs } from "./utils.js";
   $root.innerHTML += await createMainSection();
 
   addEventsOnThemeButton();
+
   addEventsOnPageButton();
+  addObserverOnGridPage();
+  addObserverOnListPage();
+
   addEventsOnGridItem();
   addEventsOnSubButton(); // 미완
   addEventsOnViewButton();
@@ -45,5 +48,5 @@ import { qs } from "./utils.js";
   startRollingAnimation();
   showGridPage(0);
 
-  initObserver();
+  addObserverOnPageType();
 })();

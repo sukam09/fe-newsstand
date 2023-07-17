@@ -1,5 +1,5 @@
-import { createMainContent } from "./mainContent/mianContent.js";
-import { createPressGrid } from "./mainContent/pressGrid/pressGrid.js";
+import { createPressGrid } from "./content/pressGrid/pressGrid.js";
+import { createContent } from "./content/content.js";
 import {
   createLeftPageButton,
   createRightPageButton,
@@ -9,7 +9,7 @@ export async function createMainBody() {
   return `
     <div class="main_body">
       ${createRightPageButton()}
-      ${createMainContent()}
+      ${createContent()}
       ${createLeftPageButton()}
     </div>
   `;

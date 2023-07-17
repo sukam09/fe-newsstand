@@ -9,11 +9,8 @@ import {
   setRightRollingId,
   setRightViewIdx,
 } from "./components/headlineSection/headline/headline.js";
-import { handleClickCategoryItem } from "./components/mainSection/mainBody/mainContent/pressList/category/categoryItem.js";
-import {
-  showNextPage,
-  showPrevPage,
-} from "./components/mainSection/mainBody/pageButtons/pageButtons.js";
+import { handleClickCategoryItem } from "./components/mainSection/mainBody/content/pressList/category/categoryItem.js";
+
 import {
   handleGirdViewButton,
   handleListViewButton,
@@ -22,6 +19,16 @@ import {
   handleLogoButton,
   handleThemeButtonClick,
 } from "./components/titleSection/titleSection.js";
+import { showNextPage, showPrevPage } from "./controller/pageController.js";
+import { getState, setState } from "./core/observer.js";
+import { MAX_GRID_PAGE } from "./state/pageState.js";
+import {
+  GRID,
+  LIST,
+  gridPageState,
+  listPageState,
+  pageTypeState,
+} from "./state/pageState2.js";
 import { qs, qsa } from "./utils.js";
 
 export function addEventsOnGridItem() {
@@ -33,10 +40,30 @@ export function addEventsOnGridItem() {
 }
 
 export function addEventsOnPageButton() {
+  const gridPage = getState(gridPageState);
+  const listPage = getState(listPageState);
+
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
-  $leftBtn.addEventListener("click", () => showPrevPage());
-  $rightBtn.addEventListener("click", () => showNextPage());
+
+  $leftBtn.addEventListener("click", () => {
+    const pageType = getState(pageTypeState);
+    if (pageType === GRID) {
+      const prevPage = Math.max(getState(gridPageState) - 1, 0);
+      setState(gridPageState, prevPage);
+    } else {
+      setState(listPageState, listPage - 1);
+    }
+  });
+  $rightBtn.addEventListener("click", () => {
+    const pageType = getState(pageTypeState);
+    if (pageType === GRID) {
+      const nextPage = Math.min(getState(gridPageState) + 1, MAX_GRID_PAGE - 1);
+      setState(gridPageState, nextPage);
+    } else if (pageType === LIST) {
+      setState(listPageState, listPage + 1);
+    }
+  });
 }
 
 export function addEventsOnSubButton() {
