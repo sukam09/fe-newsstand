@@ -24,7 +24,7 @@ async function getNewsData(category) {
   }
 }
 
-async function drawList(order, category) {
+async function drawList(order, category, subscribedPress) {
   if (category !== "종합/경제")
     order_list = [
       { press: "SBS Biz", imgIndex: 93 },
@@ -56,28 +56,29 @@ async function drawList(order, category) {
     const newDiv = document.createElement("div");
     newDiv.classList.add("press-news");
     main_list.appendChild(newDiv);
-    drawPressInfo(img);
+    drawPressInfo(img, subscribedPress, order_list[order - 1].press);
     drawPressNews(category_news, order_list[order - 1].press);
   } catch (error) {
     console.log(error);
   }
 }
 
-function handleClick(e) {
-  const target = e.target.closest("li");
-  if (target && target.classList.contains("category")) {
-    const category = target.querySelector(".ctg").textContent.trim();
-    drawList(1, category);
+function handleClick(e, subscribedPress) {
+  const li_target = e.target.closest("li");
+  if (li_target && li_target.classList.contains("category")) {
+    const category = li_target.querySelector(".ctg").textContent.trim();
+    drawList(1, category, subscribedPress);
   }
 }
 
-export function showListView(order, category = "") {
-  if (category === "") {
+export function showListView(order, subscribedPress, category = "") {
+  if (!category) {
     const selected_category = document.querySelector(".category.selected .ctg");
     category = selected_category.textContent;
   }
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = "";
-  drawList(order, category);
-  document.addEventListener("click", handleClick);
+  drawList(order, category, subscribedPress);
+
+  document.addEventListener("click", (e) => handleClick(e, subscribedPress));
 }

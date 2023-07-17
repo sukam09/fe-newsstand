@@ -14,3 +14,4 @@ export const CATEGORY = [
   "스포츠/연예",
   "매거진/전문지",
 ];
+export const SNACKBAR_WAIT_TIME = 5000;

@@ -5,16 +5,18 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
+let subscribedPress = [];
 
 function MainView() {
   document.addEventListener("click", handleClick);
-  showGridView(page);
+  showGridView(page, subscribedPress);
   checkPage(page, "grid");
+}
 
-  const headerElement = document.createElement("h1");
-  headerElement.textContent = "여기에 헤더 컴포넌트의 내용을 작성하세요";
-
-  return headerElement;
+// 부모 컴포넌트에서 자식 컴포넌트로 전달한 콜백 함수
+export function parentCallback(_subscribedPress) {
+  subscribedPress = _subscribedPress;
+  console.log("구독한 언론사:", subscribedPress);
 }
 
 function changePage(target, view) {
@@ -24,10 +26,10 @@ function changePage(target, view) {
     page++;
   }
   if (view === "grid") {
-    showGridView(page);
+    showGridView(page, subscribedPress);
     checkPage(page, "grid");
   } else {
-    showListView(page);
+    showListView(page, subscribedPress);
     checkPage(page, "list");
   }
 }
@@ -40,14 +42,14 @@ function handleClick(e) {
     case "grid-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("grid");
-      showGridView(page);
+      showGridView(page, subscribedPress);
       checkPage(page, "grid");
       break;
     case "list-btn":
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page, CATEGORY[0]);
+      showListView(page, subscribedPress, CATEGORY[0]);
       checkPage(page, "list");
       break;
     case "left":

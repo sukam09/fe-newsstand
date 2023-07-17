@@ -2,13 +2,6 @@ import { CATEGORY } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 import { getPressCount } from "./getPressCount.js";
 
-// function checkProgress(order, category) {
-//   const progress = document.getElementById("play-animation");
-//   progress.addEventListener("animationend", () =>
-//     showListView(++order, category)
-//   );
-// }
-
 function checkProgress(order, category) {
   const progress = document.getElementById("play-animation");
   if (progress) {
