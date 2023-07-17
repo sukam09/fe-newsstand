@@ -1,9 +1,11 @@
 import Component from './core/Component.js';
+
 import AllNews from './allNews/index.js';
 import Header from './header/index.js';
 import LatestNews from './latestNews/index.js';
-import { customQuerySelector } from '../utils/index.js';
 import Alert from './common/Alert.js';
+
+import { customQuerySelector } from '../utils/index.js';
 
 export default class App extends Component {
   template() {
@@ -11,6 +13,7 @@ export default class App extends Component {
             <div class='latest-main-news'></div>
             <section class='all-news'></section>
             <div class='alert-modal off'></div>
+            <div class='snack-bar-component'></div>
             `;
   }
   mounted() {

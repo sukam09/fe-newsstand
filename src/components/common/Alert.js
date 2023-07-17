@@ -1,10 +1,11 @@
+import { TEXT } from '../../constants/index.js';
 import { toggleAlert } from '../../index.js';
 import Component from '../core/Component.js';
 
 export default class Alert extends Component {
   template() {
     return `
-      <div class='alert-wrapper border-default'>
+      <div class='alert-wrapper border-default pop-up'>
         <div class='alert-content-wrapper surface-default text-default display-medium16'>
           <p><span class='text-strong display-bold16'>{언론사명}</span>을(를)</p>
           <p >구독해지하시겠습니까?</p>

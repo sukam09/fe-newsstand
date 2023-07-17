@@ -7,6 +7,7 @@
 @import url('styles/components/allNews.css');
 @import url('styles/components/news-list-grid.css');
 @import url('styles/components/alert.css');
+@import url('styles/components/snack-bar.css');
 
 /* common */
 .common-button {

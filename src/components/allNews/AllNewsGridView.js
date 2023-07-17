@@ -5,8 +5,9 @@ import {
 } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
-import Button from '../common/Button.js';
-import { toggleAlert } from '../../index.js';
+
+import { TEXT } from '../../constants/index.js';
+import SubscribeButton from './SubscribeButton.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
@@ -42,12 +43,9 @@ export default class AllNewsGridView extends Component {
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
     customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
-      new Button(node, {
+      new SubscribeButton(node, {
         color: 'gray',
-        text: '구독하기',
-        icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
-        states: 'default',
-        action: () => toggleAlert(),
+        text: TEXT.SUBSCRIBE,
       });
     });
 

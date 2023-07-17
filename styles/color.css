@@ -125,3 +125,7 @@
 .dark .border-default {
   border: 1px solid var(--gray-scale-400);
 }
+
+.pop-up {
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
