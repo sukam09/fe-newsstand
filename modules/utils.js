@@ -1,5 +1,4 @@
-import { IMAGE } from "../constant.js";
-import { STATE } from "../state.js";
+import { IMAGE, STATE } from "../constant.js";
 import { setArrowVisible } from "./grid.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
@@ -65,7 +64,7 @@ const moveGridView = () => {
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
 
-  STATE.IS_GRID = true;
+  STATE.MODE.IS_GRID = true;
   setArrowVisible();
 };
 
@@ -85,7 +84,7 @@ const moveListView = () => {
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
 
-  STATE.IS_GRID = false;
+  STATE.MODE.IS_GRID = false;
 };
 
 /**

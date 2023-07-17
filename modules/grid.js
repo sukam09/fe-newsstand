@@ -1,5 +1,4 @@
-import { MEDIA } from "../constant.js";
-import { STATE } from "../state.js";
+import { MEDIA, STATE } from "../constant.js";
 import { shuffleList, setViewEvent } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
@@ -13,7 +12,7 @@ const makeGrid = () => {
 
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
-    const imgSrc = STATE.IS_LIGHT
+    const imgSrc = STATE.MODE.IS_LIGHT
       ? `/images/light-media/${idList[i]}.png`
       : `/images/dark-media/${idList[i]}.png`;
 
@@ -39,10 +38,10 @@ const setGridArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (STATE.IS_GRID) clickArrow(-1);
+    if (STATE.MODE.IS_GRID) clickArrow(-1);
   });
   $rightArrow.addEventListener("click", () => {
-    if (STATE.IS_GRID) clickArrow(+1);
+    if (STATE.MODE.IS_GRID) clickArrow(+1);
   });
 };
 
@@ -57,7 +56,7 @@ const changeImgSrc = () => {
 
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $img = document.querySelector(`.img${i}`);
-    const imgSrc = STATE.IS_LIGHT
+    const imgSrc = STATE.MODE.LIGHT
       ? `./images/light-media/${newImg[i]}.png`
       : `./images/dark-media/${newImg[i]}.png`;
 

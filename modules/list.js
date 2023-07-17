@@ -1,6 +1,6 @@
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
-import { STATE } from "../state.js";
+import { STATE } from "../constant.js";
 
 let mediaInfo;
 let categoryInfo = {
@@ -43,13 +43,13 @@ const setListArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (!STATE.IS_GRID) {
+    if (!STATE.MODE.IS_GRID) {
       mediaIdx--;
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
-    if (!STATE.IS_GRID) {
+    if (!STATE.MODE.IS_GRID) {
       mediaIdx++;
       setFullList();
     }
