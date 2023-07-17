@@ -1,4 +1,5 @@
 const increment = 10;
 const totalTime = 20000;
+const rollingTime = 5000;
 
-export { increment, totalTime };
+export { rollingTime, increment, totalTime };

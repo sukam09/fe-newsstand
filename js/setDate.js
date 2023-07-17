@@ -5,8 +5,7 @@ function calcDate() {
   const month = `0${today.getMonth() + 1}`.slice(-2);
   const date = `0${today.getDate()}`.slice(-2);
   const day = weekend[today.getDay()];
-  const totalTime = `${year}. ${month}. ${date}. ${day}요일`;
-  return totalTime;
+  return `${year}. ${month}. ${date}. ${day}요일`;
 }
 
 function setDate(dateDiv) {

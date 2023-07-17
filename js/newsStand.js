@@ -1,5 +1,4 @@
-function clickNewsStand() {
-  const newsStand = document.getElementById("header-div-01");
+function clickNewsStand(newsStand) {
   newsStand.addEventListener("click", () => {
     window.location.replace("index.html");
   });
