@@ -1,3 +1,5 @@
+import createStore from './store/store.js';
+
 import Header from './components/Header.js';
 import AutoRollingNews from './components/AutoRollingNews.js';
 import PressTab from './components/PressTab.js';
