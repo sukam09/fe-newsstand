@@ -217,6 +217,10 @@ header {
   line-height: 22px;
 }
 
+.news-press-tab-menu:hover {
+  cursor: pointer;
+}
+
 .news-press-align-menu {
   display: flex;
   gap: 8px;
