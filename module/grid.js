@@ -78,9 +78,10 @@ function gridHover(event) {
     subscribeBtn.appendChild(subscribeImg);
     subscribeBtn.appendChild(subscribeSpan);
     subscribeBtn.addEventListener("click", (event) => {
-      const targetSrc = event.target.localName === "button" ? event.target.parentNode.firstChild.src : event.target.parentNode.parentNode.firstChild.src;
-      const result = toggleSubscribe(targetSrc);
-      event.target.innerHTML = result === "true" ? "해지하기" : "구독하기";
+      const target = event.target.localName === "button" ? event.target.parentNode.firstChild : event.target.parentNode.parentNode.firstChild;
+      const result = toggleSubscribe(target.src);
+      target.nextSibling.childNodes[0].src = result === "true" ? ICON.X : ICON.PLUS;
+      target.nextSibling.childNodes[1].innerHTML = result === "true" ? "해지하기" : "구독하기";
     });
     event.target.appendChild(subscribeBtn);
     event.target.querySelector(".press-logo").style.display = "none";
