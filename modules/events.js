@@ -9,7 +9,6 @@ import {
   setRightRollingId,
   setRightViewIdx,
 } from "./components/headlineSection/headline/headline.js";
-import { handleClickCategoryItem } from "./components/mainSection/mainBody/content/pressList/category/categoryItem.js";
 
 import {
   handleGirdViewButton,
@@ -19,6 +18,8 @@ import {
   handleLogoButton,
   handleThemeButtonClick,
 } from "./components/titleSection/titleSection.js";
+import { handleClickCategoryItem } from "./controller/categoryController.js";
+import { hiddenSubButton, showSubButton } from "./controller/gridController.js";
 import { getState, setState } from "./core/observer.js";
 import {
   MAX_CATEGORY_ID,
@@ -39,7 +40,7 @@ export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
   [...$gridItems].forEach((gridItem) => {
     gridItem.addEventListener("mouseover", (e) => showSubButton(e));
-    gridItem.addEventListener("mouseout", (e) => showLogo(e));
+    gridItem.addEventListener("mouseout", (e) => hiddenSubButton(e));
   });
 }
 
@@ -173,18 +174,4 @@ export function addEventsOnRollingList() {
 export function addEventsOnTitle() {
   const $titleContainer = qs(".title_container");
   $titleContainer.addEventListener("click", handleLogoButton);
-}
-
-function showSubButton(e) {
-  const target = e.currentTarget;
-  const $logo = target.querySelector("img");
-  const $subButtonContainer = target.querySelector(".sub_button_container");
-  $subButtonContainer.style.display = "flex";
-}
-
-function showLogo(e) {
-  const target = e.currentTarget;
-  const $logo = target.querySelector("img");
-  const $subButtonContainer = target.querySelector(".sub_button_container");
-  $subButtonContainer.style.display = "none";
 }

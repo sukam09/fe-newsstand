@@ -1,3 +1,4 @@
+import { highlightCategoryItem } from "../../../../../../controller/categoryController.js";
 import {
   showListPage,
   updatePageCount,
@@ -11,8 +12,6 @@ import {
   categoryIdState,
   listPageState,
 } from "../../../../../../state/pageState.js";
-import { highlightCategoryItem } from "./categoryItem.js";
-
 export function createProgressBar() {
   return `
   <div class="progressbar"></div>

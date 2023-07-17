@@ -1,4 +1,3 @@
-import { highlightCategoryItem } from "../components/mainSection/mainBody/content/pressList/category/categoryItem.js";
 import { addObserver, getState } from "../core/observer.js";
 import { MAX_GRID_PAGE } from "../state/pageState.js";
 import {
@@ -10,7 +9,7 @@ import {
   pageTypeState,
 } from "../state/pageState.js";
 import { qs, qsa } from "../utils.js";
-
+import { highlightCategoryItem } from "./categoryController.js";
 export function addObserverOnPageType() {
   addObserver(pageTypeState, () => {
     const gridPage = getState(gridPageState);
