@@ -8,11 +8,11 @@ let animationId;
 /**
  * category_page, media_page에 따라 section안에 내용 바꾸는 함수
  */
-const setNewsData = () => {
+const setNewsData = (category_page) => {
   const newsItem = categorizedData[categories[category_page]][media_page];
   const src = media_data.find(item => item.name === newsItem["name"]).src;
-  console.log(categorizedData[categories[category_page]].length);
-  document.querySelector(".progressed .category_progress").innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
+  const selectedCategory = document.querySelectorAll('.category_progress')[category_page];
+  selectedCategory.innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
   document.querySelector(".media_info_edited").innerHTML = newsItem["edit_date"];
   document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
   document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
@@ -88,8 +88,9 @@ function createCategoryElements(categorizedData) {
     categoryItemDiv.addEventListener('click', function() {
       category_page = index;
       media_page = 0;
+      console.log(index);
       cancelAnimationFrame(animationId);
-      setNewsData();
+      setNewsData(index);
     });
     categoriesWrapper.appendChild(categoryItemDiv);
   });
@@ -114,11 +115,9 @@ const setArrowHandler = () => {
     } else {
       media_page -= 1;
     }
-
     cancelAnimationFrame(animationId);
     progressBarControl();
     updateCategoryProgress();
-    setNewsData();
   });
   
   rightArrowWrapper.addEventListener("click", () => {
@@ -137,7 +136,6 @@ const setArrowHandler = () => {
     cancelAnimationFrame(animationId);
     progressBarControl();
     updateCategoryProgress();
-    setNewsData();
   });  
   leftArrowWrapper._hasClickListener = true;
   rightArrowWrapper._hasClickListener = true;
@@ -156,7 +154,7 @@ const getNewsData = async () => {
   categorizedData = categorizeData(newsData);
   createCategoryElements(categorizedData);
   setProgressed();
-  setNewsData();
+  setNewsData(category_page);
 }
 
 /**
@@ -182,6 +180,7 @@ const updateCategoryProgress = () => {
     progressBar.style.top = rect.top + "px";
     progressBar.style.left = rect.left + "px";
   }
+  setNewsData(category_page);
 };
 
 /**
@@ -265,7 +264,6 @@ const updatePageAndData = () => {
   }
 
   updateCategoryProgress();
-  setNewsData();
 };
 
 /**
