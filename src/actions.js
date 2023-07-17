@@ -152,6 +152,11 @@ export function useControlBanner() {
     };
 }
 
+export function useCurrentHourToMode() {
+    const current_hour = new Date().getHours();
+    return current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
+}
+
 function updateBanner(banner, banner_time, loc) {
     if (banner.style.animationPlayState === "paused") {
         clearTimeout(banner_time);

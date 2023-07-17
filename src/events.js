@@ -1,5 +1,6 @@
 import { MAX_PAGE } from "./constants.js";
 import { view_option } from "./globals.js";
+import { showToday } from "./utils.js";
 import {
     useChangeArrow,
     useClearDisplay,
@@ -9,6 +10,7 @@ import {
     useMovePage,
     useControlBanner,
     useAnimationSnackBar,
+    useCurrentHourToMode,
 } from "./actions.js";
 import {
     renderGridView,
@@ -223,6 +225,15 @@ function bannerMouseEvent(action) {
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
 
+    view_option.mode = useCurrentHourToMode();
+
+    if (view_option.mode === "dark-mode") {
+        toggle_mode.children[0].src = "./assets/icons/sun.svg";
+        document.body.classList.toggle("dark_mode");
+    } else {
+        toggle_mode.children[0].src = "./assets/icons/moon.svg";
+    }
+
     toggle_mode.addEventListener("click", () => {
         // body class toggle
         document.body.classList.toggle("dark_mode");
@@ -245,6 +256,7 @@ function toggleModeEvent() {
 }
 
 function initEvent() {
+    showToday();
     useFetchAllData().then((data) => {
         // data[0] = press
         // data[1] = news
