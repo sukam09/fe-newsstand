@@ -13,6 +13,7 @@ html {
   background: var(--color-surface-default);
 }
 body {
+  position: relative;
   width: 100vw;
   height: 100vh;
 
@@ -118,6 +119,21 @@ body {
 .subscribe-btn > span {
   padding-right: 4px;
 }
+.snackbar {
+  position: absolute;
+  top: 20px;
+  right: -100%;
+
+  opacity: 0;
+  transition: all 0.5s ease;
+
+  background-color: var(--color-surface-brand-default);
+  color: var(--color-text-white-default);
+
+  padding: 16px 24px;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
 .theme-btn:hover {
   box-shadow: 0px 0px 8px 6px var(--color-text-default);
 }
@@ -135,6 +151,10 @@ body {
 }
 .hidden {
   display: none;
+}
+.snackbar-open {
+  right: 20px;
+  opacity: 1;
 }
 
 @keyframes progress {
