@@ -1,8 +1,8 @@
 import { removeDisplay, setDisplay, getJSON } from "./utils.js";
-import { drawNews } from "./newsList.js";
+import { drawNews, setNowCount } from "./newsList.js";
 import { setSubListNav, drawSubNews } from "./subscribeListView.js";
 import { drawGridView, drawSubGridView } from "./gridFunction.js";
-import { STATE } from "./const.js";
+import { STATE, DATA } from "./const.js";
 
 let presses;
 
@@ -70,7 +70,8 @@ function handleView(target) {
     } else {
       // list선택, total list 뷰 출력
       setDisplay(".press-list-section", "query", "block");
-      drawNews();
+      drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
+      setNowCount();
     }
     STATE.IS_GRID_VIEW = false;
   }

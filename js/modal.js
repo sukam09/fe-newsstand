@@ -1,4 +1,4 @@
-import { setDisplay, findPress, findSpanNearby, checkIsSubscribe } from "../js/utils.js";
+import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay } from "../js/utils.js";
 import { STATE, setSubData } from "./const.js";
 import { drawNews } from "./newsList.js";
 import { gridMouseClick, drawSubGridView } from "./subscribe.js";
@@ -46,8 +46,13 @@ function handleModalBtn(target) {
       const src_path = ".." + $news_article.querySelector("img").src.split("5500")[1];
       setSubData(checkIsSubscribe("src", src_path));
       STATE.SUB_NEWS_PAGE = 0;
-      setSubListNav();
-      drawSubNews(STATE.SUB_NEWS_PAGE);
+      if (STATE.SUB_DATA.length === 0) {
+        removeDisplay();
+        setDisplay(".no-sub-item-div", "query", "block");
+      } else {
+        setSubListNav();
+        drawSubNews(STATE.SUB_NEWS_PAGE);
+      }
     }
     offUndiscribeModal();
     offListUndiscribeModal();

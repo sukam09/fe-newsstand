@@ -1,9 +1,10 @@
 import { setDisplay, getJSON, checkIsSubscribe, removeDisplay } from "./utils.js";
-import { MODAL_POPUP_TIME, STATE, setSubData } from "./const.js";
+import { MODAL_POPUP_TIME, STATE, setSubData, DATA } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
 import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { setSubListNav, drawSubNews } from "./subscribeListView.js";
+import { drawNews } from "./newsList.js";
 
 let presses;
 
@@ -31,16 +32,19 @@ function gridMouseClick(target) {
 
 function listSubMouseClick(news, target) {
   console.log(target);
+  console.log(news);
   if (checkIsSubscribe("name", news.name) === undefined) {
     //구독 상태가 아니면
-    STATE.SUB_DATA.push(news);
+    setSubData(news);
     setDisplay(".subscribe-modal", "query", "block");
+    drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
     setTimeout(() => {
       setDisplay(".subscribe-modal", "query", "none");
       removeDisplay();
       STATE.SUB_NEWS_PAGE = 0;
       changeOption("subscribe");
       setDisplay(".sub-press-list-section", "query", "block");
+      STATE.IS_SUB_VIEW = true;
       setSubListNav();
       drawSubNews(STATE.SUB_NEWS_PAGE);
     }, MODAL_POPUP_TIME);

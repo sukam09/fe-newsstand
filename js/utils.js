@@ -73,7 +73,13 @@ function checkIsSubscribe(type, target) {
     STATE.SUB_DATA.forEach(data => console.log(data.path_light));
     return STATE.SUB_DATA.find(data => data.path_light === target);
   } else if (type === "name") {
-    return STATE.SUB_DATA.find(data => data.name === target);
+    let rt;
+    try {
+      rt = STATE.SUB_DATA.find(data => data.name === target);
+    } catch (e) {
+      return undefined;
+    }
+    return rt;
   }
 }
 

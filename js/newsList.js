@@ -51,9 +51,9 @@ function drawNews(category, page) {
   $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.src = checkIsSubscribe("name", news.name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
+  $sub_btn.src = checkIsSubscribe("name", news[page].name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
   $sub_btn.addEventListener("click", e => {
-    listSubMouseClick(news, e.target);
+    listSubMouseClick(news[page], e.target);
   });
 }
 
@@ -180,6 +180,7 @@ function removeProgressStatus() {
 
 function setNowCount() {
   document.querySelector(".now-count").textContent = DATA.page_count[DATA.now_category] + 1;
+  document.querySelector(".total-count").textContent = DATA.total_pages[DATA.now_category];
 }
 
 function hideArrow(direction) {
@@ -212,4 +213,4 @@ function setFisrtCategory() {
   clickCategory($first_category);
 }
 
-export { drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, initNewsInfo };
+export { setNowCount, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, initNewsInfo };
