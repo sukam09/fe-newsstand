@@ -21,22 +21,19 @@ async function drawList(order, category, subscribedPress, current, mode) {
   try {
     let list = [];
 
-    if (!current) {
-      const selected_el = document.querySelector(".category.selected .ctg");
-      current = selected_el.textContent;
-    }
     if (!mode) {
       const _mode = document.querySelector(".main-tab-btn .clicked");
       mode = _mode.getAttribute("id");
     }
+    if (!current) {
+      const selected_el = document.querySelector(".category.selected .ctg");
+      current = selected_el.textContent;
+    }
     mode === "all" ? (list = category) : (list = subscribedPress);
-
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
     let list_content = await getNewsData(current, mode);
-    if (list_content.length === 0 || list.length === 0) {
-      main_list.innerHTML = "subsubusubsubu"; //TODO: 없는 경우 예외처리
-    } else if (order <= 0 || list_content.length < order) {
+    if (order <= 0 || list_content.length < order) {
       const currentIndex = list.indexOf(current);
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
       const nextIndex = (currentIndex + 1) % list.length;
@@ -49,7 +46,6 @@ async function drawList(order, category, subscribedPress, current, mode) {
       const newDiv = document.createElement("div");
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
-
       drawPressInfo(order, list_content, list, subscribedPress);
       drawPressNews(order, list_content, mode);
     }

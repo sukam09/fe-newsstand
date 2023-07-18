@@ -1,9 +1,10 @@
+import { CATEGORY } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 function checkProgress(order, list, current) {
   const progress = document.getElementById("play-animation");
   if (progress) {
     progress.addEventListener("animationend", () =>
-      showListView(++order, list, current)
+      showListView(++order, CATEGORY, list, current, "")
     );
   }
 }
@@ -20,7 +21,6 @@ export function drawCategory(current, order, list, contents) {
         : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${element}</span></div></li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${list_content}</ul></div>`;
-
   document.addEventListener(
     "DOMContentLoaded",
     checkProgress(order, list, current)

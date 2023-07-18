@@ -6,7 +6,6 @@ import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
 let subscribedPress = ["서울경제", "데일리안", "헤럴드경제"];
-
 function MainView() {
   document.addEventListener("click", handleClick);
   showGridView(page);
@@ -69,7 +68,7 @@ function handleClick(e) {
       const view = document.querySelector(".list-view");
       if (view && view.classList.contains("list-view")) {
         changeView("list");
-        showListView(page, CATEGORY, subscribedPress, CATEGORY[0], "all");
+        showListView(page, CATEGORY, subscribedPress, CATEGORY[0], target);
         checkPage(page, "list");
       } else {
         showGridView(page);
@@ -78,8 +77,8 @@ function handleClick(e) {
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-      subscribedPress.length;
-      showListView(page, CATEGORY, subscribedPress, "", target);
+      showListView(page, CATEGORY, subscribedPress, subscribedPress[0], target);
+      checkPage(page, "list");
       break;
     default:
       break;
