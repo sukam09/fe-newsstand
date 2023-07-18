@@ -18,6 +18,9 @@ export function parentCallback(_subscribedPress) {
   console.log("구독한 언론사:", subscribedPress);
 }
 
+export function getSubscribedPress() {
+  return subscribedPress;
+}
 function changePage(target, view) {
   if (target === "left") {
     page--;

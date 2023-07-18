@@ -398,7 +398,6 @@ a:hover {
 
 /* press-news 구독해지 버튼 */
 .press-info .cancel {
-  display: none;
   height: 24px;
   padding: 0px 6px;
   border-radius: 50px;
