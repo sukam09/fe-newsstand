@@ -134,6 +134,53 @@ body {
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
     0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+
+  color: var(--color-text-default);
+  border: 1px solid var(--color-border-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+
+  z-index: 10;
+}
+.modal_contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-default);
+}
+.modal_contents .contents_press-name {
+  color: var(--color-text-strong);
+}
+.modal_btns {
+  width: 100%;
+  display: flex;
+
+  background-color: var(--color-surface-alt);
+}
+.modal_btns > button {
+  flex: 1;
+  padding: 10px;
+}
+.modal_btns > button:first-child {
+  border-right: 1px solid var(--color-border-default);
+}
+.modal_btns > button:hover {
+  text-decoration-line: underline;
+}
+.modal_btns .btns_cancel {
+  color: var(--color-text-strong);
+}
 .theme-btn:hover {
   box-shadow: 0px 0px 8px 6px var(--color-text-default);
 }
