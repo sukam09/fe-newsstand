@@ -3,6 +3,7 @@ import { getShuffleIds } from '../utils/shuffle.js';
 const STATE = {
   IS_GRID: true,
   IS_TOTAL: true,
+  IS_UNSUBSCRIBE: true,
 };
 
 const LIST = {

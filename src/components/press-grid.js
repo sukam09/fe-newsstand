@@ -1,7 +1,7 @@
 import { STATE, LIST, PAGE, ARROW } from '../constants/press-data.js';
 import { subscribeEvent } from './press-header.js';
 import { getSliceIds } from '../utils/shuffle.js';
-import { getSnackBar } from '../utils/snack-bar.js';
+import { getSnackBar, getAlert } from '../utils/popup.js';
 
 /**
  * 언론사 그리드의 INIT
@@ -191,9 +191,8 @@ const setGridButtonClick = (pressData, pressIds, li) => {
 
 const setSubscribe = (pressData, pressIds, isSubscribe) => {
   if (isSubscribe) {
-    // 구독해지
-
-    if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
+    // 구독해지할때 리프레시
+    getAlert(pressData, pressIds);
   }
   if (!isSubscribe) getSnackBar(pressData);
 };
