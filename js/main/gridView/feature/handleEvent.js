@@ -1,4 +1,4 @@
-import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
+import { checkPressInLocal } from "../../../checkPressInLocal.js";
 
 function handleMouseOver(_img, press) {
   if (checkPressInLocal(press)) {

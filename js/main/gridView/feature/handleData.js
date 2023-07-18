@@ -1,10 +1,5 @@
-import { clickSubscribe } from "../../../utils/clickSubscribe.js";
-import {
-  MIN_PAGE,
-  MAX_PAGE,
-  main_list_page,
-  setListPage,
-} from "./handlePage.js";
+import { clickSubscribe } from "../../../clickSubscribe.js";
+import { MIN_PAGE, MAX_PAGE, store } from "./store.js";
 import { handleMouseOver, handleMouseOut } from "./handleEvent.js";
 
 const GRID_NUM = 24;
@@ -24,8 +19,8 @@ function showMainList(press) {
 
   main_list_ul.innerHTML = "";
   for (
-    let i = GRID_NUM * (main_list_page - 1);
-    i < GRID_NUM * main_list_page;
+    let i = GRID_NUM * (store.state.grid_page - 1);
+    i < GRID_NUM * store.state.grid_page;
     i++
   ) {
     const _li = document.createElement("li");
@@ -54,9 +49,9 @@ function showMainList(press) {
 
 function changePage(e, press) {
   if (e.target.id === "grid-left") {
-    setListPage(main_list_page - 1);
+    store.setGridPage(store.state.grid_page - 1);
   } else {
-    setListPage(main_list_page + 1);
+    store.setGridPage(store.state.grid_page + 1);
   }
   showMainList(press);
   checkPage();
@@ -66,8 +61,9 @@ function checkPage() {
   const left_btn = document.getElementById("grid-left-btn");
   const right_btn = document.getElementById("grid-right-btn");
 
-  if (main_list_page === MIN_PAGE) left_btn.style.visibility = "hidden";
-  else if (main_list_page === MAX_PAGE) right_btn.style.visibility = "hidden";
+  if (store.state.grid_page === MIN_PAGE) left_btn.style.visibility = "hidden";
+  else if (store.state.grid_page === MAX_PAGE)
+    right_btn.style.visibility = "hidden";
   else {
     left_btn.style.visibility = "visible";
     right_btn.style.visibility = "visible";

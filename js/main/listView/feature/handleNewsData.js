@@ -1,12 +1,12 @@
 import { category, news_by_category } from "./manipulateNews.js";
-import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
 } from "./handleCategoryEvent.js";
-import { main_grid_page } from "./handlePage.js";
-import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
+import { store } from "./store.js";
+import { checkPressInLocal } from "../../../checkPressInLocal.js";
+import { clickSubscribe } from "../../../clickSubscribe.js";
 
 function makeRandomNews() {
   category.forEach((cate) => {
@@ -52,13 +52,13 @@ function makeCategory() {
 function chageNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
   //press-info
-  changePressInfo(news[main_grid_page]);
+  changePressInfo(news[store.state.list_page]);
 
   //main news
-  changeMain(news[main_grid_page]);
+  changeMain(news[store.state.list_page]);
 
   //sub news
-  changeSub(news[main_grid_page]);
+  changeSub(news[store.state.list_page]);
 
   //pagenum info
   changePageInfo(e);
@@ -77,9 +77,14 @@ function changePressInfo(news) {
     _img.setAttribute("src", "../images/icon/Subscribe.svg");
   }
 
-  press_info.children[2].addEventListener("click", () => {
-    clickSubscribe(news.name, "list", _img);
-  });
+  //   press_info.children[2].addEventListener(
+  //     "click",
+  //     () => {
+  //       clickSubscribe(news.name, "list", _img);
+  //     },
+  //     { once: true }
+  //   );
+  // }
 }
 
 function changeMain(news) {
@@ -112,7 +117,7 @@ function changePageInfo(e) {
   //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
   e.target.parentElement.children[2].innerText = `${
-    main_grid_page + 1
+    store.state.list_page + 1
   }/${getPagesNum(e.currentTarget.dataset.category)}`;
 }
 
@@ -141,6 +146,7 @@ function transformMainNews() {
     handleMouseOverAndOut(mainNews, "out")
   );
 }
+
 /* main news eventlisteners */
 
 function handleMouseOverAndOut(mainNews, type) {

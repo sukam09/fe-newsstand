@@ -1,9 +1,5 @@
 //뷰 타입 변경
-import {
-  main_list_page,
-  MIN_PAGE,
-  MAX_PAGE,
-} from "../gridView/feature/handlePage.js";
+import { store, MIN_PAGE, MAX_PAGE } from "../gridView/feature/store.js";
 
 function getById(id) {
   return document.getElementById(id);
@@ -31,8 +27,9 @@ function changeBtnAndView(view) {
     list_view.style.display = "none";
     grid_view.style.display = "flex";
 
-    if (main_list_page !== MIN_PAGE) grid_left_btn.style.visibility = "visible";
-    if (main_list_page !== MAX_PAGE)
+    if (store.state.main_grid_page !== MIN_PAGE)
+      grid_left_btn.style.visibility = "visible";
+    if (store.state.main_grid_page !== MAX_PAGE)
       grid_right_btn.style.visibility = "visible";
     list_left_btn.style.visibility = "hidden";
     list_right_btn.style.visibility = "hidden";

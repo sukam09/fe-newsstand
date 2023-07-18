@@ -1,10 +1,15 @@
 import { checkPressInLocal } from "./checkPressInLocal.js";
+import { confirm } from "./confirm.js";
+
 const SET_TIME = 5000;
 function clickSubscribe(selectedPress, view, _img) {
   let SubscribePress = JSON.parse(localStorage.getItem("press"));
   //구독 O
   if (checkPressInLocal(selectedPress)) {
-    SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
+    // document.querySelector(".confirm").style.display = "block";
+    confirm(selectedPress, _img);
+    // SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
+
     _img.setAttribute("src", "../images/icon/subscribe.svg");
   }
   //구독 X
