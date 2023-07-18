@@ -1,24 +1,34 @@
-const globalState = {};
+class GlobalState {
+  constructor() {
+    this.states = [];
+  }
+}
+class State {
+  constructor(state) {
+    this.state = state;
+    this.observers = new Set();
+  }
+}
 
-const subscribe = (key, observer) => globalState[key].observers.add(observer);
+const globalState = new GlobalState();
+
+const subscribe = (key, observer) =>
+  globalState.states[key].observers.add(observer);
 
 const _notify = (key) =>
-  globalState[key].observers.forEach((observer) => observer());
+  globalState.states[key].observers.forEach((observer) => observer());
 
 const initState = ({ key, defaultValue }) => {
-  globalState[key] = {
-    state: defaultValue,
-    observers: new Set(),
-  };
+  globalState.states[key] = new State(defaultValue);
   return key;
 };
 
 const getState = (key) => {
-  return globalState[key].state;
+  return globalState.states[key].state;
 };
 
 const setState = (key, newState) => {
-  globalState[key].state = newState;
+  globalState.states[key].state = newState;
   _notify(key);
 };
 

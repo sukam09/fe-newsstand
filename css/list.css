@@ -13,13 +13,20 @@
 .list-view_category-bar > ul {
   display: flex;
   align-items: center;
+
+  overflow: auto;
 }
+.list-view_category-bar > ul ::-webkit-scrollbar {
+  display: none;
+}
+
 .list-view_category-bar > ul > li {
   height: 40px;
   padding: 0px 16px;
 
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 .category--selected {
   width: 166px;

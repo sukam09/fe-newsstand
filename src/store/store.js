@@ -5,10 +5,12 @@ const viewState = initState({
   key: "viewState",
   defaultValue: VIEW_TYPE.GRID,
 });
+
 const viewOptionState = initState({
   key: "viewOptionState",
   defaultValue: VIEW_OPTION_TYPE.ALL,
 });
+
 const isDarkMode = initState({
   key: "isDarkMode",
   defaultValue: false,
@@ -31,6 +33,10 @@ const listPageState = initState({
 
 const categoryState = initState({
   key: "categoryState",
+  defaultValue: "",
+});
+const selectedSubscribeState = initState({
+  key: "selectedSubscribeState",
   defaultValue: "",
 });
 
@@ -60,4 +66,5 @@ export {
   alertMsgState,
   viewOptionState,
   subscribeGridPageState,
+  selectedSubscribeState,
 };

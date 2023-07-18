@@ -33,7 +33,6 @@ const fillPressIcons = () => {
       ? getState(gridPageState) * NEWS_COUNT
       : getState(subscribeGridPageState) * NEWS_COUNT;
 
-  // const startIndex = getState(gridPageState) * NEWS_COUNT;
   const currentMode = getState(isDarkMode);
   const pressIcons = getPressIcons();
 

@@ -4,7 +4,9 @@ import {
   initListPageState,
   initProgress,
   setCategoryBar,
+  setHeaderBar,
   setPageActivateState,
+  setSubscribePressBar,
   startProgress,
   updateCurrentPage,
 } from "./ProgressBar.js";
@@ -14,6 +16,7 @@ import {
   viewState,
   listPageState,
   subscribeState,
+  viewOptionState,
 } from "../../../store/store.js";
 import {
   customFetch,
@@ -48,6 +51,9 @@ export const setList = async () => {
 
   subscribe(subscribeState, fillNewsList(newsList));
 
-  setCategoryBar(categoryList);
+  subscribe(viewOptionState, setHeaderBar(categoryList));
+  subscribe(viewOptionState, changeActivateCategory(newsList, categoryList));
+
+  setCategoryBar(categoryList)();
   fillNewsList(newsList)();
 };
