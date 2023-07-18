@@ -1,5 +1,5 @@
 import { VIEW } from "./LayoutBtn.js";
-import { categoryLength, news_data, tabsAndTimerReset } from "../view/ListView/ListView.js";
+import { categoryLength, news_data, TimerReset } from "../view/ListView/ListView.js";
 import { LIST_PAGE, GRID_PAGE } from "../../global.js";
 
 export const RIGHT = 1;
