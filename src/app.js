@@ -19,7 +19,7 @@ export default function App({ $app }) {
   new AutoRollingNews({
     $target: $app,
     initialState: {
-      headlineData: [
+      data: [
         `정부, '처리수' 표현에 "문제없어", '핵폐수'엔 "불안감 내용 부적절"`,
         `IAEA 최종보고서 반발…전국 곳곳서 후쿠시마 오염수 방류 규탄`,
         `일본 원전 오염수 방류도 안했는데…찬바람 부는 횟집·양식어가`,

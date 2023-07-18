@@ -19,10 +19,10 @@ export default function AutoRollingNews({ $target, initialState }) {
   };
 
   this.render = () => {
-    const { headlineData } = this.state;
+    const { data } = this.state;
 
-    const leftHeadlines = headlineData.slice(0, HEADLINE_NUMBERS);
-    const rightHeadlines = headlineData.slice(HEADLINE_NUMBERS, HEADLINE_NUMBERS * 2);
+    const leftHeadlines = data.slice(0, HEADLINE_NUMBERS);
+    const rightHeadlines = data.slice(HEADLINE_NUMBERS, HEADLINE_NUMBERS * 2);
 
     new Headline({
       $target: $section,
