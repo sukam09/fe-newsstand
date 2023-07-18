@@ -2,13 +2,13 @@
 메인 컨텐츠 컴포넌트
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
+import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";
 
 let timerArr = [];
-let indexArr = Array.from({ length: 4 }, (_, i) => i);
-indexArr.sort(() => Math.random() - 0.5);
+let indexArr = getRandomIndexArr(4);
 
 const cancelAnimation = () => {
   timerArr.forEach((timer) => {
@@ -60,6 +60,7 @@ export default function MainContent($target, props) {
 
     const commonProps = {
       mode: props.mode,
+      store: props.store,
       currentPage: this.state.currentPage,
     };
 
@@ -84,6 +85,7 @@ export default function MainContent($target, props) {
 
     const commonButtonProps = {
       mode: props.mode,
+      viewerType: props.viewerType,
       ...this.state,
       onClick: this.setCurrentPage,
     };

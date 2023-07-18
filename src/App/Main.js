@@ -3,8 +3,13 @@
  */
 import ContentNav from "./Main/ContentNav.js";
 import MainContent from "./Main/MainContent.js";
+import fetchNews from "../api/fetchNews.js";
+
+const newsData = await fetchNews();
 
 export default function Main($target, props) {
+  let $main = document.querySelector(".news");
+
   this.state = {
     viewerType: "grid",
     pressType: "all",
@@ -26,8 +31,6 @@ export default function Main($target, props) {
   };
 
   this.render = () => {
-    let $main = document.querySelector(".news");
-
     if ($main) {
       $main.innerHTML = "";
     } else {
@@ -36,7 +39,7 @@ export default function Main($target, props) {
     }
 
     new ContentNav($main, {
-      ...props,
+      mode: props.mode,
       ...this.state,
       setViewerType: this.setViewerType,
       setPressType: this.setPressType,

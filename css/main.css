@@ -49,7 +49,8 @@
   border-left: 1px solid #d2dae0;
 }
 
-.newspaper__list .newspaper__item {
+.newspaper__list .newspaper__item,
+.blank {
   height: 96.25px;
   border-bottom: 1px solid #d2dae0;
   border-right: 1px solid #d2dae0;

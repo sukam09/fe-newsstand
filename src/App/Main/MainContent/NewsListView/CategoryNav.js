@@ -87,8 +87,6 @@ export default function CategoryNav($target, props) {
     `;
 
     $ul.addEventListener("click", (e) => {
-      // data fetch
-
       let targetElement = e.target;
 
       while (targetElement && targetElement.tagName !== "LI")
