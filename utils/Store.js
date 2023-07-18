@@ -4,7 +4,7 @@ class Store {
   #subscribed;
   constructor() {
     this.#pageNumber = 0;
-    this.#subscribed = {};
+    this.#subscribed = [];
     this.setPage = function (pagenumber) {
       this.#pageNumber = pagenumber;
     };
@@ -19,6 +19,13 @@ class Store {
     };
     this.clearProgressInterval = function () {
       clearInterval(this.#progressInterval);
+    };
+    this.setSubscribed = function (id) {
+      console.log(id);
+      this.#subscribed.push(id);
+    };
+    this.getSubscribed = function () {
+      return this.#subscribed;
     };
   }
 }

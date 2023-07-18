@@ -4,8 +4,8 @@ import { clickCardListImage, clickGridImage } from "../chooseMode.js";
 
 const rightAsideButton = document.getElementById("aside-right");
 const leftAsideButton = document.getElementById("aside-left");
-const gridMain = document.getElementById("main-grid-01");
-const listMain = document.getElementById("main-grid-02");
+const gridMain = document.getElementById("main-grid");
+const listMain = document.getElementById("main-list");
 
 function renderMain(isGrid) {
   if (isGrid) renderGrid();

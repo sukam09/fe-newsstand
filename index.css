@@ -131,7 +131,7 @@ section.main {
   width: 65px;
 }
 
-#main-grid-01 {
+#main-grid {
   display: grid;
   width: 930px;
   height: 388px;
@@ -143,7 +143,7 @@ section.main {
   grid-gap: 1px;
 }
 
-#main-grid-01 > div {
+#main-grid > div {
   display: flex;
   height: 100%;
   width: 100%;
@@ -162,13 +162,28 @@ section.main {
   display: flex;
   justify-content: space-evenly;
 }
-#main-grid-02 {
+#main-list {
   width: 930px;
   height: 388px;
   display: none;
   width: inherit;
   border: 1px #d2dae0 solid;
   margin-top: 20px;
+}
+
+.snackbar {
+  visibility: hidden;
+  position: absolute;
+  border: 1px black solid;
+  background-color: #4362d0;
+  color: #ffffff;
+  width: Hug (286px);
+  height: Hug (54px);
+  left: 35%;
+  top: 50%;
+  padding: 16px 24px 16px 24px;
+  gap: 10px;
+  z-index: 1;
 }
 
 .progress-bar {
