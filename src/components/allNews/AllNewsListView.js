@@ -137,7 +137,11 @@ export default class AllNewsListView extends Component {
         const targetPress = e.target.innerHTML;
         const currentPressIndex = this.headerList.indexOf(targetPress);
 
-        this.setState({ currentPressIndex, currentPage: 1 });
+        this.setState({
+          currentPressIndex,
+          currentPage: 1,
+          currentPress: this.getCurrentPress(currentPressIndex),
+        });
       }
     });
   }
@@ -146,9 +150,19 @@ export default class AllNewsListView extends Component {
     if (this.state.currentPage === 1) {
       const currentPressIndex =
         (this.state.currentPressIndex + this.headerList.length - 1) % this.headerList.length;
-      this.setState({ currentPressIndex, currentPage: 1 });
+      this.setState({
+        currentPressIndex,
+        currentPage: 1,
+        currentPress: this.getCurrentPress(currentPressIndex, 1),
+      });
     } else {
-      this.setState({ currentPage: this.state.currentPage - 1 });
+      this.setState({
+        currentPage: this.state.currentPage - 1,
+        currentPress: this.getCurrentPress(
+          this.state.currentPressIndex,
+          this.state.currentPage - 1,
+        ),
+      });
     }
   }
 
