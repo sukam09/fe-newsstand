@@ -13,10 +13,8 @@ const LIST = {
 
 const PAGE = {
   GRID: 0,
+  MIN: 0,
+  MAX: 3,
 };
 
-const ARROW = {
-  THRESHOLD: 3,
-};
-
-export { STATE, LIST, PAGE, ARROW };
+export { STATE, LIST, PAGE };
