@@ -157,7 +157,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "SBS Biz",
+      "name": "SBSBiz",
       "url": "/#",
       "mainArticle": {
         "title": "경제지표, 2분기 0.4% 성장…전년比 2.7%↓",
@@ -508,7 +508,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "KBS World",
+      "name": "KBSWorld",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -547,7 +547,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "Korea JoongAng Daily",
+      "name": "KoreaJoongAngDaily",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -782,7 +782,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "BUSINESS POST",
+      "name": "BUSINESSPOST",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -821,7 +821,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "CEO 스코어데일리",
+      "name": "CEO스코어데일리",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -1095,7 +1095,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "jtbc",
+      "name": "JTBC",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -1173,7 +1173,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "ZDNET Korea",
+      "name": "ZDNETKorea",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -1329,7 +1329,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "metro",
+      "name": "Metro",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -1407,7 +1407,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "mydaily",
+      "name": "MyDaily",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2148,7 +2148,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "data news",
+      "name": "DataNews",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2226,7 +2226,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "조선 비즈",
+      "name": "조선비즈",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2265,7 +2265,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "TV report",
+      "name": "TVReport",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2577,7 +2577,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "Monde diplomatique",
+      "name": "MondeDiplomatique",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2616,7 +2616,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "월간 산",
+      "name": "월간산",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2772,7 +2772,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "시사 IN",
+      "name": "시사IN",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -2850,7 +2850,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "에이블 뉴스",
+      "name": "에이블뉴스",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3357,7 +3357,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "BBS News",
+      "name": "BBSNews",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3435,7 +3435,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "ECONO TIMES",
+      "name": "ECONOTIMES",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3474,7 +3474,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "IT 조선",
+      "name": "IT조선",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3552,7 +3552,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "MK 스포츠",
+      "name": "MK스포츠",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3669,7 +3669,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "The JoongAng",
+      "name": "TheJoongAng",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
@@ -3708,7 +3708,7 @@
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
     {
-      "name": "YTN 사이언스",
+      "name": "YTN사이언스",
       "url": "/#",
       "mainArticle": {
         "title": "기사 제목",
