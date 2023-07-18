@@ -32,21 +32,21 @@ async function fieldInit() {
   startTimer(categoryLength, news_data);
 }
 
-export function tabsAndTimerReset() {
-  //기존 프로그래스바 해제
-  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-  prevProgressWidthChange(progressTab);
-
+export function TimerReset() {
   //타이머 취소 후 다시 실행
   clearInterval(timerId);
   startTimer(categoryLength, news_data);
 }
 function categoryClickEventHandler(index) {
+  //기존 프로그래스바 해제
+  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+  prevProgressWidthChange(progressTab);
+
   //페이지 & 카테고리 변수 세팅
   LIST_PAGE.setCategory(index);
   LIST_PAGE.setPage(1);
 
-  tabsAndTimerReset();
+  TimerReset();
 }
 function tabClickEventRegister() {
   const tabs = document.querySelectorAll("main .news-list-wrap .each-tab");
@@ -65,6 +65,8 @@ export function printList() {
 
   //데이터 패치 및 세팅 초기화
   fetchCategoryNewsData();
+
+  //
 
   const left_btn = document.querySelector(".left-btn");
   left_btn.style.display = "block";
