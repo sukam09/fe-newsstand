@@ -1,4 +1,4 @@
-import { getState, setState } from "../core/observer.js";
+import { getState, setState } from "../store/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_LIST_PAGE,

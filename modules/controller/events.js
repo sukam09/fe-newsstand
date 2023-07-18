@@ -20,7 +20,7 @@ import {
 } from "../components/titleSection/titleSection.js";
 import { handleClickCategoryItem } from "./categoryController.js";
 import { hiddenSubButton, showSubButton } from "./gridController.js";
-import { getState, setState } from "../core/observer.js";
+import { getState, setState } from "../store/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_GRID_PAGE,

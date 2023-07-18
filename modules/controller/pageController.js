@@ -1,4 +1,4 @@
-import { addObserver, getState } from "../core/observer.js";
+import { addObserver, getState } from "../store/observer.js";
 import { MAX_GRID_PAGE } from "../store/pageState.js";
 import {
   GRID,

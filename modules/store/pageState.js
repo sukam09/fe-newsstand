@@ -1,4 +1,4 @@
-import { initState } from "../core/observer.js";
+import { initState } from "./observer.js";
 import { categoryData, pressData } from "./dataState.js";
 export const LIST = "list";
 export const GRID = "grid";

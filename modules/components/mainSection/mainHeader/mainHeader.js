@@ -1,4 +1,4 @@
-import { addObserver, getState, setState } from "../../../core/observer.js";
+import { addObserver, getState, setState } from "../../../store/observer.js";
 import { GRID, LIST } from "../../../store/pageState.js";
 import { pageTypeState } from "../../../store/pageState.js";
 import { qs } from "../../../utils.js";

@@ -1,4 +1,4 @@
-import { getState } from "../../../../../core/observer.js";
+import { getState } from "../../../../../store/observer.js";
 import { listPageState } from "../../../../../store/pageState.js";
 
 export function createCategory(categoryList) {
