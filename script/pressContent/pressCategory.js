@@ -1,7 +1,15 @@
 import { fetchData } from "../../utils/js/getJson.js";
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
 
-export async function getCategory() {
+const numOfEachCategory = [];
+const nameOfEachCategory = [];
+
+const initPageValue = 1;
+let categoryIdx = 0;
+let currentPage = 1;
+
+// 모듈 완
+export async function getCategoryInfo() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
   const categoryName = categoryPath.newsList.map((elem) => {
     return elem.category;
@@ -15,25 +23,38 @@ export async function getCategory() {
     return acc;
   }, {})
 
-
-  let currentPage = 1
-
   const putCategory = Object.keys(categoryMap).reduce((acc, curr)=> {
     return acc + `<li class="press-content-category">
     <span class="press-content-category-name">${curr}</span>
     <div class="press-content-category-cnt">
-    <span class="press-content-category-cnt-now">${currentPage}</span>
+    <span class="press-content-category-cnt-now">1</span>
     <span class="press-content-category-cnt-all">&nbsp/&nbsp${categoryMap[curr]}</span>
     </div>
     </li>`;
   }, "");
 
+  Object.keys(categoryMap).forEach((elem)=>nameOfEachCategory.push(elem));
+  Object.values(categoryMap).forEach((elem)=>numOfEachCategory.push(elem));
+  
   getQuerySelector(document, '.press-content-categorybar').innerHTML = putCategory;
   getQuerySelector(document, '.press-content-category').classList.add('selected');
 
   selectCategory();
+  getCategoryIdx();
 };
 
+// 카테고리 이름 알려주는 거 (완)
+function getCategoryIdx() {
+  const nowCategory = getQuerySelector(document, ".selected .press-content-category-name");
+  
+  nameOfEachCategory.forEach((elem, id) => {
+    if (elem === nowCategory.innerHTML) {
+      categoryIdx = id;
+    }
+  })
+}
+
+// selected 클래스 다 제거 (완)
 function initSelectedState() {
   const selectedCategory = getQuerySelectorAll(document, '.press-content-category');
   selectedCategory.forEach((elem)=> {
@@ -41,13 +62,53 @@ function initSelectedState() {
   })
 }
 
+
+//selected 클래스 추가(완)
+function changeCategory(idx) {
+  initSelectedState();
+  const addSelectedClass = getQuerySelectorAll(document, ".press-content-category");
+  addSelectedClass[idx].classList.add('selected');
+}
+
+// 마우스 클릭 시 해당하는 카테고리 selected 클래스 추가
 function selectCategory() {
   const candidateCategory = getQuerySelectorAll(document, '.press-content-category');
   candidateCategory.forEach((elem)=> {
     elem.addEventListener('click', (e) => {
       initSelectedState();
       e.currentTarget.classList.add('selected');
+      getCategoryIdx();
+      currentPage = 1;
+      changeCategory(categoryIdx);
+      getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
     })
   })
 }
 
+// 화살표로 카테고리 페이지 이동하기
+export function moveCategory() {
+  const listPrevArrow = getQuerySelector(document, "#press-content-list-prev");
+  const listNextArrow = getQuerySelector(document, "#press-content-list-next");
+
+  listPrevArrow.addEventListener('click', () => {
+    currentPage --;
+    if (currentPage < 1) {
+      categoryIdx --;
+      if (categoryIdx < 0) categoryIdx = numOfEachCategory.length-1;
+      currentPage = numOfEachCategory[categoryIdx];
+      changeCategory(categoryIdx);
+    }
+    getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+  })
+
+  listNextArrow.addEventListener('click', ()=> {
+    currentPage ++;
+    if (currentPage > numOfEachCategory[categoryIdx]) {
+      categoryIdx ++;
+      if (categoryIdx === numOfEachCategory.length) categoryIdx = 0;
+      currentPage = initPageValue;
+      changeCategory(categoryIdx);
+    }
+    getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+  })
+}

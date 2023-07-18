@@ -58,7 +58,9 @@
   width: 134px;
   background-color: blue;
   color: #ffffff;
-  
+  /* background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
+  background-size: 200% 100%;
+  animation: fill-progress-bar 20s infinite linear forwards; */
 }
 
 .selected > .press-content-category-cnt {
@@ -66,7 +68,6 @@
 }
 
 .unselected {
-  
   background-color: none;
   color: #879298;
 }

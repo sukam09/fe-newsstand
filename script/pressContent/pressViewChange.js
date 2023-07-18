@@ -25,12 +25,9 @@ function showPressView(status) {
   
   pressContentContainer[0].style.display = (status === "grid") ? "grid" : "none";
   pressContentListView[0].style.display = (status === "list") ? "block" : "none";
-
-  
 }
 
-
-// 코드 리팩토링 해야함
+// 코드 리팩토링 해야함...나중에 ....
 function selectArrow(status) {
   const listPrevArrow = getQuerySelector(document, "#press-content-list-prev");
   const listNextArrow = getQuerySelector(document, "#press-content-list-next");
