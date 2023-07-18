@@ -6,6 +6,7 @@ import { initSpanEvent } from "./subscribe.js";
 import { initModalBtn } from "./modal.js";
 import { initUtilData } from "./utils.js";
 import { addEventInSymbol } from "./viewHandler.js";
+import { initSubListArrow } from "./subscribeListView.js";
 
 const init = async () => {
   setDate();
@@ -16,6 +17,7 @@ const init = async () => {
   initCategoryClass();
   await initSpanEvent();
   initModalBtn();
+  initSubListArrow();
   await initNewsInfo();
   drawNews(now_category, 0);
 };

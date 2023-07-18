@@ -218,7 +218,7 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: list-progress 20s linear infinite;
+  animation: list-progress 3s linear infinite;
   z-index: -1;
 }
 

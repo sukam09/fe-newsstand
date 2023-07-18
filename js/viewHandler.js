@@ -57,6 +57,7 @@ function handleView(target) {
   removeDisplay();
   if (checkClass("list-symbol")) {
     //list 버튼 눌렀을 때
+    STATE.SUB_NEWS_PAGE = 0;
     changeViewIcon("list");
     if (STATE.IS_SUB_VIEW) {
       // list 선택, list 구독 뷰 출력
@@ -64,7 +65,7 @@ function handleView(target) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setDisplay(".sub-press-list-section", "query", "block");
-        drawSubNews(0);
+        drawSubNews(STATE.SUB_NEWS_PAGE);
       }
     } else {
       // list선택, total list 뷰 출력
@@ -99,11 +100,12 @@ function handleView(target) {
     // 내 구독 언론사 클릭
     changeViewIcon("list");
     changeOption("subscribe");
+    STATE.SUB_NEWS_PAGE = 0;
     if (STATE.SUB_DATA.length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
       setDisplay(".sub-press-list-section", "query", "block");
-      drawSubNews(0);
+      drawSubNews(STATE.SUB_NEWS_PAGE);
     }
     STATE.IS_SUB_VIEW = true;
   }
