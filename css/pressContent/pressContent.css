@@ -56,8 +56,9 @@
 
 .selected {
   width: 134px;
-  background-color: blue;
+  background-color: #7890E7;
   color: #ffffff;
+
   /* background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
   background-size: 200% 100%;
   animation: fill-progress-bar 20s infinite linear forwards; */

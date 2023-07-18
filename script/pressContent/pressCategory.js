@@ -8,7 +8,6 @@ const initPageValue = 1;
 let categoryIdx = 0;
 let currentPage = 1;
 
-// 모듈 완
 export async function getCategoryInfo() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
   const categoryName = categoryPath.newsList.map((elem) => {
@@ -33,9 +32,9 @@ export async function getCategoryInfo() {
     </li>`;
   }, "");
 
-  Object.keys(categoryMap).forEach((elem)=>nameOfEachCategory.push(elem));
-  Object.values(categoryMap).forEach((elem)=>numOfEachCategory.push(elem));
-  
+  nameOfEachCategory.push(...Object.keys(categoryMap));
+  numOfEachCategory.push(...Object.values(categoryMap));
+
   getQuerySelector(document, '.press-content-categorybar').innerHTML = putCategory;
   getQuerySelector(document, '.press-content-category').classList.add('selected');
 
@@ -56,31 +55,28 @@ function getCategoryIdx() {
 
 // selected 클래스 다 제거 (완)
 function initSelectedState() {
-  const selectedCategory = getQuerySelectorAll(document, '.press-content-category');
-  selectedCategory.forEach((elem)=> {
-    elem.classList.remove('selected');
-  })
+  const categories = getQuerySelectorAll(document, '.press-content-category');
+  categories.forEach((elem)=> elem.classList.remove('selected'));
 }
-
 
 //selected 클래스 추가(완)
 function changeCategory(idx) {
   initSelectedState();
-  const addSelectedClass = getQuerySelectorAll(document, ".press-content-category");
-  addSelectedClass[idx].classList.add('selected');
+  const categories = getQuerySelectorAll(document, ".press-content-category");
+  categories[idx].classList.add('selected');
 }
 
 // 마우스 클릭 시 해당하는 카테고리 selected 클래스 추가
 function selectCategory() {
-  const candidateCategory = getQuerySelectorAll(document, '.press-content-category');
-  candidateCategory.forEach((elem)=> {
+  const categories = getQuerySelectorAll(document, '.press-content-category');
+  categories.forEach((elem)=> {
     elem.addEventListener('click', (e) => {
       initSelectedState();
       e.currentTarget.classList.add('selected');
       getCategoryIdx();
       currentPage = 1;
       changeCategory(categoryIdx);
-      getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+      putCurrentPage();
     })
   })
 }
@@ -94,21 +90,25 @@ export function moveCategory() {
     currentPage --;
     if (currentPage < 1) {
       categoryIdx --;
-      if (categoryIdx < 0) categoryIdx = numOfEachCategory.length-1;
+      categoryIdx < 0 && (categoryIdx = numOfEachCategory.length-1);
       currentPage = numOfEachCategory[categoryIdx];
       changeCategory(categoryIdx);
     }
-    getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+    putCurrentPage();
   })
 
   listNextArrow.addEventListener('click', ()=> {
     currentPage ++;
     if (currentPage > numOfEachCategory[categoryIdx]) {
       categoryIdx ++;
-      if (categoryIdx === numOfEachCategory.length) categoryIdx = 0;
+      (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
       currentPage = initPageValue;
       changeCategory(categoryIdx);
     }
-    getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+    putCurrentPage();
   })
+}
+
+function putCurrentPage() {
+  getQuerySelector(document, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
 }
