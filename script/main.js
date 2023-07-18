@@ -5,5 +5,5 @@ import mediaApp from './apps/media/mediaApp.js';
 (() => {
   headerApp();
   headlineApp();
-  mediaApp();
+  mediaApp('all', 'grid');
 })();

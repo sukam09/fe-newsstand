@@ -172,19 +172,8 @@
   cursor: pointer;
 }
 
-.flex_center{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-}
-.flex_sb{
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.display_none {
-  display: none;
+.fade_in {
+  animation: fade_in 0.3s ease;
 }
 
 /* animation */
@@ -198,5 +187,19 @@
   100% {
     -webkit-transform: translateY(-100%);
     transform: translateY(-100%);
+  }
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -45%);
+    transform: translate(-50%, -45%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

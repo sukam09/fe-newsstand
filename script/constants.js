@@ -1,3 +1,5 @@
+import Icon from './components/Icon.js';
+
 export const HEADLINE = {
   DELAY: 1000,
   INTERVAL: 5000,
@@ -15,6 +17,29 @@ export const BUTTON = {
 export const PROGRESS_BAR_DELAY = 20000;
 
 export const SNACKBAR_DELAY = 5000;
+
+export const MEDIA_APP_DATA = {
+  media: [
+    {
+      name: 'all',
+      innerHTML: '전체 언론사',
+    },
+    {
+      name: 'subscribed',
+      innerHTML: '내가 구독한 언론사',
+    },
+  ],
+  view: [
+    {
+      name: 'list',
+      innerHTML: Icon.listView,
+    },
+    {
+      name: 'grid',
+      innerHTML: Icon.gridView,
+    },
+  ],
+};
 
 export const MEDIA = {
   TOTAL: 96,

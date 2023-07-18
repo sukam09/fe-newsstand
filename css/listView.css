@@ -1,4 +1,5 @@
 #list_view_wrapper {
+    box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
     border: 1px solid var(--border-default);
@@ -33,17 +34,23 @@
     z-index: 101;
 }
 
-#list_nav_list #selected_nav_item {
+#selected_nav_item {
     justify-content: space-between;
     gap: 8px;
     width: 134px;
 
 }
 
-#list_nav_list #selected_nav_item .indicator {
+#selected_nav_item .indicator {
     display: flex;
     align-items: center;
     gap: 2px;
+}
+
+#selected_nav_item .subscribed_indicator svg {
+    fill: var(--grayscale-white);
+    width: 14px;
+    height: 14px;
 }
 
 /* media_info */

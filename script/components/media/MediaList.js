@@ -1,13 +1,161 @@
 import mediaData from '../../../assets/data/mediaData.js';
-import ListNavItem from '../ListNavItem.js';
-import SubButton from './SubButton.js';
+import ListNavItem from '../../components/ListNavItem.js';
+import Arrow from '../../components/media/Arrow.js';
+import SubButton from '../../components/media/SubButton.js';
+import Store from '../../core/Store.js';
+import { clearAllChildren } from '../../utils/utils.js';
 
-const MediaLogoImg = (src, name) => {
+const setPage = (store, newPage) => {
+  const { category, media } = store.getState();
+  const catLength = media.category.length;
+  const pageLength = media.category[category].media.length;
+
+  switch (newPage) {
+    case -1:
+      const newCategory = (category - 1 + catLength) % catLength;
+
+      store.setState({
+        category: newCategory,
+        page: media.category[newCategory].media.length - 1,
+      });
+      break;
+    case pageLength:
+      store.setState({
+        category: (category + 1) % catLength,
+        page: 0,
+      });
+      break;
+    default:
+      store.setState({ page: newPage });
+  }
+};
+
+const setSubPage = (store, newPage) => {
+  const { media } = store.getState();
+  const pageLength = media.length;
+
+  switch (newPage) {
+    case -1:
+      store.setState({ page: pageLength - 1 });
+      break;
+    case pageLength:
+      store.setState({ page: 0 });
+      break;
+    default:
+      store.setState({ page: newPage });
+  }
+};
+
+const replaceArrow = store => {
+  const leftArrow = Arrow('left');
+  const rightArrow = Arrow('right');
+
+  document.querySelector('#left_arrow').replaceWith(leftArrow);
+  document.querySelector('#right_arrow').replaceWith(rightArrow);
+  leftArrow.addEventListener('click', () => {
+    setPage(store, store.getState().page - 1);
+  });
+  rightArrow.addEventListener('click', () => {
+    setPage(store, store.getState().page + 1);
+  });
+  return [leftArrow, rightArrow];
+};
+
+const replaceSubArrow = store => {
+  const leftArrow = Arrow('left');
+  const rightArrow = Arrow('right');
+
+  document.querySelector('#left_arrow').replaceWith(leftArrow);
+  document.querySelector('#right_arrow').replaceWith(rightArrow);
+  leftArrow.addEventListener('click', () => {
+    setSubPage(store, store.getState().page - 1);
+  });
+  rightArrow.addEventListener('click', () => {
+    setSubPage(store, store.getState().page + 1);
+  });
+  return [leftArrow, rightArrow];
+};
+
+// common part of ListNav and ListSubNav
+const CommonListNav = () => {
+  const nav = document.createElement('nav');
+  const navItemList = document.createElement('ul');
+
+  nav.id = 'list_nav';
+  nav.classList.add('surface_alt');
+  navItemList.id = 'list_nav_list';
+  nav.appendChild(navItemList);
+  return nav;
+};
+
+const ListNav = (navStore, store) => {
+  const { category, page, media } = store.getState();
+  const nav = document.createElement('nav');
+  const navItemList = document.createElement('ul');
+
+  nav.id = 'list_nav';
+  nav.classList.add('surface_alt');
+  navItemList.id = 'list_nav_list';
+  nav.appendChild(navItemList);
+  media.category.forEach((categoryData, index) => {
+    navItemList.appendChild(
+      ListNavItem({
+        selected: category === index,
+        indicator: {
+          index: page,
+          total: categoryData.media.length,
+        },
+        title: categoryData.name,
+        onClick: () => {
+          if (category === index) return;
+          store.setState({
+            category: index,
+            page: 0,
+          });
+        },
+        afterDelay: () => {
+          setPage(store, page + 1);
+        },
+      })
+    );
+  });
+  return nav;
+};
+
+const ListSubNav = store => {
+  const { page, media } = store.getState();
+  const nav = document.createElement('nav');
+  const navItemList = document.createElement('ul');
+
+  nav.id = 'list_nav';
+  nav.classList.add('surface_alt');
+  navItemList.id = 'list_nav_list';
+  nav.appendChild(navItemList);
+  media.forEach((mediaItem, index) => {
+    navItemList.appendChild(
+      ListNavItem({
+        selected: page === index,
+        title: mediaData.getName(mediaItem),
+        onClick: () => {
+          if (page === index) return;
+          store.setState({ page: index });
+        },
+        afterDelay: () => {
+          setSubPage(store, page + 1);
+        },
+      })
+    );
+  });
+  return nav;
+};
+
+//
+
+const MediaLogoImg = src => {
   const mediaLogoElement = document.createElement('img');
 
   mediaLogoElement.classList.add('media_logo');
   mediaLogoElement.src = src;
-  mediaLogoElement.alt = name;
   return mediaLogoElement;
 };
 
@@ -23,63 +171,18 @@ const MediaInfo = (id, newsData) => {
   const mediaInfo = document.createElement('div');
 
   mediaInfo.classList.add('media_info');
-  mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id), newsData.name));
+  mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id)));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
-  mediaInfo.appendChild(SubButton(id));
+  mediaInfo.appendChild(
+    SubButton(
+      id,
+      () => {
+        console.log(`${id} unsubscribe`);
+      },
+      false
+    )
+  );
   return mediaInfo;
-};
-
-const ListNav = (listData, setPage) => {
-  const nav = document.createElement('nav');
-  const navItemList = document.createElement('ul');
-
-  nav.id = 'list_nav';
-  nav.classList.add('surface_alt');
-  navItemList.id = 'list_nav_list';
-  nav.appendChild(navItemList);
-  listData.categoryData.forEach((category, index) => {
-    navItemList.appendChild(
-      ListNavItem({
-        selected: listData.category === index,
-        indicator: {
-          index: listData.page,
-          total: listData.categoryData[index].media.length,
-        },
-        title: category.name,
-        onClick: () => {
-          if (listData.category === index) return;
-          listData.category = index;
-          setPage(listData, 0);
-        },
-        afterDelay: () => {
-          setPage(listData, listData.page + 1);
-        },
-      })
-    );
-  });
-  return nav;
-};
-
-const ThumbnailNewsImage = src => {
-  const thumbnailNewsImageWrapper = document.createElement('div');
-  const thumbnailNewsImage = document.createElement('img');
-
-  thumbnailNewsImageWrapper.classList.add('thumbnail');
-  thumbnailNewsImage.classList.add('thumbnail');
-  thumbnailNewsImage.src = src;
-  thumbnailNewsImage.alt = '기사 이미지';
-  thumbnailNewsImageWrapper.appendChild(thumbnailNewsImage);
-  return thumbnailNewsImageWrapper;
-};
-
-const ThumbnailNewsTitle = title => {
-  const thumbnailNewsTitle = document.createElement('h2');
-  thumbnailNewsTitle.classList.add('title');
-  const thumbnailNewsTitleLink = document.createElement('a');
-
-  thumbnailNewsTitleLink.innerText = title;
-  thumbnailNewsTitle.appendChild(thumbnailNewsTitleLink);
-  return thumbnailNewsTitle;
 };
 
 const ThumbnailNewsArea = title => {
@@ -91,11 +194,14 @@ const ThumbnailNewsArea = title => {
     'text_strong'
   );
 
-  thumbnailNewsArea.appendChild(
-    // 임시 이미지
-    ThumbnailNewsImage('https://picsum.photos/300/200')
-  );
-  thumbnailNewsArea.appendChild(ThumbnailNewsTitle(title));
+  thumbnailNewsArea.innerHTML = `
+  <div class="thumbnail">
+    <img class="thumbnail" src="https://picsum.photos/300/200" alt="기사 이미지">
+  </div>
+  <h2 class="title">
+    <a>${title}</a>
+  </h2>
+  `;
   return thumbnailNewsArea;
 };
 
@@ -114,11 +220,8 @@ const NewsList = (mediaId, newsData) => {
 
   newsData.news.forEach(title => {
     const newsItem = document.createElement('li');
-    const newsLink = document.createElement('a');
 
-    newsLink.classList.add('pointer', 'text_bold', 'hover_medium16');
-    newsLink.innerText = title;
-    newsItem.appendChild(newsLink);
+    newsItem.innerHTML = `<a class="pointer text_bold hover_medium16">${title}</a>`;
     newsList.appendChild(newsItem);
   });
   newsList.appendChild(Notice(mediaData.getName(mediaId)));
@@ -134,23 +237,38 @@ const NewsContent = (mediaId, newsData) => {
   return news;
 };
 
-const ListContent = mediaId => {
+const ListContent = (store, viewAll) => {
   const listContent = document.createElement('div');
+  const { category, page, media } = store.getState();
+  const mediaId = viewAll ? media.category[category].media[page] : media[page];
   const newsData = mediaData.getNews(mediaId);
 
   listContent.id = 'list_view';
-  listContent.appendChild(MediaInfo(mediaId, mediaData.getNews(mediaId)));
+  listContent.appendChild(MediaInfo(mediaId, newsData));
   listContent.appendChild(NewsContent(mediaId, newsData));
   return listContent;
 };
 
-const MediaList = (listData, setPage) => {
+const MediaList = (navStore, mediaData) => {
+  const viewAll = navStore.getState().media === 'all';
+  const store = new Store({
+    category: 0,
+    page: 0,
+    media: viewAll ? mediaData.list : mediaData.subscribed,
+  });
   const mediaList = document.createElement('div');
-  const mediaId = listData.categoryData[listData.category].media[listData.page];
 
+  const draw = () => {
+    const nav = viewAll ? ListNav(navStore, store) : ListSubNav(store);
+    clearAllChildren(mediaList);
+    mediaList.appendChild(nav);
+    mediaList.appendChild(ListContent(store, viewAll));
+  };
+
+  viewAll ? replaceArrow(store) : replaceSubArrow(store);
+  store.subscribe(draw);
   mediaList.id = 'list_view_wrapper';
-  mediaList.appendChild(ListNav(listData, setPage));
-  mediaList.appendChild(ListContent(mediaId));
+  draw();
   return mediaList;
 };
 
