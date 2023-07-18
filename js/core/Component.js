@@ -19,9 +19,9 @@ export default class Component {
     this.mounted();
   }
   setEvent() {}
-  setState(newState) {
+  setState(newState, render = true) {
     this.$state = { ...this.$state, ...newState };
-    this.render();
+    if (render) this.render();
   }
   addEvent(eventType, selector, callback) {
     this.$target.addEventListener(eventType, (event) => {
