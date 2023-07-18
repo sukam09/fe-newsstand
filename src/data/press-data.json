@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "서울경제",
-    "logo": "../asset/logos/light/press1.png",
+    "logo": "../logo/0",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -47,7 +47,7 @@
   {
     "id": 2,
     "name": "데일리안",
-    "logo": "../asset/logos/light/press2.png",
+    "logo": "../logo/2",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -92,7 +92,7 @@
   {
     "id": 3,
     "name": "헤럴드경제",
-    "logo": "../asset/logos/light/press3.png",
+    "logo": "../logo/3",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -137,7 +137,7 @@
   {
     "id": 4,
     "name": "SBS Biz",
-    "logo": "../asset/logos/light/press4.png",
+    "logo": "../logo/4",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -182,7 +182,7 @@
   {
     "id": 5,
     "name": "세계일보",
-    "logo": "../asset/logos/light/press5.png",
+    "logo": "../logo/5",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -227,7 +227,7 @@
   {
     "id": 6,
     "name": "아시아경제",
-    "logo": "../asset/logos/light/press6.png",
+    "logo": "../logo/6",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -272,7 +272,7 @@
   {
     "id": 7,
     "name": "이데일리",
-    "logo": "../asset/logos/light/press7.png",
+    "logo": "../logo/7",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -317,7 +317,7 @@
   {
     "id": 8,
     "name": "조선일보",
-    "logo": "../asset/logos/light/press8.png",
+    "logo": "../logo/8",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -362,7 +362,7 @@
   {
     "id": 9,
     "name": "아이뉴스24",
-    "logo": "../asset/logos/light/press9.png",
+    "logo": "../logo/9",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -407,7 +407,7 @@
   {
     "id": 10,
     "name": "파이낸셜뉴스",
-    "logo": "../asset/logos/light/press10.png",
+    "logo": "../logo/10",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -452,7 +452,7 @@
   {
     "id": 11,
     "name": "스포츠서울",
-    "logo": "../asset/logos/light/press11.png",
+    "logo": "../logo/11",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -497,7 +497,7 @@
   {
     "id": 12,
     "name": "스포츠동아",
-    "logo": "../asset/logos/light/press12.png",
+    "logo": "../logo/12",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -542,7 +542,7 @@
   {
     "id": 13,
     "name": "문화일보",
-    "logo": "../asset/logos/light/press13.png",
+    "logo": "../logo/13",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -587,7 +587,7 @@
   {
     "id": 14,
     "name": "KBS WORLD",
-    "logo": "../asset/logos/light/press14.png",
+    "logo": "../logo/14",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -632,7 +632,7 @@
   {
     "id": 15,
     "name": "Korea JoongAng Daily",
-    "logo": "../asset/logos/light/press15.png",
+    "logo": "../logo/15",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -677,7 +677,7 @@
   {
     "id": 16,
     "name": "Insight",
-    "logo": "../asset/logos/light/press16.png",
+    "logo": "../logo/16",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -722,7 +722,7 @@
   {
     "id": 17,
     "name": "법률방송뉴스",
-    "logo": "../asset/logos/light/press17.png",
+    "logo": "../logo/17",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -767,7 +767,7 @@
   {
     "id": 18,
     "name": "시사저널e",
-    "logo": "../asset/logos/light/press18.png",
+    "logo": "../logo/18",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -812,7 +812,7 @@
   {
     "id": 19,
     "name": "한국농어촌방송",
-    "logo": "../asset/logos/light/press19.png",
+    "logo": "../logo/19",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -857,7 +857,7 @@
   {
     "id": 20,
     "name": "조이뉴스24",
-    "logo": "../asset/logos/light/press20.png",
+    "logo": "../logo/20",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -902,7 +902,7 @@
   {
     "id": 21,
     "name": "에너지경제",
-    "logo": "../asset/logos/light/press21.png",
+    "logo": "../logo/21",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -947,7 +947,7 @@
   {
     "id": 22,
     "name": "BUSINESS POST",
-    "logo": "../asset/logos/light/press22.png",
+    "logo": "../logo/22",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -992,7 +992,7 @@
   {
     "id": 23,
     "name": "CEO스코어데일리",
-    "logo": "../asset/logos/light/press23.png",
+    "logo": "../logo/23",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1037,7 +1037,7 @@
   {
     "id": 24,
     "name": "KNN",
-    "logo": "../asset/logos/light/press24.png",
+    "logo": "../logo/24",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1082,7 +1082,7 @@
   {
     "id": 25,
     "name": "The Korea Herald",
-    "logo": "../asset/logos/light/press25.png",
+    "logo": "../logo/25",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1127,7 +1127,7 @@
   {
     "id": 26,
     "name": "MBC",
-    "logo": "../asset/logos/light/press26.png",
+    "logo": "../logo/26",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1172,7 +1172,7 @@
   {
     "id": 27,
     "name": "뉴스타파",
-    "logo": "../asset/logos/light/press27.png",
+    "logo": "../logo/27",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1217,7 +1217,7 @@
   {
     "id": 28,
     "name": "NewDaily",
-    "logo": "../asset/logos/light/press28.png",
+    "logo": "../logo/28",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1262,7 +1262,7 @@
   {
     "id": 29,
     "name": "국민일보",
-    "logo": "../asset/logos/light/press29.png",
+    "logo": "../logo/29",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1307,7 +1307,7 @@
   {
     "id": 30,
     "name": "일간스포츠",
-    "logo": "../asset/logos/light/press30.png",
+    "logo": "../logo/30",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1352,7 +1352,7 @@
   {
     "id": 31,
     "name": "경향신문",
-    "logo": "../asset/logos/light/press31.png",
+    "logo": "../logo/31",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1397,7 +1397,7 @@
   {
     "id": 32,
     "name": "ZDNET Korea",
-    "logo": "../asset/logos/light/press32.png",
+    "logo": "../logo/32",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1442,7 +1442,7 @@
   {
     "id": 33,
     "name": "마이데일리",
-    "logo": "../asset/logos/light/press33.png",
+    "logo": "../logo/33",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1487,7 +1487,7 @@
   {
     "id": 34,
     "name": "머니투데이",
-    "logo": "../asset/logos/light/press34.png",
+    "logo": "../logo/34",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1532,7 +1532,7 @@
   {
     "id": 35,
     "name": "SBS",
-    "logo": "../asset/logos/light/press35.png",
+    "logo": "../logo/35",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1577,7 +1577,7 @@
   {
     "id": 36,
     "name": "OhmyNews",
-    "logo": "../asset/logos/light/press36.png",
+    "logo": "../logo/36",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1622,7 +1622,7 @@
   {
     "id": 37,
     "name": "매일경제",
-    "logo": "../asset/logos/light/press37.png",
+    "logo": "../logo/37",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1667,7 +1667,7 @@
   {
     "id": 38,
     "name": "MBN",
-    "logo": "../asset/logos/light/press38.png",
+    "logo": "../logo/38",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1712,7 +1712,7 @@
   {
     "id": 39,
     "name": "YTN",
-    "logo": "../asset/logos/light/press39.png",
+    "logo": "../logo/39",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1757,7 +1757,7 @@
   {
     "id": 40,
     "name": "시사위크",
-    "logo": "../asset/logos/light/press40.png",
+    "logo": "../logo/40",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1802,7 +1802,7 @@
   {
     "id": 41,
     "name": "Digital Today",
-    "logo": "../asset/logos/light/press41.png",
+    "logo": "../logo/41",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1847,7 +1847,7 @@
   {
     "id": 42,
     "name": "data news",
-    "logo": "../asset/logos/light/press42.png",
+    "logo": "../logo/42",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1892,7 +1892,7 @@
   {
     "id": 43,
     "name": "한국대학신문",
-    "logo": "../asset/logos/light/press43.png",
+    "logo": "../logo/43",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1937,7 +1937,7 @@
   {
     "id": 44,
     "name": "서울파이낸스",
-    "logo": "../asset/logos/light/press44.png",
+    "logo": "../logo/44",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -1982,7 +1982,7 @@
   {
     "id": 45,
     "name": "엑스포츠뉴스",
-    "logo": "../asset/logos/light/press45.png",
+    "logo": "../logo/45",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2027,7 +2027,7 @@
   {
     "id": 46,
     "name": "맥스무비",
-    "logo": "../asset/logos/light/press46.png",
+    "logo": "../logo/46",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2072,7 +2072,7 @@
   {
     "id": 47,
     "name": "OBS",
-    "logo": "../asset/logos/light/press47.png",
+    "logo": "../logo/47",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2117,7 +2117,7 @@
   {
     "id": 48,
     "name": "소년한국일보",
-    "logo": "../asset/logos/light/press48.png",
+    "logo": "../logo/48",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2162,7 +2162,7 @@
   {
     "id": 49,
     "name": "OSEN",
-    "logo": "../asset/logos/light/press49.png",
+    "logo": "../logo/49",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2207,7 +2207,7 @@
   {
     "id": 50,
     "name": "디지털타임스",
-    "logo": "../asset/logos/light/press50.png",
+    "logo": "../logo/50",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2252,7 +2252,7 @@
   {
     "id": 51,
     "name": "미디어오늘",
-    "logo": "../asset/logos/light/press51.png",
+    "logo": "../logo/51",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2297,7 +2297,7 @@
   {
     "id": 52,
     "name": "연합뉴스TV",
-    "logo": "../asset/logos/light/press52.png",
+    "logo": "../logo/52",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2342,7 +2342,7 @@
   {
     "id": 53,
     "name": "한겨례",
-    "logo": "../asset/logos/light/press53.png",
+    "logo": "../logo/53",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2387,7 +2387,7 @@
   {
     "id": 54,
     "name": "ChosunBiz",
-    "logo": "../asset/logos/light/press54.png",
+    "logo": "../logo/54",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2432,7 +2432,7 @@
   {
     "id": 55,
     "name": "jtbc",
-    "logo": "../asset/logos/light/press55.png",
+    "logo": "../logo/55",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2477,7 +2477,7 @@
   {
     "id": 56,
     "name": "metro",
-    "logo": "../asset/logos/light/press56.png",
+    "logo": "../logo/56",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2522,7 +2522,7 @@
   {
     "id": 57,
     "name": "비즈한국",
-    "logo": "../asset/logos/light/press57.png",
+    "logo": "../logo/57",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2567,7 +2567,7 @@
   {
     "id": 58,
     "name": "주간경향",
-    "logo": "../asset/logos/light/press58.png",
+    "logo": "../logo/58",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2612,7 +2612,7 @@
   {
     "id": 59,
     "name": "Forbes",
-    "logo": "../asset/logos/light/press59.png",
+    "logo": "../logo/59",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2657,7 +2657,7 @@
   {
     "id": 60,
     "name": "TV REPORT",
-    "logo": "../asset/logos/light/press60.png",
+    "logo": "../logo/60",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2702,7 +2702,7 @@
   {
     "id": 61,
     "name": "티브이데일리",
-    "logo": "../asset/logos/light/press61.png",
+    "logo": "../logo/61",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2747,7 +2747,7 @@
   {
     "id": 62,
     "name": "BBS NEWS",
-    "logo": "../asset/logos/light/press62.png",
+    "logo": "../logo/62",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2792,7 +2792,7 @@
   {
     "id": 63,
     "name": "MONDE diplomatique",
-    "logo": "../asset/logos/light/press63.png",
+    "logo": "../logo/63",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2837,7 +2837,7 @@
   {
     "id": 64,
     "name": "MK스포츠",
-    "logo": "../asset/logos/light/press64.png",
+    "logo": "../logo/64",
     "category": "종합/경제",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2882,7 +2882,7 @@
   {
     "id": 65,
     "name": "텐아시아",
-    "logo": "../asset/logos/light/press65.png",
+    "logo": "../logo/65",
     "category": "지역",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2927,7 +2927,7 @@
   {
     "id": 66,
     "name": "정책브리핑",
-    "logo": "../asset/logos/light/press66.png",
+    "logo": "../logo/66",
     "category": "매거진/전문지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -2972,7 +2972,7 @@
   {
     "id": 67,
     "name": "씨네21",
-    "logo": "../asset/logos/light/press67.png",
+    "logo": "../logo/67",
     "category": "매거진/전문지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3017,7 +3017,7 @@
   {
     "id": 68,
     "name": "뉴스포스트",
-    "logo": "../asset/logos/light/press68.png",
+    "logo": "../logo/68",
     "category": "스포츠/연예",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3062,7 +3062,7 @@
   {
     "id": 69,
     "name": "정신의학신문",
-    "logo": "../asset/logos/light/press69.png",
+    "logo": "../logo/69",
     "category": "스포츠/연예",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3107,7 +3107,7 @@
   {
     "id": 70,
     "name": "철강금속신문",
-    "logo": "../asset/logos/light/press70.png",
+    "logo": "../logo/70",
     "category": "스포츠/연예",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3152,7 +3152,7 @@
   {
     "id": 71,
     "name": "IT Chosun",
-    "logo": "../asset/logos/light/press71.png",
+    "logo": "../logo/71",
     "category": "스포츠/연예",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3197,7 +3197,7 @@
   {
     "id": 72,
     "name": "여성경제신문",
-    "logo": "../asset/logos/light/press72.png",
+    "logo": "../logo/72",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3242,7 +3242,7 @@
   {
     "id": 73,
     "name": "한국일보",
-    "logo": "../asset/logos/light/press73.png",
+    "logo": "../logo/73",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3287,7 +3287,7 @@
   {
     "id": 74,
     "name": "sportal korea",
-    "logo": "../asset/logos/light/press74.png",
+    "logo": "../logo/74",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3332,7 +3332,7 @@
   {
     "id": 75,
     "name": "프레시안",
-    "logo": "../asset/logos/light/press75.png",
+    "logo": "../logo/75",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3377,7 +3377,7 @@
   {
     "id": 76,
     "name": "노컷뉴스",
-    "logo": "../asset/logos/light/press76.png",
+    "logo": "../logo/76",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3422,7 +3422,7 @@
   {
     "id": 77,
     "name": "The JoongAng",
-    "logo": "../asset/logos/light/press77.png",
+    "logo": "../logo/77",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3467,7 +3467,7 @@
   {
     "id": 78,
     "name": "서울신문",
-    "logo": "../asset/logos/light/press78.png",
+    "logo": "../logo/78",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3512,7 +3512,7 @@
   {
     "id": 79,
     "name": "스포츠 조선",
-    "logo": "../asset/logos/light/press79.png",
+    "logo": "../logo/79",
     "category": "영자지",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3557,7 +3557,7 @@
   {
     "id": 80,
     "name": "전자신문",
-    "logo": "../asset/logos/light/press80.png",
+    "logo": "../logo/80",
     "category": "IT",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3602,7 +3602,7 @@
   {
     "id": 81,
     "name": "한국경제TV",
-    "logo": "../asset/logos/light/press81.png",
+    "logo": "../logo/81",
     "category": "IT",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3647,7 +3647,7 @@
   {
     "id": 82,
     "name": "BLOTER",
-    "logo": "../asset/logos/light/press82.png",
+    "logo": "../logo/82",
     "category": "IT",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3692,7 +3692,7 @@
   {
     "id": 83,
     "name": "KBS",
-    "logo": "../asset/logos/light/press83.png",
+    "logo": "../logo/83",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3737,7 +3737,7 @@
   {
     "id": 84,
     "name": "동아일보",
-    "logo": "../asset/logos/light/press84.png",
+    "logo": "../logo/84",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3782,7 +3782,7 @@
   {
     "id": 85,
     "name": "NEWSIS",
-    "logo": "../asset/logos/light/press85.png",
+    "logo": "../logo/85",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3827,7 +3827,7 @@
   {
     "id": 86,
     "name": "한국경제",
-    "logo": "../asset/logos/light/press86.png",
+    "logo": "../logo/86",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3872,7 +3872,7 @@
   {
     "id": 87,
     "name": "시사IN",
-    "logo": "../asset/logos/light/press87.png",
+    "logo": "../logo/87",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3917,7 +3917,7 @@
   {
     "id": 88,
     "name": "월간산",
-    "logo": "../asset/logos/light/press88.png",
+    "logo": "../logo/88",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -3962,7 +3962,7 @@
   {
     "id": 89,
     "name": "독서신문",
-    "logo": "../asset/logos/light/press89.png",
+    "logo": "../logo/89",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4007,7 +4007,7 @@
   {
     "id": 90,
     "name": "ECONOTIMES",
-    "logo": "../asset/logos/light/press90.png",
+    "logo": "../logo/90",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4052,7 +4052,7 @@
   {
     "id": 91,
     "name": "대전방송",
-    "logo": "../asset/logos/light/press91.png",
+    "logo": "../logo/91",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4097,7 +4097,7 @@
   {
     "id": 92,
     "name": "시사오늘",
-    "logo": "../asset/logos/light/press92.png",
+    "logo": "../logo/92",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4142,7 +4142,7 @@
   {
     "id": 93,
     "name": "데일리한국",
-    "logo": "../asset/logos/light/press93.png",
+    "logo": "../logo/93",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4187,7 +4187,7 @@
   {
     "id": 94,
     "name": "뉴스토마토",
-    "logo": "../asset/logos/light/press94.png",
+    "logo": "../logo/94",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4232,7 +4232,7 @@
   {
     "id": 95,
     "name": "에이블뉴스",
-    "logo": "../asset/logos/light/press95.png",
+    "logo": "../logo/95",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
@@ -4277,7 +4277,7 @@
   {
     "id": 96,
     "name": "YTN 사이언스",
-    "logo": "../asset/logos/light/press96.png",
+    "logo": "../logo/96",
     "category": "방송/통신",
     "subscribed": false,
     "editTime": "2023-10-04 00:11:22",
