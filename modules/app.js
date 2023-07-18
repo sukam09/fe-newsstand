@@ -10,14 +10,19 @@ import { initEvents, initObservers } from "./controller/controllers.js";
   //fetch data
   await initCategoryData();
   await initPressData();
+
+  //
   initPageState();
   initSubButtonStateList();
 
+  //
   await initComponents();
 
+  //
   initEvents();
   initObservers();
 
+  //
   startRollingAnimation();
   showGridPage(0);
 })();

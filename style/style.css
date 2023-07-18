@@ -168,3 +168,16 @@ img.title_logo {
   filter: invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg)
     brightness(87%) contrast(85%);
 }
+
+.alert {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 100px;
+  border: 2px solid var(--border-border-default);
+  background-color: var(--surface-surface-alt);
+  z-index: 999;
+}

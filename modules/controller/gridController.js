@@ -1,3 +1,4 @@
+import { createAlert } from "../components/alert.js";
 import { pressDataState } from "../store/dataState.js";
 import { subButtonStateList } from "../store/gridState.js";
 import { addObserver, getState, setState } from "../store/observer.js";
@@ -62,24 +63,23 @@ export function handleGridItemClick(e) {
   }
 }
 
-export function addObserverOnIsSub() {
-  const controllSubButton = (id) => {
-    const isSub = getState(subButtonStateList[id]);
-    const $gridItem = qs(`#press_${id}`);
-    const $subContainer = $gridItem.querySelector(".sub_button_container");
-    const $unsubContainer = $gridItem.querySelector(".unsub_button_container");
+export function controllSubButton(id) {
+  const isSub = getState(subButtonStateList[id]);
+  const $gridItem = qs(`#press_${id}`);
+  const $subContainer = $gridItem.querySelector(".sub_button_container");
+  const $unsubContainer = $gridItem.querySelector(".unsub_button_container");
 
-    if (isSub) {
-      $unsubContainer.style.display = "flex";
-      $subContainer.style.display = "none";
-    } else {
-      $unsubContainer.style.display = "none";
-      $subContainer.style.display = "flex";
-    }
-  };
+  if (isSub) {
+    $unsubContainer.style.display = "flex";
+    $subContainer.style.display = "none";
+  } else {
+    $unsubContainer.style.display = "none";
+    $subContainer.style.display = "flex";
+  }
+}
 
-  subButtonStateList.forEach((subButtonState, idx) => {
-    addObserver(subButtonState, () => controllSubButton(idx));
-  });
-  addObserver(pressDataState, controllSubButton);
+export function alertSubscribe() {
+  const $alert = qs(".alert");
+  $alert.style.display = "flex";
+  console.log("Alert");
 }

@@ -8,7 +8,7 @@ import {
   addEventsOnTitle,
   addEventsOnViewButton,
 } from "./events.js";
-import { addObserverOnIsSub } from "./gridController.js";
+import { addObserverOnIsSub } from "./observers.js";
 import {
   addObserverOnGridPage,
   addObserverOnListPage,
