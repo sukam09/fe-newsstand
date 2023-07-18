@@ -9,7 +9,6 @@ import { pageStore,subscribedStore } from '../util/store.js';
   ]
 */
 const media_data = await getJSON("../../assets/data/media_data.json");
-console.log(subscribedStore.getState());
 const subscribed = subscribedStore.getState(); // 구독된 언론사 index 추가
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index); // 전체 언론사 index
 
@@ -64,21 +63,31 @@ export const GridController = {
     // 구독 여부에 따라 구독하기 or 해지하기 추가
     imageElement.insertAdjacentElement(
       'afterend',
-      this.addSubButton(!subscribed.includes(logoIndex[media]))
+      this.addSubButton(!subscribed.includes(logoIndex[media]),logoIndex[media])
     );
   },
   /**
    * 
    * @param {boolean} isSub 
+   * @param {number} logoIndex
    * 구독중인지 확인하는 변수
    * @returns {HTMLDivElement}
   */
-  addSubButton(isSub){
+  addSubButton(isSub,logoIndex){
     const subElement = document.createElement('div');
     subElement.className = 'media-hover surface-alt';
-    subElement.innerHTML = isSub ? '구독하기' : '해지하기';
+    subElement.innerHTML = isSub ? `<div class="subscribedWrapper surface-default"><img src = "assets/images/add.svg">
+    <p class="subscribed_info text-weak available-medium12">구독하기</p></div>` :`<div class="subscribedWrapper surface-default border-default"><img src = "assets/images/delete.svg">
+    <p class="subscribed_info text-weak available-medium12">해지하기</p></div>`;
+    
+    const wrapperElement = subElement.querySelector('.subscribedWrapper');
+    wrapperElement.addEventListener('click', function(event) {
+      console.log(media_data[logoIndex].name);
+    });
+
     return subElement;
   },
+
   /**
    * 빈 grid에 list요소 채우는 함수
   */ 
