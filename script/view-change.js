@@ -1,28 +1,18 @@
-import { listenArrow, updateArrow } from "./arrow.js";
-import { drawPress } from "./grid-view.js";
-import { drawList } from "./list-view.js";
+import { store } from "../store/store.js";
 
 const viewContainer = document.querySelector(".view-section-content")
 const viewChangeBtns = document.querySelectorAll(".nav-right .btn")
 
-function listenViewChange(crntView) {
+function listenViewChange() {
     viewChangeBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
             const nextView = btn.getAttribute("type");
+            let crntView = store.getView();
             if (crntView !== nextView){
                 crntView = nextView;
-                let crntPage = 0;
-                let crntListIdx = 0;
-                updateArrow(crntView, crntPage); // initialize current page index, category index (if crntView == "list") and arrow
-                listenArrow(crntView, crntPage);
-                switch (nextView){
-                    case "grid":
-                        drawPress(crntPage);
-                        break;
-                    case "list":
-                        drawList(crntListIdx);
-                        break;
-                }
+                store.setView(nextView)
+                store.setPage(0);
+                store.setCategory(0);
                 Array.prototype.forEach.call(viewContainer.children, (view) => {
                     if (view.getAttribute("type") == nextView){
                         view.classList.remove("hide");

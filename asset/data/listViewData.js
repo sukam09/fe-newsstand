@@ -17,7 +17,7 @@ const listViewData = [
         "LG엔솔, 폴란드 자동차산업협회 가입...\"유럽서 목소리 키운다\"",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": true
     },
     {
       "id": "2",
@@ -37,7 +37,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "3",
@@ -57,7 +57,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "4",
@@ -77,7 +77,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "5",
@@ -97,7 +97,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "6",
@@ -117,7 +117,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "7",
@@ -137,7 +137,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "8",
@@ -157,7 +157,7 @@ const listViewData = [
         "한국의 스타트업 열풍, 창업 생태계 활성화",
         "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "9",
@@ -177,7 +177,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "10",
@@ -197,7 +197,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "11",
@@ -217,7 +217,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "12",
@@ -237,7 +237,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "13",
@@ -257,7 +257,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "14",
@@ -277,7 +277,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "15",
@@ -297,7 +297,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "16",
@@ -317,7 +317,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "17",
@@ -337,7 +337,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "18",
@@ -357,7 +357,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "19",
@@ -377,7 +377,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "20",
@@ -397,7 +397,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "21",
@@ -417,7 +417,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "22",
@@ -437,7 +437,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "23",
@@ -457,7 +457,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "24",
@@ -477,7 +477,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "25",
@@ -497,7 +497,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "26",
@@ -517,7 +517,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "27",
@@ -537,7 +537,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "28",
@@ -557,7 +557,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "29",
@@ -577,7 +577,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "30",
@@ -597,7 +597,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "31",
@@ -617,7 +617,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "32",
@@ -637,7 +637,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "33",
@@ -657,7 +657,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "34",
@@ -677,7 +677,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "35",
@@ -697,7 +697,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "36",
@@ -717,7 +717,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "37",
@@ -737,7 +737,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "38",
@@ -757,7 +757,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "39",
@@ -777,7 +777,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "40",
@@ -797,7 +797,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "41",
@@ -817,7 +817,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "42",
@@ -837,7 +837,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "43",
@@ -857,7 +857,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "44",
@@ -877,7 +877,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "45",
@@ -897,7 +897,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "46",
@@ -917,7 +917,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "47",
@@ -937,7 +937,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "48",
@@ -957,7 +957,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "49",
@@ -977,7 +977,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "50",
@@ -997,7 +997,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "51",
@@ -1017,7 +1017,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "52",
@@ -1037,7 +1037,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "53",
@@ -1057,7 +1057,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "54",
@@ -1077,7 +1077,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "55",
@@ -1097,7 +1097,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "56",
@@ -1117,7 +1117,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "57",
@@ -1137,7 +1137,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "58",
@@ -1157,7 +1157,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "59",
@@ -1177,7 +1177,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "60",
@@ -1197,7 +1197,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "61",
@@ -1217,7 +1217,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "62",
@@ -1237,7 +1237,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "63",
@@ -1257,7 +1257,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "64",
@@ -1277,7 +1277,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "65",
@@ -1297,7 +1297,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "66",
@@ -1317,7 +1317,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "67",
@@ -1337,7 +1337,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "68",
@@ -1357,7 +1357,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "69",
@@ -1377,7 +1377,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "70",
@@ -1397,7 +1397,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "71",
@@ -1417,7 +1417,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "72",
@@ -1437,7 +1437,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "73",
@@ -1457,7 +1457,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "74",
@@ -1477,7 +1477,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "75",
@@ -1497,7 +1497,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "76",
@@ -1517,7 +1517,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "77",
@@ -1537,7 +1537,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "78",
@@ -1557,7 +1557,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "79",
@@ -1577,7 +1577,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "80",
@@ -1597,7 +1597,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "81",
@@ -1617,7 +1617,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "82",
@@ -1637,7 +1637,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "83",
@@ -1657,7 +1657,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "84",
@@ -1677,7 +1677,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "85",
@@ -1697,7 +1697,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "86",
@@ -1717,7 +1717,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "87",
@@ -1737,7 +1737,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "88",
@@ -1757,7 +1757,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "89",
@@ -1777,7 +1777,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "90",
@@ -1797,7 +1797,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "91",
@@ -1817,7 +1817,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "92",
@@ -1837,7 +1837,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "93",
@@ -1857,7 +1857,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "94",
@@ -1877,7 +1877,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "95",
@@ -1897,7 +1897,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     },
     {
       "id": "96",
@@ -1917,7 +1917,7 @@ const listViewData = [
         "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
         
       ],
-      "is_subscribe": "false"
+      "is_subscribe": false
     }
   ]
   export default listViewData;

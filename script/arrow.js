@@ -1,14 +1,15 @@
 import pressList from "../asset/data/pressList.js"
 import listViewData from "../asset/data/listViewData.js";
-import { drawPress } from "./grid-view.js";
-import { drawList, drawListNav, drawListPage } from "./list-view.js";
+import { store } from "../store/store.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
 const categoryList = ["종합/경제","방송/통신","IT","영자지","스포츠/연예","매거진/전문지","지역"]
 
-function updateArrow(crntView, crntPage){
+function updateArrow(){
+    let crntPage = store.getPage();
+    let crntView = store.getView();
     let maxPage;
     leftArrow.classList.remove("hidden");
     rightArrow.classList.remove("hidden");
@@ -26,41 +27,43 @@ function updateArrow(crntView, crntPage){
     }
     
 }
-function listenArrow(crntView, crntPage, crntListIdx = 0){
+function listenArrow(){
     leftArrow.addEventListener("click",()=> {
-        crntPage--;
-        switch (crntView){
-            case "grid":
-                drawPress(crntPage);
-                updateArrow(crntView, crntPage);
-                break;
-            case "list":
-                if (crntPage == -1){
-                    crntListIdx = crntListIdx == 0 ? categoryList.length-1 : crntListIdx-1;
-                    crntPage = 0;
-                }
-                drawList(crntListIdx, crntPage);
-                updateArrow(crntView, crntPage, crntListIdx);
-                break;
+        let crntPage = store.getPage();
+        let crntView = store.getView();
+        let crntCategory = store.getCategory();
+        if (crntView == "list") {
+            if (crntPage == 0 && crntCategory == 0) {
+                store.setCategory(categoryList.length - 1);
+            } else if (crntPage == 0 && crntCategory > 0){
+                store.setCategory(crntCategory - 1)
+            } else {
+                store.setPage(crntPage-1);
+            }
+        } else {
+            store.setPage(crntPage-1);
         }
         
     })
     rightArrow.addEventListener("click",() => {
-        crntPage++;
-        switch (crntView){
-            case "grid":
-                drawPress(crntPage);
-                updateArrow(crntView, crntPage);
-                break;
-            case "list":
-                if (crntPage >= listViewData.filter(data => data.category == categoryList[crntListIdx]).length){
-                    crntListIdx = crntListIdx == categoryList.length-1 ? 0 : crntListIdx+1;
-                    crntPage = 0;
-                }
-                drawList(crntListIdx, crntPage);
-                updateArrow(crntView, crntPage, crntListIdx)
-                break;
+        let crntPage = store.getPage();
+        let crntView = store.getView();
+        let crntCategory = store.getCategory();
+        if (crntView == "list") {
+            const numOfPages = listViewData.filter(data => data.category == categoryList[crntCategory]).length;
+            if (crntPage >= numOfPages - 1 && crntCategory >= categoryList.length - 1){ // 마지막 카테고리의 마지막 페이지
+                store.setCategory(0); 
+                store.setPage(0);
+            } else if (crntPage >= numOfPages - 1 && crntCategory < categoryList.length - 1) { // 카테고리(마지막 카테고리 제외)의 마지막 페이지
+                store.setCategory(crntCategory + 1);
+                store.setPage(0);
+            } else {
+                store.setPage(crntPage + 1);
+            }
+        } else {
+            store.setPage(crntPage + 1);
         }
+
     })
     
 }

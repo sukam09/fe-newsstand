@@ -8,20 +8,16 @@ import { listenReload } from "./script/reload.js";
 
 const rollingContent = document.querySelectorAll(".rolling-content");
 
-let crntPage = 0;
-let crntView = "grid"
-
 function init () {
     listenReload();
-
     drawDate();
-    drawPress(crntPage);
-    updateArrow(crntView, crntPage);
-    listenArrow(crntView, crntPage);
+    drawPress();
+    updateArrow();
+    listenArrow();
     rollingContent.forEach((item, index) => {
         const isFirstRoll = true;
         rollHeadline(item, rollingList.length, index, isFirstRoll);
     })
-    listenViewChange(crntView);
+    listenViewChange();
 }
 window.onload = init;
