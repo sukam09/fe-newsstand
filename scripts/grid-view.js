@@ -1,20 +1,22 @@
 import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
+import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
 import { SubscribeButton } from "./components.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
+const $gridView = document.querySelector(".grid-view");
+
 const fillGridView = (newsData, currentPage) => {
   const theme = useSelector((state) => state.theme.currentTheme);
-  const $gridView = document.querySelector(".grid-view");
 
   const startIdx = currentPage * NEWS_COUNT;
+  const subscribeList = useSelector((state) => state.subscribeList);
 
   $gridView.innerHTML = Array.from(
     { length: NEWS_COUNT },
     (_, i) => i + startIdx
   ).reduce((acc, curr) => {
-    const subscribeList = useSelector((state) => state.subscribeList);
     const isSubscribed = subscribeList.includes(newsData[curr].name);
 
     return (acc += `<li class="grid-cell">
@@ -25,14 +27,22 @@ const fillGridView = (newsData, currentPage) => {
       ${SubscribeButton(isSubscribed)}
     </li>`);
   }, "");
+};
 
-  const $buttons = $gridView.querySelectorAll(".subscribe-btn");
-  $buttons.forEach(($button) => {
-    $button.addEventListener("click", (e) => {
-      const name = e.currentTarget.previousElementSibling.alt;
+const addEventOnGridView = () => {
+  $gridView.addEventListener("click", (e) => {
+    const $button = e.target.closest(".subscribe-btn");
+    const name = $button.previousElementSibling.alt;
 
-      store.dispatch(addSubscribe(name));
-    });
+    const isSubscribed = JSON.parse($button.dataset.subscribed);
+
+    if (isSubscribed) {
+      // TODO: 구독해지 로직
+      return;
+    }
+
+    store.dispatch(openSnackbar());
+    store.dispatch(addSubscribe(name));
   });
 };
 
@@ -62,6 +72,7 @@ const updateButtonUI = (currentPage, maxPage) => {
 export const renderGridView = (newsData) => {
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
+  addEventOnGridView();
 
   store.subscribe(() => {
     const { currentPage, viewType } = useSelector((state) => state.page);

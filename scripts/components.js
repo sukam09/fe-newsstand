@@ -25,7 +25,9 @@ export const SubscribeButton = (isSubscribed) => {
       />
     </svg>`;
 
-  return `<button class="subscribe-btn available-medium12">
+  return `<button class="subscribe-btn available-medium12" data-subscribed=${
+    isSubscribed ? "true" : "false"
+  }>
     ${Icon}
     <span>${isSubscribed ? "해지하기" : "구독하기"}</span>
   </button>`;
