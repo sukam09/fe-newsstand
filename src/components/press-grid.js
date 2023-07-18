@@ -105,7 +105,7 @@ const getGridLogo = (pressData, sliceIds) => {
  * 언론사 그리드의 라이트/다크모드
  */
 const toggleMode = () => {
-  const pressLogos = document.querySelectorAll(`.${LOGO_WRAPPER_GRID} ${HEADER_CLASS.IMG}`);
+  const pressLogos = document.querySelectorAll(`.${HEADER_CLASS.LOGO_WRAPPER_GRID} ${HEADER_CLASS.IMG}`);
   pressLogos.forEach((logo) => changeSrc(logo));
 };
 
