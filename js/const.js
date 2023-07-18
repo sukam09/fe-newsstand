@@ -9,6 +9,13 @@ const STATE = {
   SUB_NEWS_PAGE: 0,
 };
 
+const DATA = {
+  category: ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"],
+  now_category: "종합/경제",
+  total_pages: {},
+  page_count: {},
+};
+
 function setSubData(target) {
   if (STATE.SUB_DATA.find(press => press.name === target.name) === undefined) {
     STATE.SUB_DATA.push(target);
@@ -17,4 +24,4 @@ function setSubData(target) {
   }
 }
 
-export { PAGE_SIZE, ROLLING_LATENCY, ROLLING_TIME, MODAL_POPUP_TIME, setSubData, STATE };
+export { PAGE_SIZE, ROLLING_LATENCY, ROLLING_TIME, MODAL_POPUP_TIME, setSubData, STATE, DATA };

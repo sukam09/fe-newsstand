@@ -2,7 +2,7 @@ import { setDisplay, getJSON, checkIsSubscribe, removeDisplay } from "./utils.js
 import { MODAL_POPUP_TIME, STATE, setSubData } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
-import { onUndiscribeModal } from "./modal.js";
+import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { setSubListNav, drawSubNews } from "./subscribeListView.js";
 
 let presses;
@@ -46,7 +46,7 @@ function listSubMouseClick(news, target) {
     }, MODAL_POPUP_TIME);
   } else {
     // 구독 상태면
-    onUndiscribeModal();
+    onListUndiscribeModal();
   }
 }
 
