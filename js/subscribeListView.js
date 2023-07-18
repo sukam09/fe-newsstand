@@ -1,5 +1,7 @@
 import { STATE } from "./const.js";
 import { setDisplay } from "./utils.js";
+import { listSubMouseClick } from "./subscribe.js";
+import { onListUndiscribeModal } from "./modal.js";
 
 function setSubListNav() {
   const subscribed_presses = STATE.SUB_DATA;
@@ -51,7 +53,7 @@ function drawSubNews() {
   const $sub_btn = $ul.querySelector(".list-sub-btn");
   $sub_btn.src = "../img/icons/cancelSubBtn.svg";
   $sub_btn.addEventListener("click", e => {
-    listSubMouseClick(STATE.SUB_DATA, e.target);
+    onListUndiscribeModal();
   });
   showArrow();
 }
@@ -73,7 +75,10 @@ function showArrow() {
   const $sub_news_article = document.querySelector(".sub-news-article");
   const $left_btn = $sub_news_article.querySelector(".left-btn");
   const $right_btn = $sub_news_article.querySelector(".right-btn");
-  if (STATE.SUB_NEWS_PAGE === 0) {
+  if (STATE.SUB_DATA.length === 1) {
+    $left_btn.classList.add("hidden");
+    $right_btn.classList.add("hidden");
+  } else if (STATE.SUB_NEWS_PAGE === 0) {
     $left_btn.classList.add("hidden");
     $right_btn.classList.remove("hidden");
   } else if (STATE.SUB_NEWS_PAGE + 1 === sub_length) {
@@ -98,4 +103,4 @@ function initSubListArrow() {
   $right_btn.addEventListener("click", event => clickSubListBtn(event.target));
 }
 
-export { setSubListNav, drawSubNews, initSubListArrow };
+export { setSubListNav, drawSubNews, initSubListArrow, showArrow };

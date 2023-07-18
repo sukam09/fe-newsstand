@@ -1,8 +1,9 @@
-import { setDisplay, getJSON } from "./utils.js";
+import { setDisplay, getJSON, checkIsSubscribe, removeDisplay } from "./utils.js";
 import { MODAL_POPUP_TIME, STATE, setSubData } from "./const.js";
 import { drawSubGridView, drawGridView } from "./gridFunction.js";
-import { handleView } from "./viewHandler.js";
+import { handleView, changeOption } from "./viewHandler.js";
 import { onUndiscribeModal } from "./modal.js";
+import { setSubListNav, drawSubNews } from "./subscribeListView.js";
 
 let presses;
 
@@ -29,15 +30,23 @@ function gridMouseClick(target) {
 }
 
 function listSubMouseClick(news, target) {
-  if (!news.isSub) {
-    news.isSub = !news.isSub;
-    target.src = news.isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/Button.svg";
+  console.log(target);
+  if (checkIsSubscribe("name", news.name) === undefined) {
+    //구독 상태가 아니면
+    STATE.SUB_DATA.push(news);
     setDisplay(".subscribe-modal", "query", "block");
     setTimeout(() => {
       setDisplay(".subscribe-modal", "query", "none");
-      checkViewStatus(document.querySelector(".subscribed-press"));
+      removeDisplay();
+      STATE.SUB_NEWS_PAGE = 0;
+      changeOption("subscribe");
+      setDisplay(".sub-press-list-section", "query", "block");
+      setSubListNav();
+      drawSubNews(STATE.SUB_NEWS_PAGE);
     }, MODAL_POPUP_TIME);
-    // 모달 함수 추가
+  } else {
+    // 구독 상태면
+    onUndiscribeModal();
   }
 }
 

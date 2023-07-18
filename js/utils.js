@@ -1,3 +1,5 @@
+import { STATE } from "./const.js";
+
 let presses;
 
 const getJSON = async url => {
@@ -63,6 +65,18 @@ function findSpanNearby(element) {
   return null; // 근처에 <span> 태그가 없을 경우 null 반환
 }
 
+/*
+  src, name에 따라 요소 있는지 확인
+*/
+function checkIsSubscribe(type, target) {
+  if (type === "src") {
+    STATE.SUB_DATA.forEach(data => console.log(data.path_light));
+    return STATE.SUB_DATA.find(data => data.path_light === target);
+  } else if (type === "name") {
+    return STATE.SUB_DATA.find(data => data.name === target);
+  }
+}
+
 async function initUtilData() {
   presses = await getJSON("../assets/media.json");
   presses = Object.values(presses).reduce((acc, cur) => {
@@ -70,4 +84,4 @@ async function initUtilData() {
   });
 }
 
-export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData };
+export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe };

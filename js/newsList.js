@@ -1,5 +1,5 @@
 import { listSubMouseClick } from "./subscribe.js";
-import { getJSON } from "./utils.js";
+import { checkIsSubscribe, getJSON } from "./utils.js";
 import { STATE } from "./const.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
@@ -53,7 +53,7 @@ function drawNews(category, page) {
   $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.src = news[page].isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
+  $sub_btn.src = checkIsSubscribe("name", news.name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
   $sub_btn.addEventListener("click", e => {
     listSubMouseClick(news[page], e.target);
   });

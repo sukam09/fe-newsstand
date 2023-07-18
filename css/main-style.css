@@ -741,7 +741,8 @@ h1 {
   transform: rotateY(180deg);
 }
 
-.grid-subscribe-modal {
+.grid-subscribe-modal,
+.list-subscribe-modal {
   display: flex;
   width: 320px;
   flex-direction: column;

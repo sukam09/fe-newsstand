@@ -111,4 +111,4 @@ function handleView(target) {
   }
 }
 
-export { handleView, addEventInSymbol };
+export { handleView, addEventInSymbol, changeViewIcon, changeOption };
