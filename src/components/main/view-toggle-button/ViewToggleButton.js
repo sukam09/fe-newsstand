@@ -1,10 +1,10 @@
 import {
   _querySelector,
   _querySelectorAll,
-} from "../../utils/my-query-selector.js";
-import { viewState } from "../../store/store.js";
-import { VIEW_TYPE } from "../../constants/constants.js";
-import { getState, setState } from "../../observer/observer.js";
+} from "../../../utils/my-query-selector.js";
+import { viewState } from "../../../store/store.js";
+import { VIEW_TYPE } from "../../../constants/constants.js";
+import { getState, setState } from "../../../observer/observer.js";
 
 const $gridView = _querySelector(".grid-view");
 const $listView = _querySelector(".list-view");

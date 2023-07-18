@@ -14,19 +14,19 @@ import {
   viewState,
   listPageState,
   subscribeState,
-} from "../../store/store.js";
+} from "../../../store/store.js";
 import {
   customFetch,
   shuffleArrayRandom,
   shuffleObjectRandom,
-} from "../../utils/utils.js";
+} from "../../../utils/utils.js";
 import { fillNewsList } from "./NewsList.js";
-import { subscribe } from "../../observer/observer.js";
-import { CATEGORY_LIST } from "../../constants/constants.js";
+import { subscribe } from "../../../observer/observer.js";
+import { CATEGORY_LIST } from "../../../constants/constants.js";
 
 export const setList = async () => {
   const newsList = await customFetch(
-    "../../../mocks/newsList.json",
+    "../../../../mocks/newsList.json",
     shuffleObjectRandom
   );
   const categoryList = shuffleArrayRandom(CATEGORY_LIST);

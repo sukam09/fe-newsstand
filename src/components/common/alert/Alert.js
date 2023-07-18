@@ -1,13 +1,15 @@
 import {
   alertMsgState,
   snackBarMsgState,
+  subscribeGridPageState,
   subscribeState,
-} from "../../store/store.js";
+} from "../../../store/store.js";
 import {
   _querySelector,
   _querySelectorAll,
-} from "../../utils/my-query-selector.js";
-import { getState, setState } from "../../observer/observer.js";
+} from "../../../utils/my-query-selector.js";
+import { NEWS_COUNT } from "../../../constants/constants.js";
+import { getState, setState } from "../../../observer/observer.js";
 
 const $snackBar = _querySelector(".snackbar");
 const $alert = _querySelector(".alert");
@@ -51,9 +53,11 @@ const handleUnSubscribeButtonClick = () => {
   const updateArray = subList.filter((_, idx) => idx !== itemIndex);
 
   setState(subscribeState, updateArray);
+  if (updateArray.length % NEWS_COUNT === 0) {
+    const currentPage = getState(subscribeGridPageState);
+    setState(subscribeGridPageState, currentPage - 1);
+  }
   setState(snackBarMsgState, "내가 구독한 언론사에서 삭제되었습니다.");
-
-  console.log(getState(subscribeState));
 
   visibleToInvisible();
 };

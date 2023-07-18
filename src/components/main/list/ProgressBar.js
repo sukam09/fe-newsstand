@@ -1,16 +1,20 @@
 import {
+  categoryState,
+  viewState,
+  listPageState,
+} from "../../../store/store.js";
+import {
   CATEGORY_LENGTH,
   PROGRESS_DIFF,
   PROGRESS_MAX,
   PROGRESS_TIME,
   VIEW_TYPE,
-} from "../../constants/constants.js";
+} from "../../../constants/constants.js";
 import {
   _querySelector,
   _querySelectorAll,
-} from "../../utils/my-query-selector.js";
-import { getState, setState } from "../../observer/observer.js";
-import { categoryState, viewState, listPageState } from "../../store/store.js";
+} from "../../../utils/my-query-selector.js";
+import { getState, setState } from "../../../observer/observer.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
 const $categoryBar = _querySelector("ul", $categoryBarWrapper);

@@ -1,8 +1,12 @@
-import { getState } from "../../observer/observer.js";
-import { PRESS_ICON } from "../../constants/constants.js";
-import { _querySelector } from "../../utils/my-query-selector.js";
+import { getState } from "../../../observer/observer.js";
+import { PRESS_ICON } from "../../../constants/constants.js";
+import { _querySelector } from "../../../utils/my-query-selector.js";
 import { createSubscribeButton } from "../subscribe-button/SubscribeButton.js";
-import { categoryState, isDarkMode, listPageState } from "../../store/store.js";
+import {
+  categoryState,
+  isDarkMode,
+  listPageState,
+} from "../../../store/store.js";
 
 const $listView = _querySelector(".list-view_main");
 

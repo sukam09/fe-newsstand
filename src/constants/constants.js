@@ -18,6 +18,10 @@ const VIEW_TYPE = Object.freeze({
   LIST: "LIST",
   GRID: "GRID",
 });
+const VIEW_OPTION_TYPE = Object.freeze({
+  SUBSCRIBE: "SUBSCRIBE",
+  ALL: "ALL",
+});
 const PRESS_ICON = Object.freeze({
   오마이뉴스: {
     light: "./src/assets/images/light/0.png",
@@ -416,4 +420,5 @@ export {
   PROGRESS_MAX,
   CATEGORY_LENGTH,
   VIEW_TYPE,
+  VIEW_OPTION_TYPE,
 };

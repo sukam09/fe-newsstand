@@ -1,6 +1,6 @@
-import { getState } from "../../observer/observer.js";
-import { snackBarMsgState } from "../../store/store.js";
-import { _querySelector } from "../../utils/my-query-selector.js";
+import { getState } from "../../../observer/observer.js";
+import { snackBarMsgState } from "../../../store/store.js";
+import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const $snackBar = _querySelector(".snackbar");
 const $snackBarInner = _querySelector(".snackbar-body", $snackBar);

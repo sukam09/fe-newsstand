@@ -3,10 +3,10 @@ import {
   snackBarMsgState,
   subscribeState,
   viewState,
-} from "../../store/store.js";
-import { VIEW_TYPE } from "../../constants/constants.js";
-import { getState, setState } from "../../observer/observer.js";
-import { _querySelector } from "../../utils/my-query-selector.js";
+} from "../../../store/store.js";
+import { VIEW_TYPE } from "../../../constants/constants.js";
+import { getState, setState } from "../../../observer/observer.js";
+import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const createNormalSubscribeButton = (name) => {
   const $button = document.createElement("button");
@@ -105,8 +105,6 @@ const handleSubscribeButtonClick = (subItem) => () => {
     setState(subscribeState, [...subList, subItem]);
     setState(snackBarMsgState, "내가 구독한 언론사에 추가되었습니다.");
   }
-
-  console.log(getState(subscribeState));
 };
 
 const checkSubscribe = (subItem) => {

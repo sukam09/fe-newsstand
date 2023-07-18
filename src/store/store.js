@@ -1,11 +1,14 @@
 import { initState } from "../observer/observer.js";
-import { VIEW_TYPE } from "../constants/constants.js";
+import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
 
 const viewState = initState({
   key: "viewState",
   defaultValue: VIEW_TYPE.GRID,
 });
-
+const viewOptionState = initState({
+  key: "viewOptionState",
+  defaultValue: VIEW_OPTION_TYPE.ALL,
+});
 const isDarkMode = initState({
   key: "isDarkMode",
   defaultValue: false,
@@ -13,6 +16,11 @@ const isDarkMode = initState({
 
 const gridPageState = initState({
   key: "gridPageState",
+  defaultValue: 0,
+});
+
+const subscribeGridPageState = initState({
+  key: "subscribeGridPageState",
   defaultValue: 0,
 });
 
@@ -50,4 +58,6 @@ export {
   subscribeState,
   snackBarMsgState,
   alertMsgState,
+  viewOptionState,
+  subscribeGridPageState,
 };
