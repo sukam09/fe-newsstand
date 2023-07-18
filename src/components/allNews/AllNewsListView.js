@@ -20,6 +20,8 @@ export default class AllNewsListView extends Component {
   }
 
   template() {
+    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+
     return `
       <div class="news-list-wrapper">
         <button class="left-button"></button>
@@ -29,9 +31,10 @@ export default class AllNewsListView extends Component {
 
           <section class="press-news-section">
             <div class="press-news-info">
-              <img class="press-logo" src="src/assets/logo/${
-                this.state.currentPress?.number ?? 0
-              }.png" />
+              <img
+                class="press-logo"
+                src="src/assets/${logoMode}/${this.state.currentPress?.number ?? 0}.png"
+              />
               <span class="display-medium12 text-default">2023.02.10. 19:38 편집</span>
               <div class="subscribe-button-wrapper"></div>
             </div>
@@ -45,9 +48,8 @@ export default class AllNewsListView extends Component {
                   />
                 </div>
 
-                <label class="available-medium16  text-strong">${
-                  this.state.currentPress?.main_news.title
-                }
+                <label class="available-medium16  text-strong"
+                  >${this.state.currentPress?.main_news.title}
                 </label>
               </div>
 
