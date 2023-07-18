@@ -45,75 +45,106 @@ const setListArrowEvent = () => {
 
   $leftArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      STATE.LIST_MODE.MEDIA_IDX--;
+      if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX--;
+      else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX--;
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      STATE.LIST_MODE.MEDIA_IDX++;
+      if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX++;
+      else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
       setFullList();
     }
   });
 };
 
 /**
- * STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.MEDIA_IDX 변경 시 범위 벗어나는 idx 예외처리
- *
- * 1. 이전 페이지 이동했을 때
- * 1-1. cate: -1, media: -1
- * 1-2. cate: 0~6: media: -1
- *
- * 2. 다음 페이지 이동했을 때
- * 2-1. cate: 0~5, media: length
- * 2-2. cate: 6, media: length
+ * 페이지 이동 시 예외처리
  */
 const changeIdx = () => {
   let cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
 
-  if (STATE.LIST_MODE.CATE_IDX === 0 && STATE.LIST_MODE.MEDIA_IDX <= -1) {
-    STATE.LIST_MODE.CATE_IDX = 6;
-    STATE.LIST_MODE.MEDIA_IDX = cateLen - 1;
-  } else if (
-    STATE.LIST_MODE.CATE_IDX > 0 &&
-    STATE.LIST_MODE.CATE_IDX <= 6 &&
-    STATE.LIST_MODE.MEDIA_IDX === -1
-  ) {
-    STATE.LIST_MODE.CATE_IDX--;
-    STATE.LIST_MODE.MEDIA_IDX = cateLen - 1;
-  } else if (
-    STATE.LIST_MODE.CATE_IDX >= 0 &&
-    STATE.LIST_MODE.CATE_IDX <= 5 &&
-    STATE.LIST_MODE.MEDIA_IDX === cateLen
-  ) {
-    STATE.LIST_MODE.CATE_IDX++;
-    STATE.LIST_MODE.MEDIA_IDX = 0;
-  } else if (
-    STATE.LIST_MODE.CATE_IDX === 6 &&
-    STATE.LIST_MODE.MEDIA_IDX === cateLen
-  ) {
-    STATE.LIST_MODE.CATE_IDX = 0;
-    STATE.LIST_MODE.MEDIA_IDX = 0;
+  if (STATE.MODE.IS_TOTAL)
+    if (
+      STATE.LIST_MODE.CATE_IDX === 0 &&
+      STATE.LIST_MODE.CATE_MEDIA_IDX === -1
+    ) {
+      // 첫 카테고리 첫 페이지에서 이전 페이지 이동 시
+      STATE.LIST_MODE.CATE_IDX = 6;
+      cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
+      STATE.LIST_MODE.CATE_MEDIA_IDX = cateLen - 1;
+    } else if (
+      // 첫 카테고리 아닐 때, 첫 페이지에서 이전 페이지 이동 시
+      STATE.LIST_MODE.CATE_IDX !== 0 &&
+      STATE.LIST_MODE.CATE_MEDIA_IDX === -1
+    ) {
+      STATE.LIST_MODE.CATE_IDX--;
+      cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
+      STATE.LIST_MODE.CATE_MEDIA_IDX = cateLen - 1;
+    } else if (
+      // 마지막 카테고리일 때, 마지막 페이지라면,
+      STATE.LIST_MODE.CATE_IDX === 6 &&
+      STATE.LIST_MODE.CATE_MEDIA_IDX === cateLen
+    ) {
+      STATE.LIST_MODE.CATE_IDX = 0;
+      STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+    } else if (
+      // 마지막 카테고리가 아닐 때, 마지막 페이지라면,
+      STATE.LIST_MODE.CATE_IDX !== 6 &&
+      STATE.LIST_MODE.CATE_MEDIA_IDX === cateLen
+    ) {
+      STATE.LIST_MODE.CATE_IDX++;
+      STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+    } else if (!STATE.MODE.IS_TOTAL) {
+      if (STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === -1) {
+        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
+      } else if (
+        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === STATE.SUBSCRIBE_LIST.length
+      ) {
+        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = 0;
+      }
+    }
+};
+
+/**
+ * 화면 전환시마다 카테고리바 하위 요소 리셋 후
+ * 모든 카테고리를 unselected 상태로 세팅
+ */
+const setCategoryBar = () => {
+  console.log(STATE.MODE.IS_TOTAL);
+  $categoryBar.innerHTML = "";
+  if (STATE.MODE.IS_TOTAL) {
+    setACategoryBar({ keyList: categoryKeys });
+  } else {
+    const subMediaName = STATE.SUBSCRIBE_LIST.map(
+      (subIdx) => mediaInfo[subIdx].name
+    );
+    setACategoryBar({ keyList: subMediaName });
   }
 };
 
 /**
- * 모든 카테고리를 unselected 상태로 세팅
+ * 모드에 따라 카테고리바 세팅
  */
-const setCategoryBar = () => {
-  categoryKeys.forEach((key, idx) => {
+const setACategoryBar = ({ keyList }) => {
+  keyList.forEach((key, idx) => {
     let cateHTML;
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
-      STATE.LIST_MODE.CATE_IDX = idx;
-      STATE.LIST_MODE.MEDIA_IDX = 0;
+      if (STATE.MODE.IS_TOTAL) {
+        STATE.LIST_MODE.CATE_IDX = idx;
+        STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+      } else {
+        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = idx;
+      }
       setFullList();
     });
     $li.classList.add("category_unselected");
     cateHTML = `
-          <p>${key}</p>
-          <div></div>
-      `;
+      <p>${key}</p>
+      <div></div>
+  `;
     $li.innerHTML = cateHTML;
     $categoryBar.append($li);
   });
@@ -124,9 +155,7 @@ const setCategoryBar = () => {
  */
 const setProgressBar = () => {
   const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
-  const $cateList = document
-    .querySelector(".news-list_category")
-    .querySelectorAll("li");
+  const $cateList = $categoryBar.querySelectorAll("li");
 
   // 1. 모든 li 하위 돌면서 프로그래스바 삭제해주기
   $cateList.forEach((li, idx) => {
@@ -144,7 +173,7 @@ const setProgressBar = () => {
 
   const $cntDiv = $li.children[1];
   $cntDiv.innerHTML = `
-    <p>${STATE.LIST_MODE.MEDIA_IDX + 1}</p>
+    <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
     <p>&nbsp; / ${categoryInfo[cate].length}</p>
   `;
 
@@ -154,7 +183,7 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    STATE.LIST_MODE.MEDIA_IDX++;
+    STATE.LIST_MODE.CATE_MEDIA_IDX++;
     setFullList();
   });
 };
@@ -164,7 +193,7 @@ const setProgressBar = () => {
  */
 const setListView = () => {
   const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
-  const mediaId = categoryInfo[cate][STATE.LIST_MODE.MEDIA_IDX];
+  const mediaId = categoryInfo[cate][STATE.LIST_MODE.CATE_MEDIA_IDX];
 
   const nowMedia = mediaInfo[mediaId];
 
@@ -227,7 +256,7 @@ const setListModeEvent = () => {
  */
 const onClickListMode = ({ className }) => {
   onClickSubscribeMode({ className });
-  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.MEDIA_IDX] = [0, 0];
+  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.CATE_MEDIA_IDX] = [0, 0];
   setFullList();
 };
 
@@ -242,4 +271,4 @@ async function initListView() {
   setListModeEvent();
 }
 
-export { initListView };
+export { initListView, setCategoryBar, setFullList };

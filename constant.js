@@ -29,7 +29,8 @@ const STATE = {
   },
   LIST_MODE: {
     CATE_IDX: 0,
-    MEDIA_IDX: 0,
+    CATE_MEDIA_IDX: 0,
+    SUBSCRIBE_MEDIA_IDX: 0,
   },
 };
 

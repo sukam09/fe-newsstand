@@ -1,5 +1,6 @@
 import { IMAGE, MEDIA, STATE } from "../constant.js";
 import { setArrowVisible, setNewPage } from "./grid.js";
+import { setCategoryBar, setFullList } from "./list.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -93,6 +94,9 @@ const moveListView = () => {
   $rightArrow.classList.remove("hidden");
 
   STATE.MODE.IS_GRID = false;
+
+  setCategoryBar();
+  setFullList();
 };
 
 /**
