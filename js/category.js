@@ -17,16 +17,14 @@ function drawInitCategory() {
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  drawCategoryItem(0);
   clickCategory();
+  drawCategoryItem(0);
 }
 
 function drawCategoryItem(categoryIndex) {
   currentCategoryIndex = categoryIndex;
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
-  const categoryItem = document.querySelectorAll(".categoryItem");
-  categoryDisplayClear(categoryItem);
-  categoryDisplayOn(categoryItem);
+  clearCategoryNumber();
   updateCurrentProgressBar();
   drawNews();
   if (Stores.getProgressInterval() != undefined) {
@@ -54,6 +52,8 @@ function categoryDisplayClear(categoryItem) {
   categoryCnt.forEach((value, index) => {
     categoryItem[index].style.backgroundColor = "#f5f7f9";
     categoryItem[index].style.color = "#5f6e76";
+    categoryItem[index].style.textDecoration = "none";
+    categoryItem[index].classList.remove("active");
     currentCategoryPage[index].style.display = "none";
     document.querySelectorAll(".categoryCnt")[index].style.display = "none";
   });
@@ -91,6 +91,7 @@ function doProgress(progressBar, currentCategoryPage) {
 }
 
 function progressReset(progressBar, currentCategoryPage) {
+  currentCategoryPage[currentCategoryIndex].style.textDecoration = "none";
   currentCategoryPage[currentCategoryIndex].innerHTML =
     currentCategoryPageNumber;
   progressBar.style.transition = "";
@@ -152,19 +153,19 @@ function clickCategory() {
   for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
     const categoryItem = document.getElementById(`category${categoryNum}`);
     categoryItem.addEventListener("click", function () {
-      categoryItem.classList.toggle("active");
       progressReset(currentProgressBar, currentCategoryPage);
       currentCategoryPageNumber = 1;
       drawCategoryItem(categoryNum);
     });
     categoryItem.addEventListener("mouseover", function () {
-      if (!categoryItem.classList.contains("active")) {
+      if (categoryNum !== currentCategoryIndex) {
         categoryItem.style.textDecoration = "underline";
       }
     });
     categoryItem.addEventListener("mouseout", function () {
-      if (!categoryItem.classList.contains("active"))
+      if (categoryNum !== currentCategoryIndex) {
         categoryItem.style.textDecoration = "";
+      }
     });
   }
 }

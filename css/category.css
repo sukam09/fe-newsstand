@@ -43,9 +43,6 @@
   cursor: pointer;
 }
 
-.categoryItem.active {
-  text-decoration: none;
-}
 
 .progress-bar {
   pointer-events: none;
