@@ -1,4 +1,4 @@
-import { POPUP, GLOBAL } from "./variable.js";
+import { ICON, POPUP, GLOBAL } from "./variable.js";
 
 let targetsrc;
 
@@ -56,4 +56,26 @@ function alertBtnHandler(event) {
   }
 }
 
-export { checkSubscribe, clickSubscribeBtn, alertBtnHandler };
+function makeSubscribeBtn(src) {
+  const isSubscribe = checkSubscribe(src);
+  const subscribeBtn = document.createElement("button");
+  subscribeBtn.className = "list-sub-btn";
+  const subscribeImg = document.createElement("img");
+  subscribeImg.src = isSubscribe ? ICON.X : ICON.PLUS;
+  const subscribeSpan = document.createElement("span");
+  subscribeSpan.className = "available-medium12";
+  subscribeSpan.innerHTML = isSubscribe ? "해지하기" : "구독하기";
+  subscribeBtn.appendChild(subscribeImg);
+  subscribeBtn.appendChild(subscribeSpan);
+
+  subscribeBtn.addEventListener("click", (event) => {
+    const target = event.target.localName === "button" ? event.target.parentNode.firstChild : event.target.parentNode.parentNode.firstChild;
+    const result = clickSubscribeBtn(target.src);
+    target.nextSibling.childNodes[0].src = result === "true" ? ICON.X : ICON.PLUS;
+    target.nextSibling.childNodes[1].innerHTML = result === "true" ? "해지하기" : "구독하기";
+  });
+
+  return subscribeBtn;
+}
+
+export { alertBtnHandler, makeSubscribeBtn };

@@ -1,5 +1,5 @@
-import { ICON, GRID, GLOBAL } from "./variable.js";
-import { checkSubscribe, clickSubscribeBtn } from "./subscribe.js";
+import { GRID, GLOBAL } from "./variable.js";
+import { makeSubscribeBtn } from "./subscribe.js";
 
 function initGrid() {
   try {
@@ -67,22 +67,7 @@ function moveGrid(direction) {
 
 function gridHover(event) {
   if (event.type === "mouseenter") {
-    const isSubscribe = checkSubscribe(event.target.firstChild.src);
-    const subscribeBtn = document.createElement("button");
-    subscribeBtn.className = "list-sub-btn";
-    const subscribeImg = document.createElement("img");
-    subscribeImg.src = isSubscribe ? ICON.X : ICON.PLUS;
-    const subscribeSpan = document.createElement("span");
-    subscribeSpan.className = "available-medium12";
-    subscribeSpan.innerHTML = isSubscribe ? "해지하기" : "구독하기";
-    subscribeBtn.appendChild(subscribeImg);
-    subscribeBtn.appendChild(subscribeSpan);
-    subscribeBtn.addEventListener("click", (event) => {
-      const target = event.target.localName === "button" ? event.target.parentNode.firstChild : event.target.parentNode.parentNode.firstChild;
-      const result = clickSubscribeBtn(target.src);
-      target.nextSibling.childNodes[0].src = result === "true" ? ICON.X : ICON.PLUS;
-      target.nextSibling.childNodes[1].innerHTML = result === "true" ? "해지하기" : "구독하기";
-    });
+    const subscribeBtn = makeSubscribeBtn(event.target.firstChild.src);
     event.target.appendChild(subscribeBtn);
     event.target.querySelector(".press-logo").style.display = "none";
   } else if (event.type === "mouseleave") {
