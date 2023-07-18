@@ -7,13 +7,14 @@ import {
 import { shuffle } from "../../utils/utils.js";
 import { progressInterval } from "../category.js";
 import logo from "../../json/news_image.json" assert { type: "json" };
+import Stores from "../Store.js";
 
 const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;
-let currentPageNumber = 0;
 let logos = logo;
 
-function renderGrid(currentPageNumber) {
+function renderGrid() {
+  console.log(Stores.getPage());
   const COUNT_PER_PAGE = 24;
   if (clearInterval != undefined) clearInterval(progressInterval);
   shuffle(logos);
@@ -21,8 +22,8 @@ function renderGrid(currentPageNumber) {
   listMain.style.display = "none";
   gridMain.innerHTML = "";
   for (
-    let LOGO_INDEX = currentPageNumber * COUNT_PER_PAGE;
-    LOGO_INDEX < COUNT_PER_PAGE * currentPageNumber + 24;
+    let LOGO_INDEX = Stores.getPage() * COUNT_PER_PAGE;
+    LOGO_INDEX < COUNT_PER_PAGE * Stores.getPage() + 24;
     LOGO_INDEX++
   ) {
     const outerDiv = document.createElement("div");
@@ -41,27 +42,27 @@ function drawLogo(LOGO_INDEX) {
 }
 
 function increaseGridPage() {
-  if (currentPageNumber === MAX_PAGE_NUMBER - 1) {
+  if (Stores.getPage() === MAX_PAGE_NUMBER - 1) {
     rightAsideButton.style.visibility = "hidden";
-    currentPageNumber++;
-    renderGrid(currentPageNumber);
+    Stores.setPage(Stores.getPage() + 1);
+    renderGrid();
     return;
   }
   leftAsideButton.style.visibility = "visible";
-  currentPageNumber++;
-  renderGrid(currentPageNumber);
+  Stores.setPage(Stores.getPage() + 1);
+  renderGrid();
 }
 
 function decreaseGridPage() {
-  if (currentPageNumber === MIN_PAGE_NUMBER + 1) {
+  if (Stores.getPage() === MIN_PAGE_NUMBER + 1) {
     leftAsideButton.style.visibility = "hidden";
-    currentPageNumber--;
-    renderGrid(currentPageNumber);
+    Stores.setPage(Stores.getPage() - 1);
+    renderGrid();
     return;
   }
   rightAsideButton.style.visibility = "visible";
-  currentPageNumber--;
-  renderGrid(currentPageNumber);
+  Stores.setPage(Stores.getPage() - 1);
+  renderGrid();
 }
 
 export { renderGrid, increaseGridPage, decreaseGridPage };

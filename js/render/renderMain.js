@@ -7,22 +7,17 @@ const leftAsideButton = document.getElementById("aside-left");
 const gridMain = document.getElementById("main-grid-01");
 const listMain = document.getElementById("main-grid-02");
 
-class Page {
-  #PageNumber;
-  constructor() {
-    this.#PageNumber = 0;
-  }
-  setPage(Pagenumber) {
-    this.#PageNumber = Pagenumber;
-  }
-  
-}
-
 function renderMain(isGrid) {
-  if (isGrid) renderGrid(0);
+  if (isGrid) renderGrid();
   else renderCardList();
   clickCardListImage();
   clickGridImage();
 }
 
-export { renderMain, leftAsideButton, rightAsideButton, gridMain, listMain };
+export {
+  renderMain,
+  leftAsideButton,
+  rightAsideButton,
+  gridMain,
+  listMain,
+};

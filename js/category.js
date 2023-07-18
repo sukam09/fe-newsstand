@@ -1,6 +1,6 @@
 import { increment, totalTime } from "../utils/constants.js";
 import { drawNews } from "./drawNews.js";
-import { categoryCnt, categoryNews } from "./setData.js/setCategoryData.js";
+import { categoryCnt } from "./setData.js/setCategoryData.js";
 
 let progress = 0;
 let currentCategoryPageNumber = 1;

@@ -3,6 +3,7 @@ import { addAsideClickEvent } from "./asideButton.js";
 import { renderCardList } from "./render/renderCardList.js";
 import { renderGrid } from "./render/renderGrid.js";
 import { leftAsideButton } from "./render/renderMain.js";
+import Stores from "./Store.js";
 
 function clickGridImage() {
   const gridImage = document.getElementById("grid-image");
@@ -14,7 +15,8 @@ function clickGridImage() {
     changeImageSrc(e.target, "./img/clicked_grid.png");
     leftAsideButton.style.visibility = "hidden";
     addAsideClickEvent(true);
-    renderGrid(0);
+    Stores.setPage(0);
+    renderGrid();
   });
 }
 
