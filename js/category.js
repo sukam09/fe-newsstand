@@ -23,8 +23,8 @@ function drawInitCategory() {
 
 function drawCategoryItem(categoryIndex) {
   currentCategoryIndex = categoryIndex;
-  const categoryItem = document.querySelectorAll(".categoryItem");
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
+  const categoryItem = document.querySelectorAll(".categoryItem");
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
   updateCurrentProgressBar();
@@ -152,12 +152,23 @@ function clickCategory() {
   for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
     const categoryItem = document.getElementById(`category${categoryNum}`);
     categoryItem.addEventListener("click", function () {
+      categoryItem.classList.toggle("active");
       progressReset(currentProgressBar, currentCategoryPage);
       currentCategoryPageNumber = 1;
       drawCategoryItem(categoryNum);
     });
+    categoryItem.addEventListener("mouseover", function () {
+      if (!categoryItem.classList.contains("active")) {
+        categoryItem.style.textDecoration = "underline";
+      }
+    });
+    categoryItem.addEventListener("mouseout", function () {
+      if (!categoryItem.classList.contains("active"))
+        categoryItem.style.textDecoration = "";
+    });
   }
 }
+
 export {
   drawInitCategory,
   increaseListPage,

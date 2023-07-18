@@ -41,8 +41,12 @@
 
 .categoryItem:hover {
   cursor: pointer;
-  text-decoration: underline;
 }
+
+.categoryItem.active {
+  text-decoration: none;
+}
+
 .progress-bar {
   pointer-events: none;
 }
