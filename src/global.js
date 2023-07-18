@@ -1,18 +1,12 @@
-import { showGridPageButton, showGridPage } from "./gridView.js";
-import {
-  setFirstListPage,
-  startCategoryInterval,
-  stopCategoryInterval,
-  updateCategoryClicked,
-} from "./category.js";
+import { stopCategoryInterval } from "./category.js";
 import { $, $All } from "./util.js";
-import { listArrowButtonClicked } from "./listView.js";
+import { getState, resister, setState } from "./observer/observer.js";
 import {
-  IS_GRID,
-  NOW_CATEGORY_IDX,
-  NOW_GRID_PAGE,
-  NOW_LIST_PAGE,
-} from "../constant/constants.js";
+  categoryIdx,
+  gridPageIdx,
+  isGrid,
+  listPageIdx,
+} from "./store/store.js";
 
 // 로고 새로고침
 function refreshWindow() {
@@ -23,47 +17,33 @@ function refreshWindow() {
 function getMainElements() {
   return {
     listContainer: $(".list_container"),
-    gridContainer: $All(".grid_container")[NOW_GRID_PAGE.getValue()],
+    gridContainer: $All(".grid_container")[getState(gridPageIdx)],
     listButton: $(".list_button"),
     gridButton: $(".grid_button"),
-    leftListButton: $(".left_list_button"),
-    rightListButton: $(".right_list_button"),
-    leftGridButton: $(".left_grid_button"),
-    rightGridButton: $(".right_grid_button"),
+    leftNavigationButton: $(".left_navigation_button"),
+    rightNavigationButton: $(".right_navigation_button"),
   };
 }
 
 // 그리드, 리스트 여부에 따른 요소 css 변환
-function changeView(elements, isGrid) {
-  elements.listButton.src = isGrid
+function changeView(elements, currentMode) {
+  elements.listButton.src = currentMode
     ? "./assets/icons/list_off.png"
     : "./assets/icons/list_on.png";
-  elements.gridButton.src = isGrid
+  elements.gridButton.src = currentMode
     ? "./assets/icons/grid_on.png"
     : "./assets/icons/grid_off.png";
 
-  elements.listContainer.style.display = isGrid ? "none" : "block";
-  elements.gridContainer.style.display = isGrid ? "grid" : "none";
-
-  elements.leftListButton.style.display = isGrid ? "none" : "block";
-  elements.rightListButton.style.display = isGrid ? "none" : "block";
-  elements.leftGridButton.style.display = isGrid ? "block" : "none";
-  elements.rightGridButton.style.display = isGrid ? "block" : "none";
-
-  if (isGrid) {
-    showGridPageButton();
-    stopCategoryInterval();
-  } else {
-    startCategoryInterval();
-    setFirstListPage();
-    updateCategoryClicked();
-  }
-  IS_GRID.toggleValue();
+  elements.listContainer.style.display = currentMode ? "none" : "block";
+  elements.gridContainer.style.display = currentMode ? "grid" : "none";
+  elements.leftNavigationButton.style.display = currentMode ? "none" : "block";
+  elements.rightNavigationButton.style.display = currentMode ? "none" : "block";
 }
 
-function changeMainView(isGrid) {
+function toggleMainView() {
+  const currentMode = getState(isGrid);
   const elements = getMainElements();
-  changeView(elements, isGrid);
+  changeView(elements, currentMode);
 }
 
 // 오늘 날짜 update
@@ -82,38 +62,46 @@ function updateDate() {
 }
 
 function keyboardClicked(event) {
-  if (IS_GRID.getValue()) {
-    if (event.key === "ArrowRight" && NOW_GRID_PAGE.getValue() < 3) {
-      showGridPage(1);
-    } else if (event.key === "ArrowLeft" && NOW_GRID_PAGE.getValue() > 0) {
-      showGridPage(-1);
+  const currentGridMode = getState(isGrid);
+  const nowGridPage = getState(gridPageIdx);
+  const nowListPage = getState(listPageIdx);
+  if (currentGridMode) {
+    if (event.key === "ArrowRight" && nowGridPage < 3) {
+      setState(gridPageIdx, nowGridPage + 1);
+    } else if (event.key === "ArrowLeft" && nowGridPage > 0) {
+      setState(gridPageIdx, nowGridPage - 1);
     }
   } else {
     if (event.key === "ArrowRight") {
-      listArrowButtonClicked(1);
+      setState(listPageIdx, nowListPage + 1);
     } else if (
       event.key === "ArrowLeft" &&
-      (NOW_LIST_PAGE.getValue() - 1 > 0 || NOW_CATEGORY_IDX.getValue() !== 0)
+      (nowListPage - 1 > 0 || getState(categoryIdx) !== 0)
     ) {
-      listArrowButtonClicked(-1);
+      setState(listPageIdx, nowListPage - 1);
     }
   }
 }
 
-(function init() {
+function toggleButtonClicked() {
+  setState(isGrid, !getState(isGrid));
+}
+
+function setEvent() {
   const mainLogo = $(".container__header__main");
   const listButton = $(".list_button");
   const gridButton = $(".grid_button");
   mainLogo.addEventListener("click", refreshWindow);
-  listButton.addEventListener("click", () => {
-    changeMainView(false);
-  });
-  gridButton.addEventListener("click", () => {
-    changeMainView(true);
-  });
+  listButton.addEventListener("click", toggleButtonClicked);
+  gridButton.addEventListener("click", toggleButtonClicked);
   window.addEventListener("keydown", (e) => {
     keyboardClicked(e);
   });
+}
+
+(function init() {
+  setEvent();
+  resister(isGrid, toggleMainView);
   stopCategoryInterval();
 })();
 
