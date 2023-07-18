@@ -1,7 +1,10 @@
 import { store, useSelector } from "../store/index.js";
 import { closeSnackbar } from "../store/reducer/snackbar.js";
 
+const SNACKBAR_SHOW_DURATION = "5000";
+
 const $snackbar = document.querySelector(".snackbar");
+let timer;
 
 export const setSnackbar = () => {
   store.subscribe(() => {
@@ -9,10 +12,12 @@ export const setSnackbar = () => {
 
     if (open) {
       $snackbar.classList.add("snackbar-open");
+      clearTimeout(timer);
 
-      setTimeout(() => {
+      timer = setTimeout(() => {
         store.dispatch(closeSnackbar());
-      }, 5000);
+      }, SNACKBAR_SHOW_DURATION);
+
       return;
     }
 
