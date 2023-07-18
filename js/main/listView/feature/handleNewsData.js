@@ -159,6 +159,18 @@ function handleMouseOverAndOut(mainNews, type) {
   }
 }
 
+/* press Info */
+function addEventPressInfo() {
+  const _img = document.querySelector(".press-info button img");
+  _img.addEventListener("click", () => {
+    clickSubscribe(
+      document.querySelector(".press-info-img").dataset.press,
+      "list",
+      _img
+    );
+  });
+}
+
 export {
   makeCategory,
   makeRandomNews,
@@ -166,4 +178,5 @@ export {
   getPagesNum,
   findCurrentCategory,
   chageNews,
+  addEventPressInfo,
 };

@@ -2,6 +2,7 @@ import {
   makeCategory,
   makeRandomNews,
   transformMainNews,
+  addEventPressInfo,
 } from "../feature/handleNewsData.js";
 import { addEventToBtn } from "../feature/handleBtnEvent.js";
 
@@ -10,5 +11,6 @@ function makeListView() {
   makeCategory();
   transformMainNews();
   addEventToBtn();
+  addEventPressInfo();
 }
 export { makeListView };
