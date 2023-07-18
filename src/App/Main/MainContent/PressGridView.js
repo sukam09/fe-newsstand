@@ -15,6 +15,7 @@ const subscibeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="12" 
 const unsubscibeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
   <path d="M4.26699 9L3.66699 8.4L6.06699 6L3.66699 3.6L4.26699 3L6.66699 5.4L9.06699 3L9.66699 3.6L7.26699 6L9.66699 8.4L9.06699 9L6.66699 6.6L4.26699 9Z" fill="#879298"/>
   </svg>해지하기`;
+
 const indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
 
 const findTargetChildNode = (element, targetTagName) => {
@@ -37,15 +38,12 @@ const findTargetChildNode = (element, targetTagName) => {
   return null;
 };
 
-const isSubscribed = (pressId) => {
-  return false;
-};
-
 const createNewspaperItem = function (index, mode) {
   const pressId = index + 1;
-  const buttonInner = isSubscribed(pressId)
+  const buttonInner = store.isSubscribed(String(pressId))
     ? unsubscibeButtonInner
     : subscibeButtonInner;
+
   const inner = `<img src="./assets/newspaper/${mode}/${pressId}.png" alt=${"name"} />
   <button class="subscribe-btn" data-key=${pressId}>
   ${buttonInner}
