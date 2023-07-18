@@ -7,7 +7,7 @@
       "name": "YTN 사이언스",
       "darkSrc": "./assets/images/dark-press-logo/img1.svg",
       "lightSrc": "./assets/images/light-press-logo/img1.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 0,
       "categoryName": "종합/경제",
@@ -1218,7 +1218,7 @@
       "name": "텐아시아",
       "darkSrc": "./assets/images/dark-press-logo/img32.svg",
       "lightSrc": "./assets/images/light-press-logo/img32.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 1,
       "categoryName": "방송/통신",
@@ -1608,7 +1608,7 @@
       "name": "JTBC",
       "darkSrc": "./assets/images/dark-press-logo/img42.svg",
       "lightSrc": "./assets/images/light-press-logo/img42.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 2,
       "categoryName": "IT",
@@ -2076,7 +2076,7 @@
       "name": "한국대학신문",
       "darkSrc": "./assets/images/dark-press-logo/img54.svg",
       "lightSrc": "./assets/images/light-press-logo/img54.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 2,
       "categoryName": "IT",
@@ -2115,7 +2115,7 @@
       "name": "datanews",
       "darkSrc": "./assets/images/dark-press-logo/img55.svg",
       "lightSrc": "./assets/images/light-press-logo/img55.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 2,
       "categoryName": "IT",
@@ -2700,7 +2700,7 @@
       "name": "뉴스타파",
       "darkSrc": "./assets/images/dark-press-logo/img70.svg",
       "lightSrc": "./assets/images/light-press-logo/img70.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 3,
       "categoryName": "영자지",
@@ -3558,7 +3558,7 @@
       "name": "세계일보",
       "darkSrc": "./assets/images/dark-press-logo/img92.svg",
       "lightSrc": "./assets/images/light-press-logo/img92.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 6,
       "categoryName": "지역",
@@ -3675,7 +3675,7 @@
       "name": "데일리안",
       "darkSrc": "./assets/images/dark-press-logo/img95.svg",
       "lightSrc": "./assets/images/light-press-logo/img95.svg",
-      "isSub": true,
+      "isSub": false,
 
       "categoryId": 6,
       "categoryName": "지역",
