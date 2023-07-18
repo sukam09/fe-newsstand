@@ -1,4 +1,6 @@
-function snackBar(e) {
+import { store, actionCreator } from "../../store.js";
+
+function snackBar() {
   const snackBarElement = document.createElement("div");
   snackBarElement.className = "snack-bar";
   snackBarElement.innerHTML = `<span class="snack-bar-text display-medium16">내가 구독한 언론사에 추가되었습니다.</span>`;
@@ -10,9 +12,33 @@ function snackBar(e) {
   }, 5000);
 }
 
-export function DoSubScribe(btnElement, pressName) {
+function alertElement(pressID) {
+  const alertEle = `
+        <div class="alert">
+            <div class="alert-contents">
+                <span class="alert-contents-text">을(를)<br/>구독하시겠습니까?</span>
+            </div>
+            <div class="alert-buttons">
+            </div>
+        </div>
+    `;
+}
+
+export function DoSubScribe(btnElement, pressID) {
   btnElement.addEventListener("click", (e) => {
     snackBar(e);
-    console.log(pressName);
+    store.dispatch(actionCreator("subscribe", { pressID }));
   });
+}
+
+export function DoUnsubscribe(btnElement, pressID) {
+  btnElement.addEventListener("click", (e) => {
+    alertElement(pressID);
+
+    store.dispatch(actionCreator("unsubscribe", { pressID }));
+  });
+}
+
+export function SubscribeState(pressID) {
+  return store.getIsSubscribe(pressID);
 }

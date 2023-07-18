@@ -24,6 +24,8 @@ function arrowBtnClickHandler(dir) {
     } else if (GRID_PAGE.CURRENT_PAGE === GRID_ENTIRE_PAGE) {
       right_btn.style.display = "none";
       left_btn.style.display = "block";
+    } else {
+      arrowStateInit();
     }
   }
   //리스트뷰

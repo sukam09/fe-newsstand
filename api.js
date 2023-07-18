@@ -31,9 +31,9 @@ function shuffle_id(news_icon) {
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    tempValue = news_icon[currentIndex].path;
-    news_icon[currentIndex].path = news_icon[randomIndex].path;
-    news_icon[randomIndex].path = tempValue;
+    tempValue = news_icon[currentIndex];
+    news_icon[currentIndex] = news_icon[randomIndex];
+    news_icon[randomIndex] = tempValue;
   }
 }
 function shuffle_press(press) {

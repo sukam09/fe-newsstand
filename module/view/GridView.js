@@ -1,36 +1,54 @@
 import { fetchPressData } from "../../api.js";
 import { GRID_PAGE } from "../../global.js";
-import { DoSubScribe } from "../components/SubscribeBtn.js";
+import { DoSubScribe, DoUnsubscribe } from "../components/SubscribeBtn.js";
+import { SubscribeState } from "../components/SubscribeBtn.js";
 
 let news_icon;
 const ICONS_PER_PAGE = 24;
 const COL_CNT = 6;
+const eventListeners = [];
 
-function createSubscribeDiv(li, row, col) {
-  const subscribeModeDiv = `
-  <div class="subscribe-wrap">
+function createSubscribeDiv(li, pressID) {
+  if (SubscribeState(pressID)) {
+    const UnSubscribeModeDiv = `
+    <div class="subscribe-wrap">
+      <button class="subscribe-btn">
+          <img class="plus-btn" src="../../asset/button/plus.png">
+          <span class="scribe-text available-medium12">해지하기</span>
+      </button>
+    </div>`;
 
-    <button class="subscribe-btn">
-        <img class="plus-btn" src="../../asset/button/plus.png">
-        <span class="scribe-text available-medium12">구독하기</span>
-    </button>
-  </div>`;
+    li.innerHTML += UnSubscribeModeDiv;
+    const SubscribeBtn = li.querySelector(".subscribe-btn");
+    DoUnsubscribe(SubscribeBtn, pressID);
+  } else {
+    const subscribeModeDiv = `
+    <div class="subscribe-wrap">
+      <button class="subscribe-btn">
+          <img class="plus-btn" src="../../asset/button/plus.png">
+          <span class="scribe-text available-medium12">구독하기</span>
+      </button>
+    </div>`;
 
-  li.innerHTML += subscribeModeDiv;
-  const SubscribeBtn = li.querySelector(".subscribe-btn");
-  DoSubScribe(SubscribeBtn, news_icon[COL_CNT * row + col].id);
+    li.innerHTML += subscribeModeDiv;
+    const SubscribeBtn = li.querySelector(".subscribe-btn");
+    DoSubScribe(SubscribeBtn, pressID);
+  }
 }
 
-function pressMouseOver(li, row, col) {
+function pressMouseOver(li) {
+  const ID = li.getAttribute("ID");
+
   const subscribeMode = li.querySelector("div");
   if (!subscribeMode) {
-    createSubscribeDiv(li, row, col);
+    createSubscribeDiv(li, ID);
     const pressLogo = li.querySelector(".press-logo");
     pressLogo.classList.add("hidden");
   }
 }
 function pressMouseOut(li) {
   const subscribeModeDiv = li.querySelector("div");
+
   if (subscribeModeDiv) {
     li.removeChild(subscribeModeDiv);
     const pressLogo = li.querySelector(".press-logo");
@@ -47,9 +65,9 @@ export function updateGrid() {
         const grid_li = ul.querySelectorAll("li");
         grid_li.forEach((li, col) => {
           const press_logo = li.querySelector(".press-logo");
+          const ID = news_icon[icon_idx].id;
+          li.setAttribute("ID", ID);
           press_logo.src = news_icon[icon_idx++].path;
-          li.addEventListener("mouseenter", () => pressMouseOver(li, row, col));
-          li.addEventListener("mouseleave", () => pressMouseOut(li));
         });
       });
     } else {
@@ -73,8 +91,14 @@ export async function printGrid(mode = "") {
         const press_logo = document.createElement("img");
         press_logo.className = "press-logo";
 
+        const ID = news_icon[icon_idx].id;
+        grid_li.setAttribute("ID", ID);
+
         //수정한 부분
         if (news_icon.length > icon_idx) press_logo.src = news_icon[icon_idx++].path;
+
+        grid_li.addEventListener("mouseenter", pressMouseOver.bind(this, grid_li));
+        grid_li.addEventListener("mouseleave", pressMouseOut.bind(this, grid_li));
 
         grid_li.appendChild(press_logo);
         grid_row.appendChild(grid_li);
