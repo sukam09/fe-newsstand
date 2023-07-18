@@ -1,5 +1,5 @@
-import { initState } from "./observer.js";
-import { categoryData, pressData } from "./dataState.js";
+import { getState, initState } from "./observer.js";
+import { categoryDataState, pressDataState } from "./dataState.js";
 export const LIST = "list";
 export const GRID = "grid";
 export const NUM_IN_A_GRID = 24;
@@ -9,8 +9,8 @@ export let TOTAL_LIST_PAGE;
 export const MAX_LIST_PAGE = {};
 
 export function initPageState() {
-  const { categoryList } = categoryData;
-  const { pressList } = pressData;
+  const { categoryList } = getState(categoryDataState);
+  const { pressList } = getState(pressDataState);
 
   [...categoryList].forEach((category) => {
     MAX_LIST_PAGE[category.categoryId] = category.pressIdList.length;

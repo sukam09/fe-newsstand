@@ -19,7 +19,13 @@ import {
   handleThemeButtonClick,
 } from "../components/titleSection/titleSection.js";
 import { handleClickCategoryItem } from "./categoryController.js";
-import { hiddenSubButton, showSubButton } from "./gridController.js";
+import {
+  handleGridItemClick,
+  handleSubButtonClick,
+  handleUnsubButtonClick,
+  hiddenSubButton,
+  showSubButton,
+} from "./gridController.js";
 import { getState, setState } from "../store/observer.js";
 import {
   MAX_CATEGORY_ID,
@@ -50,6 +56,7 @@ function addEventsOnGridItem() {
   [...$gridItems].forEach((gridItem) => {
     gridItem.addEventListener("mouseover", (e) => showSubButton(e));
     gridItem.addEventListener("mouseout", (e) => hiddenSubButton(e));
+    gridItem.addEventListener("click", (e, key) => handleGridItemClick(e, key));
   });
 }
 
@@ -118,13 +125,18 @@ function addEventsOnPageButton() {
 }
 
 function addEventsOnSubButton() {
-  const $subButtonContainers = qsa(".sub_button_container");
-  [...$subButtonContainers].forEach(($subButtonContainer) => {
-    const $subButton = $subButtonContainer.querySelector(".sub_button");
-    const $unsubButton = $subButtonContainer.querySelector(".unsub_button");
+  const $gridItems = qsa(".grid_items");
+  // const $subButtonContainers = qsa(".sub_button_container");
+  // [...$subButtonContainers].forEach(($subButtonContainer) => {
+  //   const $subButton = $subButtonContainer.querySelector(".sub_button");
+  //   const $unsubButton = $subButtonContainer.querySelector(".unsub_button");
 
-    $subButton.addEventListener("click", () => {});
-    $unsubButton.addEventListener("click", () => {});
+  //   $subButton.addEventListener("click", (e) => handleSubButtonClick(e));
+  //   $unsubButton.addEventListener("click", (e) => handleUnsubButtonClick(e));
+  // });
+
+  [...$gridItems].forEach(($item) => {
+    $item.addEventListener("click", (e) => handleGridItemClick(e));
   });
 }
 

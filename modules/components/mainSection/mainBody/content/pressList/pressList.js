@@ -1,9 +1,13 @@
-import { categoryData, pressData } from "../../../../../store/dataState.js";
+import {
+  categoryDataState,
+  pressDataState,
+} from "../../../../../store/dataState.js";
+import { getState } from "../../../../../store/observer.js";
 
 // 하나의 카테고리의 하나의 페이지
 export function createPressList(categoryId, page) {
-  const { categoryList } = categoryData;
-  const { pressList } = pressData;
+  const { categoryList } = getState(categoryDataState);
+  const { pressList } = getState(pressDataState);
   const { pressIdList } = categoryList[categoryId];
 
   const targetPressList = [...pressList].filter((press) =>

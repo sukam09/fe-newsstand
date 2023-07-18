@@ -1,16 +1,26 @@
-import { categoryData, pressData } from "../../../../store/dataState.js";
+import {
+  categoryDataState,
+  pressDataState,
+} from "../../../../store/dataState.js";
+import { getState, setState } from "../../../../store/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_GRID_PAGE,
   MAX_LIST_PAGE,
 } from "../../../../store/pageState.js";
+import { shuffleArray } from "../../../../utils.js";
 import { createPressGrid } from "./pressGrid/pressGrid.js";
 import { createCategory } from "./pressList/category.js";
 import { createPressList } from "./pressList/pressList.js";
 
 export function createContent() {
-  const { pressList } = pressData;
-  const { categoryList } = categoryData;
+  const { pressList } = getState(pressDataState);
+  const shuffledPressDataArr = shuffleArray(pressList);
+  setState(pressDataState, {
+    pressList: shuffledPressDataArr,
+  });
+
+  const { categoryList } = getState(categoryDataState);
   let allPressGridPage = "";
   let allPressListPage = "";
 
