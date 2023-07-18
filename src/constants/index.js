@@ -16,3 +16,7 @@ export const TEXT = Object.freeze({
   ALL: 'all',
   SUBSCRIBE_EN: 'subscribed',
 });
+
+export const KEY = Object.freeze({
+  COLOR_MODE: 'colorMode',
+});

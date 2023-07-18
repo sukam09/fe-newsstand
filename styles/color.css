@@ -82,6 +82,9 @@
   border: 1px solid var(--gray-scale-100);
 }
 
+body {
+  transition: background-color 0.3s ease-in-out;
+}
 /*dark*/
 .dark {
   background-color: var(--surface-default);

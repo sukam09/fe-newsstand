@@ -1,5 +1,5 @@
 import { TEXT } from '../../constants/index.js';
-import { showSnackBar, toggleAlert } from '../../index.js';
+import { showSnackBar, toggleAlert } from '../../../store/index.js';
 import Button from '../common/Button.js';
 import Component from '../core/Component.js';
 

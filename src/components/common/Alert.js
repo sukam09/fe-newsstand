@@ -1,5 +1,4 @@
-import { TEXT } from '../../constants/index.js';
-import { toggleAlert } from '../../index.js';
+import { toggleAlert } from '../../../store/index.js';
 import Component from '../core/Component.js';
 
 export default class Alert extends Component {

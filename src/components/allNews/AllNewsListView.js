@@ -1,6 +1,5 @@
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
-import Button from '../common/Button.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
