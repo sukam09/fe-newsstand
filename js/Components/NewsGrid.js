@@ -1,10 +1,8 @@
-import { constants } from "../../Data/constants.js";
+import Component from "../core/Component.js";
 
-export function NewsGrid(props) {
-  return `
-    <section class="news-section-grid ${
-      props.showType === constants.SHOW_LIST && "hidden"
-    }">
+export default class NewsGrid extends Component {
+  template() {
+    return `
       <ul class="newspaper__list"></ul>
 
       <div class="left-button_content">
@@ -30,6 +28,6 @@ export function NewsGrid(props) {
           <path d="M1 41L25 21L1 1" stroke="#6E8091" />
         </svg>
       </div>
-    </section>
-  `;
+    `;
+  }
 }

@@ -1,4 +1,10 @@
+import { setHeaderDate } from "./Function/headerDate.js";
+
 export function Header() {
+  window.addEventListener("DOMContentLoaded", () => {
+    setHeaderDate();
+  });
+
   return `
     <header class="header">
       <h1 class="header__title">

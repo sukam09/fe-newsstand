@@ -1,7 +1,7 @@
 import { useEffect, useState } from "../../core/index.js";
 import { HeadlineContent } from "./headlineContent.js";
-import { setRolling } from "./Function/rolling.js";
 import { getRollingData } from "./Function/getRollingData.js";
+import { setRolling } from "./Function/rolling.js";
 
 export function Headline() {
   const [rollingData, setRollingData] = useState([]);
@@ -9,17 +9,8 @@ export function Headline() {
   useEffect(async () => {
     const getData = await getRollingData();
     setRollingData(getData);
+    setRolling();
   }, []);
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const timer = setInterval(() => {
-      const $ul = document.querySelector(".headline__content_rolling > ul");
-      if ($ul) {
-        setRolling();
-        clearInterval(timer);
-      }
-    }, 100);
-  });
 
   return `
     <section class="headline">
