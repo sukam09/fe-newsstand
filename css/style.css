@@ -400,6 +400,7 @@ nav.agency .view-type button {
   height: 0.75rem;
   filter: invert(58%) sepia(16%) saturate(191%) hue-rotate(157deg)
     brightness(94%) contrast(91%);
+  pointer-events: none;
 }
 
 .minus {
@@ -407,6 +408,7 @@ nav.agency .view-type button {
   height: 0.75rem;
   filter: invert(58%) sepia(16%) saturate(191%) hue-rotate(157deg)
     brightness(94%) contrast(91%);
+  pointer-events: none;
 }
 
 .subscribe-text {
@@ -416,6 +418,7 @@ nav.agency .view-type button {
   font-style: normal;
   font-weight: var(--font-weight-medium);
   line-height: normal;
+  pointer-events: none;
 }
 
 .news-list {
