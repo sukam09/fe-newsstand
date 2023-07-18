@@ -182,18 +182,15 @@ const setGridButtonClick = (pressData, pressIds, li) => {
   li.addEventListener('click', () => {
     const pressImg = li.querySelector('img');
     const pressId = Number(pressImg.getAttribute('pressid'));
+    const pressName = pressData.find((press) => press.id === pressId).name;
     const isSubscribe = LIST.SUBSCRIBE.includes(pressId);
     isSubscribe ? (LIST.SUBSCRIBE = LIST.SUBSCRIBE.filter((id) => id !== pressId)) : LIST.SUBSCRIBE.push(pressId);
-    setGridButtonChange(!isSubscribe, li);
-    setSubscribe(pressData, pressIds, isSubscribe);
+    setSubscribe(pressData, pressIds, pressName, isSubscribe);
   });
 };
 
-const setSubscribe = (pressData, pressIds, isSubscribe) => {
-  if (isSubscribe) {
-    // 구독해지할때 리프레시
-    getAlert(pressData, pressIds);
-  }
+const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
+  if (isSubscribe) getAlert(pressData, pressIds, pressName);
   if (!isSubscribe) getSnackBar(pressData);
 };
 

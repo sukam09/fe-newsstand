@@ -21,21 +21,24 @@ const getSnackBar = (pressData) => {
   }, 5000);
 };
 
-const getAlert = (pressData, pressIds) => {
+const getAlert = (pressData, pressIds, pressName) => {
   setAlert();
-  setAlertEvent(pressData, pressIds);
+  setAlertEvent(pressData, pressIds, pressName);
 };
 
-const setAlertEvent = (pressData, pressIds) => {
+const setAlertEvent = (pressData, pressIds, pressName) => {
   const alert = document.querySelector('.alert');
-  const alertYes = document.querySelector('.alert-yes');
-  const alertNo = document.querySelector('.alert-no');
+  const alertPress = alert.querySelector('.alert-name');
+  const alertYes = alert.querySelector('.alert-yes');
+  const alertNo = alert.querySelector('.alert-no');
   alert.classList.remove('hidden');
+  alertPress.innerText = pressName;
 
   alertYes.addEventListener('click', () => {
     STATE.IS_UNSUBSCRIBE = true;
     alert.classList.add('hidden');
     if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
+    if (pressIds.length >= 96) initPressGrid(pressData, LIST.SUFFLE);
   });
   alertNo.addEventListener('click', () => {
     STATE.IS_UNSUBSCRIBE = false;
