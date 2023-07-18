@@ -3,6 +3,7 @@ import { grid_view_info_entire, grid_view_info_sub, toggleArrow } from "../compo
 import { create } from "../utils/createElement.js";
 import { class_name } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
+import { subscribe_idx_list } from "../../data/subscribeIdxList.js";
 const btnFactory = new buttonFacotry();
 
 function createMainGrid(grid_view_info, isInit) {
@@ -24,6 +25,12 @@ function createMainGrid(grid_view_info, isInit) {
             else if (i == GRID_COL_SIZE - 1) list_class_name = "border_bottom";
             else if (j == GRID_ROW_SIZE - 1) list_class_name = "border_right";
 
+            if (data_list.length <= cnt) {
+                const $grid = create.li({ className: list_class_name });
+                $list.appendChild($grid);
+                continue;
+            }
+
             const $mouse_enter_grid = create.div({
                 className: "mouse-enter-grid",
                 events: {
@@ -32,10 +39,12 @@ function createMainGrid(grid_view_info, isInit) {
                     },
                 },
             });
+
+            const is_subscribe_press = !subscribe_idx_list.includes(data_list[cnt].id);
             const $subscribe_btn = btnFactory.create({
                 type: "subscribe",
                 isDefault: true,
-                isSubscribe: true,
+                isSubscribe: is_subscribe_press,
             });
             $subscribe_btn.setEvents({
                 click: () => {
@@ -52,15 +61,12 @@ function createMainGrid(grid_view_info, isInit) {
                     },
                 },
             });
-            if (data_list.length > cnt) {
-                const $list_img = create.img({
-                    className: "news_data_img",
-                    attributes: { src: data_list[cnt++].press_light_src },
-                });
-                // $list_item.appendChild($list_img);
-                $list_item.append($list_img, $mouse_enter_grid);
-            }
 
+            const $list_img = create.img({
+                className: "news_data_img",
+                attributes: { src: data_list[cnt++].press_light_src },
+            });
+            $list_item.append($list_img, $mouse_enter_grid);
             $list.appendChild($list_item);
         }
         $container.appendChild($list);
