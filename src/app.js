@@ -6,7 +6,7 @@ import PressListView from './components/PressListView.js';
 
 export default function App({ $app }) {
   this.state = {
-    pressView: 'grid',
+    view: 'grid',
   };
 
   this.setState = nextState => {
@@ -37,14 +37,14 @@ export default function App({ $app }) {
   const pressTab = new PressTab({
     $target: $app,
     initialState: {
-      pressView: 'grid',
+      view: 'grid',
     },
-    onClick: newPressView => {
-      if (this.state.pressView === newPressView) {
+    onClickView: view => {
+      if (this.state.view === view) {
         return;
       }
-      this.setState({ ...this.state, pressView: newPressView });
-      pressTab.setState({ ...this.state, pressView: newPressView });
+      this.setState({ ...this.state, view });
+      pressTab.setState({ ...this.state, view });
     },
   });
 
@@ -54,7 +54,7 @@ export default function App({ $app }) {
   this.render = () => {
     $div.innerHTML = '';
 
-    this.state.pressView === 'grid'
+    this.state.view === 'grid'
       ? new PressGridView({
           $target: $div,
           initialState: {
