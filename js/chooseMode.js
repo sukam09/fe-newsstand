@@ -3,7 +3,7 @@ import { addAsideClickEvent } from "./asideButton.js";
 import { renderCardList } from "./render/renderCardList.js";
 import { renderGrid } from "./render/renderGrid.js";
 import { leftAsideButton } from "./render/renderMain.js";
-import Stores from "./Store.js";
+import Stores from "../utils/Store.js";
 
 function clickGridImage() {
   const gridImage = document.getElementById("grid-image");
@@ -26,6 +26,7 @@ function clickCardListImage() {
     changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
     changeImageSrc(e.target, "./img/clicked_card_list.png");
     addAsideClickEvent(false);
+    Stores.clearProgressInterval();
     renderCardList();
   });
 }

@@ -185,6 +185,26 @@ section.main {
   margin-right: 16px;
 }
 
+.grid-list:hover {
+  .hover-subscribe-button {
+    display: flex;
+    background-color: #f5f7f9;
+  }
+  .hover-subscribe-button > img {
+    margin: 0 auto;
+    transform: scale(0.5);
+  }
+  .grid-image {
+    display: none;
+  }
+}
+
+.hover-subscribe-button {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
 input[type="radio"]:checked + label {
   font-weight: bold;
 }

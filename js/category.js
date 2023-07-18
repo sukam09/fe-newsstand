@@ -1,16 +1,14 @@
 import { increment, totalTime } from "../utils/constants.js";
 import { drawNews } from "./drawNews.js";
 import { categoryCnt } from "./setData.js/setCategoryData.js";
+import Stores from "../utils/Store.js";
 
 let progress = 0;
 let currentCategoryPageNumber = 1;
 let currentCategoryIndex = 0;
-let progressInterval;
 let currentCategoryPage;
 
 function drawInitCategory() {
-  currentCategoryPageNumber = 1;
-  currentCategoryIndex = 0;
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   categoryCnt.forEach((key, index) => {
     categoryHtml += `<div class="categoryItem" id="category${index}"><div class="progress-bar" id=${key.key}></div><span class="category">${key.key}</span></li><span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${key.value}</span></div>`;
@@ -26,8 +24,8 @@ function drawCategoryItem() {
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
   drawNews();
-  if (progressInterval != undefined) {
-    clearInterval(progressInterval);
+  if (Stores.getProgressInterval() != undefined) {
+    Stores.clearProgressInterval();
     progressReset(
       document.querySelectorAll(".progress-bar")[currentCategoryIndex],
       currentCategoryPage
@@ -59,9 +57,11 @@ function categoryDisplayClear(categoryItem) {
 
 function intervalProgress(progressBar, currentCategoryPage) {
   progress = 0;
-  progressInterval = setInterval(() => {
-    doProgress(progressBar, currentCategoryPage);
-  }, totalTime / (100 / increment));
+  Stores.setProgressInterval(
+    setInterval(() => {
+      doProgress(progressBar, currentCategoryPage);
+    }, totalTime / (100 / increment))
+  );
 }
 
 function doProgress(progressBar, currentCategoryPage) {
@@ -78,7 +78,7 @@ function doProgress(progressBar, currentCategoryPage) {
       if (currentCategoryIndex === categoryCnt.length - 1)
         currentCategoryIndex = 0;
       else currentCategoryIndex++;
-      clearInterval(progressInterval);
+      Stores.clearProgressInterval();
     }
     drawCategoryItem();
     progressReset(progressBar, currentCategoryPage);
@@ -107,7 +107,7 @@ function clearCategoryNumber() {
 
 function clearNewsInterval() {
   drawNews();
-  clearInterval(progressInterval);
+  Stores.clearProgressInterval();
   intervalProgress(
     document.querySelectorAll(".progress-bar")[currentCategoryIndex],
     currentCategoryPage
@@ -160,7 +160,6 @@ function decreaseListPage() {
 
 export {
   drawInitCategory,
-  progressInterval,
   increaseListPage,
   decreaseListPage,
   currentCategoryIndex,

@@ -14,10 +14,4 @@ function renderMain(isGrid) {
   clickGridImage();
 }
 
-export {
-  renderMain,
-  leftAsideButton,
-  rightAsideButton,
-  gridMain,
-  listMain,
-};
+export { renderMain, leftAsideButton, rightAsideButton, gridMain, listMain };
