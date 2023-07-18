@@ -25,6 +25,9 @@ const view_option = {
     progress_interval: new Object(),
     progress_max: 20,
     progress_time: 0,
+
+    // subscribe
+    subscribe_press: {}
 };
 
 const theme_option = {

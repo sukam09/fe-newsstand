@@ -24,6 +24,11 @@ import {
     createSnackBarView,
 } from "./views/snack_bar_views.js";
 
+/**
+ * @description
+ * 1. 언론사 토글 기능
+ * 2. grid_views, 언론사 호버 이벤트
+ */
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
     press_container.forEach((item) => {
@@ -43,6 +48,11 @@ function togglePressEvent() {
     toggleSubscribeEvent();
 }
 
+/**
+ * @description
+ * 1. 구독/구독해제 이벤트
+ * 2. grid_views, 언론사 구독 클릭 이벤트
+ */
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
     let snack_animation_time;
@@ -52,16 +62,23 @@ function toggleSubscribeEvent() {
             clearTimeout(snack_animation_time);
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = useAnimationSnackBar();
+            renderSubscribe(press, press.is_subscribe);
             if (!press.is_subscribe) {
                 renderSnackBarView(snack_bar, true);
+                view_option.subscribe_press[press.name] = false;
             } else {
                 renderSnackBarView(snack_bar, false);
+                view_option.subscribe_press[press.name] = true;
             }
-            renderSubscribe(press, press.is_subscribe);
         });
     });
 }
-
+/**
+ * @description
+ * 1. 카테고리 변경 이벤트
+ * 2. list_views, 카테고리 클릭 이벤트
+ * @param {Array} data
+ */
 function changeCategoryEvent(data) {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
 
@@ -83,6 +100,11 @@ function changeCategoryEvent(data) {
     });
 }
 
+/**
+ * @description
+ * 1. 페이지 이동 이벤트
+ * 2. list_views, grid_views, 화살표 클릭 이벤트
+ */
 function arrowPagingEvent() {
     if (!length) length = MAX_PAGE;
     const grid_left_arrow = document.querySelector(".grid_left_arrow");
@@ -109,6 +131,15 @@ function arrowPagingEvent() {
     });
 }
 
+/**
+ * @description
+ * 1. 페이지 이동 이벤트 핸들러
+ * 2. list_views, grid_views, 화살표 클릭 이벤트 핸들러
+ * 3. action 으로 이동할 필요가 있음? (useMovePage)
+ * @param {String} direction - prev, next
+ * @param {String} view - grid, list
+ * @param {view_option} view_option - view_option
+ */
 function movePageEventHandler(direction, view, view_option) {
     if (view === "grid") {
         useMovePage(direction, view, view_option);
@@ -132,35 +163,41 @@ function movePageEventHandler(direction, view, view_option) {
     }
 }
 
+/**
+ * @description
+ * 1. 구독자 옵션 변경 이벤트
+ * 2. grid_views, list_views, 구독자 옵션 클릭 이벤트
+ */
 function subscribeOptionEvent() {
     const option_press = document.querySelectorAll(".option_press");
     option_press.forEach((option) => {
         option.addEventListener("click", (e) => {
-            view_option.press = option.id;
+            view_option.press = option.id.split("_")[1];
             if (option.id === "option_all_press") {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_subscribe_press").className =
                     "option_press option_press_inactive";
-
-                // here (random_news.js) renderPress()
             } else {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_all_press").className =
                     "option_press option_press_inactive";
-
-                // here (subscribe_news.js) renderPress()
             }
         });
     });
 }
 
+/**
+ * @description
+ * 1. 메인 옵션 변경 이벤트
+ * 2. grid_views, list_views, 메인 옵션 클릭 이벤트
+ */
 function mainOptionEvent() {
     const option_main = document.querySelectorAll(".option_main");
     const news_data_container = document.querySelector(".main_news_container");
 
     option_main.forEach((option) => {
         option.addEventListener("click", () => {
-            view_option.main = option.id.slice(7, 11);
+            view_option.main = option.id.split("_")[1];
             if (option.id === "option_grid_main") {
                 option.src = "./assets/icons/option_grid_main_active.png";
                 document.getElementById("option_list_main").src =
