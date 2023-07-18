@@ -8,6 +8,9 @@ import {
   setCategory,
 } from "../store/reducer/page.js";
 import { resetProgress } from "./progress-bar.js";
+import { SubscribeButton } from "./components.js";
+import { openSnackbar } from "../store/reducer/snackbar.js";
+import { addSubscribe } from "../store/reducer/subscribe-list.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
 const $listViewTabItems = $listViewTab.querySelectorAll("li");
@@ -30,10 +33,14 @@ const fillArticles = (currentCategory, currentPage) => {
   const theme = useSelector((state) => state.theme.currentTheme);
   const { name, src, edit_date, main_news, sub_news } =
     NewsDB.queryByCategory(currentCategory)[currentPage];
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const isSubscribed = subscribeList.includes(name);
 
-  $news_logo.src = src[theme];
-  $news_logo.alt = name;
-  $edit_date.innerText = edit_date;
+  $listViewHeader.innerHTML = `
+    <img src="${src[theme]}" alt="${name}" height="20" width="auto" />
+    <span class="list-view-main_edit-date display-medium12">${edit_date}</span>
+    ${SubscribeButton(isSubscribed)}
+  `;
 
   $mainThumbnail.src = main_news.thumbnail;
   $mainTitle.innerText = main_news.title;
@@ -80,10 +87,26 @@ const handleListViewTabClick = (e) => {
   store.dispatch(setCategory(category));
 };
 
+const handleSubscribeButtonClick = (e) => {
+  const $button = e.target.closest(".subscribe-btn");
+  const name = $button.previousElementSibling.previousElementSibling.alt;
+
+  const isSubscribed = JSON.parse($button.dataset.subscribed);
+
+  if (isSubscribed) {
+    // TODO: 구독해지 로직
+    return;
+  }
+
+  store.dispatch(openSnackbar());
+  store.dispatch(addSubscribe(name));
+};
+
 export const renderListView = () => {
   $listViewTabItems.forEach(($tabItem) => {
     $tabItem.addEventListener("click", handleListViewTabClick);
   });
+  $listViewHeader.addEventListener("click", handleSubscribeButtonClick);
 
   store.subscribe(() => {
     const { currentPage, currentCategoryIdx, viewType } = useSelector(
