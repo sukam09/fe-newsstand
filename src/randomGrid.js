@@ -1,23 +1,24 @@
+import { getPressObj } from "./api/api.js";
+
 const PRESS_NUM_IN_GRID = 24;
 const TOTAL_PRESS_NUM = 96;
 let grid_page_count = 0;
 let is_light_mode = true;
 
 /***** 언론사 사진 셔플 *****/
-const presses = Array.from(
-  { length: TOTAL_PRESS_NUM },
-  (_, idx) => `${idx + 1}.png`
-);
-const shuffle = () => Math.random() - 0.5;
-let shuffled_presses = [...presses].sort(shuffle);
+let presses;
+let shuffled_presses;
+
+function shuffleArray(array) {
+  array.sort(() => Math.random() - 0.5);
+  return array;
+}
 
 /***** grid에 언론사 & 구독 이미지 추가 *****/
 function appendPressInGrid(press) {
   //언론사 이미지 추가
   const $image = document.createElement("img");
-  $image.src = is_light_mode
-    ? `./icons/press_logo/${press}`
-    : `./icons/darkmode_logo/${press}`;
+  $image.src = is_light_mode ? `${press.lightSrc}` : `${press.darkSrc}`;
   $image.classList.add("original");
 
   //구독하기 이미지 추가
@@ -32,7 +33,9 @@ function appendPressInGrid(press) {
   document.getElementById("press-list").appendChild($list);
 }
 
-function setGrid() {
+async function setGrid() {
+  presses = await getPressObj();
+  shuffled_presses = shuffleArray(presses);
   const slice_shuffled_presses = shuffled_presses.slice(0, PRESS_NUM_IN_GRID);
   slice_shuffled_presses.forEach((press) => {
     appendPressInGrid(press);
