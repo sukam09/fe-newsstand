@@ -11,8 +11,10 @@ function createCategoryHtml(categorys, NEWCATEGORY, CURRENT_INDEX, KEY) {
       htmls += html` <div class="category-item">${category}</div> `;
     }
   });
-  document.querySelector('.newsstand__category').innerHTML = '';
-  document.querySelector('.newsstand__category').insertAdjacentHTML('beforeend', htmls);
+  const newsCategoryTag = document.querySelector('.newsstand__category');
+
+  newsCategoryTag.innerHTML = '';
+  newsCategoryTag.insertAdjacentHTML('beforeend', htmls);
 }
 
 export { createCategoryHtml };

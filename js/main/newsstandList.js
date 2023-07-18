@@ -4,6 +4,7 @@ import { attachEventListener, detachEventListener } from '../core/eventListener.
 import { createNewsListHtml } from '../components/newsStandList.js';
 import { shuffle } from '../utils/utils.js';
 import { store } from '../store.js';
+
 let CATEGORY = [];
 let NEWS_LIST = [];
 let KEY = '';
@@ -23,6 +24,7 @@ async function initNewsStandList() {
   NEWS_LIST = getNewsListFilter(NEWCATEGORY, datas);
   createNewsListHtml(NEWS_LIST[0][0]);
   isProgressBarEnd();
+  selectCategoryEvent();
 }
 
 function handleRightBtn() {
@@ -120,4 +122,16 @@ const isSubScribeHandler = (e) => {
   }
 };
 
+function selectCategoryEvent() {
+  const categoryEle = document.querySelector('.newsstand__category');
+  categoryEle.addEventListener('click', (e) => {
+    KEY = e.target.textContent;
+    CURRENT_INDEX = 0;
+    CURRENT_CATEGORY = NEWCATEGORY.indexOf(KEY);
+    createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
+    createNewsListHtml(NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX]);
+    isProgressBarEnd();
+    selectCategoryEvent();
+  });
+}
 export { initNewsStandList, toggleListEventListner };
