@@ -23,7 +23,7 @@ function appendPressInGrid(press) {
 
   //구독하기 이미지 추가
   const $sub = document.createElement("img");
-  $sub.src = `./icons/others/Button.svg`;
+  $sub.src = `./assets/others/Button.svg`;
   $sub.classList.add("sub");
 
   //ul에 li 추가
