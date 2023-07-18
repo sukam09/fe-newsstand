@@ -19,6 +19,12 @@ const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(categoryInfo);
 
+const $logo = document.querySelector(".news-list_media_header img");
+const $date = document.querySelector(".news-list_media_header p");
+const $plusSubBtn = document.querySelector(".news-list_subscribe_btn");
+const $xSubBtn = document.querySelector(".news-list_unsubscribe_btn");
+const $mainTitle = document.querySelector(".news-list_media_content_main p");
+
 /**
  * 리스트뷰 렌더링 전 데이터 가져오기
  */
@@ -37,7 +43,7 @@ const getListInfo = async () => {
 };
 
 /**
- * 리스트뷰 내 화면 전환 이벤트
+ * 리스트뷰 내 화면 전환
  */
 const setListArrowEvent = () => {
   const $leftArrow = document.querySelector(".left-arrow");
@@ -57,6 +63,59 @@ const setListArrowEvent = () => {
       setFullList();
     }
   });
+};
+
+const setListModeEvent = () => {
+  $totalMedia.addEventListener("click", () => {
+    if (!STATE.MODE.IS_GRID) {
+      onClickListMode({ className: "main-nav_total" });
+    }
+  });
+  $subscribeMedia.addEventListener("click", () => {
+    if (!STATE.MODE.IS_GRID) {
+      onClickListMode({ className: "main-nav_subscribe" });
+    }
+  });
+};
+
+/**
+ *
+ * @param {언론사 토글 중 선택한 클래스 이름} className
+ */
+const onClickListMode = ({ className }) => {
+  onClickSubscribeMode({ className });
+  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.CATE_MEDIA_IDX] = [0, 0];
+  setFullList();
+};
+
+const setListSubscribeEvent = () => {
+  $plusSubBtn.addEventListener("click", () => {
+    clickSubButton();
+    setCategoryBar();
+    setFullList();
+  });
+  $xSubBtn.addEventListener("click", () => {
+    clickSubButton();
+    setCategoryBar();
+    setFullList();
+  });
+};
+
+const clickSubButton = () => {
+  const totalId =
+    categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]][
+      STATE.LIST_MODE.CATE_MEDIA_IDX
+    ];
+  const subsId = STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
+  const mediaId = STATE.MODE.IS_TOTAL ? totalId : subsId;
+  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
+
+  if (subIdx !== -1) {
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    alert("구독해지되었습니다.");
+  } else {
+    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
+  }
 };
 
 /**
@@ -181,6 +240,10 @@ const setProgressBar = () => {
   <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
   <p>&nbsp; / ${categoryInfo[cate].length}</p>
 `;
+  } else {
+    $cntDiv.innerHTML = `<img
+      src="/images/progress-arrow.svg"
+    />`;
   }
 
   const $progressBar = document.createElement("div");
@@ -208,22 +271,15 @@ const setListView = () => {
 
   const nowMedia = mediaInfo[mediaId];
 
-  const $logo = document.querySelector(".news-list_media_header img");
-  const $date = document.querySelector(".news-list_media_header p");
-  const $addSubBtn = document.querySelector(".news-list_subscribed_btn");
-  const $cancelSubBtn = document.querySelector(".news-list_unsubscribed_btn");
-  const $mainTitle = document.querySelector(".news-list_media_content_main p");
-
-  console.log(mediaId, nowMedia);
   $logo.src = nowMedia.path_light;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
   if (STATE.SUBSCRIBE_LIST.includes(mediaId)) {
-    $addSubBtn.classList.remove("hidden");
-    $cancelSubBtn.classList.add("hidden");
+    $plusSubBtn.classList.add("hidden");
+    $xSubBtn.classList.remove("hidden");
   } else {
-    $addSubBtn.classList.add("hidden");
-    $cancelSubBtn.classList.remove("hidden");
+    $plusSubBtn.classList.remove("hidden");
+    $xSubBtn.classList.add("hidden");
   }
 
   $mainTitle.innerText = nowMedia.main_title;
@@ -249,38 +305,16 @@ const setFullList = () => {
   setProgressBar();
 };
 
-const setListModeEvent = () => {
-  $totalMedia.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
-      onClickListMode({ className: "main-nav_total" });
-    }
-  });
-  $subscribeMedia.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
-      onClickListMode({ className: "main-nav_subscribe" });
-    }
-  });
-};
-
-/**
- *
- * @param {언론사 토글 중 선택한 클래스 이름} className
- */
-const onClickListMode = ({ className }) => {
-  onClickSubscribeMode({ className });
-  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.CATE_MEDIA_IDX] = [0, 0];
-  setFullList();
-};
-
 /**
  * 초기 리스트뷰 세팅
  */
 async function initListView() {
   await getListInfo();
-  setCategoryBar();
-  setFullList();
   setListArrowEvent();
   setListModeEvent();
+  setListSubscribeEvent();
+  setCategoryBar();
+  setFullList();
 }
 
 export { initListView, setCategoryBar, setFullList };

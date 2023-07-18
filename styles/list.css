@@ -95,7 +95,7 @@
   height: 20px;
 }
 
-.news-list_unsubscribed_btn {
+.news-list_subscribe_btn {
   display: flex;
   height: 24px;
   padding: 6px;
@@ -107,9 +107,11 @@
   border-radius: 50px;
   border: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
+
+  cursor: pointer;
 }
 
-.news-list_subscribed_btn {
+.news-list_unsubscribe_btn {
   display: flex;
   height: 24px;
   justify-content: center;
@@ -121,6 +123,8 @@
   background-color: var(--grayscale-white);
 
   color: var(--grayscale-200);
+
+  cursor: pointer;
 }
 
 .news-list_media_header p {
