@@ -76,15 +76,6 @@ function changePressInfo(news) {
   } else {
     _img.setAttribute("src", "../images/icon/Subscribe.svg");
   }
-
-  //   press_info.children[2].addEventListener(
-  //     "click",
-  //     () => {
-  //       clickSubscribe(news.name, "list", _img);
-  //     },
-  //     { once: true }
-  //   );
-  // }
 }
 
 function changeMain(news) {

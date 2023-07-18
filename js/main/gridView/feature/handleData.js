@@ -37,7 +37,7 @@ function showMainList(press) {
       handleMouseOut(_img, ` ${press[shuffledPress[i]].lightSrc}`)
     );
 
-    //구독하기 해제하기 클릭 시
+    //구독하기 && 해제하기 클릭 시
     _img.addEventListener("click", (e) =>
       clickSubscribe(e.target.parentElement.dataset.press, "grid", _img)
     );
