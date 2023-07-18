@@ -1,18 +1,11 @@
-import {
-  CATEGORY_TAB_TIME,
-  NOW_CATEGORY_IDX,
-  NOW_LIST_PAGE,
-} from "../constant/constants.js";
+import { CATEGORY_TAB_TIME } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
-import { appendNewsList, updateListButton } from "./listView.js";
+import { getState, resister, setState } from "./observer/observer.js";
+import { categoryIdx, listPageIdx } from "./store/store.js";
 import { $ } from "./util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
-let categoryInterval = setInterval(() => {
-  listPageUp();
-  updateCategoryClicked();
-  updateListButton();
-}, CATEGORY_TAB_TIME);
+let categoryInterval;
 
 export function stopCategoryInterval() {
   clearInterval(categoryInterval);
@@ -34,9 +27,8 @@ export function refreshInterval() {
 }
 
 export function setFirstListPage() {
-  NOW_LIST_PAGE.setValue(1);
-  NOW_CATEGORY_IDX.setValue(0);
-  refreshInterval();
+  setState(listPageIdx, 1);
+  setState(categoryIdx, 0);
 }
 
 // 카테고리 메뉴 클릭시 전환
@@ -45,13 +37,12 @@ function categoryClicked(item) {
   const targetOff = $(".category_list--clicked");
   targetOff.classList.remove("category_list--clicked");
   targetOn.classList.add("category_list--clicked");
-  NOW_LIST_PAGE.setValue(1);
-  NOW_CATEGORY_IDX.setValue(item.id - 1);
-  refreshInterval();
+  setState(listPageIdx, 1);
+  setState(categoryIdx, item.id - 1);
 }
 
 function listPageUp() {
-  NOW_LIST_PAGE.incrementValue(1);
+  setState(listPageIdx, getState(listPageIdx) + 1);
 }
 
 // 카테고리 리스트 추가
@@ -88,7 +79,7 @@ function createCategoryList(item, idx) {
   const nowPage = document.createElement("span");
   const allPage = document.createElement("span");
   nowPage.className = "now_page";
-  nowPage.innerHTML = `${NOW_LIST_PAGE.getValue()} / `;
+  nowPage.innerHTML = `${getState(listPageIdx)} / `;
   allPage.className = "all_page";
   allPage.innerHTML = `${item.data.length}`;
   counterContainer.appendChild(nowPage);
@@ -107,7 +98,7 @@ export function updateCategoryClicked() {
   const clickedCategory = $(".category_list--clicked");
   clickedCategory.classList.remove("category_list--clicked");
   const targetOn = $(".category_list_container");
-  targetOn.children[NOW_CATEGORY_IDX.getValue()].classList.add(
+  targetOn.children[getState(categoryIdx)].classList.add(
     "category_list--clicked"
   );
   updateCategoryTabNum();
@@ -115,14 +106,16 @@ export function updateCategoryClicked() {
 
 // 카테고리에서 마지막 탭인지 확인
 function isTabFull(innerHTML) {
-  return parseInt(NOW_LIST_PAGE.getValue()) >= parseInt(innerHTML) + 1;
+  return parseInt(getState(listPageIdx)) >= parseInt(innerHTML) + 1;
 }
 
 // 카테고리 탭 숫자 업데이트
 function updateCategoryTabNum() {
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
-  clickedCategory.children[1].children[0].innerHTML = `${NOW_LIST_PAGE.getValue()} / `;
+  clickedCategory.children[1].children[0].innerHTML = `${getState(
+    listPageIdx
+  )} / `;
   if (
     // 다음 카테고리로 넘어가야할 경우
     isTabFull(clickedCategory.children[1].children[1].innerHTML)
@@ -130,17 +123,21 @@ function updateCategoryTabNum() {
     if (clickedCategory.nextElementSibling === null) {
       firstCategory.classList.add("category_list--clicked");
       firstCategory.children[1].children[0].innerHTML = "1 / ";
-      NOW_CATEGORY_IDX.setValue(0);
+      setState(categoryIdx, 0);
     } else {
       clickedCategory.nextElementSibling.classList.add(
         "category_list--clicked"
       );
       clickedCategory.nextElementSibling.children[1].children[0].innerHTML =
         "1 /";
-      NOW_CATEGORY_IDX.incrementValue(1);
+      setState(categoryIdx, getState(categoryIdx) + 1);
     }
     clickedCategory.classList.remove("category_list--clicked");
-    NOW_LIST_PAGE.setValue(1);
+    setState(listPageIdx, 1);
   }
-  appendNewsList();
 }
+
+// (function init() {
+//   resister(listPageIdx, refreshInterval);
+//   resister(categoryIdx, refreshInterval);
+// })();

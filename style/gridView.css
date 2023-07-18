@@ -30,28 +30,6 @@
   z-index: 0;
 }
 
-/* page buttons */
-.left_grid_button {
-  position: absolute;
-  display: none;
-  top: 50%;
-  left: -48px;
-  transform: translate(0%, -50%);
-}
-.right_grid_button {
-  position: absolute;
-  display: block;
-  top: 50%;
-  right: -48px;
-  transform: translate(0%, -50%);
-}
-.left_grid_button:hover {
-  cursor: pointer;
-}
-.right_grid_button:hover {
-  cursor: pointer;
-}
-
 /* sub buttons */
 .sub_button_container {
   background-color: #f5f7f9;

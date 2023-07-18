@@ -1,11 +1,13 @@
-import { MAX_GRID_COUNT, NOW_GRID_PAGE } from "../constant/constants.js";
+import { MAX_GRID_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./api.js";
+import { getState, resister, setState } from "./observer/observer.js";
+import { gridPageIdx, isGrid } from "./store/store.js";
 import { $, $All, shuffleArray } from "./util.js";
 
 let cachedpressObj = null;
 
 // 셔플된 리스트 그리드리스트에 append
-export async function appendGridList() {
+async function appendGridList() {
   const gridContainerList = $All(".grid_container");
   if (cachedpressObj === null) {
     cachedpressObj = await getPressObj();
@@ -65,7 +67,7 @@ function createUnSubButton(id) {
 }
 
 // 그리드 아이템 리스트 태그 생성
-async function createGridItem(element) {
+function createGridItem(element) {
   const newImg = document.createElement("img");
   const li = document.createElement("li");
   const subButtonContainer = createSubButton(element.id);
@@ -79,11 +81,11 @@ async function createGridItem(element) {
   // li 생성
   li.className = "grid_item";
   li.append(subButtonContainer, unSubButtonContainer);
-  await li.addEventListener("mouseover", () => {
+  li.addEventListener("mouseover", () => {
     toggleSubButton(element, subButtonContainer);
     toggleUnSubButton(element, unSubButtonContainer);
   });
-  await li.addEventListener("mouseout", () =>
+  li.addEventListener("mouseout", () =>
     hiddenSubButtons(subButtonContainer, unSubButtonContainer)
   );
 
@@ -112,38 +114,20 @@ function hiddenSubButtons(subButtonContainer, unSubButtonContainer) {
 }
 
 // 그리드 페이지 업데이트
-export function showGridPage(increment) {
-  const curPage = $(`#page${NOW_GRID_PAGE.getValue()}`);
-  NOW_GRID_PAGE.incrementValue(increment);
-  const nextPage = $(`#page${NOW_GRID_PAGE.getValue()}`);
-  NOW_GRID_PAGE.setValue(Math.max(0, Math.min(NOW_GRID_PAGE.getValue(), 3)));
-  curPage.style.display = "none";
-  nextPage.style.display = "grid";
-  showGridPageButton();
+function showGridPage() {
+  const gridContainer = $All(".grid_container");
+  gridContainer.forEach((item) => (item.style.display = "none"));
+  const nowPageIdx = getState(gridPageIdx);
+  const curPage = $(`#page${nowPageIdx}`);
+  curPage.style.display = "grid";
 }
 
 // 그리뷰의 좌우 페이지 전환 버튼 업데이트
-export function showGridPageButton() {
-  const left_grid_button = $(".left_grid_button");
-  const right_grid_button = $(".right_grid_button");
-  switch (NOW_GRID_PAGE.getValue()) {
-    case 0:
-      left_grid_button.style.display = "none";
-      right_grid_button.style.display = "block";
-      return;
-    case 3:
-      left_grid_button.style.display = "block";
-      right_grid_button.style.display = "none";
-      return;
-    default:
-      left_grid_button.style.display = "block";
-      right_grid_button.style.display = "block";
-  }
+
+function setGridEvents() {
+  appendGridList();
+  resister(gridPageIdx, showGridPage);
+  // resister(isGrid, showGridPageButton);
 }
 
-(function init() {
-  const leftButton = document.querySelector(".left_grid_button");
-  const rightButton = document.querySelector(".right_grid_button");
-  leftButton.addEventListener("click", () => showGridPage(-1));
-  rightButton.addEventListener("click", () => showGridPage(1));
-})();
+export { setGridEvents };
