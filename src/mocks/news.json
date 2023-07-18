@@ -1496,7 +1496,7 @@
   {
     "name": "TV REPORT",
     "number": "83",
-    "categor": "종합/경제",
+    "category": "종합/경제",
     "edit_date": "2023.02.10. 18.27",
     "main_news": {
       "thumbnail": "https://picsum.photos/320/200",
