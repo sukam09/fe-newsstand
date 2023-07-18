@@ -1,6 +1,7 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
-import { categoryNews } from "./setData.js/setCategoryData.js";
+import { categoryCnt, categoryNews } from "./setData.js/setCategoryData.js";
+import Stores from "../utils/Store.js";
 
 function drawNewsImage(PageNumberIndex) {
   return `<img class="news-main-image" src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryIndex][PageNumberIndex].title}`;
@@ -35,9 +36,17 @@ function drawNewsHeader() {
   news_header.innerHTML = new_div;
 }
 
+function clickSubscribeButton() {
+  console.log(document.querySelector(".subscribe-button"));
+  categoryCnt.forEach((value, index) => {
+    console.log(document.querySelector(".subscribe-button")[index]);
+  });
+}
+
 function drawNews() {
   drawNewsDiv();
   drawNewsHeader();
+  clickSubscribeButton();
 }
 
 export { drawNews };

@@ -1,8 +1,10 @@
 class Store {
   #pageNumber;
   #progressInterval;
-  constructor(leftHtml, rightHtml) {
+  #subscribed;
+  constructor() {
     this.#pageNumber = 0;
+    this.#subscribed = {};
     this.setPage = function (pagenumber) {
       this.#pageNumber = pagenumber;
     };

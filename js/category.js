@@ -7,6 +7,8 @@ let progress = 0;
 let currentCategoryPageNumber = 1;
 let currentCategoryIndex = 0;
 let currentCategoryPage;
+let currentProgressBar;
+// 상태를 어떻게 관리할지 수정필요...
 
 function drawInitCategory() {
   let categoryHtml = `<div class="categoryWrap"><ul>`;
@@ -15,26 +17,28 @@ function drawInitCategory() {
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  drawCategoryItem();
+  drawCategoryItem(0);
+  clickCategory();
 }
 
-function drawCategoryItem() {
+function drawCategoryItem(categoryIndex) {
+  currentCategoryIndex = categoryIndex;
   const categoryItem = document.querySelectorAll(".categoryItem");
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   categoryDisplayClear(categoryItem);
   categoryDisplayOn(categoryItem);
+  updateCurrentProgressBar();
   drawNews();
   if (Stores.getProgressInterval() != undefined) {
     Stores.clearProgressInterval();
-    progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-      currentCategoryPage
-    );
+    progressReset(currentProgressBar, currentCategoryPage);
   }
-  intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-    currentCategoryPage
-  );
+  intervalProgress(currentProgressBar, currentCategoryPage);
+}
+
+function updateCurrentProgressBar() {
+  currentProgressBar =
+    document.querySelectorAll(".progress-bar")[currentCategoryIndex];
 }
 
 function categoryDisplayOn(categoryItem) {
@@ -80,7 +84,7 @@ function doProgress(progressBar, currentCategoryPage) {
       else currentCategoryIndex++;
       Stores.clearProgressInterval();
     }
-    drawCategoryItem();
+    drawCategoryItem(currentCategoryIndex);
     progressReset(progressBar, currentCategoryPage);
     return;
   } else progressFill(progressBar);
@@ -108,19 +112,14 @@ function clearCategoryNumber() {
 function clearNewsInterval() {
   drawNews();
   Stores.clearProgressInterval();
-  intervalProgress(
-    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-    currentCategoryPage
-  );
+  updateCurrentProgressBar();
+  intervalProgress(currentProgressBar, currentCategoryPage);
 }
 
 function increaseListPage() {
   if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
-    progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-      currentCategoryPage
-    );
+    progressReset(currentProgressBar, currentCategoryPage);
     if (currentCategoryIndex === categoryCnt.length - 1)
       currentCategoryIndex = 0;
     else currentCategoryIndex++;
@@ -129,20 +128,14 @@ function increaseListPage() {
     return;
   }
   currentCategoryPageNumber++;
-  progressReset(
-    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-    currentCategoryPage
-  );
+  progressReset(currentProgressBar, currentCategoryPage);
   clearNewsInterval();
 }
 
 function decreaseListPage() {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
-    progressReset(
-      document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-      currentCategoryPage
-    );
+    progressReset(currentProgressBar, currentCategoryPage);
     if (currentCategoryIndex === 0)
       currentCategoryIndex = categoryCnt.length - 1;
     else currentCategoryIndex--;
@@ -151,13 +144,20 @@ function decreaseListPage() {
     return;
   }
   currentCategoryPageNumber--;
-  progressReset(
-    document.querySelectorAll(".progress-bar")[currentCategoryIndex],
-    currentCategoryPage
-  );
+  progressReset(currentProgressBar, currentCategoryPage);
   clearNewsInterval();
 }
 
+function clickCategory() {
+  for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
+    const categoryItem = document.getElementById(`category${categoryNum}`);
+    categoryItem.addEventListener("click", function () {
+      progressReset(currentProgressBar, currentCategoryPage);
+      currentCategoryPageNumber = 1;
+      drawCategoryItem(categoryNum);
+    });
+  }
+}
 export {
   drawInitCategory,
   increaseListPage,

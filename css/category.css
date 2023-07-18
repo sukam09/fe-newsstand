@@ -43,6 +43,9 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.progress-bar {
+  pointer-events: none;
+}
 
 .categoryItem > span {
   z-index: 1;
