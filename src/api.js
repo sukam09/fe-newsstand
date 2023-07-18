@@ -7,13 +7,14 @@ export async function fetchPressInfo() {
 export async function fetchListView(index, present) {
   const response = await fetch('../data/list-view.json');
   const json = await response.json();
-  const { materials, name, regDate } = json[index][present];
-  return { materials, name, regDate };
+  const entire = json[index].length;
+  const { materials, pid, regDate } = json[index][present];
+  return { entire, materials, pid, regDate };
 }
 
-export async function getPressLogo(name) {
+export async function fetchPressItem(pid) {
   const response = await fetch('../data/press-info.json');
   const json = await response.json();
-  const { logo } = json.find(pressInfo => pressInfo.name === name);
-  return logo;
+  const { name, logo } = json.find(item => item.id === pid);
+  return { name, logo };
 }

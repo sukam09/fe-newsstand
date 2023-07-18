@@ -1,4 +1,4 @@
-import { fetchListView, getPressLogo } from '../api.js';
+import { fetchListView, fetchPressItem } from '../api.js';
 import {
   ANIMATION_UPDATE_DELAY,
   CATEGORY_NUMBERS,
@@ -40,18 +40,19 @@ export default function PressListView({ $target, initialState }) {
   const { categories } = this.state;
 
   const initListView = async (index, present) => {
-    const { materials, name, regDate } = await fetchListView(index, present);
-    const pressLogo = await getPressLogo(name);
+    const { entire, materials, pid, regDate } = await fetchListView(index, present);
+    const { name, logo } = await fetchPressItem(parseInt(pid, 10));
+    const mainNews = materials[0];
 
     this.setState(
       {
         ...this.state,
-        entire: materials.length,
-        pressLogo,
+        entire,
+        pressLogo: logo,
         pressName: name,
         regDate,
-        thumbnail: materials[0].image.url,
-        mainNews: materials[0].title,
+        thumbnail: mainNews.image.url,
+        mainNews: mainNews.title,
         subNews: materials.slice(1).map(news => news.title),
       },
       false
