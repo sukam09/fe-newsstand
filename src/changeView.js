@@ -3,7 +3,7 @@ import {
   runProgress,
   clearProgress,
 } from "./progressBar.js";
-import { setDisplay } from "./utils.js";
+import { setDisplay } from "./util/utils.js";
 
 let grid_view_selected = true;
 

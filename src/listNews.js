@@ -1,5 +1,5 @@
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
-import { getNewsContent } from "./api.js";
+import { getNewsContent } from "./api/api.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;

@@ -1,4 +1,4 @@
-import { setDisplay } from "./utils.js";
+import { setDisplay } from "./util/utils.js";
 
 function showSnackBar() {
   setDisplay(".snack-bar", "block");

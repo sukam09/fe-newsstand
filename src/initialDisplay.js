@@ -1,5 +1,5 @@
 import { appendCategoryTabNum } from "./progressBar.js";
-import { setDisplay } from "./utils.js";
+import { setDisplay } from "./util/utils.js";
 
 /***** 초기 화면 *****/
 function countDisplayNone() {

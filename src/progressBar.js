@@ -1,6 +1,6 @@
 import { categoryList } from "../data/NewsContents.js";
 import { drawListView } from "./listNews.js";
-import { setDisplay } from "./utils.js";
+import { setDisplay } from "./util/utils.js";
 
 const CATEGORY_NUM = 7;
 const PROGRESS_TIME = 2000;
