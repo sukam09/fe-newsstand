@@ -1,7 +1,7 @@
 let category = [];
 let news_by_category = {};
 
-function transformNews(news) {
+function manipulateNews(news) {
   news.forEach((item) => {
     if (!category.includes(item.category)) category.push(item.category);
   });
@@ -22,4 +22,4 @@ function transformNews(news) {
   });
 }
 
-export { transformNews, category, news_by_category };
+export { manipulateNews, category, news_by_category };

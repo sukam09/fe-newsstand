@@ -3,7 +3,7 @@ import { clickSubscribe } from "../../utils/clickSubscribe.js";
 import { fetchData } from "../../utils/fetchData.js";
 import { checkPressInLocal } from "../../utils/checkPressInLocal.js";
 
-function initGridView() {
+function renderGridView() {
   fetchData(".././assets/news.json").then((press) => makeGridView(press));
 }
 
@@ -96,4 +96,4 @@ function makeGridView(press) {
   checkPage();
 }
 
-export { initGridView, main_list_page, MIN_PAGE, MAX_PAGE };
+export { renderGridView, main_list_page, MIN_PAGE, MAX_PAGE };

@@ -57,7 +57,7 @@ function rollingNewsBar(side) {
   next.classList.add("current");
 }
 
-function initRolling() {
+function renderRolling() {
   addEventToRolling();
   leftInterval = setInterval(() => rollingNewsBar(LEFT), SET_INTERVAL_TIME);
   setTimeout(() => {
@@ -65,4 +65,4 @@ function initRolling() {
   }, SET_TIMEOUT_TIME);
 }
 
-export { initRolling };
+export { renderRolling };

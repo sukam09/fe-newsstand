@@ -1,4 +1,4 @@
-import { category, news_by_category } from "./transformNews.js";
+import { category, news_by_category } from "./manipulateNews.js";
 import { clickSubscribe } from "../../../utils/clickSubscribe.js";
 import {
   handleAniamtionIteration,
@@ -47,11 +47,6 @@ function makeCategory() {
       _li.children[2].style.display = "flex";
     }
   });
-}
-
-/* find */
-function findCurrentCategory() {
-  return document.querySelector(".selected-category");
 }
 
 /* change */
@@ -134,6 +129,11 @@ function getNews(category) {
 
 function getPagesNum(category) {
   return getNews(category).length;
+}
+
+/* find */
+function findCurrentCategory() {
+  return document.querySelector(".selected-category");
 }
 
 /* transform */

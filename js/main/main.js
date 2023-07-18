@@ -1,12 +1,12 @@
-import { initListView } from "../main/listView/listView.js";
-import { initGridView } from "../main/gridView/gridView.js";
-import { initRolling } from "../main/newsRolling/newsRolling.js";
+import { renderListView } from "../main/listView/core/renderListView.js";
+import { renderGridView } from "../main/gridView/gridView.js";
+import { renderRolling } from "../main/newsRolling/newsRolling.js";
 import { initViewChange } from "../main/changeView/changeView.js";
 
 function initMain() {
-  initRolling();
+  renderRolling();
+  renderGridView();
+  renderListView();
   initViewChange();
-  initGridView();
-  initListView();
 }
 export { initMain };
