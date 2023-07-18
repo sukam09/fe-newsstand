@@ -1,5 +1,6 @@
 import {getJSON,shuffle } from '../util/util.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
+import {subscribedStore } from '../util/store.js'; 
 let categories = [];
 let category_page = 0;
 let media_page = 0;
@@ -10,8 +11,18 @@ let animationId;
  */
 const setNewsData = (category_page) => {
   const newsItem = categorizedData[categories[category_page]][media_page];
-  const src = media_data.find(item => item.name === newsItem["name"]).src;
+  const index = media_data.findIndex(item => item.name === newsItem["name"]);
+  const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page];
+  if(subscribedStore.getState().includes(index+1)){ // 구독중인지 아닌지
+    document.querySelector('.subscribed').innerHTML = `<img src = "assets/images/delete.svg">`
+  }
+  else{
+    document.querySelector('.subscribed').innerHTML = `
+      <img src = "assets/images/add.svg">
+      <p class="subscribed_info text-weak">구독하기</p>
+    `
+  }
   selectedCategory.innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
   document.querySelector(".media_info_edited").innerHTML = newsItem["edit_date"];
   document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
