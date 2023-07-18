@@ -30,9 +30,11 @@ export default function PressListView({ $target, initialState }) {
 
   this.state = initialState;
 
-  this.setState = nextState => {
+  this.setState = (nextState, isRender = true) => {
     this.state = nextState;
-    this.render();
+    if (isRender) {
+      this.render();
+    }
   };
 
   const { categories } = this.state;
@@ -41,16 +43,19 @@ export default function PressListView({ $target, initialState }) {
     const { materials, name, regDate } = await fetchListView(index, present);
     const pressLogo = await getPressLogo(name);
 
-    this.setState({
-      ...this.state,
-      entire: materials.length,
-      pressLogo,
-      pressName: name,
-      regDate,
-      thumbnail: materials[0].image.url,
-      mainNews: materials[0].title,
-      subNews: materials.slice(1).map(news => news.title),
-    });
+    this.setState(
+      {
+        ...this.state,
+        entire: materials.length,
+        pressLogo,
+        pressName: name,
+        regDate,
+        thumbnail: materials[0].image.url,
+        mainNews: materials[0].title,
+        subNews: materials.slice(1).map(news => news.title),
+      },
+      false
+    );
   };
 
   const initFieldTab = () => {
@@ -142,9 +147,8 @@ export default function PressListView({ $target, initialState }) {
   };
 
   let isInit = false;
-  this.isFetch = false;
 
-  this.render = () => {
+  this.render = async () => {
     if (!isInit) {
       initFieldTab();
 
@@ -154,10 +158,7 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
-    if (!this.isFetch) {
-      initListView(this.state.index, this.state.present);
-      this.isFetch = true;
-    }
+    await initListView(this.state.index, this.state.present);
 
     const {
       index,
