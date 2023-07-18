@@ -151,58 +151,31 @@ const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
 
 **7월 18일**
 
-### 초기 실행시 그려지는 페이지 수정
+### 코드 개선을 위해 단축평가 적용하기
 
-### 기존
+뉴스스탠드 미션을 진행하면서 if문 사용을 지양하고자 삼항연산자를 많이 활용하는 패턴을 적용시켰다.
 
-```javascript
-// main.js
-export function renderMain() {
-  // 뉴스 롤링
-  paintSubView();
+### 기존 코드의 문제점
 
-  // 뉴스 그리드
-  paintGridNewsstand();
-
-  // 카테고리
-  paintNewsCategory();
-
-  //뉴스스탠드 리스트 탭 전환
-  newsstandListTab();
-}
-```
-
-### 수정 main.js
+- if문으로 충분한 문장에서 삼항연산자를 적용시킬때. 불 필요한 에로우 함수가 만들어져있다.
 
 ```javascript
-// main.js
-export function renderMain() {
-  // 뉴스 롤링
-  paintSubView();
-
-  // 뉴스 그리드
-  paintGridNewsstand();
-
-  //뉴스스탠드 리스트 탭 전환
-  newsstandListTab();
-}
+// 구독을해지하면 바로 다시 그려준다. 삼항연산자 적용
+const subList = subscribeState.getSubscribeState();
+navTab.isMySubscribe ? paintNews(subList) : () => {};
 ```
+
+### 기존 코드 개선
+
+- 논리연산자를 활용한 단축평가
 
 ```javascript
-// newsstandTab.js
-function 탭관리() {
-  // 리스트 버튼 클릭됬을때.
-  listButton.addEventListener("click", () => {
-    // 리스트 버튼이 클릭되었을때마다 카테고리 영역을 다시 그림.
-    paintNewsCategory();
-  });
+// 구독을해지하면 바로 다시 그려준다. 단축평가 적용
+const subList = subscribeState.getSubscribeState();
+navTab.isMySubscribe && paintNews(subList);
 ```
 
-### 수정이유
+### 요약
 
-프로그램이 실행될때 카테고리를 미리 그려주게되면 언론사를 구독하고 '리스트' 뷰로 넘어갔을때 제대로 반영이 되지 않고 다시 그려질때 반영되는 문제가 생겼음.
-따라서 뷰가 변경될때마다 리스트 뷰를 새롭게 paint하게 됨.
-
-### 문제점?
-
-이렇게 구현했을때는 모든 카테고리의 li태그를 지워야함. 안 그러면 다시 그려질때 이벤트리스너가 중복으로 등록되어 지난번 변수값이 +2 +4씩 이상하게 증가하는 현상이 발생하게됨. -> 설계에 반영해서 구현해봐야겠다
+- 논리곱(&&): A && B 모두 true일때 B를 반환
+- 논리합(||): A || B중 true를 만나면 바로 반환.
