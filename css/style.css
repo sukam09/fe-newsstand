@@ -525,7 +525,7 @@ nav.agency .view-type button {
   display: none;
 
   opacity: 1;
-  animation: fadeout 5s linear;
+  animation: fadeout 5s ease-in;
 }
 
 @keyframes fadeout {
@@ -589,6 +589,30 @@ nav.agency .view-type button {
 
   border: 1px solid var(--border-border-default, #d2dae0);
   background: var(--surface-surface-default, #fff);
+
+  color: var(--text-text-default, #5f6e76);
+
+  /* display-medium16 */
+  font-family: Pretendard;
+  font-size: var(--font-size-medium);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375rem;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.alert-top-content {
+  color: var(--text-text-strong, #14212b);
+  text-align: center;
+
+  /* display-bold16 */
+  font-family: Pretendard;
+  font-size: var(--font-size-medium);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
 }
 
 .alert-action {
@@ -601,10 +625,31 @@ nav.agency .view-type button {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-top: -1px;
 }
 
 .alert-action button {
   padding: 0.625rem;
   gap: 0.625rem;
   flex: 1 0 0;
+
+  font-family: Pretendard;
+  font-size: var(--font-size-medium);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375rem; /* 137.5% */
+}
+
+.alert-action button:hover {
+  text-decoration: underline;
+}
+
+.confirmBtn {
+  color: var(--color-text-default);
+}
+
+.cancelBtn {
+  color: var(--color-text-strong);
+  border-left: 1px solid var(--border-border-default, #d2dae0);
 }
