@@ -1,4 +1,5 @@
 import { getPressObj } from "./api/api.js";
+import { setDisplay } from "./util/utils.js";
 
 const PRESS_NUM_IN_GRID = 24;
 const TOTAL_PRESS_NUM = 96;
@@ -47,10 +48,10 @@ async function setGrid() {
 const grid_next = document.getElementById("grid-next");
 grid_next.addEventListener("click", () => {
   if (grid_page_count + 1 === TOTAL_PRESS_NUM / PRESS_NUM_IN_GRID - 1) {
-    grid_next.style.display = "none";
+    setDisplay("#grid-next", "none");
   }
   if (grid_page_count + 1 < TOTAL_PRESS_NUM / PRESS_NUM_IN_GRID) {
-    document.getElementById("grid-prev").style.display = "block";
+    setDisplay("#grid-prev", "block");
     document.getElementById("press-list").innerHTML = "";
     grid_page_count += 1;
     const slice_shuffled_presses = shuffled_presses.slice(
@@ -67,10 +68,10 @@ grid_next.addEventListener("click", () => {
 const grid_prev = document.getElementById("grid-prev");
 grid_prev.addEventListener("click", () => {
   if (grid_page_count - 1 === 0) {
-    grid_prev.style.display = "none";
+    setDisplay("#grid-prev", "none");
   }
   if (grid_page_count - 1 >= 0) {
-    document.getElementById("grid-next").style.display = "block";
+    setDisplay("#grid-next", "block");
     document.getElementById("press-list").innerHTML = "";
     grid_page_count -= 1;
     const slice_shuffled_presses = shuffled_presses.slice(
