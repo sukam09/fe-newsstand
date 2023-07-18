@@ -4,6 +4,184 @@
 
 <br />
 
+## ⛓ 레이아웃 구조
+
+```bash
+
+news_stand__container
+│
+├── header__wrapper
+│
+├── latest_news__wrapper
+│     ├── latest_news__wrapper-left
+│     └── latest_news__wrapper-right
+│
+├── press__wrapper
+│     ├── press__header
+│     ├── arrows__wrapper-grid
+│     └── arrows__wrapper-list
+│
+├── snack-bar
+└── alert
+
+```
+
+<br />
+
+## ✂️ 파일 구조
+
+### news-stand-header
+
+```js
+initNewsStandHeader() : 뉴스스탠드 헤더의 설정
+setHeader() : 뉴스스탠드 헤더의 동적 생성 (템플릿 리터럴)
+
+setHeaderButton() : 뉴스스탠드 로고의 이벤트 설정 (리로드)
+
+getHeaderTime() : 뉴스스탠드 헤더의 시간 포멧 반환
+setHeaderTime(dataFormat) : 뉴스스탠드 헤더의 시간 설정
+```
+
+### latest-news
+
+```js
+initLatestNews() : 최신 뉴스 롤링 설정 (async)
+divideNews(latestNews, side) : 최신 뉴스 나누기 (왼쪽 / 오른쪽)
+setNews(latestNews, side) : 최신 뉴스 롤링 생성
+
+getWrapper(side) : 해당 side의 Wrapper 반환
+setWrapper(latestNews, side) : 최신 뉴스 롤링의 동적 생성 (템플릿 리터럴)
+setWrapperElement(newsWrapper, news) : 최신 뉴스 롤링의 반복 Element 생성
+
+setHover(side) : 최신 뉴스 롤링 Hover 이벤트 설정
+setHoverOver(side) : 최신 뉴스 롤링 정지
+setHoverOut() : 최신 뉴스 롤링 시작
+
+setRolling(side) : 최신 뉴스의 롤링 시작
+setRollingName(side) : 최신 뉴스의 롤링 설정
+setRollingPrev(side) : 이전 뉴스 설정
+setRollingCurrent(side) : 현재 뉴스 설정
+setRollingNext(side) : 다음 뉴스 설정
+
+setInterval(side) : Interval 설정 함수
+setRolling(side) : 최신 뉴스 롤링의 1초 차이설정
+```
+
+### light-dark-mode
+
+```js
+initLightDarkMode() : 라이트/다크모드 설정
+setMode() : 라이트/다크모드 생성
+
+toggleMode() : 라이트/다크모드 변경
+changeStyle() : 라이트/다크모드 CSS 변경
+changeIcon() : 라이트/다크모드 Icon 변경
+```
+
+### press-header
+
+```js
+initPressHeader() : 언론사 헤더 설정 (async)
+setNav(pressElement) : 언론사 헤더의 동적 생성 (템플릿 리터럴)
+getNavLeft() : 언론사 헤더의 왼쪽 Element 생성
+getNavLRight() : 언론사 헤더의 오른쪽 Element 생성
+
+setNavClick(pressData) : 언론사 헤더 이벤트 설정
+entireEvent(pressData) : 전체 언론사 헤더 이벤트 설정
+subscribeEvent(pressData) : 구독 언론사 헤더 이벤트 설정
+listEvent(pressData) : 리스트 보기 헤더 이벤트 설정
+gridEvent(pressData) : 그리드 보기 헤더 이벤트 설정
+```
+
+### press-grid
+
+```js
+initPressGrid(pressData, pressList) : 언론사 그리드 설정
+setGrid() : 언론사 그리드의 동적 생성 (템플릿 리터럴)
+setGridFrame() : 언론사 그리드의 Frame 생성
+
+setGridArrow(pressData, pressIds) : 언론사 그리드의 화살표 이벤트 설정
+setGridArrowNone(pressIds) : 언론사 그리드의 화살표 NONE 처리
+
+setGridLogo(pressData, pressIds) : 언론사 로고의 설정
+getGridLogo(pressData, pressIds) : 언론사 로고의 반환
+
+changeIcon() : 언론사 아이콘의 라이트/다크모드 이벤트 처리
+toggleMode() : 언론사 아이콘의 라이트/다크모드 경로 변경
+changeSrc(logo) : 언론사 아이콘의 경로(라이트/다크모드) 반환
+
+setGridButton(pressData, pressIds) : 언론사 그리드의 구독하기 버튼 설정
+getSubscribeState(li) : 해당 언론사의 구독 상태 반환
+setGridButtonChange(isSubscribe, li) : 구독하기/해지하기 버튼 변경
+setGridButtonHover(li) : 그리드 호버 이벤트 설정
+setGridButtonClick(pressData, pressIds, li) : 그리드 클릭 이벤트 설정
+setSubscribe(pressData, pressIds, pressName, isSubscribe) : 알림창/스낵바 설정
+```
+
+<br />
+
+## 🗂 폴더 구조
+
+[🔗 Front-end 개발 프로젝트 폴더 구조](https://sennieworld.tistory.com/67)
+
+```bash
+
+/src
+│
+├── /assets
+│     ├── /data
+│     │    ├── latest-news.json
+│     │    └── press-news.json
+│     ├── /fonts
+│     ├── /icons
+│     └── /images
+│          ├── /dark-press-logo
+│          ├── /light-press-logo
+│          └── /main-press
+│
+├── /components
+│     ├── latest-news.js
+│     ├── light-dark-mode.js
+│     ├── news-stand-header.js
+│     ├── press-grid.js
+│     ├── press-header.js
+│     └── press-list.js
+│
+├── /constants
+│     ├── latest-news.js
+│     ├── light-dark-mode.js
+│     ├── news-stand-header.js
+│     ├── press-data.js
+│     ├── press-grid.js
+│     ├── press-header.js
+│     └── press-list.js
+│
+├── /styles
+│     ├── /components
+│     │     ├── latest-news.css
+│     │     ├── light-dark-mode.css
+│     │     ├── news-stand-header.css
+│     │     ├── press-grid.css
+│     │     ├── press-header.css
+│     │     └── press-list.css
+│     │
+│     ├── dark.css
+│     ├── design.css
+│     ├── global.css
+│     ├── light.css
+│     └── reset.css
+│
+├── /utils
+│     ├── fetch.js
+│     ├── popup.js
+│     └── shuffle.js
+│
+├── index.html
+└── index.js
+```
+
+<br />
+
 ## #1 프로그래밍 요구사항
 
 - [x] DOM, Event 를 활용한다.
@@ -149,87 +327,3 @@
 - [x] Commit 단위를 더 세세하기 쪼개보기
 - [x] GitHub Issues 사용하기
 - [x] 함수 분리, 네이밍 고민 많이하기
-
-<br />
-
-## ⛓ 레이아웃 구조
-
-```bash
-
-news_stand__container
-│
-├── header__wrapper
-│
-├── latest_news__wrapper
-│     ├── latest_news__wrapper-left
-│     └── latest_news__wrapper-right
-│
-├── press__wrapper
-│     ├── press__header
-│     ├── arrows__wrapper-grid
-│     └── arrows__wrapper-list
-│
-├── snack-bar
-└── alert
-
-```
-
-## 🗂 폴더 구조
-
-[🔗 Front-end 개발 프로젝트 폴더 구조](https://sennieworld.tistory.com/67)
-
-```bash
-
-/src
-│
-├── /assets
-│     ├── /data
-│     │    ├── latest-news.json
-│     │    └── press-news.json
-│     ├── /fonts
-│     ├── /icons
-│     └── /images
-│          ├── /dark-press-logo
-│          ├── /light-press-logo
-│          └── /main-press
-│
-├── /components
-│     ├── latest-news.js
-│     ├── light-dark-mode.js
-│     ├── news-stand-header.js
-│     ├── press-grid.js
-│     ├── press-header.js
-│     └── press-list.js
-│
-├── /constants
-│     ├── latest-news.js
-│     ├── light-dark-mode.js
-│     ├── news-stand-header.js
-│     ├── press-data.js
-│     ├── press-grid.js
-│     ├── press-header.js
-│     └── press-list.js
-│
-├── /styles
-│     ├── /components
-│     │     ├── latest-news.css
-│     │     ├── light-dark-mode.css
-│     │     ├── news-stand-header.css
-│     │     ├── press-grid.css
-│     │     ├── press-header.css
-│     │     └── press-list.css
-│     │
-│     ├── dark.css
-│     ├── design.css
-│     ├── global.css
-│     ├── light.css
-│     └── reset.css
-│
-├── /utils
-│     ├── fetch.js
-│     ├── popup.js
-│     └── shuffle.js
-│
-├── index.html
-└── index.js
-```

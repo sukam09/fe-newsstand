@@ -138,7 +138,7 @@ const setGridButton = (pressData, pressIds) => {
   slicePressLis.forEach((li) => {
     const isSubscribe = getSubscribeState(li);
     setGridButtonChange(isSubscribe, li);
-    setGridButtonEvent(li);
+    setGridButtonHover(li);
     setGridButtonClick(pressData, pressIds, li);
   });
 };
@@ -163,7 +163,7 @@ const setGridButtonChange = (isSubscribe, li) => {
   buttonP.innerText = newButtonP;
 };
 
-const setGridButtonEvent = (li) => {
+const setGridButtonHover = (li) => {
   const pressImg = li.querySelector(HEADER_CLASS.IMG);
   const pressButton = li.querySelector(HEADER_CLASS.BUTTON);
 
