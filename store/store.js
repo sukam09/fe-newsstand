@@ -5,7 +5,7 @@ export const store = {
   isDarkMode: false,
 };
 
-export const initialize = async (data) => {
+export const initializeStore = async (data) => {
   const subscriptions = data.agencies.map((agency) => {
     return {
       name: agency.name,
