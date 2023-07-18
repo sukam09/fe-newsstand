@@ -1,73 +1,69 @@
 import { drawCategory } from "./drawCategory.js";
 import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
-import { CATEGORY } from "../constants/constants.js";
 import { resetPage } from "../sections/mainView.js";
 
-async function getNewsData(category, mode) {
+async function getNewsData(current, mode) {
   try {
     const response = await fetch("../data/newsListData.json");
     const newsData = await response.json();
-    const category_news = newsData.News.filter(
-      (news) => news.category === category
+    const list_content = newsData.News.filter((news) =>
+      mode === "all" ? news.category === current : news.name === current
     );
-    return category_news;
+    return list_content;
   } catch (error) {
     console.error("Error fetching news data:", error);
     throw error;
   }
 }
 
-async function drawList(order, current, subscribedPress, mode) {
+async function drawList(order, current, list, mode) {
   try {
+    if (!mode) {
+      const _mode = document.querySelector(".main-tab-btn .clicked");
+      mode = _mode.getAttribute("id");
+    }
     const main_list = document.querySelector(".main-list");
-    let category_news = await getNewsData(current, mode);
-    if (category_news.length !== 0 && category_news.length < order) {
-      // const currentIndex = CATEGORY.indexOf(category);
-      // const nextIndex = (currentIndex + 1) % CATEGORY.length;
-      // category = CATEGORY[nextIndex];
-      // showListView(1, subscribedPress, mode, category);
-      // resetPage();
-      // category_news = await getNewsData(category, "all");
+    main_list.innerHTML = "";
+    let list_content = await getNewsData(current, mode);
+
+    if (list_content.length === 0 || list.length === 0) {
+      main_list.innerHTML = "subsubusubsubu";
+    } else if (list_content.length !== 0 && list_content.length < order) {
+      const currentIndex = list.indexOf(current);
+      const nextIndex = (currentIndex + 1) % list.length;
+      current = list[nextIndex];
+      showListView(1, list, current, mode);
+      resetPage();
+      list_content = await getNewsData(current, mode);
     } else {
-      drawCategory(order, CATEGORY, current);
+      drawCategory(current, order, list, list_content);
       const newDiv = document.createElement("div");
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
-      drawPressInfo(
-        category_news[order - 1],
-        subscribedPress,
-        category_news[order - 1].name
-      );
-      drawPressNews(category_news, category_news[order - 1].name);
+
+      drawPressInfo(order, list_content, list);
+      drawPressNews(order, list_content, mode);
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-function handleClick(e, subscribedPress) {
+function handleClick(e, list) {
   const li_target = e.target.closest("li");
   if (li_target && li_target.classList.contains("category")) {
-    const category = li_target.querySelector(".ctg").textContent.trim();
-    drawList(1, category, subscribedPress);
+    const current = li_target.querySelector(".ctg").textContent.trim();
+    drawList(1, current, list);
   }
 }
 
-export function showListView(order, subscribedPress, mode = "", category = "") {
-  if (!category) {
-    const selected_category = document.querySelector(".category.selected .ctg");
-    category = selected_category.textContent;
+export function showListView(order, list, current = "", mode = "") {
+  if (!current) {
+    const selected_el = document.querySelector(".category.selected .ctg");
+    current = selected_el.textContent;
   }
-  const _mode = document.querySelector(".main-tab-btn .clicked");
-  console.log(_mode);
-  if (!mode) {
-    const _mode = document.querySelector(".main-tab-btn .clicked");
-    console.log(_mode);
-  }
-  const main_list = document.querySelector(".main-list");
-  main_list.innerHTML = "";
-  drawList(order, category, subscribedPress, mode);
+  drawList(order, current, list, mode);
 
-  document.addEventListener("click", (e) => handleClick(e, subscribedPress));
+  document.addEventListener("click", (e) => handleClick(e, list));
 }

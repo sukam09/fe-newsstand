@@ -5,7 +5,7 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
-let subscribedPress = [];
+let subscribedPress = ["서울경제", "데일리안"];
 
 function MainView() {
   document.addEventListener("click", handleClick);
@@ -29,7 +29,7 @@ function changePage(target, view) {
     showGridView(page, subscribedPress);
     checkPage(page, "grid");
   } else {
-    showListView(page, subscribedPress, "all");
+    showListView(page, subscribedPress);
     checkPage(page, "list");
   }
 }
@@ -46,14 +46,14 @@ function handleClick(e) {
     case "grid-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("grid");
-      showGridView(page, subscribedPress);
+      showGridView(page);
       checkPage(page, "grid");
       break;
     case "list-btn":
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page, subscribedPress, "all", CATEGORY[0]);
+      showListView(page, CATEGORY, CATEGORY[0], "all");
       checkPage(page, "list");
       break;
     case "left":
@@ -65,14 +65,22 @@ function handleClick(e) {
     case "all":
       document.getElementById("subscribe").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
+      page = FIRST_PAGE_NUM;
+      const view = document.querySelector(".list-view");
+      if (view && view.classList.contains("list-view")) {
+        changeView("list");
+        showListView(page, CATEGORY, CATEGORY[0], "all");
+        checkPage(page, "list");
+      } else {
+        showGridView(page);
+      }
       break;
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-
-      // subscribedPress.length
-      //   ? showListView(page, subscribedPress)
-      //   : showListView(page, subscribedPress, "subscribe", subscribedPress[0]);
+      subscribedPress.length
+        ? showListView(page, subscribedPress, subscribedPress[0], target)
+        : showListView(page, subscribedPress, "", target);
       break;
     default:
       break;

@@ -67,31 +67,31 @@ function showSubscribeButton(subscribedPress, press) {
     cancel_btn.style.display = "none";
   }
 }
-export function drawPressInfo(category_news, subscribedPress, press) {
+export function drawPressInfo(order, list_content, list) {
   const press_news = document.querySelector(".press-news");
-  press_news.innerHTML = `<div class="press-info">
-      <img
-        id="press-logo"
-        alt="press-logo"
-        src="${category_news.src}"
-      />
-      <span class="edit-date">${category_news.edit_date} 편집</span>
-      <div class="sub">
-        <button class="sub subscribe">
-          <img src="../assets/icons/plus.svg" />
-          <span>구독하기</span>
-        </button>
-        <button class="sub cancel">
-          <img src="../assets/icons/closed.svg" />
-        </button>
-      </div>
-    </div>`;
-  showSubscribeButton(subscribedPress, press);
-  const newDiv = document.createElement("div");
-  newDiv.classList.add("news-content");
-  press_news.appendChild(newDiv);
-  const sub_btn = document.querySelector(".press-info .sub");
-  sub_btn.addEventListener("click", (e) =>
-    handleClick(e, subscribedPress, press)
-  );
+  try {
+    press_news.innerHTML = `<div class="press-info">
+    <img
+      id="press-logo"
+      alt="press-logo"
+      src="${list_content[order - 1].src}"
+    />
+    <span class="edit-date">${list_content[order - 1].edit_date} 편집</span>
+    <div class="sub">
+      <button class="sub subscribe">
+        <img src="../assets/icons/plus.svg" />
+        <span>구독하기</span>
+      </button>
+      <button class="sub cancel">
+        <img src="../assets/icons/closed.svg" />
+      </button>
+    </div>
+  </div>`;
+    showSubscribeButton(list, list_content[order - 1]);
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("news-content");
+    press_news.appendChild(newDiv);
+    const sub_btn = document.querySelector(".press-info .sub");
+    sub_btn.addEventListener("click", (e) => handleClick(e, list, current));
+  } catch {}
 }
