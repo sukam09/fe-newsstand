@@ -1,5 +1,5 @@
 import { getJSON } from "./data.js";
-import { onClickSubscribeMode, shuffleList } from "./utils.js";
+import { changeSubState, onClickSubscribeMode, shuffleList } from "./utils.js";
 import { STATE } from "../constant.js";
 
 let mediaInfo;
@@ -91,8 +91,8 @@ const onClickListMode = ({ className }) => {
 const setListSubscribeEvent = () => {
   $plusSubBtn.addEventListener("click", () => {
     clickSubButton();
-    setCategoryBar();
-    setFullList();
+    STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
+    onClickListMode({ className: "main-nav_subscribe" });
   });
   $xSubBtn.addEventListener("click", () => {
     clickSubButton();
@@ -108,14 +108,8 @@ const clickSubButton = () => {
     ];
   const subsId = STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
   const mediaId = STATE.MODE.IS_TOTAL ? totalId : subsId;
-  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
 
-  if (subIdx !== -1) {
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
-    alert("구독해지되었습니다.");
-  } else {
-    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
-  }
+  changeSubState({ mediaId });
 };
 
 /**

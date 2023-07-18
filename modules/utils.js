@@ -127,6 +127,17 @@ const onClickSubscribeMode = ({ className }) => {
   className === "main-nav_total" ? moveGridView() : moveListView();
 };
 
+const changeSubState = ({ mediaId }) => {
+  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
+
+  if (subIdx !== -1) {
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    alert("구독해지되었습니다.");
+  } else {
+    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
+  }
+};
+
 /**
  * 헤더의 공통뷰를 세팅하는 함수
  */
@@ -142,4 +153,5 @@ export {
   setReload,
   setViewEvent,
   onClickSubscribeMode,
+  changeSubState,
 };

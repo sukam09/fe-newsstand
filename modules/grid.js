@@ -1,6 +1,11 @@
 import { MEDIA, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
-import { shuffleList, setViewEvent, onClickSubscribeMode } from "./utils.js";
+import {
+  shuffleList,
+  setViewEvent,
+  onClickSubscribeMode,
+  changeSubState,
+} from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -74,15 +79,7 @@ const addSubscribeButton = (idx) => {
  */
 const clickSubButton = (idx) => {
   const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
-  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
-
-  if (subIdx !== -1) {
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
-    alert("구독해지되었습니다.");
-  } else {
-    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
-  }
-
+  changeSubState({ mediaId });
   const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
     ".news-grid_button_wrapper"
   );
