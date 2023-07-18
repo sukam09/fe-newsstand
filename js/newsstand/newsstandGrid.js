@@ -1,6 +1,7 @@
-import { shuffle } from "../utils/util.js";
+import { shuffle, onFocusToClicked } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
+import { navTab } from "../state/navFocusStats.js";
 import { subscribeState } from "../store/subscribeState.js";
 import { navTag } from "../tag/mediaNavTag.js";
 
@@ -23,7 +24,7 @@ const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
-let isMySubscribe = false;
+// let isMySubscribe = false;
 
 export async function paintGridNewsstand() {
   initPaintNews();
@@ -68,8 +69,12 @@ function paintNews(paintData = publisherData) {
 
   element.map((child) => {
     if (idx < paintData.length) {
-      const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].name;
-      const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+      const alt = navTab.isMySubscribe
+        ? paintData[idx][0]
+        : paintData[idx].name;
+      const icon = navTab.isMySubscribe
+        ? paintData[idx][1]
+        : paintData[idx].lightSrc;
 
       element[elementIdx].children[1].classList.remove("btn-disabled");
       // 구독중일때.
@@ -103,13 +108,13 @@ function paintNews(paintData = publisherData) {
 function addEventOnMySubAndAllSub() {
   // 내가 구독한 언론사 클릭됬을때.
   mySubscribe.addEventListener("click", () => {
-    isMySubscribe = true;
+    navTab.isMySubscribe = true;
 
     // 현재 구독중인 리스트.
     const subscribeList = subscribeState.getSubscribeState();
 
     // 현재 구독중인 리스트에 포커스 효과주기
-    onFocusToClicked(MY_PUBLISHER);
+    onFocusToClicked(MY_PUBLISHER, mySubscribe, allPublisher);
 
     // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
     selectedPage = 0; // selectedPage 0에서 시작
@@ -121,10 +126,10 @@ function addEventOnMySubAndAllSub() {
 
   // 전체 언론사 클릭했을떄.
   allPublisher.addEventListener("click", () => {
-    isMySubscribe = false;
+    navTab.isMySubscribe = false;
 
     // 전체 언론사에 포커스 효과주기
-    onFocusToClicked(ALL_PUBLISHER);
+    onFocusToClicked(ALL_PUBLISHER, mySubscribe, allPublisher);
 
     selectedPage = 0; // selectedPage 0에서 시작
     LAST_PAGE = 3;
@@ -132,26 +137,6 @@ function addEventOnMySubAndAllSub() {
 
     paintNews();
   });
-}
-
-function onFocusToClicked(where) {
-  where === MY_PUBLISHER ? focusToMyPubliser() : focusToAllPublisher();
-}
-
-function focusToAllPublisher() {
-  // 전체 언론사에 포커스 효과주기
-  mySubscribe.classList.remove("newsstand—text-clicked");
-  mySubscribe.classList.add("newsstand—text-unclicked");
-  allPublisher.classList.add("newsstand—text-clicked");
-  allPublisher.classList.remove("newsstand—text-unclicked");
-}
-
-function focusToMyPubliser() {
-  // 현재 구독중인 리스트에 포커스 효과주기
-  mySubscribe.classList.add("newsstand—text-clicked");
-  mySubscribe.classList.remove("newsstand—text-unclicked");
-  allPublisher.classList.remove("newsstand—text-clicked");
-  allPublisher.classList.add("newsstand—text-unclicked");
 }
 
 // 각 언론사에 이벤트리스너 등록
@@ -183,20 +168,19 @@ function userClickSubscribeButton(liElement) {
   return function () {
     const name = liElement.children[0].alt;
     const src = liElement.children[0].attributes.src.nodeValue;
-
     // 해지하기 버튼을 눌렀을때.
     if (subscribeState.getSubscribeByName(name)[0]) {
       liElement.children[1].textContent = "+ 구독하기";
       subscribeState.setUnSubscribeState(name);
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
-      isMySubscribe ? paintNews(subscribeState.getSubscribeState()) : () => {};
+      const subList = subscribeState.getSubscribeState();
+      navTab.isMySubscribe ? paintNews(subList) : () => {};
     }
     // 구독하기 버튼을 눌렀을때.
     else {
       liElement.children[1].textContent = "x 해지하기";
       subscribeState.setSubscribeState(name, src);
-      console.log(subscribeState.getSubscribeState());
     }
   };
 }
