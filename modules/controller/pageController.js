@@ -11,13 +11,7 @@ import {
 import { qs, qsa } from "../utils.js";
 import { highlightCategoryItem } from "./categoryController.js";
 
-export function initPageObservers() {
-  addObserverOnGridPage();
-  addObserverOnListPage();
-  addObserverOnPageType();
-}
-
-function addObserverOnPageType() {
+export function addObserverOnPageType() {
   const changeView = () => {
     const gridPage = getState(gridPageState);
     const pageType = getState(pageTypeState);
@@ -44,13 +38,13 @@ function addObserverOnPageType() {
   addObserver(pageTypeState, changeView);
 }
 
-function addObserverOnGridPage() {
+export function addObserverOnGridPage() {
   addObserver(gridPageState, () => {
     showGridPage(getState(gridPageState));
   });
 }
 
-function addObserverOnListPage() {
+export function addObserverOnListPage() {
   const controllListPage = () => {
     const categoryId = getState(categoryIdState);
     const listPage = getState(listPageState);

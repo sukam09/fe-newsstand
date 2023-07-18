@@ -1,26 +1,22 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
-import {
-  initPageObservers,
-  showGridPage,
-} from "./controller/pageController.js";
-import { initEvents } from "./controller/initEvents.js";
+import { showGridPage } from "./controller/pageController.js";
 import { initCategoryData, initPressData } from "./store/dataState.js";
 import { initPageState } from "./store/pageState.js";
 import { initComponents } from "./components/initComponents.js";
-import { addObserverOnPressData } from "./controller/gridController.js";
+import { initSubButtonStateList } from "./store/gridState.js";
+import { initEvents, initObservers } from "./controller/controllers.js";
 
 (async function init() {
   //fetch data
   await initCategoryData();
   await initPressData();
-
   initPageState();
+  initSubButtonStateList();
 
   await initComponents();
 
   initEvents();
-  initPageObservers();
-  addObserverOnPressData();
+  initObservers();
 
   startRollingAnimation();
   showGridPage(0);

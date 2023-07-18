@@ -21,10 +21,8 @@ import {
 import { handleClickCategoryItem } from "./categoryController.js";
 import {
   handleGridItemClick,
-  handleSubButtonClick,
-  handleUnsubButtonClick,
-  hiddenSubButton,
-  showSubButton,
+  handleGridItemMouseout,
+  handleGridItemMouseover,
 } from "./gridController.js";
 import { getState, setState } from "../store/observer.js";
 import {
@@ -40,27 +38,16 @@ import {
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 
-export function initEvents() {
-  addEventsOnGridItem();
-  addEventsOnPageButton();
-  addEventsOnSubButton();
-  addEventsOnViewButton();
-  addEventsOnCategoryItem();
-  addEventsOnThemeButton();
-  addEventsOnRollingList();
-  addEventsOnTitle();
-}
-
-function addEventsOnGridItem() {
+export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
-  [...$gridItems].forEach((gridItem) => {
-    gridItem.addEventListener("mouseover", (e) => showSubButton(e));
-    gridItem.addEventListener("mouseout", (e) => hiddenSubButton(e));
-    gridItem.addEventListener("click", (e, key) => handleGridItemClick(e, key));
+  [...$gridItems].forEach(($gridItem) => {
+    $gridItem.addEventListener("mouseover", (e) => handleGridItemMouseover(e));
+    $gridItem.addEventListener("mouseout", (e) => handleGridItemMouseout(e));
+    $gridItem.addEventListener("click", (e) => handleGridItemClick(e));
   });
 }
 
-function addEventsOnPageButton() {
+export function addEventsOnPageButton() {
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
 
@@ -124,23 +111,15 @@ function addEventsOnPageButton() {
   });
 }
 
-function addEventsOnSubButton() {
+export function addEventsOnSubButton() {
   const $gridItems = qsa(".grid_items");
-  // const $subButtonContainers = qsa(".sub_button_container");
-  // [...$subButtonContainers].forEach(($subButtonContainer) => {
-  //   const $subButton = $subButtonContainer.querySelector(".sub_button");
-  //   const $unsubButton = $subButtonContainer.querySelector(".unsub_button");
-
-  //   $subButton.addEventListener("click", (e) => handleSubButtonClick(e));
-  //   $unsubButton.addEventListener("click", (e) => handleUnsubButtonClick(e));
-  // });
 
   [...$gridItems].forEach(($item) => {
     $item.addEventListener("click", (e) => handleGridItemClick(e));
   });
 }
 
-function addEventsOnViewButton() {
+export function addEventsOnViewButton() {
   const $listViewButton = qs(".list_view_button");
   const $gridViewButton = qs(".grid_view_button");
 
@@ -148,7 +127,7 @@ function addEventsOnViewButton() {
   $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
 }
 
-function addEventsOnCategoryItem() {
+export function addEventsOnCategoryItem() {
   const $categoryItems = qsa(".category_item");
 
   [...$categoryItems].forEach(($categoryItem) => {
@@ -156,14 +135,14 @@ function addEventsOnCategoryItem() {
   });
 }
 
-function addEventsOnThemeButton() {
+export function addEventsOnThemeButton() {
   const $themeButtons = qsa(".theme_button");
   [...$themeButtons].forEach(($button) => {
     $button.addEventListener("click", handleThemeButtonClick);
   });
 }
 
-function addEventsOnRollingList() {
+export function addEventsOnRollingList() {
   const $leftContainer = qs(".left_rolling_list");
   const $rightContainer = qs(".right_rolling_list");
   const $leftRollingList = qsa(".left_rolling_list_item");
@@ -192,7 +171,7 @@ function addEventsOnRollingList() {
   });
 }
 
-function addEventsOnTitle() {
+export function addEventsOnTitle() {
   const $titleContainer = qs(".title_container");
   $titleContainer.addEventListener("click", handleLogoButton);
 }

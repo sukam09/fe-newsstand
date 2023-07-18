@@ -17,10 +17,11 @@ export function createPressGrid(pressList, page) {
 
 function pressItem(key, press) {
   return `
-  <li key="${key}" class="grid_item" id=${press.id}>
+  <li key="${key}" class="grid_item" id="press_${press.id}">
     <img class="light_press_logo" src=${press.lightSrc}  / >
     <img class="dark_press_logo" src=${press.darkSrc}  / >
     ${createSubButton()}
+    ${createUnsubButton()}
   </li>
   `;
 }
@@ -30,6 +31,13 @@ function createSubButton() {
   return `
   <div class="sub_button_container">
     <button class="sub_button"> + 구독하기</button>
+  </div>
+  `;
+}
+
+function createUnsubButton() {
+  return `
+  <div class="unsub_button_container">
     <button class="unsub_button"> x 해지하기</button>
   </div>
   `;

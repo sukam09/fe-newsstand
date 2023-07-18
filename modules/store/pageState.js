@@ -6,6 +6,7 @@ export const NUM_IN_A_GRID = 24;
 export let MAX_GRID_PAGE = 0;
 export let MAX_CATEGORY_ID = 0;
 export let TOTAL_LIST_PAGE;
+export let DATA_LEN = 0;
 export const MAX_LIST_PAGE = {};
 
 export function initPageState() {
@@ -20,6 +21,8 @@ export function initPageState() {
     return (sum += val);
   });
 
+  DATA_LEN = parseInt(pressList.length);
+  console.log(parseInt(pressList.length));
   MAX_GRID_PAGE = parseInt(pressList.length / NUM_IN_A_GRID);
   MAX_CATEGORY_ID = parseInt(categoryList.length);
   TOTAL_LIST_PAGE = total;
