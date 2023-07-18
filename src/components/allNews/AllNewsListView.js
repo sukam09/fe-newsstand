@@ -44,7 +44,7 @@ export default class AllNewsListView extends Component {
                 <div>
                   <img
                     class="border-default available-medium16 text-strong"
-                    src=${this.state.currentPress?.main_news.thumbnail ?? ''}
+                    src=${this.state.currentPress?.main_news.thumbnail + `?${Math.random()}` ?? ''}
                   />
                 </div>
 
