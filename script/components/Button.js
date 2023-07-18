@@ -1,8 +1,12 @@
 import Icon from './Icon.js';
 
-const Button = ({ icon, isWhite, text, onClick }) => {
+const Button = ({ icon, isWhite, text, once, onClick }) => {
   const buttonElement = document.createElement('button');
   const surfaceClass = isWhite ? 'surface_default' : 'surface_alt';
+  const onClickOnce = e => {
+    onClick(e);
+    buttonElement.removeEventListener('click', onClickOnce);
+  };
 
   buttonElement.className = `button border_default ${surfaceClass}`;
   buttonElement.innerHTML = Icon[icon];
@@ -10,8 +14,7 @@ const Button = ({ icon, isWhite, text, onClick }) => {
     buttonElement.classList.add('text_button');
     buttonElement.appendChild(document.createTextNode(text));
   }
-  buttonElement.addEventListener('click', onClick);
-
+  buttonElement.addEventListener('click', once ? onClickOnce : onClick);
   return buttonElement;
 };
 
