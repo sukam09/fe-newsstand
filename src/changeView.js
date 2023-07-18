@@ -3,26 +3,26 @@ import {
   runProgress,
   clearProgress,
 } from "./progressBar.js";
-import { setDisplayWithIdx } from "./utils.js";
+import { setDisplay } from "./utils.js";
 
 let grid_view_selected = true;
 
 /***** grid형 <-> list형 뷰 변경 *****/
 //grid형 보기로 바꾸기
 function changeToGridView() {
-  setDisplayWithIdx(".list-selected", 0, "none");
-  setDisplayWithIdx(".grid-selected", 0, "block");
-  setDisplayWithIdx(".press-list-section", 0, "none");
-  setDisplayWithIdx(".press-grid", 0, "block");
+  setDisplay(".list-selected", "none");
+  setDisplay(".grid-selected", "block");
+  setDisplay(".press-list-section", "none");
+  setDisplay(".press-grid", "block");
   grid_view_selected = true;
 }
 
 //list형 보기로 바꾸기
 function changeToListView() {
-  setDisplayWithIdx(".grid-selected", 0, "none");
-  setDisplayWithIdx(".list-selected", 0, "block");
-  setDisplayWithIdx(".press-list-section", 0, "block");
-  setDisplayWithIdx(".press-grid", 0, "none");
+  setDisplay(".grid-selected", "none");
+  setDisplay(".list-selected", "block");
+  setDisplay(".press-list-section", "block");
+  setDisplay(".press-grid", "none");
   grid_view_selected = false;
 }
 
