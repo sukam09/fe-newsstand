@@ -65,7 +65,7 @@ const setListArrowEvent = () => {
 const changeIdx = () => {
   let cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
 
-  if (STATE.MODE.IS_TOTAL)
+  if (STATE.MODE.IS_TOTAL) {
     if (
       STATE.LIST_MODE.CATE_IDX === 0 &&
       STATE.LIST_MODE.CATE_MEDIA_IDX === -1
@@ -96,15 +96,16 @@ const changeIdx = () => {
     ) {
       STATE.LIST_MODE.CATE_IDX++;
       STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
-    } else if (!STATE.MODE.IS_TOTAL) {
-      if (STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === -1) {
-        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
-      } else if (
-        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === STATE.SUBSCRIBE_LIST.length
-      ) {
-        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = 0;
-      }
     }
+  } else if (!STATE.MODE.IS_TOTAL) {
+    if (STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === -1) {
+      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
+    } else if (
+      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === STATE.SUBSCRIBE_LIST.length
+    ) {
+      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = 0;
+    }
+  }
 };
 
 /**
@@ -112,7 +113,6 @@ const changeIdx = () => {
  * 모든 카테고리를 unselected 상태로 세팅
  */
 const setCategoryBar = () => {
-  console.log(STATE.MODE.IS_TOTAL);
   $categoryBar.innerHTML = "";
   if (STATE.MODE.IS_TOTAL) {
     setACategoryBar({ keyList: categoryKeys });
@@ -151,7 +151,7 @@ const setACategoryBar = ({ keyList }) => {
 };
 
 /**
- * 페이지 전환 따른 카테고리바 변경
+ * 페이지 전환 따른 프로그래스바 이동
  */
 const setProgressBar = () => {
   const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
@@ -167,15 +167,21 @@ const setProgressBar = () => {
     }
   });
 
-  // 2. 해당 STATE.LIST_MODE.CATE_IDX 위치에 프로그래스바 추가
-  const $li = $categoryBar.children[STATE.LIST_MODE.CATE_IDX];
+  // 2. 모드 따라 현재 선택한 카테고리 위치에 프로그래스바 추가
+  const curCateIdx = STATE.MODE.IS_TOTAL
+    ? STATE.LIST_MODE.CATE_IDX
+    : STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX;
+  const $li = $categoryBar.children[curCateIdx];
   $li.className = "category_selected";
 
   const $cntDiv = $li.children[1];
-  $cntDiv.innerHTML = `
-    <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
-    <p>&nbsp; / ${categoryInfo[cate].length}</p>
-  `;
+  if (STATE.MODE.IS_TOTAL) {
+    // 전체 언론사 모드일 때만 카운트 추가
+    $cntDiv.innerHTML = `
+  <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
+  <p>&nbsp; / ${categoryInfo[cate].length}</p>
+`;
+  }
 
   const $progressBar = document.createElement("div");
   $progressBar.className = "progress_bar";
@@ -183,7 +189,8 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    STATE.LIST_MODE.CATE_MEDIA_IDX++;
+    if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX++;
+    else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
     setFullList();
   });
 };
@@ -193,7 +200,11 @@ const setProgressBar = () => {
  */
 const setListView = () => {
   const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
-  const mediaId = categoryInfo[cate][STATE.LIST_MODE.CATE_MEDIA_IDX];
+
+  // 모드에 따라 mediaId 세팅
+  const mediaId = STATE.MODE.IS_TOTAL
+    ? categoryInfo[cate][STATE.LIST_MODE.CATE_MEDIA_IDX]
+    : STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
 
   const nowMedia = mediaInfo[mediaId];
 
