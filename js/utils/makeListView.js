@@ -64,6 +64,5 @@ export function showListView(order, list, current = "", mode = "") {
     current = selected_el.textContent;
   }
   drawList(order, current, list, mode);
-
   document.addEventListener("click", (e) => handleClick(e, list));
 }

@@ -9,7 +9,7 @@ let subscribedPress = ["서울경제", "데일리안", "헤럴드경제"];
 
 function MainView() {
   document.addEventListener("click", handleClick);
-  showGridView(page, subscribedPress);
+  showGridView(page);
   checkPage(page, "grid");
 }
 
@@ -20,16 +20,21 @@ export function parentCallback(_subscribedPress) {
 }
 
 function changePage(target, view) {
+  const _mode = document.querySelector(".main-tab-btn .clicked");
+  const mode = _mode.getAttribute("id");
+
   if (target === "left") {
     page--;
   } else if (target === "right") {
     page++;
   }
   if (view === "grid") {
-    showGridView(page, subscribedPress);
+    showGridView(page);
     checkPage(page, "grid");
   } else {
-    showListView(page, subscribedPress);
+    mode === "all"
+      ? showListView(page, CATEGORY, "", mode)
+      : showListView(page, subscribedPress, "", mode);
     checkPage(page, "list");
   }
 }
