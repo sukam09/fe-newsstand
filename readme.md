@@ -147,10 +147,13 @@ news_stand__container
 │     ├── latest_news__wrapper-left
 │     └── latest_news__wrapper-right
 │
-└── press__wrapper
-      ├── press__header
-      ├── arrows__wrapper-grid
-      └── arrows__wrapper-list
+├── press__wrapper
+│     ├── press__header
+│     ├── arrows__wrapper-grid
+│     └── arrows__wrapper-list
+│
+├── snack-bar
+└── alert
 
 ```
 
@@ -165,30 +168,50 @@ news_stand__container
 ├── /assets
 │     ├── /data
 │     │    ├── latest-news.json
-│     │    └── total-press.json
+│     │    └── press-news.json
 │     ├── /fonts
 │     ├── /icons
 │     └── /images
 │          ├── /dark-press-logo
-│          └── /light-press-logo
+│          ├── /light-press-logo
+│          └── /main-press
 │
 ├── /components
 │     ├── latest-news.js
+│     ├── light-dark-mode.js
 │     ├── news-stand-header.js
 │     ├── press-grid.js
 │     ├── press-header.js
 │     └── press-list.js
 │
-└── /styles
+├── /constants
+│     ├── latest-news.js
+│     ├── light-dark-mode.js
+│     ├── news-stand-header.js
+│     ├── press-data.js
+│     ├── press-grid.js
+│     ├── press-header.js
+│     └── press-list.js
+│
+├── /styles
 │     ├── /components
 │     │     ├── latest-news.css
+│     │     ├── light-dark-mode.css
 │     │     ├── news-stand-header.css
 │     │     ├── press-grid.css
 │     │     ├── press-header.css
 │     │     └── press-list.css
+│     │
+│     ├── dark.css
 │     ├── design.css
-│     ├── index.css
+│     ├── global.css
+│     ├── light.css
 │     └── reset.css
+│
+├── /utils
+│     ├── fetch.js
+│     ├── popup.js
+│     └── shuffle.js
 │
 ├── index.html
 └── index.js
