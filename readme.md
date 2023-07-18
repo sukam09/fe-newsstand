@@ -48,6 +48,10 @@ fe-newsstand
     ├── globals.js
     ├── utils.js
     └── views
+        ├── grid_views.js
+        ├── list_views.js
+        ├── rolling_views.js
+        └── snack_bar_views.js
 ```
 
 5. 구현 체크리스트
@@ -73,7 +77,17 @@ fe-newsstand
     -   [x] 다크모드
     -   [ ] 반응형 (모바일)
 
+6. 모델 구조 개요
+    - 모든 event는 event.js에서 정의됩니다. 정의된 event는 initEvent, conditionEvent로 분류되며, 시작부터 끝까지 사용되는 event는 initEvent로 바로 호출되며, 조건에 따라 conditionEvent가 호출됩니다. 호출된 event는 실행 될 행동을 action에서 가져옵니다. action에 따라 최종적으로 보여지는 view는 달라집니다.
+
 ---
+
+### 7.18 (화)
+
+-   구독 언론사 데이터 관리
+-   렌더링 최적화
+    -   다크모드에서 렌더링 되는 요소
+    -   페이지를 넘기면서 렌더링 되는 요소
 
 ### 7.17 (월)
 
