@@ -2,7 +2,6 @@ import { initState } from "./observer.js";
 import { categoryData, pressData } from "./dataState.js";
 export const LIST = "list";
 export const GRID = "grid";
-
 export const NUM_IN_A_GRID = 24;
 export let MAX_GRID_PAGE = 0;
 export let MAX_CATEGORY_ID = 0;

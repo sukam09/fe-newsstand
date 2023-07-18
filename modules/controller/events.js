@@ -25,8 +25,6 @@ import {
   MAX_CATEGORY_ID,
   MAX_GRID_PAGE,
   MAX_LIST_PAGE,
-} from "../store/pageState.js";
-import {
   GRID,
   LIST,
   categoryIdState,

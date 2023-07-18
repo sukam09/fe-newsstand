@@ -1,7 +1,6 @@
 export const globalState = {};
 
 export const initState = ({ key, value }) => {
-  console.log(key);
   globalState[key] = {
     state: value,
     observers: new Set(),
