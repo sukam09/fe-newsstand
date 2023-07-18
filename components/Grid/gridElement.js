@@ -1,5 +1,7 @@
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
+import { Alert } from "../Alert/Alert.js";
+import { SnackBar } from "../SnackBar/SnackBar.js";
 
 // 구독 or 해지 버튼 누르고 버튼 다시 렌더시키는 것 필요
 
@@ -23,6 +25,9 @@ export const makeGrid = (data) => {
   document.querySelector(".agency-grid").appendChild(li);
 };
 
+const alert = new Alert();
+const snackbar = new SnackBar();
+
 // 호버 시 나타날 구독 or 해지 버튼 생성
 
 const createButton = (data) => {
@@ -39,6 +44,7 @@ const createButton = (data) => {
   const icon = document.createElement("img");
   icon.alt = isSubscribed ? "minus" : "plus";
   icon.src = isSubscribed ? "./asset/icon/closed.svg" : "./asset/icon/plus.svg";
+  icon.className = isSubscribed ? "plus" : "minus";
 
   const $subscribe = document.createElement("div");
   $subscribe.className = "subscribe-text";
@@ -52,6 +58,20 @@ const createButton = (data) => {
   btn.id = `${data.name}`;
 
   btn.addEventListener("click", (e) => {
+    const message = store.subscriptions.find(
+      (item) => item.name === e.target.id
+    ).subscribe
+      ? `${data.name}을(를) 구독해지 하시겠습니까?`
+      : `내가 구독한 언론사에 추가되었습니다.`;
+
+    if (
+      store.subscriptions.find((item) => item.name === e.target.id)
+        .subscribe === true
+    ) {
+      alert.show(message);
+    } else {
+      snackbar.show(message);
+    }
     dispatcher({
       type: "TOGGLE_SUBSCRIPTIONS",
       name: e.target.id,
