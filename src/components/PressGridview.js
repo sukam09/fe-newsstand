@@ -1,4 +1,5 @@
-import { shuffleArray } from '../utils.js';
+import { fetchPressInfo } from '../api.js';
+import { shuffle } from '../utils.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
 export default function PressGridView({ $target, initialState }) {
@@ -14,30 +15,29 @@ export default function PressGridView({ $target, initialState }) {
     this.render();
   };
 
-  const fetchNewsPressData = async () => {
-    const res = await fetch('../data/press-info.json');
-    const json = await res.json();
-    const shufffledNewsPressData = shuffleArray(json);
+  const initPressInfo = async () => {
+    const json = await fetchPressInfo();
+    const data = shuffle(json);
     this.setState({
       ...this.state,
-      newsPressData: shufffledNewsPressData,
+      data,
     });
   };
 
-  const initNewsPressItems = () => {
+  const initPressItems = () => {
     const $ul = $section.querySelector('ul');
     $ul.innerHTML = '';
 
-    const { page, newsPressData } = this.state;
+    const { page, data } = this.state;
 
     const startIndex = NEWS_PRESS_NUMBERS_PER_PAGE * (page - 1);
     const endIndex = startIndex + 23;
-    const currentNewsPressData = newsPressData.slice(startIndex, endIndex + 1);
+    const currentData = data.slice(startIndex, endIndex + 1);
 
-    currentNewsPressData.forEach(newsPressItem => {
+    currentData.forEach(press => {
       const $li = document.createElement('li');
       const $img = document.createElement('img');
-      const { logo } = newsPressItem;
+      const { logo } = press;
 
       $img.src = logo;
       $img.classList.add('press-logo');
@@ -73,7 +73,7 @@ export default function PressGridView({ $target, initialState }) {
 
   this.render = () => {
     if (!isInit) {
-      fetchNewsPressData();
+      initPressInfo();
       isInit = true;
     }
 
@@ -93,7 +93,7 @@ export default function PressGridView({ $target, initialState }) {
     const $prevPageButton = $section.querySelector('.left-arrow-button');
     const $nextPageButton = $section.querySelector('.right-arrow-button');
 
-    initNewsPressItems();
+    initPressItems();
     checkShowPageButton($prevPageButton, $nextPageButton);
 
     $prevPageButton.addEventListener('click', () => handleMovePage(this.state.page - 1));

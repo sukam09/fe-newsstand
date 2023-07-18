@@ -59,7 +59,7 @@ export default function App({ $app }) {
           $target: $div,
           initialState: {
             page: 1,
-            newsPressData: [],
+            data: [],
           },
         })
       : new PressListView({
