@@ -1,26 +1,28 @@
-function createStore(reducer) {
-  let state;
-  let handler = [];
-  reducer(state, {
-    type: '@@__init__@@',
-  });
-  return {
-    dispatch: action => {
+class Store {
+  constructor(reducer) {
+    let state;
+    let handler = [];
+
+    reducer(state, {
+      type: '@@__init__@@',
+    });
+
+    this.dispatch = action => {
       state = reducer(state, action);
       handler.forEach(h => {
         h();
       });
-    },
-    subscribe: listener => {
-      handler.push(listener);
-    },
-    getState: () => state,
-  };
-}
+    };
 
-const initialState = {
-  myPress: [],
-};
+    this.subscribe = listener => {
+      handler.push(listener);
+    };
+
+    this.getState = () => {
+      return state;
+    };
+  }
+}
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -33,6 +35,10 @@ function reducer(state = initialState, action) {
   }
 }
 
+const initialState = {
+  myPress: [],
+};
+
 function actionCreator(type, data) {
   return {
     type,
@@ -40,6 +46,6 @@ function actionCreator(type, data) {
   };
 }
 
-const store = createStore(reducer);
+const store = new Store(reducer);
 
 export { store, actionCreator };
