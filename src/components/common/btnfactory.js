@@ -7,7 +7,7 @@ import {
 } from "../../utils/iconURL.js";
 
 class button {
-    constructor({ className, events }) {
+    constructor({ className, events, txt }) {
         this.$btn = create.button({
             className: className,
             events: events,
@@ -74,6 +74,24 @@ class closedBtn extends button {
     }
 }
 
+class alertBtn extends button {
+    constructor({ events, isPos }) {
+        super({
+            className: `alert-btn-${isPos ? "pos" : "neg"}`,
+            events: {
+                ...events,
+                mouseover: () => {
+                    this.$btn.style.textDecoration = "underline";
+                },
+                mouseout: () => {
+                    this.$btn.style.textDecoration = "none";
+                },
+            },
+        });
+        this.$btn.innerHTML = isPos ? "예, 해지합니다" : "아니오";
+    }
+}
+
 export class buttonFacotry {
     create(props) {
         switch (props.type) {
@@ -87,7 +105,9 @@ export class buttonFacotry {
                     isSubscribe: props.isSubscribe,
                 });
             case "closed":
-                return new closedBtn({ className: props.className, events: props.events });
+                return new closedBtn({ events: props.events });
+            case "alert":
+                return new alertBtn({ events: props.events, isPos: props.isPos });
             default:
                 return new button({ className: props.className, events: props.events });
         }
