@@ -41,8 +41,6 @@ export default function PressListView({ $target, initialState }) {
     const { materials, name, regDate } = await fetchListView(index, present);
     const pressLogo = await getPressLogo(name);
 
-    console.log(materials.slice(1));
-
     this.setState({
       ...this.state,
       entire: materials.length,
@@ -156,6 +154,11 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
+    if (!this.isFetch) {
+      initListView(this.state.index, this.state.present);
+      this.isFetch = true;
+    }
+
     const {
       index,
       present,
@@ -168,14 +171,6 @@ export default function PressListView({ $target, initialState }) {
       mainNews,
       subNews,
     } = this.state;
-
-    console.log(pressLogo);
-    console.log(thumbnail);
-
-    if (!this.isFetch) {
-      initListView(index, present);
-      this.isFetch = true;
-    }
 
     $article.innerHTML = `
       <div class="press-info">
