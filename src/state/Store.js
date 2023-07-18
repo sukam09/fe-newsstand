@@ -1,5 +1,4 @@
-class SubscribeArticleState{
-
+class Store{
     constructor(){
         this.subscribePress = [];
     }
@@ -23,6 +22,6 @@ class SubscribeArticleState{
     }
 }
 
-const subscribeArticleState = new SubscribeArticleState();
+const store = new Store();
 
-export default subscribeArticleState;  
+export default store;  

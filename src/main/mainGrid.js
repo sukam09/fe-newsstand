@@ -1,23 +1,23 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
 import gridArticle from "../../data/grid_article.json" assert { type: "json"};
-import subscribeArticleState from "../state/SubscribeArticleState.js";
+import store from "../state/store.js";
 
 const COUNT_PER_PAGE = 24;
 let press;
 let allView;
 let pressData;
 const subscribeBtn = document.createElement("button");
-const subscribeData = subscribeArticleState.getSubscribe();
+const subscribeData = store.getSubscribe();
 
 function addSubscribeBtn(e){
     subscribeBtn.addEventListener("click", (e) => {
-        if(subscribeArticleState.findSubscribe(press)){
+        if(store.findSubscribe(press)){
             e.target.innerText = "+ 구독하기";
-            subscribeArticleState.removeSubscribe(subscribeArticleState.findSubscribe(press));
+            store.removeSubscribe(store.findSubscribe(press));
         }
         else{
             e.target.innerText = "해지하기";
-            subscribeArticleState.addSubscribe(subscribeArticleState.findSubscribe(press));
+            store.addSubscribe(store.findSubscribe(press));
         }
     });
 
@@ -33,7 +33,7 @@ function logoMouseOver(e){
 
     subscribeBtn.classList.add("gridSubscribeBtn");
 
-    if(subscribeArticleState.findSubscribe(press)){
+    if(store.findSubscribe(press)){
         subscribeBtn.innerText = "해지하기";
     }
     else{
@@ -46,6 +46,7 @@ function logoMouseOut(e){
     e.target.innerHTML = "";
     e.target.style.backgroundColor = "white";
     const selectedpress = shuffled_data.find((i) => i.id === parseInt(press));
+    console.log(selectedpress);
     const newsLogo = document.createElement("img");
     newsLogo.src = selectedpress.logo;
     newsLogo.classList.add(press);
@@ -54,7 +55,7 @@ function logoMouseOut(e){
 }
 
 function refreshGrid( currentPageNumber){
-    allView === "all" ? pressData = shuffled_data : pressData = subscribeArticleState.getSubscribe();
+    allView === "all" ? pressData = shuffled_data : pressData = store.getSubscribe();
 
     const mainCenter = document.getElementById("main-center");
     const mainGrid = document.createElement("div");
@@ -76,12 +77,8 @@ function refreshGrid( currentPageNumber){
             const newsLogo = document.createElement("img");
             newsLogo.src = value.logo;
             newsLogo.classList.add(value.id);
-            
-            subscribeBtn.style.backgroundColor = "#F5F7F9";
-            subscribeBtn.classList.add("gridSubscribeBtn");
-            
             outerDiv.append(newsLogo);
-            outerDiv.append(subscribeBtn);
+
             //마우스 오버시 구독하기/해지하기 
             outerDiv.addEventListener("mouseenter", (e) => logoMouseOver(e));
             outerDiv.addEventListener("mouseleave", (e) => logoMouseOut(e));
