@@ -26,13 +26,13 @@ async function drawList(order, current, list, mode) {
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
     let list_content = await getNewsData(current, mode);
-
     if (list_content.length === 0 || list.length === 0) {
-      main_list.innerHTML = "subsubusubsubu";
-    } else if (list_content.length !== 0 && list_content.length < order) {
+      main_list.innerHTML = "subsubusubsubu"; //TODO: 없는 경우 예외처리
+    } else if (order <= 0 || list_content.length < order) {
       const currentIndex = list.indexOf(current);
+      const prevIndex = (currentIndex - 1 + list.length) % list.length;
       const nextIndex = (currentIndex + 1) % list.length;
-      current = list[nextIndex];
+      order <= 0 ? (current = list[prevIndex]) : (current = list[nextIndex]);
       showListView(1, list, current, mode);
       resetPage();
       list_content = await getNewsData(current, mode);

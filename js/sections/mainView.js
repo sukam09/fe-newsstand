@@ -5,7 +5,7 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
-let subscribedPress = ["서울경제", "데일리안"];
+let subscribedPress = ["서울경제", "데일리안", "헤럴드경제"];
 
 function MainView() {
   document.addEventListener("click", handleClick);
