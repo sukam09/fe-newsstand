@@ -25,6 +25,13 @@
   background-color: var(--blue-500);
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
   color: var(--grayscale-white-alt);
+
+  opacity: 0;
+}
+
+.snack-bar.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .alert {
@@ -40,6 +47,13 @@
   z-index: 1;
 
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+
+  opacity: 0;
+}
+
+.alert.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .alert-info {
@@ -94,7 +108,6 @@
   height: 28px;
   padding: 10px;
 
-  background-color: transparent;
   background-color: var(--grayscale-50);
   font: var(--medium-M);
   color: var(--grayscale-400);

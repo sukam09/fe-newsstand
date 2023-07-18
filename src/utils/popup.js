@@ -6,10 +6,12 @@ import { initPressGrid } from '../components/press-grid.js';
 const getSnackBar = (pressData) => {
   const snackBar = document.querySelector('.snack-bar');
   snackBar.innerText = '내가 구독한 언론사에 추가되었습니다.';
+  snackBar.classList.add('show');
   snackBar.classList.remove('hidden');
 
   setTimeout(() => {
     snackBar.classList.add('hidden');
+    snackBar.classList.remove('show');
     const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
     const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
     const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
@@ -32,16 +34,20 @@ const setAlertEvent = (pressData, pressIds, pressName) => {
   const alertYes = alert.querySelector('.alert-yes');
   const alertNo = alert.querySelector('.alert-no');
   alert.classList.remove('hidden');
+  alert.classList.add('show');
+
   alertPress.innerText = pressName;
 
   alertYes.addEventListener('click', () => {
     STATE.IS_UNSUBSCRIBE = true;
+    alert.classList.remove('show');
     alert.classList.add('hidden');
     if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
     if (pressIds.length >= 96) initPressGrid(pressData, LIST.SUFFLE);
   });
   alertNo.addEventListener('click', () => {
     STATE.IS_UNSUBSCRIBE = false;
+    alert.classList.remove('show');
     alert.classList.add('hidden');
   });
 };

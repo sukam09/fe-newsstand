@@ -44,3 +44,26 @@ body {
 .press-logo__li-hover {
   background-color: var(--grayscale-500);
 }
+
+/* 알림창 영역 */
+.alert-info {
+  background-color: var(--grayscale-black);
+}
+.alert-name {
+  color: var(--grayscale-white-alt);
+}
+
+.alert-info,
+.alert-unsubscribe {
+  color: var(--grayscale-100);
+}
+
+.alert-yes,
+.alert-no {
+  background-color: var(--grayscale-500);
+  color: var(--grayscale-100);
+}
+
+.alert-no {
+  color: var(--grayscale-white-alt);
+}
