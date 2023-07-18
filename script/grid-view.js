@@ -1,3 +1,4 @@
+import pressList from "../asset/data/pressList.js";
 import { store } from "../store/store.js";
 import { shuffleArray } from "../util/shuffleArray.js";
 
@@ -6,8 +7,8 @@ const pressCover = document.querySelector(".press-cover");
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 
-let pressIdxArray = Array.from(Array(96).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
-let subscribedPress = Array.from(Array(48).keys());  // array of subscribed press IDs
+let pressIdxArray = Array.from(Array(pressList.length).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
+let subscribedPress = Array.from(Array(pressList.length/2).keys());  // array of subscribed press IDs
 
 
 function checkSubscription(item){

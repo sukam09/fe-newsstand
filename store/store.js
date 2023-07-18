@@ -6,8 +6,8 @@ import { drawList } from "../script/list-view.js";
 class Store {
     constructor () {
         this.view = "grid";
-        this.page = 0;
-        this.category = 0;
+        this.page = 0; // page index (grid, list view)
+        this.category = 0; // category index (list view)
     }
     
     getView(){

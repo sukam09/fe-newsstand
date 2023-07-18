@@ -1,11 +1,12 @@
 import listViewData from "../asset/data/listViewData.js";
 import { store } from "../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
+import { CATEGORY_LIST } from "../asset/data/constants.js";
+
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
 
-const categoryList = ["종합/경제","방송/통신","IT","영자지","스포츠/연예","매거진/전문지","지역"]
 
 
 function listenCategoryChange(catBtns){
@@ -24,7 +25,7 @@ function listenCategoryChange(catBtns){
 function drawListPage() {
     let crntPage = store.getPage();
     let crntCategory = store.getCategory()
-    const filteredByCat = listViewData.filter(item => item.category == categoryList[crntCategory]);
+    const filteredByCat = listViewData.filter(item => item.category == CATEGORY_LIST[crntCategory]);
     const crntData = filteredByCat[crntPage]
     listContent.innerHTML = `
     <div class="list-page" index=${crntCategory}>
@@ -50,7 +51,7 @@ function drawListNav(){
     let crntPage = store.getPage();
     let crntCategory = store.getCategory()
     listNav.innerHTML = "";
-    categoryList.forEach((category, index) => {
+    CATEGORY_LIST.forEach((category, index) => {
         let numOfPages = listViewData.filter(data => data.category == category).length;
         listNav.innerHTML += `
         <li class="${crntCategory == index ? "selected category" : "category"}">
