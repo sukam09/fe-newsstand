@@ -20,9 +20,6 @@ export function parentCallback(_subscribedPress) {
 }
 
 function changePage(target, view) {
-  const _mode = document.querySelector(".main-tab-btn .clicked");
-  const mode = _mode.getAttribute("id");
-
   if (target === "left") {
     page--;
   } else if (target === "right") {
@@ -32,9 +29,7 @@ function changePage(target, view) {
     showGridView(page);
     checkPage(page, "grid");
   } else {
-    mode === "all"
-      ? showListView(page, CATEGORY, "", mode)
-      : showListView(page, subscribedPress, "", mode);
+    showListView(page, CATEGORY, subscribedPress, "", "");
     checkPage(page, "list");
   }
 }
@@ -58,7 +53,7 @@ function handleClick(e) {
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page, CATEGORY, CATEGORY[0], "all");
+      showListView(page, CATEGORY, subscribedPress, CATEGORY[0], "all");
       checkPage(page, "list");
       break;
     case "left":
@@ -74,7 +69,7 @@ function handleClick(e) {
       const view = document.querySelector(".list-view");
       if (view && view.classList.contains("list-view")) {
         changeView("list");
-        showListView(page, CATEGORY, CATEGORY[0], "all");
+        showListView(page, CATEGORY, subscribedPress, CATEGORY[0], "all");
         checkPage(page, "list");
       } else {
         showGridView(page);
@@ -83,9 +78,8 @@ function handleClick(e) {
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-      subscribedPress.length
-        ? showListView(page, subscribedPress, subscribedPress[0], target)
-        : showListView(page, subscribedPress, "", target);
+      subscribedPress.length;
+      showListView(page, CATEGORY, subscribedPress, "", target);
       break;
     default:
       break;

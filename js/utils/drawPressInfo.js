@@ -67,7 +67,7 @@ function showSubscribeButton(subscribedPress, press) {
     cancel_btn.style.display = "none";
   }
 }
-export function drawPressInfo(order, list_content, list) {
+export function drawPressInfo(order, list_content, list, subscribedPress) {
   const press_news = document.querySelector(".press-news");
   try {
     press_news.innerHTML = `<div class="press-info">
@@ -92,6 +92,8 @@ export function drawPressInfo(order, list_content, list) {
     newDiv.classList.add("news-content");
     press_news.appendChild(newDiv);
     const sub_btn = document.querySelector(".press-info .sub");
-    sub_btn.addEventListener("click", (e) => handleClick(e, list, current));
+    sub_btn.addEventListener("click", (e) =>
+      handleClick(e, subscribedPress, list_content[order - 1].name)
+    );
   } catch {}
 }

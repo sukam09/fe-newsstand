@@ -17,12 +17,20 @@ async function getNewsData(current, mode) {
   }
 }
 
-async function drawList(order, current, list, mode) {
+async function drawList(order, category, subscribedPress, current, mode) {
   try {
+    let list = [];
+
+    if (!current) {
+      const selected_el = document.querySelector(".category.selected .ctg");
+      current = selected_el.textContent;
+    }
     if (!mode) {
       const _mode = document.querySelector(".main-tab-btn .clicked");
       mode = _mode.getAttribute("id");
     }
+    mode === "all" ? (list = category) : (list = subscribedPress);
+
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
     let list_content = await getNewsData(current, mode);
@@ -33,7 +41,7 @@ async function drawList(order, current, list, mode) {
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
       const nextIndex = (currentIndex + 1) % list.length;
       order <= 0 ? (current = list[prevIndex]) : (current = list[nextIndex]);
-      showListView(1, list, current, mode);
+      showListView(1, category, subscribedPress, current, mode);
       resetPage();
       list_content = await getNewsData(current, mode);
     } else {
@@ -42,7 +50,7 @@ async function drawList(order, current, list, mode) {
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
 
-      drawPressInfo(order, list_content, list);
+      drawPressInfo(order, list_content, list, subscribedPress);
       drawPressNews(order, list_content, mode);
     }
   } catch (error) {
@@ -50,19 +58,23 @@ async function drawList(order, current, list, mode) {
   }
 }
 
-function handleClick(e, list) {
+function handleClick(e, category, subscribedPress) {
   const li_target = e.target.closest("li");
   if (li_target && li_target.classList.contains("category")) {
     const current = li_target.querySelector(".ctg").textContent.trim();
-    drawList(1, current, list);
+    drawList(1, category, subscribedPress, current, "");
   }
 }
 
-export function showListView(order, list, current = "", mode = "") {
-  if (!current) {
-    const selected_el = document.querySelector(".category.selected .ctg");
-    current = selected_el.textContent;
-  }
-  drawList(order, current, list, mode);
-  document.addEventListener("click", (e) => handleClick(e, list));
+export function showListView(
+  order,
+  category,
+  subscribedPress,
+  current = "",
+  mode = ""
+) {
+  drawList(order, category, subscribedPress, current, mode);
+  document.addEventListener("click", (e) =>
+    handleClick(e, category, subscribedPress)
+  );
 }
