@@ -421,6 +421,12 @@ body {
   color: var(--text-weak);
 }
 
+/* subscribe view */
+.grid-sub,
+.list-view-sub {
+  display: none;
+}
+
 /* left-button, right-button */
 .left-btn,
 .right-btn {

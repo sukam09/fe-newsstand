@@ -38,6 +38,8 @@ const BTN = {
   PREV_PAGE: -1,
   GRID_VIEW: 0,
   LIST_VIEW: 1,
+  ALL_VIEW: 2,
+  SUB_VIEW: 3,
 };
 
 const CATEGORY = {
@@ -58,6 +60,8 @@ const LIST = {
 const MODE = {
   GRID: 0,
   LIST: 1,
+  GRID_SUB: 2,
+  LIST_SUB: 3,
 };
 
 const POPUP = {
@@ -74,6 +78,8 @@ const GLOBAL = {
   LIST_NEWS_DATA: null,
   ROLLING_NEWS: null,
   TOTAL_NEWS_NUM: 0,
+  SUB_NEWS_DATA: [],
+  SUB_NEWS_NUM: 0,
 
   CATEGORY_NUM: {
     ECONOMY: 0,
@@ -100,6 +106,8 @@ const GLOBAL = {
 
     RIGHT_BTN: document.querySelector(".right-btn"),
     LEFT_BTN: document.querySelector(".left-btn"),
+    ALL_PRESS_BTN: document.querySelector(".all-press-btn"),
+    SUB_PRESS_BTN: document.querySelector(".sub-press-btn"),
     LIST_BNT: document.querySelector(".list-btn"),
     GRID_BTN: document.querySelector(".grid-btn"),
     SNACK_BAR: document.querySelector(".snack-bar"),
@@ -110,6 +118,8 @@ const GLOBAL = {
 
     GRID_VIEW: document.querySelector(".grid"),
     LIST_VIEW: document.querySelector(".list-view"),
+    GRID_VIEW_SUB: document.querySelector(".grid-sub"),
+    LIST_VIEW_SUB: document.querySelector(".list-view-sub"),
 
     FIRST_NEWS: document.querySelector("#first-news"),
     SECOND_NEWS: document.querySelector("#second-news"),

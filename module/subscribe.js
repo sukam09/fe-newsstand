@@ -22,6 +22,14 @@ function toggleSubscribe(src) {
   targetNews.is_subscribe = targetNews.is_subscribe === "true" ? "false" : "true";
   if (targetNews.is_subscribe === "true") {
     showSnackBar(targetNews.is_subscribe);
+    GLOBAL.SUB_NEWS_DATA.push(targetNews);
+    GLOBAL.SUB_NEWS_NUM++;
+  } else {
+    GLOBAL.SUB_NEWS_DATA = GLOBAL.SUB_NEWS_DATA.filter((value) => {
+      return !(value.path.slice(-6) === src.slice(-6));
+    });
+    GLOBAL.SUB_NEWS_NUM--;
+    console.log(GLOBAL);
   }
   return targetNews.is_subscribe;
 }
