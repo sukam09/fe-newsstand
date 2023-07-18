@@ -1,6 +1,6 @@
 import { addObserver, getState, setState } from "../../../core/observer.js";
-import { GRID, LIST } from "../../../state/pageState.js";
-import { pageTypeState } from "../../../state/pageState.js";
+import { GRID, LIST } from "../../../store/pageState.js";
+import { pageTypeState } from "../../../store/pageState.js";
 import { qs } from "../../../utils.js";
 
 export function createMainHeader() {

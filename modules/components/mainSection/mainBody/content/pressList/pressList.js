@@ -1,4 +1,4 @@
-import { categoryData, pressData } from "../../../../../state/dataState.js";
+import { categoryData, pressData } from "../../../../../store/dataState.js";
 
 // 하나의 카테고리의 하나의 페이지
 export function createPressList(categoryId, page) {

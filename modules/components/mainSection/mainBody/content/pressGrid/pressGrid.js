@@ -1,4 +1,4 @@
-import { NUM_IN_A_GRID } from "../../../../../state/pageState.js";
+import { NUM_IN_A_GRID } from "../../../../../store/pageState.js";
 import { shuffleArray } from "../../../../../utils.js";
 
 export function createPressGrid(pressList, page) {

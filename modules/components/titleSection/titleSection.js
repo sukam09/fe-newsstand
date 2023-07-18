@@ -1,4 +1,4 @@
-import { DARK, LIGHT } from "../../state/themeState.js";
+import { DARK, LIGHT } from "../../store/themeState.js";
 import { qs } from "../../utils.js";
 
 export function createTitleSection() {

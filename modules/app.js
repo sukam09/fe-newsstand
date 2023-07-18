@@ -1,50 +1,24 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
-import { createHeadlineSection } from "./components/headlineSection/headlineSection.js";
-import { createMainSection } from "./components/mainSection/mainSection.js";
-import { createTitleSection } from "./components/titleSection/titleSection.js";
 import {
-  addObserverOnGridPage,
-  addObserverOnListPage,
-  addObserverOnPageType,
+  initPageObservers,
   showGridPage,
 } from "./controller/pageController.js";
-import {
-  addEventsOnThemeButton,
-  addEventsOnCategoryItem,
-  addEventsOnGridItem,
-  addEventsOnPageButton,
-  addEventsOnRollingList,
-  addEventsOnSubButton,
-  addEventsOnTitle,
-  addEventsOnViewButton,
-} from "./events.js";
-import { setCategoryData, setPressData } from "./state/dataState.js";
-import { initPageState } from "./state/pageState.js";
-import { qs } from "./utils.js";
+import { initEvents } from "./controller/events.js";
+import { setCategoryData, setPressData } from "./store/dataState.js";
+import { initPageState } from "./store/pageState.js";
+import { initComponents } from "./components/initComponents.js";
 
 (async function init() {
+  //fetch data
   await setCategoryData();
   await setPressData();
+
   initPageState();
 
-  const $root = qs("#root");
+  await initComponents();
 
-  $root.innerHTML += createTitleSection();
-  $root.innerHTML += await createHeadlineSection();
-  $root.innerHTML += await createMainSection();
-
-  addEventsOnThemeButton();
-  addEventsOnPageButton();
-  addEventsOnGridItem();
-  addEventsOnSubButton(); // 미완
-  addEventsOnViewButton();
-  addEventsOnCategoryItem();
-  addEventsOnTitle();
-  addEventsOnRollingList();
-
-  addObserverOnPageType();
-  addObserverOnGridPage();
-  addObserverOnListPage();
+  initEvents();
+  initPageObservers();
 
   startRollingAnimation();
   showGridPage(0);

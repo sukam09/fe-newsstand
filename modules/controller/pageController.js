@@ -1,5 +1,5 @@
 import { addObserver, getState } from "../core/observer.js";
-import { MAX_GRID_PAGE } from "../state/pageState.js";
+import { MAX_GRID_PAGE } from "../store/pageState.js";
 import {
   GRID,
   LIST,
@@ -7,43 +7,58 @@ import {
   gridPageState,
   listPageState,
   pageTypeState,
-} from "../state/pageState.js";
+} from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { highlightCategoryItem } from "./categoryController.js";
 
-export function addObserverOnPageType() {
-  addObserver(pageTypeState, () => {
+export function initPageObservers() {
+  addObserverOnGridPage();
+  addObserverOnListPage();
+  addObserverOnPageType();
+}
+
+function addObserverOnPageType() {
+  const changeView = () => {
     const gridPage = getState(gridPageState);
     const pageType = getState(pageTypeState);
     const categoryId = getState(categoryIdState);
     const listPage = getState(listPageState);
 
-    if (pageType === GRID) {
-      hideListContainer();
-      showGridContainer();
-      showGridPage(gridPage);
-    } else if (pageType === LIST) {
-      hideGridContainer();
-      showListContainer();
-      showListPage(categoryId, listPage);
-      highlightCategoryItem();
+    switch (pageType) {
+      case GRID:
+        hideListContainer();
+        showGridContainer();
+        showGridPage(gridPage);
+        break;
+      case LIST:
+        hideGridContainer();
+        showListContainer();
+        showListPage(categoryId, listPage);
+        highlightCategoryItem();
+        break;
+      default:
+        break;
     }
     controllButtonShowing();
-  });
+  };
+  addObserver(pageTypeState, changeView);
 }
 
-export function addObserverOnGridPage() {
+function addObserverOnGridPage() {
   addObserver(gridPageState, () => {
     showGridPage(getState(gridPageState));
   });
 }
-export function addObserverOnListPage() {
-  addObserver(listPageState, () => {
+
+function addObserverOnListPage() {
+  const controllListPage = () => {
     const categoryId = getState(categoryIdState);
     const listPage = getState(listPageState);
     showListPage(categoryId, listPage);
     updatePageCount();
-  });
+  };
+
+  addObserver(listPageState, controllListPage);
 }
 
 export function controllButtonShowing() {

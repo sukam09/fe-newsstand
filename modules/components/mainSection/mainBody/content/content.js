@@ -1,9 +1,9 @@
-import { categoryData, pressData } from "../../../../state/dataState.js";
+import { categoryData, pressData } from "../../../../store/dataState.js";
 import {
   MAX_CATEGORY_ID,
   MAX_GRID_PAGE,
   MAX_LIST_PAGE,
-} from "../../../../state/pageState.js";
+} from "../../../../store/pageState.js";
 import { createPressGrid } from "./pressGrid/pressGrid.js";
 import { createCategory } from "./pressList/category.js";
 import { createPressList } from "./pressList/pressList.js";

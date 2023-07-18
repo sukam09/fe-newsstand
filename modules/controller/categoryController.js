@@ -4,18 +4,19 @@ import {
   MAX_LIST_PAGE,
   categoryIdState,
   listPageState,
-} from "../state/pageState.js";
+} from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { showListPage, updatePageCount } from "./pageController.js";
 
 export function handleClickCategoryItem(e) {
   const id = e.currentTarget.id;
   const [, categoryId] = id.split("_");
+  const clicked = e.currentTarget.classList.contains("clicked");
 
   setState(categoryIdState, parseInt(categoryId));
   setState(listPageState, 0);
 
-  if (!e.currentTarget.classList.contains("clicked")) {
+  if (!clicked) {
     highlightCategoryItem();
   }
 }
@@ -23,13 +24,14 @@ export function handleClickCategoryItem(e) {
 export function highlightCategoryItem() {
   const categoryId = getState(categoryIdState);
   const $clickedElements = qsa(".clicked");
-  for (let i = 0; i < $clickedElements.length; i++) {
-    $clickedElements[i].classList.remove("clicked");
-  }
-
   const $category = qs(`#category_${parseInt(categoryId)}`);
-  $category.classList.add("clicked");
   const $progressbar = $category.getElementsByClassName("progressbar")[0];
+
+  [...$clickedElements].forEach((elemnet) => {
+    elemnet.classList.remove("clicked");
+  });
+  $category.classList.add("clicked");
+
   startProgressAnimation($progressbar);
 }
 

@@ -8,24 +8,24 @@ import {
   setLeftViewIdx,
   setRightRollingId,
   setRightViewIdx,
-} from "./components/headlineSection/headline/headline.js";
+} from "../components/headlineSection/headline/headline.js";
 
 import {
   handleGirdViewButton,
   handleListViewButton,
-} from "./components/mainSection/mainHeader/mainHeader.js";
+} from "../components/mainSection/mainHeader/mainHeader.js";
 import {
   handleLogoButton,
   handleThemeButtonClick,
-} from "./components/titleSection/titleSection.js";
-import { handleClickCategoryItem } from "./controller/categoryController.js";
-import { hiddenSubButton, showSubButton } from "./controller/gridController.js";
-import { getState, setState } from "./core/observer.js";
+} from "../components/titleSection/titleSection.js";
+import { handleClickCategoryItem } from "./categoryController.js";
+import { hiddenSubButton, showSubButton } from "./gridController.js";
+import { getState, setState } from "../core/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_GRID_PAGE,
   MAX_LIST_PAGE,
-} from "./state/pageState.js";
+} from "../store/pageState.js";
 import {
   GRID,
   LIST,
@@ -33,10 +33,21 @@ import {
   gridPageState,
   listPageState,
   pageTypeState,
-} from "./state/pageState.js";
-import { qs, qsa } from "./utils.js";
+} from "../store/pageState.js";
+import { qs, qsa } from "../utils.js";
 
-export function addEventsOnGridItem() {
+export function initEvents() {
+  addEventsOnGridItem();
+  addEventsOnPageButton();
+  addEventsOnSubButton();
+  addEventsOnViewButton();
+  addEventsOnCategoryItem();
+  addEventsOnThemeButton();
+  addEventsOnRollingList();
+  addEventsOnTitle();
+}
+
+function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
   [...$gridItems].forEach((gridItem) => {
     gridItem.addEventListener("mouseover", (e) => showSubButton(e));
@@ -44,7 +55,7 @@ export function addEventsOnGridItem() {
   });
 }
 
-export function addEventsOnPageButton() {
+function addEventsOnPageButton() {
   const $leftBtn = qs(".left_button");
   const $rightBtn = qs(".right_button");
 
@@ -108,7 +119,7 @@ export function addEventsOnPageButton() {
   });
 }
 
-export function addEventsOnSubButton() {
+function addEventsOnSubButton() {
   const $subButtonContainers = qsa(".sub_button_container");
   [...$subButtonContainers].forEach(($subButtonContainer) => {
     const $subButton = $subButtonContainer.querySelector(".sub_button");
@@ -119,7 +130,7 @@ export function addEventsOnSubButton() {
   });
 }
 
-export function addEventsOnViewButton() {
+function addEventsOnViewButton() {
   const $listViewButton = qs(".list_view_button");
   const $gridViewButton = qs(".grid_view_button");
 
@@ -127,7 +138,7 @@ export function addEventsOnViewButton() {
   $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
 }
 
-export function addEventsOnCategoryItem() {
+function addEventsOnCategoryItem() {
   const $categoryItems = qsa(".category_item");
 
   [...$categoryItems].forEach(($categoryItem) => {
@@ -135,14 +146,14 @@ export function addEventsOnCategoryItem() {
   });
 }
 
-export function addEventsOnThemeButton() {
+function addEventsOnThemeButton() {
   const $themeButtons = qsa(".theme_button");
   [...$themeButtons].forEach(($button) => {
     $button.addEventListener("click", handleThemeButtonClick);
   });
 }
 
-export function addEventsOnRollingList() {
+function addEventsOnRollingList() {
   const $leftContainer = qs(".left_rolling_list");
   const $rightContainer = qs(".right_rolling_list");
   const $leftRollingList = qsa(".left_rolling_list_item");
@@ -171,7 +182,7 @@ export function addEventsOnRollingList() {
   });
 }
 
-export function addEventsOnTitle() {
+function addEventsOnTitle() {
   const $titleContainer = qs(".title_container");
   $titleContainer.addEventListener("click", handleLogoButton);
 }
