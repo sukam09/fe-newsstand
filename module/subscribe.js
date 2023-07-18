@@ -1,4 +1,4 @@
-import { GLOBAL } from "./variable.js";
+import { POPUP, GLOBAL } from "./variable.js";
 
 function checkSubscribe(src) {
   const targetNews = findTargetNewsFromSrc(src);
@@ -8,6 +8,7 @@ function checkSubscribe(src) {
 function toggleSubscribe(src) {
   const targetNews = findTargetNewsFromSrc(src);
   targetNews.is_subscribe = targetNews.is_subscribe === "true" ? "false" : "true";
+  showSnackBar(targetNews.is_subscribe);
   return targetNews.is_subscribe;
 }
 
@@ -17,6 +18,15 @@ function findTargetNewsFromSrc(src) {
       return news;
     }
   }
+}
+
+function showSnackBar(isSubscribe) {
+  if (isSubscribe === "false") return;
+
+  GLOBAL.DOM.SNACK_BAR.style.display = "block";
+  window.setTimeout(() => {
+    GLOBAL.DOM.SNACK_BAR.style.display = "none";
+  }, POPUP.SNACK_BAR_TIME);
 }
 
 export { checkSubscribe, toggleSubscribe };

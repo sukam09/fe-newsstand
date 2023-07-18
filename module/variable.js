@@ -62,6 +62,10 @@ const MODE = {
   LIST: 1,
 };
 
+const POPUP = {
+  SNACK_BAR_TIME: 5000,
+};
+
 // 글로벌 네임스페이스
 const GLOBAL = {
   GRID_CURRENT_PAGE: 0,
@@ -100,6 +104,7 @@ const GLOBAL = {
     LEFT_BTN: document.querySelector(".left-btn"),
     LIST_BNT: document.querySelector(".list-btn"),
     GRID_BTN: document.querySelector(".grid-btn"),
+    SNACK_BAR: document.querySelector(".snack-bar"),
 
     GRID_VIEW: document.querySelector(".grid"),
     LIST_VIEW: document.querySelector(".list-view"),
@@ -126,4 +131,4 @@ const GLOBAL = {
   },
 };
 
-export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, LIST, MODE, GLOBAL };
+export { ICON, JSONDATA, GRID, ROLLING, BTN, CATEGORY, LIST, MODE, POPUP, GLOBAL };

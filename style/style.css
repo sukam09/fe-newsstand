@@ -18,6 +18,7 @@ body {
 }
 
 .container {
+  position: relative;
   width: 930px;
   margin: 0 auto;
   padding: 58px 0 76px 0;
@@ -430,10 +431,25 @@ body {
 }
 
 .left-btn {
-  left: 103px;
+  left: -71px;
   display: none;
 }
 
 .right-btn {
-  right: 103px;
+  right: -71px;
+}
+
+/* snack-bar */
+.snack-bar {
+  display: none;
+  position: absolute;
+  top: 423px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  padding: 16px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-brand-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  color: var(--text-white-default);
 }
