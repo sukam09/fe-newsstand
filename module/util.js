@@ -1,6 +1,7 @@
-import { ICON, MODE, BTN, CATEGORY, GLOBAL } from "./variable.js";
+import { ICON, MODE, BTN, GLOBAL } from "./variable.js";
 import { moveGrid } from "./grid.js";
 import { moveListPage, movePageFromEvent } from "./list.js";
+import { alertBtnHandler } from "./subscribe.js";
 
 function initDate() {
   const date = new Date();
@@ -25,6 +26,13 @@ function initBtn() {
   });
   GLOBAL.DOM.FIELD_TAB.addEventListener("animationiteration", () => {
     moveListPage((GLOBAL.LIST_CURRENT_PAGE + 1) % GLOBAL.TOTAL_NEWS_NUM);
+  });
+
+  GLOBAL.DOM.ALERT_YES_BTN.addEventListener("click", (event) => {
+    alertBtnHandler(event);
+  });
+  GLOBAL.DOM.ALERT_NO_BTN.addEventListener("click", (event) => {
+    alertBtnHandler(event);
   });
 }
 

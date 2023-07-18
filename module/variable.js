@@ -10,8 +10,6 @@ const ICON = {
   DIVISION: "/icons/SymbolDivision.svg",
   PLUS: "/icons/SymbolPlus.svg",
   X: "/icons/SymbolX.svg",
-  SUBSCRIBE: "/icons/Subscribe.svg",
-  UNSUBSCRIBE: "/icons/Unsubscribe.svg",
 };
 
 const JSONDATA = {
@@ -105,6 +103,9 @@ const GLOBAL = {
     LIST_BNT: document.querySelector(".list-btn"),
     GRID_BTN: document.querySelector(".grid-btn"),
     SNACK_BAR: document.querySelector(".snack-bar"),
+    ALERT: document.querySelector(".alert"),
+    ALERT_YES_BTN: document.querySelector(".yes-btn"),
+    ALERT_NO_BTN: document.querySelector(".no-btn"),
 
     GRID_VIEW: document.querySelector(".grid"),
     LIST_VIEW: document.querySelector(".list-view"),

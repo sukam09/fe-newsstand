@@ -1,5 +1,5 @@
 import { ICON, GRID, GLOBAL } from "./variable.js";
-import { checkSubscribe, toggleSubscribe } from "./subscribe.js";
+import { checkSubscribe, clickSubscribeBtn } from "./subscribe.js";
 
 function initGrid() {
   try {
@@ -71,7 +71,7 @@ function gridHover(event) {
     const subscribeBtn = document.createElement("button");
     subscribeBtn.className = "list-sub-btn";
     const subscribeImg = document.createElement("img");
-    subscribeImg.src = "./icons/SymbolPlus.svg";
+    subscribeImg.src = isSubscribe ? ICON.X : ICON.PLUS;
     const subscribeSpan = document.createElement("span");
     subscribeSpan.className = "available-medium12";
     subscribeSpan.innerHTML = isSubscribe ? "해지하기" : "구독하기";
@@ -79,7 +79,7 @@ function gridHover(event) {
     subscribeBtn.appendChild(subscribeSpan);
     subscribeBtn.addEventListener("click", (event) => {
       const target = event.target.localName === "button" ? event.target.parentNode.firstChild : event.target.parentNode.parentNode.firstChild;
-      const result = toggleSubscribe(target.src);
+      const result = clickSubscribeBtn(target.src);
       target.nextSibling.childNodes[0].src = result === "true" ? ICON.X : ICON.PLUS;
       target.nextSibling.childNodes[1].innerHTML = result === "true" ? "해지하기" : "구독하기";
     });
