@@ -1,6 +1,6 @@
 import { categoryList } from "../data/NewsContents.js";
 import { drawListView } from "./listNews.js";
-import { countDisplayNone } from "./initialDisplay.js";
+import { setDisplay } from "./utils.js";
 
 const CATEGORY_NUM = 7;
 const PROGRESS_TIME = 2000;
@@ -46,6 +46,12 @@ function isNotLastCategory() {
   return current_category < CATEGORY_NUM - 1 && current_category >= 0;
 }
 
+function clearAndReload() {
+  clearProgress();
+  putUpCountToNowCount();
+  reloadProgressAnimation();
+}
+
 /***** 카운트 올리고, total_count에 도달하면 다음 카테고리로 넘어가는 함수 *****/
 function countUpInSameCategory() {
   document.querySelector(".progress-bar .now-count").innerHTML =
@@ -61,14 +67,12 @@ function countUp() {
     document.querySelector(".progress-bar .now-count").innerHTML = "1";
     if (current_category === CATEGORY_NUM - 1) {
       changeCategory(current_category, 0);
-      drawListView(0, 0);
+      drawListView(current_category, 0);
       up_count = 1;
-      current_category = 0;
     } else if (isNotLastCategory) {
       changeCategory(current_category, current_category + 1);
-      drawListView(current_category + 1, 0);
+      drawListView(current_category, 0);
       up_count = 2;
-      current_category++;
     }
   } else {
     if (current_category === 0 && up_count === 1) {
@@ -101,20 +105,16 @@ function changeCategory(idx_1, idx_2) {
     .getElementsByClassName("progress-item")
     [idx_2].classList.add("progress-bar");
   document.getElementsByClassName("count")[idx_2].style.display = "block";
+
+  current_category = idx_2;
 }
 
 /***** 프로그레스바 카테고리 누르면 이동 *****/
 const categories = document.querySelectorAll(".progress-item");
 for (let i = 0; i < categories.length; i++) {
   categories[i].addEventListener("click", () => {
-    countDisplayNone();
-    const counts = document.querySelectorAll(".count");
-    counts[i].style.display = "block";
     clearProgress();
-    document.querySelector(".progress-bar .now-count").innerHTML = "1";
-    document.querySelector(".progress-bar").classList.remove("progress-bar");
-    categories[i].classList.add("progress-bar");
-    current_category = i;
+    changeCategory(current_category, i);
     up_count = 2;
     runProgress();
     drawListView(i, 0);
@@ -131,26 +131,21 @@ list_next.addEventListener("click", () => {
   checkTotalCount();
   up_count++;
   if (up_count <= total_count) {
-    clearProgress();
-    putUpCountToNowCount();
-    reloadProgressAnimation();
+    clearAndReload();
     up_count++;
     runProgress();
     drawListView(current_category, up_count - 2);
   } else {
     up_count = 1;
-    clearProgress();
-    putUpCountToNowCount();
-    reloadProgressAnimation();
+    clearAndReload();
     if (current_category === CATEGORY_NUM - 1) {
       changeCategory(current_category, 0);
-      drawListView(0, 0);
-      current_category = 0;
+      drawListView(current_category, 0);
     } else if (isNotLastCategory) {
       changeCategory(current_category, current_category + 1);
-      drawListView(current_category + 1, 0);
-      current_category++;
+      drawListView(current_category, 0);
     }
+    up_count = 2;
     runProgress();
   }
 });
@@ -163,19 +158,15 @@ list_prev.addEventListener("click", () => {
   );
   up_count--;
   if (up_count >= 1) {
-    clearProgress();
-    putUpCountToNowCount();
-    reloadProgressAnimation();
+    clearAndReload();
     drawListView(current_category, up_count - 1);
   } else if (up_count === 0) {
     clearProgress();
     reloadProgressAnimation();
     if (current_category > 0) {
       changeCategory(current_category, current_category - 1);
-      current_category--;
     } else if (current_category === 0) {
       changeCategory(current_category, CATEGORY_NUM - 1);
-      current_category = CATEGORY_NUM - 1;
     }
     up_count = categoryList[current_category].tabs;
     putUpCountToNowCount();
@@ -190,7 +181,7 @@ function initializeProgress() {
   current_category = 0;
   up_count = 2;
   document.querySelector(".now-count").innerHTML = "1";
-  document.getElementsByClassName("count")[0].style.display = "block";
+  setDisplay(".count", "block");
 }
 
 export {
