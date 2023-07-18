@@ -1,5 +1,6 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
+import { pageStore } from '../util/store.js'; 
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -9,11 +10,11 @@ import { MEDIA } from '../constants.js'; // magic 넘버
 */
 const media_data = await getJSON("../../assets/data/media_data.json");
 
-const subscribed = []; // 구독된 언론사 index 추가
+const subscribed = [1,2,3,4,5,6,7,8,9,10,11,12,13]; // 구독된 언론사 index 추가
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index); // 전체 언론사 index
 
-const PageController = {
-  page: 0,
+export const PageController = {
+  page: pageStore.getState(),
   arrow_left: document.querySelector('#arrow_wrapper_left'),  // media or 카테고리 이동 화살표 변수
   arrow_right: document.querySelector('#arrow_wrapper_right'),  // media or 카테고리 이동 화살표 변수
   /**
@@ -21,9 +22,7 @@ const PageController = {
    * @param {number} index 
   */
   setPage(index) {
-    this.page += index;
-    GridController.setLogoList();
-    this.setArrowVisible();
+    pageStore.setState(pageStore.getState() + index);
   },
   /**
    * 화살표 보이게 설정하는 함수
@@ -41,12 +40,12 @@ const PageController = {
    * 화살표 페이지에 따라 보이게 하는 함수
   */
   setArrowVisible() {
-    this.arrow_left.className = `page_${this.page}`;
-    this.arrow_right.className = `page_${this.page}`;
+    this.arrow_left.className = `page_${pageStore.getState()}`;
+    this.arrow_right.className = `page_${pageStore.getState()}`;
   },
 };
 
-const GridController = {
+export const GridController = {
   /**
    * grid안에 요소 이미지+태그 추가하는 함수
    * @param {number} media 
@@ -86,7 +85,7 @@ const GridController = {
   setLogoList() {
     const self = this;
     const mediaLogo = document.querySelectorAll('.media_logo');
-    const gridIndex = Array(MEDIA.PAGE_SIZE).fill().map((_, index) => PageController.page * MEDIA.PAGE_SIZE + index);
+    const gridIndex = Array(MEDIA.PAGE_SIZE).fill().map((_, index) => pageStore.getState() * MEDIA.PAGE_SIZE + index);
     gridIndex.forEach((media,index) => {
       self.updateImageElement(media,index,mediaLogo);
     });
