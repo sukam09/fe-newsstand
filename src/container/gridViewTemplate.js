@@ -1,9 +1,10 @@
-import { GRID_ROW_SIZE, GRID_COL_SIZE } from "../utils/constant.js";
+import { GRID_ROW_SIZE, GRID_COL_SIZE, SNACK_BAR_TIME } from "../utils/constant.js";
 import { grid_view_info_entire, grid_view_info_sub, toggleArrow } from "../components/grid/gridToggle.js";
 import { create } from "../utils/createElement.js";
 import { class_name } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { subscribe_idx_list } from "../../data/subscribeIdxList.js";
+import { createSnackBar } from "../components/common/snackBar.js";
 const btnFactory = new buttonFacotry();
 
 function createMainGrid(grid_view_info, isInit) {
@@ -49,6 +50,13 @@ function createMainGrid(grid_view_info, isInit) {
             $subscribe_btn.setEvents({
                 click: () => {
                     $subscribe_btn.changeMode();
+                    const $snack_bar = document.querySelector(".snack-bar");
+                    $snack_bar.style.marginTop = `${-$snack_bar.getBoundingClientRect().height / 2}px`;
+                    $snack_bar.style.marginLeft = `${-$snack_bar.getBoundingClientRect().width / 2}px`;
+                    $snack_bar.style.visibility = "visible";
+                    setTimeout(() => {
+                        $snack_bar.style.visibility = "hidden";
+                    }, SNACK_BAR_TIME);
                 },
             });
             $mouse_enter_grid.appendChild($subscribe_btn.getButton());
@@ -71,6 +79,8 @@ function createMainGrid(grid_view_info, isInit) {
         }
         $container.appendChild($list);
     }
+
+    $container.appendChild(createSnackBar());
     return $container;
 }
 
