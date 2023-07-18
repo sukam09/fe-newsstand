@@ -1,10 +1,10 @@
-import { getElemId, getElemClass } from "../../utils/js/getElements.js";
+import { getElemId, getElemClass, getQuerySelector} from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
 
 const page = [[], [], [], []];
 
-const sectionPrevButton = getElemId(document, 'press-content-prev');
-const sectionNextButton = getElemId(document, 'press-content-next');
+const sectionPrevButton = getQuerySelector(document, '#press-content-grid-prev');
+const sectionNextButton = getQuerySelector(document, '#press-content-grid-next');
 const pressContentView = getElemClass(document, 'press-content-view');
 
 let pageNumber = 0;
@@ -34,8 +34,8 @@ function showPressImg({pageValue}) {
   const pressContentView = getElemClass(document, 'press-content-view');
   pageNumber = (pageValue >= 0) ? ++pageNumber : --pageNumber;
 
-  sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";
-  sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
+  sectionPrevButton.style.display = pageNumber !== 0 ? "block" : "none";
+  sectionNextButton.style.display = pageNumber >= 3 ? "none" : "block";
   let imgSrcContent = "";
   page[pageNumber].forEach((elem) => {
     imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
@@ -44,16 +44,11 @@ function showPressImg({pageValue}) {
 }
 
 // 이전 페이지 이동 및 다음 페이지 이동 구현
-function changePressGrid(state) {
-  if (state === "grid") {
-    pageNumber = 0;
-    console.log("grid");
-    sectionPrevButton.style.visibility = "hidden";
-    sectionPrevButton.addEventListener('click', () => showPressImg({ pageValue: -1 }));
-    sectionNextButton.addEventListener('click', () => showPressImg({ pageValue: 1 }));
-  }
-  else return false;
+function changePressGrid() {
+  sectionPrevButton.addEventListener('click', () => showPressImg({pageValue:-1}));
+  sectionNextButton.addEventListener('click', () => showPressImg({pageValue:1}));
 }
+
 
 
 export { shuffleImgs, changePressGrid };

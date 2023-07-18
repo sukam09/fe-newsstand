@@ -1,6 +1,6 @@
 import { fetchData } from "../../utils/js/getJson.js";
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
-let currentPage = 1
+
 export async function getCategory() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
   const categoryName = categoryPath.newsList.map((elem) => {
@@ -16,7 +16,7 @@ export async function getCategory() {
   }, {})
 
 
-  
+  let currentPage = 1
 
   const putCategory = Object.keys(categoryMap).reduce((acc, curr)=> {
     return acc + `<li class="press-content-category">
@@ -51,30 +51,3 @@ function selectCategory() {
   })
 }
 
-let pageNumber = 0;
-const sectionPrevButton = getQuerySelector(document, '#press-content-prev');
-const sectionNextButton = getQuerySelector(document, '#press-content-next');
-
-
-function changeCategory({pageValue}) {
-  pageValue < 0 ? --currentPage : ++ currentPage;
-  console.log(currentPage);
-  
-}
-
-
-// 이전 페이지 이동 및 다음 페이지 이동 구현
-export function changePressCategory(state) {
-  if (state === "list") {
-    currentPage = 1;
-    console.log("list");
-    sectionPrevButton.style.visibility = "visible";
-    sectionNextButton.style.visibility = "visible";
-    sectionPrevButton.addEventListener('click', () => changeCategory({ pageValue: -1 }));
-    sectionNextButton.addEventListener('click', () => changeCategory({ pageValue: 1 }));
-  }
-  else return false;
-}
-
-
-// changePressCategory();

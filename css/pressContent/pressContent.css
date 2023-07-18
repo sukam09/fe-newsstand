@@ -83,16 +83,27 @@
   color: #FFFFFFB2;
 }
 
-#press-content-prev {
+#press-content-grid-prev {
   position: absolute;
   left: -71px;
-  visibility: hidden;
-
+  display: none;
 }
 
-#press-content-next {
+#press-content-grid-next {
   position: absolute;
   left: 978px;
+}
+
+#press-content-list-prev {
+  position: absolute;
+  left: -71px;
+  display: none;
+}
+
+#press-content-list-next {
+  position: absolute;
+  left: 978px;
+  display: none;
 }
 
 .press-content-news {

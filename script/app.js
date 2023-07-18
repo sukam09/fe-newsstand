@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
   startRolling();
   pressViewChange();
   getNewsHeadline();
-  changePressGrid("grid");
+  changePressGrid();
   getCategory();
 });
 
