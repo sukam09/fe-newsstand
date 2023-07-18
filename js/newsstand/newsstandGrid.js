@@ -118,8 +118,10 @@ function addEventOnMySubAndAllSub() {
 
     // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
     selectedPage = 0; // selectedPage 0에서 시작
-    LAST_PAGE = subscribeList.length / VIEWED_CONTENS; // 마지막 페이지 수정.
+
+    LAST_PAGE = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
     isBtnDisabled(); // 버튼 활성화 조건 실행.
+
     paintNews(subscribeList);
     // store에서 구독중인 목록을 가져와서 그려준다. [paint 함수 실행] 이때, 남는 영역은 빈칸으로 채운다. [이때, 마우스오버 효과 삭제]
   });
@@ -189,13 +191,15 @@ function userClickSubscribeButton(liElement) {
 function pagination() {
   leftBtn.addEventListener("click", (e) => {
     selectedPage -= 1;
-    paintNews();
+    const subList = subscribeState.getSubscribeState();
+    navTab.isMySubscribe ? paintNews(subList) : paintNews();
     isBtnDisabled();
   });
 
   rightBtn.addEventListener("click", (e) => {
     selectedPage += 1;
-    paintNews();
+    const subList = subscribeState.getSubscribeState();
+    navTab.isMySubscribe ? paintNews(subList) : paintNews();
     isBtnDisabled();
   });
 }

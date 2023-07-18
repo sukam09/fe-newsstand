@@ -1,5 +1,5 @@
 import { CATEGORY } from "../state/categoryState.js";
-
+import { navTab } from "../state/navFocusStats.js";
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
@@ -62,7 +62,7 @@ const categoryDataLength = [
   localData.length,
 ];
 
-const CATEROY_NUMBER = categoryList.length;
+const CATEROY_NUMBER = 7;
 
 const leftBtn = document.querySelector(".left-list-button");
 const rightBtn = document.querySelector(".right-list-button");
@@ -97,11 +97,12 @@ export async function paintNewsCategory() {
 
 // 그리드 뷰에서 리스트 뷰로 전환시 프로그래스 바를 처음부터 진행시켜주는 함수.
 export function restartProgressBar() {
+  // 첫 번째 카테고리로 초기화
   CATEGORY.currentCategory = 0;
   // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
   removeProgressAction();
 
-  // 종합/경제 카테고리 li에 클래스 추가.
+  // 종합/경제 카테고리 li에 프로그래스 바 클래스 추가.
   startProgressAction(categoryList, categoryDataLength);
 }
 
