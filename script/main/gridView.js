@@ -1,6 +1,6 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
-import { pageStore } from '../util/store.js'; 
+import { pageStore,subscribedStore } from '../util/store.js'; 
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -9,8 +9,8 @@ import { pageStore } from '../util/store.js';
   ]
 */
 const media_data = await getJSON("../../assets/data/media_data.json");
-
-const subscribed = [1,2,3,4,5,6,7,8,9,10,11,12,13]; // 구독된 언론사 index 추가
+console.log(subscribedStore.getState());
+const subscribed = subscribedStore.getState(); // 구독된 언론사 index 추가
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index); // 전체 언론사 index
 
 export const PageController = {

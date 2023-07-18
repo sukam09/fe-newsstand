@@ -1,5 +1,5 @@
-const createStore = () => {
-  let state = 0;
+const createStore = (stateType = undefined) => {
+  let state = stateType;
   let Observers = [];
 
   const getState = () => state;
@@ -22,4 +22,5 @@ const createStore = () => {
     setObserver
   };
 };
+
 export default createStore;
