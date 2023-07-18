@@ -25,7 +25,7 @@ const initDB = async () => {
 };
 
 const initSubscribeList = () => {
-  const subscribeList = getLocalStorageItem("subscribeList") || [];
+  const subscribeList = JSON.parse(getLocalStorageItem("subscribeList")) || [];
   store.dispatch(initSubscribe(subscribeList));
 };
 
