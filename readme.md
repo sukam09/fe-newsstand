@@ -7,19 +7,33 @@
 
 ## #1 프로그래밍 요구사항
 
-- DOM, Event 를 활용한다.
-- 의미에 맞는 태그를 사용한다. 단순히 wrapping하는 역할은 div를 사용해도 좋다.
-- DOM 조작과정에서 template literal 문법을 반드시 사용한다.
-- DOM 조작과정에서 createElement, appendChild , insertBefore 등의 다양한 DOM APIs 를 활용해본다.
-- addEventListener 를 사용한 이벤트 처리를 한다.
-- 데이터는 json형태의 객체리터럴을 만들고, 객체 데이터를 접근해서 사용한다.
+- [x] DOM, Event 를 활용한다.
+- [x] 의미에 맞는 태그를 사용한다. 단순히 wrapping하는 역할은 div를 사용해도 좋다.
+- [x] DOM 조작과정에서 template literal 문법을 반드시 사용한다.
+- [x] DOM 조작과정에서 createElement, appendChild , insertBefore 등의 다양한 DOM APIs 를 활용해본다.
+- [x] addEventListener 를 사용한 이벤트 처리를 한다.
+- [x] 데이터는 json형태의 객체리터럴을 만들고, 객체 데이터를 접근해서 사용한다.
 
 ## #2 프로그래밍 요구사항
 
-- 가급적 Class 와 같은 객체 형태를 지양하고 함수단위로만 개발해본다.
-- 함수는 하나의 역할을 한다.
-- 함수의 이름은 동사+명사로 짓는다.
-- 객체별로 별도 파일의 모듈을 나누고 ES Modules에 따라 import/export 사용해서 의존성 관리
+- [x] 개발 feature를 GitHub issue에 관리한다.
+- [x] 가급적 Class 와 같은 객체 형태를 지양하고 함수단위로만 개발해본다.
+- [x] 함수는 하나의 역할을 한다.
+- [x] 함수의 이름은 동사 + 명사로 짓는다.
+- [x] 객체별로 별도 파일의 모듈을 나누고 ES Modules에 따라 import/export 사용해서 의존성 관리
+- [x] JavaScript로 CSS속성을 제어하면서 자유롭게 구현한다.
+- [ ] querySelector API를 활용하지 않고, 직접 구현한다.
+
+## #3 프로그래밍 요구사항
+
+- [x] feature 개발이 끝나면 dev 브랜치로 머지한다.
+- [x] fetch API 요청시 then, async/await를 활용한다.
+- [ ] store 레이어를 별도로 만들어서 view와 역할을 분리한다.
+- [ ] store 영역은 ES Classes 문법을 사용한다.
+- [ ] Store 와 View의 관계를 느슨하게 하는 방법을 고민해서 구현해본다.
+- [ ] 기존에 개발한 구독하기/해지하기 기능에 대해서 store/view 를 분리한다.
+- [ ] 여러가지 방법이나 패턴을 찾아보고 이를 실험해보자.
+- [ ] Promise 객체를 만들어본다.
 
 ## 프로그래밍 설계
 
