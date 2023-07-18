@@ -12,6 +12,10 @@ const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 const $snackBar = document.querySelector(".snack-bar");
+const $subsAlert = document.querySelector(".subs-alert");
+const $subAlertName = document.querySelector(".subs-alert_content_name");
+const $subBtnYes = document.querySelectorAll(".subs-alert_btn")[0];
+const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
 
 /**
  * 배열을 섞는 함수
@@ -134,19 +138,11 @@ const onClickSubscribeMode = ({ className }) => {
   className === "main-nav_total" ? moveGridView() : moveListView();
 };
 
-const changeSubState = ({ mediaId }) => {
+const changeSubState = ({ mediaId, mediaName }) => {
   const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
 
   if (subIdx !== -1) {
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
-    alert("구독해지되었습니다.");
-    if (!STATE.MODE.IS_GRID && STATE.SUBSCRIBE_LIST.length === 0) {
-      alert("구독중인 언론사가 없습니다!!");
-      STATE.MODE.IS_GRID = true;
-      STATE.MODE.IS_TOTAL = true;
-      onClickSubscribeMode({ className: "main-nav_total" });
-      moveGridView();
-    }
+    setModalView({ mediaName, subIdx });
   } else {
     STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
 
@@ -157,6 +153,24 @@ const changeSubState = ({ mediaId }) => {
       onClickSubscribeMode({ className: "main-nav_subscribe" });
     }, 1000);
   }
+};
+
+const setModalView = ({ mediaName, subIdx }) => {
+  $subAlertName.innerText = mediaName;
+  $subsAlert.classList.remove("hidden");
+
+  $subBtnYes.addEventListener("click", () => {
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    $subsAlert.classList.add("hidden");
+
+    if (!STATE.MODE.IS_GRID && STATE.SUBSCRIBE_LIST.length === 0) {
+      alert("구독중인 언론사가 없습니다!!");
+      onClickSubscribeMode({ className: "main-nav_total" });
+    }
+  });
+  $subBtnNo.addEventListener("click", () => {
+    $subsAlert.classList.add("hidden");
+  });
 };
 
 /**

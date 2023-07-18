@@ -183,6 +183,58 @@ body {
   color: var(--grayscale-white);
 }
 
+.subs-alert {
+  width: 320px;
+  height: 140px;
+
+  position: absolute;
+  top: 124px;
+  left: 305px;
+
+  border: 1px solid var(--grayscale-100);
+  background-color: var(--grayscale-white);
+}
+
+.subs-alert_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 92px;
+}
+
+.subs-alert_content > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.subs-alert_content_name {
+  color: var(--grayscale-black);
+  font: var(--bold-M);
+}
+
+.subs-alert_content_etc {
+  color: var(--grayscale-400);
+  font: var(--medium-M);
+}
+
+.subs-alert_btn {
+  width: 160px;
+  height: 48px;
+  border: 1px solid var(--grayscale-100);
+  color: var(--grayscale-black);
+  font: var(--medium-M);
+}
+
+.subs-alert_btn:hover {
+  text-decoration: underline;
+  color: var(--grayscale-400);
+  cursor: pointer;
+}
+
 /* cursor: pointer 효과 일괄 적용 */
 .hot-topic-wrapper > * > *,
 .press-wrapper > header > * > *,

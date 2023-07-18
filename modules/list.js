@@ -108,8 +108,8 @@ const clickSubButton = () => {
     ];
   const subsId = STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
   const mediaId = STATE.MODE.IS_TOTAL ? totalId : subsId;
-
-  changeSubState({ mediaId });
+  const mediaName = mediaInfo[mediaId].name;
+  changeSubState({ mediaId, mediaName });
 };
 
 /**

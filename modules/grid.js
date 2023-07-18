@@ -79,7 +79,8 @@ const addSubscribeButton = (idx) => {
  */
 const clickSubButton = (idx) => {
   const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
-  changeSubState({ mediaId });
+  const mediaName = mediaInfo[mediaId].name;
+  changeSubState({ mediaId, mediaName });
   const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
     ".news-grid_button_wrapper"
   );
