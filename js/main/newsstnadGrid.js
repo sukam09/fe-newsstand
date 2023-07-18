@@ -2,6 +2,7 @@ import { shuffle } from '../utils/utils.js';
 import { getNewsData } from '../core/apis.js';
 import { paintNewsstand } from '../components/newStandGrid.js';
 import { attachEventListener, detachEventListener } from '../core/eventListener.js';
+import { store } from '../store.js';
 
 let SELECTED_PAGE = 0;
 const $ul = document.querySelector('.newsstand-area—six-col-list');
@@ -9,10 +10,8 @@ const $rightBtn = document.querySelector('.newsstand--right-btn');
 const $leftBtn = document.querySelector('.newsstand--left-btn');
 let datas = [];
 
-let SubscribeData = ['동아일보'];
 async function initNewsStandGrid() {
   SELECTED_PAGE = 0;
-
   toggleGridEventListner('detach');
 
   const newsData = await getNewsData();
@@ -20,29 +19,42 @@ async function initNewsStandGrid() {
   paintNewsstand(datas, SELECTED_PAGE);
   pagination();
   isSubscribe();
+  SubScribeNews();
 }
+
+function SubScribeNews() {
+  const back = document.querySelectorAll('.back');
+  back.forEach((item) => item.addEventListener('click', (e) => isSubscribeIncludeHandler(e)));
+
+  const isSubscribeIncludeHandler = (e) => {
+    const tartgetParent = e.target.parentElement.parentElement;
+    const data = tartgetParent.querySelector('.front').getAttribute('alt');
+
+    if (!store.getGetter('getsubscribeData').includes(data)) store.commit('setState', data);
+    else {
+      store.commit('updateState', data);
+      tartgetParent.querySelector('.back').textContent = '+ 구독하기';
+    }
+  };
+}
+
 function isSubscribe() {
-  const inner = document.querySelectorAll('.newsstand—subscrtion-box');
-  console.log(inner);
-  inner.forEach((item) => {
+  const subscrtionBox = document.querySelectorAll('.newsstand—subscrtion-box');
+
+  subscrtionBox.forEach((item) => {
     const inner = item.querySelector('.inner');
-
-    item.addEventListener('mouseover', (e) => {
-      const data = e.currentTarget.children[0].querySelector('.front').getAttribute('alt');
-      const content = e.currentTarget.children[0].querySelector('.back').textContent;
-      //click시 구독하기면 배열에 push
-      // 해제면 배열에서 pop()
-      // console.log(content);
-      // e.currentTarget.children[0].querySelector('.back').addEventListener('click', () => {
-      //   console.log(data);
-      // });
-    });
-
-    inner.addEventListener('mouseover', (e) => {
-      e.stopPropagation();
-    });
+    item.addEventListener('mouseover', (e) => isIncludeSubScribeHandler(e));
+    inner.addEventListener('mouseover', (e) => e.stopPropagation());
   });
+
+  const isIncludeSubScribeHandler = (e) => {
+    const currentTargetChildren = e.currentTarget.children[0];
+    const data = currentTargetChildren.querySelector('.front').getAttribute('alt');
+    if (store.getGetter('getsubscribeData').includes(data))
+      currentTargetChildren.querySelector('.back').textContent = '해제하기';
+  };
 }
+
 function pagination() {
   isBtnDisabled();
   attachEventListener('click', $rightBtn, handleRightBtn);
@@ -60,18 +72,21 @@ function toggleGridEventListner(type) {
 }
 
 function handleRightBtn() {
-  $ul.innerHTML = '';
   ++SELECTED_PAGE;
-  console.log(SELECTED_PAGE);
-  paintNewsstand(datas, SELECTED_PAGE);
-  isBtnDisabled();
+  rePaintNewsStand();
 }
 
 function handleLeftBtn() {
-  $ul.innerHTML = '';
   --SELECTED_PAGE;
+  rePaintNewsStand();
+}
+
+function rePaintNewsStand() {
+  $ul.innerHTML = '';
   paintNewsstand(datas, SELECTED_PAGE);
   isBtnDisabled();
+  isSubscribe();
+  SubScribeNews();
 }
 
 function isBtnDisabled() {

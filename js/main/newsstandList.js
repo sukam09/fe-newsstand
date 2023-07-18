@@ -3,7 +3,7 @@ import { createCategoryHtml } from '../components/newsCategory.js.js';
 import { attachEventListener, detachEventListener } from '../core/eventListener.js';
 import { createNewsListHtml } from '../components/newsStandList.js';
 import { shuffle } from '../utils/utils.js';
-
+import { store } from '../store.js';
 let CATEGORY = [];
 let NEWS_LIST = [];
 let KEY = '';
@@ -27,17 +27,11 @@ async function initNewsStandList() {
 
 function handleRightBtn() {
   const newNewsList = nextNewsList();
-  createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-  createNewsListHtml(newNewsList);
-  isBtnDisabled();
-  isProgressBarEnd();
+  reCreateNewsStandList(newNewsList);
 }
 function handleLeftBtn() {
   const newNewsList = prevNewsList();
-  createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-  createNewsListHtml(newNewsList);
-  isBtnDisabled();
-  isProgressBarEnd();
+  reCreateNewsStandList(newNewsList);
 }
 
 function toggleListEventListner(type) {
@@ -49,11 +43,10 @@ function toggleListEventListner(type) {
     attachEventListener('click', leftBtn, handleLeftBtn);
     isBtnDisabled();
   } else if (type === 'detach') {
-    //const leftBtn = document.querySelector('.newslist--left-btn');
     detachEventListener('click', rightBtn, handleRightBtn);
-    //removeEventListener('click', leftBtn, handleLeftBtn);
+    detachEventListener('click', leftBtn, handleLeftBtn);
     document.querySelector('.news-Rbtn').classList.remove('newslist--right-btn');
-    //document.querySelector('.news-Lbtn').classList.remove('newslist--left-btn');
+    document.querySelector('.news-Lbtn').classList.remove('newslist--left-btn');
   }
 }
 
@@ -84,9 +77,7 @@ function getCategoryList(datas) {
 
 function getNewsListFilter(category, datas) {
   const newsList = [];
-  category.forEach((d) => {
-    newsList.push(datas.filter((data) => data.category === d));
-  });
+  category.forEach((d) => newsList.push(datas.filter((data) => data.category === d)));
   return newsList;
 }
 
@@ -105,11 +96,28 @@ function isProgressBarEnd() {
   const progressBar = document.querySelector('.select-category');
   attachEventListener('animationiteration', progressBar, () => {
     const newNewsList = nextNewsList();
-    createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-    createNewsListHtml(newNewsList);
-    isBtnDisabled();
-    isProgressBarEnd();
+    reCreateNewsStandList(newNewsList);
   });
 }
+
+function reCreateNewsStandList(newNewsList) {
+  createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
+  createNewsListHtml(newNewsList);
+  const btnSubscribe = document.querySelector('.header-btn-subscribe');
+  btnSubscribe.addEventListener('click', (e) => isSubScribeHandler(e));
+  isBtnDisabled();
+  isProgressBarEnd();
+}
+
+const isSubScribeHandler = (e) => {
+  const data = e.target.parentElement.querySelector('.list-header-title').textContent;
+  if (!store.getGetter('getsubscribeData').includes(data)) {
+    store.commit('setState', data);
+    e.target.textContent = 'X';
+  } else {
+    store.commit('updateState', data);
+    e.target.textContent = '+ 구독하기';
+  }
+};
 
 export { initNewsStandList, toggleListEventListner };
