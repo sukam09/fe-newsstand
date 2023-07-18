@@ -9,7 +9,7 @@ class Store {
   }
 
   dispatch(action) {
-    this.#state = reducer(this.state, action);
+    this.#state = reducer(this.#state, action);
     this.#handler.forEach((h) => {
       h();
     });

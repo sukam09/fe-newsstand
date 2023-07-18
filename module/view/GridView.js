@@ -2,11 +2,12 @@ import { fetchPressData } from "../../api.js";
 import { GRID_PAGE } from "../../global.js";
 import { DoSubScribe, DoUnsubscribe } from "../components/SubscribeBtn.js";
 import { SubscribeState } from "../components/SubscribeBtn.js";
+import { SUBSCRIBE_VIEW } from "../../global.js";
+import { store } from "../../store.js";
+import { news_data } from "./ListView/ListView.js";
 
 let news_icon;
 const ICONS_PER_PAGE = 24;
-const COL_CNT = 6;
-const eventListeners = [];
 
 function createSubscribeDiv(li, pressID) {
   if (SubscribeState(pressID)) {
@@ -37,7 +38,7 @@ function createSubscribeDiv(li, pressID) {
 }
 
 function pressMouseOver(li) {
-  const ID = li.getAttribute("ID");
+  const ID = li.getAttribute("data-id");
 
   const subscribeMode = li.querySelector("div");
   if (!subscribeMode) {
@@ -56,18 +57,38 @@ function pressMouseOut(li) {
   }
 }
 
+function IsSubScribe() {
+  if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
+    const subscribe_icon_IDs = store.getSubscribe();
+    const subscribe_icon_data = [];
+    for (let icon of news_icon) {
+      if (subscribe_icon_IDs.includes(icon.id)) {
+        subscribe_icon_data.push(icon);
+      }
+    }
+    news_icon = subscribe_icon_data;
+  }
+}
+
 export function updateGrid() {
   try {
     if (news_icon) {
+      IsSubScribe();
+
       let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
-      grid_row.forEach((ul, row) => {
+      grid_row.forEach((ul) => {
         const grid_li = ul.querySelectorAll("li");
-        grid_li.forEach((li, col) => {
+        grid_li.forEach((li) => {
           const press_logo = li.querySelector(".press-logo");
-          const ID = news_icon[icon_idx].id;
-          li.setAttribute("ID", ID);
-          press_logo.src = news_icon[icon_idx++].path;
+          if (icon_idx < news_icon.length) {
+            const ID = news_icon[icon_idx].id;
+            li.setAttribute("data-id", ID);
+            press_logo.src = news_icon[icon_idx++].path;
+          } else {
+            li.setAttribute("data-id", null);
+            press_logo.src = "";
+          }
         });
       });
     } else {
@@ -78,11 +99,14 @@ export function updateGrid() {
   }
 }
 
-export async function printGrid(mode = "") {
+export async function printGrid() {
   try {
     news_icon = await fetchPressData("./Data/grid_icon.json");
+    IsSubScribe();
     const grid = document.querySelector(".grid");
     let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
+    console.log(news_icon[0]);
+
     for (let i = 0; i < 4; i++) {
       const grid_row = document.createElement("ul");
       grid_row.className = "grid-row";
@@ -91,21 +115,20 @@ export async function printGrid(mode = "") {
         const press_logo = document.createElement("img");
         press_logo.className = "press-logo";
 
-        const ID = news_icon[icon_idx].id;
-        grid_li.setAttribute("ID", ID);
-
-        //수정한 부분
-        if (news_icon.length > icon_idx) press_logo.src = news_icon[icon_idx++].path;
-
-        grid_li.addEventListener("mouseenter", pressMouseOver.bind(this, grid_li));
-        grid_li.addEventListener("mouseleave", pressMouseOut.bind(this, grid_li));
+        if (icon_idx < news_icon.length) {
+          const ID = news_icon[icon_idx].id;
+          grid_li.setAttribute("data-id", ID);
+          press_logo.src = news_icon[icon_idx++].path;
+          grid_li.addEventListener("mouseenter", pressMouseOver.bind(this, grid_li));
+          grid_li.addEventListener("mouseleave", pressMouseOut.bind(this, grid_li));
+        }
 
         grid_li.appendChild(press_logo);
         grid_row.appendChild(grid_li);
       }
       grid.appendChild(grid_row);
     }
-    updateGrid();
+    // updateGrid();
     const left_btn = document.querySelector(".left-btn");
     left_btn.style.display = "none";
   } catch (e) {

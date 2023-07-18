@@ -1,4 +1,4 @@
-import { updateGrid } from "./module/view/GridView.js";
+import { printGrid, updateGrid } from "./module/view/GridView.js";
 import { changePageInfo, changeCategory, changePressNewsSection } from "./module/view/ListView/Actions/ChangePress.js";
 
 // 리스트뷰 현재 페이지 & 현재 카테고리
@@ -26,5 +26,13 @@ export const GRID_PAGE = {
     GRID_PAGE.CURRENT_PAGE = page;
     // 부분 렌더링
     updateGrid();
+  },
+};
+
+export const SUBSCRIBE_VIEW = {
+  CURRENT_VIEW: false,
+  changeView: () => {
+    SUBSCRIBE_VIEW.CURRENT_VIEW = !SUBSCRIBE_VIEW.CURRENT_VIEW;
+    printGrid();
   },
 };

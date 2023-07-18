@@ -1,4 +1,5 @@
 import { store, actionCreator } from "../../store.js";
+import { updateGrid } from "../view/GridView.js";
 
 function snackBar() {
   const snackBarElement = document.createElement("div");
@@ -28,14 +29,15 @@ export function DoSubScribe(btnElement, pressID) {
   btnElement.addEventListener("click", (e) => {
     snackBar(e);
     store.dispatch(actionCreator("subscribe", { pressID }));
+    console.log(store.getSubscribe());
   });
 }
 
 export function DoUnsubscribe(btnElement, pressID) {
   btnElement.addEventListener("click", (e) => {
     alertElement(pressID);
-
     store.dispatch(actionCreator("unsubscribe", { pressID }));
+    updateGrid();
   });
 }
 

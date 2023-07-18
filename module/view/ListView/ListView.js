@@ -67,7 +67,6 @@ export function printList() {
   fetchCategoryNewsData();
 
   //
-
   const left_btn = document.querySelector(".left-btn");
   left_btn.style.display = "block";
 }
