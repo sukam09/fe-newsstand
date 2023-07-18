@@ -146,7 +146,7 @@ const setGridButton = (pressData, pressIds) => {
 const getSubscribeState = (li) => {
   const pressImg = li.querySelector(HEADER_CLASS.IMG);
   const pressId = Number(pressImg.getAttribute(ATTRIBUTE.PRESS_ID));
-  const pressSub = LIST.SUBSCRIBE.includes(pressId);
+  const pressSub = LIST.SUBSCRIBE_ID.includes(pressId);
   return pressSub;
 };
 
@@ -185,8 +185,10 @@ const setGridButtonClick = (pressData, pressIds, li) => {
     const pressImg = li.querySelector(HEADER_CLASS.IMG);
     const pressId = Number(pressImg.getAttribute(ATTRIBUTE.PRESS_ID));
     const pressName = pressData.find((press) => press.id === pressId).name;
-    const isSubscribe = LIST.SUBSCRIBE.includes(pressId);
-    isSubscribe ? (LIST.SUBSCRIBE = LIST.SUBSCRIBE.filter((id) => id !== pressId)) : LIST.SUBSCRIBE.push(pressId);
+    const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+    isSubscribe
+      ? (LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId))
+      : LIST.SUBSCRIBE_ID.push(pressId);
     setSubscribe(pressData, pressIds, pressName, isSubscribe);
   });
 };

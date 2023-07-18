@@ -1,4 +1,5 @@
 import { getShuffleIds, getSliceIds } from '../utils/shuffle.js';
+import { LIST, PAGE } from '../constants/press-data.js';
 
 let pageNum = 0;
 let currentArticle = 0;
@@ -7,93 +8,72 @@ let currentCategory = 0;
 /**
  * 언론사 리스트의 INIT
  */
-const initPressList = (pressData, categoryData) => {
-  initEntirePressList(pressData, categoryData);
-  initSubscribePressList(pressData, categoryData);
-};
-
-const initEntirePressList = (pressData, categoryData) => {
-  const shuffleIds = getShuffleIds(pressData.length);
-  localStorage.setItem('entireList', 0);
-
-  console.log(pressData);
-  /**
-   * 해당 카테고리 filter 하기
-   * filter한거 셔플하기
-   *
-   */
-
-  setList('entire');
-  setListMain('entire');
-  setListSub('entire');
-  setListCategory(categoryData, 'entire');
-};
-
-const initSubscribePressList = (pressData, categoryData) => {
-  setList('subscribe');
-  setListMain('subscribe');
-  setListSub('subscribe');
-  setListCategory(categoryData, 'subscribe');
+const initPressList = (pressData, categoryList) => {
+  setList();
+  setListMain();
+  setListSub();
+  setListNav(categoryList);
+  setListArrow(); // 기능 추가 전
+  setListCategory(pressData, categoryList);
 };
 
 /**
- * 언론사 그리드의 설정
+ * 언론사 리스트의 설정
  */
-const setList = (section) => {
-  const listWrapper = document.querySelector(`.press__wrapper-list__${section}`);
+const setList = () => {
+  const listWrapper = document.querySelector(`.press__wrapper-list`);
   const listElement = `
-  <article class='press-category__${section}'>
-    <nav class='press-category__nav__${section}'>
-      <ul class='press-category__ul__${section}'></ul>
+  <article class='press-category'>
+    <nav class='press-category__nav'>
+      <ul class='press-category__ul'></ul>
     </nav>
-
-    <article class='press-category__article__${section}'>
-      <section class='press-category__section-main__${section}'></section>
-      <section class='press-category__section-sub__${section}'></section>
+    <article class='press-category__article'>
+      <section class='press-category__section-main'></section>
+      <section class='press-category__section-sub'></section>
     </article>
   </article>
-  <img class='arrows__img-left__${section}' src='./assets/icons/chevron-left.svg' />
-  <img class='arrows__img-right__${section}' src='./assets/icons/chevron-right.svg' />
+  <img class='arrows-category__img-left' src='./assets/icons/chevron-left.svg' />
+  <img class='arrows-category__img-right' src='./assets/icons/chevron-right.svg' />
   `;
 
   listWrapper.innerHTML = listElement;
 };
 
-const setListMain = (section) => {
-  const mainSection = document.querySelector(`.press-category__section-main__${section}`);
+const setListMain = () => {
+  const mainSection = document.querySelector(`.press-category__section-main`);
   const mainElement = `
-  <nav class='section-main__nav__${section}'>
-    <img class='section-main__img-logo__${section}' src=''>
-    <div class='section-main__edit__${section}'>
-      <time class='section-main__edit-time__${section}'></time>
-      <p class='section-main__edit-p__${section}'>&nbsp편집</p>
+  <nav class='section-main__nav'>
+    <img class='section-main__img-logo' src=''>
+    <div class='section-main__edit'>
+      <time class='section-main__edit-time'></time>
+      <p class='section-main__edit-p'>&nbsp편집</p>
     </div>
-    <buttion class='section-main__button__${section}'>
-      <img class='section-main__img-button__${section}' src='' />
-      <p class='section-main__p-button__${section}'>구독하기</p>
+    <buttion class='section-main__button'>
+      <img class='section-main__img-button' src='./assets/icons/button-plus.svg' />
+      <p class='section-main__p-button'>구독하기</p>
     </button>
   </nav>
-  <img class='section-main__img-article__${section}' src=''/>
-  <h2 class='section-main__h2__${section}'></h2>
+  <img class='section-main__img-article' src=''/>
+  <h2 class='section-main__h2'></h2>
   `;
 
   mainSection.innerHTML = mainElement;
 };
 
-const setListSub = (section) => {
-  const subSection = document.querySelector(`.press-category__section-sub__${section}`);
+const setListSub = () => {
+  const subSection = document.querySelector(`.press-category__section-sub`);
   const subFrame = Array.from({ length: 6 }, (_, idx) => idx);
   const subElement = `
-  <footer class='section-sub__footer__${section}'> 
-    <p class='section-sub__footer-press__${section}'></p> 
-    <p class='section-sub__footer-text__${section}'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
+  <footer class='section-sub__footer'> 
+    <p class='section-sub__footer-press'></p> 
+    <p class='section-sub__footer-text'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
   </footer>
   `;
 
   subFrame.forEach((_) => {
     const subTitle = `
-    <h4 class='press-category__h4-sub__${section}'>
-      <a class='press-category__a-sub__${section}' href=''></a>
+    <h4 class='section-sub__h4'>
+      <a class='section-sub__a' href=''></a>
     </h4>
     `;
     subSection.insertAdjacentHTML('beforeend', subTitle);
@@ -101,16 +81,16 @@ const setListSub = (section) => {
   subSection.insertAdjacentHTML('beforeend', subElement);
 };
 
-const setListCategory = (categoryData, section) => {
-  const categorySection = document.querySelector(`.press-category__ul__${section}`);
-  categoryData.forEach((data) => {
+const setListNav = (categoryList) => {
+  const categorySection = document.querySelector(`.press-category__ul`);
+  categoryList.forEach((category) => {
     const categoryElement = `
-    <li class='press-category__li__${section}'>
-      <p class='press-category__p__${section}'>${data}</p>
-      <div class='press-category__div__${section} none'>
-        <div class='press-category__div-now__${section}'>1</div>
-        <div class='press-category__div-divide__${section}'>/</div>
-        <div class='press-category__div-sum__${section}'></div>
+    <li class='press-category__li'>
+      <p class='press-category__p'>${category}</p>
+      <div class='press-category__div none'>
+        <div class='press-category__div-now'>1</div>
+        <div class='press-category__div-divide'>/</div>
+        <div class='press-category__div-sum'></div>
       </div>
     </li>
     `;
@@ -118,23 +98,52 @@ const setListCategory = (categoryData, section) => {
   });
 };
 
-///////////////////////////////////////////////////////////////
-
 /**
  * 언론사 리스트의 화살표
  */
-const setGridArrow = () => {
-  const arrowLeft = document.querySelector(`.arrows-logo__img-left__${section}`);
-  const arrowRight = document.querySelector(`.arrows-logo__img-right__${section}`);
+const setListArrow = () => {
+  const arrowLeft = document.querySelector(`.arrows-category__img-left`);
+  const arrowRight = document.querySelector(`.arrows-category__img-right`);
 
   // 이벤트 설정
 };
 
+///////////////////////////////////////////////////////////////
+
 /**
- * 언론사 리스트의 카테고리
+ * 언론사 리스트의 기사
  */
-const setGridCategory = (pressData, pressIds, pageNum, section) => {
-  //
+
+const setListCategory = (pressData, categoryList) => {
+  const categoryName = categoryList[LIST.PAGE];
+
+  // 카테고리 <-> 구독 언론사 분리
+  let categoryFilter = pressData.filter((press) => press.categoryName === categoryName);
+  if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === categoryName);
+  LIST.PAGE_LENTH = categoryFilter.length; // 이거는 카테고리의 길이 수정
+
+  setListArticle(categoryFilter);
+};
+
+/// 화면 갈아줌
+const setListArticle = (categoryFilter) => {
+  const categoryArticle = categoryFilter[LIST.PAGE_COUNT];
+  LIST.PAGE_COUNT += 1; // 페이지 카운트 증가 // 예외 처리 해줘야함
+
+  // 다크모드는 나중에 처리하자
+  const sectionMain = document.querySelector('.press-category__section-main');
+  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
+  sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
+  sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
+
+  const sectionSub = document.querySelector('.press-category__section-sub');
+  const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
+  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
+  sectionSubList.forEach((sub, subIdx) => {
+    sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
+    sub.href = categoryArticle.categorySubTitle[subIdx].link;
+  });
 };
 
 ///////////////////////////////////////////////////////////////

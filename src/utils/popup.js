@@ -42,7 +42,7 @@ const setAlertEvent = (pressData, pressIds, pressName) => {
     STATE.IS_UNSUBSCRIBE = true;
     alert.classList.remove('show');
     alert.classList.add('hidden');
-    if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE);
+    if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE_ID);
     if (pressIds.length >= 96) initPressGrid(pressData, LIST.SUFFLE);
   });
   alertNo.addEventListener('click', () => {

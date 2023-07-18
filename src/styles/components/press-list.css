@@ -174,13 +174,13 @@
   gap: 16px;
 }
 
-.press-category__a-sub {
+.section-sub__a {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: none;
 }
 
-.press-category__a-sub:hover {
+.section-sub__a:hover {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: underline;
@@ -195,7 +195,7 @@
 }
 
 /* 화살표 영역 */
-.arrows__img-left {
+.arrows-category__img-left {
   cursor: pointer;
   position: absolute;
   width: 24px;
@@ -204,7 +204,7 @@
   left: -72px; /* 0 - 24 - 48 */
 }
 
-.arrows__img-right {
+.arrows-category__img-right {
   cursor: pointer;
   position: absolute;
   width: 24px;
