@@ -1,4 +1,4 @@
-import { appendCategoryTabNum } from "./progressBar.js";
+import { appendCategoryTabNum } from "./listNews.js";
 import { setDisplay } from "./util/utils.js";
 
 /***** 초기 화면 *****/

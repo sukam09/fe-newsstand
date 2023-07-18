@@ -9,15 +9,6 @@ let up_count = 1;
 let total_count = 0;
 let progress_interval;
 
-//html에 카운트+탭 넘버 추가
-function appendCategoryTabNum() {
-  for (let i = 0; i < CATEGORY_NUM; i++) {
-    const tab = document.querySelectorAll(".progress-item .count");
-    const tab_num = `<span class="now-count">${up_count}</span> <span>/</span> <span>${categoryList[i].tabs}`;
-    tab[i].innerHTML = tab_num;
-  }
-}
-
 function checkTotalCount() {
   total_count = parseInt(
     document.querySelectorAll(".progress-bar span")[2].innerHTML
@@ -189,6 +180,5 @@ export {
   clearProgress,
   initializeProgress,
   reloadProgressAnimation,
-  appendCategoryTabNum,
   CATEGORY_NUM,
 };
