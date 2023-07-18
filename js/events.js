@@ -39,7 +39,7 @@ const eventNewsTabList = () => {
 };
 
 function handleBtnList() {
-  if (!tabList.disabled) initNewsStandList();
+  // if (!tabList.disabled) initNewsStandList();
 
   thumbList.disabled = false;
   tabList.disabled = true;
