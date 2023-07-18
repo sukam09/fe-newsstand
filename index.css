@@ -172,7 +172,7 @@ section.main {
 }
 
 .snackbar {
-  visibility: hidden;
+  opacity: 0;
   position: absolute;
   border: 1px black solid;
   background-color: #4362d0;
@@ -184,6 +184,7 @@ section.main {
   padding: 16px 24px 16px 24px;
   gap: 10px;
   z-index: 1;
+  transition: opacity 1s ease-in-out;
 }
 
 .progress-bar {

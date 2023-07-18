@@ -2,6 +2,7 @@ import news_article from "../json/news_article.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
 import { categoryNews } from "./setData.js/setCategoryData.js";
 import Stores from "../utils/Store.js";
+import { rollingTime } from "../utils/constants.js";
 
 function drawNewsImage(PageNumberIndex) {
   return `<img class="news-main-image" src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryIndex][PageNumberIndex].title}`;
@@ -38,8 +39,14 @@ function drawNewsHeader() {
 
 function clickSubscribeButton() {
   const subscribedButton = document.querySelector(".subscribe-button");
+  const snackbar = document.querySelector(".snackbar");
   subscribedButton.addEventListener("click", function () {
     Stores.setSubscribed(subscribedButton.previousSibling.previousSibling);
+    snackbar.style.opacity = "1";
+    setTimeout(() => {
+      snackbar.style.opacity = "0";
+      setTimeout(() => {}, 1000);
+    }, rollingTime);
   });
 }
 
