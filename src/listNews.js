@@ -1,6 +1,8 @@
 import { categoryList } from "../data/NewsContents.js";
+import { showSnackBar, removeSnackBar } from "./snackBar.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
+const SNACKBAR_POPUP_TIME = 5000;
 
 //기사 셔플
 function articleShuffle(category_idx) {
@@ -34,5 +36,14 @@ function appendNewsMain(category_idx, count_idx) {
   const list_caption = `${categoryList[category_idx].data[count_idx].name} 언론사에서 직접 편집한 뉴스입니다.`;
   document.querySelector(".caption").innerHTML = list_caption;
 }
+
+let snackbar_timeout;
+const subscribe_btn = document.querySelector(".subscribe-press-btn");
+subscribe_btn.addEventListener("click", () => {
+  showSnackBar();
+  snackbar_timeout = setTimeout(function () {
+    removeSnackBar();
+  }, SNACKBAR_POPUP_TIME);
+});
 
 export { drawListView };

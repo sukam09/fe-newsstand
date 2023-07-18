@@ -123,6 +123,7 @@
   align-items: flex-start;
   gap: 32px;
   align-self: stretch;
+  z-index: 1;
 }
 
 .news-main {
@@ -190,4 +191,12 @@
   line-height: normal;
   text-decoration: none;
   cursor: default;
+}
+
+.snack-bar {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  left: 300px;
+  top: 100px;
 }
