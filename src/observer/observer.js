@@ -3,7 +3,7 @@ const globalStates = {};
 export function initState({ key, defaultState }) {
   globalStates[key] = {
     state: defaultState,
-    observer: new Set(),
+    observers: new Set(),
   };
   return key;
 }
@@ -18,11 +18,11 @@ export function setState(key, state) {
 }
 
 function notify(key) {
-  globalStates[key].observer.forEach((observer) => {
+  globalStates[key].observers.forEach((observer) => {
     observer();
   });
 }
 
 export function resister(key, observer) {
-  globalStates[key].observer.add(observer);
+  globalStates[key].observers.add(observer);
 }

@@ -1,4 +1,4 @@
-import { initState } from "../observer/observer";
+import { initState } from "../observer/observer.js";
 
 const isDarkMode = initState({
   key: "isDarkMode",
