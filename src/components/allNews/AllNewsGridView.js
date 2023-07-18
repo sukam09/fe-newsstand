@@ -1,8 +1,4 @@
-import {
-  customQuerySelector,
-  customQuerySelectorAll,
-  shufflePressOrder,
-} from '../../utils/index.js';
+import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 
@@ -11,7 +7,8 @@ import SubscribeButton from './SubscribeButton.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
-    this.state = { pressOrder: shufflePressOrder(), page: 0 };
+    this.maxPage = Math.floor((this.props.pressOrder.length - 1) / 24);
+    this.state = { ...this.props, page: 0 };
   }
 
   template() {
@@ -25,21 +22,29 @@ export default class AllNewsGridView extends Component {
 
   mounted() {
     const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
-
     let innerHTML = '';
+
     for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
       innerHTML += ` 
       <li class="grid-logo-wrapper border-default">
-        <div class="flip-card-inner">
-          <div class="flip-card-front surface-default">
-            <img class="press-logo" src="src/assets/${logoMode}/${this.state.pressOrder[i]}.png" />
-          </div>
-          <div class="flip-card-back surface-alt">
-            <div class="subscribe-button-wrapper"></div>
-          </div>
-        </div>
+      ${
+        this.state.pressOrder.length > i
+          ? `<div class="flip-card-inner">
+            <div class="flip-card-front surface-default">
+              <img
+                class="press-logo"
+                src="src/assets/${logoMode}/${this.state.pressOrder[i].number}.png"
+              />
+            </div>
+            <div class="flip-card-back surface-alt">
+              <div class="subscribe-button-wrapper"></div>
+            </div>
+          </div>`
+          : ``
+      }
       </li>`;
     }
+
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
     customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
@@ -57,7 +62,7 @@ export default class AllNewsGridView extends Component {
 
     new ArrowButton(customQuerySelector('.right-button', this.$target), {
       name: 'right-button',
-      isVisible: this.state.page !== 3,
+      isVisible: this.state.page < this.maxPage,
       action: this.goNextPage.bind(this),
     });
   }

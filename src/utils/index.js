@@ -10,10 +10,8 @@ const getTodayDate = () => {
   return today.toLocaleDateString('ko-KR', options);
 };
 
-const shufflePressOrder = () => {
-  const array = Array.from({ length: 96 }, (_, idx) => idx);
-  array.sort(() => Math.random() - 0.5);
-  return array;
+const shufflePressOrder = (array = []) => {
+  return array.sort(() => Math.random() - 0.5);
 };
 
 export const customQuerySelector = (selector, $target = document) => {
