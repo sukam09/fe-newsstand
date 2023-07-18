@@ -58,6 +58,9 @@
 
   z-index: -1;
 }
+.category-item:not(.select-category):hover {
+  text-decoration: underline;
+}
 
 @keyframes progressiveBar {
   0% {
@@ -129,6 +132,13 @@
 .list__newsimg {
   height: 200px;
   width: 324px;
+  transition: transform 0.3s ease;
+}
+.list__newsimg:hover {
+  transform: scale(1.1);
+}
+.list__newsimg:hover + .list__newstitle {
+  text-decoration: underline;
 }
 .list__newstitle {
   padding-top: 6%;
@@ -148,7 +158,9 @@
   color: #4b5966;
   line-height: 22px;
 }
-
+.list__news-list li:hover {
+  text-decoration: underline;
+}
 .newslist--left-btn {
   cursor: pointer;
   position: absolute;
