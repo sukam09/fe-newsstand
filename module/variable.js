@@ -52,7 +52,7 @@ const CATEGORY = {
 
 const LIST = {
   SUBTITLENUM: 6,
-  PROGRESS_SEC: 1,
+  PROGRESS_SEC: 10,
 };
 
 const MODE = {
@@ -106,6 +106,7 @@ const GLOBAL = {
     ALERT: document.querySelector(".alert"),
     ALERT_YES_BTN: document.querySelector(".yes-btn"),
     ALERT_NO_BTN: document.querySelector(".no-btn"),
+    LIST_SUB_BTN: document.querySelector(".list-press .list-sub-btn"),
 
     GRID_VIEW: document.querySelector(".grid"),
     LIST_VIEW: document.querySelector(".list-view"),

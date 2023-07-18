@@ -1,4 +1,4 @@
-import { LIST, GLOBAL, CATEGORY } from "./variable.js";
+import { ICON, LIST, GLOBAL, CATEGORY } from "./variable.js";
 
 function moveListPage(pagenum) {
   GLOBAL.LIST_CURRENT_PAGE = pagenum;
@@ -19,6 +19,13 @@ function movePageFromEvent(event) {
 function setListNews() {
   GLOBAL.DOM.LIST_PRESS_ICON.src = GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE].path;
   GLOBAL.DOM.EDIT_DATE.innerHTML = `${GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE].edit_date} 편집`;
+  if (GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE].is_subscribe === "true") {
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[0].src = ICON.X;
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[1].style.display = "none";
+  } else {
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[0].src = ICON.PLUS;
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[1].style.display = "flex";
+  }
   GLOBAL.DOM.MANI_NEWS_TITLE.innerHTML = GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE].main_title;
   GLOBAL.DOM.MAIN_NEWS_THUMBNAIL.src = GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE].main_img_src;
   for (let i = 0; i < LIST.SUBTITLENUM; i++) {

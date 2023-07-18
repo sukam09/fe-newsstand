@@ -1,6 +1,6 @@
-import { ICON, POPUP, GLOBAL } from "./variable.js";
+import { ICON, MODE, POPUP, GLOBAL } from "./variable.js";
 
-let targetsrc;
+let tempTargetSrc;
 
 function checkSubscribe(src) {
   const targetNews = findTargetNewsFromSrc(src);
@@ -10,7 +10,7 @@ function checkSubscribe(src) {
 function clickSubscribeBtn(src) {
   if (checkSubscribe(src) === true) {
     showAlert(src);
-    targetsrc = src;
+    tempTargetSrc = src;
     return "true";
   } else {
     return toggleSubscribe(src);
@@ -52,7 +52,11 @@ function showAlert(src) {
 function alertBtnHandler(event) {
   GLOBAL.DOM.ALERT.style.display = "none";
   if (event.target.classList[0] === "yes-btn") {
-    toggleSubscribe(targetsrc);
+    if (GLOBAL.CURRENT_MODE === MODE.LIST) {
+      GLOBAL.DOM.LIST_SUB_BTN.childNodes[0].src = ICON.PLUS;
+      GLOBAL.DOM.LIST_SUB_BTN.childNodes[1].style.display = "flex";
+    }
+    toggleSubscribe(tempTargetSrc);
   }
 }
 
@@ -78,4 +82,18 @@ function makeSubscribeBtn(src) {
   return subscribeBtn;
 }
 
-export { alertBtnHandler, makeSubscribeBtn };
+function clickListSubscribe(event) {
+  const targetBtn = event.target.localName === "button" ? event.target.firstChild : event.target.parentNode.firstChild;
+  const targetSrc = GLOBAL.DOM.LIST_PRESS_ICON.src;
+  const isSubscribe = checkSubscribe(targetSrc);
+  if (isSubscribe) {
+    showAlert(targetSrc);
+    tempTargetSrc = targetSrc;
+  } else {
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[0].src = ICON.X;
+    GLOBAL.DOM.LIST_SUB_BTN.childNodes[1].style.display = "none";
+    toggleSubscribe(targetSrc);
+  }
+}
+
+export { alertBtnHandler, makeSubscribeBtn, clickListSubscribe };

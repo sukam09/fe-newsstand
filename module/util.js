@@ -1,7 +1,7 @@
 import { ICON, MODE, BTN, GLOBAL } from "./variable.js";
 import { moveGrid } from "./grid.js";
 import { moveListPage, movePageFromEvent } from "./list.js";
-import { alertBtnHandler } from "./subscribe.js";
+import { alertBtnHandler, clickListSubscribe } from "./subscribe.js";
 
 function initDate() {
   const date = new Date();
@@ -33,6 +33,10 @@ function initBtn() {
   });
   GLOBAL.DOM.ALERT_NO_BTN.addEventListener("click", (event) => {
     alertBtnHandler(event);
+  });
+
+  GLOBAL.DOM.LIST_SUB_BTN.addEventListener("click", (event) => {
+    clickListSubscribe(event);
   });
 }
 
