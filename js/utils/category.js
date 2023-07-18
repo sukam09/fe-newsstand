@@ -1,5 +1,6 @@
 import { removeChildElement } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
+import { subscribeState } from "../store/subscribeState.js";
 
 const CATEGORY_NUMBER = 7;
 
@@ -39,7 +40,7 @@ export function deactiveProgressClass(element) {
 }
 
 // 로고 / 편집일 / 구독하기 태그 생성
-function makeMainNewsNav(logo, edit) {
+function makeMainNewsNav(logo, edit, name) {
   const newsNavParent = document.querySelector(".newsstand__current-view");
 
   // 기존 메인 뉴스 navbar 삭제.
@@ -47,7 +48,14 @@ function makeMainNewsNav(logo, edit) {
 
   const publisherLogo = `<div><img src=${logo} alt="" class="newsstand--publisher-logo"/></div>`;
   const editDay = `<div class="newsstand__current-edit">${edit} 편집</div>`;
-  const subButton = `<button class="newsstand__current-button">+ 구독하기</button>`;
+  let subButton = `<button class="newsstand__current-button">+ 구독하기</button>`;
+
+  // 구독중일때.
+  if (subscribeState.getSubscribeByName(name).length) {
+    subButton = `<button class="newsstand__current-button">x 해지하기</button>`;
+  } else {
+    subButton = `<button class="newsstand__current-button">+ 구독하기</button>`;
+  }
   newsNavParent.innerHTML += publisherLogo;
   newsNavParent.innerHTML += editDay;
   newsNavParent.innerHTML += subButton;
@@ -71,6 +79,7 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   const newsListParent = document.querySelector(".newsstand__list-right");
 
   const data = categoryDataList[CATEGORY.currentCategory % CATEROY_NUMBER];
+  const name = data[page].name;
   const img = data[page].imgSrc;
   const title = data[page].title[0];
   const logo = data[page].lightSrc;
@@ -80,7 +89,7 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   removeChildElement(newsListParent);
 
   // 메인뉴스 nav 생성
-  makeMainNewsNav(logo, edit);
+  makeMainNewsNav(logo, edit, name);
 
   // 왼쪽 헤더라인 생성.
   makeMainNews(img, title);

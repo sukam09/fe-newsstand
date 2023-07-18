@@ -12,6 +12,7 @@ import {
   onUserLeftClickCategory,
   onUserClickCategory,
 } from "../utils/category.js";
+import { subscribeState } from "../store/subscribeState.js";
 
 const category = [
   "종합/경제",
@@ -68,6 +69,9 @@ const leftBtn = document.querySelector(".left-list-button");
 const rightBtn = document.querySelector(".right-list-button");
 
 export async function paintNewsCategory() {
+  // 내가 구독한 언론사가 선택되어있다면.
+  navTab.isMySubscribe && mySubscribeOnCategory();
+
   addAnimationEvent();
   makeNewsList(CATEGORY.FIRST_PAGE, CATEROY_NUMBER, categoryDataList);
   // 사용자가 직접 카테고리를 클릭하면 움직이는 기능.
@@ -124,6 +128,12 @@ function addAnimationEvent() {
     );
     element.addEventListener("animationend", handlProgressAnimationEnd());
   });
+}
+
+// 내가 구독한 언론사일때 실행되는 함수
+function mySubscribeOnCategory() {
+  const subscribeList = subscribeState.getSubscribeState();
+  console.log(subscribeList);
 }
 
 // 프로그래스 바 애니매이션 종료시 실행하는 함수

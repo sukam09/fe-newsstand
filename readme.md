@@ -148,3 +148,61 @@ const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
 
 변경전 alt 값에 imgSrc를 넣어줘서 발생한 문제였다. 당연히 구독목록에 존재하지 않는 값을 넣어주니 발생한 문제점이였다.
 그래도 설계를 구체적으로해서 코드가 흘러가는 흐름을 잘 찾을 수 있어서 금방 오류를 해결했다.
+
+**7월 18일**
+
+### 초기 실행시 그려지는 페이지 수정
+
+### 기존
+
+```javascript
+// main.js
+export function renderMain() {
+  // 뉴스 롤링
+  paintSubView();
+
+  // 뉴스 그리드
+  paintGridNewsstand();
+
+  // 카테고리
+  paintNewsCategory();
+
+  //뉴스스탠드 리스트 탭 전환
+  newsstandListTab();
+}
+```
+
+### 수정 main.js
+
+```javascript
+// main.js
+export function renderMain() {
+  // 뉴스 롤링
+  paintSubView();
+
+  // 뉴스 그리드
+  paintGridNewsstand();
+
+  //뉴스스탠드 리스트 탭 전환
+  newsstandListTab();
+}
+```
+
+```javascript
+// newsstandTab.js
+function 탭관리() {
+  // 리스트 버튼 클릭됬을때.
+  listButton.addEventListener("click", () => {
+    // 리스트 버튼이 클릭되었을때마다 카테고리 영역을 다시 그림.
+    paintNewsCategory();
+  });
+```
+
+### 수정이유
+
+프로그램이 실행될때 카테고리를 미리 그려주게되면 언론사를 구독하고 '리스트' 뷰로 넘어갔을때 제대로 반영이 되지 않고 다시 그려질때 반영되는 문제가 생겼음.
+따라서 뷰가 변경될때마다 리스트 뷰를 새롭게 paint하게 됨.
+
+### 문제점?
+
+이렇게 구현했을때는 모든 카테고리의 li태그를 지워야함. 안 그러면 다시 그려질때 이벤트리스너가 중복으로 등록되어 지난번 변수값이 +2 +4씩 이상하게 증가하는 현상이 발생하게됨. -> 설계에 반영해서 구현해봐야겠다

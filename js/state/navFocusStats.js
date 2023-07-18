@@ -1,3 +1,3 @@
-export let navTab = {
+export const navTab = {
   isMySubscribe: false,
 };

@@ -177,7 +177,8 @@ function userClickSubscribeButton(liElement) {
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
       const subList = subscribeState.getSubscribeState();
-      navTab.isMySubscribe ? paintNews(subList) : () => {};
+      navTab.isMySubscribe && paintNews(subList);
+      // navTab.isMySubscribe ? paintNews(subList) : () => {};
     }
     // 구독하기 버튼을 눌렀을때.
     else {
