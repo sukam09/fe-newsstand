@@ -168,6 +168,21 @@ body {
   left: 978px; /* 930 + 48 */
 }
 
+.snack-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 286px;
+  height: 54px;
+
+  position: absolute;
+  left: 322px;
+  top: 167px;
+
+  background-color: var(--blue-500);
+  color: var(--grayscale-white);
+}
+
 /* cursor: pointer 효과 일괄 적용 */
 .hot-topic-wrapper > * > *,
 .press-wrapper > header > * > *,
