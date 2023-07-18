@@ -1,5 +1,9 @@
 //뷰 타입 변경
-import { main_list_page, MIN_PAGE, MAX_PAGE } from "../gridView/gridView.js";
+import {
+  main_list_page,
+  MIN_PAGE,
+  MAX_PAGE,
+} from "../gridView/feature/handlePage.js";
 
 function getById(id) {
   return document.getElementById(id);

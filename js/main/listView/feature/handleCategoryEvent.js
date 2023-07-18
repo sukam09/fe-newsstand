@@ -28,21 +28,4 @@ function handleAniamtionIteration(e) {
   //currentPage > totalNum => passAnimation
 }
 
-/* main news eventlisteners */
-
-function handleMouseOverAndOut(mainNews, type) {
-  if (type === "over") {
-    mainNews.children[0].style.transform = `scale(1.05)`;
-    mainNews.children[1].style.textDecoration = "underline";
-  } else {
-    mainNews.children[0].style.transform = `scale(1)`;
-    mainNews.children[1].style.textDecoration = "none";
-  }
-}
-
-export {
-  handleAniamtionIteration,
-  handleCategoryClick,
-  handleAniamtionStart,
-  handleMouseOverAndOut,
-};
+export { handleAniamtionIteration, handleCategoryClick, handleAniamtionStart };

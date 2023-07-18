@@ -4,7 +4,6 @@ import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
-  handleMouseOverAndOut,
 } from "./handleCategoryEvent.js";
 import { currentPage } from "./handlePage.js";
 import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
@@ -146,6 +145,17 @@ function transformMainNews() {
   mainNews.addEventListener("mouseout", () =>
     handleMouseOverAndOut(mainNews, "out")
   );
+}
+/* main news eventlisteners */
+
+function handleMouseOverAndOut(mainNews, type) {
+  if (type === "over") {
+    mainNews.children[0].style.transform = `scale(1.05)`;
+    mainNews.children[1].style.textDecoration = "underline";
+  } else {
+    mainNews.children[0].style.transform = `scale(1)`;
+    mainNews.children[1].style.textDecoration = "none";
+  }
 }
 
 export {
