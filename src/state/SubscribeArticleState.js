@@ -1,4 +1,4 @@
-class ArticleState{
+class SubscribeArticleState{
 
     constructor(){
         this.subscribePress = [];
@@ -16,8 +16,13 @@ class ArticleState{
         let pressIndex = this.subscribePress.indexOf(press);
         this.subscribePress.splice(pressIndex, 1);
     }
+
+    findSubscribe(id){
+        let press = this.subscribePress.find(press => press.id === id);
+        return press
+    }
 }
 
-const articleState = new ArticleState();
+const subscribeArticleState = new SubscribeArticleState();
 
-export default articleState;  
+export default subscribeArticleState;  

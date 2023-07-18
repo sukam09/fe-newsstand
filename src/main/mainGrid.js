@@ -1,60 +1,60 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
-import articleState from "../state/articleState.js";
+import gridArticle from "../../data/grid_article.json" assert { type: "json"};
+import subscribeArticleState from "../state/SubscribeArticleState.js";
 
 const COUNT_PER_PAGE = 24;
 let press;
+let allView;
+let pressData;
+const subscribeBtn = document.createElement("button");
+const subscribeData = subscribeArticleState.getSubscribe();
 
 function addSubscribeBtn(e){
-    const subscribedData = articleState.getSubscribe();
-    const subscribeBtn = document.createElement("button");
+    subscribeBtn.addEventListener("click", (e) => {
+        if(subscribeArticleState.findSubscribe(press)){
+            e.target.innerText = "+ 구독하기";
+            subscribeArticleState.removeSubscribe(subscribeArticleState.findSubscribe(press));
+        }
+        else{
+            e.target.innerText = "해지하기";
+            subscribeArticleState.addSubscribe(subscribeArticleState.findSubscribe(press));
+        }
+    });
 
-    if(subscribedData.indexOf(shuffled_data[press]) >= 0){
+
+}
+
+function logoMouseOver(e){
+    //마우스 오버한 언론사 선택
+    press = e.target.children[0].className; 
+    //초기화
+    e.target.innerHTML = "";
+    e.target.style.backgroundColor = "#F5F7F9";
+
+    subscribeBtn.classList.add("gridSubscribeBtn");
+
+    if(subscribeArticleState.findSubscribe(press)){
         subscribeBtn.innerText = "해지하기";
     }
     else{
         subscribeBtn.innerText = "+ 구독하기";
     }
-
-    subscribeBtn.classList.add("gridSubscribeBtn");
-
-    subscribeBtn.addEventListener("click", (e) => {
-        if(subscribedData.indexOf(shuffled_data[press]) >= 0){
-            e.target.innerText = "+ 구독하기";
-            articleState.removeSubscribe(shuffled_data[press]);
-        }
-        else{
-            e.target.innerText = "해지하기";
-            articleState.addSubscribe(shuffled_data[press]);
-        }
-    });
     e.target.appendChild(subscribeBtn);
-}
-
-function logoMouseOver(e){
-    //마우스 오버한 언론사 선택
-    press = e.target.children[0].className;
-
-    //초기화
-    e.target.innerHTML = "";
-    e.target.style.backgroundColor = "#F5F7F9";
-
-    addSubscribeBtn(e);
 }
 
 function logoMouseOut(e){
     e.target.innerHTML = "";
     e.target.style.backgroundColor = "white";
-
+    const selectedpress = shuffled_data.find((i) => i.id === parseInt(press));
     const newsLogo = document.createElement("img");
-    newsLogo.src = `${shuffled_data[press].logo}`;
+    newsLogo.src = selectedpress.logo;
     newsLogo.classList.add(press);
 
     e.target.appendChild(newsLogo);
 }
 
-function refreshGrid(isAll, currentPageNumber){
-    let pressData;
-    isAll === "all" ? pressData = shuffled_data : pressData = articleState.getSubscribe();
+function refreshGrid( currentPageNumber){
+    allView === "all" ? pressData = shuffled_data : pressData = subscribeArticleState.getSubscribe();
 
     const mainCenter = document.getElementById("main-center");
     const mainGrid = document.createElement("div");
@@ -74,17 +74,24 @@ function refreshGrid(isAll, currentPageNumber){
         if(index >= (currentPageNumber -1) * COUNT_PER_PAGE && index < (currentPageNumber) * COUNT_PER_PAGE){
             const outerDiv = document.querySelector(`.outerDiv${index}`);
             const newsLogo = document.createElement("img");
-            newsLogo.src = `${value.logo}`;
-            newsLogo.classList.add(index);
+            newsLogo.src = value.logo;
+            newsLogo.classList.add(value.id);
+            
+            subscribeBtn.style.backgroundColor = "#F5F7F9";
+            subscribeBtn.classList.add("gridSubscribeBtn");
+            
             outerDiv.append(newsLogo);
-
+            outerDiv.append(subscribeBtn);
             //마우스 오버시 구독하기/해지하기 
             outerDiv.addEventListener("mouseenter", (e) => logoMouseOver(e));
             outerDiv.addEventListener("mouseleave", (e) => logoMouseOut(e));
+
+            subscribeBtn.addEventListener("click", (e) => addSubscribeBtn(e));
         }   
     })
 }
 
 export default function MainGrid(isAll, currentPageNumber){
-    refreshGrid(isAll, currentPageNumber);
+    allView = isAll;
+    refreshGrid(currentPageNumber);
 }

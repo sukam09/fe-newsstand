@@ -12,7 +12,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/1.png",
                 "mainImg": "./img/3.png",
@@ -35,7 +35,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/11.png",
                 "mainImg": "./img/3.png",
@@ -58,7 +58,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/4.png",
                 "mainImg": "./img/3.png",
@@ -81,7 +81,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/6.png",
                 "mainImg": "./img/3.png",
@@ -104,7 +104,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/8.png",
                 "mainImg": "./img/3.png",
@@ -127,7 +127,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/10.png",
                 "mainImg": "./img/3.png",
@@ -150,7 +150,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
-                "brand": "서울경제",
+                "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/13.png",
                 "mainImg": "./img/3.png",
