@@ -5,7 +5,7 @@ import {
   handleAniamtionStart,
   handleCategoryClick,
 } from "./handleCategoryEvent.js";
-import { currentPage } from "./handlePage.js";
+import { main_grid_page } from "./handlePage.js";
 import { checkPressInLocal } from "../../../utils/checkPressInLocal.js";
 
 function makeRandomNews() {
@@ -52,13 +52,13 @@ function makeCategory() {
 function chageNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
   //press-info
-  changePressInfo(news[currentPage]);
+  changePressInfo(news[main_grid_page]);
 
   //main news
-  changeMain(news[currentPage]);
+  changeMain(news[main_grid_page]);
 
   //sub news
-  changeSub(news[currentPage]);
+  changeSub(news[main_grid_page]);
 
   //pagenum info
   changePageInfo(e);
@@ -70,21 +70,16 @@ function changePressInfo(news) {
   press_info.children[0].setAttribute("data-press", `${news.name}`);
   press_info.children[1].innerText = `${news.editDate}`;
 
+  const _img = press_info.children[2].children[0];
   if (checkPressInLocal(news.name)) {
-    press_info.children[2].children[0].setAttribute(
-      "src",
-      `../images/icon/Unsubscribe2.svg`
-    );
+    _img.setAttribute("src", `../images/icon/Unsubscribe2.svg`);
   } else {
-    press_info.children[2].children[0].setAttribute(
-      "src",
-      "../images/icon/Subscribe.svg"
-    );
+    _img.setAttribute("src", "../images/icon/Subscribe.svg");
   }
 
-  press_info.children[2].addEventListener("click", () =>
-    clickSubscribe(news.name)
-  );
+  press_info.children[2].addEventListener("click", () => {
+    clickSubscribe(news.name, "list", _img);
+  });
 }
 
 function changeMain(news) {
@@ -117,7 +112,7 @@ function changePageInfo(e) {
   //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
   e.target.parentElement.children[2].innerText = `${
-    currentPage + 1
+    main_grid_page + 1
   }/${getPagesNum(e.currentTarget.dataset.category)}`;
 }
 

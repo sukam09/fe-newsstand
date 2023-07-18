@@ -1,7 +1,7 @@
-let currentPage = 0;
+let main_grid_page = 0;
 
-function changeCurrentPage(value) {
-  currentPage = value;
+function setGridPage(value) {
+  main_grid_page = value;
 }
 
-export { changeCurrentPage, currentPage };
+export { setGridPage, main_grid_page };

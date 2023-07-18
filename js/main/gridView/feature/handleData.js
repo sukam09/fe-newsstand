@@ -44,7 +44,7 @@ function showMainList(press) {
 
     //구독하기 해제하기 클릭 시
     _img.addEventListener("click", (e) =>
-      clickSubscribe(e.target.parentElement.dataset.press)
+      clickSubscribe(e.target.parentElement.dataset.press, "grid", _img)
     );
 
     main_list_ul.appendChild(_li);
