@@ -10,8 +10,11 @@ let publisherData = await getPressData("./data/pressObj.json");
 makeButtonTag(".newsstand--grid-navigation-btn", "btn-disabled");
 navTag();
 
+const MY_PUBLISHER = "MY_PUBLISHER";
+const ALL_PUBLISHER = "ALL_PUBLISHER";
 const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
+
 let LAST_PAGE = 3;
 let selectedPage = 0;
 
@@ -100,10 +103,14 @@ function paintNews(paintData = publisherData) {
 function addEventOnMySubAndAllSub() {
   // 내가 구독한 언론사 클릭됬을때.
   mySubscribe.addEventListener("click", () => {
+    isMySubscribe = true;
+
     // 현재 구독중인 리스트.
     const subscribeList = subscribeState.getSubscribeState();
 
-    isMySubscribe = true;
+    // 현재 구독중인 리스트에 포커스 효과주기
+    onFocusToClicked(MY_PUBLISHER);
+
     // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
     selectedPage = 0; // selectedPage 0에서 시작
     LAST_PAGE = subscribeList.length / VIEWED_CONTENS; // 마지막 페이지 수정.
@@ -116,12 +123,35 @@ function addEventOnMySubAndAllSub() {
   allPublisher.addEventListener("click", () => {
     isMySubscribe = false;
 
+    // 전체 언론사에 포커스 효과주기
+    onFocusToClicked(ALL_PUBLISHER);
+
     selectedPage = 0; // selectedPage 0에서 시작
     LAST_PAGE = 3;
     isBtnDisabled(); // 버튼 활성화 조건 실행.
 
     paintNews();
   });
+}
+
+function onFocusToClicked(where) {
+  where === MY_PUBLISHER ? focusToMyPubliser() : focusToAllPublisher();
+}
+
+function focusToAllPublisher() {
+  // 전체 언론사에 포커스 효과주기
+  mySubscribe.classList.remove("newsstand—text-clicked");
+  mySubscribe.classList.add("newsstand—text-unclicked");
+  allPublisher.classList.add("newsstand—text-clicked");
+  allPublisher.classList.remove("newsstand—text-unclicked");
+}
+
+function focusToMyPubliser() {
+  // 현재 구독중인 리스트에 포커스 효과주기
+  mySubscribe.classList.add("newsstand—text-clicked");
+  mySubscribe.classList.remove("newsstand—text-unclicked");
+  allPublisher.classList.remove("newsstand—text-clicked");
+  allPublisher.classList.add("newsstand—text-unclicked");
 }
 
 // 각 언론사에 이벤트리스너 등록

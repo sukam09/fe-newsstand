@@ -13,10 +13,18 @@ import {
   onUserClickCategory,
 } from "../utils/category.js";
 
-// console.log(CATEGORY);
+const category = [
+  "종합/경제",
+  "방송/통신",
+  "IT",
+  "영자지",
+  "스포츠/연예",
+  "매거진/전문지",
+  "지역",
+];
 
 // 카테고리 태그, 리스트 버튼 태그 생성.
-makeCategoryTag();
+makeCategoryTag(category);
 makeButtonTag(
   ".newsstand__list-navigation-btn",
   "left-list-button btn-disabled",
