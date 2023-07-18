@@ -29,21 +29,23 @@ const fillGridView = (newsData, currentPage) => {
   }, "");
 };
 
+const handleSubscribeButtonClick = (e) => {
+  const $button = e.target.closest(".subscribe-btn");
+  const name = $button.previousElementSibling.alt;
+
+  const isSubscribed = JSON.parse($button.dataset.subscribed);
+
+  if (isSubscribed) {
+    // TODO: 구독해지 로직
+    return;
+  }
+
+  store.dispatch(openSnackbar());
+  store.dispatch(addSubscribe(name));
+};
+
 const addEventOnGridView = () => {
-  $gridView.addEventListener("click", (e) => {
-    const $button = e.target.closest(".subscribe-btn");
-    const name = $button.previousElementSibling.alt;
-
-    const isSubscribed = JSON.parse($button.dataset.subscribed);
-
-    if (isSubscribed) {
-      // TODO: 구독해지 로직
-      return;
-    }
-
-    store.dispatch(openSnackbar());
-    store.dispatch(addSubscribe(name));
-  });
+  $gridView.addEventListener("click", handleSubscribeButtonClick);
 };
 
 const initGridView = (newsData) => {
