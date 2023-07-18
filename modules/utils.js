@@ -109,6 +109,12 @@ const onClickSubscribeMode = ({ className }) => {
   const $unselected =
     className === "main-nav_total" ? $subscribeMedia : $totalMedia;
 
+  if (className === "main-nav_subscribe" && STATE.SUBSCRIBE_LIST.length === 0) {
+    STATE.MODE.IS_TOTAL = true;
+    alert("구독한 언론사가 없습니다!!!");
+    return;
+  }
+
   $selected.classList.remove("main-nav_unselected");
   $selected.classList.add("main-nav_selected");
 

@@ -176,7 +176,7 @@ const setProgressBar = () => {
 
   const $cntDiv = $li.children[1];
   if (STATE.MODE.IS_TOTAL) {
-    // 전체 언론사 모드일 때만 카운트 추가
+    // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
   <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
   <p>&nbsp; / ${categoryInfo[cate].length}</p>
@@ -214,6 +214,7 @@ const setListView = () => {
   const $cancelSubBtn = document.querySelector(".news-list_unsubscribed_btn");
   const $mainTitle = document.querySelector(".news-list_media_content_main p");
 
+  console.log(mediaId, nowMedia);
   $logo.src = nowMedia.path_light;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
