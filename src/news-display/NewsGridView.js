@@ -1,5 +1,5 @@
 import Component from "../core/Component.js";
-import { shuffleNewsPress } from "../utils/utils.js";
+import { shuffleNewsPress, updateSubscribeList } from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
 
@@ -68,7 +68,6 @@ export default class NewsGridView extends Component {
 
         const subscribeButtons = this.$target.querySelectorAll(".flip-back");
         subscribeButtons.forEach((item) => {
-            // console.log(item.parentNode.parentNode.dataset.id);
             new SubscribeButton(item, {
                 viewMode: "grid",
                 subscribed: this.isSubscribed(
@@ -81,11 +80,23 @@ export default class NewsGridView extends Component {
     }
 
     setPrevPage() {
-        this.setState({ page: this.state.page - 1 });
+        this.setState({
+            page: this.state.page - 1,
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
     }
 
     setNextPage() {
-        this.setState({ page: this.state.page + 1 });
+        this.setState({
+            page: this.state.page + 1,
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
     }
 
     isSubscribed(id) {

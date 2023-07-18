@@ -1,6 +1,7 @@
 import Component from "../core/Component.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
+import { updateSubscribeList } from "../utils/utils.js";
 
 const PROGRESS_DURATION = 20000;
 
@@ -19,27 +20,19 @@ export default class NewsListView extends Component {
         this.state = {
             currentCategoryIndex: 0,
             currentPage: 1,
-            newsData: [],
+            categoryNewsData: [],
             subscribeList: this.props.subscribeList,
+            pressData: this.props.newsData,
         };
 
-        this.state.newsData = this.getCategoryNewsData(
+        this.state.categoryNewsData = this.getCategoryNewsData(
             this.state.currentCategoryIndex
         );
-
-        // const subscribeList = [];
-        // const localSubscribeList = JSON.parse(
-        //     localStorage.getItem("subscribeList")
-        // );
-        // localSubscribeList.forEach((data) =>
-        //     subscribeList.push({ id: data.id, name: data.name })
-        // );
-        // console.log(subscribeList);
-        // this.state.subscribeButton = subscribeList;
     }
 
     template() {
-        const newsData = this.state.newsData[this.state.currentPage - 1];
+        const newsData =
+            this.state.categoryNewsData[this.state.currentPage - 1];
 
         return `
             <div class="news-press-list-view">
@@ -102,6 +95,7 @@ export default class NewsListView extends Component {
             viewMode: "list",
             subscribed: this.isSubscribed(subscribeButton.dataset.id),
             pressName: subscribeButton.dataset.name,
+            pressId: subscribeButton.dataset.id,
         });
     }
 
@@ -124,7 +118,7 @@ export default class NewsListView extends Component {
                                     ${this.state.currentPage}
                                 </div>
                                 <div>/</div>
-                                <div class="category-total-number">${this.state.newsData.length}</div>
+                                <div class="category-total-number">${this.state.categoryNewsData.length}</div>
                             </div>
                         </li>`
                     );
@@ -172,7 +166,8 @@ export default class NewsListView extends Component {
                 this.setState({
                     currentCategoryIndex: currentCategoryIndex,
                     currentPage: 1,
-                    newsData: this.getCategoryNewsData(currentCategoryIndex),
+                    categoryNewsData:
+                        this.getCategoryNewsData(currentCategoryIndex),
                 });
             }
         });
@@ -186,7 +181,7 @@ export default class NewsListView extends Component {
                 );
                 this.setState({
                     currentCategoryIndex: categoryList.length - 1,
-                    newsData: newsData,
+                    categoryNewsData: newsData,
                     currentPage: newsData.length,
                 });
             } else {
@@ -196,7 +191,7 @@ export default class NewsListView extends Component {
                 this.setState({
                     currentCategoryIndex: this.state.currentCategoryIndex - 1,
                     currentPage: newsData.length,
-                    newsData: newsData,
+                    categoryNewsData: newsData,
                 });
             }
         } else {
@@ -204,20 +199,26 @@ export default class NewsListView extends Component {
                 currentPage: this.state.currentPage - 1,
             });
         }
+        this.setState({
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
     }
 
     setNextPage() {
-        if (this.state.currentPage === this.state.newsData.length) {
+        if (this.state.currentPage === this.state.categoryNewsData.length) {
             this.state.currentCategoryIndex + 1 === categoryList.length
                 ? this.setState({
                       currentCategoryIndex: 0,
                       currentPage: 1,
-                      newsData: this.getCategoryNewsData(0),
+                      categoryNewsData: this.getCategoryNewsData(0),
                   })
                 : this.setState({
                       currentCategoryIndex: this.state.currentCategoryIndex + 1,
                       currentPage: 1,
-                      newsData: this.getCategoryNewsData(
+                      categoryNewsData: this.getCategoryNewsData(
                           this.state.currentCategoryIndex + 1
                       ),
                   });
@@ -226,6 +227,12 @@ export default class NewsListView extends Component {
                 currentPage: this.state.currentPage + 1,
             });
         }
+        this.setState({
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
     }
 
     getCategoryNewsData(currentCategoryIndex) {
