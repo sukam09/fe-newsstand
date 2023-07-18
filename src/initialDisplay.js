@@ -1,4 +1,5 @@
 import { appendCategoryTabNum } from "./progressBar.js";
+import { setDisplay } from "./utils.js";
 
 /***** 초기 화면 *****/
 function countDisplayNone() {
@@ -8,12 +9,12 @@ function countDisplayNone() {
 }
 
 function initDisplay() {
-  document.querySelector(".list-selected").style.display = "none";
-  document.querySelector(".press-list-section").style.display = "none";
-  document.getElementById("grid-prev").style.display = "none";
+  setDisplay(".list-selected", "none");
+  setDisplay(".press-list-section", "none");
+  setDisplay("#grid-prev", "none");
   appendCategoryTabNum();
   countDisplayNone();
-  document.querySelector(".count").style.display = "block";
+  setDisplay(".count", "block");
 }
 
 export { countDisplayNone, initDisplay };
