@@ -17,6 +17,10 @@ class button {
     getButton = function () {
         return this.$btn;
     };
+
+    setEvents = function (events) {
+        for (const key in events) this.$btn.addEventListener(key, events[key]);
+    };
 }
 
 class arrowBtn extends button {
@@ -31,15 +35,31 @@ class arrowBtn extends button {
 }
 
 class subscribeBtn extends button {
-    constructor({ events }) {
+    constructor({ events, isDefault, isSubscribe }) {
         super({ className: "btn-subscribe", events: events });
+        this.is_subscribe = isSubscribe;
         this.$img = create.img({
             className: "btn-subscribe-icon",
-            attributes: { src: ICON_PLUS_URL, alt: "plus-gray-default" },
+            attributes: { src: isSubscribe ? ICON_PLUS_URL : ICON_CLOSED_URL, alt: "subscribe-icon" },
         });
-        this.$title = create.span({ className: "btn-subscribe-label available-medium12", txt: "구독하기" });
+        this.$title = create.span({
+            className: "btn-subscribe-label available-medium12",
+            txt: isSubscribe ? "구독하기" : "해지하기",
+        });
+        if (isDefault) this.$btn.style.backgroundColor = "white";
         this.$btn.append(this.$img, this.$title);
     }
+
+    setStyle = function () {
+        this.$img.setAttribute("src", this.is_subscribe ? ICON_PLUS_URL : ICON_CLOSED_URL);
+        this.$title.innerHTML = "";
+        this.$title.innerHTML = this.is_subscribe ? "구독하기" : "해지하기";
+    };
+
+    changeMode = async function () {
+        this.is_subscribe = !this.is_subscribe;
+        await this.setStyle();
+    };
 }
 
 class closedBtn extends button {
@@ -60,7 +80,12 @@ export class buttonFacotry {
             case "arrow":
                 return new arrowBtn({ className: props.className, events: props.events, isRight: props.isRight });
             case "subscribe":
-                return new subscribeBtn({ className: props.className, events: props.events });
+                return new subscribeBtn({
+                    className: props.className,
+                    events: props.events,
+                    isDefault: props.isDefault,
+                    isSubscribe: props.isSubscribe,
+                });
             case "closed":
                 return new closedBtn({ className: props.className, events: props.events });
             default:

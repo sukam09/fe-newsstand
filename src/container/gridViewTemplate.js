@@ -24,13 +24,41 @@ function createMainGrid(grid_view_info, isInit) {
             else if (i == GRID_COL_SIZE - 1) list_class_name = "border_bottom";
             else if (j == GRID_ROW_SIZE - 1) list_class_name = "border_right";
 
-            const $list_item = create.li({ className: list_class_name });
+            const $mouse_enter_grid = create.div({
+                className: "mouse-enter-grid",
+                events: {
+                    mouseleave: () => {
+                        $mouse_enter_grid.style.visibility = "hidden";
+                    },
+                },
+            });
+            const $subscribe_btn = btnFactory.create({
+                type: "subscribe",
+                isDefault: true,
+                isSubscribe: true,
+            });
+            $subscribe_btn.setEvents({
+                click: () => {
+                    $subscribe_btn.changeMode();
+                },
+            });
+            $mouse_enter_grid.appendChild($subscribe_btn.getButton());
+
+            const $list_item = create.li({
+                className: list_class_name,
+                events: {
+                    mouseenter: () => {
+                        $mouse_enter_grid.style.visibility = "visible";
+                    },
+                },
+            });
             if (data_list.length > cnt) {
                 const $list_img = create.img({
                     className: "news_data_img",
                     attributes: { src: data_list[cnt++].press_light_src },
                 });
-                $list_item.appendChild($list_img);
+                // $list_item.appendChild($list_img);
+                $list_item.append($list_img, $mouse_enter_grid);
             }
 
             $list.appendChild($list_item);
