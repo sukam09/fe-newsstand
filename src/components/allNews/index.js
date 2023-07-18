@@ -17,26 +17,7 @@ export default class AllNews extends Component {
     fetchData().then(data => {
       this.setState({ allPress: data });
     });
-    this.state.myPress = [
-      {
-        name: '오마이뉴스',
-        number: '0',
-        category: '종합/경제',
-        edit_date: '2023.02.10. 18.27',
-        main_news: {
-          thumbnail: 'https://picsum.photos/320/200',
-          title: '또 국민연금의 몽니…현대百 지주사 불발',
-        },
-        sub_news: [
-          '"위스키 사려고 이틀 전부터 줄 섰어요"',
-          "'방시혁 제국'이냐 '카카오 왕국'이냐...K엔터 누가 거머쥘까",
-          '사용후핵연료 저장시설 포화...이대론 7년 뒤 원전 멈춘다',
-          '[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"',
-          '태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]',
-          'LG엔솔, 폴란드 자동차산업협회 가입..."유럽서 목소리 키운다"',
-        ],
-      },
-    ]; // 아이템 객체로 저장
+    this.state.myPress = ['오마이뉴스'];
   }
 
   template() {
@@ -78,7 +59,7 @@ export default class AllNews extends Component {
   getGridPress() {
     return this.state.pressType === TEXT.ALL
       ? shufflePressOrder(this.state.allPress)
-      : this.state.myPress;
+      : this.state.allPress.filter(press => this.state.myPress.includes(press.name));
   }
   getListPress() {
     const listPress = {
@@ -93,7 +74,7 @@ export default class AllNews extends Component {
 
     this.state.pressType === TEXT.ALL
       ? this.state.allPress.forEach(press => listPress[press.category].push(press))
-      : this.state.myPress.forEach(press => listPress[press.category].push(press));
+      : this.state.myPress;
 
     return listPress;
   }
