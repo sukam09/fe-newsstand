@@ -58,26 +58,26 @@ const createButton = (data) => {
   btn.id = `${data.name}`;
 
   btn.addEventListener("click", (e) => {
-    const message = store.subscriptions.find(
+    const isSubscribed = store.subscriptions.find(
       (item) => item.name === e.target.id
-    ).subscribe
-      ? `${data.name}을(를) 구독해지 하시겠습니까?`
+    ).subscribe;
+
+    const message = isSubscribed
+      ? `${data.name}`
       : `내가 구독한 언론사에 추가되었습니다.`;
 
-    if (
-      store.subscriptions.find((item) => item.name === e.target.id)
-        .subscribe === true
-    ) {
+    if (isSubscribed === true) {
       alert.show(message);
+      alert.setState(e.target.id, isSubscribed);
     } else {
       snackbar.show(message);
+      dispatcher({
+        type: "TOGGLE_SUBSCRIPTIONS",
+        name: e.target.id,
+        value: !store.subscriptions.find((item) => item.name === e.target.id)
+          .subscribe,
+      });
     }
-    dispatcher({
-      type: "TOGGLE_SUBSCRIPTIONS",
-      name: e.target.id,
-      value: !store.subscriptions.find((item) => item.name === e.target.id)
-        .subscribe,
-    });
     updateButton(data.name);
   });
   return btn;
