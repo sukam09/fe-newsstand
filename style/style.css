@@ -133,3 +133,25 @@ section {
 .main_content {
   height: 388px;
 }
+
+/* page buttons */
+.left_navigation_button {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: -48px;
+  transform: translate(0%, -50%);
+}
+.right_navigation_button {
+  position: absolute;
+  display: block;
+  top: 50%;
+  right: -48px;
+  transform: translate(0%, -50%);
+}
+.left_navigation_button:hover {
+  cursor: pointer;
+}
+.right_navigation_button:hover {
+  cursor: pointer;
+}

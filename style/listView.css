@@ -159,27 +159,3 @@
   font-size: 14px;
   color: #879298;
 }
-
-/* page buttons */
-.left_list_button {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: -48px;
-  transform: translate(0%, -50%);
-}
-
-.right_list_button {
-  display: none;
-  position: absolute;
-  top: 50%;
-  right: -48px;
-  transform: translate(0%, -50%);
-}
-
-.left_list_button:hover {
-  cursor: pointer;
-}
-.right_list_button:hover {
-  cursor: pointer;
-}
