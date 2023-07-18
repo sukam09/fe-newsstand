@@ -11,9 +11,7 @@ function shuffleImgIndex() {
 }
 
 const grid_view = `
-              <div class="main-list">
-                <ul class="main-list-ul"></ul>
-              </div>
+    <ul class="main-list-ul"></ul>
     `;
 
 function handleEvent(event, img, button) {
@@ -28,7 +26,7 @@ function handleEvent(event, img, button) {
     li.style.backgroundColor = "var(--surface-default)";
   }
 }
-export function showGridView(page, subscribedPress) {
+export function showGridView(page) {
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");

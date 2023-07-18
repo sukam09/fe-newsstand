@@ -5,11 +5,10 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 
 let page = FIRST_PAGE_NUM;
-let subscribedPress = [];
-
+let subscribedPress = ["서울경제", "데일리안", "헤럴드경제"];
 function MainView() {
   document.addEventListener("click", handleClick);
-  showGridView(page, subscribedPress);
+  showGridView(page);
   checkPage(page, "grid");
 }
 
@@ -19,6 +18,9 @@ export function parentCallback(_subscribedPress) {
   console.log("구독한 언론사:", subscribedPress);
 }
 
+export function getSubscribedPress() {
+  return subscribedPress;
+}
 function changePage(target, view) {
   if (target === "left") {
     page--;
@@ -26,10 +28,10 @@ function changePage(target, view) {
     page++;
   }
   if (view === "grid") {
-    showGridView(page, subscribedPress);
+    showGridView(page);
     checkPage(page, "grid");
   } else {
-    showListView(page, subscribedPress, "all");
+    showListView(page, CATEGORY, subscribedPress, "", "");
     checkPage(page, "list");
   }
 }
@@ -46,14 +48,14 @@ function handleClick(e) {
     case "grid-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("grid");
-      showGridView(page, subscribedPress);
+      showGridView(page);
       checkPage(page, "grid");
       break;
     case "list-btn":
     case "list-view-btn":
       page = FIRST_PAGE_NUM;
       changeView("list");
-      showListView(page, subscribedPress, "all", CATEGORY[0]);
+      showListView(page, CATEGORY, subscribedPress, CATEGORY[0], "all");
       checkPage(page, "list");
       break;
     case "left":
@@ -65,14 +67,21 @@ function handleClick(e) {
     case "all":
       document.getElementById("subscribe").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
+      page = FIRST_PAGE_NUM;
+      const view = document.querySelector(".list-view");
+      if (view && view.classList.contains("list-view")) {
+        changeView("list");
+        showListView(page, CATEGORY, subscribedPress, CATEGORY[0], target);
+        checkPage(page, "list");
+      } else {
+        showGridView(page);
+      }
       break;
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-
-      // subscribedPress.length
-      //   ? showListView(page, subscribedPress)
-      //   : showListView(page, subscribedPress, "subscribe", subscribedPress[0]);
+      showListView(page, CATEGORY, subscribedPress, subscribedPress[0], target);
+      checkPage(page, "list");
       break;
     default:
       break;
