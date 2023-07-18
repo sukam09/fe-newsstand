@@ -3,7 +3,7 @@ class Store {
     let state;
     let handler = [];
 
-    reducer(state, {
+    state = reducer(state, {
       type: '@@__init__@@',
     });
 
@@ -48,4 +48,4 @@ function actionCreator(type, data) {
 
 const store = new Store(reducer);
 
-export { store, actionCreator };
+// export { store, actionCreator };
