@@ -11,4 +11,4 @@ export const $nextPageButton = $containerMain.querySelector(
   ".container-main_right-btn"
 );
 
-export const $mainNav = $containerMain.querySelector(".main-nav");
+export const $mainNav = document.querySelector(".main-nav");
