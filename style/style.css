@@ -236,12 +236,7 @@ ul {
 .list-right-sub {
     color : var(--text-weak)
 }
-.hidden {
-    visibility: hidden;
-}
-.hide {
-    display:none;
-}
+
 .category:hover {
     text-decoration: underline;
 }
@@ -270,5 +265,39 @@ ul {
 }
 
 .sub-snack-bar {
+    position: absolute;
+    width:286px;
+    height:54px;
+    background-color: var(--surface-brand-default);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:var(--text-white-default);
+    font: var(--medium-M);
+}
+.sub-snack-animation {
+    animation: fadeout 2s linear forwards;
+}
+@keyframes fadeout {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
+
+
+
+
+
+.hidden {
+    visibility: hidden;
+}
+.hide {
+    display:none;
 }

@@ -4,15 +4,15 @@ import { drawPress } from "./script/grid-view.js";
 import { handleViewChange } from "./script/view-change.js";
 import {handleFilterChange} from "./script/filter-change.js"
 import { handleReload } from "./script/reload.js";
-import { rollHeadlineInit } from "./script/rolling-view.js";
+import { rollInit } from "./script/rolling-view.js";
 
 
 function init () {
-    handleReload();
     drawDate();
     drawPress();
     drawArrow();
     rollInit();
+    handleReload();
     handleArrowClick();
     handleViewChange();
     handleFilterChange();

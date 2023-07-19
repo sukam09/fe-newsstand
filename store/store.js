@@ -10,7 +10,7 @@ class Store {
         this.crntPage = 0; // page index (grid, list view)
         this.crntCategory = 0; // category index (list view)
         this.crntFilter = FILTER_TYPE.ALL;
-        this.subPressList = [];
+        this.subList = [];
 
         this.observers = new Set();
     }
@@ -26,6 +26,9 @@ class Store {
     }
     getCrntFilter(){
         return this.crntFilter;
+    }
+    getSubList() {
+        return this.subList;
     }
 
     
@@ -46,6 +49,16 @@ class Store {
     }
     setCrntFilter(type){
         this.crntFilter = type;
+    }
+    setSubList(idx, type){
+        switch(type){
+            case "subscribe":
+                this.subList.push(idx);
+                break;
+            case "unsubscribe":
+                this.subList.pop(idx);
+                break;
+        }
     }
 
     addSubscriber(subscriber) {
