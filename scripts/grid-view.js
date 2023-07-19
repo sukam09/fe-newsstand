@@ -1,4 +1,5 @@
-import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
+import { NEWS_COUNT, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
+import { NewsDB } from "../core/db.js";
 import { store, useSelector } from "../store/index.js";
 import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
@@ -18,6 +19,10 @@ const fillGridView = (newsData, currentPage) => {
     { length: NEWS_COUNT },
     (_, i) => i + startIdx
   ).reduce((acc, curr) => {
+    if (!newsData[curr]) {
+      return acc + `<li class="grid-cell"></li>`;
+    }
+
     const isSubscribed = subscribeList.includes(newsData[curr].name);
 
     return (acc += `<li class="grid-cell">
@@ -56,7 +61,7 @@ const initGridView = (newsData) => {
 };
 
 const getMaxPage = (data) => {
-  return Math.floor(data.length / NEWS_COUNT) - 1;
+  return Math.floor((data.length - 1) / NEWS_COUNT);
 };
 
 const updateButtonUI = (currentPage, maxPage) => {
@@ -73,17 +78,34 @@ const updateButtonUI = (currentPage, maxPage) => {
   }
 };
 
+const renderGridViewOnSubscribe = (currentPage) => {
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const newsData = subscribeList.map((press) => ({
+    name: press,
+    ...NewsDB.getNewsOneByName(press),
+  }));
+  const maxPage = getMaxPage(newsData);
+
+  fillGridView(newsData, currentPage);
+  updateButtonUI(currentPage, maxPage);
+};
+
 export const renderGridView = (newsData) => {
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
   addEventOnGridView();
 
   store.subscribe(() => {
-    const { currentPage, viewType } = useSelector((state) => state.page);
+    const { currentPage, viewType, tabType } = useSelector(
+      (state) => state.page
+    );
     if (viewType !== VIEW_TYPE.GRID) return;
 
-    fillGridView(newsData, currentPage);
-
-    updateButtonUI(currentPage, maxPage);
+    if (tabType === TAB_TYPE.ALL) {
+      fillGridView(newsData, currentPage);
+      updateButtonUI(currentPage, maxPage);
+    } else {
+      renderGridViewOnSubscribe(currentPage);
+    }
   });
 };

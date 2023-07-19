@@ -1,5 +1,7 @@
+import { NEWS_COUNT } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
 import { closeModal } from "../store/reducer/modal.js";
+import { prevPage } from "../store/reducer/page.js";
 import { cancelSubscribe } from "../store/reducer/subscribe-list.js";
 
 const $modal = document.querySelector(".modal");
@@ -25,6 +27,11 @@ const replaceEventListenerOnConfirmButton = (press) => {
   handlerOnConfirmButton = () => {
     store.dispatch(cancelSubscribe(press));
     store.dispatch(closeModal());
+
+    const subscribeList = useSelector((state) => state.subscribeList);
+    if (subscribeList.length % NEWS_COUNT === 0) {
+      store.dispatch(prevPage());
+    }
   };
   $confirmButton.addEventListener("click", handlerOnConfirmButton);
 };
