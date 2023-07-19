@@ -1,6 +1,8 @@
 //뷰 타입 변경
 import { store, MIN_PAGE, MAX_PAGE } from "../../store.js";
+import { renderGridView } from "../gridView/core/renderGridView.js";
 import { checkPage } from "../gridView/feature/handleData.js";
+import { renderListView } from "../listView/core/renderListView.js";
 
 function getById(id) {
   return document.getElementById(id);
@@ -38,6 +40,7 @@ function changeBtnAndView(view) {
 }
 
 function initViewChange() {
+  changePressState();
   const view_type = document.querySelectorAll(".viewer-btn button");
   //view_type[0] : listview, view_type[1] : gridview
 
@@ -67,6 +70,40 @@ function initViewChange() {
 
     // store.setType("grid-all");
   });
+}
+
+function changePressState() {
+  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
+
+  changeBtn[0].addEventListener("click", () => handleAllPress(changeBtn));
+  changeBtn[1].addEventListener("click", () => handleSubPress(changeBtn));
+}
+
+function handleAllPress(changeBtn) {
+  if (store.state.type === "grid-sub") {
+    store.setType("grid-all");
+    renderGridView();
+    store.setGridPage(1);
+  }
+  // else {
+  //   store.setType("list-all");
+  //   renderListView
+  // }
+  changeBtn[0].classList.replace("unclicked-press", "clicked-press");
+  changeBtn[1].classList.replace("clicked-press", "unclicked-press");
+}
+function handleSubPress(changeBtn) {
+  if (store.state.type === "grid-all") {
+    store.setType("grid-sub");
+    renderGridView();
+    store.setGridPage(1);
+  }
+  // else {
+  //   store.setType("list-sub");
+  //   renderListView();
+  // }
+  changeBtn[0].classList.replace("clicked-press", "unclicked-press");
+  changeBtn[1].classList.replace("unclicked-press", "clicked-press");
 }
 
 export { initViewChange };

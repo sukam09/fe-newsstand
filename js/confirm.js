@@ -1,3 +1,7 @@
+import { renderGridView } from "./main/gridView/core/renderGridView.js";
+import { store } from "./store.js";
+
+const GRID_NUM = 24;
 function confirm(selectedPress, _img, view) {
   document.querySelector(".confirm").style.display = "block";
   document.querySelector(
@@ -16,11 +20,21 @@ function confirm(selectedPress, _img, view) {
 }
 
 function clickYes(selectedPress, _img, view) {
+  //change local
   let SubscribePress = JSON.parse(localStorage.getItem("press"));
   SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
   localStorage.setItem("press", JSON.stringify(SubscribePress));
+
+  //hide confirm
   document.querySelector(".confirm").style.display = "none";
   if (view === "list") _img.setAttribute("src", "../images/icon/subscribe.svg");
+
+  if (store.state.type === "grid-sub") {
+    //마지막 요소라면
+    if (SubscribePress.length % GRID_NUM === 0)
+      store.setGridPage(store.state.grid_page - 1);
+    renderGridView();
+  }
 }
 function clickNo() {
   document.querySelector(".confirm").style.display = "none";

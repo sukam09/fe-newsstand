@@ -33,6 +33,4 @@ function moveToSubList(snackbar) {
   //change contents
 }
 
-function changeContents() {}
-
 export { clickSubscribe };

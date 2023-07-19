@@ -23,19 +23,12 @@ function showMainList(press) {
     i < GRID_NUM * store.state.grid_page;
     i++
   ) {
-    const _li = document.createElement("li");
-    const _img = document.createElement("img");
-
-    _li.setAttribute("data-press", `${press[shuffledPress[i]].name}`);
-    _img.setAttribute("src", `${press[shuffledPress[i]].lightSrc}`);
-
-    /* li hover 이벤트 리스너 */
-    _li.addEventListener("mouseover", () =>
-      handleMouseOver(_img, _li.dataset.press)
-    );
-    _li.addEventListener("mouseout", () =>
-      handleMouseOut(_img, ` ${press[shuffledPress[i]].lightSrc}`)
-    );
+    let _li, _img;
+    if (store.state.type === "grid-all") {
+      [_li, _img] = makeGrid(press[shuffledPress[i]]);
+    } else {
+      [_li, _img] = makeGrid(press[i]);
+    }
 
     //구독하기 && 해제하기 클릭 시
     _img.addEventListener("click", (e) =>
@@ -45,6 +38,27 @@ function showMainList(press) {
     main_list_ul.appendChild(_li);
     _li.appendChild(_img);
   }
+}
+
+function makeGrid(pressinfo) {
+  const _li = document.createElement("li");
+  const _img = document.createElement("img");
+
+  if (pressinfo !== undefined) {
+    _li.setAttribute("data-press", `${pressinfo.name}`);
+    _img.setAttribute("src", `${pressinfo.lightSrc}`);
+
+    /* li hover 이벤트 리스너 */
+    _li.addEventListener("mouseover", () =>
+      handleMouseOver(_img, _li.dataset.press)
+    );
+
+    _li.addEventListener("mouseout", () =>
+      handleMouseOut(_img, ` ${pressinfo.lightSrc}`)
+    );
+  }
+
+  return [_li, _img];
 }
 
 function changePage(e, press) {
@@ -61,12 +75,28 @@ function checkPage() {
   const left_btn = document.getElementById("grid-left-btn");
   const right_btn = document.getElementById("grid-right-btn");
 
-  if (store.state.grid_page === MIN_PAGE) left_btn.style.visibility = "hidden";
-  else if (store.state.grid_page === MAX_PAGE)
-    right_btn.style.visibility = "hidden";
-  else {
-    left_btn.style.visibility = "visible";
-    right_btn.style.visibility = "visible";
+  left_btn.style.visibility = "visible";
+  right_btn.style.visibility = "visible";
+
+  if (store.state.type === "grid-all") {
+    if (store.state.grid_page === MIN_PAGE)
+      left_btn.style.visibility = "hidden";
+    else if (store.state.grid_page === MAX_PAGE)
+      right_btn.style.visibility = "hidden";
+  } else {
+    const subPress = JSON.parse(localStorage.getItem("press"));
+
+    if (
+      store.state.grid_page === MIN_PAGE &&
+      store.state.grid_page === Math.ceil(subPress.length / 24)
+    ) {
+      right_btn.style.visibility = "hidden";
+      left_btn.style.visibility = "hidden";
+    } else if (store.state.grid_page === Math.ceil(subPress.length / 24))
+      right_btn.style.visibility = "hidden";
+    else if (store.state.grid_page === MIN_PAGE) {
+      left_btn.style.visibility = "hidden";
+    }
   }
 }
 
