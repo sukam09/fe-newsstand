@@ -12,15 +12,16 @@ export const makeGrid = (data) => {
   img.src = data.logo;
 
   li.appendChild(img);
+  if (data.logo) {
+    li.addEventListener("mouseenter", () => {
+      li.appendChild(createButton(data)); // Show the button when hovering
+    });
 
-  li.addEventListener("mouseenter", () => {
-    li.appendChild(createButton(data)); // Show the button when hovering
-  });
-
-  li.addEventListener("mouseleave", () => {
-    const btn = document.querySelector(`#${data.name}`);
-    if (btn) li.removeChild(btn); // Remove the button when not hovering
-  });
+    li.addEventListener("mouseleave", () => {
+      const btn = document.querySelector(`#${data.name}`);
+      if (btn) li.removeChild(btn); // Remove the button when not hovering
+    });
+  }
 
   document.querySelector(".agency-grid").appendChild(li);
 };

@@ -6,6 +6,9 @@ export const initGrid = (agencies) => {
   const pages = sortPages(agencies);
   GridComponent(INITIAL_PAGE, pages);
 
+  const all_press = document.querySelector(".all_press");
+  all_press.setAttribute("subscribeType", true);
+
   const prevBtn = document.querySelector(".prev-page-btn");
   const nextBtn = document.querySelector(".next-page-btn");
 

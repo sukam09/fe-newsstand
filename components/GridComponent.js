@@ -1,9 +1,6 @@
-import { MAX_PAGE_IDX, PAGINATION_NUM } from "../constants/constant.js";
+import { PAGINATION_NUM } from "../constants/constant.js";
 import { removeAllChildNodes } from "../utils/utils.js";
 import { makeGrid } from "./Grid/gridElement.js";
-
-const isFirstPage = (currentPage) => currentPage === 0;
-const isLastPage = (currentPage) => currentPage === MAX_PAGE_IDX;
 
 // 페이지에 따라 신문사 list 추가
 export const GridComponent = (currentPage, pages) => {
@@ -24,6 +21,9 @@ export const GridComponent = (currentPage, pages) => {
   // button disabled 처리
   prevBtn.removeAttribute("disabled");
   nextBtn.removeAttribute("disabled");
+
+  const isFirstPage = (currentPage) => currentPage === 0;
+  const isLastPage = (currentPage) => currentPage === pages.length - 1;
 
   if (isFirstPage(currentPage)) prevBtn.setAttribute("disabled", "");
   if (isLastPage(currentPage)) nextBtn.setAttribute("disabled", "");
