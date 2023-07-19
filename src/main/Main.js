@@ -54,16 +54,16 @@ export default function main(isAll, view, currentPageNum, categoryNum){
    if(view === "grid") {
       controlGridMinMaxException(1, parseInt(shuffled_data.length / 24), currentPageNum);
       mainGrid(isAll, currentPageNum);
-      clickLeftAsideButton(isAll, view, currentPageNum, categoryNum);
-      clickRightAsideButton(isAll, view, currentPageNum, categoryNum);
+      clickLeftAsideButton();
+      clickRightAsideButton();
    }
 
    else if(view === "list") {
       setButtonVisivility("visible", "visible");
       [currentPageNum, categoryNum] = controlListMinMaxException(1, listArticle[categoryNum].news.length, currentPageNum, categoryNum);
       mainList(isAll,view, currentPageNum, categoryNum);
-      clickLeftAsideButton(isAll, view, currentPageNum, categoryNum);
-      clickRightAsideButton(isAll, view, currentPageNum, categoryNum);
+      clickLeftAsideButton();
+      clickRightAsideButton();
       progress(isAll,view, currentPageNum, categoryNum);
    }
 }

@@ -1,6 +1,6 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
 import gridArticle from "../../data/grid_article.json" assert { type: "json"};
-import store from "../state/store.js";
+import store from "../state/Store.js";
 
 const COUNT_PER_PAGE = 24;
 let press;
@@ -54,7 +54,7 @@ function logoMouseOut(e){
     e.target.appendChild(newsLogo);
 }
 
-function refreshGrid( currentPageNumber){
+function refreshGrid(currentPageNumber){
     allView === "all" ? pressData = shuffled_data : pressData = store.getSubscribe();
 
     const mainCenter = document.getElementById("main-center");
