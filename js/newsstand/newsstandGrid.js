@@ -84,7 +84,7 @@ function paintNews(paintData = publisherData) {
         "remove",
         "btn-disabled"
       );
-      // element[elementIdx].children[1].classList.remove("btn-disabled");
+
       // 구독중일때.
       if (subscribeState.getSubscribeByName(alt).length) {
         element[elementIdx].children[1].textContent = MESSAGE.UNSUBSCRIBE;
@@ -105,7 +105,6 @@ function paintNews(paintData = publisherData) {
         "add",
         "btn-disabled"
       );
-      // element[elementIdx].children[1].classList.add("btn-disabled");
 
       element[elementIdx].children[1].textContent = "";
 

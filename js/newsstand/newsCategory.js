@@ -68,6 +68,8 @@ const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
 export function paintNewsCategory() {
+  CATEGORY.currentCategory = 0;
+  CATEGORY.currentContents = 1;
   const categoryNameList = navTab.isMySubscribe ? mySubArray() : category;
   const totalCategory = navTab.isMySubscribe
     ? mySubArray().length
@@ -176,10 +178,10 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 // 내가 구독한 언론사일때 실행되는 함수
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
-    // paintNewsCategory();
+    paintNewsCategory();
   });
   allPublisher.addEventListener("click", () => {
-    // paintNewsCategory();
+    paintNewsCategory();
     // console.log("리스트에서의 전체 언론사");
   });
 }

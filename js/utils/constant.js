@@ -19,3 +19,7 @@ export const EVENT = {
   MOUSER_OVER: "mouseover",
   MOUSER_OUT: "mouseout",
 };
+
+export const VIEW = {
+  DISABLED: "view-disabled",
+};
