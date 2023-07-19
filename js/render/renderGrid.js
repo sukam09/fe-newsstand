@@ -1,13 +1,12 @@
 import { gridMain, listMain } from "./renderMain.js";
 import { shuffle } from "../../utils/utils.js";
-import logo from "../../json/news_image.json" assert { type: "json" };
 import Stores from "../../utils/Store.js";
+import { makeArrow } from "../makeArrow.js";
 
-const MAX_PAGE_NUMBER = 3;
-const MIN_PAGE_NUMBER = 0;
-let logos = logo;
+const renderGrid = (logos) => {
+  const MAX_PAGE_NUMBER = 3;
+  const MIN_PAGE_NUMBER = 0;
 
-const renderGrid = () => {
   function makeGrid() {
     const COUNT_PER_PAGE = 24;
     shuffle(logos);
@@ -35,7 +34,7 @@ const renderGrid = () => {
     return "";
   }
 
-  function increaseGridPage() {
+  function increaseGridPage(rightAsideButton) {
     if (Stores.getPage() === MAX_PAGE_NUMBER - 1) {
       rightAsideButton.style.visibility = "hidden";
       Stores.setPage(Stores.getPage() + 1);
@@ -47,7 +46,7 @@ const renderGrid = () => {
     renderGrid();
   }
 
-  function decreaseGridPage() {
+  function decreaseGridPage(leftAsideButton) {
     if (Stores.getPage() === MIN_PAGE_NUMBER + 1) {
       leftAsideButton.style.visibility = "hidden";
       Stores.setPage(Stores.getPage() - 1);
@@ -60,7 +59,8 @@ const renderGrid = () => {
   }
 
   makeGrid();
-  increaseGridPage();
+  makeArrow();
+  increaseGridPage(document.getElementById("right-arrow"));
   decreaseGridPage();
 };
 
