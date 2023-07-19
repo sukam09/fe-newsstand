@@ -1,6 +1,7 @@
 import {
   addEventsOnCategoryItem,
   addEventsOnGridItem,
+  addEventsOnListSubButton,
   addEventsOnPageButton,
   addEventsOnRollingList,
   addEventsOnSubButton,
@@ -24,6 +25,7 @@ export function initEvents() {
   addEventsOnThemeButton();
   addEventsOnRollingList();
   addEventsOnTitle();
+  addEventsOnListSubButton();
 }
 
 export function initObservers() {

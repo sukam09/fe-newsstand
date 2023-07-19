@@ -1,6 +1,6 @@
 import { createSnackbar } from "../components/modal/snackbar.js";
 import { pressDataState } from "../store/dataState.js";
-import { subButtonStateList } from "../store/gridState.js";
+import { subStateList } from "../store/gridState.js";
 import { getState, setState } from "../store/observer.js";
 import { NUM_IN_A_GRID } from "../store/pageState.js";
 import { qs } from "../utils.js";
@@ -17,7 +17,7 @@ export function handleGridItemMouseover(e) {
   const index = getGridItemIndex($gridItem);
   const { pressList } = getState(pressDataState);
   const press = pressList[index];
-  const subButtonState = subButtonStateList[press.id];
+  const subButtonState = subStateList[press.id];
   const isSub = getState(subButtonState);
 
   if (isSub) {
@@ -55,26 +55,24 @@ export function handleGridItemClick(e) {
   const press = pressList[index];
 
   if ($target.className === "sub_button") {
-    const subButtonState = subButtonStateList[press.id];
+    const subButtonState = subStateList[press.id];
     setState(subButtonState, true);
   } else if ($target.className === "unsub_button") {
-    const subButtonState = subButtonStateList[press.id];
+    const subButtonState = subStateList[press.id];
     setState(subButtonState, false);
   }
 }
 
-export function controllSubButton(id) {
-  const isSub = getState(subButtonStateList[id]);
+export function controllGridSubButtonShowing(id) {
+  const isSub = getState(subStateList[id]);
   const $gridItem = qs(`#press_${id}`);
   const $subContainer = $gridItem.querySelector(".sub_button_container");
   const $unsubContainer = $gridItem.querySelector(".unsub_button_container");
 
   if (isSub) {
-    $unsubContainer.style.display = "flex";
     $subContainer.style.display = "none";
   } else {
     $unsubContainer.style.display = "none";
-    $subContainer.style.display = "flex";
   }
 }
 
@@ -82,23 +80,4 @@ export function displayAlert() {
   const $alert = qs(".alert");
   $alert.style.display = "flex";
   console.log("Alert");
-}
-
-let timeoutId;
-
-export function displaySnackbar(delay) {
-  const $snackbar = qs(".snackbar");
-  $snackbar.classList.add("animate");
-
-  if (timeoutId) {
-    clearTimeout(timeoutId);
-  }
-  timeoutId = setTimeout(() => {
-    removeSnackbar();
-  }, delay);
-}
-
-export function removeSnackbar() {
-  const $snackbar = qs(".snackbar");
-  $snackbar.classList.remove("animate");
 }

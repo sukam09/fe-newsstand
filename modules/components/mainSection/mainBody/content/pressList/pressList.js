@@ -13,11 +13,14 @@ export function createPressList(categoryId, page) {
   const targetPressList = [...pressList].filter((press) =>
     [...pressIdList].includes(press.id)
   );
+  const targetPress = targetPressList[page];
 
   return `
-  <div class="news news_${categoryId}_${page}  flex_column">
-    ${createNewsHeader(targetPressList[page])}
-    ${createNewsBody(targetPressList[page])}
+  <div id="list_press_${
+    targetPress.id
+  }" class="news news_${categoryId}_${page}  flex_column">
+    ${createNewsHeader(targetPress)}
+    ${createNewsBody(targetPress)}
   </div>
   `;
 }
@@ -27,7 +30,8 @@ function createNewsHeader(press) {
     <div class="news_header flex_row">
       <img src=${press.lightSrc} />
       <span>${press.data.editTime} 편집</span>
-      <button class="news_info_sub_button"> + 구독하기 </button>
+      <button  key="sub_${press.id}" class="list_sub_button">${press.name} + 구독하기 </button>
+      <button key="unsub_${press.id}" class="list_unsub_button"> x </button>
     </div>
     `;
 

@@ -37,6 +37,7 @@ import {
   pageTypeState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
+import { handleListSubButton } from "./listController.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
@@ -174,4 +175,15 @@ export function addEventsOnRollingList() {
 export function addEventsOnTitle() {
   const $titleContainer = qs(".title_container");
   $titleContainer.addEventListener("click", handleLogoButton);
+}
+
+export function addEventsOnListSubButton() {
+  const $subButtons = qsa(".list_sub_button");
+  const $unsubButtons = qsa(".list_unsub_button");
+  [...$subButtons].forEach(($subButton) => {
+    $subButton.addEventListener("click", (e) => handleListSubButton(e));
+  });
+  [...$unsubButtons].forEach(($unsubButton) => {
+    $unsubButton.addEventListener("click", (e) => handleListSubButton(e));
+  });
 }

@@ -37,7 +37,7 @@ export function highlightCategoryItem() {
 
 function startProgressAnimation($progressbar) {
   let raf;
-  let runningTime = 3000;
+  let runningTime = 2000;
   let percentage = 0;
   let start;
   const listPage = getState(listPageState);
@@ -62,7 +62,7 @@ function startProgressAnimation($progressbar) {
       } else {
         setState(listPageState, listPage + 1);
       }
-      showListPage(categoryId, listPage);
+      showListPage(getState(categoryIdState), getState(listPageState));
       updatePageCount();
       highlightCategoryItem();
 
