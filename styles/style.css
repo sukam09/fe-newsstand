@@ -427,14 +427,15 @@ header {
 
 .grid-subscribe-button {
   display: none;
+  width: 72px;
+  height: 24px;
+  padding: 0px 6px;
   justify-content: center;
   align-items: center;
   gap: 2px;
-  width: 72px;
-  height: 24px;
   border-radius: 50px;
   border: 1px solid var(--border-border-default, #d2dae0);
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-surface-default, #fff);
   color: var(--text-text-weak, #879298);
   font-family: Pretendard;
   font-size: 12px;
