@@ -22,12 +22,6 @@
   border-radius: 50px;
 }
 
-.common-button:hover img {
-  content: url('src/assets/icons/plus-hover.svg');
-}
-.dark .common-button:hover img {
-  content: url('src/assets/icons/plus-hover-dark.svg');
-}
 /* class */
 
 h1,

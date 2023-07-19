@@ -1,10 +1,11 @@
+import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import Icon from './Icon.js';
 
 export default class Button extends Component {
   setup() {
-    this.state = { ...this.props };
+    this.state = { ...this.props, status: 'default' };
   }
   template() {
     return `
@@ -16,12 +17,17 @@ export default class Button extends Component {
 
   mounted() {
     const $button = customQuerySelector('button', this.$target);
+    const icon = this.state.text === TEXT.SUBSCRIBE_KO ? 'plus' : 'minus';
+
     $button.className =
       this.state.color === 'gray'
         ? `common-button border-default surface-alt text-weak`
         : `common-button border-default surface-defalut text-weak`;
 
-    new Icon(customQuerySelector('.common-button-icon', this.$target), { name: this.state.icon });
+    new Icon(customQuerySelector('.common-button-icon', this.$target), {
+      name: icon,
+      status: this.state.status,
+    });
   }
 
   setEvent() {
@@ -32,6 +38,7 @@ export default class Button extends Component {
         this.state.color === 'gray'
           ? `common-button border-bold surface-alt text-bold`
           : `common-button border-bold surface-defalut text-bold`;
+      this.setState({ status: 'hover' });
     });
 
     $button.addEventListener('mouseout', () => {
@@ -39,6 +46,7 @@ export default class Button extends Component {
         this.state.color === 'gray'
           ? `common-button border-default surface-alt text-weak`
           : `common-button border-default surface-defalut text-weak`;
+      this.setState({ status: 'default' });
     });
 
     $button.addEventListener('click', () => {

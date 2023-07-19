@@ -8,7 +8,7 @@ export const GRID_NEWS_COUNT = 24;
 
 export const TEXT = Object.freeze({
   SUBSCRIBE_KO: '구독하기',
-  UNSUBSCRIBE: '구독취소',
+  UNSUBSCRIBE_KO: '구독취소',
   SUBSCRIBE_SUCCESS: '내가 구독한 언론사에 추가되었습니다.',
   UNSUBSCRIBE_SUCCESS: '구독이 해지되었습니다.',
   ALERT_MODAL_CLASS_NAME: '.alert-modal',

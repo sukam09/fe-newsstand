@@ -8,15 +8,12 @@ export default class SubscribeButton extends Component {
   setup() {
     this.state = {
       ...this.props,
-      icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
-      states: 'default',
     };
   }
 
   mounted() {
     new Button(this.$target, {
       ...this.state,
-      text: db.getDbData.includes(this.props.number) ? '해지하기' : '구독하기',
       action: () => this.action(),
     });
   }
