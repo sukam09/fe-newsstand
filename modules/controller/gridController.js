@@ -1,7 +1,7 @@
-import { createAlert } from "../components/alert.js";
+import { createSnackbar } from "../components/modal/snackbar.js";
 import { pressDataState } from "../store/dataState.js";
 import { subButtonStateList } from "../store/gridState.js";
-import { addObserver, getState, setState } from "../store/observer.js";
+import { getState, setState } from "../store/observer.js";
 import { NUM_IN_A_GRID } from "../store/pageState.js";
 import { qs } from "../utils.js";
 
@@ -78,8 +78,27 @@ export function controllSubButton(id) {
   }
 }
 
-export function alertSubscribe() {
+export function displayAlert() {
   const $alert = qs(".alert");
   $alert.style.display = "flex";
   console.log("Alert");
+}
+
+let timeoutId;
+
+export function displaySnackbar(delay) {
+  const $snackbar = qs(".snackbar");
+  $snackbar.classList.add("animate");
+
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    removeSnackbar();
+  }, delay);
+}
+
+export function removeSnackbar() {
+  const $snackbar = qs(".snackbar");
+  $snackbar.classList.remove("animate");
 }

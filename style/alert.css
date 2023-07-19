@@ -1,0 +1,36 @@
+.alert {
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 100px;
+  background-color: var(--surface-surface-default);
+  z-index: 999;
+  border: 0.5px solid var(--border-border-default);
+}
+
+.alert .message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 0.5px solid var(--border-border-default);
+  flex-grow: 2;
+}
+.alert .button_container {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+.button_container button {
+  border: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface-surface-alt);
+  border: 0.5px solid var(--border-border-default);
+}
