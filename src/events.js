@@ -66,7 +66,7 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("list_view_container");
                 news_data_container.classList.add("grid_view_container");
 
-                clear("main_news_container", view_option);
+                clear("main_news_container", list_option);
                 changeViewArrow("grid");
 
                 render(setOptions(), grid_option.press_data, grid_option.page);
@@ -79,7 +79,7 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("grid_view_container");
                 news_data_container.classList.add("list_view_container");
 
-                clear("main_news_container", view_option);
+                clear("main_news_container", list_option);
                 changeViewArrow("list");
 
                 render(setOptions(), list_option, list_option.page);
