@@ -37,16 +37,17 @@ function drawNews() {
   document.querySelector(".press-brandmark").src = news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;
-  document.querySelector(".news-main .font-init").textContent = news.headTitle;
+  document.querySelector(".news-main p").textContent = news.headTitle;
   const subList = document.querySelector(".news-sub-list");
   subList.innerHTML = "";
   news.subTitle.forEach(subnews => {
     const $li = document.createElement("li");
+    $li.classList.add("text-bold", "available-medium16");
     $li.innerText = subnews;
     subList.append($li);
   });
   const $caption = document.createElement("li");
-  $caption.classList.add("caption");
+  $caption.classList.add("caption", "display-medium14", "text-weak");
   $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");

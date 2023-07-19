@@ -42,7 +42,7 @@ function appendPressInGrid(press) {
 
 function appendSubPressInGrid(press) {
   const $list = document.createElement("li");
-  $list.classList.add("press-item");
+  $list.classList.add("press-item","surface-default");
   initSubGridItemEvent($list);
   const $image = document.createElement("img");
   $image.src = `${press.path_light}`;

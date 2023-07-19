@@ -41,11 +41,11 @@ function changeOption(selected) {
   const $total = document.querySelector(".total-press");
   const $subscribe = document.querySelector(".subscribed-press");
   if (selected === "total") {
-    $subscribe.classList.remove("option-selected");
-    $total.classList.add("option-selected");
+    $subscribe.classList.remove("selected-bold16","text-strong");
+    $total.classList.add("selected-bold16","text-strong");
   } else {
-    $subscribe.classList.add("option-selected");
-    $total.classList.remove("option-selected");
+    $subscribe.classList.add("selected-bold16","text-strong");
+    $total.classList.remove("selected-bold16","text-strong");
   }
 }
 

@@ -128,7 +128,7 @@
   border: 1px solid var(--gray-scale-400);
 }
 
-* font */ :root {
+:root {
   /* font size */
   --text-size-large: 24px;
   --text-size-medium: 16px;

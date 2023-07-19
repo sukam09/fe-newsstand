@@ -1,6 +1,4 @@
 import { STATE } from "./const.js";
-import { setDisplay } from "./utils.js";
-import { listSubMouseClick } from "./subscribe.js";
 import { onListUndiscribeModal } from "./modal.js";
 
 function setSubListNav() {
@@ -38,16 +36,17 @@ function drawSubNews() {
   $ul.querySelector(".press-brandmark").src = news.path_light;
   $ul.querySelector(".edit-date").textContent = news.editDate;
   $ul.querySelector(".thumbnail").src = news.thumbSrc;
-  $ul.querySelector(".news-main .font-init").textContent = news.headTitle;
+  $ul.querySelector(".news-main p").textContent = news.headTitle;
   const subList = $ul.querySelector(".news-sub-list");
   subList.innerHTML = "";
   news.subTitle.forEach(subnews => {
     const $li = document.createElement("li");
+    $li.classList.add("text-bold", "available-medium16");
     $li.innerText = subnews;
     subList.append($li);
   });
   const $caption = document.createElement("li");
-  $caption.classList.add("caption");
+  $caption.classList.add("caption", "display-medium14", "text-weak");
   $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = $ul.querySelector(".list-sub-btn");

@@ -1,4 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url(init-style.css);
+
 :root {
   --text-weak: #879298;
   --text-strong: #14212b;
@@ -26,12 +28,6 @@ header {
   align-items: center;
   width: 930px;
   margin-top: 54px;
-}
-
-.font-init {
-  font-family: Pretendard;
-  font-style: normal;
-  font-weight: 700;
 }
 
 .container {
@@ -75,17 +71,9 @@ h1 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  border-left: 1px solid var(--border-default);
-  border-top: 1px solid var(--border-default);
+  border-right: none;
+  border-bottom: none;
   position: relative;
-}
-.subscribed-press {
-  color: var(--text-weak);
-  font-size: 16px;
-  font-family: Pretendard;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px;
 }
 /* */
 
@@ -118,19 +106,6 @@ h1 {
   font-size: 24px;
   line-height: normal;
 }
-.date {
-  color: var(--text-default);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-}
-
-.option-selected {
-  color: var(--text-strong) !important;
-  font-size: 16px;
-  line-height: normal;
-  font-weight: 700 !important;
-}
 
 .press-grid {
   position: relative;
@@ -139,8 +114,6 @@ h1 {
 .list-nav > ul {
   display: flex;
   align-items: center;
-  border: 1px solid var(--border-default);
-  background: var(--surface-alt);
 }
 .sub-list-nav > ul {
   display: flex;
@@ -310,13 +283,9 @@ h1 {
   border: 1px solid var(--border-default);
   background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
 }
-.news-main > h2 {
+.news-main > p {
   overflow: hidden;
-  color: var(--text-strong, #14212b);
   text-overflow: ellipsis;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
   word-wrap: break-word;
 }
 .news-sub-list {
@@ -325,22 +294,6 @@ h1 {
   align-items: flex-start;
   gap: 16px;
   flex: 1 0 0;
-}
-.news-sub-list > li {
-  color: var(--text-text-bold);
-  font-size: 16px;
-  font-family: Pretendard;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px;
-}
-.news-sub-list > li:nth-child(7) {
-  color: var(--text-weak);
-  font-size: 14px;
-  font-family: Pretendard;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 }
 /* */
 
@@ -424,28 +377,6 @@ h1 {
   justify-content: space-between;
   margin-top: 40px;
 }
-.rolling {
-  display: flex;
-  padding: 16px;
-  align-items: flex-start;
-  gap: 16px;
-  flex: 1 0 0;
-  background-color: var(--surface-alt);
-  width: 429px;
-  height: 17px;
-  border: 1px solid var(--border-default);
-}
-.rolling-press {
-  color: var(--text-strong, #14212b);
-  font-size: 14px;
-  line-height: normal;
-}
-.rolling-title {
-  color: var(--text-default);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
-}
 
 .rollingbanner > .wrap {
   position: relative;
@@ -521,12 +452,6 @@ h1 {
 
 .press-option > span {
   cursor: pointer;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px;
-  color: var(--text-weak);
 }
 
 #press-list > li {
