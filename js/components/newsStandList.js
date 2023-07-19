@@ -1,5 +1,5 @@
 import { html } from '../core/createElement.js';
-import { store } from '../store.js';
+import { subScribeStore } from '../store/subScribeStore.js';
 
 function createNewsListHtml(d) {
   let htmls = '';
@@ -10,7 +10,7 @@ function createNewsListHtml(d) {
         <span class="header-sub">${d.edit_date} 편집</span>
       </div>
       <button class="header-btn-subscribe">
-      ${store.getGetter('getsubscribeData').includes(d.name) ? 'X' : '+ 구독하기'}
+      ${subScribeStore.getGetter('getsubscribeData').includes(d.name) ? 'X' : '+ 구독하기'}
       </button>
     </div>
     <div class="list__main">

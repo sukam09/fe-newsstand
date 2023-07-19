@@ -1,6 +1,6 @@
 import { attachEventListener } from './core/eventListener.js';
 import { initNewsStandGrid } from './main/newsstnadGrid.js';
-import { initNewsStandList } from './main/newsstandList.js';
+//import { initNewsStandList } from './main/newsstandList.js';
 import { toggleGridEventListner } from './main/newsstnadGrid.js';
 import { toggleListEventListner } from './main/newsstandList.js';
 

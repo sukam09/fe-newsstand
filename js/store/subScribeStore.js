@@ -1,6 +1,6 @@
-import { Store } from './core/Store.js';
+import { Store } from '../core/Store.js';
 
-const store = new Store({
+const subScribeStore = new Store({
   state: {
     subscribeData: [],
   },
@@ -25,4 +25,4 @@ const store = new Store({
   },
 });
 
-export { store };
+export { subScribeStore };
