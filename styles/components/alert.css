@@ -4,9 +4,6 @@
   top: 240px;
   z-index: 10;
 }
-.alert-modal.off {
-  display: none;
-}
 .alert-wrapper {
   display: flex;
   width: 320px;

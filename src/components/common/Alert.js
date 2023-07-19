@@ -1,5 +1,4 @@
 import db from '../../../store/db.js';
-import { toggleAlert } from '../../../store/index.js';
 import Component from '../core/Component.js';
 
 export default class Alert extends Component {
@@ -23,7 +22,7 @@ export default class Alert extends Component {
       if (e.target.classList.contains('alert-yes')) {
         db.deleteDbData(this.props.name);
       }
-      toggleAlert();
+      this.$target.innerHTML = '';
     });
   }
 }

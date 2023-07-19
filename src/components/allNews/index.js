@@ -1,8 +1,7 @@
 import { fetchData } from '../../../api/index.js';
 import db from '../../../store/db.js';
-import { showSnackBar } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
-import { customQuerySelector, shufflePressOrder } from '../../utils/index.js';
+import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
@@ -35,9 +34,7 @@ export default class AllNews extends Component {
 
     this.state.view === TEXT.GRID
       ? new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
-          pressOrder: this.getGridPress(),
-          addMyPress: this.addMyPress.bind(this),
-          deleteMyPress: this.deleteMyPress.bind(this),
+          pressType: this.state.pressType,
         })
       : new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
           pressOrder: this.getListPress(),
@@ -55,16 +52,12 @@ export default class AllNews extends Component {
     db.putDbData(press);
     //화면 이동
   }
+
   deleteMyPress(press) {
     db.deleteDbData(press);
     this.render();
   }
 
-  getGridPress() {
-    return this.state.pressType === TEXT.ALL
-      ? shufflePressOrder(this.state.allPress)
-      : this.state.allPress.filter(press => db.getDbData.includes(press.name));
-  }
   getListPress() {
     let listPress = {
       '종합/경제': [],
@@ -77,8 +70,8 @@ export default class AllNews extends Component {
     };
 
     this.state.pressType === TEXT.ALL
-      ? this.state.allPress.forEach(press => listPress[press.category].push(press))
-      : (listPress = this.state.allPress.filter(press => db.getDbData.includes(press.name)));
+      ? db.allPress.forEach(press => listPress[press.category].push(press))
+      : (listPress = db.allPress.filter(press => db.getDbData.includes(press.name)));
 
     return listPress;
   }

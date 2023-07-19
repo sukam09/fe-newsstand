@@ -4,11 +4,13 @@ import ArrowButton from './ArrowButton.js';
 
 import { TEXT } from '../../constants/index.js';
 import SubscribeButton from './SubscribeButton.js';
+import db from '../../../store/db.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
-    this.maxPage = Math.floor((this.props.pressOrder.length - 1) / 24);
     this.state = { ...this.props, page: 0 };
+
+    db.observe(this);
   }
 
   template() {
@@ -21,6 +23,9 @@ export default class AllNewsGridView extends Component {
   }
 
   mounted() {
+    const pressOrder = this.getGridPress();
+    const maxPage = Math.floor((pressOrder.length - 1) / 24);
+
     const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
     let innerHTML = '';
 
@@ -28,16 +33,16 @@ export default class AllNewsGridView extends Component {
       innerHTML += ` 
       <li class="grid-logo-wrapper border-default">
       ${
-        this.state.pressOrder.length > i
+        pressOrder.length > i
           ? `<div class="flip-card-inner">
             <div class="flip-card-front surface-default">
               <img
                 class="press-logo"
-                src="src/assets/${logoMode}/${this.state.pressOrder[i].number}.png"
+                src="src/assets/${logoMode}/${pressOrder[i].number}.png"
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper" data-name=${this.state.pressOrder[i].name}></div>
+              <div class="subscribe-button-wrapper" data-name=${pressOrder[i].name}></div>
             </div>
           </div>`
           : ``
@@ -52,8 +57,6 @@ export default class AllNewsGridView extends Component {
         new SubscribeButton(node, {
           color: 'gray',
           text: TEXT.SUBSCRIBE_KO,
-          addMyPress: this.props.addMyPress,
-          deleteMyPress: this.props.deleteMyPress,
           name: node.dataset.name,
         }),
     );
@@ -66,7 +69,7 @@ export default class AllNewsGridView extends Component {
 
     new ArrowButton(customQuerySelector('.right-button', this.$target), {
       name: 'right-button',
-      isVisible: this.state.page < this.maxPage,
+      isVisible: this.state.page < maxPage,
       action: this.goNextPage.bind(this),
     });
   }
@@ -77,5 +80,11 @@ export default class AllNewsGridView extends Component {
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
+  }
+
+  getGridPress() {
+    return this.props.pressType === TEXT.ALL
+      ? db.allPress
+      : db.allPress.filter(press => db.getDbData.includes(press.name));
   }
 }
