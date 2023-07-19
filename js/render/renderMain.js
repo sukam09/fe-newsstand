@@ -16,13 +16,13 @@ const renderMain = (isAllNews, isGrid) => {
 
 const renderAll = (isGrid) => {
   Stores.setPage(0);
-  if (isGrid) renderGrid(logo);
+  if (isGrid === "grid") renderGrid(logo);
   else renderCardList(news);
 };
 
 const renderSubscribe = (isGrid) => {
   Stores.setPage(0);
-  if (isGrid) renderGrid();
+  if (isGrid === "grid") renderGrid();
   else renderCardList();
 };
 

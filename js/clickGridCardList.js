@@ -1,6 +1,7 @@
 import { changeImageSrc } from "../utils/utils.js";
 import { renderCardList } from "./render/renderCardList.js";
 import { renderGrid } from "./render/renderGrid.js";
+import { removeArrow } from "../utils/removeArrow.js";
 import Stores from "../utils/Store.js";
 
 const clickGridCardList = (logo, news) => {
@@ -12,6 +13,7 @@ const clickGridCardList = (logo, news) => {
         "./img/card_list.svg"
       );
       changeImageSrc(e.target, "./img/clicked_grid.png");
+      removeArrow();
       Stores.setPage(0);
       renderGrid(logo);
     });
@@ -22,6 +24,7 @@ const clickGridCardList = (logo, news) => {
     cardListImage.addEventListener("click", (e) => {
       changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
       changeImageSrc(e.target, "./img/clicked_card_list.png");
+      removeArrow();
       Stores.setPage(0);
       renderCardList(news);
     });
