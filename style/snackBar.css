@@ -1,0 +1,15 @@
+@import url(./variable.css);
+
+.snack-bar {
+  display: none;
+  position: absolute;
+  top: 423px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  padding: 16px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-brand-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  color: var(--text-white-default);
+}

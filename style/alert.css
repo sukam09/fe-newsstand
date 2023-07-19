@@ -1,0 +1,64 @@
+@import url(./variable.css);
+
+.alert {
+  position: absolute;
+  top: 380px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  display: none;
+  width: 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+
+.alert-main {
+  padding: 24px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  text-align: center;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-default);
+  color: var(--text-default);
+}
+
+.alert-main-press {
+  color: var(--text-strong);
+  text-align: center;
+}
+
+.alert-btn {
+  display: flex;
+  height: 48px;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.alert-btn button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: var(--border-border-default) solid var(--border-default);
+  border-top: none;
+  text-align: center;
+  background: var(--surface-alt);
+}
+
+.alert-btn button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.yes-btn {
+  color: var(--text-default);
+}
+
+button.no-btn {
+  color: var(--text-strong);
+  border-left: none;
+}
