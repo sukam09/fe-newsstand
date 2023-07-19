@@ -27,13 +27,18 @@ export default function Contents($target, props) {
     if (!store.isSubscribed(props.pressId)) {
       $button.setAttribute("class", "subscribe-btn");
       $button.innerHTML = subscribeButtonInner;
+
       $button.addEventListener("click", () => {
         store.dispatch("구독하기", props.pressId);
         $button.classList.remove("subscribe-btn");
         $button.innerHTML = unsubscribeButtonInner;
+
+        const snackBar = document.querySelector(".snack-bar");
+        snackBar.style.display = "block";
       });
     } else {
       $button.innerHTML = unsubscribeButtonInner;
+
       $button.addEventListener("click", () => {
         store.dispatch("해지하기", props.pressId);
         $button.setAttribute("class", "subscribe-btn");

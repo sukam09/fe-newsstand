@@ -16,6 +16,7 @@ const GRID_PRESS_NUBER = 24;
 let timerArr = [];
 let indexArr = getRandomIndexArr(4);
 
+const snackBarText = "내가 구독한 언론사에 추가되었습니다.";
 const cancelAnimation = () => {
   timerArr.forEach((timer) => {
     cancelAnimationFrame(timer);
@@ -30,6 +31,10 @@ const suffile = (len) => {
 export default function MainContent($target, props) {
   let $section = document.querySelector(".news-section");
   let lastPage;
+
+  let $div = document.createElement("div");
+  $div.setAttribute("class", "snack-bar");
+  $div.innerText = snackBarText;
 
   this.state = { currentPage: 1, category: 0 };
 
@@ -112,6 +117,7 @@ export default function MainContent($target, props) {
     new Button($section, { ...commonButtonProps, direction: "left" });
     new Button($section, { ...commonButtonProps, direction: "right" });
 
+    $section.appendChild($div);
     $target.appendChild($section);
   };
 

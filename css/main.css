@@ -99,3 +99,18 @@
   left: 0;
   transform: translate(-61px, -21px);
 }
+
+.snack-bar {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  width: 286px;
+  height: 54px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 54px;
+  background-color: #4362d0;
+  color: #ffffff;
+}
