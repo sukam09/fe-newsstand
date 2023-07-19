@@ -7,8 +7,7 @@ import { initModalBtn } from "./modal.js";
 import { initUtilData } from "./utils.js";
 import { addEventInSymbol } from "./viewHandler.js";
 import { initSubListArrow } from "./subscribeListView.js";
-import { DATA } from "./const.js";
-
+import { initDarkMode } from "./darkMode.js";
 const init = async () => {
   setDate();
   await initUtilData();
@@ -20,6 +19,7 @@ const init = async () => {
   await initSpanEvent();
   await initModalBtn();
   initSubListArrow();
+  initDarkMode();
 };
 
 init();

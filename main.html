@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>뉴스스탠드</title>
+    <button class="dark-btn">다크모드</button>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/main-style.css" />
@@ -111,27 +112,21 @@
             <img class="grid-symbol" src="/img/icons/grid-symbol.svg" />
           </div>
         </nav>
+        <div class="grid-subscribe-modal pop-up">
+          <div class="pop-up-top display-medium16">
+            <span class="sub-press-name display-bold16 text-strong"></span>을(를)<br />구독해지하시겠습니까?
+          </div>
+          <div class="pop-up-btn-div available-medium16 surface-alt">
+            <button class="pop-up-btn text-default border-default pos">예, 해지합니다</button>
+            <button class="pop-up-btn text-strong border-default neg">아니오</button>
+          </div>
+        </div>
         <div class="press-grid">
           <!--grid 형태의 press list-->
           <img id="grid-prev" class="l-btn" src="/img/icons/LeftButton.svg" />
-          <ul id="press-list" class="border-default surface-default"></ul>
+          <ul id="press-list" class="border-default"></ul>
           <img id="grid-next" class="r-btn" src="/img/icons/RightButton.svg" />
         </div>
-        <section class="press-grid-sub">
-          <!--grid 형태의 sub press list-->
-          <div class="grid-subscribe-modal pop-up">
-            <div class="pop-up-top display-medium16">
-              <span class="sub-press-name display-bold16 text-strong"></span>을(를)<br />구독해지하시겠습니까?
-            </div>
-            <div class="pop-up-btn-div available-medium16 surface-alt">
-              <button class="pop-up-btn text-default border-default pos">예, 해지합니다</button>
-              <button class="pop-up-btn text-strong border-default neg">아니오</button>
-            </div>
-          </div>
-          <img id="sub-grid-prev" class="l-btn" src="/img/icons/LeftButton.svg" />
-          <ul id="sub-press-list" class="border-default surface-default"></ul>
-          <img id="sub-grid-next" class="r-btn" src="/img/icons/RightButton.svg" />
-        </section>
         <!-- list 모달 -->
         <div class="list-subscribe-modal pop-up">
           <div class="pop-up-top display-medium16">

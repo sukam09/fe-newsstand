@@ -43,6 +43,7 @@
   --surface-brand-alt: var(--blue-100);
   --border-bold: var(--gray-scale-white-alt);
   --border-default: var(--gray-scale-400);
+  transition: 0.3s linear;
 }
 .text-strong {
   color: var(--gray-scale-black);

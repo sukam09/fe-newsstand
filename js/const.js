@@ -7,6 +7,9 @@ const STATE = {
   IS_GRID_VIEW: false,
   IS_SUB_VIEW: false,
   SUB_NEWS_PAGE: 0,
+  SUB_GRID_PAGE:0,
+  GRID_PAGE:0,
+  IS_DARK: false,
 };
 
 const DATA = {
