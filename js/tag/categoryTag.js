@@ -3,11 +3,11 @@ export function makeCategoryTag(categoryParent, category) {
     return (
       acc +
       `<li style="padding: 16px">
-    <div></div>
-    <span>${item}</span>
-    <span></span>
-    <span></span>
-  </li>`
+        <div></div>
+        <span>${item}</span>
+        <span></span>
+        <span></span>
+      </li>`
     );
   }, "");
 }

@@ -1,6 +1,7 @@
 import { removeChildElement } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
 import { subscribeState } from "../store/subscribeState.js";
+import { MESSAGE, POSITION, EVENT } from "./constant.js";
 
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
@@ -45,14 +46,14 @@ function makeMainNewsNav(logo, edit, name) {
   removeChildElement(newsNavParent);
 
   const publisherLogo = `<div><img src=${logo} alt="" class="newsstand--publisher-logo"/></div>`;
-  const editDay = `<div class="newsstand__current-edit">${edit} 편집</div>`;
-  let subButton = `<button class="newsstand__current-button">+ 구독하기</button>`;
+  const editDay = `<div class="newsstand__current-edit">${edit} ${MESSAGE.EDIT}</div>`;
+  let subButton = `<button class="newsstand__current-button">${MESSAGE.SUBSCRIBE}</button>`;
 
   // 구독중일때.
   if (subscribeState.getSubscribeByName(name).length) {
-    subButton = `<button class="newsstand__current-button">x 해지하기</button>`;
+    subButton = `<button class="newsstand__current-button">${MESSAGE.UNSUBSCRIBE}</button>`;
   } else {
-    subButton = `<button class="newsstand__current-button">+ 구독하기</button>`;
+    subButton = `<button class="newsstand__current-button">${MESSAGE.SUBSCRIBE}</button>`;
   }
   newsNavParent.innerHTML += publisherLogo;
   newsNavParent.innerHTML += editDay;
@@ -96,7 +97,7 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
     return acc + `<li> ${element} </li>`;
   }, "");
 
-  const li = `<li class="newsstand__edit-corp">${data[page].name} 언론사에서 직접 편집한 뉴스입니다.</li>`;
+  const li = `<li class="newsstand__edit-corp">${data[page].name} ${MESSAGE.EDIT_BY_PUBLISHER}</li>`;
   newsListParent.innerHTML += li;
 }
 
@@ -112,11 +113,11 @@ export function nextContents(
   const element = categoryList[childIndex]; // 자식 찾기
 
   // 오른쪽 버튼 클릭
-  if (clickPosition === "right") {
+  if (clickPosition === POSITION.RIGHT) {
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) - 1;
     element.children[0].style.animationIterationCount = reCount;
-  } else if (clickPosition === "left") {
+  } else if (clickPosition === POSITION.LEFT) {
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) + 1;
 
@@ -157,7 +158,7 @@ export function onUserRightClickCategory(
   categoryDataList
 ) {
   rightBtn.addEventListener(
-    "click",
+    EVENT.CLICK,
     rightBtnEvent(
       categoryList,
       CATEROY_NUMBER,
@@ -176,7 +177,7 @@ export function onUserLeftClickCategory(
   categoryDataList
 ) {
   leftBtn.addEventListener(
-    "click",
+    EVENT.CLICK,
     leftBtnEvent(
       categoryList,
       CATEROY_NUMBER,
@@ -222,7 +223,7 @@ export function leftBtnEvent(
     CATEGORY.currentContents =
       CATEGORY.currentContents <= 0 ? 1 : CATEGORY.currentContents;
     nextContents(
-      "left",
+      POSITION.LEFT,
       CATEROY_NUMBER,
       categoryList,
       categoryDataLength,
@@ -239,7 +240,7 @@ export function rightBtnEvent(
   return function () {
     ++CATEGORY.currentContents;
     nextContents(
-      "right",
+      POSITION.RIGHT,
       CATEROY_NUMBER,
       categoryList,
       categoryDataLength,

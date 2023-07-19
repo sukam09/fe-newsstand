@@ -13,7 +13,7 @@ import {
   onUserClickCategory,
 } from "../utils/category.js";
 import { subscribeState } from "../store/subscribeState.js";
-import { removeChildElement } from "../utils/util.js";
+import { removeChildElement, handleElementClass } from "../utils/util.js";
 
 const category = [
   "종합/경제",
@@ -142,15 +142,15 @@ export function addListdButton() {
   const leftBtn = document.querySelector(".left-list-button");
   const rightBtn = document.querySelector(".right-list-button");
 
-  leftBtn.classList.remove("btn-disabled");
-  rightBtn.classList.remove("btn-disabled");
+  handleElementClass(leftBtn, "remove", "btn-disabled");
+  handleElementClass(rightBtn, "remove", "btn-disabled");
 }
 export function deleteListButton() {
   const leftBtn = document.querySelector(".left-list-button");
   const rightBtn = document.querySelector(".right-list-button");
 
-  leftBtn.classList.add("btn-disabled");
-  rightBtn.classList.add("btn-disabled");
+  handleElementClass(leftBtn, "add", "btn-disabled");
+  handleElementClass(rightBtn, "add", "btn-disabled");
 }
 
 // 카테고리에 애니메이션과 관련된 이벤트리스너 등록
@@ -176,13 +176,11 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 // 내가 구독한 언론사일때 실행되는 함수
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
-    navTab.isMySubscribe = true;
-    paintNewsCategory();
+    // paintNewsCategory();
   });
   allPublisher.addEventListener("click", () => {
-    navTab.isMySubscribe = false;
-    paintNewsCategory();
-    console.log("리스트에서의 전체 언론사");
+    // paintNewsCategory();
+    // console.log("리스트에서의 전체 언론사");
   });
 }
 

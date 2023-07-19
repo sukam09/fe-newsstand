@@ -12,6 +12,7 @@ import {
   moveBottomContent,
   replaceText,
 } from "../utils/rolling.js";
+import { EVENT, POSITION } from "../utils/constant.js";
 
 // fetch 헤드라인 데이터
 const leftHeadlineData = await makeLeftHeadlineData();
@@ -38,7 +39,7 @@ let move = [2, 2];
 let dataCnt = [1, 1];
 let currentChildIndex = [1, 1]; // 자식의 몇번째를 의미함.
 
-const position = ["left", "right"];
+const position = [POSITION.LEFT, POSITION.RIGHT];
 let firstCorp = [];
 let secondCorp = [];
 let thirdCorp = [];
@@ -69,10 +70,10 @@ function paintInitContent() {
 // 왼쪽 롤링
 function leftRolling() {
   leftInterval = setInterval(moveLeftContent(), SET_TIME);
-  hoverTags[0].addEventListener("mouseover", () => {
+  hoverTags[0].addEventListener(EVENT.MOUSER_OVER, () => {
     clearInterval(leftInterval);
   });
-  hoverTags[0].addEventListener("mouseout", () => {
+  hoverTags[0].addEventListener(EVENT.MOUSER_OUT, () => {
     leftInterval = setInterval(moveLeftContent(), SET_TIME);
   });
 }
@@ -80,10 +81,10 @@ function leftRolling() {
 // 오른쪽 롤링
 function rightRolling() {
   rightInterval = setInterval(moveRightContent, SET_TIME);
-  hoverTags[1].addEventListener("mouseover", () => {
+  hoverTags[1].addEventListener(EVENT.MOUSER_OVER, () => {
     clearInterval(rightInterval);
   });
-  hoverTags[1].addEventListener("mouseout", () => {
+  hoverTags[1].addEventListener(EVENT.MOUSER_OUT, () => {
     rightInterval = setInterval(moveRightContent, SET_TIME);
   });
 }

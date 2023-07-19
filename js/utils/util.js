@@ -1,6 +1,5 @@
 import { focusToAllPublisher, focusToMyPubliser } from "../utils/navTab.js";
-
-const MY_PUBLISHER = "MY_PUBLISHER";
+import { MESSAGE } from "./constant.js";
 
 export function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
@@ -13,7 +12,12 @@ export async function removeChildElement(parent) {
 }
 
 export function onFocusToClicked(where, mySubscribe, allPublisher) {
-  where === MY_PUBLISHER
+  where === MESSAGE.MY_PUBLISHER
     ? focusToMyPubliser(mySubscribe, allPublisher)
     : focusToAllPublisher(mySubscribe, allPublisher);
+}
+
+export function handleElementClass(element, type, name) {
+  type === "add" && element.classList.add(name);
+  type === "remove" && element.classList.remove(name);
 }
