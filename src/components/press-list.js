@@ -21,6 +21,7 @@ const initPressList = (pressData, categoryList) => {
   setCategoryArticle();
   LIST.PAGE_COUNT += 1; //?
   setProgressBar();
+  setProgressBarClick();
   setProgressBarEvent();
 };
 
@@ -109,40 +110,51 @@ const setListNav = (categoryList) => {
 /**
  * 언론사 리스트의 Progress Bar
  */
-const setProgressBar = () => {
-  const liList = document.querySelectorAll('.press-category__li');
+const setProgressBar = () => {};
 
-  // 클릭 이벤트?
-  liList.forEach((li) => {
-    li.addEventListener('click', () => {
+// 함수 줄이기
+const setProgressBarClick = () => {
+  const progressBar = document.querySelectorAll('.press-category__li');
+
+  progressBar.forEach((progress) => {
+    progress.addEventListener('click', () => {
       const removeLi = document.querySelector('.progress-start');
       const removeDiv = removeLi.querySelector('.press-category__div');
-      const addDiv = li.querySelector('.press-category__div');
-
       removeLi.classList.remove('progress-start');
       removeDiv.classList.add('none');
-      li.classList.add('progress-start');
-      addDiv.classList.remove('none');
+
+      let progressIndex;
+      const progressName = progress.querySelector('.press-category__p').innerText;
+      const isCategory = LIST.CATEGORY_NAME.includes(progressName);
+      const isSubscribe = LIST.SUBSCRIBE_NAME.includes(progressName);
+
+      if (isCategory) progressIndex = LIST.CATEGORY_NAME.findIndex((name) => name === progressName);
+      if (isSubscribe) progressIndex = LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
+
+      LIST.CATEGORY_COUNT = progressIndex;
+      LIST.PAGE_COUNT = 0;
+      LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+
+      progress.classList.add('progress-start');
+      progress.querySelector('.press-category__div').classList.remove('none');
+      const progressNow = progress.querySelector('.press-category__div-now');
+      const progressSum = progress.querySelector('.press-category__div-sum');
+
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+      getProgressBarEvent(progressNow, progressSum);
     });
   });
-
-  const initLi = document.querySelector('.press-category__ul');
-  initLi.firstElementChild.classList.add('progress-start');
-  const initDiv = initLi.querySelector('.press-category__div');
-  initDiv.classList.remove('none');
 };
 
-/**
- *  언론사 리스트의 Progress Bar 이벤트
- */
 const setProgressBarEvent = () => {
-  const progressBar = document.querySelectorAll('.press-category__li');
-  const progressStart = document.querySelector('.progress-start');
-  const progressNow = progressStart.querySelector('.press-category__div-now');
-  const progressSum = progressStart.querySelector('.press-category__div-sum');
-  progressNow.innerText = LIST.PAGE_COUNT;
-  progressSum.innerText = LIST.PAGE_LENTH;
+  const initLi = document.querySelector('.press-category__ul');
+  initLi.querySelector('.press-category__li').classList.add('progress-start');
+  initLi.querySelector('.press-category__div').classList.remove('none');
+  initLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  initLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
+  const progressBar = document.querySelectorAll('.press-category__li');
   progressBar.forEach((progress) => {
     progress.addEventListener('animationiteration', () => {
       const progressNow = progress.querySelector('.press-category__div-now');
