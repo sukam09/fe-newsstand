@@ -46,6 +46,10 @@
   color: var(--grayscale-200);
 }
 
+.press-category__p:hover {
+  text-decoration: underline;
+}
+
 .press-category__div {
   display: flex;
 }
@@ -155,6 +159,14 @@
   width: 320px;
   height: 200px;
   object-fit: cover;
+
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+.section-main__img-article-hover {
+  transform: scale(1.05);
+  transition: 0.5s;
 }
 
 .section-main__h2 {
@@ -163,6 +175,10 @@
 
   font: var(--medium-M);
   color: var(--grayscale-black);
+}
+
+.section-main__h2:hover {
+  text-decoration: underline;
 }
 
 /* 언론사 리스트 ARTICLE-SUB */

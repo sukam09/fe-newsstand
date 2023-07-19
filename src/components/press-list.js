@@ -14,7 +14,6 @@ const initPressList = (pressData, categoryList) => {
   setListSub();
   setListNav(categoryList);
 
-  // setListArrow(); // 기능 추가 전
   setListShuffle(pressData, categoryList);
   setListArticle();
 
@@ -23,6 +22,8 @@ const initPressList = (pressData, categoryList) => {
 
   setArrowRight();
   setArrowLeft();
+
+  setArticleEvent();
 };
 
 /**
@@ -141,7 +142,6 @@ const setListArticle = () => {
 /**
  * 언론사 리스트의 Progress Bar
  */
-
 // 함수 줄이기
 const setProgressBarClick = () => {
   const progressBar = document.querySelectorAll('.press-category__li');
@@ -251,6 +251,9 @@ const setFirstCategory = () => {
   addDiv.classList.remove('none');
 };
 
+/**
+ * 언론사 리스트의 Arrow
+ */
 const setArrowRight = () => {
   const arrowRight = document.querySelector('.arrows-category__img-right');
   arrowRight.addEventListener('click', () => {
@@ -336,6 +339,21 @@ const setLastCategory = () => {
   removeDiv.classList.add('none');
   addLi.classList.add('progress-start');
   addDiv.classList.remove('none');
+};
+
+/**
+ * 언론사 리스트의 CSS 효과
+ */
+const setArticleEvent = () => {
+  const article = document.querySelector('.press-category__article');
+  const mainImg = document.querySelector('.section-main__img-article');
+
+  article.addEventListener('mouseenter', () => {
+    mainImg.classList.add('section-main__img-article-hover');
+  });
+  article.addEventListener('mouseleave', () => {
+    mainImg.classList.remove('section-main__img-article-hover');
+  });
 };
 
 export { initPressList };
