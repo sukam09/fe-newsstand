@@ -16,7 +16,6 @@ export const observable = (obj) => {
         if (currentObserver) observers.add(currentObserver);
         return _value;
       },
-
       set(value) {
         _value = value;
         observers.forEach((fn) => fn());

@@ -1,11 +1,14 @@
-import { store } from "../core/store.js";
-import { getPage } from "../core/getter.js";
-export function drawPressNews(list_content, mode) {
+import { getPage, getTabMode } from "../core/getter.js";
+
+export function drawPressNews(list_content) {
   let main_news,
     sub_news = "";
 
   list_content.forEach((news) => {
-    if (mode === "all" && news.name === list_content[getPage() - 1].name) {
+    if (
+      getTabMode() === "all" &&
+      news.name === list_content[getPage() - 1].name
+    ) {
       main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
         <p class="thumbnail-title">${news.main_news.title}</p>`;
       news.sub_news.forEach((subnews) => {
@@ -14,7 +17,7 @@ export function drawPressNews(list_content, mode) {
         </li>`;
       });
     } else if (
-      mode === "subscribe" &&
+      getTabMode() === "subscribe" &&
       news.category === list_content[getPage() - 1].category
     ) {
       main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
