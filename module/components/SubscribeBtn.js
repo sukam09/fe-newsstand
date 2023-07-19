@@ -29,7 +29,7 @@ export function DoSubScribe(btnElement, pressID) {
   btnElement.addEventListener("click", (e) => {
     snackBar(e);
     store.dispatch(actionCreator("subscribe", { pressID }));
-    console.log(store.getSubscribe());
+    btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
   });
 }
 
@@ -38,6 +38,7 @@ export function DoUnsubscribe(btnElement, pressID) {
     alertElement(pressID);
     store.dispatch(actionCreator("unsubscribe", { pressID }));
     updateGrid();
+    btnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
   });
 }
 

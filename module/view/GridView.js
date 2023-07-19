@@ -15,7 +15,7 @@ function createSubscribeDiv(li, pressID) {
     <div class="subscribe-wrap">
       <button class="subscribe-btn">
           <img class="plus-btn" src="../../asset/button/plus.png">
-          <span class="scribe-text available-medium12">해지하기</span>
+          <span class="subscribe-text available-medium12">해지하기</span>
       </button>
     </div>`;
 
@@ -27,7 +27,7 @@ function createSubscribeDiv(li, pressID) {
     <div class="subscribe-wrap">
       <button class="subscribe-btn">
           <img class="plus-btn" src="../../asset/button/plus.png">
-          <span class="scribe-text available-medium12">구독하기</span>
+          <span class="subscribe-text available-medium12">구독하기</span>
       </button>
     </div>`;
 

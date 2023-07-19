@@ -304,7 +304,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   justify-content: center;
   align-items: center;
 }
-.press-news-wrap .press-info .subscribe-btn .scribe-text {
+.press-news-wrap .press-info .subscribe-btn .subscribe-text {
   color: var(--text-text-weak, #879298);
 }
 
