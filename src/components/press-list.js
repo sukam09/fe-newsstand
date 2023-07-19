@@ -115,12 +115,12 @@ const setListShuffle = (pressData, categoryList) => {
     if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
     LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
   });
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length;
 };
 
 const setListArticle = () => {
-  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
+  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1];
 
   // 다크모드는 나중에 처리하자
   const sectionMain = document.querySelector('.press-category__section-main');
@@ -216,13 +216,16 @@ const setNextPage = (progressNow) => {
 
 const setNextCategory = () => {
   LIST.CATEGORY_COUNT += 1;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = 0;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = 1;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
   const addLi = removeLi.nextElementSibling;
   const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
@@ -231,14 +234,17 @@ const setNextCategory = () => {
 };
 
 const setFirstCategory = () => {
-  LIST.CATEGORY_COUNT = 0;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = 0;
+  LIST.CATEGORY_COUNT = 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = 1;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
   const addLi = document.querySelector('.press-category__ul').firstElementChild;
   const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
@@ -278,8 +284,8 @@ const setArrowLeft = () => {
     const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
     ///////////
-    const PAGE = 0 < LIST.PAGE_COUNT;
-    const CATEGORY = 0 < LIST.CATEGORY_COUNT;
+    const PAGE = 1 < LIST.PAGE_COUNT;
+    const CATEGORY = 1 < LIST.CATEGORY_COUNT;
     progressNow.innerText = LIST.PAGE_COUNT;
     progressSum.innerText = LIST.PAGE_LENTH;
 
@@ -298,8 +304,8 @@ const setPrevPage = (progressNow) => {
 
 const setPrevCategory = () => {
   LIST.CATEGORY_COUNT -= 1;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
@@ -314,8 +320,8 @@ const setPrevCategory = () => {
 
 const setLastCategory = () => {
   LIST.CATEGORY_COUNT = LIST.CATEGORY_LENGTH;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
