@@ -61,7 +61,7 @@ export const grid_view_info_entire = new gridViewEntire(
 class gridViewSub extends gridViewInfo {
     update = function (state) {
         this.data = state;
-        if (this.getCurrentPage() > this.getMaxPage()) {
+        if (this.getCurrentPage() > this.getMaxPage() && this.getMaxPage() >= 0) {
             this.setPageNum(this.getMaxPage());
         }
         createMainGrid(this, false, state);
