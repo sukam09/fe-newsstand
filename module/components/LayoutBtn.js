@@ -3,17 +3,31 @@ import { printList } from "../view/ListView/ListView.js";
 import { timerId } from "../view/ListView/Timer.js";
 import { LIST_PAGE, GRID_PAGE } from "../../global.js";
 import { arrowStateInit } from "./Arrow.js";
+import { VIEW_MODE } from "../../global.js";
 
-const GRID = "grid";
-const LIST = "list";
+export const GRID = "grid";
+export const LIST = "list";
 
 const GRID_BTN_ID = "grid-btn";
 const LIST_BTN_ID = "list-btn";
 
-function btnColorChange(targetBtn, InActiveBtn) {
+export function btnColorChange(targetBtn, InActiveBtn) {
   const rootStyles = getComputedStyle(document.documentElement);
   const btnActiveColor = rootStyles.getPropertyValue("--text-point");
   const btnInActiveColor = rootStyles.getPropertyValue("--text-weak");
+
+  const list_Btn = document.querySelector("#list-btn");
+  const grid_Btn = document.querySelector("#grid-btn");
+
+  if (!targetBtn & !InActiveBtn) {
+    if (VIEW_MODE.CURRENT_LAYOUT === GRID) {
+      targetBtn = grid_Btn;
+      InActiveBtn = list_Btn;
+    } else {
+      targetBtn = list_Btn;
+      InActiveBtn = grid_Btn;
+    }
+  }
 
   const active_btn = targetBtn.querySelector("path");
   active_btn.setAttribute("fill", btnActiveColor);
@@ -22,7 +36,11 @@ function btnColorChange(targetBtn, InActiveBtn) {
   inactive_btn.setAttribute("fill", btnInActiveColor);
 }
 
-function layoutChange(targetBtn) {
+export function autoLayoutChange() {
+  btnColorChange(targetBtn, InActiveBtn);
+}
+
+function layoutChangeByBtn(targetBtn) {
   const layout = document.querySelector("main");
   const ID = targetBtn.id;
   let InActiveBtn;
@@ -32,14 +50,14 @@ function layoutChange(targetBtn) {
   if (ID === GRID_BTN_ID) {
     layout.className = GRID;
     InActiveBtn = document.getElementById(LIST_BTN_ID);
-    VIEW.CURRENT_VIEW_MODE = GRID;
+    VIEW_MODE.CURRENT_LAYOUT = GRID;
     if (timerId) {
       clearInterval(timerId);
     }
   } else if (ID === LIST_BTN_ID) {
     layout.className = LIST;
     InActiveBtn = document.getElementById(GRID_BTN_ID);
-    VIEW.CURRENT_VIEW_MODE = LIST;
+    VIEW_MODE.CURRENT_LAYOUT = LIST;
   }
   arrowStateInit();
   btnColorChange(targetBtn, InActiveBtn);
@@ -49,20 +67,14 @@ export default function SelectViewStyle() {
   const list_Btn = document.querySelector("#list-btn");
   const grid_Btn = document.querySelector("#grid-btn");
   list_Btn.addEventListener("click", () => {
-    layoutChange(list_Btn);
+    layoutChangeByBtn(list_Btn);
     GRID_PAGE.CURRENT_PAGE = 0;
     printList();
   });
   grid_Btn.addEventListener("click", () => {
-    layoutChange(grid_Btn);
+    layoutChangeByBtn(grid_Btn);
     LIST_PAGE.CURRENT_PAGE = 1;
     LIST_PAGE.CURRENT_CATEGORY = 0;
     printGrid();
   });
 }
-
-export const VIEW = {
-  CURRENT_VIEW_MODE: GRID,
-  GRID,
-  LIST,
-};

@@ -2,9 +2,10 @@ import { fetchPressData } from "../../api.js";
 import { GRID_PAGE } from "../../global.js";
 import { EventHandlerRegister } from "../components/SubscribeBtn.js";
 import { SubscribeState } from "../components/SubscribeBtn.js";
-import { SUBSCRIBE_VIEW } from "../../global.js";
+import { VIEW_MODE, SUBSCRIBE } from "../../global.js";
 import { store } from "../../store.js";
 import { shuffle_id } from "../utility/Shuffle.js";
+
 let news_icon;
 
 const ICONS_PER_PAGE = 24;
@@ -48,7 +49,7 @@ function pressMouseOut(li) {
 
 export async function FetchData() {
   news_icon = await fetchPressData("./Data/grid_icon.json");
-  if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
+  if (VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
     const subscribe_icon_IDs = store.getSubscribe();
     const subscribe_icon_data = [];
 
@@ -93,7 +94,8 @@ export async function printGrid() {
   try {
     await FetchData();
 
-    const grid = document.querySelector(".grid");
+    const grid = document.querySelector("main");
+    grid.className = "grid";
     grid.innerHTML = ``;
 
     let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;

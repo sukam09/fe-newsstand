@@ -57,6 +57,9 @@ function tabClickEventRegister() {
 }
 
 export function printList() {
+  const main = document.querySelector("main");
+  main.className = "list";
+  main.innerHTML = ``;
   //HTML 요소 생성
   createListElement();
 

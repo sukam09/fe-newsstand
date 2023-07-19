@@ -1,7 +1,8 @@
-import { VIEW } from "./LayoutBtn.js";
+import { GRID, LIST } from "./LayoutBtn.js";
 import { categoryLength, news_data, TimerReset } from "../view/ListView/ListView.js";
-import { LIST_PAGE, GRID_PAGE, SUBSCRIBE_VIEW } from "../../global.js";
+import { LIST_PAGE, GRID_PAGE, SUBSCRIBE } from "../../global.js";
 import { store } from "../../store.js";
+import { VIEW_MODE } from "../../global.js";
 
 export const RIGHT = 1;
 export const LEFT = 0;
@@ -11,10 +12,10 @@ const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
 
 function arrowBtnClickHandler(dir) {
-  const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
+  const CURRENT_VIEW = VIEW_MODE.CURRENT_LAYOUT;
 
   //그리드 뷰
-  if (CURRENT_VIEW == VIEW.GRID) {
+  if (CURRENT_VIEW === GRID) {
     if (dir === RIGHT) {
       GRID_PAGE.setState(GRID_PAGE.CURRENT_PAGE + 1);
     } else {
@@ -23,7 +24,7 @@ function arrowBtnClickHandler(dir) {
     arrowStateInit();
   }
   //리스트뷰
-  else if (CURRENT_VIEW == VIEW.LIST) {
+  else if (CURRENT_VIEW === LIST) {
     if (dir === RIGHT) {
       if (LIST_PAGE.CURRENT_PAGE === news_data[LIST_PAGE.CURRENT_CATEGORY].press.length) {
         LIST_PAGE.setCategory((LIST_PAGE.CURRENT_CATEGORY + 1) % categoryLength.length);
@@ -48,11 +49,11 @@ function arrowBtnClickHandler(dir) {
   }
 }
 export function arrowStateInit() {
-  const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
+  const CURRENT_VIEW = VIEW_MODE.CURRENT_LAYOUT;
   const SUBSCRIBE_PRESS_CNT = store.getSubscribe().length;
-  const PAGE_LENGTH = SUBSCRIBE_VIEW.CURRENT_VIEW ? Math.floor(SUBSCRIBE_PRESS_CNT / PRESS_CNT_PER_PAGE) : GRID_ENTIRE_PAGE;
+  const PAGE_LENGTH = VIEW_MODE.CURRENT_TAB === SUBSCRIBE ? Math.floor(SUBSCRIBE_PRESS_CNT / PRESS_CNT_PER_PAGE) : GRID_ENTIRE_PAGE;
 
-  if (CURRENT_VIEW == VIEW.GRID) {
+  if (CURRENT_VIEW == GRID) {
     if (GRID_PAGE.CURRENT_PAGE === 0) {
       left_btn.style.display = "none";
       right_btn.style.display = PAGE_LENGTH === 0 ? "none" : "block";

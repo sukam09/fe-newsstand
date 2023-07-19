@@ -1,6 +1,6 @@
 import { store, actionCreator } from "../../store.js";
 import { updateGrid, FetchData } from "../view/GridView.js";
-import { SUBSCRIBE_VIEW } from "../../global.js";
+import { VIEW_MODE, SUBSCRIBE } from "../../global.js";
 
 let timeoutId;
 
@@ -46,7 +46,7 @@ function AlertHandler(pressID) {
     const gridMain = document.querySelector(".grid");
     gridMain.removeChild(alertElement);
 
-    if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
+    if (VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
       await FetchData();
       updateGrid();
     }

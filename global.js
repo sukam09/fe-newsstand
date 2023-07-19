@@ -1,5 +1,8 @@
 import { printGrid, updateGrid } from "./module/view/GridView.js";
 import { changePageInfo, changeCategory, changePressNewsSection } from "./module/view/ListView/Actions/ChangePress.js";
+import { GRID, LIST } from "./module/components/LayoutBtn.js";
+import { printList } from "./module/view/ListView/ListView.js";
+import { btnColorChange } from "./module/components/LayoutBtn.js";
 
 // 리스트뷰 현재 페이지 & 현재 카테고리
 export const LIST_PAGE = {
@@ -29,14 +32,22 @@ export const GRID_PAGE = {
   },
 };
 
-export const SUBSCRIBE_VIEW = {
-  CURRENT_VIEW: false,
-  changeView: (view) => {
-    if (SUBSCRIBE_VIEW.CURRENT_VIEW !== view) {
-      SUBSCRIBE_VIEW.CURRENT_VIEW = view;
+export const VIEW_MODE = {
+  CURRENT_LAYOUT: GRID,
+  CURRENT_TAB: "ENTIRE",
+  changeTab: (TAB) => {
+    VIEW_MODE.CURRENT_TAB = TAB;
+    if (VIEW_MODE.CURRENT_TAB === ENTIRE) {
+      VIEW_MODE.CURRENT_LAYOUT = GRID;
       printGrid();
     } else {
-      GRID_PAGE.setState(0);
+      VIEW_MODE.CURRENT_LAYOUT = LIST;
+      printList();
     }
+    btnColorChange();
   },
 };
+const ENTIRE = "ENTIRE",
+  SUBSCRIBE = "SUBSCRIBE";
+
+export { ENTIRE, SUBSCRIBE };
