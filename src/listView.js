@@ -1,7 +1,7 @@
 import { MAX_NEWS_COUNT } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
 import { getState, resister } from "./observer/observer.js";
-import { isGrid, listPageIdx } from "./store/store.js";
+import { categoryIdx, isGrid, listPageIdx } from "./store/store.js";
 import { $ } from "./util.js";
 
 // 리스트뷰 element querySelector 함수
@@ -45,6 +45,9 @@ async function setListViewEvents() {
     appendNewsList(newsList);
   });
   resister(isGrid, () => {
+    appendNewsList(newsList);
+  });
+  resister(categoryIdx, () => {
     appendNewsList(newsList);
   });
 }
