@@ -302,6 +302,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto 48px;
+    position: relative;
 }
 
 .list-view-tab {
@@ -364,7 +365,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    animation: ani-progress-bar 5s infinite linear;
+    animation: ani-progress-bar 20s infinite linear;
     z-index: 1;
     background-color: #4362d0;
 }
@@ -434,7 +435,6 @@ body {
     width: 882px;
     height: 260px;
     display: flex;
-
     gap: 32px;
 }
 

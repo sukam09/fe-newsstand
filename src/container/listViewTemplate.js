@@ -1,5 +1,5 @@
 import { news_category } from "../../data/newsCategory.js";
-import { CATEGORY_COUNT_ARR, IMG_EXPAND, IMG_NORM } from "../utils/constant.js";
+import { CATEGORY_COUNT_ARR, IMG_EXPAND, IMG_NORM, SNACK_BAR_TIME } from "../utils/constant.js";
 import { class_name } from "../utils/domClassName.js";
 import { progress_bar_info } from "../components/list/progressBarEvent.js";
 import { create } from "../utils/createElement.js";
@@ -7,6 +7,8 @@ import { buttonFacotry } from "../components/common/btnfactory.js";
 import { subscribe_news_list } from "../../data/subscribeIdxList.js";
 import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { list_news_data } from "../../data/list_news_data.js";
+import { createSnackBar } from "../components/common/snackBar.js";
+import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
@@ -106,7 +108,21 @@ function createPressInfo(press_src, press_edit_date, is_subscribe) {
     const $subscribe_btn =
         is_subscribe === class_name.SUBSCRIBE
             ? btnFactory.create({ type: "closed" }).getButton()
-            : btnFactory.create({ type: "subscribe", isSubscribe: true }).getButton();
+            : btnFactory
+                  .create({
+                      type: "subscribe",
+                      isSubscribe: true,
+                      events: {
+                          click: () => {
+                              document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
+                              setTimeout(() => {
+                                  document.querySelector(".snack-bar").remove();
+                                  onClickSubBtn(true);
+                              }, SNACK_BAR_TIME);
+                          },
+                      },
+                  })
+                  .getButton();
 
     $container.append($img, $edit_date, $subscribe_btn);
     return $container;
