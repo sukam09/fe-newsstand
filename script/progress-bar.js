@@ -11,11 +11,9 @@ function listenProgressBar() {
     const numOfPages = listViewData.filter(data => data.category == CATEGORY_LIST[crntCategory]).length
     
     progressBar.addEventListener("animationend", () => {
-        
         if (crntPage < numOfPages - 1){
             store.setPage(crntPage+1);
         } else if (crntPage == numOfPages - 1){
-            store.setPage(0);
             let crntListIdx = crntCategory == CATEGORY_LIST.length-1 ? 0 : crntCategory+1;
             store.setCategory(crntListIdx)
         }

@@ -9,6 +9,7 @@ class Store {
         this.view = VIEW_TYPE.GRID;
         this.page = 0; // page index (grid, list view)
         this.category = 0; // category index (list view)
+        this.observers = new Set();
     }
     
     getView(){
@@ -21,10 +22,7 @@ class Store {
         return this.category;
     }
 
-    setView(view){
-        this.view = view;
-        this.renderView();
-    }
+    
     setPage(page){
         this.page = page;
         this.renderView();
@@ -32,8 +30,27 @@ class Store {
     }
     setCategory(category){
         this.category = category;
+        this.page = 0;
         this.renderView();
+        this.renderArrow();
     }
+    setView(view){ 
+        this.view = view;
+        this.page = 0;
+        this.category = 0;
+        this.renderView();
+        this.renderArrow();
+    }
+
+
+    addSubscriber(subscriber) {
+        this.observers.add(subscriber)
+    }
+    notifySubscribers(){
+        this.observers.forEach(func => func());
+    }
+
+
 
 
     renderView(){
@@ -49,6 +66,14 @@ class Store {
 
     renderArrow() {
         updateArrow();
+        // switch (this.view){
+        //     case VIEW_TYPE.GRID:
+        //         updateArrow();
+        //         break;
+        //     case VIEW_TYPE.LIST:
+        //         // no need to update arrow when crntview == list
+        //         break;
+        // }
     }
 }
 

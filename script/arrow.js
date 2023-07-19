@@ -22,6 +22,7 @@ function updateArrow(){
             }
             break;
         case VIEW_TYPE.LIST:
+            // arrows are always visible when crntview is list
             break;
     }
     
@@ -32,9 +33,9 @@ function listenArrow(){
         let crntView = store.getView();
         let crntCategory = store.getCategory();
         if (crntView == VIEW_TYPE.LIST) {
-            if (crntPage == 0 && crntCategory == 0) {
+            if (crntPage == 0 && crntCategory == 0) { 
                 store.setCategory(CATEGORY_LIST.length - 1);
-            } else if (crntPage == 0 && crntCategory > 0){
+            } else if (crntPage == 0 && crntCategory > 0){ 
                 store.setCategory(crntCategory - 1)
             } else {
                 store.setPage(crntPage-1);
@@ -50,12 +51,10 @@ function listenArrow(){
         let crntCategory = store.getCategory();
         if (crntView == VIEW_TYPE.LIST) {
             const numOfPages = listViewData.filter(data => data.category == CATEGORY_LIST[crntCategory]).length;
-            if (crntPage >= numOfPages - 1 && crntCategory >= CATEGORY_LIST.length - 1){ // 마지막 카테고리의 마지막 페이지
+            if (crntPage >= numOfPages - 1 && crntCategory >= CATEGORY_LIST.length - 1){ // last page of the last category
                 store.setCategory(0); 
-                store.setPage(0);
-            } else if (crntPage >= numOfPages - 1 && crntCategory < CATEGORY_LIST.length - 1) { // 카테고리(마지막 카테고리 제외)의 마지막 페이지
+            } else if (crntPage >= numOfPages - 1 && crntCategory < CATEGORY_LIST.length - 1) { // last page of a category
                 store.setCategory(crntCategory + 1);
-                store.setPage(0);
             } else {
                 store.setPage(crntPage + 1);
             }

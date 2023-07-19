@@ -24,8 +24,6 @@ function listenViewChange() {
                 changeViewIcons(nextView)
                 crntView = nextView;
                 store.setView(nextView)
-                store.setPage(0);
-                store.setCategory(0);
                 Array.prototype.forEach.call(viewContainer.children, (view) => {
                     if (view.getAttribute("type") == nextView){
                         view.classList.remove("hide");

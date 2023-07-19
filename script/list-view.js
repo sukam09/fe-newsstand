@@ -13,12 +13,14 @@ function listenCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
             let crntCategory = store.getCategory()
-            if (crntCategory !== index){
-                store.setPage(0);
+            if (crntCategory !== index){ // change to different category
+                catBtns[crntCategory].classList.remove("selected")
+                catBtns[index].classList.add("selected");
+                store.setCategory(index);
+            } else { 
+                // stay in crnt category
             }
-            catBtns[crntCategory].classList.remove("selected")
-            catBtns[index].classList.add("selected");
-            store.setCategory(index);
+            
         })
     })
 }
