@@ -30,5 +30,4 @@ const startProgress = () => {
     $progress.style.background = `linear-gradient(to right, #4362d0 ${currentPercentage}%, #7890e7 ${currentPercentage}%)`;
   }, 16); // 16ms 마다 업데이트
 };
-
 export { clearProgress, stopProgress, startProgress };

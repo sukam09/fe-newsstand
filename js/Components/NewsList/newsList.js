@@ -33,7 +33,6 @@ export function NewsList(props) {
           <path d="M25 1L1 21L25 41" stroke="#6E8091" />
         </svg>
       </div>
-
       <div class="right-button_content">
         <svg
           xmlns="http://www.w3.org/2000/svg"

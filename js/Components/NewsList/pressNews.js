@@ -10,5 +10,4 @@ const fetchNewsData = async (initCategory) => {
 const getCategoryData = (category) => {
   return pressNewsData.news.filter((item) => item.category === category);
 };
-
 export { fetchNewsData, getCategoryData };
