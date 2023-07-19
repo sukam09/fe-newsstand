@@ -497,6 +497,9 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .news-sub-title:hover {
