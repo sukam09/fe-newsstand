@@ -1,8 +1,7 @@
 import { changeImageSrc } from "../utils/utils.js";
-import { addAsideClickEvent } from "./asideButton.js";
+// import { addAsideClickEvent } from "./asideButton.js";
 import { renderCardList } from "./render/renderCardList.js";
 import { renderGrid } from "./render/renderGrid.js";
-import { leftAsideButton } from "./render/renderMain.js";
 import Stores from "../utils/Store.js";
 
 function clickGridImage() {
