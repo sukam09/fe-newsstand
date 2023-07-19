@@ -1,6 +1,7 @@
 import { MEDIA, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
-import { shuffleList, onClickSubscribeMode, changeSubState } from "./utils.js";
+import { shuffleList } from "./utils.js";
+import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -57,10 +58,6 @@ const addSubscribeButton = (idx) => {
 
   $button.addEventListener("click", () => {
     clickSubButton(idx);
-    // setNewPage(
-    //   STATE.GRID_PAGE_NUM * MEDIA_NUM,
-    //   (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-    // );
   });
 
   $buttonWrapper.append($button);

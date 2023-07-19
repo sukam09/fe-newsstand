@@ -1,6 +1,7 @@
-import { getJSON } from "./data.js";
-import { changeSubState, onClickSubscribeMode, shuffleList } from "./utils.js";
 import { STATE } from "../constant.js";
+import { getJSON } from "./data.js";
+import { shuffleList } from "./utils.js";
+import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
 
 let mediaInfo;
 let categoryInfo = {

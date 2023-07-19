@@ -23,7 +23,7 @@ const IMAGE = Object.freeze({
 
 const STATE = {
   GRID_PAGE_NUM: 0,
-  SUBSCRIBE_LIST: [],
+  SUBSCRIBE_LIST: [0, 10, 18, 3, 15, 9, 24],
   MODE: {
     IS_LIGHT: true,
     IS_GRID: true,
