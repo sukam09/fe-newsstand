@@ -1,8 +1,7 @@
 import { increment, totalTime } from "../utils/constants.js";
 import { drawNews } from "./drawNews.js";
-import { categoryCnt, categoryNews } from "./setData.js/setCategoryData.js";
-import Stores from "../utils/Store.js";
-import { makeArrow } from "../utils/makeArrow.js";
+import Stores from "./core/Store.js";
+import { makeArrow } from "../utils/utils.js";
 
 let progress = 0;
 let currentCategoryPageNumber = 1;
@@ -10,8 +9,7 @@ let currentCategoryIndex = 0;
 let currentCategoryPage;
 let currentProgressBar;
 
-const drawCategory = (news) => {
-  const a = [{ key: "중앙일보" },{key:"SBS뉴스"}];
+const drawCategory = (categoryCnt) => {
   function drawCategoryBar(categoryCnt) {
     let categoryHtml = `<div class="categoryWrap"><ul>`;
     categoryCnt.forEach((key, index) => {
@@ -30,7 +28,8 @@ const drawCategory = (news) => {
   function drawCategoryNumber(category) {
     if (category.value)
       return `<span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${category.value}</span>`;
-    else return `<span class="currentCategoryPage"></span>`;
+    else
+      return `<span class="currentCategoryPage"></span><span class="categoryCnt"></span>`;
   }
 
   function drawCategoryItem(categoryIndex) {
@@ -182,7 +181,7 @@ const drawCategory = (news) => {
     }
   }
 
-  drawCategoryBar(a);
+  drawCategoryBar(categoryCnt);
   makeArrow();
 };
 export { drawCategory, currentCategoryIndex, currentCategoryPageNumber };

@@ -1,5 +1,5 @@
 import { shuffle } from "../../utils/utils.js";
-import Stores from "../../utils/Store.js";
+import Stores from "../core/Store.js";
 import { addEventArrowGrid } from "../addEventArrowGrid.js";
 
 const gridMain = document.getElementById("main-grid");

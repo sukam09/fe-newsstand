@@ -1,12 +1,12 @@
 class Store {
   #pageNumber;
   #progressInterval;
-  // #subscribedLogo;
-  // #subscribedNews;
+  #pageMode;
+  #subscribedStatus;
   constructor() {
     this.#pageNumber = 0;
-    // this.#subscribedLogo = [];
-    // this.#subscribedNews = [];
+    this.#pageMode = "grid";
+    this.#subscribedStatus = "all";
     this.setPage = function (pagenumber) {
       this.#pageNumber = pagenumber;
     };
@@ -21,6 +21,18 @@ class Store {
     };
     this.clearProgressInterval = function () {
       clearInterval(this.#progressInterval);
+    };
+    this.setSubscribed = function (status) {
+      this.#subscribedStatus = status;
+    };
+    this.setPageMode = function (status) {
+      this.#pageMode = status;
+    };
+    this.getSubscribed = function () {
+      return this.#subscribedStatus;
+    };
+    this.getPageMode = function () {
+      return this.#pageMode;
     };
   }
 }

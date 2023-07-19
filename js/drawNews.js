@@ -1,7 +1,7 @@
 import news from "../json/news.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
 import { categoryNews } from "./setData.js/setCategoryData.js";
-import Stores from "../utils/Store.js";
+import Stores from "./core/Store.js";
 import { rollingTime } from "../utils/constants.js";
 
 function drawNewsImage(PageNumberIndex) {

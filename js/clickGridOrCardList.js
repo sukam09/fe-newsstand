@@ -1,8 +1,6 @@
-import { changeImageSrc } from "../utils/utils.js";
-import { renderCardList } from "./render/renderCardList.js";
-import { renderGrid } from "./render/renderGrid.js";
-import { removeArrow } from "../utils/removeArrow.js";
-import Stores from "../utils/Store.js";
+import { changeImageSrc, removeArrow } from "../utils/utils.js";
+import { renderMain } from "./render/renderMain.js";
+import Stores from "./core/Store.js";
 
 const gridMain = document.getElementById("main-grid");
 const listMain = document.getElementById("main-list");
@@ -19,8 +17,8 @@ const clickGridCardList = (logo, news) => {
       gridMain.style.display = "grid";
       listMain.style.display = "none";
       removeArrow();
-      Stores.setPage(0);
-      renderGrid(logo);
+      Stores.setPageMode("grid");
+      renderMain(Stores.getSubscribed(), Stores.getPageMode());
     });
   };
 
@@ -32,8 +30,9 @@ const clickGridCardList = (logo, news) => {
       gridMain.style.display = "none";
       listMain.style.display = "flex";
       removeArrow();
-      Stores.setPage(0);
-      renderCardList(news);
+      Stores.setPageMode("cardList");
+      console.log(Stores.getSubscribed());
+      renderMain(Stores.getSubscribed(), Stores.getPageMode());
     });
   };
 

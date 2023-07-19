@@ -6,4 +6,22 @@ function changeImageSrc(target, src) {
   target.src = `${src}`;
 }
 
-export { shuffle, changeImageSrc };
+function makeArrow() {
+  const direction = ["left", "right"];
+
+  direction.forEach((value) => {
+    document.getElementById(
+      `aside-${value}`
+    ).innerHTML = `<img id="${value}-arrow" src="./img/${value}_button.png">`;
+  });
+}
+
+function removeArrow() {
+  const direction = ["left", "right"];
+
+  direction.forEach((value) => {
+    document.getElementById(`aside-${value}`).innerHTML = "";
+  });
+}
+
+export { shuffle, changeImageSrc, makeArrow, removeArrow };
