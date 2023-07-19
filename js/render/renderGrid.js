@@ -1,7 +1,8 @@
-import { gridMain, listMain } from "./renderMain.js";
 import { shuffle } from "../../utils/utils.js";
 import Stores from "../../utils/Store.js";
 import { addEventArrowGrid } from "../addEventArrowGrid.js";
+
+const gridMain = document.getElementById("main-grid");
 
 const renderGrid = (logos) => {
   shuffle(logos);
@@ -11,8 +12,6 @@ const renderGrid = (logos) => {
 
 function makeGrid(logos) {
   const COUNT_PER_PAGE = 24;
-  gridMain.style.display = "grid";
-  listMain.style.display = "none";
   gridMain.innerHTML = "";
   let outerDiv = "";
   for (

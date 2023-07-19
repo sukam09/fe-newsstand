@@ -5,9 +5,6 @@ import logo from "../../json/news_image.json" assert { type: "json" };
 import news from "../../json/news.json" assert { type: "json" };
 import Stores from "../../utils/Store.js";
 
-const gridMain = document.getElementById("main-grid");
-const listMain = document.getElementById("main-list");
-
 const renderMain = (isAllNews, isGrid) => {
   clickGridCardList(logo, news);
   if (isAllNews === "all") renderAll(isGrid);
@@ -26,4 +23,4 @@ const renderSubscribe = (isGrid) => {
   else renderCardList();
 };
 
-export { renderMain, renderAll, renderSubscribe, gridMain, listMain };
+export { renderMain };
