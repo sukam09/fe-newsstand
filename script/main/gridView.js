@@ -100,11 +100,21 @@ export const GridController = {
     if(isSub){
       wrapperElement.addEventListener('click', function(event) {
         subscribedStore.setState([...subscribedStore.getState(),logoIndex]);
-        // event.target.parentElement.innerHTML=
-        console.log(event.target.parentElement);
-        console.log(subscribedStore.getState());
+        const snackBarDiv = document.createElement('div');
+        snackBarDiv.className = 'snackBar display-medium16 surface-brand-default';
+        snackBarDiv.innerHTML = `<p>내가 구독한 언론사에 추가되었습니다.</p>`;
+        snackBarDiv.style.position = 'fixed';
+        snackBarDiv.style.zIndex = '99999';
+        snackBarDiv.style.top = '60.5%';
+        snackBarDiv.style.left = '50%';
+        snackBarDiv.style.transform = 'translate(-50%, -50%)';
+        document.body.appendChild(snackBarDiv); 
+        setTimeout(function() {
+          document.body.removeChild(snackBarDiv);
+        }, 3000);
       });
     }
+    
     else{
       wrapperElement.addEventListener('click', function(event) {
         let index = subscribedStore.getState().indexOf(logoIndex);
@@ -113,7 +123,6 @@ export const GridController = {
           newState.splice(index, 1);
           subscribedStore.setState(newState);
         }
-
         console.log(subscribedStore.getState());
       })
     }
@@ -144,7 +153,7 @@ export const GridController = {
       });
     }
   },
-  
+
   /**
    *  처음에 grid 요소 추가하는 함수
   */
