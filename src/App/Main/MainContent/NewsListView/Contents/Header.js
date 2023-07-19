@@ -34,7 +34,11 @@ export default function Contents($target, props) {
         $button.innerHTML = unsubscribeButtonInner;
 
         const snackBar = document.querySelector(".snack-bar");
-        snackBar.style.display = "block";
+        snackBar.style.opacity = "100";
+
+        setTimeout(() => {
+          snackBar.style.opacity = "0";
+        }, 5000);
       });
     } else {
       $button.innerHTML = unsubscribeButtonInner;
