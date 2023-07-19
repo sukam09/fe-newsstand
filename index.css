@@ -2,6 +2,7 @@
     --hot-topic-left-length: 4;
     --hot-topic-right-length: 3;
 
+    /* default: light mode */
     --text-strong: #14212b;
     --text-bold: #4b5966;
     --text-default: #5f6e76;
@@ -17,6 +18,7 @@
     --border-default: #d2dae0;
 }
 
+/* dark mode */
 .dark_mode {
     --text-strong: #ffffff;
     --text-bold: #f5f7f9;
@@ -32,7 +34,9 @@
     --border-bold: rgba(255, 255, 255, 0.7);
     --border-default: #5f6e76;
 }
+
 body {
+    font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,7 +98,6 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--text-default);
-    font-size: 16px;
     font-weight: 500;
     gap: 8px;
 }
@@ -378,7 +381,6 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    font-size: 16px;
     line-height: 22px;
 }
 
@@ -403,6 +405,7 @@ body {
     color: var(--text-strong);
 }
 
+.option_main,
 .content_title:hover,
 .content_body_contents_item:hover {
     text-decoration: underline;
@@ -429,7 +432,6 @@ body {
 }
 
 .option_press {
-    font-weight: normal;
     color: var(--text-default);
     cursor: pointer;
 }
@@ -437,10 +439,6 @@ body {
 .option_press_active {
     font-weight: bold;
     color: var(--text-strong);
-}
-
-.option_main {
-    cursor: pointer;
 }
 
 .snack_bar_container {
@@ -457,7 +455,6 @@ body {
 
 .snack_bar_container p {
     color: var(--text-white-default);
-    font-size: 16px;
     font-weight: 500;
     margin: 0;
 }

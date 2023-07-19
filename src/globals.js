@@ -12,15 +12,17 @@ export const view_option = {
 export const grid_option = {
     press_data: [],
     page: 0,
+    subscribe_page: 0,
 };
 
 export const list_option = {
     page: 0,
+    subscribe_page: 0,
     category: 0,
     news_data: [],
     category_size: 7,
     progress_interval: new Object(),
-    progress_max: 20,
+    progress_max: 200,
     progress_time: 0,
 };
 

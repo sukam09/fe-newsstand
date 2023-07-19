@@ -1,17 +1,32 @@
-import { COL_SIZE, ROW_SIZE, ASSETS_IMAGE_PATH } from "../constants.js";
+import {
+    COL_SIZE,
+    ROW_SIZE,
+    ASSETS_IMAGE_PATH,
+    MAX_PAGE,
+} from "../constants.js";
 import { view_option } from "../globals.js";
 import { isSubscribed } from "../utils.js";
 
-function renderGridView(data, page, action) {
-    const grid_press_container = document.querySelector(".main_news_container");
-    grid_press_container.innerHTML = "";
-
-    createPressList(grid_press_container, data, page * 24);
-
-    action("grid", page);
+function renderGridView(options, data, page, toggleArrow) {
+    switch (options["target"]) {
+        case "all":
+            const grid_press_container = document.querySelector(
+                ".main_news_container"
+            );
+            grid_press_container.innerHTML = "";
+            createPressList(grid_press_container, data, page * 24);
+            toggleArrow(options["press"], page, MAX_PAGE);
+            break;
+        case "sub":
+            renderSubscribe(data, data.is_subscribe);
+            break;
+        default:
+            break;
+    }
 }
 
 function createPressList(container, data, idx) {
+    console.log(container, data, idx);
     for (let i = 0; i < COL_SIZE; i++) {
         let ul = document.createElement("ul");
         for (let j = 0; j < ROW_SIZE; j++) {
@@ -19,10 +34,14 @@ function createPressList(container, data, idx) {
             const subscribe = isSubscribed(item.name);
             ul.innerHTML += `
             <li class="press_data_container">
+                ${
+                    item.name === "empty"
+                        ? ``
+                        : `
                 <div class="press_data_item">
                     <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${
-                view_option.mode
-            }${item.url}" alt="${item.url}"/>
+                              view_option.mode
+                          }${item.url}" alt="${item.url}"/>
                     <button class="press_item content_subscribe press_back" name="${
                         item.name
                     }" is_subscribe="${subscribe}">
@@ -34,7 +53,8 @@ function createPressList(container, data, idx) {
                             <span>구독하기</span>`
                     }
                     </button>
-                </div>
+                </div>`
+                }
             </li>
             `;
             idx += 1;

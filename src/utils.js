@@ -46,7 +46,7 @@ export function setOptions(target) {
         main: view_option.main,
         press: view_option.press,
         mode: view_option.mode,
-        target: target,
+        target: target || "all",
     };
 }
 

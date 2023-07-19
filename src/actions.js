@@ -1,4 +1,10 @@
-import { MAX_PAGE, INTERVAL, DELAY, CATEGORYS } from "./constants.js";
+import {
+    MAX_PAGE,
+    INTERVAL,
+    DELAY,
+    CATEGORIES,
+    PROGRESS_DELAY,
+} from "./constants.js";
 import {
     fetchPressData,
     fetchNewsData,
@@ -18,11 +24,18 @@ import { renderListView } from "./views/list_views.js";
  */
 export function render(options, data, page) {
     if (options["main"] === "grid") {
-        renderGridView(data, page, toggleArrow);
+        if (options["press"] === "all") {
+            renderGridView(options, data, page, toggleArrow);
+        }
     }
 
     if (options["main"] === "list") {
-        renderListView(data.news_data, data.category, page, toggleArrow);
+        if (options["press"] === "all") {
+            renderListView(data.news_data, data.category, page);
+        } else {
+            renderListView(data.news_data, data.category, page);
+        }
+
         setProgress(options, "main_nav_progress", data);
     }
 }
@@ -73,16 +86,15 @@ export function clear(container, option) {
 export function setProgress(options, name, list_option) {
     const progress = document.querySelector(`.${name}`);
 
-    // 1초마다 1씩 증가
     list_option.interval = setInterval(() => {
         list_option.progress_time += 1;
-        if (list_option.progress_time === 21) {
+        if (list_option.progress_time === 200) {
             clearInterval(list_option.interval);
             list_option.progress_time = 0;
             handlePage("next", "list", options, list_option);
         }
         progress.value = list_option.progress_time;
-    }, 1000);
+    }, PROGRESS_DELAY);
 }
 
 /**
@@ -105,20 +117,26 @@ export function changeViewArrow(view) {
 
 /**
  * @description
- * 1. view에 따른 arrow의 display를 변경한다.
+ * 1. grid_view의 arrow display를 변경한다.
  * @param {*} mode
  * @param {*} page
  */
-function toggleArrow(mode, page) {
-    const left_arrow = document.querySelector(`.${mode}_left_arrow`);
-    const right_arrow = document.querySelector(`.${mode}_right_arrow`);
+function toggleArrow(mode, page, max) {
+    const left_arrow = document.querySelector(`.grid_left_arrow`);
+    const right_arrow = document.querySelector(`.grid_right_arrow`);
+
+    if (mode === "subscribe") {
+        left_arrow.style.display = "none";
+        right_arrow.style.display = "none";
+        return;
+    }
 
     switch (page) {
         case 0:
             left_arrow.style.display = "none";
             right_arrow.style.display = "block";
             break;
-        case MAX_PAGE:
+        case max:
             left_arrow.style.display = "block";
             right_arrow.style.display = "none";
             break;
@@ -144,7 +162,7 @@ export function useMovePage(direction, view, option) {
     if (view === "list" && direction === "next") {
         option.page = option.page + 1;
         if (
-            option.page >= option.news_data[CATEGORYS[option.category]].length
+            option.page >= option.news_data[CATEGORIES[option.category]].length
         ) {
             option.category =
                 option.category === option.category_size - 1
@@ -162,7 +180,7 @@ export function useMovePage(direction, view, option) {
                     ? option.category_size - 1
                     : option.category - 1;
             option.page =
-                option.news_data[CATEGORYS[option.category]].length - 1;
+                option.news_data[CATEGORIES[option.category]].length - 1;
         }
     }
 }
@@ -248,17 +266,18 @@ function updateBanner(banner, banner_time, loc) {
  * 3. action 으로 이동할 필요가 있음? (useMovePage)
  * @param {String} direction - prev, next
  * @param {String} view - grid, list
- * @param {view_option} view_option - view_option
  */
-export function handlePage(direction, view, view_option, select_option) {
+export function handlePage(direction, view, select_option, press) {
     if (view === "grid") {
         useMovePage(direction, view, select_option);
-
-        render(setOptions(), select_option.press_data, select_option.page);
+        const page =
+            press === "all" ? select_option.page : select_option.subscribe_page;
+        render(setOptions(), select_option.press_data, page);
     }
     if (view === "list") {
         useMovePage(direction, view, select_option);
-
-        render(setOptions(), select_option, select_option.page);
+        const page =
+            press === "all" ? select_option.page : select_option.subscribe_page;
+        render(setOptions(), select_option, page);
     }
 }

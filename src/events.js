@@ -1,4 +1,4 @@
-import { CATEGORYS, MAX_PAGE } from "./constants.js";
+import { CATEGORIES, MAX_PAGE } from "./constants.js";
 import {
     view_option,
     grid_option,
@@ -32,15 +32,32 @@ function subscribeOptionEvent() {
     const option_press = document.querySelectorAll(".option_press");
     option_press.forEach((option) => {
         option.addEventListener("click", (e) => {
+            const main = setOptions().main;
             view_option.press = option.id.split("_")[1];
             if (option.id === "option_all_press") {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_subscribe_press").className =
-                    "option_press option_press_inactive";
+                    "option_press";
+
+                clear("main_news_container", list_option);
+
+                changeViewArrow(view_option.main);
+                render(setOptions(), grid_option.press_data, grid_option.page);
+                togglePressEvent();
             } else {
                 option.className = "option_press option_press_active";
                 document.getElementById("option_all_press").className =
-                    "option_press option_press_inactive";
+                    "option_press";
+
+                clear("main_news_container", list_option);
+
+                const sub_data = grid_option.press_data.filter((press) => {
+                    return subscribe_option.subscribe_press[press["name"]];
+                });
+
+                changeViewArrow(view_option.main);
+                render(setOptions(), sub_data, grid_option.subscribe_page);
+                togglePressEvent();
             }
         });
     });
@@ -103,23 +120,23 @@ function arrowPagingEvent() {
 
     grid_left_arrow.addEventListener("click", () => {
         if (grid_option.page <= 0) return;
-        handlePage("prev", "grid", view_option, grid_option);
+        handlePage("prev", "grid", grid_option, view_option.press);
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
         if (grid_option.page >= length) return;
-        handlePage("next", "grid", view_option, grid_option);
+        handlePage("next", "grid", grid_option, view_option.press);
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        handlePage("prev", "list", view_option, list_option);
+        handlePage("prev", "list", list_option, view_option.press);
         changeCategoryEvent(list_option.news_data);
     });
 
     list_right_arrow.addEventListener("click", () => {
-        handlePage("next", "list", view_option, list_option);
+        handlePage("next", "list", list_option, view_option.press);
         changeCategoryEvent(list_option.news_data);
     });
 }
@@ -204,10 +221,10 @@ function toggleSubscribeEvent() {
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = setSnackBar();
 
-            renderSubscribe(press, press.is_subscribe);
-            /*
-                 render(view_option, grid_option);
-            */
+            // renderSubscribe(press, press.is_subscribe);
+
+            render(setOptions("sub"), press);
+
             if (!press.is_subscribe) {
                 renderSnackBarView(snack_bar, false);
                 /*
@@ -236,7 +253,7 @@ function changeCategoryEvent(data) {
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            list_option.category = CATEGORYS.indexOf(item.innerText);
+            list_option.category = CATEGORIES.indexOf(item.innerText);
 
             render(setOptions(), list_option, list_option.page);
             changeCategoryEvent(data);
@@ -277,7 +294,7 @@ async function initEvent() {
 
         grid_option.press_data = data["press_data"];
 
-        CATEGORYS.forEach((item) => {
+        CATEGORIES.forEach((item) => {
             list_option.news_data[item] = data["news_data"].filter(
                 (news) => news.category === item
             );
