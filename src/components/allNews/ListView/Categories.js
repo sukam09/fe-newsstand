@@ -97,6 +97,9 @@ export default class Categories {
     }, PROGRESS_SPEED);
   }
 
+  /**
+   * 다음 페이지로 이동
+   */
   goNextNews(page) {
     this.goNextPage(page);
   }

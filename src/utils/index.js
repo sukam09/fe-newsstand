@@ -22,4 +22,10 @@ function shufflePressOrder() {
   return array;
 }
 
-export { getTodayDate, shufflePressOrder };
+async function fetchData(url) {
+  const response = await fetch(url);
+  const pressData = await response.json();
+  return pressData;
+}
+
+export { getTodayDate, shufflePressOrder, fetchData };
