@@ -15,14 +15,16 @@ const initPressList = (pressData, categoryList) => {
   setListNav(categoryList);
 
   // setListArrow(); // 기능 추가 전
-  setCategoryShuffle(pressData, categoryList);
+  setListShuffle(pressData, categoryList);
+  setListArticle();
+  LIST.PAGE_COUNT += 1;
 
-  //
-  setCategoryArticle();
-  LIST.PAGE_COUNT += 1; //?
   setProgressBar();
   setProgressBarClick();
   setProgressBarEvent();
+
+  setArrowRight();
+  setArrowLeft();
 };
 
 /**
@@ -106,7 +108,38 @@ const setListNav = (categoryList) => {
   });
 };
 
-////////////////////////////////////////////
+/**
+ * 언론사 리스트의 Article
+ */
+const setListShuffle = (pressData, categoryList) => {
+  categoryList.forEach((category) => {
+    let categoryFilter = pressData.filter((press) => press.categoryName === category);
+    if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
+    LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
+  });
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
+};
+
+const setListArticle = () => {
+  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
+
+  // 다크모드는 나중에 처리하자
+  const sectionMain = document.querySelector('.press-category__section-main');
+  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
+  sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
+  sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
+
+  const sectionSub = document.querySelector('.press-category__section-sub');
+  const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
+  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
+  sectionSubList.forEach((sub, subIdx) => {
+    sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
+    sub.href = categoryArticle.categorySubTitle[subIdx].link;
+  });
+};
+
 /**
  * 언론사 리스트의 Progress Bar
  */
@@ -168,7 +201,7 @@ const setProgressBarEvent = () => {
 };
 
 const getProgressBarEvent = (progressNow, progressSum) => {
-  setCategoryArticle();
+  setListArticle();
   const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
   const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
   progressNow.innerText = LIST.PAGE_COUNT;
@@ -216,326 +249,61 @@ const setFirstCategory = () => {
   addDiv.classList.remove('none');
 };
 
-//////////////////////////////////////////////////////
-
-const setCategoryArticle = () => {
-  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
-
-  // 다크모드는 나중에 처리하자
-  const sectionMain = document.querySelector('.press-category__section-main');
-  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
-  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
-  sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
-  sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
-
-  const sectionSub = document.querySelector('.press-category__section-sub');
-  const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
-  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
-  sectionSubList.forEach((sub, subIdx) => {
-    sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
-    sub.href = categoryArticle.categorySubTitle[subIdx].link;
-  });
-};
-
-const setCategoryShuffle = (pressData, categoryList) => {
-  categoryList.forEach((category) => {
-    let categoryFilter = pressData.filter((press) => press.categoryName === category);
-    if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
-    LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
-  });
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
-};
-
-/**
- * 
- * 
- * 
- * 
- * 
- * 아래는 수정해야할코드
-
- * 
- * 
- * 
- * 
- */
-
-/**
- * 언론사 리스트의 화살표
- */
-const setListArrow = () => {
-  const arrowLeft = document.querySelector(`.arrows-category__img-left`);
-  const arrowRight = document.querySelector(`.arrows-category__img-right`);
-  arrowLeft.addEventListener('click', () => {
-    if (LIST.PAGE_COUNT <= 0) {
-      if (LIST.CATEGORY_COUNT <= 0) {
-        console.log('체크', LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-
-        // LIST.CATEGORY_COUNT -= 1;
-        // LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; //페이지 길이설정
-        // LIST.PAGE_COUNT = LIST.PAGE_LENTH;
-
-        // console.log('체크', LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-      }
-    }
-    // 페이지 카운트가 큰 경우
-    if (LIST.PAGE_COUNT > 0) {
-      console.log('체크', LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-
-      LIST.PAGE_COUNT -= 2;
-      setCategoryArticle();
-      LIST.PAGE_COUNT += 1;
-      setCategory();
-    }
-
-    // // 페이지 카운트가 작은 경우
-    // if (LIST.PAGE_COUNT <= 0) {
-    //   console.log(LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-    //   // 카테고리 카운트 넉넉
-    //   if (LIST.CATEGORY_COUNT > 0) {
-    //     LIST.CATEGORY_COUNT -= 1;
-    //     LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; //페이지 길이설정
-    //     LIST.PAGE_COUNT = LIST.PAGE_LENTH;
-    //   }
-    //   if (LIST.CATEGORY_COUNT <= 0) {
-    //     LIST.CATEGORY_COUNT = LIST.CATEGORY_LENGTH - 1; // 카테고리 초기화
-    //     LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
-    //     LIST.PAGE_COUNT = LIST.PAGE_LENTH - 1;
-    //   }
-    //   setCategoryArticle();
-    //   setCategory();
-    // }
-  });
-
-  // 이벤트 설정
-};
-
-///////////////////////////////////////////////////////////////
-
-/**
- * 언론사 그리드의 카테고리
- * 셋인터벌 수정하기
-//  */
-// const setCategory = () => {
-//   clearInterval(LIST.PAGE_INTERVAL);
-
-//   LIST.PAGE_INTERVAL = setInterval(() => {
-//     console.log(LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-//     setCategoryArticle();
-
-//     // 페이지 카운트가 넘어갈때
-//     if (LIST.PAGE_COUNT < LIST.PAGE_LENTH) {
-//       LIST.PAGE_COUNT += 1;
-//     }
-//     // 페이지 카운트가 안넘어갈때
-//     if (LIST.PAGE_COUNT >= LIST.PAGE_LENTH) {
-//       // 카테고리 길이가 넘어갈때
-//       if (LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH) {
-//         LIST.CATEGORY_COUNT += 1; // 카테고리 증가
-//         LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
-//         LIST.PAGE_COUNT = 0; // 페이지 초기화
-//       }
-//       // 카테고리 길이가 안넘어갈때
-//       if (LIST.CATEGORY_COUNT >= LIST.CATEGORY_LENGTH) {
-//         LIST.CATEGORY_COUNT = 0;
-//         LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
-//         LIST.PAGE_COUNT = 0; // 페이지 초기화
-//       }
-//     }
-//   }, 3000);
-// };
-
-///////////////////////////////////////////////////////////////
-
-/**
- * List 화살표 넘겨주기
- */
-const setPressArrowElement = (initCategoryArticleList) => {
-  const arrowRight = document.querySelector('.press__wrapper-list .arrows__img-right');
-
+const setArrowRight = () => {
+  const arrowRight = document.querySelector('.arrows-category__img-right');
   arrowRight.addEventListener('click', () => {
-    currentCategory += 1;
-    const currentLi = document.querySelector('.progress-start');
-    const nextLi = currentLi.nextElementSibling;
+    const progressStart = document.querySelector('.progress-start');
+    const progressStartClone = progressStart.cloneNode(true);
+    progressStart.parentNode.replaceChild(progressStartClone, progressStart);
+    const progressNow = progressStartClone.querySelector('.press-category__div-now');
+    const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
-    currentLi.classList.remove('progress-start');
-    nextLi.classList.add('progress-start');
-    currentLi.querySelector('.press-category__div').classList.add('none');
-    nextLi.querySelector('.press-category__div').classList.remove('none');
+    const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
+    const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
+    progressNow.innerText = LIST.PAGE_COUNT;
+    progressSum.innerText = LIST.PAGE_LENTH;
 
-    ///
-    const sectionMain = document.querySelector('.press-category__section-main');
-    sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[currentCategory].logoSrc;
-    sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[currentCategory].editTime;
-    sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[currentCategory].imgSrc;
-    sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[currentCategory].mainTitle;
+    if (PAGE) setNextPage(progressNow);
+    if (!PAGE && CATEGORY) setNextCategory();
+    if (!PAGE && !CATEGORY) setFirstCategory();
 
-    const sectionSub = document.querySelector('.press-category__section-sub');
-    const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
-    sectionSub.querySelector('.section-sub__footer-press').innerText = initCategoryArticleList[currentCategory].name;
-
-    sectionSubList.forEach((sub, subIdx) => {
-      sub.href = initCategoryArticleList[currentCategory].subTitleList[subIdx].link;
-      sub.innerText = initCategoryArticleList[currentCategory].subTitleList[subIdx].title;
-    });
+    setListArticle();
   });
 };
 
-/**
- * 카테고리 별 다음 언론사 화면으로 넘어가기
- */
-const setPressCategoryArticleNext = (categoryData, shufflePressList) => {
-  const imgList = document.querySelector('.press__img-list');
-  const imgGrid = document.querySelector('.press__img-grid');
-  const liList = document.querySelectorAll('.press-category__li');
-  let interval;
+const setArrowLeft = () => {
+  const arrowLeft = document.querySelector('.arrows-category__img-left');
+  arrowLeft.addEventListener('click', () => {
+    const progressStart = document.querySelector('.progress-start');
+    const progressStartClone = progressStart.cloneNode(true);
+    progressStart.parentNode.replaceChild(progressStartClone, progressStart);
+    const progressNow = progressStartClone.querySelector('.press-category__div-now');
+    const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
-  imgList.addEventListener('click', () => {
-    interval = setInterval(() => {
-      const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
-      setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-    }, 20000);
-  });
+    ///////////
+    const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
+    const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
+    progressNow.innerText = LIST.PAGE_COUNT;
+    progressSum.innerText = LIST.PAGE_LENTH;
 
-  imgGrid.addEventListener('click', () => {
-    clearInterval(interval);
-    const addLi = document.querySelector('.press-category__ul').firstElementChild;
-    const removeLi = document.querySelector('.progress-start');
-    const addDiv = removeLi.querySelector('.press-category__div');
-    const removeDiv = addLi.querySelector('.press-category__div');
+    if (PAGE) setNextPage(progressNow);
+    if (!PAGE && CATEGORY) setNextCategory();
+    if (!PAGE && !CATEGORY) setFirstCategory();
 
-    removeLi.classList.remove('progress-start');
-    addDiv.classList.add('none');
-    addLi.classList.add('progress-start');
-    removeDiv.classList.remove('none');
-  });
-
-  liList.forEach((li) => {
-    li.addEventListener('click', () => {
-      clearInterval(interval);
-      interval = setInterval(() => {
-        const [categoryArticleList, shuffleArticle, divNow] = getPressCategoryArticle(categoryData, shufflePressList);
-        setPressCategoryArticle(categoryArticleList, shuffleArticle, divNow);
-      }, 20000);
-      currentArticle = 0;
-    });
+    setListArticle();
   });
 };
 
-/**
- * 카테고리 별 랜덤 언론사 화면 가져오기
- */
-const getPressCategoryArticle = (categoryData, shufflePressList) => {
-  const li = document.querySelector('.progress-start');
-
-  const categoryName = li.querySelector('.press-category__p').innerText;
-  const divNow = li.querySelector('.press-category__div-now');
-  const categoryArticle = categoryData.filter((data) => data.categoryName === categoryName)[0];
-  const shuffleArticle = shufflePressList.filter((_, idx) => categoryArticle.categoryId === idx)[0];
-  const categoryArticleList = categoryArticle.categoryData;
-
-  return [categoryArticleList, shuffleArticle, divNow];
+const setPrevPage = (progressNow) => {
+  //
 };
 
-/**
- * 카테고리 별 랜덤 언론사 화면 넘겨주기
- */
-const setPressCategoryArticle = (categoryArticleList, shuffleArticle, divNow) => {
-  currentArticle += 1;
-
-  if (currentArticle + 1 > categoryArticleList.length) {
-    currentArticle = 0;
-    currentCategory += 1;
-
-    const removeLi = document.querySelector('.progress-start');
-    const addDiv = removeLi.querySelector('.press-category__div');
-    const addLi = removeLi.nextElementSibling
-      ? removeLi.nextElementSibling
-      : document.querySelector('.press-category__ul').firstElementChild;
-    const removeDiv = addLi.querySelector('.press-category__div');
-
-    removeLi.classList.remove('progress-start');
-    addDiv.classList.add('none');
-    addLi.classList.add('progress-start');
-    removeDiv.classList.remove('none');
-  }
-
-  let changeIdx = shuffleArticle[currentArticle];
-  const sectionMain = document.querySelector('.press-category__section-main');
-
-  sectionMain.querySelector('.section-main__img-logo').src = categoryArticleList[changeIdx].logoSrc;
-  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticleList[changeIdx].editTime;
-  sectionMain.querySelector('.section-main__img-article').src = categoryArticleList[changeIdx].imgSrc;
-  sectionMain.querySelector('.section-main__h2').innerText = categoryArticleList[changeIdx].mainTitle;
-
-  const sectionSub = document.querySelector('.press-category__section-sub');
-  const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
-  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticleList[changeIdx].name;
-
-  sectionSubList.forEach((sub, subIdx) => {
-    sub.href = categoryArticleList[changeIdx].subTitleList[subIdx].link;
-    sub.innerText = categoryArticleList[changeIdx].subTitleList[subIdx].title;
-  });
-
-  divNow.innerText = currentArticle + 1;
+const setPrevCategory = () => {
+  //
 };
 
-/**
- * 카테고리 별 랜덤 언론사 화면 가져오기
- */
-const getPressCategoryArticleInit = (categoryData, shufflePressList) => {
-  const liList = document.querySelectorAll('.press-category__li');
-
-  const initCategoryArticleList = [...liList].map((li) => {
-    const categoryName = li.querySelector('.press-category__p').innerText;
-    const categoryArticle = categoryData.filter((data) => data.categoryName === categoryName)[0];
-    const shuffleArticle = shufflePressList.filter((_, idx) => categoryArticle.categoryId === idx)[0];
-
-    const initShuffleArticle = shuffleArticle[0];
-    const initCategoryArticle = categoryArticle.categoryData[initShuffleArticle];
-
-    return initCategoryArticle;
-  });
-
-  return initCategoryArticleList;
-};
-
-/**
- * 카테고리 별 랜덤 언론사 화면 적용하기
- */
-const setPressCategoryArticleInit = (initCategoryArticleList) => {
-  const liList = document.querySelectorAll('.press-category__li');
-
-  liList.forEach((li, liIdx) => {
-    li.addEventListener('click', () => {
-      const sectionMain = document.querySelector('.press-category__section-main');
-      sectionMain.querySelector('.section-main__img-logo').src = initCategoryArticleList[liIdx].logoSrc;
-      sectionMain.querySelector('.section-main__edit-time').innerText = initCategoryArticleList[liIdx].editTime;
-      sectionMain.querySelector('.section-main__img-article').src = initCategoryArticleList[liIdx].imgSrc;
-      sectionMain.querySelector('.section-main__h2').innerText = initCategoryArticleList[liIdx].mainTitle;
-
-      const sectionSub = document.querySelector('.press-category__section-sub');
-      const sectionSubList = sectionSub.querySelectorAll('.press-category__a-sub');
-      sectionSub.querySelector('.section-sub__footer-press').innerText = initCategoryArticleList[liIdx].name;
-
-      sectionSubList.forEach((sub, subIdx) => {
-        sub.href = initCategoryArticleList[liIdx].subTitleList[subIdx].link;
-        sub.innerText = initCategoryArticleList[liIdx].subTitleList[subIdx].title;
-      });
-    });
-  });
-};
-
-const getPressList = (categoryData) => {
-  const shfflePressList = [];
-  categoryData.forEach((data) => {
-    let shufflePress = Array.from({ length: data.categoryData.length }, (_, idx) => idx);
-    shuffleList(shufflePress);
-    shfflePressList.push(shufflePress);
-  });
-
-  return shfflePressList;
+const setLastCategory = () => {
+  //
 };
 
 export { initPressList };
