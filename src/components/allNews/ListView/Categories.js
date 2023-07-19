@@ -1,9 +1,13 @@
+import { CATEGORIES_COUNT, PROGRESS_SPEED } from "../../../constants/index.js";
+import PressNews from "./PressNews.js";
+
 export default class Categories {
   constructor(pressData) {
     this.$wrapper = document.createElement("ul");
     this.$wrapper.className = "categories-wrapper";
 
     this.pressData = pressData;
+
     this.categories = {
       "종합/경제": { id: 0, currentPage: 1 },
       "방송/통신": { id: 1, currentPage: 1 },
@@ -14,9 +18,8 @@ export default class Categories {
       지역: { id: 6, currentPage: 1 },
     };
 
-    this.CATEGORIES_COUNT = 7;
-    this.currentCategory = 0;
     this.interval;
+    this.currentCategory = 0;
 
     this.filterData();
     this.handleProgress();
@@ -83,13 +86,19 @@ export default class Categories {
         this.categories[targetCategory].currentPage
       ) {
         this.currentCategory += 1;
-        if (this.currentCategory === this.CATEGORIES_COUNT) {
+        if (this.currentCategory === CATEGORIES_COUNT) {
           this.currentCategory = 0;
           this.setCurrentPage();
         }
       }
       this.render();
-    }, 1000);
+      this.goNextNews.call(new PressNews(this.pressData), page); //
+    }, PROGRESS_SPEED);
+  }
+
+  //
+  goNextNews(page) {
+    this.goNextPage(page);
   }
 
   /**

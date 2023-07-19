@@ -16,6 +16,6 @@ export default class ListView {
     const pressData = await response.json();
 
     this.$wrapper.appendChild(new Categories(pressData));
-    this.$wrapper.appendChild(new PressNews(pressData));
+    this.$wrapper.appendChild(new PressNews(pressData).$wrapper);
   }
 }

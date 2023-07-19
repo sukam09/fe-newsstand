@@ -17,7 +17,7 @@ function getTodayDate() {
 }
 
 function shufflePressOrder() {
-  const array = Array.from({ length: 96 }, (v, idx) => idx);
+  const array = Array.from({ length: 96 }, (v, idx) => idx + 1);
   array.sort(() => Math.random() - 0.5);
   return array;
 }
