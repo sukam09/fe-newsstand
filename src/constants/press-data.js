@@ -7,9 +7,12 @@ const STATE = {
 };
 
 const LIST = {
-  PAGE: 0,
+  CATEGORY_LENGTH: 0,
+  CATEGORY_COUNT: 0,
   PAGE_LENTH: 0,
   PAGE_COUNT: 0,
+  PAGE_INTERVAL: 0,
+  SUFFLE_CATEGORY: [],
   SUFFLE_ID: getShuffleIds(96),
   SUBSCRIBE_ID: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   CATEGORY_NAME: ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'],

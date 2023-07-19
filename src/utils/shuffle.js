@@ -11,4 +11,4 @@ const getSliceIds = (shuffleIds, pageNum, sliceNum) => {
   return shuffleIds.slice(pageNum * sliceNum, pageNum * sliceNum + sliceNum);
 };
 
-export { getShuffleIds, getSliceIds };
+export { getShuffle, getShuffleIds, getSliceIds };
