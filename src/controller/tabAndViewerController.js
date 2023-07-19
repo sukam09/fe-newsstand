@@ -26,6 +26,8 @@ function moveAllPress() {
 }
 
 function moveSubPress() {
+  if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) return;
+
   resetPage();
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
