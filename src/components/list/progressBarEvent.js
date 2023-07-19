@@ -16,7 +16,7 @@ export const progress_bar_info = (function () {
 
     // interval 재시작
     function startInterval() {
-        if (interval) removeInterval();
+        removeInterval();
         interval = window.setInterval(() => {
             changePageNum(true).then(() => {
                 renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
@@ -72,6 +72,7 @@ export const progress_bar_info = (function () {
     // DOM 초기화
     function initProgressBar(props) {
         setValue(props).then(() => {
+            console.log(category_now, category_old, page_num);
             changeProgressBar();
             renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
             startInterval();

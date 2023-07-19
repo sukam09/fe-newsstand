@@ -92,7 +92,7 @@ function createPressInfo(press_src, press_edit_date, is_subscribe) {
     const $subscribe_btn =
         is_subscribe === class_name.SUBSCRIBE
             ? btnFactory.create({ type: "closed" }).getButton()
-            : btnFactory.create({ type: "subscribe" }).getButton();
+            : btnFactory.create({ type: "subscribe", isSubscribe: true }).getButton();
 
     $container.append($img, $edit_date, $subscribe_btn);
     return $container;

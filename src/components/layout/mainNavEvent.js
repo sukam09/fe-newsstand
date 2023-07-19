@@ -43,15 +43,15 @@ const view_info_tmp = (function () {
         const list_sub_view = document.querySelector(`.${class_name.LIST_SUBSCRIBE_VIEW}`);
 
         if (is_subscribe_view) {
-            entire_btn.classList.remove("selected-bold16"),
-                entire_btn.classList.add("available-medium16"),
-                subscribe_btn.classList.remove("available-medium16"),
-                subscribe_btn.classList.add("selected-bold16");
+            entire_btn.classList.remove("selected-bold16");
+            entire_btn.classList.add("available-medium16");
+            subscribe_btn.classList.remove("available-medium16");
+            subscribe_btn.classList.add("selected-bold16");
         } else {
-            subscribe_btn.classList.remove("selected-bold16"),
-                subscribe_btn.classList.add("available-medium16"),
-                entire_btn.classList.remove("available-medium16"),
-                entire_btn.classList.add("selected-bold16");
+            subscribe_btn.classList.remove("selected-bold16");
+            subscribe_btn.classList.add("available-medium16");
+            entire_btn.classList.remove("available-medium16");
+            entire_btn.classList.add("selected-bold16");
         }
 
         if (is_grid_view) {
@@ -70,7 +70,11 @@ const view_info_tmp = (function () {
             grid_icon.style.filter = "none";
             grid_entire_view.style.display = "none";
             grid_sub_view.style.display = "none";
-            progress_bar_info.initProgressBar({ category_old: 1, category_now: 1, page_num: 1 });
+            progress_bar_info.initProgressBar({
+                category_old: progress_bar_info.getCategoryNow(),
+                category_now: 1,
+                page_num: 1,
+            });
             is_subscribe_view
                 ? ((list_entire_view.style.display = "none"), (list_sub_view.style.display = "flex"))
                 : ((list_entire_view.style.display = "flex"), (list_sub_view.style.display = "none"));
