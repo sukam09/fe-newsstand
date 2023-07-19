@@ -221,10 +221,10 @@ function toggleSubscribeEvent() {
                 */
                 subscribe_option.subscribe_press[press.name] = true;
             }
-            debugger;
         });
     });
 }
+
 /**
  * @description
  * 1. 카테고리 변경 이벤트
