@@ -1,6 +1,7 @@
 import { SNACKBAR_DURATION } from "../../../constants/index.js";
 import Icon from "../../common/Icon.js";
 import Logo from "../../common/Logo.js";
+import { createSubscribeButton } from "../SubscribeButton.js";
 
 export default class AllNewsList {
   constructor(name) {
@@ -25,7 +26,7 @@ export default class AllNewsList {
   showSubButton(event) {
     const li = event.target;
     li.replaceChildren();
-    li.appendChild(this.createSubscribeButton());
+    li.appendChild(createSubscribeButton());
   }
 
   hideSubButton(event, name) {
@@ -38,22 +39,6 @@ export default class AllNewsList {
   createLogoImage(name) {
     const $logoImg = new Logo({ name });
     return $logoImg;
-  }
-
-  /** 구독 버튼 요소 생성 */
-  createSubscribeButton() {
-    const $subButton = document.createElement("button");
-    const $plusIcon = new Icon({ name: "plus" });
-    const $text = document.createElement("span");
-    $subButton.classList.add("pressInfo-subButton");
-
-    $text.innerText = "구독하기";
-    $subButton.appendChild($plusIcon);
-    $subButton.appendChild($text);
-
-    $subButton.addEventListener("click", (e) => this.handleClickSubBtn(e));
-
-    return $subButton;
   }
 
   handleClickSubBtn(event) {
