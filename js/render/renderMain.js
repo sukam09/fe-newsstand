@@ -9,8 +9,6 @@ import { categoryCnt } from "../setData.js/setCategoryData.js";
 const a = [{ key: "중앙일보" }, { key: "SBS뉴스" }];
 const renderMain = (subscribeStatus, pageMode) => {
   console.log(subscribeStatus, pageMode);
-  console.log(Stores.getPageMode(), Stores.getSubscribed());
-  clickGridCardList(logo, news);
   if (subscribeStatus === "all") renderAll(pageMode);
   else renderSubscribe(pageMode);
 };

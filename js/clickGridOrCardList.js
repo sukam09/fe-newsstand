@@ -5,7 +5,7 @@ import Stores from "./core/Store.js";
 const gridMain = document.getElementById("main-grid");
 const listMain = document.getElementById("main-list");
 
-const clickGridCardList = (logo, news) => {
+const clickGridCardList = () => {
   const clickGridImage = () => {
     const gridImage = document.getElementById("grid-image");
     gridImage.addEventListener("click", (e) => {
@@ -31,7 +31,6 @@ const clickGridCardList = (logo, news) => {
       listMain.style.display = "flex";
       removeArrow();
       Stores.setPageMode("cardList");
-      console.log(Stores.getSubscribed());
       renderMain(Stores.getSubscribed(), Stores.getPageMode());
     });
   };
