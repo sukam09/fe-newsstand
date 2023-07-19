@@ -1,8 +1,8 @@
-import { getSubscribedPress, parentCallback } from "../sections/mainView.js";
+import { store } from "../core/store.js";
 import { SNACKBAR_WAIT_TIME } from "../constants/constants.js";
-
-function handleClick(e, subscribedPress, press) {
-  subscribedPress = getSubscribedPress();
+import { getPage } from "../core/getter.js";
+const subscribedPress = store.state.subscribedPress;
+function handleClick(e, press) {
   let btn_target = e.target.closest("button");
   const button = document.querySelector(".sub");
   const press_news = document.querySelector(".press-news");
@@ -22,15 +22,12 @@ function handleClick(e, subscribedPress, press) {
       </div>`;
       press_news.appendChild(newDiv);
       const btn = document.querySelector(".buttons");
-      btn.addEventListener("click", (e) =>
-        checkAnswer(e, subscribedPress, press)
-      );
+      btn.addEventListener("click", (e) => checkAnswer(e, press));
     }
     //구독하지 않았을 때 => 구독됨
     else {
       //추가
-      const updateSubscribedPress = [...subscribedPress, press];
-      subscribedPress = updateSubscribedPress;
+      store.state.subscribedPress.push(press);
       //스낵바
       newDiv.classList.add("popup", "snackbar");
       newDiv.textContent = "내가 구독한 언론사에 추가되었습니다.";
@@ -38,8 +35,6 @@ function handleClick(e, subscribedPress, press) {
       //구독한 상태로 바뀜
       //버튼 변경
       button.innerHTML = showSubscribeButton(!isSubscribed);
-      //부모에도 전달
-      parentCallback(subscribedPress);
       // newDiv.addEventListener("animationend", handleAnimationEnd);
     }
   }
@@ -51,18 +46,16 @@ function handleClick(e, subscribedPress, press) {
 //   }, SNACKBAR_WAIT_TIME);
 // }
 
-function checkAnswer(e, subscribedPress, press) {
+function checkAnswer(e, press) {
   const button = document.querySelector(".sub");
   const target = e.target.closest("button");
   const alert = document.querySelector(".alert");
   alert.style.display = "none";
   if (target.classList.contains("btn-yes")) {
     console.log("yes");
-    const updatedPress = subscribedPress.filter((item) => item !== press);
-    subscribedPress = updatedPress;
+    store.state.subscribedPress.push(press);
     showSubscribeButton(subscribedPress, press);
     button.innerHTML = showSubscribeButton(subscribedPress.includes(press));
-    parentCallback(subscribedPress);
   } else {
     console.log("no");
   }
@@ -82,19 +75,20 @@ function showSubscribeButton(isSubscribed) {
       `;
 }
 
-export function drawPressInfo(order, list_content, list, subscribedPress) {
-  subscribedPress = getSubscribedPress();
+export function drawPressInfo(list_content) {
   const press_news = document.querySelector(".press-news");
-  const isSubscribed = subscribedPress.includes(list_content[order - 1].name);
+  const isSubscribed = subscribedPress.includes(
+    list_content[getPage() - 1].name
+  );
   const button = showSubscribeButton(isSubscribed);
   try {
     press_news.innerHTML = `<div class="press-info">
     <img
       id="press-logo"
       alt="press-logo"
-      src="${list_content[order - 1].src}"
+      src="${list_content[getPage() - 1].src}"
     />
-    <span class="edit-date">${list_content[order - 1].edit_date} 편집</span>
+    <span class="edit-date">${list_content[getPage() - 1].edit_date} 편집</span>
     <div class="sub">${button}</div>
   </div>`;
     const newDiv = document.createElement("div");
@@ -102,7 +96,7 @@ export function drawPressInfo(order, list_content, list, subscribedPress) {
     press_news.appendChild(newDiv);
     const sub_btn = document.querySelector(".press-info .sub");
     sub_btn.addEventListener("click", (e) => {
-      handleClick(e, subscribedPress, list_content[order - 1].name);
+      handleClick(e, list_content[getPage() - 1].name);
     });
   } catch {}
 }

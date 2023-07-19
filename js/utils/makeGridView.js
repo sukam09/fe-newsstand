@@ -1,5 +1,6 @@
 import { PRESS_CNT, PRESS_VIEW_COUNT } from "../constants/constants.js";
-import { parentCallback } from "../sections/mainView.js";
+import { store } from "../core/store.js";
+import { getPage } from "../core/getter.js";
 const imgIndex = Array(PRESS_CNT)
   .fill()
   .map((arr, i) => i + 1);
@@ -26,14 +27,14 @@ function handleEvent(event, img, button) {
     li.style.backgroundColor = "var(--surface-default)";
   }
 }
-export function showGridView(page) {
+export function showGridView() {
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
   main_list_ul.innerHTML = "";
   for (
-    let i = PRESS_VIEW_COUNT * (page - 1);
-    i < PRESS_VIEW_COUNT * page;
+    let i = PRESS_VIEW_COUNT * (getPage() - 1);
+    i < PRESS_VIEW_COUNT * getPage();
     i++
   ) {
     const li = document.createElement("li");
