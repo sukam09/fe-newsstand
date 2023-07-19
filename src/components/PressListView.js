@@ -1,4 +1,4 @@
-import { fetchListView, fetchPressItem } from '../api.js';
+import { fetchPressInfo, fetchListView } from '../api.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
@@ -35,14 +35,23 @@ export default function PressListView({ $target, initialState }) {
 
   const { categories } = this.state;
 
-  const initListView = async (index, present) => {
-    const { entire, materials, pid, regDate } = await fetchListView(index, present);
-    const { name, logo } = await fetchPressItem(parseInt(pid, 10));
+  const initListView = async () => {
+    const { index, listViewData } = this.state;
+
+    const entire = listViewData[index].length;
+    const present = this.state.present === 0 ? entire : this.state.present;
+
+    const newsData = listViewData[index][present - 1];
+    const { materials, pid, regDate } = newsData;
     const mainNews = materials[0];
+
+    const pressInfoData = await fetchPressInfo();
+    const { logo, name } = pressInfoData.find(press => press.id === parseInt(pid, 10));
 
     this.setState(
       {
         ...this.state,
+        present,
         entire,
         pressLogo: logo,
         pressName: name,
@@ -110,13 +119,14 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickLeftButton = () => {
-    const { present, entire } = this.state;
+    const { index, present } = this.state;
+    const prevIndex = (index - 1 + CATEGORY_NUMBERS) % CATEGORY_NUMBERS;
 
     if (present === 1) {
       this.setState({
         ...this.state,
-        index: (this.state.index + CATEGORY_NUMBERS - 1) % CATEGORY_NUMBERS,
-        present: entire,
+        index: prevIndex,
+        present: 0,
       });
     } else {
       this.setState({
@@ -127,12 +137,13 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickRightButton = () => {
-    const { present, entire } = this.state;
+    const { index, present, entire } = this.state;
+    const nextIndex = (index + 1) % CATEGORY_NUMBERS;
 
     if (present === entire) {
       this.setState({
         ...this.state,
-        index: (this.state.index + 1) % CATEGORY_NUMBERS,
+        index: nextIndex,
         present: 1,
       });
     } else {
@@ -148,6 +159,8 @@ export default function PressListView({ $target, initialState }) {
   this.render = async () => {
     if (!isInit) {
       initFieldTab();
+      const listViewData = await fetchListView();
+      this.setState({ ...this.state, listViewData }, false);
 
       $leftButton.addEventListener('click', handleClickLeftButton);
       $rightButton.addEventListener('click', handleClickRightButton);
@@ -155,7 +168,7 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
-    await initListView(this.state.index, this.state.present);
+    await initListView();
 
     const { index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
       this.state;
