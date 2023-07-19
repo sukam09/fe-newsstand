@@ -131,6 +131,11 @@ const onClickGridMode = ({ className }) => {
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
 const setNewPage = (start, end) => {
+  if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
+    alert("구독중인 언론사가 없습니다!!");
+    onClickSubscribeMode({ className: "main-nav_total" });
+    return;
+  }
   changeButtonView(start);
   changeImgSrc(start, end);
   setArrowVisible();

@@ -296,6 +296,11 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
+  if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
+    alert("구독중인 언론사가 없습니다!!");
+    onClickSubscribeMode({ className: "main-nav_total" });
+    return;
+  }
   changeIdx();
   setListView();
   setProgressBar();

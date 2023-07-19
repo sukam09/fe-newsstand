@@ -95,10 +95,6 @@ const moveGridView = () => {
  * 리스트뷰로 이동할 수 있는 함수
  */
 const moveListView = () => {
-  if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
-    alert("구독한 언론사가 없습니다!!!");
-    return;
-  }
   $gridIcon.src = IMAGE.GRAY_GRID_ICON;
   $listIcon.src = IMAGE.BLUE_LIST_ICON;
 
@@ -127,13 +123,6 @@ const onClickSubscribeMode = ({ className }) => {
   const $unselected =
     className === "main-nav_total" ? $subscribeMedia : $totalMedia;
 
-  if (className === "main-nav_subscribe" && STATE.SUBSCRIBE_LIST.length === 0) {
-    STATE.MODE.IS_TOTAL = true;
-    alert("구독한 언론사가 없습니다!!!");
-    onClickListMode({ className: "main-nav_total" });
-    return;
-  }
-
   $selected.classList.remove("main-nav_unselected");
   $selected.classList.add("main-nav_selected");
 
@@ -150,7 +139,7 @@ const changeSubState = ({ mediaId, mediaName }) => {
   const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
 
   if (subIdx !== -1) {
-    setModalView({ mediaName, subIdx });
+    const isDeleted = setModalView({ mediaName, subIdx });
   } else {
     STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
 
@@ -174,12 +163,6 @@ const setModalView = ({ mediaName, subIdx }) => {
     $subsAlert.classList.add("hidden");
     console.log(STATE.SUBSCRIBE_LIST);
 
-    if (STATE.SUBSCRIBE_LIST.length === 0) {
-      alert("구독중인 언론사가 없습니다!!");
-      onClickSubscribeMode({ className: "main-nav_total" });
-    }
-
-    // 구독해지 시
     if (STATE.MODE.IS_GRID) {
       const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
       setNewPage(
