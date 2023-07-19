@@ -16,16 +16,19 @@ export default class SubscribeButton extends Component {
   mounted() {
     new Button(this.$target, {
       ...this.state,
-      text: db.getDbData.includes(this.props.name) ? '해지하기' : '구독하기',
+      text: db.getDbData.includes(this.props.number) ? '해지하기' : '구독하기',
       action: () => this.action(),
     });
   }
 
   action() {
-    if (db.getDbData.includes(this.props.name)) {
-      new Alert(customQuerySelector('.alert-modal'), { name: this.props.name });
+    if (db.getDbData.includes(this.props.number)) {
+      new Alert(customQuerySelector('.alert-modal'), {
+        name: this.props.name,
+        number: this.props.number,
+      });
     } else {
-      db.putDbData(this.props.name);
+      db.putDbData(this.props.number);
     }
   }
 }

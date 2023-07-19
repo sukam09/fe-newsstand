@@ -20,7 +20,7 @@ export default class Alert extends Component {
   setEvent() {
     this.$target.addEventListener('click', e => {
       if (e.target.classList.contains('alert-yes')) {
-        db.deleteDbData(this.props.name);
+        db.deleteDbData(this.props.number);
       }
       this.$target.innerHTML = '';
     });

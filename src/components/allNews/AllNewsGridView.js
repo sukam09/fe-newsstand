@@ -42,7 +42,7 @@ export default class AllNewsGridView extends Component {
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper" data-name=${pressOrder[i].number}></div>
+              <div class="subscribe-button-wrapper" data-index=${i}></div>
             </div>
           </div>`
           : ``
@@ -52,14 +52,17 @@ export default class AllNewsGridView extends Component {
 
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
-    customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(
-      node =>
-        new SubscribeButton(node, {
-          color: 'gray',
-          text: TEXT.SUBSCRIBE_KO,
-          name: node.dataset.name,
-        }),
-    );
+    customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
+      const index = node.dataset.index;
+      const { number, name } = pressOrder[index];
+
+      new SubscribeButton(node, {
+        name,
+        number,
+        color: 'gray',
+        text: TEXT.SUBSCRIBE_KO,
+      });
+    });
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
