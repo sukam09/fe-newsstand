@@ -100,6 +100,8 @@ export const GridController = {
     if(isSub){
       wrapperElement.addEventListener('click', function(event) {
         subscribedStore.setState([...subscribedStore.getState(),logoIndex]);
+        // event.target.parentElement.innerHTML=
+        console.log(event.target.parentElement);
         console.log(subscribedStore.getState());
       });
     }
@@ -135,7 +137,9 @@ export const GridController = {
     }
     else{
       const subscribedIndexes = subscribedStore.getState();
-      subscribedIndexes.forEach((media, index) => {
+      const startIdx = pageStore.getState() * MEDIA.PAGE_SIZE;
+      const endIdx = (pageStore.getState() + 1) * MEDIA.PAGE_SIZE;
+      subscribedIndexes.slice(startIdx, endIdx).forEach((media, index) => {
         self.updateImageElement(media, index, mediaLogo);
       });
     }
