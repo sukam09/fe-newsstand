@@ -1,7 +1,7 @@
 import { MAX_GRID_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./api.js";
-import { getState, resister, setState } from "./observer/observer.js";
-import { gridPageIdx, isGrid } from "./store/store.js";
+import { getState, resister } from "./observer/observer.js";
+import { gridPageIdx } from "./store/store.js";
 import { $, $All, shuffleArray } from "./util.js";
 
 let cachedpressObj = null;

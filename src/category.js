@@ -1,42 +1,37 @@
-import { CATEGORY_TAB_TIME } from "../constant/constants.js";
+import { CATEGORY_TAB_TIME, CATEGORY_CLICKED } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
 import { getState, resister, setState } from "./observer/observer.js";
 import { categoryIdx, listPageIdx } from "./store/store.js";
-import { $ } from "./util.js";
+import { $, $All } from "./util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval;
 
-export function stopCategoryInterval() {
+function stopCategoryInterval() {
   clearInterval(categoryInterval);
 }
-export function startCategoryInterval() {
+function startCategoryInterval() {
   categoryInterval = setInterval(() => {
     listPageUp();
-    updateCategoryClicked();
-    updateListButton();
   }, CATEGORY_TAB_TIME);
 }
 
 // 자동 탭 넘김 인터벌 새로고침
-export function refreshInterval() {
+function refreshInterval() {
   stopCategoryInterval();
   startCategoryInterval();
-  updateListButton();
-  updateCategoryClicked();
-}
-
-export function setFirstListPage() {
-  setState(listPageIdx, 1);
-  setState(categoryIdx, 0);
+  const clickedCategory = $(`.${CATEGORY_CLICKED}`);
+  clickedCategory.children[2].classList.remove("progressbar");
+  clickedCategory.offsetWidth;
+  clickedCategory.children[2].classList.add("progressbar");
 }
 
 // 카테고리 메뉴 클릭시 전환
 function categoryClicked(item) {
   const targetOn = $(`#category${item.id}`);
-  const targetOff = $(".category_list--clicked");
-  targetOff.classList.remove("category_list--clicked");
-  targetOn.classList.add("category_list--clicked");
+  const targetOff = $(`.${CATEGORY_CLICKED}`);
+  targetOff.classList.remove(CATEGORY_CLICKED);
+  targetOn.classList.add(CATEGORY_CLICKED);
   setState(listPageIdx, 1);
   setState(categoryIdx, item.id - 1);
 }
@@ -46,10 +41,9 @@ function listPageUp() {
 }
 
 // 카테고리 리스트 추가
-export async function appendCategoryList() {
-  const categoryList = await getNewsContents();
+function appendCategoryList(newsList) {
   const categoryListContainer = $(".category_list_container");
-  categoryList.forEach((item, idx) => {
+  newsList.forEach((item, idx) => {
     const newCategory = createCategoryList(item, idx);
     categoryListContainer.appendChild(newCategory);
   });
@@ -94,50 +88,52 @@ function createCategoryList(item, idx) {
 }
 
 // 현재 리스트 페이지에 카테고리 동기화
-export function updateCategoryClicked() {
-  const clickedCategory = $(".category_list--clicked");
-  clickedCategory.classList.remove("category_list--clicked");
-  const targetOn = $(".category_list_container");
-  targetOn.children[getState(categoryIdx)].classList.add(
-    "category_list--clicked"
-  );
-  updateCategoryTabNum();
+function updateCategoryClicked() {
+  const currentCategoryIdx = getState(categoryIdx);
+  const categoryList = $All(".category_list");
+  categoryList.forEach((item) => {
+    item.classList.remove(CATEGORY_CLICKED);
+  });
+  categoryList[currentCategoryIdx].classList.add(CATEGORY_CLICKED);
 }
 
 // 카테고리에서 마지막 탭인지 확인
 function isTabFull(innerHTML) {
-  return parseInt(getState(listPageIdx)) >= parseInt(innerHTML) + 1;
+  return parseInt(getState(listPageIdx)) - 1 === parseInt(innerHTML);
 }
 
 // 카테고리 탭 숫자 업데이트
 function updateCategoryTabNum() {
+  const currentListIdx = getState(listPageIdx);
+  const currentCategoryIdx = getState(categoryIdx);
   const firstCategory = $(".category_list");
-  const clickedCategory = $(".category_list--clicked");
-  clickedCategory.children[1].children[0].innerHTML = `${getState(
-    listPageIdx
-  )} / `;
+  const clickedCategory = $(`.${CATEGORY_CLICKED}`);
+  clickedCategory.querySelector(".now_page").innerHTML = `${currentListIdx} / `;
   if (
     // 다음 카테고리로 넘어가야할 경우
-    isTabFull(clickedCategory.children[1].children[1].innerHTML)
+    isTabFull(clickedCategory.querySelector(".all_page").innerHTML)
   ) {
+    setState(listPageIdx, 1);
     if (clickedCategory.nextElementSibling === null) {
-      firstCategory.classList.add("category_list--clicked");
-      firstCategory.children[1].children[0].innerHTML = "1 / ";
+      firstCategory.classList.add(CATEGORY_CLICKED);
+      firstCategory.querySelector(".now_page").innerHTML = "1 / ";
       setState(categoryIdx, 0);
     } else {
-      clickedCategory.nextElementSibling.classList.add(
-        "category_list--clicked"
-      );
-      clickedCategory.nextElementSibling.children[1].children[0].innerHTML =
-        "1 /";
-      setState(categoryIdx, getState(categoryIdx) + 1);
+      clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
+      clickedCategory.nextElementSibling.querySelector(".now_page").innerHTML =
+        "1 / ";
+      setState(categoryIdx, currentCategoryIdx + 1);
     }
-    clickedCategory.classList.remove("category_list--clicked");
-    setState(listPageIdx, 1);
+    clickedCategory.classList.remove(CATEGORY_CLICKED);
+    console.log("here");
   }
 }
 
-// (function init() {
-//   resister(listPageIdx, refreshInterval);
-//   resister(categoryIdx, refreshInterval);
-// })();
+export async function setCategory() {
+  startCategoryInterval();
+  const newsList = await getNewsContents();
+  resister(listPageIdx, refreshInterval);
+  resister(listPageIdx, updateCategoryTabNum);
+  resister(categoryIdx, updateCategoryClicked);
+  appendCategoryList(newsList);
+}

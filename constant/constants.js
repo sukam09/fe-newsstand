@@ -8,7 +8,12 @@ export const ANIMATION_GAP = 1000;
 export const ROLLING_TIME = 5000;
 // 카테고리 탭 전환 시간
 export const CATEGORY_TAB_TIME = 20000;
-// // 카테고리 탭 길이
-// export const CATEGORY_TAB_NUM = categoryList.length - 1;
 // 리스트 뷰 뉴스 개수
 export const MAX_NEWS_COUNT = 6;
+
+export const CATEGORY_CLICKED = "category_list--clicked";
+
+export const PREV_BANNER = "newsbanner__list--prev";
+export const NOW_BANNER = "newsbanner__list--now";
+export const NEXT_BANNER = "newsbanner__list--next";
+export const BANNER_LIST = "newsbanner__list";

@@ -1,11 +1,8 @@
 import { MAX_NEWS_COUNT } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
-import { refreshInterval } from "./category.js";
-import { getState, resister, setState } from "./observer/observer.js";
-import { categoryIdx, listPageIdx } from "./store/store.js";
+import { getState, resister } from "./observer/observer.js";
+import { categoryIdx, isGrid, listPageIdx } from "./store/store.js";
 import { $ } from "./util.js";
-
-let cachedCategoryList = null;
 
 // 리스트뷰 element querySelector 함수
 function getListViewElement() {
@@ -27,14 +24,14 @@ function createNewsList(content) {
 }
 
 // 리스트 뷰의 뉴스 append
-async function appendNewsList() {
+function appendNewsList(newsList) {
   const elements = getListViewElement();
-  if (cachedCategoryList === null) {
-    cachedCategoryList = await getNewsContents();
-  }
   elements.newsListContainer.innerHTML = "";
+  console.log(
+    `list : ${getState(listPageIdx)} category : ${getState(categoryIdx)}`
+  );
   const nowData =
-    cachedCategoryList[getState("categoryIdx")].data[getState(listPageIdx) - 1];
+    newsList[getState("categoryIdx")].data[getState(listPageIdx) - 1];
   elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
   elements.topicHeaderLogo.src = nowData.logoSrc;
   elements.topicThumbnail.src = nowData.imgSrc;
@@ -45,31 +42,17 @@ async function appendNewsList() {
   }
 }
 
-function setListViewEvents() {
-  resister(listPageIdx, appendNewsList);
+async function setListViewEvents() {
+  const newsList = await getNewsContents();
+  resister(listPageIdx, () => {
+    appendNewsList(newsList);
+  });
+  resister(categoryIdx, () => {
+    appendNewsList(newsList);
+  });
+  resister(isGrid, () => {
+    appendNewsList(newsList);
+  });
 }
 
 export { setListViewEvents };
-
-// 좌우 리스트 버튼 display 변경
-
-// export async function listArrowButtonClicked(increment) {
-//   if (cachedCategoryList === null) {
-//     cachedCategoryList = await getNewsContents();
-//   }
-//   if (getState(listPageIdx) + increment === 0) {
-//     setState(categoryIdx, getState(categoryIdx) - 1);
-//     setState(
-//       listPageIdx,
-//       cachedCategoryList[getState("categoryIdx")].data.length
-//     );
-//   } else {
-//     setState(listPageIdx, getState(listPageIdx) + increment);
-//   }
-//   const clickedCategory = $(".category_list--clicked");
-//   clickedCategory.children[2].classList.remove("progressbar");
-//   clickedCategory.offsetWidth;
-//   clickedCategory.children[2].classList.add("progressbar");
-//   refreshInterval();
-//   updateListButton();
-// }
