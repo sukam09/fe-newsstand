@@ -2,19 +2,22 @@ import Component from "../core/Component.js";
 
 export default class PressNews extends Component {
   setup() {
-    console.log(this.$props);
+    this.$state = {
+      nowNews: this.$props.nowCategoryNewsData[this.$props.page - 1],
+    };
   }
+
   template() {
     return `
       <div class="news-list__press-news__info">
         <img
-          src=${this.$props.nowCategoryNewsData[this.$props.page - 1].logo}
+          src=${this.$state.nowNews.logo}
           alt="Brandmark"
           height="24"
           class="news-list__press-news__info__brandmark"
         />
         <span class="news-list__press-news__info__date">${
-          this.$props.nowCategoryNewsData[this.$props.page - 1].editTime
+          this.$state.nowNews.editTime
         } 편집</span>
         <img src="./assets/icons/SubscribeButton.svg" alt="Button" />
       </div>
@@ -28,19 +31,18 @@ export default class PressNews extends Component {
             />
           </div>
           <span class="news-list__press-news__title">${
-            this.$props.nowCategoryNewsData[this.$props.page - 1].mainArticle
-              .title
+            this.$state.nowNews.mainArticle.title
           }</span>
         </div>
         <div class="news-list__press-news__sub">
-        ${this.$props.nowCategoryNewsData[this.$props.page - 1].subArticles
+        ${this.$state.nowNews.subArticles
           .map(
             (item) =>
               `<span class="news-list__press-news__subtitle">${item.title}</span>`
           )
           .join("")}
           <span class="news-list__press-news__subcaption">${
-            this.$props.nowCategoryNewsData[this.$props.page - 1].name
+            this.$state.nowNews.name
           } 언론사에서 직접 편집한 뉴스입니다.</span>
         </div>
       </div>

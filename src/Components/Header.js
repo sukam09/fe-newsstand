@@ -13,6 +13,10 @@ export default class Header extends Component {
     `;
   }
 
+  mounted() {
+    this.setHeaderDate();
+  }
+
   formatToday() {
     const options = {
       year: "numeric",
@@ -29,9 +33,5 @@ export default class Header extends Component {
     const $header__date = document.querySelector(".header__date");
 
     $header__date.innerHTML = formattedToday;
-  }
-
-  mounted() {
-    this.setHeaderDate();
   }
 }

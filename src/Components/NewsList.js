@@ -13,7 +13,7 @@ export default class NewsList extends Component {
 
     this.currentPercentage = 0;
     this.$nowPage;
-    this.result = "";
+    this.tabLiteral = "";
 
     this.fetchNewsData();
   }
@@ -80,7 +80,7 @@ export default class NewsList extends Component {
   }
 
   async fetchNewsData() {
-    const pressNewsData = await fetch("./js/Data/pressNews.json").then(
+    const pressNewsData = await fetch("./src/Data/pressNews.json").then(
       (res) => {
         return res.json();
       }
@@ -190,7 +190,7 @@ export default class NewsList extends Component {
         false
       );
 
-      this.result += `
+      this.tabLiteral += `
         <li class="news-list__field-tab__progress">
           <span>${item}</span>
           <span class="news-list__field-tab__progress-count">
@@ -200,7 +200,7 @@ export default class NewsList extends Component {
         </li>
       `;
     } else {
-      this.result += `<li class="news-list__field-tab__general">${item}</li>`;
+      this.tabLiteral += `<li class="news-list__field-tab__general">${item}</li>`;
     }
   }
 
@@ -221,13 +221,15 @@ export default class NewsList extends Component {
     if (!this.$state.nowCategoryNewsData.length) {
       this.setState(
         {
-          nowCategoryNewsData: this.getCategoryData(constants.FIELDTAB_LIST[0]),
+          nowCategoryNewsData: this.getCategoryData(
+            constants.FIELDTAB_LIST[0]
+          ).sort(() => Math.random() - 0.5),
         },
         false
       );
     }
 
-    this.result = "";
+    this.tabLiteral = "";
     const $fieldTabList = document.querySelectorAll(
       ".news-list__field-tab > li"
     );
@@ -235,7 +237,8 @@ export default class NewsList extends Component {
       item.addEventListener("click", (event) => {
         this.stopProgress();
         constants.FIELDTAB_LIST.forEach((item) => this.makeTag(event, item));
-        document.querySelector(".news-list__field-tab").innerHTML = this.result;
+        document.querySelector(".news-list__field-tab").innerHTML =
+          this.tabLiteral;
 
         this.setFieldTab();
         this.startProgress();

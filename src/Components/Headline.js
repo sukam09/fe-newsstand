@@ -22,17 +22,17 @@ export default class Headline extends Component {
     const $headline__content =
       this.$target.querySelectorAll(".headline__content");
 
-    new HeadlineContent($headline__content[0], {
-      rollingData: this.$state.rollingData.slice(0, 5),
+    $headline__content.forEach((item, index) => {
+      new HeadlineContent(item, {
+        rollingData: this.$state.rollingData.slice(5 * index, 5 + (index + 1)),
+      });
     });
-    new HeadlineContent($headline__content[1], {
-      rollingData: this.$state.rollingData.slice(5),
-    });
+
     this.setRolling();
   }
 
   async getRollingData() {
-    const rollingData = await fetch("./js/Data/RollingNews.json").then(
+    const rollingData = await fetch("./src/Data/RollingNews.json").then(
       (res) => {
         return res.json();
       }
