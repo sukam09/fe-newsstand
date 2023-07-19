@@ -47,13 +47,13 @@ export default function CategoryNav($target, props) {
         if (props.currentPage === props.lastPage) {
           // change category
           if (props.category === LAST_CATEGORY) {
-            // props.setContentState(initCategoryState);
+            props.setContentState(initCategoryState);
           } else {
-            // props.setContentState(nextCategoryState);
+            props.setContentState(nextCategoryState);
           }
         } else {
           // change page
-          // props.setContentState(nextPageState);
+          props.setContentState(nextPageState);
         }
       }
 
@@ -103,7 +103,6 @@ export default function CategoryNav($target, props) {
 
         props.setContentState({
           currentPage: 1,
-          lastPage: categoryLengthArr[targetElement.dataset.key],
           category: Number(targetElement.dataset.key),
         });
       }
