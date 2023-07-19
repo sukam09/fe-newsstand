@@ -1,6 +1,6 @@
 const listViewData = [
     {
-      "id": "1",
+      "id": 1,
       "name": "YTN 사이언스",
       "path": "/asset/logo/light/img1.svg",
       "path_dark": "/asset/logo/dark/img1.svg",
@@ -17,10 +17,10 @@ const listViewData = [
         "LG엔솔, 폴란드 자동차산업협회 가입...\"유럽서 목소리 키운다\"",
         
       ],
-      "is_subscribe": true
+      "is_subscribe": false
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Able뉴스",
       "path": "/asset/logo/light/img2.svg",
       "path_dark": "/asset/logo/dark/img2.svg",
@@ -40,7 +40,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "뉴스토마토",
       "path": "/asset/logo/light/img3.svg",
       "path_dark": "/asset/logo/dark/img3.svg",
@@ -60,7 +60,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "데일리한국",
       "path": "/asset/logo/light/img4.svg",
       "path_dark": "/asset/logo/dark/img4.svg",
@@ -80,7 +80,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "시사오늘",
       "path": "/asset/logo/light/img5.svg",
       "path_dark": "/asset/logo/dark/img5.svg",
@@ -100,7 +100,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "대전방송",
       "path": "/asset/logo/light/img6.svg",
       "path_dark": "/asset/logo/dark/img6.svg",
@@ -120,7 +120,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "이코노타임즈",
       "path": "/asset/logo/light/img7.svg",
       "path_dark": "/asset/logo/dark/img7.svg",
@@ -140,7 +140,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "독서신문",
       "path": "/asset/logo/light/img8.svg",
       "path_dark": "/asset/logo/dark/img8.svg",
@@ -160,7 +160,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "산",
       "path": "/asset/logo/light/img9.svg",
       "path_dark": "/asset/logo/dark/img9.svg",
@@ -180,7 +180,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "시사 IN",
       "path": "/asset/logo/light/img10.svg",
       "path_dark": "/asset/logo/dark/img10.svg",
@@ -200,7 +200,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "한국경제",
       "path": "/asset/logo/light/img11.svg",
       "path_dark": "/asset/logo/dark/img11.svg",
@@ -220,7 +220,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "12",
+      "id": 12,
       "name": "NEWSIS",
       "path": "/asset/logo/light/img12.svg",
       "path_dark": "/asset/logo/dark/img12.svg",
@@ -240,7 +240,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "13",
+      "id": 13,
       "name": "동아일보",
       "path": "/asset/logo/light/img13.svg",
       "path_dark": "/asset/logo/dark/img13.svg",
@@ -260,7 +260,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "14",
+      "id": 14,
       "name": "KBS",
       "path": "/asset/logo/light/img14.svg",
       "path_dark": "/asset/logo/dark/img14.svg",
@@ -280,7 +280,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "15",
+      "id": 15,
       "name": "BLOTER",
       "path": "/asset/logo/light/img15.svg",
       "path_dark": "/asset/logo/dark/img15.svg",
@@ -300,7 +300,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "16",
+      "id": 16,
       "name": "한국경제TV",
       "path": "/asset/logo/light/img16.svg",
       "path_dark": "/asset/logo/dark/img16.svg",
@@ -320,7 +320,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "17",
+      "id": 17,
       "name": "전자신문",
       "path": "/asset/logo/light/img17.svg",
       "path_dark": "/asset/logo/dark/img17.svg",
@@ -340,7 +340,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "18",
+      "id": 18,
       "name": "스포츠조선",
       "path": "/asset/logo/light/img18.svg",
       "path_dark": "/asset/logo/dark/img18.svg",
@@ -360,7 +360,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "19",
+      "id": 19,
       "name": "서울신문",
       "path": "/asset/logo/light/img19.svg",
       "path_dark": "/asset/logo/dark/img19.svg",
@@ -380,7 +380,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "20",
+      "id": 20,
       "name": "중앙일보",
       "path": "/asset/logo/light/img20.svg",
       "path_dark": "/asset/logo/dark/img20.svg",
@@ -400,7 +400,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "21",
+      "id": 21,
       "name": "노컷뉴스",
       "path": "/asset/logo/light/img21.svg",
       "path_dark": "/asset/logo/dark/img21.svg",
@@ -420,7 +420,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "22",
+      "id": 22,
       "name": "프레시안",
       "path": "/asset/logo/light/img22.svg",
       "path_dark": "/asset/logo/dark/img22.svg",
@@ -440,7 +440,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "23",
+      "id": 23,
       "name": "sportalkorea",
       "path": "/asset/logo/light/img23.svg",
       "path_dark": "/asset/logo/dark/img23.svg",
@@ -460,7 +460,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "24",
+      "id": 24,
       "name": "한국일보",
       "path": "/asset/logo/light/img24.svg",
       "path_dark": "/asset/logo/dark/img24.svg",
@@ -480,7 +480,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "25",
+      "id": 25,
       "name": "여성경제신문",
       "path": "/asset/logo/light/img25.svg",
       "path_dark": "/asset/logo/dark/img25.svg",
@@ -500,7 +500,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "26",
+      "id": 26,
       "name": "IT조선",
       "path": "/asset/logo/light/img26.svg",
       "path_dark": "/asset/logo/dark/img26.svg",
@@ -520,7 +520,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "27",
+      "id": 27,
       "name": "철강금속신문",
       "path": "/asset/logo/light/img27.svg",
       "path_dark": "/asset/logo/dark/img27.svg",
@@ -540,7 +540,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "28",
+      "id": 28,
       "name": "정신의학신문",
       "path": "/asset/logo/light/img28.svg",
       "path_dark": "/asset/logo/dark/img28.svg",
@@ -560,7 +560,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "29",
+      "id": 29,
       "name": "뉴스포스트",
       "path": "/asset/logo/light/img29.svg",
       "path_dark": "/asset/logo/dark/img29.svg",
@@ -580,7 +580,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "30",
+      "id": 30,
       "name": "씨네21",
       "path": "/asset/logo/light/img30.svg",
       "path_dark": "/asset/logo/dark/img30.svg",
@@ -600,7 +600,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "31",
+      "id": 31,
       "name": "정책프리핑",
       "path": "/asset/logo/light/img31.svg",
       "path_dark": "/asset/logo/dark/img31.svg",
@@ -620,7 +620,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "32",
+      "id": 32,
       "name": "텐아시아",
       "path": "/asset/logo/light/img32.svg",
       "path_dark": "/asset/logo/dark/img32.svg",
@@ -640,7 +640,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "33",
+      "id": 33,
       "name": "MK스포츠",
       "path": "/asset/logo/light/img33.svg",
       "path_dark": "/asset/logo/dark/img33.svg",
@@ -660,7 +660,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "34",
+      "id": 34,
       "name": "MONDE",
       "path": "/asset/logo/light/img34.svg",
       "path_dark": "/asset/logo/dark/img34.svg",
@@ -680,7 +680,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "35",
+      "id": 35,
       "name": "BBS NEWS",
       "path": "/asset/logo/light/img35.svg",
       "path_dark": "/asset/logo/dark/img35.svg",
@@ -700,7 +700,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "36",
+      "id": 36,
       "name": "티브이데일리",
       "path": "/asset/logo/light/img36.svg",
       "path_dark": "/asset/logo/dark/img36.svg",
@@ -720,7 +720,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "37",
+      "id": 37,
       "name": "TV Report",
       "path": "/asset/logo/light/img37.svg",
       "path_dark": "/asset/logo/dark/img37.svg",
@@ -740,7 +740,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "38",
+      "id": 38,
       "name": "Forbes",
       "path": "/asset/logo/light/img38.svg",
       "path_dark": "/asset/logo/dark/img38.svg",
@@ -760,7 +760,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "39",
+      "id": 39,
       "name": "주간경향",
       "path": "/asset/logo/light/img39.svg",
       "path_dark": "/asset/logo/dark/img39.svg",
@@ -780,7 +780,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "40",
+      "id": 40,
       "name": "비즈한국",
       "path": "/asset/logo/light/img40.svg",
       "path_dark": "/asset/logo/dark/img40.svg",
@@ -800,7 +800,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "41",
+      "id": 41,
       "name": "metro",
       "path": "/asset/logo/light/img41.svg",
       "path_dark": "/asset/logo/dark/img41.svg",
@@ -820,7 +820,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "42",
+      "id": 42,
       "name": "JTBC",
       "path": "/asset/logo/light/img42.svg",
       "path_dark": "/asset/logo/dark/img42.svg",
@@ -840,7 +840,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "43",
+      "id": 43,
       "name": "조선Biz",
       "path": "/asset/logo/light/img43.svg",
       "path_dark": "/asset/logo/dark/img43.svg",
@@ -860,7 +860,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "44",
+      "id": 44,
       "name": "한겨레",
       "path": "/asset/logo/light/img44.svg",
       "path_dark": "/asset/logo/dark/img44.svg",
@@ -880,7 +880,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "45",
+      "id": 45,
       "name": "연합뉴스TV",
       "path": "/asset/logo/light/img45.svg",
       "path_dark": "/asset/logo/dark/img45.svg",
@@ -900,7 +900,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "46",
+      "id": 46,
       "name": "미디어오늘",
       "path": "/asset/logo/light/img46.svg",
       "path_dark": "/asset/logo/dark/img46.svg",
@@ -920,7 +920,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "47",
+      "id": 47,
       "name": "디지털타임스",
       "path": "/asset/logo/light/img47.svg",
       "path_dark": "/asset/logo/dark/img47.svg",
@@ -940,7 +940,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "48",
+      "id": 48,
       "name": "OSEN",
       "path": "/asset/logo/light/img48.svg",
       "path_dark": "/asset/logo/dark/img48.svg",
@@ -960,7 +960,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "49",
+      "id": 49,
       "name": "소년한국일보",
       "path": "/asset/logo/light/img49.svg",
       "path_dark": "/asset/logo/dark/img49.svg",
@@ -980,7 +980,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "50",
+      "id": 50,
       "name": "OBS",
       "path": "/asset/logo/light/img50.svg",
       "path_dark": "/asset/logo/dark/img50.svg",
@@ -1000,7 +1000,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "51",
+      "id": 51,
       "name": "맥스무비",
       "path": "/asset/logo/light/img51.svg",
       "path_dark": "/asset/logo/dark/img51.svg",
@@ -1020,7 +1020,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "52",
+      "id": 52,
       "name": "엑스포츠뉴스",
       "path": "/asset/logo/light/img52.svg",
       "path_dark": "/asset/logo/dark/img52.svg",
@@ -1040,7 +1040,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "53",
+      "id": 53,
       "name": "서울파이낸스",
       "path": "/asset/logo/light/img53.svg",
       "path_dark": "/asset/logo/dark/img53.svg",
@@ -1060,7 +1060,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "54",
+      "id": 54,
       "name": "한국대학신문",
       "path": "/asset/logo/light/img54.svg",
       "path_dark": "/asset/logo/dark/img54.svg",
@@ -1080,7 +1080,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "55",
+      "id": 55,
       "name": "datanews",
       "path": "/asset/logo/light/img55.svg",
       "path_dark": "/asset/logo/dark/img55.svg",
@@ -1100,7 +1100,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "56",
+      "id": 56,
       "name": "DigitalToday",
       "path": "/asset/logo/light/img56.svg",
       "path_dark": "/asset/logo/dark/img56.svg",
@@ -1120,7 +1120,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "57",
+      "id": 57,
       "name": "시사위크",
       "path": "/asset/logo/light/img57.svg",
       "path_dark": "/asset/logo/dark/img57.svg",
@@ -1140,7 +1140,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "58",
+      "id": 58,
       "name": "YTN",
       "path": "/asset/logo/light/img58.svg",
       "path_dark": "/asset/logo/dark/img58.svg",
@@ -1160,7 +1160,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "59",
+      "id": 59,
       "name": "MBN",
       "path": "/asset/logo/light/img59.svg",
       "path_dark": "/asset/logo/dark/img59.svg",
@@ -1180,7 +1180,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "60",
+      "id": 60,
       "name": "매일경제",
       "path": "/asset/logo/light/img60.svg",
       "path_dark": "/asset/logo/dark/img60.svg",
@@ -1200,7 +1200,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "61",
+      "id": 61,
       "name": "오마이뉴스",
       "path": "/asset/logo/light/img61.svg",
       "path_dark": "/asset/logo/dark/img61.svg",
@@ -1220,7 +1220,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "62",
+      "id": 62,
       "name": "SBS",
       "path": "/asset/logo/light/img62.svg",
       "path_dark": "/asset/logo/dark/img62.svg",
@@ -1240,7 +1240,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "63",
+      "id": 63,
       "name": "머니투데이",
       "path": "/asset/logo/light/img63.svg",
       "path_dark": "/asset/logo/dark/img63.svg",
@@ -1260,7 +1260,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "64",
+      "id": 64,
       "name": "마이데일리",
       "path": "/asset/logo/light/img64.svg",
       "path_dark": "/asset/logo/dark/img64.svg",
@@ -1280,7 +1280,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "65",
+      "id": 65,
       "name": "ZDNET Korea",
       "path": "/asset/logo/light/img65.svg",
       "path_dark": "/asset/logo/dark/img65.svg",
@@ -1300,7 +1300,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "66",
+      "id": 66,
       "name": "경향신문",
       "path": "/asset/logo/light/img66.svg",
       "path_dark": "/asset/logo/dark/img66.svg",
@@ -1320,7 +1320,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "67",
+      "id": 67,
       "name": "일간스포츠",
       "path": "/asset/logo/light/img67.svg",
       "path_dark": "/asset/logo/dark/img67.svg",
@@ -1340,7 +1340,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "68",
+      "id": 68,
       "name": "국민일보",
       "path": "/asset/logo/light/img68.svg",
       "path_dark": "/asset/logo/dark/img68.svg",
@@ -1360,7 +1360,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "69",
+      "id": 69,
       "name": "뉴데일리",
       "path": "/asset/logo/light/img69.svg",
       "path_dark": "/asset/logo/dark/img69.svg",
@@ -1380,7 +1380,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "70",
+      "id": 70,
       "name": "뉴스타파",
       "path": "/asset/logo/light/img70.svg",
       "path_dark": "/asset/logo/dark/img70.svg",
@@ -1400,7 +1400,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "71",
+      "id": 71,
       "name": "MBC",
       "path": "/asset/logo/light/img71.svg",
       "path_dark": "/asset/logo/dark/img71.svg",
@@ -1420,7 +1420,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "72",
+      "id": 72,
       "name": "한국헤럴드",
       "path": "/asset/logo/light/img72.svg",
       "path_dark": "/asset/logo/dark/img72.svg",
@@ -1440,7 +1440,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "73",
+      "id": 73,
       "name": "KNN",
       "path": "/asset/logo/light/img73.svg",
       "path_dark": "/asset/logo/dark/img73.svg",
@@ -1460,7 +1460,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "74",
+      "id": 74,
       "name": "CEO스코어데일리",
       "path": "/asset/logo/light/img74.svg",
       "path_dark": "/asset/logo/dark/img74.svg",
@@ -1480,7 +1480,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "75",
+      "id": 75,
       "name": "BUSINESS POST",
       "path": "/asset/logo/light/img75.svg",
       "path_dark": "/asset/logo/dark/img75.svg",
@@ -1500,7 +1500,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "76",
+      "id": 76,
       "name": "에너지경제",
       "path": "/asset/logo/light/img76.svg",
       "path_dark": "/asset/logo/dark/img76.svg",
@@ -1520,7 +1520,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "77",
+      "id": 77,
       "name": "조이뉴스24",
       "path": "/asset/logo/light/img77.svg",
       "path_dark": "/asset/logo/dark/img77.svg",
@@ -1540,7 +1540,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "78",
+      "id": 78,
       "name": "한국농어촌방송",
       "path": "/asset/logo/light/img78.svg",
       "path_dark": "/asset/logo/dark/img78.svg",
@@ -1560,7 +1560,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "79",
+      "id": 79,
       "name": "시사저널e",
       "path": "/asset/logo/light/img79.svg",
       "path_dark": "/asset/logo/dark/img79.svg",
@@ -1580,7 +1580,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "80",
+      "id": 80,
       "name": "법률방송뉴스",
       "path": "/asset/logo/light/img80.svg",
       "path_dark": "/asset/logo/dark/img80.svg",
@@ -1600,7 +1600,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "81",
+      "id": 81,
       "name": "인사이트",
       "path": "/asset/logo/light/img81.svg",
       "path_dark": "/asset/logo/dark/img81.svg",
@@ -1620,7 +1620,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "82",
+      "id": 82,
       "name": "한국중앙데일리",
       "path": "/asset/logo/light/img82.svg",
       "path_dark": "/asset/logo/dark/img82.svg",
@@ -1640,7 +1640,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "83",
+      "id": 83,
       "name": "KBS WORLD",
       "path": "/asset/logo/light/img83.svg",
       "path_dark": "/asset/logo/dark/img83.svg",
@@ -1660,7 +1660,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "84",
+      "id": 84,
       "name": "석간문화일보",
       "path": "/asset/logo/light/img84.svg",
       "path_dark": "/asset/logo/dark/img84.svg",
@@ -1680,7 +1680,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "85",
+      "id": 85,
       "name": "스포츠동아",
       "path": "/asset/logo/light/img85.svg",
       "path_dark": "/asset/logo/dark/img85.svg",
@@ -1700,7 +1700,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "86",
+      "id": 86,
       "name": "소포츠서울",
       "path": "/asset/logo/light/img86.svg",
       "path_dark": "/asset/logo/dark/img86.svg",
@@ -1720,7 +1720,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "87",
+      "id": 87,
       "name": "파이낸셜뉴스",
       "path": "/asset/logo/light/img87.svg",
       "path_dark": "/asset/logo/dark/img87.svg",
@@ -1740,7 +1740,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "88",
+      "id": 88,
       "name": "아이뉴스24",
       "path": "/asset/logo/light/img88.svg",
       "path_dark": "/asset/logo/dark/img88.svg",
@@ -1760,7 +1760,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "89",
+      "id": 89,
       "name": "조선일보",
       "path": "/asset/logo/light/img89.svg",
       "path_dark": "/asset/logo/dark/img89.svg",
@@ -1780,7 +1780,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "90",
+      "id": 90,
       "name": "이데일리",
       "path": "/asset/logo/light/img90.svg",
       "path_dark": "/asset/logo/dark/img90.svg",
@@ -1800,7 +1800,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "91",
+      "id": 91,
       "name": "아시아경제",
       "path": "/asset/logo/light/img91.svg",
       "path_dark": "/asset/logo/dark/img91.svg",
@@ -1820,7 +1820,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "92",
+      "id": 92,
       "name": "세계일보",
       "path": "/asset/logo/light/img92.svg",
       "path_dark": "/asset/logo/dark/img92.svg",
@@ -1840,7 +1840,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "93",
+      "id": 93,
       "name": "SBS Biz",
       "path": "/asset/logo/light/img93.svg",
       "path_dark": "/asset/logo/dark/img93.svg",
@@ -1860,7 +1860,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "94",
+      "id": 94,
       "name": "헤럴드경제",
       "path": "/asset/logo/light/img94.svg",
       "path_dark": "/asset/logo/dark/img94.svg",
@@ -1880,7 +1880,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "95",
+      "id": 95,
       "name": "데일리안",
       "path": "/asset/logo/light/img95.svg",
       "path_dark": "/asset/logo/dark/img95.svg",
@@ -1900,7 +1900,7 @@ const listViewData = [
       "is_subscribe": false
     },
     {
-      "id": "96",
+      "id": 96,
       "name": "서울경제",
       "path": "/asset/logo/light/img96.svg",
       "path_dark": "/asset/logo/dark/img96.svg",

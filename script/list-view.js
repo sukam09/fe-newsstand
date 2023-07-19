@@ -1,7 +1,7 @@
 import listViewData from "../asset/data/listViewData.js";
 import { store } from "../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
-import { CATEGORY_LIST } from "../asset/data/constants.js";
+import { CATEGORY_LIST, FILTER_TYPE } from "../asset/data/constants.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
@@ -64,6 +64,12 @@ function drawListNav(){
     })
 }
 function drawList() {
+    switch (store.getCrntFilter()){
+        case FILTER_TYPE.ALL:
+            break;
+        case FILTER_TYPE.SUBSCRIBED:
+            break;
+    }
     drawListNav()
     drawProgressBar()
     drawListPage();
