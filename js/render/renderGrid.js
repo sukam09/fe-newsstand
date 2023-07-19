@@ -16,13 +16,13 @@ function makeGrid(logos) {
   gridMain.innerHTML = "";
   let outerDiv = "";
   for (
-    let LOGO_INDEX = Stores.getPage() * COUNT_PER_PAGE;
-    LOGO_INDEX < COUNT_PER_PAGE * Stores.getPage() + 24;
-    LOGO_INDEX++
+    let logoIndex = Stores.getPage() * COUNT_PER_PAGE;
+    logoIndex < COUNT_PER_PAGE * Stores.getPage() + 24;
+    logoIndex++
   ) {
     outerDiv += `<div class="grid-list"><div class="hover-subscribe-button"><img src="./img/subscribe_button.svg"></div>${drawLogo(
       logos,
-      LOGO_INDEX
+      logoIndex
     )}</div>`;
   }
   gridMain.innerHTML = outerDiv;
