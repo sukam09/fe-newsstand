@@ -18,7 +18,6 @@ export default class AllNewsList {
   }
 
   render(name) {
-    // const $logoImg = new Logo({ name });
     this.$component.appendChild(this.createLogoImage(name));
   }
 
@@ -51,6 +50,21 @@ export default class AllNewsList {
     $subButton.appendChild($plusIcon);
     $subButton.appendChild($text);
 
+    $subButton.addEventListener("click", (e) => this.handleClickSubBtn(e));
+
     return $subButton;
+  }
+
+  handleClickSubBtn(event) {
+    const $gridWrapper = document.querySelector(".news-list-wrapper");
+    const snackBar = `
+      <div class="snackBar-sub">
+        내가 구독한 언론사에 추가되었습니다.
+      </div>
+    `;
+    $gridWrapper.innerHTML += snackBar;
+    setTimeout(() => {
+      $gridWrapper.removeChild(document.querySelector(".snackBar-sub"));
+    }, 5000);
   }
 }

@@ -1,0 +1,14 @@
+.news-list-wrapper {
+  position: relative;
+}
+
+.snackBar-sub {
+  position: absolute;
+  font-size: 16px;
+  background-color: var(--blue-500);
+  color: var(--gray-scale-white-alt);
+  padding: 16px 24px 16px 24px;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
