@@ -1,5 +1,5 @@
 import { COL_SIZE, ROW_SIZE, ASSETS_IMAGE_PATH } from "../constants.js";
-import { view_option } from "../globals.js";
+import { view_option, subscribe_option } from "../globals.js";
 
 function renderGridView(data, page, action) {
     const grid_press_container = document.querySelector(".main_news_container");
@@ -7,8 +7,7 @@ function renderGridView(data, page, action) {
 
     createPressList(grid_press_container, data, page * 24);
 
-    action[0]("grid", page);
-    action[1]();
+    action("grid", page);
 }
 
 function createPressList(container, data, idx) {
@@ -17,9 +16,9 @@ function createPressList(container, data, idx) {
         for (let j = 0; j < ROW_SIZE; j++) {
             const item = data[idx] || { name: "empty", url: "" };
             const subscribe =
-                view_option.subscribe_press[item.name] === undefined
+                subscribe_option.subscribe_press[item.name] === undefined
                     ? false
-                    : view_option.subscribe_press[item.name];
+                    : subscribe_option.subscribe_press[item.name];
             ul.innerHTML += `
             <li class="press_data_container">
                 <div class="press_data_item">

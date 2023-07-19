@@ -1,46 +1,61 @@
-import { MAX_PAGE, INTERVAL, DELAY } from "./constants.js";
+import { MAX_PAGE, INTERVAL, DELAY, CATEGORYS } from "./constants.js";
 import { fetchPressData, fetchNewsData, fetchHotTopicData } from "./utils.js";
+import {
+    renderGridView,
+    renderSubscribe,
+    renderPressItem,
+} from "./views/grid_views.js";
+import { renderListView } from "./views/list_views.js";
 
-export function useRenderOptions(type, is_sub) {
-    if (type === "list") {
+export function render(options, data, page) {
+    if (options["main"] === "grid") {
+        renderGridView(data, page, useToggleArrow);
     }
-    if (type === "grid") {
-        return;
+
+    if (options["main"] === "list") {
+        renderListView(data.news_data, data.category, page, useToggleArrow);
+        setProgress(options, "main_nav_progress", data);
     }
 }
 
-export function useSetProgress(name, view_option, action) {
+export function setProgress(options, name, list_option) {
     const progress = document.querySelector(`.${name}`);
 
     // 1초마다 1씩 증가
-    view_option.interval = setInterval(() => {
-        view_option.progress_time += 1;
-        if (view_option.progress_time === 21) {
-            clearInterval(view_option.interval);
-            view_option.progress_time = 0;
-            action("next", "list", view_option);
+    list_option.interval = setInterval(() => {
+        list_option.progress_time += 1;
+        if (list_option.progress_time === 21) {
+            clearInterval(list_option.interval);
+            list_option.progress_time = 0;
+            movePageEventHandler("next", "list", options, list_option);
         }
-        progress.value = view_option.progress_time;
+        progress.value = list_option.progress_time;
     }, 1000);
 }
 
-export function useFetchAllData() {
-    return Promise.all([
-        fetchPressData(),
-        fetchNewsData(),
-        fetchHotTopicData(),
-    ]);
+export async function saveData() {
+    const save = {};
+
+    try {
+        save["press_data"] = await fetchPressData();
+        save["news_data"] = await fetchNewsData();
+        save["hot_topic_data"] = await fetchHotTopicData();
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+
+    return save;
 }
 
-export function useChangeArrow(mode) {
-    const current = mode === "list" ? "grid" : "list";
+export function changeViewArrow(view) {
+    const current = view === "list" ? "grid" : "list";
     const cur_right_arrow = document.querySelector(`.${current}_right_arrow`);
-    const right_arrow = document.querySelector(`.${mode}_right_arrow`);
+    const right_arrow = document.querySelector(`.${view}_right_arrow`);
     cur_right_arrow.style.display = "none";
     right_arrow.style.display = "block";
 
     const cur_left_arrow = document.querySelector(`.${current}_left_arrow`);
-    const left_arrow = document.querySelector(`.${mode}_left_arrow`);
+    const left_arrow = document.querySelector(`.${view}_left_arrow`);
     cur_left_arrow.style.display = "none";
     left_arrow.style.display = "block";
 }
@@ -53,7 +68,7 @@ export function useClearDisplay(container, option) {
     option.progress_time = 0;
 }
 
-export function useToggleArrow(mode, page) {
+function useToggleArrow(mode, page) {
     const left_arrow = document.querySelector(`.${mode}_left_arrow`);
     const right_arrow = document.querySelector(`.${mode}_right_arrow`);
 
@@ -73,40 +88,33 @@ export function useToggleArrow(mode, page) {
     }
 }
 
-export function useMovePage(direction, option, view_option) {
-    if (option === "grid") {
-        view_option.grid_current_page =
-            direction === "next"
-                ? view_option.grid_current_page + 1
-                : view_option.grid_current_page - 1;
+export function useMovePage(direction, view, option) {
+    if (view === "grid") {
+        option.page = direction === "next" ? option.page + 1 : option.page - 1;
     }
 
-    if (option === "list" && direction === "next") {
-        view_option.list_current_page = view_option.list_current_page + 1;
+    if (view === "list" && direction === "next") {
+        option.page = option.page + 1;
         if (
-            view_option.list_current_page >=
-            view_option.news_data[view_option.categorys[view_option.category]]
-                .length
+            option.page >= option.news_data[CATEGORYS[option.category]].length
         ) {
-            view_option.category =
-                view_option.category === view_option.category_size - 1
+            option.category =
+                option.category === option.category_size - 1
                     ? 0
-                    : view_option.category + 1;
-            view_option.list_current_page = 0;
+                    : option.category + 1;
+            option.page = 0;
         }
     }
 
-    if (option === "list" && direction === "prev") {
-        view_option.list_current_page = view_option.list_current_page - 1;
-        if (view_option.list_current_page < 0) {
-            view_option.category =
-                view_option.category === 0
-                    ? view_option.category_size - 1
-                    : view_option.category - 1;
-            view_option.list_current_page =
-                view_option.news_data[
-                    view_option.categorys[view_option.category]
-                ].length - 1;
+    if (view === "list" && direction === "prev") {
+        option.page = option.page - 1;
+        if (option.page < 0) {
+            option.category =
+                option.category === 0
+                    ? option.category_size - 1
+                    : option.category - 1;
+            option.page =
+                option.news_data[CATEGORYS[option.category]].length - 1;
         }
     }
 }
@@ -179,4 +187,35 @@ function updateBanner(banner, banner_time, loc) {
             banner.style.animation = "none";
         }
     }, 4000);
+}
+
+/**
+ * @description
+ * 1. 페이지 이동 이벤트 핸들러
+ * 2. list_views, grid_views, 화살표 클릭 이벤트 핸들러
+ * 3. action 으로 이동할 필요가 있음? (useMovePage)
+ * @param {String} direction - prev, next
+ * @param {String} view - grid, list
+ * @param {view_option} view_option - view_option
+ */
+export function movePageEventHandler(
+    direction,
+    view,
+    view_option,
+    select_option
+) {
+    const options = {
+        main: view_option.main,
+        press: view_option.press,
+    };
+    if (view === "grid") {
+        useMovePage(direction, view, select_option);
+
+        render(options, select_option.press_data, select_option.page);
+    }
+    if (view === "list") {
+        useMovePage(direction, view, select_option);
+
+        render(options, select_option, select_option.page);
+    }
 }
