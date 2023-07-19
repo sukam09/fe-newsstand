@@ -20,9 +20,7 @@ const initPressHeader = async () => {
 
     initLightDarkMode();
     initPressGrid(pressData, LIST.SUFFLE_ID);
-    // LIST.SUBSCRIBE_NAME
     initPressList(pressData, LIST.CATEGORY_NAME);
-    //
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }
@@ -105,7 +103,7 @@ const subscribeEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, grid
   STATE.IS_GRID = false;
   STATE.IS_TOTAL = false;
 
-  // initPressGrid(pressData, LIST.SUBSCRIBE);
+  initPressList(pressData, LIST.SUBSCRIBE_NAME);
 };
 
 const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
@@ -115,6 +113,7 @@ const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
 
     imgList.src = PATH.LIST_ICON;
     imgGrid.src = PATH.HIDE_GRID_ICON;
+    initPressList(pressData, LIST.CATEGORY_NAME);
   }
   if (!STATE.IS_TOTAL) {
     listWrapper.classList.remove('none');
@@ -122,6 +121,7 @@ const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
 
     imgList.src = PATH.LIST_ICON;
     imgGrid.src = PATH.HIDE_GRID_ICON;
+    initPressList(pressData, LIST.CATEGORY_NAME);
   }
 };
 

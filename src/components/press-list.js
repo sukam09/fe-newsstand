@@ -1,5 +1,6 @@
 import { getShuffle } from '../utils/shuffle.js';
-import { LIST, PAGE } from '../constants/press-data.js';
+import { LIST } from '../constants/press-data.js';
+import { getSnackBar, getAlert } from '../utils/popup.js';
 
 let pageNum = 0;
 let currentArticle = 0;
@@ -24,6 +25,7 @@ const initPressList = (pressData, categoryList) => {
   setArrowLeft();
 
   setArticleEvent();
+  changeIcon();
 };
 
 /**
@@ -122,10 +124,11 @@ const setListShuffle = (pressData, categoryList) => {
 
 const setListArticle = () => {
   const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1];
-
-  // 다크모드는 나중에 처리하자
   const sectionMain = document.querySelector('.press-category__section-main');
-  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  let mode = localStorage.getItem('mode');
+  if (mode === 'light') sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  if (mode === 'dark') sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.darkSrc;
+
   sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
   sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
   sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
@@ -355,5 +358,18 @@ const setArticleEvent = () => {
     mainImg.classList.remove('section-main__img-article-hover');
   });
 };
+
+/**
+ * 언론사 그리드의 라이트/다크모드
+ */
+
+const changeIcon = () => {
+  const modeImg = document.querySelector(`.mode__img`);
+  modeImg.addEventListener('click', () => setListArticle());
+};
+
+/**
+ * 언론사 리스트의 구독하기
+ */
 
 export { initPressList };
