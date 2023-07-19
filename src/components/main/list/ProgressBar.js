@@ -147,7 +147,6 @@ const setCategoryBar = (categoryList) => () => {
 };
 const setCategoryState = (category) => () => setState(categoryState, category);
 
-// 구독 바 채우는 함수
 const setSubscribePressBar = () => {
   const currentOption = getState(viewOptionState);
   if (currentOption === VIEW_OPTION_TYPE.ALL) return;
@@ -179,7 +178,6 @@ const setHeaderBar = (categoryList) => () => {
   }
 };
 
-/** progress 바 설정 */
 const changeActivateCategory = (newsList, categoryList) => () => {
   const isGridView = checkIsGridView();
   if (isGridView) return;
@@ -234,7 +232,6 @@ const changeActivatePress = () => {
   });
 };
 
-/** 카테고리 페이지 색깔 */
 const setPageActivateState = (newsList) => () => {
   const $maxPage = _querySelectorAll(".progress-span")[1];
 

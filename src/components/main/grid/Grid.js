@@ -15,7 +15,7 @@ import {
 } from "../../../utils/my-query-selector.js";
 import { getState } from "../../../observer/observer.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
-import { createSubscribeButton } from "../subscribe-button/SubscribeButton.js";
+import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
 
 const $gridView = _querySelector(".grid-view");
 const $gridViewList = _querySelectorAll("li", $gridView);
@@ -63,18 +63,19 @@ const createGridContent = (name, light) => {
   const $gridContent = document.createElement("div");
   $gridContent.className = "content";
 
-  const $front = document.createElement("div");
-  $front.className = "front";
-  $front.innerHTML = `
-    <button>
-      <img class="grid-cell_news-img" src=${light} alt=${name} />
-    </button>`;
+  const $front = `
+    <div class="front">
+      <button>
+        <img class="grid-cell_news-img" src=${light} alt=${name} />
+      </button>
+    </div>`;
 
   const $back = document.createElement("div");
   $back.className = "back";
-  $back.appendChild(createSubscribeButton(name));
+  const $subscribeButton = getSubscribeButton(name);
+  $back.appendChild($subscribeButton);
 
-  $gridContent.appendChild($front);
+  $gridContent.innerHTML = $front;
   $gridContent.appendChild($back);
 
   return $gridContent;

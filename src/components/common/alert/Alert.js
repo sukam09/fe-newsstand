@@ -25,11 +25,7 @@ const showAlert = () => {
 
   $alertInner.firstChild.textContent = content;
 
-  if (classList.contains("invisible")) {
-    invisibleToVisible();
-  } else {
-    visibleToInvisible();
-  }
+  classList.contains("invisible") ? invisibleToVisible() : visibleToInvisible();
 };
 
 const visibleToInvisible = () => {
@@ -46,11 +42,11 @@ const invisibleToVisible = () => {
 };
 
 const handleUnSubscribeButtonClick = () => {
-  const subList = getState(subscribeState);
-  const subItem = getState(alertMsgState);
+  const subscribeList = getState(subscribeState);
+  const subscribeItem = getState(alertMsgState);
 
-  const itemIndex = subList.indexOf(subItem);
-  const updateArray = subList.filter((_, idx) => idx !== itemIndex);
+  const itemIndex = subscribeList.indexOf(subscribeItem);
+  const updateArray = subscribeList.filter((_, idx) => idx !== itemIndex);
 
   setState(subscribeState, updateArray);
   if (updateArray.length % NEWS_COUNT === 0) {

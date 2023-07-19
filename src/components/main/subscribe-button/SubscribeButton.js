@@ -2,7 +2,6 @@ import {
   alertMsgState,
   snackBarMsgState,
   subscribeState,
-  viewState,
 } from "../../../store/store.js";
 import { checkIsGridView } from "../../../utils/utils.js";
 import { getState, setState } from "../../../observer/observer.js";
@@ -79,9 +78,7 @@ const createCircleSubscribeButton = (name) => {
   return $button;
 };
 
-const createSubscribeButton = (name) => {
-  const currentView = getState(viewState);
-
+const getSubscribeButton = (name) => {
   const isSubscribed = checkSubscribe(name);
   const isGridView = checkIsGridView();
 
@@ -116,4 +113,4 @@ const checkSubscribe = (subItem) => {
   return result;
 };
 
-export { createSubscribeButton };
+export { getSubscribeButton };

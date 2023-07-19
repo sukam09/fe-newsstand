@@ -12,7 +12,7 @@ import {
 import { getState } from "../../../observer/observer.js";
 import { PRESS_ICON } from "../../../constants/constants.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
-import { createSubscribeButton } from "../subscribe-button/SubscribeButton.js";
+import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
 
 const $listView = _querySelector(".list-view_main");
 
@@ -56,7 +56,8 @@ const createNewsHeader = (press, editTime) => {
       <div>
         <span class="display-medium12">${editTime} 편집</span>
       </div>`;
-  $header.appendChild(createSubscribeButton(press));
+  const $subscribeButton = getSubscribeButton(press);
+  $header.appendChild($subscribeButton);
 
   return $header;
 };
