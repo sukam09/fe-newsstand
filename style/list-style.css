@@ -142,6 +142,7 @@
 
 .news-main > img:hover {
   transform: scale(1.05);
+  transition: 0.2s;
 }
 
 .news-main > h2 {
