@@ -3,11 +3,11 @@ import Component from "../core/Component.js";
 export default class NewsDisplayTab extends Component {
     template() {
         return `
-            <div class="news-press-type-menu">
-                <div class="news-press-tab-menu-active selected-bold16">
+            <div class="news-press-type-menu available-medium16">
+                <div class="news-press-tab-all">
                     전체 언론사
                 </div>
-                <div class="available-medium16">내가 구독한 언론사</div>
+                <div class="news-press-tab-subscribe">내가 구독한 언론사</div>
             </div>
             <div class="news-press-view-menu">
                 <button class="display-list-button">
@@ -45,6 +45,7 @@ export default class NewsDisplayTab extends Component {
     }
 
     setEvent() {
+        /* 그리드 or 리스트 */
         const listIcon = this.$target.querySelector(".display-list-button");
         const gridIcon = this.$target.querySelector(".display-grid-button");
 
@@ -56,7 +57,32 @@ export default class NewsDisplayTab extends Component {
             gridIcon.classList.add("display-active");
         }
 
-        listIcon.addEventListener("click", () => this.props.onClick("list"));
-        gridIcon.addEventListener("click", () => this.props.onClick("grid"));
+        listIcon.addEventListener("click", () =>
+            this.props.onClickView("list")
+        );
+        gridIcon.addEventListener("click", () =>
+            this.props.onClickView("grid")
+        );
+
+        const allPressTab = this.$target.querySelector(".news-press-tab-all");
+        const subscribeTab = this.$target.querySelector(
+            ".news-press-tab-subscribe"
+        );
+
+        /* 전체 언론사 or 내가 구독한 언론사 */
+        if (this.props.pressTab === "all") {
+            allPressTab.classList.add("tab-active", "selected-bold16");
+            subscribeTab.classList.remove("tab-active", "selected-bold16");
+        } else {
+            allPressTab.classList.remove("tab-active", "selected-bold16");
+            subscribeTab.classList.add("tab-active", "selected-bold16");
+        }
+
+        allPressTab.addEventListener("click", () =>
+            this.props.onClickTab("all")
+        );
+        subscribeTab.addEventListener("click", () =>
+            this.props.onClickTab("subscribe")
+        );
     }
 }

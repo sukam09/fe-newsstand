@@ -96,7 +96,15 @@ body {
     color: var(--color-text-weak);
 }
 
-.news-press-tab-menu-active {
+.news-press-tab-all {
+    cursor: pointer;
+}
+
+.news-press-tab-subscribe {
+    cursor: pointer;
+}
+
+.tab-active {
     color: var(--color-text-strong);
 }
 

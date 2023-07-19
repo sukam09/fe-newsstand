@@ -4,6 +4,8 @@ import SubscribeButton from "../common/SubscribeButton.js";
 import { updateSubscribeList } from "../utils/utils.js";
 
 const PROGRESS_DURATION = 20000;
+const COLOR_IN_PROGRESS = "#4362d0";
+const COLOR_PROGRESS_BACKGROUND = "#7890e7";
 
 const categoryList = [
     "종합/경제",
@@ -110,10 +112,10 @@ export default class NewsListView extends Component {
                     return (
                         accumulator +
                         `<li class="category-selected">
-                            <div class="category-text">
+                            <div class="category-text selected-bold14">
                                 ${category}
                             </div>
-                            <div class="category-progress-number-container">
+                            <div class="category-progress-number-container display-bold12">
                                 <div class="category-progress-number">
                                     ${this.state.currentPage}
                                 </div>
@@ -263,7 +265,9 @@ export default class NewsListView extends Component {
 
         this.interval = setInterval(() => {
             if (progress < 100) {
-                activeCategory.style.background = `linear-gradient(to right, #4362d0 ${progress}%, #7890e7 0%)`;
+                activeCategory.style.background = `linear-gradient(to right, 
+                                                    ${COLOR_IN_PROGRESS} ${progress}%, 
+                                                    ${COLOR_PROGRESS_BACKGROUND} 0%)`;
                 progress += increment;
             } else {
                 clearInterval(this.interval);

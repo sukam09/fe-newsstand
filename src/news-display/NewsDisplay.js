@@ -5,11 +5,12 @@ import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
 import NewsListView from "./NewsListView.js";
 
+let currentPressTab = "all";
 let currentViewMode = "grid";
 
 export default class NewsDisplay extends Component {
     setup() {
-        this.state = { view: currentViewMode };
+        this.state = { pressTab: currentPressTab, view: currentViewMode };
     }
 
     template() {
@@ -35,27 +36,77 @@ export default class NewsDisplay extends Component {
         this.mountSubscribe(jsonData, subscribeList);
 
         new NewsDisplayTab(newsDisplayTab, {
+            pressTab: this.state.pressTab,
             view: this.state.view,
-            onClick: this.onClick.bind(this),
+            onClickView: this.onClickView.bind(this),
+            onClickTab: this.onClickTab.bind(this),
         });
 
-        this.state.view === "grid"
-            ? new NewsGridView(
-                  this.$target.querySelector(".news-display-container"),
-                  { newsData: jsonData, subscribeList: subscribeList, page: 0 }
-              )
-            : new NewsListView(
-                  this.$target.querySelector(".news-display-container"),
-                  { newsData: jsonData, subscribeList: subscribeList }
-              );
+        // this.state.view === "grid"
+        //     ? new NewsGridView(
+        //           this.$target.querySelector(".news-display-container"),
+        //           { newsData: jsonData, subscribeList: subscribeList, page: 0 }
+        //       )
+        //     : new NewsListView(
+        //           this.$target.querySelector(".news-display-container"),
+        //           { newsData: jsonData, subscribeList: subscribeList }
+        //       );
+        // this.filterSubscribeData(jsonData, subscribeList);
+        if (this.state.pressTab === "all") {
+            if (this.state.view === "grid") {
+                new NewsGridView(
+                    this.$target.querySelector(".news-display-container"),
+                    {
+                        newsData: jsonData,
+                        subscribeList: subscribeList,
+                        page: 0,
+                    }
+                );
+            } else {
+                new NewsListView(
+                    this.$target.querySelector(".news-display-container"),
+                    { newsData: jsonData, subscribeList: subscribeList }
+                );
+            }
+        } else {
+            if (this.state.view === "grid") {
+                new NewsGridView(
+                    this.$target.querySelector(".news-display-container"),
+                    {
+                        newsData: this.filterSubscribeData(
+                            jsonData,
+                            subscribeList
+                        ),
+                        subscribeList: subscribeList,
+                        page: 0,
+                    }
+                );
+            } else {
+                new NewsListView(
+                    this.$target.querySelector(".news-display-container"),
+                    {
+                        newsData: this.filterSubscribeData(
+                            jsonData,
+                            subscribeList
+                        ),
+                        subscribeList: subscribeList,
+                    }
+                );
+            }
+        }
 
         const modal = $app.querySelector(".alert-container");
         new Alert(modal);
     }
 
-    onClick(viewMode) {
+    onClickView(viewMode) {
         currentViewMode = viewMode;
         this.setState({ view: currentViewMode });
+    }
+
+    onClickTab(pressTab) {
+        currentPressTab = pressTab;
+        this.setState({ pressTab: currentPressTab });
     }
 
     mountSubscribe(jsonData, subscribeList) {
@@ -77,5 +128,21 @@ export default class NewsDisplay extends Component {
                 subscribeList.push({ id: data.id, name: data.name })
             );
         }
+    }
+
+    filterSubscribeData(jsonData, subscribeList) {
+        const filteredSubscribeData = [];
+
+        subscribeList.forEach((subscription) => {
+            const subscriptionId = subscription.id;
+            const subscribedData = jsonData.find(
+                (data) => data.id === subscriptionId
+            );
+
+            if (subscribedData) {
+                filteredSubscribeData.push(subscribedData);
+            }
+        });
+        return filteredSubscribeData;
     }
 }
