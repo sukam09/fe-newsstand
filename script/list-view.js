@@ -41,6 +41,7 @@ function drawListPage() {
             </section>
             <section class="list-page-right">
                 ${crntData.sub_title.map((title) => `<span class="list-right-title available-medium16 light-text-bold">${title}</span>`).join('')}
+                <span class="list-right-sub display-medium14">${crntData.name} 언론사에서 직접 편집한 뉴스입니다.</span>
             </section>
         </section>
     </div>`

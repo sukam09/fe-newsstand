@@ -199,6 +199,13 @@ ul {
     height:200px;
     background-color: var(--surface-alt);
 }
+.list-page-left:hover {
+    cursor:pointer;
+    text-decoration: underline;
+}
+.list-page-left:hover > img {
+    transform: scale(1.05);
+}
 .list-page-right {
     display:flex;
     flex-direction: column;
@@ -208,6 +215,9 @@ ul {
 .list-right-title:hover {
     text-decoration: underline;
     cursor:pointer;
+}
+.list-right-sub {
+    color : var(--text-weak)
 }
 .hidden {
     visibility: hidden;
