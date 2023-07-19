@@ -3,9 +3,6 @@
  */
 import ContentNav from "./Main/ContentNav.js";
 import MainContent from "./Main/MainContent.js";
-import fetchNews from "../api/fetchNews.js";
-
-const newsData = await fetchNews();
 
 export default function Main($target, props) {
   let $main = document.querySelector(".news");

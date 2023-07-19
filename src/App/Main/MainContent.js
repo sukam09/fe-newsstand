@@ -37,13 +37,13 @@ export default function MainContent($target, props) {
 
   this.setState = (nextState) => {
     this.state = nextState;
-    suffile(this.state.lastPage);
+    suffile(lastPage);
     this.render();
   };
 
   this.setCategory = (nextCategory) => {
     this.state = { ...this.state, category: nextCategory % 7 };
-    suffile(this.state.lastPage);
+    suffile(lastPage);
     this.render();
   };
 
@@ -95,6 +95,7 @@ export default function MainContent($target, props) {
         setContentState: this.setState,
         timerArr: timerArr,
         indexArr: indexArr,
+        data: listViewData[this.state.category],
       };
 
       new NewsListView($section, listProps);

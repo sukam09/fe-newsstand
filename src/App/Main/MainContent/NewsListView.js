@@ -5,34 +5,55 @@
 
 import CategoryNav from "./NewsListView/CategoryNav.js";
 import Contents from "./NewsListView/Contents.js";
+import getRandomIndexArr from "../../../api/getRandomIndexArr.js";
 
-let subTitles = [
-  `"위스키 사려고 이틀전부터 줄 섰어요"`,
-  `'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까`,
-  `사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다`,
-  `[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"`,
-  `태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]`,
-  `LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”`,
-];
+let indexArr;
+let prevCategory = undefined;
 
-const pressArr = [
-  "머니투데이",
-  "경향신문",
-  "뉴스타파",
-  "오마이뉴스",
-  "데일리안",
-  "스포츠서울",
-  "스포츠동아",
-  "문화일보",
-  "KBS WORLD",
-  "한국중앙데일리",
-  "인사이트",
-  "법률방송뉴스",
-];
+const getPressLogo = function (object, mode) {
+  return object[`logo${mode}`].url;
+};
 
-const editDate = "2023.02.10 18:27 편집";
+const getEditDate = function (object) {
+  let [date, time] = object.regDate.split(" ");
 
+  let year = date.substring(0, 4);
+  let month = date.substring(4, 6);
+  let day = date.substring(6, 8);
+
+  date = `${year}.${month}.${day}`;
+  time = time.substring(0, 5);
+
+  return `${date} ${time} 편집`;
+};
+
+const getMainThumbnail = function (object) {
+  return object.materials[0].image.url;
+};
+
+const getMainNewsTitle = function (object) {
+  return object.materials[0].title;
+};
+
+const getsubTitles = function (object) {
+  const titles = [];
+  object.materials.slice(1).forEach((element) => {
+    titles.push(element.title);
+  });
+  return titles;
+};
+
+const getPressName = function (object) {
+  return object.name;
+};
 export default function NewsListView($target, props) {
+  if (prevCategory !== props.category) {
+    prevCategory = props.category;
+    indexArr = getRandomIndexArr(props.data.length);
+  }
+
+  const newsOject = props.data[indexArr[props.currentPage - 1]];
+
   const categoryNavProps = {
     pressType: props.pressType,
     currentPage: props.currentPage,
@@ -44,21 +65,17 @@ export default function NewsListView($target, props) {
 
   const contentsProps = {
     headerData: {
-      pressLogo: `./assets/newspaper/${props.mode}/${
-        props.indexArr[props.currentPage - 1] + 1
-      }.png`,
-      editDate: editDate,
+      pressLogo: getPressLogo(newsOject, props.mode),
+      editDate: getEditDate(newsOject),
     },
     newsData: {
       mainNewsData: {
-        mainThumbnail: "https://picsum.photos/320/200",
-        mainNewsTitle: `또 국민연금의 몽니…현대百 지주사 불발 ${
-          props.indexArr[props.currentPage - 1]
-        }`,
+        mainThumbnail: getMainThumbnail(newsOject),
+        mainNewsTitle: getMainNewsTitle(newsOject),
       },
       subNewsData: {
-        subTitles: subTitles,
-        press: pressArr[props.indexArr[props.currentPage - 1]],
+        subTitles: getsubTitles(newsOject),
+        press: getPressName(newsOject),
       },
     },
   };

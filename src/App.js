@@ -9,7 +9,7 @@ import Rolling from "./App/Rolling.js";
 import Main from "./App/Main.js";
 
 export default function App($target, mode) {
-  this.state = "light";
+  this.state = "Light";
 
   this.setState = (nextState) => {
     this.state = nextState;
