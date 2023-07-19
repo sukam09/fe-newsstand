@@ -1,5 +1,6 @@
 import { COL_SIZE, ROW_SIZE, ASSETS_IMAGE_PATH } from "../constants.js";
-import { view_option, subscribe_option } from "../globals.js";
+import { view_option } from "../globals.js";
+import { isSubscribed } from "../utils.js";
 
 function renderGridView(data, page, action) {
     const grid_press_container = document.querySelector(".main_news_container");
@@ -15,10 +16,7 @@ function createPressList(container, data, idx) {
         let ul = document.createElement("ul");
         for (let j = 0; j < ROW_SIZE; j++) {
             const item = data[idx] || { name: "empty", url: "" };
-            const subscribe =
-                subscribe_option.subscribe_press[item.name] === undefined
-                    ? false
-                    : subscribe_option.subscribe_press[item.name];
+            const subscribe = isSubscribed(item.name);
             ul.innerHTML += `
             <li class="press_data_container">
                 <div class="press_data_item">
@@ -30,14 +28,11 @@ function createPressList(container, data, idx) {
                     }" is_subscribe="${subscribe}">
                     ${
                         subscribe
-                            ? `<img src="./assets/icons/symbol.png" />`
-                            : `<img src="./assets/icons/plus.png" />`
+                            ? `<img src="./assets/icons/symbol.png" />
+                            <span>해지하기</span>`
+                            : `<img src="./assets/icons/plus.png" />
+                            <span>구독하기</span>`
                     }
-                    ${
-                        subscribe
-                            ? `<span>해지하기</span>`
-                            : `<span>구독하기</span>`
-                    }    
                     </button>
                 </div>
             </li>

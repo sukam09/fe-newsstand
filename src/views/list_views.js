@@ -1,5 +1,6 @@
 import { list_option, grid_option, view_option } from "../globals.js";
 import { ASSETS_IMAGE_PATH, CATEGORYS } from "../constants.js";
+import { isSubscribed } from "../utils.js";
 
 function renderListView(data, category, page) {
     const list_news_container = document.querySelector(".main_news_container");
@@ -11,17 +12,9 @@ function renderListView(data, category, page) {
     clearInterval(list_option.interval);
     list_option.progress_time = 0;
 
-    createNewsNav(
-        list_news_container,
-        data[CATEGORYS[category]],
-        page + 1
-    );
+    createNewsNav(list_news_container, data[CATEGORYS[category]], page + 1);
     createNewsHeader(main_content, data[CATEGORYS[category]], page);
-    createMainContents(
-        main_content,
-        data[CATEGORYS[category]],
-        page
-    );
+    createMainContents(main_content, data[CATEGORYS[category]], page);
 
     list_news_container.appendChild(main_content);
 }
@@ -67,13 +60,19 @@ function createNewsHeader(parent, data, page) {
             press_url = item.url;
         }
     });
+
+    const subscribe = isSubscribed(data[page].press_name);
     container.innerHTML = `
         <img src="${ASSETS_IMAGE_PATH}${view_option.mode}${press_url}"
         class="content_press" alt="${press_url}"/>
         <p class="content_edit">${data[page].last_edit} 편집</p>
         <button class="content_subscribe">
-            <img src="./assets/icons/plus.png" />
-            <span>구독하기</span>
+        ${
+            subscribe
+                ? `<img src="./assets/icons/symbol.png" />`
+                : `<img src="./assets/icons/plus.png" />
+                    <span>구독하기</span>`
+        }
         </button>`;
 
     parent.appendChild(container);
