@@ -20,6 +20,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
 }
 .container {
   max-width: 930px;
@@ -70,6 +72,7 @@ body {
 }
 .tab_category {
   z-index: 10;
+  white-space: nowrap;
 }
 .tab-count {
   display: none;
@@ -90,6 +93,9 @@ body {
 }
 .category-selected .tab_progress-bar {
   animation: progress 5s linear infinite;
+}
+.category-selected svg {
+  display: block;
 }
 :not(.category-selected):hover > .tab_category {
   text-decoration-line: underline;
