@@ -13,8 +13,6 @@ export function stopCategoryInterval() {
 export function startCategoryInterval() {
   categoryInterval = setInterval(() => {
     listPageUp();
-    updateCategoryClicked();
-    updateListButton();
   }, CATEGORY_TAB_TIME);
 }
 
@@ -22,8 +20,7 @@ export function startCategoryInterval() {
 export function refreshInterval() {
   stopCategoryInterval();
   startCategoryInterval();
-  updateListButton();
-  updateCategoryClicked();
+  updateCategoryTabNum();
 }
 
 export function setFirstListPage() {
@@ -101,7 +98,6 @@ export function updateCategoryClicked() {
   targetOn.children[getState(categoryIdx)].classList.add(
     "category_list--clicked"
   );
-  updateCategoryTabNum();
 }
 
 // 카테고리에서 마지막 탭인지 확인
@@ -137,7 +133,7 @@ function updateCategoryTabNum() {
   }
 }
 
-// (function init() {
-//   resister(listPageIdx, refreshInterval);
-//   resister(categoryIdx, refreshInterval);
-// })();
+(function init() {
+  resister(listPageIdx, refreshInterval);
+  resister(listPageIdx, updateCategoryClicked);
+})();

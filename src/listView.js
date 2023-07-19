@@ -2,7 +2,7 @@ import { MAX_NEWS_COUNT } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
 import { refreshInterval } from "./category.js";
 import { getState, resister, setState } from "./observer/observer.js";
-import { categoryIdx, listPageIdx } from "./store/store.js";
+import { categoryIdx, isGrid, listPageIdx } from "./store/store.js";
 import { $ } from "./util.js";
 
 let cachedCategoryList = null;
@@ -47,29 +47,7 @@ async function appendNewsList() {
 
 function setListViewEvents() {
   resister(listPageIdx, appendNewsList);
+  resister(isGrid, appendNewsList);
 }
 
 export { setListViewEvents };
-
-// 좌우 리스트 버튼 display 변경
-
-// export async function listArrowButtonClicked(increment) {
-//   if (cachedCategoryList === null) {
-//     cachedCategoryList = await getNewsContents();
-//   }
-//   if (getState(listPageIdx) + increment === 0) {
-//     setState(categoryIdx, getState(categoryIdx) - 1);
-//     setState(
-//       listPageIdx,
-//       cachedCategoryList[getState("categoryIdx")].data.length
-//     );
-//   } else {
-//     setState(listPageIdx, getState(listPageIdx) + increment);
-//   }
-//   const clickedCategory = $(".category_list--clicked");
-//   clickedCategory.children[2].classList.remove("progressbar");
-//   clickedCategory.offsetWidth;
-//   clickedCategory.children[2].classList.add("progressbar");
-//   refreshInterval();
-//   updateListButton();
-// }
