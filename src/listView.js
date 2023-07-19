@@ -27,6 +27,9 @@ function createNewsList(content) {
 function appendNewsList(newsList) {
   const elements = getListViewElement();
   elements.newsListContainer.innerHTML = "";
+  console.log(
+    `list : ${getState(listPageIdx)} category : ${getState(categoryIdx)}`
+  );
   const nowData =
     newsList[getState("categoryIdx")].data[getState(listPageIdx) - 1];
   elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
@@ -44,10 +47,10 @@ async function setListViewEvents() {
   resister(listPageIdx, () => {
     appendNewsList(newsList);
   });
-  resister(isGrid, () => {
+  resister(categoryIdx, () => {
     appendNewsList(newsList);
   });
-  resister(categoryIdx, () => {
+  resister(isGrid, () => {
     appendNewsList(newsList);
   });
 }

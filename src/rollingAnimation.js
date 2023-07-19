@@ -1,5 +1,9 @@
 import {
   ANIMATION_GAP,
+  BANNER_LIST,
+  NEXT_BANNER,
+  NOW_BANNER,
+  PREV_BANNER,
   ROLLING_NEWS_NUM,
   ROLLING_TIME,
 } from "../constant/constants.js";
@@ -68,16 +72,16 @@ function createBannerItem(idx, content, state) {
   });
   switch (idx) {
     case 0:
-      newItem.className = "newsbanner__list newsbanner__list--prev";
+      newItem.className = `${BANNER_LIST} ${PREV_BANNER}`;
       break;
     case 1:
-      newItem.className = "newsbanner__list newsbanner__list--now";
+      newItem.className = `${BANNER_LIST} ${NOW_BANNER}`;
       break;
     case 2:
-      newItem.className = "newsbanner__list newsbanner__list--next";
+      newItem.className = `${BANNER_LIST} ${NEXT_BANNER}`;
       break;
     default:
-      newItem.className = "newsbanner__list";
+      newItem.className = `${BANNER_LIST}`;
   }
   return newItem;
 }
@@ -85,25 +89,25 @@ function createBannerItem(idx, content, state) {
 // 롤링 애니메이션
 function rollingEvent(state) {
   // 이전 값 삭제
-  $(
-    `.newsbanner__list-container--${state} .newsbanner__list--prev`
-  ).classList.remove("newsbanner__list--prev");
+  $(`.newsbanner__list-container--${state} .${PREV_BANNER}`).classList.remove(
+    PREV_BANNER
+  );
 
   // 현재 값 이전으로 옮기기
-  let now = $(`.newsbanner__list-container--${state} .newsbanner__list--now`);
-  now.classList.remove("newsbanner__list--now");
-  now.classList.add("newsbanner__list--prev");
+  let now = $(`.newsbanner__list-container--${state} .${NOW_BANNER}`);
+  now.classList.remove(NOW_BANNER);
+  now.classList.add(PREV_BANNER);
   // 다음 값 현재로 옮기기
-  let next = $(`.newsbanner__list-container--${state} .newsbanner__list--next`);
+  let next = $(`.newsbanner__list-container--${state} .${NEXT_BANNER}`);
 
   // 다음 값이 없다면 처음부터
   if (next.nextElementSibling === null) {
     $(
       `.newsbanner__list-container--${state} .newsbanner__list:first-child`
-    ).classList.add("newsbanner__list--next");
+    ).classList.add(NEXT_BANNER);
   } else {
-    next.nextElementSibling.classList.add("newsbanner__list--next");
+    next.nextElementSibling.classList.add(NEXT_BANNER);
   }
-  next.classList.remove("newsbanner__list--next");
-  next.classList.add("newsbanner__list--now");
+  next.classList.remove(NEXT_BANNER);
+  next.classList.add(NOW_BANNER);
 }

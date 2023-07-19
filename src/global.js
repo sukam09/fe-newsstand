@@ -1,4 +1,3 @@
-import { stopCategoryInterval } from "./category.js";
 import { $, $All } from "./util.js";
 import { getState, resister, setState } from "./observer/observer.js";
 import {
