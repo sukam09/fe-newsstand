@@ -161,9 +161,9 @@ const setProgressBarClick = () => {
       if (isCategory) progressIndex = LIST.CATEGORY_NAME.findIndex((name) => name === progressName);
       if (isSubscribe) progressIndex = LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
 
-      LIST.CATEGORY_COUNT = progressIndex;
-      LIST.PAGE_COUNT = 0;
-      LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+      LIST.CATEGORY_COUNT = progressIndex + 1;
+      LIST.PAGE_COUNT = 1;
+      LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
 
       progress.classList.add('progress-start');
       progress.querySelector('.press-category__div').classList.remove('none');
@@ -172,7 +172,6 @@ const setProgressBarClick = () => {
 
       progressNow.innerText = LIST.PAGE_COUNT;
       progressSum.innerText = LIST.PAGE_LENTH;
-      getProgressBarEvent(progressNow, progressSum);
     });
   });
 };
