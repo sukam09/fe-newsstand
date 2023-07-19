@@ -1,15 +1,17 @@
 import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
 import { fetchPressInfos } from "../../dataFetch.js";
+import { subscribePress } from "../../subscribeButton.js";
 import turnPressPage from "./pageMoveButton.js";
+
 
 /**
  언론사 id 순서 랜덤화해서 각 페이지에 id할당
  */
 async function randomizeImgs() {
   const pressInfoArr = await fetchPressInfos();
-  const pressList = [...Array(0)].map(()=>[]);
-  const pressLogoPage = [...Array(4)].map(()=>[]);
-  
+  const pressList = [...Array(0)].map(() => []);
+  const pressLogoPage = [...Array(4)].map(() => []);
+
   pressInfoArr.forEach(pressInfo => {
     pressList.push({ "id": pressInfo["id"] })
   })
@@ -19,7 +21,7 @@ async function randomizeImgs() {
     const pageIndex = Math.floor(idx / ONE_PRESS_CNT);
     pressLogoPage[pageIndex].push(pressId);
   })
-  
+
   return pressLogoPage;
 }
 
@@ -29,8 +31,10 @@ async function randomizeImgs() {
 function drawPressImg(page, gridPageIndex) {
   const $sectionNewsList = document.querySelector('.press-lists');
   $sectionNewsList.innerHTML = `
-  ${page[gridPageIndex].map(arr => `<li><img class="pointer" src="./assets/logo/light/img${arr["id"]}.svg"</li>`).join('')};
-`
+  ${page[gridPageIndex].map(arr =>
+    `<li class="current-logos-container">
+    <img class="pointer current-logos" data-id=${arr["id"]} src="./assets/logo/light/img${arr["id"]}.svg"></li>`).join('')}
+    `
 }
 
 /**
@@ -40,6 +44,7 @@ async function initPressImg() {
   const page = await randomizeImgs();
   drawPressImg(page, FIRST_PAGE_IDX);
   turnPressPage(page);
+  subscribePress()
 }
 
 

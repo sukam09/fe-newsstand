@@ -33,3 +33,15 @@
   top: calc(50% - 20px);
   left: calc(100% + 47px);
 }
+
+.subscribe-button {
+  display: none;
+}
+
+.subscribe-button:hover {
+  background-color: gray;
+}
+
+.grid-snackbar {
+  display: none;
+}
