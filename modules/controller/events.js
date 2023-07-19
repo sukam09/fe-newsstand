@@ -11,14 +11,10 @@ import {
 } from "../components/headlineSection/headline/headline.js";
 
 import {
-  handleGirdViewButton,
-  handleListViewButton,
-} from "../components/mainSection/mainHeader/mainHeader.js";
-import {
   handleLogoButton,
   handleThemeButtonClick,
 } from "../components/titleSection/titleSection.js";
-import { handleClickCategoryItem } from "./categoryController.js";
+import { handleCategoryItemClick } from "./categoryController.js";
 import {
   handleGridItemClick,
   handleGridItemMouseout,
@@ -38,6 +34,12 @@ import {
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { handleListSubButton } from "./listController.js";
+import {
+  handleAllModeClick,
+  handleGridViewButton,
+  handleListViewButton,
+  handleMyModeClick,
+} from "./pageController.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
@@ -124,7 +126,7 @@ export function addEventsOnViewButton() {
   const $listViewButton = qs(".list_view_button");
   const $gridViewButton = qs(".grid_view_button");
 
-  $gridViewButton.addEventListener("click", (e) => handleGirdViewButton(e));
+  $gridViewButton.addEventListener("click", (e) => handleGridViewButton(e));
   $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
 }
 
@@ -132,7 +134,7 @@ export function addEventsOnCategoryItem() {
   const $categoryItems = qsa(".category_item");
 
   [...$categoryItems].forEach(($categoryItem) => {
-    $categoryItem.addEventListener("click", (e) => handleClickCategoryItem(e));
+    $categoryItem.addEventListener("click", (e) => handleCategoryItemClick(e));
   });
 }
 
@@ -186,4 +188,12 @@ export function addEventsOnListSubButton() {
   [...$unsubButtons].forEach(($unsubButton) => {
     $unsubButton.addEventListener("click", (e) => handleListSubButton(e));
   });
+}
+
+export function addEventsOnPageModeButton() {
+  const $myModeButton = qs(".all_mode_button");
+  const $allModeButton = qs(".my_mode_button");
+  console.log($allModeButton);
+  $myModeButton.addEventListener("click", (e) => handleAllModeClick(e));
+  $allModeButton.addEventListener("click", (e) => handleMyModeClick(e));
 }

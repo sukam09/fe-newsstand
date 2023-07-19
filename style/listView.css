@@ -103,7 +103,7 @@
   position: relative;
   z-index: 100;
 }
-.category_list > .clicked {
+.category_list > .category_clicked {
   background-color: var(--surface-surface-brand-alt);
   width: 166px;
   color: #ffffff;
@@ -111,7 +111,7 @@
   justify-content: space-between;
 }
 
-.category_list > .clicked:hover {
+.category_list > .category_clicked:hover {
   cursor: default;
   text-decoration-line: none;
 }
@@ -120,10 +120,10 @@
   height: 100%;
 }
 
-.clicked > .page_count {
+.category_clicked > .page_count {
   display: inline;
 }
-.clicked > .progressbar {
+.category_clicked > .progressbar {
   display: inline;
 }
 

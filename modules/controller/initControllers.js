@@ -3,6 +3,7 @@ import {
   addEventsOnGridItem,
   addEventsOnListSubButton,
   addEventsOnPageButton,
+  addEventsOnPageModeButton,
   addEventsOnRollingList,
   addEventsOnSubButton,
   addEventsOnThemeButton,
@@ -26,6 +27,7 @@ export function initEvents() {
   addEventsOnRollingList();
   addEventsOnTitle();
   addEventsOnListSubButton();
+  addEventsOnPageModeButton();
 }
 
 export function initObservers() {

@@ -1,4 +1,4 @@
-import { addObserver, getState } from "../store/observer.js";
+import { addObserver, getState, setState } from "../store/observer.js";
 import { MAX_GRID_PAGE } from "../store/pageState.js";
 import {
   GRID,
@@ -36,6 +36,20 @@ export function addObserverOnPageType() {
     controllButtonShowing();
   };
   addObserver(pageTypeState, changeView);
+}
+
+export function handleGridViewButton(e) {
+  const $listViewButton = qs(".list_view_button");
+  e.currentTarget.classList.add("view_clicked");
+  $listViewButton.classList.remove("view_clicked");
+  setState(pageTypeState, GRID);
+}
+
+export function handleListViewButton(e) {
+  const $gridViewButton = qs(".grid_view_button");
+  e.currentTarget.classList.add("view_clicked");
+  $gridViewButton.classList.remove("view_clicked");
+  setState(pageTypeState, LIST);
 }
 
 export function addObserverOnGridPage() {
@@ -115,6 +129,7 @@ function hideListContainer() {
   const $listContainer = qs("#list_container");
   $listContainer.style.display = "none";
 }
+
 function showListContainer() {
   const $listContainer = qs("#list_container");
   $listContainer.style.display = "block";
@@ -126,4 +141,16 @@ export function updatePageCount() {
   const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
   const $nowPage = $categoryItem.querySelector(".now_page");
   $nowPage.innerHTML = listPage + 1;
+}
+
+export function handleAllModeClick({ currentTarget }) {
+  const $myModeButton = qs(".my_mode_button");
+  $myModeButton.classList.remove("clicked");
+  currentTarget.classList.add("clicked");
+}
+
+export function handleMyModeClick({ currentTarget }) {
+  const $allModeButton = qs(".all_mode_button");
+  $allModeButton.classList.remove("clicked");
+  currentTarget.classList.add("clicked");
 }

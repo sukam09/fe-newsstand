@@ -172,3 +172,12 @@ img.title_logo {
   filter: invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg)
     brightness(87%) contrast(85%);
 }
+
+.mode_button {
+  cursor: pointer;
+}
+
+.main_title_container > .clicked {
+  font-weight: bold;
+  color: var(--text-text-strong);
+}
