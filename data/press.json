@@ -152,7 +152,7 @@
         }
       ],
       "logo": "./asset/logo/헤럴드경제.png",
-      "subscribe": false,
+      "subscribe": true,
       "category": "종합/경제",
       "editTime": "YYYY-MM-DD HH:mm:ss"
     },
