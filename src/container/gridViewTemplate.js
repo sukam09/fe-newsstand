@@ -7,11 +7,12 @@ import { buttonFacotry } from "../components/common/btnfactory.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
+import { _sub_press_list } from "../Store.js";
 
 const btnFactory = new buttonFacotry();
 
 // 그리드 뷰 생성 (화살표 제외한 뷰)
-export function createMainGrid(grid_view_info, isInit, subscribe_list) {
+export function createMainGrid(grid_view_info, isInit) {
     const $container = isInit
         ? create.div({ className: "main_news_container" })
         : document.querySelector(`${grid_view_info.getClassName()}`).querySelector(".main_news_container");
@@ -47,7 +48,7 @@ export function createMainGrid(grid_view_info, isInit, subscribe_list) {
             });
 
             // 구독하기 버튼 (구독한 경우: 해지하기 버튼, 구독하지 않은 경우: 구독하기 버튼)
-            const is_subscribe_press = !subscribe_list.includes(data_list[cnt].id);
+            const is_subscribe_press = !_sub_press_list.getIdx().includes(data_list[cnt].id);
             const $subscribe_btn = btnFactory.create({
                 type: "subscribe",
                 isDefault: true,
