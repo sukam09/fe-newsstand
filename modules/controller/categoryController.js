@@ -37,7 +37,7 @@ export function highlightCategoryItem() {
 
 function startProgressAnimation($progressbar) {
   let raf;
-  let runningTime = 2000;
+  let runningTime = 200000;
   let percentage = 0;
   let start;
   const listPage = getState(listPageState);

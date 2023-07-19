@@ -1,35 +1,33 @@
 import { subStateList } from "../store/gridState.js";
 import { getState, setState } from "../store/observer.js";
-import { qs } from "../utils.js";
+import { qsa } from "../utils.js";
 
-export function handleListSubButton(e) {
-  const $button = e.currentTarget;
-  const pressId = parseInt($button.parentNode.parentNode.id.split("_")[2]);
+export function handleListSubButton({ currentTarget: $button }) {
+  const pressId = parseInt($button.getAttribute("key").split("_")[1]);
+  console.log(pressId);
   const subState = getState(subStateList[pressId]);
   setState(subStateList[pressId], !subState);
 }
 
-export function controllListSubButtonShowing(id) {
+// id의 리스트 뷰의 구독, 해지 버튼 조정
+export function controllListsSubButtonShowing(id) {
   const isSub = getState(subStateList[id]);
-  const $pressList = qs(`#list_press_${id}`);
-  if (!$pressList) {
-    console.log("데이터 엄씀");
+  const $pressLists = qsa(`.list_press_${id}`);
+
+  if (!$pressLists) {
+    console.log("리스트 뷰에 데이터 엄씀");
     return;
   }
-  console.log(($pressList.style.display = "flex"));
+  [...$pressLists].forEach(($pressList) => {
+    const $subButton = $pressList.querySelector(".list_sub_button");
+    const $unsubButton = $pressList.querySelector(".list_unsub_button");
 
-  const $subButton = $pressList.querySelector(".list_sub_button");
-  const $unsubButton = $pressList.querySelector(".list_unsub_button");
-
-  console.log($subButton, isSub);
-
-  if (isSub) {
-    $subButton.style.display = "none";
-    $unsubButton.style.display = "flex";
-    console.log("   x버튼 표시");
-  } else {
-    $subButton.style.display = "flex";
-    $unsubButton.style.display = "none";
-    console.log("   구독 버튼 표시");
-  }
+    if (isSub) {
+      $subButton.style.display = "none";
+      $unsubButton.style.display = "flex";
+    } else {
+      $subButton.style.display = "flex";
+      $unsubButton.style.display = "none";
+    }
+  });
 }

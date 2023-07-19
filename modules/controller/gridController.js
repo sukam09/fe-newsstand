@@ -55,11 +55,11 @@ export function handleGridItemClick(e) {
   const press = pressList[index];
 
   if ($target.className === "sub_button") {
-    const subButtonState = subStateList[press.id];
-    setState(subButtonState, true);
+    const subState = subStateList[press.id];
+    setState(subState, true);
   } else if ($target.className === "unsub_button") {
-    const subButtonState = subStateList[press.id];
-    setState(subButtonState, false);
+    const subState = subStateList[press.id];
+    setState(subState, false);
   }
 }
 

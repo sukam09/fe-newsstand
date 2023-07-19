@@ -16,9 +16,9 @@ export function createPressList(categoryId, page) {
   const targetPress = targetPressList[page];
 
   return `
-  <div id="list_press_${
+  <div class="list_press_${
     targetPress.id
-  }" class="news news_${categoryId}_${page}  flex_column">
+  } news news_${categoryId}_${page}  flex_column">
     ${createNewsHeader(targetPress)}
     ${createNewsBody(targetPress)}
   </div>
@@ -30,7 +30,7 @@ function createNewsHeader(press) {
     <div class="news_header flex_row">
       <img src=${press.lightSrc} />
       <span>${press.data.editTime} 편집</span>
-      <button  key="sub_${press.id}" class="list_sub_button">${press.name} + 구독하기 </button>
+      <button  key="sub_${press.id}" class="list_sub_button"> + 구독하기 </button>
       <button key="unsub_${press.id}" class="list_unsub_button"> x </button>
     </div>
     `;
