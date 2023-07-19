@@ -283,7 +283,6 @@ const setArrowLeft = () => {
     const progressNow = progressStartClone.querySelector('.press-category__div-now');
     const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
-    ///////////
     const PAGE = 1 < LIST.PAGE_COUNT;
     const CATEGORY = 1 < LIST.CATEGORY_COUNT;
     progressNow.innerText = LIST.PAGE_COUNT;
@@ -312,6 +311,9 @@ const setPrevCategory = () => {
   const addLi = removeLi.previousElementSibling;
   const addDiv = addLi.querySelector('.press-category__div');
 
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
+
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
   addLi.classList.add('progress-start');
@@ -327,6 +329,9 @@ const setLastCategory = () => {
   const removeDiv = removeLi.querySelector('.press-category__div');
   const addLi = document.querySelector('.press-category__ul').lastElementChild;
   const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
