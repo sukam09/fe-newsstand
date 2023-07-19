@@ -67,7 +67,7 @@ const createButton = (data) => {
       ? `${data.name}`
       : `내가 구독한 언론사에 추가되었습니다.`;
 
-    if (isSubscribed === true) {
+    if (isSubscribed) {
       alert.show(message);
       alert.setState(e.target.id, isSubscribed);
     } else {
