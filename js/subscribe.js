@@ -57,19 +57,25 @@ function listSubMouseClick(news) {
   }
 }
 
-function initGridItemEvent(item) {
+function initGridItemEvent(item,press) {
   item.addEventListener("mouseenter", e => gridMouseOver(e.target));
   item.addEventListener("mouseleave", e => gridMouseOut(e.target));
-  item.addEventListener("click", e => gridMouseClick(e.target));
+  if(STATE.SUB_DATA.find(data => data.name === press.name) === undefined) {
+    item.addEventListener("click", e => gridMouseClick(e.target));    
+  } else {
+    item.addEventListener("click", e => {
+      onUndiscribeModal(e.target);
+    });  
+  }
 }
 
-function initSubGridItemEvent(item) {
-  item.addEventListener("mouseenter", e => gridMouseOver(e.target));
-  item.addEventListener("mouseleave", e => gridMouseOut(e.target));
-  item.addEventListener("click", e => {
-    onUndiscribeModal(e.target);
-  });
-}
+// function initSubGridItemEvent(item) {
+//   item.addEventListener("mouseenter", e => gridMouseOver(e.target));
+//   item.addEventListener("mouseleave", e => gridMouseOut(e.target));
+//   item.addEventListener("click", e => {
+//     onUndiscribeModal(e.target);
+//   });
+// }
 
 function preventButtonClick(button) {
   button.addEventListener("click", e => {
@@ -106,7 +112,6 @@ export {
   listSubMouseClick,
   initSpanEvent,
   removeGridSubscribe,
-  initSubGridItemEvent,
   gridMouseClick,
   
 };

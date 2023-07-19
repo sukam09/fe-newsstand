@@ -41,11 +41,11 @@ function changeOption(selected) {
   const $total = document.querySelector(".total-press");
   const $subscribe = document.querySelector(".subscribed-press");
   if (selected === "total") {
-    $subscribe.classList.remove("selected-bold16","text-strong");
-    $total.classList.add("selected-bold16","text-strong");
+    $subscribe.classList.remove("selected-bold16", "text-strong");
+    $total.classList.add("selected-bold16", "text-strong");
   } else {
-    $subscribe.classList.add("selected-bold16","text-strong");
-    $total.classList.remove("selected-bold16","text-strong");
+    $subscribe.classList.add("selected-bold16", "text-strong");
+    $total.classList.remove("selected-bold16", "text-strong");
   }
 }
 
@@ -59,6 +59,7 @@ function handleView(target) {
     //list 버튼 눌렀을 때
     STATE.SUB_NEWS_PAGE = 0;
     changeViewIcon("list");
+    STATE.IS_GRID_VIEW = false;
     if (STATE.IS_SUB_VIEW) {
       // list 선택, list 구독 뷰 출력
       if (STATE.SUB_DATA.length === 0) {
@@ -73,7 +74,6 @@ function handleView(target) {
       drawNews();
       setNowCount();
     }
-    STATE.IS_GRID_VIEW = false;
   }
   if (checkClass("grid-symbol")) {
     //grid 버튼 눌렀을 때
@@ -84,11 +84,12 @@ function handleView(target) {
   }
   if (checkClass("total-press")) {
     // 전체 언론사 클릭
+    STATE.IS_GRID_VIEW = true;
+    STATE.IS_SUB_VIEW = false;
     setDisplay(".press-grid", "query", "block");
     changeViewIcon("grid");
     changeOption("total");
     drawGridView();
-    STATE.IS_SUB_VIEW = false;
   }
   if (checkClass("subscribed-press")) {
     // 내 구독 언론사 클릭

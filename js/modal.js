@@ -1,5 +1,6 @@
 import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay, getJSON } from "../js/utils.js";
 import { STATE, DATA, setSubData } from "./const.js";
+import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
 import { drawSubNews, setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
@@ -47,7 +48,7 @@ function handleModalBtn(target) {
       const $press_name_span = findSpanNearby(target);
       const $find_press = findPress("name", $press_name_span);
       setSubData($find_press);
-      drawSubGridView();
+      drawGridView();
     } else {
       //리스트뷰일때
       const $news_article = STATE.IS_SUB_VIEW ? document.querySelector(".sub-news-article") : document.querySelector(".news-article");
