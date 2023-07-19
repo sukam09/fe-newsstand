@@ -100,17 +100,11 @@ export const GridController = {
     if(isSub){
       wrapperElement.addEventListener('click', function(event) {
         subscribedStore.setState([...subscribedStore.getState(),logoIndex]);
-        const snackBarDiv = document.createElement('div');
-        snackBarDiv.className = 'snackBar display-medium16 surface-brand-default';
-        snackBarDiv.innerHTML = `<p>내가 구독한 언론사에 추가되었습니다.</p>`;
-        snackBarDiv.style.position = 'fixed';
-        snackBarDiv.style.zIndex = '99999';
-        snackBarDiv.style.top = '60.5%';
-        snackBarDiv.style.left = '50%';
-        snackBarDiv.style.transform = 'translate(-50%, -50%)';
-        document.body.appendChild(snackBarDiv); 
+        const snackBar = document.querySelector('.snackBar');
+        snackBar.classList.remove('hide');
         setTimeout(function() {
-          document.body.removeChild(snackBarDiv);
+          snackBar.classList.add('hide');  
+          mode.setState('Sub');
         }, 3000);
       });
     }

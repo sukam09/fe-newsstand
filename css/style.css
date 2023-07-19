@@ -342,4 +342,13 @@ ul li:hover .media-hover .subscribedWrapper {
     align-items: flex-start;
     gap: 10px;
     box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+    position: fixed;
+    z-index: 99999;
+    top : 60.5%;
+    left : 50%;
+    transform : translate(-50%,-50%);
+}
+
+.snackBar.hide { 
+    display: none;
 }

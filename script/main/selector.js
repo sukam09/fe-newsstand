@@ -23,24 +23,33 @@ const viewSelector = () => {
     gridBtn.src = "assets/images/grid_blue.svg";
   });
 }
-
+export const toggleClass = () => {
+  let selected,unselected;
+  const [allMediaDiv, subscribeMediaDiv] = document.querySelectorAll('.media_select');
+  if(mode.getState() === 'All'){
+    selected = allMediaDiv;
+    unselected = subscribeMediaDiv;
+  }
+  else{
+    selected = subscribeMediaDiv;
+    unselected = allMediaDiv;
+  }
+  selected.classList.replace('text-weak','text-strong');
+  selected.classList.replace('available-medium16','selected-bold16');
+  unselected.classList.replace('text-strong','text-weak');
+  unselected.classList.replace('selected-bold16','available-medium16');
+};
 const modeSelector = () => {
   const [allMediaDiv, subscribeMediaDiv] = document.querySelectorAll('.media_select');
-  const toggleClass = (selected, unselected) => {
-    selected.classList.replace('text-weak','text-strong');
-    selected.classList.replace('available-medium16','selected-bold16');
-    unselected.classList.replace('text-strong','text-weak');
-    unselected.classList.replace('selected-bold16','available-medium16');
-  };
   allMediaDiv.addEventListener('click', function() {
-    toggleClass(allMediaDiv, subscribeMediaDiv);
     mode.setState('All');
     pageStore.setState(0);
+    toggleClass();
   });
   subscribeMediaDiv.addEventListener('click', function() {
-    toggleClass(subscribeMediaDiv, allMediaDiv);
     mode.setState('Sub');
     pageStore.setState(0);
+    toggleClass();
   });
 }
 
