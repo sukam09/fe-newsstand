@@ -13,14 +13,13 @@ const init = async () => {
   setDate();
   await initUtilData();
   await initPressGrid();
+  await initNewsInfo();
   await addEventInSymbol();
   initRolling();
   initCategoryClass();
   await initSpanEvent();
-  initModalBtn();
+  await initModalBtn();
   initSubListArrow();
-  await initNewsInfo();
-  drawNews(DATA.now_category, 0);
 };
 
 init();

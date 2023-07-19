@@ -30,14 +30,17 @@ function gridMouseClick(target) {
   // $sub_image.src = $target_object.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
 }
 
-function listSubMouseClick(news, target) {
-  console.log(target);
+function listSubMouseClick(news) {
   console.log(news);
+  console.log(DATA.now_category);
+  console.log(DATA.page_count[DATA.now_category]);
+  console.log(checkIsSubscribe("name", news.name));
   if (checkIsSubscribe("name", news.name) === undefined) {
     //구독 상태가 아니면
     setSubData(news);
-    setDisplay(".subscribe-modal", "query", "block");
-    drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
+    console.log(STATE.SUB_DATA);
+    setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
+    drawNews(); // 화면 다시 뿌림
     setTimeout(() => {
       setDisplay(".subscribe-modal", "query", "none");
       removeDisplay();

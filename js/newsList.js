@@ -1,19 +1,18 @@
 import { listSubMouseClick } from "./subscribe.js";
 import { checkIsSubscribe, getJSON } from "./utils.js";
 import { STATE, DATA } from "./const.js";
-import { onListUndiscribeModal } from "./modal.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let presses;
 let news_by_category;
-let sub_news_page = 0;
 
-function getNews(category) {
-  return news_by_category[category];
+function getNews() {
+  return news_by_category[DATA.now_category];
 }
 async function initNewsInfo() {
   presses = await getJSON("/assets/media.json");
   news_by_category = await getJSON("/assets/media.json");
+  DATA.now_category = "종합/경제";
   category.forEach(item => {
     DATA.total_pages[item] = news_by_category[item].length;
     DATA.page_count[item] = 0;
@@ -33,28 +32,25 @@ function drawArrow() {
   }
 }
 
-function drawNews(category, page) {
-  const news = getNews(category);
-  document.querySelector(".press-brandmark").src = news[page].path_light;
-  document.querySelector(".edit-date").textContent = news[page].editDate;
-  document.querySelector(".thumbnail").src = news[page].thumbSrc;
-  document.querySelector(".news-main .font-init").textContent = news[page].headTitle;
+function drawNews() {
+  const news = getNews()[DATA.page_count[DATA.now_category]]; // 뉴스
+  document.querySelector(".press-brandmark").src = news.path_light;
+  document.querySelector(".edit-date").textContent = news.editDate;
+  document.querySelector(".thumbnail").src = news.thumbSrc;
+  document.querySelector(".news-main .font-init").textContent = news.headTitle;
   const subList = document.querySelector(".news-sub-list");
   subList.innerHTML = "";
-  news[page].subTitle.forEach(subnews => {
+  news.subTitle.forEach(subnews => {
     const $li = document.createElement("li");
     $li.innerText = subnews;
     subList.append($li);
   });
   const $caption = document.createElement("li");
   $caption.classList.add("caption");
-  $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
+  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.src = checkIsSubscribe("name", news[page].name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
-  $sub_btn.addEventListener("click", e => {
-    listSubMouseClick(news[page], e.target);
-  });
+  $sub_btn.src = checkIsSubscribe("name", news.name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
 }
 
 function restartAnimation() {
@@ -66,13 +62,12 @@ function restartAnimation() {
 
 function clickListRightBtn(category) {
   if (DATA.page_count[category] + 1 === DATA.total_pages[category] - 1) {
-    DATA.page_count[category] += 1;
-    drawNews(category, DATA.page_count[category]);
+    DATA.page_count[category]++;
     hideArrow("right");
   } else {
-    DATA.page_count[category] += 1;
-    drawNews(category, DATA.page_count[category]);
+    DATA.page_count[category]++;
   }
+  drawNews();
   showArrow("left");
   restartAnimation();
   setNowCount();
@@ -82,13 +77,12 @@ function clickListLeftBtn(category) {
   if (DATA.page_count[category] - 1 === -1) {
     return;
   } else if (DATA.page_count[category] - 1 === 0) {
-    DATA.page_count[category] -= 1;
-    drawNews(category, DATA.page_count[category]);
+    DATA.page_count[category]--;
     hideArrow("left");
   } else {
-    DATA.page_count[category] -= 1;
-    drawNews(category, DATA.page_count[category]);
+    DATA.page_count[category]--;
   }
+  drawNews();
   showArrow("right");
   restartAnimation();
   setNowCount();
@@ -121,6 +115,8 @@ function initCategoryClass() {
   addProgressIterEvent($progress_bar);
   document.querySelector(".right-btn").addEventListener("click", () => clickListRightBtn(DATA.now_category));
   document.querySelector(".left-btn").addEventListener("click", () => clickListLeftBtn(DATA.now_category));
+  const $sub_btn = document.querySelector(".list-sub-btn");
+  $sub_btn.addEventListener("click", e => listSubMouseClick(getNews()[DATA.page_count[DATA.now_category]], e.target));
 }
 
 function nextNewsWhenProgressEnd() {

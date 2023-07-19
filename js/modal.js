@@ -1,8 +1,11 @@
-import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay } from "../js/utils.js";
-import { STATE, setSubData } from "./const.js";
+import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay, getJSON } from "../js/utils.js";
+import { STATE, DATA, setSubData } from "./const.js";
 import { drawNews } from "./newsList.js";
 import { gridMouseClick, drawSubGridView } from "./subscribe.js";
 import { drawSubNews, setSubListNav } from "./subscribeListView.js";
+import { changeOption } from "./viewHandler.js";
+
+let news_by_category;
 
 function onUndiscribeModal(target) {
   const $press_name = document.querySelector(".sub-press-name");
@@ -17,7 +20,12 @@ function offUndiscribeModal() {
 
 function onListUndiscribeModal() {
   const $sub_modal = document.querySelector(".list-subscribe-modal");
-  $sub_modal.querySelector(".sub-press-name").textContent = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE].name;
+  console.log(news_by_category[DATA.page_count[DATA.now_category]]);
+  if (STATE.IS_SUB_VIEW) {
+    $sub_modal.querySelector(".sub-press-name").textContent = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE].name;
+  } else {
+    $sub_modal.querySelector(".sub-press-name").textContent = news_by_category[DATA.now_category][DATA.page_count[DATA.now_category]].name;
+  }
   setDisplay(".list-subscribe-modal", "query", "block");
 }
 
@@ -25,7 +33,8 @@ function offListUndiscribeModal() {
   setDisplay(".list-subscribe-modal", "query", "none");
 }
 
-function initModalBtn() {
+async function initModalBtn() {
+  news_by_category = await getJSON("/assets/media.json");
   const $button = document.querySelectorAll(".pop-up-btn");
   $button.forEach(btn => btn.addEventListener("click", e => handleModalBtn(e.target)));
 }
@@ -48,10 +57,12 @@ function handleModalBtn(target) {
       STATE.SUB_NEWS_PAGE = 0;
       if (STATE.SUB_DATA.length === 0) {
         removeDisplay();
+        changeOption("subscribe");
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setSubListNav();
         drawSubNews(STATE.SUB_NEWS_PAGE);
+        drawNews();
       }
     }
     offUndiscribeModal();

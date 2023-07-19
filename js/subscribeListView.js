@@ -75,7 +75,7 @@ function showArrow() {
   const $sub_news_article = document.querySelector(".sub-news-article");
   const $left_btn = $sub_news_article.querySelector(".left-btn");
   const $right_btn = $sub_news_article.querySelector(".right-btn");
-  if (STATE.SUB_DATA.length === 1) {
+  if (sub_length === 1) {
     $left_btn.classList.add("hidden");
     $right_btn.classList.add("hidden");
   } else if (STATE.SUB_NEWS_PAGE === 0) {

@@ -70,7 +70,7 @@ function handleView(target) {
     } else {
       // list선택, total list 뷰 출력
       setDisplay(".press-list-section", "query", "block");
-      drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
+      drawNews();
       setNowCount();
     }
     STATE.IS_GRID_VIEW = false;
