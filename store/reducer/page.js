@@ -1,5 +1,6 @@
 import {
   VIEW_TYPE,
+  TAB_TYPE,
   CATEGORIES,
   CATEGORIES_TO_INDEX,
 } from "../../constants/index.js";
@@ -11,12 +12,14 @@ const initialState = {
   currentPage: 0,
   currentCategoryIdx: 0,
   viewType: VIEW_TYPE.GRID,
+  tabType: TAB_TYPE.ALL,
 };
 
 const NEXT_PAGE = "PAGE/NEXT_PAGE";
 const PREV_PAGE = "PAGE/PREV_PAGE";
 const RESET_PAGE = "PAGE/RESET_PAGE";
 const CHANGE_VIEW = "PAGE/CHANGE_VIEW";
+const CHANGE_TAB = "PAGE/CHANGE_TAB";
 const NEXT_CATEGORY = "PAGE/NEXT_CATEGORY";
 const PREV_CATEGORY = "PAGE/PREV_CATEGORY";
 const SET_CATEGORY = "PAGE/SET_CATEGORY";
@@ -25,6 +28,7 @@ export const nextPage = () => actionCreator(NEXT_PAGE);
 export const prevPage = () => actionCreator(PREV_PAGE);
 export const resetPage = () => actionCreator(RESET_PAGE);
 export const changeView = (viewType) => actionCreator(CHANGE_VIEW, viewType);
+export const changeTab = (tabType) => actionCreator(CHANGE_TAB, tabType);
 export const nextCategory = () => actionCreator(NEXT_CATEGORY);
 export const prevCategory = () => actionCreator(PREV_CATEGORY);
 export const setCategory = (category) => actionCreator(SET_CATEGORY, category);
@@ -52,6 +56,13 @@ export const page = (state = initialState, action) => {
         currentPage: 0,
         currentCategoryIdx: 0,
         viewType: action.payload,
+      };
+    case CHANGE_TAB:
+      return {
+        ...state,
+        currentPage: 0,
+        currentCategoryIdx: 0,
+        tabType: action.payload,
       };
     case NEXT_CATEGORY:
       return {
