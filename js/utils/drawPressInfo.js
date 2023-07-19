@@ -1,6 +1,6 @@
 import { store } from "../core/store.js";
 import { SNACKBAR_WAIT_TIME } from "../constants/constants.js";
-import { getPage } from "../core/getter.js";
+import { getPage, getSubscribedPress } from "../core/getter.js";
 const subscribedPress = store.state.subscribedPress;
 function handleClick(e, press) {
   let btn_target = e.target.closest("button");
@@ -27,7 +27,9 @@ function handleClick(e, press) {
     //구독하지 않았을 때 => 구독됨
     else {
       //추가
-      store.state.subscribedPress.push(press);
+      const updatedSubscribedPress = [...subscribedPress, press];
+
+      store.setState({ subscribedPress: updatedSubscribedPress });
       //스낵바
       newDiv.classList.add("popup", "snackbar");
       newDiv.textContent = "내가 구독한 언론사에 추가되었습니다.";
@@ -53,8 +55,12 @@ function checkAnswer(e, press) {
   alert.style.display = "none";
   if (target.classList.contains("btn-yes")) {
     console.log("yes");
-    store.state.subscribedPress.push(press);
-    showSubscribeButton(subscribedPress, press);
+    const updatedSubscribedPress = subscribedPress.filter(
+      (item) => item !== pressToRemove
+    );
+
+    store.setState({ subscribedPress: updatedSubscribedPress });
+    showSubscribeButton(getSubscribedPress(), press);
     button.innerHTML = showSubscribeButton(subscribedPress.includes(press));
   } else {
     console.log("no");

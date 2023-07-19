@@ -4,7 +4,7 @@ import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { getView, getPage } from "../core/getter.js";
+import { getView, getPage, getSubscribedPress } from "../core/getter.js";
 const subscribedPress = store.state.subscribedPress;
 function MainView() {
   // 옵저버 함수를 등록
@@ -14,7 +14,6 @@ function MainView() {
 }
 
 function changePage(target) {
-  console.log(getView(), getPage());
   const _page = getPage();
   if (target === "left") {
     store.setState({ page: _page - 1 });
@@ -24,7 +23,7 @@ function changePage(target) {
   if (getView() === "grid") {
     showGridView();
   } else {
-    showListView("", "");
+    showListView("");
   }
   checkPage();
 }
@@ -39,7 +38,7 @@ function handleClick(e) {
     case "list-view-btn":
       store.setState({ page: FIRST_PAGE_NUM });
       changeView();
-      getView() === "list" ? showListView(CATEGORY[0], "all") : showGridView();
+      getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
       checkPage();
       break;
     case "left":
@@ -54,7 +53,8 @@ function handleClick(e) {
       store.setState({ page: FIRST_PAGE_NUM });
       if (getView() === "list") {
         changeView();
-        showListView(CATEGORY[0], target);
+        store.setState({ tabMode: `${target}` });
+        showListView(CATEGORY[0]);
         checkPage();
       } else {
         showGridView();
@@ -63,7 +63,8 @@ function handleClick(e) {
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-      showListView(CATEGORY[0], target);
+      store.setState({ tabMode: `${target}` });
+      showListView(getSubscribedPress[0]);
       checkPage();
       break;
     default:

@@ -3,14 +3,14 @@ import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
 import { store } from "../core/store.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
-import { getPage, getTabMode } from "../core/getter.js";
+import { getPage, getTabMode, getSubscribedPress } from "../core/getter.js";
 
-async function getNewsData(current, mode) {
+async function getNewsData(current) {
   try {
     const response = await fetch("../data/newsListData.json");
     const newsData = await response.json();
     const list_content = newsData.News.filter((news) =>
-      mode === "all" ? news.category === current : news.name === current
+      getTabMode() === "all" ? news.category === current : news.name === current
     );
     return list_content;
   } catch (error) {
@@ -19,25 +19,18 @@ async function getNewsData(current, mode) {
   }
 }
 
-async function drawList(current, mode) {
+async function drawList(current) {
   try {
     let list = [];
-
-    if (!mode) {
-      const _mode = document.querySelector(".main-tab-btn .clicked");
-      mode = _mode.getAttribute("id");
-    }
     if (!current) {
       const selected_el = document.querySelector(".category.selected .ctg");
       current = selected_el.textContent;
     }
-    mode === "all" ? (list = CATEGORY) : (list = subscribedPress);
+    getTabMode() === "all" ? (list = CATEGORY) : (list = getSubscribedPress());
 
     const main_list = document.querySelector(".main-list");
-
     main_list.innerHTML = "";
-    let list_content = await getNewsData(current, mode);
-
+    let list_content = await getNewsData(current);
     if (getPage() <= 0 || list_content.length < getPage()) {
       const currentIndex = list.indexOf(current);
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
@@ -46,15 +39,15 @@ async function drawList(current, mode) {
         ? (current = list[prevIndex])
         : (current = list[nextIndex]);
       store.setState({ page: FIRST_PAGE_NUM });
-      list_content = await getNewsData(current, mode);
-      showListView(current, mode);
+      list_content = await getNewsData(current);
+      showListView(current);
     } else {
       drawCategory(current, list, list_content);
       const newDiv = document.createElement("div");
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
       drawPressInfo(list_content, list);
-      drawPressNews(list_content, mode);
+      drawPressNews(list_content);
     }
   } catch (error) {
     console.log(error);
@@ -66,11 +59,11 @@ function handleClick(e) {
   if (li_target && li_target.classList.contains("category")) {
     const current = li_target.querySelector(".ctg").textContent.trim();
     store.setState({ page: FIRST_PAGE_NUM });
-    drawList(current, "");
+    drawList(current);
   }
 }
 
-export function showListView(current = "", mode = "") {
-  drawList(current, mode);
+export function showListView(current = "") {
+  drawList(current);
   document.addEventListener("click", (e) => handleClick(e));
 }

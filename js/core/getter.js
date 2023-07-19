@@ -13,7 +13,7 @@ export function getTabMode() {
   return store.state.tabMode;
 }
 export function getSubscribedPress() {
-  return store.state.getSubscribedPress;
+  return store.state.subscribedPress;
 }
 
 // 옵저버 등록
