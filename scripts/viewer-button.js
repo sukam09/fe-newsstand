@@ -1,9 +1,8 @@
 import { store, useSelector } from "../store/index.js";
 import { changeView } from "../store/reducer/page.js";
 import { VIEW_TYPE } from "../constants/index.js";
-import { $gridView, $listView } from "./doms.js";
+import { $gridView, $listView, $mainNav } from "./doms.js";
 
-const $mainNav = document.querySelector(".main-nav");
 const $mainNavViewerButtons = $mainNav.querySelectorAll(
   ".main-nav_viewer > button"
 );
