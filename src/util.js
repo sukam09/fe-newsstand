@@ -1,9 +1,9 @@
-export function $(value) {
-  return document.querySelector(value);
+export function $(value, base = document) {
+  return base.querySelector(value);
 }
 
-export function $All(value) {
-  return document.querySelectorAll(value);
+export function $All(value, base = document) {
+  return base.querySelectorAll(value);
 }
 
 export function shuffleArray(array) {

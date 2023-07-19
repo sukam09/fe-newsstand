@@ -1,7 +1,7 @@
 import { CATEGORY_TAB_TIME, CATEGORY_CLICKED } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
 import { getState, resister, setState } from "./observer/observer.js";
-import { categoryIdx, listPageIdx } from "./store/store.js";
+import { categoryIdx, isGrid, listPageIdx } from "./store/store.js";
 import { $, $All } from "./util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
@@ -11,9 +11,10 @@ function stopCategoryInterval() {
   clearInterval(categoryInterval);
 }
 function startCategoryInterval() {
-  categoryInterval = setInterval(() => {
-    listPageUp();
-  }, CATEGORY_TAB_TIME);
+  const isGridMode = getState(isGrid);
+  if (!isGridMode) {
+    categoryInterval = setInterval(listPageUp, CATEGORY_TAB_TIME);
+  }
 }
 
 // 자동 탭 넘김 인터벌 새로고침
@@ -108,15 +109,15 @@ function updateCategoryTabNum() {
   const currentCategoryIdx = getState(categoryIdx);
   const firstCategory = $(".category_list");
   const clickedCategory = $(`.${CATEGORY_CLICKED}`);
-  clickedCategory.querySelector(".now_page").innerHTML = `${currentListIdx} / `;
+  $(".now_page", clickedCategory).innerHTML = `${currentListIdx} / `;
   if (
     // 다음 카테고리로 넘어가야할 경우
-    isTabFull(clickedCategory.querySelector(".all_page").innerHTML)
+    isTabFull($(".all_page", clickedCategory).innerHTML)
   ) {
     setState(listPageIdx, 1);
     if (clickedCategory.nextElementSibling === null) {
       firstCategory.classList.add(CATEGORY_CLICKED);
-      firstCategory.querySelector(".now_page").innerHTML = "1 / ";
+      $(".now_page", firstCategory).innerHTML = "1 / ";
       setState(categoryIdx, 0);
     } else {
       clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
@@ -125,13 +126,12 @@ function updateCategoryTabNum() {
       setState(categoryIdx, currentCategoryIdx + 1);
     }
     clickedCategory.classList.remove(CATEGORY_CLICKED);
-    console.log("here");
   }
 }
 
 export async function setCategory() {
-  startCategoryInterval();
   const newsList = await getNewsContents();
+  resister(isGrid, startCategoryInterval);
   resister(listPageIdx, refreshInterval);
   resister(listPageIdx, updateCategoryTabNum);
   resister(categoryIdx, updateCategoryClicked);
