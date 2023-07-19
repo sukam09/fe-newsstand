@@ -1,4 +1,4 @@
-import { CONSTANT, GLOBAL } from "../model/variable.js";
+import { CONSTANT } from "../model/variable.js";
 
 let first_rolling, second_rolling;
 

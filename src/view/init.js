@@ -29,10 +29,10 @@ function drawAll() {
   drawViewer();
   drawLeftArrowBtn();
   drawRightArrowBtn();
-  drawSnackBar();
-  drawAlert();
+  // drawSnackBar();
+  // drawAlert();
   drawGrid();
-  drawList();
+  // drawList();
 }
 
 export { initDom, drawAll };

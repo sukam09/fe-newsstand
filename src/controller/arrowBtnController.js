@@ -7,20 +7,19 @@ function initArrowBtnEvnet() {
 
   leftBtn.addEventListener("click", () => moveLeft());
   rightBtn.addEventListener("click", () => moveRight());
-  return 0;
 }
 
 function moveLeft() {
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
     GLOBAL.GRID_CURRENT_PAGE--;
-    changeState(STATE.GRID_MOVE_LEFT);
+    changeState(STATE.MOVE_GRID_LEFT);
   }
 }
 
 function moveRight() {
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
     GLOBAL.GRID_CURRENT_PAGE++;
-    changeState(STATE.GRID_MOVE_RIGHT);
+    changeState(STATE.MOVE_GRID_RIGHT);
   }
 }
 

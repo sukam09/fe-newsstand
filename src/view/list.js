@@ -35,6 +35,9 @@ function initList(parentNode) {
 }
 
 function drawList() {
+  document.querySelector(".list-view").style.display = "flex";
+  document.querySelector(".grid-view").style.display = "none";
+
   drawFieldTab();
   return 0;
 }

@@ -21,6 +21,9 @@ function initGrid(parentNode) {
 }
 
 function drawGrid() {
+  document.querySelector(".list-view").style.display = "none";
+  document.querySelector(".grid-view").style.display = "flex";
+
   let iconIndex = GLOBAL.GRID_CURRENT_PAGE * CONSTANT.GRID_NEWS_NUM;
   const pressLogo = document.querySelectorAll(".press-logo");
   const targetData = GLOBAL.NEWS_DATA;
