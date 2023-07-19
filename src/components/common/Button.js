@@ -17,16 +17,13 @@ export default class Button extends Component {
 
   mounted() {
     const $button = customQuerySelector('button', this.$target);
-    const icon = this.state.text === TEXT.SUBSCRIBE_KO ? 'plus' : 'minus';
 
     $button.className =
       this.state.color === 'gray'
         ? `common-button border-default surface-alt text-weak`
         : `common-button border-default surface-defalut text-weak`;
-
     new Icon(customQuerySelector('.common-button-icon', this.$target), {
-      name: icon,
-      status: this.state.status,
+      name: this.getIconName(),
     });
   }
 
@@ -38,7 +35,10 @@ export default class Button extends Component {
         this.state.color === 'gray'
           ? `common-button border-bold surface-alt text-bold`
           : `common-button border-bold surface-defalut text-bold`;
-      this.setState({ status: 'hover' });
+      this.state.status = 'hover';
+      new Icon(customQuerySelector('.common-button-icon', this.$target), {
+        name: this.getIconName(),
+      });
     });
 
     $button.addEventListener('mouseout', () => {
@@ -46,11 +46,21 @@ export default class Button extends Component {
         this.state.color === 'gray'
           ? `common-button border-default surface-alt text-weak`
           : `common-button border-default surface-defalut text-weak`;
-      this.setState({ status: 'default' });
+      this.state.status = 'default';
+      new Icon(customQuerySelector('.common-button-icon', this.$target), {
+        name: this.getIconName(),
+      });
     });
 
     $button.addEventListener('click', () => {
       this.state.action();
     });
+  }
+
+  getIconName() {
+    let iconName = this.state.text === TEXT.SUBSCRIBE_KO ? 'plus' : 'minus';
+    if (this.state.status === 'hover') iconName += '-hover';
+    if (document.body.className === 'dark') iconName += '-dark';
+    return iconName;
   }
 }
