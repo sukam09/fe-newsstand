@@ -42,11 +42,7 @@ const GridItem = (index, navStore, store) => {
     gridItemImage.classList.add(`media_${mediaId}`);
     gridItemImage.src = mediaData.getLogoSrc(mediaId);
     gridItemImage.alt = mediaData.getName(mediaId);
-    gridItem.appendChild(
-      SubButtonArea(mediaId, () => {
-        navStore.setState({ media: 'subscribed', view: 'list' });
-      })
-    );
+    gridItem.appendChild(SubButtonArea(mediaId, navStore, store));
   }
   return gridItem;
 };
