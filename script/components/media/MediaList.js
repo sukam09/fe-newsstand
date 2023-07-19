@@ -110,11 +110,29 @@ const ListNav = (navStore, store) => {
   return nav;
 };
 
+const setSubNavMouseEvent = (navItemList, scrollLeft) => {
+  let prevX;
+
+  navItemList.addEventListener('mousedown', e => {
+    prevX = e.clientX;
+  });
+  navItemList.addEventListener('mousemove', e => {
+    if (!prevX) return;
+    navItemList.scrollLeft -= e.clientX - prevX;
+    prevX = e.clientX;
+  });
+  navItemList.addEventListener('mouseup', () => {
+    prevX = null;
+  });
+  navItemList.addEventListener('DOMNodeInsertedIntoDocument', () => {
+    navItemList.scrollLeft = scrollLeft;
+  });
+};
+
 const ListSubNav = store => {
   const { page, media, scrollLeft } = store.getState();
   const nav = document.createElement('nav');
   const navItemList = document.createElement('ul');
-  let prevX;
 
   nav.id = 'list_nav';
   nav.classList.add('surface_alt');
@@ -135,20 +153,7 @@ const ListSubNav = store => {
       })
     );
   });
-  navItemList.addEventListener('mousedown', e => {
-    prevX = e.clientX;
-  });
-  navItemList.addEventListener('mousemove', e => {
-    if (!prevX) return;
-    navItemList.scrollLeft -= e.clientX - prevX;
-    prevX = e.clientX;
-  });
-  navItemList.addEventListener('mouseup', () => {
-    prevX = null;
-  });
-  navItemList.addEventListener('DOMNodeInsertedIntoDocument', () => {
-    navItemList.scrollLeft = scrollLeft;
-  });
+  setSubNavMouseEvent(navItemList, scrollLeft);
   return nav;
 };
 
