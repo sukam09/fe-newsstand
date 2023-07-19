@@ -5,16 +5,15 @@ import {
     list_option,
     subscribe_option,
 } from "./globals.js";
-import { showToday } from "./utils.js";
+import { showToday, setOptions, currentHourToMode } from "./utils.js";
 import {
     render,
-    saveData,
+    save,
     changeViewArrow,
-    useClearDisplay,
-    useControlBanner,
-    useAnimationSnackBar,
-    useCurrentHourToMode,
-    movePageEventHandler,
+    clear,
+    handlePage,
+    controlBanner,
+    setSnackBar,
 } from "./actions.js";
 import { renderSubscribe, renderPressItem } from "./views/grid_views.js";
 import { renderNewsItem } from "./views/list_views.js";
@@ -60,11 +59,6 @@ function mainOptionEvent() {
         option.addEventListener("click", () => {
             view_option.main = option.id.split("_")[1];
 
-            const options = {
-                main: view_option.main,
-                press: view_option.press,
-            };
-
             if (option.id === "option_grid_main") {
                 option.src = "./assets/icons/option_grid_main_active.png";
                 document.getElementById("option_list_main").src =
@@ -72,10 +66,10 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("list_view_container");
                 news_data_container.classList.add("grid_view_container");
 
-                useClearDisplay("main_news_container", view_option);
+                clear("main_news_container", view_option);
                 changeViewArrow("grid");
 
-                render(options, grid_option.press_data, grid_option.page);
+                render(setOptions(), grid_option.press_data, grid_option.page);
                 togglePressEvent();
             }
             if (option.id === "option_list_main") {
@@ -85,10 +79,10 @@ function mainOptionEvent() {
                 news_data_container.classList.remove("grid_view_container");
                 news_data_container.classList.add("list_view_container");
 
-                useClearDisplay("main_news_container", view_option);
+                clear("main_news_container", view_option);
                 changeViewArrow("list");
 
-                render(options, list_option, list_option.page);
+                render(setOptions(), list_option, list_option.page);
                 changeCategoryEvent(list_option.news_data);
             }
         });
@@ -109,23 +103,23 @@ function arrowPagingEvent() {
 
     grid_left_arrow.addEventListener("click", () => {
         if (grid_option.page <= 0) return;
-        movePageEventHandler("prev", "grid", view_option, grid_option);
+        handlePage("prev", "grid", view_option, grid_option);
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
         if (grid_option.page >= length) return;
-        movePageEventHandler("next", "grid", view_option, grid_option);
+        handlePage("next", "grid", view_option, grid_option);
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        movePageEventHandler("prev", "list", view_option, list_option);
+        handlePage("prev", "list", view_option, list_option);
         changeCategoryEvent(list_option.news_data);
     });
 
     list_right_arrow.addEventListener("click", () => {
-        movePageEventHandler("next", "list", view_option, list_option);
+        handlePage("next", "list", view_option, list_option);
         changeCategoryEvent(list_option.news_data);
     });
 }
@@ -138,7 +132,7 @@ function arrowPagingEvent() {
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
 
-    view_option.mode = useCurrentHourToMode();
+    view_option.mode = currentHourToMode();
 
     if (view_option.mode === "dark-mode") {
         toggle_mode.children[0].src = "./assets/icons/sun.svg";
@@ -208,25 +202,26 @@ function toggleSubscribeEvent() {
         press.addEventListener("click", (e) => {
             clearTimeout(snack_animation_time);
             const snack_bar = document.querySelector(".snack_bar_text");
-            snack_animation_time = useAnimationSnackBar();
+            snack_animation_time = setSnackBar();
 
             renderSubscribe(press, press.is_subscribe);
             /*
                  render(view_option, grid_option);
             */
             if (!press.is_subscribe) {
-                renderSnackBarView(snack_bar, true);
+                renderSnackBarView(snack_bar, false);
                 /*
                  render(view_option, ...);
                 */
                 subscribe_option.subscribe_press[press.name] = false;
             } else {
-                renderSnackBarView(snack_bar, false);
+                renderSnackBarView(snack_bar, true);
                 /*
                  render(view_option, ...);
                 */
                 subscribe_option.subscribe_press[press.name] = true;
             }
+            debugger;
         });
     });
 }
@@ -243,12 +238,7 @@ function changeCategoryEvent(data) {
         item.addEventListener("click", () => {
             list_option.category = CATEGORYS.indexOf(item.innerText);
 
-            const options = {
-                main: view_option.main,
-                press: view_option.press,
-            };
-
-            render(options, list_option, list_option.page);
+            render(setOptions(), list_option, list_option.page);
             changeCategoryEvent(data);
             list_option.page = 0;
         });
@@ -280,10 +270,10 @@ function bannerMouseEvent(action) {
 }
 
 async function initEvent() {
-    showToday();
+    showToday("today");
 
     try {
-        const data = await saveData();
+        const data = await save();
 
         grid_option.press_data = data["press_data"];
 
@@ -295,12 +285,7 @@ async function initEvent() {
 
         view_option.hot_topic_data = data["hot_topic_data"];
 
-        const options = {
-            main: view_option.main,
-            press: view_option.press,
-        };
-
-        render(options, grid_option.press_data, grid_option.page);
+        render(setOptions(), grid_option.press_data, grid_option.page);
         /*
             render(view_option, grid_option);
         */
@@ -308,7 +293,7 @@ async function initEvent() {
             data["hot_topic_data"][0],
             data["hot_topic_data"][1],
             () => {
-                bannerMouseEvent(useControlBanner());
+                bannerMouseEvent(controlBanner());
             }
         );
         /*

@@ -1,15 +1,36 @@
 import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
+import { view_option } from "./globals.js";
 
-export function showToday() {
+export function showToday(tag) {
     const date = new Date();
 
-    const today = document.querySelector(".today");
+    const today = document.querySelector(`.${tag}`);
     today.innerText = date.toLocaleDateString("ko-KR", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
         weekday: "long",
     });
+}
+
+/**
+ * @description
+ * 1. 현재 시간을 기준으로 mode를 설정한다.
+ * @returns {String} mode
+ */
+export function currentHourToMode() {
+    const current_hour = new Date().getHours();
+    return current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
+}
+
+export function setOptions(target) {
+
+    return {
+        main: view_option.main,
+        press: view_option.press,
+        mode: view_option.mode,
+        target: target,
+    };
 }
 
 // brute force로 구현 - 순차탐색
