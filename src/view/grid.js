@@ -1,4 +1,4 @@
-import { CONSTANT, GLOBAL } from "../model/variable.js";
+import { CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 
 function initGrid(parentNode) {
   const dom = document.createElement("div");
@@ -26,7 +26,7 @@ function drawGrid() {
 
   let iconIndex = GLOBAL.GRID_CURRENT_PAGE * CONSTANT.GRID_NEWS_NUM;
   const pressLogo = document.querySelectorAll(".press-logo");
-  const targetData = GLOBAL.NEWS_DATA;
+  const targetData = GLOBAL.CURRENT_MODE === MODE.GRID_ALL ? GLOBAL.NEWS_DATA : GLOBAL.SUBSCRIBE_NEWS_DATA;
 
   pressLogo.forEach((img) => {
     img.src = targetData[iconIndex] ? targetData[iconIndex++].path : "";

@@ -2,10 +2,10 @@ import { initHeader, drawHeader } from "./header.js";
 import { initRollingBar, drawRollingBar } from "./rollingBar.js";
 import { initTabAndViewer, drawTab, drawViewer } from "./tabAndViewer.js";
 import { initArrowBtn, drawLeftArrowBtn, drawRightArrowBtn } from "./arrowBtn.js";
-import { initSnackBar, drawSnackBar } from "./snackBar.js";
-import { initAlert, drawAlert } from "./alert.js";
+import { initSnackBar } from "./snackBar.js";
+import { initAlert } from "./alert.js";
 import { initGrid, drawGrid } from "./grid.js";
-import { initList, drawList } from "./list.js";
+import { initList } from "./list.js";
 
 const container = document.querySelector(".container");
 
@@ -19,20 +19,17 @@ function initDom() {
   initGrid(container);
   initList(container);
 
-  drawAll();
+  drawInit();
 }
 
-function drawAll() {
+function drawInit() {
   drawHeader();
   drawRollingBar();
   drawTab();
   drawViewer();
   drawLeftArrowBtn();
   drawRightArrowBtn();
-  // drawSnackBar();
-  // drawAlert();
   drawGrid();
-  // drawList();
 }
 
-export { initDom, drawAll };
+export { initDom };
