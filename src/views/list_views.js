@@ -66,14 +66,17 @@ function createNewsHeader(parent, data, page) {
         <img src="${ASSETS_IMAGE_PATH}${view_option.mode}${press_url}"
         class="content_press" alt="${press_url}"/>
         <p class="content_edit">${data[page].last_edit} 편집</p>
-        <button class="content_subscribe">
         ${
             subscribe
-                ? `<img src="./assets/icons/symbol.png" />`
-                : `<img src="./assets/icons/plus.png" />
-                    <span>구독하기</span>`
+                ? `<button class="content_subscribe_cancel">
+                <img src="./assets/icons/symbol.png" />
+                </button>`
+                : `<button class="content_subscribe">
+                    <img src="./assets/icons/plus.png" />
+                    <span>구독하기</span>
+                    </button>`
         }
-        </button>`;
+        `;
 
     parent.appendChild(container);
 }
