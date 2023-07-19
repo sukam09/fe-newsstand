@@ -3,7 +3,7 @@ import { createCategoryHtml } from '../components/newsCategory.js.js';
 import { attachEventListener, detachEventListener } from '../core/eventListener.js';
 import { createNewsListHtml } from '../components/newsStandList.js';
 import { shuffle } from '../utils/utils.js';
-import { store } from '../store.js';
+import { subScribeStore } from '../store/subScribeStore.js';
 
 let CATEGORY = [];
 let NEWS_LIST = [];
@@ -113,11 +113,11 @@ function reCreateNewsStandList(newNewsList) {
 
 const isSubScribeHandler = (e) => {
   const data = e.target.parentElement.querySelector('.list-header-title').textContent;
-  if (!store.getGetter('getsubscribeData').includes(data)) {
-    store.commit('setState', data);
+  if (!subScribeStore.getGetter('getsubscribeData').includes(data)) {
+    subScribeStore.commit('setState', data);
     e.target.textContent = 'X';
   } else {
-    store.commit('updateState', data);
+    subScribeStore.commit('updateState', data);
     e.target.textContent = '+ 구독하기';
   }
 };
