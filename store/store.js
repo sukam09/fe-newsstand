@@ -1,11 +1,12 @@
 
+import { VIEW_TYPE } from "../asset/data/constants.js";
 import { updateArrow } from "../script/arrow.js";
 import { drawPress } from "../script/grid-view.js";
 import { drawList } from "../script/list-view.js";
 
 class Store {
     constructor () {
-        this.view = "grid";
+        this.view = VIEW_TYPE.GRID;
         this.page = 0; // page index (grid, list view)
         this.category = 0; // category index (list view)
     }
@@ -37,10 +38,10 @@ class Store {
 
     renderView(){
         switch (this.view){
-            case "grid":
+            case VIEW_TYPE.GRID:
                 drawPress(this.page);
                 break;
-            case "list":
+            case VIEW_TYPE.LIST:
                 drawList(this.category);
                 break;
         }
