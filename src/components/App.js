@@ -20,6 +20,5 @@ export default class App extends Component {
     new Header(customQuerySelector('.header', this.$target));
     new LatestNews(customQuerySelector('.latest-main-news', this.$target));
     new AllNews(customQuerySelector('.all-news', this.$target));
-    new Alert(customQuerySelector('.alert-modal', this.$target));
   }
 }

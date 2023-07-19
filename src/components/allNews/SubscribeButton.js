@@ -2,6 +2,9 @@ import { TEXT } from '../../constants/index.js';
 import { showSnackBar, toggleAlert } from '../../../store/index.js';
 import Button from '../common/Button.js';
 import Component from '../core/Component.js';
+import db from '../../../store/db.js';
+import Alert from '../common/Alert.js';
+import { customQuerySelector } from '../../utils/index.js';
 
 export default class SubscribeButton extends Component {
   setup() {
@@ -15,19 +18,23 @@ export default class SubscribeButton extends Component {
   mounted() {
     new Button(this.$target, {
       ...this.state,
+      text: db.getDbData.includes(this.props.name) ? '해지하기' : '구독하기',
       action: () => this.action(),
     });
   }
 
   action() {
-    if (this.state.text === TEXT.SUBSCRIBE_KO) {
+    if (db.getDbData.includes(this.props.name)) {
+      // 해지하기
+      new Alert(customQuerySelector('.alert-modal'), { name: this.props.name });
+      toggleAlert();
+      // toggleAlert(this.props.name);
+      // this.props.deleteMyPress();
+    } else {
+      //구독하기
       showSnackBar(TEXT.SUBSCRIBE_KO);
       this.props.addMyPress(this.props.name);
-      //구독 추가 기능
-    } else if (this.state.text === TEXT.UNSUBSCRIBE) {
-      toggleAlert();
-      // this.props.deleteMyPress();
-      //구독 취소
     }
+    this.render();
   }
 }

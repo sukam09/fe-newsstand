@@ -53,7 +53,6 @@ export default class AllNews extends Component {
 
   addMyPress(press) {
     db.putDbData(press);
-    showSnackBar();
     //화면 이동
   }
   deleteMyPress(press) {
