@@ -1,3 +1,4 @@
+import db from '../../../store/db.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -6,17 +7,14 @@ import SubscribeButton from './SubscribeButton.js';
 
 export default class AllNewsListView extends Component {
   setup() {
+    this.headerList = this.getHeaderList();
+
     this.state = {
-      ...this.props,
+      currentPress: this.getCurrentPress(),
       currentPage: 1,
       currentPressIndex: 0,
+      pressOrder: [],
     };
-    this.headerList =
-      this.state.pressType === TEXT.ALL
-        ? Object.keys(this.state.pressOrder)
-        : this.state.pressOrder.map(press => press.name);
-
-    this.state.currentPress = this.getCurrentPress();
   }
 
   template() {
@@ -64,6 +62,7 @@ export default class AllNewsListView extends Component {
   }
 
   mounted() {
+    this.state.pressOrder = this.getListPress();
     this.navigationMount();
     this.detailListMount();
 
@@ -195,5 +194,27 @@ export default class AllNewsListView extends Component {
     return this.state.pressType === TEXT.ALL
       ? this.state.pressOrder[currentPressName][currentPage - 1]
       : this.state.pressOrder[pressIndex];
+  }
+
+  getHeaderList() {
+    return this.props.pressType === TEXT.ALL ? Object.keys(db.getAllpress) : db.getDbData;
+  }
+
+  getListPress() {
+    let listPress = {
+      '종합/경제': [],
+      '방송/통신': [],
+      IT: [],
+      영자지: [],
+      '스포츠/연예': [],
+      '매거진/전문지': [],
+      지역: [],
+    };
+
+    this.state.pressType === TEXT.ALL
+      ? db.allPress.forEach(press => listPress[press.category].push(press))
+      : (listPress = db.allPress.filter(press => db.getDbData.includes(press.name)));
+
+    return listPress;
   }
 }

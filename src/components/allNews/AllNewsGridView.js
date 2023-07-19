@@ -42,7 +42,7 @@ export default class AllNewsGridView extends Component {
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper" data-name=${pressOrder[i].name}></div>
+              <div class="subscribe-button-wrapper" data-name=${pressOrder[i].number}></div>
             </div>
           </div>`
           : ``
@@ -85,6 +85,8 @@ export default class AllNewsGridView extends Component {
   getGridPress() {
     return this.props.pressType === TEXT.ALL
       ? db.allPress
-      : db.allPress.filter(press => db.getDbData.includes(press.name));
+      : db.allPress
+          .filter(press => db.getDbData.includes(press.number))
+          .sort((a, b) => db.getDbData.indexOf(a.number) - db.getDbData.indexOf(b.number));
   }
 }

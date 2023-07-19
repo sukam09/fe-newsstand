@@ -37,25 +37,12 @@ export default class AllNews extends Component {
           pressType: this.state.pressType,
         })
       : new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
-          pressOrder: this.getListPress(),
-          addMyPress: this.addMyPress.bind(this),
-          deleteMyPress: this.deleteMyPress.bind(this),
           pressType: this.state.pressType,
         });
   }
 
   onClick(props) {
     this.setState(props);
-  }
-
-  addMyPress(press) {
-    db.putDbData(press);
-    //화면 이동
-  }
-
-  deleteMyPress(press) {
-    db.deleteDbData(press);
-    this.render();
   }
 
   getListPress() {
