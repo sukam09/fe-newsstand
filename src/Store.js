@@ -1,4 +1,4 @@
-import { grid_view_info_sub } from "./components/grid/gridToggle.js";
+import { grid_view_info_entire, grid_view_info_sub } from "./components/grid/gridToggle.js";
 
 class Subject {
     constructor() {
@@ -12,17 +12,6 @@ class Subject {
 
     unsubscribe(observer) {
         this._observers = this._observers.filter((obs) => obs !== observer);
-    }
-
-    notifyAll() {
-        console.log(this._state);
-        this._observers.forEach((sbs) => {
-            try {
-                sbs.update(this._state);
-            } catch (err) {
-                console.error("observer error", err);
-            }
-        });
     }
 }
 
@@ -40,20 +29,20 @@ class subscribeSubject extends Subject {
     getIdx() {
         return this._state;
     }
-}
 
-class Observer {
-    constructor(name) {
-        this.name = name;
-    }
-
-    update(state) {
-        console.log(state);
+    notifyAll(isAdd) {
+        this._observers.forEach((sbs) => {
+            try {
+                sbs.update(this._state);
+            } catch (err) {
+                console.error("observer error", err);
+            }
+        });
     }
 }
 
 const _sub_press_list = new subscribeSubject();
-// const grid_subscribe_view = new Observer();
 _sub_press_list.subscribe(grid_view_info_sub);
+_sub_press_list.subscribe(grid_view_info_entire);
 
 export { _sub_press_list };

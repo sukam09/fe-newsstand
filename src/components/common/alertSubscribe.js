@@ -1,8 +1,9 @@
 import { buttonFacotry } from "./btnfactory.js";
 import { create } from "../../utils/createElement.js";
+import { _sub_press_list } from "../../Store.js";
 const btnFactory = new buttonFacotry();
 
-export function createAlert(press_name) {
+export function createAlert(press_name, press_id) {
     const txt = `
     <span class="alert-txt display-medium16">
         <span>
@@ -20,10 +21,19 @@ export function createAlert(press_name) {
     const $btn_container = create.div({
         className: "alert-btn available-medium16",
     });
-    $btn_container.append(
-        btnFactory.create({ type: "alert", isPos: true }).getButton(),
-        btnFactory.create({ type: "alert", isPos: false }).getButton()
-    );
+    const $pos_btn = btnFactory.create({ type: "alert", isPos: true });
+    const $neg_btn = btnFactory.create({ type: "alert", isPos: false });
+    $pos_btn.setEvents({
+        click: () => {
+            _sub_press_list.deleteState(press_id);
+        },
+    });
+    $neg_btn.setEvents({
+        click: () => {
+            document.querySelector(".alert").remove();
+        },
+    });
+    $btn_container.append($pos_btn.getButton(), $neg_btn.getButton());
     $container.append($btn_container);
 
     return $container;

@@ -51,27 +51,25 @@ export function createMainGrid(grid_view_info, isInit) {
                 isDefault: true,
                 isSubscribe: is_subscribe_press,
                 press_id: data_list[cnt].id,
+                press_name: data_list[cnt].name,
             });
 
             $subscribe_btn.setEvents({
                 click: () => {
-                    $subscribe_btn.changeMode();
-                    const $snack_bar = document.querySelector(".snack-bar");
-                    $snack_bar.style.marginTop = `${-$snack_bar.getBoundingClientRect().height / 2}px`;
-                    $snack_bar.style.marginLeft = `${-$snack_bar.getBoundingClientRect().width / 2}px`;
+                    const $snack_bar = createSnackBar();
 
                     const $id = $subscribe_btn.getId();
-                    if ($subscribe_btn.getIsSubscribe()) {
-                        _sub_press_list.deleteState($id);
+                    if (!$subscribe_btn.getIsSubscribe()) {
+                        $container.appendChild(createAlert($subscribe_btn.getName(), $id));
                     } else {
+                        $subscribe_btn.changeMode();
                         _sub_press_list.addState($id);
-                        $snack_bar.style.visibility = "visible";
+                        document.querySelector(".main_news_container").appendChild(createSnackBar());
+                        setTimeout(() => {
+                            document.querySelector(".snack-bar").remove();
+                            // onClickSubBtn(true);
+                        }, SNACK_BAR_TIME);
                     }
-
-                    setTimeout(() => {
-                        $snack_bar.style.visibility = "hidden";
-                        onClickSubBtn(true);
-                    }, SNACK_BAR_TIME);
                 },
             });
             $mouse_enter_grid.appendChild($subscribe_btn.getButton());
@@ -95,7 +93,6 @@ export function createMainGrid(grid_view_info, isInit) {
         $container.appendChild($list);
     }
 
-    $container.appendChild(createSnackBar());
     return $container;
 }
 

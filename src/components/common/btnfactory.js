@@ -35,7 +35,7 @@ class arrowBtn extends button {
 }
 
 class subscribeBtn extends button {
-    constructor({ events, isDefault, isSubscribe, press_id }) {
+    constructor({ events, isDefault, isSubscribe, press_id, press_name }) {
         super({ className: "btn-subscribe", events: events });
         this.is_subscribe = isSubscribe;
         this.$img = create.img({
@@ -49,6 +49,7 @@ class subscribeBtn extends button {
         if (isDefault) this.$btn.style.backgroundColor = "white";
         this.$btn.append(this.$img, this.$title);
         this.$press_id = press_id;
+        this.$press_name = press_name;
     }
 
     setStyle = function () {
@@ -64,6 +65,10 @@ class subscribeBtn extends button {
 
     getId = function () {
         return this.$press_id;
+    };
+
+    getName = function () {
+        return this.$press_name;
     };
 
     getIsSubscribe = function () {
@@ -113,6 +118,7 @@ export class buttonFacotry {
                     isDefault: props.isDefault,
                     isSubscribe: props.isSubscribe,
                     press_id: props.press_id,
+                    press_name: props.press_name,
                 });
             case "closed":
                 return new closedBtn({ events: props.events });

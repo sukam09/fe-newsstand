@@ -65,7 +65,6 @@ const view_info_tmp = (function () {
             is_subscribe_view
                 ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
                 : ((grid_entire_view.style.display = "flex"), (grid_sub_view.style.display = "none"));
-            is_subscribe_view && createMainGrid(grid_view_info_sub, false);
         } else {
             list_icon.style.filter =
                 "invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg) brightness(87%) contrast(85%)";
