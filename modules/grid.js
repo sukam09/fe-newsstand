@@ -154,7 +154,6 @@ const changeImgSrc = (start, end) => {
       continue;
     }
 
-    // console.log(mediaIdx);
     $buttonWrapper.style.display = "";
 
     const imgSrc = STATE.MODE.IS_LIGHT

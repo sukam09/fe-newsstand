@@ -24,6 +24,7 @@ const $date = document.querySelector(".news-list_media_header p");
 const $plusSubBtn = document.querySelector(".news-list_subscribe_btn");
 const $xSubBtn = document.querySelector(".news-list_unsubscribe_btn");
 const $mainTitle = document.querySelector(".news-list_media_content_main p");
+const $thumbnail = document.querySelector(".news-list_media_content_main img");
 
 /**
  * 리스트뷰 렌더링 전 데이터 가져오기
@@ -276,6 +277,7 @@ const setListView = () => {
     $xSubBtn.classList.add("hidden");
   }
 
+  $thumbnail.src = nowMedia.thumbnail;
   $mainTitle.innerText = nowMedia.main_title;
 
   const $subTitleList = document

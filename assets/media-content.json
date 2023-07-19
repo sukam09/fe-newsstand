@@ -5,7 +5,8 @@
     "path_light": "/images/light-media/0.png",
     "path_dark": "/images/dark-media/0.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:58",
+    "thumbnail": "/images/thumbnail/thumbnail1.jpg",
+    "edit_date": "2023.07.10. 18:54",
     "main_title": "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
     "main_img_src": "/images/0.png",
     "sub_title": [
@@ -17,7 +18,7 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -26,7 +27,8 @@
     "path_light": "/images/light-media/1.png",
     "path_dark": "/images/dark-media/1.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:10",
+    "thumbnail": "/images/thumbnail/thumbnail2.jpg",
+    "edit_date": "2023.07.10. 18:20",
     "main_title": "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
     "main_img_src": "/images/1.png",
     "sub_title": [
@@ -38,7 +40,7 @@
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
       "한국의 스타트업 열풍, 창업 생태계 활성화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -47,7 +49,8 @@
     "path_light": "/images/light-media/2.png",
     "path_dark": "/images/dark-media/2.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail3.jpg",
+    "edit_date": "2023.07.10. 18:11",
     "main_title": "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
     "main_img_src": "/images/2.png",
     "sub_title": [
@@ -59,7 +62,7 @@
       "한국의 스타트업 열풍, 창업 생태계 활성화",
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -68,7 +71,8 @@
     "path_light": "/images/light-media/3.png",
     "path_dark": "/images/dark-media/3.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:29",
+    "thumbnail": "/images/thumbnail/thumbnail4.jpg",
+    "edit_date": "2023.07.10. 18:49",
     "main_title": "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
     "main_img_src": "/images/3.png",
     "sub_title": [
@@ -80,7 +84,7 @@
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -89,7 +93,8 @@
     "path_light": "/images/light-media/4.png",
     "path_dark": "/images/dark-media/4.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:39",
+    "thumbnail": "/images/thumbnail/thumbnail5.jpg",
+    "edit_date": "2023.07.10. 18:34",
     "main_title": "한국의 의료 기술 혁신, 국제적으로 주목받다",
     "main_img_src": "/images/4.png",
     "sub_title": [
@@ -101,7 +106,7 @@
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -110,7 +115,8 @@
     "path_light": "/images/light-media/5.png",
     "path_dark": "/images/dark-media/5.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:25",
+    "thumbnail": "/images/thumbnail/thumbnail6.jpg",
+    "edit_date": "2023.07.10. 18:22",
     "main_title": "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
     "main_img_src": "/images/5.png",
     "sub_title": [
@@ -122,7 +128,7 @@
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -131,7 +137,8 @@
     "path_light": "/images/light-media/6.png",
     "path_dark": "/images/dark-media/6.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:44",
+    "thumbnail": "/images/thumbnail/thumbnail7.jpg",
+    "edit_date": "2023.07.10. 18:36",
     "main_title": "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
     "main_img_src": "/images/6.png",
     "sub_title": [
@@ -143,7 +150,7 @@
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -152,7 +159,8 @@
     "path_light": "/images/light-media/7.png",
     "path_dark": "/images/dark-media/7.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:40",
+    "thumbnail": "/images/thumbnail/thumbnail8.jpg",
+    "edit_date": "2023.07.10. 18:26",
     "main_title": "한국의 스타트업 열풍, 창업 생태계 활성화",
     "main_img_src": "/images/7.png",
     "sub_title": [
@@ -164,7 +172,7 @@
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -173,7 +181,8 @@
     "path_light": "/images/light-media/8.png",
     "path_dark": "/images/dark-media/8.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:36",
+    "thumbnail": "/images/thumbnail/thumbnail9.jpg",
+    "edit_date": "2023.07.10. 18:16",
     "main_title": "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
     "main_img_src": "/images/8.png",
     "sub_title": [
@@ -185,7 +194,7 @@
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -194,7 +203,8 @@
     "path_light": "/images/light-media/9.png",
     "path_dark": "/images/dark-media/9.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:40",
+    "thumbnail": "/images/thumbnail/thumbnail10.jpg",
+    "edit_date": "2023.07.10. 18:28",
     "main_title": "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
     "main_img_src": "/images/9.png",
     "sub_title": [
@@ -206,7 +216,7 @@
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -215,7 +225,8 @@
     "path_light": "/images/light-media/10.png",
     "path_dark": "/images/dark-media/10.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:22",
+    "thumbnail": "/images/thumbnail/thumbnail11.jpg",
+    "edit_date": "2023.07.10. 18:12",
     "main_title": "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
     "main_img_src": "/images/10.png",
     "sub_title": [
@@ -227,7 +238,7 @@
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -236,7 +247,8 @@
     "path_light": "/images/light-media/11.png",
     "path_dark": "/images/dark-media/11.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:43",
+    "thumbnail": "/images/thumbnail/thumbnail12.jpg",
+    "edit_date": "2023.07.10. 18:55",
     "main_title": "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
     "main_img_src": "/images/11.png",
     "sub_title": [
@@ -248,7 +260,7 @@
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -257,7 +269,8 @@
     "path_light": "/images/light-media/12.png",
     "path_dark": "/images/dark-media/12.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:18",
+    "thumbnail": "/images/thumbnail/thumbnail13.jpg",
+    "edit_date": "2023.07.10. 18:15",
     "main_title": "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
     "main_img_src": "/images/12.png",
     "sub_title": [
@@ -269,7 +282,7 @@
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -278,7 +291,8 @@
     "path_light": "/images/light-media/13.png",
     "path_dark": "/images/dark-media/13.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:31",
+    "thumbnail": "/images/thumbnail/thumbnail14.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
     "main_img_src": "/images/13.png",
     "sub_title": [
@@ -290,7 +304,7 @@
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -299,7 +313,8 @@
     "path_light": "/images/light-media/14.png",
     "path_dark": "/images/dark-media/14.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:21",
+    "thumbnail": "/images/thumbnail/thumbnail15.jpg",
+    "edit_date": "2023.07.10. 18:45",
     "main_title": "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
     "main_img_src": "/images/14.png",
     "sub_title": [
@@ -311,7 +326,7 @@
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -320,6 +335,7 @@
     "path_light": "/images/light-media/15.png",
     "path_dark": "/images/dark-media/15.png",
     "category": "방송/통신",
+    "thumbnail": "/images/thumbnail/thumbnail16.jpg",
     "edit_date": "2023.07.10. 18:52",
     "main_title": "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
     "main_img_src": "/images/15.png",
@@ -332,7 +348,7 @@
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
       "한국의 인공지능 기술, 혁신과 미래를 열다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -341,7 +357,8 @@
     "path_light": "/images/light-media/16.png",
     "path_dark": "/images/dark-media/16.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:18",
+    "thumbnail": "/images/thumbnail/thumbnail17.jpg",
+    "edit_date": "2023.07.10. 18:58",
     "main_title": "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
     "main_img_src": "/images/16.png",
     "sub_title": [
@@ -353,7 +370,7 @@
       "한국의 인공지능 기술, 혁신과 미래를 열다",
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -362,7 +379,8 @@
     "path_light": "/images/light-media/17.png",
     "path_dark": "/images/dark-media/17.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:39",
+    "thumbnail": "/images/thumbnail/thumbnail18.jpg",
+    "edit_date": "2023.07.10. 18:15",
     "main_title": "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
     "main_img_src": "/images/17.png",
     "sub_title": [
@@ -374,7 +392,7 @@
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -383,7 +401,8 @@
     "path_light": "/images/light-media/18.png",
     "path_dark": "/images/dark-media/18.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:44",
+    "thumbnail": "/images/thumbnail/thumbnail19.jpg",
+    "edit_date": "2023.07.10. 18:49",
     "main_title": "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
     "main_img_src": "/images/18.png",
     "sub_title": [
@@ -395,7 +414,7 @@
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
       "한국의 음악 씬, 한류의 새로운 레지던스"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -404,7 +423,8 @@
     "path_light": "/images/light-media/19.png",
     "path_dark": "/images/dark-media/19.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:24",
+    "thumbnail": "/images/thumbnail/thumbnail20.jpg",
+    "edit_date": "2023.07.10. 18:33",
     "main_title": "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
     "main_img_src": "/images/19.png",
     "sub_title": [
@@ -416,7 +436,7 @@
       "한국의 음악 씬, 한류의 새로운 레지던스",
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -425,7 +445,8 @@
     "path_light": "/images/light-media/20.png",
     "path_dark": "/images/dark-media/20.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:11",
+    "thumbnail": "/images/thumbnail/thumbnail21.jpg",
+    "edit_date": "2023.07.10. 18:28",
     "main_title": "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
     "main_img_src": "/images/20.png",
     "sub_title": [
@@ -437,7 +458,7 @@
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -446,7 +467,8 @@
     "path_light": "/images/light-media/21.png",
     "path_dark": "/images/dark-media/21.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:13",
+    "thumbnail": "/images/thumbnail/thumbnail22.jpg",
+    "edit_date": "2023.07.10. 18:26",
     "main_title": "한국의 인공지능 기술, 혁신과 미래를 열다",
     "main_img_src": "/images/21.png",
     "sub_title": [
@@ -458,7 +480,7 @@
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -467,7 +489,8 @@
     "path_light": "/images/light-media/22.png",
     "path_dark": "/images/dark-media/22.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail23.jpg",
+    "edit_date": "2023.07.10. 18:35",
     "main_title": "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
     "main_img_src": "/images/22.png",
     "sub_title": [
@@ -479,7 +502,7 @@
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -488,7 +511,8 @@
     "path_light": "/images/light-media/23.png",
     "path_dark": "/images/dark-media/23.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:21",
+    "thumbnail": "/images/thumbnail/thumbnail24.jpg",
+    "edit_date": "2023.07.10. 18:18",
     "main_title": "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
     "main_img_src": "/images/23.png",
     "sub_title": [
@@ -500,7 +524,7 @@
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
       "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -509,7 +533,8 @@
     "path_light": "/images/light-media/24.png",
     "path_dark": "/images/dark-media/24.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:56",
+    "thumbnail": "/images/thumbnail/thumbnail25.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "한국의 음악 씬, 한류의 새로운 레지던스",
     "main_img_src": "/images/24.png",
     "sub_title": [
@@ -521,7 +546,7 @@
       "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
       "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -530,7 +555,8 @@
     "path_light": "/images/light-media/25.png",
     "path_dark": "/images/dark-media/25.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:50",
+    "thumbnail": "/images/thumbnail/thumbnail26.jpg",
+    "edit_date": "2023.07.10. 18:38",
     "main_title": "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
     "main_img_src": "/images/25.png",
     "sub_title": [
@@ -542,7 +568,7 @@
       "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
       "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -551,7 +577,8 @@
     "path_light": "/images/light-media/26.png",
     "path_dark": "/images/dark-media/26.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:52",
+    "thumbnail": "/images/thumbnail/thumbnail27.jpg",
+    "edit_date": "2023.07.10. 18:33",
     "main_title": "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
     "main_img_src": "/images/26.png",
     "sub_title": [
@@ -563,7 +590,7 @@
       "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
       "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -572,7 +599,8 @@
     "path_light": "/images/light-media/27.png",
     "path_dark": "/images/dark-media/27.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:26",
+    "thumbnail": "/images/thumbnail/thumbnail28.jpg",
+    "edit_date": "2023.07.10. 18:56",
     "main_title": "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
     "main_img_src": "/images/27.png",
     "sub_title": [
@@ -584,7 +612,7 @@
       "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
       "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -593,7 +621,8 @@
     "path_light": "/images/light-media/28.png",
     "path_dark": "/images/dark-media/28.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail29.jpg",
+    "edit_date": "2023.07.10. 18:52",
     "main_title": "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
     "main_img_src": "/images/28.png",
     "sub_title": [
@@ -605,7 +634,7 @@
       "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
       "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -614,7 +643,8 @@
     "path_light": "/images/light-media/29.png",
     "path_dark": "/images/dark-media/29.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:46",
+    "thumbnail": "/images/thumbnail/thumbnail30.jpg",
+    "edit_date": "2023.07.10. 18:40",
     "main_title": "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
     "main_img_src": "/images/29.png",
     "sub_title": [
@@ -626,7 +656,7 @@
       "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
       "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -635,7 +665,8 @@
     "path_light": "/images/light-media/30.png",
     "path_dark": "/images/dark-media/30.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:38",
+    "thumbnail": "/images/thumbnail/thumbnail31.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
     "main_img_src": "/images/30.png",
     "sub_title": [
@@ -647,7 +678,7 @@
       "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
       "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -656,7 +687,8 @@
     "path_light": "/images/light-media/31.png",
     "path_dark": "/images/dark-media/31.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:52",
+    "thumbnail": "/images/thumbnail/thumbnail32.jpg",
+    "edit_date": "2023.07.10. 18:58",
     "main_title": "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
     "main_img_src": "/images/31.png",
     "sub_title": [
@@ -668,7 +700,7 @@
       "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
       "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -677,7 +709,8 @@
     "path_light": "/images/light-media/32.png",
     "path_dark": "/images/dark-media/32.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:32",
+    "thumbnail": "/images/thumbnail/thumbnail33.jpg",
+    "edit_date": "2023.07.10. 18:38",
     "main_title": "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
     "main_img_src": "/images/32.png",
     "sub_title": [
@@ -689,7 +722,7 @@
       "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
       "한국의 인플루언서 산업, SNS 시대의 새로운 스타들"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -698,7 +731,8 @@
     "path_light": "/images/light-media/33.png",
     "path_dark": "/images/dark-media/33.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:41",
+    "thumbnail": "/images/thumbnail/thumbnail34.jpg",
+    "edit_date": "2023.07.10. 18:19",
     "main_title": "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
     "main_img_src": "/images/33.png",
     "sub_title": [
@@ -710,7 +744,7 @@
       "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
       "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -719,7 +753,8 @@
     "path_light": "/images/light-media/34.png",
     "path_dark": "/images/dark-media/34.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail35.jpg",
+    "edit_date": "2023.07.10. 18:32",
     "main_title": "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
     "main_img_src": "/images/34.png",
     "sub_title": [
@@ -731,7 +766,7 @@
       "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
       "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -740,7 +775,8 @@
     "path_light": "/images/light-media/35.png",
     "path_dark": "/images/dark-media/35.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:40",
+    "thumbnail": "/images/thumbnail/thumbnail36.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
     "main_img_src": "/images/35.png",
     "sub_title": [
@@ -752,7 +788,7 @@
       "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인",
       "한국의 환경 보호 정책, 친환경 에너지로 미래를 지키다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -761,7 +797,8 @@
     "path_light": "/images/light-media/36.png",
     "path_dark": "/images/dark-media/36.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:53",
+    "thumbnail": "/images/thumbnail/thumbnail37.jpg",
+    "edit_date": "2023.07.10. 18:36",
     "main_title": "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
     "main_img_src": "/images/36.png",
     "sub_title": [
@@ -773,7 +810,7 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -782,7 +819,8 @@
     "path_light": "/images/light-media/37.png",
     "path_dark": "/images/dark-media/37.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:17",
+    "thumbnail": "/images/thumbnail/thumbnail38.jpg",
+    "edit_date": "2023.07.10. 18:38",
     "main_title": "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
     "main_img_src": "/images/37.png",
     "sub_title": [
@@ -794,7 +832,7 @@
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
       "한국의 스타트업 열풍, 창업 생태계 활성화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -803,7 +841,8 @@
     "path_light": "/images/light-media/38.png",
     "path_dark": "/images/dark-media/38.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:38",
+    "thumbnail": "/images/thumbnail/thumbnail39.jpg",
+    "edit_date": "2023.07.10. 18:30",
     "main_title": "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
     "main_img_src": "/images/38.png",
     "sub_title": [
@@ -815,7 +854,7 @@
       "한국의 스타트업 열풍, 창업 생태계 활성화",
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -824,7 +863,8 @@
     "path_light": "/images/light-media/39.png",
     "path_dark": "/images/dark-media/39.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:26",
+    "thumbnail": "/images/thumbnail/thumbnail40.jpg",
+    "edit_date": "2023.07.10. 18:24",
     "main_title": "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
     "main_img_src": "/images/39.png",
     "sub_title": [
@@ -836,7 +876,7 @@
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -845,7 +885,8 @@
     "path_light": "/images/light-media/40.png",
     "path_dark": "/images/dark-media/40.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:41",
+    "thumbnail": "/images/thumbnail/thumbnail41.jpg",
+    "edit_date": "2023.07.10. 18:46",
     "main_title": "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인",
     "main_img_src": "/images/40.png",
     "sub_title": [
@@ -857,7 +898,7 @@
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -866,7 +907,8 @@
     "path_light": "/images/light-media/41.png",
     "path_dark": "/images/dark-media/41.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:22",
+    "thumbnail": "/images/thumbnail/thumbnail42.jpg",
+    "edit_date": "2023.07.10. 18:42",
     "main_title": "한국의 환경 보호 정책, 친환경 에너지로 미래를 지키다",
     "main_img_src": "/images/41.png",
     "sub_title": [
@@ -878,7 +920,7 @@
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -887,7 +929,8 @@
     "path_light": "/images/light-media/42.png",
     "path_dark": "/images/dark-media/42.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:13",
+    "thumbnail": "/images/thumbnail/thumbnail43.jpg",
+    "edit_date": "2023.07.10. 18:20",
     "main_title": "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
     "main_img_src": "/images/42.png",
     "sub_title": [
@@ -899,7 +942,7 @@
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -908,6 +951,7 @@
     "path_light": "/images/light-media/43.png",
     "path_dark": "/images/dark-media/43.png",
     "category": "방송/통신",
+    "thumbnail": "/images/thumbnail/thumbnail44.jpg",
     "edit_date": "2023.07.10. 18:36",
     "main_title": "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
     "main_img_src": "/images/43.png",
@@ -920,7 +964,7 @@
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -929,7 +973,8 @@
     "path_light": "/images/light-media/44.png",
     "path_dark": "/images/dark-media/44.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:33",
+    "thumbnail": "/images/thumbnail/thumbnail45.jpg",
+    "edit_date": "2023.07.10. 18:42",
     "main_title": "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
     "main_img_src": "/images/44.png",
     "sub_title": [
@@ -941,7 +986,7 @@
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -950,7 +995,8 @@
     "path_light": "/images/light-media/45.png",
     "path_dark": "/images/dark-media/45.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:51",
+    "thumbnail": "/images/thumbnail/thumbnail46.jpg",
+    "edit_date": "2023.07.10. 18:26",
     "main_title": "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
     "main_img_src": "/images/45.png",
     "sub_title": [
@@ -962,7 +1008,7 @@
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -971,7 +1017,8 @@
     "path_light": "/images/light-media/46.png",
     "path_dark": "/images/dark-media/46.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:34",
+    "thumbnail": "/images/thumbnail/thumbnail47.jpg",
+    "edit_date": "2023.07.10. 18:28",
     "main_title": "한국의 의료 기술 혁신, 국제적으로 주목받다",
     "main_img_src": "/images/46.png",
     "sub_title": [
@@ -983,7 +1030,7 @@
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -992,7 +1039,8 @@
     "path_light": "/images/light-media/47.png",
     "path_dark": "/images/dark-media/47.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:18",
+    "thumbnail": "/images/thumbnail/thumbnail48.jpg",
+    "edit_date": "2023.07.10. 18:38",
     "main_title": "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
     "main_img_src": "/images/47.png",
     "sub_title": [
@@ -1004,7 +1052,7 @@
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1013,7 +1061,8 @@
     "path_light": "/images/light-media/48.png",
     "path_dark": "/images/dark-media/48.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:38",
+    "thumbnail": "/images/thumbnail/thumbnail49.jpg",
+    "edit_date": "2023.07.10. 18:49",
     "main_title": "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
     "main_img_src": "/images/48.png",
     "sub_title": [
@@ -1025,7 +1074,7 @@
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1034,7 +1083,8 @@
     "path_light": "/images/light-media/49.png",
     "path_dark": "/images/dark-media/49.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:30",
+    "thumbnail": "/images/thumbnail/thumbnail50.jpg",
+    "edit_date": "2023.07.10. 18:46",
     "main_title": "한국의 스타트업 열풍, 창업 생태계 활성화",
     "main_img_src": "/images/49.png",
     "sub_title": [
@@ -1046,7 +1096,7 @@
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1055,7 +1105,8 @@
     "path_light": "/images/light-media/50.png",
     "path_dark": "/images/dark-media/50.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:55",
+    "thumbnail": "/images/thumbnail/thumbnail51.jpg",
+    "edit_date": "2023.07.10. 18:41",
     "main_title": "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
     "main_img_src": "/images/50.png",
     "sub_title": [
@@ -1067,7 +1118,7 @@
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1076,7 +1127,8 @@
     "path_light": "/images/light-media/51.png",
     "path_dark": "/images/dark-media/51.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:13",
+    "thumbnail": "/images/thumbnail/thumbnail52.jpg",
+    "edit_date": "2023.07.10. 18:18",
     "main_title": "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
     "main_img_src": "/images/51.png",
     "sub_title": [
@@ -1088,7 +1140,7 @@
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
       "한국의 인공지능 기술, 혁신과 미래를 열다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1097,7 +1149,8 @@
     "path_light": "/images/light-media/52.png",
     "path_dark": "/images/dark-media/52.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail53.jpg",
+    "edit_date": "2023.07.10. 18:30",
     "main_title": "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
     "main_img_src": "/images/52.png",
     "sub_title": [
@@ -1109,7 +1162,7 @@
       "한국의 인공지능 기술, 혁신과 미래를 열다",
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1118,7 +1171,8 @@
     "path_light": "/images/light-media/53.png",
     "path_dark": "/images/dark-media/53.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:36",
+    "thumbnail": "/images/thumbnail/thumbnail54.jpg",
+    "edit_date": "2023.07.10. 18:44",
     "main_title": "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
     "main_img_src": "/images/53.png",
     "sub_title": [
@@ -1130,7 +1184,7 @@
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1139,7 +1193,8 @@
     "path_light": "/images/light-media/54.png",
     "path_dark": "/images/dark-media/54.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:46",
+    "thumbnail": "/images/thumbnail/thumbnail55.jpg",
+    "edit_date": "2023.07.10. 18:29",
     "main_title": "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
     "main_img_src": "/images/54.png",
     "sub_title": [
@@ -1151,7 +1206,7 @@
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
       "한국의 음악 씬, 한류의 새로운 레지던스"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1160,7 +1215,8 @@
     "path_light": "/images/light-media/55.png",
     "path_dark": "/images/dark-media/55.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:48",
+    "thumbnail": "/images/thumbnail/thumbnail56.jpg",
+    "edit_date": "2023.07.10. 18:21",
     "main_title": "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
     "main_img_src": "/images/55.png",
     "sub_title": [
@@ -1172,7 +1228,7 @@
       "한국의 음악 씬, 한류의 새로운 레지던스",
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1181,7 +1237,8 @@
     "path_light": "/images/light-media/56.png",
     "path_dark": "/images/dark-media/56.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:12",
+    "thumbnail": "/images/thumbnail/thumbnail57.jpg",
+    "edit_date": "2023.07.10. 18:17",
     "main_title": "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
     "main_img_src": "/images/56.png",
     "sub_title": [
@@ -1193,7 +1250,7 @@
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1202,7 +1259,8 @@
     "path_light": "/images/light-media/57.png",
     "path_dark": "/images/dark-media/57.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:38",
+    "thumbnail": "/images/thumbnail/thumbnail58.jpg",
+    "edit_date": "2023.07.10. 18:48",
     "main_title": "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
     "main_img_src": "/images/57.png",
     "sub_title": [
@@ -1214,7 +1272,7 @@
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1223,7 +1281,8 @@
     "path_light": "/images/light-media/58.png",
     "path_dark": "/images/dark-media/58.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:22",
+    "thumbnail": "/images/thumbnail/thumbnail59.jpg",
+    "edit_date": "2023.07.10. 18:47",
     "main_title": "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
     "main_img_src": "/images/58.png",
     "sub_title": [
@@ -1235,7 +1294,7 @@
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1244,7 +1303,8 @@
     "path_light": "/images/light-media/59.png",
     "path_dark": "/images/dark-media/59.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:31",
+    "thumbnail": "/images/thumbnail/thumbnail60.jpg",
+    "edit_date": "2023.07.10. 18:30",
     "main_title": "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
     "main_img_src": "/images/59.png",
     "sub_title": [
@@ -1256,7 +1316,7 @@
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
       "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1265,7 +1325,8 @@
     "path_light": "/images/light-media/60.png",
     "path_dark": "/images/dark-media/60.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:22",
+    "thumbnail": "/images/thumbnail/thumbnail61.jpg",
+    "edit_date": "2023.07.10. 18:30",
     "main_title": "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
     "main_img_src": "/images/60.png",
     "sub_title": [
@@ -1277,7 +1338,7 @@
       "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
       "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1286,7 +1347,8 @@
     "path_light": "/images/light-media/61.png",
     "path_dark": "/images/dark-media/61.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:50",
+    "thumbnail": "/images/thumbnail/thumbnail62.jpg",
+    "edit_date": "2023.07.10. 18:20",
     "main_title": "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
     "main_img_src": "/images/61.png",
     "sub_title": [
@@ -1298,7 +1360,7 @@
       "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
       "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1307,7 +1369,8 @@
     "path_light": "/images/light-media/62.png",
     "path_dark": "/images/dark-media/62.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:58",
+    "thumbnail": "/images/thumbnail/thumbnail63.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
     "main_img_src": "/images/62.png",
     "sub_title": [
@@ -1319,7 +1382,7 @@
       "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
       "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1328,6 +1391,7 @@
     "path_light": "/images/light-media/63.png",
     "path_dark": "/images/dark-media/63.png",
     "category": "종합/경제",
+    "thumbnail": "/images/thumbnail/thumbnail64.jpg",
     "edit_date": "2023.07.10. 18:15",
     "main_title": "한국의 인공지능 기술, 혁신과 미래를 열다",
     "main_img_src": "/images/63.png",
@@ -1340,7 +1404,7 @@
       "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
       "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1349,7 +1413,8 @@
     "path_light": "/images/light-media/64.png",
     "path_dark": "/images/dark-media/64.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:10",
+    "thumbnail": "/images/thumbnail/thumbnail65.jpg",
+    "edit_date": "2023.07.10. 18:17",
     "main_title": "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
     "main_img_src": "/images/64.png",
     "sub_title": [
@@ -1361,7 +1426,7 @@
       "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
       "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1370,7 +1435,8 @@
     "path_light": "/images/light-media/65.png",
     "path_dark": "/images/dark-media/65.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:33",
+    "thumbnail": "/images/thumbnail/thumbnail66.jpg",
+    "edit_date": "2023.07.10. 18:42",
     "main_title": "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
     "main_img_src": "/images/65.png",
     "sub_title": [
@@ -1382,7 +1448,7 @@
       "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
       "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1391,7 +1457,8 @@
     "path_light": "/images/light-media/66.png",
     "path_dark": "/images/dark-media/66.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:57",
+    "thumbnail": "/images/thumbnail/thumbnail67.jpg",
+    "edit_date": "2023.07.10. 18:51",
     "main_title": "한국의 음악 씬, 한류의 새로운 레지던스",
     "main_img_src": "/images/66.png",
     "sub_title": [
@@ -1403,7 +1470,7 @@
       "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
       "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1412,7 +1479,8 @@
     "path_light": "/images/light-media/67.png",
     "path_dark": "/images/dark-media/67.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:53",
+    "thumbnail": "/images/thumbnail/thumbnail68.jpg",
+    "edit_date": "2023.07.10. 18:31",
     "main_title": "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
     "main_img_src": "/images/67.png",
     "sub_title": [
@@ -1424,7 +1492,7 @@
       "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
       "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1433,7 +1501,8 @@
     "path_light": "/images/light-media/68.png",
     "path_dark": "/images/dark-media/68.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:40",
+    "thumbnail": "/images/thumbnail/thumbnail69.jpg",
+    "edit_date": "2023.07.10. 18:57",
     "main_title": "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
     "main_img_src": "/images/68.png",
     "sub_title": [
@@ -1445,7 +1514,7 @@
       "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
       "한국의 인플루언서 산업, SNS 시대의 새로운 스타들"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1454,7 +1523,8 @@
     "path_light": "/images/light-media/69.png",
     "path_dark": "/images/dark-media/69.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:41",
+    "thumbnail": "/images/thumbnail/thumbnail70.jpg",
+    "edit_date": "2023.07.10. 18:55",
     "main_title": "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
     "main_img_src": "/images/69.png",
     "sub_title": [
@@ -1466,7 +1536,7 @@
       "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
       "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1475,7 +1545,8 @@
     "path_light": "/images/light-media/70.png",
     "path_dark": "/images/dark-media/70.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:31",
+    "thumbnail": "/images/thumbnail/thumbnail71.jpg",
+    "edit_date": "2023.07.10. 18:55",
     "main_title": "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
     "main_img_src": "/images/70.png",
     "sub_title": [
@@ -1487,7 +1558,7 @@
       "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
       "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1496,7 +1567,8 @@
     "path_light": "/images/light-media/71.png",
     "path_dark": "/images/dark-media/71.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:28",
+    "thumbnail": "/images/thumbnail/thumbnail72.jpg",
+    "edit_date": "2023.07.10. 18:47",
     "main_title": "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
     "main_img_src": "/images/71.png",
     "sub_title": [
@@ -1508,7 +1580,7 @@
       "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인",
       "한국의 환경 보호 정책, 친환경 에너지로 미래를 지키다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1517,7 +1589,8 @@
     "path_light": "/images/light-media/72.png",
     "path_dark": "/images/dark-media/72.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:57",
+    "thumbnail": "/images/thumbnail/thumbnail73.jpg",
+    "edit_date": "2023.07.10. 18:14",
     "main_title": "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
     "main_img_src": "/images/72.png",
     "sub_title": [
@@ -1529,7 +1602,7 @@
       "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1538,7 +1611,8 @@
     "path_light": "/images/light-media/73.png",
     "path_dark": "/images/dark-media/73.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:28",
+    "thumbnail": "/images/thumbnail/thumbnail74.jpg",
+    "edit_date": "2023.07.10. 18:14",
     "main_title": "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
     "main_img_src": "/images/73.png",
     "sub_title": [
@@ -1550,7 +1624,7 @@
       "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
       "한국의 스타트업 열풍, 창업 생태계 활성화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1559,7 +1633,8 @@
     "path_light": "/images/light-media/74.png",
     "path_dark": "/images/dark-media/74.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:30",
+    "thumbnail": "/images/thumbnail/thumbnail75.jpg",
+    "edit_date": "2023.07.10. 18:35",
     "main_title": "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
     "main_img_src": "/images/74.png",
     "sub_title": [
@@ -1571,7 +1646,7 @@
       "한국의 스타트업 열풍, 창업 생태계 활성화",
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1580,7 +1655,8 @@
     "path_light": "/images/light-media/75.png",
     "path_dark": "/images/dark-media/75.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:49",
+    "thumbnail": "/images/thumbnail/thumbnail76.jpg",
+    "edit_date": "2023.07.10. 18:40",
     "main_title": "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
     "main_img_src": "/images/75.png",
     "sub_title": [
@@ -1592,7 +1668,7 @@
       "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1601,7 +1677,8 @@
     "path_light": "/images/light-media/76.png",
     "path_dark": "/images/dark-media/76.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:31",
+    "thumbnail": "/images/thumbnail/thumbnail77.jpg",
+    "edit_date": "2023.07.10. 18:29",
     "main_title": "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
     "main_img_src": "/images/76.png",
     "sub_title": [
@@ -1613,7 +1690,7 @@
       "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1622,6 +1699,7 @@
     "path_light": "/images/light-media/77.png",
     "path_dark": "/images/dark-media/77.png",
     "category": "종합/경제",
+    "thumbnail": "/images/thumbnail/thumbnail78.jpg",
     "edit_date": "2023.07.10. 18:47",
     "main_title": "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
     "main_img_src": "/images/77.png",
@@ -1634,7 +1712,7 @@
       "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1643,7 +1721,8 @@
     "path_light": "/images/light-media/78.png",
     "path_dark": "/images/dark-media/78.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:19",
+    "thumbnail": "/images/thumbnail/thumbnail79.jpg",
+    "edit_date": "2023.07.10. 18:56",
     "main_title": "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
     "main_img_src": "/images/78.png",
     "sub_title": [
@@ -1655,7 +1734,7 @@
       "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1664,7 +1743,8 @@
     "path_light": "/images/light-media/79.png",
     "path_dark": "/images/dark-media/79.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:54",
+    "thumbnail": "/images/thumbnail/thumbnail80.jpg",
+    "edit_date": "2023.07.10. 18:24",
     "main_title": "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
     "main_img_src": "/images/79.png",
     "sub_title": [
@@ -1676,7 +1756,7 @@
       "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1685,7 +1765,8 @@
     "path_light": "/images/light-media/80.png",
     "path_dark": "/images/dark-media/80.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:14",
+    "thumbnail": "/images/thumbnail/thumbnail81.jpg",
+    "edit_date": "2023.07.10. 18:25",
     "main_title": "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
     "main_img_src": "/images/80.png",
     "sub_title": [
@@ -1697,7 +1778,7 @@
       "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1706,7 +1787,8 @@
     "path_light": "/images/light-media/81.png",
     "path_dark": "/images/dark-media/81.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:32",
+    "thumbnail": "/images/thumbnail/thumbnail82.jpg",
+    "edit_date": "2023.07.10. 18:19",
     "main_title": "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
     "main_img_src": "/images/81.png",
     "sub_title": [
@@ -1718,7 +1800,7 @@
       "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1727,7 +1809,8 @@
     "path_light": "/images/light-media/82.png",
     "path_dark": "/images/dark-media/82.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:25",
+    "thumbnail": "/images/thumbnail/thumbnail83.jpg",
+    "edit_date": "2023.07.10. 18:48",
     "main_title": "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인",
     "main_img_src": "/images/82.png",
     "sub_title": [
@@ -1739,7 +1822,7 @@
       "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1748,7 +1831,8 @@
     "path_light": "/images/light-media/83.png",
     "path_dark": "/images/dark-media/83.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:42",
+    "thumbnail": "/images/thumbnail/thumbnail84.jpg",
+    "edit_date": "2023.07.10. 18:28",
     "main_title": "한국의 환경 보호 정책, 친환경 에너지로 미래를 지키다",
     "main_img_src": "/images/83.png",
     "sub_title": [
@@ -1760,7 +1844,7 @@
       "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1769,7 +1853,8 @@
     "path_light": "/images/light-media/84.png",
     "path_dark": "/images/dark-media/84.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail85.jpg",
+    "edit_date": "2023.07.10. 18:34",
     "main_title": "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
     "main_img_src": "/images/84.png",
     "sub_title": [
@@ -1781,7 +1866,7 @@
       "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1790,7 +1875,8 @@
     "path_light": "/images/light-media/85.png",
     "path_dark": "/images/dark-media/85.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:48",
+    "thumbnail": "/images/thumbnail/thumbnail86.jpg",
+    "edit_date": "2023.07.10. 18:36",
     "main_title": "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
     "main_img_src": "/images/85.png",
     "sub_title": [
@@ -1802,7 +1888,7 @@
       "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1811,7 +1897,8 @@
     "path_light": "/images/light-media/86.png",
     "path_dark": "/images/dark-media/86.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:11",
+    "thumbnail": "/images/thumbnail/thumbnail87.jpg",
+    "edit_date": "2023.07.10. 18:13",
     "main_title": "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
     "main_img_src": "/images/86.png",
     "sub_title": [
@@ -1823,7 +1910,7 @@
       "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1832,7 +1919,8 @@
     "path_light": "/images/light-media/87.png",
     "path_dark": "/images/dark-media/87.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:18",
+    "thumbnail": "/images/thumbnail/thumbnail88.jpg",
+    "edit_date": "2023.07.10. 18:12",
     "main_title": "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
     "main_img_src": "/images/87.png",
     "sub_title": [
@@ -1844,7 +1932,7 @@
       "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
       "한국의 인공지능 기술, 혁신과 미래를 열다"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1853,7 +1941,8 @@
     "path_light": "/images/light-media/88.png",
     "path_dark": "/images/dark-media/88.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:28",
+    "thumbnail": "/images/thumbnail/thumbnail89.jpg",
+    "edit_date": "2023.07.10. 18:53",
     "main_title": "한국의 의료 기술 혁신, 국제적으로 주목받다",
     "main_img_src": "/images/88.png",
     "sub_title": [
@@ -1865,7 +1954,7 @@
       "한국의 인공지능 기술, 혁신과 미래를 열다",
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1874,7 +1963,8 @@
     "path_light": "/images/light-media/89.png",
     "path_dark": "/images/dark-media/89.png",
     "category": "매거진/전문지",
-    "edit_date": "2023.07.10. 18:50",
+    "thumbnail": "/images/thumbnail/thumbnail90.jpg",
+    "edit_date": "2023.07.10. 18:45",
     "main_title": "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
     "main_img_src": "/images/89.png",
     "sub_title": [
@@ -1886,7 +1976,7 @@
       "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1895,7 +1985,8 @@
     "path_light": "/images/light-media/90.png",
     "path_dark": "/images/dark-media/90.png",
     "category": "지역",
-    "edit_date": "2023.07.10. 18:26",
+    "thumbnail": "/images/thumbnail/thumbnail91.jpg",
+    "edit_date": "2023.07.10. 18:20",
     "main_title": "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
     "main_img_src": "/images/90.png",
     "sub_title": [
@@ -1907,7 +1998,7 @@
       "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
       "한국의 음악 씬, 한류의 새로운 레지던스"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1916,7 +2007,8 @@
     "path_light": "/images/light-media/91.png",
     "path_dark": "/images/dark-media/91.png",
     "category": "종합/경제",
-    "edit_date": "2023.07.10. 18:40",
+    "thumbnail": "/images/thumbnail/thumbnail92.jpg",
+    "edit_date": "2023.07.10. 18:45",
     "main_title": "한국의 스타트업 열풍, 창업 생태계 활성화",
     "main_img_src": "/images/91.png",
     "sub_title": [
@@ -1928,7 +2020,7 @@
       "한국의 음악 씬, 한류의 새로운 레지던스",
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1937,7 +2029,8 @@
     "path_light": "/images/light-media/92.png",
     "path_dark": "/images/dark-media/92.png",
     "category": "방송/통신",
-    "edit_date": "2023.07.10. 18:28",
+    "thumbnail": "/images/thumbnail/thumbnail93.jpg",
+    "edit_date": "2023.07.10. 18:44",
     "main_title": "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
     "main_img_src": "/images/92.png",
     "sub_title": [
@@ -1949,7 +2042,7 @@
       "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1958,7 +2051,8 @@
     "path_light": "/images/light-media/93.png",
     "path_dark": "/images/dark-media/93.png",
     "category": "IT",
-    "edit_date": "2023.07.10. 18:16",
+    "thumbnail": "/images/thumbnail/thumbnail94.jpg",
+    "edit_date": "2023.07.10. 18:22",
     "main_title": "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
     "main_img_src": "/images/93.png",
     "sub_title": [
@@ -1970,7 +2064,7 @@
       "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -1979,7 +2073,8 @@
     "path_light": "/images/light-media/94.png",
     "path_dark": "/images/dark-media/94.png",
     "category": "영자지",
-    "edit_date": "2023.07.10. 18:39",
+    "thumbnail": "/images/thumbnail/thumbnail95.jpg",
+    "edit_date": "2023.07.10. 18:28",
     "main_title": "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
     "main_img_src": "/images/94.png",
     "sub_title": [
@@ -1991,7 +2086,7 @@
       "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
   },
 
   {
@@ -2000,7 +2095,8 @@
     "path_light": "/images/light-media/95.png",
     "path_dark": "/images/dark-media/95.png",
     "category": "스포츠/연예",
-    "edit_date": "2023.07.10. 18:22",
+    "thumbnail": "/images/thumbnail/thumbnail96.jpg",
+    "edit_date": "2023.07.10. 18:37",
     "main_title": "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
     "main_img_src": "/images/95.png",
     "sub_title": [
@@ -2012,6 +2108,50 @@
       "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
       "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신"
     ],
-    "is_subscribe": false
+    "is_subscribe": "false"
+  },
+
+  {
+    "id": "97",
+    "name": "undefined",
+    "path_light": "/images/light-media/96.png",
+    "path_dark": "/images/dark-media/96.png",
+    "category": "매거진/전문지",
+    "thumbnail": "/images/thumbnail/thumbnail97.jpg",
+    "edit_date": "2023.07.10. 18:34",
+    "main_title": "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+    "main_img_src": "/images/96.png",
+    "sub_title": [
+      "한국의 음악 씬, 한류의 새로운 레지던스",
+      "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+      "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+      "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+      "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+      "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+      "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다"
+    ],
+    "is_subscribe": "false"
+  },
+
+  {
+    "id": "98",
+    "name": "undefined",
+    "path_light": "/images/light-media/97.png",
+    "path_dark": "/images/dark-media/97.png",
+    "category": "지역",
+    "thumbnail": "/images/thumbnail/thumbnail98.jpg",
+    "edit_date": "2023.07.10. 18:34",
+    "main_title": "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+    "main_img_src": "/images/97.png",
+    "sub_title": [
+      "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+      "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+      "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+      "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+      "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+      "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+      "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리"
+    ],
+    "is_subscribe": "false"
   }
 ]
