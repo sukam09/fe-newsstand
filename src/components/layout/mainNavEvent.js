@@ -23,7 +23,7 @@ const view_info_tmp = (function () {
     }
     async function setToListView() {
         is_grid_view = false;
-        is_subscribe_view = true;
+        is_subscribe_view = false;
     }
     async function setToSubscribeView() {
         is_subscribe_view = true;
@@ -60,6 +60,7 @@ const view_info_tmp = (function () {
             list_icon.style.filter = "none";
             list_entire_view.style.display = "none";
             list_sub_view.style.display = "none";
+            progress_bar_info.removeInterval();
             is_subscribe_view
                 ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
                 : ((grid_entire_view.style.display = "flex"), (grid_sub_view.style.display = "none"));
@@ -69,6 +70,7 @@ const view_info_tmp = (function () {
             grid_icon.style.filter = "none";
             grid_entire_view.style.display = "none";
             grid_sub_view.style.display = "none";
+            progress_bar_info.initProgressBar({ category_old: 1, category_now: 1, page_num: 1 });
             is_subscribe_view
                 ? ((list_entire_view.style.display = "none"), (list_sub_view.style.display = "flex"))
                 : ((list_entire_view.style.display = "flex"), (list_sub_view.style.display = "none"));
@@ -84,4 +86,8 @@ export function onClickSubBtn(is_subscribe) {
         : view_info_tmp.setToEntireView().then(view_info_tmp.changeView);
 }
 
-export function onClickViewBtn() {}
+export function onClickViewBtn(is_grid) {
+    is_grid
+        ? view_info_tmp.setToGridView().then(view_info_tmp.changeView)
+        : view_info_tmp.setToListView().then(view_info_tmp.changeView);
+}

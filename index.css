@@ -462,6 +462,12 @@ body {
     text-decoration: none;
 }
 
+.main-thumbnail {
+    width: 320px;
+    height: 200px;
+    overflow: hidden;
+}
+
 .img-main-thumbnail {
     width: 320px;
     height: 200px;

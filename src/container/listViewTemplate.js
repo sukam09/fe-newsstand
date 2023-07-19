@@ -1,5 +1,5 @@
 import { news_category } from "../../data/newsCategory.js";
-import { CATEGORY_COUNT_ARR } from "../utils/constant.js";
+import { CATEGORY_COUNT_ARR, IMG_EXPAND, IMG_NORM } from "../utils/constant.js";
 import { class_name } from "../utils/domClassName.js";
 import { progress_bar_info } from "../components/list/progressBarEvent.js";
 import { create } from "../utils/createElement.js";
@@ -110,6 +110,14 @@ function createSubNews(press, sub_news) {
                 className: "news-sub-item-url available-medium16",
                 txt: news_data.title,
                 attributes: { href: news_data.url },
+                events: {
+                    mouseover: () => {
+                        $sub_item.style.textDecoration = "underline";
+                    },
+                    mouseout: () => {
+                        $sub_item.style.textDecoration = "none";
+                    },
+                },
             })
         );
 
@@ -128,15 +136,24 @@ function createSubNews(press, sub_news) {
 // 메인 뉴스 생성
 function createMainNews(thumbnail, main_news) {
     const $container = create.div({ className: "list-view-news-main" });
-    const $container_thumbnail = create.div("main-thumbnail");
+    const $container_thumbnail = create.div({ className: "main-thumbnail" });
     const $img = create.img({ className: "img-main-thumbnail", attributes: { src: thumbnail, alt: "img-thumbnail" } });
+    $container_thumbnail.appendChild($img);
     const $title = create.a({
         className: "title-main-news available-medium16",
         txt: main_news.title,
         attributes: { href: main_news.url },
     });
 
-    $container.append($container_thumbnail.appendChild($img), $title);
+    $container.append($container_thumbnail, $title);
+    $container.addEventListener("mouseover", () => {
+        $container.querySelector(".img-main-thumbnail").style.transform = `scale(${IMG_EXPAND})`;
+        $container.children[1].style.textDecoration = "underline";
+    });
+    $container.addEventListener("mouseout", () => {
+        $container.querySelector(".img-main-thumbnail").style.transform = `scale(${IMG_NORM})`;
+        $container.children[1].style.textDecoration = "none";
+    });
     return $container;
 }
 

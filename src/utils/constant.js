@@ -18,3 +18,6 @@ export const CATEGORY_COUNT_ARR = list_news_data.map((category) => {
 export const SET_TIME = 5000;
 export const START_PRESS_NUM = 1;
 export const SNACK_BAR_TIME = 1000;
+
+export const IMG_EXPAND = 1.05;
+export const IMG_NORM = 1.0;

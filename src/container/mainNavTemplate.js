@@ -1,5 +1,5 @@
 import { ICON_LIST_VIEW_URL, ICON_GRID_VIEW_URL } from "../utils/iconURL.js";
-import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
+import { onClickSubBtn, onClickViewBtn } from "../components/layout/mainNavEvent.js";
 import { create } from "../utils/createElement.js";
 import { class_name } from "../utils/domClassName.js";
 
@@ -35,13 +35,21 @@ function createMainNavRight() {
     const $btn_list = create.img({
         className: "nav-right_list_icon icon",
         attributes: { src: ICON_LIST_VIEW_URL, alt: "icon-list-view" },
-        // events: { click: viewIconClickEvent.bind({ is_grid_icon: false }) },
+        events: {
+            click: () => {
+                onClickViewBtn(false);
+            },
+        },
     });
 
     const $btn_grid = create.img({
         className: "nav-right_grid_icon icon",
         attributes: { src: ICON_GRID_VIEW_URL, alt: "icon-grid-view" },
-        // events: { click: viewIconClickEvent.bind({ is_grid_icon: true }) },
+        events: {
+            click: () => {
+                onClickViewBtn(true);
+            },
+        },
     });
 
     $container.append($btn_list, $btn_grid);
