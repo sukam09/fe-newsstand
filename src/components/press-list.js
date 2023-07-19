@@ -26,6 +26,8 @@ const initPressList = (pressData, categoryList) => {
 
   setArticleEvent();
   changeIcon();
+
+  setListButtonClick(pressData, categoryList); //
 };
 
 /**
@@ -113,11 +115,13 @@ const setListNav = (categoryList) => {
  * 언론사 리스트의 Article
  */
 const setListShuffle = (pressData, categoryList) => {
+  LIST.SUFFLE_CATEGORY = [];
   categoryList.forEach((category) => {
     let categoryFilter = pressData.filter((press) => press.categoryName === category);
     if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
     LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
   });
+
   LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
   LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length;
 };
@@ -175,6 +179,8 @@ const setProgressBarClick = () => {
 
       progressNow.innerText = LIST.PAGE_COUNT;
       progressSum.innerText = LIST.PAGE_LENTH;
+
+      setListArticle();
     });
   });
 };
@@ -371,5 +377,29 @@ const changeIcon = () => {
 /**
  * 언론사 리스트의 구독하기
  */
+const setListButtonClick = (pressData, categoryList) => {
+  const button = document.querySelector('.section-main__button');
+  button.addEventListener('click', () => {
+    const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
+    const pressName = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].name;
+    const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+
+    if (isSubscribe) {
+      LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId);
+      LIST.SUBSCRIBE_NAME = LIST.SUBSCRIBE_NAME.filter((name) => name !== pressName);
+    }
+    if (!isSubscribe) {
+      LIST.SUBSCRIBE_ID.push(pressId);
+      LIST.SUBSCRIBE_NAME.push(pressName);
+    }
+
+    setSubscribe(pressData, categoryList, pressName, isSubscribe);
+  });
+};
+
+const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
+  if (isSubscribe) getAlert(pressData, pressIds, pressName);
+  if (!isSubscribe) getSnackBar(pressData);
+};
 
 export { initPressList };

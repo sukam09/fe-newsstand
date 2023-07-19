@@ -186,9 +186,15 @@ const setGridButtonClick = (pressData, pressIds, li) => {
     const pressId = Number(pressImg.getAttribute(ATTRIBUTE.PRESS_ID));
     const pressName = pressData.find((press) => press.id === pressId).name;
     const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
-    isSubscribe
-      ? (LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId))
-      : LIST.SUBSCRIBE_ID.push(pressId);
+
+    if (isSubscribe) {
+      LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId);
+      LIST.SUBSCRIBE_NAME = LIST.SUBSCRIBE_NAME.filter((name) => name !== pressName);
+    }
+    if (!isSubscribe) {
+      LIST.SUBSCRIBE_ID.push(pressId);
+      LIST.SUBSCRIBE_NAME.push(pressName);
+    }
     setSubscribe(pressData, pressIds, pressName, isSubscribe);
   });
 };

@@ -132,6 +132,7 @@
 }
 
 .section-main__button {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;

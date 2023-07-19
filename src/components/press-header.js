@@ -121,7 +121,7 @@ const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
 
     imgList.src = PATH.LIST_ICON;
     imgGrid.src = PATH.HIDE_GRID_ICON;
-    initPressList(pressData, LIST.CATEGORY_NAME);
+    initPressList(pressData, LIST.SUBSCRIBE_NAME);
   }
 };
 
