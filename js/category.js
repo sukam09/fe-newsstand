@@ -27,7 +27,7 @@ function drawCategoryBar(categoryCnt) {
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
   // clickCategory();
-  drawCategoryItem(categoryCnt, 0);
+  drawCategoryItem(categoryCnt);
 }
 
 function drawCategoryNumber(category) {
@@ -36,7 +36,7 @@ function drawCategoryNumber(category) {
     : `<span class="currentCategoryPages"></span><span class="categoryCnt"></span>`;
 }
 
-function drawCategoryItem(categoryCnt, categoryIndex) {
+function drawCategoryItem(categoryCnt) {
   currentCategoryIndex = 0;
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryNumber(categoryCnt);
@@ -101,7 +101,8 @@ function doProgress(categoryCnt, progressBar, currentCategoryPage) {
       else currentCategoryIndex++;
       Stores.clearProgressInterval();
     }
-    drawCategoryItem(currentCategoryIndex);
+    clearCategoryNumber(categoryCnt);
+    clearNewsInterval();
     progressReset(progressBar, currentCategoryPage);
     return;
   } else progressFill(progressBar);
@@ -149,7 +150,8 @@ function addEventArrowList(categoryCnt) {
   });
 }
 
-function increaseListPage() {
+function increaseListPage(categoryCnt) {
+  console.log(categoryCnt);
   if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
@@ -165,7 +167,7 @@ function increaseListPage() {
   clearNewsInterval();
 }
 
-function decreaseListPage() {
+function decreaseListPage(categoryCnt) {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
