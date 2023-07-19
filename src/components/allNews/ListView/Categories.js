@@ -1,5 +1,8 @@
-import { CATEGORIES_COUNT, PROGRESS_SPEED } from "../../../constants/index.js";
-import PressNews from "./PressNews.js";
+import {
+  CATEGORIES_COUNT,
+  PROGRESS_SPEED,
+  pressObj,
+} from "../../../constants/index.js";
 
 export default class Categories {
   constructor(pressData) {
@@ -23,8 +26,6 @@ export default class Categories {
 
     this.filterData();
     this.handleProgress();
-
-    return this.$wrapper;
   }
 
   /**
@@ -92,11 +93,10 @@ export default class Categories {
         }
       }
       this.render();
-      this.goNextNews.call(new PressNews(this.pressData), page); //
+      this.goNextNews.call(pressObj, page);
     }, PROGRESS_SPEED);
   }
 
-  //
   goNextNews(page) {
     this.goNextPage(page);
   }

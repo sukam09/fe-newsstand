@@ -1,5 +1,6 @@
 import Categories from "./Categories.js";
 import PressNews from "./PressNews.js";
+import { pressData, pressObj } from "../../../constants/index.js";
 
 export default class ListView {
   constructor() {
@@ -11,11 +12,16 @@ export default class ListView {
     return this.$wrapper;
   }
 
-  async render() {
-    const response = await fetch("/src/data/press-data.json");
-    const pressData = await response.json();
+  render() {
+    const $container = document.createElement("div");
+    $container.classList.add("list-container");
+    $container.appendChild(new Categories(pressData).$wrapper);
+    $container.appendChild(pressObj.$wrapper);
 
-    this.$wrapper.appendChild(new Categories(pressData));
-    this.$wrapper.appendChild(new PressNews(pressData).$wrapper);
+    this.$wrapper.appendChild($container);
+  }
+
+  goNextCategory() {
+    this.handleProgress();
   }
 }

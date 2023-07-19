@@ -1,5 +1,5 @@
 import Icon from "../common/Icon.js";
-import AllNewsGrid from "./GridView/AllNewsGrid.js";
+import AllNewsGrid from "./GridView/index.js";
 import ListView from "./ListView/index.js";
 
 export default class AllNews {

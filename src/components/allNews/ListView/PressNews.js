@@ -57,7 +57,6 @@ export default class PressNews {
   goNextPage(page) {
     this.page = page;
     this.mainNews = this.pressData[this.page];
-    // console.log(this.mainNews);
     this.render();
   }
 }
