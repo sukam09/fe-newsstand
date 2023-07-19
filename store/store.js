@@ -10,7 +10,7 @@ class Store {
         this.crntPage = 0; // page index (grid, list view)
         this.crntCategory = 0; // category index (list view)
         this.crntFilter = FILTER_TYPE.ALL;
-        this.subList = [];
+        this.subList = [1,2,3];
         this.shuffledList = [];
 
         this.observers = new Set();

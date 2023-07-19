@@ -1,7 +1,7 @@
-import listViewData from "../asset/data/listViewData.js";
 import { store } from "../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
-import { CATEGORY_LIST, FILTER_TYPE } from "../asset/data/constants.js";
+import { FILTER_TYPE } from "../asset/data/constants.js";
+import { filterData } from "../util/filterData.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
@@ -20,11 +20,17 @@ function listenCategoryChange(catBtns){
         })
     })
 }
-function drawListPage() {
+function drawListPage({listData, navData, filterType}) {
     let crntPage = store.getCrntPage();
     let crntCategory = store.getCrntCategory()
-    const filteredByCat = listViewData.filter(item => item.category == CATEGORY_LIST[crntCategory]);
-    const crntData = filteredByCat[crntPage]
+    let crntData;
+    if (filterType === FILTER_TYPE.ALL){
+        const filteredByCat = listData.filter(item => item.category == navData[crntCategory]);
+        crntData = filteredByCat[crntPage]
+    } else if (filterType === FILTER_TYPE.SUBSCRIBED){
+        crntData = listData[crntCategory];
+    }
+    
     listContent.innerHTML = `
     <div class="list-page" index=${crntCategory}>
         <header class="list-page-header display-medium12 light-text-default">
@@ -46,34 +52,42 @@ function drawListPage() {
 
     
 }
-function drawListNav(){
+function drawListNav({listData, navData, filterType}){
     let crntPage = store.getCrntPage();
     let crntCategory = store.getCrntCategory()
     listNav.innerHTML = "";
-    CATEGORY_LIST.forEach((category, index) => {
-        let numOfPages = listViewData.filter(data => data.category == category).length;
+    navData.forEach((category, index) => {
+        let numOfPages;
+        if (filterType === FILTER_TYPE.ALL){
+            numOfPages = listData.filter(data => data.category == category).length;
+        } else if (filterType === FILTER_TYPE.SUBSCRIBED){
+            numOfPages = 1;
+        }
+        
         listNav.innerHTML += `
         <li class="${crntCategory == index ? "selected category" : "category"}">
             <div class="category-title">${category}</div>
             <div class="${crntCategory == index ? "" : "hide"} list-page-info">
                 <span class=" display-bold12">
-                    ${crntPage+1}<span>/${numOfPages}</span>
+                ${filterType === FILTER_TYPE.ALL ? `${crntPage+1}<span>/${numOfPages}</span>` : `<img src="../asset/icons/chevron-right.png"/>`}
                 </span>
             </div>
         </li>`
     })
 }
 function drawList() {
-    switch (store.getCrntFilter()){
-        case FILTER_TYPE.ALL:
-            break;
-        case FILTER_TYPE.SUBSCRIBED:
-            break;
+    const viewData = filterData(); // filter data to show according to crnt filter type
+    const filterType = store.getCrntFilter();
+    if (viewData.listData.length === 0){
+        // no data to draw < in the case of filterType = "subscribed"
+
+    } else {
+        drawListNav({...viewData, filterType})
+        drawProgressBar()
+        drawListPage({...viewData, filterType});
+        listenCategoryChange(listNav.children);
     }
-    drawListNav()
-    drawProgressBar()
-    drawListPage();
-    listenCategoryChange(listNav.children);
+    
 }
 
 export {drawList}

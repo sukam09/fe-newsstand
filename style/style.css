@@ -163,6 +163,7 @@ ul {
 .list-nav > li:hover {
     cursor:pointer;
 }
+
 .selected {
     background-color: var(--blue-100);
     color:var(--grayscale-white-alt);
@@ -170,6 +171,9 @@ ul {
     display:flex;
     justify-content: space-between;
     width:166px;
+}
+.category:hover {
+    text-decoration: underline;
 }
 .selected:hover {
     text-decoration: none;
@@ -237,9 +241,7 @@ ul {
     color : var(--text-weak)
 }
 
-.category:hover {
-    text-decoration: underline;
-}
+
 .list-page-info > span {
     color : var(--border-default);
 }
