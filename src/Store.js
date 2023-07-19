@@ -1,5 +1,3 @@
-import { grid_view_info_entire, grid_view_info_sub } from "./components/grid/gridToggle.js";
-
 class Subject {
     constructor() {
         this._observers = [];
@@ -41,8 +39,7 @@ class subscribeSubject extends Subject {
     }
 }
 
+// 관찰하는 주체 (구독한 언론사)
 const _sub_press_list = new subscribeSubject();
-_sub_press_list.subscribe(grid_view_info_sub);
-_sub_press_list.subscribe(grid_view_info_entire);
 
 export { _sub_press_list };

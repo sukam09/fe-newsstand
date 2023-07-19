@@ -5,6 +5,7 @@ import { subscribe_press_list, press_idx } from "../../../data/subscribeIdxList.
 import { createMainGrid } from "../../container/gridViewTemplate.js";
 import { onClickSubBtn } from "../layout/mainNavEvent.js";
 import { createSnackBar } from "../common/snackBar.js";
+import { _sub_press_list } from "../../Store.js";
 
 class gridViewInfo {
     constructor(data, isSub) {
@@ -13,6 +14,7 @@ class gridViewInfo {
         this.left_btn_name = `.${class_name.GRID_LEFT_BTN}-${isSub}`;
         this.right_btn_name = `.${class_name.GRID_RIGHT_BTN}-${isSub}`;
         this.class_name = `.grid-${isSub}`;
+        _sub_press_list.subscribe(this);
     }
 
     getCurrentPage = function () {
@@ -46,19 +48,17 @@ class gridViewInfo {
     };
 }
 
-// grid view page 정보 (main)
+// grid view page 정보 - 전체 언론사 (관찰자)
 class gridViewEntire extends gridViewInfo {
+    // 구독한 언론사 리스트가 변경될 경우 뷰 업데이트
     update = function (state) {
         createMainGrid(this, false, state);
     };
 }
-export const grid_view_info_entire = new gridViewEntire(
-    press_idx.slice().sort(() => Math.random() - 0.5),
-    class_name.ENTIRE
-);
 
-// grid view page 정보 (sub)
+// grid view page 정보 - 내가 구독한 언론사 (관찰자)
 class gridViewSub extends gridViewInfo {
+    // 구독한 언론사 리스트가 변경될 경우 뷰 업데이트
     update = function (state) {
         this.data = state;
         if (this.getCurrentPage() > this.getMaxPage() && this.getMaxPage() >= 0) {
@@ -71,16 +71,9 @@ class gridViewSub extends gridViewInfo {
         this.current_page = page_num;
     };
 }
-export const grid_view_info_sub = new gridViewSub([], class_name.SUBSCRIBE);
 
-// 페이지 넘길 때 첫번째 마지막 페이지 화살표 숨김
-export function toggleArrow(grid_view_info) {
-    const left_btn = document.querySelector(grid_view_info.getLeftBtn());
-    const right_btn = document.querySelector(grid_view_info.getRightBtn());
-    const current_page = grid_view_info.getCurrentPage();
-    const max_page = grid_view_info.getMaxPage();
-    left_btn.style.visibility = "visible";
-    right_btn.style.visibility = "visible";
-    if (current_page <= 0) left_btn.style.visibility = "hidden";
-    if (current_page >= max_page) right_btn.style.visibility = "hidden";
-}
+export const grid_view_info_entire = new gridViewEntire(
+    press_idx.slice().sort(() => Math.random() - 0.5),
+    class_name.ENTIRE
+);
+export const grid_view_info_sub = new gridViewSub([], class_name.SUBSCRIBE);

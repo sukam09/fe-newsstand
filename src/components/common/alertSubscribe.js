@@ -23,11 +23,13 @@ export function createAlert(press_name, press_id) {
     });
     const $pos_btn = btnFactory.create({ type: "alert", isPos: true });
     const $neg_btn = btnFactory.create({ type: "alert", isPos: false });
+    // 구독해지 알림 중 '예' 클릭할 경우
     $pos_btn.setEvents({
         click: () => {
             _sub_press_list.deleteState(press_id);
         },
     });
+    // 구독해지 알림 중 '아니오' 클릭할 경우
     $neg_btn.setEvents({
         click: () => {
             document.querySelector(".alert").remove();

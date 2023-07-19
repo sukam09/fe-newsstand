@@ -1,7 +1,5 @@
 import { progress_bar_info } from "../list/progressBarEvent.js";
 import { class_name } from "../../utils/domClassName.js";
-import { createMainGrid } from "/src/container/gridViewTemplate.js";
-import { grid_view_info_sub } from "/src/components/grid/gridToggle.js";
 
 const view_info_tmp = (function () {
     let is_grid_view = true;
