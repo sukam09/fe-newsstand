@@ -83,10 +83,6 @@ export default class AllNewsGridView extends Component {
   }
 
   getGridPress() {
-    return this.props.pressType === TEXT.ALL
-      ? db.allPress
-      : db.allPress
-          .filter(press => db.getDbData.includes(press.number))
-          .sort((a, b) => db.getDbData.indexOf(a.number) - db.getDbData.indexOf(b.number));
+    return this.props.pressType === TEXT.ALL ? db.allPress : db.getFilteredPress;
   }
 }

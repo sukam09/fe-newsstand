@@ -7,13 +7,13 @@ import SubscribeButton from './SubscribeButton.js';
 
 export default class AllNewsListView extends Component {
   setup() {
+    this.pressOrder = this.getListPress();
     this.headerList = this.getHeaderList();
 
     this.state = {
-      currentPress: this.getCurrentPress(),
       currentPage: 1,
       currentPressIndex: 0,
-      pressOrder: [],
+      currentPress: this.getCurrentPress(),
     };
   }
 
@@ -62,7 +62,6 @@ export default class AllNewsListView extends Component {
   }
 
   mounted() {
-    this.state.pressOrder = this.getListPress();
     this.navigationMount();
     this.detailListMount();
 
@@ -91,8 +90,9 @@ export default class AllNewsListView extends Component {
 
   navigationMount() {
     const currentCategory = this.headerList[this.state.currentPressIndex];
+
     const totalPage =
-      this.state.pressType === TEXT.ALL ? this.state.pressOrder[currentCategory].length : 1;
+      this.props.pressType === TEXT.ALL ? this.pressOrder[currentCategory]?.length : 1;
 
     customQuerySelector('nav', this.$target).innerHTML = this.headerList.reduce(
       (innerHTML, press) => {
@@ -102,7 +102,7 @@ export default class AllNewsListView extends Component {
             `<li class="press-header-focus surface-brand-alt ">
               <span class="selected-bold14 text-white-default">${press}</span>
               ${
-                this.state.pressType === TEXT.ALL
+                this.props.pressType === TEXT.ALL
                   ? `<div>
                       <span class="display-bold12 text-white-default">${this.state.currentPage}</span>
                       <span class="display-bold12 text-white-weak"> / ${totalPage}</span>
@@ -168,7 +168,7 @@ export default class AllNewsListView extends Component {
   goNextPage() {
     const currentCategory = this.headerList[this.state.currentPressIndex];
     const totalPage =
-      this.state.pressType === TEXT.ALL ? this.state.pressOrder[currentCategory].length : 1;
+      this.props.pressType === TEXT.ALL ? this.pressOrder[currentCategory].length : 1;
 
     if (this.state.currentPage === totalPage) {
       const currentPressIndex = (this.state.currentPressIndex + 1) % this.headerList.length;
@@ -191,13 +191,15 @@ export default class AllNewsListView extends Component {
 
   getCurrentPress(pressIndex = 0, currentPage = 1) {
     const currentPressName = this.headerList[pressIndex];
-    return this.state.pressType === TEXT.ALL
-      ? this.state.pressOrder[currentPressName][currentPage - 1]
-      : this.state.pressOrder[pressIndex];
+    return this.props.pressType === TEXT.ALL
+      ? this.pressOrder[currentPressName][currentPage - 1]
+      : this.pressOrder[pressIndex];
   }
 
   getHeaderList() {
-    return this.props.pressType === TEXT.ALL ? Object.keys(db.getAllpress) : db.getDbData;
+    return this.props.pressType === TEXT.ALL
+      ? Object.keys(this.pressOrder)
+      : this.pressOrder.map(({ name }) => name);
   }
 
   getListPress() {
@@ -211,9 +213,9 @@ export default class AllNewsListView extends Component {
       지역: [],
     };
 
-    this.state.pressType === TEXT.ALL
+    this.props.pressType === TEXT.ALL
       ? db.allPress.forEach(press => listPress[press.category].push(press))
-      : (listPress = db.allPress.filter(press => db.getDbData.includes(press.name)));
+      : (listPress = db.getFilteredPress);
 
     return listPress;
   }

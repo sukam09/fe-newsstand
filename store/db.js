@@ -8,8 +8,13 @@ class DB {
     this.subscribedList = getLocalStorage('subscribed') ?? [];
     this.observedList = [];
     this.allPress = [];
+    this.isLoading = true;
 
-    fetchData().then(data => (this.allPress = shufflePressOrder(data)));
+    fetchData().then(data => {
+      this.allPress = shufflePressOrder(data);
+      this.isLoading = false;
+      this.render();
+    });
   }
 
   get getAllpress() {
@@ -18,6 +23,12 @@ class DB {
 
   get getDbData() {
     return this.subscribedList;
+  }
+
+  get getFilteredPress() {
+    return this.allPress
+      .filter(press => this.getDbData.includes(press.number))
+      .sort((a, b) => this.getDbData.indexOf(a.number) - this.getDbData.indexOf(b.number));
   }
 
   putDbData(list) {
