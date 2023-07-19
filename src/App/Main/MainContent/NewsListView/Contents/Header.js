@@ -1,6 +1,8 @@
 /* 
 리스트 뷰  헤더 컴포넌트
 */
+import store from "../../../../../Store/Store.js";
+
 export default function Contents($target, props) {
   this.render = () => {
     const $header = document.createElement("header");

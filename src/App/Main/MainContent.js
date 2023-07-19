@@ -6,6 +6,10 @@ import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";
+import store from "../../Store/Store.js";
+
+const TOTAL_PRESS_NUMBER = 96;
+const GRID_PRESS_NUBER = 24;
 
 let timerArr = [];
 let indexArr = getRandomIndexArr(4);
@@ -22,7 +26,13 @@ const suffile = (len) => {
 };
 
 export default function MainContent($target, props) {
-  this.state = { currentPage: 1, lastPage: 4, category: 0 };
+  let $section = document.querySelector(".news-section");
+  let lastPage =
+    props.pressType === "all"
+      ? parseInt(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER)
+      : parseInt(store.myPressList.length / GRID_PRESS_NUBER + 1);
+
+  this.state = { currentPage: 1, category: 0 };
 
   cancelAnimation();
 
@@ -49,8 +59,6 @@ export default function MainContent($target, props) {
   };
 
   this.render = () => {
-    let $section = document.querySelector(".news-section");
-
     if ($section) {
       $target.removeChild($section);
     }
@@ -60,7 +68,7 @@ export default function MainContent($target, props) {
 
     const commonProps = {
       mode: props.mode,
-      store: props.store,
+      pressType: props.pressType,
       currentPage: this.state.currentPage,
     };
 
@@ -84,9 +92,10 @@ export default function MainContent($target, props) {
     }
 
     const commonButtonProps = {
+      ...this.state,
       mode: props.mode,
       viewerType: props.viewerType,
-      ...this.state,
+      lastPage: lastPage,
       onClick: this.setCurrentPage,
     };
 
