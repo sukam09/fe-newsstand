@@ -1,3 +1,5 @@
+import { store } from "../store/index.js";
+import { changeTab } from "../store/reducer/page.js";
 import { $mainNav } from "./doms.js";
 
 const $mainNavTabs = $mainNav.querySelector(".main-nav_tabs");
@@ -8,6 +10,7 @@ const handleTabsClick = (e) => {
   if (!$currentButton) {
     return;
   }
+  const tabType = $currentButton.dataset.tab;
 
   $mainNavButtons.forEach(($button) => {
     if ($button === $currentButton) {
@@ -19,6 +22,8 @@ const handleTabsClick = (e) => {
     $button.classList.remove("main-nav_tabs--selected");
     $button.classList.replace("selected-bold16", "available-medium16");
   });
+
+  store.dispatch(changeTab(tabType));
 };
 
 export const addEventOnTabs = () => {
