@@ -21,13 +21,12 @@ function addInitRollingData(bannerNumber) {
     `rolling-banner-0${bannerNumber}`
   );
   let startIndex, endIndex, secondIndex;
-  if (bannerNumber === 1) {
-    startIndex = 0;
-    endIndex = parseInt(news_article.article.length / 2);
-  } else {
-    startIndex = Math.ceil(news_article.article.length / 2);
-    endIndex = news_article.article.length;
-  }
+  startIndex =
+    bannerNumber === 1 ? 0 : Math.ceil(news_article.article.length / 2);
+  endIndex =
+    bannerNumber === 1
+      ? parseInt(news_article.article.length / 2)
+      : news_article.article.length;
   secondIndex = startIndex + 1;
   let newsHTML = `<div class="rollingWrap"><ul>`;
   for (; startIndex < endIndex; startIndex++) {
