@@ -16,7 +16,7 @@ function createSubscribeDiv(li, pressID) {
   const UnSubscribeModeDiv = `
   <div class="subscribe-wrap">
     <button class="subscribe-btn">
-        <img class="plus-btn" src="../../asset/button/plus.png">
+        <img class="plus-btn" src="../../asset/button/${isSubscribe ? "closed" : "plus"}.png">
         <span class="subscribe-text available-medium12">${isSubscribe ? "해지하기" : "구독하기"}</span>
     </button>
   </div>`;

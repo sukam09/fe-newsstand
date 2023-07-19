@@ -64,6 +64,7 @@ function SubscribeBtnEventHandler(e, btnElement, pressID) {
     snackBar(e);
     store.dispatch(actionCreator("subscribe", { pressID }));
     btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
+    btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png") = "해지하기";
   } else {
     const grid = document.querySelector(".grid");
     const snackBar = document.querySelector(".grid .snack-bar");
