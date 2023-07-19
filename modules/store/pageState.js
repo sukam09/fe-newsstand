@@ -22,7 +22,6 @@ export function initPageState() {
   });
 
   DATA_LEN = parseInt(pressList.length);
-  console.log(parseInt(pressList.length));
   MAX_GRID_PAGE = parseInt(pressList.length / NUM_IN_A_GRID);
   MAX_CATEGORY_ID = parseInt(categoryList.length);
   TOTAL_LIST_PAGE = total;

@@ -4,7 +4,6 @@ import { qsa } from "../utils.js";
 
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
-  console.log(pressId);
   const subState = getState(subStateList[pressId]);
   setState(subStateList[pressId], !subState);
 }
