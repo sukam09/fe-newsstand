@@ -8,7 +8,6 @@ let currentCategoryPageNumber = 1;
 let currentCategoryIndex = 0;
 let currentCategoryPage;
 let currentProgressBar;
-// 상태를 어떻게 관리할지 수정필요...
 
 function drawInitCategory() {
   let categoryHtml = `<div class="categoryWrap"><ul>`;

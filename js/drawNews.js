@@ -1,4 +1,4 @@
-import news_article from "../json/news_article.json" assert { type: "json" };
+import news from "../json/news.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
 import { categoryNews } from "./setData.js/setCategoryData.js";
 import Stores from "../utils/Store.js";
@@ -11,7 +11,9 @@ function drawNewsImage(PageNumberIndex) {
 function drawNewsArticle(PageNumberIndex) {
   let article_div = "";
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
-    article_div += `<div class="news-main-article">${news_article.article[article_cnt]}</div>`;
+    article_div += `<div class="news-main-article">${
+      news.News[Stores.getPage()].article[article_cnt]
+    }</div>`;
   }
   article_div += `<div class="news-main-article-press">${categoryNews[currentCategoryIndex][PageNumberIndex].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
   return article_div;

@@ -4,7 +4,10 @@ import news from "../../json/news.json" assert { type: "json" };
 let categoryCnt = []; //카테고리별 data개수
 let categoryNews = {}; //카테고리별 담긴 기사뉴스
 
-function setCategoryCnt() {
+console.log(categoryData);
+console.log(news);
+
+function setCategoryCnt(categoryData) {
   for (const categories of categoryData) {
     for (const key in categories) {
       const item = {
@@ -16,7 +19,7 @@ function setCategoryCnt() {
   }
 }
 
-function setCategoryNews() {
+function setCategoryNews(news) {
   categoryCnt.forEach((categoryCntValue, categoryCntIndex) => {
     const item = [];
     news.News.forEach((newsValue) => {
@@ -26,7 +29,7 @@ function setCategoryNews() {
   });
 }
 
-setCategoryCnt();
-setCategoryNews();
+setCategoryCnt(categoryData);
+setCategoryNews(news);
 
 export { categoryCnt, categoryNews };

@@ -1,7 +1,7 @@
 import { setDate } from "./js/setData.js/setDate.js";
 import { rollingBanner } from "./js/rollingBanner.js";
 import { clickNewsStand } from "./js/newsStand.js";
-import { renderMain } from "./js/render/renderMain.js";
+import { renderAll } from "./js/render/renderMain.js";
 import { addAsideClickEvent } from "./js/asideButton.js";
 
 (function init() {
@@ -9,5 +9,5 @@ import { addAsideClickEvent } from "./js/asideButton.js";
   setDate(document.getElementById("header-div-02"));
   rollingBanner();
   addAsideClickEvent(true);
-  renderMain(true);
+  renderAll(true);
 })();

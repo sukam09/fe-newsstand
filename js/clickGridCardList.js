@@ -26,7 +26,7 @@ function clickCardListImage() {
     changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
     changeImageSrc(e.target, "./img/clicked_card_list.png");
     addAsideClickEvent(false);
-    Stores.clearProgressInterval();
+    Stores.setPage(0);
     renderCardList();
   });
 }
