@@ -1,9 +1,5 @@
 import { fetchListView, fetchPressItem } from '../api.js';
-import {
-  ANIMATION_UPDATE_DELAY,
-  CATEGORY_NUMBERS,
-  PROGRESSBAR_UPDATE_DELTA,
-} from '../constants.js';
+import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -161,18 +157,8 @@ export default function PressListView({ $target, initialState }) {
 
     await initListView(this.state.index, this.state.present);
 
-    const {
-      index,
-      present,
-      entire,
-      categories,
-      pressLogo,
-      pressName,
-      regDate,
-      thumbnail,
-      mainNews,
-      subNews,
-    } = this.state;
+    const { index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
+      this.state;
 
     $article.innerHTML = `
       <div class="press-info">
@@ -214,7 +200,7 @@ export default function PressListView({ $target, initialState }) {
       <div class="text-button-name">${selectedCategory}</div>
       <div class="text-button-count">
         <p class="text-button-present">${present}</p>
-          <img src="../asset/icons/division.svg"/>
+        <img src="../asset/icons/division.svg" />
         <p class="text-button-entire">${entire}</p>
       </div>
     `;
