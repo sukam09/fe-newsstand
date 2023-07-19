@@ -179,7 +179,7 @@ export default function PressListView({ $target, initialState }) {
           <img class="press-image" src="${pressLogo}"/>
         </div>
         <div class="edit-date">${regDate} 편집</div>
-        <button class="subscribe-button">
+        <button class="list-subscribe-button">
           <img src="../asset/icons/plus.svg" />
           <p>구독하기</p>
         </button>

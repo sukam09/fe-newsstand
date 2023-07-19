@@ -34,15 +34,21 @@ export default function PressGridView({ $target, initialState }) {
     const endIndex = startIndex + 23;
     const currentData = data.slice(startIndex, endIndex + 1);
 
-    currentData.forEach(press => {
+    currentData.forEach(({ logo }) => {
       const $li = document.createElement('li');
       const $img = document.createElement('img');
-      const { logo } = press;
+      const $button = document.createElement('button');
 
       $img.src = logo;
       $img.classList.add('press-logo');
 
-      $li.appendChild($img);
+      $button.innerHTML = `
+        <img src="../asset/icons/plus.svg" />
+        <p>구독하기</p>
+      `;
+      $button.classList.add('grid-subscribe-button');
+
+      $li.append($img, $button);
       $li.classList.add('news-press-item');
 
       $ul.appendChild($li);
