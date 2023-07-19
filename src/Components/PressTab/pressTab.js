@@ -30,7 +30,7 @@ function handleChangeView(clickedButton) {
     changeIconColor(clickedButton, 'grid-button')
   }
   else {
-    _changeDispay($newsList,'none', $pressGrid, 'block');
+    _changeDispay($newsList, 'none', $pressGrid, 'block');
     changeIconColor(clickedButton, 'list-button');
   }
 }
@@ -44,6 +44,8 @@ function changeIconColor(clickedButton, unClickedButton) {
   $clickedButtonContent.setAttribute('fill', TEXT_POINT);
   $unClickedButtonContent.setAttribute('fill', TEXT_WEAK);
 }
+
+
 
 function changeView() {
   changeViewToGrid();

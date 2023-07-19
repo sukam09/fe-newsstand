@@ -1,7 +1,7 @@
 import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
 import { fetchPressInfos } from "../../dataFetch.js";
-import { subscribePress } from "../../subscribeButton.js";
 import turnPressPage from "./pageMoveButton.js";
+import { store, addpress, removepress } from "../../store.js"
 
 
 /**
@@ -37,6 +37,49 @@ function drawPressImg(page, gridPageIndex) {
     `
 }
 
+/** 마우스 호버 이벤트 걸기 */
+function showSubscribeBtn() {
+  const $presses = document.querySelectorAll('.current-logos-container');
+  $presses.forEach((press) => {
+    press.addEventListener('mouseenter', () => handleShowSubscribeBtn(event, 'subscribeBtn'));
+    press.addEventListener('mouseleave', () => handleShowSubscribeBtn(event, 'logo'));
+  })
+}
+
+/** 구독하기/해지하기 어떤 것 띄울 지 결정하기 */
+function handleShowSubscribeBtn(event, whatDisplay) {
+  const hoveredPressId = event.target.children[0].getAttribute('data-id');
+  const isSubscribedPress = store.isExist(store.pressesId, hoveredPressId) === true ? true : false
+  if (whatDisplay === 'subscribeBtn' && !isSubscribedPress) {
+    event.target.children[0].src = "/assets/Icon/subscribeButton.svg"
+    event.target.style.backgroundColor = '#F5F7F9'
+  }
+  if (whatDisplay === 'subscribeBtn' && isSubscribedPress) {
+    event.target.children[0].src = "/assets/Icon/unsubscribeButton.svg"
+    event.target.style.backgroundColor = '#F5F7F9'
+  }
+  if (whatDisplay === 'logo') {
+    event.target.children[0].src = `/assets/logo/light/img${hoveredPressId}.svg`
+    event.target.style.backgroundColor = '#FFFFFF'
+  }
+}
+
+/** 구독하기 또는 해지하기 클릭 이벤트 걸기 */
+function clickSubscribeBtn() {
+  const $presses = document.querySelectorAll(".current-logos");
+  $presses.forEach((press) => {
+    press.addEventListener('click', handleClickSubscribeBtn)
+  })
+}
+
+/** 구독/해지 하기  */
+function handleClickSubscribeBtn(event) {
+  const clickedPressId = event.target.getAttribute('data-id');
+  store.isExist(store.pressesId, clickedPressId) === true ? removepress(clickedPressId) : addpress(clickedPressId);
+}
+
+
+
 /**
  맨 처음 화면을 구성하는 전체 언론사 그리드 페이지 띄우기
  */
@@ -44,7 +87,8 @@ async function initPressImg() {
   const page = await randomizeImgs();
   drawPressImg(page, FIRST_PAGE_IDX);
   turnPressPage(page);
-  subscribePress()
+  showSubscribeBtn();
+  clickSubscribeBtn();
 }
 
 

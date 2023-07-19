@@ -66,6 +66,7 @@ function startProgressAnimation(shuffledPressNews, clickedCategory, newsPageInde
 function initProgress(shuffledPressNews, clickedCategory, newsPageIndex) {
   removeProgress();
   setProgress(clickedCategory);
+
   setProgressPage(shuffledPressNews, clickedCategory, newsPageIndex);
   startProgressAnimation(shuffledPressNews, clickedCategory, newsPageIndex);
 }

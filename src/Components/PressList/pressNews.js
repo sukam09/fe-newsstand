@@ -1,8 +1,8 @@
 import { START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
 import { fetchpressNews } from "../../dataFetch.js"
-import {turnNewsPage} from "./pageMoveButton.js";
-import {showNewsOfCategory} from "./categoryTab.js";
-import {initProgress} from "./progressBar.js";
+import { turnNewsPage } from "./pageMoveButton.js";
+import { showNewsOfCategory } from "./categoryTab.js";
+import { initProgress } from "./progressBar.js";
 
 /**
 카테고리 별 언론사 순서 랜덤으로 섞기
@@ -14,10 +14,10 @@ async function randomizeNews() {
   const pressNewsList = categories.map(category => (
     pressNewsData.filter(press => press["category"] === category)));
 
-  const shuffledPressNews = pressNewsList.map(newsList => ( 
+  const shuffledPressNews = pressNewsList.map(newsList => (
     [...newsList].sort(() => Math.random() - 0.5)));
-  
-  return {categories, shuffledPressNews};
+
+  return { categories, shuffledPressNews };
 }
 
 /**
@@ -44,7 +44,7 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
   `
 
   /** 편집권 안내문구 띄우기 */
-  $pressNewsSub.innerHTML +=`<p class = "text-weak display-medium14"> 편집 권한에 대한 문구</p>`
+  $pressNewsSub.innerHTML += `<p class = "text-weak display-medium14"> 편집 권한에 대한 문구</p>`
 }
 
 /**
@@ -52,8 +52,8 @@ function drawPressNews(shuffledPressNews, categoryIdx, newsPage) {
  */
 function underlineNewsTitle() {
   const $newsThumbnail = document.querySelector('.press-news-thumbnail');
-  $newsThumbnail.addEventListener('mouseenter',() => handlerHoverNewsTitle('underline'));
-  $newsThumbnail.addEventListener('mouseleave',() => handlerHoverNewsTitle('none'));
+  $newsThumbnail.addEventListener('mouseenter', () => handlerHoverNewsTitle('underline'));
+  $newsThumbnail.addEventListener('mouseleave', () => handlerHoverNewsTitle('none'));
 }
 
 function handlerHoverNewsTitle(whatStyle) {
@@ -81,4 +81,4 @@ async function initNews() {
   underlineNewsTitle();
 }
 
-export  {initNews, drawPressNews}
+export { initNews, drawPressNews }

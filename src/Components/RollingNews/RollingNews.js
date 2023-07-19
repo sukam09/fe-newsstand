@@ -20,7 +20,7 @@ function rollNewsBoth(whatRolling) {
 /**
 왼쪽 최신 뉴스 자동 롤링 설정
  */
-function rollNewsLeft(){
+function rollNewsLeft() {
   rollNewsBoth('left');
 }
 
@@ -59,8 +59,8 @@ function rollNewsCallback(whatNews) {
 최신 뉴스 자동 롤링
 */
 function rollNews() {
-   rollNewsLeft();
-   rollNewsRight();
+  rollNewsLeft();
+  rollNewsRight();
 }
 
 export default rollNews;

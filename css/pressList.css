@@ -62,7 +62,7 @@
   transition: all 0.2s linear;
 }
 
-.press-news-thumbnail:hover{
+.press-news-thumbnail:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
@@ -75,7 +75,7 @@
   overflow: hidden;
   color: var(--grayscale-black);
   text-overflow: ellipsis;
-  flex-wrap: nowrap
+  flex-wrap: nowrap;
 }
 
 .press-news-sub {
@@ -93,7 +93,7 @@
   cursor: pointer;
 }
 
-.press-news-sub-list:hover{
+.press-news-sub-list:hover {
   text-decoration: underline;
 }
 
@@ -115,3 +115,6 @@
   display: none;
 }
 
+.list-snackbar {
+  display: none;
+}
