@@ -5,7 +5,8 @@ function initSnackBar(parentNode) {
 }
 
 function drawSnackBar() {
-  return 0;
+  const snackBar = document.querySelector(".snack-bar");
+  snackBar.style.display = "block";
 }
 
 export { initSnackBar, drawSnackBar };

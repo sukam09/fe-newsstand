@@ -29,10 +29,6 @@
   cursor: pointer;
 }
 
-.grid-view .grid-row li:hover {
-  background: var(--surface-alt);
-}
-
 .grid-view .grid-row button:hover {
   cursor: pointer;
 }

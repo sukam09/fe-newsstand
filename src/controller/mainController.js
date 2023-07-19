@@ -1,12 +1,11 @@
-import { STATE, GLOBAL } from "../model/variable.js";
+import { MODE, STATE, GLOBAL } from "../model/variable.js";
 import { initRollingEvent } from "./rollingController.js";
 import { initGridEvent } from "./gridController.js";
 import { initListEvent } from "./listController.js";
 import { initArrowBtnEvnet } from "./arrowBtnController.js";
 import { initTabAndViewerEvent } from "./tabAndViewerController.js";
+import { initSnackBarTimer, initAlertEvent } from "./componentController.js";
 
-import { drawHeader } from "../view/header.js";
-import { drawRollingBar } from "../view/rollingBar.js";
 import { drawTab, drawViewer } from "../view/tabAndViewer.js";
 import { drawLeftArrowBtn, drawRightArrowBtn } from "../view/arrowBtn.js";
 import { drawSnackBar } from "../view/snackBar.js";
@@ -20,6 +19,7 @@ function initEvent() {
   initListEvent();
   initArrowBtnEvnet();
   initTabAndViewerEvent();
+  initAlertEvent();
 }
 
 function changeState(state) {
@@ -41,6 +41,17 @@ function changeState(state) {
       break;
     case STATE.MOVE_LIST_SUB:
       drawListAndOthers();
+      break;
+    case STATE.SUBSCRIBE_NEWS:
+    case STATE.UNSUBSCRIBE_NEWS:
+      drawRefresh();
+      break;
+    case STATE.SHOW_SNACKBAR:
+      drawSnackBar();
+      initSnackBarTimer();
+      break;
+    case STATE.SHOW_ALERT:
+      drawAlert(GLOBAL.TEMP_TARGET);
       break;
     default:
       break;
@@ -68,6 +79,14 @@ function drawOthers() {
   drawViewer();
   drawLeftArrowBtn();
   drawRightArrowBtn();
+}
+
+function drawRefresh() {
+  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
+    drawGridAndOthers();
+  } else {
+    drawListAndOthers();
+  }
 }
 
 export { initEvent, changeState };

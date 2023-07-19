@@ -12,8 +12,11 @@ function initAlert(parentNode) {
   return 0;
 }
 
-function drawAlert() {
-  return 0;
+function drawAlert(press) {
+  const alert = document.querySelector(".alert");
+  const alertPress = alert.querySelector(".alert-main-press");
+  alertPress.innerHTML = press.name;
+  alert.style.display = "block";
 }
 
 export { initAlert, drawAlert };
