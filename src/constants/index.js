@@ -4,6 +4,8 @@ export const ROLLING_SECOND = ROLLING_COUNT * SECOND;
 
 export const SNACK_BAR_SECOND = 5 * SECOND;
 
+export const GRID_NEWS_COUNT = 24;
+
 export const TEXT = Object.freeze({
   SUBSCRIBE_KO: '구독하기',
   UNSUBSCRIBE: '구독취소',

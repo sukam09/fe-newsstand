@@ -2,15 +2,17 @@ import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.j
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 
-import { TEXT } from '../../constants/index.js';
+import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
 import SubscribeButton from './SubscribeButton.js';
 import db from '../../../store/db.js';
 
+let [savedAllPage, savedMyPage] = [0, 0];
+
 export default class AllNewsGridView extends Component {
   setup() {
-    this.state = { ...this.props, page: 0 };
-
-    db.observe(this);
+    const page = this.allType ? savedAllPage : savedMyPage;
+    this.allType = this.props.pressType === TEXT.ALL;
+    this.state = { ...this.props, page: this.allType ? savedAllPage : savedMyPage };
   }
 
   template() {
@@ -24,12 +26,17 @@ export default class AllNewsGridView extends Component {
 
   mounted() {
     const pressOrder = this.getGridPress();
-    const maxPage = Math.floor((pressOrder.length - 1) / 24);
-
+    const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
     const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
     let innerHTML = '';
 
-    for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
+    this.state.page > maxPage && this.setState({ page: maxPage });
+
+    for (
+      let i = this.state.page * GRID_NEWS_COUNT;
+      i < GRID_NEWS_COUNT * (this.state.page + 1);
+      i++
+    ) {
       innerHTML += ` 
       <li class="grid-logo-wrapper border-default">
       ${
@@ -79,13 +86,15 @@ export default class AllNewsGridView extends Component {
 
   goNextPage() {
     this.setState({ page: this.state.page + 1 });
+    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
   }
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
+    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
   }
 
   getGridPress() {
-    return this.props.pressType === TEXT.ALL ? db.allPress : db.getFilteredPress;
+    return this.allType ? db.allPress : db.getFilteredPress;
   }
 }
