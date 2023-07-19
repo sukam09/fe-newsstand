@@ -1,5 +1,5 @@
 import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
-import { view_option } from "./globals.js";
+import { view_option, subscribe_option } from "./globals.js";
 
 export function showToday(tag) {
     const date = new Date();
@@ -23,8 +23,25 @@ export function currentHourToMode() {
     return current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
 }
 
-export function setOptions(target) {
+/**
+ * @description
+ * 1. 언론사 구독 여부를 확인한다.
+ * @param {String} item
+ * @returns Boolean
+ */
+export function isSubscribed(item) {
+    return subscribe_option.subscribe_press[item] === undefined
+        ? false
+        : subscribe_option.subscribe_press[item];
+}
 
+/**
+ * @description
+ * 1. view의 옵션을 준다.
+ * @param {*} target
+ * @returns options
+ */
+export function setOptions(target) {
     return {
         main: view_option.main,
         press: view_option.press,
