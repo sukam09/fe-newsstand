@@ -1,7 +1,9 @@
 import { drawCategory } from "./drawCategory.js";
 import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
-import { resetPage } from "../sections/mainView.js";
+import { store } from "../core/store.js";
+import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
+import { getPage, getTabMode } from "../core/getter.js";
 
 async function getNewsData(current, mode) {
   try {
@@ -17,7 +19,7 @@ async function getNewsData(current, mode) {
   }
 }
 
-async function drawList(order, category, subscribedPress, current, mode) {
+async function drawList(current, mode) {
   try {
     let list = [];
 
@@ -29,48 +31,46 @@ async function drawList(order, category, subscribedPress, current, mode) {
       const selected_el = document.querySelector(".category.selected .ctg");
       current = selected_el.textContent;
     }
-    mode === "all" ? (list = category) : (list = subscribedPress);
+    mode === "all" ? (list = CATEGORY) : (list = subscribedPress);
+
     const main_list = document.querySelector(".main-list");
+
     main_list.innerHTML = "";
     let list_content = await getNewsData(current, mode);
-    if (order <= 0 || list_content.length < order) {
+
+    if (getPage() <= 0 || list_content.length < getPage()) {
       const currentIndex = list.indexOf(current);
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
       const nextIndex = (currentIndex + 1) % list.length;
-      order <= 0 ? (current = list[prevIndex]) : (current = list[nextIndex]);
-      showListView(1, category, subscribedPress, current, mode);
-      resetPage();
+      getPage() <= 0
+        ? (current = list[prevIndex])
+        : (current = list[nextIndex]);
+      store.setState({ page: FIRST_PAGE_NUM });
       list_content = await getNewsData(current, mode);
+      showListView(current, mode);
     } else {
-      drawCategory(current, order, list, list_content);
+      drawCategory(current, list, list_content);
       const newDiv = document.createElement("div");
       newDiv.classList.add("press-news");
       main_list.appendChild(newDiv);
-      drawPressInfo(order, list_content, list, subscribedPress);
-      drawPressNews(order, list_content, mode);
+      drawPressInfo(list_content, list);
+      drawPressNews(list_content, mode);
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-function handleClick(e, category, subscribedPress) {
+function handleClick(e) {
   const li_target = e.target.closest("li");
   if (li_target && li_target.classList.contains("category")) {
     const current = li_target.querySelector(".ctg").textContent.trim();
-    drawList(1, category, subscribedPress, current, "");
+    store.setState({ page: FIRST_PAGE_NUM });
+    drawList(current, "");
   }
 }
 
-export function showListView(
-  order,
-  category,
-  subscribedPress,
-  current = "",
-  mode = ""
-) {
-  drawList(order, category, subscribedPress, current, mode);
-  document.addEventListener("click", (e) =>
-    handleClick(e, category, subscribedPress)
-  );
+export function showListView(current = "", mode = "") {
+  drawList(current, mode);
+  document.addEventListener("click", (e) => handleClick(e));
 }

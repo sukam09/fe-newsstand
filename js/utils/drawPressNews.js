@@ -1,9 +1,11 @@
-export function drawPressNews(order, list_content, mode) {
+import { store } from "../core/store.js";
+import { getPage } from "../core/getter.js";
+export function drawPressNews(list_content, mode) {
   let main_news,
     sub_news = "";
 
   list_content.forEach((news) => {
-    if (mode === "all" && news.name === list_content[order - 1].name) {
+    if (mode === "all" && news.name === list_content[getPage() - 1].name) {
       main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
         <p class="thumbnail-title">${news.main_news.title}</p>`;
       news.sub_news.forEach((subnews) => {
@@ -13,7 +15,7 @@ export function drawPressNews(order, list_content, mode) {
       });
     } else if (
       mode === "subscribe" &&
-      news.category === list_content[order - 1].category
+      news.category === list_content[getPage() - 1].category
     ) {
       main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
         <p class="thumbnail-title">${news.main_news.title}</p>`;
@@ -25,7 +27,7 @@ export function drawPressNews(order, list_content, mode) {
     }
   });
   sub_news += `<li id="caption">
-  ${list_content[order - 1].name} 언론사에서 직접 편집한 뉴스입니다.
+  ${list_content[getPage() - 1].name} 언론사에서 직접 편집한 뉴스입니다.
   </li>`;
   const news_content = document.querySelector(".news-content");
   news_content.innerHTML = `<div class="main-news">
