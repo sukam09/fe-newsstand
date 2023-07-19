@@ -1,16 +1,18 @@
 import { VIEW } from "./LayoutBtn.js";
 import { categoryLength, news_data, TimerReset } from "../view/ListView/ListView.js";
-import { LIST_PAGE, GRID_PAGE } from "../../global.js";
+import { LIST_PAGE, GRID_PAGE, SUBSCRIBE_VIEW } from "../../global.js";
+import { store } from "../../store.js";
 
 export const RIGHT = 1;
 export const LEFT = 0;
-
 const GRID_ENTIRE_PAGE = 3;
+const PRESS_CNT_PER_PAGE = 24;
 const right_btn = document.querySelector(".right-btn");
 const left_btn = document.querySelector(".left-btn");
 
 function arrowBtnClickHandler(dir) {
   const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
+
   //그리드 뷰
   if (CURRENT_VIEW == VIEW.GRID) {
     if (dir === RIGHT) {
@@ -18,15 +20,7 @@ function arrowBtnClickHandler(dir) {
     } else {
       GRID_PAGE.setState(GRID_PAGE.CURRENT_PAGE - 1);
     }
-    if (GRID_PAGE.CURRENT_PAGE === 0) {
-      left_btn.style.display = "none";
-      right_btn.style.display = "block";
-    } else if (GRID_PAGE.CURRENT_PAGE === GRID_ENTIRE_PAGE) {
-      right_btn.style.display = "none";
-      left_btn.style.display = "block";
-    } else {
-      arrowStateInit();
-    }
+    arrowStateInit();
   }
   //리스트뷰
   else if (CURRENT_VIEW == VIEW.LIST) {
@@ -50,12 +44,30 @@ function arrowBtnClickHandler(dir) {
       }
     }
 
-    tabsAndTimerReset();
+    TimerReset();
   }
 }
 export function arrowStateInit() {
-  right_btn.style.display = "block";
-  left_btn.style.display = "block";
+  const CURRENT_VIEW = VIEW.CURRENT_VIEW_MODE;
+  const SUBSCRIBE_PRESS_CNT = store.getSubscribe().length;
+  const PAGE_LENGTH = SUBSCRIBE_VIEW.CURRENT_VIEW ? Math.floor(SUBSCRIBE_PRESS_CNT / PRESS_CNT_PER_PAGE) : GRID_ENTIRE_PAGE;
+
+  if (CURRENT_VIEW == VIEW.GRID) {
+    if (GRID_PAGE.CURRENT_PAGE === 0) {
+      left_btn.style.display = "none";
+      right_btn.style.display = PAGE_LENGTH === 0 ? "none" : "block";
+    } else if (GRID_PAGE.CURRENT_PAGE === PAGE_LENGTH) {
+      right_btn.style.display = "none";
+      left_btn.style.display = "block";
+    } else {
+      left_btn.style.display = "block";
+      right_btn.style.display = "block";
+    }
+  } else {
+    //리스트뷰는 양쪽 모두 block
+    left_btn.style.display = "block";
+    right_btn.style.display = "block";
+  }
 }
 export function BtnEventHandlerRegister() {
   right_btn.addEventListener("click", () => arrowBtnClickHandler(RIGHT));

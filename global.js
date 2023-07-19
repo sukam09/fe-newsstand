@@ -31,8 +31,12 @@ export const GRID_PAGE = {
 
 export const SUBSCRIBE_VIEW = {
   CURRENT_VIEW: false,
-  changeView: () => {
-    SUBSCRIBE_VIEW.CURRENT_VIEW = !SUBSCRIBE_VIEW.CURRENT_VIEW;
-    printGrid();
+  changeView: (view) => {
+    if (SUBSCRIBE_VIEW.CURRENT_VIEW !== view) {
+      SUBSCRIBE_VIEW.CURRENT_VIEW = view;
+      printGrid();
+    } else {
+      GRID_PAGE.setState(0);
+    }
   },
 };

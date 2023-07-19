@@ -4,9 +4,9 @@ import { DoSubScribe, DoUnsubscribe } from "../components/SubscribeBtn.js";
 import { SubscribeState } from "../components/SubscribeBtn.js";
 import { SUBSCRIBE_VIEW } from "../../global.js";
 import { store } from "../../store.js";
-import { news_data } from "./ListView/ListView.js";
-
+import { shuffle_id } from "../utility/Shuffle.js";
 let news_icon;
+
 const ICONS_PER_PAGE = 24;
 
 function createSubscribeDiv(li, pressID) {
@@ -57,23 +57,26 @@ function pressMouseOut(li) {
   }
 }
 
-function IsSubScribe() {
+async function FetchData() {
+  news_icon = await fetchPressData("./Data/grid_icon.json");
   if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
     const subscribe_icon_IDs = store.getSubscribe();
     const subscribe_icon_data = [];
-    for (let icon of news_icon) {
-      if (subscribe_icon_IDs.includes(icon.id)) {
-        subscribe_icon_data.push(icon);
-      }
-    }
+
+    subscribe_icon_IDs.forEach((id) => {
+      subscribe_icon_data.push(news_icon[id - 1]);
+    });
+
     news_icon = subscribe_icon_data;
+  } else {
+    shuffle_id(news_icon);
   }
 }
 
 export function updateGrid() {
   try {
     if (news_icon) {
-      IsSubScribe();
+      // FetchData();
 
       let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
@@ -101,11 +104,12 @@ export function updateGrid() {
 
 export async function printGrid() {
   try {
-    news_icon = await fetchPressData("./Data/grid_icon.json");
-    IsSubScribe();
+    await FetchData();
+
     const grid = document.querySelector(".grid");
+    grid.innerHTML = ``;
+
     let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
-    console.log(news_icon[0]);
 
     for (let i = 0; i < 4; i++) {
       const grid_row = document.createElement("ul");
@@ -128,7 +132,6 @@ export async function printGrid() {
       }
       grid.appendChild(grid_row);
     }
-    // updateGrid();
     const left_btn = document.querySelector(".left-btn");
     left_btn.style.display = "none";
   } catch (e) {
