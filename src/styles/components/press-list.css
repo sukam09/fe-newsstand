@@ -20,6 +20,7 @@
 }
 
 /* 언론사 리스트의 NAV */
+
 .press-category__ul {
   display: flex;
   flex-direction: row;
@@ -31,6 +32,10 @@
   padding: 16px 0;
   border-bottom: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
+
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .press-category__li {
@@ -70,7 +75,10 @@
 }
 
 .progress-start {
+  flex-shrink: 0;
   width: 134px;
+  height: 40px;
+  padding: 0 16px;
 
   background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
   background-size: 200% 100%;

@@ -402,4 +402,8 @@ const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
   if (!isSubscribe) getSnackBar(pressData);
 };
 
+const setSubscribeArrow = (pressData, categoryList) => {
+  //
+};
+
 export { initPressList };
