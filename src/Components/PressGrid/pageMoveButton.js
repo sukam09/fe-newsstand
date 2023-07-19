@@ -1,5 +1,6 @@
 import { FIRST_PAGE_IDX, LEFT_UNDISPLAY, RIGHT_UNDISPLAY } from "../../constant.js";
 import { drawPressImg } from "./pressLogos.js"
+import { handleSubscribe } from "./pressLogos.js";
 
 const $pagePrevButton = document.querySelector('.left-button');
 const $pageNextButton = document.querySelector('.right-button');
@@ -22,6 +23,7 @@ function handleClickTurner(event, page) {
   event.target.className.animVal === 'left-button' ? pageCnt-- : pageCnt++;
   drawPressImg(page, pageCnt)
   showPageTurner();
+  handleSubscribe();
 }
 
 /**

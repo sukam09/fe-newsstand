@@ -78,6 +78,10 @@ function handleClickSubscribeBtn(event) {
   store.isExist(store.pressesId, clickedPressId) === true ? removepress(clickedPressId) : addpress(clickedPressId);
 }
 
+function handleSubscribe() {
+  showSubscribeBtn();
+  clickSubscribeBtn();
+}
 
 
 /**
@@ -87,9 +91,8 @@ async function initPressImg() {
   const page = await randomizeImgs();
   drawPressImg(page, FIRST_PAGE_IDX);
   turnPressPage(page);
-  showSubscribeBtn();
-  clickSubscribeBtn();
+  handleSubscribe()
 }
 
 
-export { initPressImg, drawPressImg }
+export { initPressImg, drawPressImg, handleSubscribe }
