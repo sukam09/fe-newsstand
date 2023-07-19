@@ -1,5 +1,6 @@
 import { getPressObj } from "./api/api.js";
 import { setDisplay } from "./util/utils.js";
+import { setSubGrid } from "./subGrid.js";
 
 const PRESS_NUM_IN_GRID = 24;
 const TOTAL_PRESS_NUM = 96;
@@ -41,6 +42,7 @@ async function setGrid() {
   slice_shuffled_presses.forEach((press) => {
     appendPressInGrid(press);
   });
+  setSubGrid();
 }
 
 /***** grid 넘기는 화살표 관련 함수 *****/

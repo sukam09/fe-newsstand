@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./style/grid-style.css" />
     <link rel="stylesheet" href="./style/list-style.css" />
     <link rel="stylesheet" href="./style/arrow-style.css" />
+    <link rel="stylesheet" href="./style/sub-alert.css" />
   </head>
   <body>
     <div class="container">
@@ -120,7 +121,7 @@
         <nav class="press-nav">
           <div class="press-option">
             <span class="total-press bold-font-init">전체 언론사</span>
-            <span class="subscribed-press">내가 구독한 언론사</span>
+            <span class="subscribed-press not-clicked">내가 구독한 언론사</span>
           </div>
 
           <div class="view-icon-div grid-selected">
@@ -146,6 +147,31 @@
             id="grid-next"
             class="r-btn"
             src="/assets/others/RightButton.svg" />
+        </div>
+        <div class="press-sub-grid">
+          <img
+            id="grid-prev"
+            class="l-btn"
+            src="/assets/others/LeftButton.svg" />
+          <ul id="press-sub-list"></ul>
+          <img
+            id="grid-next"
+            class="r-btn"
+            src="/assets/others/RightButton.svg" />
+          <div class="sub-alert">
+            <div class="alert-message">
+              <div class="first-line">
+                <span class="bold-font-init">서울경제</span><span>을(를)</span>
+              </div>
+              <div class="second-line">
+                <span>구독해지하시겠습니까?</span>
+              </div>
+            </div>
+            <div class="sub-choice">
+              <div class="yes font-init">예, 해지합니다</div>
+              <div class="no">아니오</div>
+            </div>
+          </div>
         </div>
         <section class="press-list-section">
           <nav class="list-nav">
@@ -217,6 +243,39 @@
               <div class="snack-bar">
                 <img src="./assets/others/Snackbar.svg" />
               </div>
+            </div>
+          </article>
+        </section>
+        <section class="sub-press-list-section">
+          <nav class="sub-list-nav">
+            <ul></ul>
+          </nav>
+          <article class="sub-news-article">
+            <div class="press-info">
+              <img class="press-brandmark" src="" />
+              <span class="edit-date font-init"></span>
+              <img class="unsub-btn" src="./assets/others/xButton.svg" />
+            </div>
+            <div class="news">
+              <img class="left-btn" src="./assets/others/LeftButton.svg" />
+              <div class="news-main">
+                <div>
+                  <img class="thumbnail" src="" />
+                </div>
+                <h2 class="font-init"></h2>
+              </div>
+              <div class="news-sub">
+                <ul class="news-sub-list">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li class="caption"></li>
+                </ul>
+              </div>
+              <img class="right-btn" src="./assets/others/RightButton.svg" />
             </div>
           </article>
         </section>

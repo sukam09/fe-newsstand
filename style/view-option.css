@@ -17,7 +17,7 @@
   gap: 24px;
 }
 
-.subscribed-press {
+.not-clicked {
   color: var(--text-text-weak, #879298);
   font-family: Pretendard;
   font-size: 16px;
@@ -28,6 +28,7 @@
 }
 
 .total-press,
+.subscribed-press,
 .list-symbol,
 .grid-symbol {
   cursor: pointer;

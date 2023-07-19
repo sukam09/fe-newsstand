@@ -12,6 +12,7 @@ function initDisplay() {
   setDisplay(".list-selected", "none");
   setDisplay(".press-list-section", "none");
   setDisplay("#grid-prev", "none");
+  setDisplay(".sub-alert", "none");
   appendCategoryTabNum();
   countDisplayNone();
   setDisplay(".count", "block");
