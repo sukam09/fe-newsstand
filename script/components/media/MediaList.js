@@ -173,33 +173,25 @@ const UpdatedTime = time => {
   return updatedTimeElement;
 };
 
-const MediaInfo = (id, newsData) => {
+const MediaInfo = (id, newsData, navStore, store) => {
   const mediaInfo = document.createElement('div');
 
   mediaInfo.classList.add('media_info');
   mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id)));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
-  mediaInfo.appendChild(
-    SubButton(
-      id,
-      () => {
-        console.log(`${id} unsubscribe`);
-      },
-      false
-    )
-  );
+  mediaInfo.appendChild(SubButton(id, navStore, store, false));
   return mediaInfo;
 };
 
 const ThumbnailNewsArea = title => {
   const thumbnailNewsArea = document.createElement('section');
+
   thumbnailNewsArea.classList.add(
     'thumbnail_news',
     'pointer',
     'hover_medium16',
     'text_strong'
   );
-
   thumbnailNewsArea.innerHTML = `
   <div class="thumbnail">
     <img class="thumbnail" src="https://picsum.photos/300/200" alt="기사 이미지">
@@ -243,7 +235,7 @@ const NewsContent = (mediaId, newsData) => {
   return news;
 };
 
-const ListContent = (store, viewAll) => {
+const ListContent = (navStore, store, viewAll) => {
   const listContent = document.createElement('div');
   const { category, page, media } = store.getState();
   const mediaId = viewAll ? media.category[category].media[page] : media[page];
@@ -251,7 +243,7 @@ const ListContent = (store, viewAll) => {
 
   listContent.id = 'list_view';
   if (mediaId === undefined) return listContent;
-  listContent.appendChild(MediaInfo(mediaId, newsData));
+  listContent.appendChild(MediaInfo(mediaId, newsData, navStore, store));
   listContent.appendChild(NewsContent(mediaId, newsData));
   return listContent;
 };
@@ -270,7 +262,7 @@ const MediaList = (navStore, mediaData) => {
     const nav = viewAll ? ListNav(navStore, store) : ListSubNav(store);
     clearAllChildren(mediaList);
     mediaList.appendChild(nav);
-    mediaList.appendChild(ListContent(store, viewAll));
+    mediaList.appendChild(ListContent(navStore, store, viewAll));
   };
 
   viewAll ? replaceArrow(store) : replaceSubArrow(store);

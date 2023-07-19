@@ -124,6 +124,21 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    overflow: hidden;
+}
+
+.sub_news li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sub_news li a {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
 }
 
 
