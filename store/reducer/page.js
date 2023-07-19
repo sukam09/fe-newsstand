@@ -18,6 +18,7 @@ const initialState = {
 const NEXT_PAGE = "PAGE/NEXT_PAGE";
 const PREV_PAGE = "PAGE/PREV_PAGE";
 const RESET_PAGE = "PAGE/RESET_PAGE";
+const SET_PAGE = "PAGE/SET_PAGE";
 const CHANGE_VIEW = "PAGE/CHANGE_VIEW";
 const CHANGE_TAB = "PAGE/CHANGE_TAB";
 const NEXT_CATEGORY = "PAGE/NEXT_CATEGORY";
@@ -27,6 +28,7 @@ const SET_CATEGORY = "PAGE/SET_CATEGORY";
 export const nextPage = () => actionCreator(NEXT_PAGE);
 export const prevPage = () => actionCreator(PREV_PAGE);
 export const resetPage = () => actionCreator(RESET_PAGE);
+export const setPage = (page) => actionCreator(SET_PAGE, page);
 export const changeView = (viewType) => actionCreator(CHANGE_VIEW, viewType);
 export const changeTab = (tabType) => actionCreator(CHANGE_TAB, tabType);
 export const nextCategory = () => actionCreator(NEXT_CATEGORY);
@@ -49,6 +51,11 @@ export const page = (state = initialState, action) => {
       return {
         ...state,
         currentPage: 0,
+      };
+    case SET_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     case CHANGE_VIEW:
       return {
