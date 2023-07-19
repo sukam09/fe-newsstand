@@ -65,7 +65,6 @@ function categorizeData(data) {
   for (let category in categorizedData) {
     shuffle(categorizedData[category]);
   }
-  console.log(categorizedData);
   return categorizedData;
   
 }
@@ -99,7 +98,6 @@ function createCategoryElements(categorizedData) {
     categoryItemDiv.addEventListener('click', function() {
       category_page = index;
       media_page = 0;
-      console.log(index);
       cancelAnimationFrame(animationId);
       setNewsData(index);
     });

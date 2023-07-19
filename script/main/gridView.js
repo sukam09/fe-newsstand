@@ -117,7 +117,6 @@ export const GridController = {
           newState.splice(index, 1);
           subscribedStore.setState(newState);
         }
-        console.log(subscribedStore.getState());
       })
     }
 
