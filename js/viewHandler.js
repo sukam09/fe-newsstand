@@ -1,7 +1,7 @@
 import { removeDisplay, setDisplay, getJSON } from "./utils.js";
 import { drawNews, setNowCount } from "./newsList.js";
-import { setSubListNav, drawSubNews } from "./subscribeListView.js";
-import { drawGridView, drawSubGridView } from "./gridFunction.js";
+import { drawSubNews } from "./subscribeListView.js";
+import { drawGridView } from "./gridFunction.js";
 import { STATE, DATA } from "./const.js";
 
 let presses;
@@ -78,15 +78,8 @@ function handleView(target) {
   if (checkClass("grid-symbol")) {
     //grid 버튼 눌렀을 때
     changeViewIcon("grid");
-    if (STATE.IS_SUB_VIEW) {
-      // grid 선택, grid 구독 뷰 출력
-      setDisplay(".press-grid-sub", "query", "block");
-      drawSubGridView();
-    } else {
-      // grid선택, total grid 뷰 출력
-      setDisplay(".press-grid", "query", "block");
-      drawGridView();
-    }
+    setDisplay(".press-grid", "query", "block");
+    drawGridView();
     STATE.IS_GRID_VIEW = true;
   }
   if (checkClass("total-press")) {

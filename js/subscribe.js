@@ -1,6 +1,6 @@
 import { setDisplay, getJSON, checkIsSubscribe, removeDisplay } from "./utils.js";
 import { MODAL_POPUP_TIME, STATE, setSubData, DATA } from "./const.js";
-import { drawSubGridView, drawGridView } from "./gridFunction.js";
+import { drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
 import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { setSubListNav, drawSubNews } from "./subscribeListView.js";
@@ -108,5 +108,5 @@ export {
   removeGridSubscribe,
   initSubGridItemEvent,
   gridMouseClick,
-  drawSubGridView,
+  
 };

@@ -1,7 +1,6 @@
 import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay, getJSON } from "../js/utils.js";
 import { STATE, DATA, setSubData } from "./const.js";
 import { drawNews } from "./newsList.js";
-import { gridMouseClick, drawSubGridView } from "./subscribe.js";
 import { drawSubNews, setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
 
