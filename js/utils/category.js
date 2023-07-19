@@ -2,8 +2,6 @@ import { removeChildElement } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
 import { subscribeState } from "../store/subscribeState.js";
 
-const CATEGORY_NUMBER = 7;
-
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.style.padding = 0; // 선택된 카테고리의 padding 제거
@@ -158,16 +156,15 @@ export function onUserRightClickCategory(
   categoryDataLength,
   categoryDataList
 ) {
-  rightBtn.addEventListener("click", () => {
-    ++CATEGORY.currentContents;
-    nextContents(
-      "right",
-      CATEROY_NUMBER,
+  rightBtn.addEventListener(
+    "click",
+    rightBtnEvent(
       categoryList,
-      categoryDataLength,
-      categoryDataList
-    );
-  });
+      CATEROY_NUMBER,
+      categoryDataList,
+      categoryDataLength
+    )
+  );
 }
 
 // 왼쪽 버튼 클릭했을때.
@@ -178,31 +175,23 @@ export function onUserLeftClickCategory(
   categoryDataLength,
   categoryDataList
 ) {
-  leftBtn.addEventListener("click", () => {
-    --CATEGORY.currentContents;
-
-    // 왼쪽 버튼이 클릭되고 현재 보여지는 콘텐츠가 0개라면 이전 카테고리로 이전하도록 goBefore 상태를 true로 바꿔줌.
-    if (CATEGORY.currentContents <= 0) {
-      CATEGORY.goBefore = 1;
-      CATEGORY.currentContents = 1;
-    }
-    CATEGORY.currentContents =
-      CATEGORY.currentContents <= 0 ? 1 : CATEGORY.currentContents;
-    nextContents(
-      "left",
-      CATEROY_NUMBER,
+  leftBtn.addEventListener(
+    "click",
+    leftBtnEvent(
       categoryList,
-      categoryDataLength,
-      categoryDataList
-    );
-  });
+      CATEROY_NUMBER,
+      categoryDataList,
+      categoryDataLength
+    )
+  );
 }
 
 export function onUserClickCategory(
   CATEROY_NUMBER,
   categoryDataList,
   categoryList,
-  categoryDataLength
+  categoryDataLength,
+  CATEGORY_NUMBER
 ) {
   categoryList.map((element, idx) => {
     element.addEventListener("click", (e) => {
@@ -215,6 +204,48 @@ export function onUserClickCategory(
       makeNewsList(CATEGORY.FIRST_PAGE, CATEROY_NUMBER, categoryDataList);
     });
   });
+}
+
+export function leftBtnEvent(
+  categoryList,
+  CATEROY_NUMBER,
+  categoryDataList,
+  categoryDataLength
+) {
+  return function () {
+    --CATEGORY.currentContents;
+
+    // 왼쪽 버튼이 클릭되고 현재 보여지는 콘텐츠가 0개라면 이전 카테고리로 이전하도록 goBefore 상태를 true로 바꿔줌.
+    if (CATEGORY.currentContents <= 0) {
+      CATEGORY.goBefore = 1;
+    }
+    CATEGORY.currentContents =
+      CATEGORY.currentContents <= 0 ? 1 : CATEGORY.currentContents;
+    nextContents(
+      "left",
+      CATEROY_NUMBER,
+      categoryList,
+      categoryDataLength,
+      categoryDataList
+    );
+  };
+}
+export function rightBtnEvent(
+  categoryList,
+  CATEROY_NUMBER,
+  categoryDataList,
+  categoryDataLength
+) {
+  return function () {
+    ++CATEGORY.currentContents;
+    nextContents(
+      "right",
+      CATEROY_NUMBER,
+      categoryList,
+      categoryDataLength,
+      categoryDataList
+    );
+  };
 }
 
 // 카테고리 변경시 프로그래스 바 진행.

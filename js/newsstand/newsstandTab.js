@@ -1,7 +1,7 @@
-import { restartProgressBar } from "./newsCategory.js";
+import { paintNewsCategory } from "./newsCategory.js";
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
-import { paintNewsCategory } from "../newsstand/newsCategory.js";
+// import { paintNewsCategory } from "../newsstand/newsCategory.js";
 const VIEW_DISABLED = "view-disabled";
 
 export function newsstandListTab() {
@@ -23,8 +23,7 @@ function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
     listButton.src = "./assets/basicIcon/list-symbol-selected.svg";
     thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
-    // 리스트 뷰로 선택되면 맨 처음 카테고리부터 시작되게 만듬.
-    listArea.className === VIEW_DISABLED ? restartProgressBar() : () => {};
+    paintNewsCategory();
 
     // display: none 속성 부여.
     listArea.classList.remove(VIEW_DISABLED);

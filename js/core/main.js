@@ -11,7 +11,7 @@ export function renderMain() {
   paintGridNewsstand();
 
   // 카테고리
-  paintNewsCategory();
+  // paintNewsCategory();
 
   //뉴스스탠드 리스트 탭 전환
   newsstandListTab();
