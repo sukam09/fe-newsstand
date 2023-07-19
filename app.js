@@ -4,19 +4,20 @@ import { renderGridView } from "./scripts/grid-view.js";
 import { renderListView } from "./scripts/list-view.js";
 import { addEventOnPaginationButton } from "./scripts/pagination-button.js";
 import { addEventOnViewerButton } from "./scripts/viewer-button.js";
+import { addEventOnTabs } from "./scripts/tab-button.js";
+import { addEventOnProgressBar } from "./scripts/progress-bar.js";
+import { setModal } from "./scripts/modal.js";
+import { setSnackbar } from "./scripts/snackbar.js";
 import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
   setTheme,
 } from "./utils/index.js";
-import { addEventOnProgressBar } from "./scripts/progress-bar.js";
-import { changeTheme } from "./store/reducer/theme.js";
 import { store } from "./store/index.js";
-import { setSnackbar } from "./scripts/snackbar.js";
+import { changeTheme } from "./store/reducer/theme.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
-import { setModal } from "./scripts/modal.js";
 
 const $headerDate = document.querySelector(".container-header_date");
 
@@ -58,6 +59,7 @@ const addEventOnThemeButton = () => {
 
   addEventOnThemeButton();
   addEventOnPaginationButton();
+  addEventOnTabs();
   addEventOnViewerButton();
   addEventOnProgressBar();
 })();
