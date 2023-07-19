@@ -37,7 +37,7 @@ export default class AllNewsGridView extends Component {
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper"></div>
+              <div class="subscribe-button-wrapper" data-name=${this.state.pressOrder[i].name}></div>
             </div>
           </div>`
           : ``
@@ -47,12 +47,16 @@ export default class AllNewsGridView extends Component {
 
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
-    customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
-      new SubscribeButton(node, {
-        color: 'gray',
-        text: TEXT.SUBSCRIBE_KO,
-      });
-    });
+    customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(
+      node =>
+        new SubscribeButton(node, {
+          color: 'gray',
+          text: TEXT.SUBSCRIBE_KO,
+          addMyPress: this.props.addMyPress,
+          deleteMyPress: this.props.deleteMyPress,
+          name: node.dataset.name,
+        }),
+    );
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',

@@ -1,4 +1,6 @@
 import { fetchData } from '../../../api/index.js';
+import db from '../../../store/db.js';
+import { showSnackBar } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector, shufflePressOrder } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -6,7 +8,7 @@ import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 
-let currentView = 'list';
+let currentView = 'grid';
 let currentPressType = 'all';
 
 export default class AllNews extends Component {
@@ -17,7 +19,6 @@ export default class AllNews extends Component {
     fetchData().then(data => {
       this.setState({ allPress: data });
     });
-    this.state.myPress = ['오마이뉴스', '데일리안'];
   }
 
   template() {
@@ -51,16 +52,19 @@ export default class AllNews extends Component {
   }
 
   addMyPress(press) {
-    this.setState({ myPress: [...this.state.myPress, press] });
+    db.putDbData(press);
+    showSnackBar();
+    //화면 이동
   }
   deleteMyPress(press) {
-    this.setState({ myPress: this.state.myPress.filter(item => item !== press) });
+    db.deleteDbData(press);
+    this.render();
   }
 
   getGridPress() {
     return this.state.pressType === TEXT.ALL
       ? shufflePressOrder(this.state.allPress)
-      : this.state.allPress.filter(press => this.state.myPress.includes(press.name));
+      : this.state.allPress.filter(press => db.getDbData.includes(press.name));
   }
   getListPress() {
     let listPress = {
@@ -75,7 +79,7 @@ export default class AllNews extends Component {
 
     this.state.pressType === TEXT.ALL
       ? this.state.allPress.forEach(press => listPress[press.category].push(press))
-      : (listPress = this.state.allPress.filter(press => this.state.myPress.includes(press.name)));
+      : (listPress = this.state.allPress.filter(press => db.getDbData.includes(press.name)));
 
     return listPress;
   }

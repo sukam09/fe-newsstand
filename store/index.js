@@ -14,6 +14,6 @@ export const toggleAlert = () => {
   }
 };
 
-export const showSnackBar = type => {
-  new SnackBar(customQuerySelector(TEXT.SNACK_BAR_CLASS_NAME), { type });
+export const showSnackBar = () => {
+  new SnackBar(customQuerySelector(TEXT.SNACK_BAR_CLASS_NAME));
 };

@@ -22,9 +22,11 @@ export default class SubscribeButton extends Component {
   action() {
     if (this.state.text === TEXT.SUBSCRIBE_KO) {
       showSnackBar(TEXT.SUBSCRIBE_KO);
+      this.props.addMyPress(this.props.name);
       //구독 추가 기능
     } else if (this.state.text === TEXT.UNSUBSCRIBE) {
       toggleAlert();
+      // this.props.deleteMyPress();
       //구독 취소
     }
   }
