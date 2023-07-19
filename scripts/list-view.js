@@ -157,21 +157,20 @@ export const renderListView = () => {
     );
     if (viewType !== VIEW_TYPE.LIST) return;
 
-    const currentCategory = CATEGORIES[currentCategoryIdx];
-    const totalCnt = NewsDB.getCountByCategory(currentCategory);
-
-    if (currentPage < 0) {
-      store.dispatch(prevCategory());
-      return;
-    }
-
-    if (currentPage >= totalCnt) {
-      store.dispatch(nextCategory());
-      return;
-    }
-
     if (tabType === TAB_TYPE.ALL) {
+      const currentCategory = CATEGORIES[currentCategoryIdx];
+      const totalCnt = NewsDB.getCountByCategory(currentCategory);
       const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
+
+      if (currentPage < 0) {
+        store.dispatch(prevCategory());
+        return;
+      }
+
+      if (currentPage >= totalCnt) {
+        store.dispatch(nextCategory());
+        return;
+      }
 
       showCategoryTab();
       unshowSubscribeTab();
@@ -185,6 +184,16 @@ export const renderListView = () => {
         name: pressName,
         ...NewsDB.getNewsOneByName(pressName),
       };
+
+      if (currentPage < 0) {
+        store.dispatch(setPage(subscribeList.length - 1));
+        return;
+      }
+
+      if (currentPage >= subscribeList.length) {
+        store.dispatch(setPage(0));
+        return;
+      }
 
       unshowCategoryTab();
       showSubscribeTab(subscribeList, subscribeList[currentPage]);
