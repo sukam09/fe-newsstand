@@ -1,5 +1,8 @@
 import { store, actionCreator } from "../../store.js";
-import { updateGrid } from "../view/GridView.js";
+import { updateGrid, FetchData } from "../view/GridView.js";
+import { SUBSCRIBE_VIEW } from "../../global.js";
+
+let timeoutId;
 
 function snackBar() {
   const snackBarElement = document.createElement("div");
@@ -8,38 +11,72 @@ function snackBar() {
   const gridMain = document.querySelector(".grid");
   gridMain.appendChild(snackBarElement);
 
-  setTimeout(() => {
+  timeoutId = setTimeout(() => {
     gridMain.removeChild(snackBarElement);
   }, 5000);
 }
 
-function alertElement(pressID) {
-  const alertEle = `
-        <div class="alert">
-            <div class="alert-contents">
-                <span class="alert-contents-text">을(를)<br/>구독하시겠습니까?</span>
-            </div>
-            <div class="alert-buttons">
-            </div>
-        </div>
-    `;
+function createAlert(pressID) {
+  const alertElement = document.createElement("div");
+  alertElement.className = "unsubscribe-alert";
+  alertElement.innerHTML = `
+          <div class="alert-contents">
+            <span class="alert-contents-text display-bold16">${pressID}<span class="display-medium16">을(를)</span> </span>
+            <span class="alert-contents-text display-medium16">구독해지하시겠습니까?</span>
+          </div>
+          <div class="alert-buttons">
+              <div class="each-button confirm-unsubscribe available-medium16">예, 해지합니다</div>
+              <div class="each-button reject available-medium16">아니오</div>
+          </div>
+      `;
+
+  const gridMain = document.querySelector(".grid");
+  gridMain.appendChild(alertElement);
+
+  return alertElement;
+}
+function AlertHandler(pressID) {
+  const alertElement = createAlert(pressID);
+  const confirmBtn = alertElement.querySelector(".confirm-unsubscribe");
+  const rejectBtn = alertElement.querySelector(".reject");
+
+  confirmBtn.addEventListener("click", async () => {
+    store.dispatch(actionCreator("unsubscribe", { pressID }));
+
+    const gridMain = document.querySelector(".grid");
+    gridMain.removeChild(alertElement);
+
+    if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
+      await FetchData();
+      updateGrid();
+    }
+  });
+
+  rejectBtn.addEventListener("click", () => {
+    const gridMain = document.querySelector(".grid");
+    gridMain.removeChild(alertElement);
+  });
 }
 
-export function DoSubScribe(btnElement, pressID) {
-  btnElement.addEventListener("click", (e) => {
+function SubscribeBtnEventHandler(e, btnElement, pressID) {
+  const isSubscribe = SubscribeState(pressID);
+  if (!isSubscribe) {
     snackBar(e);
     store.dispatch(actionCreator("subscribe", { pressID }));
     btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
-  });
+  } else {
+    const grid = document.querySelector(".grid");
+    const snackBar = document.querySelector(".grid .snack-bar");
+    if (snackBar) {
+      grid.removeChild(snackBar);
+    }
+
+    AlertHandler(pressID);
+  }
 }
 
-export function DoUnsubscribe(btnElement, pressID) {
-  btnElement.addEventListener("click", (e) => {
-    alertElement(pressID);
-    store.dispatch(actionCreator("unsubscribe", { pressID }));
-    updateGrid();
-    btnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
-  });
+export function EventHandlerRegister(btnElement, pressID) {
+  btnElement.addEventListener("click", (e) => SubscribeBtnEventHandler(e, btnElement, pressID));
 }
 
 export function SubscribeState(pressID) {

@@ -1,6 +1,6 @@
 import { fetchPressData } from "../../api.js";
 import { GRID_PAGE } from "../../global.js";
-import { DoSubScribe, DoUnsubscribe } from "../components/SubscribeBtn.js";
+import { EventHandlerRegister } from "../components/SubscribeBtn.js";
 import { SubscribeState } from "../components/SubscribeBtn.js";
 import { SUBSCRIBE_VIEW } from "../../global.js";
 import { store } from "../../store.js";
@@ -10,31 +10,20 @@ let news_icon;
 const ICONS_PER_PAGE = 24;
 
 function createSubscribeDiv(li, pressID) {
-  if (SubscribeState(pressID)) {
-    const UnSubscribeModeDiv = `
-    <div class="subscribe-wrap">
-      <button class="subscribe-btn">
-          <img class="plus-btn" src="../../asset/button/plus.png">
-          <span class="subscribe-text available-medium12">해지하기</span>
-      </button>
-    </div>`;
+  let SubscribeBtn;
+  const isSubscribe = SubscribeState(pressID);
+  const UnSubscribeModeDiv = `
+  <div class="subscribe-wrap">
+    <button class="subscribe-btn">
+        <img class="plus-btn" src="../../asset/button/plus.png">
+        <span class="subscribe-text available-medium12">${isSubscribe ? "해지하기" : "구독하기"}</span>
+    </button>
+  </div>`;
 
-    li.innerHTML += UnSubscribeModeDiv;
-    const SubscribeBtn = li.querySelector(".subscribe-btn");
-    DoUnsubscribe(SubscribeBtn, pressID);
-  } else {
-    const subscribeModeDiv = `
-    <div class="subscribe-wrap">
-      <button class="subscribe-btn">
-          <img class="plus-btn" src="../../asset/button/plus.png">
-          <span class="subscribe-text available-medium12">구독하기</span>
-      </button>
-    </div>`;
+  li.innerHTML += UnSubscribeModeDiv;
+  SubscribeBtn = li.querySelector(".subscribe-btn");
 
-    li.innerHTML += subscribeModeDiv;
-    const SubscribeBtn = li.querySelector(".subscribe-btn");
-    DoSubScribe(SubscribeBtn, pressID);
-  }
+  EventHandlerRegister(SubscribeBtn, pressID);
 }
 
 function pressMouseOver(li) {
@@ -57,7 +46,7 @@ function pressMouseOut(li) {
   }
 }
 
-async function FetchData() {
+export async function FetchData() {
   news_icon = await fetchPressData("./Data/grid_icon.json");
   if (SUBSCRIBE_VIEW.CURRENT_VIEW) {
     const subscribe_icon_IDs = store.getSubscribe();
@@ -76,8 +65,6 @@ async function FetchData() {
 export function updateGrid() {
   try {
     if (news_icon) {
-      // FetchData();
-
       let icon_idx = GRID_PAGE.CURRENT_PAGE * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
       grid_row.forEach((ul) => {
