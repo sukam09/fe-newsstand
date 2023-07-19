@@ -24,6 +24,7 @@ export async function getCategoryInfo() {
 
   const putCategory = Object.keys(categoryMap).reduce((acc, curr)=> {
     return acc + `<li class="press-content-category">
+    <div class="press-content-category-progressbar"></div>
     <span class="press-content-category-name">${curr}</span>
     <div class="press-content-category-cnt">
     <span class="press-content-category-cnt-now">1</span>
