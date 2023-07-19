@@ -4,7 +4,7 @@ import {
   subscribeState,
   viewState,
 } from "../../../store/store.js";
-import { VIEW_TYPE } from "../../../constants/constants.js";
+import { checkIsGridView } from "../../../utils/utils.js";
 import { getState, setState } from "../../../observer/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
@@ -82,10 +82,11 @@ const createCircleSubscribeButton = (name) => {
 const createSubscribeButton = (name) => {
   const currentView = getState(viewState);
 
-  const isSubscribe = checkSubscribe(name);
+  const isSubscribed = checkSubscribe(name);
+  const isGridView = checkIsGridView();
 
-  if (isSubscribe) {
-    if (currentView === VIEW_TYPE.GRID) {
+  if (isSubscribed) {
+    if (isGridView) {
       return createUnSubscribeButton(name);
     }
     return createCircleSubscribeButton(name);
@@ -97,9 +98,9 @@ const createSubscribeButton = (name) => {
 const handleSubscribeButtonClick = (subItem) => () => {
   const subList = getState(subscribeState);
 
-  const isSubscribe = checkSubscribe(subItem);
+  const isSubscribed = checkSubscribe(subItem);
 
-  if (isSubscribe) {
+  if (isSubscribed) {
     setState(alertMsgState, subItem);
   } else {
     setState(subscribeState, [...subList, subItem]);

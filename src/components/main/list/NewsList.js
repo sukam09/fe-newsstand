@@ -1,7 +1,13 @@
 import {
+  checkIsAllType,
+  checkIsDarkMode,
+  checkIsGridView,
+} from "../../../utils/utils.js";
+import {
   categoryState,
-  isDarkMode,
   listPageState,
+  selectedSubscribeState,
+  subscribeListPageState,
 } from "../../../store/store.js";
 import { getState } from "../../../observer/observer.js";
 import { PRESS_ICON } from "../../../constants/constants.js";
@@ -10,11 +16,11 @@ import { createSubscribeButton } from "../subscribe-button/SubscribeButton.js";
 
 const $listView = _querySelector(".list-view_main");
 
-const fillNewsList = (newsList) => () => {
-  const currentCategory = getState(categoryState);
-  const currentPage = getState(listPageState);
-  const currentNewsList = newsList[currentCategory][currentPage];
+const fillNewsList = (newsList, pressNewsList) => () => {
+  const isGridView = checkIsGridView();
+  if (isGridView) return;
 
+  const currentNewsList = getCurrentNewsList(newsList, pressNewsList);
   const { press, editTime, img, title, subNews, info } = currentNewsList;
 
   $listView.innerHTML = "";
@@ -22,14 +28,29 @@ const fillNewsList = (newsList) => () => {
   $listView.appendChild(createNewsList(img, title, subNews, info));
 };
 
+const getCurrentNewsList = (newsList, pressNewsList) => {
+  const isSubscribeType = !checkIsAllType();
+
+  if (isSubscribeType) {
+    const currentPage = getState(subscribeListPageState);
+    const currentPress = getState(selectedSubscribeState);
+    return pressNewsList[currentPress][currentPage];
+  } else {
+    const currentCategory = getState(categoryState);
+    const currentPage = getState(listPageState);
+    return newsList[currentCategory][currentPage];
+  }
+};
+
 const createNewsHeader = (press, editTime) => {
-  const currentMode = getState(isDarkMode);
+  const isDarkMode = checkIsDarkMode();
+  const imgSrc = isDarkMode ? PRESS_ICON[press].dark : PRESS_ICON[press].light;
 
   const $header = document.createElement("header");
   $header.className = "list-view_main-header";
   $header.innerHTML = ` 
       <img
-        src="${currentMode ? PRESS_ICON[press].dark : PRESS_ICON[press].light}"
+        src="${imgSrc}"
         height="20px"
       />
       <div>

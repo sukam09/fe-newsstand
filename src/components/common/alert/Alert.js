@@ -55,7 +55,8 @@ const handleUnSubscribeButtonClick = () => {
   setState(subscribeState, updateArray);
   if (updateArray.length % NEWS_COUNT === 0) {
     const currentPage = getState(subscribeGridPageState);
-    setState(subscribeGridPageState, currentPage - 1);
+
+    currentPage !== 0 && setState(subscribeGridPageState, currentPage - 1);
   }
   setState(snackBarMsgState, "내가 구독한 언론사에서 삭제되었습니다.");
 

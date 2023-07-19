@@ -4,15 +4,19 @@ import {
   listPageState,
   viewOptionState,
   subscribeGridPageState,
+  subscribeListPageState,
 } from "../../../store/store.js";
 import {
   NEWS_COUNT,
-  PRESS_ICON,
   VIEW_OPTION_TYPE,
   VIEW_TYPE,
 } from "../../../constants/constants.js";
 import { getPressIcons } from "../grid/Grid.js";
-import { ObjectToArrayRandom } from "../../../utils/utils.js";
+import {
+  ObjectToArrayRandom,
+  checkIsAllType,
+  checkIsGridView,
+} from "../../../utils/utils.js";
 import { getState, setState } from "../../../observer/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
@@ -30,7 +34,6 @@ const handlePrevButtonClick = () => {
   const currentPage = getState(viewStateKey);
 
   setState(viewStateKey, currentPage - 1);
-  console.log(getState(viewStateKey));
 };
 
 const handleNextButtonClick = () => {
@@ -38,19 +41,18 @@ const handleNextButtonClick = () => {
   const currentPage = getState(viewStateKey);
 
   setState(viewStateKey, currentPage + 1);
-  console.log(getState(viewStateKey));
 };
 
 const getViewStateKey = () => {
   const currentViewState = getState(viewState);
-  const currentViewOptionState = getState(viewOptionState);
+  const isAllType = checkIsAllType();
 
   switch (currentViewState) {
-    // todo
     case VIEW_TYPE.LIST:
-      return listPageState;
+      if (isAllType) return listPageState;
+      return subscribeListPageState;
     case VIEW_TYPE.GRID:
-      if (currentViewOptionState === VIEW_OPTION_TYPE.ALL) return gridPageState;
+      if (isAllType) return gridPageState;
       return subscribeGridPageState;
   }
 
@@ -59,11 +61,11 @@ const getViewStateKey = () => {
 
 const setGridButtonDisplay = () => {
   const maxPage = getMaxPage();
-  const currentViewOption = getState(viewOptionState);
-  const currentPage =
-    currentViewOption === VIEW_OPTION_TYPE.ALL
-      ? getState(gridPageState)
-      : getState(subscribeGridPageState);
+  const isAllType = checkIsAllType();
+
+  const currentPage = isAllType
+    ? getState(gridPageState)
+    : getState(subscribeGridPageState);
 
   if (currentPage === maxPage) {
     $nextPageButton.classList.add("hidden");
@@ -81,9 +83,9 @@ const setGridButtonDisplay = () => {
 };
 
 const toggleNavigateButtonDisplay = () => {
-  const currentPage = getState(viewState);
+  const isListView = !checkIsGridView();
 
-  if (currentPage === VIEW_TYPE.LIST) {
+  if (isListView) {
     $nextPageButton.classList.contains("hidden") &&
       $nextPageButton.classList.remove("hidden");
 

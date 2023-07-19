@@ -1,3 +1,7 @@
+import { getState } from "../observer/observer.js";
+import { isDarkMode, viewOptionState, viewState } from "../store/store.js";
+import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
+
 const customFetch = async (url, callback, options) => {
   try {
     const response = await fetch(url, options);
@@ -43,6 +47,19 @@ const ObjectToArrayRandom = (data) => {
   return newArray;
 };
 
+const objectToMap = (data) => {
+  const newMap = {};
+
+  for (const key in data) {
+    data[key].forEach((inner) => {
+      if (inner.press in newMap) newMap[inner.press].push(inner);
+      else newMap[inner.press] = [inner];
+    });
+  }
+
+  return newMap;
+};
+
 const shuffleObjectRandom = (data) => {
   const newObject = {};
 
@@ -53,10 +70,32 @@ const shuffleObjectRandom = (data) => {
   return newObject;
 };
 
+const checkIsAllType = () => {
+  const currentViewOption = getState(viewOptionState);
+
+  return currentViewOption === VIEW_OPTION_TYPE.ALL;
+};
+
+const checkIsGridView = () => {
+  const currentView = getState(viewState);
+
+  return currentView === VIEW_TYPE.GRID;
+};
+
+const checkIsDarkMode = () => {
+  const currentMode = getState(isDarkMode);
+
+  return currentMode;
+};
+
 export {
   customFetch,
   shuffleArrayRandom,
   setDate,
   ObjectToArrayRandom,
   shuffleObjectRandom,
+  objectToMap,
+  checkIsAllType,
+  checkIsGridView,
+  checkIsDarkMode,
 };

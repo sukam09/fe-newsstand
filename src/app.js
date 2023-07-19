@@ -10,13 +10,13 @@ import { setModeToggleButton } from "./components/main/mode-toggle-button/index.
 import { setOptionToggleButton } from "./components/main/option-toggle-button/index.js";
 
 (function init() {
+  setSubscribe();
   setHeader();
   setGrid();
   setList();
   setNavigateButton();
   setViewToggleButton();
   setModeToggleButton();
-  setSubscribe();
   setSnackBar();
   setAlert();
   setOptionToggleButton();

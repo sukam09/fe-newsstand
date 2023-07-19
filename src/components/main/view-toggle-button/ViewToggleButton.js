@@ -3,8 +3,9 @@ import {
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
 import { viewState } from "../../../store/store.js";
+import { setState } from "../../../observer/observer.js";
+import { checkIsGridView } from "../../../utils/utils.js";
 import { VIEW_TYPE } from "../../../constants/constants.js";
-import { getState, setState } from "../../../observer/observer.js";
 
 const $gridView = _querySelector(".grid-view");
 const $listView = _querySelector(".list-view");
@@ -22,9 +23,9 @@ const handleGridButtonClick = () => {
 };
 
 const setCurrentView = () => {
-  const currentViewState = getState(viewState);
+  const isListView = !checkIsGridView();
 
-  if (currentViewState === VIEW_TYPE.LIST) {
+  if (isListView) {
     $listButton.className = "main-nav_viewer--selected";
     $gridButton.className = "";
 

@@ -5,6 +5,7 @@ import {
   subscribeState,
   selectedSubscribeState,
   viewOptionState,
+  subscribeListPageState,
 } from "../../../store/store.js";
 import {
   CATEGORY_LENGTH,
@@ -19,22 +20,20 @@ import {
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
 import { getState, setState } from "../../../observer/observer.js";
+import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
 const $categoryBar = _querySelector("ul", $categoryBarWrapper);
 
-// 카테고리 변경
 const changeCategory = (newsList, categoryList) => () => {
   const currentCategory = getState(categoryState);
   const currentPage = getState(listPageState);
 
-  // 마지막 페이지면 다음
   if (currentPage === newsList[currentCategory].length) {
     const nextCategoryIndex =
       (categoryList.indexOf(currentCategory) + 1) % CATEGORY_LENGTH;
 
     setState(categoryState, categoryList[nextCategoryIndex]);
-    // 뒤로가기했을때 -1로 가면 맨뒤로
   } else if (currentPage === -1) {
     const prevCategoryIndex =
       (categoryList.indexOf(currentCategory) + CATEGORY_LENGTH - 1) %
@@ -44,19 +43,40 @@ const changeCategory = (newsList, categoryList) => () => {
   }
 };
 
-/**
- * listPage 0으로 초기화
- * */
+const changePress = (pressNewsList) => () => {
+  const currentView = getState(viewState);
+  if (currentView !== VIEW_TYPE.LIST) return;
+
+  const currentPress = getState(selectedSubscribeState);
+  const currentPage = getState(subscribeListPageState);
+  const subscribeList = getState(subscribeState);
+  const subLength = subscribeList.length;
+
+  if (currentPage === pressNewsList[currentPress].length) {
+    const nextPressIndex =
+      (subscribeList.indexOf(currentPress) + 1) % subLength;
+
+    setState(selectedSubscribeState, subscribeList[nextPressIndex]);
+  } else if (currentPage === -1) {
+    const prevPressIndex =
+      (subscribeList.indexOf(currentPress) + subLength - 1) % subLength;
+
+    setState(selectedSubscribeState, subscribeList[prevPressIndex]);
+  }
+};
+
 const initListPageState = () => {
   setState(listPageState, 0);
 };
+const initSubscribeListPageState = () => {
+  setState(subscribeListPageState, 0);
+};
 
-/**
- * prgress 관련 로직
- */
 let timeElapsed = 0;
 let interval;
 const startProgress = () => {
+  const { key, currentPage } = getPageKey();
+
   stopProgress();
 
   interval = setInterval(() => {
@@ -67,9 +87,22 @@ const startProgress = () => {
       timeElapsed = 0;
 
       updateProgress();
-      setState(listPageState, getState(listPageState) + 1);
+
+      setState(key, currentPage + 1);
     }
   }, PROGRESS_TIME);
+};
+
+const getPageKey = () => {
+  const currentOption = getState(viewOptionState);
+  const key =
+    currentOption === VIEW_OPTION_TYPE.ALL
+      ? listPageState
+      : subscribeListPageState;
+
+  const currentPage = getState(key);
+
+  return { key, currentPage };
 };
 
 const stopProgress = () => {
@@ -77,7 +110,6 @@ const stopProgress = () => {
   clearInterval(interval);
   updateProgress();
 };
-
 const updateProgress = () => {
   const $progress = _querySelector(".progress");
 
@@ -90,18 +122,18 @@ const initProgress = () => {
   currentViewState === VIEW_TYPE.LIST ? startProgress() : stopProgress();
 };
 
-// 카테고리 안에 현재 페이지 숫자
 const updateCurrentPage = () => {
   const $progressComponent = _querySelector(".progress-component");
   const $progressComponentDiv = _querySelector("div", $progressComponent);
   const $stateElem = _querySelector("span", $progressComponentDiv);
 
-  $stateElem.innerHTML = getState(listPageState) + 1;
+  const nextPage = getState(listPageState) + 1;
+  $stateElem.innerHTML = nextPage;
 };
 
-// 카테고리 바 채우는 함수
 const setCategoryBar = (categoryList) => () => {
   $categoryBar.innerHTML = "";
+
   categoryList.forEach((category) => {
     const $li = document.createElement("li");
     $li.innerHTML = category;
@@ -117,6 +149,9 @@ const setCategoryState = (category) => () => setState(categoryState, category);
 
 // 구독 바 채우는 함수
 const setSubscribePressBar = () => {
+  const currentOption = getState(viewOptionState);
+  if (currentOption === VIEW_OPTION_TYPE.ALL) return;
+
   const subscribedList = getState(subscribeState);
   $categoryBar.innerHTML = "";
 
@@ -131,74 +166,75 @@ const setSubscribePressBar = () => {
 
   setSelectedSubState(subscribedList[0])();
 };
-const setSelectedSubState = (press) => () =>
+const setSelectedSubState = (press) => () => {
   setState(selectedSubscribeState, press);
-
-const setHeaderBar = (categoryList) => () => {
-  const currentOption = getState(viewOptionState);
-
-  if (currentOption === VIEW_OPTION_TYPE.ALL) setCategoryBar(categoryList)();
-  else setSubscribePressBar();
 };
 
+const setHeaderBar = (categoryList) => () => {
+  const isListView = !checkIsGridView();
+  const isAllType = checkIsAllType();
+
+  if (isListView) {
+    isAllType ? setCategoryBar(categoryList)() : setSubscribePressBar();
+  }
+};
+
+/** progress 바 설정 */
 const changeActivateCategory = (newsList, categoryList) => () => {
+  const isGridView = checkIsGridView();
+  if (isGridView) return;
+
+  const isSubscribeType = !checkIsAllType();
+  if (isSubscribeType) return;
+
+  const currentCategory = getState(categoryState);
   const $liList = _querySelectorAll("li", $categoryBar);
-  const maxPage = newsList[getState(categoryState)].length;
-  const currentCategoryIndex = categoryList.indexOf(getState(categoryState));
-  const currentOption = getState(viewOptionState);
+  const maxPage = newsList[currentCategory].length;
+  const currentCategoryIndex = categoryList.indexOf(currentCategory);
+
+  $liList.forEach((li, idx) => {
+    if (idx === currentCategoryIndex) {
+      li.classList = "category--selected";
+      li.innerHTML = createCategoryProgressInner(
+        categoryList[idx],
+        getState(listPageState) + 1,
+        maxPage
+      );
+    } else {
+      if (li.classList.contains("category--selected")) {
+        li.classList = "hover-underline";
+        li.innerHTML = categoryList[idx];
+      }
+    }
+  });
+};
+
+const changeActivatePress = () => {
+  const isGridView = checkIsGridView();
+  if (isGridView) return;
+
+  const isAllType = checkIsAllType();
+  if (isAllType) return;
+
+  const $liList = _querySelectorAll("li", $categoryBar);
   const subscribed = getState(subscribeState);
   const selectedSub = getState(selectedSubscribeState);
   const currentSubIndex = subscribed.indexOf(selectedSub);
 
-  if (currentOption === VIEW_OPTION_TYPE.ALL) {
-    $liList.forEach((li, idx) => {
-      if (idx === currentCategoryIndex) {
-        li.classList = "category--selected";
-        li.innerHTML = createProgressInner(
-          categoryList[idx],
-          getState(listPageState) + 1,
-          maxPage
-        );
-      } else {
-        if (li.classList.contains("category--selected")) {
-          li.classList = "hover-underline";
-          li.innerHTML = categoryList[idx];
-        }
+  $liList.forEach((li, idx) => {
+    if (idx === currentSubIndex) {
+      li.classList = "category--selected";
+      li.innerHTML = createPressProgressInner(subscribed[idx]);
+    } else {
+      if (li.classList.contains("category--selected")) {
+        li.classList = "hover-underline";
+        li.innerHTML = subscribed[idx];
       }
-    });
-  } else {
-    $liList.forEach((li, idx) => {
-      if (idx === currentSubIndex) {
-        li.classList = "category--selected";
-        li.innerHTML = createProgressInner(
-          subscribed[idx],
-          0,
-          0
-          // getState(listPageState) + 1,
-          // maxPage
-        );
-      } else {
-        if (li.classList.contains("category--selected")) {
-          li.classList = "hover-underline";
-          li.innerHTML = categoryList[idx];
-        }
-      }
-    });
-  }
+    }
+  });
 };
 
-const createProgressInner = (title, state, max) => {
-  return `
-    <div class="progress"></div>
-    <div class="progress-component">
-      <span class="hover-underline display-bold14">${title}</span>
-      <div class="display-bold12">
-        <span class="progress-span">${state}</span>
-        <span class="progress-span font-deactivate">/${max}</span>
-      </div>
-    </div>`;
-};
-
+/** 카테고리 페이지 색깔 */
 const setPageActivateState = (newsList) => () => {
   const $maxPage = _querySelectorAll(".progress-span")[1];
 
@@ -213,16 +249,51 @@ const setPageActivateState = (newsList) => () => {
   }
 };
 
+const createCategoryProgressInner = (title, state, max) => {
+  return `
+    <div class="progress"></div>
+    <div class="progress-component">
+      <span class="hover-underline display-bold14">${title}</span>
+      <div class="display-bold12">
+        <span class="progress-span">${state}</span>
+        <span class="progress-span font-deactivate">/${max}</span>
+      </div>
+    </div>`;
+};
+const createPressProgressInner = (title) => {
+  return `
+    <div class="progress"></div>
+    <div class="progress-component">
+      <span class="hover-underline display-bold14">${title}</span>
+      <div class="display-bold12">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.48329 10.5L4.66663 9.68333L7.34996 7L4.66663 4.31667L5.48329 3.5L8.98329 7L5.48329 10.5Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+    </div>`;
+};
+
 export {
   updateCurrentPage,
-  setCategoryBar,
   startProgress,
   stopProgress,
   changeCategory,
   changeActivateCategory,
   initProgress,
   initListPageState,
+  initSubscribeListPageState,
   setPageActivateState,
   setSubscribePressBar,
   setHeaderBar,
+  changePress,
+  changeActivatePress,
 };

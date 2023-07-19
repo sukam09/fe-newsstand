@@ -17,7 +17,9 @@ export const setNavigateButton = () => {
   subscribe(viewOptionState, setGridButtonDisplay);
   subscribe(subscribeGridPageState, setGridButtonDisplay);
   subscribe(subscribeState, setGridButtonDisplay);
+  subscribe(subscribeState, toggleNavigateButtonDisplay);
   subscribe(viewState, toggleNavigateButtonDisplay);
+  subscribe(viewOptionState, toggleNavigateButtonDisplay);
 
   setEvents();
 };

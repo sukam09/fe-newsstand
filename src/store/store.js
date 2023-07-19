@@ -31,6 +31,11 @@ const listPageState = initState({
   defaultValue: 0,
 });
 
+const subscribeListPageState = initState({
+  key: "subscribeListPageState",
+  defaultValue: 0,
+});
+
 const categoryState = initState({
   key: "categoryState",
   defaultValue: "",
@@ -67,4 +72,5 @@ export {
   viewOptionState,
   subscribeGridPageState,
   selectedSubscribeState,
+  subscribeListPageState,
 };

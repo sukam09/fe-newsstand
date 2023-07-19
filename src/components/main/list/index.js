@@ -1,9 +1,11 @@
 import {
   changeActivateCategory,
+  changeActivatePress,
   changeCategory,
+  changePress,
   initListPageState,
   initProgress,
-  setCategoryBar,
+  initSubscribeListPageState,
   setHeaderBar,
   setPageActivateState,
   setSubscribePressBar,
@@ -17,9 +19,12 @@ import {
   listPageState,
   subscribeState,
   viewOptionState,
+  selectedSubscribeState,
+  subscribeListPageState,
 } from "../../../store/store.js";
 import {
   customFetch,
+  objectToMap,
   shuffleArrayRandom,
   shuffleObjectRandom,
 } from "../../../utils/utils.js";
@@ -32,28 +37,39 @@ export const setList = async () => {
     "../../../../mocks/newsList.json",
     shuffleObjectRandom
   );
+  const pressNewsList = objectToMap(newsList);
+
   const categoryList = shuffleArrayRandom(CATEGORY_LIST);
 
   subscribe(listPageState, changeCategory(newsList, categoryList));
-  subscribe(listPageState, fillNewsList(newsList));
   subscribe(listPageState, updateCurrentPage);
   subscribe(listPageState, setPageActivateState(newsList));
   subscribe(listPageState, startProgress);
+  subscribe(listPageState, fillNewsList(newsList, pressNewsList));
+
+  subscribe(subscribeListPageState, changePress(pressNewsList));
+  subscribe(subscribeListPageState, startProgress);
+  subscribe(subscribeListPageState, fillNewsList(newsList, pressNewsList));
 
   subscribe(categoryState, changeActivateCategory(newsList, categoryList));
-  subscribe(categoryState, startProgress);
   subscribe(categoryState, initListPageState);
 
+  subscribe(selectedSubscribeState, changeActivatePress);
+  subscribe(selectedSubscribeState, startProgress);
+  subscribe(selectedSubscribeState, initSubscribeListPageState);
+
+  subscribe(viewState, setHeaderBar(categoryList));
   subscribe(viewState, initProgress);
-  subscribe(viewState, fillNewsList(newsList));
+  subscribe(viewState, fillNewsList(newsList, pressNewsList));
 
-  subscribe(isDarkMode, fillNewsList(newsList));
+  subscribe(isDarkMode, fillNewsList(newsList, pressNewsList));
 
-  subscribe(subscribeState, fillNewsList(newsList));
+  subscribe(subscribeState, setSubscribePressBar);
+  subscribe(subscribeState, changePress(pressNewsList));
+  subscribe(subscribeState, fillNewsList(newsList, pressNewsList));
 
   subscribe(viewOptionState, setHeaderBar(categoryList));
+  subscribe(viewOptionState, changeActivatePress);
   subscribe(viewOptionState, changeActivateCategory(newsList, categoryList));
-
-  setCategoryBar(categoryList)();
-  fillNewsList(newsList)();
+  subscribe(viewOptionState, fillNewsList(newsList, pressNewsList));
 };

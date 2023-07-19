@@ -15,8 +15,11 @@
   align-items: center;
 
   overflow: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.list-view_category-bar > ul ::-webkit-scrollbar {
+.list-view_category-bar > ul::-webkit-scrollbar {
   display: none;
 }
 

@@ -3,22 +3,18 @@ import {
   isDarkMode,
   subscribeGridPageState,
   subscribeState,
-  viewOptionState,
 } from "../../../store/store.js";
 import {
   ObjectToArrayRandom,
+  checkIsAllType,
   shuffleArrayRandom,
 } from "../../../utils/utils.js";
-import {
-  NEWS_COUNT,
-  PRESS_ICON,
-  VIEW_OPTION_TYPE,
-} from "../../../constants/constants.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
 import { getState } from "../../../observer/observer.js";
+import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
 import { createSubscribeButton } from "../subscribe-button/SubscribeButton.js";
 
 const $gridView = _querySelector(".grid-view");
@@ -27,13 +23,11 @@ const $gridViewList = _querySelectorAll("li", $gridView);
 const pressIcons = shuffleArrayRandom(ObjectToArrayRandom(PRESS_ICON));
 
 const fillPressIcons = () => {
-  const currentViewOption = getState(viewOptionState);
-  const startIndex =
-    currentViewOption === VIEW_OPTION_TYPE.ALL
-      ? getState(gridPageState) * NEWS_COUNT
-      : getState(subscribeGridPageState) * NEWS_COUNT;
+  const startIndex = checkIsAllType()
+    ? getState(gridPageState) * NEWS_COUNT
+    : getState(subscribeGridPageState) * NEWS_COUNT;
 
-  const currentMode = getState(isDarkMode);
+  const isCurrentDarkMode = getState(isDarkMode);
   const pressIcons = getPressIcons();
 
   resetGrid();
@@ -42,7 +36,7 @@ const fillPressIcons = () => {
     .slice(startIndex, startIndex + NEWS_COUNT)
     .forEach(({ name, light, dark }, idx) => {
       $gridViewList[idx].appendChild(
-        createGridContent(name, currentMode ? dark : light)
+        createGridContent(name, isCurrentDarkMode ? dark : light)
       );
     });
 };
@@ -54,10 +48,9 @@ const resetGrid = () => {
 };
 
 const getPressIcons = () => {
-  const currentViewOption = getState(viewOptionState);
   const subscribedData = getState(subscribeState);
 
-  if (currentViewOption === VIEW_OPTION_TYPE.SUBSCRIBE) {
+  if (!checkIsAllType()) {
     const subPressIcons = pressIcons.filter(({ name }) =>
       subscribedData.includes(name)
     );
@@ -86,5 +79,4 @@ const createGridContent = (name, light) => {
 
   return $gridContent;
 };
-
 export { fillPressIcons, getPressIcons };
