@@ -3,11 +3,13 @@
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
+import fetchNews from "../../api/fetchNews.js";
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";
 import store from "../../Store/Store.js";
 
+const listViewData = await fetchNews();
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
@@ -27,10 +29,7 @@ const suffile = (len) => {
 
 export default function MainContent($target, props) {
   let $section = document.querySelector(".news-section");
-  let lastPage =
-    props.pressType === "all"
-      ? parseInt(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER)
-      : parseInt(store.myPressList.length / GRID_PRESS_NUBER + 1);
+  let lastPage;
 
   this.state = { currentPage: 1, category: 0 };
 
@@ -77,11 +76,21 @@ export default function MainContent($target, props) {
         ...commonProps,
       };
 
+      lastPage =
+        props.pressType === "all"
+          ? parseInt(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER)
+          : parseInt(store.myPressList.length / GRID_PRESS_NUBER + 1);
+
       new PressGridView($section, gridProps);
     } else {
+      lastPage =
+        props.pressType === "all"
+          ? listViewData[this.state.category].length
+          : 1;
+
       const listProps = {
         ...commonProps,
-        lastPage: this.state.lastPage,
+        lastPage: lastPage,
         category: this.state.category,
         setContentState: this.setState,
         timerArr: timerArr,
