@@ -2,7 +2,7 @@ import { CATEGORY_TAB_TIME } from "../constant/constants.js";
 import { getNewsContents } from "./api.js";
 import { getState, resister, setState } from "./observer/observer.js";
 import { categoryIdx, listPageIdx } from "./store/store.js";
-import { $ } from "./util.js";
+import { $, $All } from "./util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval;
@@ -10,22 +10,20 @@ let categoryInterval;
 export function stopCategoryInterval() {
   clearInterval(categoryInterval);
 }
-export function startCategoryInterval() {
+function startCategoryInterval() {
   categoryInterval = setInterval(() => {
     listPageUp();
   }, CATEGORY_TAB_TIME);
 }
 
 // 자동 탭 넘김 인터벌 새로고침
-export function refreshInterval() {
+function refreshInterval() {
   stopCategoryInterval();
   startCategoryInterval();
-  updateCategoryTabNum();
-}
-
-export function setFirstListPage() {
-  setState(listPageIdx, 1);
-  setState(categoryIdx, 0);
+  const clickedCategory = $(".category_list--clicked");
+  clickedCategory.children[2].classList.remove("progressbar");
+  clickedCategory.offsetWidth;
+  clickedCategory.children[2].classList.add("progressbar");
 }
 
 // 카테고리 메뉴 클릭시 전환
@@ -43,10 +41,9 @@ function listPageUp() {
 }
 
 // 카테고리 리스트 추가
-export async function appendCategoryList() {
-  const categoryList = await getNewsContents();
+function appendCategoryList(newsList) {
   const categoryListContainer = $(".category_list_container");
-  categoryList.forEach((item, idx) => {
+  newsList.forEach((item, idx) => {
     const newCategory = createCategoryList(item, idx);
     categoryListContainer.appendChild(newCategory);
   });
@@ -91,13 +88,13 @@ function createCategoryList(item, idx) {
 }
 
 // 현재 리스트 페이지에 카테고리 동기화
-export function updateCategoryClicked() {
-  const clickedCategory = $(".category_list--clicked");
-  clickedCategory.classList.remove("category_list--clicked");
-  const targetOn = $(".category_list_container");
-  targetOn.children[getState(categoryIdx)].classList.add(
-    "category_list--clicked"
-  );
+function updateCategoryClicked() {
+  const currentCategoryIdx = getState(categoryIdx);
+  const categoryList = $All(".category_list");
+  categoryList.forEach((item) => {
+    item.classList.remove("category_list--clicked");
+  });
+  categoryList[currentCategoryIdx].classList.add("category_list--clicked");
 }
 
 // 카테고리에서 마지막 탭인지 확인
@@ -107,11 +104,11 @@ function isTabFull(innerHTML) {
 
 // 카테고리 탭 숫자 업데이트
 function updateCategoryTabNum() {
+  const currentListIdx = getState(listPageIdx);
+  const currentCategoryIdx = getState(categoryIdx);
   const firstCategory = $(".category_list");
   const clickedCategory = $(".category_list--clicked");
-  clickedCategory.children[1].children[0].innerHTML = `${getState(
-    listPageIdx
-  )} / `;
+  clickedCategory.children[1].children[0].innerHTML = `${currentListIdx} / `;
   if (
     // 다음 카테고리로 넘어가야할 경우
     isTabFull(clickedCategory.children[1].children[1].innerHTML)
@@ -126,14 +123,22 @@ function updateCategoryTabNum() {
       );
       clickedCategory.nextElementSibling.children[1].children[0].innerHTML =
         "1 /";
-      setState(categoryIdx, getState(categoryIdx) + 1);
+      setState(categoryIdx, currentCategoryIdx + 1);
     }
     clickedCategory.classList.remove("category_list--clicked");
     setState(listPageIdx, 1);
   }
 }
 
-(function init() {
+async function setCategory() {
+  startCategoryInterval();
+  const newsList = await getNewsContents();
   resister(listPageIdx, refreshInterval);
-  resister(listPageIdx, updateCategoryClicked);
+  resister(listPageIdx, updateCategoryTabNum);
+  resister(categoryIdx, updateCategoryClicked);
+  appendCategoryList(newsList);
+}
+
+(function init() {
+  setCategory();
 })();

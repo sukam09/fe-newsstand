@@ -102,7 +102,6 @@ function setEvent() {
 (function init() {
   setEvent();
   resister(isGrid, toggleMainView);
-  stopCategoryInterval();
 })();
 
 export { updateDate };
