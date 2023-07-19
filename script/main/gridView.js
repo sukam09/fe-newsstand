@@ -1,6 +1,6 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
-import { pageStore,subscribedStore } from '../util/store.js'; 
+import { pageStore,subscribedStore,mode } from '../util/store.js'; 
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -53,18 +53,34 @@ export const GridController = {
   */
   updateImageElement(media, index, mediaLogo) {
     const imageElement = mediaLogo[index];
-    imageElement.className = `media_logo media_${logoIndex[media]}`;
-    imageElement.src = `assets/images/logo/light/${media_data[logoIndex[media]]?.src}`;
+    if(mode.getState() === 'All'){
+      imageElement.className = `media_logo media_${logoIndex[media]}`;
+      imageElement.src = `assets/images/logo/light/${media_data[logoIndex[media]]?.src}`;
 
-    // 이미지랑 같은 노드인 구독하기 or 해지하기 제거
-    imageElement.nextElementSibling?.remove();
-    imageElement.parentElement.className = '';
+      // 이미지랑 같은 노드인 구독하기 or 해지하기 제거
+      imageElement.nextElementSibling?.remove();
+      imageElement.parentElement.className = '';
 
-    // 구독 여부에 따라 구독하기 or 해지하기 추가
-    imageElement.insertAdjacentElement(
-      'afterend',
-      this.addSubButton(!subscribed.includes(logoIndex[media]),logoIndex[media])
-    );
+      // 구독 여부에 따라 구독하기 or 해지하기 추가
+      imageElement.insertAdjacentElement(
+        'afterend',
+        this.addSubButton(!subscribedStore.getState().includes(logoIndex[media]),logoIndex[media])
+      );
+    }
+    else{
+      imageElement.className = `media_logo media_${media}`;
+      imageElement.src = `assets/images/logo/light/${media_data[media]?.src}`;
+
+      // 이미지랑 같은 노드인 구독하기 or 해지하기 제거
+      imageElement.nextElementSibling?.remove();
+      imageElement.parentElement.className = '';
+
+      // 구독 여부에 따라 구독하기 or 해지하기 추가
+      imageElement.insertAdjacentElement(
+        'afterend',
+        this.addSubButton(!subscribedStore.getState().includes(media),media)
+      );
+    }
   },
   /**
    * 
@@ -79,11 +95,26 @@ export const GridController = {
     subElement.innerHTML = isSub ? `<div class="subscribedWrapper surface-default"><img src = "assets/images/add.svg">
     <p class="subscribed_info text-weak available-medium12">구독하기</p></div>` :`<div class="subscribedWrapper surface-default border-default"><img src = "assets/images/delete.svg">
     <p class="subscribed_info text-weak available-medium12">해지하기</p></div>`;
-    
     const wrapperElement = subElement.querySelector('.subscribedWrapper');
-    wrapperElement.addEventListener('click', function(event) {
-      console.log(media_data[logoIndex].name);
-    });
+    
+    if(isSub){
+      wrapperElement.addEventListener('click', function(event) {
+        subscribedStore.setState([...subscribedStore.getState(),logoIndex]);
+        console.log(subscribedStore.getState());
+      });
+    }
+    else{
+      wrapperElement.addEventListener('click', function(event) {
+        let index = subscribedStore.getState().indexOf(logoIndex);
+        if (index !== -1) {
+          let newState = [...subscribedStore.getState()];
+          newState.splice(index, 1);
+          subscribedStore.setState(newState);
+        }
+
+        console.log(subscribedStore.getState());
+      })
+    }
 
     return subElement;
   },
@@ -93,17 +124,29 @@ export const GridController = {
   */ 
   setLogoList() {
     const self = this;
+    this.setLiList();
     const mediaLogo = document.querySelectorAll('.media_logo');
-    const gridIndex = Array(MEDIA.PAGE_SIZE).fill().map((_, index) => pageStore.getState() * MEDIA.PAGE_SIZE + index);
-    gridIndex.forEach((media,index) => {
-      self.updateImageElement(media,index,mediaLogo);
-    });
+    
+    if(mode.getState() === 'All'){
+      const gridIndex = Array(MEDIA.PAGE_SIZE).fill().map((_, index) => pageStore.getState() * MEDIA.PAGE_SIZE + index);
+      gridIndex.forEach((media,index) => {
+        self.updateImageElement(media,index,mediaLogo);
+      });
+    }
+    else{
+      const subscribedIndexes = subscribedStore.getState();
+      subscribedIndexes.forEach((media, index) => {
+        self.updateImageElement(media, index, mediaLogo);
+      });
+    }
   },
+  
   /**
    *  처음에 grid 요소 추가하는 함수
   */
   setLiList() {
     const ul = document.querySelector(".grid_wrapper ul");
+    ul.innerHTML = '';
     const liHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => `
       <li>
           <img src="" alt="" class="media_logo">
@@ -118,7 +161,6 @@ export const GridController = {
  */
 const gridInit = () => {
   shuffle(logoIndex);
-  GridController.setLiList();
   GridController.setLogoList();
   PageController.setArrow();
 };
