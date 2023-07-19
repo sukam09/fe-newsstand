@@ -1,3 +1,4 @@
+import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
 
 function initList(parentNode) {
@@ -35,11 +36,42 @@ function initList(parentNode) {
 }
 
 function drawList() {
-  document.querySelector(".list-view").style.display = "flex";
+  const listView = document.querySelector(".list-view");
+  listView.style.display = "flex";
   document.querySelector(".grid-view").style.display = "none";
 
+  const targetNews = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE] : GLOBAL.SUBSCRIBE_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE];
+
+  const listPressIcon = listView.querySelector(".list-press-icon");
+  listPressIcon.src = targetNews.path;
+
+  const editData = listView.querySelector(".edit-date");
+  editData.innerHTML = `${targetNews.edit_date} 편집`;
+
+  const listSubBtn = listView.querySelector(".list-sub-btn");
+  if (targetNews.is_subscribe === "true") {
+    listSubBtn.childNodes[0].src = PATH.X;
+    listSubBtn.childNodes[1].style.display = "none";
+  } else {
+    listSubBtn.childNodes[0].src = PATH.PLUS;
+    listSubBtn.childNodes[1].style.display = "flex";
+  }
+
+  const mainNewsTitle = listView.querySelector(".main-news-title");
+  mainNewsTitle.innerHTML = targetNews.main_title;
+
+  const mainNewsThumbnail = listView.querySelector(".main-news-thumbnail");
+  mainNewsThumbnail.src = targetNews.main_img_src;
+
+  const subNewsTitleAll = listView.querySelectorAll(".sub-news-title");
+  for (let i = 0; i < CONSTANT.LIST_SUBNEWS_NUM; i++) {
+    subNewsTitleAll[i].innerHTML = targetNews.sub_title[i];
+  }
+
+  const caption = listView.querySelector(".caption");
+  caption.innerHTML = `${targetNews.name} 언론사에서 직접 편집한 뉴스입니다.`;
+
   drawFieldTab();
-  return 0;
 }
 
 export { initList, drawList };

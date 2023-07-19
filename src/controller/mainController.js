@@ -1,6 +1,7 @@
 import { STATE, GLOBAL } from "../model/variable.js";
 import { initRollingEvent } from "./rollingController.js";
 import { initGridEvent } from "./gridController.js";
+import { initListEvent } from "./listController.js";
 import { initArrowBtnEvnet } from "./arrowBtnController.js";
 import { initTabAndViewerEvent } from "./tabAndViewerController.js";
 
@@ -16,55 +17,57 @@ import { drawList } from "../view/list.js";
 function initEvent() {
   initRollingEvent();
   initGridEvent();
+  initListEvent();
   initArrowBtnEvnet();
   initTabAndViewerEvent();
-
-  return 0;
 }
 
 function changeState(state) {
   switch (state) {
     case STATE.MOVE_GRID_LEFT:
-      drawGrid();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawGridAndArrow();
       break;
     case STATE.MOVE_GRID_RIGHT:
-      drawGrid();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawGridAndArrow();
       break;
     case STATE.MOVE_GRID_ALL:
-      drawGrid();
-      drawTab();
-      drawViewer();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawGridAndOthers();
       break;
     case STATE.MOVE_GRID_SUB:
-      drawGrid();
-      drawTab();
-      drawViewer();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawGridAndOthers();
       break;
     case STATE.MOVE_LIST_ALL:
-      drawList();
-      drawTab();
-      drawViewer();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawListAndOthers();
       break;
     case STATE.MOVE_LIST_SUB:
-      drawList();
-      drawTab();
-      drawViewer();
-      drawLeftArrowBtn();
-      drawRightArrowBtn();
+      drawListAndOthers();
       break;
     default:
       break;
   }
+}
+
+function drawGridAndArrow() {
+  drawGrid();
+  drawLeftArrowBtn();
+  drawRightArrowBtn();
+}
+
+function drawGridAndOthers() {
+  drawGrid();
+  drawOthers();
+}
+
+function drawListAndOthers() {
+  drawList();
+  drawOthers();
+}
+
+function drawOthers() {
+  drawTab();
+  drawViewer();
+  drawLeftArrowBtn();
+  drawRightArrowBtn();
 }
 
 export { initEvent, changeState };
