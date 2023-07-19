@@ -1,9 +1,9 @@
 const header = document.querySelector(".header-left");
 
-function listenReload(){
+function handleReload(){
     header.addEventListener("click", () => {
         location.reload();
     })
 }
 
-export {listenReload}
+export {handleReload}

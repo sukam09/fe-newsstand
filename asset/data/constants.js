@@ -3,4 +3,8 @@ const VIEW_TYPE = {
     GRID: "grid",
     LIST: "list"
 }
-export {CATEGORY_LIST, VIEW_TYPE}
+const FILTER_TYPE = {
+    ALL: "all",
+    SUBSCRIBED: "subscribed",
+}
+export {CATEGORY_LIST, VIEW_TYPE, FILTER_TYPE}

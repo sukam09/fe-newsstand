@@ -36,7 +36,7 @@ function listenPressHover(){
 function drawPress(){
     gridContainer.innerHTML = "";
     let shuffledArray = shuffleArray(pressIdxArray);
-    let crntPage = store.getPage()
+    let crntPage = store.getCrntPage()
 
     for (let i=24*crntPage;i<24*(crntPage+1);i++){
         gridContainer.innerHTML += `

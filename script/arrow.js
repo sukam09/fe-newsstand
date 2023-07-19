@@ -6,9 +6,9 @@ import { CATEGORY_LIST, VIEW_TYPE } from "../asset/data/constants.js";
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
-function updateArrow(){
-    let crntPage = store.getPage();
-    let crntView = store.getView();
+function drawArrow(){
+    let crntPage = store.getCrntPage();
+    let crntView = store.getCrntView();
     let maxPage;
     leftArrow.classList.remove("hidden");
     rightArrow.classList.remove("hidden");
@@ -27,43 +27,43 @@ function updateArrow(){
     }
     
 }
-function listenArrow(){
+function handleArrowClick(){
     leftArrow.addEventListener("click",()=> {
-        let crntPage = store.getPage();
-        let crntView = store.getView();
-        let crntCategory = store.getCategory();
+        let crntPage = store.getCrntPage();
+        let crntView = store.getCrntView();
+        let crntCategory = store.getCrntCategory();
         if (crntView == VIEW_TYPE.LIST) {
             if (crntPage == 0 && crntCategory == 0) { 
-                store.setCategory(CATEGORY_LIST.length - 1);
+                store.setCrntCategory(CATEGORY_LIST.length - 1);
             } else if (crntPage == 0 && crntCategory > 0){ 
-                store.setCategory(crntCategory - 1)
+                store.setCrntCategory(crntCategory - 1)
             } else {
-                store.setPage(crntPage-1);
+                store.setCrntPage(crntPage-1);
             }
         } else {
-            store.setPage(crntPage-1);
+            store.setCrntPage(crntPage-1);
         }
         
     })
     rightArrow.addEventListener("click",() => {
-        let crntPage = store.getPage();
-        let crntView = store.getView();
-        let crntCategory = store.getCategory();
+        let crntPage = store.getCrntPage();
+        let crntView = store.getCrntView();
+        let crntCategory = store.getCrntCategory();
         if (crntView == VIEW_TYPE.LIST) {
             const numOfPages = listViewData.filter(data => data.category == CATEGORY_LIST[crntCategory]).length;
             if (crntPage >= numOfPages - 1 && crntCategory >= CATEGORY_LIST.length - 1){ // last page of the last category
-                store.setCategory(0); 
+                store.setCrntCategory(0); 
             } else if (crntPage >= numOfPages - 1 && crntCategory < CATEGORY_LIST.length - 1) { // last page of a category
-                store.setCategory(crntCategory + 1);
+                store.setCrntCategory(crntCategory + 1);
             } else {
-                store.setPage(crntPage + 1);
+                store.setCrntPage(crntPage + 1);
             }
         } else {
-            store.setPage(crntPage + 1);
+            store.setCrntPage(crntPage + 1);
         }
 
     })
     
 }
 
-export {updateArrow, listenArrow}
+export {drawArrow, handleArrowClick}

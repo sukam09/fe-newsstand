@@ -6,35 +6,42 @@ const viewChangeBtns = document.querySelectorAll(".nav-right .btn")
 const listBtn = document.querySelector(".list-btn");
 const gridBtn = document.querySelector(".grid-btn");
 
-function changeViewIcons(nextView) {
-    if (nextView === VIEW_TYPE.LIST){
+function changeViewIcons() {
+    const crntView = store.getCrntView();
+    if (crntView === VIEW_TYPE.LIST){
         listBtn.src = "../asset/icons/list-view-active.png"
         gridBtn.src = "../asset/icons/grid-view.png"
-    } else if (nextView === VIEW_TYPE.GRID){
+    } else if (crntView === VIEW_TYPE.GRID){
         listBtn.src = "../asset/icons/list-view.png";
         gridBtn.src = "../asset/icons/grid-view-active.png"
     }
 }
-function listenViewChange() {
+function toggleViewVisibility() {
+    const nextView = store.getCrntView();
+    Array.prototype.forEach.call(viewContainer.children, (view) => {
+        if (view.getAttribute("type") == nextView){
+            view.classList.remove("hide");
+        } else {
+            view.classList.add("hide")
+        }      
+    })
+}
+function changeView(nextView) {
+    store.setCrntView(nextView)
+    changeViewIcons()
+    toggleViewVisibility();
+}
+function handleViewChange() {
     viewChangeBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
             const nextView = btn.getAttribute("type");
-            let crntView = store.getView();
+            let crntView = store.getCrntView();
             if (crntView !== nextView){
-                changeViewIcons(nextView)
-                crntView = nextView;
-                store.setView(nextView)
-                Array.prototype.forEach.call(viewContainer.children, (view) => {
-                    if (view.getAttribute("type") == nextView){
-                        view.classList.remove("hide");
-                    } else {
-                        view.classList.add("hide")
-                    }      
-                })
+                changeView(nextView)
             }
         })
     })
    
 }
 
-export {listenViewChange}
+export {handleViewChange, changeView}

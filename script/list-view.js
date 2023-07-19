@@ -3,30 +3,26 @@ import { store } from "../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
 import { CATEGORY_LIST } from "../asset/data/constants.js";
 
-
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
-
-
 
 function listenCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
-            let crntCategory = store.getCategory()
+            let crntCategory = store.getCrntCategory()
             if (crntCategory !== index){ // change to different category
                 catBtns[crntCategory].classList.remove("selected")
                 catBtns[index].classList.add("selected");
-                store.setCategory(index);
+                store.setCrntCategory(index);
             } else { 
                 // stay in crnt category
             }
-            
         })
     })
 }
 function drawListPage() {
-    let crntPage = store.getPage();
-    let crntCategory = store.getCategory()
+    let crntPage = store.getCrntPage();
+    let crntCategory = store.getCrntCategory()
     const filteredByCat = listViewData.filter(item => item.category == CATEGORY_LIST[crntCategory]);
     const crntData = filteredByCat[crntPage]
     listContent.innerHTML = `
@@ -51,8 +47,8 @@ function drawListPage() {
     
 }
 function drawListNav(){
-    let crntPage = store.getPage();
-    let crntCategory = store.getCategory()
+    let crntPage = store.getCrntPage();
+    let crntCategory = store.getCrntCategory()
     listNav.innerHTML = "";
     CATEGORY_LIST.forEach((category, index) => {
         let numOfPages = listViewData.filter(data => data.category == category).length;

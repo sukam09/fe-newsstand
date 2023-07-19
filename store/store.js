@@ -1,47 +1,52 @@
 
-import { VIEW_TYPE } from "../asset/data/constants.js";
-import { updateArrow } from "../script/arrow.js";
+import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
+import { drawArrow } from "../script/arrow.js";
 import { drawPress } from "../script/grid-view.js";
 import { drawList } from "../script/list-view.js";
 
 class Store {
     constructor () {
-        this.view = VIEW_TYPE.GRID;
-        this.page = 0; // page index (grid, list view)
-        this.category = 0; // category index (list view)
+        this.crntview = VIEW_TYPE.GRID;
+        this.crntPage = 0; // page index (grid, list view)
+        this.crntCategory = 0; // category index (list view)
+        this.crntFilter = FILTER_TYPE.ALL;
+        this.subPressList = [];
+
         this.observers = new Set();
     }
     
-    getView(){
-        return this.view;
+    getCrntView(){
+        return this.crntview;
     }
-    getPage(){
-        return this.page;
+    getCrntPage(){
+        return this.crntPage;
     }
-    getCategory(){
-        return this.category;
+    getCrntCategory(){
+        return this.crntCategory;
+    }
+    getCrntFilter(){
+        return this.crntFilter;
     }
 
     
-    setPage(page){
-        this.page = page;
+    setCrntPage(page){
+        this.crntPage = page;
         this.renderView();
-        this.renderArrow();
     }
-    setCategory(category){
-        this.category = category;
-        this.page = 0;
+    setCrntCategory(category){
+        this.crntCategory = category;
+        this.crntPage = 0;
         this.renderView();
-        this.renderArrow();
     }
-    setView(view){ 
-        this.view = view;
-        this.page = 0;
-        this.category = 0;
+    setCrntView(view){ 
+        this.crntview = view;
+        this.crntPage = 0;
+        this.crntCategory = 0;
         this.renderView();
-        this.renderArrow();
     }
-
+    setCrntFilter(type){
+        this.crntFilter = type;
+    }
 
     addSubscriber(subscriber) {
         this.observers.add(subscriber)
@@ -50,30 +55,16 @@ class Store {
         this.observers.forEach(func => func());
     }
 
-
-
-
     renderView(){
-        switch (this.view){
+        switch (this.crntview){
             case VIEW_TYPE.GRID:
-                drawPress(this.page);
+                drawPress(this.crntPage);
                 break;
             case VIEW_TYPE.LIST:
-                drawList(this.category);
+                drawList(this.crntCategory);
                 break;
         }
-    }
-
-    renderArrow() {
-        updateArrow();
-        // switch (this.view){
-        //     case VIEW_TYPE.GRID:
-        //         updateArrow();
-        //         break;
-        //     case VIEW_TYPE.LIST:
-        //         // no need to update arrow when crntview == list
-        //         break;
-        // }
+        drawArrow();
     }
 }
 

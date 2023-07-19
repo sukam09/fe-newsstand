@@ -167,6 +167,23 @@ ul {
     background-color: var(--blue-100);
     color:var(--grayscale-white-alt);
     font: var(--bold-R);
+    display:flex;
+    justify-content: space-between;
+    width:166px;
+}
+.selected:hover {
+    text-decoration: none;
+}
+.filter-btn {
+    font: var(--medium-M);
+    color:var(--grayscale-200);
+}
+.filter-btn:hover {
+    cursor:pointer;
+}
+.selected-filter {
+    font: var(--bold-M);
+    color : var(--grayscale-black)
 }
 .list-content {
     padding:24px;
@@ -228,15 +245,6 @@ ul {
 .category:hover {
     text-decoration: underline;
 }
-
-.selected {
-    display:flex;
-    justify-content: space-between;
-    width:166px;
-}
-.selected:hover {
-    text-decoration: none;
-}
 .list-page-info > span {
     color : var(--border-default);
 }
@@ -259,4 +267,8 @@ ul {
 }
 .category-title, .list-page-info {
     z-index:3;
+}
+
+.sub-snack-bar {
+
 }
