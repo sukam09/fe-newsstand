@@ -28,7 +28,7 @@ class subscribeSubject extends Subject {
         return this._state;
     }
 
-    notifyAll(isAdd) {
+    notifyAll() {
         this._observers.forEach((sbs) => {
             try {
                 sbs.update(this._state);

@@ -1,10 +1,8 @@
-import { GRID_SIZE, SNACK_BAR_TIME } from "../../utils/constant.js";
+import { GRID_SIZE } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
 import { class_name } from "../../utils/domClassName.js";
-import { subscribe_press_list, press_idx } from "../../../data/subscribeIdxList.js";
+import { press_idx } from "../../../data/subscribeIdxList.js";
 import { createMainGrid } from "../../container/gridViewTemplate.js";
-import { onClickSubBtn } from "../layout/mainNavEvent.js";
-import { createSnackBar } from "../common/snackBar.js";
 import { _sub_press_list } from "../../Store.js";
 
 class gridViewInfo {

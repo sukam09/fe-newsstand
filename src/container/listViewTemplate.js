@@ -9,6 +9,7 @@ import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
+import { list_view_subscribe } from "../components/list/listObserver.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
@@ -86,10 +87,10 @@ function createCategoryBtn(category_name, category_size, idx) {
 }
 
 // 뉴스 탭 생성
-function createNewsNav(is_subscribe) {
+export function createNewsNav(is_subscribe, state) {
     const $container = create.nav({ className: "list-view-tab" });
     if (is_subscribe === class_name.SUBSCRIBE) {
-        subscribe_news_list.forEach((news, idx) => {
+        state.forEach((news, idx) => {
             $container.appendChild(createPressBtn(news.press));
         });
     } else {
@@ -213,9 +214,17 @@ export function renderPressNews(news_category_press, is_subscribe) {
 }
 
 // 화살표 제외한 리스트 뷰 생성
-function createListViewMain(news_category_press, is_subscribe) {
-    const $container = create.div({ className: "main-list-view-news-list" });
-    $container.append(createNewsNav(is_subscribe), createPressNews(news_category_press, true, is_subscribe));
+export function createListViewMain(news_category_press, is_subscribe, is_init, subscribe_list) {
+    const $container = is_init
+        ? create.div({ className: "main-list-view-news-list" })
+        : document.querySelector(`.list-${is_subscribe}`).querySelector(".main-list-view-news-list");
+    $container.innerHTML = "";
+
+    $container.append(
+        createNewsNav(is_subscribe, subscribe_list),
+        createPressNews(news_category_press, true, is_subscribe)
+    );
+
     return $container;
 }
 
@@ -234,12 +243,12 @@ function createListArrowBtn(btnFactory, is_right, is_subscribe) {
 }
 
 // 리스트 뷰 뉴스 생성
-function createListView(news_category_press, is_subscribe) {
+export function createListView(news_category_press, is_subscribe) {
     const $container = document.querySelector(`.list-${is_subscribe}`);
 
     $container.append(
         createListArrowBtn(btnFactory, false, is_subscribe).getButton(),
-        createListViewMain(news_category_press, is_subscribe),
+        createListViewMain(news_category_press, is_subscribe, true, []),
         createListArrowBtn(btnFactory, true, is_subscribe).getButton()
     );
 }

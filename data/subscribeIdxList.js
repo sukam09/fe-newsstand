@@ -5,7 +5,7 @@ import { list_news_data } from "./list_news_data.js";
 export const subscribe_idx_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 export const press_idx = (function () {
     const tmp = [];
-    for (let i = 1; i <= 96; i++) tmp.push(i);
+    for (let i = 1; i <= press_list.length; i++) tmp.push(i);
     return tmp;
 })();
 
