@@ -72,7 +72,6 @@ export const progress_bar_info = (function () {
     // DOM 초기화
     function initProgressBar(props) {
         setValue(props).then(() => {
-            console.log(category_now, category_old, page_num);
             changeProgressBar();
             renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
             startInterval();

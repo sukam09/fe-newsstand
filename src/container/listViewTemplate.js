@@ -9,6 +9,7 @@ import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { list_news_data } from "../../data/list_news_data.js";
 const btnFactory = new buttonFacotry();
 
+// 언론사 탭 생성
 function createPressBtn(press_name) {
     const $list_view_btn = create.button({ className: "list-view-btn" });
     const $tab_item = create.div({ className: "tab-item available-medium14", txt: press_name });
@@ -31,6 +32,7 @@ function createPressBtn(press_name) {
     return $list_view_btn;
 }
 
+// 카테고리 탭 생성
 function createCategoryBtn(category_name, category_size, idx) {
     const $list_view_btn = create.button({
         className: "list-view-btn",
@@ -43,7 +45,19 @@ function createCategoryBtn(category_name, category_size, idx) {
                 }),
         },
     });
-    const $tab_item = create.div({ className: "tab-item available-medium14", txt: category_name });
+    const $tab_item = create.div({
+        className: "tab-item available-medium14",
+        txt: category_name,
+        events: {
+            mouseover: () => {
+                $tab_item.style.textDecoration = "underline";
+            },
+            mouseout: () => {
+                $tab_item.style.textDecoration = "none";
+            },
+        },
+    });
+
     const $tab_item_clicked = create.div({ className: "tab-item-clicked" });
 
     const $btn_tab_progress = create.div({ className: "btn-tab-progress" });
