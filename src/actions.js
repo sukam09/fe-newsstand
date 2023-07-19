@@ -66,9 +66,9 @@ export function clear(container, option) {
 /**
  * @description
  * 1. 프로그레스 바를 설정한다.
- * @param {*} options 
- * @param {*} name 
- * @param {*} list_option 
+ * @param {*} options
+ * @param {*} name
+ * @param {*} list_option
  */
 export function setProgress(options, name, list_option) {
     const progress = document.querySelector(`.${name}`);
@@ -88,7 +88,7 @@ export function setProgress(options, name, list_option) {
 /**
  * @description
  * 1. view에 따른 arrow를 변경한다.
- * @param {*} view 
+ * @param {*} view
  */
 export function changeViewArrow(view) {
     const current = view === "list" ? "grid" : "list";
@@ -106,8 +106,8 @@ export function changeViewArrow(view) {
 /**
  * @description
  * 1. view에 따른 arrow의 display를 변경한다.
- * @param {*} mode 
- * @param {*} page 
+ * @param {*} mode
+ * @param {*} page
  */
 function toggleArrow(mode, page) {
     const left_arrow = document.querySelector(`.${mode}_left_arrow`);
@@ -132,9 +132,9 @@ function toggleArrow(mode, page) {
  * @description
  * 1. view에 따른 page를 변경한다.
  * 2. view에 따른 page 변경 방식이 다르며 이를 구분한다.
- * @param {*} direction 
- * @param {*} view 
- * @param {*} option 
+ * @param {*} direction
+ * @param {*} view
+ * @param {*} option
  */
 export function useMovePage(direction, view, option) {
     if (view === "grid") {
@@ -250,12 +250,7 @@ function updateBanner(banner, banner_time, loc) {
  * @param {String} view - grid, list
  * @param {view_option} view_option - view_option
  */
-export function handlePage(
-    direction,
-    view,
-    view_option,
-    select_option
-) {
+export function handlePage(direction, view, view_option, select_option) {
     if (view === "grid") {
         useMovePage(direction, view, select_option);
 
