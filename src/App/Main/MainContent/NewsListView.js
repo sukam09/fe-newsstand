@@ -46,6 +46,10 @@ const getsubTitles = function (object) {
 const getPressName = function (object) {
   return object.name;
 };
+
+const getPressId = function (object) {
+  return object.pid;
+};
 export default function NewsListView($target, props) {
   if (prevCategory !== props.category) {
     prevCategory = props.category;
@@ -65,6 +69,7 @@ export default function NewsListView($target, props) {
 
   const contentsProps = {
     headerData: {
+      pressId: getPressId(newsOject),
       pressLogo: getPressLogo(newsOject, props.mode),
       editDate: getEditDate(newsOject),
     },
