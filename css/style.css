@@ -142,13 +142,24 @@ nav.agency .agency-type h3 {
   padding: 0;
 }
 
-nav.agency .agency-type h3 button {
+.all_press {
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-weak);
 }
 
-nav.agency .agency-type h3 button.active {
+.all_press[subscribeType="true"] {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-strong);
+}
+
+.subscribe_press {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-weak);
+}
+
+.subscribe_press[subscribeType="true"] {
   font-weight: var(--font-weight-bold);
   color: var(--color-text-strong);
 }
