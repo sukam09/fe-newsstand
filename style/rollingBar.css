@@ -1,0 +1,82 @@
+@import url(./variable.css);
+
+.news-bar {
+  display: flex;
+  width: 930px;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.news {
+  display: flex;
+  height: 17px;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-alt);
+}
+
+.news li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.press {
+  cursor: pointer;
+  color: var(--text-strong);
+}
+
+.news-title {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  color: var(--text-default);
+}
+
+.news-title:hover {
+  text-decoration: var(--line-style-underline);
+}
+
+.news-bar > .news {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-bar li {
+  position: absolute;
+  left: 81px;
+  top: -36px;
+  left: 0;
+  overflow: hidden;
+}
+
+.news-bar li.prev-news {
+  left: 81px;
+  top: -36px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.current-news {
+  left: 81px;
+  top: 16px;
+  transition: top 0.5s ease;
+}
+
+.news-bar li.next-news {
+  left: 81px;
+  top: 52px;
+}
+
+.news-bar a {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  width: 360px;
+}
