@@ -1,5 +1,5 @@
 import { clickSubscribe } from "../../../clickSubscribe.js";
-import { MIN_PAGE, MAX_PAGE, store } from "./store.js";
+import { store, MIN_PAGE, MAX_PAGE } from "../../../store.js";
 import { handleMouseOver, handleMouseOut } from "./handleEvent.js";
 
 const GRID_NUM = 24;
@@ -12,10 +12,10 @@ const imgIndex = Array(PRESS_NUM)
 function shuffleImgIndex() {
   return [...imgIndex].sort(() => Math.random() - 0.5);
 }
+const shuffledPress = shuffleImgIndex(imgIndex);
 
 function showMainList(press) {
   const main_list_ul = document.querySelector(".grid-view-ul");
-  const shuffledPress = shuffleImgIndex();
 
   main_list_ul.innerHTML = "";
   for (

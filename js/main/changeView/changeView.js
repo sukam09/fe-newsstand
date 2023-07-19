@@ -1,5 +1,6 @@
 //뷰 타입 변경
-import { store, MIN_PAGE, MAX_PAGE } from "../gridView/feature/store.js";
+import { store, MIN_PAGE, MAX_PAGE } from "../../store.js";
+import { checkPage } from "../gridView/feature/handleData.js";
 
 function getById(id) {
   return document.getElementById(id);
@@ -50,6 +51,7 @@ function initViewChange() {
     alt="images"
   />`;
     changeBtnAndView("list");
+    // store.setType("list-category");
   });
   view_type[1].addEventListener("click", () => {
     view_type[0].innerHTML = `<img
@@ -61,6 +63,9 @@ function initViewChange() {
     alt="images"
   />`;
     changeBtnAndView("grid");
+    checkPage();
+
+    // store.setType("grid-all");
   });
 }
 

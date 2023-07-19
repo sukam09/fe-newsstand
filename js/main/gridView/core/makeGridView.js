@@ -7,6 +7,7 @@ function makeGridView(press) {
 
   right_btn.addEventListener("click", (e) => changePage(e, press));
   left_btn.addEventListener("click", (e) => changePage(e, press));
+
   showMainList(press);
   checkPage();
 }

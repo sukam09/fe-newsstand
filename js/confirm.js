@@ -1,5 +1,9 @@
 function confirm(selectedPress, _img, view) {
   document.querySelector(".confirm").style.display = "block";
+  document.querySelector(
+    ".question"
+  ).innerHTML = `<span><span>${selectedPress}</span>을(를)</span> 구독해지하시겠습니까?`;
+
   const _answer = document.querySelector(".answer");
   //YES
   _answer.children[0].addEventListener(

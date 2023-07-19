@@ -1,9 +1,8 @@
 import { findCurrentCategory } from "./handleNewsData.js";
 import { news_by_category } from "./manipulateNews.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
-
+import { store } from "../../../store.js";
 /* about list view left, right Btn */
-import { store } from "./store.js";
 
 function addEventToBtn() {
   const left_btn = document.getElementById("list-left-btn");
@@ -32,10 +31,10 @@ function handleLeftBtn(currentCategory) {
       prevCategory = document.querySelector(".category li:last-child");
     }
     const prevMaxPage = news_by_category[prevCategory.innerText].length;
-    store.setGridPage(prevMaxPage - 1);
+    store.setListPage(prevMaxPage - 1);
     addAnimation(prevCategory, "Prev");
   } else {
-    store.setGridPage(store.state.list_page - 1);
+    store.setListPage(store.state.list_page - 1);
   }
 }
 
@@ -43,10 +42,10 @@ function handleRightBtn(currentCategory) {
   const maxPage = currentCategory.children[2].innerText.split("/")[1];
   //다음 카테고리로 넘어갈 때
   if (store.state.list_page + 1 >= maxPage) {
-    store.setGridPage(0);
+    store.setListPage(0);
     addAnimation(currentCategory.nextElementSibling, "Next");
   } else {
-    store.setGridPage(store.state.list_page + 1);
+    store.setListPage(store.state.list_page + 1);
   }
 }
 

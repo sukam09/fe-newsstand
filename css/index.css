@@ -66,10 +66,17 @@ li:hover,
 }
 .question {
   display: flex;
+  flex-direction: column;
   height: 92px;
   justify-content: center;
   align-items: center;
   background-color: var(--surface-default);
+  color: var(--text-default);
+  font-weight: 500;
+}
+.question span span {
+  color: var(--text-strong);
+  font-weight: 700;
 }
 
 .answer {

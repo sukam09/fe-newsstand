@@ -4,7 +4,7 @@ import {
   handleAniamtionStart,
   handleCategoryClick,
 } from "./handleCategoryEvent.js";
-import { store } from "./store.js";
+import { store } from "../../../store.js";
 import { checkPressInLocal } from "../../../checkPressInLocal.js";
 import { clickSubscribe } from "../../../clickSubscribe.js";
 
