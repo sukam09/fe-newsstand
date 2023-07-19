@@ -178,6 +178,18 @@ const setCategoryBar = () => {
     setACategoryBar({ keyList: subMediaName });
   }
 };
+/**
+ * @param {현재 카테고리 idx} cateIdx
+ * @returns 현재 카테고리인지 여부
+ */
+const isCurCategory = ({ cateIdx }) => {
+  if (STATE.MODE.IS_TOTAL) {
+    // 전체모드일 때
+    return STATE.LIST_MODE.CATE_IDX === cateIdx;
+  } else {
+    return STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === cateIdx;
+  }
+};
 
 /**
  * 모드에 따라 카테고리바 세팅
@@ -187,6 +199,7 @@ const setACategoryBar = ({ keyList }) => {
     let cateHTML;
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
+      if (isCurCategory({ cateIdx: idx })) return;
       if (STATE.MODE.IS_TOTAL) {
         STATE.LIST_MODE.CATE_IDX = idx;
         STATE.LIST_MODE.CATE_MEDIA_IDX = 0;

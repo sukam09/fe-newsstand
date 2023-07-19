@@ -81,6 +81,10 @@
   color: var(--grayscale-200);
 }
 
+.category_unselected:hover {
+  text-decoration: underline;
+}
+
 /* news-list_media */
 .news-list_media {
   display: flex;
@@ -164,13 +168,6 @@
   width: 100%;
 
   color: var(--grayscale-500);
-}
-
-.news-list_media_content_main p,
-.news-list_media_content_sub li {
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .news-list_media_edit {
