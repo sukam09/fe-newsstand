@@ -1,6 +1,8 @@
 import { IMAGE, MEDIA, STATE } from "../constant.js";
-import { setNewPage } from "./grid.js";
-import { setCategoryBar, setFullList } from "./list.js";
+import { changeImgSrc, setNewPage } from "./grid.js";
+import { setCategoryBar, setFullList, setListView } from "./list.js";
+
+const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -19,10 +21,15 @@ const shuffleList = (list) => {
 const setColorModeEvent = () => {
   const $html = document.querySelector("html");
   const $colorModeBtn = document.querySelector(".mode-button");
+
   $colorModeBtn.addEventListener("click", () => {
     $html.classList.toggle("dark");
+    STATE.MODE.IS_LIGHT = !STATE.MODE.IS_LIGHT;
     $colorModeBtn.src =
       $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+    STATE.MODE.IS_GRID
+      ? changeImgSrc(MEDIA_NUM * STATE.GRID_PAGE_NUM)
+      : setListView();
   });
 };
 /**

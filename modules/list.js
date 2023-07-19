@@ -280,7 +280,7 @@ const setListView = () => {
 
   const nowMedia = mediaInfo[mediaId];
 
-  $logo.src = nowMedia.path_light;
+  $logo.src = STATE.MODE.IS_LIGHT ? nowMedia.path_light : nowMedia.path_dark;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
   if (STATE.SUBSCRIBE_LIST.includes(mediaId)) {
@@ -332,4 +332,4 @@ async function initListView() {
   setFullList();
 }
 
-export { initListView, setCategoryBar, setFullList };
+export { initListView, setCategoryBar, setFullList, setListView };

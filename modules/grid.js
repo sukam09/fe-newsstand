@@ -127,24 +127,23 @@ const onClickGridMode = ({ className }) => {
 /**
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
-const setNewPage = (start, end) => {
+const setNewPage = (start) => {
   if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
     alert("구독중인 언론사가 없습니다!!");
     onClickSubscribeMode({ className: "main-nav_total" });
     return;
   }
   changeButtonView(start);
-  changeImgSrc(start, end);
+  changeImgSrc(start);
   setArrowVisible();
 };
 
 /**
  * 언론사 이미지 src 변경
  * @param {언론사 리스트 중 시작 idx} start
- * @param {언론사 리스트 중 끝 idx} end
  */
-const changeImgSrc = (start, end) => {
-  for (let i = start; i < end; i++) {
+const changeImgSrc = (start) => {
+  for (let i = start; i < start + MEDIA_NUM; i++) {
     const mediaIdx = STATE.MODE.IS_TOTAL ? idList[i] : STATE.SUBSCRIBE_LIST[i];
 
     const $img = document.querySelector(`.img${i - start}`);
@@ -193,11 +192,8 @@ const changeButtonView = (start) => {
 const clickArrow = (num) => {
   STATE.GRID_PAGE_NUM += num;
 
-  let [start, end] = [
-    STATE.GRID_PAGE_NUM * MEDIA_NUM,
-    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM,
-  ];
-  setNewPage(start, end);
+  let start = STATE.GRID_PAGE_NUM * MEDIA_NUM;
+  setNewPage(start);
 };
 
 /**
@@ -246,4 +242,4 @@ async function initGridView() {
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, setNewPage };
+export { initGridView, setNewPage, changeImgSrc };
