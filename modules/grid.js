@@ -115,7 +115,6 @@ const setGridModeEvent = () => {
 };
 
 /**
- *
  * @param {언론사 토글 중 선택한 클래스 이름} className
  */
 const onClickGridMode = ({ className }) => {
@@ -149,7 +148,7 @@ const changeImgSrc = (start) => {
     const $img = document.querySelector(`.img${i - start}`);
     const $buttonWrapper = $img.nextSibling;
 
-    if (!mediaIdx) {
+    if (mediaIdx === undefined) {
       $img.src = "";
       $buttonWrapper.style.display = "none";
       continue;
@@ -217,10 +216,10 @@ const setArrowVisible = () => {
 
   // 미디어 개수에 따른 hidden 여부
   const totalPage = STATE.MODE.IS_TOTAL
-    ? Math.floor(idList.length / MEDIA_NUM)
-    : Math.floor(STATE.SUBSCRIBE_LIST.length / MEDIA_NUM);
+    ? idList.length / MEDIA_NUM
+    : STATE.SUBSCRIBE_LIST.length / MEDIA_NUM;
 
-  if (STATE.GRID_PAGE_NUM < totalPage) {
+  if (STATE.GRID_PAGE_NUM < totalPage - 1) {
     $rightArrow.classList.remove("hidden");
   } else {
     $rightArrow.classList.add("hidden");
