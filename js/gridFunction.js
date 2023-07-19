@@ -1,5 +1,5 @@
 import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE, STATE, DATA } from "./const.js";
+import { PAGE_SIZE, STATE } from "./const.js";
 import { setDisplay, getJSON } from "./utils.js";
 
 const shuffle = () => Math.random() - 0.5;
@@ -12,10 +12,13 @@ function drawGridArrow() {
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
   const now_page = STATE.IS_SUB_VIEW ? STATE.SUB_GRID_PAGE : STATE.GRID_PAGE;
-  if (now_page === 0) {
+  console.log(now_page+1, total_grid_page)
+  if (total_grid_page === 0) {
     setDisplay("grid-prev", "id", "none");
-  }
-  if (now_page === total_grid_page) {
+    setDisplay("grid-next", "id", "none");
+  } else if (now_page === 0) {
+    setDisplay("grid-prev", "id", "none");
+  } else if (now_page+1 >= total_grid_page) {
     setDisplay("grid-next", "id", "none");
   }
 }
@@ -44,7 +47,7 @@ function appendPressInGrid(press) {
 
 function pressGridArrow(increment) {
   // grid 화살표 클릭
-  STATE.IS_SUB_VIEW ? STATE.SUB_GRID_PAGE + increment : STATE.GRID_PAGE + increment;
+  STATE.IS_SUB_VIEW ? (STATE.SUB_GRID_PAGE = STATE.SUB_GRID_PAGE + increment) : (STATE.GRID_PAGE = STATE.GRID_PAGE + increment);
   drawGridView();
 }
 

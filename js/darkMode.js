@@ -1,7 +1,6 @@
 import { STATE } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
-import { drawSubNews } from "./subscribeListView.js";
 
 export function initDarkMode() {
   const $body = document.querySelector("body");
@@ -10,6 +9,5 @@ export function initDarkMode() {
     $body.classList.toggle("dark");
     drawGridView();
     drawNews();
-    drawSubNews();
   });
 }

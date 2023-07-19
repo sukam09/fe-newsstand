@@ -1,5 +1,5 @@
 import { STATE } from "./const.js";
-import { onListUndiscribeModal } from "./modal.js";
+import { drawNews } from "./newsList.js";
 
 function setSubListNav() {
   const subscribed_presses = STATE.SUB_DATA;
@@ -26,36 +26,36 @@ function setSubListNav() {
 function progressEnd() {
   STATE.SUB_NEWS_PAGE = STATE.SUB_NEWS_PAGE + 1 === STATE.SUB_DATA.length ? 0 : STATE.SUB_NEWS_PAGE + 1;
   setSubListNav();
-  drawSubNews();
+  drawNews();
 }
 
-function drawSubNews() {
-  setSubListNav();
-  const $ul = document.querySelector(".sub-news-article");
-  const news = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE];
-  $ul.querySelector(".press-brandmark").src = news.path_light;
-  $ul.querySelector(".edit-date").textContent = news.editDate;
-  $ul.querySelector(".thumbnail").src = news.thumbSrc;
-  $ul.querySelector(".news-main p").textContent = news.headTitle;
-  const subList = $ul.querySelector(".news-sub-list");
-  subList.innerHTML = "";
-  news.subTitle.forEach(subnews => {
-    const $li = document.createElement("li");
-    $li.classList.add("text-bold", "available-medium16");
-    $li.innerText = subnews;
-    subList.append($li);
-  });
-  const $caption = document.createElement("li");
-  $caption.classList.add("caption", "display-medium14", "text-weak");
-  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  subList.append($caption);
-  const $sub_btn = $ul.querySelector(".list-sub-btn");
-  $sub_btn.src = "../img/icons/cancelSubBtn.svg";
-  $sub_btn.addEventListener("click", e => {
-    onListUndiscribeModal();
-  });
-  showArrow();
-}
+// function drawSubNews() {
+//   setSubListNav();
+//   const $ul = document.querySelector(".sub-news-article");
+//   const news = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE];
+//   $ul.querySelector(".press-brandmark").src = news.path_light;
+//   $ul.querySelector(".edit-date").textContent = news.editDate;
+//   $ul.querySelector(".thumbnail").src = news.thumbSrc;
+//   $ul.querySelector(".news-main p").textContent = news.headTitle;
+//   const subList = $ul.querySelector(".news-sub-list");
+//   subList.innerHTML = "";
+//   news.subTitle.forEach(subnews => {
+//     const $li = document.createElement("li");
+//     $li.classList.add("text-bold", "available-medium16");
+//     $li.innerText = subnews;
+//     subList.append($li);
+//   });
+//   const $caption = document.createElement("li");
+//   $caption.classList.add("caption", "display-medium14", "text-weak");
+//   $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
+//   subList.append($caption);
+//   const $sub_btn = $ul.querySelector(".list-sub-btn");
+//   $sub_btn.src = "../img/icons/cancelSubBtn.svg";
+//   $sub_btn.addEventListener("click", e => {
+//     onListUndiscribeModal();
+//   });
+//   drawListArrow();
+// }
 
 /*
     sub-list-view에서 nav(언론명)을 클릭했을 때
@@ -66,14 +66,14 @@ function clickSubListNav(target) {
   document.querySelector(".list-progress-bar").classList.remove("list-progress-bar");
   const nav_item = target.textContent;
   STATE.SUB_NEWS_PAGE = STATE.SUB_DATA.findIndex(data => data.name === nav_item);
-  drawSubNews(STATE.SUB_NEWS_PAGE);
+  drawNews();
 }
 
 function showArrow() {
   const sub_length = STATE.SUB_DATA.length;
   const $sub_news_article = document.querySelector(".sub-news-article");
-  const $left_btn = $sub_news_article.querySelector(".left-btn");
-  const $right_btn = $sub_news_article.querySelector(".right-btn");
+  const $left_btn = $sub_news_article.querySelector(".list-prev");
+  const $right_btn = $sub_news_article.querySelector(".list-next");
   if (sub_length === 1) {
     $left_btn.classList.add("hidden");
     $right_btn.classList.add("hidden");
@@ -90,16 +90,16 @@ function showArrow() {
 }
 
 function clickSubListBtn(target) {
-  target.classList.contains("right-btn") ? STATE.SUB_NEWS_PAGE++ : STATE.SUB_NEWS_PAGE--;
-  drawSubNews();
+  target.classList.contains("list-next") ? STATE.SUB_NEWS_PAGE++ : STATE.SUB_NEWS_PAGE--;
+  drawNews();
 }
 
 function initSubListArrow() {
   const $sub_news_article = document.querySelector(".sub-news-article");
-  const $left_btn = $sub_news_article.querySelector(".left-btn");
-  const $right_btn = $sub_news_article.querySelector(".right-btn");
+  const $left_btn = $sub_news_article.querySelector(".list-prev");
+  const $right_btn = $sub_news_article.querySelector(".list-next");
   $left_btn.addEventListener("click", event => clickSubListBtn(event.target));
   $right_btn.addEventListener("click", event => clickSubListBtn(event.target));
 }
 
-export { setSubListNav, drawSubNews, initSubListArrow, showArrow };
+export { setSubListNav, initSubListArrow, showArrow };

@@ -2,7 +2,7 @@ import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay,
 import { STATE, DATA, setSubData } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
-import { drawSubNews, setSubListNav } from "./subscribeListView.js";
+import {  setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
 
 let news_by_category;
@@ -61,7 +61,6 @@ function handleModalBtn(target) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setSubListNav();
-        drawSubNews(STATE.SUB_NEWS_PAGE);
         drawNews();
       }
     }

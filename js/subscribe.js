@@ -3,7 +3,7 @@ import { MODAL_POPUP_TIME, STATE, setSubData, DATA } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
 import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
-import { setSubListNav, drawSubNews } from "./subscribeListView.js";
+import { setSubListNav } from "./subscribeListView.js";
 import { drawNews } from "./newsList.js";
 
 let presses;
@@ -49,7 +49,7 @@ function listSubMouseClick(news) {
       setDisplay(".sub-press-list-section", "query", "block");
       STATE.IS_SUB_VIEW = true;
       setSubListNav();
-      drawSubNews(STATE.SUB_NEWS_PAGE);
+      drawNews();
     }, MODAL_POPUP_TIME);
   } else {
     // 구독 상태면

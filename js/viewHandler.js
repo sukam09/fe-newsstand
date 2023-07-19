@@ -1,8 +1,8 @@
 import { removeDisplay, setDisplay, getJSON } from "./utils.js";
 import { drawNews, setNowCount } from "./newsList.js";
-import { drawSubNews } from "./subscribeListView.js";
 import { drawGridView } from "./gridFunction.js";
 import { STATE, DATA } from "./const.js";
+import { setSubListNav } from "./subscribeListView.js";
 
 let presses;
 
@@ -65,12 +65,17 @@ function handleView(target) {
       if (STATE.SUB_DATA.length === 0) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
-        setDisplay(".sub-press-list-section", "query", "block");
-        drawSubNews(STATE.SUB_NEWS_PAGE);
+        setDisplay(".press-list-section", "query", "block");
+        setDisplay(".sub-list-nav",'query','none');
+        setDisplay(".list-nav",'query','block');  
+        setSubListNav();
+        drawNews();
       }
     } else {
       // list선택, total list 뷰 출력
       setDisplay(".press-list-section", "query", "block");
+      setDisplay(".sub-list-nav",'query','none');
+      setDisplay(".list-nav",'query','block');
       drawNews();
       setNowCount();
     }
@@ -96,13 +101,16 @@ function handleView(target) {
     changeViewIcon("list");
     changeOption("subscribe");
     STATE.SUB_NEWS_PAGE = 0;
+    STATE.IS_SUB_VIEW = true;
     if (STATE.SUB_DATA.length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
-      setDisplay(".sub-press-list-section", "query", "block");
-      drawSubNews(STATE.SUB_NEWS_PAGE);
+      setDisplay(".press-list-section", "query", "block");
+      setSubListNav();
+      drawNews();
+      setDisplay(".sub-list-nav",'query','block');
+      setDisplay(".list-nav",'query','none');
     }
-    STATE.IS_SUB_VIEW = true;
   }
 }
 

@@ -272,8 +272,7 @@ h1 {
   gap: 16px;
   align-self: stretch;
 }
-.news-article,
-.sub-news-article {
+.news-article {
   position: relative;
 }
 
@@ -284,6 +283,7 @@ h1 {
   background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
 }
 .news-main > p {
+  height:44px;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -298,16 +298,23 @@ h1 {
 /* */
 
 /* L,R btn style */
-.left-btn,
-.right-btn {
+.list-prev {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
   position: absolute;
-  transform: translateY(150%);
-}
-.left-btn {
+  top: 137px;
   left: -72px;
+  cursor: pointer;
 }
-.right-btn {
+.list-next {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 137px;
   right: -72px;
+  cursor: pointer;
 }
 
 .l-btn {
@@ -461,8 +468,8 @@ h1 {
   cursor: pointer;
 }
 
-.news > .right-btn,
-.left-btn {
+.news > .list-next,
+.list-next {
   cursor: pointer;
 }
 
