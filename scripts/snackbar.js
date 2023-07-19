@@ -1,4 +1,6 @@
+import { TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
+import { changeTab } from "../store/reducer/page.js";
 import { closeSnackbar } from "../store/reducer/snackbar.js";
 
 const SNACKBAR_SHOW_DURATION = "5000";
@@ -9,6 +11,7 @@ let timer;
 export const setSnackbar = () => {
   store.subscribe(() => {
     const open = useSelector((state) => state.snackbar.open);
+    const viewType = useSelector((state) => state.page.viewType);
 
     if (open) {
       $snackbar.classList.add("snackbar-open");
@@ -16,6 +19,10 @@ export const setSnackbar = () => {
 
       timer = setTimeout(() => {
         store.dispatch(closeSnackbar());
+
+        if (viewType === VIEW_TYPE.LIST) {
+          store.dispatch(changeTab(TAB_TYPE.SUBSCRIBE));
+        }
       }, SNACKBAR_SHOW_DURATION);
 
       return;
