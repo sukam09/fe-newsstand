@@ -13,6 +13,8 @@ const TOPIC = Object.freeze({
 });
 
 const IMAGE = Object.freeze({
+  SUN_ICON: "/images/sun.png",
+  MOON_ICON: "/images/moon.png",
   BLUE_GRID_ICON: "/images/grid-view_blue.svg",
   GRAY_GRID_ICON: "/images/grid-view_gray.svg",
   BLUE_LIST_ICON: "/images/list-view_blue.svg",

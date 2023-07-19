@@ -1,10 +1,24 @@
 body {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Pretendard";
   font-style: normal;
   line-height: normal;
+  background-color: var(--grayscale-white);
+  width: 100vw;
+  height: 100vh;
+  min-height: 900px;
+}
+
+.mode-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50px;
+  right: 50px;
+  cursor: pointer;
 }
 
 .news-stand-container {
@@ -19,7 +33,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 58px;
 }
 
 .header-wrapper > button {

@@ -25,6 +25,15 @@ const shuffleList = (list) => {
   return list;
 };
 
+const setColorModeEvent = () => {
+  const $html = document.querySelector("html");
+  const $colorModeBtn = document.querySelector(".mode-button");
+  $colorModeBtn.addEventListener("click", () => {
+    $html.classList.toggle("dark");
+    $colorModeBtn.src =
+      $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+  });
+};
 /**
  * 시스템 날짜 표시
  */
@@ -162,6 +171,7 @@ const setModalView = ({ mediaName, subIdx }) => {
   $subBtnYes.addEventListener("click", () => {
     STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
     $subsAlert.classList.add("hidden");
+    // 뷰 바꾸는 함수
 
     if (!STATE.MODE.IS_GRID && STATE.SUBSCRIBE_LIST.length === 0) {
       alert("구독중인 언론사가 없습니다!!");
@@ -177,6 +187,7 @@ const setModalView = ({ mediaName, subIdx }) => {
  * 헤더의 공통뷰를 세팅하는 함수
  */
 async function initCommonView() {
+  setColorModeEvent();
   setReload();
   setDate();
 }
