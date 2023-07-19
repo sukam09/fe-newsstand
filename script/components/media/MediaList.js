@@ -76,18 +76,6 @@ const replaceSubArrow = store => {
   return [leftArrow, rightArrow];
 };
 
-// common part of ListNav and ListSubNav
-const CommonListNav = () => {
-  const nav = document.createElement('nav');
-  const navItemList = document.createElement('ul');
-
-  nav.id = 'list_nav';
-  nav.classList.add('surface_alt');
-  navItemList.id = 'list_nav_list';
-  nav.appendChild(navItemList);
-  return nav;
-};
-
 const ListNav = (navStore, store) => {
   const { category, page, media } = store.getState();
   const nav = document.createElement('nav');
@@ -123,9 +111,10 @@ const ListNav = (navStore, store) => {
 };
 
 const ListSubNav = store => {
-  const { page, media } = store.getState();
+  const { page, media, scrollLeft } = store.getState();
   const nav = document.createElement('nav');
   const navItemList = document.createElement('ul');
+  let prevX;
 
   nav.id = 'list_nav';
   nav.classList.add('surface_alt');
@@ -138,18 +127,30 @@ const ListSubNav = store => {
         title: mediaData.getName(mediaItem),
         onClick: () => {
           if (page === index) return;
-          store.setState({ page: index });
+          store.setState({ page: index, scrollLeft: navItemList.scrollLeft });
         },
         afterDelay: () => {
-          setSubPage(store, page + 1);
+          setSubPage(store, page + 1, navItemList.scrollLeft);
         },
       })
     );
   });
+  navItemList.addEventListener('mousedown', e => {
+    prevX = e.clientX;
+  });
+  navItemList.addEventListener('mousemove', e => {
+    if (!prevX) return;
+    navItemList.scrollLeft -= e.clientX - prevX;
+    prevX = e.clientX;
+  });
+  navItemList.addEventListener('mouseup', () => {
+    prevX = null;
+  });
+  navItemList.addEventListener('DOMNodeInsertedIntoDocument', () => {
+    navItemList.scrollLeft = scrollLeft;
+  });
   return nav;
 };
-
-//
 
 const MediaLogoImg = src => {
   const mediaLogoElement = document.createElement('img');
@@ -255,6 +256,7 @@ const MediaList = (navStore, mediaData) => {
     category: 0,
     page: 0,
     media: viewAll ? mediaData.list : mediaData.subscribed,
+    scrollLeft: 0,
   });
   const mediaList = document.createElement('div');
 
