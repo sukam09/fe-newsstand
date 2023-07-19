@@ -11,6 +11,7 @@ import { resetProgress } from "./progress-bar.js";
 import { SubscribeButton } from "./components.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
+import { openModal } from "../store/reducer/modal.js";
 
 const $listViewTab = document.querySelector(".list-view_tab > ul");
 const $listViewTabItems = $listViewTab.querySelectorAll("li");
@@ -89,12 +90,16 @@ const handleListViewTabClick = (e) => {
 
 const handleSubscribeButtonClick = (e) => {
   const $button = e.target.closest(".subscribe-btn");
-  const name = $button.previousElementSibling.previousElementSibling.alt;
+  if (!$button) {
+    return;
+  }
 
+  const name = $button.previousElementSibling.previousElementSibling.alt;
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    // TODO: 구독해지 로직
+    console.log(name);
+    store.dispatch(openModal(name));
     return;
   }
 

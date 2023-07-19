@@ -16,6 +16,7 @@ import { store } from "./store/index.js";
 import { setSnackbar } from "./scripts/snackbar.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
+import { setModal } from "./scripts/modal.js";
 
 const $headerDate = document.querySelector(".container-header_date");
 
@@ -49,6 +50,7 @@ const addEventOnThemeButton = () => {
 
   setHeaderDate();
   setSnackbar();
+  setModal();
   startRollingBanner();
 
   renderGridView(newsData);
