@@ -4,6 +4,7 @@ import Component from "../core/Component.js";
 import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
 import NewsListView from "./NewsListView.js";
+import SubscribeListView from "./SubscribeListView.js";
 
 let currentPressTab = "all";
 let currentViewMode = "grid";
@@ -42,16 +43,6 @@ export default class NewsDisplay extends Component {
             onClickTab: this.onClickTab.bind(this),
         });
 
-        // this.state.view === "grid"
-        //     ? new NewsGridView(
-        //           this.$target.querySelector(".news-display-container"),
-        //           { newsData: jsonData, subscribeList: subscribeList, page: 0 }
-        //       )
-        //     : new NewsListView(
-        //           this.$target.querySelector(".news-display-container"),
-        //           { newsData: jsonData, subscribeList: subscribeList }
-        //       );
-        // this.filterSubscribeData(jsonData, subscribeList);
         if (this.state.pressTab === "all") {
             if (this.state.view === "grid") {
                 new NewsGridView(
@@ -82,7 +73,7 @@ export default class NewsDisplay extends Component {
                     }
                 );
             } else {
-                new NewsListView(
+                new SubscribeListView(
                     this.$target.querySelector(".news-display-container"),
                     {
                         newsData: this.filterSubscribeData(
