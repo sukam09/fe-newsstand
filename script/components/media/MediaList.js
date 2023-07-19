@@ -250,6 +250,7 @@ const ListContent = (store, viewAll) => {
   const newsData = mediaData.getNews(mediaId);
 
   listContent.id = 'list_view';
+  if (mediaId === undefined) return listContent;
   listContent.appendChild(MediaInfo(mediaId, newsData));
   listContent.appendChild(NewsContent(mediaId, newsData));
   return listContent;

@@ -11,7 +11,7 @@ const mediaApp = (defaultMedia, defaultView) => {
       all: 'grid',
       subscribed: 'list',
     },
-    subscribed: [1, 2, 3, 4, 5, 15, 16, 17, 18, 19],
+    subscribed: [],
     media: defaultMedia,
     view: defaultView,
   });
