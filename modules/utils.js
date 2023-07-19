@@ -1,5 +1,5 @@
 import { IMAGE, MEDIA, STATE } from "../constant.js";
-import { setArrowVisible, setNewPage } from "./grid.js";
+import { setNewPage } from "./grid.js";
 import { setCategoryBar, setFullList } from "./list.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
@@ -89,7 +89,6 @@ const moveGridView = () => {
     STATE.GRID_PAGE_NUM * MEDIA_NUM,
     (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
   );
-  setArrowVisible();
 };
 
 /**
@@ -165,17 +164,31 @@ const changeSubState = ({ mediaId, mediaName }) => {
 };
 
 const setModalView = ({ mediaName, subIdx }) => {
+  console.log(mediaName, subIdx);
   $subAlertName.innerText = mediaName;
   $subsAlert.classList.remove("hidden");
 
   $subBtnYes.addEventListener("click", () => {
+    console.log(STATE.SUBSCRIBE_LIST);
     STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
     $subsAlert.classList.add("hidden");
-    // 뷰 바꾸는 함수
+    console.log(STATE.SUBSCRIBE_LIST);
 
-    if (!STATE.MODE.IS_GRID && STATE.SUBSCRIBE_LIST.length === 0) {
+    if (STATE.SUBSCRIBE_LIST.length === 0) {
       alert("구독중인 언론사가 없습니다!!");
       onClickSubscribeMode({ className: "main-nav_total" });
+    }
+
+    // 구독해지 시
+    if (STATE.MODE.IS_GRID) {
+      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+      setNewPage(
+        STATE.GRID_PAGE_NUM * MEDIA_NUM,
+        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+      );
+    } else {
+      setCategoryBar();
+      setFullList();
     }
   });
   $subBtnNo.addEventListener("click", () => {
@@ -184,20 +197,13 @@ const setModalView = ({ mediaName, subIdx }) => {
 };
 
 /**
- * 헤더의 공통뷰를 세팅하는 함수
+ * 공통뷰 & 공통 이벤트 세팅
  */
 async function initCommonView() {
   setColorModeEvent();
   setReload();
   setDate();
+  setViewEvent();
 }
 
-export {
-  initCommonView,
-  shuffleList,
-  setDate,
-  setReload,
-  setViewEvent,
-  onClickSubscribeMode,
-  changeSubState,
-};
+export { initCommonView, shuffleList, onClickSubscribeMode, changeSubState };

@@ -1,11 +1,6 @@
 import { MEDIA, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
-import {
-  shuffleList,
-  setViewEvent,
-  onClickSubscribeMode,
-  changeSubState,
-} from "./utils.js";
+import { shuffleList, onClickSubscribeMode, changeSubState } from "./utils.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -33,11 +28,11 @@ const makeGrid = () => {
       $img.src = imgSrc;
       $img.style.height = "20px";
       $li.appendChild($img);
+
+      const $buttonWrapper = addSubscribeButton(i);
+      $li.append($buttonWrapper);
     };
 
-    const $buttonWrapper = addSubscribeButton(i);
-
-    $li.append($buttonWrapper);
     $newsWrapper.append($li);
   }
 };
@@ -62,10 +57,10 @@ const addSubscribeButton = (idx) => {
 
   $button.addEventListener("click", () => {
     clickSubButton(idx);
-    setNewPage(
-      STATE.GRID_PAGE_NUM * MEDIA_NUM,
-      (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-    );
+    // setNewPage(
+    //   STATE.GRID_PAGE_NUM * MEDIA_NUM,
+    //   (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+    // );
   });
 
   $buttonWrapper.append($button);
@@ -80,7 +75,9 @@ const addSubscribeButton = (idx) => {
 const clickSubButton = (idx) => {
   const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
   const mediaName = mediaInfo[mediaId].name;
+
   changeSubState({ mediaId, mediaName });
+
   const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
     ".news-grid_button_wrapper"
   );
@@ -127,18 +124,16 @@ const setGridModeEvent = () => {
 const onClickGridMode = ({ className }) => {
   onClickSubscribeMode({ className });
   STATE.GRID_PAGE_NUM = 0;
-
-  // 모드 재세팅
   setNewPage(0, MEDIA_NUM);
-  setArrowVisible();
 };
 
 /**
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
 const setNewPage = (start, end) => {
-  changeButtonView(start, end);
+  changeButtonView(start);
   changeImgSrc(start, end);
+  setArrowVisible();
 };
 
 /**
@@ -149,15 +144,17 @@ const setNewPage = (start, end) => {
 const changeImgSrc = (start, end) => {
   for (let i = start; i < end; i++) {
     const mediaIdx = STATE.MODE.IS_TOTAL ? idList[i] : STATE.SUBSCRIBE_LIST[i];
+
     const $img = document.querySelector(`.img${i - start}`);
     const $buttonWrapper = $img.nextSibling;
 
-    if (mediaIdx === undefined) {
+    if (!mediaIdx) {
       $img.src = "";
       $buttonWrapper.style.display = "none";
       continue;
     }
 
+    // console.log(mediaIdx);
     $buttonWrapper.style.display = "";
 
     const imgSrc = STATE.MODE.IS_LIGHT
@@ -178,7 +175,7 @@ const changeImgSrc = (start, end) => {
 /**
  * @param {현재 페이지 media 정보} mediaList
  */
-const changeButtonView = (start, end) => {
+const changeButtonView = (start) => {
   const $newsList = $newsWrapper.querySelectorAll("li");
 
   $newsList.forEach((li, idx) => {
@@ -200,7 +197,6 @@ const clickArrow = (num) => {
     (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM,
   ];
   setNewPage(start, end);
-  setArrowVisible();
 };
 
 /**
@@ -227,7 +223,7 @@ const setArrowVisible = () => {
     ? Math.floor(idList.length / MEDIA_NUM)
     : Math.floor(STATE.SUBSCRIBE_LIST.length / MEDIA_NUM);
 
-  if (STATE.GRID_PAGE_NUM < totalPage - 1) {
+  if (STATE.GRID_PAGE_NUM < totalPage) {
     $rightArrow.classList.remove("hidden");
   } else {
     $rightArrow.classList.add("hidden");
@@ -244,10 +240,9 @@ const getGridInfo = async () => {
 async function initGridView() {
   await getGridInfo();
   idList = shuffleList(idList);
-  setArrowVisible();
-  setViewEvent();
   makeGrid();
+  setArrowVisible();
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, setNewPage, setArrowVisible };
+export { initGridView, setNewPage };
