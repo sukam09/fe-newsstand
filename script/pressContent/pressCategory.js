@@ -3,11 +3,11 @@ import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElement
 let currentPage = 1
 export async function getCategory() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
-  const categoryName = categoryPath.newsList.map((elem) => {
+  const categoryNames = categoryPath.newsList.map((elem) => {
     return elem.category;
   })
 
-  const categoryMap = categoryName.reduce((acc, curr)=>{
+  const categoryMap = categoryNames.reduce((acc, curr)=>{
     if(!acc[curr]) {
       acc[curr] = 0;
     }
