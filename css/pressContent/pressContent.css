@@ -155,6 +155,11 @@
   gap: 16px;
 }
 
+.press-content-big-news > img {
+  width: 320px;
+  height: 200px;
+}
+
 .press-content-news-headlines {
   display: flex;
   flex-direction: column;

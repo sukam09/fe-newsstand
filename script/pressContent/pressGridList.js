@@ -1,4 +1,4 @@
-import { getElemId, getElemClass, getQuerySelector} from "../../utils/js/getElements.js";
+import { getElemClass, getQuerySelector} from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
 
 const page = [[], [], [], []];

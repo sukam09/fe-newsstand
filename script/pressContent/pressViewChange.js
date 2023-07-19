@@ -1,4 +1,6 @@
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
+import { showListNewsData } from "./pressListChange.js";
+
 // 언론사 뷰 전환시 아이콘 색상 변경(UI)
 function pressViewChange() {
   const pressListView = getQuerySelector(document, '#pressbar-icon-list-view');
@@ -8,6 +10,7 @@ function pressViewChange() {
     pressListView.childNodes[1].setAttribute("fill", "#4362D0");
     pressGridView.childNodes[1].setAttribute("fill", "#879298");
     showPressView("list");
+    showListNewsData("종합/경제", 1); // 꼼수라서 아이디어 생각나면 고쳐야함..
   });
 
   pressGridView.addEventListener('click', () => {

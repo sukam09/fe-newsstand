@@ -1,6 +1,6 @@
 import { fetchData } from "../../utils/js/getJson.js";
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
-
+import { showListNewsData } from "./pressListChange.js";
 const numOfEachCategory = [];
 const nameOfEachCategory = [];
 
@@ -40,6 +40,7 @@ export async function getCategoryInfo() {
 
   selectCategory();
   getCategoryIdx();
+
 };
 
 // 카테고리 이름 알려주는 거 (완)
@@ -62,7 +63,7 @@ function initSelectedState() {
 //selected 클래스 추가(완)
 function changeCategory(idx) {
   initSelectedState();
-  const categories = getQuerySelectorAll(document, ".press-content-category");
+  const categories = getQuerySelectorAll(document, '.press-content-category');
   categories[idx].classList.add('selected');
 }
 
@@ -77,6 +78,7 @@ function selectCategory() {
       currentPage = 1;
       changeCategory(categoryIdx);
       putCurrentPage();
+      showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
     })
   })
 }
@@ -95,6 +97,7 @@ export function moveCategory() {
       changeCategory(categoryIdx);
     }
     putCurrentPage();
+    showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
   })
 
   listNextArrow.addEventListener('click', ()=> {
@@ -106,6 +109,7 @@ export function moveCategory() {
       changeCategory(categoryIdx);
     }
     putCurrentPage();
+    showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
   })
 }
 
