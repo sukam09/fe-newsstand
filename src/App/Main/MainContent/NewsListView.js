@@ -72,6 +72,7 @@ export default function NewsListView($target, props) {
       pressId: getPressId(newsOject),
       pressLogo: getPressLogo(newsOject, props.mode),
       editDate: getEditDate(newsOject),
+      setPressType: props.setPressType,
     },
     newsData: {
       mainNewsData: {

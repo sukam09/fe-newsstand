@@ -98,6 +98,7 @@ export default function MainContent($target, props) {
         lastPage: lastPage,
         category: this.state.category,
         setContentState: this.setState,
+        setPressType: props.setPressType,
         timerArr: timerArr,
         indexArr: indexArr,
         data: listViewData[this.state.category],

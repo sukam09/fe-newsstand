@@ -101,6 +101,7 @@
 }
 
 .snack-bar {
+  z-index: -1;
   box-sizing: border-box;
   position: absolute;
   width: 286px;

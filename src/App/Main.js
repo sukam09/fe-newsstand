@@ -41,7 +41,11 @@ export default function Main($target, props) {
       setViewerType: this.setViewerType,
       setPressType: this.setPressType,
     });
-    new MainContent($main, { ...props, ...this.state });
+    new MainContent($main, {
+      ...props,
+      ...this.state,
+      setPressType: this.setPressType,
+    });
 
     $target.appendChild($main);
   };
