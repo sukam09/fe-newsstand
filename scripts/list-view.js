@@ -60,10 +60,10 @@ const unshowCategoryTab = () => {
   $categoryTab.style.display = "none";
 };
 
-const fillArticles = (currentCategory, currentPage) => {
+const fillArticle = (articleData) => {
   const theme = useSelector((state) => state.theme.currentTheme);
-  const { name, src, edit_date, main_news, sub_news } =
-    NewsDB.queryByCategory(currentCategory)[currentPage];
+  const { name, src, edit_date, main_news, sub_news } = articleData;
+
   const subscribeList = useSelector((state) => state.subscribeList);
   const isSubscribed = subscribeList.includes(name);
 
@@ -171,15 +171,24 @@ export const renderListView = () => {
     }
 
     if (tabType === TAB_TYPE.ALL) {
+      const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
+
       showCategoryTab();
       unshowSubscribeTab();
       activateCategory(currentCategory);
       showTabCount(currentPage, totalCnt);
-      fillArticles(currentCategory, currentPage);
+      fillArticle(articleData);
     } else {
       const subscribeList = useSelector((state) => state.subscribeList);
+      const pressName = subscribeList[currentPage];
+      const articleData = {
+        name: pressName,
+        ...NewsDB.getNewsOneByName(pressName),
+      };
+
       unshowCategoryTab();
       showSubscribeTab(subscribeList, subscribeList[currentPage]);
+      fillArticle(articleData);
     }
     resetProgress();
     updateButtonUI();
