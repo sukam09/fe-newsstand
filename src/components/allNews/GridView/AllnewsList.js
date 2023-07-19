@@ -1,3 +1,4 @@
+import { SNACKBAR_DURATION } from "../../../constants/index.js";
 import Icon from "../../common/Icon.js";
 import Logo from "../../common/Logo.js";
 
@@ -65,6 +66,6 @@ export default class AllNewsList {
     $gridWrapper.innerHTML += snackBar;
     setTimeout(() => {
       $gridWrapper.removeChild(document.querySelector(".snackBar-sub"));
-    }, 5000);
+    }, SNACKBAR_DURATION);
   }
 }
