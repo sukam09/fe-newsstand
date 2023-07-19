@@ -16,10 +16,12 @@ const initPressList = (pressData, categoryList) => {
 
   // setListArrow(); // 기능 추가 전
   setCategoryShuffle(pressData, categoryList);
-  setCategoryArticle();
+
   //
+  setCategoryArticle();
+  LIST.PAGE_COUNT += 1; //?
   setProgressBar();
-  // setCategory();
+  setProgressBarEvent();
 };
 
 /**
@@ -103,12 +105,14 @@ const setListNav = (categoryList) => {
   });
 };
 
+////////////////////////////////////////////
 /**
  * 언론사 리스트의 Progress Bar
  */
 const setProgressBar = () => {
   const liList = document.querySelectorAll('.press-category__li');
 
+  // 클릭 이벤트?
   liList.forEach((li) => {
     li.addEventListener('click', () => {
       const removeLi = document.querySelector('.progress-start');
@@ -126,6 +130,109 @@ const setProgressBar = () => {
   initLi.firstElementChild.classList.add('progress-start');
   const initDiv = initLi.querySelector('.press-category__div');
   initDiv.classList.remove('none');
+};
+
+/**
+ *  언론사 리스트의 Progress Bar 이벤트
+ */
+const setProgressBarEvent = () => {
+  const progressBar = document.querySelectorAll('.press-category__li');
+  const progressStart = document.querySelector('.progress-start');
+  const progressNow = progressStart.querySelector('.press-category__div-now');
+  const progressSum = progressStart.querySelector('.press-category__div-sum');
+  progressNow.innerText = LIST.PAGE_COUNT;
+  progressSum.innerText = LIST.PAGE_LENTH;
+
+  progressBar.forEach((progress) => {
+    progress.addEventListener('animationiteration', () => {
+      const progressNow = progress.querySelector('.press-category__div-now');
+      const progressSum = progress.querySelector('.press-category__div-sum');
+
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+      getProgressBarEvent(progressNow, progressSum);
+    });
+  });
+};
+
+const getProgressBarEvent = (progressNow, progressSum) => {
+  setCategoryArticle();
+  const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
+  const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
+  progressNow.innerText = LIST.PAGE_COUNT;
+  progressSum.innerText = LIST.PAGE_LENTH;
+
+  if (PAGE) setNextPage(progressNow);
+  if (!PAGE && CATEGORY) setNextCategory();
+  if (!PAGE && !CATEGORY) setFirstCategory();
+};
+
+const setNextPage = (progressNow) => {
+  LIST.PAGE_COUNT += 1;
+  progressNow.innerText = LIST.PAGE_COUNT;
+};
+
+const setNextCategory = () => {
+  LIST.CATEGORY_COUNT += 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_COUNT = 0;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = removeLi.nextElementSibling;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
+};
+
+const setFirstCategory = () => {
+  LIST.CATEGORY_COUNT = 0;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_COUNT = 0;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = document.querySelector('.press-category__ul').firstElementChild;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
+};
+
+//////////////////////////////////////////////////////
+
+const setCategoryArticle = () => {
+  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
+
+  // 다크모드는 나중에 처리하자
+  const sectionMain = document.querySelector('.press-category__section-main');
+  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
+  sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
+  sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
+
+  const sectionSub = document.querySelector('.press-category__section-sub');
+  const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
+  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
+  sectionSubList.forEach((sub, subIdx) => {
+    sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
+    sub.href = categoryArticle.categorySubTitle[subIdx].link;
+  });
+};
+
+const setCategoryShuffle = (pressData, categoryList) => {
+  categoryList.forEach((category) => {
+    let categoryFilter = pressData.filter((press) => press.categoryName === category);
+    if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
+    LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
+  });
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
 };
 
 /**
@@ -197,64 +304,35 @@ const setListArrow = () => {
 /**
  * 언론사 그리드의 카테고리
  * 셋인터벌 수정하기
- */
-const setCategory = () => {
-  clearInterval(LIST.PAGE_INTERVAL);
+//  */
+// const setCategory = () => {
+//   clearInterval(LIST.PAGE_INTERVAL);
 
-  LIST.PAGE_INTERVAL = setInterval(() => {
-    console.log(LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
-    setCategoryArticle();
+//   LIST.PAGE_INTERVAL = setInterval(() => {
+//     console.log(LIST.PAGE_LENTH, LIST.PAGE_COUNT, LIST.CATEGORY_LENGTH, LIST.CATEGORY_COUNT);
+//     setCategoryArticle();
 
-    // 페이지 카운트가 넘어갈때
-    if (LIST.PAGE_COUNT < LIST.PAGE_LENTH) {
-      LIST.PAGE_COUNT += 1;
-    }
-    // 페이지 카운트가 안넘어갈때
-    if (LIST.PAGE_COUNT >= LIST.PAGE_LENTH) {
-      // 카테고리 길이가 넘어갈때
-      if (LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH) {
-        LIST.CATEGORY_COUNT += 1; // 카테고리 증가
-        LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
-        LIST.PAGE_COUNT = 0; // 페이지 초기화
-      }
-      // 카테고리 길이가 안넘어갈때
-      if (LIST.CATEGORY_COUNT >= LIST.CATEGORY_LENGTH) {
-        LIST.CATEGORY_COUNT = 0;
-        LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
-        LIST.PAGE_COUNT = 0; // 페이지 초기화
-      }
-    }
-  }, 3000);
-};
-
-const setCategoryShuffle = (pressData, categoryList) => {
-  categoryList.forEach((category) => {
-    let categoryFilter = pressData.filter((press) => press.categoryName === category);
-    if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
-    LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
-  });
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
-};
-
-const setCategoryArticle = () => {
-  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
-
-  // 다크모드는 나중에 처리하자
-  const sectionMain = document.querySelector('.press-category__section-main');
-  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
-  sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
-  sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
-  sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
-
-  const sectionSub = document.querySelector('.press-category__section-sub');
-  const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
-  sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
-  sectionSubList.forEach((sub, subIdx) => {
-    sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
-    sub.href = categoryArticle.categorySubTitle[subIdx].link;
-  });
-};
+//     // 페이지 카운트가 넘어갈때
+//     if (LIST.PAGE_COUNT < LIST.PAGE_LENTH) {
+//       LIST.PAGE_COUNT += 1;
+//     }
+//     // 페이지 카운트가 안넘어갈때
+//     if (LIST.PAGE_COUNT >= LIST.PAGE_LENTH) {
+//       // 카테고리 길이가 넘어갈때
+//       if (LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH) {
+//         LIST.CATEGORY_COUNT += 1; // 카테고리 증가
+//         LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
+//         LIST.PAGE_COUNT = 0; // 페이지 초기화
+//       }
+//       // 카테고리 길이가 안넘어갈때
+//       if (LIST.CATEGORY_COUNT >= LIST.CATEGORY_LENGTH) {
+//         LIST.CATEGORY_COUNT = 0;
+//         LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1; // 페이지 길이 설정
+//         LIST.PAGE_COUNT = 0; // 페이지 초기화
+//       }
+//     }
+//   }, 3000);
+// };
 
 ///////////////////////////////////////////////////////////////
 
