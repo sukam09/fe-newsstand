@@ -1,5 +1,6 @@
 import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
+import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
 import { SubscribeButton } from "./components.js";
@@ -31,12 +32,13 @@ const fillGridView = (newsData, currentPage) => {
 
 const handleSubscribeButtonClick = (e) => {
   const $button = e.target.closest(".subscribe-btn");
-  const name = $button.previousElementSibling.alt;
+  if (!$button) return;
 
+  const name = $button.previousElementSibling.alt;
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    // TODO: 구독해지 로직
+    store.dispatch(openModal(name));
     return;
   }
 
