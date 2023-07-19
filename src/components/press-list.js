@@ -17,9 +17,7 @@ const initPressList = (pressData, categoryList) => {
   // setListArrow(); // 기능 추가 전
   setListShuffle(pressData, categoryList);
   setListArticle();
-  LIST.PAGE_COUNT += 1;
 
-  setProgressBar();
   setProgressBarClick();
   setProgressBarEvent();
 
@@ -143,7 +141,6 @@ const setListArticle = () => {
 /**
  * 언론사 리스트의 Progress Bar
  */
-const setProgressBar = () => {};
 
 // 함수 줄이기
 const setProgressBarClick = () => {
@@ -281,29 +278,54 @@ const setArrowLeft = () => {
     const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
     ///////////
-    const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
-    const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
+    const PAGE = 0 < LIST.PAGE_COUNT;
+    const CATEGORY = 0 < LIST.CATEGORY_COUNT;
     progressNow.innerText = LIST.PAGE_COUNT;
     progressSum.innerText = LIST.PAGE_LENTH;
 
-    if (PAGE) setNextPage(progressNow);
-    if (!PAGE && CATEGORY) setNextCategory();
-    if (!PAGE && !CATEGORY) setFirstCategory();
+    if (PAGE) setPrevPage(progressNow);
+    if (!PAGE && CATEGORY) setPrevCategory();
+    if (!PAGE && !CATEGORY) setLastCategory();
 
     setListArticle();
   });
 };
 
 const setPrevPage = (progressNow) => {
-  //
+  LIST.PAGE_COUNT -= 1;
+  progressNow.innerText = LIST.PAGE_COUNT;
 };
 
 const setPrevCategory = () => {
-  //
+  LIST.CATEGORY_COUNT -= 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = removeLi.previousElementSibling;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
 };
 
 const setLastCategory = () => {
-  //
+  LIST.CATEGORY_COUNT = LIST.CATEGORY_LENGTH;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = document.querySelector('.press-category__ul').lastElementChild;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
 };
 
 export { initPressList };
