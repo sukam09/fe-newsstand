@@ -1,7 +1,7 @@
 import { GRID_SIZE } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
 import { class_name } from "../../utils/domClassName.js";
-import { subscribe_press_list } from "../../../data/subscribeIdxList.js";
+import { subscribe_press_list, press_idx } from "../../../data/subscribeIdxList.js";
 
 class gridViewInfo {
     constructor(data, isSub) {
@@ -21,7 +21,9 @@ class gridViewInfo {
     };
 
     getData = function () {
-        return this.data;
+        return this.data.map((idx) => {
+            return press_list[idx - 1];
+        });
     };
 
     getLeftBtn = function () {
@@ -39,15 +41,19 @@ class gridViewInfo {
     setPage = function (isRight) {
         isRight ? (this.current_page += 1) : (this.current_page -= 1);
     };
+
+    update = function (data) {
+        this.data = data;
+    };
 }
 
 // grid view page 정보 (main)
 export const grid_view_info_entire = new gridViewInfo(
-    press_list.slice().sort(() => Math.random() - 0.5),
+    press_idx.slice().sort(() => Math.random() - 0.5),
     class_name.ENTIRE
 );
 // grid view page 정보 (sub)
-export const grid_view_info_sub = new gridViewInfo(subscribe_press_list, class_name.SUBSCRIBE);
+export const grid_view_info_sub = new gridViewInfo([], class_name.SUBSCRIBE);
 
 // 페이지 넘길 때 첫번째 마지막 페이지 화살표 숨김
 export function toggleArrow(grid_view_info) {
@@ -55,10 +61,9 @@ export function toggleArrow(grid_view_info) {
     const right_btn = document.querySelector(grid_view_info.getRightBtn());
     const current_page = grid_view_info.getCurrentPage();
     const max_page = grid_view_info.getMaxPage();
-    if (current_page === 0) left_btn.style.visibility = "hidden";
-    if (current_page === max_page) right_btn.style.visibility = "hidden";
-    if (current_page !== 0 && current_page !== max_page) {
-        left_btn.style.visibility = "visible";
-        right_btn.style.visibility = "visible";
-    }
+    console.log(current_page, max_page);
+    left_btn.style.visibility = "visible";
+    right_btn.style.visibility = "visible";
+    if (current_page <= 0) left_btn.style.visibility = "hidden";
+    if (current_page >= max_page) right_btn.style.visibility = "hidden";
 }

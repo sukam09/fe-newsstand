@@ -5,9 +5,13 @@ import { class_name } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { subscribe_idx_list } from "../../data/subscribeIdxList.js";
 import { createSnackBar } from "../components/common/snackBar.js";
+import { createAlert } from "../components/common/alertSubscribe.js";
+import { _sub_press_list } from "../Store.js";
+import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
+
 const btnFactory = new buttonFacotry();
 
-function createMainGrid(grid_view_info, isInit) {
+export function createMainGrid(grid_view_info, isInit) {
     const $container = isInit
         ? create.div({ className: "main_news_container" })
         : document.querySelector(`${grid_view_info.getClassName()}`).querySelector(".main_news_container");
@@ -41,21 +45,32 @@ function createMainGrid(grid_view_info, isInit) {
                 },
             });
 
-            const is_subscribe_press = !subscribe_idx_list.includes(data_list[cnt].id);
+            const is_subscribe_press = !_sub_press_list.getIdx().includes(data_list[cnt].id);
             const $subscribe_btn = btnFactory.create({
                 type: "subscribe",
                 isDefault: true,
                 isSubscribe: is_subscribe_press,
+                press_id: data_list[cnt].id,
             });
+
             $subscribe_btn.setEvents({
                 click: () => {
                     $subscribe_btn.changeMode();
                     const $snack_bar = document.querySelector(".snack-bar");
                     $snack_bar.style.marginTop = `${-$snack_bar.getBoundingClientRect().height / 2}px`;
                     $snack_bar.style.marginLeft = `${-$snack_bar.getBoundingClientRect().width / 2}px`;
-                    $snack_bar.style.visibility = "visible";
+
+                    const $id = $subscribe_btn.getId();
+                    if ($subscribe_btn.getIsSubscribe()) {
+                        _sub_press_list.deleteState($id);
+                    } else {
+                        _sub_press_list.addState($id);
+                        $snack_bar.style.visibility = "visible";
+                    }
+
                     setTimeout(() => {
                         $snack_bar.style.visibility = "hidden";
+                        onClickSubBtn(true);
                     }, SNACK_BAR_TIME);
                 },
             });
@@ -100,17 +115,17 @@ function createGridArrowBtn(btnFactory, isRight, is_subscribe, grid_view_info) {
     });
 }
 
-function createGridView(is_subscribe, grid_view_info) {
+function createGridView(is_subscribe, grid_view_info, is_init) {
     const $container = document.querySelector(`.grid-${is_subscribe}`);
     $container.append(
         createGridArrowBtn(btnFactory, false, is_subscribe, grid_view_info).getButton(),
-        createMainGrid(grid_view_info, true),
+        createMainGrid(grid_view_info, is_init),
         createGridArrowBtn(btnFactory, true, is_subscribe, grid_view_info).getButton()
     );
     toggleArrow(grid_view_info);
 }
 
-export function gridView() {
-    createGridView(class_name.ENTIRE, grid_view_info_entire);
-    createGridView(class_name.SUBSCRIBE, grid_view_info_sub);
+export function gridView(is_init) {
+    createGridView(class_name.ENTIRE, grid_view_info_entire, is_init);
+    createGridView(class_name.SUBSCRIBE, grid_view_info_sub, is_init);
 }

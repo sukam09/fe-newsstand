@@ -8,6 +8,6 @@ import { listView } from "./container/listViewTemplate.js";
     createHeader();
     createBanner();
     createMainNav();
-    gridView();
+    gridView(true);
     listView();
 })();

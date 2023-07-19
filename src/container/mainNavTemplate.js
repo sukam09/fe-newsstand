@@ -9,12 +9,20 @@ function createMainNavLeft() {
     const $btn_entire = create.span({
         className: "nav-left_entire selected-bold16",
         txt: "전체 언론사",
-        events: { click: onClickSubBtn.bind({ is_subscribe: false }) },
+        events: {
+            click: () => {
+                onClickSubBtn(false);
+            },
+        },
     });
     const $btn_subscribe = create.span({
         className: "nav-left_subscribe available-medium16",
         txt: "내가 구독한 언론사",
-        events: { click: onClickSubBtn.bind({ is_subscribe: true }) },
+        events: {
+            click: () => {
+                onClickSubBtn(true);
+            },
+        },
     });
     $container.append($btn_entire, $btn_subscribe);
 
