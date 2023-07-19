@@ -24,9 +24,7 @@ import { renderListView } from "./views/list_views.js";
  */
 export function render(options, data, page) {
     if (options["main"] === "grid") {
-        if (options["press"] === "all") {
-            renderGridView(options, data, page, toggleArrow);
-        }
+        renderGridView(options, data, page, toggleArrow);
     }
 
     if (options["main"] === "list") {

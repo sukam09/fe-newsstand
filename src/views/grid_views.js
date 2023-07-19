@@ -26,7 +26,6 @@ function renderGridView(options, data, page, toggleArrow) {
 }
 
 function createPressList(container, data, idx) {
-    console.log(container, data, idx);
     for (let i = 0; i < COL_SIZE; i++) {
         let ul = document.createElement("ul");
         for (let j = 0; j < ROW_SIZE; j++) {
