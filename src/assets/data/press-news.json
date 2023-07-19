@@ -1,6 +1,4 @@
 {
-  "category": ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"],
-
   "press": [
     {
       "id": 1,
@@ -3249,7 +3247,7 @@
       "isSub": false,
 
       "categoryId": 0,
-      "categoryName": "종합/경제",
+      "categoryName": "스포츠/연예",
       "categoryEdit": "2023.02.10 18:27",
       "categoryImg": "./assets/images/main-press/thumbnail1.jpg",
       "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",

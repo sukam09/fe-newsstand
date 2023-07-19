@@ -13,16 +13,16 @@ const initPressHeader = async () => {
   try {
     const fetchData = await getFetchData('./assets/data/press-news.json');
     let pressData = fetchData.press;
-    let categoryData = fetchData.category; ////
 
     setNav(getNavLeft());
     setNav(getNavRight());
     setNavClick(pressData);
 
     initLightDarkMode();
-    initPressGrid(pressData, LIST.SUFFLE);
-
-    // initPressList(pressData, categoryData); //
+    initPressGrid(pressData, LIST.SUFFLE_ID);
+    // LIST.SUBSCRIBE_NAME
+    initPressList(pressData, LIST.CATEGORY_NAME);
+    //
   } catch (error) {
     console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
   }
@@ -87,7 +87,7 @@ const entireEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWra
   STATE.IS_GRID = true;
   STATE.IS_TOTAL = true;
 
-  initPressGrid(pressData, LIST.SUFFLE);
+  initPressGrid(pressData, LIST.SUFFLE_ID);
 };
 
 const subscribeEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper) => {
@@ -132,7 +132,7 @@ const gridEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
 
     imgList.src = PATH.HIDE_LIST_ICON;
     imgGrid.src = PATH.GRID_ICON;
-    initPressGrid(pressData, LIST.SUFFLE);
+    initPressGrid(pressData, LIST.SUFFLE_ID);
   }
   if (!STATE.IS_TOTAL) {
     gridWrapper.classList.remove('none');
@@ -140,7 +140,7 @@ const gridEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
 
     imgList.src = PATH.HIDE_LIST_ICON;
     imgGrid.src = PATH.GRID_ICON;
-    initPressGrid(pressData, LIST.SUBSCRIBE);
+    initPressGrid(pressData, LIST.SUBSCRIBE_ID);
   }
 };
 
