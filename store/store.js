@@ -11,6 +11,7 @@ class Store {
         this.crntCategory = 0; // category index (list view)
         this.crntFilter = FILTER_TYPE.ALL;
         this.subList = [];
+        this.shuffledList = [];
 
         this.observers = new Set();
     }
@@ -30,7 +31,9 @@ class Store {
     getSubList() {
         return this.subList;
     }
-
+    getShuffledList() {
+        return this.shuffledList;
+    }
     
     setCrntPage(page){
         this.crntPage = page;
@@ -59,7 +62,13 @@ class Store {
                 this.subList.pop(idx);
                 break;
         }
+    }  
+    setShuffledList(arr){
+        this.shuffledList = arr;
     }
+
+
+
 
     addSubscriber(subscriber) {
         this.observers.add(subscriber)

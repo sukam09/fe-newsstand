@@ -1,6 +1,4 @@
-import pressList from "../asset/data/pressList.js";
 import { store } from "../store/store.js";
-import { shuffleArray } from "../util/shuffleArray.js";
 import { handleSubscribe } from "./subscribe.js";
 
 const gridContainer = document.querySelector(".grid-box");
@@ -8,7 +6,6 @@ const pressCover = document.querySelector(".press-cover");
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 
-let pressIdxArray = Array.from(Array(pressList.length).keys()); // create array of consecutive numbers [0...95] - to be used in drawPress()
 
 function checkSubscription(item){
     let subscribedPress = store.getSubList();
@@ -35,8 +32,8 @@ function handlePressHover(){
 }
 function drawPress(){
     gridContainer.innerHTML = "";
-    let shuffledArray = shuffleArray(pressIdxArray);
     let crntPage = store.getCrntPage()
+    const shuffledArray = store.getShuffledList();
 
     for (let i=24*crntPage;i<24*(crntPage+1);i++){
         gridContainer.innerHTML += `
