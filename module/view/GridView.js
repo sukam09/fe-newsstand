@@ -7,6 +7,7 @@ import { store } from "../../store.js";
 import { shuffle_id } from "../utility/Shuffle.js";
 
 let news_icon;
+const press_names = [];
 
 const ICONS_PER_PAGE = 24;
 
@@ -23,8 +24,7 @@ function createSubscribeDiv(li, pressID) {
 
   li.innerHTML += UnSubscribeModeDiv;
   SubscribeBtn = li.querySelector(".subscribe-btn");
-
-  EventHandlerRegister(SubscribeBtn, pressID);
+  EventHandlerRegister(SubscribeBtn, pressID, press_names);
 }
 
 function pressMouseOver(li) {
@@ -49,6 +49,13 @@ function pressMouseOut(li) {
 
 export async function FetchData() {
   news_icon = await fetchPressData("./Data/grid_icon.json");
+
+  //언론사 이름 저장
+  press_names.length = 0;
+  news_icon.forEach((press) => {
+    press_names.push(press.name);
+  });
+
   if (VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
     const subscribe_icon_IDs = store.getSubscribe();
     const subscribe_icon_data = [];

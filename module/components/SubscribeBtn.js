@@ -16,12 +16,12 @@ function snackBar() {
   }, 5000);
 }
 
-function createAlert(pressID) {
+function createAlert(pressName) {
   const alertElement = document.createElement("div");
   alertElement.className = "unsubscribe-alert";
   alertElement.innerHTML = `
           <div class="alert-contents">
-            <span class="alert-contents-text display-bold16">${pressID}<span class="display-medium16">을(를)</span> </span>
+            <span class="alert-contents-text display-bold16">${pressName}<span class="display-medium16">을(를)</span> </span>
             <span class="alert-contents-text display-medium16">구독해지하시겠습니까?</span>
           </div>
           <div class="alert-buttons">
@@ -35,8 +35,13 @@ function createAlert(pressID) {
 
   return alertElement;
 }
-function AlertHandler(pressID) {
-  const alertElement = createAlert(pressID);
+function AlertHandler(pressID, press_names) {
+
+
+  const pressName = press_names[pressID-1];
+
+
+  const alertElement = createAlert(pressName);
   const confirmBtn = alertElement.querySelector(".confirm-unsubscribe");
   const rejectBtn = alertElement.querySelector(".reject");
 
@@ -58,7 +63,7 @@ function AlertHandler(pressID) {
   });
 }
 
-function SubscribeBtnEventHandler(e, btnElement, pressID) {
+function SubscribeBtnEventHandler(e, btnElement, pressID, press_names) {
   const isSubscribe = SubscribeState(pressID);
   if (!isSubscribe) {
     snackBar(e);
@@ -72,12 +77,12 @@ function SubscribeBtnEventHandler(e, btnElement, pressID) {
       grid.removeChild(snackBar);
     }
 
-    AlertHandler(pressID);
+    AlertHandler(pressID, press_names);
   }
 }
 
-export function EventHandlerRegister(btnElement, pressID) {
-  btnElement.addEventListener("click", (e) => SubscribeBtnEventHandler(e, btnElement, pressID));
+export function EventHandlerRegister(btnElement, pressID, press_names) {
+  btnElement.addEventListener("click", (e) => SubscribeBtnEventHandler(e, btnElement, pressID, press_names));
 }
 
 export function SubscribeState(pressID) {
