@@ -13,12 +13,12 @@ export async function getCategoryInfo() {
   const categoryNames = categoryPath.newsList.map((elem) => elem.category);
 
   // 누적합 연산을 통한 카테고리 개수세기
-  const categoryMap = categoryNames.reduce((acc, curr)=>{
-    acc[curr] = (acc[curr] || 0) +1;
+  const categoryMap = categoryNames.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
     return acc;
   }, {})
 
-  const putCategory = Object.keys(categoryMap).reduce((acc, curr)=> {
+  const putCategory = Object.keys(categoryMap).reduce((acc, curr) => {
     return acc + `<li class="press-content-category">
     <div class="press-content-category-progressbar"></div>
     <span class="press-content-category-name">${curr}</span>
@@ -42,7 +42,7 @@ export async function getCategoryInfo() {
 // 카테고리 이름 알려주는 거 (완)
 function getCategoryIdx() {
   const nowCategory = getQuerySelector(undefined, ".selected .press-content-category-name");
-  
+
   nameOfEachCategory.forEach((elem, id) => {
     if (elem === nowCategory.innerHTML) {
       categoryIdx = id;
@@ -53,7 +53,7 @@ function getCategoryIdx() {
 // selected 클래스 다 제거 (완)
 function initSelectedState() {
   const categories = getQuerySelectorAll(undefined, '.press-content-category');
-  categories.forEach((elem)=> elem.classList.remove('selected'));
+  categories.forEach((elem) => elem.classList.remove('selected'));
 }
 
 //selected 클래스 추가(완)
@@ -66,7 +66,7 @@ function changeCategory(idx) {
 // 마우스 클릭 시 해당하는 카테고리 selected 클래스 추가
 function selectCategory() {
   const categories = getQuerySelectorAll(undefined, '.press-content-category');
-  categories.forEach((elem)=> {
+  categories.forEach((elem) => {
     elem.addEventListener('click', (e) => {
       initSelectedState();
       e.currentTarget.classList.add('selected');
@@ -76,6 +76,7 @@ function selectCategory() {
       putCurrentPage();
       showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
       moveCategoryProgressbar();
+      restartProgressbar();
     })
   })
 }
@@ -83,22 +84,24 @@ function selectCategory() {
 function updatePageAndCategory(pageMoveFlag) {
   currentPage += pageMoveFlag;
 
-  if (pageMoveFlag === -1){
+  if (pageMoveFlag === -1) {
     if (currentPage < 1) {
-      categoryIdx --;
-      categoryIdx < 0 && (categoryIdx = numOfEachCategory.length-1);
+      categoryIdx--;
+      categoryIdx < 0 && (categoryIdx = numOfEachCategory.length - 1);
       currentPage = numOfEachCategory[categoryIdx];
       changeCategory(categoryIdx);
     }
   }
   else {
     if (currentPage > numOfEachCategory[categoryIdx]) {
-      categoryIdx ++;
+      categoryIdx++;
       (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
       currentPage = initPageValue;
       changeCategory(categoryIdx);
     }
   }
+
+
 }
 
 // 화살표로 카테고리 페이지 이동하기
@@ -115,7 +118,7 @@ export function moveCategory() {
 
   })
 
-  listNextArrow.addEventListener('click', ()=> {
+  listNextArrow.addEventListener('click', () => {
     updatePageAndCategory(1);
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
