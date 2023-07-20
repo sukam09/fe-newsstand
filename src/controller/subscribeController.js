@@ -50,4 +50,4 @@ function toggleSubscribe(src) {
   }
 }
 
-export { initSubscribeBtnEvnet, checkSubscribe, toggleSubscribe };
+export { initSubscribeBtnEvnet, checkSubscribe, clickSubscribeBtn, toggleSubscribe };
