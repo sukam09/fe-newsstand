@@ -42,5 +42,7 @@ export function showListNewsData(category, newsIdx) {
   // getQuerySelector(document, '.press-content-news-info-time').innerHTML = categoryObj[category][newsIdx-1].editDate;
 
   pressNewsContentHeadlines.innerHTML = putSubTitles;
+
+  getQuerySelector(undefined, ".press-content-news-footer").innerHTML = `${categoryObj[category][newsIdx-1].name} 언론사에서 직접 편집한 내용입니다.`;
 }
 
