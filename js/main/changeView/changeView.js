@@ -41,7 +41,6 @@ function changeBtnAndView(view) {
 function initViewChange() {
   changePressState();
   const view_type = document.querySelectorAll(".viewer-btn button");
-  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
   //view_type[0] : listview, view_type[1] : gridview
 
   view_type[0].addEventListener("click", () => {
@@ -65,7 +64,7 @@ function initViewChange() {
     alt="images"
   />`;
     view_type[1].innerHTML = `<img
-    src="../images/icon/Grid-view-checked.svg"
+  src="../images/icon/Grid-view-checked.svg"
     alt="images"
   />`;
     store.setType("grid-all");
@@ -86,10 +85,11 @@ function changePressState() {
 function handleAllPress() {
   if (store.state.type === "grid-sub") {
     store.setType("grid-all");
-    renderGridView();
     store.setGridPage(1);
+    renderGridView();
   } else {
     store.setType("list-category");
+    store.setListPage(0);
     renderListView();
   }
   changePressCss("all");
@@ -97,10 +97,11 @@ function handleAllPress() {
 function handleSubPress() {
   if (store.state.type === "grid-all") {
     store.setType("grid-sub");
-    renderGridView();
     store.setGridPage(1);
+    renderGridView();
   } else {
     store.setType("list-press");
+    store.setListPage(0);
     renderListView();
   }
   changePressCss("sub");

@@ -2,6 +2,7 @@ import { findCurrentCategory } from "./handleNewsData.js";
 import { news_by_category } from "./manipulateNewsByCategory.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
 import { store } from "../../../store.js";
+import { news_by_press } from "./manipulateNewsByPress.js";
 /* about list view left, right Btn */
 
 function addEventToBtn() {
@@ -29,7 +30,12 @@ function handleLeftBtn(currentCategory) {
     if (prevCategory === null) {
       prevCategory = document.querySelector(".category li:last-child");
     }
-    const prevMaxPage = news_by_category[prevCategory.innerText].length;
+    let prevMaxPage;
+    if (store.state.type === "list-category") {
+      prevMaxPage = news_by_category[prevCategory.innerText].length;
+    } else {
+      prevMaxPage = news_by_press[prevCategory.innerText].length;
+    }
     store.setListPage(prevMaxPage - 1);
     addAnimation(prevCategory, "Prev");
   } else {
