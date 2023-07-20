@@ -1,5 +1,6 @@
 /***** grid & list 넘기는 화살표 버튼 style *****/
-.press-grid {
+.press-grid,
+.press-sub-grid {
   position: relative;
 }
 

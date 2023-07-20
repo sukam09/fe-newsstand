@@ -1,5 +1,6 @@
 /***** 언론사 목록 grid style *****/
-#press-list {
+#press-list,
+#press-sub-list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -8,6 +9,8 @@
   gap: 1px;
   border-top: 1px solid var(--border-border-default, #d2dae0);
   border-left: 1px solid var(--border-border-default, #d2dae0);
+  z-index: 1;
+  position: relative;
 }
 
 .press-item {
@@ -20,11 +23,12 @@
 }
 
 /***** grid hover시 구독하기 버튼 나타나게 *****/
-.sub {
+.sub,
+.un-sub {
   display: none;
 }
 
-.press-item:hover {
+.full:hover {
   background-color: var(--surface-alt);
 }
 
@@ -33,6 +37,16 @@
   cursor: pointer;
 }
 
+.press-item:hover .un-sub {
+  display: block;
+  cursor: pointer;
+}
+
 .press-item:hover .original {
   display: none;
+}
+
+.yes,
+.no {
+  cursor: pointer;
 }
