@@ -1,387 +1,483 @@
 [
   {
     "id": "1",
+    "name": "머니투데이",
     "path": "../../asset/icons/basic/news_logo1.svg"
   },
   {
     "id": "2",
+    "name": "경향신문",
     "path": "../../asset/icons/basic/news_logo2.svg"
   },
   {
     "id": "3",
+    "name": "뉴스타파",
     "path": "../../asset/icons/basic/news_logo3.svg"
   },
   {
     "id": "4",
+    "name": "오마이뉴스",
     "path": "../../asset/icons/basic/news_logo4.svg"
   },
   {
     "id": "5",
+    "name": "데일리안",
     "path": "../../asset/icons/basic/news_logo5.svg"
   },
   {
     "id": "6",
+    "name": "헤드럴경제",
     "path": "../../asset/icons/basic/news_logo6.svg"
   },
   {
     "id": "7",
+    "name": "세계일보",
     "path": "../../asset/icons/basic/news_logo7.svg"
   },
   {
     "id": "8",
+    "name": "아시아경제",
     "path": "../../asset/icons/basic/news_logo8.svg"
   },
   {
     "id": "9",
+    "name": "이데일리",
     "path": "../../asset/icons/basic/news_logo9.svg"
   },
   {
     "id": "10",
+    "name": "한국일보",
     "path": "../../asset/icons/basic/news_logo10.svg"
   },
   {
     "id": "11",
+    "name": "아이뉴스",
     "path": "../../asset/icons/basic/news_logo11.svg"
   },
   {
     "id": "12",
+    "name": "파이낸셜뉴스",
     "path": "../../asset/icons/basic/news_logo12.svg"
   },
   {
     "id": "13",
+    "name": "스포츠서울",
     "path": "../../asset/icons/basic/news_logo13.svg"
   },
   {
     "id": "14",
+    "name": "스포츠동아",
     "path": "../../asset/icons/basic/news_logo14.svg"
   },
   {
     "id": "15",
+    "name": "석간문화일보",
     "path": "../../asset/icons/basic/news_logo15.svg"
   },
   {
     "id": "16",
+    "name": "KBS WORLD",
     "path": "../../asset/icons/basic/news_logo16.svg"
   },
   {
     "id": "17",
+    "name": "코리아중앙데일리",
     "path": "../../asset/icons/basic/news_logo17.svg"
   },
   {
     "id": "18",
+    "name": "인사이트",
     "path": "../../asset/icons/basic/news_logo18.svg"
   },
   {
     "id": "19",
+    "name": "법률방송뉴스",
     "path": "../../asset/icons/basic/news_logo19.svg"
   },
   {
     "id": "20",
+    "name": "시사저널e",
     "path": "../../asset/icons/basic/news_logo20.svg"
   },
   {
     "id": "21",
+    "name": "조이뉴스24",
     "path": "../../asset/icons/basic/news_logo21.svg"
   },
   {
     "id": "22",
+    "name": "에너지경제",
     "path": "../../asset/icons/basic/news_logo22.svg"
   },
   {
     "id": "23",
+    "name": "BUSINESS POST",
     "path": "../../asset/icons/basic/news_logo23.svg"
   },
   {
     "id": "24",
+    "name": "CEO스코어데일리",
     "path": "../../asset/icons/basic/news_logo24.svg"
   },
   {
     "id": "25",
+    "name": "KNN",
     "path": "../../asset/icons/basic/news_logo25.svg"
   },
   {
     "id": "26",
+    "name": "코리아헤럴드",
     "path": "../../asset/icons/basic/news_logo26.svg"
   },
   {
     "id": "27",
+    "name": "MBC",
     "path": "../../asset/icons/basic/news_logo27.svg"
   },
   {
     "id": "28",
+    "name": "NewDaily",
     "path": "../../asset/icons/basic/news_logo28.svg"
   },
   {
     "id": "29",
+    "name": "국민일보",
     "path": "../../asset/icons/basic/news_logo29.svg"
   },
   {
     "id": "30",
+    "name": "일간스포츠",
     "path": "../../asset/icons/basic/news_logo30.svg"
   },
   {
     "id": "31",
+    "name": "ZDNET Korea",
     "path": "../../asset/icons/basic/news_logo31.svg"
   },
   {
     "id": "32",
+    "name": "마이데일리",
     "path": "../../asset/icons/basic/news_logo32.svg"
   },
   {
     "id": "33",
+    "name": "SBS",
     "path": "../../asset/icons/basic/news_logo33.svg"
   },
   {
     "id": "34",
+    "name": "서울경제",
     "path": "../../asset/icons/basic/news_logo34.svg"
   },
   {
     "id": "35",
+    "name": "매일경제",
     "path": "../../asset/icons/basic/news_logo35.svg"
   },
   {
     "id": "36",
+    "name": "MBN",
     "path": "../../asset/icons/basic/news_logo36.svg"
   },
   {
     "id": "37",
+    "name": "YTN",
     "path": "../../asset/icons/basic/news_logo37.svg"
   },
   {
     "id": "38",
+    "name": "시사위크",
     "path": "../../asset/icons/basic/news_logo38.svg"
   },
   {
     "id": "39",
+    "name": "Digital Today",
     "path": "../../asset/icons/basic/news_logo39.svg"
   },
   {
     "id": "40",
+    "name": "dataNews",
     "path": "../../asset/icons/basic/news_logo40.svg"
   },
   {
     "id": "41",
+    "name": "한국대학신문",
     "path": "../../asset/icons/basic/news_logo41.svg"
   },
   {
     "id": "42",
+    "name": "서울피어낸스",
     "path": "../../asset/icons/basic/news_logo42.svg"
   },
   {
     "id": "43",
+    "name": "엑스포츠뉴스",
     "path": "../../asset/icons/basic/news_logo43.svg"
   },
   {
     "id": "44",
+    "name": "맥스무비",
     "path": "../../asset/icons/basic/news_logo44.svg"
   },
   {
     "id": "45",
+    "name": "OBS",
     "path": "../../asset/icons/basic/news_logo45.svg"
   },
   {
     "id": "46",
+    "name": "소년한국일보",
     "path": "../../asset/icons/basic/news_logo46.svg"
   },
   {
     "id": "47",
+    "name": "한국일보",
     "path": "../../asset/icons/basic/news_logo47.svg"
   },
   {
     "id": "48",
+    "name": "sportalkorea",
     "path": "../../asset/icons/basic/news_logo48.svg"
   },
   {
     "id": "49",
+    "name": "프레시안",
     "path": "../../asset/icons/basic/news_logo49.svg"
   },
   {
     "id": "50",
+    "name": "노컷뉴스",
     "path": "../../asset/icons/basic/news_logo50.svg"
   },
   {
     "id": "51",
+    "name": "The JoongAng",
     "path": "../../asset/icons/basic/news_logo51.svg"
   },
   {
     "id": "52",
+    "name": "서울신문",
     "path": "../../asset/icons/basic/news_logo52.svg"
   },
 
   {
     "id": "53",
+    "name": "스포츠조선",
     "path": "../../asset/icons/basic/news_logo53.svg"
   },
   {
     "id": "54",
+    "name": "전자신문",
     "path": "../../asset/icons/basic/news_logo54.svg"
   },
   {
     "id": "55",
+    "name": "한국경제TV",
     "path": "../../asset/icons/basic/news_logo55.svg"
   },
   {
     "id": "56",
+    "name": "BLOTER",
     "path": "../../asset/icons/basic/news_logo56.svg"
   },
   {
     "id": "57",
+    "name": "KBS",
     "path": "../../asset/icons/basic/news_logo57.svg"
   },
   {
     "id": "58",
+    "name": "동아일보",
     "path": "../../asset/icons/basic/news_logo58.svg"
   },
   {
     "id": "59",
+    "name": "NEWSIS",
     "path": "../../asset/icons/basic/news_logo59.svg"
   },
   {
     "id": "60",
+    "name": "한국경제",
     "path": "../../asset/icons/basic/news_logo60.svg"
   },
   {
     "id": "61",
+    "name": "시사IN",
     "path": "../../asset/icons/basic/news_logo61.svg"
   },
   {
     "id": "62",
+    "name": "월간 산",
     "path": "../../asset/icons/basic/news_logo62.svg"
   },
   {
     "id": "63",
+    "name": "독서신문",
     "path": "../../asset/icons/basic/news_logo63.svg"
   },
   {
     "id": "64",
+    "name": "ECONO TIMES",
     "path": "../../asset/icons/basic/news_logo64.svg"
   },
   {
     "id": "65",
+    "name": "TJB 대전방송",
     "path": "../../asset/icons/basic/news_logo65.svg"
   },
   {
     "id": "66",
+    "name": "오늘시사N",
     "path": "../../asset/icons/basic/news_logo66.svg"
   },
   {
     "id": "67",
+    "name": "데일리한국",
     "path": "../../asset/icons/basic/news_logo67.svg"
   },
   {
     "id": "68",
+    "name": "뉴스토마토",
     "path": "../../asset/icons/basic/news_logo68.svg"
   },
   {
     "id": "69",
+    "name": "에이블뉴스",
     "path": "../../asset/icons/basic/news_logo69.svg"
   },
   {
     "id": "70",
+    "name": "YTN사이언스",
     "path": "../../asset/icons/basic/news_logo70.svg"
   },
   {
     "id": "71",
+    "name": "OSEN",
     "path": "../../asset/icons/basic/news_logo71.svg"
   },
   {
     "id": "72",
+    "name": "디지털타임스",
     "path": "../../asset/icons/basic/news_logo72.svg"
   },
   {
     "id": "73",
+    "name": "미디어오늘",
     "path": "../../asset/icons/basic/news_logo73.svg"
   },
   {
     "id": "74",
+    "name": "연합뉴스TV",
     "path": "../../asset/icons/basic/news_logo74.svg"
   },
   {
     "id": "75",
+    "name": "한겨레",
     "path": "../../asset/icons/basic/news_logo75.svg"
   },
   {
     "id": "76",
+    "name": "조선Biz",
     "path": "../../asset/icons/basic/news_logo76.svg"
   },
   {
     "id": "77",
+    "name": "JTBC",
     "path": "../../asset/icons/basic/news_logo77.svg"
   },
   {
     "id": "78",
+    "name": "metro",
     "path": "../../asset/icons/basic/news_logo78.svg"
   },
   {
     "id": "79",
+    "name": "비즈한국",
     "path": "../../asset/icons/basic/news_logo79.svg"
   },
   {
     "id": "80",
+    "name": "주간경향",
     "path": "../../asset/icons/basic/news_logo80.svg"
   },
   {
     "id": "81",
+    "name": "Forbes",
     "path": "../../asset/icons/basic/news_logo81.svg"
   },
   {
     "id": "82",
+    "name": "TREPORT",
     "path": "../../asset/icons/basic/news_logo82.svg"
   },
   {
     "id": "83",
+    "name": "티브이데일리",
     "path": "../../asset/icons/basic/news_logo83.svg"
   },
   {
     "id": "84",
+    "name": "BBS NEWS",
     "path": "../../asset/icons/basic/news_logo84.svg"
   },
   {
     "id": "85",
+    "name": "MONDE diplomatique",
     "path": "../../asset/icons/basic/news_logo85.svg"
   },
   {
     "id": "86",
+    "name": "MK 스포츠",
     "path": "../../asset/icons/basic/news_logo86.svg"
   },
   {
     "id": "87",
+    "name": "텐아시아",
     "path": "../../asset/icons/basic/news_logo87.svg"
   },
   {
     "id": "88",
+    "name": "정책브리핑",
     "path": "../../asset/icons/basic/news_logo88.svg"
   },
   {
     "id": "89",
+    "name": "씨네21",
     "path": "../../asset/icons/basic/news_logo89.svg"
   },
   {
     "id": "90",
+    "name": "뉴스포스트",
     "path": "../../asset/icons/basic/news_logo90.svg"
   },
   {
     "id": "91",
+    "name": "정신의학신문",
     "path": "../../asset/icons/basic/news_logo91.svg"
   },
   {
     "id": "92",
+    "name": "철강금속신문",
     "path": "../../asset/icons/basic/news_logo92.svg"
   },
   {
     "id": "93",
+    "name": "IT 조선",
     "path": "../../asset/icons/basic/news_logo93.svg"
   },
   {
     "id": "94",
+    "name": "한국농어촌방송",
     "path": "../../asset/icons/basic/news_logo94.svg"
   },
   {
     "id": "95",
+    "name": "여성경제신문",
     "path": "../../asset/icons/basic/news_logo95.svg"
   },
   {
     "id": "96",
+    "name": "SBS Biz",
     "path": "../../asset/icons/basic/news_logo96.svg"
   }
 ]
