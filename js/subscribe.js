@@ -22,30 +22,26 @@ function gridMouseOut(target) {
 
 function gridMouseClick(target) {
   const $original = target.getElementsByTagName("img")[0];
-  const $sub_image = target.getElementsByTagName("img")[1];
   const $original_path = ".." + $original.src.split("5500")[1];
-  const $target_object = presses.find(target => target.path_light === $original_path);
+  const $target_object = presses.find(target => 
+    STATE.IS_DARK ? target.path_dark === $original_path :  target.path_light === $original_path);
   setSubData($target_object);
   drawGridView();
-  // $sub_image.src = $target_object.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
 }
 
 function listSubMouseClick(news) {
-  console.log(news);
-  console.log(DATA.now_category);
-  console.log(DATA.page_count[DATA.now_category]);
-  console.log(checkIsSubscribe("name", news.name));
   if (checkIsSubscribe("name", news.name) === undefined) {
     //구독 상태가 아니면
     setSubData(news);
-    console.log(STATE.SUB_DATA);
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
-    STATE.IS_SUB_VIEW = true;
     setTimeout(() => {
+      STATE.IS_SUB_VIEW = true;
       setDisplay(".subscribe-modal", "query", "none");
-      STATE.SUB_NEWS_PAGE = 0;
+      STATE.SUB_NEWS_PAGE = STATE.SUB_DATA.length-1;
       changeOption("subscribe");
+      setDisplay(".sub-list-nav",'query','block');
+      setDisplay(".list-nav",'query','none');  
       setSubListNav();
       drawNews();
     }, MODAL_POPUP_TIME);

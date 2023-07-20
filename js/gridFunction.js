@@ -12,7 +12,6 @@ function drawGridArrow() {
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
   const now_page = STATE.IS_SUB_VIEW ? STATE.SUB_GRID_PAGE : STATE.GRID_PAGE;
-  console.log(now_page+1, total_grid_page)
   if (total_grid_page === 0) {
     setDisplay("grid-prev", "id", "none");
     setDisplay("grid-next", "id", "none");
@@ -35,7 +34,7 @@ function appendPressInGrid(press) {
   $button.classList.add("hidden");
   preventButtonClick($button, false);
   const $sub_img = document.createElement("img");
-  if (STATE.IS_GRID_VIEW) {
+  if (STATE.IS_SUB_VIEW) {
     $sub_img.src = "../img/icons/unsubBtn.svg";
   } else {
     $sub_img.src = STATE.SUB_DATA.some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";

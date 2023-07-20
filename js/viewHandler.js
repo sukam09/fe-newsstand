@@ -61,7 +61,6 @@ function handleView(target) {
     changeViewIcon("list");
     STATE.IS_GRID_VIEW = false;
     if (STATE.IS_SUB_VIEW) {
-      console.log('here');
       // list 선택, list 구독 뷰 출력
       if (STATE.SUB_DATA.length === 0) {
         setDisplay(".no-sub-item-div", "query", "block");

@@ -24,7 +24,11 @@ function drawListArrow() {
   setDisplay(".list-prev", "query", "block");
   setDisplay(".list-next", "query", "block");
   if(STATE.IS_SUB_VIEW) {
-    if(STATE.SUB_NEWS_PAGE === 0) {
+    if(STATE.SUB_DATA.length === 1) {
+      setDisplay(".list-prev", "query", "none");
+      setDisplay(".list-next", "query", "none");
+    }
+    else if(STATE.SUB_NEWS_PAGE === 0) {
       setDisplay(".list-prev", "query", "none");
     } else if ( STATE.SUB_NEWS_PAGE + 1 === STATE.SUB_DATA.length) {
       setDisplay(".list-next", "query", "none");
@@ -41,7 +45,8 @@ function drawListArrow() {
 
 function drawNews() {
   const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]];
-  document.querySelector(".press-brandmark").src = news.path_light;
+  console.log(news);
+  document.querySelector(".press-brandmark").src = STATE.IS_DARK ? news.path_dark : news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;
   document.querySelector(".news-main p").textContent = news.headTitle;
@@ -64,9 +69,7 @@ function drawNews() {
 
 function restartAnimation(_class) { // 프로그래스 애니메이션 재시작
   const c_query = "."+_class;
-  console.log(_class);
   const $animation = document.querySelector(c_query);
-  console.log($animation);
   $animation.classList.remove(_class);
   void $animation.offsetWidth; 
   $animation.classList.add(_class);
@@ -86,40 +89,12 @@ function pressListArrow(increment) {
   setNowCount();
 }
 
-// function clickListRightBtn(category) {
-//   if (DATA.page_count[category] + 1 === DATA.total_pages[category] - 1) {
-//     DATA.page_count[category]++;
-//     hideArrow("right");
-//   } else {
-//     DATA.page_count[category]++;
-//   }
-//   drawNews();
-//   showArrow("left");
-//   restartAnimation();
-//   setNowCount();
-// }
-
-// function clickListLeftBtn(category) {
-//   if (DATA.page_count[category] - 1 === -1) {
-//     return;
-//   } else if (DATA.page_count[category] - 1 === 0) {
-//     DATA.page_count[category]--;
-//     hideArrow("left");
-//   } else {
-//     DATA.page_count[category]--;
-//   }
-//   drawNews();
-//   showArrow("right");
-//   restartAnimation();
-//   setNowCount();
-// }
 
 function clickCategory(target) {
   checkSameCategory(target);
   DATA.page_count[target.firstElementChild.innerText.trim()] = 0;
   DATA.now_category = target.querySelector(".nav-item").textContent.trim();
-  showArrow("right");
-  hideArrow("left");
+  drawListArrow()
   initProgressWhenCategoryClick(target);
   drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
 }
@@ -174,7 +149,7 @@ function nextNewsWhenProgressEnd() {
 }
 
 function redrawNewsContents() {
-  drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
+  drawNews();
   setNowCount();
   drawListArrow();
 }
@@ -208,13 +183,6 @@ function setNowCount() {
   document.querySelector(".total-count").textContent = DATA.total_pages[DATA.now_category];
 }
 
-function hideArrow(direction) {
-  document.querySelector(`.${direction}-btn`).classList.add("hidden");
-}
-
-function showArrow(direction) {
-  document.querySelector(`.${direction}-btn`).classList.remove("hidden");
-}
 
 function checkSameCategory(target) {
   if (DATA.now_category === target.firstElementChild.textContent.trim()) {

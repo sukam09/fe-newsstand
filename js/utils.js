@@ -35,7 +35,8 @@ function findPress(type, target) {
   if (type === "src") {
     let $target_src = target.getElementsByTagName("img")[0].src;
     $target_src = ".." + $target_src.split("5500")[1];
-    const press_name = presses.find(press => press.path_light === $target_src).name;
+    const press_name = presses.find(press => 
+      $target_src === STATE.IS_DARK ? press.path_dark : press.path_light).name
     return press_name;
   } else if (type === "name") {
     return presses.find(press => press.name === target.textContent); // 객체반환
@@ -68,8 +69,8 @@ function findSpanNearby(element) {
 */
 function checkIsSubscribe(type, target) {
   if (type === "src") {
-    STATE.SUB_DATA.forEach(data => console.log(data.path_light));
-    return STATE.SUB_DATA.find(data => data.path_light === target);
+    return STATE.SUB_DATA.find(data => 
+      target === STATE.IS_DARK ? data.path_dark : data.path_light);
   } else if (type === "name") {
     let rt;
     try {

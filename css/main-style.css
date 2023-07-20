@@ -30,6 +30,14 @@ header {
   margin-top: 54px;
 }
 
+body{
+  -ms-overflow-style: none;
+  }
+  
+ ::-webkit-scrollbar {
+   display: none;
+ }
+
 .container {
   width: 930px;
   margin: 0 auto;
@@ -118,8 +126,6 @@ h1 {
 .sub-list-nav > ul {
   display: flex;
   align-items: center;
-  border: 1px solid var(--border-default);
-  background: var(--surface-alt);
 }
 
 .list-nav > ul > li {
@@ -158,7 +164,7 @@ h1 {
 /* progress bar style */
 .progress-bar,
 .list-progress-bar {
-  background: var(--progress-before);
+  background: var(--progress-before) !important;
   display: flex;
   width: 166px;
   height: 40px;
@@ -690,9 +696,7 @@ h1 {
   align-items: flex-start;
   gap: 10px;
   align-self: stretch;
-  border: 1px solid var(--border-border-default, #d2dae0);
   border-bottom: none;
-  background: var(--surface-surface-default, #fff);
   text-align: center;
   flex: 1 0 0;
 }

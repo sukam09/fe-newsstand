@@ -40,6 +40,7 @@ async function initModalBtn() {
 }
 
 function handleModalBtn(target) {
+  console.log(target);
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
     //예 ?
@@ -53,6 +54,8 @@ function handleModalBtn(target) {
       // 리스트뷰일때
       const $news_article = document.querySelector(".news-article");
       const src_path = ".." + $news_article.querySelector("img").src.split("5500")[1];
+      console.log("src_path",src_path);
+      console.log(checkIsSubscribe("src", src_path));
       setSubData(checkIsSubscribe("src", src_path));
       STATE.SUB_NEWS_PAGE = 0;
       if (STATE.SUB_DATA.length === 0) {
@@ -64,9 +67,6 @@ function handleModalBtn(target) {
         drawNews();
       }
     }
-    offUndiscribeModal();
-    offListUndiscribeModal();
-  } else if ($target_class.contains("neg")) {
     offUndiscribeModal();
     offListUndiscribeModal();
   }
