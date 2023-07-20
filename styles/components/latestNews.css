@@ -34,6 +34,12 @@
   cursor: pointer;
 }
 
+.auto-rolling-news p {
+  width: 340px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .news-stand-logo {
   display: flex;
   align-items: center;
