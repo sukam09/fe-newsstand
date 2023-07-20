@@ -12,6 +12,10 @@ class NewsData{
         return this.listArticle;
     }
 
+    getListNews(categoryNum){
+        return this.listArticle[categoryNum].news
+    }
+
     getListCategory(){
         let category = [];
         this.listArticle.forEach(value => {

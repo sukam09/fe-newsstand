@@ -1,16 +1,13 @@
 import State from "../state/Reducer.js";
-import newsData from "../state/newsData.js";
-import main from "../main/main.js";
-import controlMinMaxPage from "../utils/controlMinMaxPage.js";
+import mainNews from "./mainNews.js";
+import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
 
 export default function clickLeftAsideButton(){
     //페이지 정보 불러오기
     let currentPage = State.getCurrentPage();
-    let categoryNum = State.getCategoryNum();
-    let maxCategoryNum = newsData.getListCategory().length - 1;
-    let minPage = State.getMinPage();
     let isAll = State.getAllState();
     let isGrid = State.getGridState();
+    const MIN_PAGE_NUMBER = State.getMinPage();
 
     //leftButton 불러오고 초기화
     const leftAsideButton = document.getElementById("aside-left");
@@ -22,8 +19,11 @@ export default function clickLeftAsideButton(){
     leftAsideButton.appendChild(asideLeft);
 
     if(isGrid){
-        if(currentPage === minPage){
+        if(currentPage === MIN_PAGE_NUMBER){
             leftAsideButton.style.visibility = "hidden";
+        }
+        else{
+            leftAsideButton.style.visibility = "visible";
         }
     }
     else{
@@ -32,13 +32,15 @@ export default function clickLeftAsideButton(){
 
     //click event 추가
     asideLeft.addEventListener("click",()=>{
-        if(!isGrid){
-            controlMinMaxPage();
+        if(isGrid){
+            currentPage--;
+            State.setCurrentPage(currentPage);
         } 
         else{
             currentPage--;
             State.setCurrentPage(currentPage);
+            controlListlMinMaxException();
         }
-        main();
+        mainNews();
     });
 }

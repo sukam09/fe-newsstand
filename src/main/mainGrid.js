@@ -1,23 +1,26 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
 import gridArticle from "../../data/grid_article.json" assert { type: "json"};
-import store from "../state/Store.js";
+import NewsData from "../state/NewsData.js";
+import State from "../state/Reducer.js";
+import Store from "../state/Store.js";
 
-const COUNT_PER_PAGE = 24;
+let COUNT_PER_PAGE;
 let press;
-let allView;
+let isAll;
+let currentPage;
 let pressData;
 const subscribeBtn = document.createElement("button");
-const subscribeData = store.getSubscribe();
+let subscribeData;
 
 function addSubscribeBtn(e){
     subscribeBtn.addEventListener("click", (e) => {
-        if(store.findSubscribe(press)){
+        if(Store.findSubscribe(press)){
             e.target.innerText = "+ 구독하기";
-            store.removeSubscribe(store.findSubscribe(press));
+            Store.removeSubscribe(Store.findSubscribe(press));
         }
         else{
             e.target.innerText = "해지하기";
-            store.addSubscribe(store.findSubscribe(press));
+            Store.addSubscribe(Store.findSubscribe(press));
         }
     });
 
@@ -33,7 +36,7 @@ function logoMouseOver(e){
 
     subscribeBtn.classList.add("gridSubscribeBtn");
 
-    if(store.findSubscribe(press)){
+    if(Store.findSubscribe(press)){
         subscribeBtn.innerText = "해지하기";
     }
     else{
@@ -46,7 +49,6 @@ function logoMouseOut(e){
     e.target.innerHTML = "";
     e.target.style.backgroundColor = "white";
     const selectedpress = shuffled_data.find((i) => i.id === parseInt(press));
-    console.log(selectedpress);
     const newsLogo = document.createElement("img");
     newsLogo.src = selectedpress.logo;
     newsLogo.classList.add(press);
@@ -54,8 +56,8 @@ function logoMouseOut(e){
     e.target.appendChild(newsLogo);
 }
 
-function refreshGrid(currentPageNumber){
-    allView === "all" ? pressData = shuffled_data : pressData = store.getSubscribe();
+function refreshGrid(){
+    isAll === true ? pressData = shuffled_data : pressData = Store.getSubscribe();
 
     const mainCenter = document.getElementById("main-center");
     const mainGrid = document.createElement("div");
@@ -65,14 +67,14 @@ function refreshGrid(currentPageNumber){
     mainCenter.appendChild(mainGrid);
     mainGrid.innerHTML='';
 
-    for(let PAGE_INDEX = (currentPageNumber-1) * COUNT_PER_PAGE; PAGE_INDEX < COUNT_PER_PAGE * (currentPageNumber-1) + 24 ; PAGE_INDEX++){
+    for(let PAGE_INDEX = (currentPage-1) * COUNT_PER_PAGE; PAGE_INDEX < COUNT_PER_PAGE * (currentPage-1) + 24 ; PAGE_INDEX++){
         const outerDiv = document.createElement("div");
         outerDiv.classList.add(`outerDiv${PAGE_INDEX}`);
         mainGrid.append(outerDiv);
     }
 
     pressData.forEach((value, index) => {
-        if(index >= (currentPageNumber -1) * COUNT_PER_PAGE && index < (currentPageNumber) * COUNT_PER_PAGE){
+        if(index >= (currentPage -1) * COUNT_PER_PAGE && index < (currentPage) * COUNT_PER_PAGE){
             const outerDiv = document.querySelector(`.outerDiv${index}`);
             const newsLogo = document.createElement("img");
             newsLogo.src = value.logo;
@@ -88,7 +90,10 @@ function refreshGrid(currentPageNumber){
     })
 }
 
-export default function MainGrid(isAll, currentPageNumber){
-    allView = isAll;
-    refreshGrid(currentPageNumber);
+export default function MainGrid(){
+   COUNT_PER_PAGE = State.getCountPerPage();
+    isAll = State.getAllState();
+    currentPage = State.getCurrentPage();
+    subscribeData = Store.getSubscribe();
+    refreshGrid();
 }

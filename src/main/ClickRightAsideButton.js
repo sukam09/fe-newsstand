@@ -1,17 +1,41 @@
-import main from "./main.js";
+import State from "../state/Reducer.js";
+import mainNews from "./mainNews.js";
+import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
 
-export default function clickRightAsideButton(isAll, view, currentPageNum, categoryNum){
+export default function clickRightAsideButton(){
+   let currentPage = State.getCurrentPage();
+   let isAll = State.getAllState();
+   let isGrid = State.getGridState();
+   const MAX_PAGE_NUMBER = State.getMaxPage();
+
     const rightAsideButton = document.getElementById("aside-right");
-    const leftAsideButton = document.getElementById("aside-left");
-
     const asideRight = document.createElement("img");
     asideRight.src = "./img/RightButton.png"
     rightAsideButton.innerHTML = '';
     
+    if(isGrid){
+        if(currentPage === MAX_PAGE_NUMBER){
+            rightAsideButton.style.visibility = "hidden";
+        }
+        else{
+            rightAsideButton.style.visibility = "visible";
+        }
+    }
+    else{
+        rightAsideButton.style.visibility = "visible";
+    }
+
     asideRight.addEventListener("click",()=>{
-        currentPageNum++;
-        leftAsideButton.style.visibility="visible";
-        main(isAll, view, currentPageNum, categoryNum);
+        if(isGrid){
+            currentPage++;
+            State.setCurrentPage(currentPage);
+        }
+        else{
+            currentPage++;
+            State.setCurrentPage(currentPage);
+            controlListlMinMaxException();
+        }
+        mainNews();
     });
 
     rightAsideButton.appendChild(asideRight);

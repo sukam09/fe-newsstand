@@ -9,7 +9,8 @@ class Reducer{
             currentPage: 1,
             categoryNum: 0,
             minPage: 1,
-            maxPage: 4
+            maxPage: 4,
+            countPerPage: 24
         };
     }
 
@@ -53,6 +54,10 @@ class Reducer{
 
     getMaxPage(){
         return this.pageState.maxPage
+    }
+
+    getCountPerPage(){
+        return this.pageState.countPerPage
     }
 
     setCurrentPage(currentPage){

@@ -1,21 +1,21 @@
 import NewsStand from "./src/NewsStand.js";
 import setDate from "./src/SetDate.js";
 import recentNews from "./src/RecentNews.js";
-import main from "./src/main/Main.js";
+import mainNews from "./src/main/mainNews.js";
 import mainHeader from "./src/MainHeader.js";
 import { getGridJSON, getListJSON} from "./src/api/api.js";
-import newsData from "./src/state/newsData.js";
+import NewsData from "./src/state/NewsData.js";
 
 async function App(){
     const gridArticle = await getGridJSON();
     const listArticle = await getListJSON();
-    newsData.setGridArticle(gridArticle);
-    newsData.setListArticle(listArticle);
+    NewsData.setGridArticle(gridArticle);
+    NewsData.setListArticle(listArticle);
     NewsStand();
     setDate();
     recentNews();
     mainHeader();
-    main("all", "grid", 1, 0);
+    mainNews();
 }
 
 App();
