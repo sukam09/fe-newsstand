@@ -40,17 +40,17 @@ export function createContent() {
   }
   return `
     <div class="content">
-      <div id="list_container">
+      <div id="mode_all_list_container">
         ${createCategory(categoryList)}
         ${allList}
       </div>
-      <div id="grid_container">
+      <div id="mode_all_grid_container">
         ${allGrid}
       </div>
-      <div id="my_mode_grid_container">
+      <div id="mode_my_grid_container">
         ${allEmptyGrid}
       </div>
-      <div id="my_mode_list_container">
+      <div id="mode_my_list_container">
         ${createCategory()}
         ${allEmptyList}
       </div>

@@ -1,4 +1,3 @@
-import { createSnackbar } from "../components/modal/snackbar.js";
 import { pressDataState } from "../store/dataState.js";
 import { subStateList } from "../store/gridState.js";
 import { getState, setState } from "../store/observer.js";
@@ -74,10 +73,4 @@ export function controllGridSubButtonShowing(id) {
   } else {
     $unsubContainer.style.display = "none";
   }
-}
-
-export function displayAlert() {
-  const $alert = qs(".alert");
-  $alert.style.display = "flex";
-  console.log("Alert");
 }

@@ -14,8 +14,8 @@ import { addObserverOnIsSub, addObserverOnPageMode } from "./observers.js";
 import {
   addObserverOnGridPage,
   addObserverOnListPage,
-  addObserverOnPageType,
-} from "./pageController.js";
+} from "./pageController/pageController.js";
+import { addObserverOnPageType } from "./pageController/typeController.js";
 
 export function initEvents() {
   addEventsOnGridItem();

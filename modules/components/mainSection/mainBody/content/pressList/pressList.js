@@ -16,9 +16,7 @@ export function createPressList(categoryId, page) {
   const targetPress = targetPressList[page];
 
   return `
-  <div class="list_press_${
-    targetPress.id
-  } news news_${categoryId}_${page}  flex_column">
+  <div class="list_press_${targetPress.id} news news_${categoryId}_${page}">
     ${createNewsHeader(targetPress)}
     ${createNewsBody(targetPress)}
   </div>

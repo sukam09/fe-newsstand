@@ -9,7 +9,7 @@ export function createPressGrid(pressList, page) {
   }
 
   return `
-    <ul id="grid_page_${page}" class="press_grid">
+    <ul id="mode_all_grid_page_${page}" class="press_grid">
       ${pressGridItems}
     </ul>
     `;
@@ -17,7 +17,7 @@ export function createPressGrid(pressList, page) {
 
 export function createEmptyPressGrid(page) {
   return `
-    <ul id="my_mode_grid_page_${page}" class="press_grid">
+    <ul id="mode_my_grid_page_${page}" class="press_grid">
     </ul>
     `;
 }

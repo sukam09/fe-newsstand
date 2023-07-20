@@ -3,8 +3,8 @@ import { addObserver } from "../store/observer.js";
 import { pageModeState } from "../store/pageState.js";
 import { controllGridSubButtonShowing } from "./gridController.js";
 import { controllListsSubButtonShowing } from "./listController.js";
-import { controllPageMode } from "./modeController.js";
-import { controllSnackbarShowing } from "./snackbarController.js";
+import { controllPage } from "./pageController/pageController.js";
+import { controllSnackbarShowing } from "./popupController.js";
 
 export function addObserverOnIsSub() {
   subStateList.forEach((subState, idx) => {
@@ -15,5 +15,5 @@ export function addObserverOnIsSub() {
 }
 
 export function addObserverOnPageMode() {
-  addObserver(pageModeState, controllPageMode);
+  addObserver(pageModeState, controllPage);
 }

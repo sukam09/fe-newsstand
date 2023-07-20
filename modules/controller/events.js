@@ -37,8 +37,11 @@ import { handleListSubButton } from "./listController.js";
 import {
   handleGridViewButton,
   handleListViewButton,
-} from "./pageController.js";
-import { handleAllModeClick, handleMyModeClick } from "./modeController.js";
+} from "./pageController/typeController.js";
+import {
+  handleModeAllClick,
+  handleModeMyClick,
+} from "./pageController/modeController.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
@@ -190,8 +193,8 @@ export function addEventsOnListSubButton() {
 }
 
 export function addEventsOnPageModeButton() {
-  const $myModeButton = qs(".all_mode_button");
-  const $allModeButton = qs(".my_mode_button");
-  $myModeButton.addEventListener("click", (e) => handleAllModeClick(e));
-  $allModeButton.addEventListener("click", (e) => handleMyModeClick(e));
+  const $modeMyButton = qs(".mode_all_button");
+  const $ModeallButton = qs(".mode_my_button");
+  $modeMyButton.addEventListener("click", (e) => handleModeAllClick(e));
+  $ModeallButton.addEventListener("click", (e) => handleModeMyClick(e));
 }

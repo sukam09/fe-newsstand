@@ -27,3 +27,8 @@ function removeSnackbar() {
   const $snackbar = qs(".snackbar");
   $snackbar.classList.remove("animate");
 }
+
+export function displayAlert() {
+  const $alert = qs(".alert");
+  $alert.style.display = "flex";
+}

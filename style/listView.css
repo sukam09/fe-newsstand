@@ -1,11 +1,12 @@
 /* list view */
-#list_container {
+#mode_all_list_container {
   display: none;
 }
 
 /* news container */
 .news {
   display: none;
+  flex-direction: column;
   border: solid 1px var(--border-border-default);
   border-top: none;
   padding: 24px;
@@ -210,6 +211,6 @@
   transform: translate(0%, -50%);
 }
 
-#my_mode_list_container {
+#mode_my_list_container {
   display: none;
 }

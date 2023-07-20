@@ -14,13 +14,13 @@ export const getState = (key) => {
 
 export const setState = (key, value) => {
   globalState[key].state = value;
-  _notify(key);
+  notify(key);
 };
 
 export const addObserver = (key, fn) => {
   globalState[key].observers.add(fn);
 };
 
-const _notify = (key) => {
+const notify = (key) => {
   globalState[key].observers.forEach((fn) => fn());
 };

@@ -6,7 +6,10 @@ import {
   listPageState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
-import { showListPage, updatePageCount } from "./pageController.js";
+import {
+  showListPage,
+  updatePageCount,
+} from "./pageController/pageController.js";
 
 export function handleCategoryItemClick({ currentTarget }) {
   const id = currentTarget.id;

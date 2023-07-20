@@ -5,8 +5,8 @@
 }
 
 /* grid view */
-#grid_container,
-#my_mode_grid_container {
+#mode_my_grid_container,
+#mode_all_grid_container {
   width: 100%;
   height: 100%;
 }
@@ -96,6 +96,6 @@
   background-color: var(--surface-surface-alt);
 }
 
-#my_mode_grid_container {
+#mode_my_grid_container {
   display: none;
 }
