@@ -141,18 +141,15 @@ img.title_logo {
 
 .main_header {
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .main_title_container {
   gap: 24px;
 }
 
-.main_title_container > h2 {
+.main_title_container span {
   font-size: 16px;
-}
-.main_title_container > span {
-  font-size: 16px;
-  color: var(--text-text-weak);
 }
 
 .view_button_container {
@@ -174,10 +171,12 @@ img.title_logo {
 }
 
 .mode_button {
+  color: var(--text-text-weak);
+
   cursor: pointer;
 }
 
-.main_title_container > .clicked {
+.mode_clicked {
   font-weight: bold;
   color: var(--text-text-strong);
 }

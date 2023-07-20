@@ -35,11 +35,10 @@ import {
 import { qs, qsa } from "../utils.js";
 import { handleListSubButton } from "./listController.js";
 import {
-  handleAllModeClick,
   handleGridViewButton,
   handleListViewButton,
-  handleMyModeClick,
 } from "./pageController.js";
+import { handleAllModeClick, handleMyModeClick } from "./modeController.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
@@ -193,7 +192,6 @@ export function addEventsOnListSubButton() {
 export function addEventsOnPageModeButton() {
   const $myModeButton = qs(".all_mode_button");
   const $allModeButton = qs(".my_mode_button");
-  console.log($allModeButton);
   $myModeButton.addEventListener("click", (e) => handleAllModeClick(e));
   $allModeButton.addEventListener("click", (e) => handleMyModeClick(e));
 }

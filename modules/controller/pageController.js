@@ -1,5 +1,10 @@
 import { addObserver, getState, setState } from "../store/observer.js";
-import { MAX_GRID_PAGE } from "../store/pageState.js";
+import {
+  MAX_GRID_PAGE,
+  MODE_ALL,
+  MODE_MY,
+  pageModeState,
+} from "../store/pageState.js";
 import {
   GRID,
   LIST,
@@ -10,11 +15,16 @@ import {
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { highlightCategoryItem } from "./categoryController.js";
+import {
+  hideAllModeGridContainer,
+  hideMyModeGridContainer,
+} from "./modeController.js";
 
 export function addObserverOnPageType() {
   const changeView = () => {
     const gridPage = getState(gridPageState);
     const pageType = getState(pageTypeState);
+    const pageMode = getState(pageModeState);
     const categoryId = getState(categoryIdState);
     const listPage = getState(listPageState);
 
@@ -22,7 +32,7 @@ export function addObserverOnPageType() {
       case GRID:
         hideListContainer();
         showGridContainer();
-        showGridPage(gridPage);
+        showGridPage(pageMode, gridPage);
         break;
       case LIST:
         hideGridContainer();
@@ -54,7 +64,9 @@ export function handleListViewButton(e) {
 
 export function addObserverOnGridPage() {
   addObserver(gridPageState, () => {
-    showGridPage(getState(gridPageState));
+    const pageMode = getState(pageModeState);
+    const gridPage = getState(gridPageState);
+    showGridPage(pageMode, gridPage);
   });
 }
 
@@ -92,13 +104,25 @@ export function controllButtonShowing() {
   }
 }
 
-export function showGridPage(page) {
+export function showGridPage(mode, page) {
+  console.log(mode, page);
   const $gridPages = qsa(".press_grid");
   [...$gridPages].forEach((grid) => {
     grid.style.display = "none";
   });
-
-  const targetGrid = document.getElementById(`grid_page_${page}`);
+  let targetGrid;
+  switch (mode) {
+    case MODE_ALL:
+      targetGrid = qs(`#grid_page_${page}`);
+      break;
+    case MODE_MY:
+      targetGrid = qs(`#my_mode_grid_page_${page}`);
+      break;
+    default:
+      targetGrid = qs(`#grid_page_${page}`);
+      break;
+  }
+  console.log(targetGrid);
   targetGrid.style.display = "grid";
   controllButtonShowing();
 }
@@ -109,28 +133,28 @@ export function showListPage(categoryId, page) {
   $targetNewsPage.style.display = "block";
 }
 
-function hideGridContainer() {
+export function hideGridContainer() {
   const $gridContainer = qs("#grid_container");
   $gridContainer.style.display = "none";
 }
-function showGridContainer() {
+export function showGridContainer() {
   const $gridContainer = qs("#grid_container");
   $gridContainer.style.display = "block";
 }
 
-function hideAllListPage() {
+export function hideAllListPage() {
   const $newsPageList = qsa(".news");
   [...$newsPageList].forEach(($newsPage) => {
     $newsPage.style.display = "none";
   });
 }
 
-function hideListContainer() {
+export function hideListContainer() {
   const $listContainer = qs("#list_container");
   $listContainer.style.display = "none";
 }
 
-function showListContainer() {
+export function showListContainer() {
   const $listContainer = qs("#list_container");
   $listContainer.style.display = "block";
 }
@@ -141,16 +165,4 @@ export function updatePageCount() {
   const $categoryItem = qs(`#category_${parseInt(categoryId)}`);
   const $nowPage = $categoryItem.querySelector(".now_page");
   $nowPage.innerHTML = listPage + 1;
-}
-
-export function handleAllModeClick({ currentTarget }) {
-  const $myModeButton = qs(".my_mode_button");
-  $myModeButton.classList.remove("clicked");
-  currentTarget.classList.add("clicked");
-}
-
-export function handleMyModeClick({ currentTarget }) {
-  const $allModeButton = qs(".all_mode_button");
-  $allModeButton.classList.remove("clicked");
-  currentTarget.classList.add("clicked");
 }

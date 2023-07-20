@@ -7,7 +7,7 @@ export function createMainHeader() {
   return `
     <div class="main_header flex_row">
       <div class="main_title_container flex_row">
-        <span class="mode_button all_mode_button">전체 언론사</span>
+        <span class="mode_button all_mode_button mode_clicked">전체 언론사</span>
         <span class="mode_button my_mode_button">내가 구독한 언론사</span>
       </div>
       <div class="view_button_container flex_row">
@@ -16,19 +16,4 @@ export function createMainHeader() {
       </div>
     </div>
     `;
-}
-
-export function handleGirdViewButton(e) {
-  const $listViewButton = qs(".list_view_button");
-  e.currentTarget.classList.add("view_clicked");
-  $listViewButton.classList.remove("view_clicked");
-  setState(pageTypeState, GRID);
-}
-
-export function handleListViewButton(e) {
-  debugger;
-  const $gridViewButton = qs(".grid_view_button");
-  e.currentTarget.classList.add("view_clicked");
-  $gridViewButton.classList.remove("view_clicked");
-  setState(pageTypeState, LIST);
 }

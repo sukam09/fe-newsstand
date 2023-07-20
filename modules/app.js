@@ -1,7 +1,7 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
 import { showGridPage } from "./controller/pageController.js";
 import { initCategoryData, initPressData } from "./store/dataState.js";
-import { initPageState } from "./store/pageState.js";
+import { MODE_ALL, initPageState } from "./store/pageState.js";
 import { initComponents } from "./components/initComponents.js";
 import { initSubStateList } from "./store/gridState.js";
 import { initEvents, initObservers } from "./controller/initControllers.js";
@@ -22,5 +22,5 @@ import { initEvents, initObservers } from "./controller/initControllers.js";
 
   // 초기 화면
   startRollingAnimation();
-  showGridPage(0);
+  showGridPage(MODE_ALL, 0);
 })();

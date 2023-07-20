@@ -9,7 +9,10 @@ import {
   MAX_LIST_PAGE,
 } from "../../../../store/pageState.js";
 import { shuffleArray } from "../../../../utils.js";
-import { createPressGrid } from "./pressGrid/pressGrid.js";
+import {
+  createEmptyPressGrid,
+  createPressGrid,
+} from "./pressGrid/pressGrid.js";
 import { createCategory } from "./pressList/category.js";
 import { createPressList } from "./pressList/pressList.js";
 
@@ -21,25 +24,35 @@ export function createContent() {
   });
 
   const { categoryList } = getState(categoryDataState);
-  let allPressGridPage = "";
-  let allPressListPage = "";
+  let allGrid = "";
+  let allList = "";
+  let allEmptyGrid = "";
+  let allEmptyList = "";
 
-  for (let i = 0; i < MAX_GRID_PAGE; i++) {
-    allPressGridPage += createPressGrid(pressList, i);
+  for (let page = 0; page < MAX_GRID_PAGE; page++) {
+    allGrid += createPressGrid(pressList, page);
+    allEmptyGrid += createEmptyPressGrid(page);
   }
   for (let categoryId = 0; categoryId < MAX_CATEGORY_ID; categoryId++) {
     for (let page = 0; page < MAX_LIST_PAGE[categoryId]; page++) {
-      allPressListPage += createPressList(categoryId, page);
+      allList += createPressList(categoryId, page);
     }
   }
   return `
     <div class="content">
       <div id="list_container">
         ${createCategory(categoryList)}
-        ${allPressListPage}
+        ${allList}
       </div>
       <div id="grid_container">
-        ${allPressGridPage}
+        ${allGrid}
+      </div>
+      <div id="my_mode_grid_container">
+        ${allEmptyGrid}
+      </div>
+      <div id="my_mode_list_container">
+        ${createCategory()}
+        ${allEmptyList}
       </div>
     </div>
     `;

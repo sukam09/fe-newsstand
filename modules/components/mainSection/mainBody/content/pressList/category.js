@@ -3,13 +3,16 @@ import { listPageState } from "../../../../../store/pageState.js";
 
 export function createCategory(categoryList) {
   let categoryItems = "";
-  for (let i = 0; i < categoryList.length; i++) {
-    const { categoryId, categoryName, pressIdList } = categoryList[i];
-    categoryItems += createCategoryItem(
-      categoryName,
-      categoryId,
-      pressIdList.length
-    );
+
+  if (categoryList) {
+    for (let i = 0; i < categoryList.length; i++) {
+      const { categoryId, categoryName, pressIdList } = categoryList[i];
+      categoryItems += createCategoryItem(
+        categoryName,
+        categoryId,
+        pressIdList.length
+      );
+    }
   }
 
   return `

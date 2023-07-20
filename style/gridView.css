@@ -5,12 +5,13 @@
 }
 
 /* grid view */
-#grid_container {
+#grid_container,
+#my_mode_grid_container {
   width: 100%;
   height: 100%;
 }
 .press_grid {
-  display: none;
+  display: grid;
   border-top: solid 1px var(--border-border-default);
   border-left: solid 1px var(--border-border-default);
   grid-template-rows: repeat(4, 1fr);
@@ -93,4 +94,8 @@
 
   border: 1px solid var(--border-border-default);
   background-color: var(--surface-surface-alt);
+}
+
+#my_mode_grid_container {
+  display: none;
 }

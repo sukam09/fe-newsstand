@@ -5,7 +5,7 @@ export function createPressGrid(pressList, page) {
 
   for (let i = 0; i < NUM_IN_A_GRID; i++) {
     const idx = page * NUM_IN_A_GRID + i;
-    pressGridItems += pressItem(`${page}_${i}`, pressList[idx]);
+    pressGridItems += createPressItem(`${page}_${i}`, pressList[idx]);
   }
 
   return `
@@ -15,7 +15,14 @@ export function createPressGrid(pressList, page) {
     `;
 }
 
-function pressItem(key, press) {
+export function createEmptyPressGrid(page) {
+  return `
+    <ul id="my_mode_grid_page_${page}" class="press_grid">
+    </ul>
+    `;
+}
+
+function createPressItem(key, press) {
   return `
   <li key="${key}" class="grid_item" id="press_${press.id}">
     <img class="light_press_logo" src=${press.lightSrc}  / >
