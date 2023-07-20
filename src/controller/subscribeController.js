@@ -1,10 +1,14 @@
 import { STATE, GLOBAL } from "../model/variable.js";
 import { changeState } from "./mainController.js";
+import { drawSubscribeBtn } from "../view/subscribe.js";
 
 function initSubscribeBtnEvnet(target) {
   target.addEventListener("click", (event) => {
     const target = event.target.localName === "button" ? event.target.parentNode.firstChild : event.target.parentNode.parentNode.firstChild;
     clickSubscribeBtn(target.src);
+
+    document.querySelector(".grid-view .list-sub-btn").remove();
+    drawSubscribeBtn(target.src);
   });
 }
 
