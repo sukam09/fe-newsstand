@@ -1,17 +1,4 @@
-let category = [
-  "A",
-  "b",
-  "C",
-  "D",
-  "e",
-  "F",
-  "G",
-  "sad",
-  "SAD",
-  "asdssa",
-  "sadasd",
-  "ASDsadas",
-];
+let category = [];
 let news_by_category = {};
 
 function manipulateNewsByCategory(news) {

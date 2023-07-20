@@ -6,7 +6,6 @@ import { manipulateNewsByPress } from "../feature/manipulateNewsByPress.js";
 
 async function renderListView() {
   const news = await fetchData(".././assets/news.json");
-
   if (store.state.type === "list-category") {
     manipulateNewsByCategory(news);
     makeListView();

@@ -24,39 +24,7 @@ function makeCategory() {
   } else {
     _category = press;
   }
-  console.log(store.state.type);
 
-  // const _ul = document.querySelector(".category");
-  // _category.forEach((item, index) => {
-  //   const _li = document.createElement("li");
-  //   _li.innerHTML = `
-  //      <div></div>
-  //      <span class="category-item">${item}</span>
-  //      <span class="category-num"></span>
-  //    `;
-
-  //   _ul.appendChild(_li);
-
-  //   _li.dataset.category = item;
-
-  //   _li.addEventListener("click", (e) => handleCategoryClick(e));
-  //   _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
-  //   _li.addEventListener("animationiteration", (e) =>
-  //     handleAniamtionIteration(e)
-  //   );
-
-  //   //span 클릭 시 li 클릭으로 처리
-  //   _li.children[1].addEventListener("click", (e) => {
-  //     e.stopPropagation();
-  //     _li.click();
-  //   });
-
-  //   //default로 첫번째 카테고리
-  //   if (index === 0) {
-  //     _li.classList.add("selected-category");
-  //     _li.children[2].style.display = "flex";
-  //   }
-  // });
   const _ul = document.querySelector(".category");
   _ul.innerHTML = ``;
   _category.forEach((item, index) => {
@@ -110,7 +78,6 @@ function chageNews(e) {
 }
 
 function changePressInfo(news) {
-  console.log(news);
   const press_info = document.querySelector(".press-info");
   press_info.children[0].setAttribute("src", `${news.src}`);
   press_info.children[0].setAttribute("data-press", `${news.name}`);

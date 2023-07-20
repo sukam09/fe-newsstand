@@ -19,7 +19,8 @@
 .category li {
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  justify-content: center;
+  padding: 0 10px;
   font-size: 14px;
   color: var(--text-weak);
   font-weight: 500;
@@ -94,9 +95,7 @@
 .category .selected-category {
   position: relative;
   padding: 0;
-  /* width: 15%; */
   min-width: 15%;
-  /* width: auto; */
   background-color: var(--surface-brand-alt);
   pointer-events: none;
 }
@@ -108,6 +107,9 @@
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  position: absolute;
+  top: 0%;
+  left: 0%;
 }
 .category div {
   pointer-events: none;

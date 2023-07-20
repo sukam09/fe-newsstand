@@ -41,6 +41,7 @@ function changeBtnAndView(view) {
 function initViewChange() {
   changePressState();
   const view_type = document.querySelectorAll(".viewer-btn button");
+  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
   //view_type[0] : listview, view_type[1] : gridview
 
   view_type[0].addEventListener("click", () => {
@@ -53,10 +54,10 @@ function initViewChange() {
     alt="images"
   />`;
     store.setType("list-category");
-    //*** */
     renderListView();
 
     changeBtnAndView("list");
+    changePressCss("all");
   });
   view_type[1].addEventListener("click", () => {
     view_type[0].innerHTML = `<img
@@ -68,20 +69,21 @@ function initViewChange() {
     alt="images"
   />`;
     store.setType("grid-all");
-
+    renderGridView();
     changeBtnAndView("grid");
     checkPage();
+    changePressCss("all");
   });
 }
 
 function changePressState() {
   const changeBtn = document.querySelectorAll(".main-tab-btn button span");
 
-  changeBtn[0].addEventListener("click", () => handleAllPress(changeBtn));
-  changeBtn[1].addEventListener("click", () => handleSubPress(changeBtn));
+  changeBtn[0].addEventListener("click", handleAllPress);
+  changeBtn[1].addEventListener("click", handleSubPress);
 }
 
-function handleAllPress(changeBtn) {
+function handleAllPress() {
   if (store.state.type === "grid-sub") {
     store.setType("grid-all");
     renderGridView();
@@ -90,10 +92,9 @@ function handleAllPress(changeBtn) {
     store.setType("list-category");
     renderListView();
   }
-  changeBtn[0].classList.replace("unclicked-press", "clicked-press");
-  changeBtn[1].classList.replace("clicked-press", "unclicked-press");
+  changePressCss("all");
 }
-function handleSubPress(changeBtn) {
+function handleSubPress() {
   if (store.state.type === "grid-all") {
     store.setType("grid-sub");
     renderGridView();
@@ -102,8 +103,19 @@ function handleSubPress(changeBtn) {
     store.setType("list-press");
     renderListView();
   }
-  changeBtn[0].classList.replace("clicked-press", "unclicked-press");
-  changeBtn[1].classList.replace("unclicked-press", "clicked-press");
+  changePressCss("sub");
+}
+
+function changePressCss(type) {
+  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
+
+  if (type === "all") {
+    changeBtn[0].classList.replace("unclicked-press", "clicked-press");
+    changeBtn[1].classList.replace("clicked-press", "unclicked-press");
+  } else {
+    changeBtn[0].classList.replace("clicked-press", "unclicked-press");
+    changeBtn[1].classList.replace("unclicked-press", "clicked-press");
+  }
 }
 
 export { initViewChange };

@@ -11,6 +11,6 @@ function makeListView() {
   makeCategory();
   transformMainNews();
   // addEventToBtn();
-  addEventPressInfo();
+  // addEventPressInfo();
 }
 export { makeListView };
