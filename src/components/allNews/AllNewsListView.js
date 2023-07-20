@@ -5,15 +5,17 @@ import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
 
+let [savedCurrentPage, savedCurrentPressIndex] = [1, 0];
+
 export default class AllNewsListView extends Component {
   setup() {
     this.pressOrder = this.getListPress();
     this.headerList = this.getHeaderList();
 
     this.state = {
-      currentPage: 1,
-      currentPressIndex: 0,
-      currentPress: this.getCurrentPress(),
+      currentPage: savedCurrentPage,
+      currentPressIndex: savedCurrentPressIndex,
+      currentPress: this.getCurrentPress(savedCurrentPressIndex, savedCurrentPage),
     };
   }
 
@@ -64,6 +66,10 @@ export default class AllNewsListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
+    [savedCurrentPage, savedCurrentPressIndex] = [
+      this.state.currentPage,
+      this.state.currentPressIndex,
+    ];
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',
