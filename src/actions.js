@@ -24,17 +24,15 @@ import { renderListView } from "./views/list_views.js";
  * @param {*} page
  */
 export function render(options, data, page) {
-    if (options["main"] === "grid") {
+    if (options.main === "grid") {
         renderGridView(options, data, page, toggleArrow);
     }
-
-    if (options["main"] === "list") {
-        if (options["press"] === "all") {
+    if (options.main === "list") {
+        if (options.press === "all") {
             renderListView(data.news_data, data.category, page);
         } else {
             renderListView(data.news_data, data.category, page);
         }
-
         setProgress(options, "main_nav_progress", data);
     }
 }
@@ -75,6 +73,7 @@ export function clear(container, option) {
     clearInterval(option.interval);
     option.progress_time = 0;
 }
+
 /**
  * @description
  * 1. 프로그레스 바를 설정한다.

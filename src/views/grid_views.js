@@ -20,7 +20,7 @@ function renderGridView(options, data, page, toggleArrow) {
             toggleArrow(options["press"], page, MAX_PAGE);
             break;
         case "sub":
-            renderSubscribe(data, data.is_subscribe);
+            renderSubscribe(data, data.value);
             break;
         default:
             break;
@@ -33,6 +33,7 @@ function createPressList(container, data, idx) {
         for (let j = 0; j < ROW_SIZE; j++) {
             const item = data[idx] || { name: "empty", url: "" };
             const subscribe = isSubscribed(item.name);
+
             ul.innerHTML += `
             <li class="press_data_container">
                 ${
@@ -45,7 +46,7 @@ function createPressList(container, data, idx) {
                           }${item.url}" alt="${item.url}"/>
                     <button class="press_item content_subscribe press_back" name="${
                         item.name
-                    }" is_subscribe="${subscribe}">
+                    }" value="${subscribe}">
                     ${
                         subscribe
                             ? `<img src="./assets/icons/symbol.png" />
@@ -73,17 +74,17 @@ function renderPressItem(mode) {
 }
 
 function renderSubscribe(press, is_subscribe) {
-    if (is_subscribe) {
-        press.is_subscribe = false;
-        press.innerHTML = `
-        <img src="./assets/icons/plus.png" />
-        <span>${SUBSCRIBE_TEXT}</span>
-        `;
-    } else {
-        press.is_subscribe = true;
+    if (is_subscribe === "false") {
+        press.value = "true";
         press.innerHTML = `
         <img src="./assets/icons/symbol.png" />
         <span>${UNSUBSCRIBE_TEXT}</span>
+        `;
+    } else {
+        press.value = "false";
+        press.innerHTML = `
+        <img src="./assets/icons/plus.png" />
+        <span>${SUBSCRIBE_TEXT}</span>
         `;
     }
 }

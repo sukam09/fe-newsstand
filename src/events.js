@@ -5,7 +5,12 @@ import {
     list_option,
     subscribe_option,
 } from "./globals.js";
-import { showToday, setOptions, currentHourToMode } from "./utils.js";
+import {
+    showToday,
+    setOptions,
+    currentHourToMode,
+    renderOptions,
+} from "./utils.js";
 import {
     render,
     save,
@@ -15,7 +20,7 @@ import {
     controlBanner,
     setSnackBar,
 } from "./actions.js";
-import { renderSubscribe, renderPressItem } from "./views/grid_views.js";
+import { renderPressItem } from "./views/grid_views.js";
 import { renderNewsItem } from "./views/list_views.js";
 import { renderHotTopicsView } from "./views/rolling_views.js";
 import {
@@ -29,37 +34,11 @@ import {
  * 2. grid_views, list_views, 구독자 옵션 클릭 이벤트
  */
 function subscribeOptionEvent() {
-    const option_press = document.querySelectorAll(".option_press");
-    option_press.forEach((option) => {
-        option.addEventListener("click", (e) => {
-            const main = setOptions().main;
-            view_option.press = option.id.split("_")[1];
-            if (option.id === "option_all_press") {
-                option.className = "option_press option_press_active";
-                document.getElementById("option_subscribe_press").className =
-                    "option_press";
-
-                clear("main_news_container", list_option);
-
-                changeViewArrow(view_option.main);
-                render(setOptions(), grid_option.press_data, grid_option.page);
-                togglePressEvent();
-            } else {
-                option.className = "option_press option_press_active";
-                document.getElementById("option_all_press").className =
-                    "option_press";
-
-                clear("main_news_container", list_option);
-
-                const sub_data = grid_option.press_data.filter((press) => {
-                    return subscribe_option.subscribe_press[press["name"]];
-                });
-
-                changeViewArrow(view_option.main);
-                render(setOptions(), sub_data, grid_option.subscribe_page);
-                togglePressEvent();
-            }
-        });
+    const optionPressElements = document.querySelectorAll(".option_press");
+    optionPressElements.forEach((optionPress) => {
+        optionPress.addEventListener("click", (event) =>
+            optionListener(event, "press")
+        );
     });
 }
 
@@ -70,40 +49,57 @@ function subscribeOptionEvent() {
  */
 function mainOptionEvent() {
     const option_main = document.querySelectorAll(".option_main");
-    const news_data_container = document.querySelector(".main_news_container");
-
     option_main.forEach((option) => {
-        option.addEventListener("click", () => {
-            view_option.main = option.id.split("_")[1];
-
-            if (option.id === "option_grid_main") {
-                option.src = "./assets/icons/option_grid_main_active.png";
-                document.getElementById("option_list_main").src =
-                    "./assets/icons/option_list_main.png";
-                news_data_container.classList.remove("list_view_container");
-                news_data_container.classList.add("grid_view_container");
-
-                clear("main_news_container", list_option);
-                changeViewArrow("grid");
-
-                render(setOptions(), grid_option.press_data, grid_option.page);
-                togglePressEvent();
-            }
-            if (option.id === "option_list_main") {
-                option.src = "./assets/icons/option_list_main_active.png";
-                document.getElementById("option_grid_main").src =
-                    "./assets/icons/option_grid_main.png";
-                news_data_container.classList.remove("grid_view_container");
-                news_data_container.classList.add("list_view_container");
-
-                clear("main_news_container", list_option);
-                changeViewArrow("list");
-
-                render(setOptions(), list_option, list_option.page);
-                changeCategoryEvent(list_option.news_data);
-            }
-        });
+        option.addEventListener("click", (event) =>
+            optionListener(event, "main")
+        );
     });
+}
+
+function optionListener(event, selected) {
+    const clickedOption = event.target;
+
+    view_option[selected] = clickedOption.id.split("_")[1];
+    const { main: mainOptions, press: pressOption } = setOptions();
+
+    const optionElements = document.querySelectorAll(`.option_${selected}`);
+    optionElements.forEach((option) => {
+        option.className =
+            option === clickedOption
+                ? `option_${selected} option_${selected}_active`
+                : `option_${selected}`;
+    });
+
+    if (selected === "main") updateMainNewsContainer(mainOptions);
+
+    clearAndRender(mainOptions, pressOption);
+}
+
+function updateMainNewsContainer(mainOptions) {
+    const newsDataContainer = document.querySelector(".main_news_container");
+    const viewMode =
+        mainOptions === "grid" ? "grid_view_container" : "list_view_container";
+
+    newsDataContainer.classList.remove(
+        "list_view_container",
+        "grid_view_container"
+    );
+    newsDataContainer.classList.add(viewMode);
+}
+
+function clearAndRender(main, press) {
+    clear("main_news_container", list_option);
+
+    const { data, page } = renderOptions()[main][press];
+
+    changeViewArrow(main);
+    render(setOptions(), data, page);
+
+    if (main === "list") {
+        changeCategoryEvent(list_option.news_data);
+    }
+
+    togglePressEvent();
 }
 
 /**
@@ -193,18 +189,23 @@ function toggleModeEvent() {
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
     press_container.forEach((item) => {
-        item.addEventListener("mouseenter", (e) => {
-            item.style.transform = "rotateX(180deg)";
-            item.style.transition = "transform 0.5s";
-        });
-
-        item.addEventListener("mouseleave", (e) => {
-            item.style.transform = "rotateX(0deg)";
-            item.style.transition = "transform 0.5s";
-        });
+        item.addEventListener("mouseenter", handleMouseEnter);
+        item.addEventListener("mouseleave", handleMouseLeave);
     });
     toggleSubscribeEvent();
 }
+
+const handleMouseEnter = (event) => {
+    const item = event.target;
+    item.style.transform = "rotateX(180deg)";
+    item.style.transition = "transform 0.5s";
+};
+
+const handleMouseLeave = (event) => {
+    const item = event.target;
+    item.style.transform = "rotateX(0deg)";
+    item.style.transition = "transform 0.5s";
+};
 
 /**
  * @description
@@ -216,28 +217,18 @@ function toggleSubscribeEvent() {
     let snack_animation_time;
 
     subscribe.forEach((press) => {
-        press.addEventListener("click", (e) => {
+        press.addEventListener("click", () => {
             clearTimeout(snack_animation_time);
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = setSnackBar();
 
-            // renderSubscribe(press, press.is_subscribe);
+            const { main } = setOptions();
+            const { page } = renderOptions()[main];
 
-            render(setOptions("sub"), press);
+            render(setOptions("sub"), press, page);
+            subscribe_option.subscribe_press[press.name] = press.value;
 
-            if (!press.is_subscribe) {
-                renderSnackBarView(snack_bar, false);
-                /*
-                 render(view_option, ...);
-                */
-                subscribe_option.subscribe_press[press.name] = false;
-            } else {
-                renderSnackBarView(snack_bar, true);
-                /*
-                 render(view_option, ...);
-                */
-                subscribe_option.subscribe_press[press.name] = true;
-            }
+            renderSnackBarView(snack_bar, press.value);
         });
     });
 }

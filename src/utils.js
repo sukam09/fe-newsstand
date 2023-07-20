@@ -1,5 +1,10 @@
 import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
-import { view_option, subscribe_option } from "./globals.js";
+import {
+    grid_option,
+    list_option,
+    view_option,
+    subscribe_option,
+} from "./globals.js";
 
 export function showToday(tag) {
     const date = new Date();
@@ -47,6 +52,29 @@ export function setOptions(target) {
         press: view_option.press,
         mode: view_option.mode,
         target: target || "all",
+    };
+}
+
+export function renderOptions() {
+    return {
+        grid: {
+            all: { data: grid_option.press_data, page: grid_option.page },
+            subscribe: {
+                data: grid_option.press_data.filter(
+                    (press) => subscribe_option.subscribe_press[press["name"]]
+                ),
+                page: grid_option.subscribe_page,
+            },
+        },
+        list: {
+            all: { data: list_option, page: list_option.page },
+            subscribe: {
+                data: list_option.news_data.filter(
+                    (press) => subscribe_option.subscribe_press[press["name"]]
+                ),
+                page: list_option.page,
+            },
+        },
     };
 }
 
