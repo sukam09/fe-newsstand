@@ -1,10 +1,11 @@
 import { setDisplay } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 
+/***** 구독한 언론사 로고 채우기 *****/
 function appendPressInSubGrid(press) {
   //언론사 이미지 추가
   const $image = document.createElement("img");
-  $image.src = press[2];
+  $image.src = press[1];
   $image.classList.add("original");
 
   //구독하기 이미지 추가
@@ -25,6 +26,7 @@ function setSubGrid() {
   });
 }
 
+/***** 24개의 그리드 채우기 *****/
 function makePressItemli() {
   const $list = document.createElement("li");
   $list.classList.add("press-item", "empty");
@@ -37,6 +39,7 @@ function appendPressItemli() {
   }
 }
 
+/***** 구독 해지 alert *****/
 const unsub_btns = document.querySelector("#press-sub-list");
 unsub_btns.addEventListener("click", () => {
   setDisplay(".sub-alert", "block");
