@@ -53,8 +53,8 @@ function initViewChange() {
     alt="images"
   />`;
     store.setType("list-category");
+    store.setListPage(0);
     renderListView();
-
     changeBtnAndView("list");
     changePressCss("all");
   });
@@ -68,6 +68,7 @@ function initViewChange() {
     alt="images"
   />`;
     store.setType("grid-all");
+    store.setGridPage(1);
     renderGridView();
     changeBtnAndView("grid");
     checkPage();
@@ -119,4 +120,4 @@ function changePressCss(type) {
   }
 }
 
-export { initViewChange };
+export { initViewChange, changePressCss };

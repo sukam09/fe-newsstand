@@ -1,4 +1,6 @@
 import { renderGridView } from "./main/gridView/core/renderGridView.js";
+import { renderListView } from "./main/listView/core/renderListView.js";
+import { addAnimation } from "./main/listView/feature/handleAnimation.js";
 import { store } from "./store.js";
 
 const GRID_NUM = 24;
@@ -27,7 +29,21 @@ function clickYes(selectedPress, _img, view) {
 
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
-  if (view === "list") _img.setAttribute("src", "../images/icon/subscribe.svg");
+  if (view === "list") {
+    _img.setAttribute("src", "../images/icon/subscribe.svg");
+    if (store.state.type === "list-press") {
+      //다음 카테고리로 ?
+      // selectedPress인 li 삭제
+      const lists = document.querySelectorAll(".category li");
+      lists.forEach((list) => {
+        if (list.dataset.category === selectedPress) {
+          addAnimation(list.nextElementSibling, "Next");
+          lists[0].parentElement.removeChild(list);
+        }
+      });
+      //li 삭제 후 애미메이션 넘겨주기 && 뉴스 가져오기
+    }
+  }
 
   if (store.state.type === "grid-sub") {
     //마지막 요소라면

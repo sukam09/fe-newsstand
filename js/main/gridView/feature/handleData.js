@@ -14,7 +14,12 @@ function shuffleImgIndex() {
 }
 const shuffledPress = shuffleImgIndex(imgIndex);
 
+let _press;
 function showMainList(press) {
+  if (press !== null) {
+    _press = press;
+  }
+
   const main_list_ul = document.querySelector(".grid-view-ul");
 
   main_list_ul.innerHTML = "";
@@ -25,9 +30,9 @@ function showMainList(press) {
   ) {
     let _li, _img;
     if (store.state.type === "grid-all") {
-      [_li, _img] = makeGrid(press[shuffledPress[i]]);
+      [_li, _img] = makeGrid(_press[shuffledPress[i]]);
     } else {
-      [_li, _img] = makeGrid(press[i]);
+      [_li, _img] = makeGrid(_press[i]);
     }
 
     //구독하기 && 해제하기 클릭 시
@@ -61,13 +66,13 @@ function makeGrid(pressinfo) {
   return [_li, _img];
 }
 
-function changePage(e, press) {
+function changePage(e) {
   if (e.target.id === "grid-left") {
     store.setGridPage(store.state.grid_page - 1);
   } else {
     store.setGridPage(store.state.grid_page + 1);
   }
-  showMainList(press);
+  showMainList(null);
   checkPage();
 }
 

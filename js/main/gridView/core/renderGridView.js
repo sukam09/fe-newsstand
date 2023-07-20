@@ -5,7 +5,6 @@ import { store } from "../../../store.js";
 import { manipulateSubPress } from "../feature/manipulateSubPress.js";
 
 async function renderGridView() {
-  console.log(store.state.grid_page);
   const press = await fetchData(".././assets/news.json");
   if (store.state.type === "grid-all") {
     makeGridView(press);

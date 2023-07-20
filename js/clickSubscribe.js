@@ -1,5 +1,8 @@
 import { checkPressInLocal } from "./checkPressInLocal.js";
 import { confirm } from "./confirm.js";
+import { renderListView } from "./main/listView/core/renderListView.js";
+import { store } from "./store.js";
+import { changePressCss } from "./main/changeView/changeView.js";
 const SET_TIME = 5000;
 
 function clickSubscribe(selectedPress, view, _img) {
@@ -29,8 +32,9 @@ function moveToSubList(snackbar) {
   snackbar.style.display = "none";
   //move to ListView
   document.querySelector(".viewer-btn button").click();
-
-  //change contents
+  store.setType("list-press");
+  renderListView();
+  changePressCss("press");
 }
 
 export { clickSubscribe };
