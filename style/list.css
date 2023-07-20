@@ -1,88 +1,10 @@
 @import url(./variable.css);
 
 .list-view {
-  /* display: inline-flex; */
   display: none;
   flex-direction: column;
   align-items: flex-start;
   background: var(--surface-default);
-}
-
-.field-tab {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  width: 930px;
-  height: 40px;
-  align-items: center;
-  border: var(--border-border-default) solid var(--border-default);
-  border-bottom: none;
-  background: var(--surface-alt);
-}
-
-.field-tab button {
-  display: flex;
-  height: 100%;
-  padding: 0px 16px;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-weak);
-  background: var(--surface-alt);
-}
-
-.field-tab button:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.field-tab button.progress {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  height: 40px;
-  width: 166px;
-  background: var(--surface-brand-alt);
-  color: var(--text-white-default);
-}
-
-.field-tab button.progress:hover {
-  text-decoration: none;
-}
-
-.field-tab button.progress span {
-  z-index: 1;
-}
-
-.field-tab button.progress div {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  z-index: 1;
-}
-
-.field-tab button.progress .progress-curr-num {
-  color: var(--text-white-default);
-}
-
-.field-tab button.progress .progress-total-num {
-  color: var(--text-white-weak);
-}
-
-@keyframes progress {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 166px;
-  }
-}
-
-.progress-bar {
-  position: absolute;
-  height: 100%;
-  background: var(--surface-brand-default);
-  animation: 20s linear progress infinite;
 }
 
 .list-press-news {
@@ -144,6 +66,7 @@
   gap: 10px;
   color: var(--text-weak);
 }
+
 .list-news {
   display: flex;
   align-items: flex-start;
