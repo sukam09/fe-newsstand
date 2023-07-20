@@ -9,6 +9,61 @@ function getById(id) {
   return document.getElementById(id);
 }
 
+function initViewChange() {
+  changePressState();
+  const view_type = document.querySelectorAll(".viewer-btn button");
+  //view_type[0] : listview, view_type[1] : gridview
+
+  view_type[0].addEventListener("click", () => {
+    displayView("list");
+    changeBtnAndView("list");
+    changePressCss("all");
+    store.setType("list-category");
+    store.setListPage(0);
+    renderListView();
+  });
+  view_type[1].addEventListener("click", () => {
+    displayView("grid");
+    changeBtnAndView("grid");
+    changePressCss("all");
+    store.setType("grid-all");
+    store.setGridPage(1);
+    renderGridView();
+    checkPage();
+  });
+}
+
+function changePressState() {
+  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
+
+  changeBtn[0].addEventListener("click", handleAllPress);
+  changeBtn[1].addEventListener("click", handleSubPress);
+}
+
+function displayView(type) {
+  const view_type = document.querySelectorAll(".viewer-btn button");
+  //view_type[0] : listview, view_type[1] : gridview
+  if (type === "list") {
+    view_type[0].innerHTML = `<img
+    src="../images/icon/List-view-checked.svg"
+    alt="images"
+  />`;
+    view_type[1].innerHTML = `<img
+    src="../images/icon/Grid-view-unchecked.svg"
+    alt="images"
+  />`;
+  } else {
+    view_type[0].innerHTML = `<img
+    src="../images/icon/List-view-unchecked.svg"
+    alt="images"
+  />`;
+    view_type[1].innerHTML = `<img
+  src="../images/icon/Grid-view-checked.svg"
+    alt="images"
+  />`;
+  }
+}
+
 function changeBtnAndView(view) {
   const grid_view = document.querySelector(".grid-view");
   const list_view = document.querySelector(".list-view");
@@ -38,57 +93,12 @@ function changeBtnAndView(view) {
   }
 }
 
-function initViewChange() {
-  changePressState();
-  const view_type = document.querySelectorAll(".viewer-btn button");
-  //view_type[0] : listview, view_type[1] : gridview
-
-  view_type[0].addEventListener("click", () => {
-    view_type[0].innerHTML = `<img
-    src="../images/icon/List-view-checked.svg"
-    alt="images"
-  />`;
-    view_type[1].innerHTML = `<img
-    src="../images/icon/Grid-view-unchecked.svg"
-    alt="images"
-  />`;
-    store.setType("list-category");
-    store.setListPage(0);
-    renderListView();
-    changeBtnAndView("list");
-    changePressCss("all");
-  });
-  view_type[1].addEventListener("click", () => {
-    view_type[0].innerHTML = `<img
-    src="../images/icon/List-view-unchecked.svg"
-    alt="images"
-  />`;
-    view_type[1].innerHTML = `<img
-  src="../images/icon/Grid-view-checked.svg"
-    alt="images"
-  />`;
-    store.setType("grid-all");
-    store.setGridPage(1);
-    renderGridView();
-    changeBtnAndView("grid");
-    checkPage();
-    changePressCss("all");
-  });
-}
-
-function changePressState() {
-  const changeBtn = document.querySelectorAll(".main-tab-btn button span");
-
-  changeBtn[0].addEventListener("click", handleAllPress);
-  changeBtn[1].addEventListener("click", handleSubPress);
-}
-
 function handleAllPress() {
   if (store.state.type === "grid-sub") {
     store.setType("grid-all");
     store.setGridPage(1);
     renderGridView();
-  } else {
+  } else if (store.state.type === "list-press") {
     store.setType("list-category");
     store.setListPage(0);
     renderListView();
@@ -100,7 +110,7 @@ function handleSubPress() {
     store.setType("grid-sub");
     store.setGridPage(1);
     renderGridView();
-  } else {
+  } else if (store.state.type === "list-category") {
     store.setType("list-press");
     store.setListPage(0);
     renderListView();
@@ -120,4 +130,4 @@ function changePressCss(type) {
   }
 }
 
-export { initViewChange, changePressCss };
+export { initViewChange, changePressCss, displayView, changeBtnAndView };

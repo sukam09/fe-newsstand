@@ -8,6 +8,7 @@ import {
 import { store } from "../../../store.js";
 import { checkPressInLocal } from "../../../checkPressInLocal.js";
 import { clickSubscribe } from "../../../clickSubscribe.js";
+import { renderListView } from "../core/renderListView.js";
 
 function makeRandomNews() {
   if (store.state.type === "list-press") return;

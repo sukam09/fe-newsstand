@@ -5,6 +5,7 @@ function manipulateSubPress(press) {
   press.map((item) => {
     if (subPress.includes(item.name)) subPressInfo.push(item);
   });
+  console.log(subPress);
   return subPressInfo;
 }
 export { manipulateSubPress };

@@ -1,7 +1,8 @@
-let press = JSON.parse(localStorage.getItem("press"));
 let news_by_press = [];
-
+let press;
 function manipulateNewsByPress(news) {
+  press = JSON.parse(localStorage.getItem("press"));
+
   press.forEach((item) => {
     news_by_press[item] = [];
   });
