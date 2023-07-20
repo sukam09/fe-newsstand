@@ -1,5 +1,5 @@
 import { findCurrentCategory } from "./handleNewsData.js";
-import { news_by_category } from "./manipulateNews.js";
+import { news_by_category } from "./manipulateNewsByCategory.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
 import { store } from "../../../store.js";
 /* about list view left, right Btn */
@@ -7,7 +7,6 @@ import { store } from "../../../store.js";
 function addEventToBtn() {
   const left_btn = document.getElementById("list-left-btn");
   const right_btn = document.getElementById("list-right-btn");
-
   left_btn.addEventListener("click", () => handleBtnClick("Left"));
   right_btn.addEventListener("click", () => handleBtnClick("Right"));
 }

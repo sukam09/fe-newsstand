@@ -1,4 +1,5 @@
-import { category, news_by_category } from "./manipulateNews.js";
+import { category, news_by_category } from "./manipulateNewsByCategory.js";
+import { news_by_press, press } from "./manipulateNewsByPress.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
@@ -9,14 +10,56 @@ import { checkPressInLocal } from "../../../checkPressInLocal.js";
 import { clickSubscribe } from "../../../clickSubscribe.js";
 
 function makeRandomNews() {
+  if (store.state.type === "list-press") return;
+
   category.forEach((cate) => {
     news_by_category[cate].sort(() => Math.random() - 0.5);
   });
 }
 
 function makeCategory() {
+  let _category;
+  if (store.state.type === "list-category") {
+    _category = category;
+  } else {
+    _category = press;
+  }
+  console.log(store.state.type);
+
+  // const _ul = document.querySelector(".category");
+  // _category.forEach((item, index) => {
+  //   const _li = document.createElement("li");
+  //   _li.innerHTML = `
+  //      <div></div>
+  //      <span class="category-item">${item}</span>
+  //      <span class="category-num"></span>
+  //    `;
+
+  //   _ul.appendChild(_li);
+
+  //   _li.dataset.category = item;
+
+  //   _li.addEventListener("click", (e) => handleCategoryClick(e));
+  //   _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
+  //   _li.addEventListener("animationiteration", (e) =>
+  //     handleAniamtionIteration(e)
+  //   );
+
+  //   //span 클릭 시 li 클릭으로 처리
+  //   _li.children[1].addEventListener("click", (e) => {
+  //     e.stopPropagation();
+  //     _li.click();
+  //   });
+
+  //   //default로 첫번째 카테고리
+  //   if (index === 0) {
+  //     _li.classList.add("selected-category");
+  //     _li.children[2].style.display = "flex";
+  //   }
+  // });
   const _ul = document.querySelector(".category");
-  category.forEach((item, index) => {
+  _ul.innerHTML = ``;
+  _category.forEach((item, index) => {
     const _li = document.createElement("li");
     _li.innerHTML = `
        <div></div>
@@ -52,19 +95,22 @@ function makeCategory() {
 function chageNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
   //press-info
-  changePressInfo(news[store.state.list_page]);
+  if (news !== undefined) {
+    changePressInfo(news[store.state.list_page]);
 
-  //main news
-  changeMain(news[store.state.list_page]);
+    //main news
+    changeMain(news[store.state.list_page]);
 
-  //sub news
-  changeSub(news[store.state.list_page]);
+    //sub news
+    changeSub(news[store.state.list_page]);
 
-  //pagenum info
-  changePageInfo(e);
+    //pagenum info
+    changePageInfo(e);
+  }
 }
 
 function changePressInfo(news) {
+  console.log(news);
   const press_info = document.querySelector(".press-info");
   press_info.children[0].setAttribute("src", `${news.src}`);
   press_info.children[0].setAttribute("data-press", `${news.name}`);
@@ -114,7 +160,8 @@ function changePageInfo(e) {
 
 /* GET */
 function getNews(category) {
-  return news_by_category[category];
+  if (store.state.type === "list-category") return news_by_category[category];
+  else return news_by_press[category];
 }
 
 function getPagesNum(category) {

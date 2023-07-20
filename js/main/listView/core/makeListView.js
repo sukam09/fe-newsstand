@@ -4,13 +4,13 @@ import {
   transformMainNews,
   addEventPressInfo,
 } from "../feature/handleNewsData.js";
-import { addEventToBtn } from "../feature/handleBtnEvent.js";
+// import { addEventToBtn } from "../feature/handleBtnEvent.js";
 
 function makeListView() {
   makeRandomNews();
   makeCategory();
   transformMainNews();
-  addEventToBtn();
+  // addEventToBtn();
   addEventPressInfo();
 }
 export { makeListView };

@@ -1,7 +1,20 @@
-let category = [];
+let category = [
+  "A",
+  "b",
+  "C",
+  "D",
+  "e",
+  "F",
+  "G",
+  "sad",
+  "SAD",
+  "asdssa",
+  "sadasd",
+  "ASDsadas",
+];
 let news_by_category = {};
 
-function manipulateNews(news) {
+function manipulateNewsByCategory(news) {
   news.forEach((item) => {
     if (!category.includes(item.category)) category.push(item.category);
   });
@@ -22,4 +35,4 @@ function manipulateNews(news) {
   });
 }
 
-export { manipulateNews, category, news_by_category };
+export { manipulateNewsByCategory, category, news_by_category };
