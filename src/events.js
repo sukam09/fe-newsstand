@@ -222,11 +222,14 @@ function toggleSubscribeEvent() {
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = setSnackBar();
 
-            const { main } = setOptions();
-            const { page } = renderOptions()[main];
+            const { main: mainOption, press: pressOption } = setOptions();
+            const { page } = renderOptions()[mainOption];
 
             render(setOptions("sub"), press, page);
             subscribe_option.subscribe_press[press.name] = press.value;
+            if (pressOption === "subscribe") {
+                clearAndRender(mainOption, pressOption);
+            }
 
             renderSnackBarView(snack_bar, press.value);
         });

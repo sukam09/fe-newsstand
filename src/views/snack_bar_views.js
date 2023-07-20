@@ -1,5 +1,5 @@
 function renderSnackBarView(container, is_subscribe) {
-    let snack_bar_text = is_subscribe ? "추가" : "삭제";
+    let snack_bar_text = is_subscribe === "true" ? "추가" : "삭제";
 
     container.textContent = `내가 구독한 언론사에 ${snack_bar_text}되었습니다.`;
 }

@@ -61,7 +61,7 @@ export function renderOptions() {
             all: { data: grid_option.press_data, page: grid_option.page },
             subscribe: {
                 data: grid_option.press_data.filter(
-                    (press) => subscribe_option.subscribe_press[press["name"]]
+                    (press) => subscribe_option.subscribe_press[press["name"]] === "true"
                 ),
                 page: grid_option.subscribe_page,
             },

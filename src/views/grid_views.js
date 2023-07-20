@@ -48,7 +48,7 @@ function createPressList(container, data, idx) {
                         item.name
                     }" value="${subscribe}">
                     ${
-                        subscribe
+                        subscribe === "true"
                             ? `<img src="./assets/icons/symbol.png" />
                             <span>${UNSUBSCRIBE_TEXT}</span>`
                             : `<img src="./assets/icons/plus.png" />
