@@ -5,12 +5,11 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { getView, getPage, getSubscribedPress } from "../core/getter.js";
-const subscribedPress = store.state.subscribedPress;
 function MainView() {
   // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
   showGridView();
-  checkPage();
+  // checkPage();
 }
 
 function changePage(target) {
@@ -25,7 +24,7 @@ function changePage(target) {
   } else {
     showListView("");
   }
-  checkPage();
+  // checkPage();
 }
 
 function handleClick(e) {
@@ -39,7 +38,7 @@ function handleClick(e) {
       store.setState({ page: FIRST_PAGE_NUM });
       changeView();
       getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
-      checkPage();
+      // checkPage();
       break;
     case "left":
     case "right":
@@ -50,22 +49,26 @@ function handleClick(e) {
     case "all":
       document.getElementById("subscribe").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM });
-      if (getView() === "list") {
-        changeView();
-        store.setState({ tabMode: `${target}` });
-        showListView(CATEGORY[0]);
-        checkPage();
-      } else {
+      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
+      if (getView() === "grid") {
         showGridView();
+        // checkPage();
+      } else {
+        showListView(CATEGORY[0]);
+        // checkPage();
       }
       break;
     case "subscribe":
       document.getElementById("all").classList.remove("clicked");
       document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ tabMode: `${target}` });
-      showListView(getSubscribedPress[0]);
-      checkPage();
+      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
+      if (getView() === "grid") {
+        showGridView();
+        // checkPage();
+      } else {
+        showListView(getSubscribedPress[0]);
+        // checkPage();
+      }
       break;
     default:
       break;

@@ -1,5 +1,5 @@
 import { store } from "../core/store.js";
-import { SNACKBAR_WAIT_TIME } from "../constants/constants.js";
+import { ICON_IMG_PATH, SNACKBAR_WAIT_TIME } from "../constants/constants.js";
 import { getPage, getSubscribedPress } from "../core/getter.js";
 const subscribedPress = store.state.subscribedPress;
 function handleClick(e, press) {
@@ -28,7 +28,6 @@ function handleClick(e, press) {
     else {
       //추가
       const updatedSubscribedPress = [...subscribedPress, press];
-
       store.setState({ subscribedPress: updatedSubscribedPress });
       //스낵바
       newDiv.classList.add("popup", "snackbar");
@@ -56,11 +55,10 @@ function checkAnswer(e, press) {
   if (target.classList.contains("btn-yes")) {
     console.log("yes");
     const updatedSubscribedPress = subscribedPress.filter(
-      (item) => item !== pressToRemove
+      (item) => item.name !== press.name
     );
-
     store.setState({ subscribedPress: updatedSubscribedPress });
-    showSubscribeButton(getSubscribedPress(), press);
+    showSubscribeButton(getSubscribedPress().includes(press.name));
     button.innerHTML = showSubscribeButton(subscribedPress.includes(press));
   } else {
     console.log("no");
@@ -70,12 +68,12 @@ function showSubscribeButton(isSubscribed) {
   return isSubscribed
     ? `
       <button class="sub cancel">
-        <img src="../assets/icons/closed.svg" />
+        <img src="${ICON_IMG_PATH}/closed.svg" />
       </button>
     `
     : `
       <button class="sub subscribe">
-        <img src="../assets/icons/plus.svg" />
+        <img src="${ICON_IMG_PATH}/plus.svg" />
         <span>구독하기</span>
       </button>
       `;
@@ -83,9 +81,7 @@ function showSubscribeButton(isSubscribed) {
 
 export function drawPressInfo(list_content) {
   const press_news = document.querySelector(".press-news");
-  const isSubscribed = subscribedPress.includes(
-    list_content[getPage() - 1].name
-  );
+  const isSubscribed = subscribedPress.includes(list_content[getPage() - 1]);
   const button = showSubscribeButton(isSubscribed);
   try {
     press_news.innerHTML = `<div class="press-info">
@@ -102,7 +98,7 @@ export function drawPressInfo(list_content) {
     press_news.appendChild(newDiv);
     const sub_btn = document.querySelector(".press-info .sub");
     sub_btn.addEventListener("click", (e) => {
-      handleClick(e, list_content[getPage() - 1].name);
+      handleClick(e, list_content[getPage() - 1]);
     });
   } catch {}
 }
