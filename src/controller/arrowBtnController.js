@@ -30,7 +30,7 @@ function moveRight() {
     const listModeMaxPage = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : GLOBAL.SUBSCRIBE_NEWS_NUM;
     GLOBAL.LIST_CURRENT_PAGE = (GLOBAL.LIST_CURRENT_PAGE + 1) % listModeMaxPage;
     updateCategory();
-    changeState(STATE.MOVE_LIST_LEFT);
+    changeState(STATE.MOVE_LIST_RIGHT);
   }
 }
 
