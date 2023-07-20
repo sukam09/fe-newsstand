@@ -5,6 +5,7 @@ import Stores from "./core/Store.js";
 import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
+import { changeImageSrc } from "../utils/utils.js";
 
 const drawNews = () => {
   drawNewsDiv();
@@ -58,7 +59,15 @@ function clickSubscribeButton() {
     setTimeout(() => {
       renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     }, rollingTime);
+    replaceSubscribeCancelButton(subscribedButton);
   });
+}
+
+function replaceSubscribeCancelButton(subscribeButton) {
+  console.log("A");
+  const cancelButton = document.createElement("img");
+  cancelButton.src = "./img/subscribe_cancel_button.svg";
+  subscribeButton.replaceWith(cancelButton);
 }
 
 export { drawNews };

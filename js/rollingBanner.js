@@ -1,5 +1,6 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
 import { rollingTime } from "../utils/constants.js";
+
 let interval1;
 let interval2;
 
