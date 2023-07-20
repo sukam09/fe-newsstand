@@ -1,5 +1,12 @@
+import { MAX_GRID_COUNT } from "../constant/constants.js";
 import { getState, resister, setState } from "./observer/observer.js";
-import { gridPageIdx, isGrid, listPageIdx } from "./store/store.js";
+import {
+  gridPageIdx,
+  isGrid,
+  isSubTab,
+  listPageIdx,
+  subscribeList,
+} from "./store/store.js";
 import { $ } from "./util.js";
 
 const leftButton = $(".left_navigation_button");
@@ -7,41 +14,73 @@ const rightButton = $(".right_navigation_button");
 
 function updatePages(increment) {
   const currentMode = getState(isGrid);
-  const nowGridPage = getState(gridPageIdx);
-  const nowListPage = getState(listPageIdx);
-  currentMode
-    ? setState(gridPageIdx, nowGridPage + increment)
-    : setState(listPageIdx, nowListPage + increment);
+  const key = currentMode ? gridPageIdx : listPageIdx;
+  setState(key, getState(key) + increment);
 }
 
-function updateNavigtaionButton() {
-  const currentMode = getState(isGrid);
-  if (currentMode) {
-    switch (getState(gridPageIdx)) {
-      case 0:
-        leftButton.style.display = "none";
-        rightButton.style.display = "block";
-        return;
-      case 3:
-        leftButton.style.display = "block";
-        rightButton.style.display = "none";
-        return;
-      default:
-        leftButton.style.display = "block";
-        rightButton.style.display = "block";
+function updateNavigationButton() {
+  const isGridMode = getState(isGrid);
+  const isSubMode = getState(isSubTab);
+  const subListCount = getState(subscribeList).length;
+
+  if (isGridMode && !isSubMode) {
+    changeButton(3);
+  } else if (isGridMode && isSubMode) {
+    if (subListCount <= MAX_GRID_COUNT) {
+      hideBothButton();
+    } else if (subListCount <= MAX_GRID_COUNT * 2) {
+      changeButton(1);
+    } else if (subListCount <= MAX_GRID_COUNT * 3) {
+      changeButton(2);
+    } else {
+      changeButton(3);
     }
   } else {
-    leftButton.style.display = "block";
-    rightButton.style.display = "block";
+    showBothButton();
   }
+}
+
+function changeButton(index) {
+  switch (getState(gridPageIdx)) {
+    case 0:
+      showRightButton();
+      break;
+    case index:
+      showLeftButton();
+      break;
+    default:
+      showBothButton();
+  }
+}
+
+function showBothButton() {
+  leftButton.style.display = "block";
+  rightButton.style.display = "block";
+}
+
+function hideBothButton() {
+  leftButton.style.display = "none";
+  rightButton.style.display = "none";
+}
+
+function showRightButton() {
+  leftButton.style.display = "none";
+  rightButton.style.display = "block";
+}
+
+function showLeftButton() {
+  leftButton.style.display = "block";
+  rightButton.style.display = "none";
 }
 
 function setNavigationButton() {
   leftButton.addEventListener("click", () => updatePages(-1));
   rightButton.addEventListener("click", () => updatePages(1));
-  resister(gridPageIdx, updateNavigtaionButton);
-  resister(listPageIdx, updateNavigtaionButton);
-  resister(isGrid, updateNavigtaionButton);
+  resister(gridPageIdx, updateNavigationButton);
+  resister(listPageIdx, updateNavigationButton);
+  resister(isGrid, updateNavigationButton);
+  resister(isSubTab, updateNavigationButton);
+  resister(isSubTab, () => setState(gridPageIdx, 0));
 }
 
 export { setNavigationButton };
