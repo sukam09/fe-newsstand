@@ -5,6 +5,7 @@ import {
 import { setState } from "../../../observer/observer.js";
 import { viewOptionState } from "../../../store/store.js";
 import { VIEW_OPTION_TYPE } from "../../../constants/constants.js";
+import { checkIsAllType } from "../../../utils/utils.js";
 
 const $mainNavTabs = _querySelector(".main-nav_tabs");
 const $modeToggleButtons = _querySelectorAll("button", $mainNavTabs);
@@ -13,16 +14,22 @@ const $subscribeButton = $modeToggleButtons[1];
 
 const handleSubscribeButtonClick = () => {
   setState(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
-
-  $subscribeButton.className = "main-nav_tabs--selected selected-bold16";
-  $allButton.className = "available-medium16";
 };
 
 const handleAllButtonClick = () => {
   setState(viewOptionState, VIEW_OPTION_TYPE.ALL);
+};
 
-  $allButton.className = "main-nav_tabs--selected selected-bold16";
-  $subscribeButton.className = "available-medium16";
+const changeActivateState = () => {
+  const isAllType = checkIsAllType();
+
+  if (isAllType) {
+    $allButton.className = "main-nav_tabs--selected selected-bold16";
+    $subscribeButton.className = "available-medium16";
+  } else {
+    $subscribeButton.className = "main-nav_tabs--selected selected-bold16";
+    $allButton.className = "available-medium16";
+  }
 };
 
 const setEvents = () => {
@@ -30,4 +37,4 @@ const setEvents = () => {
   $subscribeButton.addEventListener("click", handleSubscribeButtonClick);
 };
 
-export { setEvents };
+export { setEvents, changeActivateState };

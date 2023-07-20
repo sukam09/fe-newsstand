@@ -22,6 +22,10 @@ const VIEW_OPTION_TYPE = Object.freeze({
   SUBSCRIBE: "SUBSCRIBE",
   ALL: "ALL",
 });
+const SUBSCRIBE_MESSAGE = {
+  ADD: "내가 구독한 언론사에 추가되었습니다.",
+  DELETE: "내가 구독한 언론사에서 삭제되었습니다.",
+};
 const PRESS_ICON = Object.freeze({
   오마이뉴스: {
     light: "./src/assets/images/light/0.png",
@@ -421,4 +425,5 @@ export {
   CATEGORY_LENGTH,
   VIEW_TYPE,
   VIEW_OPTION_TYPE,
+  SUBSCRIBE_MESSAGE,
 };

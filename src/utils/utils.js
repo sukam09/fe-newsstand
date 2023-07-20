@@ -1,6 +1,6 @@
 import { getState } from "../observer/observer.js";
-import { isDarkMode, viewOptionState, viewState } from "../store/store.js";
 import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
+import { isDarkMode, viewOptionState, viewState } from "../store/store.js";
 
 const customFetch = async (url, callback, options) => {
   try {

@@ -1,11 +1,17 @@
 import {
   alertMsgState,
+  selectedSubscribeState,
   snackBarMsgState,
   subscribeState,
+  viewOptionState,
 } from "../../../store/store.js";
-import { checkIsGridView } from "../../../utils/utils.js";
+import {
+  SUBSCRIBE_MESSAGE,
+  VIEW_OPTION_TYPE,
+} from "../../../constants/constants.js";
 import { getState, setState } from "../../../observer/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
+import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const createNormalSubscribeButton = (name) => {
   const $button = document.createElement("button");
@@ -96,12 +102,19 @@ const handleSubscribeButtonClick = (subItem) => () => {
   const subList = getState(subscribeState);
 
   const isSubscribed = checkSubscribe(subItem);
+  const isAllType = checkIsAllType();
+  const isListView = !checkIsGridView();
 
   if (isSubscribed) {
     setState(alertMsgState, subItem);
   } else {
     setState(subscribeState, [...subList, subItem]);
-    setState(snackBarMsgState, "내가 구독한 언론사에 추가되었습니다.");
+    setState(snackBarMsgState, SUBSCRIBE_MESSAGE.ADD);
+
+    if (isAllType && isListView) {
+      setState(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
+      setState(selectedSubscribeState, subItem);
+    }
   }
 };
 

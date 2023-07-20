@@ -1,5 +1,6 @@
 import {
   alertMsgState,
+  selectedSubscribeState,
   snackBarMsgState,
   subscribeGridPageState,
   subscribeState,
@@ -8,8 +9,8 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { NEWS_COUNT } from "../../../constants/constants.js";
 import { getState, setState } from "../../../observer/observer.js";
+import { NEWS_COUNT, SUBSCRIBE_MESSAGE } from "../../../constants/constants.js";
 
 const $snackBar = _querySelector(".snackbar");
 const $alert = _querySelector(".alert");
@@ -21,11 +22,9 @@ const $closeButton = $alertButtons[1];
 const showAlert = () => {
   const content = getState(alertMsgState);
 
-  const classList = $alert.classList;
-
   $alertInner.firstChild.textContent = content;
 
-  classList.contains("invisible") ? invisibleToVisible() : visibleToInvisible();
+  invisibleToVisible();
 };
 
 const visibleToInvisible = () => {
@@ -46,17 +45,21 @@ const handleUnSubscribeButtonClick = () => {
   const subscribeItem = getState(alertMsgState);
 
   const itemIndex = subscribeList.indexOf(subscribeItem);
+
   const updateArray = subscribeList.filter((_, idx) => idx !== itemIndex);
 
+  setState(
+    selectedSubscribeState,
+    updateArray[itemIndex % (subscribeList.length - 1)]
+  );
   setState(subscribeState, updateArray);
   if (updateArray.length % NEWS_COUNT === 0) {
     const currentPage = getState(subscribeGridPageState);
 
     currentPage !== 0 && setState(subscribeGridPageState, currentPage - 1);
   }
-  setState(snackBarMsgState, "내가 구독한 언론사에서 삭제되었습니다.");
-
   visibleToInvisible();
+  setState(snackBarMsgState, SUBSCRIBE_MESSAGE.DELETE);
 };
 
 const handleCloseButtonClick = () => {

@@ -9,10 +9,11 @@ const $snackBarProgress = _querySelector(".snackbar-progress", $snackBar);
 const showSnackBar = () => {
   const content = getState(snackBarMsgState);
 
-  const classList = $snackBar.classList;
+  const isInvisible = $snackBar.classList.contains("invisible");
 
   $snackBarInner.textContent = content;
-  if (classList.contains("invisible")) {
+
+  if (isInvisible) {
     invisibleToVisible();
   } else {
     visibleToInvisible();
