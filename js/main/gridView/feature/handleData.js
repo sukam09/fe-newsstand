@@ -92,7 +92,7 @@ function checkPage() {
     const subPress = JSON.parse(localStorage.getItem("press"));
 
     if (
-      store.state.grid_page === MIN_PAGE &&
+      store.state.grid_page <= MIN_PAGE &&
       store.state.grid_page === Math.ceil(subPress.length / 24)
     ) {
       right_btn.style.visibility = "hidden";

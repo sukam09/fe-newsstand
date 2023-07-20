@@ -46,7 +46,7 @@ function clickYes(selectedPress, _img, view) {
   }
 
   if (store.state.type === "grid-sub") {
-    //마지막 요소라면
+    //페이지의 마지막 요소라면
     if (SubscribePress.length % GRID_NUM === 0)
       store.setGridPage(store.state.grid_page - 1);
     renderGridView();

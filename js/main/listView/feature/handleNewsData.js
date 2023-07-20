@@ -63,7 +63,6 @@ function makeCategory() {
 /* change */
 function chageNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
-  console.log(news, store.state.list_page);
   //press-info
   if (news !== undefined) {
     changePressInfo(news[store.state.list_page]);
