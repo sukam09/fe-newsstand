@@ -2,8 +2,15 @@ import news from "../json/news.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
 import { categoryNews } from "./setData.js/setCategoryData.js";
 import Stores from "./core/Store.js";
+import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
-import { renderCardList } from "./render/renderCardList.js";
+import { renderMain } from "./render/renderMain.js";
+
+const drawNews = () => {
+  drawNewsDiv();
+  drawNewsHeader();
+  clickSubscribeButton();
+};
 
 function drawNewsImage(PageNumberIndex) {
   return `<img class="news-main-image" src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryIndex][PageNumberIndex].title}`;
@@ -42,24 +49,16 @@ function drawNewsHeader() {
 
 function clickSubscribeButton() {
   const subscribedButton = document.querySelector(".subscribe-button");
-  const snackbar = document.querySelector(".snackbar");
   subscribedButton.addEventListener("click", function () {
     Stores.setSubscribeNews(
       subscribedButton.previousSibling.previousSibling.id
     );
-    snackbar.style.opacity = "1";
+    Stores.setSubscribedMode("subscribed");
+    snackBar("내가 구독한 언론사에 추가되었습니다.");
     setTimeout(() => {
-      snackbar.style.opacity = "0";
-      setTimeout(() => {}, 1000);
+      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     }, rollingTime);
-    renderCardList(Stores.getSubscribeNews());
   });
-}
-
-function drawNews() {
-  drawNewsDiv();
-  drawNewsHeader();
-  clickSubscribeButton();
 }
 
 export { drawNews };
