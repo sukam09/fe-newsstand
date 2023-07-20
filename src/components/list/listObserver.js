@@ -41,9 +41,9 @@ class ListSubscribe {
     };
 
     // 카테고리 넘기기
-    changeCategory = async function (is_next) {
+    changeCategory = async function (is_right) {
         const data_len = this.data.length - 1;
-        if (is_next) {
+        if (is_right) {
             this.category_now === data_len
                 ? this.setValue({ category_old: this.category_now, category_now: 0 })
                 : this.setValue({ category_old: this.category_now, category_now: this.category_now + 1 });
@@ -89,25 +89,24 @@ class ListSubscribe {
 
     // DOM 변경 = progressbar 초기화  (아직 다 안 끝났을 때)
     resetProgressBar = async function () {
-        console.log("reset");
         const progress_list = document.querySelector(".list-subscribe").querySelectorAll(".btn-tab-progress");
         progress_list[this.category_now].classList.remove("btn-tab-progress");
         progress_list[this.category_now].offsetWidth;
         progress_list[this.category_now].classList.add("btn-tab-progress");
     };
 
+    onClickArrowBtn = function (is_right) {
+        this.changeCategory(is_right).then(() => {
+            renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
+            this.startInterval();
+        });
+    };
+
     update = function (state) {
         this.getData(state);
         const $new_container = createListViewMain(this.data[0], class_name.SUBSCRIBE, true, this.data);
         document.querySelector(`.list-${class_name.SUBSCRIBE}`).children[1].replaceWith($new_container);
-        // if (isListSubscribe()) {
-        //     this.changeCategory(true).then(() => {
-        //         console.log("next");
-        //         this.resetProgressBar();
-        //         renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
-        //         this.startInterval();
-        //     });
-        // }
+        this.onClickArrowBtn(true);
     };
 
     getData = function (state) {

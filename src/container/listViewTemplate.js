@@ -19,7 +19,6 @@ function createPressBtn(press_name, idx) {
         className: "list-view-btn",
         events: {
             click: () => {
-                console.log(list_view_subscribe.getCategoryNow());
                 list_view_subscribe.initProgressBar({
                     category_old: list_view_subscribe.getCategoryNow(),
                     category_now: idx,
@@ -127,7 +126,6 @@ function createPressInfo(press_src, press_edit_date, is_subscribe, press_id) {
                       type: "closed",
                       events: {
                           click: () => {
-                              console.log("clicked");
                               _sub_press_list.deleteState(press_id);
                           },
                       },
@@ -268,7 +266,11 @@ function createListArrowBtn(btnFactory, is_right, is_subscribe) {
             : `${class_name.LIST_LEFT_BTN}-${is_subscribe}`,
         events:
             is_subscribe === class_name.SUBSCRIBE
-                ? {}
+                ? {
+                      click: () => {
+                          list_view_subscribe.onClickArrowBtn(is_right);
+                      },
+                  }
                 : { click: progress_bar_info.onClickArrowBtn.bind({ is_right: is_right }) },
         isRight: is_right,
     });
