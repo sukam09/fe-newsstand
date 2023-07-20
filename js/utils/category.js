@@ -62,6 +62,20 @@ function makeMainNewsNav(logo, edit, name) {
   newsNavParent.innerHTML += publisherLogo;
   newsNavParent.innerHTML += editDay;
   newsNavParent.innerHTML += subButton;
+
+  // 카테고리 뉴스에서 구독하기 버튼을 눌렀을때.
+  newsNavParent.children[2].addEventListener("click", () => {
+    // 해지하기 버튼을 눌렀을때.
+    if (subscribeState.getSubscribeByName(name)[0]) {
+      newsNavParent.children[2].textContent = MESSAGE.SUBSCRIBE;
+      subscribeState.setUnSubscribeState(name);
+    }
+    // 구독하기 버튼을 눌렀을때.
+    else {
+      newsNavParent.children[2].textContent = MESSAGE.UNSUBSCRIBE;
+      subscribeState.setSubscribeState(name, logo);
+    }
+  });
 }
 
 function makeMainNews(img, title) {
