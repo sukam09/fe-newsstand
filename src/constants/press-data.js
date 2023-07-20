@@ -8,10 +8,9 @@ const STATE = {
 
 const LIST = {
   CATEGORY_LENGTH: 0,
-  CATEGORY_COUNT: 0,
+  CATEGORY_COUNT: 1,
   PAGE_LENTH: 0,
-  PAGE_COUNT: 0,
-  PAGE_INTERVAL: 0,
+  PAGE_COUNT: 1,
   SUFFLE_CATEGORY: [],
   SUFFLE_ID: getShuffleIds(96),
   SUBSCRIBE_ID: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

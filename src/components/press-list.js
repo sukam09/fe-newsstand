@@ -1,5 +1,6 @@
 import { getShuffle } from '../utils/shuffle.js';
-import { LIST, PAGE } from '../constants/press-data.js';
+import { LIST } from '../constants/press-data.js';
+import { getSnackBar, getAlert } from '../utils/popup.js';
 
 let pageNum = 0;
 let currentArticle = 0;
@@ -14,17 +15,19 @@ const initPressList = (pressData, categoryList) => {
   setListSub();
   setListNav(categoryList);
 
-  // setListArrow(); // 기능 추가 전
   setListShuffle(pressData, categoryList);
   setListArticle();
-  LIST.PAGE_COUNT += 1;
 
-  setProgressBar();
   setProgressBarClick();
   setProgressBarEvent();
 
   setArrowRight();
   setArrowLeft();
+
+  setArticleEvent();
+  changeIcon();
+
+  setListButtonClick(pressData, categoryList); //
 };
 
 /**
@@ -112,21 +115,24 @@ const setListNav = (categoryList) => {
  * 언론사 리스트의 Article
  */
 const setListShuffle = (pressData, categoryList) => {
+  LIST.SUFFLE_CATEGORY = [];
   categoryList.forEach((category) => {
     let categoryFilter = pressData.filter((press) => press.categoryName === category);
     if (categoryFilter.length === 0) categoryFilter = pressData.filter((press) => press.name === category);
     LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
   });
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length - 1;
+
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.CATEGORY_LENGTH = LIST.SUFFLE_CATEGORY.length;
 };
 
 const setListArticle = () => {
-  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT][LIST.PAGE_COUNT];
-
-  // 다크모드는 나중에 처리하자
+  const categoryArticle = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1];
   const sectionMain = document.querySelector('.press-category__section-main');
-  sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  let mode = localStorage.getItem('mode');
+  if (mode === 'light') sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
+  if (mode === 'dark') sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.darkSrc;
+
   sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
   sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
   sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
@@ -138,13 +144,16 @@ const setListArticle = () => {
     sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
     sub.href = categoryArticle.categorySubTitle[subIdx].link;
   });
+
+  const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
+  const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+  setListButtonChange(isSubscribe);
+  setSubscribeArrow(isSubscribe);
 };
 
 /**
  * 언론사 리스트의 Progress Bar
  */
-const setProgressBar = () => {};
-
 // 함수 줄이기
 const setProgressBarClick = () => {
   const progressBar = document.querySelectorAll('.press-category__li');
@@ -164,9 +173,9 @@ const setProgressBarClick = () => {
       if (isCategory) progressIndex = LIST.CATEGORY_NAME.findIndex((name) => name === progressName);
       if (isSubscribe) progressIndex = LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
 
-      LIST.CATEGORY_COUNT = progressIndex;
-      LIST.PAGE_COUNT = 0;
-      LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
+      LIST.CATEGORY_COUNT = progressIndex + 1;
+      LIST.PAGE_COUNT = 1;
+      LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
 
       progress.classList.add('progress-start');
       progress.querySelector('.press-category__div').classList.remove('none');
@@ -175,7 +184,8 @@ const setProgressBarClick = () => {
 
       progressNow.innerText = LIST.PAGE_COUNT;
       progressSum.innerText = LIST.PAGE_LENTH;
-      getProgressBarEvent(progressNow, progressSum);
+
+      setListArticle();
     });
   });
 };
@@ -193,8 +203,12 @@ const setProgressBarEvent = () => {
       const progressNow = progress.querySelector('.press-category__div-now');
       const progressSum = progress.querySelector('.press-category__div-sum');
 
-      progressNow.innerText = LIST.PAGE_COUNT;
-      progressSum.innerText = LIST.PAGE_LENTH;
+      const isSubscribe = progressNow === null;
+      setSubscribeArrow(isSubscribe);
+      if (!isSubscribe) {
+        progressNow.innerText = LIST.PAGE_COUNT;
+        progressSum.innerText = LIST.PAGE_LENTH;
+      }
       getProgressBarEvent(progressNow, progressSum);
     });
   });
@@ -204,8 +218,12 @@ const getProgressBarEvent = (progressNow, progressSum) => {
   setListArticle();
   const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
   const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
-  progressNow.innerText = LIST.PAGE_COUNT;
-  progressSum.innerText = LIST.PAGE_LENTH;
+  const isSubscribe = progressNow === null;
+  setSubscribeArrow(isSubscribe);
+  if (!isSubscribe) {
+    progressNow.innerText = LIST.PAGE_COUNT;
+    progressSum.innerText = LIST.PAGE_LENTH;
+  }
 
   if (PAGE) setNextPage(progressNow);
   if (!PAGE && CATEGORY) setNextCategory();
@@ -219,13 +237,16 @@ const setNextPage = (progressNow) => {
 
 const setNextCategory = () => {
   LIST.CATEGORY_COUNT += 1;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = 0;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = 1;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
   const addLi = removeLi.nextElementSibling;
   const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
@@ -234,14 +255,17 @@ const setNextCategory = () => {
 };
 
 const setFirstCategory = () => {
-  LIST.CATEGORY_COUNT = 0;
-  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT].length - 1;
-  LIST.PAGE_COUNT = 0;
+  LIST.CATEGORY_COUNT = 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = 1;
 
   const removeLi = document.querySelector('.progress-start');
   const removeDiv = removeLi.querySelector('.press-category__div');
   const addLi = document.querySelector('.press-category__ul').firstElementChild;
   const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
 
   removeLi.classList.remove('progress-start');
   removeDiv.classList.add('none');
@@ -249,6 +273,9 @@ const setFirstCategory = () => {
   addDiv.classList.remove('none');
 };
 
+/**
+ * 언론사 리스트의 Arrow
+ */
 const setArrowRight = () => {
   const arrowRight = document.querySelector('.arrows-category__img-right');
   arrowRight.addEventListener('click', () => {
@@ -260,8 +287,13 @@ const setArrowRight = () => {
 
     const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
     const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
-    progressNow.innerText = LIST.PAGE_COUNT;
-    progressSum.innerText = LIST.PAGE_LENTH;
+
+    const isSubscribe = progressNow === null;
+    setSubscribeArrow(isSubscribe);
+    if (!isSubscribe) {
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+    }
 
     if (PAGE) setNextPage(progressNow);
     if (!PAGE && CATEGORY) setNextCategory();
@@ -280,30 +312,144 @@ const setArrowLeft = () => {
     const progressNow = progressStartClone.querySelector('.press-category__div-now');
     const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
-    ///////////
-    const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
-    const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
-    progressNow.innerText = LIST.PAGE_COUNT;
-    progressSum.innerText = LIST.PAGE_LENTH;
+    const PAGE = 1 < LIST.PAGE_COUNT;
+    const CATEGORY = 1 < LIST.CATEGORY_COUNT;
 
-    if (PAGE) setNextPage(progressNow);
-    if (!PAGE && CATEGORY) setNextCategory();
-    if (!PAGE && !CATEGORY) setFirstCategory();
+    const isSubscribe = progressNow === null;
+    setSubscribeArrow(isSubscribe);
+    if (!isSubscribe) {
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+    }
+
+    if (PAGE) setPrevPage(progressNow);
+    if (!PAGE && CATEGORY) setPrevCategory();
+    if (!PAGE && !CATEGORY) setLastCategory();
 
     setListArticle();
   });
 };
 
 const setPrevPage = (progressNow) => {
-  //
+  LIST.PAGE_COUNT -= 1;
+  progressNow.innerText = LIST.PAGE_COUNT;
 };
 
 const setPrevCategory = () => {
-  //
+  LIST.CATEGORY_COUNT -= 1;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = removeLi.previousElementSibling;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
 };
 
 const setLastCategory = () => {
-  //
+  LIST.CATEGORY_COUNT = LIST.CATEGORY_LENGTH;
+  LIST.PAGE_LENTH = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+  LIST.PAGE_COUNT = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1].length;
+
+  const removeLi = document.querySelector('.progress-start');
+  const removeDiv = removeLi.querySelector('.press-category__div');
+  const addLi = document.querySelector('.press-category__ul').lastElementChild;
+  const addDiv = addLi.querySelector('.press-category__div');
+
+  addLi.querySelector('.press-category__div-now').innerText = LIST.PAGE_COUNT;
+  addLi.querySelector('.press-category__div-sum').innerText = LIST.PAGE_LENTH;
+
+  removeLi.classList.remove('progress-start');
+  removeDiv.classList.add('none');
+  addLi.classList.add('progress-start');
+  addDiv.classList.remove('none');
+};
+
+/**
+ * 언론사 리스트의 CSS 효과
+ */
+const setArticleEvent = () => {
+  const article = document.querySelector('.press-category__article');
+  const mainImg = document.querySelector('.section-main__img-article');
+
+  article.addEventListener('mouseenter', () => {
+    mainImg.classList.add('section-main__img-article-hover');
+  });
+  article.addEventListener('mouseleave', () => {
+    mainImg.classList.remove('section-main__img-article-hover');
+  });
+};
+
+/**
+ * 언론사 그리드의 라이트/다크모드
+ */
+
+const changeIcon = () => {
+  const modeImg = document.querySelector(`.mode__img`);
+  modeImg.addEventListener('click', () => setListArticle());
+};
+
+/**
+ * 언론사 리스트의 구독하기
+ */
+const setListButtonClick = (pressData, categoryList) => {
+  const button = document.querySelector('.section-main__button');
+  button.addEventListener('click', () => {
+    const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
+    const pressName = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].name;
+    const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+
+    if (isSubscribe) {
+      LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId);
+      LIST.SUBSCRIBE_NAME = LIST.SUBSCRIBE_NAME.filter((name) => name !== pressName);
+    }
+    if (!isSubscribe) {
+      LIST.SUBSCRIBE_ID.push(pressId);
+      LIST.SUBSCRIBE_NAME.push(pressName);
+    }
+
+    setSubscribe(pressData, categoryList, pressName, isSubscribe);
+  });
+};
+
+const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
+  if (isSubscribe) getAlert(pressData, pressIds, pressName);
+  if (!isSubscribe) getSnackBar(pressData);
+};
+
+const setListButtonChange = (isSubscribe) => {
+  const button = document.querySelector('.section-main__button');
+  const buttonImg = button.querySelector(`.section-main__img-button`);
+  const buttonP = button.querySelector(`.section-main__p-button`);
+
+  const newButtonSrc = isSubscribe ? buttonImg.src.replace('plus', 'closed') : buttonImg.src.replace('closed', 'plus');
+  const newButtonP = isSubscribe ? '' : '구독하기';
+
+  if (isSubscribe) button.classList.add('section-main__button-closed');
+  buttonImg.src = newButtonSrc;
+  buttonP.innerText = newButtonP;
+};
+
+const setSubscribeArrow = (isSubscribe) => {
+  const categoryDiv = document.querySelector('.press-category__div');
+  const categoryArrow = `
+    <img class="press-category__div-img" src='./assets/icons/arrow.svg'></img>
+    `;
+
+  const catogoryCount = `
+    <div class='press-category__div-now'>1</div>
+    <div class='press-category__div-divide'>/</div>
+    <div class='press-category__div-sum'></div>`;
+
+  isSubscribe ? (categoryDiv.innerHTML = categoryArrow) : (categoryDiv.innerHTML = catogoryCount);
 };
 
 export { initPressList };
