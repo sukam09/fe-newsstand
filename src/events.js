@@ -1,4 +1,4 @@
-import { CATEGORIES, MAX_PAGE } from "./constants.js";
+import { CATEGORIES, MAX_PAGE, ASSETS_ICONS_PATH } from "./constants.js";
 import {
     view_option,
     grid_option,
@@ -34,9 +34,9 @@ import {
  * 2. grid_views, list_views, 구독자 옵션 클릭 이벤트
  */
 function subscribeOptionEvent() {
-    const optionPressElements = document.querySelectorAll(".option_press");
-    optionPressElements.forEach((optionPress) => {
-        optionPress.addEventListener("click", (event) =>
+    const option_press_elements = document.querySelectorAll(".option_press");
+    option_press_elements.forEach((option_press) => {
+        option_press.addEventListener("click", (event) =>
             optionListener(event, "press")
         );
     });
@@ -47,44 +47,54 @@ function subscribeOptionEvent() {
  * 1. 메인 옵션 변경 이벤트
  * 2. grid_views, list_views, 메인 옵션 클릭 이벤트
  */
-function mainOptionEvent() {
-    const option_main = document.querySelectorAll(".option_main");
-    option_main.forEach((option) => {
-        option.addEventListener("click", (event) =>
+function main_ptionEvent() {
+    const option_main_elements = document.querySelectorAll(".option_main");
+    option_main_elements.forEach((option_main) => {
+        option_main.addEventListener("click", (event) =>
             optionListener(event, "main")
         );
     });
 }
 
 function optionListener(event, selected) {
-    const clickedOption = event.target;
+    const clicked_option = event.target;
 
-    view_option[selected] = clickedOption.id.split("_")[1];
-    const { main: mainOptions, press: pressOption } = setOptions();
+    view_option[selected] = clicked_option.id.split("_")[1];
+    const { main: main_option, press: press_option } = setOptions();
 
-    const optionElements = document.querySelectorAll(`.option_${selected}`);
-    optionElements.forEach((option) => {
-        option.className =
-            option === clickedOption
+    const option_elements = document.querySelectorAll(`.option_${selected}`);
+    option_elements.forEach((option_name) => {
+        option_name.className =
+            option_name === clicked_option
                 ? `option_${selected} option_${selected}_active`
                 : `option_${selected}`;
     });
 
-    if (selected === "main") updateMainNewsContainer(mainOptions);
+    if (selected === "main")
+        updateMainNewsContainer(option_elements, main_option);
 
-    clearAndRender(mainOptions, pressOption);
+    clearAndRender(main_option, press_option);
 }
 
-function updateMainNewsContainer(mainOptions) {
-    const newsDataContainer = document.querySelector(".main_news_container");
-    const viewMode =
-        mainOptions === "grid" ? "grid_view_container" : "list_view_container";
+function updateMainNewsContainer(option_elements, main_option) {
+    const news_data_container = document.querySelector(".main_news_container");
 
-    newsDataContainer.classList.remove(
+    option_elements.forEach((option_name) => {
+        if (option_name.id === `option_${main_option}_main`) {
+            option_name.src = `${ASSETS_ICONS_PATH}${option_name.id}_active.png`;
+        } else {
+            option_name.src = `${ASSETS_ICONS_PATH}${option_name.id}.png`;
+        }
+    });
+
+    const view_mode =
+        main_option === "grid" ? "grid_view_container" : "list_view_container";
+
+    news_data_container.classList.remove(
         "list_view_container",
         "grid_view_container"
     );
-    newsDataContainer.classList.add(viewMode);
+    news_data_container.classList.add(view_mode);
 }
 
 function clearAndRender(main, press) {
@@ -222,13 +232,13 @@ function toggleSubscribeEvent() {
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = setSnackBar();
 
-            const { main: mainOption, press: pressOption } = setOptions();
-            const { page } = renderOptions()[mainOption];
+            const { main: main_ption, press: press_option } = setOptions();
+            const { page } = renderOptions()[main_ption];
 
             render(setOptions("sub"), press, page);
             subscribe_option.subscribe_press[press.name] = press.value;
-            if (pressOption === "subscribe") {
-                clearAndRender(mainOption, pressOption);
+            if (press_option === "subscribe") {
+                clearAndRender(main_ption, press_option);
             }
 
             renderSnackBarView(snack_bar, press.value);
@@ -321,7 +331,7 @@ async function initEvent() {
 function handleEvents() {
     initEvent();
     subscribeOptionEvent();
-    mainOptionEvent();
+    main_ptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
 }
