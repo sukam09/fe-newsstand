@@ -10,7 +10,7 @@ export default class Button extends Component {
   template() {
     return `
       <button class="common-button border-default surface-alt text-weak">
-        <img class='common-button-icon'/><span>${this.state.text}</span>
+        <img class='common-button-icon'/>${this.state.text && `<span>${this.state.text}</span>`}
       </button>
     `;
   }
