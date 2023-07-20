@@ -1,7 +1,7 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import ListNavItem from '../../components/ListNavItem.js';
 import Arrow from '../../components/media/Arrow.js';
-import SubButton from '../../components/media/SubButton.js';
+import SubToggleButton from '../../components/media/SubToggleButton.js';
 import Store from '../../core/Store.js';
 import { clearAllChildren } from '../../utils/utils.js';
 
@@ -179,7 +179,7 @@ const MediaInfo = (id, newsData, navStore, store) => {
   mediaInfo.classList.add('media_info');
   mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id)));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
-  mediaInfo.appendChild(SubButton(id, navStore, store, false));
+  mediaInfo.appendChild(SubToggleButton(id, navStore, store, false));
   return mediaInfo;
 };
 

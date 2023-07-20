@@ -16,7 +16,17 @@ const subscribe = (id, navStore, viewStore) => {
   navStore.getState().subscribed.push(id);
 };
 
-const unsubscribe = (id, navStore, viewStore) => {
+const SubButton = (id, navStore) => {
+  return Button({
+    icon: 'plus',
+    isWhite: true,
+    text: BUTTON.SUBSCRIBE,
+    once: true,
+    onClick: () => subscribe(id, navStore),
+  });
+};
+
+const unsubscribe = (id, navStore, viewStore, button) => {
   document.querySelector('#media_view').appendChild(
     UnsubAlert(id, mediaData.getName(id), id => {
       const { media, subscribed } = navStore.getState();
@@ -25,27 +35,29 @@ const unsubscribe = (id, navStore, viewStore) => {
       subscribed.splice(subscribed.indexOf(id), 1);
       if (media === 'subscribed') {
         viewStore.setState({ page: page % sub.length });
+      } else {
+        button.replaceWith(SubButton(id, navStore));
       }
     })
   );
 };
 
-const SubButton = (id, navStore, viewStore, withText = true) => {
-  if (navStore.getState().subscribed.includes(id)) {
-    return Button({
-      icon: 'close',
-      isWhite: false,
-      text: withText ? BUTTON.UNSUBSCRIBE : null,
-      onClick: () => unsubscribe(id, navStore, viewStore),
-    });
-  }
+const UnsubButton = (id, navStore, viewStore, withText) => {
   return Button({
-    icon: 'plus',
-    isWhite: true,
-    text: BUTTON.SUBSCRIBE,
-    once: true,
-    onClick: () => subscribe(id, navStore),
+    icon: 'close',
+    isWhite: false,
+    text: withText ? BUTTON.UNSUBSCRIBE : null,
+    onClick: button => {
+      unsubscribe(id, navStore, viewStore, button);
+    },
   });
+};
+
+const SubToggleButton = (id, navStore, viewStore, withText = true) => {
+  if (navStore.getState().subscribed.includes(id)) {
+    return UnsubButton(id, navStore, viewStore, withText);
+  }
+  return SubButton(id, navStore);
 };
 
 export const SubButtonArea = (id, navStore, viewStore) => {
@@ -56,4 +68,4 @@ export const SubButtonArea = (id, navStore, viewStore) => {
   return subButtonArea;
 };
 
-export default SubButton;
+export default SubToggleButton;

@@ -15,7 +15,10 @@ const Button = ({ icon, isWhite, text, once, onClick }) => {
     buttonElement.classList.add('text_button');
     buttonElement.appendChild(document.createTextNode(text));
   }
-  buttonElement.addEventListener('click', once ? onClickOnce : onClick);
+  buttonElement.addEventListener(
+    'click',
+    once ? onClickOnce : () => onClick(buttonElement)
+  );
   return buttonElement;
 };
 
