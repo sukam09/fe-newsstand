@@ -1,23 +1,39 @@
-import { MAX_GRID_COUNT } from "../constant/constants.js";
+import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./api.js";
-import { getState, resister } from "./observer/observer.js";
-import { gridPageIdx } from "./store/store.js";
+import { getState, resister, setState } from "./observer/observer.js";
+import { gridPageIdx, isSubTab, subscribeList } from "./store/store.js";
 import { $, $All, shuffleArray } from "./util.js";
 
-let cachedpressObj = null;
+let pressObj = null;
 
 // 셔플된 리스트 그리드리스트에 append
-async function appendGridList() {
+function appendGridList(shuffledArr) {
+  const isSubscribeTab = getState(isSubTab);
+  const subList = getState(subscribeList);
   const gridContainerList = $All(".grid_container");
-  if (cachedpressObj === null) {
-    cachedpressObj = await getPressObj();
+  gridContainerList.forEach((item) => (item.innerHTML = ""));
+  if (isSubscribeTab) {
+    const subPressList = pressObj.filter((item) => {
+      return subList.includes(item.name);
+    });
+    subPressList.forEach((element, idx) => {
+      const id = Math.floor(idx / MAX_GRID_COUNT);
+      const gridItem = createGridItem(element);
+      gridContainerList[id].appendChild(gridItem);
+    });
+    for (let i = subPressList.length; i < PRESS_COUNT; i++) {
+      const id = Math.floor(i / MAX_GRID_COUNT);
+      const gridItem = document.createElement("li");
+      gridItem.className = "grid_item";
+      gridContainerList[id].appendChild(gridItem);
+    }
+  } else {
+    shuffledArr.forEach((element, idx) => {
+      const id = Math.floor(idx / MAX_GRID_COUNT);
+      const gridItem = createGridItem(element);
+      gridContainerList[id].appendChild(gridItem);
+    });
   }
-  const shuffledArr = shuffleArray(cachedpressObj);
-  await shuffledArr.forEach(async (element, idx) => {
-    const id = Math.floor(idx / MAX_GRID_COUNT);
-    const gridItem = await createGridItem(element);
-    gridContainerList[id].appendChild(gridItem);
-  });
 }
 
 // 구독버튼 컨테이너 생성
@@ -29,17 +45,15 @@ function createSubButtonContainer() {
 
 // 구독버튼 생성
 function createSubButton(id) {
-  if (cachedpressObj === null) {
-    cachedpressObj = getPressObj();
-  }
   const subButtonContainer = createSubButtonContainer();
   const subButton = document.createElement("button");
   subButton.className = "sub_button";
   subButton.innerHTML = "+ 구독하기";
 
   subButton.addEventListener("click", () => {
-    const targetPress = cachedpressObj.find((item) => item.id === id);
-    targetPress.isSub = true;
+    const currentSubList = getState(subscribeList);
+    const targetPress = pressObj.find((item) => item.id === id);
+    setState(subscribeList, [...currentSubList, targetPress.name]);
     toggleSubButton(targetPress, subButtonContainer);
   });
   subButtonContainer.appendChild(subButton);
@@ -48,17 +62,18 @@ function createSubButton(id) {
 
 // 해지버튼 생성
 function createUnSubButton(id) {
-  if (cachedpressObj === null) {
-    cachedpressObj = getPressObj();
-  }
   const unSubButtonContainer = createSubButtonContainer();
   const unSubButton = document.createElement("button");
   unSubButton.className = "unsub_button";
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const targetPress = cachedpressObj.find((item) => item.id === id);
-    targetPress.isSub = false;
+    const currentSubList = getState(subscribeList);
+    const targetPress = pressObj.find((item) => item.id === id);
+    const newSubList = currentSubList.filter((item) => {
+      return item != targetPress.name;
+    });
+    setState(subscribeList, newSubList);
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
   unSubButtonContainer.appendChild(unSubButton);
@@ -95,16 +110,18 @@ function createGridItem(element) {
 
 // 구독버튼 토글
 function toggleSubButton(element, subButtonContainer) {
-  subButtonContainer.style.display = element.isSub ? "none" : "flex";
+  const currentSubList = getState(subscribeList);
+  subButtonContainer.style.display = currentSubList.includes(element.name)
+    ? "none"
+    : "flex";
 }
 
 // 해지버튼 토글
 function toggleUnSubButton(element, unSubButtonContainer) {
-  if (element.isSub) {
-    unSubButtonContainer.style.display = "flex";
-  } else {
-    unSubButtonContainer.style.display = "none";
-  }
+  const currentSubList = getState(subscribeList);
+  unSubButtonContainer.style.display = currentSubList.includes(element.name)
+    ? "flex"
+    : "none";
 }
 
 // 구독, 해지 버튼 숨기기
@@ -122,12 +139,25 @@ function showGridPage() {
   curPage.style.display = "grid";
 }
 
-// 그리뷰의 좌우 페이지 전환 버튼 업데이트
+function checkMode() {
+  const isSubView = getState(isSubTab);
+  if (isSubView) {
+    appendGridList();
+  }
+}
 
-function setGridEvents() {
-  appendGridList();
+async function setGridEvents() {
+  pressObj = await getPressObj();
+  const shuffledArr = shuffleArray(pressObj);
+  appendGridList(shuffledArr);
   resister(gridPageIdx, showGridPage);
-  // resister(isGrid, showGridPageButton);
+  resister(isSubTab, () => {
+    appendGridList(shuffledArr);
+  });
+  resister(subscribeList, checkMode);
+  resister(subscribeList, () => {
+    console.log(getState(subscribeList));
+  });
 }
 
 export { setGridEvents };

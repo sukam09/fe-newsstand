@@ -119,6 +119,12 @@ section {
   font-size: 16px;
   color: #879298;
 }
+.main_section__header__title--all:hover {
+  cursor: pointer;
+}
+.main_section__header__title--sub:hover {
+  cursor: pointer;
+}
 
 .main_section__header__button-wrapper {
   gap: 8px;

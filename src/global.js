@@ -1,11 +1,6 @@
 import { $, $All } from "./util.js";
 import { getState, resister, setState } from "./observer/observer.js";
-import {
-  categoryIdx,
-  gridPageIdx,
-  isGrid,
-  listPageIdx,
-} from "./store/store.js";
+import { gridPageIdx, isGrid, isSubTab, listPageIdx } from "./store/store.js";
 
 // 로고 새로고침
 function refreshWindow() {
@@ -39,12 +34,6 @@ function changeView(elements, currentMode) {
   elements.rightNavigationButton.style.display = currentMode ? "none" : "block";
 }
 
-function toggleMainView() {
-  const currentMode = getState(isGrid);
-  const elements = getMainElements();
-  changeView(elements, currentMode);
-}
-
 // 오늘 날짜 update
 function updateDate() {
   let today = new Date();
@@ -60,6 +49,7 @@ function updateDate() {
   dateHtml.innerHTML = today;
 }
 
+// 키보드 방향키로 탭 이동
 function keyboardClicked(event) {
   const currentGridMode = getState(isGrid);
   const nowGridPage = getState(gridPageIdx);
@@ -73,26 +63,49 @@ function keyboardClicked(event) {
   } else {
     if (event.key === "ArrowRight") {
       setState(listPageIdx, nowListPage + 1);
-    } else if (
-      event.key === "ArrowLeft" &&
-      (nowListPage - 1 > 0 || getState(categoryIdx) !== 0)
-    ) {
+    } else if (event.key === "ArrowLeft") {
       setState(listPageIdx, nowListPage - 1);
     }
   }
 }
 
-function toggleButtonClicked() {
+function toggleGridClicked() {
   setState(isGrid, !getState(isGrid));
+}
+
+function toggleSubClicked() {
+  setState(isSubTab, !getState(isSubTab));
+}
+
+function toggleMainView() {
+  const currentMode = getState(isGrid);
+  const elements = getMainElements();
+  changeView(elements, currentMode);
+}
+function updateSubViewButton() {
+  const isSubMode = getState(isSubTab);
+  const subTabButton = $(".main_section__header__title--sub");
+  const allTabButton = $(".main_section__header__title--all");
+  if (isSubMode) {
+    subTabButton.style.color = "#000000";
+    allTabButton.style.color = "#879298";
+  } else {
+    subTabButton.style.color = "#879298";
+    allTabButton.style.color = "#000000";
+  }
 }
 
 function setEvent() {
   const mainLogo = $(".container__header__main");
   const listButton = $(".list_button");
   const gridButton = $(".grid_button");
+  const subTabButton = $(".main_section__header__title--sub");
+  const allTabButton = $(".main_section__header__title--all");
   mainLogo.addEventListener("click", refreshWindow);
-  listButton.addEventListener("click", toggleButtonClicked);
-  gridButton.addEventListener("click", toggleButtonClicked);
+  listButton.addEventListener("click", toggleGridClicked);
+  gridButton.addEventListener("click", toggleGridClicked);
+  subTabButton.addEventListener("click", toggleSubClicked);
+  allTabButton.addEventListener("click", toggleSubClicked);
   window.addEventListener("keydown", (e) => {
     keyboardClicked(e);
   });
@@ -101,6 +114,7 @@ function setEvent() {
 (function init() {
   setEvent();
   resister(isGrid, toggleMainView);
+  resister(isSubTab, updateSubViewButton);
 })();
 
 export { updateDate };
