@@ -6,7 +6,7 @@ import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
 
-let [savedCurrentPage, savedCurrentPressIndex] = [1, 0];
+let savedCurrentPressIndex = 0;
 
 export default class AllNewsMyListView extends Component {
   setup() {
@@ -66,6 +66,8 @@ export default class AllNewsMyListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
+
+    savedCurrentPressIndex = this.state.currentPressIndex;
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',

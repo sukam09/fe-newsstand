@@ -94,6 +94,7 @@
 }
 
 .press-header-focus span,
+div,
 img {
   z-index: 2;
 }

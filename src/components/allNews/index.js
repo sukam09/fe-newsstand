@@ -9,11 +9,14 @@ import AllNewsMyListView from './AllNewsMyListView.js';
 
 let currentView = 'list';
 let currentPressType = 'all';
+export let myListPotal;
 
 export default class AllNews extends Component {
   setup() {
     const isDarkMode = document.body.className === 'dark';
     this.state = { isDarkMode, view: currentView, pressType: currentPressType };
+    myListPotal = this.moveMyList.bind(this);
+
     db.observe(this);
   }
 
