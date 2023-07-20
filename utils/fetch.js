@@ -1,4 +1,4 @@
-export const customFetch = async (url, callback, options) => {
+export async function customFetch(url, callback, options) {
   try {
     const response = await fetch(url, options);
     let data = await response.json();
@@ -8,4 +8,4 @@ export const customFetch = async (url, callback, options) => {
   } catch (err) {
     console.error(err);
   }
-};
+}

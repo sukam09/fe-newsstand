@@ -1,7 +1,7 @@
 import { THEME } from "../constants/index.js";
 import { useSelector } from "../store/index.js";
 
-export const setTheme = () => {
+export function setTheme() {
   const theme = useSelector((state) => state.theme.currentTheme);
 
   if (theme === THEME.DARK) {
@@ -9,4 +9,4 @@ export const setTheme = () => {
   } else {
     document.documentElement.classList.remove(THEME.DARK);
   }
-};
+}
