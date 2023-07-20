@@ -27,17 +27,15 @@ function toggleViewVisibility(nextView) {
 function changeView(nextView) {
     toggleViewVisibility(nextView);
     changeViewIcons(nextView)
-    store.setCrntView(nextView)
-    
-   
+    store.setViewState({crntView: nextView, crntPage: 0, crntCategory: 0})
 }
 function handleViewChange() {
     viewChangeBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
             const nextView = btn.getAttribute("type");
-            let crntView = store.getCrntView();
+            let {crntView} = store.getViewState();
             if (crntView !== nextView){
-                changeView(nextView)
+                changeView(nextView);
             }
         })
     })

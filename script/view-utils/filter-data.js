@@ -7,7 +7,8 @@ import { store } from "../../store/store.js";
 function filterData() {
     let listData;
     let navData;
-    switch (store.getCrntFilter()){
+    let {crntFilter} = store.getViewState();
+    switch (crntFilter){
         case FILTER_TYPE.ALL:
             listData = listViewData;
             navData = CATEGORY_LIST;
@@ -19,6 +20,7 @@ function filterData() {
             break;
     }
     return {listData, navData};
+    
 }
 
 export {filterData}

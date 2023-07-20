@@ -20,9 +20,9 @@ function handlePressHover(){
 }
 function drawGrid(){
     gridContainer.innerHTML = "";
-    let crntPage = store.getCrntPage()
+    let {crntPage} = store.getViewState()
     let imgIdxList;
-    const crntFilter = store.getCrntFilter();
+    const {crntFilter} = store.getViewState();
     if (crntFilter === FILTER_TYPE.ALL){
         imgIdxList = store.getShuffledList();
     } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){

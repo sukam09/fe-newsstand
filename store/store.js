@@ -6,53 +6,26 @@ import { drawList } from "../script/list-view/list-view.js";
 
 class Store {
     constructor () {
-        this.crntview = VIEW_TYPE.GRID;
-        this.crntPage = 0; // page index (grid, list view)
-        this.crntCategory = 0; // category index (list view)
-        this.crntFilter = FILTER_TYPE.ALL;
+        this.viewState = {
+            crntView : VIEW_TYPE.GRID, // this.crntView = VIEW_TYPE.GRID;
+            crntPage : 0, // page index (grid, list view)
+            crntCategory : 0,  // category index (list view)
+            crntFilter : FILTER_TYPE.ALL
+        }
         this.subList = [];
         this.shuffledList = [];
 
         this.observers = new Set();
     }
-    
-    getCrntView(){
-        return this.crntview;
+
+    getViewState() {
+        return {...this.viewState}
     }
-    getCrntPage(){
-        return this.crntPage;
-    }
-    getCrntCategory(){
-        return this.crntCategory;
-    }
-    getCrntFilter(){
-        return this.crntFilter;
-    }
-    getSubList() {
-        return this.subList;
-    }
-    getShuffledList() {
-        return this.shuffledList;
-    }
-    
-    setCrntPage(page){
-        this.crntPage = page;
+    setViewState(newState){
+        this.viewState = {...this.viewState,  ...newState};
         this.renderView();
     }
-    setCrntCategory(category){
-        this.crntCategory = category;
-        this.crntPage = 0;
-        this.renderView();
-    }
-    setCrntView(view){ 
-        this.crntview = view;
-        this.crntPage = 0;
-        this.crntCategory = 0;
-        this.renderView();
-    }
-    setCrntFilter(type){
-        this.crntFilter = type;
-    }
+
     setSubList(idx, type){
         switch(type){
             case "subscribe":
@@ -78,12 +51,12 @@ class Store {
     }
 
     renderView(){
-        switch (this.crntview){
+        switch (this.viewState.crntView){
             case VIEW_TYPE.GRID:
-                drawGrid(this.crntPage);
+                drawGrid(this.viewState.crntPage);
                 break;
             case VIEW_TYPE.LIST:
-                drawList(this.crntCategory);
+                drawList(this.viewState.crntCategory);
                 break;
         }
         drawArrow();

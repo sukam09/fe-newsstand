@@ -38,9 +38,9 @@ function rollHeadline(target, headlineIdx) {
 
 function rollInit(){
     rollingContent.forEach((item, index) => {
-        if (index == 0){
+        if (index == 0){ // left rolling section
             rollHeadline(item, rollingList.length);
-        } else if (index == 1){
+        } else if (index == 1){  // right rolling section
             item.innerHTML += `<span>${rollingList[0].title}</span>`
             setTimeout(() => {
                 rollHeadline(item, rollingList.length);

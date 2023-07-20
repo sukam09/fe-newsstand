@@ -11,8 +11,7 @@ function removeArrow(){
     rightArrow.classList.remove("hidden");
 }
 function drawArrow(){
-    let crntPage = store.getCrntPage();
-    let crntView = store.getCrntView();
+    let {crntPage, crntView} = store.getViewState();
     let maxPage;
     removeArrow();
     switch (crntView){
@@ -32,37 +31,34 @@ function drawArrow(){
 }
 function handleArrowClick(){
     leftArrow.addEventListener("click",()=> {
-        let crntPage = store.getCrntPage();
-        let crntView = store.getCrntView();
-        let crntCategory = store.getCrntCategory();
+        let {crntPage, crntView, crntCategory} = store.getViewState();
+
         if (crntView == VIEW_TYPE.LIST) {
             if (crntPage == 0 && crntCategory == 0) { 
-                store.setCrntCategory(CATEGORY_LIST.length - 1);
+                store.setViewState({crntCategory: CATEGORY_LIST.length - 1, crntPage : 0});
             } else if (crntPage == 0 && crntCategory > 0){ 
-                store.setCrntCategory(crntCategory - 1)
+                store.setViewState({crntCategory: crntCategory - 1, crntPage: 0})
             } else {
-                store.setCrntPage(crntPage-1);
+                store.setViewState({crntPage: crntPage-1});
             }
-        } else {
-            store.setCrntPage(crntPage-1);
+        } else { // crntView == VIEW_TYPE.GRID
+            store.setViewState({crntPage: crntPage-1});
         }
         
     })
     rightArrow.addEventListener("click",() => {
-        let crntPage = store.getCrntPage();
-        let crntView = store.getCrntView();
-        let crntCategory = store.getCrntCategory();
+        let {crntPage, crntView, crntCategory} = store.getViewState();
         if (crntView == VIEW_TYPE.LIST) {
             const numOfPages = listViewData.filter(data => data.category == CATEGORY_LIST[crntCategory]).length;
             if (crntPage >= numOfPages - 1 && crntCategory >= CATEGORY_LIST.length - 1){ // last page of the last category
-                store.setCrntCategory(0); 
+                store.setViewState({crntCategory: 0, crntPage : 0});
             } else if (crntPage >= numOfPages - 1 && crntCategory < CATEGORY_LIST.length - 1) { // last page of a category
-                store.setCrntCategory(crntCategory + 1);
+                store.setViewState({crntCategory: crntCategory + 1, crntPage : 0});
             } else {
-                store.setCrntPage(crntPage + 1);
+                store.setViewState({crntPage: crntPage + 1});
             }
-        } else {
-            store.setCrntPage(crntPage + 1);
+        } else { // crntView == VIEW_TYPE.GRID
+            store.setViewState({crntPage: crntPage + 1});
         }
 
     })

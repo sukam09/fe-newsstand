@@ -14,7 +14,7 @@ function changeFilterBtn(nextFilter) {
     })
 }
 function changeFilter(nextFilter){
-    store.setCrntFilter(nextFilter);
+    store.setViewState({crntFilter: nextFilter});
     changeFilterBtn(nextFilter)
     let nextView;
     switch (nextFilter){
@@ -31,7 +31,7 @@ function handleFilterChange(){
     filterBtns.forEach((btn)=> {
         btn.addEventListener("click", () => {
             const nextFilter = btn.getAttribute("type");
-            let crntFilter = store.getCrntFilter();
+            let {crntFilter} = store.getViewState();
             if (crntFilter !== nextFilter){
                 changeFilter(nextFilter);
                 

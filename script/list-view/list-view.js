@@ -11,11 +11,11 @@ const emptyListView = document.querySelector(".empty-list-view");
 function handleCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
-            let crntCategory = store.getCrntCategory()
+            let {crntCategory} = store.getViewState()
             if (crntCategory !== index){ // change to different category
                 catBtns[crntCategory].classList.remove("selected")
                 catBtns[index].classList.add("selected");
-                store.setCrntCategory(index);
+                store.setViewState({crntCategory: index, crntPage: 0})
             } else { 
                 // stay in crnt category
             }
@@ -27,8 +27,7 @@ function drawEmptyList() {
     emptyListView.classList.remove("hide");
 }
 function drawListPage({listData, navData, filterType}) {
-    let crntPage = store.getCrntPage();
-    let crntCategory = store.getCrntCategory()
+    let {crntPage, crntCategory} = store.getViewState();
     let crntData;
     if (filterType === FILTER_TYPE.ALL){
         const filteredByCat = listData.filter(item => item.category == navData[crntCategory]);
@@ -59,8 +58,7 @@ function drawListPage({listData, navData, filterType}) {
     
 }
 function drawListNav({listData, navData, filterType}){
-    let crntPage = store.getCrntPage();
-    let crntCategory = store.getCrntCategory()
+    let {crntPage, crntCategory} = store.getViewState();
     listNav.innerHTML = "";
     navData.forEach((category, index) => {
         let numOfPages;
@@ -83,7 +81,7 @@ function drawListNav({listData, navData, filterType}){
 }
 function drawList() {
     const viewData = filterData(); // filter data to show according to crnt filter type
-    const filterType = store.getCrntFilter();
+    const filterType = store.getViewState().crntFilter;
     if (viewData.listData.length === 0){
         // no data to draw < in the case of filterType = "subscribed"
         drawEmptyList();
