@@ -18,18 +18,16 @@ class Store {
       handler.push(listener);
     };
 
-    this.getState = () => {
-      return state;
-    };
+    this.getState = () => state;
   }
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'subscribe':
-      return { ...state, myPress: [...state.myPress, action.pressName] };
+      return { ...state, myPress: [...state.myPress, action.pid] };
     case 'unsubscribe':
-      return { ...state, myPress: state.myPress.filter(press => press !== action.pressName) };
+      return { ...state, myPress: state.myPress.filter(press => press !== action.pid) };
     default:
       return { ...state };
   }
@@ -40,6 +38,7 @@ const initialState = {
 };
 
 function actionCreator(type, data) {
+  console.log({ type, ...data });
   return {
     type,
     ...data,
@@ -48,4 +47,4 @@ function actionCreator(type, data) {
 
 const store = new Store(reducer);
 
-// export { store, actionCreator };
+export { store, actionCreator };

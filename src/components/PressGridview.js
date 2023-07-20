@@ -1,5 +1,6 @@
 import { fetchPressInfo } from '../api.js';
 import { shuffle } from '../utils.js';
+import { store, actionCreator } from '../../store/store.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
 export default function PressGridView({ $target, initialState }) {
@@ -24,6 +25,28 @@ export default function PressGridView({ $target, initialState }) {
     });
   };
 
+  function handleClickCell({ target }) {
+    let id = target.dataset.id;
+
+    // li가 아닌 button을 클릭했을 경우
+    if (!id) {
+      id = target.closest('li').dataset.id;
+    }
+
+    handleSubscribe(id);
+  }
+
+  const isSubscribed = (id, myPress) => myPress.indexOf(id) !== -1;
+
+  function handleSubscribe(id) {
+    const { myPress } = store.getState();
+    if (!isSubscribed(id, myPress)) {
+      store.dispatch(actionCreator('subscribe', { pid: id }));
+    } else {
+      store.dispatch(actionCreator('unsubscribe', { pid: id }));
+    }
+  }
+
   const initPressItems = () => {
     const $ul = $section.querySelector('ul');
     $ul.innerHTML = '';
@@ -34,7 +57,7 @@ export default function PressGridView({ $target, initialState }) {
     const endIndex = startIndex + 23;
     const currentData = data.slice(startIndex, endIndex + 1);
 
-    currentData.forEach(({ logo }) => {
+    currentData.forEach(({ id, logo }) => {
       const $li = document.createElement('li');
       const $img = document.createElement('img');
       const $button = document.createElement('button');
@@ -50,6 +73,9 @@ export default function PressGridView({ $target, initialState }) {
 
       $li.append($img, $button);
       $li.classList.add('news-press-item');
+      $li.classList.add('data-id');
+      $li.dataset.id = id;
+      $li.addEventListener('click', event => handleClickCell(event));
 
       $ul.appendChild($li);
     });
