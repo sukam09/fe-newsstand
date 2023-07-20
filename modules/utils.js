@@ -22,6 +22,10 @@ const setColorModeEvent = () => {
   const $html = document.querySelector("html");
   const $colorModeBtn = document.querySelector(".mode-button");
 
+  if (!$colorModeBtn.src) {
+    $colorModeBtn.src = IMAGE.MOON_ICON;
+  }
+
   $colorModeBtn.addEventListener("click", () => {
     $html.classList.toggle("dark");
     STATE.MODE.IS_LIGHT = !STATE.MODE.IS_LIGHT;

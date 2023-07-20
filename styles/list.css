@@ -16,20 +16,20 @@
 
   border-bottom: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
-
-  /* overflow-x: scroll; */
+  overflow: auto;
+  flex-shrink: 0;
 }
 
 .news-list_category::-webkit-scrollbar {
-  display: none; /* 추가된 부분 */
+  display: none;
 }
 
 .news-list_category li {
   display: flex;
   align-items: center;
   height: 40px;
+  width: auto;
   padding: 0 16px;
-  box-sizing: border-box;
 
   position: relative;
   z-index: 1;
@@ -58,19 +58,20 @@
   left: 0px;
   z-index: 2;
 
-  animation: 20s linear progress;
+  animation: 5s linear progress;
 }
 
 .news-list_category div {
   display: flex;
 }
 
-.category_selected {
+.news-list_category .category_selected {
   width: 166px;
   justify-content: space-between;
   font: var(--bold-R);
   color: var(--grayscale-white-alt);
   background-color: var(--blue-100);
+  flex-shrink: 0;
 }
 
 .category_selected div :nth-child(2) {
