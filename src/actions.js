@@ -1,9 +1,10 @@
 import {
-    MAX_PAGE,
+    SNACKBAR_DELAY,
     INTERVAL,
     DELAY,
     CATEGORIES,
     PROGRESS_DELAY,
+    PROGRESS_MAX,
 } from "./constants.js";
 import {
     fetchPressData,
@@ -86,7 +87,7 @@ export function setProgress(options, name, list_option) {
 
     list_option.interval = setInterval(() => {
         list_option.progress_time += 1;
-        if (list_option.progress_time === 200) {
+        if (list_option.progress_time === PROGRESS_MAX) {
             clearInterval(list_option.interval);
             list_option.progress_time = 0;
             handlePage("next", "list", options, list_option);
@@ -196,7 +197,7 @@ export function setSnackBar() {
     const snack_animation_time = setTimeout(() => {
         // disappear animation
         snack_bar_container.style.animation = "disappear 0.5s forwards";
-    }, 3000);
+    }, SNACKBAR_DELAY);
 
     return snack_animation_time;
 }

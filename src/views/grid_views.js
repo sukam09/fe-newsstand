@@ -3,6 +3,8 @@ import {
     ROW_SIZE,
     ASSETS_IMAGE_PATH,
     MAX_PAGE,
+    SUBSCRIBE_TEXT,
+    UNSUBSCRIBE_TEXT,
 } from "../constants.js";
 import { view_option } from "../globals.js";
 import { isSubscribed } from "../utils.js";
@@ -47,9 +49,9 @@ function createPressList(container, data, idx) {
                     ${
                         subscribe
                             ? `<img src="./assets/icons/symbol.png" />
-                            <span>해지하기</span>`
+                            <span>${UNSUBSCRIBE_TEXT}</span>`
                             : `<img src="./assets/icons/plus.png" />
-                            <span>구독하기</span>`
+                            <span>${SUBSCRIBE_TEXT}</span>`
                     }
                     </button>
                 </div>`
@@ -75,13 +77,13 @@ function renderSubscribe(press, is_subscribe) {
         press.is_subscribe = false;
         press.innerHTML = `
         <img src="./assets/icons/plus.png" />
-        <span>구독하기</span>
+        <span>${SUBSCRIBE_TEXT}</span>
         `;
     } else {
         press.is_subscribe = true;
         press.innerHTML = `
         <img src="./assets/icons/symbol.png" />
-        <span>해지하기</span>
+        <span>${UNSUBSCRIBE_TEXT}</span>
         `;
     }
 }

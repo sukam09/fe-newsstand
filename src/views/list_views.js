@@ -1,5 +1,11 @@
 import { list_option, grid_option, view_option } from "../globals.js";
-import { ASSETS_IMAGE_PATH, CATEGORIES } from "../constants.js";
+import {
+    ASSETS_IMAGE_PATH,
+    CATEGORIES,
+    PROGRESS_MAX,
+    SUBSCRIBE_TEXT,
+    FROM_TO_TEXT
+} from "../constants.js";
 import { isSubscribed } from "../utils.js";
 
 function renderListView(data, category, page) {
@@ -36,7 +42,7 @@ function createNewsNav(container, data, page) {
             <progress class="main_nav_progress"
                 value="${list_option.progress_time}"
                 min="0"
-                max="${list_option.progress_max}"></progress>
+                max="${PROGRESS_MAX}"></progress>
             <span>${CATEGORIES[list_option.category]}</span>
             <span class="progress_cnt">${page} / <b>${
                 data.length
@@ -73,7 +79,7 @@ function createNewsHeader(parent, data, page) {
                 </button>`
                 : `<button class="content_subscribe">
                     <img src="./assets/icons/plus.png" />
-                    <span>구독하기</span>
+                    <span>${SUBSCRIBE_TEXT}</span>
                     </button>`
         }
         `;
@@ -96,7 +102,7 @@ function createMainContents(parent, data, page) {
 
     const li = document.createElement("li");
     li.classList.add("content_body_contents_item", "contents_press");
-    li.innerHTML = `<span>${data[page].press_name}에서 직접 편집한 뉴스입니다.</span>`;
+    li.innerHTML = `<span>${data[page].press_name}${FROM_TO_TEXT}</span>`;
     ul.appendChild(li);
     const list_news = ul.outerHTML;
 
