@@ -14,6 +14,13 @@ export const BUTTON = {
   UNSUBSCRIBE: '해지하기',
 };
 
+export const THEME = {
+  NAME: 'THEME',
+  ATTR: 'data-theme',
+  LIGHT: 'light',
+  DARK: 'dark',
+};
+
 export const PROGRESS_BAR_DELAY = 20000;
 
 export const SNACKBAR_DELAY = 5000;
