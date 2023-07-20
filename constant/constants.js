@@ -1,5 +1,7 @@
 // 그리드에 들어갈 언론사 수
 export const MAX_GRID_COUNT = 24;
+// 언론사의 수
+export const PRESS_COUNT = 96;
 // 롤링에 들어갈 뉴스 수
 export const ROLLING_NEWS_NUM = 5;
 // 좌우 롤링 시간 차

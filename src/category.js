@@ -104,28 +104,41 @@ function isTabFull(innerHTML) {
 }
 
 // 카테고리 탭 숫자 업데이트
-function updateCategoryTabNum() {
+function updateCategory() {
   const currentListIdx = getState(listPageIdx);
   const currentCategoryIdx = getState(categoryIdx);
-  const firstCategory = $(".category_list");
-  const clickedCategory = $(`.${CATEGORY_CLICKED}`);
+  const categoryList = $All(".category_list");
+  const clickedCategory = categoryList[currentCategoryIdx];
   $(".now_page", clickedCategory).innerHTML = `${currentListIdx} / `;
-  if (
-    // 다음 카테고리로 넘어가야할 경우
-    isTabFull($(".all_page", clickedCategory).innerHTML)
-  ) {
+  // 카테고리 오른쪽으로 넘어가야할 경우
+  if (isTabFull($(".all_page", clickedCategory).innerHTML)) {
     setState(listPageIdx, 1);
     if (clickedCategory.nextElementSibling === null) {
-      firstCategory.classList.add(CATEGORY_CLICKED);
-      $(".now_page", firstCategory).innerHTML = "1 / ";
+      categoryList[0].classList.add(CATEGORY_CLICKED);
       setState(categoryIdx, 0);
     } else {
       clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
-      clickedCategory.nextElementSibling.querySelector(".now_page").innerHTML =
-        "1 / ";
       setState(categoryIdx, currentCategoryIdx + 1);
     }
     clickedCategory.classList.remove(CATEGORY_CLICKED);
+  } else if (currentListIdx === 0) {
+    // 카테고리 왼쪽으로 넘어가야할 경우
+    setState(listPageIdx, 1);
+    if (currentCategoryIdx === 0) {
+      // setState(
+      //   listPageIdx,
+      //   parseInt(
+      //     $(".all_page", categoryList[categoryList.length - 1]).innerHTML
+      //   )
+      // );
+      setState(categoryIdx, categoryList.length - 1);
+    } else {
+      setState(categoryIdx, currentCategoryIdx - 1);
+      // setState(
+      //   listPageIdx,
+      //   parseInt($("all_page", categoryList[currentCategoryIdx - 1]).innerHTML)
+      // );
+    }
   }
 }
 
@@ -133,7 +146,7 @@ export async function setCategory() {
   const newsList = await getNewsContents();
   resister(isGrid, startCategoryInterval);
   resister(listPageIdx, refreshInterval);
-  resister(listPageIdx, updateCategoryTabNum);
+  resister(listPageIdx, updateCategory);
   resister(categoryIdx, updateCategoryClicked);
   appendCategoryList(newsList);
 }

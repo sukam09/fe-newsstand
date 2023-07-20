@@ -82,6 +82,18 @@ function toggleMainView() {
   const elements = getMainElements();
   changeView(elements, currentMode);
 }
+function updateSubViewButton() {
+  const isSubMode = getState(isSubTab);
+  const subTabButton = $(".main_section__header__title--sub");
+  const allTabButton = $(".main_section__header__title--all");
+  if (isSubMode) {
+    subTabButton.style.color = "#000000";
+    allTabButton.style.color = "#879298";
+  } else {
+    subTabButton.style.color = "#879298";
+    allTabButton.style.color = "#000000";
+  }
+}
 
 function setEvent() {
   const mainLogo = $(".container__header__main");
@@ -102,6 +114,7 @@ function setEvent() {
 (function init() {
   setEvent();
   resister(isGrid, toggleMainView);
+  resister(isSubTab, updateSubViewButton);
 })();
 
 export { updateDate };

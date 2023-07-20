@@ -1,22 +1,19 @@
-import { MAX_GRID_COUNT } from "../constant/constants.js";
+import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./api.js";
 import { getState, resister, setState } from "./observer/observer.js";
 import { gridPageIdx, isSubTab, subscribeList } from "./store/store.js";
 import { $, $All, shuffleArray } from "./util.js";
 
-let cachedpressObj = null;
+let pressObj = null;
 
 // 셔플된 리스트 그리드리스트에 append
-async function appendGridList() {
+function appendGridList(shuffledArr) {
   const isSubscribeTab = getState(isSubTab);
   const subList = getState(subscribeList);
   const gridContainerList = $All(".grid_container");
   gridContainerList.forEach((item) => (item.innerHTML = ""));
-  if (cachedpressObj === null) {
-    cachedpressObj = await getPressObj();
-  }
   if (isSubscribeTab) {
-    const subPressList = cachedpressObj.filter((item) => {
+    const subPressList = pressObj.filter((item) => {
       return subList.includes(item.name);
     });
     subPressList.forEach((element, idx) => {
@@ -24,8 +21,13 @@ async function appendGridList() {
       const gridItem = createGridItem(element);
       gridContainerList[id].appendChild(gridItem);
     });
+    for (let i = subPressList.length; i < PRESS_COUNT; i++) {
+      const id = Math.floor(i / MAX_GRID_COUNT);
+      const gridItem = document.createElement("li");
+      gridItem.className = "grid_item";
+      gridContainerList[id].appendChild(gridItem);
+    }
   } else {
-    const shuffledArr = shuffleArray(cachedpressObj);
     shuffledArr.forEach((element, idx) => {
       const id = Math.floor(idx / MAX_GRID_COUNT);
       const gridItem = createGridItem(element);
@@ -50,7 +52,7 @@ function createSubButton(id) {
 
   subButton.addEventListener("click", () => {
     const currentSubList = getState(subscribeList);
-    const targetPress = cachedpressObj.find((item) => item.id === id);
+    const targetPress = pressObj.find((item) => item.id === id);
     setState(subscribeList, [...currentSubList, targetPress.name]);
     toggleSubButton(targetPress, subButtonContainer);
   });
@@ -67,7 +69,7 @@ function createUnSubButton(id) {
 
   unSubButton.addEventListener("click", () => {
     const currentSubList = getState(subscribeList);
-    const targetPress = cachedpressObj.find((item) => item.id === id);
+    const targetPress = pressObj.find((item) => item.id === id);
     const newSubList = currentSubList.filter((item) => {
       return item != targetPress.name;
     });
@@ -144,10 +146,14 @@ function checkMode() {
   }
 }
 
-function setGridEvents() {
-  appendGridList();
+async function setGridEvents() {
+  pressObj = await getPressObj();
+  const shuffledArr = shuffleArray(pressObj);
+  appendGridList(shuffledArr);
   resister(gridPageIdx, showGridPage);
-  resister(isSubTab, appendGridList);
+  resister(isSubTab, () => {
+    appendGridList(shuffledArr);
+  });
   resister(subscribeList, checkMode);
   resister(subscribeList, () => {
     console.log(getState(subscribeList));
