@@ -1,4 +1,4 @@
-import { MODE, CATEGORY, GLOBAL } from "../model/variable.js";
+import { PATH, MODE, CATEGORY, GLOBAL } from "../model/variable.js";
 import { strToCategory } from "../model/model.js";
 
 function initFieldTab() {
@@ -43,18 +43,37 @@ function drawFieldTab() {
   });
 
   const targetDomAll = document.querySelectorAll(".field-tab button");
+
   let targetDomIndex = 0;
-  for (let category in CATEGORY) {
-    if (CATEGORY[category] === GLOBAL.LIST_CURRENT_CATEGORY) {
-      break;
+  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+    for (let category in CATEGORY) {
+      if (CATEGORY[category] === GLOBAL.LIST_CURRENT_CATEGORY) {
+        break;
+      }
+      targetDomIndex++;
     }
-    targetDomIndex++;
+  } else {
+    targetDomIndex = GLOBAL.LIST_CURRENT_PAGE;
   }
   const targetDom = targetDomAll[targetDomIndex];
+
   targetDom.querySelector("div").style.display = "flex";
-  targetDom.className = "progress selected-bold14";
-  targetDom.querySelectorAll("span")[1].innerHTML = curPageInCategory;
-  targetDom.querySelectorAll("span")[2].innerHTML = GLOBAL.CATEGORY_NUM[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)];
+
+  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+    targetDom.className = "progress selected-bold14";
+    targetDom.querySelector("img").src = PATH.DIVISION;
+    const spanTagAll = targetDom.querySelectorAll("span");
+    spanTagAll[1].style.display = "block";
+    spanTagAll[2].style.display = "block";
+    spanTagAll[1].innerHTML = curPageInCategory;
+    spanTagAll[2].innerHTML = GLOBAL.CATEGORY_NUM[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)];
+  } else {
+    targetDom.className = "progress selected-bold14";
+    targetDom.querySelector("img").src = PATH.ARROW;
+    const spanTagAll = targetDom.querySelectorAll("span");
+    spanTagAll[1].style.display = "none";
+    spanTagAll[2].style.display = "none";
+  }
 
   const progressBar = document.querySelector(".progress-bar");
   progressBar.style.left = `${targetDom.getBoundingClientRect().left - navBarDefaultLeft}px`;

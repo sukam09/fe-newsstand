@@ -28,7 +28,7 @@ const CONSTANT = {
 
   SNACK_BAR_TIME: 5000,
 
-  PROGRESS_SEC: 10,
+  PROGRESS_SEC: 20,
 };
 
 const STATE = {

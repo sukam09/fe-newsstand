@@ -1,11 +1,14 @@
-import { CONSTANT, GLOBAL } from "../model/variable.js";
+import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
+import { moveListMode } from "./tabAndViewerController.js";
 
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
 
   window.setTimeout(() => {
     snackBar.style.display = "none";
+    GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
+    moveListMode();
   }, CONSTANT.SNACK_BAR_TIME);
 }
 

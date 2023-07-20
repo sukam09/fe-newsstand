@@ -69,4 +69,4 @@ function resetPage() {
   GLOBAL.LIST_CURRENT_CATEGORY = CATEGORY.ECONOMY;
 }
 
-export { initTabAndViewerEvent };
+export { initTabAndViewerEvent, moveListMode };
