@@ -76,7 +76,7 @@
   background-color: blue;
   left: 0px;
   z-index: 2;
-  animation: 20s linear progress;
+  animation: 2s linear progress;
   position: absolute;
 }
 

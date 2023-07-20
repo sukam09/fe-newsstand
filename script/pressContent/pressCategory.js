@@ -80,6 +80,7 @@ function selectCategory() {
       changeCategory(categoryIdx);
       putCurrentPage();
       showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
+      moveCategoryProgressbar();
     })
   })
 }
@@ -99,6 +100,9 @@ export function moveCategory() {
     }
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
+    moveCategoryProgressbar();
+    restartProgressbar();
+
   })
 
   listNextArrow.addEventListener('click', ()=> {
@@ -111,9 +115,38 @@ export function moveCategory() {
     }
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
+    moveCategoryProgressbar();
+    restartProgressbar();
   })
 }
 
 function putCurrentPage() {
   getQuerySelector(undefined, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+}
+
+
+
+export function moveCategoryProgressbar() {
+  const progressbarState = getQuerySelector(document, ".selected .press-content-category-progressbar");
+  progressbarState.addEventListener('animationend', () => {
+    currentPage++;
+    console.log(currentPage, categoryIdx);
+    if (currentPage > numOfEachCategory[categoryIdx]) {
+      categoryIdx++;
+      (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
+      currentPage = initPageValue;
+      changeCategory(categoryIdx);
+    }
+    putCurrentPage();
+    showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
+    restartProgressbar();
+  })
+}
+
+function restartProgressbar() {
+  const nowCategory = getQuerySelector(undefined, ".selected .press-content-category-progressbar");
+  const parentOfNowCategory = nowCategory.parentElement;
+  parentOfNowCategory.removeChild(nowCategory);
+  parentOfNowCategory.insertAdjacentHTML("afterbegin", "<div class=\"press-content-category-progressbar\"></div>");
+  moveCategoryProgressbar();
 }
