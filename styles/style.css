@@ -241,6 +241,7 @@ header {
 .news-press-grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 930px;
   height: 388px;
   padding: 0;
@@ -427,8 +428,8 @@ header {
 
 .grid-subscribe-button {
   display: none;
-  width: 72px;
-  height: 24px;
+  width: 74px;
+  height: 26px;
   padding: 0px 6px;
   justify-content: center;
   align-items: center;
