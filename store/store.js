@@ -9,8 +9,8 @@ class Store {
 
     this.dispatch = action => {
       state = reducer(state, action);
-      handler.forEach(h => {
-        h();
+      handler.forEach(fn => {
+        fn();
       });
     };
 
