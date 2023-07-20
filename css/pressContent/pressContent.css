@@ -38,7 +38,7 @@
   border-bottom: 1px solid #d2dae0;
   display: flex;
   align-items: center;
-
+ 
 }
 
 .press-content-category {
@@ -52,12 +52,39 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  position: relative;
+  z-index: 1;
+}
+
+.press-content-category * {
+  z-index: 3;
+  white-space: nowrap;
+}
+
+@keyframes progress {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 166px;
+  }
+}
+
+.selected .press-content-category-progressbar {
+  height: 40px;
+  width: 166px;
+  background-color: blue;
+  left: 0px;
+  z-index: 2;
+  animation: 2s linear progress;
+  position: absolute;
 }
 
 .selected {
   width: 134px;
   background-color: #7890E7;
   color: #ffffff;
+  position: relative;
 }
 
 .selected > .press-content-category-cnt {
