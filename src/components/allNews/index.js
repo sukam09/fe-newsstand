@@ -5,6 +5,7 @@ import Component from '../core/Component.js';
 import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
+import AllNewsMyListView from './AllNewsMyListView.js';
 
 let currentView = 'list';
 let currentPressType = 'all';
@@ -29,13 +30,20 @@ export default class AllNews extends Component {
       type: this.state.pressType,
     });
 
-    this.state.view === TEXT.GRID
-      ? new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
-          pressType: this.state.pressType,
-        })
-      : new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
-          pressType: this.state.pressType,
-        });
+    if (this.state.view === TEXT.GRID) {
+      new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
+        pressType: this.state.pressType,
+      });
+    }
+
+    if (this.state.view === TEXT.LIST) {
+      this.state.pressType === TEXT.ALL
+        ? new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
+            pressType: this.state.pressType,
+          })
+        : new AllNewsMyListView(customQuerySelector('.all-news-wrapper', this.$target));
+    }
+    this.state.view === TEXT.GRID;
   }
 
   onClick(props) {
