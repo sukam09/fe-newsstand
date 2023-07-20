@@ -10,19 +10,19 @@ const $cancelButton = $modal.querySelector(".btns_cancel");
 
 let handlerOnConfirmButton;
 
-const handleClickOutSideModal = (e) => {
+function handleClickOutSideModal(e) {
   const open = useSelector((state) => state.modal.open);
   if (!open) return;
   if (e.target.closest(".modal") || e.target.closest(".subscribe-btn")) return;
 
   store.dispatch(closeModal());
-};
+}
 
-const handleClickModalCancelButton = () => {
+function handleClickModalCancelButton() {
   store.dispatch(closeModal());
-};
+}
 
-const replaceEventListenerOnConfirmButton = (press) => {
+function replaceEventListenerOnConfirmButton(press) {
   $confirmButton.removeEventListener("click", handlerOnConfirmButton);
   handlerOnConfirmButton = () => {
     store.dispatch(cancelSubscribe(press));
@@ -34,9 +34,9 @@ const replaceEventListenerOnConfirmButton = (press) => {
     }
   };
   $confirmButton.addEventListener("click", handlerOnConfirmButton);
-};
+}
 
-export const setModal = () => {
+export function setModal() {
   window.addEventListener("click", handleClickOutSideModal);
   $cancelButton.addEventListener("click", handleClickModalCancelButton);
 
@@ -53,4 +53,4 @@ export const setModal = () => {
 
     $modal.classList.add("hidden");
   });
-};
+}

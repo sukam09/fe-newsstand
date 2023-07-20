@@ -5,7 +5,7 @@ import { nextCategory, nextPage } from "../store/reducer/page.js";
 
 const $listViewTab = document.querySelector(".list-view_tab");
 
-const handleProgressAnimationIteration = () => {
+function handleProgressAnimationIteration() {
   const { currentCategoryIdx, currentPage } = useSelector(
     (state) => state.page
   );
@@ -17,9 +17,9 @@ const handleProgressAnimationIteration = () => {
   } else {
     store.dispatch(nextPage());
   }
-};
+}
 
-export const resetProgress = () => {
+export function resetProgress() {
   const $categorySelected = $listViewTab.querySelector(".category-selected");
   const $progressBar = $categorySelected.querySelector(
     ".category-selected > .tab_progress-bar"
@@ -27,11 +27,11 @@ export const resetProgress = () => {
 
   $categorySelected.removeChild($progressBar);
   $categorySelected.insertBefore($progressBar, $categorySelected.firstChild);
-};
+}
 
-export const addEventOnProgressBar = () => {
+export function addEventOnProgressBar() {
   $listViewTab.addEventListener(
     "animationiteration",
     handleProgressAnimationIteration
   );
-};
+}

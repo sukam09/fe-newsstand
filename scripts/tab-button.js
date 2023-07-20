@@ -5,7 +5,7 @@ import { $mainNav } from "./doms.js";
 const $mainNavTabs = $mainNav.querySelector(".main-nav_tabs");
 const $mainNavButtons = $mainNavTabs.querySelectorAll("button");
 
-const handleTabsClick = (e) => {
+function handleTabsClick(e) {
   const $currentButton = e.target.closest("button");
   if (!$currentButton) {
     return;
@@ -24,8 +24,8 @@ const handleTabsClick = (e) => {
   });
 
   store.dispatch(changeTab(tabType));
-};
+}
 
-export const addEventOnTabs = () => {
+export function addEventOnTabs() {
   $mainNavTabs.addEventListener("click", handleTabsClick);
-};
+}

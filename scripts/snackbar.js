@@ -8,7 +8,7 @@ const SNACKBAR_SHOW_DURATION = "5000";
 const $snackbar = document.querySelector(".snackbar");
 let timer;
 
-export const setSnackbar = () => {
+export function setSnackbar() {
   store.subscribe(() => {
     const open = useSelector((state) => state.snackbar.open);
     const viewType = useSelector((state) => state.page.viewType);
@@ -30,4 +30,4 @@ export const setSnackbar = () => {
 
     $snackbar.classList.remove("snackbar-open");
   });
-};
+}

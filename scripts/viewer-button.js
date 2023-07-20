@@ -7,12 +7,12 @@ const $mainNavViewerButtons = $mainNav.querySelectorAll(
   ".main-nav_viewer > button"
 );
 
-const handleViewerButtonClick = (e) => {
+function handleViewerButtonClick(e) {
   const viewType = e.currentTarget.dataset.view;
   store.dispatch(changeView(viewType));
-};
+}
 
-export const addEventOnViewerButton = () => {
+export function addEventOnViewerButton() {
   store.subscribe(() => {
     const viewType = useSelector((state) => state.page.viewType);
 
@@ -36,4 +36,4 @@ export const addEventOnViewerButton = () => {
   $mainNavViewerButtons.forEach(($button) => {
     $button.addEventListener("click", handleViewerButtonClick);
   });
-};
+}

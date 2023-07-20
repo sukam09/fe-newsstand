@@ -9,7 +9,7 @@ import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const $gridView = document.querySelector(".grid-view");
 
-const fillGridView = (newsData, currentPage) => {
+function fillGridView(newsData, currentPage) {
   const theme = useSelector((state) => state.theme.currentTheme);
 
   const startIdx = currentPage * NEWS_COUNT;
@@ -33,9 +33,9 @@ const fillGridView = (newsData, currentPage) => {
       ${SubscribeButton(isSubscribed)}
     </li>`);
   }, "");
-};
+}
 
-const handleSubscribeButtonClick = (e) => {
+function handleSubscribeButtonClick(e) {
   const $button = e.target.closest(".subscribe-btn");
   if (!$button) return;
 
@@ -49,22 +49,22 @@ const handleSubscribeButtonClick = (e) => {
 
   store.dispatch(openSnackbar());
   store.dispatch(addSubscribe(name));
-};
+}
 
-const addEventOnGridView = () => {
+function addEventOnGridView() {
   $gridView.addEventListener("click", handleSubscribeButtonClick);
-};
+}
 
-const initGridView = (newsData) => {
+function initGridView(newsData) {
   const currentPage = useSelector((state) => state.page.currentPage);
   fillGridView(newsData, currentPage);
-};
+}
 
-const getMaxPage = (data) => {
+function getMaxPage(data) {
   return Math.floor((data.length - 1) / NEWS_COUNT);
-};
+}
 
-const updateButtonUI = (currentPage, maxPage) => {
+function updateButtonUI(currentPage, maxPage) {
   if (currentPage === 0) {
     $prevPageButton.classList.add("hidden");
   } else {
@@ -76,9 +76,9 @@ const updateButtonUI = (currentPage, maxPage) => {
   } else {
     $nextPageButton.classList.remove("hidden");
   }
-};
+}
 
-const renderGridViewOnSubscribe = (currentPage) => {
+function renderGridViewOnSubscribe(currentPage) {
   const subscribeList = useSelector((state) => state.subscribeList);
   const newsData = subscribeList.map((press) => ({
     name: press,
@@ -88,9 +88,9 @@ const renderGridViewOnSubscribe = (currentPage) => {
 
   fillGridView(newsData, currentPage);
   updateButtonUI(currentPage, maxPage);
-};
+}
 
-export const renderGridView = () => {
+export function renderGridView() {
   const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
@@ -109,4 +109,4 @@ export const renderGridView = () => {
       renderGridViewOnSubscribe(currentPage);
     }
   });
-};
+}
