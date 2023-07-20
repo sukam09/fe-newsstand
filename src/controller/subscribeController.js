@@ -56,6 +56,10 @@ function toggleSubscribe(src) {
       } else if (GLOBAL.GRID_CURRENT_PAGE > Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
         GLOBAL.GRID_CURRENT_PAGE--;
       }
+    } else if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
+      if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
+        GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
+      }
     }
 
     changeState(STATE.UNSUBSCRIBE_NEWS);
