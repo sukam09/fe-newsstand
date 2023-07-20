@@ -83,18 +83,22 @@ function selectCategory() {
 function updatePageAndCategory(pageMoveFlag) {
   currentPage += pageMoveFlag;
 
-  if (pageMoveFlag && currentPage > numOfEachCategory[categoryIdx]) {
-    categoryIdx += pageMoveFlag;
-    (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
-    currentPage = initPageValue;
+  if (pageMoveFlag === -1){
+    if (currentPage < 1) {
+      categoryIdx --;
+      categoryIdx < 0 && (categoryIdx = numOfEachCategory.length-1);
+      currentPage = numOfEachCategory[categoryIdx];
+      changeCategory(categoryIdx);
+    }
   }
-
-  else if (!pageMoveFlag && currentPage < 1) {
-    categoryIdx += pageMoveFlag;
-    categoryIdx < 0 && (categoryIdx = numOfEachCategory.length - 1);
-    currentPage = numOfEachCategory[categoryIdx];
+  else {
+    if (currentPage > numOfEachCategory[categoryIdx]) {
+      categoryIdx ++;
+      (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
+      currentPage = initPageValue;
+      changeCategory(categoryIdx);
+    }
   }
-  changeCategory(categoryIdx);
 }
 
 // 화살표로 카테고리 페이지 이동하기
@@ -123,6 +127,8 @@ export function moveCategory() {
 function putCurrentPage() {
   getQuerySelector(undefined, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
 }
+
+
 
 export function moveCategoryProgressbar() {
   const progressbarState = getQuerySelector(document, ".selected .press-content-category-progressbar");
