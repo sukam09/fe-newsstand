@@ -4,20 +4,7 @@ import { drawPressNews } from "./drawPressNews.js";
 import { store } from "../core/store.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { getPage, getTabMode, getSubscribedPress } from "../core/getter.js";
-
-async function getNewsData(current) {
-  try {
-    const response = await fetch("../data/newsListData.json");
-    const newsData = await response.json();
-    const list_content = newsData.News.filter((news) =>
-      getTabMode() === "all" ? news.category === current : news.name === current
-    );
-    return list_content;
-  } catch (error) {
-    console.error("Error fetching news data:", error);
-    throw error;
-  }
-}
+import { getData } from "../core/api.js";
 
 async function drawList(current) {
   try {
@@ -30,7 +17,10 @@ async function drawList(current) {
 
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
-    let list_content = await getNewsData(current);
+    const data = await getData("newsListData");
+    let list_content = data.News.filter((news) =>
+      getTabMode() === "all" ? news.category === current : news.name === current
+    );
     if (getPage() <= 0 || list_content.length < getPage()) {
       const currentIndex = list.indexOf(current);
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
@@ -39,7 +29,11 @@ async function drawList(current) {
         ? (current = list[prevIndex])
         : (current = list[nextIndex]);
       store.setState({ page: FIRST_PAGE_NUM });
-      list_content = await getNewsData(current);
+      list_content = data.News.filter((news) =>
+        getTabMode() === "all"
+          ? news.category === current
+          : news.name === current
+      ); //함수로 빼기
       showListView(current);
     } else {
       drawCategory(current, list, list_content);
