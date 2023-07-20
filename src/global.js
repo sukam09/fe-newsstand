@@ -73,10 +73,7 @@ function keyboardClicked(event) {
   } else {
     if (event.key === "ArrowRight") {
       setState(listPageIdx, nowListPage + 1);
-    } else if (
-      event.key === "ArrowLeft" &&
-      (nowListPage - 1 > 0 || getState(categoryIdx) !== 0)
-    ) {
+    } else if (event.key === "ArrowLeft") {
       setState(listPageIdx, nowListPage - 1);
     }
   }
