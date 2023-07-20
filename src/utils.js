@@ -1,4 +1,10 @@
-import { PRESS_DATA_PATH, NEWS_DATA_PATH, HOT_DATA_PATH } from "./constants.js";
+import {
+    PRESS_DATA_PATH,
+    NEWS_DATA_PATH,
+    HOT_DATA_PATH,
+    MAX_CATEGORY,
+    CATEGORIES,
+} from "./constants.js";
 import {
     grid_option,
     list_option,
@@ -46,36 +52,104 @@ export function isSubscribed(item) {
  * @param {*} target
  * @returns options
  */
-export function setOptions(target) {
+export function setOptions(target, callback) {
     return {
         main: view_option.main,
         press: view_option.press,
         mode: view_option.mode,
         target: target || "all",
+        callback: typeof callback === 'function' ? callback : undefined
     };
 }
 
 export function renderOptions() {
     return {
         grid: {
-            all: { data: grid_option.press_data, page: grid_option.page },
+            all: {
+                data: grid_option.press_data,
+                page: grid_option.page,
+                category: undefined,
+            },
             subscribe: {
                 data: grid_option.press_data.filter(
-                    (press) => subscribe_option.subscribe_press[press["name"]] === "true"
+                    (press) =>
+                        subscribe_option.subscribe_press[press["name"]] ===
+                        "true"
                 ),
                 page: grid_option.subscribe_page,
+                category: undefined,
             },
         },
         list: {
-            all: { data: list_option, page: list_option.page },
-            subscribe: {
-                data: list_option.news_data.filter(
-                    (press) => subscribe_option.subscribe_press[press["name"]]
-                ),
+            all: {
+                data: list_option.news_data,
                 page: list_option.page,
+                category: list_option.category,
+            },
+            subscribe: {
+                data: list_option.unrefined_new_data.filter(
+                    (press) =>
+                        subscribe_option.subscribe_press[
+                            press["press_name"]
+                        ] === "true"
+                ),
+                page: list_option.subscribe_page,
+                category: Object.keys(subscribe_option.subscribe_press).filter(
+                    (press) => subscribe_option.subscribe_press[press]
+                ),
             },
         },
     };
+}
+
+export function getCalPage(page) {
+    const { main, press } = setOptions();
+
+    if (main === "grid") {
+        if (press === "all") {
+            grid_option.page += page;
+            return grid_option.page;
+        } else {
+            grid_option.subscribe_page += page;
+            return grid_option.subscribe_page;
+        }
+    }
+    if (main === "list") {
+        if (press === "all") {
+            list_option.page += page;
+            return list_option.page;
+        } else {
+            list_option.subscribe_page += page;
+            return list_option.subscribe_page;
+        }
+    }
+}
+
+export function setCategoryIndex(text) {
+    list_option.category = CATEGORIES.indexOf(text);
+}
+
+export function getCategoryIndex() {
+    return list_option.category;
+}
+
+export function updateCategoryIndex(category, direction) {
+    if (category === MAX_CATEGORY) {
+        list_option.category = 0;
+        list_option.page = 0;
+    } else if (category < 0) {
+        list_option.category = MAX_CATEGORY - 1;
+        list_option.page =
+            list_option.news_data[CATEGORIES[list_option.category]].length - 1;
+    } else {
+        list_option.category = category;
+        if (direction === "next") list_option.page = 0;
+        else if (direction === "prev")
+            list_option.page =
+                list_option.news_data[CATEGORIES[list_option.category]].length -
+                1;
+    }
+    return { category: list_option.category, page: list_option.page };
 }
 
 // brute force로 구현 - 순차탐색

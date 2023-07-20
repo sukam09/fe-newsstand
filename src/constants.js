@@ -1,6 +1,7 @@
 export const ROW_SIZE = 6;
 export const COL_SIZE = 4;
 export const MAX_PAGE = 3;
+export const MAX_CATEGORY = 7;
 export const INTERVAL = 5000;
 export const DELAY = 1000;
 export const PROGRESS_DELAY = 100;

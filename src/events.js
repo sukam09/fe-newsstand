@@ -10,6 +10,8 @@ import {
     setOptions,
     currentHourToMode,
     renderOptions,
+    getCalPage,
+    setCategoryIndex,
 } from "./utils.js";
 import {
     render,
@@ -100,14 +102,14 @@ function updateMainNewsContainer(option_elements, main_option) {
 function clearAndRender(main, press) {
     clear("main_news_container", list_option);
 
-    const { data, page } = renderOptions()[main][press];
+    const { data, page, category } = renderOptions()[main][press];
 
     changeViewArrow(main);
-    render(setOptions(), data, page);
+    render(setOptions(undefined, changeCategoryEvent), data, page, category);
 
-    if (main === "list") {
-        changeCategoryEvent(list_option.news_data);
-    }
+    // if (main === "list") {
+    //     changeCategoryEvent();
+    // }
 
     togglePressEvent();
 }
@@ -125,25 +127,47 @@ function arrowPagingEvent() {
     const list_right_arrow = document.querySelector(".list_right_arrow");
 
     grid_left_arrow.addEventListener("click", () => {
-        if (grid_option.page <= 0) return;
-        handlePage("prev", "grid", grid_option, view_option.press);
+        const { main, press } = setOptions();
+        const { data, page } = renderOptions()[main][press];
+        if (page <= 0) return;
+        handlePage(main, press, getCalPage(-1), data);
+
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
-        if (grid_option.page >= length) return;
-        handlePage("next", "grid", grid_option, view_option.press);
+        const { main, press } = setOptions();
+        const { data, page } = renderOptions()[main][press];
+        if (page >= length) return;
+        handlePage(main, press, getCalPage(1), data);
+
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        handlePage("prev", "list", list_option, view_option.press);
-        changeCategoryEvent(list_option.news_data);
+        const { main, press } = setOptions();
+        const { data, category } = renderOptions()[main][press];
+        handlePage(
+            main,
+            press,
+            getCalPage(-1),
+            data,
+            category,
+            changeCategoryEvent
+        );
     });
 
     list_right_arrow.addEventListener("click", () => {
-        handlePage("next", "list", list_option, view_option.press);
-        changeCategoryEvent(list_option.news_data);
+        const { main, press } = setOptions();
+        const { data, category } = renderOptions()[main][press];
+        handlePage(
+            main,
+            press,
+            getCalPage(1),
+            data,
+            category,
+            changeCategoryEvent
+        );
     });
 }
 
@@ -252,16 +276,21 @@ function toggleSubscribeEvent() {
  * 2. list_views, 카테고리 클릭 이벤트
  * @param {Array} data
  */
-function changeCategoryEvent(data) {
+function changeCategoryEvent() {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            list_option.category = CATEGORIES.indexOf(item.innerText);
-
-            render(setOptions(), list_option, list_option.page);
-            changeCategoryEvent(data);
-            list_option.page = 0;
+            setCategoryIndex(item.innerHTML);
+            const { main: main_option, press: press_option } = setOptions();
+            const { data, page, category } =
+                renderOptions()[main_option][press_option];
+            render(
+                setOptions(undefined, changeCategoryEvent),
+                data,
+                page,
+                category
+            );
         });
     });
 }
@@ -297,6 +326,7 @@ async function initEvent() {
         const data = await save();
 
         grid_option.press_data = data["press_data"];
+        list_option.unrefined_new_data = data["news_data"];
 
         CATEGORIES.forEach((item) => {
             list_option.news_data[item] = data["news_data"].filter(

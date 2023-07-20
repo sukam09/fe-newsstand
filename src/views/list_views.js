@@ -4,11 +4,12 @@ import {
     CATEGORIES,
     PROGRESS_MAX,
     SUBSCRIBE_TEXT,
-    FROM_TO_TEXT
+    FROM_TO_TEXT,
 } from "../constants.js";
 import { isSubscribed } from "../utils.js";
 
-function renderListView(data, category, page) {
+function renderListView(options, data, category, page) {
+    // console.log(data, category, page);
     const list_news_container = document.querySelector(".main_news_container");
     list_news_container.innerHTML = "";
     const main_content = document.createElement("div");
