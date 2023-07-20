@@ -65,8 +65,10 @@ class ListSubscribe {
     initProgressBar = function (props) {
         this.setValue(props).then(() => {
             this.changeProgressBar();
-            renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
-            this.startInterval();
+            if (this.data.length) {
+                renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
+                this.startInterval();
+            }
         });
     };
 
