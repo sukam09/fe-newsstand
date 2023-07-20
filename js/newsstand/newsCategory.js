@@ -43,7 +43,8 @@ const newsData = await getCategoryData("./data/pressObj.json");
 let categoryDataList = [[], [], [], [], [], [], []];
 let categoryDataLength = [];
 newsData.map((it) => {
-  const idx = it.id % 7;
+  const randomIdx = 1 + Math.floor(Math.random() * 7);
+  const idx = it.id % randomIdx;
   categoryDataList[idx].push(it);
 });
 categoryDataList.map((it) => categoryDataLength.push(it.length));

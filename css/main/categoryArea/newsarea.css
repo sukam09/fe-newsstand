@@ -15,7 +15,7 @@
 
   height: 40px;
 
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 .newsstand__news-nav li {
   font-size: 14px;

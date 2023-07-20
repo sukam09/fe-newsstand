@@ -2,6 +2,7 @@ import { removeChildElement } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
 import { subscribeState } from "../store/subscribeState.js";
 import { MESSAGE, POSITION, EVENT } from "./constant.js";
+import { paintNewsCategory } from "../newsstand/newsCategory.js";
 
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
@@ -51,7 +52,7 @@ function makeMainNewsNav(logo, edit, name) {
 
   const publisherLogo = `<div><img src=${logo} alt="" class="newsstand--publisher-logo"/></div>`;
   const editDay = `<div class="newsstand__current-edit">${edit} ${MESSAGE.EDIT}</div>`;
-  let subButton = `<button class="newsstand__current-button">${MESSAGE.SUBSCRIBE}</button>`;
+  let subButton = "";
 
   // 구독중일때.
   if (subscribeState.getSubscribeByName(name).length) {
@@ -69,6 +70,7 @@ function makeMainNewsNav(logo, edit, name) {
     if (subscribeState.getSubscribeByName(name)[0]) {
       newsNavParent.children[2].textContent = MESSAGE.SUBSCRIBE;
       subscribeState.setUnSubscribeState(name);
+      paintNewsCategory();
     }
     // 구독하기 버튼을 눌렀을때.
     else {
@@ -134,14 +136,24 @@ export function nextContents(
   if (clickPosition === POSITION.RIGHT) {
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) - 1;
+    // 애니메이션을 지웠다가 다시 실행.
+    removeProgressAction();
+    addProgressAction(element);
+    console.log(element);
     element.children[0].style.animationIterationCount = reCount;
   } else if (clickPosition === POSITION.LEFT) {
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) + 1;
 
     if (CATEGORY.goBefore) {
+      // 애니메이션을 지웠다가 다시 실행.
+      removeProgressAction();
+      addProgressAction(element);
       element.children[0].style.animationIterationCount = 0;
     } else {
+      // 애니메이션을 지웠다가 다시 실행.
+      removeProgressAction();
+      addProgressAction(element);
       element.children[0].style.animationIterationCount = reCount;
     }
   }
@@ -167,6 +179,18 @@ export function removeProgressAction() {
       deactiveProgressClass(element);
     });
   }
+}
+
+function addProgressAction(element) {
+  void element.offsetWidth;
+  element.style.padding = 0; // 선택된 카테고리의 padding 제거
+  element.classList.add("newsstand__focus");
+  element.classList.add("newsstand__focus-font");
+  element.children[0].classList.add("newsstand__progress"); // 첫번째 자식: 프로그래스 바
+  element.children[1].classList.add("newsstand__progress-category"); // 두번째 자식: 카테고리 제목
+  element.children[2].classList.add("newsstand__progress-now"); // 세번째 자식: 진행상황 (1/82)
+  element.children[3].classList.add("newsstand__progress-slash"); // 세번째 자식: 진행상황 (1/82)
+  element.children[4].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
 }
 
 export function onUserRightClickCategory(
@@ -241,6 +265,7 @@ export function leftBtnEvent(
     }
     CATEGORY.currentContents =
       CATEGORY.currentContents <= 0 ? 1 : CATEGORY.currentContents;
+
     nextContents(
       POSITION.LEFT,
       CATEROY_NUMBER,

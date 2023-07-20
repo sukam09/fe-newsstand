@@ -25,11 +25,11 @@ function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
     listButton.src = "./assets/basicIcon/list-symbol-selected.svg";
     thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
-    paintNewsCategory();
-
     // display: none 속성 부여.
     listArea.classList.remove(VIEW_DISABLED);
     gridArea.classList.add(VIEW_DISABLED);
+
+    paintNewsCategory();
   });
 
   // 뉴스 그리드 버튼 클릭됬을때.
