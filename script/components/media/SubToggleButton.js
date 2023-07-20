@@ -64,7 +64,7 @@ export const SubButtonArea = (id, navStore, viewStore) => {
   const subButtonArea = document.createElement('div');
 
   subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubButton(id, navStore, viewStore));
+  subButtonArea.appendChild(SubToggleButton(id, navStore, viewStore));
   return subButtonArea;
 };
 
