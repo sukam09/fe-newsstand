@@ -1,4 +1,5 @@
 import { MSG } from '../../constants.js';
+import { fadeOutElement } from '../../utils/utils.js';
 
 const ActionButton = (alertElement, text, textClass, action) => {
   const actionButton = document.createElement('button');
@@ -11,7 +12,7 @@ const ActionButton = (alertElement, text, textClass, action) => {
   );
   actionButton.innerText = text;
   actionButton.addEventListener('click', e => {
-    alertElement.remove();
+    fadeOutElement(alertElement);
     if (action) action();
   });
   return actionButton;
