@@ -3,13 +3,14 @@
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
-import { fetchNews } from "../../api/fetchNews.js";
+import { fetchNews, fetchPress } from "../../api/fetchNews.js";
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";
 import store from "../../Store/Store.js";
 
 const listViewData = await fetchNews();
+const pressData = await fetchPress();
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
@@ -63,6 +64,7 @@ export default function MainContent($target, props) {
   };
 
   this.render = () => {
+    console.log(this.state.category);
     if ($section) {
       $target.removeChild($section);
     }
@@ -101,7 +103,13 @@ export default function MainContent($target, props) {
         setPressType: props.setPressType,
         timerArr: timerArr,
         indexArr: indexArr,
-        data: listViewData[this.state.category],
+        data:
+          props.pressType === "all"
+            ? listViewData[this.state.category]
+            : {
+                ...pressData[store.myPressList[this.state.category]],
+                pid: store.myPressList[this.state.category],
+              },
       };
 
       new NewsListView($section, listProps);

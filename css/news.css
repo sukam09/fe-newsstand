@@ -22,7 +22,7 @@ content
 
 .news-container .categoty-nav .categoty-list {
   display: flex;
-  width: fit-content;
+  width: max-content;
 }
 
 .news-container .categoty-nav .categoty-list .select {

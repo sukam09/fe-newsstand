@@ -22,8 +22,6 @@ const LAST_CATEGORY = 6;
 
 const FIRST_PAGE = 1;
 
-const categoryLengthArr = [4, 12, 3, 5, 6, 4, 7, 10];
-
 const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 <path d="M5.48341 10.5L4.66675 9.68333L7.35008 7L4.66675 4.31667L5.48341 3.5L8.98342 7L5.48341 10.5Z" fill="white"/>
 </svg>`;
@@ -48,19 +46,16 @@ const createNav = function (pressType, navElements) {
 export default function CategoryNav($target, props) {
   const initCategoryState = {
     currentPage: FIRST_PAGE,
-    lastPage: categoryLengthArr[FIRST_CATEGORY],
     category: FIRST_CATEGORY,
   };
 
   const nextCategoryState = {
     currentPage: 1,
-    lastPage: categoryLengthArr[props.category + 1],
     category: props.category + 1,
   };
 
   const nextPageState = {
     currentPage: props.currentPage + 1,
-    lastPage: props.lastPage,
     category: props.category,
   };
 
@@ -84,13 +79,13 @@ export default function CategoryNav($target, props) {
         if (props.currentPage === props.lastPage) {
           // change category
           if (props.category === LAST_CATEGORY) {
-            // props.setContentState(initCategoryState);
+            props.setContentState(initCategoryState);
           } else {
-            // props.setContentState(nextCategoryState);
+            props.setContentState(nextCategoryState);
           }
         } else {
           // change page
-          // props.setContentState(nextPageState);
+          props.setContentState(nextPageState);
         }
       }
 

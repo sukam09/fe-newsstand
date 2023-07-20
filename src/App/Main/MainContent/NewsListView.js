@@ -54,10 +54,14 @@ const getPressId = function (object) {
 export default function NewsListView($target, props) {
   if (prevCategory !== props.category) {
     prevCategory = props.category;
-    indexArr = getRandomIndexArr(props.data.length);
+    if (props.pressType === "all")
+      indexArr = getRandomIndexArr(props.data.length);
   }
 
-  const newsOject = props.data[indexArr[props.currentPage - 1]];
+  const newsOject =
+    props.pressType === "all"
+      ? props.data[indexArr[props.currentPage - 1]]
+      : props.data;
 
   const categoryNavProps = {
     pressType: props.pressType,
@@ -70,7 +74,8 @@ export default function NewsListView($target, props) {
 
   const contentsProps = {
     headerData: {
-      pressId: getPressId(newsOject),
+      pressId:
+        props.pressType === "all" ? getPressId(newsOject) : newsOject.pid,
       pressLogo: getPressLogo(newsOject, props.mode),
       editDate: getEditDate(newsOject),
       setPressType: props.setPressType,
