@@ -13,6 +13,7 @@ let currentProgressBar;
 const drawCategory = (categoryCnt) => {
   drawCategoryBar(categoryCnt);
   addEventArrowList(categoryCnt);
+  clickCategory(categoryCnt);
 };
 
 function drawCategoryBar(categoryCnt) {
@@ -26,18 +27,17 @@ function drawCategoryBar(categoryCnt) {
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  // clickCategory();
-  drawCategoryItem(categoryCnt);
+  drawCategoryItem(categoryCnt, 0);
 }
 
 function drawCategoryNumber(category) {
-  return category.value
-    ? `<span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${category.value}</span>`
-    : `<span class="currentCategoryPages"></span><span class="categoryCnt"></span>`;
+  return category.arrow
+    ? `<span class="currentCategoryPages"></span><span class="categoryCnt"></span>`
+    : `<span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${category.value}</span>`;
 }
 
-function drawCategoryItem(categoryCnt) {
-  currentCategoryIndex = 0;
+function drawCategoryItem(categoryCnt, categoryIndex) {
+  currentCategoryIndex = categoryIndex;
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryNumber(categoryCnt);
   updateCurrentProgressBar();
@@ -151,7 +151,6 @@ function addEventArrowList(categoryCnt) {
 }
 
 function increaseListPage(categoryCnt) {
-  console.log(categoryCnt);
   if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
@@ -183,24 +182,22 @@ function decreaseListPage(categoryCnt) {
   clearNewsInterval();
 }
 
-// function clickCategory() {
-//   for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
-//     const categoryItem = document.getElementById(`category${categoryNum}`);
-//     categoryItem.addEventListener("click", function () {
-//       progressReset(currentProgressBar, currentCategoryPage);
-//       currentCategoryPageNumber = 1;
-//       drawCategoryItem(categoryNum);
-//     });
-//     categoryItem.addEventListener("mouseover", function () {
-//       if (categoryNum !== currentCategoryIndex) {
-//         categoryItem.style.textDecoration = "underline";
-//       }
-//     });
-//     categoryItem.addEventListener("mouseout", function () {
-//       if (categoryNum !== currentCategoryIndex) {
-//         categoryItem.style.textDecoration = "";
-//       }
-//     });
-//   }
-// }
+function clickCategory(categoryCnt) {
+  for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
+    const categoryItem = document.getElementById(`category${categoryNum}`);
+    categoryItem.addEventListener("click", function () {
+      progressReset(currentProgressBar, currentCategoryPage);
+      currentCategoryPageNumber = 1;
+      drawCategoryItem(categoryCnt, categoryItem.id.slice(-1));
+    });
+    categoryItem.addEventListener("mouseover", function () {
+      if (categoryNum !== currentCategoryIndex)
+        categoryItem.style.textDecoration = "underline";
+    });
+    categoryItem.addEventListener("mouseout", function () {
+      if (categoryNum !== currentCategoryIndex)
+        categoryItem.style.textDecoration = "";
+    });
+  }
+}
 export { drawCategory, currentCategoryIndex, currentCategoryPageNumber };
