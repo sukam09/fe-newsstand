@@ -5,10 +5,10 @@ import {
 } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
-import { navTab } from "../state/navFocusStats.js";
 import { subscribeState } from "../store/subscribeState.js";
 import { navTag } from "../tag/mediaNavTag.js";
-import { MESSAGE, EVENT } from "../utils/constant.js";
+import { MESSAGE, EVENT, VIEW } from "../utils/constant.js";
+import { View } from "../store/viewState.js";
 let publisherData = await getPressData("./data/pressObj.json");
 
 // 그리드 버튼 태그 / nav 태그 (전체 언론사 / 내가 구독한 언론사 ~~ 아이콘) 생성
@@ -72,12 +72,14 @@ function paintNews(paintData = publisherData) {
 
   element.map((child) => {
     if (idx < paintData.length) {
-      const alt = navTab.isMySubscribe
-        ? paintData[idx][0]
-        : paintData[idx].name;
-      const icon = navTab.isMySubscribe
-        ? paintData[idx][1]
-        : paintData[idx].lightSrc;
+      const alt =
+        View.getNavTabView() === VIEW.MY_SUB
+          ? paintData[idx][0]
+          : paintData[idx].name;
+      const icon =
+        View.getNavTabView() === VIEW.MY_SUB
+          ? paintData[idx][1]
+          : paintData[idx].lightSrc;
 
       handleElementClass(
         element[elementIdx].children[1],
@@ -120,36 +122,40 @@ function paintNews(paintData = publisherData) {
 function addEventOnMySubAndAllSub() {
   // 내가 구독한 언론사 클릭됬을때.
   mySubscribe.addEventListener("click", () => {
-    navTab.isMySubscribe = true;
+    if (View.getUserView() === "grid") {
+      View.setNavTabView(VIEW.MY_SUB, true);
 
-    // 현재 구독중인 리스트.
-    const subscribeList = subscribeState.getSubscribeState();
+      // 현재 구독중인 리스트.
+      const subscribeList = subscribeState.getSubscribeState();
 
-    // 현재 구독중인 리스트에 포커스 효과주기
-    onFocusToClicked(MESSAGE.MY_PUBLISHER, mySubscribe, allPublisher);
+      // 현재 구독중인 리스트에 포커스 효과주기
+      onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
 
-    // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
-    selectedPage = 0; // selectedPage 0에서 시작
+      // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
+      selectedPage = 0; // selectedPage 0에서 시작
 
-    LAST_PAGE = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
-    isBtnDisabled(); // 버튼 활성화 조건 실행.
+      LAST_PAGE = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
+      isBtnDisabled(); // 버튼 활성화 조건 실행.
 
-    paintNews(subscribeList);
+      paintNews(subscribeList);
+    }
     // store에서 구독중인 목록을 가져와서 그려준다. [paint 함수 실행] 이때, 남는 영역은 빈칸으로 채운다. [이때, 마우스오버 효과 삭제]
   });
 
   // 전체 언론사 클릭했을떄.
   allPublisher.addEventListener("click", () => {
-    navTab.isMySubscribe = false;
+    if (View.getUserView() === "grid") {
+      View.setNavTabView(VIEW.ALL_PUBLISHER, true);
 
-    // 전체 언론사에 포커스 효과주기
-    onFocusToClicked(MESSAGE.ALL_PUBLISHER, mySubscribe, allPublisher);
+      // 전체 언론사에 포커스 효과주기
+      onFocusToClicked(VIEW.ALL_PUBLISHER, mySubscribe, allPublisher);
 
-    selectedPage = 0; // selectedPage 0에서 시작
-    LAST_PAGE = 3;
-    isBtnDisabled(); // 버튼 활성화 조건 실행.
+      selectedPage = 0; // selectedPage 0에서 시작
+      LAST_PAGE = 3;
+      isBtnDisabled(); // 버튼 활성화 조건 실행.
 
-    paintNews();
+      paintNews();
+    }
   });
 }
 
@@ -194,7 +200,7 @@ function userClickSubscribeButton(liElement) {
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
       const subList = subscribeState.getSubscribeState();
-      navTab.isMySubscribe && paintNews(subList);
+      View.getNavTabView() === VIEW.MY_SUB && paintNews(subList);
       // navTab.isMySubscribe ? paintNews(subList) : () => {};
     }
     // 구독하기 버튼을 눌렀을때.
@@ -210,14 +216,14 @@ function pagination() {
   leftBtn.addEventListener(EVENT.CLICK, (e) => {
     selectedPage -= 1;
     const subList = subscribeState.getSubscribeState();
-    navTab.isMySubscribe ? paintNews(subList) : paintNews();
+    View.getNavTabView() === VIEW.MY_SUB ? paintNews(subList) : paintNews();
     isBtnDisabled();
   });
 
   rightBtn.addEventListener(EVENT.CLICK, (e) => {
     selectedPage += 1;
     const subList = subscribeState.getSubscribeState();
-    navTab.isMySubscribe ? paintNews(subList) : paintNews();
+    View.getNavTabView() === VIEW.MY_SUB ? paintNews(subList) : paintNews();
     isBtnDisabled();
   });
 }

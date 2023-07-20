@@ -1,5 +1,5 @@
 import { CATEGORY } from "../state/categoryState.js";
-import { navTab } from "../state/navFocusStats.js";
+import { View } from "../store/viewState.js";
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
@@ -14,6 +14,7 @@ import {
 } from "../utils/category.js";
 import { subscribeState } from "../store/subscribeState.js";
 import { removeChildElement, handleElementClass } from "../utils/util.js";
+import { MESSAGE } from "../utils/constant.js";
 
 const category = [
   "종합/경제",
@@ -68,16 +69,21 @@ const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
 export function paintNewsCategory() {
+  console.log(View.getNavTabView(), View.getUserView());
   CATEGORY.currentCategory = 0;
   CATEGORY.currentContents = 1;
-  const categoryNameList = navTab.isMySubscribe ? mySubArray() : category;
-  const totalCategory = navTab.isMySubscribe
-    ? mySubArray().length
-    : CATEROY_NUMBER;
+  const categoryNameList =
+    View.getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
 
-  const contentsLength = navTab.isMySubscribe
-    ? new Array(mySubArray().length).fill(1)
-    : categoryDataLength;
+  const totalCategory =
+    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+      ? mySubArray().length
+      : CATEROY_NUMBER;
+
+  const contentsLength =
+    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+      ? new Array(mySubArray().length).fill(1)
+      : categoryDataLength;
 
   const categoryParent = document.querySelector(".newsstand__news-nav");
   const btnParent = document.querySelector(".newsstand__list-navigation-btn");
@@ -95,7 +101,7 @@ export function paintNewsCategory() {
   );
 
   // li태그와 버튼 태그
-  const categoryList = Array.from(categoryParent.children);
+  const categoryList = [...categoryParent.children];
   const leftBtn = document.querySelector(".left-list-button");
   const rightBtn = document.querySelector(".right-list-button");
 
@@ -178,11 +184,18 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 // 내가 구독한 언론사일때 실행되는 함수
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
-    paintNewsCategory();
+    if (View.getUserView() === "list") {
+      View.setNavTabView(MESSAGE.MY_PUBLISHER, true);
+      paintNewsCategory();
+      console.log(View.getNavTabView());
+    }
   });
   allPublisher.addEventListener("click", () => {
-    paintNewsCategory();
-    // console.log("리스트에서의 전체 언론사");
+    if (View.getUserView() === "list") {
+      View.setNavTabView(MESSAGE.ALL_PUBLISHER, true);
+      paintNewsCategory();
+      console.log(View.getNavTabView());
+    }
   });
 }
 

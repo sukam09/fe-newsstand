@@ -22,4 +22,6 @@ export const EVENT = {
 
 export const VIEW = {
   DISABLED: "view-disabled",
+  MY_SUB: "MY_PUBLISHER",
+  ALL_SUB: "ALL_PUBLISHER",
 };
