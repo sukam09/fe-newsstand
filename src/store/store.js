@@ -25,4 +25,16 @@ const gridPageIdx = initState({
   defaultState: 0,
 });
 
-export { isDarkMode, isGrid, categoryIdx, listPageIdx, gridPageIdx };
+const subscribeList = initState({
+  key: "subscribeList",
+  defaultState: [],
+});
+
+export {
+  isDarkMode,
+  isGrid,
+  categoryIdx,
+  listPageIdx,
+  gridPageIdx,
+  subscribeList,
+};
