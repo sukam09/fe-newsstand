@@ -138,13 +138,13 @@ export default class SubscribeListView extends Component {
     }
 
     setEvent() {
-        this.$target.addEventListener("click", (e) => {
+        this.$target.addEventListener("click", ({ target }) => {
             if (
-                e.target.classList.contains("category") ||
-                e.target.classList.contains("category-text")
+                target.classList.contains("category") ||
+                target.classList.contains("category-text")
             ) {
                 const clickedIndex = this.state.pressData.findIndex(
-                    (item) => item.name === e.target.textContent.trim()
+                    (item) => item.name === target.textContent.trim()
                 );
 
                 this.setState({

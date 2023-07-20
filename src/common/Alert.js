@@ -15,15 +15,15 @@ export default class Alert extends Component {
     }
 
     setEvent() {
-        this.$target.addEventListener("click", (e) => {
-            if (e.target.classList.contains("alert-confirm")) {
-                this.$target.classList.add("hidden");
+        this.$target.addEventListener("click", ({ target, currentTarget }) => {
+            console.log(target, currentTarget);
+            if (target.classList.contains("alert-confirm")) {
+                currentTarget.classList.add("hidden");
 
                 // 구독하기 리스트에서 삭제
                 this.unsubscribePress();
-                // this.setState({ subscribed: false }); // 여기 말고 subscribeButton에서 ..
-            } else if (e.target.classList.contains("alert-cancel")) {
-                this.$target.classList.add("hidden");
+            } else if (target.classList.contains("alert-cancel")) {
+                currentTarget.classList.add("hidden");
             }
         });
     }
