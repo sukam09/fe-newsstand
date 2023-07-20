@@ -149,8 +149,6 @@ const setListArticle = () => {
   const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
   setListButtonChange(isSubscribe);
   setSubscribeArrow(isSubscribe);
-
-  ///
 };
 
 /**
@@ -205,8 +203,12 @@ const setProgressBarEvent = () => {
       const progressNow = progress.querySelector('.press-category__div-now');
       const progressSum = progress.querySelector('.press-category__div-sum');
 
-      progressNow.innerText = LIST.PAGE_COUNT;
-      progressSum.innerText = LIST.PAGE_LENTH;
+      const isSubscribe = progressNow === null;
+      setSubscribeArrow(isSubscribe);
+      if (!isSubscribe) {
+        progressNow.innerText = LIST.PAGE_COUNT;
+        progressSum.innerText = LIST.PAGE_LENTH;
+      }
       getProgressBarEvent(progressNow, progressSum);
     });
   });
@@ -216,8 +218,12 @@ const getProgressBarEvent = (progressNow, progressSum) => {
   setListArticle();
   const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
   const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
-  progressNow.innerText = LIST.PAGE_COUNT;
-  progressSum.innerText = LIST.PAGE_LENTH;
+  const isSubscribe = progressNow === null;
+  setSubscribeArrow(isSubscribe);
+  if (!isSubscribe) {
+    progressNow.innerText = LIST.PAGE_COUNT;
+    progressSum.innerText = LIST.PAGE_LENTH;
+  }
 
   if (PAGE) setNextPage(progressNow);
   if (!PAGE && CATEGORY) setNextCategory();
@@ -281,8 +287,13 @@ const setArrowRight = () => {
 
     const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
     const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
-    progressNow.innerText = LIST.PAGE_COUNT;
-    progressSum.innerText = LIST.PAGE_LENTH;
+
+    const isSubscribe = progressNow === null;
+    setSubscribeArrow(isSubscribe);
+    if (!isSubscribe) {
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+    }
 
     if (PAGE) setNextPage(progressNow);
     if (!PAGE && CATEGORY) setNextCategory();
@@ -303,8 +314,13 @@ const setArrowLeft = () => {
 
     const PAGE = 1 < LIST.PAGE_COUNT;
     const CATEGORY = 1 < LIST.CATEGORY_COUNT;
-    progressNow.innerText = LIST.PAGE_COUNT;
-    progressSum.innerText = LIST.PAGE_LENTH;
+
+    const isSubscribe = progressNow === null;
+    setSubscribeArrow(isSubscribe);
+    if (!isSubscribe) {
+      progressNow.innerText = LIST.PAGE_COUNT;
+      progressSum.innerText = LIST.PAGE_LENTH;
+    }
 
     if (PAGE) setPrevPage(progressNow);
     if (!PAGE && CATEGORY) setPrevCategory();
