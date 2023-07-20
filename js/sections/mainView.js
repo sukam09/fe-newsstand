@@ -5,7 +5,6 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { getView, getPage, getSubscribedPress } from "../core/getter.js";
-const subscribedPress = store.state.subscribedPress;
 function MainView() {
   // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
