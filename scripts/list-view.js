@@ -14,9 +14,8 @@ import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
 import { openModal } from "../store/reducer/modal.js";
 
-const [$categoryTab, $subscribeTab] = document.querySelectorAll(
-  ".list-view_tab > ul"
-);
+const $listViewTab = document.querySelector(".list-view_tab");
+const [$categoryTab, $subscribeTab] = $listViewTab.querySelectorAll("ul");
 const $listViewTabItems = $categoryTab.querySelectorAll("li");
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
@@ -40,6 +39,32 @@ const SubscribeItem = (press, selected) => {
       <path d="M9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12L9.4 18Z" fill="inherit"/>
     </svg>
   </li>`;
+};
+
+const setSubscribeTabsDraggable = () => {
+  let isMouseDown = false;
+  let startPageX;
+
+  $listViewTab.addEventListener("mousedown", (e) => {
+    isMouseDown = true;
+    startPageX = e.pageX + e.currentTarget.scrollLeft;
+  });
+
+  $listViewTab.addEventListener("mousemove", (e) => {
+    if (!isMouseDown) return;
+    $listViewTab.classList.add("dragging");
+    e.currentTarget.scrollLeft = startPageX - e.pageX;
+  });
+
+  $listViewTab.addEventListener("mouseup", (e) => {
+    isMouseDown = false;
+    $listViewTab.classList.remove("dragging");
+  });
+
+  $listViewTab.addEventListener("mouseleave", () => {
+    isMouseDown = false;
+    $listViewTab.classList.remove("dragging");
+  });
 };
 
 const showSubscribeTab = (subscribeList, selected) => {
@@ -122,6 +147,7 @@ const handleSubscribeTabsClick = (e) => {
   const subscribeList = useSelector((state) => state.subscribeList);
   const pressName = e.target.innerText;
 
+  console.log(e.target);
   const pressIdx = subscribeList.indexOf(pressName);
   store.dispatch(setPage(pressIdx));
 };
@@ -150,6 +176,8 @@ export const renderListView = () => {
   });
   $listViewHeader.addEventListener("click", handleSubscribeButtonClick);
   $subscribeTab.addEventListener("click", handleSubscribeTabsClick);
+
+  setSubscribeTabsDraggable();
 
   store.subscribe(() => {
     const { currentPage, currentCategoryIdx, viewType, tabType } = useSelector(
