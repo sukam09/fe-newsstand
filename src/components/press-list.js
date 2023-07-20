@@ -148,6 +148,9 @@ const setListArticle = () => {
   const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
   const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
   setListButtonChange(isSubscribe);
+  setSubscribeArrow(isSubscribe);
+
+  ///
 };
 
 /**
@@ -419,8 +422,18 @@ const setListButtonChange = (isSubscribe) => {
   buttonP.innerText = newButtonP;
 };
 
-const setSubscribeArrow = (pressData, categoryList) => {
-  //
+const setSubscribeArrow = (isSubscribe) => {
+  const categoryDiv = document.querySelector('.press-category__div');
+  const categoryArrow = `
+    <img class="press-category__div-img" src='./assets/icons/arrow.svg'></img>
+    `;
+
+  const catogoryCount = `
+    <div class='press-category__div-now'>1</div>
+    <div class='press-category__div-divide'>/</div>
+    <div class='press-category__div-sum'></div>`;
+
+  isSubscribe ? (categoryDiv.innerHTML = categoryArrow) : (categoryDiv.innerHTML = catogoryCount);
 };
 
 export { initPressList };

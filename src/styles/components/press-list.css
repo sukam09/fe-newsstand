@@ -63,6 +63,11 @@
   display: flex;
 }
 
+.press-category__div-img {
+  width: 14px;
+  height: 14px;
+}
+
 .press-category__div-now {
   font: var(--bold-S);
   color: var(--grayscale-white-alt);
