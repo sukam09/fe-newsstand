@@ -10,6 +10,8 @@
   border: var(--border-border-default) solid var(--border-default);
   border-bottom: none;
   background: var(--surface-alt);
+
+  overflow: scroll;
 }
 
 .field-tab button {
@@ -20,6 +22,12 @@
   gap: 8px;
   color: var(--text-weak);
   background: var(--surface-alt);
+
+  white-space: nowrap;
+}
+
+.field-tab::-webkit-scrollbar {
+  display: none;
 }
 
 .field-tab button:hover {
