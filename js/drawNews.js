@@ -1,15 +1,14 @@
 import news from "../json/news.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
-import { categoryNews } from "./setData.js/setCategoryData.js";
 import Stores from "./core/Store.js";
+import { categoryNews } from "./setData.js/setCategoryData.js";
 import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
-import { changeImageSrc } from "../utils/utils.js";
 
-const drawNews = () => {
-  drawNewsDiv();
-  drawNewsHeader();
+const drawNews = (categoryNews) => {
+  drawNewsDiv(categoryNews);
+  drawNewsHeader(categoryNews);
   clickSubscribeButton();
 };
 
@@ -19,6 +18,7 @@ function drawNewsImage(PageNumberIndex) {
 
 function drawNewsArticle(PageNumberIndex) {
   let article_div = "";
+  console.log(Stores.getPage());
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
     article_div += `<div class="news-main-article">${
       news.News[Stores.getPage()].article[article_cnt]
@@ -28,7 +28,7 @@ function drawNewsArticle(PageNumberIndex) {
   return article_div;
 }
 
-function drawNewsDiv() {
+function drawNewsDiv(categoryNews) {
   const PageNumberIndex = currentCategoryPageNumber - 1;
   const listDiv = document.querySelector(".news-content");
   listDiv.innerHTML = "";
@@ -45,26 +45,33 @@ function drawNewsHeader() {
   const news_header = document.querySelector(".news-header");
   news_header.innerHTML = "";
   let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${categoryNews[currentCategoryIndex][PageNumberIndex].press}"  src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}"><span class="news-edit-time">${categoryNews[currentCategoryIndex][PageNumberIndex].editTime}</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
+  // replaceSubscribeCancelButton(document.querySelector(".subscribe-button"));
   news_header.innerHTML = new_div;
 }
 
 function clickSubscribeButton() {
   const subscribedButton = document.querySelector(".subscribe-button");
   subscribedButton.addEventListener("click", function () {
-    Stores.setSubscribeNews(
+    Stores.setSubscribeNewsCnt(
       subscribedButton.previousSibling.previousSibling.id
     );
     Stores.setSubscribedMode("subscribed");
+    for (const categoryIndex in categoryNews) {
+      const newsList = categoryNews[categoryIndex];
+      for (const news of newsList) {
+        if (news.id === Stores.getPage()) console.log(news.id);
+      }
+    }
     snackBar("내가 구독한 언론사에 추가되었습니다.");
     setTimeout(() => {
       renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     }, rollingTime);
-    replaceSubscribeCancelButton(subscribedButton);
+    // replaceSubscribeCancelButton(subscribedButton);
   });
 }
 
 function replaceSubscribeCancelButton(subscribeButton) {
-  console.log("A");
+  Stores.getSubscribeNews().forEach(() => {});
   const cancelButton = document.createElement("img");
   cancelButton.src = "./img/subscribe_cancel_button.svg";
   subscribeButton.replaceWith(cancelButton);

@@ -41,7 +41,6 @@ function drawCategoryItem(categoryCnt, categoryIndex) {
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryNumber(categoryCnt);
   updateCurrentProgressBar();
-  drawNews();
   if (Stores.getProgressInterval() != undefined) {
     Stores.clearProgressInterval();
     progressReset(currentProgressBar, currentCategoryPage);
@@ -90,15 +89,17 @@ function doProgress(categoryCnt, progressBar, currentCategoryPage) {
     totalTime / increment / 1000
   }s linear`;
   if (progress === 100) {
+    Stores.setPage(parseInt(Stores.getPage()) + 1);
     currentCategoryPageNumber++;
     if (
       currentCategoryPageNumber ===
       categoryCnt[currentCategoryIndex].value + 1
     ) {
       currentCategoryPageNumber = 1;
-      if (currentCategoryIndex === categoryCnt.length - 1)
+      if (currentCategoryIndex == categoryCnt.length - 1) {
+        Stores.setPage(0);
         currentCategoryIndex = 0;
-      else currentCategoryIndex++;
+      } else currentCategoryIndex++;
       Stores.clearProgressInterval();
     }
     clearCategoryNumber(categoryCnt);
@@ -154,14 +155,19 @@ function increaseListPage(categoryCnt) {
   if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
-    if (currentCategoryIndex === categoryCnt.length - 1)
+    if (currentCategoryIndex === categoryCnt.length - 1) {
       currentCategoryIndex = 0;
-    else currentCategoryIndex++;
+      Stores.setPage(currentCategoryIndex);
+    } else {
+      currentCategoryIndex++;
+      Stores.setPage(parseInt(Stores.getPage()) + 1);
+    }
     clearCategoryNumber(categoryCnt);
     clearNewsInterval();
     return;
   }
   currentCategoryPageNumber++;
+  Stores.setPage(parseInt(Stores.getPage()) + 1);
   progressReset(currentProgressBar, currentCategoryPage);
   clearNewsInterval();
 }
@@ -170,14 +176,19 @@ function decreaseListPage(categoryCnt) {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
-    if (currentCategoryIndex === 0)
+    if (currentCategoryIndex === 0) {
       currentCategoryIndex = categoryCnt.length - 1;
-    else currentCategoryIndex--;
+      Stores.setPage(currentCategoryIndex);
+    } else {
+      currentCategoryIndex--;
+      Stores.setPage(parseInt(Stores.getPage()) - 1);
+    }
     clearCategoryNumber(categoryCnt);
     clearNewsInterval();
     return;
   }
   currentCategoryPageNumber--;
+  Stores.setPage(parseInt(Stores.getPage()) - 1);
   progressReset(currentProgressBar, currentCategoryPage);
   clearNewsInterval();
 }
@@ -189,6 +200,7 @@ function clickCategory(categoryCnt) {
       progressReset(currentProgressBar, currentCategoryPage);
       currentCategoryPageNumber = 1;
       drawCategoryItem(categoryCnt, categoryItem.id.slice(-1));
+      Stores.setPage(categoryItem.id.slice(-1));
     });
     categoryItem.addEventListener("mouseover", function () {
       if (categoryNum !== currentCategoryIndex)

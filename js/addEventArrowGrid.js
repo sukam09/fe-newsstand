@@ -20,24 +20,24 @@ function addEventArrowGrid(logos) {
 function increaseGridPage(logos, leftAsideButton, rightAsideButton) {
   if (Stores.getPage() === MAX_PAGE_NUMBER - 1) {
     rightAsideButton.style.visibility = "hidden";
-    Stores.setPage(Stores.getPage() + 1);
+    Stores.setPage(parseInt(Stores.getPage()) + 1);
     makeGrid(logos);
     return;
   }
   leftAsideButton.style.visibility = "visible";
-  Stores.setPage(Stores.getPage() + 1);
+  Stores.setPage(parseInt(Stores.getPage()) + 1);
   makeGrid(logos);
 }
 
 function decreaseGridPage(logos, leftAsideButton, rightAsideButton) {
   if (Stores.getPage() === MIN_PAGE_NUMBER + 1) {
     leftAsideButton.style.visibility = "hidden";
-    Stores.setPage(Stores.getPage() - 1);
+    Stores.setPage(parseInt(Stores.getPage()) - 1);
     makeGrid(logos);
     return;
   }
   rightAsideButton.style.visibility = "visible";
-  Stores.setPage(Stores.getPage() - 1);
+  Stores.setPage(parseInt(Stores.getPage()) - 1);
   makeGrid(logos);
 }
 
