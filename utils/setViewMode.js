@@ -19,10 +19,11 @@ const all_press = document.querySelector(".all_press");
 const subscribe_press = document.querySelector(".subscribe_press");
 
 export const viewSelectHandler = (agencies) => {
-  let copyAgencies = JSON.parse(JSON.stringify(agencies));
-
   // Grid 뷰 선택 시
   const setGrid = () => {
+    // Fetch를 통해 받은 언론사에 대한 모든 정보를 deep copy
+    let copyAgencies = JSON.parse(JSON.stringify(agencies));
+
     // list 뷰 관련 삭제 및 grid 버튼, grid 컴포넌트 추가
     if (gridBtn.getAttribute("viewtype") === null) {
       gridBtn.setAttribute("viewtype", true);
@@ -34,7 +35,6 @@ export const viewSelectHandler = (agencies) => {
     const $list = document.querySelector(".agency-list");
     $grid.style.display = "grid";
     $list.style.display = "none";
-    console.log(subscribe_press.getAttribute("subscribetype"));
 
     if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
       const subscribedAgencies = store.subscriptions.filter(
@@ -45,6 +45,7 @@ export const viewSelectHandler = (agencies) => {
           (agency) => agency.name === subscribeAgency.name
         );
       });
+
       const pages = sortPages(copyAgencies);
       setGridButton(pages);
       GridComponent(INITIAL_PAGE, pages);
