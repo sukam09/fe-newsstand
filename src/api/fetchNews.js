@@ -1,7 +1,11 @@
-const url = "../../listView.json";
+const listUrl = "../../listView.json";
+const pressUrl = "../../pressData.json";
 
 async function fetchNews() {
-  return fetch(url).then((response) => response.json());
+  return fetch(listUrl).then((response) => response.json());
 }
 
-export default fetchNews;
+async function fetchPress() {
+  return fetch(pressUrl).then((response) => response.json());
+}
+export { fetchNews, fetchPress };

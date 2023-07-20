@@ -3,7 +3,7 @@
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
-import fetchNews from "../../api/fetchNews.js";
+import { fetchNews } from "../../api/fetchNews.js";
 import Button from "./MainContent/Button.js";
 import PressGridView from "./MainContent/PressGridView.js";
 import NewsListView from "./MainContent/NewsListView.js";

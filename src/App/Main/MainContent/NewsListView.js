@@ -50,6 +50,7 @@ const getPressName = function (object) {
 const getPressId = function (object) {
   return object.pid;
 };
+
 export default function NewsListView($target, props) {
   if (prevCategory !== props.category) {
     prevCategory = props.category;

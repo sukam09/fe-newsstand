@@ -13,13 +13,16 @@ white-space
 other text
 content
  */
+
 .categoty-nav {
   border: solid 1px #d2dae0;
   background-color: #f5f7f9;
+  overflow-y: scroll;
 }
 
 .news-container .categoty-nav .categoty-list {
   display: flex;
+  width: fit-content;
 }
 
 .news-container .categoty-nav .categoty-list .select {
