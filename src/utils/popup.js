@@ -2,6 +2,7 @@ import { HEADER_CLASS } from '../constants/press-header.js';
 import { STATE, LIST } from '../constants/press-data.js';
 import { subscribeEvent } from '../components/press-header.js';
 import { initPressGrid } from '../components/press-grid.js';
+import { initPressList } from '../components/press-list.js';
 
 const getSnackBar = (pressData) => {
   const snackBar = document.querySelector('.snack-bar');
@@ -42,8 +43,14 @@ const setAlertEvent = (pressData, pressIds, pressName) => {
     STATE.IS_UNSUBSCRIBE = true;
     alert.classList.remove('show');
     alert.classList.add('hidden');
-    if (pressIds.length < 96) initPressGrid(pressData, LIST.SUBSCRIBE_ID);
-    if (pressIds.length >= 96) initPressGrid(pressData, LIST.SUFFLE);
+    if (pressIds.length < 96) {
+      initPressGrid(pressData, LIST.SUBSCRIBE_ID);
+      initPressList(pressData, LIST.SUBSCRIBE_NAME);
+    }
+    if (pressIds.length >= 96) {
+      initPressGrid(pressData, LIST.SUFFLE);
+      initPressList(pressData, LIST.SUFFLE_CATEGORY);
+    }
   });
   alertNo.addEventListener('click', () => {
     STATE.IS_UNSUBSCRIBE = false;

@@ -144,6 +144,10 @@ const setListArticle = () => {
     sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
     sub.href = categoryArticle.categorySubTitle[subIdx].link;
   });
+
+  const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
+  const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+  setListButtonChange(isSubscribe);
 };
 
 /**
@@ -400,6 +404,19 @@ const setListButtonClick = (pressData, categoryList) => {
 const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
   if (isSubscribe) getAlert(pressData, pressIds, pressName);
   if (!isSubscribe) getSnackBar(pressData);
+};
+
+const setListButtonChange = (isSubscribe) => {
+  const button = document.querySelector('.section-main__button');
+  const buttonImg = button.querySelector(`.section-main__img-button`);
+  const buttonP = button.querySelector(`.section-main__p-button`);
+
+  const newButtonSrc = isSubscribe ? buttonImg.src.replace('plus', 'closed') : buttonImg.src.replace('closed', 'plus');
+  const newButtonP = isSubscribe ? '' : '구독하기';
+
+  if (isSubscribe) button.classList.add('section-main__button-closed');
+  buttonImg.src = newButtonSrc;
+  buttonP.innerText = newButtonP;
 };
 
 const setSubscribeArrow = (pressData, categoryList) => {

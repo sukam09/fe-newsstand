@@ -157,6 +157,10 @@
   border: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
 }
+.section-main__button-closed {
+  width: 12px;
+  height: 24px;
+}
 
 .section-main__img-button {
   width: 12px;
