@@ -142,7 +142,10 @@ function initCategoryClass() {
   document.querySelector(".list-next").addEventListener("click", () => pressListArrow(1));
   document.querySelector(".list-prev").addEventListener("click", () => pressListArrow(-1));
   const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.addEventListener("click", e => listSubMouseClick(getNews()[DATA.page_count[DATA.now_category]], e.target));
+  $sub_btn.addEventListener("click", () => {
+    const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]]
+    listSubMouseClick(news)
+  });
 }
 
 function nextNewsWhenProgressEnd() {

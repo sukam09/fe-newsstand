@@ -1,4 +1,4 @@
-import { setDisplay, getJSON, checkIsSubscribe, removeDisplay } from "./utils.js";
+import { setDisplay, getJSON, checkIsSubscribe } from "./utils.js";
 import { MODAL_POPUP_TIME, STATE, setSubData, DATA } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
@@ -41,13 +41,11 @@ function listSubMouseClick(news) {
     console.log(STATE.SUB_DATA);
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
+    STATE.IS_SUB_VIEW = true;
     setTimeout(() => {
       setDisplay(".subscribe-modal", "query", "none");
-      removeDisplay();
       STATE.SUB_NEWS_PAGE = 0;
       changeOption("subscribe");
-      setDisplay(".sub-press-list-section", "query", "block");
-      STATE.IS_SUB_VIEW = true;
       setSubListNav();
       drawNews();
     }, MODAL_POPUP_TIME);
@@ -69,14 +67,6 @@ function initGridItemEvent(item,press) {
   }
 }
 
-// function initSubGridItemEvent(item) {
-//   item.addEventListener("mouseenter", e => gridMouseOver(e.target));
-//   item.addEventListener("mouseleave", e => gridMouseOut(e.target));
-//   item.addEventListener("click", e => {
-//     onUndiscribeModal(e.target);
-//   });
-// }
-
 function preventButtonClick(button) {
   button.addEventListener("click", e => {
     e.stopPropagation();
@@ -92,9 +82,6 @@ function addRemoveHidden(add_target, remove_target) {
   remove_target.classList.remove("hidden");
 }
 
-function removeGridSubscribe(target) {
-  drawGridView();
-}
 
 async function initSpanEvent() {
   presses = await getJSON("../assets/media.json");
@@ -111,7 +98,6 @@ export {
   preventButtonClick,
   listSubMouseClick,
   initSpanEvent,
-  removeGridSubscribe,
   gridMouseClick,
   
 };

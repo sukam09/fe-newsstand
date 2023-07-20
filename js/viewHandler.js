@@ -1,7 +1,7 @@
 import { removeDisplay, setDisplay, getJSON } from "./utils.js";
 import { drawNews, setNowCount } from "./newsList.js";
 import { drawGridView } from "./gridFunction.js";
-import { STATE, DATA } from "./const.js";
+import { STATE } from "./const.js";
 import { setSubListNav } from "./subscribeListView.js";
 
 let presses;
@@ -61,13 +61,14 @@ function handleView(target) {
     changeViewIcon("list");
     STATE.IS_GRID_VIEW = false;
     if (STATE.IS_SUB_VIEW) {
+      console.log('here');
       // list 선택, list 구독 뷰 출력
       if (STATE.SUB_DATA.length === 0) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setDisplay(".press-list-section", "query", "block");
-        setDisplay(".sub-list-nav",'query','none');
-        setDisplay(".list-nav",'query','block');  
+        setDisplay(".sub-list-nav",'query','block');
+        setDisplay(".list-nav",'query','none');  
         setSubListNav();
         drawNews();
       }
@@ -86,6 +87,7 @@ function handleView(target) {
     setDisplay(".press-grid", "query", "block");
     drawGridView();
     STATE.IS_GRID_VIEW = true;
+    STATE.IS_SUB_VIEW = true;
   }
   if (checkClass("total-press")) {
     // 전체 언론사 클릭
@@ -102,6 +104,7 @@ function handleView(target) {
     changeOption("subscribe");
     STATE.SUB_NEWS_PAGE = 0;
     STATE.IS_SUB_VIEW = true;
+    STATE.IS_GRID_VIEW = false;
     if (STATE.SUB_DATA.length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {

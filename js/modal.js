@@ -14,7 +14,7 @@ function onUndiscribeModal(target) {
   setDisplay(".grid-subscribe-modal", "query", "block");
 }
 
-function offUndiscribeModal() {
+function offUndiscribeModal() { //grid
   setDisplay(".grid-subscribe-modal", "query", "none");
 }
 
@@ -50,8 +50,8 @@ function handleModalBtn(target) {
       setSubData($find_press);
       drawGridView();
     } else {
-      //리스트뷰일때
-      const $news_article = STATE.IS_SUB_VIEW ? document.querySelector(".sub-news-article") : document.querySelector(".news-article");
+      // 리스트뷰일때
+      const $news_article = document.querySelector(".news-article");
       const src_path = ".." + $news_article.querySelector("img").src.split("5500")[1];
       setSubData(checkIsSubscribe("src", src_path));
       STATE.SUB_NEWS_PAGE = 0;
