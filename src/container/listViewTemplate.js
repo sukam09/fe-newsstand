@@ -8,6 +8,7 @@ import { subscribe_news_list } from "../../data/subscribeIdxList.js";
 import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
+import { createAlert } from "../components/common/alertSubscribe.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
 import { list_view_subscribe } from "../components/list/listObserver.js";
 import { _sub_press_list } from "../Store.js";
@@ -113,7 +114,7 @@ export function createNewsNav(is_subscribe, state) {
 }
 
 // 언론사 정보 생성
-function createPressInfo(press_src, press_edit_date, is_subscribe, press_id) {
+function createPressInfo(press_src, press_edit_date, is_subscribe, press_id, press_name) {
     const $container = create.div({ className: "list-view-press-info" });
     if (!press_src) return $container;
 
@@ -126,7 +127,7 @@ function createPressInfo(press_src, press_edit_date, is_subscribe, press_id) {
                       type: "closed",
                       events: {
                           click: () => {
-                              _sub_press_list.deleteState(press_id);
+                              $container.appendChild(createAlert(press_name, press_id));
                           },
                       },
                   })
@@ -230,7 +231,8 @@ export function createPressNews(news_category_press, isInit, is_subscribe) {
             news_category_press.press_light_src,
             news_category_press.edit_date,
             is_subscribe,
-            news_category_press.press_id
+            news_category_press.press_id,
+            news_category_press.press
         ),
         $news_content
     );
