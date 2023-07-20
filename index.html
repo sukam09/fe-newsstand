@@ -21,12 +21,14 @@
       <div class="header-right light-text-default display-medium16"></div>
     </header>
     <section class="rolling-section">
+      <!-- ROLLING CONTAINER 1 -->
       <div class="rolling-container light-surface-alt light-border-default">
         <span class="display-bold14 light-text-strong">연합뉴스</span>
         <div class="rolling-window available-medium14 light-text-default">
           <div class="rolling-content"></div>
         </div>
       </div>
+      <!-- ROLLING CONTAINER 2 -->
       <div class="rolling-container light-surface-alt light-border-default">
         <span class="display-bold14 light-text-strong">연합뉴스</span>
         <div class="rolling-window available-medium14 light-text-default">
@@ -36,10 +38,12 @@
     </section>
     <section class="view-section">
       <div class="view-section-nav">
+        <!-- LEFT NAV : FILTER BTNS -->
         <div class="nav-left">
           <span class="filter-btn selected-filter" type="all">전체 언론사</span>
           <span class="filter-btn" type="subscribed">내가 구독한 언론사</span>
         </div>
+        <!-- RIGHT NAV : VIEW CHANGE BTNS -->
         <div class="nav-right">
           <img
             src="./asset/icons/list-view.png"
@@ -54,26 +58,34 @@
         </div>
       </div>
       <div class="view-section-container">
+        <!-- LEFT ARROW -->
         <div class="arrow-container arrow-left btn">
           <img src="./asset/icons/LeftButton.png" />
         </div>
         <div class="view-section-content">
+          <!-- GRID VIEW -->
           <ul class="grid-box" type="grid"></ul>
+          <!-- LIST VIEW -->
           <div class="list-box light-border-default hide" type="list">
             <ul
               class="list-nav light-surface-alt light-text-weak available-medium14"
             ></ul>
             <div class="list-content"></div>
           </div>
+          <!-- EMPTY LIST VIEW -->
+          <div class="empty-list-view hide">구독한 언론사가 없습니다.</div>
         </div>
+        <!-- RIGHT ARROW -->
         <div class="arrow-container arrow-right btn">
           <img src="./asset/icons/RightButton.png" />
         </div>
+        <!-- GRID VIEW : SUBSCRIBE NOTIFICATION -->
         <div class="sub-snack-bar hide">
           내가 구독한 언론사에 추가되었습니다.
         </div>
       </div>
     </section>
+    <!-- GRID VIEW : LIST ITEM COVER -->
     <div class="press-cover light-surface-alt hidden">
       <img src="./asset/icons/subscribe-button.png" class="btn sub-btn hide" />
       <img

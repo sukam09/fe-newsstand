@@ -6,7 +6,7 @@ function shuffleArray(arr){
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     store.setShuffledList(arr);
-    return arr;
+    return arr.map(data => data + 1);
 }
 
 export {shuffleArray}

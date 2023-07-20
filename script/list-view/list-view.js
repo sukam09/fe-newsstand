@@ -1,12 +1,14 @@
-import { store } from "../store/store.js";
+import { store } from "../../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
-import { FILTER_TYPE } from "../asset/data/constants.js";
-import { filterData } from "../util/filterData.js";
+import { FILTER_TYPE } from "../../asset/data/constants.js";
+import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
+const listBox = document.querySelector(".list-box")
+const emptyListView = document.querySelector(".empty-list-view");
 
-function listenCategoryChange(catBtns){
+function handleCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
             let crntCategory = store.getCrntCategory()
@@ -19,6 +21,10 @@ function listenCategoryChange(catBtns){
             }
         })
     })
+}
+function drawEmptyList() {
+    listBox.classList.add("hide");
+    emptyListView.classList.remove("hide");
 }
 function drawListPage({listData, navData, filterType}) {
     let crntPage = store.getCrntPage();
@@ -80,12 +86,12 @@ function drawList() {
     const filterType = store.getCrntFilter();
     if (viewData.listData.length === 0){
         // no data to draw < in the case of filterType = "subscribed"
-
+        drawEmptyList();
     } else {
         drawListNav({...viewData, filterType})
         drawProgressBar()
         drawListPage({...viewData, filterType});
-        listenCategoryChange(listNav.children);
+        handleCategoryChange(listNav.children);
     }
     
 }

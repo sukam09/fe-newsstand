@@ -1,8 +1,8 @@
 
 import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { drawArrow } from "../script/arrow.js";
-import { drawPress } from "../script/grid-view.js";
-import { drawList } from "../script/list-view.js";
+import { drawArrow } from "../script/view-utils/arrow.js";
+import { drawGrid } from "../script/grid-view/grid-view.js";
+import { drawList } from "../script/list-view/list-view.js";
 
 class Store {
     constructor () {
@@ -10,7 +10,7 @@ class Store {
         this.crntPage = 0; // page index (grid, list view)
         this.crntCategory = 0; // category index (list view)
         this.crntFilter = FILTER_TYPE.ALL;
-        this.subList = [1,2,3];
+        this.subList = [];
         this.shuffledList = [];
 
         this.observers = new Set();
@@ -80,7 +80,7 @@ class Store {
     renderView(){
         switch (this.crntview){
             case VIEW_TYPE.GRID:
-                drawPress(this.crntPage);
+                drawGrid(this.crntPage);
                 break;
             case VIEW_TYPE.LIST:
                 drawList(this.crntCategory);

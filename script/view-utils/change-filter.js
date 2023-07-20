@@ -1,10 +1,10 @@
-import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { store } from "../store/store.js";
-import { changeView } from "./view-change.js";
+import { FILTER_TYPE, VIEW_TYPE } from "../../asset/data/constants.js";
+import { store } from "../../store/store.js";
+import { changeView } from "./change-view.js";
 
 const filterBtns = document.querySelectorAll(".filter-btn")
 
-function filterBtnChange(nextFilter) {
+function changeFilterBtn(nextFilter) {
     filterBtns.forEach((btn) => {
         if (btn.getAttribute("type") == nextFilter){
             btn.classList.add("selected-filter");
@@ -15,7 +15,7 @@ function filterBtnChange(nextFilter) {
 }
 function changeFilter(nextFilter){
     store.setCrntFilter(nextFilter);
-    filterBtnChange(nextFilter)
+    changeFilterBtn(nextFilter)
     let nextView;
     switch (nextFilter){
         case FILTER_TYPE.ALL:
@@ -40,4 +40,4 @@ function handleFilterChange(){
     })
 }
 
-export {handleFilterChange}
+export {handleFilterChange, changeFilter}

@@ -1701,7 +1701,7 @@ const listViewData = [
     },
     {
       "id": 86,
-      "name": "소포츠서울",
+      "name": "스포츠서울",
       "path": "/asset/logo/light/img86.svg",
       "path_dark": "/asset/logo/dark/img86.svg",
       "category": "방송/통신",

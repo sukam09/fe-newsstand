@@ -1,6 +1,8 @@
-import { CATEGORY_LIST, FILTER_TYPE } from "../asset/data/constants.js";
-import listViewData from "../asset/data/listViewData.js";
-import { store } from "../store/store.js";
+// 전체 언론사 보기인지 구독한 언론사 보기인지에 따라 그릴 데이터 골라내기
+
+import { CATEGORY_LIST, FILTER_TYPE } from "../../asset/data/constants.js";
+import listViewData from "../../asset/data/listViewData.js";
+import { store } from "../../store/store.js";
 
 function filterData() {
     let listData;

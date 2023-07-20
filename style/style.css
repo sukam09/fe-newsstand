@@ -252,7 +252,10 @@ ul {
     margin-left:-16px;
     z-index: 0;
     background-color: var(--surface-brand-default);
+}
+.progressing {
     animation : progress 5s linear ;
+
 }
 @keyframes progress {
     from {
@@ -292,7 +295,17 @@ ul {
     }
 }
 
+.empty-list-view {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:930px;
+    height: 388px;
+    font: var(--bold-M);
+    color:var(--text-weak);
 
+    /* color : var(--grayscale-black) */
+}
 
 
 

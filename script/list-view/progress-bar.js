@@ -1,6 +1,6 @@
-import { CATEGORY_LIST } from "../asset/data/constants.js";
-import listViewData from "../asset/data/listViewData.js";
-import { store } from "../store/store.js";
+import { CATEGORY_LIST } from "../../asset/data/constants.js";
+import listViewData from "../../asset/data/listViewData.js";
+import { store } from "../../store/store.js";
 
 const listNav = document.querySelector(".list-nav");
 
@@ -19,13 +19,17 @@ function listenProgressBar() {
         }
     })
 }
+function removeProgressBar() {
+    const progressBar = document.querySelector(".progress-bar")
+    progressBar.classList.remove("progressing");
+}
 function drawProgressBar() {
     const target = listNav.children[store.getCrntCategory()];
     const progressBarElem = document.createElement("div");
-    progressBarElem.classList.add("progress-bar");
+    progressBarElem.classList.add("progress-bar", "progressing");
     target.insertBefore(progressBarElem, target.firstChild);
     
     listenProgressBar();
     
 }
-export {drawProgressBar}
+export {drawProgressBar, removeProgressBar}

@@ -1,6 +1,6 @@
-import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { store } from "../store/store.js";
-import { changeView } from "./view-change.js";
+import { FILTER_TYPE, VIEW_TYPE } from "../../asset/data/constants.js";
+import { store } from "../../store/store.js";
+import { changeFilter } from "./change-filter.js";
 
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
@@ -12,8 +12,7 @@ function drawSubSnack() {
     subSnackBar.addEventListener("animationend", () => {
         subSnackBar.classList.remove("sub-snack-animation");
         subSnackBar.classList.add("hide");
-        store.setCrntFilter(FILTER_TYPE.SUBSCRIBED);
-        changeView(VIEW_TYPE.LIST);
+        changeFilter(FILTER_TYPE.SUBSCRIBED)
     })
 }
 function handleSubscribe(){

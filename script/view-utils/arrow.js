@@ -1,17 +1,20 @@
-import pressList from "../asset/data/pressList.js"
-import listViewData from "../asset/data/listViewData.js";
-import { store } from "../store/store.js";
-import { CATEGORY_LIST, VIEW_TYPE } from "../asset/data/constants.js";
+import pressList from "../../asset/data/pressList.js"
+import listViewData from "../../asset/data/listViewData.js";
+import { store } from "../../store/store.js";
+import { CATEGORY_LIST, VIEW_TYPE } from "../../asset/data/constants.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
+function removeArrow(){
+    leftArrow.classList.remove("hidden");
+    rightArrow.classList.remove("hidden");
+}
 function drawArrow(){
     let crntPage = store.getCrntPage();
     let crntView = store.getCrntView();
     let maxPage;
-    leftArrow.classList.remove("hidden");
-    rightArrow.classList.remove("hidden");
+    removeArrow();
     switch (crntView){
         case VIEW_TYPE.GRID:
             maxPage = pressList.length/24;
@@ -66,4 +69,4 @@ function handleArrowClick(){
     
 }
 
-export {drawArrow, handleArrowClick}
+export {removeArrow,drawArrow, handleArrowClick}
