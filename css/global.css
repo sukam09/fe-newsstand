@@ -24,8 +24,8 @@
 }
 
 :root[data-theme='dark'] {
-  --border-default : var(--grayscale-white-alt);
-  --border-bold : var(--grayscale-400);
+  --border-default : var(--grayscale-400);
+  --border-bold : var(--grayscale-white-alt);
 }
 
 /* text */
