@@ -1,5 +1,6 @@
 import { progress_bar_info } from "../list/progressBarEvent.js";
 import { class_name } from "../../utils/domClassName.js";
+import { list_view_subscribe } from "../list/listObserver.js";
 
 const view_info_tmp = (function () {
     let is_grid_view = true;
@@ -61,6 +62,7 @@ const view_info_tmp = (function () {
             list_entire_view.style.display = "none";
             list_sub_view.style.display = "none";
             progress_bar_info.removeInterval();
+            list_view_subscribe.removeInterval();
             is_subscribe_view
                 ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
                 : ((grid_entire_view.style.display = "flex"), (grid_sub_view.style.display = "none"));
@@ -70,11 +72,20 @@ const view_info_tmp = (function () {
             grid_icon.style.filter = "none";
             grid_entire_view.style.display = "none";
             grid_sub_view.style.display = "none";
-            progress_bar_info.initProgressBar({
-                category_old: progress_bar_info.getCategoryNow(),
-                category_now: 1,
-                page_num: 1,
-            });
+            if (is_subscribe_view) {
+                progress_bar_info.removeInterval();
+                list_view_subscribe.initProgressBar({
+                    category_old: list_view_subscribe.getCategoryNow(),
+                    category_now: 0,
+                });
+            } else {
+                list_view_subscribe.removeInterval();
+                progress_bar_info.initProgressBar({
+                    category_old: progress_bar_info.getCategoryNow(),
+                    category_now: 1,
+                    page_num: 1,
+                });
+            }
             is_subscribe_view
                 ? ((list_entire_view.style.display = "none"), (list_sub_view.style.display = "flex"))
                 : ((list_entire_view.style.display = "flex"), (list_sub_view.style.display = "none"));

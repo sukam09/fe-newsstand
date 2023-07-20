@@ -2,6 +2,7 @@ import { SET_TIME } from "../../utils/constant.js";
 import { list_news_data } from "../../../data/list_news_data.js";
 import { CATEGORY_SIZE, CATEGORY_COUNT_ARR } from "../../utils/constant.js";
 import { renderPressNews } from "../../container/listViewTemplate.js";
+import { class_name } from "../../utils/domClassName.js";
 
 export const progress_bar_info = (function () {
     let interval = 0;
@@ -19,7 +20,7 @@ export const progress_bar_info = (function () {
         removeInterval();
         interval = window.setInterval(() => {
             changePageNum(true).then(() => {
-                renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
+                renderPressNews(list_news_data[category_now - 1].news[page_num - 1], class_name.ENTIRE);
             });
         }, SET_TIME);
     }
@@ -73,14 +74,14 @@ export const progress_bar_info = (function () {
     function initProgressBar(props) {
         setValue(props).then(() => {
             changeProgressBar();
-            renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
+            renderPressNews(list_news_data[category_now - 1].news[page_num - 1], class_name.ENTIRE);
             startInterval();
         });
     }
 
     // DOM 변경 - progressbar 이동
     function changeProgressBar() {
-        const list_view_btn = document.querySelectorAll(".list-view-btn");
+        const list_view_btn = document.querySelector(".list-entire").querySelectorAll(".list-view-btn");
 
         const old_tab_item = list_view_btn[category_old - 1].querySelector(".tab-item");
         const old_btn_tab_item = list_view_btn[category_old - 1].querySelector(".tab-item-clicked");
@@ -97,7 +98,7 @@ export const progress_bar_info = (function () {
 
     // DOM 변경 - progressbar 변경
     async function resetProgressBar() {
-        const progress_list = document.querySelectorAll(".btn-tab-progress");
+        const progress_list = document.querySelector(".list-entire").querySelectorAll(".btn-tab-progress");
         progress_list[category_now - 1].classList.remove("btn-tab-progress");
         progress_list[category_now - 1].offsetWidth;
         progress_list[category_now - 1].classList.add("btn-tab-progress");
@@ -107,7 +108,7 @@ export const progress_bar_info = (function () {
     function onClickArrowBtn() {
         changePageNum(this.is_right).then(() => {
             resetProgressBar();
-            renderPressNews(list_news_data[category_now - 1].news[page_num - 1]);
+            renderPressNews(list_news_data[category_now - 1].news[page_num - 1], class_name.ENTIRE);
             startInterval();
         });
     }

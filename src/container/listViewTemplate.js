@@ -6,7 +6,7 @@ import { create } from "../utils/createElement.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { subscribe_news_list } from "../../data/subscribeIdxList.js";
 import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
-import { list_news_data } from "../../data/list_news_data.js";
+import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
 import { list_view_subscribe } from "../components/list/listObserver.js";
@@ -104,6 +104,8 @@ export function createNewsNav(is_subscribe, state) {
 // 언론사 정보 생성
 function createPressInfo(press_src, press_edit_date, is_subscribe) {
     const $container = create.div({ className: "list-view-press-info" });
+    if (!press_src) return $container;
+
     const $img = create.img({ className: "press_img", attributes: { src: press_src, alt: "press-logo" } });
     const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_edit_date });
     const $subscribe_btn =
@@ -132,6 +134,7 @@ function createPressInfo(press_src, press_edit_date, is_subscribe) {
 // 서브 뉴스 생성
 function createSubNews(press, sub_news) {
     const $container = create.div({ className: "list-view-news-sub" });
+    if (!press) return $container;
     const $sub_news_list = create.ul({});
 
     sub_news.forEach((news_data) => {
@@ -167,6 +170,8 @@ function createSubNews(press, sub_news) {
 // 메인 뉴스 생성
 function createMainNews(thumbnail, main_news) {
     const $container = create.div({ className: "list-view-news-main" });
+    if (!thumbnail) return $container;
+
     const $container_thumbnail = create.div({ className: "main-thumbnail" });
     const $img = create.img({ className: "img-main-thumbnail", attributes: { src: thumbnail, alt: "img-thumbnail" } });
     $container_thumbnail.appendChild($img);
@@ -189,10 +194,10 @@ function createMainNews(thumbnail, main_news) {
 }
 
 // 언론사 뉴스 생성
-function createPressNews(news_category_press, isInit, is_subscribe) {
+export function createPressNews(news_category_press, isInit, is_subscribe) {
     const $container = isInit
         ? create.div({ className: class_name.LIST_PRESS_NEWS })
-        : document.querySelector(`.${class_name.LIST_PRESS_NEWS}`);
+        : document.querySelector(`.list-${is_subscribe}`).querySelector(`.${class_name.LIST_PRESS_NEWS}`);
 
     const $news_content = create.div({ className: "list-view-news" });
 
@@ -209,7 +214,7 @@ function createPressNews(news_category_press, isInit, is_subscribe) {
 
 // 언론사 뉴스 삭제 후 다시 렌더
 export function renderPressNews(news_category_press, is_subscribe) {
-    document.querySelector(`.${class_name.LIST_PRESS_NEWS}`).innerHTML = "";
+    document.querySelector(`.list-${is_subscribe}`).querySelector(`.${class_name.LIST_PRESS_NEWS}`).innerHTML = "";
     createPressNews(news_category_press, false, is_subscribe);
 }
 
@@ -255,5 +260,5 @@ export function createListView(news_category_press, is_subscribe) {
 
 export function listView() {
     createListView(list_news_data[0].news[0], class_name.ENTIRE);
-    createListView(subscribe_news_list[0], class_name.SUBSCRIBE);
+    createListView(init_news_data, class_name.SUBSCRIBE);
 }
