@@ -3,8 +3,8 @@ import { shuffleNewsPress, updateSubscribeList } from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
 
-let MIN_PAGE = 0;
-let MAX_PAGE = 3;
+const MIN_PAGE = 0;
+let max_page = 3;
 
 export default class NewsGridView extends Component {
     setup() {
@@ -13,14 +13,11 @@ export default class NewsGridView extends Component {
             subscribeList: this.props.subscribeList,
             page: 0,
         };
-
-        MAX_PAGE =
-            Math.floor(this.state.pressData.length / 24) === 0
-                ? 0
-                : Math.floor(this.state.pressData.length / 24) - 1;
     }
 
     template() {
+        max_page = this.getMaxPage();
+
         return `
             <ul class="news-press-grid-view"></ul>
             <button class="left-button"></button>
@@ -53,7 +50,7 @@ export default class NewsGridView extends Component {
         });
         new PageButton(rightButton, {
             type: "right",
-            hidden: this.state.page === MAX_PAGE,
+            hidden: this.state.page === max_page,
             onClick: this.setNextPage.bind(this),
         });
 
@@ -116,5 +113,11 @@ export default class NewsGridView extends Component {
                     </div>
                 </li>`;
         }
+    }
+
+    getMaxPage() {
+        return Math.floor(this.state.pressData.length / 24) === 4
+            ? 3
+            : Math.floor(this.state.pressData.length / 24);
     }
 }
