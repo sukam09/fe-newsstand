@@ -1,6 +1,7 @@
 import db from '../../../store/db.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
+import Icon from '../common/Icon.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
@@ -78,6 +79,8 @@ export default class AllNewsMyListView extends Component {
       number: this.state.currentPress.number,
     });
 
+    new Icon(customQuerySelector('.chevron-icon', this.$target), { name: 'chevron-right' });
+
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
       isVisible: true,
@@ -101,6 +104,7 @@ export default class AllNewsMyListView extends Component {
             innerHTML +
             `<li class="press-header-focus surface-brand-alt ">
               <span class="selected-bold14 text-white-default">${press}</span>
+              <img class='chevron-icon'/>
             </li>`
           );
         }
@@ -130,7 +134,7 @@ export default class AllNewsMyListView extends Component {
 
         this.setState({
           nextIndex,
-          currentPress: this.pressOrder[nextIndex],
+          currentPressIndex: nextIndex,
         });
       }
     });
