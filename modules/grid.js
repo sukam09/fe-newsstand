@@ -1,4 +1,4 @@
-import { MEDIA, STATE } from "../constant.js";
+import { MEDIA, MESSAGE, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
@@ -128,7 +128,7 @@ const onClickGridMode = ({ className }) => {
  */
 const setNewPage = (start) => {
   if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
-    alert("구독중인 언론사가 없습니다!!");
+    alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;
   }

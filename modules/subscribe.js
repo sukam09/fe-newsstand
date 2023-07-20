@@ -1,4 +1,4 @@
-import { MEDIA, STATE } from "../constant.js";
+import { MEDIA, MESSAGE, STATE } from "../constant.js";
 import { setNewPage } from "./grid.js";
 import { setCategoryBar, setFullList } from "./list.js";
 import { moveGridView, moveListView } from "./utils.js";
@@ -58,6 +58,8 @@ const setModalView = ({ mediaName, subIdx }) => {
   $subBtnYes.addEventListener("click", () => {
     STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
     $subsAlert.classList.add("hidden");
+
+    alert(MESSAGE.UNSUBSCRIBE);
 
     if (STATE.MODE.IS_GRID) {
       const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
