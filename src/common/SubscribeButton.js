@@ -56,26 +56,27 @@ export default class SubscribeButton extends Component {
     }
 
     setEvent() {
-        const toast = $app.querySelector(".snack-bar-container");
-        const alert = $app.querySelector(".alert-container");
+        const toastElement = $app.querySelector(".snack-bar-container");
+        const alertElement = $app.querySelector(".alert-container");
 
         this.$target.addEventListener("click", () => {
             if (this.state.subscribed === false) {
-                toast.classList.remove("hidden");
-                setTimeout(() => toast.classList.add("hidden"), 5000);
+                toastElement.classList.remove("hidden");
+                setTimeout(() => toastElement.classList.add("hidden"), 5000);
 
                 // 구독하기 리스트에 추가
                 this.subscribePress();
                 this.setState({ subscribed: true });
             } else {
-                alert.classList.remove("hidden");
+                alertElement.classList.remove("hidden");
 
-                const alertConfirm = alert.querySelector(".alert-confirm");
+                const alertConfirm =
+                    alertElement.querySelector(".alert-confirm");
                 alertConfirm.addEventListener("click", () => {
                     this.setState({ subscribed: false });
                 });
 
-                const alertPressName = alert.querySelector(
+                const alertPressName = alertElement.querySelector(
                     ".alert-message > span"
                 );
                 alertPressName.innerHTML = this.state.pressName;

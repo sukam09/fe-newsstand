@@ -5,7 +5,6 @@ export default class PageButton extends Component {
         this.state = {
             type: this.props.type,
             hidden: this.props.hidden,
-            onClick: this.props.onClick,
         };
 
         this.state.hidden && this.$target.classList.add("hidden");
@@ -23,6 +22,6 @@ export default class PageButton extends Component {
     }
 
     setEvent() {
-        this.$target.addEventListener("click", this.state.onClick);
+        this.$target.addEventListener("click", this.props.onClick);
     }
 }
