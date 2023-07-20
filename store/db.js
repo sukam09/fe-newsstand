@@ -31,6 +31,9 @@ class DB {
       .sort((a, b) => this.getDbData.indexOf(a.number) - this.getDbData.indexOf(b.number));
   }
 
+  get getLatesstNews() {
+    return [this.allPress[0], this.allPress[1]];
+  }
   putDbData(list) {
     this.subscribedList = [...this.subscribedList, list];
     setLocalStorage('subscribed', this.subscribedList);

@@ -16,8 +16,6 @@ export default class AllNews extends Component {
     const isDarkMode = document.body.className === 'dark';
     this.state = { isDarkMode, view: currentView, pressType: currentPressType };
     myListPotal = this.moveMyList.bind(this);
-
-    db.observe(this);
   }
 
   template() {
@@ -26,7 +24,6 @@ export default class AllNews extends Component {
   }
 
   mounted() {
-    if (db.isLoading) return;
     new AllNewHeader(customQuerySelector('.all-news-header', this.$target), {
       onClick: this.onClick.bind(this),
       view: this.state.view,

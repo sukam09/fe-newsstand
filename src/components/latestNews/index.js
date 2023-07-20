@@ -1,8 +1,12 @@
+import db from '../../../store/db.js';
 import { customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
 
 export default class LatestNews extends Component {
+  setup() {
+    this.latestNewses = db.getLatesstNews;
+  }
   template() {
     return `<div class='auto-rolling-news border-default surface-alt'></div>
             <div class='auto-rolling-news border-default surface-alt'></div>
@@ -12,26 +16,14 @@ export default class LatestNews extends Component {
     const $newsLists = customQuerySelectorAll('.auto-rolling-news', this.$target);
 
     new LatestNewsComponent($newsLists[0], {
-      name: '연합뉴스',
-      content: [
-        '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-      ],
+      name: this.latestNewses[0].name,
+      content: this.latestNewses[0].sub_news,
       currentIndex: 0,
       delay: 0,
     });
     new LatestNewsComponent($newsLists[1], {
-      name: '연합뉴스',
-      content: [
-        '[1보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[2보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[3보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[4보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-        '[5보] 김기현·안철수·천하람·황교안, 與전대 본경선 진출',
-      ],
+      name: this.latestNewses[1].name,
+      content: this.latestNewses[1].sub_news,
       currentIndex: 0,
       delay: 1,
     });
