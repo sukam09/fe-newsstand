@@ -37,14 +37,10 @@ function changeState(state) {
       drawList();
       break;
     case STATE.MOVE_GRID_ALL:
-      drawGridAndOthers();
-      break;
     case STATE.MOVE_GRID_SUB:
       drawGridAndOthers();
       break;
     case STATE.MOVE_LIST_ALL:
-      drawListAndOthers();
-      break;
     case STATE.MOVE_LIST_SUB:
       drawListAndOthers();
       break;

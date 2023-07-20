@@ -1,4 +1,4 @@
-import { STATE, GLOBAL } from "../model/variable.js";
+import { CONSTANT, MODE, STATE, GLOBAL } from "../model/variable.js";
 import { changeState } from "./mainController.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
 
@@ -49,6 +49,14 @@ function toggleSubscribe(src) {
       return !(value.path.slice(-6) === src.slice(-6));
     });
     GLOBAL.SUBSCRIBE_NEWS_NUM--;
+
+    if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
+      if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
+        GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
+      } else if (GLOBAL.GRID_CURRENT_PAGE > Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
+        GLOBAL.GRID_CURRENT_PAGE--;
+      }
+    }
 
     changeState(STATE.UNSUBSCRIBE_NEWS);
   }

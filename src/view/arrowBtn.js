@@ -31,7 +31,7 @@ function drawRightArrowBtn() {
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL && GLOBAL.GRID_CURRENT_PAGE === CONSTANT.GRID_MAX_PAGE) {
     rightBtn.style.display = "none";
-  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB && GLOBAL.GRID_CURRENT_PAGE === Math.floor(GLOBAL.SUB_NEWS_NUM / CONSTANT.GRID_NEWS_NUM)) {
+  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB && GLOBAL.GRID_CURRENT_PAGE === Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
     rightBtn.style.display = "none";
   } else {
     rightBtn.style.display = "block";
