@@ -1,16 +1,18 @@
+import { MSG } from '../../constants.js';
+import { fadeOutElement } from '../../utils/utils.js';
+
 const ActionButton = (alertElement, text, textClass, action) => {
   const actionButton = document.createElement('button');
 
   actionButton.classList.add(
     'alert_button',
-    // 'text_default',
     'hover_medium16',
     'surface_alt',
     textClass
   );
   actionButton.innerText = text;
   actionButton.addEventListener('click', e => {
-    alertElement.remove();
+    fadeOutElement(alertElement);
     if (action) action();
   });
   return actionButton;
@@ -21,12 +23,12 @@ const UnsubAlertActions = (alertElement, id, action) => {
 
   actionWrapper.classList.add('alert_actions');
   actionWrapper.appendChild(
-    ActionButton(alertElement, '예, 해지합니다', 'text_default', () =>
+    ActionButton(alertElement, MSG.ALERT_UNSUB, 'text_default', () =>
       action(id)
     )
   );
   actionWrapper.appendChild(
-    ActionButton(alertElement, '아니오', 'text_strong')
+    ActionButton(alertElement, MSG.ALERT_NO, 'text_strong')
   );
 
   return actionWrapper;

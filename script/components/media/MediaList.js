@@ -1,7 +1,7 @@
 import mediaData from '../../../assets/data/mediaData.js';
 import ListNavItem from '../../components/ListNavItem.js';
 import Arrow from '../../components/media/Arrow.js';
-import SubButton from '../../components/media/SubButton.js';
+import SubToggleButton from '../../components/media/SubToggleButton.js';
 import Store from '../../core/Store.js';
 import { clearAllChildren } from '../../utils/utils.js';
 
@@ -179,7 +179,7 @@ const MediaInfo = (id, newsData, navStore, store) => {
   mediaInfo.classList.add('media_info');
   mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id)));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
-  mediaInfo.appendChild(SubButton(id, navStore, store, false));
+  mediaInfo.appendChild(SubToggleButton(id, navStore, store, false));
   return mediaInfo;
 };
 
@@ -196,9 +196,7 @@ const ThumbnailNewsArea = title => {
   <div class="thumbnail">
     <img class="thumbnail" src="https://picsum.photos/300/200" alt="기사 이미지">
   </div>
-  <h2 class="title">
-    <a>${title}</a>
-  </h2>
+  <h2 class="title"><a>${title}</a></h2>
   `;
   return thumbnailNewsArea;
 };
@@ -216,12 +214,11 @@ const NewsList = (mediaId, newsData) => {
   const newsList = document.createElement('ul');
   newsList.classList.add('sub_news');
 
-  newsData.news.forEach(title => {
-    const newsItem = document.createElement('li');
-
-    newsItem.innerHTML = `<a class="pointer text_bold hover_medium16">${title}</a>`;
-    newsList.appendChild(newsItem);
-  });
+  newsList.innerHTML = newsData.news.reduce(
+    (fragment, title) =>
+      (fragment += `<li><a class="pointer text_bold hover_medium16">${title}</a></li>`),
+    ''
+  );
   newsList.appendChild(Notice(mediaData.getName(mediaId)));
   return newsList;
 };

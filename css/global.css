@@ -23,6 +23,11 @@
   --border-bold : var(--grayscale-300);
 }
 
+:root[data-theme='dark'] {
+  --border-default : var(--grayscale-400);
+  --border-bold : var(--grayscale-white-alt);
+}
+
 /* text */
 
 .display_bold24 {
@@ -96,6 +101,23 @@
   color: var(--blue-500);
 }
 
+:root[data-theme='dark'] .text_strong {
+  color: var(--grayscale-white);
+}
+
+:root[data-theme='dark'] .text_bold {
+  color: var(--grayscale-50);
+}
+
+:root[data-theme='dark'] .text_default {
+  color: var(--grayscale-100);
+}
+
+:root[data-theme='dark'] .text_weak {
+  color: var(--grayscale-white-alt);
+}
+
+
 /* background color */
 
 .surface_default {
@@ -114,6 +136,14 @@
   background-color: var(--blue-100);
 }
 
+:root[data-theme='dark'] .surface_default {
+  background-color: var(--grayscale-black);
+}
+
+:root[data-theme='dark'] .surface_alt {
+  background-color: var(--grayscale-500);
+}
+
 /* button */
 
 .button {
@@ -130,6 +160,10 @@
   font: var(--medium-S);
 }
 
+:root[data-theme='dark'] .button {
+  color: var(--grayscale-white-alt);
+}
+
 .text_button {
   padding-right: 10px;
 }
@@ -140,13 +174,26 @@
   fill: var(--grayscale-200);
 }
 
+:root[data-theme='dark'] .button svg {
+  fill: var(--grayscale-white-alt);
+}
+
+
 .button:hover {
   border-color: var(--border-bold);
   color: var(--grayscale-500);
 }
 
+:root[data-theme='dark'] .button:hover {
+  color: var(--grayscale-50);
+}
+
 .button:hover svg {
   fill: var(--grayscale-500);
+}
+
+:root[data-theme='dark'] .button:hover svg {
+  fill: var(--grayscale-50);
 }
 
 /* box shadow */

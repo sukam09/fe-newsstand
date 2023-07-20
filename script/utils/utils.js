@@ -16,3 +16,21 @@ export const createNewArrow = () => {
   document.querySelector('#right_arrow').replaceWith(rightArrow);
   return [leftArrow, rightArrow];
 };
+
+export const fadeOutElement = element => {
+  const startTime = performance.now();
+  element.style.opacity = 1;
+
+  const loop = now => {
+    const elapsed = now - startTime;
+    const opacity = 1 - elapsed / 200;
+
+    element.style.opacity = opacity;
+    if (opacity > 0) {
+      requestAnimationFrame(loop);
+    } else {
+      element.remove();
+    }
+  };
+  requestAnimationFrame(loop);
+};

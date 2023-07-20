@@ -7,11 +7,17 @@ export const HEADLINE = {
 
 export const MSG = {
   SUBSCRIBE: '내가 구독한 언론사에 추가되었습니다.',
+  ALERT_UNSUB: '예, 해지합니다',
+  ALERT_NO: '아니오',
+  BUTTON_SUB: '구독하기',
+  BUTTON_UNSUB: '해지하기',
 };
 
-export const BUTTON = {
-  SUBSCRIBE: '구독하기',
-  UNSUBSCRIBE: '해지하기',
+export const THEME = {
+  NAME: 'THEME',
+  ATTR: 'data-theme',
+  LIGHT: 'light',
+  DARK: 'dark',
 };
 
 export const PROGRESS_BAR_DELAY = 20000;

@@ -3,7 +3,7 @@ import { MEDIA } from '../../constants.js';
 import Store from '../../core/Store.js';
 import { clearAllChildren } from '../../utils/utils.js';
 import Arrow from './Arrow.js';
-import { SubButtonArea } from './SubButton.js';
+import { SubButtonArea } from './SubToggleButton.js';
 
 const replaceArrow = store => {
   const leftArrow = Arrow('left');

@@ -1,5 +1,5 @@
 import mediaData from '../../../assets/data/mediaData.js';
-import { BUTTON, MSG } from '../../constants.js';
+import { MSG } from '../../constants.js';
 import Button from '../Button.js';
 import SnackBar from '../SnackBar.js';
 import UnsubAlert from './UnsubAlert.js';
@@ -16,7 +16,17 @@ const subscribe = (id, navStore, viewStore) => {
   navStore.getState().subscribed.push(id);
 };
 
-const unsubscribe = (id, navStore, viewStore) => {
+const SubButton = (id, navStore) => {
+  return Button({
+    icon: 'plus',
+    isWhite: true,
+    text: MSG.BUTTON_SUB,
+    once: true,
+    onClick: () => subscribe(id, navStore),
+  });
+};
+
+const unsubscribe = (id, navStore, viewStore, button) => {
   document.querySelector('#media_view').appendChild(
     UnsubAlert(id, mediaData.getName(id), id => {
       const { media, subscribed } = navStore.getState();
@@ -25,35 +35,37 @@ const unsubscribe = (id, navStore, viewStore) => {
       subscribed.splice(subscribed.indexOf(id), 1);
       if (media === 'subscribed') {
         viewStore.setState({ page: page % sub.length });
+      } else {
+        button.replaceWith(SubButton(id, navStore));
       }
     })
   );
 };
 
-const SubButton = (id, navStore, viewStore, withText = true) => {
-  if (navStore.getState().subscribed.includes(id)) {
-    return Button({
-      icon: 'close',
-      isWhite: false,
-      text: withText ? BUTTON.UNSUBSCRIBE : null,
-      onClick: () => unsubscribe(id, navStore, viewStore),
-    });
-  }
+const UnsubButton = (id, navStore, viewStore, withText) => {
   return Button({
-    icon: 'plus',
-    isWhite: true,
-    text: BUTTON.SUBSCRIBE,
-    once: true,
-    onClick: () => subscribe(id, navStore),
+    icon: 'close',
+    isWhite: false,
+    text: withText ? MSG.BUTTON_UNSUB : null,
+    onClick: button => {
+      unsubscribe(id, navStore, viewStore, button);
+    },
   });
+};
+
+const SubToggleButton = (id, navStore, viewStore, withText = true) => {
+  if (navStore.getState().subscribed.includes(id)) {
+    return UnsubButton(id, navStore, viewStore, withText);
+  }
+  return SubButton(id, navStore);
 };
 
 export const SubButtonArea = (id, navStore, viewStore) => {
   const subButtonArea = document.createElement('div');
 
   subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubButton(id, navStore, viewStore));
+  subButtonArea.appendChild(SubToggleButton(id, navStore, viewStore));
   return subButtonArea;
 };
 
-export default SubButton;
+export default SubToggleButton;

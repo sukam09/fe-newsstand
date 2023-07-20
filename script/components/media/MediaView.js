@@ -22,13 +22,13 @@ const MediaView = store => {
   const { view, subscribed } = store.getState();
   const mediaView = document.createElement('div');
   const { list, grid } = createMediaData();
-  const content =
-    view === 'list'
-      ? MediaList(store, { list, subscribed })
-      : MediaGrid(store, { grid, subscribed });
 
   mediaView.id = 'media_view';
-  mediaView.appendChild(content);
+  if (view === 'list') {
+    mediaView.appendChild(MediaList(store, { list, subscribed }));
+  } else {
+    mediaView.appendChild(MediaGrid(store, { grid, subscribed }));
+  }
   return mediaView;
 };
 
