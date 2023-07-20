@@ -30,12 +30,27 @@
   font-weight: 700;
   line-height: normal;
 }
+.newsstand__progress-slash {
+  position: absolute;
+  top: 13px;
+  right: 23px;
+
+  color: var(--text-text-white-weak);
+  opacity: 70%;
+  /* display-bold12 */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .newsstand__progress-total {
   position: absolute;
   top: 13px;
-  right: 20px;
+  right: 8px;
 
-  color: var(--text-text-white-weak, rgba(255, 255, 255, 0.7));
+  color: var(--text-text-white-weak);
+  opacity: 70%;
 
   /* display-bold12 */
   font-family: Pretendard;

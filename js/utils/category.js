@@ -11,10 +11,12 @@ export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.children[0].classList.add("newsstand__progress"); // 첫번째 자식: 프로그래스 바
   element.children[1].classList.add("newsstand__progress-category"); // 두번째 자식: 카테고리 제목
   element.children[2].classList.add("newsstand__progress-now"); // 세번째 자식: 진행상황 (1/82)
-  element.children[3].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
+  element.children[3].classList.add("newsstand__progress-slash"); // 세번째 자식: 진행상황 (1/82)
+  element.children[4].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
 
   element.children[2].textContent = `${CATEGORY.currentContents}`;
-  element.children[3].textContent = `/${categoryDataLength[childIndex]}`;
+  element.children[3].textContent = `/`;
+  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
 
   // animationIterationCount 속성을부여해 원하는 횟수만큼 프로그래스 바 진행.
   element.children[0].style.animationIterationCount =
@@ -29,10 +31,12 @@ export function deactiveProgressClass(element) {
   element.children[0].classList.remove("newsstand__progress");
   element.children[1].classList.remove("newsstand__progress-category");
   element.children[2].classList.remove("newsstand__progress-now");
-  element.children[2].classList.remove("newsstand__progress-total");
+  element.children[3].classList.remove("newsstand__progress-slash");
+  element.children[4].classList.remove("newsstand__progress-total");
 
   element.children[2].textContent = "";
   element.children[3].textContent = "";
+  element.children[4].textContent = "";
 
   // animationIterationCount 제거
   element.children[0].style.animationIterationCount = 0;
@@ -129,7 +133,8 @@ export function nextContents(
   }
 
   element.children[2].textContent = `${CATEGORY.currentContents}`;
-  element.children[3].textContent = `/${categoryDataLength[childIndex]}`;
+  element.children[3].textContent = `/`;
+  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
   makeNewsList(
     (CATEGORY.currentContents - 1) % categoryDataLength[childIndex],
     CATEROY_NUMBER,

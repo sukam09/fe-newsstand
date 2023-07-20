@@ -7,6 +7,7 @@ export function makeCategoryTag(categoryParent, category) {
         <span>${item}</span>
         <span></span>
         <span></span>
+        <span></span>
       </li>`
     );
   }, "");

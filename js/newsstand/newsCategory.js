@@ -35,32 +35,14 @@ makeButtonTag(
 );
 
 // 뉴스 데이터 가져오기
-const economyData = await getCategoryData("./data/category/economy.json");
-const broadCastData = await getCategoryData("./data/category/broadcast.json");
-const itData = await getCategoryData("./data/category/it.json");
-const englishData = await getCategoryData("./data/category/english.json");
-const sportsData = await getCategoryData("./data/category/sports.json");
-const magazineData = await getCategoryData("./data/category/magazine.json");
-const localData = await getCategoryData("./data/category/local.json");
-
-const categoryDataList = [
-  economyData,
-  broadCastData,
-  itData,
-  englishData,
-  sportsData,
-  magazineData,
-  localData,
-];
-const categoryDataLength = [
-  economyData.length,
-  broadCastData.length,
-  itData.length,
-  englishData.length,
-  sportsData.length,
-  magazineData.length,
-  localData.length,
-];
+const newsData = await getCategoryData("./data/pressObj.json");
+let categoryDataList = [[], [], [], [], [], [], []];
+let categoryDataLength = [];
+newsData.map((it) => {
+  const idx = it.id % 7;
+  categoryDataList[idx].push(it);
+});
+categoryDataList.map((it) => categoryDataLength.push(it.length));
 
 const CATEROY_NUMBER = 7;
 
@@ -247,7 +229,8 @@ function handleProgressAnimationIteration(
       categoryDataList
     );
     element.children[2].textContent = `${CATEGORY.currentContents}`;
-    element.children[3].textContent = `/${contentsLength[idx]}`;
+    element.children[3].textContent = `/`;
+    element.children[4].textContent = `${contentsLength[idx]}`;
     makeNewsList(CATEGORY.currentContents - 1, totalCategory, categoryDataList);
   };
 }
