@@ -16,7 +16,7 @@ export default class App extends Component {
             <div class='latest-main-news'></div>
             <section class='all-news'></section>
             <div class='alert-modal'></div>
-            <div class='snack-bar-component'></div>
+            
             `;
   }
   mounted() {

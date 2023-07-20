@@ -1,4 +1,3 @@
-import db from '../../../store/db.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -54,3 +53,5 @@ export default class AllNews extends Component {
     this.setState({ view: TEXT.LIST, pressType: TEXT.SUBSCRIBE_EN });
   }
 }
+
+export const changeCurrentView = view => (currentPressType = view);

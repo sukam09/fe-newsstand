@@ -5,6 +5,7 @@ import Icon from '../common/Icon.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
+import { changeCurrentView } from './index.js';
 
 let savedCurrentPressIndex = 0;
 
@@ -17,6 +18,7 @@ export default class AllNewsMyListView extends Component {
       currentPressIndex: savedCurrentPressIndex,
       currentPress: this.pressOrder[savedCurrentPressIndex],
     };
+    changeCurrentView(TEXT.SUBSCRIBE_EN);
   }
 
   template() {
