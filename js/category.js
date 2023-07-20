@@ -32,7 +32,7 @@ function drawCategoryBar(categoryCnt) {
 
 function drawCategoryNumber(category) {
   return category.arrow
-    ? `<span class="currentCategoryPages"></span><span class="categoryCnt"></span>`
+    ? `<span class="currentCategoryPages"></span><span class="categoryCnt">></span>`
     : `<span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${category.value}</span>`;
 }
 

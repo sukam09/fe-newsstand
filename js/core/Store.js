@@ -3,10 +3,12 @@ class Store {
   #progressInterval;
   #pageMode;
   #subscribedStatus;
+  #subscribedNews;
   constructor() {
     this.#pageNumber = 0;
     this.#pageMode = "grid";
     this.#subscribedStatus = "all";
+    this.#subscribedNews = [];
     this.setPage = function (pagenumber) {
       this.#pageNumber = pagenumber;
     };
@@ -22,17 +24,23 @@ class Store {
     this.clearProgressInterval = function () {
       clearInterval(this.#progressInterval);
     };
-    this.setSubscribed = function (status) {
+    this.setSubscribedMode = function (status) {
       this.#subscribedStatus = status;
     };
     this.setPageMode = function (status) {
       this.#pageMode = status;
     };
-    this.getSubscribed = function () {
+    this.getSubscribedMode = function () {
       return this.#subscribedStatus;
     };
     this.getPageMode = function () {
       return this.#pageMode;
+    };
+    this.setSubscribeNews = function (key) {
+      this.#subscribedNews.push({ key: key, value: 1, arrow: true });
+    };
+    this.getSubscribeNews = function () {
+      return this.#subscribedNews;
     };
   }
 }

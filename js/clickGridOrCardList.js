@@ -18,7 +18,7 @@ const clickGridCardList = () => {
       listMain.style.display = "none";
       removeArrow();
       Stores.setPageMode("grid");
-      renderMain(Stores.getSubscribed(), Stores.getPageMode());
+      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     });
   };
 
@@ -31,7 +31,7 @@ const clickGridCardList = () => {
       listMain.style.display = "flex";
       removeArrow();
       Stores.setPageMode("cardList");
-      renderMain(Stores.getSubscribed(), Stores.getPageMode());
+      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     });
   };
 

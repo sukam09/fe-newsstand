@@ -4,15 +4,15 @@ import Stores from "./core/Store.js";
 const clickAllOrSubscribeButton = () => {
   function clickAllNews() {
     document.getElementById("allNews").addEventListener("click", () => {
-      Stores.setSubscribed("all");
-      renderMain(Stores.getSubscribed(), Stores.getPageMode());
+      Stores.setSubscribedMode("all");
+      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     });
   }
 
   function clickSubscribeNews() {
     document.getElementById("subscribedNews").addEventListener("click", () => {
-      Stores.setSubscribed("subscribed");
-      renderMain(Stores.getSubscribed(), Stores.getPageMode());
+      Stores.setSubscribedMode("subscribed");
+      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     });
   }
 
