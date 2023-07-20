@@ -1,6 +1,12 @@
 import { $, $All } from "./util.js";
 import { getState, resister, setState } from "./observer/observer.js";
-import { gridPageIdx, isGrid, isSubTab, listPageIdx } from "./store/store.js";
+import {
+  gridPageIdx,
+  isGrid,
+  isSubTab,
+  listPageIdx,
+  subscribeList,
+} from "./store/store.js";
 
 // 로고 새로고침
 function refreshWindow() {
@@ -74,7 +80,10 @@ function toggleGridClicked() {
 }
 
 function toggleSubClicked() {
-  setState(isSubTab, !getState(isSubTab));
+  const subListCount = getState(subscribeList).length;
+  subListCount === 0
+    ? alert("구독한 언론사가 없습니다!")
+    : setState(isSubTab, !getState(isSubTab));
 }
 
 function toggleMainView() {
