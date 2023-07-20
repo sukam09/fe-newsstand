@@ -92,6 +92,8 @@ export default class AllNewsMyListView extends Component {
       isVisible: true,
       action: this.goNextPage.bind(this),
     });
+
+    customQuerySelector('.press-header-focus', this.$target).scrollIntoView(false);
   }
 
   navigationMount() {
