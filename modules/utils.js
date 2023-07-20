@@ -1,4 +1,4 @@
-import { IMAGE, MEDIA, STATE } from "../constant.js";
+import { IMAGE, MEDIA, MESSAGE, STATE } from "../constant.js";
 import { changeImgSrc, setNewPage } from "./grid.js";
 import { setCategoryBar, setFullList, setListView } from "./list.js";
 
@@ -115,6 +115,34 @@ const moveListView = () => {
   setFullList();
 };
 
+const initSubsModalView = () => {
+  const $subsAlert = document.querySelector(".subs-alert");
+  const $subBtnYes = document.querySelectorAll(".subs-alert_btn")[0];
+  const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
+
+  $subBtnYes.addEventListener("click", () => {
+    const subIdx = STATE.SELECT_SUBSCRIBE_IDX;
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    $subsAlert.classList.add("hidden");
+
+    alert(MESSAGE.UNSUBSCRIBE);
+
+    if (STATE.MODE.IS_GRID) {
+      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+      setNewPage(
+        STATE.GRID_PAGE_NUM * MEDIA_NUM,
+        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+      );
+    } else {
+      setCategoryBar();
+      setFullList();
+    }
+  });
+  $subBtnNo.addEventListener("click", () => {
+    $subsAlert.classList.add("hidden");
+  });
+};
+
 /**
  * 공통뷰 & 공통 이벤트 세팅
  */
@@ -123,6 +151,7 @@ async function initCommonView() {
   setReload();
   setDate();
   setViewEvent();
+  initSubsModalView();
 }
 
 export { initCommonView, shuffleList, moveGridView, moveListView };

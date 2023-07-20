@@ -1,6 +1,4 @@
-import { MEDIA, MESSAGE, STATE } from "../constant.js";
-import { setNewPage } from "./grid.js";
-import { setCategoryBar, setFullList } from "./list.js";
+import { STATE } from "../constant.js";
 import { moveGridView, moveListView } from "./utils.js";
 
 const $totalMedia = document.querySelector(".main-nav_total");
@@ -9,8 +7,6 @@ const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 const $snackBar = document.querySelector(".snack-bar");
 const $subsAlert = document.querySelector(".subs-alert");
 const $subAlertName = document.querySelector(".subs-alert_content_name");
-const $subBtnYes = document.querySelectorAll(".subs-alert_btn")[0];
-const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
 
 /**
  *
@@ -36,9 +32,11 @@ const onClickSubscribeMode = ({ className }) => {
 
 const changeSubState = ({ mediaId, mediaName }) => {
   const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
+  STATE.SELECT_SUBSCRIBE_IDX = subIdx;
 
   if (subIdx !== -1) {
-    setModalView({ mediaName, subIdx });
+    $subAlertName.innerText = mediaName;
+    $subsAlert.classList.remove("hidden");
   } else {
     STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
 
@@ -49,32 +47,6 @@ const changeSubState = ({ mediaId, mediaName }) => {
       onClickSubscribeMode({ className: "main-nav_subscribe" });
     }, 1000);
   }
-};
-
-const setModalView = ({ mediaName, subIdx }) => {
-  $subAlertName.innerText = mediaName;
-  $subsAlert.classList.remove("hidden");
-
-  $subBtnYes.addEventListener("click", () => {
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
-    $subsAlert.classList.add("hidden");
-
-    alert(MESSAGE.UNSUBSCRIBE);
-
-    if (STATE.MODE.IS_GRID) {
-      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-      setNewPage(
-        STATE.GRID_PAGE_NUM * MEDIA_NUM,
-        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-      );
-    } else {
-      setCategoryBar();
-      setFullList();
-    }
-  });
-  $subBtnNo.addEventListener("click", () => {
-    $subsAlert.classList.add("hidden");
-  });
 };
 
 export { onClickSubscribeMode, changeSubState };
