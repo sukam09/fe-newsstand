@@ -156,8 +156,9 @@ body {
 }
 
 .snackbar {
-  display: flex;
   padding: 16px 24px;
+
+  display: flex;
   align-items: flex-start;
   position: absolute;
 
@@ -202,36 +203,43 @@ body {
 
 .alert {
   width: 320px;
+
   position: absolute;
+
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
     0px 4px 2px 0px rgba(20, 33, 43, 0.02);
   z-index: 10;
 }
 .alert-content {
+  padding: 24px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px;
 
   border: 1px solid var(--color-border-default);
   background: var(--color-surface-default);
 }
 .alert-buttons {
-  display: flex;
   height: 48px;
+
+  display: flex;
   align-items: flex-start;
   align-self: stretch;
+
   background: var(--color-surface-alt);
 }
 .alert-buttons button {
-  display: flex;
   padding: 10px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex: 1 0 0;
   align-self: stretch;
+
   border: var(--border-default);
 }
 .alert-buttons button:hover {

@@ -9,18 +9,19 @@
   background: var(--color-surface-alt);
 
   color: var(--color-text-weak);
-}
-.list-view_category-bar > ul {
-  display: flex;
-  align-items: center;
 
-  overflow: auto;
+  overflow-x: scroll;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.list-view_category-bar > ul::-webkit-scrollbar {
+
+.list-view_category-bar::-webkit-scrollbar {
   display: none;
+}
+.list-view_category-bar > ul {
+  display: flex;
+  align-items: center;
 }
 
 .list-view_category-bar > ul > li {
@@ -55,7 +56,7 @@
   transition: width 1s linear;
 }
 .progress-component {
-  width: 100%;
+  width: 166px;
   height: 100%;
 
   display: flex;

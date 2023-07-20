@@ -44,8 +44,10 @@ const changeCategory = (newsList, categoryList) => () => {
 };
 
 const changePress = (pressNewsList) => () => {
-  const currentView = getState(viewState);
-  if (currentView !== VIEW_TYPE.LIST) return;
+  const isAllType = checkIsAllType();
+  if (isAllType) return;
+  const isGridView = checkIsGridView();
+  if (isGridView) return;
 
   const currentPress = getState(selectedSubscribeState);
   const currentPage = getState(subscribeListPageState);
@@ -112,8 +114,7 @@ const stopProgress = () => {
 };
 const updateProgress = () => {
   const $progress = _querySelector(".progress");
-
-  $progress.style.width = timeElapsed + "%";
+  if ($progress) $progress.style.width = timeElapsed + "%";
 };
 
 const initProgress = () => {
@@ -143,13 +144,20 @@ const setCategoryBar = (categoryList) => () => {
     $categoryBar.appendChild($li);
   });
 
-  setCategoryState(categoryList[0])();
+  const currentCategory = getState(categoryState);
+  if (currentCategory) {
+    setCategoryState(currentCategory)();
+  } else {
+    setCategoryState(categoryList[0])();
+  }
 };
 const setCategoryState = (category) => () => setState(categoryState, category);
 
 const setSubscribePressBar = () => {
-  const currentOption = getState(viewOptionState);
-  if (currentOption === VIEW_OPTION_TYPE.ALL) return;
+  const isAllType = checkIsAllType();
+  if (isAllType) return;
+  const isGridView = checkIsGridView();
+  if (isGridView) return;
 
   const subscribedList = getState(subscribeState);
   $categoryBar.innerHTML = "";
@@ -163,7 +171,12 @@ const setSubscribePressBar = () => {
     $categoryBar.appendChild($li);
   });
 
-  setSelectedSubState(subscribedList[0])();
+  const currentSelectedSubState = getState(selectedSubscribeState);
+  if (currentSelectedSubState) {
+    setSelectedSubState(currentSelectedSubState)();
+  } else {
+    setSelectedSubState(subscribedList[0])();
+  }
 };
 const setSelectedSubState = (press) => () => {
   setState(selectedSubscribeState, press);
@@ -205,6 +218,8 @@ const changeActivateCategory = (newsList, categoryList) => () => {
       }
     }
   });
+
+  initListPageState();
 };
 
 const changeActivatePress = () => {
@@ -230,6 +245,49 @@ const changeActivatePress = () => {
       }
     }
   });
+
+  activatePressScroll();
+};
+
+const activatePressScroll = () => {
+  const wrapper = _querySelector(".list-view_category-bar");
+  const container = _querySelector("ul", wrapper);
+  const targetElement = _querySelector(".category--selected", container);
+
+  const containerLeft = wrapper.getBoundingClientRect().left;
+  const targetLeft = targetElement.getBoundingClientRect().left;
+
+  const scrollDuration = 500;
+  const startTime = performance.now();
+  const originalScrollLeft = wrapper.scrollLeft;
+  const targetScrollLeft = wrapper.scrollLeft + targetLeft - containerLeft;
+
+  function smoothScroll(timestamp) {
+    const currentTime = timestamp - startTime;
+    if (currentTime >= scrollDuration) {
+      wrapper.scrollLeft = targetScrollLeft;
+      return;
+    }
+
+    const easeValue = easeInOutQuad(
+      currentTime,
+      originalScrollLeft,
+      targetScrollLeft - originalScrollLeft,
+      scrollDuration
+    );
+    wrapper.scrollLeft = easeValue;
+
+    requestAnimationFrame(smoothScroll);
+  }
+
+  function easeInOutQuad(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  }
+
+  requestAnimationFrame(smoothScroll);
 };
 
 const setPageActivateState = (newsList) => () => {
@@ -286,7 +344,6 @@ export {
   changeCategory,
   changeActivateCategory,
   initProgress,
-  initListPageState,
   initSubscribeListPageState,
   setPageActivateState,
   setSubscribePressBar,

@@ -3,7 +3,6 @@ import {
   changeActivatePress,
   changeCategory,
   changePress,
-  initListPageState,
   initProgress,
   initSubscribeListPageState,
   setHeaderBar,
@@ -52,10 +51,8 @@ export const setList = async () => {
   subscribe(subscribeListPageState, fillNewsList(newsList, pressNewsList));
 
   subscribe(categoryState, changeActivateCategory(newsList, categoryList));
-  subscribe(categoryState, initListPageState);
 
   subscribe(selectedSubscribeState, changeActivatePress);
-  subscribe(selectedSubscribeState, startProgress);
   subscribe(selectedSubscribeState, initSubscribeListPageState);
 
   subscribe(viewState, setHeaderBar(categoryList));
@@ -69,7 +66,6 @@ export const setList = async () => {
   subscribe(subscribeState, fillNewsList(newsList, pressNewsList));
 
   subscribe(viewOptionState, setHeaderBar(categoryList));
-  subscribe(viewOptionState, changeActivatePress);
   subscribe(viewOptionState, changeActivateCategory(newsList, categoryList));
   subscribe(viewOptionState, fillNewsList(newsList, pressNewsList));
 };

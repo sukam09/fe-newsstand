@@ -45,8 +45,8 @@ const getCurrentNewsList = (newsList, pressNewsList) => {
 const createNewsHeader = (press, editTime) => {
   const isDarkMode = checkIsDarkMode();
   const imgSrc = isDarkMode ? PRESS_ICON[press].dark : PRESS_ICON[press].light;
-
   const $header = document.createElement("header");
+
   $header.className = "list-view_main-header";
   $header.innerHTML = ` 
       <img
@@ -65,6 +65,9 @@ const createNewsHeader = (press, editTime) => {
 const createNewsList = (img, title, subNews, info) => {
   const $listBox = document.createElement("div");
 
+  const newsListContent = subNews.reduce((acc, cur) => {
+    return (acc += `<li class="hover-underline available-medium16">${cur}</li>`);
+  }, "");
   $listBox.className = "list-view_main-box";
   $listBox.innerHTML = `
       <div class="list-view_main-news">
@@ -74,9 +77,7 @@ const createNewsList = (img, title, subNews, info) => {
         <span class="available-medium16">${title}</span>
       </div>
       <ul class="list-view_news-list">
-        ${subNews.reduce((acc, cur) => {
-          return (acc += `<li class="hover-underline available-medium16">${cur}</li>`);
-        }, "")}
+        ${newsListContent}
         <li class="display-medium14">${info}</li>
       </ul>`;
 
