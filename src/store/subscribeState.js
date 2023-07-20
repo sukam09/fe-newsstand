@@ -7,7 +7,7 @@ class SubscribeState {
     return this.subPressList;
   }
 
-  setSubscribeState(id, name, src) {
+  setSubscribeState(id, src) {
     this.subPressList.push([id, src]);
   }
 }
