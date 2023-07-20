@@ -16,7 +16,7 @@ export async function getNewsData() {
   const NewsPath = await fetchData("../assets/data/newspaperSrc.json");
   NewsPath.newsList.map((elem) => {
     categoryObj[elem.category].push({"name" : elem.name, "lightSrc" : elem.lightSrc, "editDate" : elem.editDate, "mainNews" : elem.mainNews, "subNews" : elem.subNews});
-  }) 
+  });
 }
 
 // 뉴스리스트 요소들 보여주기
