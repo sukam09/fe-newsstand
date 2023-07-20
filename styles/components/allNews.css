@@ -51,6 +51,10 @@
   overflow: auto;
 }
 
+.newslist-list-view > nav::-webkit-scrollbar {
+  display: none;
+}
+
 .newslist-list-view > nav > li {
   display: flex;
   flex-shrink: 0;
@@ -89,7 +93,8 @@
   z-index: 1;
 }
 
-.press-header-focus span {
+.press-header-focus span,
+img {
   z-index: 2;
 }
 
