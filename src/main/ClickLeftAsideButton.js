@@ -1,5 +1,7 @@
 import State from "../state/Reducer.js";
 import newsData from "../state/newsData.js";
+import main from "../main/main.js";
+import controlMinMaxPage from "../utils/controlMinMaxPage.js";
 
 export default function clickLeftAsideButton(){
     //페이지 정보 불러오기
@@ -10,8 +12,6 @@ export default function clickLeftAsideButton(){
     let isAll = State.getAllState();
     let isGrid = State.getGridState();
 
-    console.group(newsData.getCategoryMaxPage(categoryNum));
-
     //leftButton 불러오고 초기화
     const leftAsideButton = document.getElementById("aside-left");
     leftAsideButton.innerHTML = '';
@@ -21,28 +21,24 @@ export default function clickLeftAsideButton(){
     asideLeft.src = "./img/LeftButton.png"
     leftAsideButton.appendChild(asideLeft);
 
-    //첫 번째 페이지에서 왼쪽 버튼 숨김
-    if(currentPage === minPage){
-        leftAsideButton.style.visibility = "hidden";
+    if(isGrid){
+        if(currentPage === minPage){
+            leftAsideButton.style.visibility = "hidden";
+        }
+    }
+    else{
+        leftAsideButton.style.visibility = "visible";
     }
 
     //click event 추가
     asideLeft.addEventListener("click",()=>{
-        if(currentPage === minPage){
-            if(categoryNum === 0){
-                categoryNum = maxCategoryNum;
-            }
-            else{
-                categoryNum--;
-            }
-            State.setCategoryNum(categoryNum);
-            currentPage = newsData.getCategoryMaxPage(categoryNum);
-            State.setCurrentPage(currentPage);
-        }
+        if(!isGrid){
+            controlMinMaxPage();
+        } 
         else{
             currentPage--;
             State.setCurrentPage(currentPage);
         }
-        console.log(State.pageState);
+        main();
     });
 }

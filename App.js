@@ -3,7 +3,7 @@ import setDate from "./src/SetDate.js";
 import recentNews from "./src/RecentNews.js";
 import main from "./src/main/Main.js";
 import mainHeader from "./src/MainHeader.js";
-import { getGridJSON, getListJSON} from "./src/Api/api.js";
+import { getGridJSON, getListJSON} from "./src/api/api.js";
 import newsData from "./src/state/newsData.js";
 
 async function App(){
