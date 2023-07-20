@@ -13,8 +13,12 @@ import {
   onUserClickCategory,
 } from "../utils/category.js";
 import { subscribeState } from "../store/subscribeState.js";
-import { removeChildElement, handleElementClass } from "../utils/util.js";
-import { MESSAGE } from "../utils/constant.js";
+import {
+  removeChildElement,
+  handleElementClass,
+  onFocusToClicked,
+} from "../utils/util.js";
+import { MESSAGE, VIEW } from "../utils/constant.js";
 
 const category = [
   "종합/경제",
@@ -51,6 +55,7 @@ const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
 export function paintNewsCategory() {
+  makeMySubNews();
   console.log(View.getNavTabView(), View.getUserView());
   CATEGORY.currentCategory = 0;
   CATEGORY.currentContents = 1;
@@ -66,6 +71,11 @@ export function paintNewsCategory() {
     View.getNavTabView() === MESSAGE.MY_PUBLISHER
       ? new Array(mySubArray().length).fill(1)
       : categoryDataLength;
+
+  const categoryNewsData =
+    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+      ? makeMySubNews()
+      : categoryDataList;
 
   const categoryParent = document.querySelector(".newsstand__news-nav");
   const btnParent = document.querySelector(".newsstand__list-navigation-btn");
@@ -91,11 +101,11 @@ export function paintNewsCategory() {
   addAnimationEvent(categoryList, totalCategory, contentsLength);
 
   // 뉴스리스트 생성
-  makeNewsList(CATEGORY.FIRST_PAGE, totalCategory, categoryDataList);
+  makeNewsList(CATEGORY.FIRST_PAGE, totalCategory, categoryNewsData);
   // 각각의 클릭, 버튼 이벤트 추가
   onUserClickCategory(
     totalCategory,
-    categoryDataList,
+    categoryNewsData,
     categoryList,
     contentsLength,
     totalCategory
@@ -106,14 +116,14 @@ export function paintNewsCategory() {
     totalCategory,
     categoryList,
     contentsLength,
-    categoryDataList
+    categoryNewsData
   );
   onUserRightClickCategory(
     rightBtn,
     totalCategory,
     categoryList,
     contentsLength,
-    categoryDataList
+    categoryNewsData
   );
   restartProgressBar(categoryList, contentsLength);
 }
@@ -126,6 +136,16 @@ function restartProgressBar(categoryList, contentsLength) {
   removeProgressAction();
   // 종합/경제 카테고리 li에 프로그래스 바 클래스 추가.
   startProgressAction(categoryList, contentsLength);
+}
+
+function makeMySubNews() {
+  const subData = subscribeState.getSubscribeState();
+  let newSubDatas = [];
+  subData.map((it) => {
+    newSubDatas.push(newsData.filter((el) => el.name === it[0]));
+  });
+
+  return newSubDatas;
 }
 
 export function addListdButton() {
@@ -167,16 +187,16 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
     if (View.getUserView() === "list") {
-      View.setNavTabView(MESSAGE.MY_PUBLISHER, true);
+      View.setNavTabView(VIEW.MY_SUB, true);
+      onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
-      console.log(View.getNavTabView());
     }
   });
   allPublisher.addEventListener("click", () => {
     if (View.getUserView() === "list") {
-      View.setNavTabView(MESSAGE.ALL_PUBLISHER, true);
+      View.setNavTabView(VIEW.ALL_SUB, true);
+      onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
-      console.log(View.getNavTabView());
     }
   });
 }

@@ -145,10 +145,10 @@ function addEventOnMySubAndAllSub() {
   // 전체 언론사 클릭했을떄.
   allPublisher.addEventListener("click", () => {
     if (View.getUserView() === "grid") {
-      View.setNavTabView(VIEW.ALL_PUBLISHER, true);
+      View.setNavTabView(VIEW.ALL_SUB, true);
 
       // 전체 언론사에 포커스 효과주기
-      onFocusToClicked(VIEW.ALL_PUBLISHER, mySubscribe, allPublisher);
+      onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
 
       selectedPage = 0; // selectedPage 0에서 시작
       LAST_PAGE = 3;

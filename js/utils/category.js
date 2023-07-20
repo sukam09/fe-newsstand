@@ -112,7 +112,7 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   makeMainNews(img, title);
 
   newsListParent.innerHTML = newsTitles.reduce((acc, element) => {
-    return acc + `<li> ${element} </li>`;
+    return acc + `<li class="newstand__edit-content"> ${element} </li>`;
   }, "");
 
   const li = `<li class="newsstand__edit-corp">${data[page].name} ${MESSAGE.EDIT_BY_PUBLISHER}</li>`;

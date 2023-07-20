@@ -150,7 +150,7 @@
   line-height: normal;
 }
 
-.newsstand__list-right li {
+.newstand__edit-content {
   color: var(--text-text-bold);
 
   /* available-medium16 */
@@ -158,5 +158,4 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 137.5% */
 }
