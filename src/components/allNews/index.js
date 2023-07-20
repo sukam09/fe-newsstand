@@ -49,4 +49,8 @@ export default class AllNews extends Component {
   onClick(props) {
     this.setState(props);
   }
+
+  moveMyList() {
+    this.setState({ view: TEXT.LIST, pressType: TEXT.SUBSCRIBE_EN });
+  }
 }

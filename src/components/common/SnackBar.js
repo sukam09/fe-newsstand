@@ -1,9 +1,14 @@
 import { SNACK_BAR_SECOND, TEXT } from '../../constants/index.js';
 import Component from '../core/Component.js';
 
+let timer = null;
 export default class SnackBar extends Component {
   setup() {
-    this.timer = setTimeout(() => this.closeSnackBar(), SNACK_BAR_SECOND);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      this.closeSnackBar();
+      //page 이동...
+    }, SNACK_BAR_SECOND);
   }
   template() {
     return `
@@ -14,4 +19,13 @@ export default class SnackBar extends Component {
   }
 
   closeSnackBar = () => (this.$target.innerHTML = '');
+
+  setEvent() {
+    document.addEventListener('click', ({ target }) => {
+      if (target.closest('.common-button') || target.closest('.snack-bar')) return;
+
+      clearTimeout(timer);
+      this.closeSnackBar();
+    });
+  }
 }
