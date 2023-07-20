@@ -19,47 +19,56 @@ import { changeTheme } from "./store/reducer/theme.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
 
-const $headerDate = document.querySelector(".container-header_date");
+async function initDB() {
+  const NEWS_DATA_SOURCE = "./mocks/news.json";
 
-const initDB = async () => {
-  const mockData = await customFetch("./mocks/news.json", shuffleData);
+  const mockData = await customFetch(NEWS_DATA_SOURCE, shuffleData);
   NewsDB.instance = mockData;
-};
+}
 
-const initSubscribeList = () => {
+function initSubscribeList() {
   const subscribeList = JSON.parse(getLocalStorageItem("subscribeList")) || [];
   store.dispatch(initSubscribe(subscribeList));
-};
+}
 
-const setHeaderDate = () => {
+function setHeaderDate() {
+  const $headerDate = document.querySelector(".container-header_date");
   $headerDate.innerText = getKRLocaleDateString(new Date());
-};
+}
 
-const addEventOnThemeButton = () => {
+function addEventOnThemeButton() {
   const $themeButton = document.querySelector(".theme-btn");
 
   $themeButton.addEventListener("click", () => {
     store.dispatch(changeTheme());
     setTheme();
   });
-};
-// main
-(async function () {
-  await initDB();
-  initSubscribeList();
-  const newsData = NewsDB.getNewsData();
+}
 
-  setHeaderDate();
-  setSnackbar();
-  setModal();
-  startRollingBanner();
-
-  renderGridView(newsData);
+function renderViews() {
+  renderGridView();
   renderListView();
+}
 
+function addEventHandlers() {
   addEventOnThemeButton();
   addEventOnPaginationButton();
   addEventOnTabs();
   addEventOnViewerButton();
   addEventOnProgressBar();
-})();
+}
+
+async function initApp() {
+  await initDB();
+  initSubscribeList();
+
+  setHeaderDate();
+  setSnackbar();
+  setModal();
+
+  startRollingBanner();
+  renderViews();
+  addEventHandlers();
+}
+
+window.addEventListener("DOMContentLoaded", initApp);

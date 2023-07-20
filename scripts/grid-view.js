@@ -90,7 +90,8 @@ const renderGridViewOnSubscribe = (currentPage) => {
   updateButtonUI(currentPage, maxPage);
 };
 
-export const renderGridView = (newsData) => {
+export const renderGridView = () => {
+  const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
   addEventOnGridView();
