@@ -5,6 +5,7 @@ import { initListEvent } from "./listController.js";
 import { initArrowBtnEvnet } from "./arrowBtnController.js";
 import { initTabAndViewerEvent } from "./tabAndViewerController.js";
 import { initSnackBarTimer, initAlertEvent } from "./componentController.js";
+import { initFieldTabEvent } from "./fieldTabController.js";
 
 import { drawTab, drawViewer } from "../view/tabAndViewer.js";
 import { drawLeftArrowBtn, drawRightArrowBtn } from "../view/arrowBtn.js";
@@ -20,20 +21,18 @@ function initEvent() {
   initArrowBtnEvnet();
   initTabAndViewerEvent();
   initAlertEvent();
+  initFieldTabEvent();
 }
 
 function changeState(state) {
   switch (state) {
     case STATE.MOVE_GRID_LEFT:
-      drawGridAndArrow();
-      break;
     case STATE.MOVE_GRID_RIGHT:
       drawGridAndArrow();
       break;
     case STATE.MOVE_LIST_LEFT:
-      drawList();
-      break;
     case STATE.MOVE_LIST_RIGHT:
+    case STATE.MOVE_LIST_PAGE:
       drawList();
       break;
     case STATE.MOVE_GRID_ALL:
