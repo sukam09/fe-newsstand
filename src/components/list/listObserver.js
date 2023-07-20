@@ -3,6 +3,7 @@ import { createListViewMain, createPressNews, renderPressNews } from "../../cont
 import { class_name } from "../../utils/domClassName.js";
 import { list_news_data } from "../../../data/list_news_data.js";
 import { SET_TIME } from "../../utils/constant.js";
+import { isListSubscribe } from "../layout/mainNavEvent.js";
 
 class ListSubscribe {
     constructor() {
@@ -64,6 +65,7 @@ class ListSubscribe {
     initProgressBar = function (props) {
         this.setValue(props).then(() => {
             this.changeProgressBar();
+            renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
             this.startInterval();
         });
     };
@@ -87,16 +89,25 @@ class ListSubscribe {
 
     // DOM 변경 = progressbar 초기화  (아직 다 안 끝났을 때)
     resetProgressBar = async function () {
+        console.log("reset");
         const progress_list = document.querySelector(".list-subscribe").querySelectorAll(".btn-tab-progress");
-        progress_list[category_now].classList.remove("btn-tab-progress");
-        progress_list[category_now].offsetWidth;
-        progress_list[category_now].classList.add("btn-tab-progress");
+        progress_list[this.category_now].classList.remove("btn-tab-progress");
+        progress_list[this.category_now].offsetWidth;
+        progress_list[this.category_now].classList.add("btn-tab-progress");
     };
 
     update = function (state) {
         this.getData(state);
         const $new_container = createListViewMain(this.data[0], class_name.SUBSCRIBE, true, this.data);
         document.querySelector(`.list-${class_name.SUBSCRIBE}`).children[1].replaceWith($new_container);
+        // if (isListSubscribe()) {
+        //     this.changeCategory(true).then(() => {
+        //         console.log("next");
+        //         this.resetProgressBar();
+        //         renderPressNews(this.data[this.category_now], class_name.SUBSCRIBE);
+        //         this.startInterval();
+        //     });
+        // }
     };
 
     getData = function (state) {

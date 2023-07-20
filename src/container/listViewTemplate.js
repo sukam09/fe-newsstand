@@ -10,11 +10,23 @@ import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
 import { list_view_subscribe } from "../components/list/listObserver.js";
+import { _sub_press_list } from "../Store.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
-function createPressBtn(press_name) {
-    const $list_view_btn = create.button({ className: "list-view-btn" });
+function createPressBtn(press_name, idx) {
+    const $list_view_btn = create.button({
+        className: "list-view-btn",
+        events: {
+            click: () => {
+                console.log(list_view_subscribe.getCategoryNow());
+                list_view_subscribe.initProgressBar({
+                    category_old: list_view_subscribe.getCategoryNow(),
+                    category_now: idx,
+                });
+            },
+        },
+    });
     const $tab_item = create.div({ className: "tab-item available-medium14", txt: press_name });
     const $tab_item_clicked = create.div({ className: "tab-item-clicked" });
     const $btn_tab_progress = create.div({ className: "btn-tab-progress" });
@@ -35,7 +47,7 @@ function createPressBtn(press_name) {
     return $list_view_btn;
 }
 
-// 카테고리 탭 생성
+// 카테고리 탭 생성 > createPressBtn 함수랑 합치기
 function createCategoryBtn(category_name, category_size, idx) {
     const $list_view_btn = create.button({
         className: "list-view-btn",
@@ -91,7 +103,7 @@ export function createNewsNav(is_subscribe, state) {
     const $container = create.nav({ className: "list-view-tab" });
     if (is_subscribe === class_name.SUBSCRIBE) {
         state.forEach((news, idx) => {
-            $container.appendChild(createPressBtn(news.press));
+            $container.appendChild(createPressBtn(news.press, idx));
         });
     } else {
         news_category.forEach((category_data, idx) => {
@@ -102,7 +114,7 @@ export function createNewsNav(is_subscribe, state) {
 }
 
 // 언론사 정보 생성
-function createPressInfo(press_src, press_edit_date, is_subscribe) {
+function createPressInfo(press_src, press_edit_date, is_subscribe, press_id) {
     const $container = create.div({ className: "list-view-press-info" });
     if (!press_src) return $container;
 
@@ -110,7 +122,17 @@ function createPressInfo(press_src, press_edit_date, is_subscribe) {
     const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_edit_date });
     const $subscribe_btn =
         is_subscribe === class_name.SUBSCRIBE
-            ? btnFactory.create({ type: "closed" }).getButton()
+            ? btnFactory
+                  .create({
+                      type: "closed",
+                      events: {
+                          click: () => {
+                              console.log("clicked");
+                              _sub_press_list.deleteState(press_id);
+                          },
+                      },
+                  })
+                  .getButton()
             : btnFactory
                   .create({
                       type: "subscribe",
@@ -206,7 +228,12 @@ export function createPressNews(news_category_press, isInit, is_subscribe) {
         createSubNews(news_category_press.press, news_category_press.sub_news)
     );
     $container.append(
-        createPressInfo(news_category_press.press_light_src, news_category_press.edit_date, is_subscribe),
+        createPressInfo(
+            news_category_press.press_light_src,
+            news_category_press.edit_date,
+            is_subscribe,
+            news_category_press.press_id
+        ),
         $news_content
     );
     return $container;

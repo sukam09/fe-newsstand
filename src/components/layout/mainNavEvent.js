@@ -92,7 +92,16 @@ const view_info_tmp = (function () {
         }
     }
 
-    return { changeView, setToSubscribeView, setToEntireView, setToGridView, setToListView, printState };
+    return {
+        changeView,
+        setToSubscribeView,
+        setToEntireView,
+        setToGridView,
+        setToListView,
+        printState,
+        getIsGridView,
+        getIsSubscribeView,
+    };
 })();
 
 export function onClickSubBtn(is_subscribe) {
@@ -105,4 +114,9 @@ export function onClickViewBtn(is_grid) {
     is_grid
         ? view_info_tmp.setToGridView().then(view_info_tmp.changeView)
         : view_info_tmp.setToListView().then(view_info_tmp.changeView);
+}
+
+export function isListSubscribe() {
+    if (!view_info_tmp.getIsGridView() && view_info_tmp.getIsSubscribeView) return true;
+    return false;
 }
