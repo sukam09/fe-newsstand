@@ -44,10 +44,10 @@ function toggleSubscribe(src) {
     GLOBAL.SUBSCRIBE_NEWS_DATA = GLOBAL.SUBSCRIBE_NEWS_DATA.filter((value) => {
       return !(value.path.slice(-6) === src.slice(-6));
     });
-    GLOBAL.SUB_NEWS_NUM--;
+    GLOBAL.SUBSCRIBE_NEWS_NUM--;
 
     changeState(STATE.UNSUBSCRIBE_NEWS);
   }
 }
 
-export { initSubscribeBtnEvnet, checkSubscribe };
+export { initSubscribeBtnEvnet, checkSubscribe, toggleSubscribe };

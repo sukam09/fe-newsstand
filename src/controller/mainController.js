@@ -12,6 +12,7 @@ import { drawSnackBar } from "../view/snackBar.js";
 import { drawAlert } from "../view/alert.js";
 import { drawGrid } from "../view/grid.js";
 import { drawList } from "../view/list.js";
+import { drawSubscribeBtn } from "../view/subscribe.js";
 
 function initEvent() {
   initRollingEvent();
