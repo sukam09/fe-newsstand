@@ -1,12 +1,12 @@
 import { appendButton } from "./appendButton.js";
 
 export const setButton = () => {
-  const buttonContainer = document.querySelector(".agency-container");
+  const button_container = document.querySelector(".agency-container");
 
-  const [prevBtn, nextBtn] = appendButton();
+  const [prev_btn, next_btn] = appendButton();
 
-  buttonContainer.appendChild(prevBtn);
-  buttonContainer.appendChild(nextBtn);
+  button_container.appendChild(prev_btn);
+  button_container.appendChild(next_btn);
 
-  return [prevBtn, nextBtn];
+  return [prev_btn, next_btn];
 };

@@ -13,10 +13,10 @@ fetchData().then((data) => {
   // response로 받은 data shuffle
   const agencies = shuffleData(data);
   // rolling할 뉴스 slice
-  const slicedData = sliceData(agencies, 0, RECENT_NEWS_NUM);
+  const sliced_data = sliceData(agencies, 0, RECENT_NEWS_NUM);
 
   // 뉴스 rolling
-  rollNews(slicedData);
+  rollNews(sliced_data);
   // 상태에 따라 grid, list view render
   initializeStore(data);
   initGrid(agencies);

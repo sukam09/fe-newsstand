@@ -33,37 +33,39 @@ const makeFocusTab = (currentPage, filteredAgencies, item) => {
   return $field_tab_progress;
 };
 
-const makeTab = (sortedAgencies, item) => {
+const makeTab = (sorted_agencies, item) => {
   const $li = document.createElement("li");
   $li.className = "field-tab-normal";
   $li.innerText = item;
   $li.addEventListener("click", () => {
-    let currentCategory = FIELDTAB_LIST.findIndex((tag) => tag === item);
+    let current_category = FIELDTAB_LIST.findIndex((tag) => tag === item);
     ListComponent(
       INITIAL_PAGE,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
   });
   return $li;
 };
 
 export const makeFieldTab = (
-  currentPage,
-  sortedAgencies,
+  current_page,
+  sorted_agencies,
   focus = FIELDTAB_LIST[0]
 ) => {
   const $field_tab = document.querySelector(".field-tab");
   $field_tab.className = "field-tab";
 
-  const filteredAgencies = filterCategory(sortedAgencies, focus);
+  const filtered_agencies = filterCategory(sorted_agencies, focus);
 
   FIELDTAB_LIST.forEach((item) => {
     if (item === focus) {
-      $field_tab.appendChild(makeFocusTab(currentPage, filteredAgencies, item));
+      $field_tab.appendChild(
+        makeFocusTab(current_page, filtered_agencies, item)
+      );
     } else {
-      $field_tab.appendChild(makeTab(sortedAgencies, item));
+      $field_tab.appendChild(makeTab(sorted_agencies, item));
     }
   });
 };

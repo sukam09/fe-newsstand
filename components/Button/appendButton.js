@@ -1,24 +1,24 @@
 export const appendButton = () => {
-  const $prevImg = document.createElement("img");
-  $prevImg.src = "./asset/icon/left-button.svg";
-  $prevImg.alt = "이전 페이지 버튼";
+  const $prev_img = document.createElement("img");
+  $prev_img.src = "./asset/icon/left-button.svg";
+  $prev_img.alt = "이전 페이지 버튼";
 
   const $span = document.createElement("span");
   $span.className = "screen-reader-only";
 
-  const $prevBtn = document.createElement("button");
-  $prevBtn.className = "prev-page-btn";
-  $prevBtn.appendChild($span);
-  $prevBtn.appendChild($prevImg);
+  const $prev_btn = document.createElement("button");
+  $prev_btn.className = "prev-page-btn";
+  $prev_btn.appendChild($span);
+  $prev_btn.appendChild($prev_img);
 
-  const $nextImg = document.createElement("img");
-  $nextImg.src = "./asset/icon/right-button.svg";
-  $nextImg.alt = "다음 페이지 버튼";
+  const $next_img = document.createElement("img");
+  $next_img.src = "./asset/icon/right-button.svg";
+  $next_img.alt = "다음 페이지 버튼";
 
-  const $nextBtn = document.createElement("button");
-  $nextBtn.className = "next-page-btn";
-  $nextBtn.appendChild($span);
-  $nextBtn.appendChild($nextImg);
+  const $next_btn = document.createElement("button");
+  $next_btn.className = "next-page-btn";
+  $next_btn.appendChild($span);
+  $next_btn.appendChild($next_img);
 
-  return [$prevBtn, $nextBtn];
+  return [$prev_btn, $next_btn];
 };

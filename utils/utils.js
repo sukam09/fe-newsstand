@@ -5,8 +5,8 @@ export const fetchData = async () => {
   return agencies;
 };
 
-export const sliceData = (data, startIndex, endIndex) =>
-  data.slice(startIndex, endIndex);
+export const sliceData = (data, start_index, end_index) =>
+  data.slice(start_index, end_index);
 
 export const shuffleData = (data) => {
   return data.agencies.sort(() => 0.5 - Math.random());

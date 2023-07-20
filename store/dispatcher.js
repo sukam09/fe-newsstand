@@ -10,7 +10,6 @@ export const dispatcher = (action) => {
     case "TOGGLE_SUBSCRIPTIONS":
       const { name, value } = action;
       store.subscriptions.find((item) => item.name === name).subscribe = value;
-      console.log(store);
       break;
     default:
       break;

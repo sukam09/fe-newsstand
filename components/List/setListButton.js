@@ -7,101 +7,105 @@ import { filterCategory } from "../../utils/filterCategory.js";
 import { setButton } from "../Button/setButton.js";
 import { ListComponent } from "../ListComponent.js";
 
-export const setListButton = (sortedAgencies, currentPage, currentCategory) => {
-  const [prevBtn, nextBtn] = setButton();
-  prevBtn.addEventListener("click", () => {
-    moveToPrevPage(sortedAgencies, currentPage, currentCategory);
+export const setListButton = (
+  sorted_agencies,
+  current_page,
+  current_category
+) => {
+  const [prev_btn, next_btn] = setButton();
+  prev_btn.addEventListener("click", () => {
+    moveToPrevPage(sorted_agencies, current_page, current_category);
   });
-  nextBtn.addEventListener("click", () => {
-    moveToNextPage(sortedAgencies, currentPage, currentCategory);
+  next_btn.addEventListener("click", () => {
+    moveToNextPage(sorted_agencies, current_page, current_category);
   });
 };
 
 export const moveToPrevPage = (
-  sortedAgencies,
-  currentPage,
-  currentCategory
+  sorted_agencies,
+  current_page,
+  current_category
 ) => {
-  if (currentPage === 0 && currentCategory === 0) {
-    currentCategory = FIELDTAB_LIST.length - 1;
+  if (current_page === 0 && current_category === 0) {
+    current_category = FIELDTAB_LIST.length - 1;
 
-    const filteredAgencies = filterCategory(
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory]
+    const filtered_agencies = filterCategory(
+      sorted_agencies,
+      FIELDTAB_LIST[current_category]
     );
 
-    currentPage = filteredAgencies.length - 1;
+    current_page = filtered_agencies.length - 1;
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
-  } else if (currentPage === 0) {
-    currentCategory--;
-    const filteredAgencies = filterCategory(
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory]
+  } else if (current_page === 0) {
+    current_category--;
+    const filtered_agencies = filterCategory(
+      sorted_agencies,
+      FIELDTAB_LIST[current_category]
     );
 
-    currentPage = filteredAgencies.length - 1;
+    current_page = filtered_agencies.length - 1;
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
   } else {
-    currentPage--;
+    current_page--;
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
   }
 };
 export const moveToNextPage = (
-  sortedAgencies,
-  currentPage,
-  currentCategory
+  sorted_agencies,
+  current_page,
+  current_category
 ) => {
   const nowFiltered = filterCategory(
-    sortedAgencies,
-    FIELDTAB_LIST[currentCategory],
-    currentCategory
+    sorted_agencies,
+    FIELDTAB_LIST[current_category],
+    current_category
   );
 
   if (
-    currentPage === nowFiltered.length - 1 &&
-    currentCategory === FIELDTAB_LIST.length - 1
+    current_page === nowFiltered.length - 1 &&
+    current_category === FIELDTAB_LIST.length - 1
   ) {
-    currentCategory = 0;
-    currentPage = 0;
+    current_category = 0;
+    current_page = 0;
 
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
-  } else if (currentPage === nowFiltered.length - 1) {
-    currentCategory++;
-    currentPage = 0;
+  } else if (current_page === nowFiltered.length - 1) {
+    current_category++;
+    current_page = 0;
 
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
   } else {
-    currentPage++;
+    current_page++;
     ListComponent(
-      currentPage,
-      sortedAgencies,
-      FIELDTAB_LIST[currentCategory],
-      currentCategory
+      current_page,
+      sorted_agencies,
+      FIELDTAB_LIST[current_category],
+      current_category
     );
   }
 };

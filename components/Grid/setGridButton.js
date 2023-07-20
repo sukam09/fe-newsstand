@@ -4,12 +4,12 @@ import { GridComponent } from "../GridComponent.js";
 
 export const setGridButton = (pages) => {
   let currentPage = INITIAL_PAGE;
-  const [prevBtn, nextBtn] = setButton();
+  const [prev_btn, next_btn] = setButton();
 
-  prevBtn.addEventListener("click", () => {
+  prev_btn.addEventListener("click", () => {
     GridComponent(--currentPage, pages);
   });
-  nextBtn.addEventListener("click", () => {
+  next_btn.addEventListener("click", () => {
     GridComponent(++currentPage, pages);
   });
 };

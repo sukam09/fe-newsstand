@@ -9,15 +9,15 @@ export const initGrid = (agencies) => {
   const all_press = document.querySelector(".all_press");
   all_press.setAttribute("subscribeType", true);
 
-  const prevBtn = document.querySelector(".prev-page-btn");
-  const nextBtn = document.querySelector(".next-page-btn");
+  const prev_btn = document.querySelector(".prev-page-btn");
+  const next_btn = document.querySelector(".next-page-btn");
 
-  let currentPage = INITIAL_PAGE;
+  let current_page = INITIAL_PAGE;
 
-  prevBtn.addEventListener("click", () => {
-    GridComponent(--currentPage, pages);
+  prev_btn.addEventListener("click", () => {
+    GridComponent(--current_page, pages);
   });
-  nextBtn.addEventListener("click", () => {
-    GridComponent(++currentPage, pages);
+  next_btn.addEventListener("click", () => {
+    GridComponent(++current_page, pages);
   });
 };

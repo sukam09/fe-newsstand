@@ -7,10 +7,10 @@ import { startProgress, stopProgress } from "./List/progress.js";
 import { moveToNextPage, moveToPrevPage } from "./List/setListButton.js";
 
 export const ListComponent = (
-  currentPage,
-  sortedAgencies,
+  current_page,
+  sorted_agencies,
   focus = FIELDTAB_LIST[0],
-  currentCategory
+  current_category
 ) => {
   // 초기화
   const press = document.querySelector(".press-news");
@@ -23,20 +23,20 @@ export const ListComponent = (
   }
   // setListButton(sortedAgencies, currentPage, currentCategory);
   // 해당 카테고리 언론사의 뉴스를 렌더하기 위해 필터링
-  const filteredAgencies = filterCategory(sortedAgencies, focus);
+  const filtered_agencies = filterCategory(sorted_agencies, focus);
   // 카테고리 FieldTab, 메인 및 서브 뉴스 생성
-  makeFieldTab(currentPage, sortedAgencies, focus);
-  makePressNews(filteredAgencies[currentPage]);
+  makeFieldTab(current_page, sorted_agencies, focus);
+  makePressNews(filtered_agencies[current_page]);
   stopProgress();
-  startProgress(sortedAgencies, currentPage, currentCategory);
+  startProgress(sorted_agencies, current_page, current_category);
 
-  const prevBtn = document.querySelector(".prev-page-btn");
-  const nextBtn = document.querySelector(".next-page-btn");
+  const prev_btn = document.querySelector(".prev-page-btn");
+  const next_btn = document.querySelector(".next-page-btn");
 
-  prevBtn.addEventListener("click", () => {
-    moveToPrevPage(sortedAgencies, currentPage, currentCategory);
+  prev_btn.addEventListener("click", () => {
+    moveToPrevPage(sorted_agencies, current_page, current_category);
   });
-  nextBtn.addEventListener("click", () => {
-    moveToNextPage(sortedAgencies, currentPage, currentCategory);
+  next_btn.addEventListener("click", () => {
+    moveToNextPage(sorted_agencies, current_page, current_category);
   });
 };
