@@ -11,4 +11,4 @@ function getListJSON(){
 }
 
 
-export { getGridJSON, getListJSON};
+export { getGridJSON, getListJSON };

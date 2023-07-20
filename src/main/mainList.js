@@ -48,8 +48,10 @@ function makeCategory(data){
 function addCategoryOnclick(data){
     document.querySelector(`#main-center ul`).childNodes.forEach((value, index)=>{
         value.addEventListener("click", (e) => {
-            data.forEach((value, index) => {
+            data.forEach((value, index)=> {
                 if(e.target.innerHTML  === value.category){
+                    State.setCurrentPage(1);
+                    State.setCategoryNum(index);
                     main();
                 }
             })

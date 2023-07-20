@@ -22,8 +22,8 @@ export default function controListlMinMaxException(){
      else if(currentPage > MAX_PAGE_NUMBER){
         categoryNum++;
         if(categoryNum > MAX_CATEGORY_NUM){
-            categoryNum = categoryNum % 7;
-            State.setCategoryNum(categoryNum % 7);
+            categoryNum = categoryNum % MAX_CATEGORY_NUM - 1;
+            State.setCategoryNum(categoryNum);
         }
         else{
             State.setCategoryNum(categoryNum);
