@@ -63,9 +63,19 @@ export default class NewsGrid extends Component {
   createNewspaperItem(item, mode) {
     return `
       <li class="newspaper__item">
-        <img src=${
-          mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
-        } alt=${item.name} />
+        <div class="newspaper__item__card">
+          <div class="card-front">
+            <img
+              src=${
+                mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
+              }
+              alt=${item.name}
+            />
+          </div>
+          <div class="card-back">
+              <img src="./assets/icons/SubscribeButtonWhite.svg" alt="subscribeButton" />
+          </div>
+        </div>
       </li>
     `;
   }
