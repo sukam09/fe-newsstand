@@ -34,8 +34,12 @@
   background-color: var(--grayscale-50);
 
   white-space: nowrap;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   overflow-y: hidden;
+}
+
+.press-category__ul::-webkit-scrollbar {
+  display: none;
 }
 
 .press-category__li {
