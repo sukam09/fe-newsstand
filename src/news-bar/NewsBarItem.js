@@ -1,5 +1,8 @@
 import Component from "../core/Component.js";
 
+const ROLLING_DURATION = 5000;
+const REMOVE_APPEND_DURATION = 1000;
+
 export default class NewsBarItem extends Component {
     setup() {
         setTimeout(() => {
@@ -45,7 +48,7 @@ export default class NewsBarItem extends Component {
             setTimeout(() => {
                 rollingElement.removeAttribute("style");
                 rollingElement.appendChild(rollingElement.firstElementChild);
-            }, 1000);
-        }, 5000);
+            }, REMOVE_APPEND_DURATION);
+        }, ROLLING_DURATION);
     }
 }

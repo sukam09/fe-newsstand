@@ -1,6 +1,9 @@
 import { $app } from "../app.js";
 import Component from "../core/Component.js";
 
+const COLOR_SURFACE_ALT = "#F5F7F9";
+const COLOR_SURFACE_DEFAULT = "#FFFFFF";
+
 export default class SubscribeButton extends Component {
     setup() {
         this.state = {
@@ -11,7 +14,15 @@ export default class SubscribeButton extends Component {
         };
     }
     template() {
-        const subscribeIcon = this.state.subscribed ? "closed" : "plus";
+        const subscribeIcon = this.state.subscribed
+            ? `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" alt="해지하기">
+            <path d="M3.6 9L3 8.4L5.4 6L3 3.6L3.6 3L6 5.4L8.4 3L9 3.6L6.6 6L9 8.4L8.4 9L6 6.6L3.6 9Z" fill="inherit"/>
+            </svg>
+            `
+            : `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" alt="구독하기">
+        <path d="M9.5 6.49902H6.5V9.49902H5.5V6.49902H2.5V5.49902H5.5V2.49902H6.5V5.49902H9.5V6.49902Z" fill="inherit"/>
+        </svg>
+        `;
         const subscribeText = this.state.subscribed ? "해지하기" : "구독하기";
         const showText = this.state.subscribed
             ? this.state.viewMode === "grid"
@@ -21,10 +32,27 @@ export default class SubscribeButton extends Component {
 
         return `
             <button class="subscribe-button available-medium12">
-                <img src="./asset/icons/${subscribeIcon}.svg" alt=${subscribeText} />
+                ${subscribeIcon}
                 ${showText ? `<div>${subscribeText}</div>` : ""}
             </button>
         `;
+    }
+
+    mounted() {
+        const subscribeButton = this.$target.querySelector(".subscribe-button");
+        if (this.state.viewMode === "grid") {
+            if (this.state.subscribed) {
+                subscribeButton.style.background = COLOR_SURFACE_ALT;
+            } else {
+                subscribeButton.style.background = COLOR_SURFACE_DEFAULT;
+            }
+        } else {
+            if (!this.state.subscribed) {
+                subscribeButton.style.background = COLOR_SURFACE_ALT;
+            } else {
+                subscribeButton.style.background = COLOR_SURFACE_DEFAULT;
+            }
+        }
     }
 
     setEvent() {
