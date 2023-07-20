@@ -1,5 +1,9 @@
-import { PRESS_CNT, PRESS_VIEW_COUNT } from "../constants/constants.js";
-import { store } from "../core/store.js";
+import {
+  PRESS_CNT,
+  PRESS_VIEW_COUNT,
+  PRESS_LOGO_IMG_PATH,
+  ICON_IMG_PATH,
+} from "../constants/constants.js";
 import { getPage } from "../core/getter.js";
 const imgIndex = Array(PRESS_CNT)
   .fill()
@@ -43,13 +47,10 @@ export function showGridView() {
     const button = document.createElement("button");
     button.setAttribute("class", "subscribe");
     button.innerHTML = `
-    <img src="../assets/icons/plus.svg" />
+    <img src="${ICON_IMG_PATH}plus.svg"/>
     <span>구독하기</span>
   `;
-    img.setAttribute(
-      "src",
-      `../assets/images/logo/light/img${shuffledPress[i]}.svg`
-    );
+    img.setAttribute("src", `${PRESS_LOGO_IMG_PATH}${shuffledPress[i]}.svg`);
     main_list_ul.appendChild(li);
     li.append(img, button);
     li.addEventListener("mouseover", () => handleEvent("over", img, button));

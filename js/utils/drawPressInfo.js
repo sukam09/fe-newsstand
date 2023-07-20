@@ -1,5 +1,5 @@
 import { store } from "../core/store.js";
-import { SNACKBAR_WAIT_TIME } from "../constants/constants.js";
+import { ICON_IMG_PATH, SNACKBAR_WAIT_TIME } from "../constants/constants.js";
 import { getPage, getSubscribedPress } from "../core/getter.js";
 const subscribedPress = store.state.subscribedPress;
 function handleClick(e, press) {
@@ -70,12 +70,12 @@ function showSubscribeButton(isSubscribed) {
   return isSubscribed
     ? `
       <button class="sub cancel">
-        <img src="../assets/icons/closed.svg" />
+        <img src="${ICON_IMG_PATH}/closed.svg" />
       </button>
     `
     : `
       <button class="sub subscribe">
-        <img src="../assets/icons/plus.svg" />
+        <img src="${ICON_IMG_PATH}/plus.svg" />
         <span>구독하기</span>
       </button>
       `;

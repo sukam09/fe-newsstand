@@ -1,5 +1,4 @@
 import { FIRST_PAGE_NUM, LAST_PAGE_NUM } from "../constants/constants.js";
-import { store } from "../core/store.js";
 import { getPage, getView } from "../core/getter.js";
 export function checkPage() {
   const left_btn = document.getElementById("left-btn");
