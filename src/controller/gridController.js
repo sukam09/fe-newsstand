@@ -16,6 +16,8 @@ function initGridEvent() {
 }
 
 function gridHoverIn(event) {
+  if (event.target.firstChild.src.slice(-3) !== "svg") return;
+
   event.target.style.backgroundColor = "#f5f7f9";
   const subscribeBtn = drawSubscribeBtn(event.target.firstChild.src);
   event.target.appendChild(subscribeBtn);
@@ -24,6 +26,8 @@ function gridHoverIn(event) {
 }
 
 function gridHoverOut(event) {
+  if (event.target.firstChild.src.slice(-3) !== "svg") return;
+
   event.target.style.backgroundColor = "#ffffff";
   event.target.querySelector(".list-sub-btn").remove();
   event.target.querySelector(".press-logo").style.display = "block";

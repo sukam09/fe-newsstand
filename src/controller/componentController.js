@@ -1,4 +1,5 @@
-import { CONSTANT } from "../model/variable.js";
+import { CONSTANT, GLOBAL } from "../model/variable.js";
+import { toggleSubscribe } from "./subscribeController.js";
 
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
@@ -9,7 +10,17 @@ function initSnackBarTimer() {
 }
 
 function initAlertEvent() {
-  return 0;
+  const alert = document.querySelector(".alert");
+  const yesBtn = document.querySelector(".yes-btn");
+  const noBtn = document.querySelector(".no-btn");
+
+  yesBtn.addEventListener("click", () => {
+    alert.style.display = "none";
+    toggleSubscribe(GLOBAL.TEMP_TARGET.path);
+  });
+  noBtn.addEventListener("click", () => {
+    alert.style.display = "none";
+  });
 }
 
 export { initSnackBarTimer, initAlertEvent };

@@ -70,4 +70,4 @@ function strToCategory(str) {
   return categoryMapping[str];
 }
 
-export { initData };
+export { initData, strToCategory };

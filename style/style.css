@@ -32,9 +32,3 @@ body {
   margin: 0 auto;
   padding: 58px 0 76px 0;
 }
-
-/* subscribe view */
-.grid-sub,
-.list-view-sub {
-  display: none;
-}
