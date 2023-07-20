@@ -44,7 +44,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 2s linear infinite;
+  animation: progressBar 20s linear infinite;
 }
 
 @keyframes progressBar {
@@ -78,6 +78,9 @@
 .category-name {
   font-size: 14px;
   line-height: 16.71px;
+}
+.category-name:hover {
+  text-decoration: underline;
 }
 
 .press-news {
@@ -122,12 +125,28 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  cursor: pointer;
+}
+
+.news-img {
+  width: 320px;
+  height: 200px;
+  overflow: hidden;
 }
 
 .pressImage {
-  width: 320px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--gray-scale-100);
+}
+
+.press-imageInfo:hover .pressImage {
+  transform: scale(1.05);
+  transition: all 0.2s ease-out 0s;
+}
+
+.press-imageInfo:hover .pressImage-title {
+  text-decoration: underline;
 }
 
 .pressImage-title {
@@ -143,6 +162,10 @@
   gap: 16px;
 }
 
+.press-titles p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 .pressTitles-title {
   color: var(--gray-scale-500);
   font-size: 16px;

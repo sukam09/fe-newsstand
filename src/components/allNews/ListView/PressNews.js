@@ -28,7 +28,9 @@ export default class PressNews {
     const mainTemplate = `
       <div class="press-main">
         <div class="press-imageInfo">
+          <div class="news-img">
           <img class="pressImage" src=${this.mainNews.mainArticle.thumbnail} />
+          </div>
           <span class="pressImage-title">${
             this.mainNews.mainArticle.title
           }</span>
