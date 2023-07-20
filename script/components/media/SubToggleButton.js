@@ -1,5 +1,5 @@
 import mediaData from '../../../assets/data/mediaData.js';
-import { BUTTON, MSG } from '../../constants.js';
+import { MSG } from '../../constants.js';
 import Button from '../Button.js';
 import SnackBar from '../SnackBar.js';
 import UnsubAlert from './UnsubAlert.js';
@@ -20,7 +20,7 @@ const SubButton = (id, navStore) => {
   return Button({
     icon: 'plus',
     isWhite: true,
-    text: BUTTON.SUBSCRIBE,
+    text: MSG.BUTTON_SUB,
     once: true,
     onClick: () => subscribe(id, navStore),
   });
@@ -46,7 +46,7 @@ const UnsubButton = (id, navStore, viewStore, withText) => {
   return Button({
     icon: 'close',
     isWhite: false,
-    text: withText ? BUTTON.UNSUBSCRIBE : null,
+    text: withText ? MSG.BUTTON_UNSUB : null,
     onClick: button => {
       unsubscribe(id, navStore, viewStore, button);
     },
