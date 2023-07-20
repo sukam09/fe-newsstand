@@ -21,28 +21,29 @@ export async function getNewsData() {
 
 // 뉴스리스트 요소들 보여주기
 export function showListNewsData(category, newsIdx) {
+  const categoryData = categoryObj[category][newsIdx-1];
   const contentBigNews = getQuerySelector(document, ".press-content-big-news");
-  // console.log(categoryObj[category][newsIdx-1].subNews);
-  contentBigNews.innerHTML = `<img src="${categoryObj[category][newsIdx-1].mainNews.thumbnail}">
-  <span>${categoryObj[category][newsIdx-1].mainNews.title}</span>`;
-
-  //리팩토링 고민중
-  // const pressContentNewsLogo = getQuerySelector(document, ".press-content-news-info").insertAdjacentElement("afterbegin", `<img src="${categoryObj[category][newsIdx-1].lightSrc}"/>`);
   const pressContentNewsLogo = getQuerySelector(document, ".press-content-news-info");
-  pressContentNewsLogo.innerHTML = `<img src="${categoryObj[category][newsIdx-1].lightSrc}"/>
-  <span class="press-content-news-info-time">${categoryObj[category][newsIdx-1].editDate}</span>
-  <button class="press-content-news-info-subscribe">+ 구독하기</button>
-  `
-
   const pressNewsContentHeadlines = getQuerySelector(document, ".press-content-news-headlines");
-  const putSubTitles = categoryObj[category][newsIdx-1].subNews.reduce((acc, _, idx)=> {
-    return acc + `<span class="press-content-news-title">${categoryObj[category][newsIdx-1].subNews[idx]}</span>`
-  }, "");
+
+  contentBigNews.innerHTML = `
+    <img src="${categoryData.mainNews.thumbnail}">
+    <span>${categoryData.mainNews.title}</span>
+  `;
+
   
-  // getQuerySelector(document, '.press-content-news-info-time').innerHTML = categoryObj[category][newsIdx-1].editDate;
+  pressContentNewsLogo.innerHTML = `
+    <img src="${categoryData.lightSrc}"/>
+    <span class="press-content-news-info-time">${categoryData.editDate}</span>
+    <button class="press-content-news-info-subscribe">+ 구독하기</button>
+  `;
+  
+  const putSubTitles = categoryData.subNews.reduce((acc, _, idx)=> {
+    return acc + `<span class="press-content-news-title">${categoryData.subNews[idx]}</span>`
+  }, "");
 
   pressNewsContentHeadlines.innerHTML = putSubTitles;
 
-  getQuerySelector(undefined, ".press-content-news-footer").innerHTML = `${categoryObj[category][newsIdx-1].name} 언론사에서 직접 편집한 내용입니다.`;
+  getQuerySelector(undefined, ".press-content-news-footer").innerHTML = `${categoryData.name} 언론사에서 직접 편집한 내용입니다.`;
 }
 

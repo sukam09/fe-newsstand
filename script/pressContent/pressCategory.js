@@ -1,24 +1,20 @@
 import { fetchData } from "../../utils/js/getJson.js";
 import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
 import { showListNewsData } from "./pressListChange.js";
+
 const numOfEachCategory = [];
 const nameOfEachCategory = [];
-
 const initPageValue = 1;
 let categoryIdx = 0;
 let currentPage = 1;
 
 export async function getCategoryInfo() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
-  const categoryNames = categoryPath.newsList.map((elem) => {
-    return elem.category;
-  })
+  const categoryNames = categoryPath.newsList.map((elem) => elem.category);
 
+  // 누적합 연산을 통한 카테고리 개수세기
   const categoryMap = categoryNames.reduce((acc, curr)=>{
-    if(!acc[curr]) {
-      acc[curr] = 0;
-    }
-    acc[curr] += 1;
+    acc[curr] = (acc[curr] || 0) +1;
     return acc;
   }, {})
 
@@ -41,7 +37,6 @@ export async function getCategoryInfo() {
 
   selectCategory();
   getCategoryIdx();
-
 };
 
 // 카테고리 이름 알려주는 거 (완)
@@ -85,19 +80,30 @@ function selectCategory() {
   })
 }
 
+function updatePageAndCategory(pageMoveFlag) {
+  currentPage += pageMoveFlag;
+
+  if (pageMoveFlag && currentPage > numOfEachCategory[categoryIdx]) {
+    categoryIdx += pageMoveFlag;
+    (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
+    currentPage = initPageValue;
+  }
+
+  else if (!pageMoveFlag && currentPage < 1) {
+    categoryIdx += pageMoveFlag;
+    categoryIdx < 0 && (categoryIdx = numOfEachCategory.length - 1);
+    currentPage = numOfEachCategory[categoryIdx];
+  }
+  changeCategory(categoryIdx);
+}
+
 // 화살표로 카테고리 페이지 이동하기
 export function moveCategory() {
   const listPrevArrow = getQuerySelector(undefined, "#press-content-list-prev");
   const listNextArrow = getQuerySelector(undefined, "#press-content-list-next");
 
   listPrevArrow.addEventListener('click', () => {
-    currentPage --;
-    if (currentPage < 1) {
-      categoryIdx --;
-      categoryIdx < 0 && (categoryIdx = numOfEachCategory.length-1);
-      currentPage = numOfEachCategory[categoryIdx];
-      changeCategory(categoryIdx);
-    }
+    updatePageAndCategory(-1);
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
     moveCategoryProgressbar();
@@ -106,13 +112,7 @@ export function moveCategory() {
   })
 
   listNextArrow.addEventListener('click', ()=> {
-    currentPage ++;
-    if (currentPage > numOfEachCategory[categoryIdx]) {
-      categoryIdx ++;
-      (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
-      currentPage = initPageValue;
-      changeCategory(categoryIdx);
-    }
+    updatePageAndCategory(1);
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
     moveCategoryProgressbar();
@@ -124,19 +124,10 @@ function putCurrentPage() {
   getQuerySelector(undefined, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
 }
 
-
-
 export function moveCategoryProgressbar() {
   const progressbarState = getQuerySelector(document, ".selected .press-content-category-progressbar");
   progressbarState.addEventListener('animationend', () => {
-    currentPage++;
-    console.log(currentPage, categoryIdx);
-    if (currentPage > numOfEachCategory[categoryIdx]) {
-      categoryIdx++;
-      (categoryIdx === numOfEachCategory.length) && (categoryIdx = 0);
-      currentPage = initPageValue;
-      changeCategory(categoryIdx);
-    }
+    updatePageAndCategory(1);
     putCurrentPage();
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
     restartProgressbar();

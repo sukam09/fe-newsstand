@@ -8,18 +8,24 @@ function pressViewChange() {
   const pressGridView = getQuerySelector(document, '#pressbar-icon-grid-view');
 
   pressListView.addEventListener('click', () => {
-    pressListView.childNodes[1].setAttribute("fill", "#4362D0");
-    pressGridView.childNodes[1].setAttribute("fill", "#879298");
+    updateViewButtons("list");
     showPressView("list");
     showListNewsData("종합/경제", 1); // 꼼수라서 아이디어 생각나면 고쳐야함..
     moveCategoryProgressbar();
   });
 
   pressGridView.addEventListener('click', () => {
-    pressListView.childNodes[1].setAttribute("fill", "#879298");
-    pressGridView.childNodes[1].setAttribute("fill", "#4362D0");
+    updateViewButtons("grid");
     showPressView("grid");
   });
+}
+
+function updateViewButtons(status) {
+  const pressListView = getQuerySelector(document, '#pressbar-icon-list-view');
+  const pressGridView = getQuerySelector(document, '#pressbar-icon-grid-view');
+
+  pressListView.childNodes[1].setAttribute("fill", status === "list" ? "#4362D0" : "#879298");
+  pressGridView.childNodes[1].setAttribute("fill", status === "grid" ? "#4362D0" : "#879298");
 }
 
 // 언론사 뷰 전환시 해당하는 뷰(그리드 or 리스트) 나타내기
@@ -32,7 +38,6 @@ function showPressView(status) {
   pressContentListView[0].style.display = (status === "list") ? "block" : "none";
 }
 
-// 코드 리팩토링 해야함...나중에 ....
 function selectArrow(status) {
   const listPrevArrow = getQuerySelector(document, "#press-content-list-prev");
   const listNextArrow = getQuerySelector(document, "#press-content-list-next");
@@ -40,19 +45,10 @@ function selectArrow(status) {
   const gridPrevArrow = getQuerySelector(document, "#press-content-grid-prev");
   const gridNextArrow = getQuerySelector(document, "#press-content-grid-next");
 
-  if (status === "grid") {
-    listPrevArrow.style.display = "none";
-    listNextArrow.style.display = "none";
-    gridPrevArrow.style.display = "none";
-    gridNextArrow.style.display = "block";
-  }
-
-  else if (status === "list") {
-    listPrevArrow.style.display = "block";
-    listNextArrow.style.display = "block";
-    gridPrevArrow.style.display = "none";
-    gridNextArrow.style.display = "none";
-  }
+  listPrevArrow.style.display = status === "list" ? "block" : "none";
+  listNextArrow.style.display = status === "list" ? "block" : "none";
+  gridPrevArrow.style.display = status === "grid" ? "none" : "block";
+  gridNextArrow.style.display = status === "grid" ? "none" : "block";
 
 }
 
