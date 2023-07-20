@@ -1,11 +1,15 @@
 import { html } from '../core/createElement.js';
-function createCategoryHtml(categorys, NEWCATEGORY, CURRENT_INDEX, KEY) {
-  const categoryCount = categorys.filter((name) => name === KEY).length;
+import { globalStore } from '../store/globalVarStore.js';
+
+function createCategoryHtml(NEWCATEGORY, KEY) {
   let htmls = '';
   NEWCATEGORY.map((category) => {
     if (category === KEY) {
       htmls += html`
-        <div class="category-item select-category">${category} <span></span> ${CURRENT_INDEX + 1}/${categoryCount}</div>
+        <div class="category-item select-category">
+          ${category} <span></span> ${globalStore.state.전체언론_리스트.뉴스_인덱스 + 1}/${globalStore.state
+            .전체언론_리스트.전체카테고리}
+        </div>
       `;
     } else {
       htmls += html` <div class="category-item">${category}</div> `;

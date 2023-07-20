@@ -1,13 +1,35 @@
+import { globalStore } from '../store/globalVarStore.js';
+
 const newsList = document.querySelector('.newsstand__tab-list img');
 const newsGrid = document.querySelector('.newsstand__tab-thumb img');
 const mediaArea = document.querySelector('.newsstand__media-area');
 const listArea = document.querySelector('.newsstand__list-area');
 const assetsPath = './assets/';
-const tabImgs = {
+const Tab_Imgs = {
   btnListOff: `${assetsPath}list-view-off.svg`,
   btnListOn: `${assetsPath}list-view-on.svg`,
   thumbOff: `${assetsPath}grid-view-off.svg`,
   thumbOn: `${assetsPath}grid-view-on.svg`,
+};
+const UI_Type = {
+  list: () => {
+    newsList.disabled = false;
+    newsGrid.disabled = true;
+    newsList.src = Tab_Imgs.btnListOn;
+    newsGrid.src = Tab_Imgs.thumbOff;
+    mediaArea.classList.add('disabled');
+    listArea.classList.remove('disabled');
+    globalStore.commit('updateKey', '전체언론_리스트');
+  },
+  grid: () => {
+    newsList.disabled = true;
+    newsGrid.disabled = false;
+    newsList.src = Tab_Imgs.btnListOff;
+    newsGrid.src = Tab_Imgs.thumbOn;
+    mediaArea.classList.remove('disabled');
+    listArea.classList.add('disabled');
+    globalStore.commit('updateKey', '전체언론_그리드_인덱스');
+  },
 };
 
 function initNewsTabEvent() {
@@ -18,30 +40,15 @@ function initNewsTabEvent() {
 }
 
 function handleListTab() {
-  console.log('list');
   changeTabButton('list');
 }
 function handleGridTab() {
-  console.log('grid');
   changeTabButton('grid');
 }
 
 function changeTabButton(type) {
-  if (type === 'list') {
-    newsList.disabled = false;
-    newsGrid.disabled = true;
-    newsList.src = tabImgs.btnListOn;
-    newsGrid.src = tabImgs.thumbOff;
-    mediaArea.classList.add('disabled');
-    listArea.classList.remove('disabled');
-  } else if (type === 'grid') {
-    newsList.disabled = true;
-    newsGrid.disabled = false;
-    newsList.src = tabImgs.btnListOff;
-    newsGrid.src = tabImgs.thumbOn;
-    mediaArea.classList.remove('disabled');
-    listArea.classList.add('disabled');
-  }
+  if (type === 'list') UI_Type.list();
+  else if (type === 'grid') UI_Type.grid();
 }
 
 export { initNewsTabEvent };

@@ -1,137 +1,69 @@
 import { getNewsListData } from '../core/apis.js';
 import { createCategoryHtml } from '../components/newsCategory.js.js';
-import { attachEventListener, detachEventListener } from '../core/eventListener.js';
 import { createNewsListHtml } from '../components/newsStandList.js';
 import { shuffle } from '../utils/utils.js';
 import { subScribeStore } from '../store/subScribeStore.js';
+import { globalStore } from '../store/globalVarStore.js';
+import { reRenderComponent } from '../utils/reRenderComponent.js';
 
-let CATEGORY = [];
-let NEWS_LIST = [];
-let KEY = '';
-let CURRENT_CATEGORY = 0;
-let CURRENT_INDEX = 0;
-let NEWCATEGORY = [];
+let EntireCateGoryCount = 0;
 
 async function initNewsStandList() {
-  CURRENT_CATEGORY = 0;
-  CURRENT_INDEX = 0;
-
   const datas = await getNewsListData();
-  CATEGORY = getCategoryList(datas);
-  NEWCATEGORY = categorysParser(CATEGORY);
-  KEY = NEWCATEGORY[0];
-  createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-  NEWS_LIST = getNewsListFilter(NEWCATEGORY, datas);
-  createNewsListHtml(NEWS_LIST[0][0]);
-  isProgressBarEnd();
-  selectCategoryEvent();
+
+  const [category, categorysList] = getCategoryDataPaser(datas);
+  EntireCateGoryCount = category.length;
+  const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
+
+  const categoryCount = categorysList.filter((name) => name === KEY).length;
+  globalStore.commit('updateCateGoryCount', categoryCount);
+
+  createCategoryHtml(category, KEY);
+  const NEWS_LIST = getCurrentNewsList(category, datas);
+  createNewsListHtml(
+    NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
+  );
+
+  isProgressBarFinish();
+  moveSelectedCategory(category);
 }
 
-function handleRightBtn() {
-  const newNewsList = nextNewsList();
-  reCreateNewsStandList(newNewsList);
-}
-function handleLeftBtn() {
-  const newNewsList = prevNewsList();
-  reCreateNewsStandList(newNewsList);
-}
-
-function toggleListEventListner(type) {
-  const rightBtn = document.querySelector('.newslist--right-btn');
-  const leftBtn = document.querySelector('.newslist--left-btn');
-
-  if (type === 'attach') {
-    attachEventListener('click', rightBtn, handleRightBtn);
-    attachEventListener('click', leftBtn, handleLeftBtn);
-    isBtnDisabled();
-  } else if (type === 'detach') {
-    detachEventListener('click', rightBtn, handleRightBtn);
-    detachEventListener('click', leftBtn, handleLeftBtn);
-    document.querySelector('.news-Rbtn').classList.remove('newslist--right-btn');
-    document.querySelector('.news-Lbtn').classList.remove('newslist--left-btn');
-  }
-}
-
-function nextNewsList() {
-  if (CURRENT_INDEX === NEWS_LIST[CURRENT_CATEGORY].length - 1) {
-    CURRENT_CATEGORY++;
-    if (CURRENT_CATEGORY === 7) CURRENT_CATEGORY = 0;
-    CURRENT_INDEX = 0;
-    KEY = NEWCATEGORY[CURRENT_CATEGORY];
-    return NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX];
-  } else {
-    return NEWS_LIST[CURRENT_CATEGORY][++CURRENT_INDEX];
-  }
-}
-
-function prevNewsList() {
-  CURRENT_INDEX -= 1;
-  if (CURRENT_INDEX < 0) {
-    KEY = NEWCATEGORY[--CURRENT_CATEGORY];
-    CURRENT_INDEX = CATEGORY.filter((name) => name === KEY).length - 1;
-  }
-  return NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX];
-}
-
-function getCategoryList(datas) {
-  return datas.map((data) => data.category);
-}
-
-function getNewsListFilter(category, datas) {
+function getCurrentNewsList(category, datas) {
   const newsList = [];
   category.forEach((d) => newsList.push(datas.filter((data) => data.category === d)));
   return newsList;
 }
 
-function categorysParser(datas) {
-  return shuffle([...new Set(datas)]);
+function getCategoryDataPaser(datas) {
+  const categorys = datas.map((data) => data.category);
+  const newData = [...new Set(categorys)];
+  return [newData, categorys]; // [카테고리, 중복제거 안한 카테고리]
 }
 
-function isBtnDisabled() {
-  const leftBtn = document.querySelector('.newslist--left-btn');
-  CURRENT_CATEGORY === 0 && CURRENT_INDEX === 0
-    ? leftBtn.classList.add('disabled')
-    : leftBtn.classList.remove('disabled');
-}
-
-function isProgressBarEnd() {
+function isProgressBarFinish() {
   const progressBar = document.querySelector('.select-category');
-  attachEventListener('animationiteration', progressBar, () => {
-    const newNewsList = nextNewsList();
-    reCreateNewsStandList(newNewsList);
-  });
+  progressBar.addEventListener('animationiteration', () => progressBarHandler());
 }
 
-function reCreateNewsStandList(newNewsList) {
-  createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-  createNewsListHtml(newNewsList);
-  const btnSubscribe = document.querySelector('.header-btn-subscribe');
-  btnSubscribe.addEventListener('click', (e) => isSubScribeHandler(e));
-  isBtnDisabled();
-  isProgressBarEnd();
-}
-
-const isSubScribeHandler = (e) => {
-  const data = e.target.parentElement.querySelector('.list-header-title').textContent;
-  if (!subScribeStore.getGetter('getsubscribeData').includes(data)) {
-    subScribeStore.commit('setState', data);
-    e.target.textContent = 'X';
-  } else {
-    subScribeStore.commit('updateState', data);
-    e.target.textContent = '+ 구독하기';
+const progressBarHandler = () => {
+  globalStore.commit('nextIndex', '전체언론_리스트');
+  if (globalStore.state.전체언론_리스트.뉴스_인덱스 >= globalStore.state.전체언론_리스트.전체카테고리) {
+    globalStore.commit('nextCategoryIndex');
+    if (EntireCateGoryCount - 1 < globalStore.state.전체언론_리스트.카테고리_인덱스)
+      globalStore.commit('resetNewsList');
   }
+  reRenderComponent('LIST_ALL');
 };
 
-function selectCategoryEvent() {
-  const categoryEle = document.querySelector('.newsstand__category');
-  categoryEle.addEventListener('click', (e) => {
-    KEY = e.target.textContent;
-    CURRENT_INDEX = 0;
-    CURRENT_CATEGORY = NEWCATEGORY.indexOf(KEY);
-    createCategoryHtml(CATEGORY, NEWCATEGORY, CURRENT_INDEX, KEY);
-    createNewsListHtml(NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX]);
-    isProgressBarEnd();
-    selectCategoryEvent();
-  });
+function moveSelectedCategory(category) {
+  const categoryElement = document.querySelector('.newsstand__category');
+  categoryElement.addEventListener('click', (e) => moveSelectedCategoryHandler(e, category));
 }
-export { initNewsStandList, toggleListEventListner };
+
+const moveSelectedCategoryHandler = (e, category) => {
+  const text = e.target.textContent;
+  globalStore.commit('resetNewsIndex');
+  globalStore.commit('updateCategoryIndex', category.indexOf(text));
+  reRenderComponent('LIST_ALL');
+};
+export { initNewsStandList };
