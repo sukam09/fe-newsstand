@@ -21,10 +21,10 @@ const rightHeadlineData = await makeRightHeadlineData();
 // 인터벌 시간
 const SET_TIME = 5000; // 롤링되는 주기 입니다 (1000 => 1초)
 
-const MAIN_CORP_CLASS_NAME_LFET = ".main__rolling-corp-left";
-const MAIN_TITLE_CLASS_NAME_LEFT = ".main__rolling-title-left";
-const MAIN_CORP_CLASS_NAME_RIGHT = ".main__rolling-corp-right";
-const MAIN_TITLE_CLASS_NAME_RIGHT = ".main__rolling-title-right";
+const CLASS_LEFT_CORP = ".main__rolling-corp-left";
+const CLASS_LEFT_TITLE = ".main__rolling-title-left";
+const CLASS_RIGHT_CORP = ".main__rolling-corp-right";
+const CLASS_RIGHT_TITLE = ".main__rolling-title-right";
 
 // 발행사와 제목 태그 생성
 makeCorpViewTag();
@@ -135,8 +135,8 @@ function moveLeftContent() {
     }
 
     replaceText(
-      MAIN_CORP_CLASS_NAME_LFET,
-      MAIN_TITLE_CLASS_NAME_LEFT,
+      CLASS_LEFT_CORP,
+      CLASS_LEFT_TITLE,
       currentChildIndex[0],
       dataCnt[0],
       leftHeadlineData
@@ -185,8 +185,8 @@ function moveRightContent() {
   }
 
   replaceText(
-    MAIN_CORP_CLASS_NAME_RIGHT,
-    MAIN_TITLE_CLASS_NAME_RIGHT,
+    CLASS_RIGHT_CORP,
+    CLASS_RIGHT_TITLE,
     currentChildIndex[1],
     dataCnt[1],
     rightHeadlineData
