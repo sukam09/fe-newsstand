@@ -1,4 +1,4 @@
-export const class_name = {
+export const DOM = {
     // mainNav
     MAIN_NAV: "container_main_nav",
     NAV_GRID_ICON: "nav-right_grid_icon",
@@ -26,4 +26,8 @@ export const class_name = {
     LIST_PRESS_NEWS: "list-view-press-news",
     LIST_TAB_ITEM: "tab-item",
     LIST_TAB_ITEM_CLICKED: "tab-item-clicked",
+
+    // tab
+    TAB_ITEM: "tab-item",
+    TAB_CLICKED: "tab-item-clicked",
 };

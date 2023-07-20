@@ -2,7 +2,7 @@ import { GRID_ROW_SIZE, GRID_COL_SIZE, SNACK_BAR_TIME } from "../utils/constant.
 import { grid_view_info_entire, grid_view_info_sub } from "../components/grid/gridObserver.js";
 import { toggleArrow } from "../components/grid/gridArrow.js";
 import { create } from "../utils/createElement.js";
-import { class_name } from "../utils/domClassName.js";
+import { DOM } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
@@ -26,13 +26,13 @@ export function createMainGrid(grid_view_info, isInit) {
     for (let i = 0; i < GRID_COL_SIZE; i++) {
         const $list = create.ul({});
         for (let j = 0; j < GRID_ROW_SIZE; j++) {
-            let list_class_name = "";
-            if (i == GRID_COL_SIZE - 1 && j == GRID_ROW_SIZE - 1) list_class_name = "border_bottom border_right";
-            else if (i == GRID_COL_SIZE - 1) list_class_name = "border_bottom";
-            else if (j == GRID_ROW_SIZE - 1) list_class_name = "border_right";
+            let list_DOM = "";
+            if (i == GRID_COL_SIZE - 1 && j == GRID_ROW_SIZE - 1) list_DOM = "border_bottom border_right";
+            else if (i == GRID_COL_SIZE - 1) list_DOM = "border_bottom";
+            else if (j == GRID_ROW_SIZE - 1) list_DOM = "border_right";
 
             if (data_list.length <= cnt) {
-                const $grid = create.li({ className: list_class_name });
+                const $grid = create.li({ className: list_DOM });
                 $list.appendChild($grid);
                 continue;
             }
@@ -81,7 +81,7 @@ export function createMainGrid(grid_view_info, isInit) {
             $mouse_hover_btn.appendChild($subscribe_btn.getButton());
 
             const $list_item = create.li({
-                className: list_class_name,
+                className: list_DOM,
                 events: {
                     mouseenter: () => {
                         $mouse_hover_btn.style.visibility = "visible";
@@ -105,9 +105,7 @@ export function createMainGrid(grid_view_info, isInit) {
 function createGridArrowBtn(btnFactory, isRight, is_subscribe, grid_view_info) {
     return btnFactory.create({
         type: "arrow",
-        className: isRight
-            ? `${class_name.GRID_RIGHT_BTN}-${is_subscribe}`
-            : `${class_name.GRID_LEFT_BTN}-${is_subscribe}`,
+        className: isRight ? `${DOM.GRID_RIGHT_BTN}-${is_subscribe}` : `${DOM.GRID_LEFT_BTN}-${is_subscribe}`,
         events: {
             click: () => {
                 grid_view_info.setPage(isRight);
@@ -129,6 +127,6 @@ function createGridView(is_subscribe, grid_view_info) {
 }
 
 export function gridView(is_init) {
-    createGridView(class_name.ENTIRE, grid_view_info_entire);
-    createGridView(class_name.SUBSCRIBE, grid_view_info_sub);
+    createGridView(DOM.ENTIRE, grid_view_info_entire);
+    createGridView(DOM.SUBSCRIBE, grid_view_info_sub);
 }

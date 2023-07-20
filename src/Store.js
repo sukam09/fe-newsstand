@@ -16,24 +16,24 @@ class Subject {
 class subscribeSubject extends Subject {
     addState(press_idx) {
         this._state.push(press_idx);
-        this.notifyAll();
+        this.notifyAll(true);
     }
 
     deleteState(press_idx) {
         this._state = this._state.filter((idx) => idx !== press_idx);
-        this.notifyAll();
+        this.notifyAll(false);
     }
 
     getIdx() {
         return this._state;
     }
 
-    notifyAll() {
+    notifyAll(is_add) {
         this._observers.forEach((sbs) => {
             try {
-                sbs.update(this._state);
+                sbs.update(this._state, is_add);
             } catch (err) {
-                console.error("observer error", err);
+                console.error("observer error", idx, err);
             }
         });
     }

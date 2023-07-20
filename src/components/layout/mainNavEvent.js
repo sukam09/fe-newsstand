@@ -1,14 +1,10 @@
-import { class_name } from "../../utils/domClassName.js";
-import { list_view_subscribe } from "../list/listObserver.js";
-import { list_view_entire } from "../list/listEntireObserver.js";
+import { DOM } from "../../utils/domClassName.js";
+import { list_view_entire } from "../list/listObserverEntire.js";
+import { list_view_subscribe } from "../list/listObserverSub.js";
 
-const view_info_tmp = (function () {
+const view_info = (function () {
     let is_grid_view = true;
     let is_subscribe_view = false;
-
-    function printState() {
-        console.log(is_grid_view, is_subscribe_view);
-    }
 
     function getIsGridView() {
         return is_grid_view;
@@ -34,14 +30,14 @@ const view_info_tmp = (function () {
     }
 
     function changeView(is_init) {
-        const grid_icon = document.querySelector(`.${class_name.NAV_GRID_ICON}`);
-        const list_icon = document.querySelector(`.${class_name.NAV_LIST_ICON}`);
+        const grid_icon = document.querySelector(`.${DOM.NAV_GRID_ICON}`);
+        const list_icon = document.querySelector(`.${DOM.NAV_LIST_ICON}`);
         const entire_btn = document.querySelector(".nav-left_entire");
         const subscribe_btn = document.querySelector(".nav-left_subscribe");
-        const grid_entire_view = document.querySelector(`.${class_name.GRID_ENTIRE_VIEW}`);
-        const grid_sub_view = document.querySelector(`.${class_name.GRID_SUBSCRIBE_VIEW}`);
-        const list_entire_view = document.querySelector(`.${class_name.LIST_ENTIRE_VIEW}`);
-        const list_sub_view = document.querySelector(`.${class_name.LIST_SUBSCRIBE_VIEW}`);
+        const grid_entire_view = document.querySelector(`.${DOM.GRID_ENTIRE_VIEW}`);
+        const grid_sub_view = document.querySelector(`.${DOM.GRID_SUBSCRIBE_VIEW}`);
+        const list_entire_view = document.querySelector(`.${DOM.LIST_ENTIRE_VIEW}`);
+        const list_sub_view = document.querySelector(`.${DOM.LIST_SUBSCRIBE_VIEW}`);
 
         if (is_subscribe_view) {
             entire_btn.classList.remove("selected-bold16");
@@ -83,8 +79,8 @@ const view_info_tmp = (function () {
                 list_view_subscribe.removeInterval();
                 list_view_entire.initProgressBar({
                     category_old: list_view_entire.getCategoryNow(),
-                    category_now: 1,
-                    page_num: 1,
+                    category_now: 0,
+                    page_num: 0,
                 });
             }
             is_subscribe_view
@@ -99,7 +95,6 @@ const view_info_tmp = (function () {
         setToEntireView,
         setToGridView,
         setToListView,
-        printState,
         getIsGridView,
         getIsSubscribeView,
     };
@@ -107,21 +102,21 @@ const view_info_tmp = (function () {
 
 export function onClickSubBtn(is_subscribe, is_init) {
     is_subscribe
-        ? view_info_tmp.setToSubscribeView().then(() => {
-              view_info_tmp.changeView(is_init);
+        ? view_info.setToSubscribeView().then(() => {
+              view_info.changeView(is_init);
           })
-        : view_info_tmp.setToEntireView().then(() => {
-              view_info_tmp.changeView(is_init);
+        : view_info.setToEntireView().then(() => {
+              view_info.changeView(is_init);
           });
 }
 
 export function onClickViewBtn(is_grid) {
     is_grid
-        ? view_info_tmp.setToGridView().then(view_info_tmp.changeView)
-        : view_info_tmp.setToListView().then(view_info_tmp.changeView);
+        ? view_info.setToGridView().then(view_info.changeView)
+        : view_info.setToListView().then(view_info.changeView);
 }
 
-export function isListSubscribe() {
-    if (!view_info_tmp.getIsGridView() && view_info_tmp.getIsSubscribeView) return true;
+export function isListSubscribeView() {
+    if (!view_info.getIsGridView() && view_info.getIsSubscribeView()) return true;
     return false;
 }

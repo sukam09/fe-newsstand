@@ -1,7 +1,6 @@
-import { GRID_SIZE } from "../../utils/constant.js";
+import { GRID_SIZE, PRESS_IDX } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
-import { class_name } from "../../utils/domClassName.js";
-import { press_idx } from "../../../data/subscribeIdxList.js";
+import { DOM } from "../../utils/domClassName.js";
 import { createMainGrid } from "../../container/gridViewTemplate.js";
 import { _sub_press_list } from "../../Store.js";
 
@@ -9,8 +8,8 @@ class gridViewInfo {
     constructor(data, isSub) {
         this.current_page = 0;
         this.data = data;
-        this.left_btn_name = `.${class_name.GRID_LEFT_BTN}-${isSub}`;
-        this.right_btn_name = `.${class_name.GRID_RIGHT_BTN}-${isSub}`;
+        this.left_btn_name = `.${DOM.GRID_LEFT_BTN}-${isSub}`;
+        this.right_btn_name = `.${DOM.GRID_RIGHT_BTN}-${isSub}`;
         this.class_name = `.grid-${isSub}`;
         _sub_press_list.subscribe(this);
     }
@@ -71,7 +70,7 @@ class gridViewSub extends gridViewInfo {
 }
 
 export const grid_view_info_entire = new gridViewEntire(
-    press_idx.slice().sort(() => Math.random() - 0.5),
-    class_name.ENTIRE
+    PRESS_IDX.slice().sort(() => Math.random() - 0.5),
+    DOM.ENTIRE
 );
-export const grid_view_info_sub = new gridViewSub([], class_name.SUBSCRIBE);
+export const grid_view_info_sub = new gridViewSub([], DOM.SUBSCRIBE);

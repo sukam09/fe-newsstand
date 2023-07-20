@@ -1,16 +1,15 @@
-import { news_category } from "../../data/newsCategory.js";
-import { CATEGORY_COUNT_ARR, IMG_EXPAND, IMG_NORM, SNACK_BAR_TIME } from "../utils/constant.js";
-import { class_name } from "../utils/domClassName.js";
+import { DOM } from "../utils/domClassName.js";
+import { CATEGORY_COUNT_ARR, IMG_EXPAND, IMG_NORM, SNACK_BAR_TIME, NEWS_CATEGORY } from "../utils/constant.js";
 import { create } from "../utils/createElement.js";
-import { buttonFacotry } from "../components/common/btnfactory.js";
 import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
 import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
-import { list_view_subscribe } from "../components/list/listObserver.js";
 import { _sub_press_list } from "../Store.js";
-import { list_view_entire } from "../components/list/listEntireObserver.js";
+import { list_view_subscribe } from "../components/list/listObserverSub.js";
+import { list_view_entire } from "../components/list/listObserverEntire.js";
+import { buttonFacotry } from "../components/common/btnfactory.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
@@ -54,8 +53,8 @@ function createCategoryBtn(category_name, category_size, idx) {
             click: () =>
                 list_view_entire.initProgressBar({
                     category_old: list_view_entire.getCategoryNow(),
-                    category_now: idx + 1,
-                    page_num: 1,
+                    category_now: idx,
+                    page_num: 0,
                 }),
         },
     });
@@ -100,12 +99,12 @@ function createCategoryBtn(category_name, category_size, idx) {
 // 뉴스 탭 생성
 export function createNewsNav(subscribe_mode, state) {
     const $container = create.nav({ className: "list-view-tab" });
-    if (subscribe_mode === class_name.SUBSCRIBE) {
+    if (subscribe_mode === DOM.LIST_SUBSCRIBE_VIEW) {
         state.forEach((news, idx) => {
             $container.appendChild(createPressBtn(news.press, idx));
         });
     } else {
-        news_category.forEach((category_data, idx) => {
+        NEWS_CATEGORY.forEach((category_data, idx) => {
             $container.appendChild(createCategoryBtn(category_data, CATEGORY_COUNT_ARR[idx], idx));
         });
     }
@@ -113,22 +112,23 @@ export function createNewsNav(subscribe_mode, state) {
 }
 
 // 언론사 정보 생성
-function createPressInfo(press_src, press_edit_date, subscribe_mode, press_id, press_name, is_subscribe) {
+function createPressInfo(press_news, subscribe_mode, is_subscribe) {
     const $container = create.div({ className: "list-view-press-info" });
-    if (!press_src) return $container;
+    if (!press_news.press_light_src) return $container;
 
-    const $img = create.img({ className: "press_img", attributes: { src: press_src, alt: "press-logo" } });
-    const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_edit_date });
+    const $img = create.img({
+        className: "press_img",
+        attributes: { src: press_news.press_light_src, alt: "press-logo" },
+    });
+    const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_news.edit_date });
 
     let $subscribe_btn;
-    if (subscribe_mode === class_name.SUBSCRIBE || is_subscribe) {
+    if (subscribe_mode === DOM.LIST_SUBSCRIBE_VIEW || is_subscribe) {
         $subscribe_btn = btnFactory
             .create({
                 type: "closed",
                 events: {
-                    click: () => {
-                        $container.appendChild(createAlert(press_name, press_id));
-                    },
+                    click: () => $container.appendChild(createAlert(press_news.press, press_news.press_id)),
                 },
             })
             .getButton();
@@ -142,8 +142,8 @@ function createPressInfo(press_src, press_edit_date, subscribe_mode, press_id, p
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            _sub_press_list.addState(press_id);
                             onClickSubBtn(true, false);
+                            _sub_press_list.addState(press_news.press_id);
                         }, SNACK_BAR_TIME);
                     },
                 },
@@ -220,8 +220,8 @@ function createMainNews(thumbnail, main_news) {
 // 언론사 뉴스 생성
 export function createPressNews(news_category_press, isInit, subscribe_mode, is_subscribe) {
     const $container = isInit
-        ? create.div({ className: class_name.LIST_PRESS_NEWS })
-        : document.querySelector(`.list-${subscribe_mode}`).querySelector(`.${class_name.LIST_PRESS_NEWS}`);
+        ? create.div({ className: DOM.LIST_PRESS_NEWS })
+        : document.querySelector(`.${subscribe_mode}`).querySelector(`.${DOM.LIST_PRESS_NEWS}`);
 
     const $news_content = create.div({ className: "list-view-news" });
 
@@ -229,23 +229,13 @@ export function createPressNews(news_category_press, isInit, subscribe_mode, is_
         createMainNews(news_category_press.main_news_thumbnail, news_category_press.main_news),
         createSubNews(news_category_press.press, news_category_press.sub_news)
     );
-    $container.append(
-        createPressInfo(
-            news_category_press.press_light_src,
-            news_category_press.edit_date,
-            subscribe_mode,
-            news_category_press.press_id,
-            news_category_press.press,
-            is_subscribe
-        ),
-        $news_content
-    );
+    $container.append(createPressInfo(news_category_press, subscribe_mode, is_subscribe), $news_content);
     return $container;
 }
 
 // 언론사 뉴스 삭제 후 다시 렌더
 export function renderPressNews(news_category_press, subscribe_mode, is_subscribe) {
-    document.querySelector(`.list-${subscribe_mode}`).querySelector(`.${class_name.LIST_PRESS_NEWS}`).innerHTML = "";
+    document.querySelector(`.${subscribe_mode}`).querySelector(`.${DOM.LIST_PRESS_NEWS}`).innerHTML = "";
     createPressNews(news_category_press, false, subscribe_mode, is_subscribe);
 }
 
@@ -253,7 +243,7 @@ export function renderPressNews(news_category_press, subscribe_mode, is_subscrib
 export function createListViewMain(news_category_press, subscribe_mode, is_init, subscribe_list) {
     const $container = is_init
         ? create.div({ className: "main-list-view-news-list" })
-        : document.querySelector(`.list-${subscribe_mode}`).querySelector(".main-list-view-news-list");
+        : document.querySelector(`.${subscribe_mode}`).querySelector(".main-list-view-news-list");
     $container.innerHTML = "";
 
     $container.append(
@@ -267,28 +257,18 @@ export function createListViewMain(news_category_press, subscribe_mode, is_init,
 function createListArrowBtn(btnFactory, is_right, subscribe_mode) {
     return btnFactory.create({
         type: "arrow",
-        className: is_right
-            ? `${class_name.LIST_RIGHT_BTN}-${subscribe_mode}`
-            : `${class_name.LIST_LEFT_BTN}-${subscribe_mode}`,
+        className: is_right ? `${DOM.LIST_RIGHT_BTN}-${subscribe_mode}` : `${DOM.LIST_LEFT_BTN}-${subscribe_mode}`,
         events:
-            subscribe_mode === class_name.SUBSCRIBE
-                ? {
-                      click: () => {
-                          list_view_subscribe.onClickArrowBtn(is_right);
-                      },
-                  }
-                : {
-                      click: () => {
-                          list_view_entire.onClickArrowBtn(is_right);
-                      },
-                  },
+            subscribe_mode === DOM.LIST_SUBSCRIBE_VIEW
+                ? { click: () => list_view_subscribe.onClickArrowBtn(is_right) }
+                : { click: () => list_view_entire.onClickArrowBtn(is_right) },
         isRight: is_right,
     });
 }
 
 // 리스트 뷰 뉴스 생성
-export function createListView(news_category_press, subscribe_mode) {
-    const $container = document.querySelector(`.list-${subscribe_mode}`);
+function createListView(news_category_press, subscribe_mode) {
+    const $container = document.querySelector(`.${subscribe_mode}`);
 
     $container.append(
         createListArrowBtn(btnFactory, false, subscribe_mode).getButton(),
@@ -298,6 +278,6 @@ export function createListView(news_category_press, subscribe_mode) {
 }
 
 export function listView() {
-    createListView(list_news_data[0].news[0], class_name.ENTIRE);
-    createListView(init_news_data, class_name.SUBSCRIBE);
+    createListView(list_news_data[0].news[0], DOM.LIST_ENTIRE_VIEW);
+    createListView(init_news_data, DOM.LIST_SUBSCRIBE_VIEW);
 }
