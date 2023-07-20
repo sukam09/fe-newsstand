@@ -30,6 +30,16 @@ const filterSubscribePress = (copy_agencies) => {
   return copy_agencies;
 };
 
+const getPressName = () => {
+  // FIELDTAB_LIST 생성해주기 ..
+  const subscribed_name = store.subscriptions
+    .filter((agency) => agency.subscribe === true)
+    .map((li) => {
+      return li.name;
+    });
+  return subscribed_name;
+};
+
 export const viewSelectHandler = (agencies) => {
   // Grid 뷰 선택 시
   const setGrid = () => {
@@ -84,9 +94,23 @@ export const viewSelectHandler = (agencies) => {
 
     // 내가 구독한 언론사일 때 넘길 로직 구현
     if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
-      let subscribed_list;
-      // FIELDTAB_LIST 생성해주기 ..
+      // sorted_agencies 역할을 할 예정
+      copy_agencies = filterSubscribePress(copy_agencies);
+
+      // FIELDTAB_LIST 역할을 할 예정
+      const subscribed_list = getPressName();
+
+      setListButton(copy_agencies, current_page, current_category);
+      ListComponent(
+        INITIAL_PAGE,
+        copy_agencies,
+        subscribed_list[current_category],
+        current_category
+      );
     }
+    // else{}
+
+    // 전체 언론사
     const sorted_agencies = sortCategory(agencies);
 
     setListButton(sorted_agencies, current_page, current_category);
@@ -96,8 +120,6 @@ export const viewSelectHandler = (agencies) => {
       FIELDTAB_LIST[current_category],
       current_category
     );
-
-    // list view 생성
   };
 
   grid_btn.addEventListener("click", setGrid);
