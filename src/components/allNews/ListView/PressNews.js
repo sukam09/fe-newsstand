@@ -1,18 +1,19 @@
 import { createSubscribeButton } from "../SubscribeButton.js";
 import Logo from "../../common/Logo.js";
+import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
 
 export default class PressNews {
   constructor(pressData) {
     this.$wrapper = document.createElement("main");
     this.$wrapper.className = "press-news";
-    this.page = 0;
 
     this.pressData = pressData;
-    this.mainNews = this.pressData[this.page];
+    this.mainNews = this.pressData[0];
 
     this.render();
   }
 
+  /** 렌더링 */
   render() {
     this.$wrapper.replaceChildren();
 
@@ -54,9 +55,59 @@ export default class PressNews {
     return $logoImg;
   }
 
-  goNextPage(page) {
-    this.page = page;
-    this.mainNews = this.pressData[this.page];
+  /** 다음 뉴스페이지로 이동 */
+  goNextPage() {
+    this.newRender();
+  }
+
+  /** 왼쪽 화살표 버튼 클릭  */
+  goPreviousPageByArrowBtn() {
+    this.decreaseCurrentPage.call(categoriesObj);
+    this.newRender();
+  }
+
+  /** 오른쪽 화살표 버튼 클릭 시  */
+  goNextPageByArrowBtn() {
+    this.increaseCurrentPage.call(categoriesObj);
+    this.newRender();
+  }
+
+  /** 현재 페이지 증가  */
+  decreaseCurrentPage() {
+    this.currentPage -= 1;
+    let targetCategory = Object.keys(this.categories)[this.currentCategory - 1];
+    if (this.currentPage < 1) {
+      this.currentCategory -= 1;
+      if (this.currentCategory < 0) {
+        this.currentCategory = CATEGORIES_COUNT - 1;
+        targetCategory = Object.keys(this.categories)[this.currentCategory];
+        this.currentPage = this.categories[targetCategory].press.length - 1;
+      }
+      this.currentPage = this.categories[targetCategory].press.length;
+    }
+    clearInterval(this.interval);
+    this.handleProgress();
+  }
+
+  /** 현재 페이지 감소 */
+  increaseCurrentPage() {
+    this.currentPage += 1;
+    const targetCategory = Object.keys(this.categories)[this.currentCategory];
+    if (this.categories[targetCategory].press.length < this.currentPage) {
+      this.currentPage = 1;
+      this.currentCategory += 1;
+      if (this.currentCategory === CATEGORIES_COUNT) {
+        this.currentCategory = 0;
+        this.currentPage = 1;
+      }
+    }
+    clearInterval(this.interval);
+    this.handleProgress();
+  }
+
+  /** 새로운 페이지 렌더링 */
+  newRender() {
+    this.mainNews = this.pressData[categoriesObj.currentPage];
     this.render();
   }
 }

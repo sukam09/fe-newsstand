@@ -1,6 +1,5 @@
-import Categories from "./Categories.js";
-import PressNews from "./PressNews.js";
-import { pressData, pressObj } from "../../../constants/index.js";
+import { categoriesObj, pressObj } from "../../../constants/index.js";
+import ArrowButton from "../ArrowButton.js";
 
 export default class ListView {
   constructor() {
@@ -15,13 +14,31 @@ export default class ListView {
   render() {
     const $container = document.createElement("div");
     $container.classList.add("list-container");
-    $container.appendChild(new Categories(pressData).$wrapper);
+    $container.appendChild(categoriesObj.$wrapper);
     $container.appendChild(pressObj.$wrapper);
 
+    this.$wrapper.appendChild(
+      new ArrowButton({
+        name: "LeftButton",
+        isVisible: this.page !== 0,
+        action: this.goPreviousNews.bind(pressObj),
+      })
+    );
     this.$wrapper.appendChild($container);
+    this.$wrapper.appendChild(
+      new ArrowButton({
+        name: "rightButton",
+        isVisible: this.page !== 0,
+        action: this.goNextNews.bind(pressObj),
+      })
+    );
   }
 
-  goNextCategory() {
-    this.handleProgress();
+  goNextNews() {
+    this.goNextPageByArrowBtn();
+  }
+
+  goPreviousNews() {
+    this.goPreviousPageByArrowBtn();
   }
 }

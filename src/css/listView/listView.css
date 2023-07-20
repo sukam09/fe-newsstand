@@ -1,5 +1,12 @@
-.list-wrapper {
+.list-container {
   width: 930px;
+}
+
+.list-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
 }
 
 .list-wrapper.hidden {
@@ -37,7 +44,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 1s linear infinite;
+  animation: progressBar 2s linear infinite;
 }
 
 @keyframes progressBar {

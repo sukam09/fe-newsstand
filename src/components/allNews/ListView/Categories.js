@@ -12,15 +12,15 @@ export default class Categories {
     this.pressData = pressData;
 
     this.categories = {
-      "종합/경제": { id: 0, currentPage: 1 },
-      "방송/통신": { id: 1, currentPage: 1 },
-      IT: { id: 2, currentPage: 1 },
-      영자지: { id: 3, currentPage: 1 },
-      "스포츠/연예": { id: 4, currentPage: 1 },
-      "매거진/전문지": { id: 5, currentPage: 1 },
-      지역: { id: 6, currentPage: 1 },
+      "종합/경제": { id: 0 },
+      "방송/통신": { id: 1 },
+      IT: { id: 2 },
+      영자지: { id: 3 },
+      "스포츠/연예": { id: 4 },
+      "매거진/전문지": { id: 5 },
+      지역: { id: 6 },
     };
-
+    this.currentPage = 1;
     this.interval;
     this.currentCategory = 0;
 
@@ -66,7 +66,7 @@ export default class Categories {
     );
     $categoryList.innerHTML += `
         <span class="category-name">${category}</span>
-        <span class="category-count">${this.categories[category].currentPage}/${this.categories[category].press.length}</span>
+        <span class="category-count">${this.currentPage}/${this.categories[category].press.length}</span>
       `;
     $categoryList.addEventListener("click", (e) => this.handleCategoryClick(e));
 
@@ -80,28 +80,25 @@ export default class Categories {
     this.render();
     this.interval = setInterval(() => {
       const targetCategory = Object.keys(this.categories)[this.currentCategory];
-      const page = this.categories[targetCategory].currentPage + 1;
-      this.categories[targetCategory].currentPage = page;
-      if (
-        this.categories[targetCategory].press.length <
-        this.categories[targetCategory].currentPage
-      ) {
+      this.currentPage += 1;
+      if (this.categories[targetCategory].press.length < this.currentPage) {
         this.currentCategory += 1;
+        this.currentPage = 1;
         if (this.currentCategory === CATEGORIES_COUNT) {
           this.currentCategory = 0;
-          this.setCurrentPage();
+          this.currentPage = 1;
         }
       }
       this.render();
-      this.goNextNews.call(pressObj, page);
+      this.goNextNews.call(pressObj);
     }, PROGRESS_SPEED);
   }
 
   /**
    * 다음 페이지로 이동
    */
-  goNextNews(page) {
-    this.goNextPage(page);
+  goNextNews() {
+    this.goNextPage();
   }
 
   /**
@@ -115,16 +112,7 @@ export default class Categories {
       (cate) => cate === categoryName
     );
     this.currentCategory = targetIndex;
-    this.setCurrentPage();
+    this.currentPage = 1;
     this.handleProgress();
-  }
-
-  /**
-   * 현재 페이지 1로 설정
-   */
-  setCurrentPage() {
-    Object.keys(this.categories).forEach(
-      (cate) => (this.categories[cate].currentPage = 1)
-    );
   }
 }
