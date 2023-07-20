@@ -11,7 +11,7 @@ function createMainNavLeft() {
         txt: "전체 언론사",
         events: {
             click: () => {
-                onClickSubBtn(false);
+                onClickSubBtn(false, true);
             },
         },
     });
@@ -20,7 +20,7 @@ function createMainNavLeft() {
         txt: "내가 구독한 언론사",
         events: {
             click: () => {
-                onClickSubBtn(true);
+                onClickSubBtn(true, true);
             },
         },
     });

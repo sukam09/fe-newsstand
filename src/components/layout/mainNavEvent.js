@@ -1,6 +1,6 @@
-import { progress_bar_info } from "../list/progressBarEvent.js";
 import { class_name } from "../../utils/domClassName.js";
 import { list_view_subscribe } from "../list/listObserver.js";
+import { list_view_entire } from "../list/listEntireObserver.js";
 
 const view_info_tmp = (function () {
     let is_grid_view = true;
@@ -33,7 +33,7 @@ const view_info_tmp = (function () {
         is_subscribe_view = false;
     }
 
-    function changeView() {
+    function changeView(is_init) {
         const grid_icon = document.querySelector(`.${class_name.NAV_GRID_ICON}`);
         const list_icon = document.querySelector(`.${class_name.NAV_LIST_ICON}`);
         const entire_btn = document.querySelector(".nav-left_entire");
@@ -61,7 +61,7 @@ const view_info_tmp = (function () {
             list_icon.style.filter = "none";
             list_entire_view.style.display = "none";
             list_sub_view.style.display = "none";
-            progress_bar_info.removeInterval();
+            list_view_entire.removeInterval();
             list_view_subscribe.removeInterval();
             is_subscribe_view
                 ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
@@ -73,15 +73,16 @@ const view_info_tmp = (function () {
             grid_entire_view.style.display = "none";
             grid_sub_view.style.display = "none";
             if (is_subscribe_view) {
-                progress_bar_info.removeInterval();
-                list_view_subscribe.initProgressBar({
-                    category_old: list_view_subscribe.getCategoryNow(),
-                    category_now: 0,
-                });
+                list_view_entire.removeInterval();
+                is_init &&
+                    list_view_subscribe.initProgressBar({
+                        category_old: list_view_subscribe.getCategoryNow(),
+                        category_now: 0,
+                    });
             } else {
                 list_view_subscribe.removeInterval();
-                progress_bar_info.initProgressBar({
-                    category_old: progress_bar_info.getCategoryNow(),
+                list_view_entire.initProgressBar({
+                    category_old: list_view_entire.getCategoryNow(),
                     category_now: 1,
                     page_num: 1,
                 });
@@ -104,10 +105,14 @@ const view_info_tmp = (function () {
     };
 })();
 
-export function onClickSubBtn(is_subscribe) {
+export function onClickSubBtn(is_subscribe, is_init) {
     is_subscribe
-        ? view_info_tmp.setToSubscribeView().then(view_info_tmp.changeView)
-        : view_info_tmp.setToEntireView().then(view_info_tmp.changeView);
+        ? view_info_tmp.setToSubscribeView().then(() => {
+              view_info_tmp.changeView(is_init);
+          })
+        : view_info_tmp.setToEntireView().then(() => {
+              view_info_tmp.changeView(is_init);
+          });
 }
 
 export function onClickViewBtn(is_grid) {

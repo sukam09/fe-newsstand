@@ -73,7 +73,7 @@ export function createMainGrid(grid_view_info, isInit) {
                         document.querySelector(".main_news_container").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true);
+                            onClickSubBtn(true, true);
                         }, SNACK_BAR_TIME);
                     }
                 },

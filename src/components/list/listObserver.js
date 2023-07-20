@@ -1,9 +1,8 @@
 import { _sub_press_list } from "../../Store.js";
-import { createListViewMain, createPressNews, renderPressNews } from "../../container/listViewTemplate.js";
+import { createListViewMain, renderPressNews } from "../../container/listViewTemplate.js";
 import { class_name } from "../../utils/domClassName.js";
 import { list_news_data } from "../../../data/list_news_data.js";
 import { SET_TIME } from "../../utils/constant.js";
-import { isListSubscribe } from "../layout/mainNavEvent.js";
 
 class ListSubscribe {
     constructor() {
@@ -108,7 +107,7 @@ class ListSubscribe {
         this.getData(state);
         const $new_container = createListViewMain(this.data[0], class_name.SUBSCRIBE, true, this.data);
         document.querySelector(`.list-${class_name.SUBSCRIBE}`).children[1].replaceWith($new_container);
-        this.onClickArrowBtn(true);
+        this.initProgressBar({ category_old: this.getCategoryNow(), category_now: this.data.length - 1 });
     };
 
     getData = function (state) {
