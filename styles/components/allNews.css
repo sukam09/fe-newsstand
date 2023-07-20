@@ -52,6 +52,8 @@
 }
 
 .newslist-list-view > nav > li {
+  display: flex;
+  flex-shrink: 0;
   padding: 12px 16px;
 }
 

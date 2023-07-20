@@ -9,6 +9,9 @@
 @import url('styles/components/alert.css');
 @import url('styles/components/snack-bar.css');
 
+body {
+  user-select: none;
+}
 /* common */
 .common-button {
   display: flex;

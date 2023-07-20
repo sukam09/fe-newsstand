@@ -81,6 +81,7 @@ export default class AllNewsListView extends Component {
       text: db.getDbData.includes(this.state.currentPress.number) ? '' : TEXT.SUBSCRIBE_KO,
       name: this.state.currentPress.name,
       number: this.state.currentPress.number,
+      pageNation: this.props.pressType === TEXT.ALL,
     });
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
