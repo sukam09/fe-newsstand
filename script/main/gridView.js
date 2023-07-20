@@ -9,7 +9,7 @@ import { pageStore,subscribedStore,mode } from '../util/store.js';
   ]
 */
 const media_data = await getJSON("../../assets/data/media_data.json");
-const subscribed = subscribedStore.getState(); // 구독된 언론사 index 추가
+
 const logoIndex = Array.from({ length: MEDIA.TOTAL }, (_, index) => index); // 전체 언론사 index
 
 export const PageController = {
