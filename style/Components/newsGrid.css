@@ -21,6 +21,10 @@
   perspective: 1000px;
 }
 
+.newspaper__item:hover {
+  background-color: var(--color-surface-alt);
+}
+
 .newspaper__item__card {
   height: 100%;
   position: relative;

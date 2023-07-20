@@ -1,6 +1,7 @@
 import Component from "../core/Component.js";
 import { constants } from "../Data/constants.js";
 import newspaperData from "../Data/newspaper.js";
+import NewsGridItems from "./NewsGridItems.js";
 
 export default class NewsGrid extends Component {
   setup() {
@@ -9,6 +10,7 @@ export default class NewsGrid extends Component {
       $leftButton: undefined,
       $rightButton: undefined,
       page: 0,
+      mode: constants.LIGHT_MODE,
     };
 
     const newspaperRandom = [...newspaperData].sort(() => Math.random() - 0.5);
@@ -56,47 +58,22 @@ export default class NewsGrid extends Component {
       false
     );
 
-    this.renderNewspaper(constants.LIGHT_MODE);
+    this.renderNewspaper();
     this.setGridPageButton();
   }
 
-  createNewspaperItem(item, mode) {
-    return `
-      <li class="newspaper__item">
-        <div class="newspaper__item__card">
-          <div class="card-front">
-            <img
-              src=${
-                mode === constants.LIGHT_MODE ? item.lightSrc : item.darkSrc
-              }
-              alt=${item.name}
-            />
-          </div>
-          <div class="card-back">
-              <img src="./assets/icons/SubscribeButtonWhite.svg" alt="subscribeButton" />
-          </div>
-        </div>
-      </li>
-    `;
-  }
-
-  createNewspaperList(mode) {
+  renderNewspaper() {
     const nowPageIndexArr = this.$state.newspaperRandom.slice(
       this.$state.page * constants.ONE_PAGE_NEWSPAPER,
       (this.$state.page + 1) * constants.ONE_PAGE_NEWSPAPER
     );
-    const liArr = nowPageIndexArr.map((item) =>
-      this.createNewspaperItem(item, mode)
-    );
-    const newspaperList = liArr.reduce(
-      (news, currentIndex) => news + currentIndex
-    );
-    return newspaperList;
-  }
 
-  renderNewspaper(mode) {
-    const $newspaperList = document.querySelector(".newspaper__list");
-    $newspaperList.innerHTML = this.createNewspaperList(mode);
+    new NewsGridItems(document.querySelector(".newspaper__list"), {
+      nowPageIndexArr: nowPageIndexArr,
+      mode: this.$state.mode,
+    });
+
+    this.setDisplayButton();
   }
 
   setDisplayButton() {
@@ -106,14 +83,9 @@ export default class NewsGrid extends Component {
       this.$state.page === constants.MAX_PAGE ? "none" : "block";
   }
 
-  renderContent() {
-    this.renderNewspaper(constants.LIGHT_MODE);
-    this.setDisplayButton();
-  }
-
   movePage(amount) {
     this.setState({ page: this.$state.page + amount }, false);
-    this.renderContent();
+    this.renderNewspaper();
   }
 
   setGridPageButton() {
