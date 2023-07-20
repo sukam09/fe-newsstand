@@ -7,6 +7,7 @@ import { SnackBar } from "../SnackBar/SnackBar.js";
 
 export const makeGrid = (data) => {
   const li = document.createElement("li");
+  li.className = data.name;
 
   const img = document.createElement("img");
   img.src = data.logo;
@@ -14,12 +15,12 @@ export const makeGrid = (data) => {
   li.appendChild(img);
   if (data.logo) {
     li.addEventListener("mouseenter", () => {
-      li.appendChild(createButton(data)); // Show the button when hovering
+      li.appendChild(createButton(data));
     });
 
     li.addEventListener("mouseleave", () => {
       const btn = document.querySelector(`#${data.name}`);
-      if (btn) li.removeChild(btn); // Remove the button when not hovering
+      if (btn) li.removeChild(btn);
     });
   }
 

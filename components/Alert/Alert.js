@@ -1,4 +1,5 @@
 import { dispatcher } from "../../store/dispatcher.js";
+import { makeGrid } from "../Grid/gridElement.js";
 
 export class Alert {
   constructor() {
@@ -26,6 +27,13 @@ export class Alert {
     this.confirmBtn.className = "confirmBtn";
 
     this.confirmBtn.addEventListener("click", () => {
+      const subscribe_press = document.querySelector(".subscribe_press");
+      // 내가 구독한 언론사를 보고 있다면 GridComponent 다시 호출해야함.
+      if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
+        const cancelElem = document.querySelector(`.${this.getState()[0]}`);
+        cancelElem.remove();
+        makeGrid({ name: "", logo: "" });
+      }
       [this.name, this.isSubscribed] = this.getState();
       this.dispatch(this.name, this.isSubscribed);
       this.close();
