@@ -1,14 +1,14 @@
 import { createSubscribeButton } from "../SubscribeButton.js";
 import Logo from "../../common/Logo.js";
 import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
+import categories from "../../../constants/categories.js";
 
 export default class PressNews {
-  constructor(pressData) {
+  constructor() {
     this.$wrapper = document.createElement("main");
     this.$wrapper.className = "press-news";
 
-    this.pressData = pressData;
-    this.mainNews = this.pressData[0];
+    this.mainNews = categories["종합/경제"].press[0];
 
     this.render();
   }
@@ -75,15 +75,15 @@ export default class PressNews {
   /** 현재 페이지 증가  */
   decreaseCurrentPage() {
     this.currentPage -= 1;
-    let targetCategory = Object.keys(this.categories)[this.currentCategory - 1];
+    let targetCategory = Object.keys(categories)[this.currentCategory - 1];
     if (this.currentPage < 1) {
       this.currentCategory -= 1;
       if (this.currentCategory < 0) {
         this.currentCategory = CATEGORIES_COUNT - 1;
-        targetCategory = Object.keys(this.categories)[this.currentCategory];
-        this.currentPage = this.categories[targetCategory].press.length - 1;
+        targetCategory = Object.keys(categories)[this.currentCategory];
+        this.currentPage = categories[targetCategory].press.length - 1;
       }
-      this.currentPage = this.categories[targetCategory].press.length;
+      this.currentPage = categories[targetCategory].press.length;
     }
     clearInterval(this.interval);
     this.handleProgress();
@@ -92,8 +92,8 @@ export default class PressNews {
   /** 현재 페이지 감소 */
   increaseCurrentPage() {
     this.currentPage += 1;
-    const targetCategory = Object.keys(this.categories)[this.currentCategory];
-    if (this.categories[targetCategory].press.length < this.currentPage) {
+    const targetCategory = Object.keys(categories)[this.currentCategory];
+    if (categories[targetCategory].press.length < this.currentPage) {
       this.currentPage = 1;
       this.currentCategory += 1;
       if (this.currentCategory === CATEGORIES_COUNT) {
@@ -107,7 +107,10 @@ export default class PressNews {
 
   /** 새로운 페이지 렌더링 */
   newRender() {
-    this.mainNews = this.pressData[categoriesObj.currentPage];
+    const targetCategory =
+      Object.keys(categories)[categoriesObj.currentCategory];
+    this.mainNews =
+      categories[targetCategory].press[categoriesObj.currentPage - 1];
     this.render();
   }
 }

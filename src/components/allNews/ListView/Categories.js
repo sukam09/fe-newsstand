@@ -1,3 +1,4 @@
+import categories from "../../../constants/categories.js";
 import {
   CATEGORIES_COUNT,
   PROGRESS_SPEED,
@@ -5,38 +6,15 @@ import {
 } from "../../../constants/index.js";
 
 export default class Categories {
-  constructor(pressData) {
+  constructor() {
     this.$wrapper = document.createElement("ul");
     this.$wrapper.className = "categories-wrapper";
 
-    this.pressData = pressData;
-
-    this.categories = {
-      "종합/경제": { id: 0 },
-      "방송/통신": { id: 1 },
-      IT: { id: 2 },
-      영자지: { id: 3 },
-      "스포츠/연예": { id: 4 },
-      "매거진/전문지": { id: 5 },
-      지역: { id: 6 },
-    };
     this.currentPage = 1;
     this.interval;
     this.currentCategory = 0;
 
-    this.filterData();
     this.handleProgress();
-  }
-
-  /**
-   * 데이터 필터링
-   */
-  filterData() {
-    Object.keys(this.categories).forEach((cate) => {
-      this.categories[cate].press = this.pressData.filter(
-        (v) => v.category === cate
-      );
-    });
   }
 
   /**
@@ -45,7 +23,7 @@ export default class Categories {
   render() {
     this.$wrapper.replaceChildren();
 
-    Object.keys(this.categories).forEach((category) => {
+    Object.keys(categories).forEach((category) => {
       this.$wrapper.appendChild(this.createCategoryList(category));
     });
   }
@@ -58,15 +36,15 @@ export default class Categories {
     $categoryList.classList.add(
       "categories-list",
       `${
-        this.currentCategory === this.categories[category].id
+        this.currentCategory === categories[category].id
           ? "category-current"
           : "notCurrent"
       }`,
-      `category_${this.categories[category].id}`
+      `category_${categories[category].id}`
     );
     $categoryList.innerHTML += `
         <span class="category-name">${category}</span>
-        <span class="category-count">${this.currentPage}/${this.categories[category].press.length}</span>
+        <span class="category-count">${this.currentPage}/${categories[category].press.length}</span>
       `;
     $categoryList.addEventListener("click", (e) => this.handleCategoryClick(e));
 
@@ -79,9 +57,9 @@ export default class Categories {
   handleProgress() {
     this.render();
     this.interval = setInterval(() => {
-      const targetCategory = Object.keys(this.categories)[this.currentCategory];
+      const targetCategory = Object.keys(categories)[this.currentCategory];
       this.currentPage += 1;
-      if (this.categories[targetCategory].press.length < this.currentPage) {
+      if (categories[targetCategory].press.length < this.currentPage) {
         this.currentCategory += 1;
         this.currentPage = 1;
         if (this.currentCategory === CATEGORIES_COUNT) {
@@ -108,11 +86,12 @@ export default class Categories {
     clearInterval(this.interval);
     const targetCategory = event.target;
     const categoryName = targetCategory.innerText;
-    const targetIndex = Object.keys(this.categories).findIndex(
+    const targetIndex = Object.keys(categories).findIndex(
       (cate) => cate === categoryName
     );
     this.currentCategory = targetIndex;
     this.currentPage = 1;
+    this.goNextNews.call(pressObj);
     this.handleProgress();
   }
 }
