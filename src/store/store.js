@@ -10,6 +10,11 @@ const isGrid = initState({
   defaultState: true,
 });
 
+const isSubTab = initState({
+  key: "isSubTab",
+  defaultState: false,
+});
+
 const categoryIdx = initState({
   key: "categoryIdx",
   defaultState: 0,
@@ -33,6 +38,7 @@ const subscribeList = initState({
 export {
   isDarkMode,
   isGrid,
+  isSubTab,
   categoryIdx,
   listPageIdx,
   gridPageIdx,
