@@ -120,9 +120,13 @@ function changePageInfo(e) {
   //e.target => span (class = category-num)
   //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
-  e.target.parentElement.children[2].innerText = `${
-    store.state.list_page + 1
-  }/${getPagesNum(e.currentTarget.dataset.category)}`;
+  if (store.state.type === "list-category") {
+    e.target.parentElement.children[2].innerText = `${
+      store.state.list_page + 1
+    }/${getPagesNum(e.currentTarget.dataset.category)}`;
+  } else {
+    e.target.parentElement.children[2].innerText = `>`;
+  }
 }
 
 /* GET */

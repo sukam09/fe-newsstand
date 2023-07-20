@@ -44,13 +44,22 @@ function handleLeftBtn(currentCategory) {
 }
 
 function handleRightBtn(currentCategory) {
-  const maxPage = currentCategory.children[2].innerText.split("/")[1];
+  // const maxPage = currentCategory.children[2].innerText.split("/")[1];
+  const maxPage = findPageNum(currentCategory);
   //다음 카테고리로 넘어갈 때
   if (store.state.list_page + 1 >= maxPage) {
     store.setListPage(0);
     addAnimation(currentCategory.nextElementSibling, "Next");
   } else {
     store.setListPage(store.state.list_page + 1);
+  }
+}
+
+function findPageNum(category) {
+  if (store.state.type === "list-category") {
+    return news_by_category[category.dataset.category].length;
+  } else {
+    return news_by_press[category.dataset.category].length;
   }
 }
 
