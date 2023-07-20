@@ -7,7 +7,11 @@ class Store {
       view: "grid", //그리드뷰 또는 리스트뷰
       page: FIRST_PAGE_NUM, //현재 페이지
       tabMode: "all", //all 전체언론사 sub 구독한 언론사
-      subscribedPress: ["서울경제", "데일리안", "헤럴드경제"],
+      subscribedPress: [
+        { name: "서울경제", index: 96 },
+        { name: "데일리안", index: 95 },
+        { name: "헤럴드경제", index: 94 },
+      ],
     });
   }
 

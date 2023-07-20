@@ -5,6 +5,7 @@ import { store } from "../core/store.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { getPage, getTabMode, getSubscribedPress } from "../core/getter.js";
 import { getData } from "../core/api.js";
+import { checkPage } from "./checkPage.js";
 
 async function drawList(current) {
   try {
@@ -13,7 +14,9 @@ async function drawList(current) {
       const selected_el = document.querySelector(".category.selected .ctg");
       current = selected_el.textContent;
     }
-    getTabMode() === "all" ? (list = CATEGORY) : (list = getSubscribedPress());
+    getTabMode() === "all"
+      ? (list = CATEGORY)
+      : (list = getSubscribedPress().map((item) => item.name));
 
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
@@ -43,6 +46,7 @@ async function drawList(current) {
       drawPressInfo(list_content, list);
       drawPressNews(list_content);
     }
+    checkPage();
   } catch (error) {
     console.log(error);
   }
