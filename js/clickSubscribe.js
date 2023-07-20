@@ -40,6 +40,7 @@ function moveToSubList(snackbar) {
   changeBtnAndView("list");
   changePressCss("press");
   store.setType("list-press");
+  store.setListPage(0);
   renderListView();
 }
 
