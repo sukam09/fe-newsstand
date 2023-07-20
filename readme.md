@@ -195,3 +195,47 @@ navTab.isMySubscribe && paintNews(subList);
 '전체 언론사'와 '내가 구독중인 언론사' 두 개의 탭에
 리스트 뷰에서의 이벤트리스너와 그리드 뷰에서의 이벤트리스너가 등록되어있어서 클릭될때마다 동시에 실행이되는 경우가있다. 이럴때 원하지 않는 코드까지 실행되어 서로 다른 영역에 영향을 미치게되고 원하지 않는 결과가 등장했다.
 현재 보고있는 페이지를 참조하여 실행되는 조건을 바꿀 생각이다.
+
+**7월 20일**
+
+7월 19일에 발생한 문제점을 해결하기위해서는 사용자가 현재 보고있는 페이지를 담고있는 상태가 필요했다.
+사용자가 보고있는 페이지가 '그리디' 페이지라면 해당 페이지에서 상태가 변경됬을때 '리스트' 페이지를 다시 그려주지 않아도 된다.
+사용자가 보고있는 뷰를 관리하는 상태는 클래스를 사용했다.
+
+```javascript
+// 사용자가 포커스한 뷰가 어딘지 기억하는 ViewState 클래스
+class ViewState {
+  // '전체 언론사' or '내가 구독한 언론사'중 포커싱이 어디에 되어있는지? navTab
+  // 사용자가 '그리드' or '리스트'뷰 중 어디를 포커싱하는지.
+  constructor() {
+    this.view = {
+      navTab: {
+        MY_PUBLISHER: false,
+        ALL_PUBLISHER: true,
+      },
+      user: {
+        grid: true,
+        list: false,
+      },
+    };
+  }
+}
+```
+
+### 크롱님 코드리뷰 반영
+
+- Spread operator 사용
+  ```javascript
+  // 수정전
+  const categoryList = Array.from(categoryParent.children);
+  // 수정후
+  const categoryList = [...categoryParent.children];
+  ```
+- 객체에 직접적인 접근 피하기
+  - View를 담당하는 클래스를 만들어서 메소드를통해 간접적으로 접근.
+  ```javascript
+  // 수정전
+  navTab.isMySubscribe = true;
+  // 수정후
+  View.setNavTabView(VIEW.MY_SUB, true);
+  ```

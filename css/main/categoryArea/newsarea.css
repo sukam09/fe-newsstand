@@ -14,16 +14,21 @@
   background: var(--surface-surface-alt, #f5f7f9);
 
   height: 40px;
+
+  overflow: scroll;
 }
 .newsstand__news-nav li {
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
 }
 .newsstand__focus {
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 166px;
+
+  flex-shrink: 0.1;
   background-color: var(--blue-100);
 }
 
