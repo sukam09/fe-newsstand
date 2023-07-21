@@ -13,7 +13,7 @@ let thumbnail = document.querySelector(".thumbnail");
 let news_main_title = document.querySelector(".news-main .font-init");
 let news_sub_list = document.querySelectorAll(".news-sub-list li");
 let caption = document.querySelector(".caption");
-const tab = document.querySelectorAll(".progress-item .count");
+let tab = document.querySelectorAll(".progress-item .count");
 
 /***** 리스트뷰 프로그레스바 카운트/탭넘버 추가 *****/
 async function appendCategoryTabNum() {
@@ -68,9 +68,7 @@ let snackbar_timeout;
 const subscribe_btn = document.querySelector(".subscribe-press-btn");
 subscribe_btn.addEventListener("click", () => {
   showSnackBar();
-  snackbar_timeout = setTimeout(function () {
-    removeSnackBar();
-  }, SNACKBAR_POPUP_TIME);
+  snackbar_timeout = setTimeout(removeSnackBar, SNACKBAR_POPUP_TIME);
 });
 
 export { appendCategoryTabNum, drawListView };
