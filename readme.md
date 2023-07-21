@@ -239,3 +239,29 @@ class ViewState {
   // 수정후
   View.setNavTabView(VIEW.MY_SUB, true);
   ```
+
+**7월 21일**
+
+### 롤링 로직 리팩토링
+
+```javascript
+// 수정 전
+function moveLeftContent() {
+  // 왼쪽 뉴스 롤링 로직
+}
+function moveRightContent() {
+  // 오른쪽 뉴스 롤링 로직
+}
+
+// 수정 후
+function moveContent(position) {
+  // position을 인자로 받아서 방향에 맞는 로직을 실행해준다.
+  const headlineData =
+    position === "right" ? rightHeadlineData : leftHeadlineData;
+  // 생략 ...
+}
+```
+
+### 구독하기 스낵바 추가
+
+<img width="955" alt="스크린샷 2023-07-21 오후 6 43 43" src="https://github.com/devMingu/fe-newsstand/assets/96288558/488fbc98-6eba-4ece-aaa2-da16c3aa3a05">
