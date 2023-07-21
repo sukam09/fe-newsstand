@@ -1,5 +1,13 @@
 export class SnackBar {
   constructor() {
+    this.modal = null;
+    this.container = null;
+    this.content = null;
+    this.root = document.getElementById("root");
+    this.initializeElement();
+  }
+
+  initializeElement() {
     this.modal = document.createElement("div");
     this.modal.className = "snackbar";
 
@@ -13,8 +21,7 @@ export class SnackBar {
 
     this.modal.appendChild(this.container);
 
-    const root = document.getElementById("root");
-    root.appendChild(this.modal);
+    this.root.appendChild(this.modal);
   }
 
   show(message) {

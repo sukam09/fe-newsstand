@@ -3,6 +3,20 @@ import { makeGrid } from "../Grid/gridElement.js";
 
 export class Alert {
   constructor() {
+    this.modal = null;
+    this.container = null;
+    this.content = null;
+    this.topcontent = null;
+    this.botcontent = null;
+    this.action = null;
+    this.confirmBtn = null;
+    this.cancelBtn = null;
+
+    this.root = document.getElementById("root");
+    this.initializeElement();
+  }
+
+  initializeElement() {
     this.modal = document.createElement("div");
     this.modal.className = "alert";
 
@@ -58,8 +72,7 @@ export class Alert {
 
     this.modal.appendChild(this.container);
 
-    const root = document.getElementById("root");
-    root.appendChild(this.modal);
+    this.root.appendChild(this.modal);
   }
 
   show(message) {
