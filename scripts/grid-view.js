@@ -51,7 +51,7 @@ function handleSubscribeButtonClick(e) {
   store.dispatch(addSubscribe(name));
 }
 
-function addEventOnGridView() {
+function addEventHandlerOnGridView() {
   $gridView.addEventListener("click", handleSubscribeButtonClick);
 }
 
@@ -94,7 +94,7 @@ export function renderGridView() {
   const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
-  addEventOnGridView();
+  addEventHandlerOnGridView();
 
   store.subscribe(() => {
     const { currentPage, viewType, tabType } = useSelector(
