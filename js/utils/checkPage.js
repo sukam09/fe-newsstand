@@ -1,11 +1,21 @@
 import { FIRST_PAGE_NUM, LAST_PAGE_NUM } from "../constants/constants.js";
-export function checkPage(page, view) {
+import { getPage, getView } from "../core/getter.js";
+export function checkPage(hiddenMode = "false") {
   const left_btn = document.getElementById("left-btn");
   const right_btn = document.getElementById("right-btn");
-  if (view === "grid") {
-    if (page === FIRST_PAGE_NUM) left_btn.style.visibility = "hidden";
-    else if (page === LAST_PAGE_NUM) right_btn.style.visibility = "hidden";
-    else {
+  if (getView() === "grid") {
+    //구독한 언론사 마지막 페이지
+    if (hiddenMode) {
+      right_btn.style.visibility = "hidden";
+    } else {
+      left_btn.style.visibility = "visible";
+      right_btn.style.visibility = "visible";
+    }
+    if (getPage() === FIRST_PAGE_NUM) {
+      left_btn.style.visibility = "hidden";
+    } else if (getPage() === LAST_PAGE_NUM) {
+      right_btn.style.visibility = "hidden";
+    } else {
       left_btn.style.visibility = "visible";
       right_btn.style.visibility = "visible";
     }

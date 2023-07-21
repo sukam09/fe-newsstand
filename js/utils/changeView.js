@@ -1,23 +1,22 @@
-export function changeView(target) {
+import { store } from "../core/store.js";
+import { getView } from "../core/getter.js";
+import { ICON_IMG_PATH } from "../constants/constants.js";
+
+export function changeView() {
   const grid_btn = document.getElementById("grid-btn");
   const list_btn = document.getElementById("list-btn");
-
-  if (target === "grid") {
-    const view = document.querySelector(".list-view");
-    if (view && view.classList.contains("list-view")) {
-      grid_btn.src = "../assets/icons/grid-view-clicked.svg";
-      list_btn.src = "../assets/icons/list-view.svg";
-      view.classList.remove("list-view");
-      view.classList.add("grid-view");
-    }
+  const target = document.querySelector(`.${getView()}-view`);
+  if (getView() === "grid") {
+    target.classList.remove(`${getView()}-view`);
+    store.setState({ view: "list" });
+    target.classList.add(`${getView()}-view`);
+    grid_btn.src = `${ICON_IMG_PATH}grid-view.svg`;
+    list_btn.src = `${ICON_IMG_PATH}list-view-clicked.svg`;
   } else {
-    const view = document.querySelector(".grid-view");
-    if (view && view.classList.contains("grid-view")) {
-      const view = document.querySelector(".grid-view");
-      grid_btn.src = "../assets/icons/grid-view.svg";
-      list_btn.src = "../assets/icons/list-view-clicked.svg";
-      view.classList.remove("grid-view");
-      view.classList.add("list-view");
-    }
+    target.classList.remove(`${getView()}-view`);
+    store.setState({ view: "grid" });
+    target.classList.add(`${getView()}-view`);
+    grid_btn.src = `${ICON_IMG_PATH}grid-view-clicked.svg`;
+    list_btn.src = `${ICON_IMG_PATH}list-view.svg`;
   }
 }

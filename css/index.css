@@ -120,15 +120,18 @@ body {
   color: var(--text-default);
   font-size: 16px;
 }
-.all-press {
+.main-tab-btn .clicked {
   color: var(--text-strong);
   font-size: 16px;
   font-weight: 700;
 }
+.all-press,
 .subscribe-press {
   color: var(--text-weak);
   font-size: 16px;
   font-weight: 500;
+}
+.subscribe-press {
   margin-left: 24px;
 }
 .press {
@@ -247,6 +250,7 @@ a:hover {
   align-items: center;
   gap: 16px;
 }
+
 .list-view .field-tab ul {
   display: flex;
   border: 1px solid var(--border-default);
@@ -260,10 +264,6 @@ a:hover {
 
 .list-view .count {
   display: inline-block;
-}
-
-.list-view {
-  height: 388px;
 }
 
 /* category */
@@ -320,6 +320,9 @@ a:hover {
   padding: 24px;
   border: 1px solid var(--border-default);
   border-top: none;
+  height: 348px;
+  position: relative;
+  box-sizing: border-box;
 }
 
 #press-logo {
@@ -334,7 +337,6 @@ a:hover {
 
 .news-content {
   display: flex;
-
   height: 260px;
   padding-top: 16px;
 }
@@ -354,6 +356,110 @@ a:hover {
 }
 .press-info .subscribe span {
   padding-right: 4px;
+}
+
+/* popup */
+.popup {
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+
+/* 구독했을 때 스낵바*/
+.press-news .snackbar {
+  padding: 16px 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-white-default);
+  background-color: var(--surface-brand-default);
+  font-size: 16px;
+  line-height: 22px;
+  animation: fade-in 0.3s forwards, fade-out 0.3s 4.7s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* press-news 구독해지 버튼 */
+.press-info .cancel {
+  height: 24px;
+  padding: 0px 6px;
+  border-radius: 50px;
+  border: 1px solid var(--border-default);
+  background-color: var(--surface-default);
+}
+
+/* 구독해지 알럿 */
+.press-news .alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+}
+
+.press-news .alert .message {
+  border: 1px solid var(--border-default);
+  border-bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--surface-default);
+}
+.press-news .alert .message .press {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.alert .buttons {
+  display: flex;
+  background-color: var(--surface-alt);
+  /* justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-default);
+  color: var(--text-text-strong);
+  text-align: center;
+  
+  font-size: 16px;
+  line-height: 22px; */
+}
+
+.alert .btn-yes,
+.alert .btn-no {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-default);
+  text-align: center;
+  font-size: 16px;
+  line-height: 22px; /* 137.5% */
+}
+.alert .btn-yes {
+  border-right: 0;
 }
 
 /* main-news */

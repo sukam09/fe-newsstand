@@ -1,37 +1,31 @@
-import { CATEGORY } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
-import { getPressCount } from "./getPressCount.js";
+import { store } from "../core/store.js";
+import { getPage } from "../core/getter.js";
 
-// function checkProgress(order, category) {
-//   const progress = document.getElementById("play-animation");
-//   progress.addEventListener("animationend", () =>
-//     showListView(++order, category)
-//   );
-// }
-
-function checkProgress(order, category) {
+function checkProgress(current) {
   const progress = document.getElementById("play-animation");
   if (progress) {
-    progress.addEventListener("animationend", () =>
-      showListView(++order, category)
-    );
+    progress.addEventListener("animationend", () => {
+      const _order = getPage();
+      store.setState({ page: _order + 1 });
+      showListView(current, "");
+    });
   }
 }
-export function drawCategory(category_news, order, category) {
-  document.addEventListener("DOMContentLoaded", () => {
-    checkProgress(order, category);
-  });
+
+//all일 때 list는 category, subscribe일 때에는 subscribedPress를 받음
+export function drawCategory(current, list, contents) {
   const main_list = document.querySelector(".main-list");
-  let category_list = "";
+  let list_content = "";
   //카테고리 그리는 부분
-  CATEGORY.forEach((ctg) => {
-    category_list +=
-      category === ctg
-        ? `<li class="category selected"><div class="progress-bar" id="play-animation"></div><div class="ctg-wrapper"><span class="ctg">${ctg}</span><div class="count"><span>${order}</span><span>/</span><span class = "entire">${
-            getPressCount(category_news).length
+  list.forEach((element) => {
+    list_content +=
+      current === element
+        ? `<li class="category selected"><div class="progress-bar" id="play-animation"></div><div class="ctg-wrapper"><span class="ctg">${element}</span><div class="count"><span>${getPage()}</span><span>/</span><span class = "entire">${
+            contents.length
           }</span></div></div></li>`
-        : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${ctg}</span></div></li>`;
+        : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${element}</span></div></li>`;
   });
-  main_list.innerHTML = `<div class="field-tab"><ul>${category_list}</ul></div>`;
-  checkProgress(order, category);
+  main_list.innerHTML = `<div class="field-tab"><ul>${list_content}</ul></div>`;
+  document.addEventListener("DOMContentLoaded", checkProgress(current));
 }

@@ -3,33 +3,28 @@ import { changeView } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
-
-let page = FIRST_PAGE_NUM;
-
+import { store } from "../core/store.js";
+import { getView, getPage, getSubscribedPress } from "../core/getter.js";
 function MainView() {
+  // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
-  showGridView(page);
-  checkPage(page, "grid");
-
-  const headerElement = document.createElement("h1");
-  headerElement.textContent = "여기에 헤더 컴포넌트의 내용을 작성하세요";
-
-  return headerElement;
+  showGridView();
+  // checkPage();
 }
 
-function changePage(target, view) {
+function changePage(target) {
+  const _page = getPage();
   if (target === "left") {
-    page--;
+    store.setState({ page: _page - 1 });
   } else if (target === "right") {
-    page++;
+    store.setState({ page: _page + 1 });
   }
-  if (view === "grid") {
-    showGridView(page);
-    checkPage(page, "grid");
+  if (getView() === "grid") {
+    showGridView();
   } else {
-    showListView(page);
-    checkPage(page, "list");
+    showListView("");
   }
+  // checkPage();
 }
 
 function handleClick(e) {
@@ -38,23 +33,42 @@ function handleClick(e) {
   switch (target) {
     case "grid-btn":
     case "grid-view-btn":
-      page = FIRST_PAGE_NUM;
-      changeView("grid");
-      showGridView(page);
-      checkPage(page, "grid");
-      break;
     case "list-btn":
     case "list-view-btn":
-      page = FIRST_PAGE_NUM;
-      changeView("list");
-      showListView(page, CATEGORY[0]);
-      checkPage(page, "list");
+      store.setState({ page: FIRST_PAGE_NUM });
+      changeView();
+      getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
+      // checkPage();
       break;
     case "left":
     case "right":
       view_content.getElementsByClassName("grid-view").length
-        ? changePage(target, "grid")
-        : changePage(target, "list");
+        ? changePage(target)
+        : changePage(target);
+      break;
+    case "all":
+      document.getElementById("subscribe").classList.remove("clicked");
+      document.getElementById(`${target}`).classList.add("clicked");
+      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
+      if (getView() === "grid") {
+        showGridView();
+        // checkPage();
+      } else {
+        showListView(CATEGORY[0]);
+        // checkPage();
+      }
+      break;
+    case "subscribe":
+      document.getElementById("all").classList.remove("clicked");
+      document.getElementById(`${target}`).classList.add("clicked");
+      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
+      if (getView() === "grid") {
+        showGridView();
+        // checkPage();
+      } else {
+        showListView(getSubscribedPress[0]);
+        // checkPage();
+      }
       break;
     default:
       break;

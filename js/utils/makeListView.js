@@ -1,83 +1,67 @@
 import { drawCategory } from "./drawCategory.js";
 import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
-import { getPressCount } from "./getPressCount.js";
-import { CATEGORY } from "../constants/constants.js";
-//임시로
-let order_list = [
-  { press: "서울경제", imgIndex: 96 },
-  { press: "데일리안", imgIndex: 95 },
-  { press: "SBS Biz", imgIndex: 93 },
-];
+import { store } from "../core/store.js";
+import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
+import { getPage, getTabMode, getSubscribedPress } from "../core/getter.js";
+import { getData } from "../core/api.js";
+import { checkPage } from "./checkPage.js";
 
-async function getNewsData(category) {
+async function drawList(current) {
   try {
-    const response = await fetch("../data/news.json");
-    const newsData = await response.json();
-    const category_news = newsData.News.filter(
-      (news) => news.category === category
-    );
-    return category_news;
-  } catch (error) {
-    console.error("Error fetching news data:", error);
-    throw error;
-  }
-}
-
-async function drawList(order, category) {
-  if (category !== "종합/경제")
-    order_list = [
-      { press: "SBS Biz", imgIndex: 93 },
-      { press: "데일리안", imgIndex: 95 },
-      { press: "서울경제", imgIndex: 96 },
-    ];
-  else {
-    order_list = [
-      { press: "서울경제", imgIndex: 96 },
-      { press: "데일리안", imgIndex: 95 },
-      { press: "SBS Biz", imgIndex: 93 },
-    ];
-  }
-  try {
-    const main_list = document.querySelector(".main-list");
-    const img = order_list[order - 1].imgIndex;
-    let category_news = await getNewsData(category);
-    if (
-      getPressCount(category_news).length !== 0 &&
-      getPressCount(category_news).length < order
-    ) {
-      order = 1;
-      const currentIndex = CATEGORY.indexOf(category);
-      const nextIndex = (currentIndex + 1) % CATEGORY.length;
-      category = CATEGORY[nextIndex];
-      category_news = await getNewsData(category);
+    let list = [];
+    if (!current) {
+      const selected_el = document.querySelector(".category.selected .ctg");
+      current = selected_el.textContent;
     }
-    drawCategory(category_news, order, category);
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("press-news");
-    main_list.appendChild(newDiv);
-    drawPressInfo(img);
-    drawPressNews(category_news, order_list[order - 1].press);
+    getTabMode() === "all"
+      ? (list = CATEGORY)
+      : (list = getSubscribedPress().map((item) => item.name));
+
+    const main_list = document.querySelector(".main-list");
+    main_list.innerHTML = "";
+    const data = await getData("newsListData");
+    let list_content = data.News.filter((news) =>
+      getTabMode() === "all" ? news.category === current : news.name === current
+    );
+    if (getPage() <= 0 || list_content.length < getPage()) {
+      const currentIndex = list.indexOf(current);
+      const prevIndex = (currentIndex - 1 + list.length) % list.length;
+      const nextIndex = (currentIndex + 1) % list.length;
+      getPage() <= 0
+        ? (current = list[prevIndex])
+        : (current = list[nextIndex]);
+      store.setState({ page: FIRST_PAGE_NUM });
+      list_content = data.News.filter((news) =>
+        getTabMode() === "all"
+          ? news.category === current
+          : news.name === current
+      ); //함수로 빼기
+      showListView(current);
+    } else {
+      drawCategory(current, list, list_content);
+      const newDiv = document.createElement("div");
+      newDiv.classList.add("press-news");
+      main_list.appendChild(newDiv);
+      drawPressInfo(list_content, list);
+      drawPressNews(list_content);
+    }
+    checkPage();
   } catch (error) {
     console.log(error);
   }
 }
 
 function handleClick(e) {
-  const target = e.target.closest("li");
-  if (target && target.classList.contains("category")) {
-    const category = target.querySelector(".ctg").textContent.trim();
-    drawList(1, category);
+  const li_target = e.target.closest("li");
+  if (li_target && li_target.classList.contains("category")) {
+    const current = li_target.querySelector(".ctg").textContent.trim();
+    store.setState({ page: FIRST_PAGE_NUM });
+    drawList(current);
   }
 }
 
-export function showListView(order, category = "") {
-  if (category === "") {
-    const selected_category = document.querySelector(".category.selected .ctg");
-    category = selected_category.textContent;
-  }
-  const main_list = document.querySelector(".main-list");
-  main_list.innerHTML = "";
-  drawList(order, category);
-  document.addEventListener("click", handleClick);
+export function showListView(current = "") {
+  drawList(current);
+  document.addEventListener("click", (e) => handleClick(e));
 }

@@ -1,5 +1,6 @@
 import { autoRollingAnimation } from "../utils/autoRolling.js";
 import { RECENT_NEWS_CNT } from "../constants/constants.js";
+import { getData } from "../core/api.js";
 function RecentNews() {
   getRecentNewsData();
   autoRollingAnimation();
@@ -8,17 +9,11 @@ function RecentNews() {
   return headerElement;
 }
 
-function getRecentNewsData() {
-  fetch("../data/recentNews.json")
-    .then((response) => response.json())
-    .then((newsData) => {
-      const news = newsData.RecentNews;
-      drawRollingHtml("recent-left", news);
-      drawRollingHtml("recent-right", news);
-    })
-    .catch((error) => {
-      console.error("Error fetching news data:", error);
-    });
+async function getRecentNewsData() {
+  const data = await getData("recentNews");
+  const news = data.RecentNews;
+  drawRollingHtml("recent-left", news);
+  drawRollingHtml("recent-right", news);
 }
 
 function drawRollingHtml(target, news) {
