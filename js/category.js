@@ -2,21 +2,22 @@ import { increment, totalTime } from "../utils/constants.js";
 import { drawNews } from "./drawNews.js";
 import Stores from "./core/Store.js";
 import { makeArrow } from "../utils/utils.js";
-import { categoryCnt } from "./setData.js/setCategoryData.js";
+import { categoryNews } from "./setData.js/setCategoryData.js";
 
 let progress = 0;
 let currentCategoryPageNumber = 1;
-let currentCategoryIndex = 0;
+let currentCategoryIndex;
 let currentCategoryPage;
 let currentProgressBar;
 
-const drawCategory = (categoryCnt) => {
-  drawCategoryBar(categoryCnt);
-  addEventArrowList(categoryCnt);
-  clickCategory(categoryCnt);
+const drawCategory = (categoryCnt, categoryNews) => {
+  // console.log(categoryNews);
+  drawCategoryList(categoryCnt, categoryNews);
+  addEventArrowList(categoryCnt, categoryNews);
+  clickCategory(categoryCnt, categoryNews);
 };
 
-function drawCategoryBar(categoryCnt) {
+function drawCategoryList(categoryCnt, categoryNews) {
   let categoryHtml = `<div class="categoryWrap"><ul>`;
   categoryCnt.forEach((key, index) => {
     categoryHtml += `<div class="categoryItem" id="category${index}"><div class="progress-bar" id=${
@@ -27,7 +28,7 @@ function drawCategoryBar(categoryCnt) {
   });
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  drawCategoryItem(categoryCnt, 0);
+  drawCategoryBar(categoryCnt, categoryNews, 0);
 }
 
 function drawCategoryNumber(category) {
@@ -36,7 +37,7 @@ function drawCategoryNumber(category) {
     : `<span class="currentCategoryPage">1</span><span class="categoryCnt">/ ${category.value}</span>`;
 }
 
-function drawCategoryItem(categoryCnt, categoryIndex) {
+function drawCategoryBar(categoryCnt, categoryNews, categoryIndex) {
   currentCategoryIndex = categoryIndex;
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryNumber(categoryCnt);
@@ -45,7 +46,12 @@ function drawCategoryItem(categoryCnt, categoryIndex) {
     Stores.clearProgressInterval();
     progressReset(currentProgressBar, currentCategoryPage);
   }
-  intervalProgress(categoryCnt, currentProgressBar, currentCategoryPage);
+  intervalProgress(
+    categoryCnt,
+    categoryNews,
+    currentProgressBar,
+    currentCategoryPage
+  );
 }
 
 function updateCurrentProgressBar() {
@@ -75,16 +81,26 @@ function categoryDisplayClear(categoryCnt, categoryItem) {
   });
 }
 
-function intervalProgress(categoryCnt, progressBar, currentCategoryPage) {
+function intervalProgress(
+  categoryCnt,
+  categoryNews,
+  progressBar,
+  currentCategoryPage
+) {
   progress = 0;
   Stores.setProgressInterval(
     setInterval(() => {
-      doProgress(categoryCnt, progressBar, currentCategoryPage);
+      doProgress(categoryCnt, categoryNews, progressBar, currentCategoryPage);
     }, totalTime / (100 / increment))
   );
 }
 
-function doProgress(categoryCnt, progressBar, currentCategoryPage) {
+function doProgress(
+  categoryCnt,
+  categoryNews,
+  progressBar,
+  currentCategoryPage
+) {
   progressBar.style.transition = `width ${
     totalTime / increment / 1000
   }s linear`;
@@ -103,7 +119,7 @@ function doProgress(categoryCnt, progressBar, currentCategoryPage) {
       Stores.clearProgressInterval();
     }
     clearCategoryNumber(categoryCnt);
-    clearNewsInterval();
+    clearNewsInterval(categoryCnt, categoryNews);
     progressReset(progressBar, currentCategoryPage);
     return;
   } else progressFill(progressBar);
@@ -131,27 +147,32 @@ function clearCategoryNumber(categoryCnt) {
   categoryDisplayOn(categoryItem);
 }
 
-function clearNewsInterval() {
-  drawNews();
+function clearNewsInterval(categoryCnt, categoryNews) {
+  drawNews(categoryNews);
   Stores.clearProgressInterval();
   updateCurrentProgressBar();
-  intervalProgress(categoryCnt, currentProgressBar, currentCategoryPage);
+  intervalProgress(
+    categoryCnt,
+    categoryNews,
+    currentProgressBar,
+    currentCategoryPage
+  );
 }
 
-function addEventArrowList(categoryCnt) {
+function addEventArrowList(categoryCnt, categoryNews) {
   makeArrow();
   const leftAsideButton = document.getElementById("left-arrow");
   const rightAsideButton = document.getElementById("right-arrow");
   leftAsideButton.style.visibility = "visible";
   leftAsideButton.addEventListener("click", () => {
-    decreaseListPage(categoryCnt);
+    decreaseListPage(categoryCnt, categoryNews);
   });
   rightAsideButton.addEventListener("click", () => {
-    increaseListPage(categoryCnt);
+    increaseListPage(categoryCnt, categoryNews);
   });
 }
 
-function increaseListPage(categoryCnt) {
+function increaseListPage(categoryCnt, categoryNews) {
   if (currentCategoryPageNumber === categoryCnt[currentCategoryIndex].value) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
@@ -163,16 +184,16 @@ function increaseListPage(categoryCnt) {
       Stores.setPage(parseInt(Stores.getPage()) + 1);
     }
     clearCategoryNumber(categoryCnt);
-    clearNewsInterval();
+    clearNewsInterval(categoryCnt, categoryNews);
     return;
   }
   currentCategoryPageNumber++;
   Stores.setPage(parseInt(Stores.getPage()) + 1);
   progressReset(currentProgressBar, currentCategoryPage);
-  clearNewsInterval();
+  clearNewsInterval(categoryCnt, categoryNews);
 }
 
-function decreaseListPage(categoryCnt) {
+function decreaseListPage(categoryCnt, categoryNews) {
   if (currentCategoryPageNumber === 1) {
     currentCategoryPageNumber = 1;
     progressReset(currentProgressBar, currentCategoryPage);
@@ -184,22 +205,23 @@ function decreaseListPage(categoryCnt) {
       Stores.setPage(parseInt(Stores.getPage()) - 1);
     }
     clearCategoryNumber(categoryCnt);
-    clearNewsInterval();
+    clearNewsInterval(categoryCnt, categoryNews);
     return;
   }
   currentCategoryPageNumber--;
   Stores.setPage(parseInt(Stores.getPage()) - 1);
   progressReset(currentProgressBar, currentCategoryPage);
-  clearNewsInterval();
+  clearNewsInterval(categoryCnt, categoryNews);
 }
 
-function clickCategory(categoryCnt) {
+function clickCategory(categoryCnt, categoryNews) {
   for (let categoryNum = 0; categoryNum < categoryCnt.length; categoryNum++) {
     const categoryItem = document.getElementById(`category${categoryNum}`);
     categoryItem.addEventListener("click", function () {
       progressReset(currentProgressBar, currentCategoryPage);
       currentCategoryPageNumber = 1;
-      drawCategoryItem(categoryCnt, categoryItem.id.slice(-1));
+      drawCategoryBar(categoryCnt, categoryNews, categoryItem.id.slice(-1));
+      drawNews(categoryNews);
       Stores.setPage(categoryItem.id.slice(-1));
     });
     categoryItem.addEventListener("mouseover", function () {
