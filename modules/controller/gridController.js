@@ -1,3 +1,4 @@
+import { createPressItem } from "../components/mainSection/mainBody/content/pressGrid/pressGrid.js";
 import { pressDataState } from "../store/dataState.js";
 import { subStateList } from "../store/gridState.js";
 import { getState, setState } from "../store/observer.js";
@@ -73,4 +74,12 @@ export function controllGridSubButtonShowing(id) {
   } else {
     $unsubContainer.style.display = "none";
   }
+}
+
+export function controllMyPressGrid(subState) {
+  const $targetGrid = qs(`#mode_my_grid_0`);
+  const { pressList } = getState(pressDataState);
+  createPressItem(subState);
+  const isSub = getState(subState);
+  console.log(isSub, subState);
 }

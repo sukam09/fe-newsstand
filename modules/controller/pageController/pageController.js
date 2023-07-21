@@ -69,6 +69,7 @@ function showContainer({ type, mode }) {
   const $container = qs(containerId);
   $container.style.display = "block";
 }
+
 function hideContainer({ type, mode }) {
   let containerId = makeContainerId({ type, mode });
   const $container = qs(containerId);
@@ -114,6 +115,7 @@ export function showGridPage(mode, page) {
   $gridPage.style.display = "grid";
   controllButtonShowing();
 }
+
 export function showListPage(categoryId, page) {
   const hideAllListPage = () => {
     const $newsPageList = qsa(".news");

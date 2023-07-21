@@ -5,14 +5,14 @@ export function createCategory(categoryList) {
   let categoryItems = "";
 
   if (categoryList) {
-    for (let i = 0; i < categoryList.length; i++) {
-      const { categoryId, categoryName, pressIdList } = categoryList[i];
+    [...categoryList].forEach((category) => {
+      const { categoryId, categoryName, pressIdList } = category;
       categoryItems += createCategoryItem(
         categoryName,
         categoryId,
         pressIdList.length
       );
-    }
+    });
   }
 
   return `

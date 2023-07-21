@@ -15,14 +15,16 @@ export function createPressGrid(pressList, page) {
     `;
 }
 
-export function createEmptyPressGrid(page) {
+export function createEmptyPressGrid(key, page) {
   return `
     <ul id="mode_my_grid_page_${page}" class="press_grid">
+      <li key="${key}" class="grid_item">
+      </li>
     </ul>
     `;
 }
 
-function createPressItem(key, press) {
+export function createPressItem(key, press) {
   return `
   <li key="${key}" class="grid_item" id="press_${press.id}">
     <img class="light_press_logo" src=${press.lightSrc}  / >

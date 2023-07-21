@@ -7,9 +7,12 @@ import { createTitleSection } from "./titleSection/titleSection.js";
 
 export async function initComponents() {
   const $root = qs("#root");
-  $root.innerHTML += createTitleSection();
-  $root.innerHTML += await createHeadlineSection();
-  $root.innerHTML += await createMainSection();
-  $root.innerHTML += createAlert();
-  $root.innerHTML += createSnackbar();
+  let components = "";
+  components += createTitleSection();
+  components += await createHeadlineSection();
+  components += await createMainSection();
+  components += await createAlert();
+  components += await createSnackbar();
+
+  $root.innerHTML += components;
 }
