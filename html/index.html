@@ -23,7 +23,7 @@
       <main>
         <div class="auto-rolling-news-bar">
           <div class="auto-rolling-news">
-            <ul id="left-rolling">
+            <ul data-type="left-rolling">
               <li class="current">
                 <span class="press">연합뉴스1</span>
                 <span class="news-title">[1111보] 김기현,안철수~~</span>
@@ -47,7 +47,7 @@
             </ul>
           </div>
           <div class="auto-rolling-news">
-            <ul id="right-rolling">
+            <ul data-type="right-rolling">
               <li class="current">
                 <span class="press">연합뉴스</span>
                 <span class="news-title">[속보1] 최고위원 본경선,~~</span>
@@ -76,9 +76,10 @@
           <div class="main-container">
             <div class="main-tab-viewer">
               <div class="main-tab-btn">
-                <button><span class="all-press">전체 언론사</span></button>
-                <button class="subscribe-press">
-                  <span>내가 구독한 언론사</span>
+                <button><span class="clicked-press">전체 언론사</span></button>
+
+                <button>
+                  <span class="unclicked-press">내가 구독한 언론사</span>
                 </button>
               </div>
 
@@ -118,7 +119,7 @@
                   <img class="press-info-img" />
                   <span></span>
                   <button>
-                    <img src="../images/icon/Subscribe.svg" />
+                    <img />
                   </button>
                 </div>
 
@@ -131,17 +132,24 @@
                 </div>
               </div>
 
-              <button id="grid-right-btn">
-                <img id="grid-right" src="../images/icon/RightButton.svg" />
-              </button>
-
               <button id="list-right-btn" style="visibility: hidden">
                 <img id="list-right" src="../images/icon/RightButton.svg" />
+              </button>
+              <button id="grid-right-btn">
+                <img id="grid-right" src="../images/icon/RightButton.svg" />
               </button>
             </div>
           </div>
         </section>
       </main>
+      <img src="../images/icon/Snackbar.svg" class="snackbar" />
+      <div class="confirm">
+        <div class="question"></div>
+        <div class="answer">
+          <div>예, 해지합니다.</div>
+          <div>아니오</div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

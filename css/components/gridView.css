@@ -51,15 +51,23 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.grid-view ul li:hover {
+  background-color: var(--surface-alt);
+}
 
-.all-press {
+.main-tab-btn input {
+  appearance: none;
+}
+
+.clicked-press {
   color: var(--text-strong);
   font-size: 16px;
   font-weight: 700;
+  margin-right: 24px;
 }
-.subscribe-press {
+.unclicked-press {
   color: var(--text-weak);
   font-size: 16px;
   font-weight: 500;
-  padding-left: 24px;
+  margin-right: 24px;
 }

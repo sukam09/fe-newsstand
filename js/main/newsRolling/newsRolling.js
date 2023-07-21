@@ -8,39 +8,34 @@ function addEventToRolling() {
   const newsList = document.querySelectorAll(".auto-rolling-news ul li");
   newsList.forEach((news) => {
     // 왼쪽, 오른쪽 뉴스 롤링 바 구분
-    if (news.parentElement.id === "left-rolling") {
-      news.addEventListener("mouseover", () => {
-        clearInterval(leftInterval);
-      });
-      news.addEventListener("mouseout", () => {
-        leftInterval = setInterval(
-          () => rollingNewsBar(LEFT),
-          SET_INTERVAL_TIME
-        );
-      });
-      // addEventToNews(news, leftInterval, LEFT);
+    if (news.parentElement.dataset.type === "left-rolling") {
+      addEventToNews(news, LEFT);
     } else {
-      news.addEventListener("mouseover", () => {
-        clearInterval(rightInterval);
-      });
-      news.addEventListener("mouseout", () => {
-        rightInterval = setInterval(
-          () => rollingNewsBar(RIGHT),
-          SET_INTERVAL_TIME
-        );
-      });
-      // addEventToNews(news, rightInterval, RIGHT);
+      addEventToNews(news, RIGHT);
     }
   });
 }
-// function addEventToNews(news, interval, type) {
-//   news.addEventListener("mouseover", () => {
-//     clearInterval(interval);
-//   });
-//   news.addEventListener("mouseout", () => {
-//     interval = setInterval(() => rollingNewsBar(type), SET_INTERVAL_TIME);
-//   });
-// }
+
+function addEventToNews(news, type) {
+  if (!type) {
+    news.addEventListener("mouseover", () => {
+      clearInterval(leftInterval);
+    });
+    news.addEventListener("mouseout", () => {
+      leftInterval = setInterval(() => rollingNewsBar(type), SET_INTERVAL_TIME);
+    });
+  } else {
+    news.addEventListener("mouseover", () => {
+      clearInterval(rightInterval);
+    });
+    news.addEventListener("mouseout", () => {
+      rightInterval = setInterval(
+        () => rollingNewsBar(RIGHT),
+        SET_INTERVAL_TIME
+      );
+    });
+  }
+}
 
 function rollingNewsBar(side) {
   document.querySelectorAll(".prev")[side].classList.remove("prev");
@@ -62,7 +57,7 @@ function rollingNewsBar(side) {
   next.classList.add("current");
 }
 
-function initRolling() {
+function renderRolling() {
   addEventToRolling();
   leftInterval = setInterval(() => rollingNewsBar(LEFT), SET_INTERVAL_TIME);
   setTimeout(() => {
@@ -70,4 +65,4 @@ function initRolling() {
   }, SET_TIMEOUT_TIME);
 }
 
-export { initRolling };
+export { renderRolling };

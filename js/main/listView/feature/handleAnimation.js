@@ -1,4 +1,4 @@
-import { findCurrentCategory } from "./handleData.js";
+import { findCurrentCategory } from "./handleNewsData.js";
 
 function removeAnimation() {
   const prevSelected = document.querySelector(".selected-category");
