@@ -56,20 +56,20 @@ function updateDate() {
 }
 
 // 키보드 방향키로 탭 이동
-function keyboardClicked(event) {
+function keyboardClicked({ key: key }) {
   const currentGridMode = getState(isGrid);
   const nowGridPage = getState(gridPageIdx);
   const nowListPage = getState(listPageIdx);
   if (currentGridMode) {
-    if (event.key === "ArrowRight" && nowGridPage < 3) {
+    if (key === "ArrowRight" && nowGridPage < 3) {
       setState(gridPageIdx, nowGridPage + 1);
-    } else if (event.key === "ArrowLeft" && nowGridPage > 0) {
+    } else if (key === "ArrowLeft" && nowGridPage > 0) {
       setState(gridPageIdx, nowGridPage - 1);
     }
   } else {
-    if (event.key === "ArrowRight") {
+    if (key === "ArrowRight") {
       setState(listPageIdx, nowListPage + 1);
-    } else if (event.key === "ArrowLeft") {
+    } else if (key === "ArrowLeft") {
       setState(listPageIdx, nowListPage - 1);
     }
   }
@@ -115,9 +115,7 @@ function setEvent() {
   gridButton.addEventListener("click", toggleGridClicked);
   subTabButton.addEventListener("click", toggleSubClicked);
   allTabButton.addEventListener("click", toggleSubClicked);
-  window.addEventListener("keydown", (e) => {
-    keyboardClicked(e);
-  });
+  window.addEventListener("keydown", keyboardClicked);
 }
 
 (function init() {
