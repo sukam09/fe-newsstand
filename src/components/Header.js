@@ -1,34 +1,50 @@
+import { html } from "../lib/jsx.js";
 /**
- * 뉴스스탠드 로고에 새로고침 기능을 추가합니다.
- * @param { HTMLElement } $element
+ * 브라우저를 새로고침합니다.
  */
-const setRefresh = ($element) => {
-    $element.addEventListener("click", () => {
-        window.location.reload();
-    });
-};
+const refresh = () => location.reload();
 /**
- * 현재 날짜를 표시합니다.
- * @param { Date } date
+ * @returns {string} 오늘 날짜를 반환합니다.
  */
-const setDate = (date) => {
-    const options = {
+const today = () => {
+    return new Date().toLocaleDateString("ko-KR", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
         weekday: "long",
-    };
-    const todayString = date.toLocaleDateString("ko-KR", options);
-    const $time = document.querySelector(".header__date");
-    $time.setAttribute("datetime", String(date));
-    $time.textContent = todayString;
+    });
 };
 /**
- * 헤더를 설정합니다.
+ * time 태그의 datetime 속성을 현재 시간으로 설정합니다.
+ * @param {Element} $element
  */
-const setHeader = () => {
-    const $title = document.querySelector(".header__title");
-    setRefresh($title);
-    setDate(new Date());
+const setDate = ($element) => {
+    $element.querySelector("time").setAttribute("datetime", String(new Date()));
 };
-export { setHeader };
+const Header = () => {
+    const $template = html `
+    <header class="header">
+      <h1 class="header__title" onClick=${refresh}>뉴스스탠드</h1>
+      <time class="header__date">${today()}</time>
+    </header>
+  `;
+    setDate($template);
+    return $template;
+};
+const registerComponents = (obj) => {
+    Object.entries(obj).forEach(([key, value]) => {
+        console.log(key, value);
+        const $customEl = class extends HTMLElement {
+            constructor() {
+                super();
+            }
+            connectedCallback() {
+                this.append(value);
+                // this.parentNode?.replaceChild(value, this);
+                console.log(this);
+            }
+        };
+        customElements.define(`custom-${key}`, $customEl);
+    });
+};
+export default Header;
