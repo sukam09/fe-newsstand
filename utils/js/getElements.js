@@ -1,16 +1,16 @@
-function getElemId(base, id) {
+function getElemId(id, base = document) {
   return base.getElementById(id);
 }
 
-function getElemClass(base, className) {
+function getElemClass(className, base = document) {
   return base.getElementsByClassName(className);
 }
 
-function getQuerySelector(base = document, selector) {
-  return base.querySelector(selector)
+function getQuerySelector(selector, base = document,) {
+  return base.querySelector(selector);
 }
 
-function getQuerySelectorAll(base = document, selector) {
+function getQuerySelectorAll(selector, base = document) {
   return base.querySelectorAll(selector);
 }
 

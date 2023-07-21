@@ -3,9 +3,9 @@ import { fetchData } from "../../utils/js/getJson.js";
 
 const page = [[], [], [], []];
 
-const sectionPrevButton = getQuerySelector(document, '#press-content-grid-prev');
-const sectionNextButton = getQuerySelector(document, '#press-content-grid-next');
-const pressContentView = getElemClass(document, 'press-content-view');
+const sectionPrevButton = getQuerySelector('#press-content-grid-prev');
+const sectionNextButton = getQuerySelector('#press-content-grid-next');
+const pressContentView = getElemClass('press-content-view');
 
 let pageNumber = 0;
 
@@ -31,7 +31,7 @@ async function shuffleImgs() {
 
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
 function showPressImg({pageValue}) {
-  const pressContentView = getElemClass(document, 'press-content-view');
+  const pressContentView = getElemClass('press-content-view');
   pageNumber = (pageValue >= 0) ? ++pageNumber : --pageNumber;
 
   sectionPrevButton.style.display = pageNumber !== 0 ? "block" : "none";

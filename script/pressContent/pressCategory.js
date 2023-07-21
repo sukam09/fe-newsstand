@@ -32,8 +32,8 @@ export async function getCategoryInfo() {
   nameOfEachCategory.push(...Object.keys(categoryMap));
   numOfEachCategory.push(...Object.values(categoryMap));
 
-  getQuerySelector(undefined, '.press-content-categorybar').innerHTML = putCategory;
-  getQuerySelector(undefined, '.press-content-category').classList.add('selected');
+  getQuerySelector('.press-content-categorybar').innerHTML = putCategory;
+  getQuerySelector('.press-content-category').classList.add('selected');
 
   selectCategory();
   getCategoryIdx();
@@ -41,7 +41,7 @@ export async function getCategoryInfo() {
 
 // 카테고리 이름 알려주는 거 (완)
 function getCategoryIdx() {
-  const nowCategory = getQuerySelector(undefined, ".selected .press-content-category-name");
+  const nowCategory = getQuerySelector(".selected .press-content-category-name");
 
   nameOfEachCategory.forEach((elem, id) => {
     if (elem === nowCategory.innerHTML) {
@@ -52,20 +52,20 @@ function getCategoryIdx() {
 
 // selected 클래스 다 제거 (완)
 function initSelectedState() {
-  const categories = getQuerySelectorAll(undefined, '.press-content-category');
+  const categories = getQuerySelectorAll('.press-content-category');
   categories.forEach((elem) => elem.classList.remove('selected'));
 }
 
 //selected 클래스 추가(완)
 function changeCategory(idx) {
   initSelectedState();
-  const categories = getQuerySelectorAll(undefined, '.press-content-category');
+  const categories = getQuerySelectorAll('.press-content-category');
   categories[idx].classList.add('selected');
 }
 
 // 마우스 클릭 시 해당하는 카테고리 selected 클래스 추가
 function selectCategory() {
-  const categories = getQuerySelectorAll(undefined, '.press-content-category');
+  const categories = getQuerySelectorAll('.press-content-category');
   categories.forEach((elem) => {
     elem.addEventListener('click', (e) => {
       initSelectedState();
@@ -100,14 +100,12 @@ function updatePageAndCategory(pageMoveFlag) {
       changeCategory(categoryIdx);
     }
   }
-
-
 }
 
 // 화살표로 카테고리 페이지 이동하기
 export function moveCategory() {
-  const listPrevArrow = getQuerySelector(undefined, "#press-content-list-prev");
-  const listNextArrow = getQuerySelector(undefined, "#press-content-list-next");
+  const listPrevArrow = getQuerySelector("#press-content-list-prev");
+  const listNextArrow = getQuerySelector("#press-content-list-next");
 
   listPrevArrow.addEventListener('click', () => {
     updatePageAndCategory(-1);
@@ -115,7 +113,6 @@ export function moveCategory() {
     showListNewsData(nameOfEachCategory[categoryIdx], currentPage);
     moveCategoryProgressbar();
     restartProgressbar();
-
   })
 
   listNextArrow.addEventListener('click', () => {
@@ -128,10 +125,8 @@ export function moveCategory() {
 }
 
 function putCurrentPage() {
-  getQuerySelector(undefined, '.selected .press-content-category-cnt-now').innerHTML = currentPage;
+  getQuerySelector('.selected .press-content-category-cnt-now').innerHTML = currentPage;
 }
-
-
 
 export function moveCategoryProgressbar() {
   const progressbarState = getQuerySelector(document, ".selected .press-content-category-progressbar");
@@ -144,7 +139,7 @@ export function moveCategoryProgressbar() {
 }
 
 function restartProgressbar() {
-  const nowCategory = getQuerySelector(undefined, ".selected .press-content-category-progressbar");
+  const nowCategory = getQuerySelector(".selected .press-content-category-progressbar");
   const parentOfNowCategory = nowCategory.parentElement;
   parentOfNowCategory.removeChild(nowCategory);
   parentOfNowCategory.insertAdjacentHTML("afterbegin", "<div class=\"press-content-category-progressbar\"></div>");

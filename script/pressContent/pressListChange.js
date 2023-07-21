@@ -1,5 +1,5 @@
 import { fetchData } from "../../utils/js/getJson.js";
-import { getQuerySelector, getQuerySelectorAll } from "../../utils/js/getElements.js";
+import { getQuerySelector } from "../../utils/js/getElements.js";
 
 const categoryObj = {
   "종합/경제" : [],
@@ -14,17 +14,17 @@ const categoryObj = {
 // 뉴스리스트에 필요한 요소들 받아오기
 export async function getNewsData() {
   const NewsPath = await fetchData("../assets/data/newspaperSrc.json");
-  NewsPath.newsList.map((elem) => {
-    categoryObj[elem.category].push({"name" : elem.name, "lightSrc" : elem.lightSrc, "editDate" : elem.editDate, "mainNews" : elem.mainNews, "subNews" : elem.subNews});
-  });
+  NewsPath.newsList.forEach((elem) =>
+    categoryObj[elem.category].push({ "name": elem.name, "lightSrc": elem.lightSrc, "editDate": elem.editDate, "mainNews": elem.mainNews, "subNews": elem.subNews })
+);
 }
 
 // 뉴스리스트 요소들 보여주기
 export function showListNewsData(category, newsIdx) {
   const categoryData = categoryObj[category][newsIdx-1];
-  const contentBigNews = getQuerySelector(document, ".press-content-big-news");
-  const pressContentNewsLogo = getQuerySelector(document, ".press-content-news-info");
-  const pressNewsContentHeadlines = getQuerySelector(document, ".press-content-news-headlines");
+  const contentBigNews = getQuerySelector(".press-content-big-news");
+  const pressContentNewsLogo = getQuerySelector(".press-content-news-info");
+  const pressNewsContentHeadlines = getQuerySelector(".press-content-news-headlines");
 
   contentBigNews.innerHTML = `
     <img src="${categoryData.mainNews.thumbnail}">

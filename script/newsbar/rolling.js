@@ -26,7 +26,7 @@ function stopRolling() {
 
 // 헤드라인 뉴스 자동 롤링 영역 마우스 이벤트
 function mouseEventRolling(state) {
-  const headlineNews = getQuerySelectorAll(document, `.newsbar-content-container-${state} li`);
+  const headlineNews = getQuerySelectorAll(`.newsbar-content-container-${state} li`);
 
   headlineNews.forEach((elem) => {
     elem.addEventListener('mouseover', stopRolling);
@@ -52,7 +52,7 @@ function putNewsHeadline(state, headlineTitleArr) {
         break;
     }
   });
-  const headlineContainer = getQuerySelector(document, `.newsbar-content-container-${state}`);
+  const headlineContainer = getQuerySelector(`.newsbar-content-container-${state}`);
   headlineContainer.innerHTML = headlineSrc;
   mouseEventRolling(state);
 }
@@ -69,14 +69,14 @@ async function getNewsHeadline() {
 
 // 헤드라인 뉴스 자동 롤링 반복
 function rollingInterval(state) {
-  getQuerySelector(document, `.newsbar-content-container-${state} .prev`).classList.remove('prev');
-  const current = getQuerySelector(document, `.newsbar-content-container-${state} .current`);
+  getQuerySelector(`.newsbar-content-container-${state} .prev`).classList.remove('prev');
+  const current = getQuerySelector(`.newsbar-content-container-${state} .current`);
   current.classList.remove('current');
   current.classList.add('prev');
 
-  const next = getQuerySelector(document, `.newsbar-content-container-${state} .next`);
+  const next = getQuerySelector(`.newsbar-content-container-${state} .next`);
   if (next.nextElementSibling == null) {
-    getQuerySelector(document, `.newsbar-content-container-${state} li:first-child`).classList.add('next');
+    getQuerySelector(`.newsbar-content-container-${state} li:first-child`).classList.add('next');
   } else {
     next.nextElementSibling.classList.add('next');
   }
