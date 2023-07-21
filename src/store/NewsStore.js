@@ -1,4 +1,4 @@
-class NewsData{
+class NewsStore{
     constructor(){
         this.gridArticle;
         this.listArticle;
@@ -36,7 +36,7 @@ class NewsData{
     }
 }
 
-const newsData = new NewsData();
+const newsData = new NewsStore();
 export default newsData;
 
 //바깥에서 선언을 하거나 contructor 안에 선언

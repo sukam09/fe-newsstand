@@ -1,5 +1,5 @@
-import State from "../state/Reducer.js";
-import mainNews from "./mainNews.js";
+import State from "../store/StateStore.js";
+import renderMain from "./renderMain.js";
 import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
 
 export default function clickRightAsideButton(){

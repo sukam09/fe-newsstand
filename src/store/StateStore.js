@@ -1,4 +1,4 @@
-class Reducer{
+class StateStore{
     constructor(){
         this.viewState = {
             isAll: true,
@@ -16,11 +16,11 @@ class Reducer{
 
     //viewState 관리
     getAllState(){
-        return this.viewState.isAll
+        return this.viewState.isAll;
     }
 
     getGridState(){
-        return this.viewState.isGrid
+        return this.viewState.isGrid;
     }
 
     setAll(){
@@ -81,5 +81,5 @@ class Reducer{
     }
 }
 
-const State = new Reducer();
+const State = new StateStore();
 export default State;  

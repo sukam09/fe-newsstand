@@ -1,8 +1,8 @@
 import listArticle from "../../data/list_article.json" assert { type: "json" };
-import main from "./mainNews.js";
-import State from "../state/Reducer.js";
-import NewsData from "../state/NewsData.js";
-import Store from "../state/Store.js"
+import main from "./renderMain.js";
+import State from "../store/StateStore.js";
+import NewsData from "../store/NewsStore.js";
+import Store from "../store/SubscribeStore.js"
 
 let subscribedNews = [];
 let currentPage;

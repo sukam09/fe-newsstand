@@ -1,5 +1,5 @@
-import State from "../state/Reducer.js";
-import mainNews from "./mainNews.js";
+import State from "../store/StateStore.js";
+import mainNews from "./renderMain.js";
 import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
 
 export default function clickLeftAsideButton(){
@@ -41,6 +41,6 @@ export default function clickLeftAsideButton(){
             State.setCurrentPage(currentPage);
             controlListlMinMaxException();
         }
-        mainNews();
+        renderMain();
     });
 }

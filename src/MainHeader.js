@@ -1,7 +1,7 @@
-import mainNews from "./main/mainNews.js";
-import State from "./state/Reducer.js";
+import mainNews from "./main/renderMain.js";
+import State from "./store/StateStore.js";
 import changeImageSrc from "./utils/changeImageSrc.js";
-import newsData from "./state/NewsData.js";
+import newsData from "./store/NewsStore.js";
 
 function clickAllNews(){
 const allNews = document.getElementById("main-left-radio-01");
@@ -27,6 +27,7 @@ function clickGridImage(){
         gridImage.addEventListener('click',()=>{
             changeImageSrc(gridImage, "./img/GridViewSelected.png");
             changeImageSrc(cardListImage , "./img/ListView.png");
+            State.setMaxPage();
             State.setGrid();
             State.setCurrentPage(1);
             mainNews();

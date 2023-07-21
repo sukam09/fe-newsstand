@@ -1,5 +1,5 @@
-import State from "../state/Reducer.js";
-import NewsData from "../state/NewsData.js";
+import State from "../store/StateStore.js";
+import NewsData from "../store/NewsStore.js";
 
 export default function controListlMinMaxException(){
     let currentPage = State.getCurrentPage();

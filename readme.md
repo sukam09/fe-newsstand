@@ -68,3 +68,16 @@ Recentnews{
 		//20초 간격으로 프로그래스 증가
 		//마지막 페이지면 다음 카테고리의 첫번째 페이지로 이동
 	}
+
+# 3주차 구조설계
+
+1. 컴포넌트 생성
+	Newsstand
+	SetDate
+	RecentNews
+	Mainheader
+	ArrowButton
+	MainCenter
+	및 JSON 데이터를 불러와 NewsStore에 동기화
+
+2. 

@@ -1,8 +1,8 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
 import gridArticle from "../../data/grid_article.json" assert { type: "json"};
-import NewsData from "../state/NewsData.js";
-import State from "../state/Reducer.js";
-import Store from "../state/Store.js";
+import NewsData from "../store/NewsStore.js";
+import State from "../store/StateStore.js";
+import Store from "../store/SubscribeStore.js";
 
 let COUNT_PER_PAGE;
 let press;
@@ -22,14 +22,13 @@ function addSubscribeBtn(e){
             e.target.innerText = "해지하기";
             Store.addSubscribe(Store.findSubscribe(press));
         }
-    });
-
-
+    }); 
 }
 
 function logoMouseOver(e){
     //마우스 오버한 언론사 선택
     press = e.target.children[0].className; 
+     
     //초기화
     e.target.innerHTML = "";
     e.target.style.backgroundColor = "#F5F7F9";
@@ -46,13 +45,12 @@ function logoMouseOver(e){
 }
 
 function logoMouseOut(e){
-    e.target.innerHTML = "";
+    e.target.innerHTML = ""; //구조분해 할당(e를 줄일 수 있음);
     e.target.style.backgroundColor = "white";
     const selectedpress = shuffled_data.find((i) => i.id === parseInt(press));
     const newsLogo = document.createElement("img");
     newsLogo.src = selectedpress.logo;
     newsLogo.classList.add(press);
-
     e.target.appendChild(newsLogo);
 }
 
@@ -91,7 +89,7 @@ function refreshGrid(){
 }
 
 export default function MainGrid(){
-   COUNT_PER_PAGE = State.getCountPerPage();
+    COUNT_PER_PAGE = State.getCountPerPage();
     isAll = State.getAllState();
     currentPage = State.getCurrentPage();
     subscribeData = Store.getSubscribe();

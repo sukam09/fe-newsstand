@@ -1,4 +1,4 @@
-class Store{
+class SubscribeStore{
     constructor(){
         this.subscribePress = [];
     }
@@ -17,11 +17,16 @@ class Store{
     }
 
     findSubscribe(id){
-        let press = this.subscribePress.find(press => press.id === id);
+        if(this.subscribePress.length > 0){
+            press = this.subscribePress.find(press => press.id === id);
+        }
+        else{
+            press = 0;
+        }
         return press
     }
 }
 
-const store = new Store();
+const store = new SubscribeStore();
 
 export default store;  

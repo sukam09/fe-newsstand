@@ -2,7 +2,7 @@ import mainGrid from "./mainGrid.js";
 import mainList from "./mainList.js";
 import clickLeftAsideButton from "./clickLeftAsideButton.js";
 import clickRightAsideButton from "./clickRightAsideButton.js";
-import State from "../state/Reducer.js";
+import State from "../store/StateStore.js";
 import controlListMinMaxException from "../utils/controlListlMinMaxException.js";
 
 let categoryProgress;
@@ -13,11 +13,11 @@ function progress() {
       currentPage++;
       State.setCurrentPage(currentPage);
       controlListMinMaxException();
-      mainNews();
+      renderMain();
    }, 10000);
 }
 
-export default function mainNews(){
+export default function renderMain(){
    clearInterval(categoryProgress);
    if(State.getGridState()) {
       mainGrid();
