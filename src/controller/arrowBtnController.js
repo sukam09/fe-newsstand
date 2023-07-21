@@ -34,4 +34,4 @@ function moveRight() {
   }
 }
 
-export { initArrowBtnEvnet, moveRight };
+export { initArrowBtnEvnet, moveLeft, moveRight };

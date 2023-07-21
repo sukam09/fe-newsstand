@@ -1,6 +1,7 @@
 import { CONSTANT, MODE, STATE, GLOBAL } from "../model/variable.js";
 import { changeState } from "./mainController.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
+import { moveLeft } from "./arrowBtnController.js";
 
 function initSubscribeBtnEvnet(target) {
   target.addEventListener("click", (event) => {
@@ -68,6 +69,9 @@ function toggleSubscribe(src) {
       }
     }
 
+    if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
+      moveLeft();
+    }
     changeState(STATE.UNSUBSCRIBE_NEWS);
   }
 }
