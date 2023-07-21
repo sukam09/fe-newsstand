@@ -69,23 +69,23 @@ function paintInitContent() {
 
 // 왼쪽 롤링
 function leftRolling() {
-  leftInterval = setInterval(moveContent(0), SET_TIME);
+  leftInterval = setInterval(moveLeftContent, SET_TIME);
   hoverTags[0].addEventListener(EVENT.MOUSER_OVER, () => {
     clearInterval(leftInterval);
   });
   hoverTags[0].addEventListener(EVENT.MOUSER_OUT, () => {
-    leftInterval = setInterval(moveContent(0), SET_TIME);
+    leftInterval = setInterval(moveLeftContent(), SET_TIME);
   });
 }
 
 // 오른쪽 롤링
 function rightRolling() {
-  rightInterval = setInterval(moveContent(1), SET_TIME);
+  rightInterval = setInterval(moveRightContent, SET_TIME);
   hoverTags[1].addEventListener(EVENT.MOUSER_OVER, () => {
     clearInterval(rightInterval);
   });
   hoverTags[1].addEventListener(EVENT.MOUSER_OUT, () => {
-    rightInterval = setInterval(moveContent(1), SET_TIME);
+    rightInterval = setInterval(moveRightContent, SET_TIME);
   });
 }
 
@@ -100,46 +100,103 @@ async function makeRightHeadlineData() {
 }
 
 // 왼쪽 롤링 콘텐츠 변경할때 실행되는 함수
-function moveContent(idx) {
+function moveLeftContent() {
   return function () {
-    const headlineData = idx ? rightHeadlineData : leftHeadlineData;
-    const headCorp = idx ? CLASS_RIGHT_CORP : CLASS_LEFT_CORP;
-    const headTitle = idx ? CLASS_RIGHT_TITLE : CLASS_LEFT_TITLE;
-    const [firstCp, secondCp, thirdCp] = [
-      firstCorp[idx],
-      secondCorp[idx],
-      thirdCorp[idx],
-    ];
-    const [firstT, secondT, thirdT] = [
-      firstTitle[idx],
-      secondTitle[idx],
-      thirdTitle[idx],
-    ];
-    if (move[idx] == 2) {
-      moveTopContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT);
-      move[idx] = 0;
-    } else if (move[idx] == 1) {
-      moveMiddleContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT);
-      move[idx] = 2;
-    } else if (move[idx] == 0) {
-      moveBottomContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT);
-      move[idx] = 1;
+    if (move[0] == 2) {
+      moveTopContent(
+        firstCorp[0],
+        secondCorp[0],
+        thirdCorp[0],
+        firstTitle[0],
+        secondTitle[0],
+        thirdTitle[0]
+      );
+      move[0] = 0;
+    } else if (move[0] == 1) {
+      moveMiddleContent(
+        firstCorp[0],
+        secondCorp[0],
+        thirdCorp[0],
+        firstTitle[0],
+        secondTitle[0],
+        thirdTitle[0]
+      );
+      move[0] = 2;
+    } else if (move[0] == 0) {
+      moveBottomContent(
+        firstCorp[0],
+        secondCorp[0],
+        thirdCorp[0],
+        firstTitle[0],
+        secondTitle[0],
+        thirdTitle[0]
+      );
+      move[0] = 1;
     }
 
     replaceText(
-      headCorp,
-      headTitle,
-      currentChildIndex[idx],
-      dataCnt[idx],
-      headlineData
+      CLASS_LEFT_CORP,
+      CLASS_LEFT_TITLE,
+      currentChildIndex[0],
+      dataCnt[0],
+      leftHeadlineData
     );
-    dataCnt[idx] += 1;
-    dataCnt[idx] = dataCnt[idx] % headlineData.length;
+    dataCnt[0] += 1;
+    dataCnt[0] = dataCnt[0] % leftHeadlineData.length;
 
-    currentChildIndex[idx] === 2
-      ? (currentChildIndex[idx] = 0)
-      : currentChildIndex[idx]++;
+    currentChildIndex[0] === 2
+      ? (currentChildIndex[0] = 0)
+      : currentChildIndex[0]++;
   };
+}
+
+// 오른쪽 롤링 콘텐츠 변경할때 실행되는 함수
+function moveRightContent() {
+  if (move[1] == 2) {
+    moveTopContent(
+      firstCorp[1],
+      secondCorp[1],
+      thirdCorp[1],
+      firstTitle[1],
+      secondTitle[1],
+      thirdTitle[1]
+    );
+    move[1] = 0;
+  } else if (move[1] == 1) {
+    moveMiddleContent(
+      firstCorp[1],
+      secondCorp[1],
+      thirdCorp[1],
+      firstTitle[1],
+      secondTitle[1],
+      thirdTitle[1]
+    );
+    move[1] = 2;
+  } else if (move[1] == 0) {
+    moveBottomContent(
+      firstCorp[1],
+      secondCorp[1],
+      thirdCorp[1],
+      firstTitle[1],
+      secondTitle[1],
+      thirdTitle[1]
+    );
+    move[1] = 1;
+  }
+
+  replaceText(
+    CLASS_RIGHT_CORP,
+    CLASS_RIGHT_TITLE,
+    currentChildIndex[1],
+    dataCnt[1],
+    rightHeadlineData
+  );
+  dataCnt[1] += 1;
+  dataCnt[1] = dataCnt[1] % rightHeadlineData.length;
+
+  currentChildIndex[1] === 2
+    ? (currentChildIndex[1] = 0)
+    : currentChildIndex[1]++;
 }
 
 // 롤링관련된 태그를 찾아서 미리 변수에 저장해두는 함수.
