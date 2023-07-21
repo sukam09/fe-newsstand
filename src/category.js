@@ -125,19 +125,9 @@ function updateCategory() {
     // 카테고리 왼쪽으로 넘어가야할 경우
     setState(listPageIdx, 1);
     if (currentCategoryIdx === 0) {
-      // setState(
-      //   listPageIdx,
-      //   parseInt(
-      //     $(".all_page", categoryList[categoryList.length - 1]).innerHTML
-      //   )
-      // );
       setState(categoryIdx, categoryList.length - 1);
     } else {
       setState(categoryIdx, currentCategoryIdx - 1);
-      // setState(
-      //   listPageIdx,
-      //   parseInt($("all_page", categoryList[currentCategoryIdx - 1]).innerHTML)
-      // );
     }
   }
 }

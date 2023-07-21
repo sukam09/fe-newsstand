@@ -155,9 +155,6 @@ async function setGridEvents() {
     appendGridList(shuffledArr);
   });
   resister(subscribeList, checkMode);
-  resister(subscribeList, () => {
-    console.log(getState(subscribeList));
-  });
 }
 
 export { setGridEvents };
