@@ -1,11 +1,12 @@
 /* list view */
-#list_container {
+#mode_all_list_container {
   display: none;
 }
 
 /* news container */
 .news {
   display: none;
+  flex-direction: column;
   border: solid 1px var(--border-border-default);
   border-top: none;
   padding: 24px;
@@ -17,7 +18,7 @@
 .news_header > span {
   font-size: 12px;
 }
-.news_header > button {
+.list_sub_button {
   font-size: 12px;
   color: var(--text-text-weak);
   background-color: var(--surface-surface-alt);
@@ -26,7 +27,24 @@
   padding: 5px 10px 5px 8.5px;
   height: 24px;
   line-height: 12px;
+  cursor: pointer;
 }
+
+.list_unsub_button {
+  display: none;
+  font-size: 12px;
+  line-height: 12px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-text-weak);
+  background-color: var(--surface-surface-alt);
+  border-radius: 50%;
+  border: solid 1px var(--border-border-default);
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
 .news_body {
   display: none;
   align-items: flex-start;
@@ -57,6 +75,7 @@
 
 /* category */
 .category {
+  height: 40px;
   background-color: var(--surface-surface-alt);
   border: solid 1px var(--border-border-default);
 }
@@ -71,22 +90,28 @@
   padding: 0;
   list-style: none;
 }
-.category_list > li {
+.category_item {
   position: relative;
-  padding: 11.5px 16px 11.5px 16px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
   list-style: none;
   color: var(--text-text-weak);
+  box-sizing: content-box;
 }
 
-.category_list > li:hover {
+.category_item:hover {
   text-decoration-line: underline;
   cursor: pointer;
 }
-.category_list > li > span {
+.category_item > span {
   position: relative;
   z-index: 100;
 }
-.category_list > .clicked {
+.category_list > .category_clicked {
   background-color: var(--surface-surface-brand-alt);
   width: 166px;
   color: #ffffff;
@@ -94,7 +119,7 @@
   justify-content: space-between;
 }
 
-.category_list > .clicked:hover {
+.category_list > .category_clicked:hover {
   cursor: default;
   text-decoration-line: none;
 }
@@ -103,10 +128,10 @@
   height: 100%;
 }
 
-.clicked > .page_count {
+.category_clicked > .page_count {
   display: inline;
 }
-.clicked > .progressbar {
+.category_clicked > .progressbar {
   display: inline;
 }
 
@@ -184,4 +209,8 @@
   top: 50%;
   right: -48px;
   transform: translate(0%, -50%);
+}
+
+#mode_my_list_container {
+  display: none;
 }

@@ -1,40 +1,26 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
-import { createHeadlineSection } from "./components/headlineSection/headlineSection.js";
-import { showGridPage } from "./components/mainSection/mainBody/mainContent/pressGrid/pressGrid.js";
-import { createMainSection } from "./components/mainSection/mainSection.js";
-import { createTitleSection } from "./components/titleSection/titleSection.js";
-import {
-  addEventsOnThemeButton,
-  addEventsOnCategoryItem,
-  addEventsOnGridItem,
-  addEventsOnPageButton,
-  addEventsOnRollingList,
-  addEventsOnSubButton,
-  addEventsOnTitle,
-  addEventsOnViewButton,
-} from "./events.js";
-import { setCategoryData, setPressData } from "./state/dataState.js";
-import { initState } from "./state/pageState.js";
+import { initCategoryData, initPressData } from "./store/dataState.js";
+import { MODE_ALL, initPageState } from "./store/pageState.js";
+import { initComponents } from "./components/initComponents.js";
+import { initSubStateList } from "./store/gridState.js";
+import { initEvents, initObservers } from "./controller/initControllers.js";
+import { showGridPage } from "./controller/pageController/pageController.js";
 
 (async function init() {
-  await setCategoryData();
-  await setPressData();
-  initState();
+  //fetch data
+  await initCategoryData();
+  await initPressData();
+  // 상수
+  initPageState();
+  initSubStateList();
 
-  const $root = document.getElementById("root");
-  $root.innerHTML += createTitleSection();
-  $root.innerHTML += await createHeadlineSection();
-  $root.innerHTML += await createMainSection();
+  await initComponents();
 
-  addEventsOnThemeButton();
-  addEventsOnPageButton();
-  addEventsOnGridItem();
-  addEventsOnSubButton(); // 미완
-  addEventsOnViewButton();
-  addEventsOnCategoryItem();
-  addEventsOnTitle();
-  addEventsOnRollingList();
+  // init controllers
+  initEvents();
+  initObservers();
 
+  // 초기 화면
   startRollingAnimation();
-  showGridPage(0);
+  showGridPage(MODE_ALL, 0);
 })();

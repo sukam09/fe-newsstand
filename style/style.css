@@ -1,4 +1,8 @@
 @import url("./colors.css");
+@import url("./listView.css");
+@import url("./gridView.css");
+@import url("./alert.css");
+@import url("./snackbar.css");
 
 body {
   background-color: var(--surface-surface-default);
@@ -17,7 +21,7 @@ body {
 }
 
 #root {
-  margin: 0 auto;
+  margin: 100px auto;
   width: 930px;
 }
 
@@ -137,18 +141,15 @@ img.title_logo {
 
 .main_header {
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .main_title_container {
   gap: 24px;
 }
 
-.main_title_container > h2 {
+.main_title_container span {
   font-size: 16px;
-}
-.main_title_container > span {
-  font-size: 16px;
-  color: var(--text-text-weak);
 }
 
 .view_button_container {
@@ -160,11 +161,22 @@ img.title_logo {
   position: relative;
 }
 
-.main_content {
+.content {
   height: 388px;
 }
 
 .view_button_container .view_clicked {
   filter: invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg)
     brightness(87%) contrast(85%);
+}
+
+.mode_button {
+  color: var(--text-text-weak);
+
+  cursor: pointer;
+}
+
+.mode_clicked {
+  font-weight: bold;
+  color: var(--text-text-strong);
 }

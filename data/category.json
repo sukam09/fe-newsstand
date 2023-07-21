@@ -8,7 +8,7 @@
     {
       "categoryId": 1,
       "categoryName": "방송/통신",
-      "pressIdList": [1, 8, 92, 24, 55]
+      "pressIdList": [1, 8, 92, 25]
     },
     {
       "categoryId": 2,
@@ -18,7 +18,7 @@
     {
       "categoryId": 3,
       "categoryName": "영자지",
-      "pressIdList": [8, 9, 20, 30, 72]
+      "pressIdList": [8, 9, 20, 72]
     },
     {
       "categoryId": 4,
