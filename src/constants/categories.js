@@ -17,4 +17,10 @@ Object.keys(categories).forEach((cate) => {
   categories[cate].press = pressData.filter((v) => v.category === cate);
 });
 
+Object.keys(categories).forEach((cate) => {
+  categories[cate].press = categories[cate].press.sort(
+    () => Math.random() - 0.5
+  );
+});
+
 export default categories;
