@@ -1,9 +1,5 @@
 import Headline from './Headline.js';
-import {
-  HEADLINE_NUMBERS,
-  HEADLINE_ROLLING_DELAY,
-  HEADLINE_ROLLING_DELAY_DIFF,
-} from '../constants.js';
+import { HEADLINE_NUMBERS, HEADLINE_ROLLING_DELAY, HEADLINE_ROLLING_DELAY_DIFF } from '../constants.js';
 
 export default function AutoRollingNews({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -19,15 +15,15 @@ export default function AutoRollingNews({ $target, initialState }) {
   };
 
   this.render = () => {
-    const { headlineData } = this.state;
+    const { data } = this.state;
 
-    const leftHeadlines = headlineData.slice(0, HEADLINE_NUMBERS);
-    const rightHeadlines = headlineData.slice(HEADLINE_NUMBERS, HEADLINE_NUMBERS * 2);
+    const leftHeadlines = data.slice(0, HEADLINE_NUMBERS);
+    const rightHeadlines = data.slice(HEADLINE_NUMBERS, HEADLINE_NUMBERS * 2);
 
     new Headline({
       $target: $section,
       initialState: {
-        headlines: leftHeadlines,
+        data: leftHeadlines,
         setTimer: callback => {
           setInterval(callback, HEADLINE_ROLLING_DELAY);
         },
@@ -37,7 +33,7 @@ export default function AutoRollingNews({ $target, initialState }) {
     new Headline({
       $target: $section,
       initialState: {
-        headlines: rightHeadlines,
+        data: rightHeadlines,
         setTimer: callback => {
           setTimeout(() => {
             setInterval(callback, HEADLINE_ROLLING_DELAY);

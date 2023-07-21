@@ -6,7 +6,7 @@ import PressListView from './components/PressListView.js';
 
 export default function App({ $app }) {
   this.state = {
-    pressView: 'grid',
+    view: 'grid',
   };
 
   this.setState = nextState => {
@@ -19,7 +19,7 @@ export default function App({ $app }) {
   new AutoRollingNews({
     $target: $app,
     initialState: {
-      headlineData: [
+      data: [
         `정부, '처리수' 표현에 "문제없어", '핵폐수'엔 "불안감 내용 부적절"`,
         `IAEA 최종보고서 반발…전국 곳곳서 후쿠시마 오염수 방류 규탄`,
         `일본 원전 오염수 방류도 안했는데…찬바람 부는 횟집·양식어가`,
@@ -37,14 +37,14 @@ export default function App({ $app }) {
   const pressTab = new PressTab({
     $target: $app,
     initialState: {
-      pressView: 'grid',
+      view: 'grid',
     },
-    onClick: newPressView => {
-      if (this.state.pressView === newPressView) {
+    onClickView: view => {
+      if (this.state.view === view) {
         return;
       }
-      this.setState({ ...this.state, pressView: newPressView });
-      pressTab.setState({ ...this.state, pressView: newPressView });
+      this.setState({ ...this.state, view });
+      pressTab.setState({ ...this.state, view });
     },
   });
 
@@ -54,12 +54,12 @@ export default function App({ $app }) {
   this.render = () => {
     $div.innerHTML = '';
 
-    this.state.pressView === 'grid'
+    this.state.view === 'grid'
       ? new PressGridView({
           $target: $div,
           initialState: {
             page: 1,
-            newsPressData: [],
+            data: [],
           },
         })
       : new PressListView({
@@ -68,15 +68,7 @@ export default function App({ $app }) {
             index: 0,
             present: 1,
             entire: 81,
-            categories: [
-              '종합/경제',
-              '방송/통신',
-              'IT',
-              '영자지',
-              '스포츠/연예',
-              '매거진/전문지',
-              '지역',
-            ],
+            categories: ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'],
           },
         });
   };

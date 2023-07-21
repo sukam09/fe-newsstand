@@ -1,4 +1,4 @@
-export default function PressTab({ $target, initialState, onClick }) {
+export default function PressTab({ $target, initialState, onClickView }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 
@@ -11,20 +11,10 @@ export default function PressTab({ $target, initialState, onClick }) {
     this.render();
   };
 
-  const handleClickListViewButton = () => {
-    onClick('list');
-  };
-
-  const handleClickGridViewButton = () => {
-    onClick('grid');
-  };
-
-  const setViewIcon = ($gridViewIcon, $listViewIcon) => {
-    $gridViewIcon.classList.remove('press-view-selected');
-    $listViewIcon.classList.remove('press-view-selected');
-    this.state.pressView === 'grid'
-      ? $gridViewIcon.classList.add('press-view-selected')
-      : $listViewIcon.classList.add('press-view-selected');
+  const setViewIcon = ($listIcon, $gridIcon) => {
+    this.state.view === 'grid'
+      ? $gridIcon.classList.add('press-view-selected')
+      : $listIcon.classList.add('press-view-selected');
   };
 
   this.render = () => {
@@ -45,16 +35,15 @@ export default function PressTab({ $target, initialState, onClick }) {
       </div>
     `;
 
-    const $viewButtons = $section.querySelector('.news-press-align-menu');
-    const [$listViewButton, $gridViewButton] = $viewButtons.querySelectorAll('svg');
+    const [$listButton, $gridButton] = $section.querySelectorAll('svg');
 
-    const $listViewIcon = $listViewButton.querySelector('path');
-    const $gridViewIcon = $gridViewButton.querySelector('path');
+    const $listIcon = $listButton.querySelector('path');
+    const $gridIcon = $gridButton.querySelector('path');
 
-    setViewIcon($gridViewIcon, $listViewIcon);
+    setViewIcon($listIcon, $gridIcon);
 
-    $listViewButton.addEventListener('click', handleClickListViewButton);
-    $gridViewButton.addEventListener('click', handleClickGridViewButton);
+    $listButton.addEventListener('click', () => onClickView('list'));
+    $gridButton.addEventListener('click', () => onClickView('grid'));
   };
 
   this.render();

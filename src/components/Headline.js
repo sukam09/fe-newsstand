@@ -6,11 +6,7 @@ export default function Headline({ $target, initialState }) {
 
   this.state = initialState;
 
-  const setHeadline = () => {
-    if (!this.isAutoRolling) {
-      return;
-    }
-
+  const rollHeadline = () => {
     const $prev = $div.querySelector('.prev');
     const $current = $div.querySelector('.current');
     const $next = $div.querySelector('.next');
@@ -37,6 +33,12 @@ export default function Headline({ $target, initialState }) {
     $next.addEventListener('mouseleave', handleMouseLeave);
   };
 
+  const setHeadline = () => {
+    if (this.isAutoRolling) {
+      rollHeadline();
+    }
+  };
+
   this.isAutoRolling = true;
   this.state.setTimer(setHeadline);
 
@@ -49,17 +51,17 @@ export default function Headline({ $target, initialState }) {
   };
 
   this.render = () => {
-    const { headlines } = this.state;
+    const { data } = this.state;
 
     $div.innerHTML = `
       <div class="recent-news-press">연합뉴스</div>
       <div class="recent-news-headline">
         <ul>
-          <li>${headlines[3]}</li>
-          <li class="prev">${headlines[4]}</li>
-          <li class="current">${headlines[0]}</li>
-          <li class="next">${headlines[1]}</li>
-          <li>${headlines[2]}</li>
+          <li>${data[3]}</li>
+          <li class="prev">${data[4]}</li>
+          <li class="current">${data[0]}</li>
+          <li class="next">${data[1]}</li>
+          <li>${data[2]}</li>
         </ul>
       </div>
     `;

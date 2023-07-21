@@ -1,8 +1,5 @@
-import {
-  ANIMATION_UPDATE_DELAY,
-  CATEGORY_NUMBERS,
-  PROGRESSBAR_UPDATE_DELTA,
-} from '../constants.js';
+import { fetchPressInfo, fetchListView } from '../api.js';
+import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -22,21 +19,50 @@ export default function PressListView({ $target, initialState }) {
   $rightButton.src = '../asset/icons/right-button.svg';
   $rightButton.classList.add('list-right-button');
 
-  $div.appendChild($leftButton);
-  $div.appendChild($article);
-  $div.appendChild($rightButton);
+  $div.append($leftButton, $article, $rightButton);
 
   $target.appendChild($section);
   $target.appendChild($div);
 
   this.state = initialState;
 
-  this.setState = nextState => {
+  this.setState = (nextState, isRender = true) => {
     this.state = nextState;
-    this.render();
+    if (isRender) {
+      this.render();
+    }
   };
 
   const { categories } = this.state;
+
+  const initListView = async () => {
+    const { index, listViewData } = this.state;
+
+    const entire = listViewData[index].length;
+    const present = this.state.present === 0 ? entire : this.state.present;
+
+    const newsData = listViewData[index][present - 1];
+    const { materials, pid, regDate } = newsData;
+    const mainNews = materials[0];
+
+    const pressInfoData = await fetchPressInfo();
+    const { logo, name } = pressInfoData.find(press => press.id === parseInt(pid, 10));
+
+    this.setState(
+      {
+        ...this.state,
+        present,
+        entire,
+        pressLogo: logo,
+        pressName: name,
+        regDate,
+        thumbnail: mainNews.image.url,
+        mainNews: mainNews.title,
+        subNews: materials.slice(1).map(news => news.title),
+      },
+      false
+    );
+  };
 
   const initFieldTab = () => {
     $section.innerHTML = `
@@ -77,9 +103,9 @@ export default function PressListView({ $target, initialState }) {
           index: (this.state.index + 1) % CATEGORY_NUMBERS,
           present: 1,
         });
-        return;
+      } else {
+        this.setState({ ...this.state, present: this.state.present + 1 });
       }
-      this.setState({ ...this.state, present: this.state.present + 1 });
     }
 
     $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
@@ -93,13 +119,14 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickLeftButton = () => {
-    const { present, entire } = this.state;
+    const { index, present } = this.state;
+    const prevIndex = (index - 1 + CATEGORY_NUMBERS) % CATEGORY_NUMBERS;
 
     if (present === 1) {
       this.setState({
         ...this.state,
-        index: (this.state.index + CATEGORY_NUMBERS - 1) % CATEGORY_NUMBERS,
-        present: entire,
+        index: prevIndex,
+        present: 0,
       });
     } else {
       this.setState({
@@ -110,12 +137,13 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickRightButton = () => {
-    const { present, entire } = this.state;
+    const { index, present, entire } = this.state;
+    const nextIndex = (index + 1) % CATEGORY_NUMBERS;
 
     if (present === entire) {
       this.setState({
         ...this.state,
-        index: (this.state.index + 1) % CATEGORY_NUMBERS,
+        index: nextIndex,
         present: 1,
       });
     } else {
@@ -128,9 +156,11 @@ export default function PressListView({ $target, initialState }) {
 
   let isInit = false;
 
-  this.render = () => {
+  this.render = async () => {
     if (!isInit) {
       initFieldTab();
+      const listViewData = await fetchListView();
+      this.setState({ ...this.state, listViewData }, false);
 
       $leftButton.addEventListener('click', handleClickLeftButton);
       $rightButton.addEventListener('click', handleClickRightButton);
@@ -138,43 +168,35 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
+    await initListView();
+
+    const { index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
+      this.state;
+
     $article.innerHTML = `
       <div class="press-info">
         <div class="press-name">
-          <img class="press-image" />
+          <img class="press-image" src="${pressLogo}"/>
         </div>
-        <div class="edit-date">2023.02.10. 18:27 편집</div>
-        <button class="subscribe-button">
+        <div class="edit-date">${regDate} 편집</div>
+        <button class="list-subscribe-button">
           <img src="../asset/icons/plus.svg" />
           <p>구독하기</p>
         </button>
       </div>
       <div class="news">
         <div class="news-main">
-          <img class="thumbnail" />
-          <p class="news-main-title">또 국민연금의 몽니…현대百 지주사 불발</p>
+          <div class="thumbnail-box">
+            <img class="thumbnail" src="${thumbnail}"/>
+          </div>
+          <p class="news-main-title">${mainNews}</p>
         </div>
         <div class="news-sub">
-          <a class="news-sub-title">"위스키 사려고 이틀 전부터 줄 섰어요"</a>
-          <a class="news-sub-title">"'방시혁 제국'이냐 '카카오 왕국'이냐…K엔터 누가 거머쥘까"</a>
-          <a class="news-sub-title">사용후핵연료 저장시설 포화…이대론 7년 뒤 원전 멈춘다</a>
-          <a class="news-sub-title"
-            >[단독] 원희룡 "해외건설 근로자 소득공제 월 500만원으로 상향할 것"</a
-          >
-          <a class="news-sub-title">태평양에는 우영우의 고래만 있는게 아니었다 [로비의 그림]</a>
-          <a class="news-sub-title">LG엔솔, 폴란드 자동차산업협회 가입…“유럽서 목소리 키운다”</a>
-          <p class="news-sub-caption">서울경제 언론사에서 직접 편집한 뉴스입니다.</p>
+          ${subNews.map(title => `<a class="news-sub-title">${title}</a>`).join('')}
+          <p class="news-sub-caption">${pressName} 언론사에서 직접 편집한 뉴스입니다.</p>
         </div>
       </div>
     `;
-
-    const $pressImage = $article.querySelector('.press-image');
-    const $thumbnail = $article.querySelector('.thumbnail');
-
-    $pressImage.src = '../asset/logos/press1.png';
-    $thumbnail.src = '../asset/icons/thumbnail.png';
-
-    const { index, present, entire, categories } = this.state;
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
@@ -191,7 +213,7 @@ export default function PressListView({ $target, initialState }) {
       <div class="text-button-name">${selectedCategory}</div>
       <div class="text-button-count">
         <p class="text-button-present">${present}</p>
-          <img src="../asset/icons/division.svg"/>
+        <img src="../asset/icons/division.svg" />
         <p class="text-button-entire">${entire}</p>
       </div>
     `;
