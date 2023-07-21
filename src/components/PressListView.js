@@ -103,9 +103,9 @@ export default function PressListView({ $target, initialState }) {
           index: (this.state.index + 1) % CATEGORY_NUMBERS,
           present: 1,
         });
-        return;
+      } else {
+        this.setState({ ...this.state, present: this.state.present + 1 });
       }
-      this.setState({ ...this.state, present: this.state.present + 1 });
     }
 
     $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
