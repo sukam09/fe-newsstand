@@ -302,6 +302,7 @@ ul li:hover .media-hover .subscribedWrapper {
     gap: 2px;
     border-radius: 50px;
     border: 1px solid var(--border-border-default, #D2DAE0);
+    cursor : pointer;
 }
 
 .listView_wrapper .media_info .subscribed .subscribed_info{

@@ -1,11 +1,13 @@
 import {getJSON,shuffle } from '../util/util.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
-import {subscribedStore } from '../util/store.js'; 
+const newsData = await getJSON("../../assets/data/news_data.json");
+import {subscribedStore,mode } from '../util/store.js'; 
 let categories = [];
 let category_page = 0;
 let media_page = 0;
 let categorizedData;
 let animationId;
+let idx;
 /**
  * category_page, media_page에 따라 section안에 내용 바꾸는 함수
  */
@@ -14,16 +16,47 @@ const setNewsData = (category_page) => {
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page];
-  if(subscribedStore.getState().includes(index+1)){ // 구독중인지 아닌지
-    document.querySelector('.subscribed').innerHTML = `<img src = "assets/images/delete.svg">`
+  let subscribedElem = document.querySelector('.subscribed');
+  if(subscribedStore.getState().includes(index)){ // 구독중인지 아닌지
+      subscribedElem.innerHTML = `<img src = "assets/images/delete.svg">`;
   }
   else{
-    document.querySelector('.subscribed').innerHTML = `
-      <img src = "assets/images/add.svg">
-      <p class="subscribed_info text-weak">구독하기</p>
-    `
+      subscribedElem.innerHTML = `
+        <img src = "assets/images/add.svg">
+        <p class="subscribed_info text-weak">구독하기</p>
+      `;
   }
-  selectedCategory.innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
+  idx = index;
+  // 감싸는 요소에 이벤트 추가
+  // 이전에 이벤트 리스너가 추가된 상태인지 확인하고, 그렇지 않은 경우에만 이벤트 리스너를 추가합니다.
+  if (!subscribedElem._hasClickListener) {
+    subscribedElem.addEventListener('click', function(e) {
+      if (subscribedStore.getState().includes(idx)) {
+        let removeIdx = subscribedStore.getState().indexOf(idx);
+        if (removeIdx !== -1) {
+          let newState = [...subscribedStore.getState()];
+          newState.splice(removeIdx, 1);
+          subscribedStore.setState(newState);
+        }
+      } else {
+        subscribedStore.setState([...subscribedStore.getState(),idx]);
+        const snackBar = document.querySelector('.snackBar');
+        snackBar.classList.remove('hide');
+        setTimeout(function() {
+          snackBar.classList.add('hide');  
+          mode.setState('Sub');
+          
+        }, 3000);
+      }
+    });
+    subscribedElem._hasClickListener = true; // 이벤트 리스너가 등록되었음을 표시
+  }
+  if(mode.getState()==='All'){
+    selectedCategory.innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
+  }
+  else{
+    selectedCategory.innerHTML = ">";
+  }
   document.querySelector(".media_info_edited").innerHTML = newsItem["edit_date"];
   document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
   document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
@@ -44,26 +77,40 @@ const setNewsData = (category_page) => {
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
 /**
- * 
- * @param {JSON} data 
  * @returns JSON
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
-function categorizeData(data) {
+function categorizeData() {
   let categorizedData = {};
+  if(mode.getState()==='All'){
 
-  for(let i = 0; i < data.length; i++) {
-    let item = data[i];
-    let category = item.category;
-    if(!categorizedData[category]) {
-      categorizedData[category] = [];
+    for(let i = 0; i < newsData.length; i++) {
+      let item = newsData[i];
+      let category = item.category;
+      if(!categorizedData[category]) {
+        categorizedData[category] = [];
+      }
+      categorizedData[category].push(item);
     }
-    categorizedData[category].push(item);
-  }
 
-  // Shuffle each category's data
-  for (let category in categorizedData) {
-    shuffle(categorizedData[category]);
+    // Shuffle each category's data
+    for (let category in categorizedData) {
+      shuffle(categorizedData[category]);
+    }
+  }
+  else{
+    for(let i =0;i<subscribedStore.getState().length;i++){
+      for(let j = 0; j < newsData.length; j++) {
+        let item = newsData[j];
+        let category = item.name;
+        if(category === media_data[subscribedStore.getState()[i]].name){ // 구독한 목록에 있을 때만 
+          if(!categorizedData[category]) {
+            categorizedData[category] = [];
+          }
+          categorizedData[category].push(item);
+        }
+      }   
+    }
   }
   return categorizedData;
   
@@ -153,14 +200,14 @@ const setArrowHandler = () => {
  * news data가져와서 기본 셋팅 함수
  */
 const getNewsData = async () => {
+  var progressBar = document.querySelector(".progress_bar");
   var progressed = document.querySelector(".category_item.progressed");
   if (progressed && progressBar) {
     var rect = progressed.getBoundingClientRect();
     progressBar.style.top = rect.top + "px";
     progressBar.style.left = rect.left + "px";
   }
-  const newsData = await getJSON("../../assets/data/news_data.json");
-  categorizedData = categorizeData(newsData);
+  categorizedData = categorizeData();
   createCategoryElements(categorizedData);
   setProgressed();
   setNewsData(category_page);
@@ -264,7 +311,7 @@ const incrementPageOrReset = (current, max) => {
 const updatePageAndData = () => {
   const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
   const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
-
+  
   if (isLastMedia) {
     media_page = 0;
     category_page = isLastCategory ? 0 : category_page + 1;
@@ -316,7 +363,7 @@ const progressBarControl = () => {
 
 
 let categoriesWrapper;
-const listViewInit = () => {
+export const listViewInit = () => {
   cancelAnimationFrame(animationId);
   categories = [];
   category_page = 0;
