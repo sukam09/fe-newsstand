@@ -82,6 +82,8 @@ const GLOBAL = {
 
   TEMP_TARGET: null,
 
+  SNACKBAR_TIME_OUT: null,
+
   CATEGORY_NUM: {
     ECONOMY: 0,
     BROADCAST: 0,

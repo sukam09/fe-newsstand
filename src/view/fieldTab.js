@@ -28,7 +28,7 @@ function drawFieldTab() {
   settingFieldTab();
 
   const fieldTab = document.querySelector(".field-tab");
-  const navBarDefaultLeft = fieldTab.getBoundingClientRect().left;
+  const navBarDefaultLeft = fieldTab.querySelector("button").getBoundingClientRect().left;
   const curPageInCategory = GLOBAL.LIST_CURRENT_PAGE - GLOBAL.CATEGORY_START_INDEX[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)] + 1;
 
   const progressRemoveTarget = fieldTab.querySelector(".progress");

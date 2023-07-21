@@ -1,6 +1,7 @@
 import { CONSTANT, MODE, STATE, GLOBAL } from "../model/variable.js";
 import { changeState } from "./mainController.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
+import { moveLeft } from "./arrowBtnController.js";
 
 function initSubscribeBtnEvnet(target) {
   target.addEventListener("click", (event) => {
@@ -38,6 +39,12 @@ function toggleSubscribe(src) {
   const targetNews = findTargetNewsFromSrc(src);
   targetNews.is_subscribe = targetNews.is_subscribe === "true" ? "false" : "true";
 
+  if (GLOBAL.SNACKBAR_TIME_OUT !== null) {
+    document.querySelector(".snack-bar").style.display = "none";
+    window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
+    GLOBAL.SNACKBAR_TIME_OUT = null;
+  }
+
   if (targetNews.is_subscribe === "true") {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
     GLOBAL.SUBSCRIBE_NEWS_NUM++;
@@ -62,6 +69,9 @@ function toggleSubscribe(src) {
       }
     }
 
+    if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
+      moveLeft();
+    }
     changeState(STATE.UNSUBSCRIBE_NEWS);
   }
 }

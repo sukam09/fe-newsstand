@@ -26,8 +26,6 @@ function drawLeftArrowBtn() {
   }
 }
 
-GLOBAL;
-
 function drawRightArrowBtn() {
   const rightBtn = document.querySelector(".right-btn");
 
