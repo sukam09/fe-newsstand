@@ -119,6 +119,10 @@ export default class SubscribeListView extends Component {
         );
 
         categoryBar.innerHTML = categoryBarList;
+
+        const categorySelected =
+            this.$target.querySelector(".category-selected");
+        categorySelected.scrollIntoView({ block: "end", behavior: "smooth" });
     }
 
     mountPageButton() {

@@ -16,7 +16,6 @@ export default class Alert extends Component {
 
     setEvent() {
         this.$target.addEventListener("click", ({ target, currentTarget }) => {
-            console.log(target, currentTarget);
             if (target.classList.contains("alert-confirm")) {
                 currentTarget.classList.add("hidden");
 
