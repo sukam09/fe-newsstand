@@ -38,7 +38,6 @@ const initialState = {
 };
 
 function actionCreator(type, data) {
-  console.log({ type, ...data });
   return {
     type,
     ...data,
