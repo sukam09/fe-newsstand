@@ -29,7 +29,7 @@ export class Alert {
     this.confirmBtn.addEventListener("click", () => {
       const subscribe_press = document.querySelector(".subscribe_press");
       // 내가 구독한 언론사를 보고 있다면 GridComponent 다시 호출해야함.
-      if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
+      if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
         const cancel_elem = document.querySelector(`.${this.getState()[0]}`);
         cancel_elem.remove();
         makeGrid({ name: "", logo: "" });

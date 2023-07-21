@@ -59,7 +59,7 @@ export const viewSelectHandler = (agencies) => {
     $list.style.display = "none";
 
     // 내가 구독한 언론사가 클릭된 상태라면
-    if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
+    if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
       copy_agencies = filterSubscribePress(copy_agencies);
 
       const pages = sortPages(copy_agencies);
@@ -93,23 +93,21 @@ export const viewSelectHandler = (agencies) => {
     $list.style.display = "flex";
 
     // 내가 구독한 언론사일 때 넘길 로직 구현
-    if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
-      // sorted_agencies 역할을 할 예정
-      copy_agencies = filterSubscribePress(copy_agencies);
+    // if (Boolean(subscribe_press.getAttribute("subscribetype")) === true) {
+    //   // sorted_agencies 역할을 할 예정
+    //   copy_agencies = filterSubscribePress(copy_agencies);
 
-      // FIELDTAB_LIST 역할을 할 예정
-      const subscribed_list = getPressName();
+    //   // FIELDTAB_LIST 역할을 할 예정
+    //   const subscribed_list = getPressName();
 
-      setListButton(copy_agencies, current_page, current_category);
-      ListComponent(
-        INITIAL_PAGE,
-        copy_agencies,
-        subscribed_list[current_category],
-        current_category
-      );
-    }
-    // else{}
-
+    //   setListButton(copy_agencies, current_page, current_category);
+    //   ListComponent(
+    //     INITIAL_PAGE,
+    //     copy_agencies,
+    //     subscribed_list[current_category],
+    //     current_category
+    //   );
+    // } else {
     // 전체 언론사
     const sorted_agencies = sortCategory(agencies);
 
@@ -120,6 +118,7 @@ export const viewSelectHandler = (agencies) => {
       FIELDTAB_LIST[current_category],
       current_category
     );
+    // }
   };
 
   grid_btn.addEventListener("click", setGrid);
@@ -140,6 +139,6 @@ export const viewSelectHandler = (agencies) => {
       subscribe_press.setAttribute("subscribetype", true);
       all_press.removeAttribute("subscribetype");
     }
-    setList();
+    setGrid();
   });
 };
