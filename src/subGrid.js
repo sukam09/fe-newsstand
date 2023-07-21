@@ -1,22 +1,17 @@
 import { setDisplay } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 
-/***** 구독한 언론사 로고 채우기 *****/
 function appendPressInSubGrid(press) {
-  //언론사 이미지 추가
-  const $image = document.createElement("img");
-  $image.src = press[1];
-  $image.classList.add("original");
+  const sub_img = `./assets/others/unsubButton.svg`;
+  const list = document.querySelector(".press-sub-grid .empty");
+  list.classList.remove("empty");
+  list.classList.add("full");
+  list.innerHTML = `<img src=${press[1]} class="original"><img src=${sub_img} class="un-sub">`;
+}
 
-  //구독하기 이미지 추가
-  const $sub = document.createElement("img");
-  $sub.src = `./assets/others/unsubButton.svg`;
-  $sub.classList.add("un-sub");
-
-  const $list = document.querySelector(".press-sub-grid .empty");
-  $list.classList.remove("empty");
-  $list.classList.add("full");
-  $list.append($image, $sub);
+function removeFullClass(element) {
+  element.classList.remove("full");
+  element.classList.add("empty");
 }
 
 function setSubGrid() {
@@ -24,12 +19,17 @@ function setSubGrid() {
   sub_press_list.forEach((press) => {
     appendPressInSubGrid(press);
   });
+  const fullItems = document.querySelectorAll("#press-sub-list .full");
+  fullItems.forEach((element) => {
+    removeFullClass(element);
+  });
 }
 
 /***** 24개의 그리드 채우기 *****/
 function makePressItemli() {
   const $list = document.createElement("li");
   $list.classList.add("press-item", "empty");
+  $list.classList.add("press-item");
   document.getElementById("press-sub-list").appendChild($list);
 }
 
