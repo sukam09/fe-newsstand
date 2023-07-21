@@ -13,6 +13,7 @@
 .newsstand__tab {
   display: flex;
   flex: 0.5;
+  gap: 3%;
 }
 .newsstand__media-nav :nth-child(2) {
   justify-content: flex-end;
@@ -21,7 +22,6 @@
   font-weight: bold;
 }
 .newsstand—text-unclicked {
-  margin-left: 3%;
   color: #879298;
 }
 
