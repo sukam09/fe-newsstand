@@ -62,6 +62,12 @@ function toggleSubscribe(src) {
       }
     }
 
+    if (GLOBAL.SNACKBAR_TIME_OUT !== null) {
+      document.querySelector(".snack-bar").style.display = "none";
+      window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
+      GLOBAL.SNACKBAR_TIME_OUT = null;
+    }
+
     changeState(STATE.UNSUBSCRIBE_NEWS);
   }
 }

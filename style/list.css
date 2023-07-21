@@ -49,6 +49,7 @@
   border-radius: 50px;
   border: var(--border-border-default) solid var(--border-default);
   background: var(--surface-alt);
+  cursor: pointer;
 }
 
 .list-sub-btn img {

@@ -5,7 +5,7 @@ import { moveListMode } from "./tabAndViewerController.js";
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
 
-  window.setTimeout(() => {
+  GLOBAL.SNACKBAR_TIME_OUT = window.setTimeout(() => {
     snackBar.style.display = "none";
     GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
     moveListMode();
