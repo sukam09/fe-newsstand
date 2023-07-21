@@ -80,4 +80,14 @@ Recentnews{
 	MainCenter
 	및 JSON 데이터를 불러와 NewsStore에 동기화
 
-2. 
+2. 데이터 관리
+	NewsStore.js에서 뉴스 정보 관리
+	SubscribeStore.js에서 구독한 뉴스 정보 관리
+
+3. 전역 변수 관리
+	StateStore.js에서 그리드, 리스트 보기 상태 및 전체 보기, 구독 보기 상태 관리
+
+4. Api 관리
+	api 파일에서 json 파일 호출
+	App.js 파일에서 동기화 실행 -> 병렬로 동시에 호출할 방법 고민!!
+
