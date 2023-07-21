@@ -1,0 +1,44 @@
+@import url(./variable.css);
+
+.tab-and-viewer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.all-press-btn,
+.sub-press-btn {
+  cursor: pointer;
+}
+
+.viewer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.list-btn,
+.grid-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+}
+
+.selected-tab {
+  color: var(--text-strong);
+}
+
+.available-tab {
+  color: var(--text-weak);
+}

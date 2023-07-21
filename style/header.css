@@ -1,0 +1,19 @@
+@import url(./variable.css);
+
+.main-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.today {
+  color: var(--text-default);
+}

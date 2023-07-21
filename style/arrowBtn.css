@@ -1,0 +1,21 @@
+@import url(./variable.css);
+
+.left-btn,
+.right-btn {
+  width: 24px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 430px;
+}
+
+.left-btn {
+  left: -71px;
+}
+
+.right-btn {
+  right: -71px;
+}
