@@ -17,6 +17,7 @@
 class NewsDatabase {
   #instance = null;
   #instanceMapByCategory = null;
+  #instanceMapByName = null;
 
   /**
    * @param {newsData[]} data
@@ -25,18 +26,8 @@ class NewsDatabase {
     if (this.#instance) return;
 
     this.#instance = data;
-    this.#instanceMapByCategory = this.#instance.reduce(
-      (acc, { category, ...rest }) => {
-        if (!acc.has(category)) {
-          acc.set(category, [rest]);
-        } else {
-          acc.get(category).push(rest);
-        }
-
-        return acc;
-      },
-      new Map()
-    );
+    this.#instanceMapByCategory = this.#createCategoryMap();
+    this.#instanceMapByName = this.#createNameMap();
   }
 
   getNewsData() {
@@ -45,6 +36,10 @@ class NewsDatabase {
 
   getNewsDataMapByCategory() {
     return this.#instanceMapByCategory;
+  }
+
+  getNewsOneByName(name) {
+    return this.#instanceMapByName.get(name);
   }
 
   getHeadlineData() {
@@ -60,6 +55,25 @@ class NewsDatabase {
 
   getCountByCategory(category) {
     return this.#instanceMapByCategory.get(category).length;
+  }
+
+  #createCategoryMap() {
+    return this.#instance.reduce((acc, { category, ...rest }) => {
+      if (!acc.has(category)) {
+        acc.set(category, [rest]);
+      } else {
+        acc.get(category).push(rest);
+      }
+
+      return acc;
+    }, new Map());
+  }
+
+  #createNameMap() {
+    return this.#instance.reduce((acc, { name, ...rest }) => {
+      acc.set(name, rest);
+      return acc;
+    }, new Map());
   }
 }
 

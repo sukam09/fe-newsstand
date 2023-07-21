@@ -93,10 +93,10 @@
         <header>
           <nav class="main-nav">
             <div class="main-nav_tabs">
-              <button class="main-nav_tabs--selected selected-bold16">
+              <button data-tab="all" class="main-nav_tabs--selected selected-bold16">
                 전체 언론사
               </button>
-              <button class="available-medium16">내가 구독한 언론사</button>
+              <button data-tab="subscribe" class="available-medium16">내가 구독한 언론사</button>
             </div>
             <div class="main-nav_viewer">
               <button data-view="list">
@@ -135,7 +135,7 @@
           <div class="list-view hidden">
             <header>
               <nav class="list-view_tab">
-                <ul class="available-medium14">
+                <ul class="tab-all available-medium14">
                   <li class="category-selected selected-bold14">
                     <div class="tab_progress-bar"></div>
                     <span class="tab_category">종합/경제</span>
@@ -200,6 +200,7 @@
                     </div>
                   </li>
                 </ul>
+                <ul class="tab-subscribe available-medium14"></ul>
               </nav>
             </header>
             <main class="list-view-main">
@@ -258,6 +259,18 @@
           </button>
         </main>
       </main>
+    </div>
+    <div class="display-medium16 snackbar">
+      내가 구독한 언론사에 추가되었습니다.
+    </div>
+    <div class="modal hidden">
+      <pre class="modal_contents display-medium16">
+        <p><span class="contents_press-name"></span>을(를)</p>
+        <p>구독해지하시겠습니까?</p>
+      </pre>
+      <div class="modal_btns">
+        <button class="btns_confirm">예, 해지합니다</button>
+        <button class="btns_cancel">아니오</button>
     </div>
   </body>
 </html>

@@ -7,6 +7,11 @@ export const VIEW_TYPE = freeze({
   LIST: "list",
 });
 
+export const TAB_TYPE = freeze({
+  ALL: "all",
+  SUBSCRIBE: "subscribe",
+});
+
 export const THEME = freeze({
   LIGHT: "light",
   DARK: "dark",

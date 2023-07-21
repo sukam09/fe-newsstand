@@ -1,30 +1,58 @@
-import { NEWS_COUNT, VIEW_TYPE } from "../constants/index.js";
+import { NEWS_COUNT, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
+import { NewsDB } from "../core/db.js";
 import { store, useSelector } from "../store/index.js";
+import { openModal } from "../store/reducer/modal.js";
+import { openSnackbar } from "../store/reducer/snackbar.js";
+import { addSubscribe } from "../store/reducer/subscribe-list.js";
+import { SubscribeButton } from "./components.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
+
+const $gridView = document.querySelector(".grid-view");
 
 const fillGridView = (newsData, currentPage) => {
   const theme = useSelector((state) => state.theme.currentTheme);
-  const $gridView = document.querySelector(".grid-view");
-  $gridView.innerHTML = "";
 
   const startIdx = currentPage * NEWS_COUNT;
-  for (let i = startIdx; i < startIdx + NEWS_COUNT; i++) {
-    const $li = document.createElement("li");
-    $li.className = "grid-cell";
+  const subscribeList = useSelector((state) => state.subscribeList);
 
-    const $button = document.createElement("button");
+  $gridView.innerHTML = Array.from(
+    { length: NEWS_COUNT },
+    (_, i) => i + startIdx
+  ).reduce((acc, curr) => {
+    if (!newsData[curr]) {
+      return acc + `<li class="grid-cell"></li>`;
+    }
 
-    const $img = document.createElement("img");
-    $img.className = "grid-cell_news-img";
+    const isSubscribed = subscribeList.includes(newsData[curr].name);
 
-    $img.src = newsData[i].src[theme];
-    $img.alt = newsData[i].name;
+    return (acc += `<li class="grid-cell">
+      <img
+        class="brand-mark"
+        src="${newsData[curr].src[theme]}" 
+        alt="${newsData[curr].name}" />
+      ${SubscribeButton(isSubscribed)}
+    </li>`);
+  }, "");
+};
 
-    $button.appendChild($img);
-    $li.appendChild($button);
+const handleSubscribeButtonClick = (e) => {
+  const $button = e.target.closest(".subscribe-btn");
+  if (!$button) return;
 
-    $gridView.appendChild($li);
+  const name = $button.previousElementSibling.alt;
+  const isSubscribed = JSON.parse($button.dataset.subscribed);
+
+  if (isSubscribed) {
+    store.dispatch(openModal(name));
+    return;
   }
+
+  store.dispatch(openSnackbar());
+  store.dispatch(addSubscribe(name));
+};
+
+const addEventOnGridView = () => {
+  $gridView.addEventListener("click", handleSubscribeButtonClick);
 };
 
 const initGridView = (newsData) => {
@@ -33,7 +61,7 @@ const initGridView = (newsData) => {
 };
 
 const getMaxPage = (data) => {
-  return Math.floor(data.length / NEWS_COUNT) - 1;
+  return Math.floor((data.length - 1) / NEWS_COUNT);
 };
 
 const updateButtonUI = (currentPage, maxPage) => {
@@ -50,16 +78,34 @@ const updateButtonUI = (currentPage, maxPage) => {
   }
 };
 
+const renderGridViewOnSubscribe = (currentPage) => {
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const newsData = subscribeList.map((press) => ({
+    name: press,
+    ...NewsDB.getNewsOneByName(press),
+  }));
+  const maxPage = getMaxPage(newsData);
+
+  fillGridView(newsData, currentPage);
+  updateButtonUI(currentPage, maxPage);
+};
+
 export const renderGridView = (newsData) => {
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
+  addEventOnGridView();
 
   store.subscribe(() => {
-    const { currentPage, viewType } = useSelector((state) => state.page);
+    const { currentPage, viewType, tabType } = useSelector(
+      (state) => state.page
+    );
     if (viewType !== VIEW_TYPE.GRID) return;
 
-    fillGridView(newsData, currentPage);
-
-    updateButtonUI(currentPage, maxPage);
+    if (tabType === TAB_TYPE.ALL) {
+      fillGridView(newsData, currentPage);
+      updateButtonUI(currentPage, maxPage);
+    } else {
+      renderGridViewOnSubscribe(currentPage);
+    }
   });
 };

@@ -1,20 +1,24 @@
 import { NewsDB } from "../core/index.js";
 import { store, useSelector } from "../store/index.js";
-import { CATEGORIES, VIEW_TYPE } from "../constants/index.js";
+import { CATEGORIES, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 import {
   nextCategory,
   prevCategory,
   setCategory,
+  setPage,
 } from "../store/reducer/page.js";
 import { resetProgress } from "./progress-bar.js";
+import { SubscribeButton } from "./components.js";
+import { openSnackbar } from "../store/reducer/snackbar.js";
+import { addSubscribe } from "../store/reducer/subscribe-list.js";
+import { openModal } from "../store/reducer/modal.js";
 
-const $listViewTab = document.querySelector(".list-view_tab > ul");
-const $listViewTabItems = $listViewTab.querySelectorAll("li");
+const $listViewTab = document.querySelector(".list-view_tab");
+const [$categoryTab, $subscribeTab] = $listViewTab.querySelectorAll("ul");
+const $listViewTabItems = $categoryTab.querySelectorAll("li");
 const $listView = document.querySelector(".list-view-main");
 const $listViewHeader = $listView.querySelector("header");
-const $news_logo = $listViewHeader.querySelector("img");
-const $edit_date = $listViewHeader.querySelector(".list-view-main_edit-date");
 const $listViewMain = $listView.querySelector("main");
 const $listViewMainNews = $listViewMain.querySelector(
   ".list-view-main_main-news"
@@ -26,14 +30,73 @@ const $listViewSubNews = $listViewMain.querySelector(
 );
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
 
-const fillArticles = (currentCategory, currentPage) => {
-  const theme = useSelector((state) => state.theme.currentTheme);
-  const { name, src, edit_date, main_news, sub_news } =
-    NewsDB.queryByCategory(currentCategory)[currentPage];
+const SubscribeItem = (press, selected) => {
+  return `
+  <li ${selected ? `class="category-selected selected-bold14"` : ``} >
+    <div class="tab_progress-bar"></div>
+    <span class="tab_category">${press}</span>
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12L9.4 18Z" fill="inherit"/>
+    </svg>
+  </li>`;
+};
 
-  $news_logo.src = src[theme];
-  $news_logo.alt = name;
-  $edit_date.innerText = edit_date;
+const setSubscribeTabsDraggable = () => {
+  let isMouseDown = false;
+  let startPageX;
+
+  $listViewTab.addEventListener("mousedown", (e) => {
+    isMouseDown = true;
+    startPageX = e.pageX + e.currentTarget.scrollLeft;
+  });
+
+  $listViewTab.addEventListener("mousemove", (e) => {
+    if (!isMouseDown) return;
+    $listViewTab.classList.add("dragging");
+    e.currentTarget.scrollLeft = startPageX - e.pageX;
+  });
+
+  $listViewTab.addEventListener("mouseup", (e) => {
+    isMouseDown = false;
+    $listViewTab.classList.remove("dragging");
+  });
+
+  $listViewTab.addEventListener("mouseleave", () => {
+    isMouseDown = false;
+    $listViewTab.classList.remove("dragging");
+  });
+};
+
+const showSubscribeTab = (subscribeList, selected) => {
+  $subscribeTab.innerHTML = subscribeList.reduce((acc, curr) => {
+    return acc + SubscribeItem(curr, selected === curr);
+  }, "");
+};
+
+const unshowSubscribeTab = () => {
+  $subscribeTab.innerHTML = "";
+};
+
+const showCategoryTab = () => {
+  $categoryTab.style.display = "flex";
+};
+
+const unshowCategoryTab = () => {
+  $categoryTab.style.display = "none";
+};
+
+const fillArticle = (articleData) => {
+  const theme = useSelector((state) => state.theme.currentTheme);
+  const { name, src, edit_date, main_news, sub_news } = articleData;
+
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const isSubscribed = subscribeList.includes(name);
+
+  $listViewHeader.innerHTML = `
+    <img src="${src[theme]}" alt="${name}" height="20" width="auto" />
+    <span class="list-view-main_edit-date display-medium12">${edit_date}</span>
+    ${SubscribeButton(isSubscribed)}
+  `;
 
   $mainThumbnail.src = main_news.thumbnail;
   $mainTitle.innerText = main_news.title;
@@ -80,34 +143,91 @@ const handleListViewTabClick = (e) => {
   store.dispatch(setCategory(category));
 };
 
+const handleSubscribeTabsClick = (e) => {
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const pressName = e.target.innerText;
+
+  console.log(e.target);
+  const pressIdx = subscribeList.indexOf(pressName);
+  store.dispatch(setPage(pressIdx));
+};
+
+const handleSubscribeButtonClick = (e) => {
+  const $button = e.target.closest(".subscribe-btn");
+  if (!$button) {
+    return;
+  }
+
+  const name = $button.previousElementSibling.previousElementSibling.alt;
+  const isSubscribed = JSON.parse($button.dataset.subscribed);
+
+  if (isSubscribed) {
+    store.dispatch(openModal(name));
+    return;
+  }
+
+  store.dispatch(openSnackbar());
+  store.dispatch(addSubscribe(name));
+};
+
 export const renderListView = () => {
   $listViewTabItems.forEach(($tabItem) => {
     $tabItem.addEventListener("click", handleListViewTabClick);
   });
+  $listViewHeader.addEventListener("click", handleSubscribeButtonClick);
+  $subscribeTab.addEventListener("click", handleSubscribeTabsClick);
+
+  setSubscribeTabsDraggable();
 
   store.subscribe(() => {
-    const { currentPage, currentCategoryIdx, viewType } = useSelector(
+    const { currentPage, currentCategoryIdx, viewType, tabType } = useSelector(
       (state) => state.page
     );
     if (viewType !== VIEW_TYPE.LIST) return;
 
-    const currentCategory = CATEGORIES[currentCategoryIdx];
-    const totalCnt = NewsDB.getCountByCategory(currentCategory);
+    if (tabType === TAB_TYPE.ALL) {
+      const currentCategory = CATEGORIES[currentCategoryIdx];
+      const totalCnt = NewsDB.getCountByCategory(currentCategory);
+      const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
 
-    if (currentPage < 0) {
-      store.dispatch(prevCategory());
-      return;
+      if (currentPage < 0) {
+        store.dispatch(prevCategory());
+        return;
+      }
+
+      if (currentPage >= totalCnt) {
+        store.dispatch(nextCategory());
+        return;
+      }
+
+      showCategoryTab();
+      unshowSubscribeTab();
+      activateCategory(currentCategory);
+      showTabCount(currentPage, totalCnt);
+      fillArticle(articleData);
+    } else {
+      const subscribeList = useSelector((state) => state.subscribeList);
+      const pressName = subscribeList[currentPage];
+      const articleData = {
+        name: pressName,
+        ...NewsDB.getNewsOneByName(pressName),
+      };
+
+      if (currentPage < 0) {
+        store.dispatch(setPage(subscribeList.length - 1));
+        return;
+      }
+
+      if (currentPage >= subscribeList.length) {
+        store.dispatch(setPage(0));
+        return;
+      }
+
+      unshowCategoryTab();
+      showSubscribeTab(subscribeList, subscribeList[currentPage]);
+      fillArticle(articleData);
     }
-
-    if (currentPage >= totalCnt) {
-      store.dispatch(nextCategory());
-      return;
-    }
-
-    updateButtonUI();
-    activateCategory(currentCategory);
-    showTabCount(currentPage, totalCnt);
-    fillArticles(currentCategory, currentPage);
     resetProgress();
+    updateButtonUI();
   });
 };
