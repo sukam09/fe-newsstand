@@ -21,7 +21,7 @@ export const ListComponent = (
   if (field.childNodes.length > 0) {
     removeAllChildNodes(field);
   }
-  // setListButton(sortedAgencies, currentPage, currentCategory);
+
   // 해당 카테고리 언론사의 뉴스를 렌더하기 위해 필터링
   const filtered_agencies = filterCategory(sorted_agencies, focus);
   // 카테고리 FieldTab, 메인 및 서브 뉴스 생성
