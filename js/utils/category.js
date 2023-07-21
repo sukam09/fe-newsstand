@@ -170,9 +170,7 @@ export function nextContents(
 
 // 프로그래스 바가 진행중인 카테고리가 있다면 전부 찾아서 제거.
 export function removeProgressAction() {
-  const prevSelected = Array.from(
-    document.querySelectorAll(".newsstand__focus")
-  );
+  const prevSelected = [...document.querySelectorAll(".newsstand__focus")];
 
   if (prevSelected) {
     prevSelected.map((element) => {

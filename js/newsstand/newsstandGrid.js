@@ -66,7 +66,7 @@ function initPaintNews() {
 
 // 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
 function paintNews(paintData = publisherData) {
-  const element = Array.from(ul.children);
+  const element = [...ul.children];
   let idx = selectedPage * VIEWED_CONTENS; // 데이터의 인덱스 순서
   let elementIdx = 0; // 로고를 새로 등록할 li 순서
 
