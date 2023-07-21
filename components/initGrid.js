@@ -6,15 +6,18 @@ export const initGrid = (agencies) => {
   const pages = sortPages(agencies);
   GridComponent(INITIAL_PAGE, pages);
 
-  const prevBtn = document.querySelector(".prev-page-btn");
-  const nextBtn = document.querySelector(".next-page-btn");
+  const all_press = document.querySelector(".all_press");
+  all_press.setAttribute("subscribeType", true);
 
-  let currentPage = INITIAL_PAGE;
+  const prev_btn = document.querySelector(".prev-page-btn");
+  const next_btn = document.querySelector(".next-page-btn");
 
-  prevBtn.addEventListener("click", () => {
-    GridComponent(--currentPage, pages);
+  let current_page = INITIAL_PAGE;
+
+  prev_btn.addEventListener("click", () => {
+    GridComponent(--current_page, pages);
   });
-  nextBtn.addEventListener("click", () => {
-    GridComponent(++currentPage, pages);
+  next_btn.addEventListener("click", () => {
+    GridComponent(++current_page, pages);
   });
 };

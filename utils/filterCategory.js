@@ -1,6 +1,6 @@
 export const filterCategory = (agencies, focus) => {
-  const filteredCategory = agencies.filter(
+  const filtered_category = agencies.filter(
     (agency) => agency.category === focus
   );
-  return filteredCategory;
+  return filtered_category;
 };

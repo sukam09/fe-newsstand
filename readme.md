@@ -1,18 +1,19 @@
 # 뉴스스탠드 웹
 
-## 2주차 계획
+## 3주차 계획
 
-1. 리팩토링
+1. Global State 생성
 
-- Grid View 관련 모듈로 분리
-- template literal 사용하여 element 생성하도록 변경
+- Dark Mode
+- Subscriptions
 
-2. 자동 롤링 구현
+2. 리팩토링
 
-- ul > li 및 transform을 사용하여 구현하도록 설계 완료
-- 왼쪽과 오른쪽 사이에 시간 간격 있도록 설계 필요
-- 함수형으로 변경 필요
+- 처음 한 번 데이터를 받아와서 그 데이터를 계속 전달하다보니 </br>
+  너무 과도하게 parameter를 전달하는 구조가 발생함.
+- class형태가 아니더라도 render하는 함수는 따로 정의할 필요가 있어보임.
+  -> Global State 변경 시 리렌더링
 
-3. 리스트 뷰 설계
+3. 스낵바 구현
 
-- Grid View인지 List View인지에 따라 컴포넌트 형으로 변경
+- 애니메이션을 활용하여 조금 더 간지나게 구현해보기

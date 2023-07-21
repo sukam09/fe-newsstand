@@ -23,11 +23,11 @@ const insertClassname = (tag) => {
 const rollingHandler = (tag) => {
   tag.querySelector(".prev").classList.remove("prev");
 
-  let current = tag.querySelector(".current");
+  const current = tag.querySelector(".current");
   current.classList.remove("current");
   current.classList.add("prev");
 
-  let next = tag.querySelector(".next");
+  const next = tag.querySelector(".next");
   if (next.nextElementSibling == null) {
     tag.querySelector("li:first-child").classList.add("next");
   } else {
@@ -38,13 +38,13 @@ const rollingHandler = (tag) => {
 };
 
 export const rollNews = (data) => {
-  const leftList = data.slice(0, 5);
-  const rightList = data.slice(5, 10);
+  const left_list = data.slice(0, 5);
+  const right_list = data.slice(5, 10);
 
   const $ul = document.querySelectorAll(".wrap > ul");
 
-  appendRollingList($ul[0], leftList);
-  appendRollingList($ul[1], rightList);
+  appendRollingList($ul[0], left_list);
+  appendRollingList($ul[1], right_list);
   // 각 롤링 구역마다 interval 설정하여 rolling handler 실행
   const interval = [];
 

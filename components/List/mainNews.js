@@ -8,6 +8,7 @@ export const makeMainNews = (agency) => {
   $img.alt = "Main News Thumbnail";
 
   const $title = document.createElement("div");
+  $title.className = "title";
   $title.innerText = agency.mainArticle.title;
 
   $news_main.appendChild($img);
