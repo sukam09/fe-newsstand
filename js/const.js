@@ -10,7 +10,7 @@ const STATE = {
   SUB_GRID_PAGE:0,
   GRID_PAGE:0,
   IS_DARK: false,
-  CLICKED_UNSUB_NAME:"",
+  CLICKED_UNSUB_NEWS:{},
 };
 
 const DATA = {

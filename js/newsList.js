@@ -116,10 +116,11 @@ function initCategoryClass() {
   addProgressIterEvent($progress_bar);
   document.querySelector(".list-next").addEventListener("click", () => pressListArrow(1));
   document.querySelector(".list-prev").addEventListener("click", () => pressListArrow(-1));
-  const $sub_btn = document.querySelector(".list-sub-btn");
+  const $sub_btn = document.querySelector(".list-sub-btn"); // 구독버튼!
   $sub_btn.addEventListener("click", () => {
-    const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]]
-    listSubMouseClick(news)
+    const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]];
+    STATE.CLICKED_UNSUB_NEWS = news;
+    listSubMouseClick(news);
   });
 }
 

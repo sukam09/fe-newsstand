@@ -18,9 +18,9 @@ function offUndiscribeModal() { //grid
   setDisplay(".grid-subscribe-modal", "query", "none");
 }
 
-function onListUndiscribeModal() {
+function onListUndiscribeModal() { // 리스트 구독 모달
+  console.log("here");
   const $sub_modal = document.querySelector(".list-subscribe-modal");
-  console.log(news_by_category[DATA.page_count[DATA.now_category]]);
   if (STATE.IS_SUB_VIEW) {
     $sub_modal.querySelector(".sub-press-name").textContent = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE].name;
   } else {
@@ -36,10 +36,10 @@ function offListUndiscribeModal() {
 async function initModalBtn() {
   news_by_category = await getJSON("/assets/media.json");
   const $button = document.querySelectorAll(".pop-up-btn");
-  $button.forEach(btn => btn.addEventListener("click", e => handleModalBtn(e.target)));
+  $button.forEach(btn => btn.addEventListener("click", handleModalBtn));
 }
 
-function handleModalBtn(target) {
+function handleModalBtn({target:target}) {
   console.log(target);
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
@@ -52,11 +52,7 @@ function handleModalBtn(target) {
       drawGridView();
     } else {
       // 리스트뷰일때
-      const $news_article = document.querySelector(".news-article");
-      const src_path = ".." + $news_article.querySelector("img").src.split("5500")[1];
-      console.log("src_path",src_path);
-      console.log(checkIsSubscribe("src", src_path));
-      setSubData(checkIsSubscribe("src", src_path));
+      setSubData(STATE.CLICKED_UNSUB_NEWS);
       STATE.SUB_NEWS_PAGE = 0;
       if (STATE.SUB_DATA.length === 0) {
         removeDisplay();

@@ -9,7 +9,7 @@ function setSubListNav() {
     const $li = document.createElement("li");
     $li.classList.add("sub-nav-item","surface-alt","text-weak");
     $li.textContent = press.name;
-    $li.addEventListener("click", event => clickSubListNav(event.target));
+    $li.addEventListener("click", clickSubListNav);
     $li.addEventListener("animationiteration", progressEnd);
     if (index === STATE.SUB_NEWS_PAGE) {
       $li.classList.add("list-progress-bar","text-white-default");
@@ -33,12 +33,16 @@ function progressEnd() {
 /*
     sub-list-view에서 nav(언론명)을 클릭했을 때
 */
-function clickSubListNav(target) {
+function clickSubListNav({target:target}) {
   const $element = document.querySelector(".list-progress-bar");
+  
   $element.classList.remove("list-progress-bar","text-white-default");
   $element.querySelector('span').remove();
   const nav_item = target.textContent;
+  
   STATE.SUB_NEWS_PAGE = STATE.SUB_DATA.findIndex(data => data.name === nav_item);
+  console.log("sub",STATE.SUB_NEWS_PAGE);
+  
   target.classList.add("list-progress-bar");
   target.insertAdjacentHTML('beforeend',
   `<span>

@@ -30,9 +30,11 @@ function gridMouseClick(target) {
 }
 
 function listSubMouseClick(news) {
+  
   if (checkIsSubscribe("name", news.name) === undefined) {
     //구독 상태가 아니면
     setSubData(news);
+    
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
     setTimeout(() => {
