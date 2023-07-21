@@ -1,5 +1,5 @@
 import { FIRST_PAGE_IDX, LEFT_UNDISPLAY, RIGHT_UNDISPLAY } from "../../constant.js";
-import { drawPressImg } from "./pressLogos.js"
+
 import { handleSubscribe } from "./pressLogos.js";
 
 const $pagePrevButton = document.querySelector('.left-button');
@@ -10,7 +10,6 @@ let pageCnt = FIRST_PAGE_IDX;
  페이지 넘기는 버튼의 클릭 이벤트 핸들링
  */
 function turnPressPage(page) {
-
   $pagePrevButton.addEventListener('click', (event) => handleClickTurner(event, page));
   $pageNextButton.addEventListener('click', (event) => handleClickTurner(event, page));
 }

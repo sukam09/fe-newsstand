@@ -1,5 +1,5 @@
 import { START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
-import { fetchpressNews } from "../../dataFetch.js"
+import { allpressArr } from "../../dataFetch.js"
 import { turnNewsPage } from "./pageMoveButton.js";
 import { showNewsOfCategory } from "./categoryTab.js";
 import { initProgress } from "./progressBar.js";
@@ -8,11 +8,10 @@ import { initProgress } from "./progressBar.js";
 카테고리 별 언론사 순서 랜덤으로 섞기
  */
 async function randomizeNews() {
-  const pressNewsData = await fetchpressNews();
   const categories = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문직", "지역"];
 
   const pressNewsList = categories.map(category => (
-    pressNewsData.filter(press => press["category"] === category)));
+    allpressArr.filter(press => press["category"] === category)));
 
   const shuffledPressNews = pressNewsList.map(newsList => (
     [...newsList].sort(() => Math.random() - 0.5)));

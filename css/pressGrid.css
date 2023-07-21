@@ -9,6 +9,7 @@
   height: 388px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   border-left: 1px solid var(--border-default);
   border-top: 1px solid var(--border-default);
 }
@@ -44,4 +45,14 @@
 
 .grid-snackbar {
   display: none;
+}
+
+.press-view-active {
+  font: var(--bold-M);
+  color: var(--grayscale-black);
+}
+
+.press-view-nonactive {
+  font: var(--medium-M);
+  color: var(--grayscale-200);
 }

@@ -1,55 +1,83 @@
-import { TEXT_WEAK, TEXT_POINT } from "../../constant.js";
-import { _changeDispay } from "../../utils.js";
+import { TEXT_WEAK, TEXT_POINT, FIRST_PAGE_IDX } from "../../constant.js";
+import { getView, setPress, setView, store } from "../../store.js";
+import { _changeClass, _changeDispay } from "../../utils.js";
+import { drawPressImg } from "../PressGrid/pressLogos.js";
 
-const $listIcon = document.querySelector('.list-button');
-const $gridIcon = document.querySelector('.grid-button');
 
-/**
-리스트 아이콘 클릭하면 뉴스 보기로 바뀜
- */
-function changeViewToList() {
-  $listIcon.addEventListener('click', () => handleChangeView('list-button'));
+const $allPress = document.querySelector('.tab-all-press');
+const $mySubscribedPress = document.querySelector('.tab-subscribed-press');
+
+function clickChangePressViewBtn() {
+  $allPress.addEventListener('click', handleChangePressView.bind(null, 'all'));
+  $mySubscribedPress.addEventListener('click', handleChangePressView.bind(null, 'my'));
 }
 
-/**
- 그리드 아이콘 클릭하면 언론사 보기로 바뀜
- */
-function changeViewToGrid() {
-  $gridIcon.addEventListener('click', () => handleChangeView('grid-button'));
-}
-
-/**
- 그리드, 리스트 아이콘 클릭 시 화면에서 없애기 또는 띄우기
- */
-function handleChangeView(clickedButton) {
-  const $pressGrid = document.querySelector('.press-grid-container');
-  const $newsList = document.querySelector('.press-news-list-container');
-
-  if (clickedButton === 'list-button') {
-    _changeDispay($pressGrid, 'none', $newsList, 'block')
-    changeIconColor(clickedButton, 'grid-button')
+function handleChangePressView(whatPressView) {
+  if (whatPressView === 'all') {
+    _changeClass($allPress, 'press-view-nonactive', 'press-view-active')
+    _changeClass($mySubscribedPress, 'press-view-active', 'press-view-nonactive')
+    setPress('all');
+    setView('grid')
+    drawPressImg();
   }
   else {
-    _changeDispay($newsList, 'none', $pressGrid, 'block');
-    changeIconColor(clickedButton, 'list-button');
+    _changeClass($mySubscribedPress, 'press-view-nonactive', 'press-view-active')
+    _changeClass($allPress, 'press-view-active', 'press-view-nonactive')
+    setPress('my');
+    setView('list');
+    drawPressImg()
+  }
+  setPress(whatPressView);
+
+}
+
+function clickChangeViewerViewBtn() {
+  const $listIcon = document.querySelector('.list-button');
+  const $gridIcon = document.querySelector('.grid-button');
+  $listIcon.addEventListener('click', handleChangeViewerView.bind(null, 'list'));
+  $gridIcon.addEventListener('click', handleChangeViewerView.bind(null, 'grid'));
+}
+
+function handleChangeViewerView(howView) {
+  setView(howView);
+  changeViewerView();
+}
+
+function setDisplay() {
+  const $pressGrid = document.querySelector('.press-grid-container');
+  const $newsList = document.querySelector('.press-news-list-container');
+  if (getView() === 'list') _changeDispay($pressGrid, 'none', $newsList, 'block')
+  else _changeDispay($newsList, 'none', $pressGrid, 'block');
+}
+
+function setViewIconColor() {
+  const $listViewBtnContent = document.querySelector('.list-button-content');
+  const $gridViewBtnContent = document.querySelector('.grid-button-content');
+  if (getView() === 'list') {
+    $listViewBtnContent.setAttribute('fill', TEXT_POINT);
+    $gridViewBtnContent.setAttribute('fill', TEXT_WEAK);
+  }
+  else {
+    $listViewBtnContent.setAttribute('fill', TEXT_WEAK);
+    $gridViewBtnContent.setAttribute('fill', TEXT_POINT);
   }
 }
 
-/**
- 그리드, 리스트 아이콘 클릭 시 아이콘의 색 변화 주기
- */
-function changeIconColor(clickedButton, unClickedButton) {
-  const $clickedButtonContent = document.querySelector(`.${clickedButton}-content`);
-  const $unClickedButtonContent = document.querySelector(`.${unClickedButton}-content`);
-  $clickedButtonContent.setAttribute('fill', TEXT_POINT);
-  $unClickedButtonContent.setAttribute('fill', TEXT_WEAK);
+function changeViewerView() {
+  setDisplay();
+  setViewIconColor();
 }
 
-
-
-function changeView() {
-  changeViewToGrid();
-  changeViewToList();
+function clickchangeViewBtn() {
+  clickChangeViewerViewBtn();
+  clickChangePressViewBtn();
 }
 
-export default changeView
+function initView() {
+  $allPress.classList.add('press-view-active')
+  $mySubscribedPress.classList.add('press-view-nonactive')
+  setPress('all');
+  setView('grid');
+
+}
+export { changeViewerView, clickchangeViewBtn, initView }

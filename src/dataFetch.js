@@ -3,7 +3,7 @@ import { dataFetch } from "./utils.js";
 /**
  언론사 id, 로고 가져옴
  */
-async function fetchPressInfos(){
+async function fetchPressInfos() {
   return dataFetch("./assets/data/pressInfo.json");
 }
 
@@ -14,4 +14,8 @@ async function fetchpressNews() {
   return dataFetch("./assets/data/pressNews.json");
 }
 
-export {fetchPressInfos, fetchpressNews}
+const allpressArr = await fetchpressNews();
+const shuffledAllPress = [...allpressArr].sort(() => Math.random() - 0.5);
+
+export { allpressArr, shuffledAllPress }
+
