@@ -38,6 +38,12 @@ function toggleSubscribe(src) {
   const targetNews = findTargetNewsFromSrc(src);
   targetNews.is_subscribe = targetNews.is_subscribe === "true" ? "false" : "true";
 
+  if (GLOBAL.SNACKBAR_TIME_OUT !== null) {
+    document.querySelector(".snack-bar").style.display = "none";
+    window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
+    GLOBAL.SNACKBAR_TIME_OUT = null;
+  }
+
   if (targetNews.is_subscribe === "true") {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
     GLOBAL.SUBSCRIBE_NEWS_NUM++;
@@ -60,12 +66,6 @@ function toggleSubscribe(src) {
       if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
         GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
       }
-    }
-
-    if (GLOBAL.SNACKBAR_TIME_OUT !== null) {
-      document.querySelector(".snack-bar").style.display = "none";
-      window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
-      GLOBAL.SNACKBAR_TIME_OUT = null;
     }
 
     changeState(STATE.UNSUBSCRIBE_NEWS);
