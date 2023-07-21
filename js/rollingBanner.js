@@ -1,20 +1,20 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
+import { rollingTime } from "../utils/constants.js";
 
 let interval1;
 let interval2;
-const rollingTime = 5000;
 
 function rollingBanner() {
   addInitRollingData(1);
   addInitRollingData(2);
+  addRollingHoverEvent(1);
+  addRollingHoverEvent(2);
   document.addEventListener("DOMContentLoaded", () => {
     interval1 = setInterval(changeBanner, rollingTime, 1);
     setTimeout(() => {
       interval2 = setInterval(changeBanner, rollingTime, 2);
     }, 1000);
   });
-  addRollingHoverEvent(1);
-  addRollingHoverEvent(2);
 }
 
 function addInitRollingData(bannerNumber) {
@@ -22,13 +22,12 @@ function addInitRollingData(bannerNumber) {
     `rolling-banner-0${bannerNumber}`
   );
   let startIndex, endIndex, secondIndex;
-  if (bannerNumber === 1) {
-    startIndex = 0;
-    endIndex = parseInt(news_article[0].article.length / 2);
-  } else {
-    startIndex = Math.ceil(news_article[0].article.length / 2);
-    endIndex = news_article[0].article.length;
-  }
+  startIndex =
+    bannerNumber === 1 ? 0 : Math.ceil(news_article.article.length / 2);
+  endIndex =
+    bannerNumber === 1
+      ? parseInt(news_article.article.length / 2)
+      : news_article.article.length;
   secondIndex = startIndex + 1;
   let newsHTML = `<div class="rollingWrap"><ul>`;
   for (; startIndex < endIndex; startIndex++) {
@@ -42,7 +41,7 @@ function addInitRollingData(bannerNumber) {
         ? "current"
         : "") +
       '">';
-    newsHTML += '<a href="#">' + news_article[0].article[startIndex] + "</a>";
+    newsHTML += '<a href="#">' + news_article.article[startIndex] + "</a>";
   }
   newsHTML += "</ul></div>";
   rollingBanner.innerHTML = newsHTML;
@@ -90,13 +89,13 @@ function addRollingHoverEvent(bannerNumber) {
   );
   bannerHover[`bannerHover0${bannerNumber}`].addEventListener(
     "mouseover",
-    () => {
+    function () {
       clearInterval(`interval${bannerNumber}`);
     }
   );
   bannerHover[`bannerHover0${bannerNumber}`].addEventListener(
     "mouseleave",
-    () => {
+    function () {
       window[`interval${bannerNumber}`] = setInterval(
         changeBanner,
         rollingTime,

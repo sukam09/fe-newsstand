@@ -35,9 +35,11 @@
                 name="subscribe"
                 checked
               />
-              <label for="main-left-radio-01">전체 구독사</label>
+              <label id="allNews" for="button-all-news">전체 구독사</label>
               <input name="subscribe" id="main-left-radio-02" type="radio" />
-              <label for="main-left-radio-02">내가 선택한 구독사</label>
+              <label id="subscribedNews" for="button-subscribed"
+                >내가 선택한 구독사</label
+              >
             </div>
             <div id="main-right">
               <label>
@@ -56,19 +58,16 @@
             </div>
           </div>
           <div class="main-div-02">
-            <div id="main-grid-01"></div>
-            <div id="main-grid-02">
+            <div id="main-grid"></div>
+            <div id="main-list">
+              <div class="snackbar"></div>
               <div id="category"></div>
-              <div class="news_header">뉴스</div>
-              <div class="news_content">내용</div>
+              <div class="news-header">뉴스</div>
+              <div class="news-content">내용</div>
             </div>
           </div>
-          <aside class="aside-left" id="aside-left">
-            <img src="./img/LeftButton.png" />
-          </aside>
-          <aside class="aside-right" id="aside-right">
-            <img src="./img/RightButton.png" />
-          </aside>
+          <aside class="aside-left" id="aside-left"></aside>
+          <aside class="aside-right" id="aside-right"></aside>
         </main>
       </section>
     </div>

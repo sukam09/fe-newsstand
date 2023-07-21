@@ -1,9 +1,11 @@
 @import "./css/reset.css";
 @import "./css/rollingBanner.css";
 @import "./css/category.css";
+@import "./css/newsMain.css";
 img {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 li {
@@ -129,7 +131,7 @@ section.main {
   width: 65px;
 }
 
-#main-grid-01 {
+#main-grid {
   display: grid;
   width: 930px;
   height: 388px;
@@ -141,7 +143,7 @@ section.main {
   grid-gap: 1px;
 }
 
-#main-grid-01 > div {
+#main-grid > div {
   display: flex;
   height: 100%;
   width: 100%;
@@ -160,13 +162,29 @@ section.main {
   display: flex;
   justify-content: space-evenly;
 }
-#main-grid-02 {
+#main-list {
   width: 930px;
   height: 388px;
   display: none;
   width: inherit;
   border: 1px #d2dae0 solid;
   margin-top: 20px;
+}
+
+.snackbar {
+  opacity: 0;
+  position: absolute;
+  border: 1px black solid;
+  background-color: #4362d0;
+  color: #ffffff;
+  width: Hug (286px);
+  height: Hug (54px);
+  left: 35%;
+  top: 50%;
+  padding: 16px 24px 16px 24px;
+  gap: 10px;
+  z-index: 1;
+  transition: opacity 1s ease-in-out;
 }
 
 .progress-bar {
@@ -179,46 +197,28 @@ section.main {
   z-index: 0;
 }
 
-.newsThumbnail {
-  padding: 0;
-  width: 44px;
-  height: 20px;
+.subscribe-button {
   margin-right: 16px;
 }
 
-.newsEditTime {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #5f6e76;
+.grid-list:hover {
+  .hover-subscribe-button {
+    display: flex;
+    background-color: #f5f7f9;
+  }
+  .hover-subscribe-button > img {
+    margin: 0 auto;
+    transform: scale(0.5);
+  }
+  .grid-image {
+    display: none;
+  }
 }
 
-.subscribeButton {
-  margin-right: 16px;
-}
-
-.news-header-div {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.news_header {
-  position: absolute;
-  top: 30%;
-  left: 5%;
-  width: 90%;
-}
-
-.news_content {
-  border: 2px black solid;
-  position: absolute;
-  top: 38%;
-  left: 5%;
-  width: 90%;
-  height: 50%;
+.hover-subscribe-button {
+  height: 100%;
+  width: 100%;
+  display: none;
 }
 
 input[type="radio"]:checked + label {
