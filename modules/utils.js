@@ -1,6 +1,8 @@
-import { IMAGE } from "../constant.js";
-import { STATE } from "../state.js";
-import { setArrowVisible } from "./grid.js";
+import { IMAGE, MEDIA, MESSAGE, STATE } from "../constant.js";
+import { changeImgSrc, setNewPage } from "./grid.js";
+import { setCategoryBar, setFullList, setListView } from "./list.js";
+
+const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -16,6 +18,24 @@ const shuffleList = (list) => {
   return list;
 };
 
+const setColorModeEvent = () => {
+  const $html = document.querySelector("html");
+  const $colorModeBtn = document.querySelector(".mode-button");
+
+  if (!$colorModeBtn.src) {
+    $colorModeBtn.src = IMAGE.MOON_ICON;
+  }
+
+  $colorModeBtn.addEventListener("click", () => {
+    $html.classList.toggle("dark");
+    STATE.MODE.IS_LIGHT = !STATE.MODE.IS_LIGHT;
+    $colorModeBtn.src =
+      $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+    STATE.MODE.IS_GRID
+      ? changeImgSrc(MEDIA_NUM * STATE.GRID_PAGE_NUM)
+      : setListView();
+  });
+};
 /**
  * 시스템 날짜 표시
  */
@@ -65,8 +85,12 @@ const moveGridView = () => {
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
 
-  STATE.IS_GRID = true;
-  setArrowVisible();
+  STATE.MODE.IS_GRID = true;
+  const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+  setNewPage(
+    STATE.GRID_PAGE_NUM * MEDIA_NUM,
+    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+  );
 };
 
 /**
@@ -85,15 +109,49 @@ const moveListView = () => {
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
 
-  STATE.IS_GRID = false;
+  STATE.MODE.IS_GRID = false;
+
+  setCategoryBar();
+  setFullList();
+};
+
+const initSubsModalView = () => {
+  const $subsAlert = document.querySelector(".subs-alert");
+  const $subBtnYes = document.querySelectorAll(".subs-alert_btn")[0];
+  const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
+
+  $subBtnYes.addEventListener("click", () => {
+    const subIdx = STATE.SELECT_SUBSCRIBE_IDX;
+    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    $subsAlert.classList.add("hidden");
+
+    alert(MESSAGE.UNSUBSCRIBE);
+
+    if (STATE.MODE.IS_GRID) {
+      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+      setNewPage(
+        STATE.GRID_PAGE_NUM * MEDIA_NUM,
+        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
+      );
+    } else {
+      setCategoryBar();
+      setFullList();
+    }
+  });
+  $subBtnNo.addEventListener("click", () => {
+    $subsAlert.classList.add("hidden");
+  });
 };
 
 /**
- * 헤더의 공통뷰를 세팅하는 함수
+ * 공통뷰 & 공통 이벤트 세팅
  */
 async function initCommonView() {
+  setColorModeEvent();
   setReload();
   setDate();
+  setViewEvent();
+  initSubsModalView();
 }
 
-export { initCommonView, shuffleList, setDate, setReload, setViewEvent };
+export { initCommonView, shuffleList, moveGridView, moveListView };

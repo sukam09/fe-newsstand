@@ -160,18 +160,19 @@ for (let i = 0; i < 96; i += 7) {
     console.log(`{
       "id": "${i + j + 1}",
       "name": "${press[i + j]}",
-      "path-light": "/images/light-media/${i + j}.png",
-      "path-dark": "/images/dark-media/${i + j}.png",
+      "path_light": "/images/light-media/${i + j}.png",
+      "path_dark": "/images/dark-media/${i + j}.png",
       "category": "${category[j]}",
-      "edit-date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",
-      "main-title": "${title[(i + j) % 42]}",
-      "main-img-src": "/images/${i + j}.png",
-      "sub-title": ["${title[(i + j) % 36]}", "${
+      "thumbnail":"/images/thumbnail/thumbnail${i + j + 1}.jpg",
+      "edit_date": "2023.07.10. 18:${Math.floor(Math.random() * 49) + 10}",
+      "main_title": "${title[(i + j) % 42]}",
+      "main_img_src": "/images/${i + j}.png",
+      "sub_title": ["${title[(i + j) % 36]}", "${
       title[((i + j) % 36) + 1]
     }", "${title[((i + j) % 36) + 2]}", "${title[((i + j) % 36) + 3]}", "${
       title[((i + j) % 36) + 4]
     }", "${title[((i + j) % 36) + 5]}", "${title[((i + j) % 36) + 6]}"],
-      "is-subscribe": "false"
+      "is_subscribe": "false"
     },
       `);
   }

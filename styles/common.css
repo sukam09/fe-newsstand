@@ -1,10 +1,24 @@
 body {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Pretendard";
   font-style: normal;
   line-height: normal;
+  background-color: var(--grayscale-white);
+  width: 100vw;
+  height: 100vh;
+  min-height: 900px;
+}
+
+.mode-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50px;
+  right: 50px;
+  cursor: pointer;
 }
 
 .news-stand-container {
@@ -19,7 +33,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 58px;
 }
 
 .header-wrapper > button {
@@ -166,6 +179,73 @@ body {
   height: 40px;
 
   left: 978px; /* 930 + 48 */
+}
+
+.snack-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 286px;
+  height: 54px;
+
+  position: absolute;
+  left: 322px;
+  top: 167px;
+
+  background-color: var(--blue-500);
+  color: var(--grayscale-white);
+}
+
+.subs-alert {
+  width: 320px;
+  height: 140px;
+
+  position: absolute;
+  top: 124px;
+  left: 305px;
+
+  border: 1px solid var(--grayscale-100);
+  background-color: var(--grayscale-white);
+}
+
+.subs-alert_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 92px;
+}
+
+.subs-alert_content > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.subs-alert_content_name {
+  color: var(--grayscale-black);
+  font: var(--bold-M);
+}
+
+.subs-alert_content_etc {
+  color: var(--grayscale-400);
+  font: var(--medium-M);
+}
+
+.subs-alert_btn {
+  width: 160px;
+  height: 48px;
+  border: 1px solid var(--grayscale-100);
+  color: var(--grayscale-black);
+  font: var(--medium-M);
+}
+
+.subs-alert_btn:hover {
+  text-decoration: underline;
+  color: var(--grayscale-400);
+  cursor: pointer;
 }
 
 /* cursor: pointer 효과 일괄 적용 */

@@ -24,6 +24,21 @@
   --blue-500: #4362d0;
 }
 
+.dark {
+  --grayscale-white-alt: #ffffff;
+  --grayscale-white: #14212b;
+  --grayscale-50: #4b5966;
+  --grayscale-100: #5f6e76;
+  --grayscale-200: #ffffff;
+  --grayscale-300: rgba(255, 255, 255, 0.7);
+  --grayscale-400: #d2dae0;
+  --grayscale-500: #f5f7f9;
+  --grayscale-black: rgba(255, 255, 255, 0.7);
+
+  --blue-100: #7890e7;
+  --blue-500: #4362d0;
+}
+
 /* Typography System - size */
 .display-bold24 {
   font: var(--bold-L);

@@ -7,6 +7,7 @@
     <title>뉴스스탠드</title>
   </head>
   <body>
+    <img class="mode-button" />
     <div class="news-stand-container">
       <!-- 기본 상단 영역 -->
       <header class="header-wrapper">
@@ -28,8 +29,10 @@
         <!-- 뷰 전환 위한 네비게이터 -->
         <header>
           <nav class="main-nav-left">
-            <h2 class="main-nav_selected">전체 언론사</h2>
-            <h2 class="main-nav_unselected">내가 구독한 언론사</h2>
+            <h2 class="main-nav_total main-nav_selected">전체 언론사</h2>
+            <h2 class="main-nav_subscribe main-nav_unselected">
+              내가 구독한 언론사
+            </h2>
           </nav>
           <nav class="main-nav-right">
             <img
@@ -53,8 +56,8 @@
               <div class="news-list_media_header">
                 <img alt="메인 기사 로고" />
                 <p></p>
-                <button class="news-list_unsubscribed_btn">+ 구독하기</button>
-                <button class="news-list_subscribed_btn hidden">x</button>
+                <button class="news-list_subscribe_btn">+ 구독하기</button>
+                <button class="news-list_unsubscribe_btn hidden">x</button>
               </div>
               <div class="news-list_media_content">
                 <div class="news-list_media_content_main">
@@ -71,12 +74,29 @@
                   <li></li>
                   <li></li>
                   <li></li>
+                  <p class="news-list_media_edit" alt="편집 안내 문구"></p>
                 </ul>
               </div>
             </div>
           </div>
           <img class="left-arrow hidden" src="/images/left-arrow.svg" />
           <img class="right-arrow" src="/images/right-arrow.svg" />
+          <div class="snack-bar hidden">
+            내가 구독한 언론사에 추가되었습니다.
+          </div>
+          <div class="subs-alert hidden">
+            <div class="subs-alert_content">
+              <div>
+                <p class="subs-alert_content_name">[언론사이름]</p>
+                <p class="subs-alert_content_etc">을(를)</p>
+              </div>
+              <p class="subs-alert_content_etc">구독해지하시겠습니까?</p>
+            </div>
+            <div>
+              <button class="subs-alert_btn">예, 해지합니다.</button
+              ><button class="subs-alert_btn">아니오</button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
