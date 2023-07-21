@@ -6,7 +6,7 @@ import {
   selectedSubscribeState,
   viewOptionState,
   subscribeListPageState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
   CATEGORY_LENGTH,
   PROGRESS_DIFF,
@@ -19,7 +19,7 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState, setState } from "../../../observer/observer.js";
+import { getState, setState } from "../../../store/observer.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
@@ -45,9 +45,9 @@ const changeCategory = (newsList, categoryList) => () => {
 
 const changePress = (pressNewsList) => () => {
   const isAllType = checkIsAllType();
-  if (isAllType) return;
   const isGridView = checkIsGridView();
-  if (isGridView) return;
+
+  if (isAllType || isGridView) return;
 
   const currentPress = getState(selectedSubscribeState);
   const currentPage = getState(subscribeListPageState);
@@ -132,71 +132,11 @@ const updateCurrentPage = () => {
   $stateElem.innerHTML = nextPage;
 };
 
-const setCategoryBar = (categoryList) => () => {
-  $categoryBar.innerHTML = "";
-
-  categoryList.forEach((category) => {
-    const $li = document.createElement("li");
-    $li.innerHTML = category;
-    $li.className = "hover-underline";
-    $li.addEventListener("click", setCategoryState(category));
-
-    $categoryBar.appendChild($li);
-  });
-
-  const currentCategory = getState(categoryState);
-  if (currentCategory) {
-    setCategoryState(currentCategory)();
-  } else {
-    setCategoryState(categoryList[0])();
-  }
-};
-const setCategoryState = (category) => () => setState(categoryState, category);
-
-const setSubscribePressBar = () => {
-  const isAllType = checkIsAllType();
-  if (isAllType) return;
-  const isGridView = checkIsGridView();
-  if (isGridView) return;
-
-  const subscribedList = getState(subscribeState);
-  $categoryBar.innerHTML = "";
-
-  subscribedList.forEach((press) => {
-    const $li = document.createElement("li");
-    $li.innerHTML = press;
-    $li.className = "hover-underline available-medium14 ";
-    $li.addEventListener("click", setSelectedSubState(press));
-
-    $categoryBar.appendChild($li);
-  });
-
-  const currentSelectedSubState = getState(selectedSubscribeState);
-  if (currentSelectedSubState) {
-    setSelectedSubState(currentSelectedSubState)();
-  } else {
-    setSelectedSubState(subscribedList[0])();
-  }
-};
-const setSelectedSubState = (press) => () => {
-  setState(selectedSubscribeState, press);
-};
-
-const setHeaderBar = (categoryList) => () => {
-  const isListView = !checkIsGridView();
-  const isAllType = checkIsAllType();
-
-  if (isListView) {
-    isAllType ? setCategoryBar(categoryList)() : setSubscribePressBar();
-  }
-};
-
 const changeActivateCategory = (newsList, categoryList) => () => {
   const isGridView = checkIsGridView();
-  if (isGridView) return;
-
   const isSubscribeType = !checkIsAllType();
-  if (isSubscribeType) return;
+
+  if (isGridView || isSubscribeType) return;
 
   const currentCategory = getState(categoryState);
   const $liList = _querySelectorAll("li", $categoryBar);
@@ -224,10 +164,9 @@ const changeActivateCategory = (newsList, categoryList) => () => {
 
 const changeActivatePress = () => {
   const isGridView = checkIsGridView();
-  if (isGridView) return;
-
   const isAllType = checkIsAllType();
-  if (isAllType) return;
+
+  if (isGridView || isAllType) return;
 
   const $liList = _querySelectorAll("li", $categoryBar);
   const subscribed = getState(subscribeState);
@@ -346,8 +285,6 @@ export {
   initProgress,
   initSubscribeListPageState,
   setPageActivateState,
-  setSubscribePressBar,
-  setHeaderBar,
   changePress,
   changeActivatePress,
 };

@@ -2,8 +2,8 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { viewState } from "../../../store/store.js";
-import { setState } from "../../../observer/observer.js";
+import { viewState } from "../../../store/storeKey.js";
+import { setState } from "../../../store/observer.js";
 import { checkIsGridView } from "../../../utils/utils.js";
 import { VIEW_TYPE } from "../../../constants/constants.js";
 

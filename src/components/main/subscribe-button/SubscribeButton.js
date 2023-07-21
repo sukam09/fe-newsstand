@@ -4,12 +4,12 @@ import {
   snackBarMsgState,
   subscribeState,
   viewOptionState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
   SUBSCRIBE_MESSAGE,
   VIEW_OPTION_TYPE,
 } from "../../../constants/constants.js";
-import { getState, setState } from "../../../observer/observer.js";
+import { getState, setState } from "../../../store/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 

@@ -3,24 +3,24 @@ import {
   isDarkMode,
   subscribeGridPageState,
   subscribeState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
-  ObjectToArrayRandom,
   checkIsAllType,
+  pressObjectToArray,
   shuffleArrayRandom,
 } from "../../../utils/utils.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState } from "../../../observer/observer.js";
+import { getState } from "../../../store/observer.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
 import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
 
 const $gridView = _querySelector(".grid-view");
 const $gridViewList = _querySelectorAll("li", $gridView);
 
-const pressIcons = shuffleArrayRandom(ObjectToArrayRandom(PRESS_ICON));
+const pressIcons = shuffleArrayRandom(pressObjectToArray(PRESS_ICON));
 
 const fillPressIcons = () => {
   const startIndex = checkIsAllType()

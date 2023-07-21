@@ -1,5 +1,5 @@
-import { isDarkMode } from "../../../store/store.js";
-import { subscribe } from "../../../observer/observer.js";
+import { isDarkMode } from "../../../store/storeKey.js";
+import { subscribe } from "../../../store/observer.js";
 import { setEvents, toggleMode } from "./ModeToggleButton.js";
 
 export const setModeToggleButton = () => {

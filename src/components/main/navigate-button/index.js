@@ -9,8 +9,8 @@ import {
   subscribeState,
   viewOptionState,
   viewState,
-} from "../../../store/store.js";
-import { subscribe } from "../../../observer/observer.js";
+} from "../../../store/storeKey.js";
+import { subscribe } from "../../../store/observer.js";
 
 export const setNavigateButton = () => {
   subscribe(gridPageState, setGridButtonDisplay);

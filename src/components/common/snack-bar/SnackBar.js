@@ -1,5 +1,5 @@
-import { getState } from "../../../observer/observer.js";
-import { snackBarMsgState } from "../../../store/store.js";
+import { getState } from "../../../store/observer.js";
+import { snackBarMsgState } from "../../../store/storeKey.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const $snackBar = _querySelector(".snackbar");

@@ -1,13 +1,16 @@
 import {
+  setDragSlider,
+  setHeaderBar,
+  setSubscribePressBar,
+} from "./HeaderBar.js";
+import {
   changeActivateCategory,
   changeActivatePress,
   changeCategory,
   changePress,
   initProgress,
   initSubscribeListPageState,
-  setHeaderBar,
   setPageActivateState,
-  setSubscribePressBar,
   startProgress,
   updateCurrentPage,
 } from "./ProgressBar.js";
@@ -20,15 +23,15 @@ import {
   viewOptionState,
   selectedSubscribeState,
   subscribeListPageState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
   customFetch,
-  objectToMap,
+  newsObjectToArray,
   shuffleArrayRandom,
   shuffleObjectRandom,
 } from "../../../utils/utils.js";
 import { fillNewsList } from "./NewsList.js";
-import { subscribe } from "../../../observer/observer.js";
+import { subscribe } from "../../../store/observer.js";
 import { CATEGORY_LIST } from "../../../constants/constants.js";
 
 export const setList = async () => {
@@ -36,9 +39,10 @@ export const setList = async () => {
     "../../../../mocks/newsList.json",
     shuffleObjectRandom
   );
-  const pressNewsList = objectToMap(newsList);
-
+  const pressNewsList = newsObjectToArray(newsList);
   const categoryList = shuffleArrayRandom(CATEGORY_LIST);
+
+  setDragSlider();
 
   subscribe(listPageState, changeCategory(newsList, categoryList));
   subscribe(listPageState, updateCurrentPage);

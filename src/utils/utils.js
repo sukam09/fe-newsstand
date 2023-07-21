@@ -1,6 +1,6 @@
-import { getState } from "../observer/observer.js";
+import { getState } from "../store/observer.js";
 import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
-import { isDarkMode, viewOptionState, viewState } from "../store/store.js";
+import { isDarkMode, viewOptionState, viewState } from "../store/storeKey.js";
 
 const customFetch = async (url, callback, options) => {
   try {
@@ -33,7 +33,7 @@ const setDate = () => {
   return today.toLocaleDateString("ko-KR", options);
 };
 
-const ObjectToArrayRandom = (data) => {
+const pressObjectToArray = (data) => {
   const newArray = [];
 
   for (const key in data) {
@@ -47,7 +47,7 @@ const ObjectToArrayRandom = (data) => {
   return newArray;
 };
 
-const objectToMap = (data) => {
+const newsObjectToArray = (data) => {
   const newMap = {};
 
   for (const key in data) {
@@ -92,9 +92,9 @@ export {
   customFetch,
   shuffleArrayRandom,
   setDate,
-  ObjectToArrayRandom,
+  pressObjectToArray,
   shuffleObjectRandom,
-  objectToMap,
+  newsObjectToArray,
   checkIsAllType,
   checkIsGridView,
   checkIsDarkMode,

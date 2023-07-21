@@ -4,12 +4,12 @@ import {
   snackBarMsgState,
   subscribeGridPageState,
   subscribeState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState, setState } from "../../../observer/observer.js";
+import { getState, setState } from "../../../store/observer.js";
 import { NEWS_COUNT, SUBSCRIBE_MESSAGE } from "../../../constants/constants.js";
 
 const $snackBar = _querySelector(".snackbar");
@@ -47,17 +47,18 @@ const handleUnSubscribeButtonClick = () => {
   const itemIndex = subscribeList.indexOf(subscribeItem);
 
   const updateArray = subscribeList.filter((_, idx) => idx !== itemIndex);
+  const selectedSubscribeItem =
+    updateArray[itemIndex % (subscribeList.length - 1)];
 
-  setState(
-    selectedSubscribeState,
-    updateArray[itemIndex % (subscribeList.length - 1)]
-  );
+  setState(selectedSubscribeState, selectedSubscribeItem);
   setState(subscribeState, updateArray);
+
   if (updateArray.length % NEWS_COUNT === 0) {
     const currentPage = getState(subscribeGridPageState);
 
     currentPage !== 0 && setState(subscribeGridPageState, currentPage - 1);
   }
+
   visibleToInvisible();
   setState(snackBarMsgState, SUBSCRIBE_MESSAGE.DELETE);
 };
@@ -65,6 +66,7 @@ const handleUnSubscribeButtonClick = () => {
 const handleCloseButtonClick = () => {
   visibleToInvisible();
 };
+
 const setEvents = () => {
   $unSubscribeButton.addEventListener("click", handleUnSubscribeButtonClick);
   $closeButton.addEventListener("click", handleCloseButtonClick);

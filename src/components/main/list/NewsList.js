@@ -8,8 +8,8 @@ import {
   listPageState,
   selectedSubscribeState,
   subscribeListPageState,
-} from "../../../store/store.js";
-import { getState } from "../../../observer/observer.js";
+} from "../../../store/storeKey.js";
+import { getState } from "../../../store/observer.js";
 import { PRESS_ICON } from "../../../constants/constants.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
@@ -25,7 +25,7 @@ const fillNewsList = (newsList, pressNewsList) => () => {
 
   $listView.innerHTML = "";
   $listView.appendChild(createNewsHeader(press, editTime));
-  $listView.appendChild(createNewsList(img, title, subNews, info));
+  $listView.appendChild(createNewsList(img, title, subNews, press));
 };
 
 const getCurrentNewsList = (newsList, pressNewsList) => {
@@ -62,12 +62,13 @@ const createNewsHeader = (press, editTime) => {
   return $header;
 };
 
-const createNewsList = (img, title, subNews, info) => {
+const createNewsList = (img, title, subNews, press) => {
   const $listBox = document.createElement("div");
 
   const newsListContent = subNews.reduce((acc, cur) => {
     return (acc += `<li class="hover-underline available-medium16">${cur}</li>`);
   }, "");
+
   $listBox.className = "list-view_main-box";
   $listBox.innerHTML = `
       <div class="list-view_main-news">
@@ -78,7 +79,7 @@ const createNewsList = (img, title, subNews, info) => {
       </div>
       <ul class="list-view_news-list">
         ${newsListContent}
-        <li class="display-medium14">${info}</li>
+        <li class="display-medium14">${press} 언론사에서 직접 편집한 뉴스입니다.</li>
       </ul>`;
 
   return $listBox;

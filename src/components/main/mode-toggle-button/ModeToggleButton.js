@@ -1,6 +1,6 @@
-import { isDarkMode } from "../../../store/store.js";
+import { isDarkMode } from "../../../store/storeKey.js";
 import { checkIsDarkMode } from "../../../utils/utils.js";
-import { getState, setState } from "../../../observer/observer.js";
+import { getState, setState } from "../../../store/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const $modeToggleButton = _querySelector(".darkmode-toggle");

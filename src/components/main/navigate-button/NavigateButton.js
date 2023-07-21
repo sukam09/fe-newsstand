@@ -2,23 +2,18 @@ import {
   gridPageState,
   viewState,
   listPageState,
-  viewOptionState,
   subscribeGridPageState,
   subscribeListPageState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import {
-  NEWS_COUNT,
-  VIEW_OPTION_TYPE,
-  VIEW_TYPE,
-} from "../../../constants/constants.js";
-import { getPressIcons } from "../grid/Grid.js";
-import {
-  ObjectToArrayRandom,
+  pressObjectToArray,
   checkIsAllType,
   checkIsGridView,
 } from "../../../utils/utils.js";
-import { getState, setState } from "../../../observer/observer.js";
+import { getPressIcons } from "../grid/Grid.js";
+import { getState, setState } from "../../../store/observer.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
+import { NEWS_COUNT, VIEW_TYPE } from "../../../constants/constants.js";
 
 const $prevPageButton = _querySelector(".left-btn");
 const $nextPageButton = _querySelector(".right-btn");
@@ -26,7 +21,7 @@ const $nextPageButton = _querySelector(".right-btn");
 const getMaxPage = () => {
   const pressIcons = getPressIcons();
 
-  return Math.ceil(ObjectToArrayRandom(pressIcons).length / NEWS_COUNT) - 1;
+  return Math.ceil(pressObjectToArray(pressIcons).length / NEWS_COUNT) - 1;
 };
 
 const handlePrevButtonClick = () => {

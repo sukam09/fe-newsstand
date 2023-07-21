@@ -257,3 +257,10 @@ body {
 .alert-buttons button:nth-child(2) {
   color: var(--color-text-strong);
 }
+
+.grab {
+  cursor: grabbing;
+}
+.grab > ul {
+  pointer-events: none;
+}

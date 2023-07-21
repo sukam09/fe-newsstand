@@ -2,10 +2,10 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { setState } from "../../../observer/observer.js";
-import { viewOptionState } from "../../../store/store.js";
-import { VIEW_OPTION_TYPE } from "../../../constants/constants.js";
+import { setState } from "../../../store/observer.js";
+import { viewOptionState } from "../../../store/storeKey.js";
 import { checkIsAllType } from "../../../utils/utils.js";
+import { VIEW_OPTION_TYPE } from "../../../constants/constants.js";
 
 const $mainNavTabs = _querySelector(".main-nav_tabs");
 const $modeToggleButtons = _querySelectorAll("button", $mainNavTabs);

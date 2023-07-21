@@ -4,9 +4,9 @@ import {
   subscribeGridPageState,
   subscribeState,
   viewOptionState,
-} from "../../../store/store.js";
+} from "../../../store/storeKey.js";
 import { fillPressIcons } from "./Grid.js";
-import { subscribe } from "../../../observer/observer.js";
+import { subscribe } from "../../../store/observer.js";
 
 export const setGrid = () => {
   subscribe(gridPageState, fillPressIcons);

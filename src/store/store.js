@@ -1,76 +1,42 @@
-import { initState } from "../observer/observer.js";
-import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
+class Store {
+  #states;
 
-const viewState = initState({
-  key: "viewState",
-  defaultValue: VIEW_TYPE.GRID,
-});
+  constructor() {
+    this.#states = new Map();
+  }
 
-const viewOptionState = initState({
-  key: "viewOptionState",
-  defaultValue: VIEW_OPTION_TYPE.ALL,
-});
+  getState(key) {
+    return this.#states.get(key);
+  }
 
-const isDarkMode = initState({
-  key: "isDarkMode",
-  defaultValue: false,
-});
+  setState(key, state) {
+    this.#states.set(key, state);
+  }
+}
 
-const gridPageState = initState({
-  key: "gridPageState",
-  defaultValue: 0,
-});
+class State {
+  #value;
+  #observers;
 
-const subscribeGridPageState = initState({
-  key: "subscribeGridPageState",
-  defaultValue: 0,
-});
+  constructor(value) {
+    this.#value = value;
+    this.#observers = new Set();
+  }
 
-const listPageState = initState({
-  key: "listPageState",
-  defaultValue: 0,
-});
+  getValue() {
+    return this.#value;
+  }
 
-const subscribeListPageState = initState({
-  key: "subscribeListPageState",
-  defaultValue: 0,
-});
+  getObserbers() {
+    return this.#observers;
+  }
 
-const categoryState = initState({
-  key: "categoryState",
-  defaultValue: "",
-});
-const selectedSubscribeState = initState({
-  key: "selectedSubscribeState",
-  defaultValue: "",
-});
+  setValue(value) {
+    this.#value = value;
+  }
+  setObserbers(observer) {
+    this.#observers.add(observer);
+  }
+}
 
-const subscribeState = initState({
-  key: "subscribeState",
-  defaultValue: [],
-});
-
-const snackBarMsgState = initState({
-  key: "snackBarMsgState",
-  defaultValue: "",
-});
-
-const alertMsgState = initState({
-  key: "alertMsgState",
-  defaultValue: "",
-});
-
-export {
-  viewState,
-  isDarkMode,
-  gridPageState,
-  listPageState,
-  categoryState,
-  subscribeState,
-  snackBarMsgState,
-  alertMsgState,
-  viewOptionState,
-  subscribeGridPageState,
-  selectedSubscribeState,
-  subscribeListPageState,
-};
+export { Store, State };
