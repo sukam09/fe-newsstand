@@ -7,6 +7,8 @@ export const MESSAGE = {
   DAY: "요일",
   MY_PUBLISHER: "MY_PUBLISHER",
   ALL_PUBLISHER: "ALL_PUBLISHER",
+  SUB: "구독이 완료되었습니다",
+  UN_SUB: "해지가 완료되었습니다",
 };
 
 export const POSITION = {

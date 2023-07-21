@@ -2,6 +2,7 @@ import {
   shuffle,
   onFocusToClicked,
   handleElementClass,
+  snackBarAction,
 } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
@@ -197,6 +198,7 @@ function userClickSubscribeButton(liElement) {
     if (subscribeState.getSubscribeByName(name)[0]) {
       liElement.children[1].textContent = MESSAGE.SUBSCRIBE;
       subscribeState.setUnSubscribeState(name);
+      snackBarAction(MESSAGE.UN_SUB);
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
       const subList = subscribeState.getSubscribeState();
@@ -207,6 +209,7 @@ function userClickSubscribeButton(liElement) {
     else {
       liElement.children[1].textContent = MESSAGE.UNSUBSCRIBE;
       subscribeState.setSubscribeState(name, src);
+      snackBarAction(MESSAGE.SUB);
     }
   };
 }

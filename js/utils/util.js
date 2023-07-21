@@ -21,3 +21,12 @@ export function handleElementClass(element, type, name) {
   type === "add" && element.classList.add(name);
   type === "remove" && element.classList.remove(name);
 }
+
+export function snackBarAction(msg) {
+  const snackbar = document.querySelector(".modal__snack-bar");
+  snackbar.classList.remove("modal__none");
+  snackbar.textContent = msg;
+  setTimeout(() => {
+    snackbar.classList.add("modal__none");
+  }, 5000);
+}

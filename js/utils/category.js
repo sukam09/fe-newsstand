@@ -1,4 +1,4 @@
-import { removeChildElement } from "../utils/util.js";
+import { removeChildElement, snackBarAction } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
 import { subscribeState } from "../store/subscribeState.js";
 import { MESSAGE, POSITION, EVENT } from "./constant.js";
@@ -70,12 +70,14 @@ function makeMainNewsNav(logo, edit, name) {
     if (subscribeState.getSubscribeByName(name)[0]) {
       newsNavParent.children[2].textContent = MESSAGE.SUBSCRIBE;
       subscribeState.setUnSubscribeState(name);
+      snackBarAction(MESSAGE.UN_SUB);
       paintNewsCategory();
     }
     // 구독하기 버튼을 눌렀을때.
     else {
       newsNavParent.children[2].textContent = MESSAGE.UNSUBSCRIBE;
       subscribeState.setSubscribeState(name, logo);
+      snackBarAction(MESSAGE.SUB);
     }
   });
 }

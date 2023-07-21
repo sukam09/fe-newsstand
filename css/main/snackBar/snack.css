@@ -1,0 +1,45 @@
+.modal__snack-bar {
+  position: absolute;
+
+  left: 650px;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  width: 280px;
+  height: 30px;
+  background-color: rgb(5, 165, 183);
+  box-shadow: 1px 3px 3px rgb(150, 255, 206);
+
+  animation: snack 0.9s;
+
+  z-index: 100;
+}
+
+.modal__none {
+  display: none;
+
+  animation: step-end 1s;
+}
+
+@keyframes snack {
+  from {
+    opacity: 0;
+    left: 700px;
+  }
+  to {
+    opacity: 1;
+    left: 650px;
+  }
+}
+@keyframes snack_end {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
