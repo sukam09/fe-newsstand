@@ -45,7 +45,6 @@ function drawListArrow() {
 
 function drawNews() {
   const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]];
-  console.log(news);
   document.querySelector(".press-brandmark").src = STATE.IS_DARK ? news.path_dark : news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;
@@ -90,7 +89,7 @@ function pressListArrow(increment) {
 }
 
 
-function clickCategory(target) {
+function clickCategory({target:target}) {
   checkSameCategory(target);
   DATA.page_count[target.firstElementChild.innerText.trim()] = 0;
   DATA.now_category = target.querySelector(".nav-item").textContent.trim();
@@ -110,7 +109,7 @@ function initProgressWhenCategoryClick(target) {
 
 function initCategoryClass() {
   const categories = document.querySelectorAll(".list-nav li");
-  categories.forEach(category => category.addEventListener("click", e => clickCategory(e.target)));
+  categories.forEach(category => category.addEventListener("click",clickCategory));
   const $progress_bar = document.querySelector(".progress-bar");
   insertCountDiv($progress_bar);
   addProgressIterEvent($progress_bar);

@@ -10,7 +10,6 @@ let news_by_category;
 function onUndiscribeModal(target) {
   const $press_name = document.querySelector(".sub-press-name");
   $press_name.textContent = findPress("src", target);
-  const $btn_div = document.querySelector(".pop-up-btn-div");
   setDisplay(".grid-subscribe-modal", "query", "block");
 }
 
@@ -19,13 +18,9 @@ function offUndiscribeModal() { //grid
 }
 
 function onListUndiscribeModal() { // 리스트 구독 모달
-  console.log("here");
   const $sub_modal = document.querySelector(".list-subscribe-modal");
-  if (STATE.IS_SUB_VIEW) {
-    $sub_modal.querySelector(".sub-press-name").textContent = STATE.SUB_DATA[STATE.SUB_NEWS_PAGE].name;
-  } else {
-    $sub_modal.querySelector(".sub-press-name").textContent = news_by_category[DATA.now_category][DATA.page_count[DATA.now_category]].name;
-  }
+  const $press = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : news_by_category[DATA.now_category][DATA.page_count[DATA.now_category]];
+  $sub_modal.querySelector(".sub-press-name").textContent = $press.name;
   setDisplay(".list-subscribe-modal", "query", "block");
 }
 
@@ -40,7 +35,6 @@ async function initModalBtn() {
 }
 
 function handleModalBtn({target:target}) {
-  console.log(target);
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
     //예 ?

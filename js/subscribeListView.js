@@ -41,7 +41,6 @@ function clickSubListNav({target:target}) {
   const nav_item = target.textContent;
   
   STATE.SUB_NEWS_PAGE = STATE.SUB_DATA.findIndex(data => data.name === nav_item);
-  console.log("sub",STATE.SUB_NEWS_PAGE);
   
   target.classList.add("list-progress-bar");
   target.insertAdjacentHTML('beforeend',
