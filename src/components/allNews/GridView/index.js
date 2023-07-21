@@ -2,7 +2,7 @@ import { shufflePressOrder } from "../../../utils/index.js";
 import AllNewsList from "./AllnewsList.js";
 import ArrowButton from "../ArrowButton.js";
 
-export default class AllNewsGrid {
+export default class GridView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "grid-wrapper";
