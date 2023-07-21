@@ -33,17 +33,8 @@ const UI_Type = {
 };
 
 function initNewsTabEvent() {
-  // 탭을 누르면
-  // 그리드 또는 리스트로 화면이 전환됨 display:none
-  newsList.addEventListener('click', () => handleListTab());
-  newsGrid.addEventListener('click', () => handleGridTab());
-}
-
-function handleListTab() {
-  changeTabButton('list');
-}
-function handleGridTab() {
-  changeTabButton('grid');
+  newsList.addEventListener('click', () => changeTabButton('list'));
+  newsGrid.addEventListener('click', () => changeTabButton('grid'));
 }
 
 function changeTabButton(type) {
