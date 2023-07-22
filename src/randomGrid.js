@@ -99,7 +99,11 @@ sub_btns.addEventListener("click", async (e) => {
   const press_id = target.classList[1];
   if (target.classList.contains("sub")) {
     const subPress = await getPressItemById(press_id);
-    subscribeState.setSubscribeState(press_id, subPress[0].lightSrc);
+    subscribeState.setSubscribeState(
+      press_id,
+      subPress[0].name,
+      subPress[0].lightSrc
+    );
     target.src = unsub_btn;
     target.classList.remove("sub");
     target.classList.add("un-sub");

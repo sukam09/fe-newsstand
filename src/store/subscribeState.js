@@ -7,8 +7,13 @@ class SubscribeState {
     return this.subPressList;
   }
 
-  setSubscribeState(id, src) {
-    this.subPressList.push([id, src]);
+  // id로 구독언론사 리스트에 있는지 찾기
+  getSubInfoByid(id) {
+    return this.subPressList.filter((item) => item[0] === id);
+  }
+
+  setSubscribeState(id, name, src) {
+    this.subPressList.push([id, name, src]);
   }
 }
 
