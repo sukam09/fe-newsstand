@@ -1,6 +1,7 @@
 import { setDisplay, removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 
+/***** 구독 언론사 로고 채우기 *****/
 function appendPressInSubGrid(press, idx) {
   const sub_img = `./assets/others/unsubButton.svg`;
   const $list = document.querySelectorAll(".press-sub-grid .press-item");
@@ -18,6 +19,7 @@ function setSubGrid() {
   });
 }
 
+/***** 미리 24개의 li 채우기 *****/
 function makePressItemli() {
   const $list = document.createElement("li");
   $list.classList.add("press-item", "empty");
@@ -35,7 +37,7 @@ const un_sub_btns = document.querySelector("#press-sub-list");
 un_sub_btns.addEventListener("click", (e) => {
   const target_class = e.target.classList;
   if (target_class.contains("un-sub")) {
-    const press = subscribeState.getSubInfoByid(target_class[1]);
+    const press = subscribeState.getSubInfoById(target_class[1]);
     setDisplay(".sub-alert", "block");
     document.querySelector(
       ".alert-message .bold-font-init"
@@ -43,14 +45,29 @@ un_sub_btns.addEventListener("click", (e) => {
   }
 });
 
+//구독 유지
 const no = document.querySelector(".no");
 no.addEventListener("click", () => {
   setDisplay(".sub-alert", "none");
 });
 
+//구독 헤지하기
 const yes = document.querySelector(".yes");
 yes.addEventListener("click", () => {
   setDisplay(".sub-alert", "none");
+  //타겟 언론사 지우고
+  const press_name = document.querySelector(
+    ".alert-message .bold-font-init"
+  ).innerHTML;
+  const target_press = subscribeState.getSubInfoByName(press_name)[0];
+  subscribeState.removePressFromSubList(target_press);
+  //다시 렌더링
+  const $list = document.querySelectorAll(".press-sub-grid .full");
+  $list.forEach((element) => {
+    element.innerHTML = "";
+    removeAddClass(element, "full", "empty");
+  });
+  setSubGrid();
 });
 
 export { setSubGrid, appendPressItemli };
