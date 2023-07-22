@@ -2,7 +2,7 @@ import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
 import { shuffledAllPress } from "../../dataFetch.js";
 import turnPressPage from "./pageMoveButton.js";
 import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
-import { changePressView, changeViewerView } from "../PressTab/pressTab.js"
+import { changeView } from "../PressTab/pressTab.js"
 
 const $gridSnackBar = document.querySelector('.grid-snackbar')
 
@@ -10,13 +10,12 @@ const $gridSnackBar = document.querySelector('.grid-snackbar')
  언론사 이미지 띄우기
  */
 function drawPressImgContent(whatPress) {
+  const currentPageGridPress = whatPress.slice(getPage() * 24, getPage() * 24 + 24);
   const $pressList = document.querySelectorAll('.current-logos-container');
-  for (let i = getPage() * 24; i < getPage() * 24 + 24; i++) {
-    if (i < whatPress.length) {
-      $pressList[i].innerHTML = `
-      <img class = "pointer current-logos" data-id = "${whatPress[i].id}" src="${whatPress[i].lightSrc}">
+  for (let i = 0; i < currentPageGridPress.length; i++) {
+    $pressList[i].innerHTML = `
+    <img class = "pointer current-logos" data-id = "${currentPageGridPress[i].id}" src="${currentPageGridPress[i].lightSrc}">
     `
-    }
   }
 }
 
@@ -111,15 +110,9 @@ function moveSubscribedList(target) {
     target.parentElement.style.backgroundColor = '#FFFFFF'
     setView('list');
     setPress('my');
-    changeViewerView();
-    changePressView();
+    changeView();
     $gridSnackBar.style.display = 'none'
   }, 1000, target)
-}
-
-function handleSubscribe() {
-  showSubUnsubBtn();
-  clickSubUnsubBtn();
 }
 
 /** 바깥 border 그리기 */
@@ -138,6 +131,11 @@ function resetGridView() {
   $allLogos.forEach(press => {
     press.remove();
   })
+}
+
+function handleSubscribe() {
+  showSubUnsubBtn();
+  clickSubUnsubBtn();
 }
 
 /**

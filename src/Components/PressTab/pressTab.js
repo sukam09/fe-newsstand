@@ -1,7 +1,8 @@
 import { TEXT_WEAK, TEXT_POINT, FIRST_PAGE_IDX } from "../../constant.js";
-import { getPress, getView, setPress, setView, store } from "../../store.js";
+import { getPress, getView, setPage, setPress, setView, store } from "../../store.js";
 import { _changeClass, _changeDispay } from "../../utils.js";
 import { drawPressImg } from "../PressGrid/pressLogos.js";
+import turnPressPage from "../PressGrid/pageMoveButton.js";
 
 
 const $allPress = document.querySelector('.tab-all-press');
@@ -23,14 +24,18 @@ function changePressView() {
     _changeClass($mySubscribedPress, 'press-view-active', 'press-view-nonactive')
     setPress('all');
     setView('grid')
+    setPage(0);
     drawPressImg();
+    turnPressPage();
   }
   else {
     _changeClass($mySubscribedPress, 'press-view-nonactive', 'press-view-active')
     _changeClass($allPress, 'press-view-active', 'press-view-nonactive')
     setPress('my');
     setView('list');
-    drawPressImg()
+    setPage(0);
+    drawPressImg();
+    turnPressPage();
   }
 }
 
@@ -45,6 +50,7 @@ function handleChangeViewerView(howView) {
   setView(howView);
   changeViewerView();
 }
+
 
 function setDisplay() {
   const $pressGrid = document.querySelector('.press-grid-container');
@@ -71,6 +77,11 @@ function changeViewerView() {
   setViewIconColor();
 }
 
+function changeView() {
+  changePressView();
+  changeViewerView();
+}
+
 function clickchangeViewBtn() {
   clickChangeViewerViewBtn();
   clickChangePressViewBtn();
@@ -81,6 +92,6 @@ function initView() {
   $mySubscribedPress.classList.add('press-view-nonactive')
   setPress('all');
   setView('grid');
-
+  clickchangeViewBtn();
 }
-export { changeViewerView, clickchangeViewBtn, initView, changePressView }
+export { changeView, initView }
