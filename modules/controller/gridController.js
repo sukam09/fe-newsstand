@@ -1,9 +1,9 @@
 import { createPressItem } from "../components/mainSection/mainBody/content/pressGrid/pressGrid.js";
 import { pressDataState } from "../store/dataState.js";
-import { subStateList } from "../store/gridState.js";
+import { myPressCntState, subStateList } from "../store/gridState.js";
 import { getState, setState } from "../store/observer.js";
 import { NUM_IN_A_GRID } from "../store/pageState.js";
-import { qs } from "../utils.js";
+import { qs, strToHtmlElemnt } from "../utils.js";
 
 function getGridItemIndex($gridItem) {
   const gridItemKey = $gridItem.getAttribute("key");
@@ -76,10 +76,19 @@ export function controllGridSubButtonShowing(id) {
   }
 }
 
-export function controllMyPressGrid(subState) {
-  const $targetGrid = qs(`#mode_my_grid_0`);
+export function controllMyPressGrid(subState, id) {
   const { pressList } = getState(pressDataState);
-  createPressItem(subState);
   const isSub = getState(subState);
-  console.log(isSub, subState);
+  const myPressCnt = parseInt(getState(myPressCntState));
+  const page = Math.floor(myPressCnt / NUM_IN_A_GRID);
+  const $targetGrid = qs(`#mode_my_grid_page_${page}`);
+  const $oldItem = $targetGrid.children[myPressCnt % NUM_IN_A_GRID];
+  const targetPress = [...pressList].find((press) => press.id === id);
+  const newItem = createPressItem(myPressCnt % NUM_IN_A_GRID, targetPress);
+  const $newItem = strToHtmlElemnt(newItem);
+
+  if (isSub) {
+    $targetGrid.replaceChild($newItem, $oldItem);
+    setState(myPressCntState, myPressCnt + 1);
+  }
 }

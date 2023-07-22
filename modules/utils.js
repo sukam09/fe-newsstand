@@ -14,3 +14,14 @@ export const fetchData = async (url) => {
 
 export const qs = document.querySelector.bind(document);
 export const qsa = document.querySelectorAll.bind(document);
+
+/**
+ *
+ * @param {string} str innerHTML로 넣을 수 있는 string(하나의 요소)
+ * @returns HTMLElement
+ */
+export function strToHtmlElemnt(str) {
+  const $container = document.createElement("div");
+  $container.innerHTML = str.trim();
+  return $container.childNodes[0];
+}

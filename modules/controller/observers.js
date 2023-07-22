@@ -14,7 +14,7 @@ export function addObserverOnIsSub() {
     addObserver(subState, () => controllGridSubButtonShowing(idx));
     addObserver(subState, () => controllListsSubButtonShowing(idx));
     addObserver(subState, () => controllSnackbarShowing(subState));
-    // addObserver(subState, () => controllMyPressGrid(subState));
+    addObserver(subState, () => controllMyPressGrid(subState, idx));
   });
 }
 

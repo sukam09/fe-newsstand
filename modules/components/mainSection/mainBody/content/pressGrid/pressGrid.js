@@ -12,19 +12,30 @@ export function createPressGrid(pressList, page) {
     <ul id="mode_all_grid_page_${page}" class="press_grid">
       ${pressGridItems}
     </ul>
-    `;
+    `.trim();
 }
 
-export function createEmptyPressGrid(key, page) {
+export function createEmptyPressGrid(page) {
+  let emptyItems = "";
+  for (let i = 0; i < NUM_IN_A_GRID; i++) {
+    emptyItems += createEmptyPressItem(i);
+  }
+
   return `
     <ul id="mode_my_grid_page_${page}" class="press_grid">
-      <li key="${key}" class="grid_item">
-      </li>
+      ${emptyItems}
     </ul>
-    `;
+    `.trim();
 }
 
+/**
+ *
+ * @param {string} key 페이지의 인덱스
+ * @param {Object} press 하나의 언론사 오브젝트
+ * @returns
+ */
 export function createPressItem(key, press) {
+  console.log(press);
   return `
   <li key="${key}" class="grid_item" id="press_${press.id}">
     <img class="light_press_logo" src=${press.lightSrc}  / >
@@ -32,9 +43,14 @@ export function createPressItem(key, press) {
     ${createSubButton()}
     ${createUnsubButton()}
   </li>
-  `;
+  `.trim();
 }
-
+export function createEmptyPressItem(key) {
+  return `
+  <li key="${key}" class="grid_empty_item">
+  </li>
+  `.trim();
+}
 // 구독버튼 생성
 function createSubButton() {
   return `

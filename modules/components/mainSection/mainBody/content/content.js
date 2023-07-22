@@ -30,7 +30,7 @@ export function createContent() {
   let allEmptyList = "";
 
   for (let page = 0; page < MAX_GRID_PAGE; page++) {
-    allGrid += createPressGrid(pressList, page);
+    allGrid += createPressGrid(shuffledPressDataArr, page);
     allEmptyGrid += createEmptyPressGrid(page);
   }
   for (let categoryId = 0; categoryId < MAX_CATEGORY_ID; categoryId++) {

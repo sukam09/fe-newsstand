@@ -12,3 +12,8 @@ export function initSubStateList() {
     subStateList.push(subButtonState);
   }
 }
+
+export const myPressCntState = initState({
+  key: "myPressCnt",
+  value: 0,
+});
