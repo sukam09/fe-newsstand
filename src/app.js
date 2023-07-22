@@ -5,12 +5,12 @@ import { initPressImg } from "./Components/PressGrid/pressLogos.js"
 import { clickchangeViewBtn, initView } from "./Components/PressTab/pressTab.js";
 import { initNews } from "./Components/PressList/pressNews.js";
 initView();
+initPressImg();
+clickchangeViewBtn();
 initNews();
 showDate();
 handleClickLogo();
 rollNews();
-clickchangeViewBtn();
-initPressImg();
 
 
 

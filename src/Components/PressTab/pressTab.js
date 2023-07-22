@@ -1,5 +1,5 @@
 import { TEXT_WEAK, TEXT_POINT, FIRST_PAGE_IDX } from "../../constant.js";
-import { getView, setPress, setView, store } from "../../store.js";
+import { getPress, getView, setPress, setView, store } from "../../store.js";
 import { _changeClass, _changeDispay } from "../../utils.js";
 import { drawPressImg } from "../PressGrid/pressLogos.js";
 
@@ -8,12 +8,17 @@ const $allPress = document.querySelector('.tab-all-press');
 const $mySubscribedPress = document.querySelector('.tab-subscribed-press');
 
 function clickChangePressViewBtn() {
-  $allPress.addEventListener('click', handleChangePressView.bind(null, 'all'));
-  $mySubscribedPress.addEventListener('click', handleChangePressView.bind(null, 'my'));
+  $allPress.addEventListener('click', handleClickChangePressViewBtn.bind(null, 'all'));
+  $mySubscribedPress.addEventListener('click', handleClickChangePressViewBtn.bind(null, 'my'));
 }
 
-function handleChangePressView(whatPressView) {
-  if (whatPressView === 'all') {
+function handleClickChangePressViewBtn(whatPressView) {
+  setPress(whatPressView)
+  changePressView();
+}
+
+function changePressView() {
+  if (getPress() === 'all') {
     _changeClass($allPress, 'press-view-nonactive', 'press-view-active')
     _changeClass($mySubscribedPress, 'press-view-active', 'press-view-nonactive')
     setPress('all');
@@ -27,8 +32,6 @@ function handleChangePressView(whatPressView) {
     setView('list');
     drawPressImg()
   }
-  setPress(whatPressView);
-
 }
 
 function clickChangeViewerViewBtn() {
@@ -80,4 +83,4 @@ function initView() {
   setView('grid');
 
 }
-export { changeViewerView, clickchangeViewBtn, initView }
+export { changeViewerView, clickchangeViewBtn, initView, changePressView }

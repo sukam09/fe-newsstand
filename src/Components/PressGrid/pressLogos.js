@@ -1,8 +1,10 @@
 import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
 import { shuffledAllPress } from "../../dataFetch.js";
 import turnPressPage from "./pageMoveButton.js";
-import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage } from "../../store.js"
-import { changeViewerView } from "../PressTab/pressTab.js"
+import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
+import { changePressView, changeViewerView } from "../PressTab/pressTab.js"
+
+const $gridSnackBar = document.querySelector('.grid-snackbar')
 
 /**
  언론사 이미지 띄우기
@@ -59,9 +61,10 @@ function setImgAndBackgroundColor(target, path, backgroundColor) {
 
 /** 구독하기/해지하기 어떤 것 띄울 지 결정하기 */
 function handleShowSubUnsubBtn({ target }, whatDisplay) {
-  if (target.hasChildNodes()) {
+  if (target.getElementsByClassName('current-logos').length !== 0) {
     const hoveredPressId = parseInt(target.children[0].getAttribute('data-id'));
     const isSubscribedPress = store.isSubscribed(hoveredPressId);
+
     if (whatDisplay === 'subscribeBtn' && !isSubscribedPress) {
       setImgAndBackgroundColor(target, "/assets/Icon/subscribeButton.svg", '#F5F7F9')
     }
@@ -69,11 +72,8 @@ function handleShowSubUnsubBtn({ target }, whatDisplay) {
       setImgAndBackgroundColor(target, "/assets/Icon/unsubscribeButton.svg", '#F5F7F9')
     }
     else if (whatDisplay === 'logo') {
-      shuffledAllPress.forEach(press => {
-        if (press.id === hoveredPressId) {
-          setImgAndBackgroundColor(target, press.lightSrc, '#FFFFFF')
-        }
-      })
+      shuffledAllPress.filter(press => press.id === hoveredPressId)
+        .forEach(press => setImgAndBackgroundColor(target, press.lightSrc, '#FFFFFF'))
     }
   }
 }
@@ -81,7 +81,7 @@ function handleShowSubUnsubBtn({ target }, whatDisplay) {
 /** 구독하기 또는 해지하기 클릭 이벤트 걸기 */
 function clickSubUnsubBtn() {
   const $presses = document.querySelectorAll(".current-logos");
-  $presses.forEach((press) => {
+  $presses.forEach(press => {
     press.addEventListener('click', handleClickSubUnsubBtn)
   })
 }
@@ -89,21 +89,32 @@ function clickSubUnsubBtn() {
 /** 구독/해지 하기  */
 function handleClickSubUnsubBtn({ target }) {
   const clickedPressId = parseInt(target.getAttribute('data-id'));
-  const $gridSnackBar = document.querySelector('.grid-snackbar')
-  if (store.isSubscribed(clickedPressId)) {
+  if (store.isSubscribed(clickedPressId) && getPress() === 'my') {
+    removepress(clickedPressId);
+    target.parentElement.style.backgroundColor = '#FFFFFF'
+    drawPressImg();
+  }
+  else if (store.isSubscribed(clickedPressId) && getPress() === 'all') {
     removepress(clickedPressId);
     drawPressImg();
   }
   else {
     addpress(clickedPressId);
     $gridSnackBar.style.display = 'block'
-    const $moveSubscribedListTimeout = setTimeout(() => {
-      setView('list');
-      setPress('my');
-      changeViewerView();
-      $gridSnackBar.style.display = 'none'
-    }, 1000)
+    moveSubscribedList(target);
   }
+}
+
+/** 구독하면 내가 구독한 언론사 리스트로 이동 */
+function moveSubscribedList(target) {
+  const $moveSubscribedListTimeout = setTimeout(() => {
+    target.parentElement.style.backgroundColor = '#FFFFFF'
+    setView('list');
+    setPress('my');
+    changeViewerView();
+    changePressView();
+    $gridSnackBar.style.display = 'none'
+  }, 1000, target)
 }
 
 function handleSubscribe() {
