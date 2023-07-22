@@ -1,33 +1,38 @@
-import mediaData from '../../../assets/data/mediaData.js';
 import { MEDIA } from '../../constants.js';
+import { getCategoryData } from '../../fetch/getNewsData.js';
 import { shuffleArray } from '../../utils/utils.js';
 import MediaGrid from './MediaGrid.js';
 import MediaList from './MediaList.js';
 
-const createMediaData = () => {
-  const gridMediaData = Array.from(
-    { length: MEDIA.TOTAL },
-    (_, index) => index
-  );
-  const listMediaData = mediaData;
+const createMediaData = view => {
+  if (view === 'grid') {
+    const gridMediaData = Array.from(
+      { length: MEDIA.TOTAL },
+      (_, index) => index
+    );
 
-  shuffleArray(gridMediaData);
-  listMediaData.category.forEach(category => {
-    shuffleArray(category.media);
+    return shuffleArray(gridMediaData);
+  }
+  return getCategoryData().then(category => {
+    category.forEach(categoryData => {
+      shuffleArray(categoryData.media);
+    });
+    return category;
   });
-  return { grid: gridMediaData, list: listMediaData };
 };
 
 const MediaView = store => {
   const { view, subscribed } = store.getState();
   const mediaView = document.createElement('div');
-  const { list, grid } = createMediaData();
+  const mediaData = createMediaData(view);
 
   mediaView.id = 'media_view';
   if (view === 'list') {
-    mediaView.appendChild(MediaList(store, { list, subscribed }));
+    mediaData.then(mediaData => {
+      mediaView.appendChild(MediaList(store, { list: mediaData, subscribed }));
+    });
   } else {
-    mediaView.appendChild(MediaGrid(store, { grid, subscribed }));
+    mediaView.appendChild(MediaGrid(store, { grid: mediaData, subscribed }));
   }
   return mediaView;
 };

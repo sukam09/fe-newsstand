@@ -1,15 +1,14 @@
-import mediaData from '../../../assets/data/mediaData.js';
-import ListNavItem from '../../components/ListNavItem.js';
+import updateListNav from '../../apps/media/updateListNav.js';
 import { replaceArrow } from '../../components/media/ArrowButton.js';
 import SubToggleButton from '../../components/media/SubToggleButton.js';
 import { MSG } from '../../constants.js';
 import Store from '../../core/Store.js';
-import { clearAllChildren } from '../../utils/utils.js';
+import { getMediaLogo, getNewsData } from '../../fetch/getNewsData.js';
 
 const setPage = (store, newPage) => {
   const { category, media } = store.getState();
-  const catLength = media.category.length;
-  const pageLength = media.category[category].media.length;
+  const catLength = media.length;
+  const pageLength = media[category].media.length;
 
   switch (newPage) {
     case -1:
@@ -17,7 +16,7 @@ const setPage = (store, newPage) => {
 
       store.setState({
         category: newCategory,
-        page: media.category[newCategory].media.length - 1,
+        page: media[newCategory].media.length - 1,
       });
       break;
     case pageLength:
@@ -62,100 +61,11 @@ const setArrowButtons = (store, viewAll) => {
   });
 };
 
-const listNavOnClick = (category, index, viewStore) => {
-  if (category === index) return;
-  viewStore.setState({
-    category: index,
-    page: 0,
-  });
-};
-
-const appendListNavItems = (navList, viewStore) => {
-  const { category, page, media } = viewStore.getState();
-
-  media.category.forEach((categoryData, index) => {
-    navList.appendChild(
-      ListNavItem({
-        selected: category === index,
-        title: categoryData.name,
-        indicator: { index: page, total: categoryData.media.length },
-        onClick: () => listNavOnClick(category, index, viewStore),
-        afterDelay: () => setPage(viewStore, page + 1),
-      })
-    );
-  });
-};
-
-const ListNav = viewStore => {
-  const nav = document.createElement('nav');
-  const navList = document.createElement('ul');
-
-  nav.id = 'list_nav';
-  nav.classList.add('surface_alt');
-  navList.id = 'list_nav_list';
-  nav.appendChild(navList);
-  appendListNavItems(navList, viewStore);
-  return nav;
-};
-
-const setSubNavMouseEvent = (navList, scrollLeft) => {
-  let prevX;
-
-  navList.addEventListener('mousedown', e => {
-    prevX = e.clientX;
-  });
-  navList.addEventListener('mousemove', e => {
-    if (!prevX) return;
-    navList.scrollLeft -= e.clientX - prevX;
-    prevX = e.clientX;
-  });
-  navList.addEventListener('mouseup', () => {
-    prevX = null;
-  });
-  navList.addEventListener('DOMNodeInsertedIntoDocument', () => {
-    navList.scrollLeft = scrollLeft;
-  });
-};
-
-const subNavOnClick = (page, index, scrollLeft, viewStore) => {
-  if (page === index) return;
-  viewStore.setState({ page: index, scrollLeft });
-};
-
-const appendSubNavItems = (navList, viewStore) => {
-  const { page, media, scrollLeft } = viewStore.getState();
-
-  media.forEach((mediaItem, index) => {
-    navList.appendChild(
-      ListNavItem({
-        selected: page === index,
-        title: mediaData.getName(mediaItem),
-        onClick: () =>
-          subNavOnClick(page, index, navList.scrollLeft, viewStore),
-        afterDelay: () => setSubPage(viewStore, page + 1),
-      })
-    );
-  });
-  setSubNavMouseEvent(navList, scrollLeft);
-};
-
-const ListSubNav = viewStore => {
-  const nav = document.createElement('nav');
-  const navList = document.createElement('ul');
-
-  nav.id = 'list_nav';
-  nav.classList.add('surface_alt');
-  navList.id = 'list_nav_list';
-  nav.appendChild(navList);
-  appendSubNavItems(navList, viewStore);
-  return nav;
-};
-
-const MediaLogoImg = src => {
+const MediaLogoImg = id => {
   const mediaLogoElement = document.createElement('img');
 
   mediaLogoElement.classList.add('media_logo');
-  mediaLogoElement.src = src;
+  mediaLogoElement.src = getMediaLogo(id);
   return mediaLogoElement;
 };
 
@@ -171,23 +81,25 @@ const MediaInfo = (id, newsData, navStore, viewStore) => {
   const mediaInfo = document.createElement('div');
 
   mediaInfo.classList.add('media_info');
-  mediaInfo.appendChild(MediaLogoImg(mediaData.getLogoSrc(id)));
+  mediaInfo.appendChild(MediaLogoImg(id));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
   mediaInfo.appendChild(SubToggleButton(id, navStore, viewStore, false));
   return mediaInfo;
 };
 
-const NewsList = (mediaId, newsData) => {
+const NewsList = (name, newsData) => {
   const newsList = document.createElement('ul');
-  newsList.classList.add('sub_news');
 
+  newsList.classList.add('sub_news');
   newsList.innerHTML =
     newsData.news.reduce(
       (fragment, title) =>
-        (fragment += `<li><a class="pointer text_bold hover_medium16">${title}</a></li>`)
+        (fragment += `<li>
+          <a class="pointer text_bold hover_medium16">${title}</a>
+        </li>`)
     ) +
     `<li class="text_weak display_medium14">
-      ${mediaData.getName(mediaId)} ${MSG.MEDIA_EDITED}
+      ${name} ${MSG.MEDIA_EDITED}
     </li>`;
   return newsList;
 };
@@ -203,20 +115,23 @@ const NewsContent = (mediaId, newsData) => {
     </div>
     <h2 class="title"><a>${newsData.thumbnailNews}</a></h2>
   </section>`;
-  news.appendChild(NewsList(mediaId, newsData));
+  getNewsData(mediaId).then(({ name }) => {
+    news.appendChild(NewsList(name, newsData));
+  });
   return news;
 };
 
 const ListContent = (navStore, viewStore, viewAll) => {
   const listContent = document.createElement('div');
   const { category, page, media } = viewStore.getState();
-  const mediaId = viewAll ? media.category[category].media[page] : media[page];
-  const newsData = mediaData.getNews(mediaId);
+  const mediaId = viewAll ? media[category].media[page] : media[page];
 
-  listContent.id = 'list_view';
-  if (mediaId === undefined) return listContent;
-  listContent.appendChild(MediaInfo(mediaId, newsData, navStore, viewStore));
-  listContent.appendChild(NewsContent(mediaId, newsData));
+  getNewsData(mediaId).then(newsData => {
+    listContent.id = 'list_view';
+    if (mediaId === undefined) return listContent;
+    listContent.appendChild(MediaInfo(mediaId, newsData, navStore, viewStore));
+    listContent.appendChild(NewsContent(mediaId, newsData));
+  });
   return listContent;
 };
 
@@ -230,17 +145,21 @@ const MediaList = (navStore, mediaData) => {
   });
   const mediaList = document.createElement('div');
 
-  const draw = () => {
-    const nav = viewAll ? ListNav(viewStore) : ListSubNav(viewStore);
-    clearAllChildren(mediaList);
-    mediaList.appendChild(nav);
-    mediaList.appendChild(ListContent(navStore, viewStore, viewAll));
+  const render = () => {
+    const nav = mediaList.querySelector('#list_nav');
+    const listContent = mediaList.querySelector('#list_view');
+
+    updateListNav(nav, viewAll, viewStore);
+    listContent.replaceWith(ListContent(navStore, viewStore, viewAll));
   };
 
+  mediaList.innerHTML = `
+    <nav id="list_nav" class="surface_alt"></nav>
+    <div id="list_view"></div>`;
   setArrowButtons(viewStore, viewAll);
-  viewStore.subscribe(draw);
   mediaList.id = 'list_view_wrapper';
-  draw();
+  viewStore.subscribe(render);
+  render();
   return mediaList;
 };
 

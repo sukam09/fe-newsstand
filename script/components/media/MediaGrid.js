@@ -1,8 +1,8 @@
-import mediaData from '../../../assets/data/mediaData.js';
 import { MEDIA } from '../../constants.js';
 import Store from '../../core/Store.js';
+import { getMediaLogo, getNewsData } from '../../fetch/getNewsData.js';
 import { clearAllChildren } from '../../utils/utils.js';
-import ArrowButton, { replaceArrow } from './ArrowButton.js';
+import { replaceArrow } from './ArrowButton.js';
 import { SubButtonArea } from './SubToggleButton.js';
 
 const setArrowButtons = store => {
@@ -38,8 +38,8 @@ const GridItem = (index, navStore, store) => {
   gridItemImage.classList.add('media_logo');
   if (mediaId !== undefined) {
     gridItemImage.classList.add(`media_${mediaId}`);
-    gridItemImage.src = mediaData.getLogoSrc(mediaId);
-    gridItemImage.alt = mediaData.getName(mediaId);
+    gridItemImage.src = getMediaLogo(mediaId);
+    gridItemImage.alt = getNewsData(mediaId).name;
     gridItem.appendChild(SubButtonArea(mediaId, navStore, store));
   }
   return gridItem;

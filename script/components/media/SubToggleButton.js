@@ -1,4 +1,3 @@
-import mediaData from '../../../assets/data/mediaData.js';
 import { MSG } from '../../constants.js';
 import Button from '../Button.js';
 import SnackBar from '../SnackBar.js';
@@ -28,7 +27,7 @@ const SubButton = (id, navStore) => {
 
 const unsubscribe = (id, navStore, viewStore, button) => {
   document.querySelector('#media_view').appendChild(
-    UnsubAlert(id, mediaData.getName(id), id => {
+    UnsubAlert(id, 'asdf', id => {
       const { media, subscribed } = navStore.getState();
       const { page, media: sub } = viewStore.getState();
 

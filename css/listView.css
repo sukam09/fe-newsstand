@@ -141,7 +141,7 @@
 
 /* progress */
 
-#list_progress {
+.list_progress {
   position: absolute;
   top: 0;
   left: 0;

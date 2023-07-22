@@ -34,6 +34,21 @@ const ListNavContent = (selected, title, indicator, onClick) => {
   return listNavContent;
 };
 
+const addProgressBar = (element, afterDelay) => {
+  const progressBar = ListProgressBar(afterDelay);
+  const callback = (mutationList, observer) => {
+    mutationList.forEach(mutation => {
+      if (mutation.removedNodes[0] !== progressBar) return;
+      observer.disconnect();
+      progressBar.cancelLoop();
+    });
+  };
+  const observer = new MutationObserver(callback);
+
+  element.appendChild(progressBar);
+  observer.observe(element, { childList: true });
+};
+
 const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
   const listNavItem = document.createElement('li');
   const listNavContent = ListNavContent(selected, title, indicator, onClick);
@@ -41,7 +56,7 @@ const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
   listNavItem.classList.add('list_view_select');
   if (selected) {
     listNavItem.classList.add('surface_brand_alt');
-    listNavItem.appendChild(ListProgressBar(afterDelay));
+    addProgressBar(listNavItem, afterDelay);
   }
   listNavItem.appendChild(listNavContent);
   return listNavItem;
