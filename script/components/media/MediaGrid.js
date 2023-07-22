@@ -2,20 +2,18 @@ import mediaData from '../../../assets/data/mediaData.js';
 import { MEDIA } from '../../constants.js';
 import Store from '../../core/Store.js';
 import { clearAllChildren } from '../../utils/utils.js';
-import Arrow from './Arrow.js';
+import ArrowButton, { replaceArrow } from './ArrowButton.js';
 import { SubButtonArea } from './SubToggleButton.js';
 
-const replaceArrow = store => {
-  const leftArrow = Arrow('left');
-  const rightArrow = Arrow('right');
+const setArrowButtons = store => {
+  const [leftArrow, rightArrow] = replaceArrow();
+  const page = store.getState().page;
 
-  document.querySelector('#left_arrow').replaceWith(leftArrow);
-  document.querySelector('#right_arrow').replaceWith(rightArrow);
   leftArrow.addEventListener('click', () => {
-    store.setState({ page: store.getState().page - 1 });
+    store.setState({ page: page - 1 });
   });
   rightArrow.addEventListener('click', () => {
-    store.setState({ page: store.getState().page + 1 });
+    store.setState({ page: page + 1 });
   });
   return [leftArrow, rightArrow];
 };
@@ -49,22 +47,22 @@ const GridItem = (index, navStore, store) => {
 
 const MediaGrid = (navStore, mediaData) => {
   const viewAll = navStore.getState().media === 'all';
-  const store = new Store({
+  const viewStore = new Store({
     page: 0,
     media: viewAll ? mediaData.grid : mediaData.subscribed,
   });
   const mediaGrid = document.createElement('ul');
-  const [leftArrow, rightArrow] = replaceArrow(store);
+  const [leftArrow, rightArrow] = setArrowButtons(viewStore);
 
   const draw = () => {
     clearAllChildren(mediaGrid);
     Array.from({ length: MEDIA.PAGE_SIZE }, (_, index) => {
-      mediaGrid.appendChild(GridItem(index, navStore, store));
+      mediaGrid.appendChild(GridItem(index, navStore, viewStore));
     });
-    setArrowDisplay(store, leftArrow, rightArrow);
+    setArrowDisplay(viewStore, leftArrow, rightArrow);
   };
 
-  store.subscribe(draw);
+  viewStore.subscribe(draw);
   mediaGrid.classList.add('media_view_grid');
   draw();
 

@@ -14,12 +14,11 @@ const ListProgressBar = afterDelay => {
       ? (animationFrameId = requestAnimationFrame(loop))
       : afterDelay();
   };
+  const cancelLoop = () => cancelAnimationFrame(animationFrameId);
 
   listProgressBar.id = 'list_progress';
   listProgressBar.classList.add('surface_brand_default');
-  listProgressBar.addEventListener('DOMNodeRemovedFromDocument', () => {
-    cancelAnimationFrame(animationFrameId);
-  });
+  listProgressBar.addEventListener('DOMNodeRemovedFromDocument', cancelLoop);
   animationFrameId = requestAnimationFrame(loop);
   return listProgressBar;
 };

@@ -1,4 +1,4 @@
-import Arrow from '../../components/media/Arrow.js';
+import ArrowButton from '../../components/media/ArrowButton.js';
 import MediaNav from '../../components/media/MediaNav.js';
 import MediaView from '../../components/media/MediaView.js';
 import { MEDIA_APP_DATA } from '../../constants.js';
@@ -16,7 +16,7 @@ const mediaApp = (defaultMedia, defaultView) => {
     view: defaultView,
   });
 
-  const draw = () => {
+  const render = () => {
     const navArea = document.querySelector('#media_view_nav');
     const mediaView = document.querySelector('#media_view');
 
@@ -29,14 +29,12 @@ const mediaApp = (defaultMedia, defaultView) => {
     const mediaView = document.createElement('div');
 
     mediaView.id = 'media_view';
-    wrapper.appendChild(Arrow('left'));
-    wrapper.appendChild(mediaView);
-    wrapper.appendChild(Arrow('right'));
+    wrapper.append(ArrowButton('left'), mediaView, ArrowButton('right'));
   };
 
-  store.subscribe(draw);
+  store.subscribe(render);
   createLayout();
-  draw();
+  render();
 };
 
 export default mediaApp;

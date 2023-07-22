@@ -1,4 +1,3 @@
-import Store from '../core/Store.js';
 import Icon from './Icon.js';
 
 const Button = ({ icon, isWhite, text, once, onClick }) => {

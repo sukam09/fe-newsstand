@@ -15,32 +15,24 @@ const RadioInput = (store, state, selected, name) => {
   return inputElement;
 };
 
-const RadioLabel = (id, innerHTML) => {
-  const labelElement = document.createElement('label');
-
-  labelElement.htmlFor = id;
-  labelElement.classList.add('text_weak', 'available_medium16');
-  labelElement.innerHTML = innerHTML;
-  return labelElement;
-};
-
 const RadioInputWrapper = (store, state, selected, name) => {
   const radioInputWrapper = document.createElement('div');
 
   radioInputWrapper.appendChild(RadioInput(store, state.name, selected, name));
-  radioInputWrapper.appendChild(
-    RadioLabel(`${name}_select_${state.name}`, state.innerHTML)
+  radioInputWrapper.insertAdjacentHTML(
+    'beforeend',
+    `<label for="${name}_select_${state.name}" class="text_weak available_medium16">${state.innerHTML}</label>`
   );
   return radioInputWrapper;
 };
 
-const NavSelector = (store, states, selected, name) => {
+const NavSelector = (store, states, selectedName, name) => {
   const navSelector = document.createElement('div');
 
   navSelector.classList.add(`${name}_select_wrapper`);
   states.forEach(state => {
     navSelector.appendChild(
-      RadioInputWrapper(store, state, state.name === selected, name)
+      RadioInputWrapper(store, state, state.name === selectedName, name)
     );
   });
   return navSelector;

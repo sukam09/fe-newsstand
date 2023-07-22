@@ -4,7 +4,7 @@ import Button from '../Button.js';
 import SnackBar from '../SnackBar.js';
 import UnsubAlert from './UnsubAlert.js';
 
-const subscribe = (id, navStore, viewStore) => {
+const subscribe = (id, navStore) => {
   document.querySelector('#media_view').appendChild(
     SnackBar(MSG.SUBSCRIBE, () => {
       const { media, view } = navStore.getState();

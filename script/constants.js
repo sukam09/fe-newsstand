@@ -6,6 +6,7 @@ export const HEADLINE = {
 };
 
 export const MSG = {
+  MEDIA_EDITED: '언론사에서 직접 편집한 뉴스입니다.',
   SUBSCRIBE: '내가 구독한 언론사에 추가되었습니다.',
   ALERT_UNSUB: '예, 해지합니다',
   ALERT_NO: '아니오',
@@ -72,9 +73,3 @@ export const HEADLINE_DATA = {
     ],
   ],
 };
-
-// (임시) 구독한 언론사 배열
-export const SUB_MEDIA = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-  23, 24, 25, 26, 27,
-];

@@ -1,35 +1,49 @@
 import NavPageIndicator from './NavPageIndicator.js';
 import ListProgressBar from './Progress.js';
 
-const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
-  const listNavItem = document.createElement('li');
-  const listNavItemContent = document.createElement('div');
-  const listNavItemName = document.createElement('div');
-  let mouse = { x: null, y: null };
-
-  listNavItem.classList.add('list_view_select');
-  listNavItemContent.classList.add('list_view_select_content', 'pointer');
-  listNavItemName.classList.add('name');
-  listNavItemName.innerText = title;
-  listNavItemContent.addEventListener('mousedown', e => {
-    mouse = { x: e.clientX, y: e.clientY };
+const addMouseEvents = (listNavItem, mouse, onClick) => {
+  listNavItem.addEventListener('mousedown', ({ clientX, clientY }) => {
+    mouse = { x: clientX, y: clientY };
   });
-  listNavItemContent.addEventListener('mouseup', e => {
-    if (mouse.x !== e.clientX || mouse.y !== e.clientY) return;
+  listNavItem.addEventListener('mouseup', ({ clientX, clientY }) => {
+    if (mouse.x !== clientX || mouse.y !== clientY) return;
     onClick();
   });
-  listNavItemContent.appendChild(listNavItemName);
+};
+
+const navItemName = (selected, title) => {
+  return `<div class="name ${
+    selected ? 'selected_bold14' : ''
+  }">${title}</div>`;
+};
+
+const ListNavContent = (selected, title, indicator, onClick) => {
+  const listNavContent = document.createElement('div');
+  let mouse = { x: null, y: null };
+
+  addMouseEvents(listNavContent, mouse, onClick);
+  listNavContent.classList.add('list_view_select_content', 'pointer');
+  listNavContent.insertAdjacentHTML('beforeend', navItemName(selected, title));
   if (selected) {
-    listNavItemName.classList.add('selected_bold14');
-    listNavItem.classList.add('surface_brand_alt');
-    listNavItemContent.id = 'selected_nav_item';
-    listNavItemContent.classList.add('text_white_default');
-    listNavItemContent.appendChild(NavPageIndicator(indicator));
-    listNavItem.appendChild(ListProgressBar(afterDelay));
+    listNavContent.id = 'selected_nav_item';
+    listNavContent.classList.add('text_white_default');
+    listNavContent.appendChild(NavPageIndicator(indicator));
   } else {
-    listNavItemContent.classList.add('hover_medium14', 'text_weak');
+    listNavContent.classList.add('hover_medium14', 'text_weak');
   }
-  listNavItem.appendChild(listNavItemContent);
+  return listNavContent;
+};
+
+const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
+  const listNavItem = document.createElement('li');
+  const listNavContent = ListNavContent(selected, title, indicator, onClick);
+
+  listNavItem.classList.add('list_view_select');
+  if (selected) {
+    listNavItem.classList.add('surface_brand_alt');
+    listNavItem.appendChild(ListProgressBar(afterDelay));
+  }
+  listNavItem.appendChild(listNavContent);
   return listNavItem;
 };
 

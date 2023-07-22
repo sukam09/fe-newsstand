@@ -11,7 +11,7 @@ const ActionButton = (alertElement, text, textClass, action) => {
     textClass
   );
   actionButton.innerText = text;
-  actionButton.addEventListener('click', e => {
+  actionButton.addEventListener('click', () => {
     fadeOutElement(alertElement);
     if (action) action();
   });
@@ -30,18 +30,20 @@ const UnsubAlertActions = (alertElement, id, action) => {
   actionWrapper.appendChild(
     ActionButton(alertElement, MSG.ALERT_NO, 'text_strong')
   );
-
   return actionWrapper;
 };
 
 const UnsubAlert = (id, name, action) => {
   const alertElement = document.createElement('div');
-  const alertMsg = document.createElement('div');
 
   alertElement.classList.add('alert', 'surface_default', 'shadow', 'fade_in');
-  alertMsg.classList.add('alert_msg');
-  alertMsg.innerHTML = `<span class=text_strong display_bold16>${name}</span><span class=text_default display_medium16>을(를)<br>구독해지하시겠습니까?</span>`;
-  alertElement.appendChild(alertMsg);
+  alertElement.innerHTML = `
+    <div class="alert_msg">
+      <span class="text_strong display_bold16">${name}</span>
+      <span class="text_default display_medium16">
+        을(를)<br>구독해지하시겠습니까?
+      </span>
+    </div>`;
   alertElement.appendChild(UnsubAlertActions(alertElement, id, action));
   return alertElement;
 };

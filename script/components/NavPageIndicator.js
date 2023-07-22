@@ -5,15 +5,14 @@ const NavPageIndicator = data => {
 
   navPageIndicator.classList.add('indicator');
   if (!data) {
-    navPageIndicator.innerHTML = `${Icon.chevronRight}`;
+    navPageIndicator.innerHTML = Icon.chevronRight;
     navPageIndicator.classList.add('subscribed_indicator');
-  } else {
-    navPageIndicator.innerHTML = `
-        <div class="display_bold12 text_white_default">${data.index + 1}</div>
-        ${Icon.division}
-        <div class="display_bold12 text_white_weak">${data.total}</div>
-    `;
+    return navPageIndicator;
   }
+  navPageIndicator.innerHTML = `
+    <div class="display_bold12 text_white_default">${data.index + 1}</div>
+      ${Icon.division}
+    <div class="display_bold12 text_white_weak">${data.total}</div>`;
   return navPageIndicator;
 };
 
