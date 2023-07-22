@@ -3,83 +3,87 @@ import {
   runProgress,
   clearProgress,
 } from "./progressBar.js";
-import { setDisplay } from "./util/utils.js";
+import { setDisplayofArr, removeAddClass } from "./util/utils.js";
 import { setSubGrid } from "./subGrid.js";
-import { subscribeState } from "./store/subscribeState.js";
 
 let grid_view_selected = true;
-let sub_grid_length = 0;
+let total_press;
+let subscribed_press;
+
+function getTotalSubClass() {
+  total_press = document.querySelector(".total-press");
+  subscribed_press = document.querySelector(".subscribed-press");
+}
 
 /***** grid형 <-> list형 뷰 변경 *****/
 //grid형 보기로 바꾸기
 function changeToGridView() {
-  setDisplay(".list-selected", "none");
-  setDisplay(".grid-selected", "block");
-  setDisplay(".press-list-section", "none");
-  setDisplay(".press-grid", "block");
-  setDisplay(".press-sub-grid", "none");
-  setDisplay(".sub-press-list-section", "none");
+  const block_display = [".grid-selected", ".press-grid"];
+  const none_display = [
+    ".list-selected",
+    ".press-list-section",
+    ".press-sub-grid",
+    ".sub-press-list-section",
+  ];
+  setDisplayofArr(block_display, "block");
+  setDisplayofArr(none_display, "none");
 
-  document.querySelector(".total-press").classList.remove("not-clicked");
-  document.querySelector(".total-press").classList.add("bold-font-init");
-  document
-    .querySelector(".subscribed-press")
-    .classList.remove("bold-font-init");
-  document.querySelector(".subscribed-press").classList.add("not-clicked");
+  getTotalSubClass();
+  removeAddClass(total_press, "not-clicked", "bold-font-init");
+  removeAddClass(subscribed_press, "bold-font-init", "not-clicked");
   grid_view_selected = true;
 }
 
 function changeToSubGridView() {
-  document.querySelector(".total-press").classList.remove("bold-font-init");
-  document.querySelector(".total-press").classList.add("not-clicked");
-  document.querySelector(".subscribed-press").classList.remove("not-clicked");
-  document.querySelector(".subscribed-press").classList.add("bold-font-init");
+  const block_display = [".grid-selected", ".press-sub-grid"];
+  const none_display = [
+    ".list-selected",
+    ".press-grid",
+    ".press-list-section",
+    ".sub-press-list-section",
+  ];
+  setDisplayofArr(block_display, "block");
+  setDisplayofArr(none_display, "none");
 
-  setDisplay(".list-selected", "none");
-  setDisplay(".grid-selected", "block");
-  setDisplay(".press-grid", "none");
-  setDisplay(".press-sub-grid", "block");
-  setDisplay(".press-list-section", "none");
-  setDisplay(".sub-press-list-section", "none");
+  getTotalSubClass();
+  removeAddClass(total_press, "bold-font-init", "not-clicked");
+  removeAddClass(subscribed_press, "not-clicked", "bold-font-init");
 
-  if (subscribeState.subPressList.length !== sub_grid_length) {
-    setSubGrid();
-    sub_grid_length = subscribeState.subPressList.length;
-  }
+  setSubGrid();
 }
 
 //list형 보기로 바꾸기
 function changeToListView() {
-  setDisplay(".grid-selected", "none");
-  setDisplay(".list-selected", "block");
-  setDisplay(".press-list-section", "block");
-  setDisplay(".press-grid", "none");
-  setDisplay(".press-sub-grid", "none");
-  setDisplay(".sub-press-list-section", "none");
+  const block_display = [".list-selected", ".press-list-section"];
+  const none_display = [
+    ".grid-selected",
+    ".press-grid",
+    ".press-sub-grid",
+    ".sub-press-list-section",
+  ];
+  setDisplayofArr(block_display, "block");
+  setDisplayofArr(none_display, "none");
 
-  document.querySelector(".total-press").classList.remove("not-clicked");
-  document.querySelector(".total-press").classList.add("bold-font-init");
-  document
-    .querySelector(".subscribed-press")
-    .classList.remove("bold-font-init");
-  document.querySelector(".subscribed-press").classList.add("not-clicked");
+  getTotalSubClass;
+  removeAddClass(total_press, "not-clicked", "bold-font-init");
+  removeAddClass(subscribed_press, "bold-font-init", "not-clicked");
   grid_view_selected = false;
 }
 
 function changeToSubListView() {
-  setDisplay(".grid-selected", "none");
-  setDisplay(".list-selected", "block");
-  setDisplay(".press-list-section", "none");
-  setDisplay(".press-grid", "none");
-  setDisplay(".press-sub-grid", "none");
-  setDisplay(".sub-press-list-section", "block");
+  const block_display = [".list-selected", ".sub-press-list-section"];
+  const none_display = [
+    ".grid-selected",
+    ".press-grid",
+    ".press-list-section",
+    ".press-sub-grid",
+  ];
+  setDisplayofArr(block_display, "block");
+  setDisplayofArr(none_display, "none");
 
-  document.querySelector(".total-press").classList.remove("not-clicked");
-  document.querySelector(".total-press").classList.add("bold-font-init");
-  document
-    .querySelector(".subscribed-press")
-    .classList.remove("bold-font-init");
-  document.querySelector(".subscribed-press").classList.add("not-clicked");
+  getTotalSubClass();
+  removeAddClass(total_press, "bold-font-init", "not-clicked");
+  removeAddClass(subscribed_press, "not-clicked", "bold-font-init");
   grid_view_selected = false;
 }
 
@@ -122,8 +126,8 @@ my_sub.addEventListener("click", () => {
   }
 });
 
-const total_press = document.querySelector(".total-press");
-total_press.addEventListener("click", () => {
+const total = document.querySelector(".total-press");
+total.addEventListener("click", () => {
   if (grid_view_selected) {
     //grid 상태라면
     changeToGridView();

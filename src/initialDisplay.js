@@ -1,5 +1,5 @@
 import { appendCategoryTabNum } from "./listNews.js";
-import { setDisplay } from "./util/utils.js";
+import { setDisplay, setDisplayofArr } from "./util/utils.js";
 
 /***** 초기 화면 *****/
 function countDisplayNone() {
@@ -9,10 +9,13 @@ function countDisplayNone() {
 }
 
 function initDisplay() {
-  setDisplay(".list-selected", "none");
-  setDisplay(".press-list-section", "none");
-  setDisplay("#grid-prev", "none");
-  setDisplay(".sub-alert", "none");
+  const none_display = [
+    ".list-selected",
+    ".press-list-section",
+    "#grid-prev",
+    ".sub-alert",
+  ];
+  setDisplayofArr(none_display, "none");
   appendCategoryTabNum();
   countDisplayNone();
   setDisplay(".count", "block");
