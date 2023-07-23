@@ -7,7 +7,7 @@ import { changeOption } from "./viewHandler.js";
 
 let news_by_category;
 
-function onUndiscribeModal(target) {
+function onUndiscribeModal({target: target}) {
   const $press_name = document.querySelector(".sub-press-name");
   $press_name.textContent = findPress("src", target);
   setDisplay(".grid-subscribe-modal", "query", "block");

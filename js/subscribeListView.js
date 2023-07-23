@@ -4,7 +4,7 @@ import { drawNews } from "./newsList.js";
 function setSubListNav() {
   const subscribed_presses = STATE.SUB_DATA;
   const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
-  $sub_list_nav.innerHTML = ""; // 첫뻔째 li에 list-스타일넣기
+  $sub_list_nav.innerHTML = ""; 
   subscribed_presses.forEach((press, index) => {
     const $li = document.createElement("li");
     $li.classList.add("sub-nav-item","surface-alt","text-weak");

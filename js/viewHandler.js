@@ -15,15 +15,11 @@ async function addEventInSymbol() {
   let $list_symbol = document.querySelectorAll(".list-symbol");
   let $grid_symbol = document.querySelectorAll(".grid-symbol");
   $list_symbol.forEach(symbol => {
-    symbol.addEventListener("click", event => {
-      handleView(event.target);
-    });
+    symbol.addEventListener("click",handleView)
   });
   $grid_symbol.forEach(symbol => {
-    symbol.addEventListener("click", event => {
-      handleView(event.target);
+    symbol.addEventListener("click", handleView)
     });
-  });
 }
 
 function changeViewIcon(selected) {
@@ -49,7 +45,7 @@ function changeOption(selected) {
   }
 }
 
-function handleView(target) {
+function handleView({target:target}) {
   const target_class = target.classList;
   function checkClass(_class) {
     return target_class.contains(_class); // 있으면 true 반환

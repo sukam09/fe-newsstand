@@ -52,8 +52,8 @@ function pressGridArrow(increment) {
 
 function addEventGridArrow() {
   // grid 화살표 이벤트 등록
-  document.getElementById("grid-next").addEventListener("click", () => pressGridArrow(1));
-  document.getElementById("grid-prev").addEventListener("click", () => pressGridArrow(-1));
+  document.getElementById("grid-next").addEventListener("click", pressGridArrow.bind(1));
+  document.getElementById("grid-prev").addEventListener("click", pressGridArrow.bind(-1));
 }
 
 async function initPressGrid() {

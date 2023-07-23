@@ -8,19 +8,19 @@ import { drawNews } from "./newsList.js";
 
 let presses;
 
-function gridMouseOver(target) {
+function gridMouseOver({target:target}) {
   const $original = target.querySelector("img");
   const $button = target.querySelector("button");
   addRemoveHidden($original, $button);
 }
 
-function gridMouseOut(target) {
+function gridMouseOut({target:target}) {
   const $original = target.querySelector("img");
   const $button = target.querySelector("button");
   addRemoveHidden($button, $original);
 }
 
-function gridMouseClick(target) {
+function gridMouseClick({target:target}) {
   const $original = target.getElementsByTagName("img")[0];
   const $original_path = ".." + $original.src.split("5500")[1];
   const $target_object = presses.find(target => 
@@ -54,25 +54,25 @@ function listSubMouseClick(news) {
 }
 
 function initGridItemEvent(item,press) {
-  item.addEventListener("mouseenter", e => gridMouseOver(e.target));
-  item.addEventListener("mouseleave", e => gridMouseOut(e.target));
+  item.addEventListener("mouseenter", gridMouseOver);
+  item.addEventListener("mouseleave", gridMouseOut);
   if(STATE.SUB_DATA.find(data => data.name === press.name) === undefined) {
-    item.addEventListener("click", e => gridMouseClick(e.target));    
+    item.addEventListener("click", gridMouseClick);    
   } else {
-    item.addEventListener("click", e => {
-      onUndiscribeModal(e.target);
-    });  
+    item.addEventListener("click",onUndiscribeModal);
+  }  
   }
-}
+
 
 function preventButtonClick(button) {
-  button.addEventListener("click", e => {
-    e.stopPropagation();
-    const $li_element = e.target.closest("li");
-    if ($li_element) {
-      gridMouseClick($li_element);
-    }
-  });
+  button.addEventListener("click",disableButtonEvent)}
+
+function disableButtonEvent({target:target}) {
+  e.stopPropagation();
+  const $li_element = target.closest("li");
+  if ($li_element) {
+    gridMouseClick($li_element);
+  }
 }
 
 function addRemoveHidden(add_target, remove_target) {
@@ -88,7 +88,7 @@ async function initSpanEvent() {
   });
 
   const $press_options = document.querySelector(".press-option").children;
-  [...$press_options].forEach(span => span.addEventListener("click", e => handleView(e.target)));
+  [...$press_options].forEach(span => span.addEventListener("click", handleView));
 }
 
 export {
