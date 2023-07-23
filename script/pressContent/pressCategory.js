@@ -129,7 +129,7 @@ function putCurrentPage() {
 }
 
 export function moveCategoryProgressbar() {
-  const progressbarState = getQuerySelector(document, ".selected .press-content-category-progressbar");
+  const progressbarState = getQuerySelector(".selected .press-content-category-progressbar");
   progressbarState.addEventListener('animationend', () => {
     updatePageAndCategory(1);
     putCurrentPage();

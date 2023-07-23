@@ -6,7 +6,7 @@ function getElemClass(className, base = document) {
   return base.getElementsByClassName(className);
 }
 
-function getQuerySelector(selector, base = document,) {
+function getQuerySelector(selector, base = document) {
   return base.querySelector(selector);
 }
 
