@@ -3,7 +3,6 @@ import { initLatestNews } from './components/latest-news.js';
 import { initPressHeader } from './components/press-header.js';
 
 (function init() {
-  // initNewsStandHeader();
   newsStandHeaderStore.initHeader();
   initLatestNews();
   initPressHeader(); // 수정중
