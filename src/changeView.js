@@ -5,6 +5,7 @@ import {
 } from "./progressBar.js";
 import { setDisplayofArr, removeAddClass } from "./util/utils.js";
 import { setSubGrid } from "./subGrid.js";
+import { drawListView } from "./listNews.js";
 
 let grid_view_selected = true;
 let total_press;
@@ -67,6 +68,7 @@ function changeToListView() {
   getTotalSubClass;
   removeAddClass(total_press, "not-clicked", "bold-font-init");
   removeAddClass(subscribed_press, "bold-font-init", "not-clicked");
+  drawListView(0, 0);
   grid_view_selected = false;
 }
 
