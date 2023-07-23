@@ -10,7 +10,13 @@ class NewsStandHeaderStore extends Subject {
     this.headerTime = null;
   }
 
-  setHeaderElement() {
+  initHeader() {
+    this.renderHeaderElement();
+    this.addButtonClickEvent();
+    this.updateHeaderTime();
+  }
+
+  renderHeaderElement() {
     this.headerWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER}`);
     const headerElement = `
       <button class=${HEADER_CLASS.BUTTON}>
@@ -22,27 +28,17 @@ class NewsStandHeaderStore extends Subject {
     this.headerWrapper.innerHTML = headerElement;
   }
 
-  setHeaderButton() {
+  addButtonClickEvent() {
     this.headerButton = document.querySelector(`.${HEADER_CLASS.BUTTON}`);
     this.headerButton.addEventListener('click', () => {
       this.notifyObservers(); // 옵저버들에게 알림을 보냄
     });
   }
 
-  getCurrentTime() {
-    this.dateFormat = new Date().toLocaleDateString('ko-KR', DATE_OPTIONS);
-  }
-
-  setHeaderTime() {
+  updateHeaderTime() {
     this.headerTime = document.querySelector(`.${HEADER_CLASS.TIME}`);
+    this.dateFormat = new Date().toLocaleDateString('ko-KR', DATE_OPTIONS);
     this.headerTime.innerText = this.dateFormat;
-  }
-
-  initHeader() {
-    this.setHeaderElement();
-    this.setHeaderButton();
-    this.getCurrentTime();
-    this.setHeaderTime();
   }
 }
 
@@ -53,8 +49,7 @@ class TimeObserver extends Observer {
 
   update() {
     location.reload();
-    this.subject.getCurrentTime();
-    this.subject.setHeaderTime();
+    this.subject.updateHeaderTime();
   }
 }
 
