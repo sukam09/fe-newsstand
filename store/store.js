@@ -32,15 +32,17 @@ class Store {
         this.viewState = {...this.viewState,  ...newState};
         this.renderView();
     }
-    setSubList(idx, type){
+    setSubList(id, type){
         switch(type){
             case "subscribe":
-                this.subList.push(idx);
+                this.subList.push(id);
                 break;
             case "unsubscribe":
-                this.subList.pop(idx);
+                const idx = this.subList.findIndex(item => item === id);
+                this.subList.splice(idx,1)
                 break;
         }
+        this.renderView();
     }  
     setShuffledList(arr){
         this.shuffledList = arr;
