@@ -1,4 +1,4 @@
-import { HEADER_CLASS, NEWS_SLICE, SIDE, ROLLING, URL, ERROR } from '../constants/latest-news.js';
+import { HEADER_CLASS, NEWS_SLICE, SIDE, ROLLING, URL, ERROR } from '../constants/news-stand-rolling.js';
 import { getFetchData } from '../utils/fetch.js';
 
 const wrapperElements = {

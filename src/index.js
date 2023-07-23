@@ -1,9 +1,10 @@
 import newsStandHeaderStore from './components/news-stand-header.js';
-import { initLatestNews } from './components/latest-news.js';
+import latestNewsSubject from './components/news-stand-rolling/main.js';
 import { initPressHeader } from './components/press-header.js';
 
 (function init() {
   newsStandHeaderStore.initHeader();
-  initLatestNews();
+  latestNewsSubject.initLatestNews();
+  // initLatestNews();
   initPressHeader(); // 수정중
 })();
