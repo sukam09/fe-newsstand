@@ -1,7 +1,7 @@
-import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../constants/news-stand-header.js';
-import { Subject, Observer } from '../utils/observer.js';
+import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../../constants/news-stand-header.js';
+import { Subject } from '../../utils/observer.js';
 
-class NewsStandHeaderStore extends Subject {
+class NewsStandHeaderSubject extends Subject {
   constructor() {
     super();
     this.dateFormat = null;
@@ -19,12 +19,12 @@ class NewsStandHeaderStore extends Subject {
   renderHeaderElement() {
     this.headerWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER}`);
     const headerElement = `
-      <button class=${HEADER_CLASS.BUTTON}>
-        <img class=${HEADER_CLASS.IMAGE} src=${PATH.LOGO}></img>
-        <h1 class=${HEADER_CLASS.H1}>${TITLE.NAME}</h1>
-      </button>
-      <time class=${HEADER_CLASS.TIME}></time>
-    `;
+        <button class=${HEADER_CLASS.BUTTON}>
+          <img class=${HEADER_CLASS.IMAGE} src=${PATH.LOGO}></img>
+          <h1 class=${HEADER_CLASS.H1}>${TITLE.NAME}</h1>
+        </button>
+        <time class=${HEADER_CLASS.TIME}></time>
+      `;
     this.headerWrapper.innerHTML = headerElement;
   }
 
@@ -42,19 +42,4 @@ class NewsStandHeaderStore extends Subject {
   }
 }
 
-class TimeObserver extends Observer {
-  constructor(subject) {
-    super(subject);
-  }
-
-  update() {
-    location.reload();
-    this.subject.updateHeaderTime();
-  }
-}
-
-const newsStandHeaderStore = new NewsStandHeaderStore();
-const timeObserver = new TimeObserver(newsStandHeaderStore);
-newsStandHeaderStore.addObserver(timeObserver);
-
-export default newsStandHeaderStore;
+export { NewsStandHeaderSubject };
