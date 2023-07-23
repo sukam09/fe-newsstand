@@ -5,11 +5,11 @@ import { Subject } from '../../utils/observer.js';
 class LatestNewsSubject extends Subject {
   constructor() {
     super();
-    this.wrapperElements = {
-      left: document.querySelector('.latest_news__wrapper-left'),
-      right: document.querySelector('.latest_news__wrapper-right'),
+    this.newsWrappers = {
+      left: document.querySelector(`.${HEADER_CLASS.LEFT}`),
+      right: document.querySelector(`.${HEADER_CLASS.RIGHT}`),
     };
-    this.interval = {
+    this.intervals = {
       left: null,
       right: null,
       timeOut: null,
@@ -20,37 +20,37 @@ class LatestNewsSubject extends Subject {
     try {
       const fetchData = await getFetchData(URL.DATA);
       const latestNews = fetchData.latestNews;
-      const newsLeft = this.divideNews(latestNews, SIDE.LEFT);
-      const newsRight = this.divideNews(latestNews, SIDE.RIGHT);
-      this.setNews(newsLeft, SIDE.LEFT);
-      this.setNews(newsRight, SIDE.RIGHT);
+      const newsLeft = this.splitNewsBySide(latestNews, SIDE.LEFT);
+      const newsRight = this.splitNewsBySide(latestNews, SIDE.RIGHT);
+      this.displayNewsOnSide(newsLeft, SIDE.LEFT);
+      this.displayNewsOnSide(newsRight, SIDE.RIGHT);
     } catch (error) {
       console.error(ERROR.MESSAGES, error);
     }
   }
 
-  divideNews(latestNews, side) {
-    if (side === SIDE.LEFT) return latestNews.slice(NEWS_SLICE.MIN, NEWS_SLICE.MAX / 2);
-    if (side === SIDE.RIGHT) return latestNews.slice(NEWS_SLICE.MAX / 2, NEWS_SLICE.MAX);
+  splitNewsBySide(latestNews, side) {
+    if (side === SIDE.LEFT) return latestNews.slice(NEWS_SLICE.MIN, NEWS_SLICE.MAX / NEWS_SLICE.NUM);
+    if (side === SIDE.RIGHT) return latestNews.slice(NEWS_SLICE.MAX / NEWS_SLICE.NUM, NEWS_SLICE.MAX);
   }
 
-  setNews(latestNews, side) {
-    this.setWrapper(latestNews, side);
-    this.setHover(side);
-    this.setRolling(side);
-    this.startRolling(side);
+  displayNewsOnSide(latestNews, side) {
+    this.populateNewsWrapper(latestNews, side);
+    this.enableHoverEffect(side);
+    this.initializeRolling(side);
+    this.beginRolling(side);
   }
 
-  getWrapper(side) {
-    return this.wrapperElements[side];
+  getNewsWrapperBySide(side) {
+    return this.newsWrappers[side];
   }
 
-  setWrapper(latestNews, side) {
-    const newsWrapper = this.getWrapper(side);
-    latestNews.forEach((news) => this.setWrapperElement(newsWrapper, news));
+  populateNewsWrapper(latestNews, side) {
+    const newsWrapper = this.getNewsWrapperBySide(side);
+    latestNews.forEach((news) => this.addNewsToWrapper(newsWrapper, news));
   }
 
-  setWrapperElement(newsWrapper, news) {
+  addNewsToWrapper(newsWrapper, news) {
     const newsElement = `
       <li class=${HEADER_CLASS.LI}>
         <h2 class=${HEADER_CLASS.H2}>${news.press}</h2>
@@ -60,74 +60,78 @@ class LatestNewsSubject extends Subject {
     newsWrapper.insertAdjacentHTML('beforeend', newsElement);
   }
 
-  setHover(side) {
-    const newsWrapper = this.getWrapper(side);
-    const liList = newsWrapper.querySelectorAll(`.latest_news__li`);
+  enableHoverEffect(side) {
+    const newsWrapper = this.getNewsWrapperBySide(side);
+    const liList = newsWrapper.querySelectorAll(`.${HEADER_CLASS.LI}`);
 
     liList.forEach((li) => {
       li.addEventListener('mouseover', () => {
-        this.setHoverOver(side);
+        this.stopRollingOnHover(side);
       });
       li.addEventListener('mouseout', () => {
-        this.setHoverOut();
+        this.startRollingAfterHover();
       });
     });
   }
 
-  setHoverOver(side) {
-    clearInterval(this.interval[side]);
+  stopRollingOnHover(side) {
+    clearInterval(this.intervals[side]);
   }
 
-  setHoverOut() {
-    clearInterval(this.interval.left);
-    clearInterval(this.interval.right);
-    clearTimeout(this.interval.timeOut);
-    this.interval.left = this.startInterval(SIDE.LEFT);
-    this.interval.timeOut = setTimeout(() => (this.interval.right = this.startInterval(SIDE.RIGHT)), ROLLING.DELAY);
+  startRollingAfterHover() {
+    clearInterval(this.intervals.left);
+    clearInterval(this.intervals.right);
+    clearTimeout(this.intervals.timeOut);
+    this.intervals.left = this.startRollingInterval(SIDE.LEFT);
+    this.intervals.timeOut = setTimeout(
+      () => (this.intervals.right = this.startRollingInterval(SIDE.RIGHT)),
+      ROLLING.DELAY
+    );
   }
 
-  setRolling(side) {
-    const liElements = this.getWrapper(side).querySelectorAll('li');
+  initializeRolling(side) {
+    const liElements = this.getNewsWrapperBySide(side).querySelectorAll('li');
 
     liElements[0].classList.add(ROLLING.PREV);
     liElements[1].classList.add(ROLLING.CURRENT);
     liElements[2].classList.add(ROLLING.NEXT);
   }
 
-  setRollingName(side) {
-    this.setRollingPrev(side);
-    this.setRollingCurrent(side);
-    this.setRollingNext(side);
+  updateRollingClasses(side) {
+    this.moveToPreviousRolling(side);
+    this.moveToCurrentRolling(side);
+    this.moveToNextRolling(side);
   }
 
-  setRollingPrev(side) {
-    const prev = this.getWrapper(side).querySelector(`.${ROLLING.PREV}`);
+  moveToPreviousRolling(side) {
+    const prev = this.getNewsWrapperBySide(side).querySelector(`.${ROLLING.PREV}`);
     prev.classList.remove(ROLLING.PREV);
   }
 
-  setRollingCurrent(side) {
-    const current = this.getWrapper(side).querySelector(`.${ROLLING.CURRENT}`);
+  moveToCurrentRolling(side) {
+    const current = this.getNewsWrapperBySide(side).querySelector(`.${ROLLING.CURRENT}`);
     current.classList.remove(ROLLING.CURRENT);
     current.classList.add(ROLLING.PREV);
   }
 
-  setRollingNext(side) {
-    const next = this.getWrapper(side).querySelector(`.${ROLLING.NEXT}`);
+  moveToNextRolling(side) {
+    const next = this.getNewsWrapperBySide(side).querySelector(`.${ROLLING.NEXT}`);
     const nextSibling = next?.nextElementSibling;
 
     if (nextSibling) nextSibling.classList.add(ROLLING.NEXT);
-    if (!nextSibling) this.getWrapper(side).querySelector(`li:first-child`).classList.add(ROLLING.NEXT);
+    if (!nextSibling) this.getNewsWrapperBySide(side).querySelector(`li:first-child`).classList.add(ROLLING.NEXT);
     next.classList.remove(ROLLING.NEXT);
     next.classList.add(ROLLING.CURRENT);
   }
 
-  startInterval(side) {
-    return setInterval(() => this.setRollingName(side), ROLLING.INTERVAL);
+  startRollingInterval(side) {
+    return setInterval(() => this.updateRollingClasses(side), ROLLING.INTERVAL);
   }
 
-  startRolling(side) {
-    if (side === SIDE.LEFT) this.interval.left = this.startInterval(SIDE.LEFT);
-    if (side === SIDE.RIGHT) setTimeout(() => (this.interval.right = this.startInterval(SIDE.RIGHT)), ROLLING.DELAY);
+  beginRolling(side) {
+    if (side === SIDE.LEFT) this.intervals.left = this.startRollingInterval(SIDE.LEFT);
+    if (side === SIDE.RIGHT)
+      setTimeout(() => (this.intervals.right = this.startRollingInterval(SIDE.RIGHT)), ROLLING.DELAY);
   }
 }
 
