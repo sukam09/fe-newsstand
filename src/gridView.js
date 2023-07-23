@@ -141,7 +141,19 @@ function showGridPage() {
 
 function checkMode() {
   const isSubView = getState(isSubTab);
+  const subListCount = getState(subscribeList).length;
   if (isSubView) {
+    switch (subListCount) {
+      case 0:
+        setState(isSubTab, false);
+        return;
+      case MAX_GRID_COUNT:
+        setState(gridPageIdx, 0);
+        return;
+      case MAX_GRID_COUNT * 2:
+        setState(gridPageIdx, 1);
+        return;
+    }
     appendGridList();
   }
 }
