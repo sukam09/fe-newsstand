@@ -1,14 +1,13 @@
 import { store } from "../core/store.js";
 import { ICON_IMG_PATH, SNACKBAR_WAIT_TIME } from "../constants/constants.js";
 import { getPage, getSubscribedPress } from "../core/getter.js";
-const subscribedPress = store.state.subscribedPress;
 function handleClick(e, press) {
   let btn_target = e.target.closest("button");
   const button = document.querySelector(".sub");
   const press_news = document.querySelector(".press-news");
   const newDiv = document.createElement("div");
   if (btn_target) {
-    let isSubscribed = subscribedPress.includes(press);
+    let isSubscribed = getSubscribedPress().includes(press);
     btn_target = showSubscribeButton(isSubscribed);
     //구독한 상태에서 누를 경우
     if (isSubscribed) {
@@ -86,7 +85,9 @@ function showSubscribeButton(isSubscribed) {
 
 export function drawPressInfo(list_content) {
   const press_news = document.querySelector(".press-news");
-  const isSubscribed = subscribedPress.includes(list_content[getPage() - 1]);
+  const isSubscribed = getSubscribedPress().includes(
+    list_content[getPage() - 1]
+  );
   const button = showSubscribeButton(isSubscribed);
   try {
     press_news.innerHTML = `<div class="press-info">

@@ -10,23 +10,34 @@ import {
   getTabMode,
 } from "../core/getter.js";
 import { checkPage } from "./checkPage.js";
-
+import { handleSubscribe } from "./subscribePress.js";
 const grid_view = `
     <ul class="main-list-ul"></ul>
     `;
 
 function handleEvent(event, img, button) {
   const li = img.parentNode;
-  if (event === "over") {
-    img.style.display = "none";
-    button.style.display = "flex";
-    li.style.backgroundColor = "var(--surface-alt)";
-  } else {
-    img.style.display = "block";
-    button.style.display = "none";
-    li.style.backgroundColor = "var(--surface-default)";
+  switch (event) {
+    case "over":
+      img.style.display = "none";
+      button.style.display = "flex";
+      li.style.backgroundColor = "var(--surface-alt)";
+      break;
+    case "out":
+      img.style.display = "block";
+      button.style.display = "none";
+      li.style.backgroundColor = "var(--surface-default)";
+      break;
+    case "click":
+      const pattern = /img(\d+)\.svg/; // 정규식 패턴
+      const press = { name: "tmp", index: img.src.match(pattern)[1] };
+      handleSubscribe(press);
+      break;
+    default:
+      break;
   }
 }
+
 export function showGridView() {
   /*
   - sub모드일 때 더이상 없으면 checkpage(true);로 오른쪽 버튼 hidden 처리
@@ -65,6 +76,7 @@ export function showGridView() {
       li.append(img, button);
       li.addEventListener("mouseover", () => handleEvent("over", img, button));
       li.addEventListener("mouseout", () => handleEvent("out", img, button));
+      button.addEventListener("click", () => handleEvent("click", img, button));
     } else {
       li.style.cursor = "default";
     }
