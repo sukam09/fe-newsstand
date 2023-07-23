@@ -7,6 +7,7 @@
 ```
 ├─ assets
 │  ├─ icons
+│  ├─ logo
 │  └─ etc
 ├─ data
 │  ├─ headlone.json
@@ -14,16 +15,23 @@
 │  └─ press.json
 ├─ modules
 │  ├─ components
-│  │  ├─ headlineSection
-│  │  ├─ mainSection
-│  │  └─ titleSection
+│  │  └─ ...
+│  ├─ controller
+│  │  └─ ...
+│  ├─ store
+│  │  └─ ...
 │  ├─ app.js
-│  ├─ events.js
-│  ├─ utils.js
-│  └─ pageState.js
+│  └─ utils.js
 ├─ style
-│  ├─ global-style.css
-│  └─ reset.css
+│  └─ ...
 ├─ server.js
 └─ index.html
 ```
+
+## MVC 패턴
+
+Model(store)과 View(component)를 분리하고 중재하는 역할을 하는 controller를 정의하였습니다.
+
+## 옵저버 패턴
+
+Model이 변하면 그와 관련된 View를 변하도록 하는 옵저버 패턴을 적용하였습니다.
