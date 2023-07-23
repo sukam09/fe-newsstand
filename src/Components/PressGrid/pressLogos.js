@@ -1,3 +1,4 @@
+import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_BTN } from "../../path.js";
 import { PRESS_CNT_PER_PAGE, FIRST_PAGE_IDX, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import turnPressPage from "./pageMoveButton.js";
@@ -66,10 +67,10 @@ function handleShowSubUnsubBtn({ target }, whatDisplay) {
     const isSubscribedPress = store.isSubscribed(hoveredPressId);
 
     if (whatDisplay === 'subscribeBtn' && !isSubscribedPress) {
-      setImgAndBackgroundColor(target, "/assets/Icon/subscribeButton.svg", SURFACE_ALT)
+      setImgAndBackgroundColor(target, PATH_SUBSCRIBE_BTN, SURFACE_ALT)
     }
     else if (whatDisplay === 'subscribeBtn' && isSubscribedPress) {
-      setImgAndBackgroundColor(target, "/assets/Icon/unsubscribeButton.svg", SURFACE_ALT)
+      setImgAndBackgroundColor(target, PATH_UNSUBSCRIBE_BTN, SURFACE_ALT)
     }
     else if (whatDisplay === 'logo') {
       shuffledAllPress.filter(press => press.id === hoveredPressId)
