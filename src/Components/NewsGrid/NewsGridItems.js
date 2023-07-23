@@ -1,5 +1,10 @@
 import Component from "../../core/Component.js";
 import { constants } from "../../Data/constants.js";
+import {
+  setSubscribe,
+  setUnSubscribe,
+  subscribeStore,
+} from "../../Store/subscribeStore.js";
 
 export default class NewsGridItems extends Component {
   template() {
@@ -18,9 +23,15 @@ export default class NewsGridItems extends Component {
                   alt=${item.name}
                 />
               </div>
-              <div class="card-back">
+              ${
+                subscribeStore.getState().subscribe.indexOf(item.id) < 0
+                  ? `<div class="card-back subscribeButton">
                   <img src="./assets/icons/SubscribeButtonWhite.svg" alt="subscribeButton" />
-              </div>
+              </div>`
+                  : `<div class="card-back unSubscribeButton">
+                  <img src="./assets/icons/UnSubscribeButton.svg" alt="unSubscribeButton" />
+              </div>`
+              }
             </div>
           </li>
         `
@@ -32,9 +43,18 @@ export default class NewsGridItems extends Component {
     const $newspaperSubscribe = this.$target.querySelectorAll(".card-back");
 
     $newspaperSubscribe.forEach((item, index) => {
-      item.addEventListener("click", () =>
-        console.log(this.$props.nowPageIndexArr[index])
-      );
+      item.addEventListener("click", () => {
+        if (item.classList.contains("subscribeButton")) {
+          subscribeStore.dispatch(
+            setSubscribe(this.$props.nowPageIndexArr[index].id)
+          );
+        } else {
+          subscribeStore.dispatch(
+            setUnSubscribe(this.$props.nowPageIndexArr[index].id)
+          );
+        }
+        this.render();
+      });
     });
   }
 }
