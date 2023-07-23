@@ -1,5 +1,6 @@
 import { getSubscribedPress } from "../core/getter.js";
 import { store } from "../core/store.js";
+
 export function handleSubscribe(press) {
   //   let btn_target = e.target.closest("button");
   //   const button = document.querySelector(".sub");

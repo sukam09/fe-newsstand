@@ -11,6 +11,7 @@ import {
 } from "../core/getter.js";
 import { checkPage } from "./checkPage.js";
 import { handleSubscribe } from "./subscribePress.js";
+import { getData } from "../core/api.js";
 const grid_view = `
     <ul class="main-list-ul"></ul>
     `;
@@ -30,14 +31,25 @@ function handleEvent(event, img, button) {
       break;
     case "click":
       const pattern = /img(\d+)\.svg/; // 정규식 패턴
-      const press = { name: "tmp", index: img.src.match(pattern)[1] };
-      handleSubscribe(press);
+      const _index = img.src.match(pattern)[1];
+      getPressName(_index).then((pressName) => {
+        const press = {
+          name: pressName,
+          index: _index,
+        };
+        handleSubscribe(press);
+      });
       break;
     default:
       break;
   }
 }
 
+async function getPressName(index) {
+  const pressList = await getData("press");
+  const name = pressList.Press[index - 1].name;
+  return name;
+}
 export function showGridView() {
   /*
   - sub모드일 때 더이상 없으면 checkpage(true);로 오른쪽 버튼 hidden 처리
