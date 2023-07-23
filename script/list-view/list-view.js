@@ -5,8 +5,8 @@ import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
-const listBox = document.querySelector(".list-box")
-const emptyListView = document.querySelector(".empty-list-view");
+const listContainer = document.querySelector(".list-box")
+const emptyView = document.querySelector(".empty-view");
 
 function handleCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
@@ -23,8 +23,8 @@ function handleCategoryChange(catBtns){
     })
 }
 function drawEmptyList() {
-    listBox.classList.add("hide");
-    emptyListView.classList.remove("hide");
+    listContainer.classList.add("hide");
+    emptyView.classList.remove("hide");
 }
 function drawListPage({listData, navData, filterType}) {
     let {crntPage, crntCategory} = store.getViewState();

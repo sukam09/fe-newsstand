@@ -281,7 +281,7 @@ ul {
     font: var(--medium-M);
 }
 .sub-snack-animation {
-    animation: fadeout 2s linear forwards;
+    animation: fadeout 1s linear forwards;
 }
 @keyframes fadeout {
     0% {
@@ -295,7 +295,7 @@ ul {
     }
 }
 
-.empty-list-view {
+.empty-view {
     display:flex;
     align-items: center;
     justify-content: center;
@@ -303,8 +303,6 @@ ul {
     height: 388px;
     font: var(--bold-M);
     color:var(--text-weak);
-
-    /* color : var(--grayscale-black) */
 }
 
 

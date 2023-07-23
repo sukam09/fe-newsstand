@@ -8,24 +8,30 @@ class Store {
     constructor () {
         this.viewState = {
             crntView : VIEW_TYPE.GRID, // this.crntView = VIEW_TYPE.GRID;
-            crntPage : 0, // page index (grid, list view)
+            crntPage : 0,  // page index (grid, list view)
             crntCategory : 0,  // category index (list view)
             crntFilter : FILTER_TYPE.ALL
         }
         this.subList = [];
         this.shuffledList = [];
-
         this.observers = new Set();
     }
 
     getViewState() {
         return {...this.viewState}
     }
+    getSubList() {
+        return this.subList;
+    }
+    getShuffledList() {
+        return this.shuffledList;
+    }
+    
+
     setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
         this.renderView();
     }
-
     setSubList(idx, type){
         switch(type){
             case "subscribe":

@@ -1,25 +1,39 @@
 import pressList from "../../asset/data/pressList.js"
 import listViewData from "../../asset/data/listViewData.js";
 import { store } from "../../store/store.js";
-import { CATEGORY_LIST, VIEW_TYPE } from "../../asset/data/constants.js";
+import { CATEGORY_LIST, FILTER_TYPE, GRID_ITEMS_COUNT, VIEW_TYPE } from "../../asset/data/constants.js";
+import { removeProgressBar } from "../list-view/progress-bar.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
-function removeArrow(){
+function showArrow(){
     leftArrow.classList.remove("hidden");
     rightArrow.classList.remove("hidden");
 }
 function drawArrow(){
-    let {crntPage, crntView} = store.getViewState();
+    let {crntPage, crntView, crntFilter} = store.getViewState();
+    let dataInfo;
+    if (crntFilter === FILTER_TYPE.ALL){
+        dataInfo = pressList;
+    } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
+        dataInfo = store.getSubList();
+    }
     let maxPage;
-    removeArrow();
+    if (crntFilter === FILTER_TYPE.SUBSCRIBED && store.getSubList().length === 0){
+        leftArrow.classList.add("hidden");
+        rightArrow.classList.add("hidden");
+        return;
+    }
+    showArrow();
     switch (crntView){
         case VIEW_TYPE.GRID:
-            maxPage = pressList.length/24;
+            maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_COUNT);
+
             if (crntPage == 0){
                 leftArrow.classList.add("hidden");
-            } else if (crntPage == maxPage-1){
+            } 
+            if (crntPage == maxPage-1){
                 rightArrow.classList.add("hidden");
             }
             break;
@@ -65,4 +79,4 @@ function handleArrowClick(){
     
 }
 
-export {removeArrow,drawArrow, handleArrowClick}
+export {drawArrow, handleArrowClick}
