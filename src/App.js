@@ -1,9 +1,9 @@
 import Component from "./core/Component.js";
-import Header from "./Components/Header.js";
-import Headline from "./Components/Headline.js";
-import NavBar from "./Components/NavBar.js";
-import NewsGrid from "./Components/NewsGrid.js";
-import NewsList from "./Components/NewsList.js";
+import Header from "./Components/Header/Header.js";
+import Headline from "./Components/Headline/Headline.js";
+import NavBar from "./Components/NavBar/NavBar.js";
+import NewsGrid from "./Components/NewsGrid/NewsGrid.js";
+import NewsList from "./Components/NewsList/NewsList.js";
 
 export default class App extends Component {
   template() {

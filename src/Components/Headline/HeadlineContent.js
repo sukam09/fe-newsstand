@@ -1,4 +1,4 @@
-import Component from "../core/Component.js";
+import Component from "../../core/Component.js";
 import RollingItem from "./RollingItem.js";
 
 export default class HeadlineContent extends Component {

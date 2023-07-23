@@ -1,5 +1,5 @@
-import Component from "../core/Component.js";
-import { constants } from "../Data/constants.js";
+import Component from "../../core/Component.js";
+import { constants } from "../../Data/constants.js";
 import NewsGridItems from "./NewsGridItems.js";
 
 export default class NewsGrid extends Component {

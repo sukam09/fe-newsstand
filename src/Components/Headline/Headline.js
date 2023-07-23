@@ -1,6 +1,6 @@
-import Component from "../core/Component.js";
+import Component from "../../core/Component.js";
 import HeadlineContent from "./HeadlineContent.js";
-import { constants } from "../Data/constants.js";
+import { constants } from "../../Data/constants.js";
 
 export default class Headline extends Component {
   setup() {

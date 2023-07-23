@@ -1,5 +1,5 @@
-import { constants } from "../Data/constants.js";
-import Component from "../core/Component.js";
+import { constants } from "../../Data/constants.js";
+import Component from "../../core/Component.js";
 
 export default class NavBar extends Component {
   setup() {
