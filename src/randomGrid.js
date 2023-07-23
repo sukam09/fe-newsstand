@@ -110,4 +110,4 @@ sub_btns.addEventListener("click", async (e) => {
   }
 });
 
-export { setGrid };
+export { PRESS_NUM_IN_GRID, setGrid };

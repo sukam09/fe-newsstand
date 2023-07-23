@@ -1,5 +1,6 @@
 import { setDisplay, removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
+import { PRESS_NUM_IN_GRID } from "./randomGrid.js";
 
 /***** 미리 24개의 아이템 채우기 *****/
 function makePressItemli() {
@@ -9,7 +10,7 @@ function makePressItemli() {
 }
 
 function appendPressItemli() {
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < PRESS_NUM_IN_GRID; i++) {
     makePressItemli();
   }
 }
@@ -38,7 +39,7 @@ function setSubGrid() {
     idx++;
   });
 
-  for (let i = sub_press_list.length; i < 24; i++) {
+  for (let i = sub_press_list.length; i < PRESS_NUM_IN_GRID; i++) {
     makeItemEmpty(i);
   }
 }
