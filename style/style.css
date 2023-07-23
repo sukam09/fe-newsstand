@@ -129,6 +129,11 @@ ul {
     align-items: center;
     justify-content: center;
 }
+.sub-btn,
+.unsub-btn {
+    width:72px;
+    height:24px;
+}
 .arrow-container {
     width:24px;
     height:40px;
@@ -203,8 +208,8 @@ ul {
     width: 53px;
     height: 21px;
 }
-.list-sub-btn {
-    width:72px;
+.list-unsub-btn {
+    width:24px;
     height:24px;
 }
 .list-page-section {

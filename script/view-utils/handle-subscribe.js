@@ -6,6 +6,9 @@ const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 const subSnackBar = document.querySelector(".sub-snack-bar");
 
+function handleUnsubscribe() {
+    
+}
 function drawSubSnack() {
     subSnackBar.classList.remove("hide");
     subSnackBar.classList.add("sub-snack-animation");
@@ -22,6 +25,10 @@ function handleSubscribe(){
         subBtn.classList.add("hide"); // just for instant btn change
         unsubBtn.classList.remove("hide");
         drawSubSnack();
+    })
+
+    unsubBtn.addEventListener("click", () => {
+        console.log("unsub")
     })
 }
 

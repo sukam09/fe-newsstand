@@ -41,7 +41,7 @@ function drawListPage({listData, navData, filterType}) {
         <header class="list-page-header display-medium12 light-text-default">
             <img class="list-main-img" src=${crntData.path}></img>
             <span>${crntData.edit_date} 편집</span>
-            <img src="/asset/icons/${crntData.is_subscribe ? "unsubscribe-button.png":"subscribe-button.png"}" class="list-sub-btn"/>
+            <img src="/asset/icons/${store.getSubList().includes(crntData.id) ? "list-unsub-btn.png":"subscribe-button.png"}" class="${store.getSubList().includes(crntData.id) ? "list-unsub-btn" : "sub-btn"}"/>
         </header>
         <section class="list-page-section">
             <section class="list-page-left available-medium16 light-text-strong">
