@@ -13,7 +13,6 @@ import { handleSubscribe } from "./script/view-utils/handle-subscribe.js";
 let pressIdxArray = Array.from({length: pressList.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
 
 function init () {
-    console.log(pressIdxArray)
     shuffleArray(pressIdxArray); // shuffle grid only when reloading
     drawDate();
     drawGrid();
