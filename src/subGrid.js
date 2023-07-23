@@ -49,7 +49,7 @@ const un_sub_btns = document.querySelector("#press-sub-list");
 un_sub_btns.addEventListener("click", (e) => {
   const target_class = e.target.classList;
   if (target_class.contains("un-sub")) {
-    const press = subscribeState.getSubInfoById(target_class[1]);
+    const press = subscribeState.getSubInfoById(parseInt(target_class[1]));
     setDisplay(".sub-alert", "block");
     document.querySelector(
       ".alert-message .bold-font-init"
