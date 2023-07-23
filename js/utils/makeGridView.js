@@ -63,13 +63,15 @@ export function showGridView() {
     <img src="${ICON_IMG_PATH}plus.svg"/>
     <span>구독하기</span>
   `;
-    list.length <= i
-      ? null
-      : img.setAttribute("src", `${PRESS_LOGO_IMG_PATH}${list[i]}.svg`);
     main_list_ul.appendChild(li);
-    li.append(img, button);
-    li.addEventListener("mouseover", () => handleEvent("over", img, button));
-    li.addEventListener("mouseout", () => handleEvent("out", img, button));
+    if (list.length > i) {
+      img.setAttribute("src", `${PRESS_LOGO_IMG_PATH}${list[i]}.svg`);
+      li.append(img, button);
+      li.addEventListener("mouseover", () => handleEvent("over", img, button));
+      li.addEventListener("mouseout", () => handleEvent("out", img, button));
+    } else {
+      li.style.cursor = "default";
+    }
   }
   checkPage(list.length < PRESS_VIEW_COUNT * getPage());
 }
