@@ -13,6 +13,7 @@ async function drawList(current) {
     if (!current) {
       const selected_el = document.querySelector(".category.selected .ctg");
       current = selected_el.textContent;
+      console.log(current);
     }
     getTabMode() === "all"
       ? (list = CATEGORY)
