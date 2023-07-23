@@ -6,6 +6,13 @@ let pageNum = 0;
 let currentArticle = 0;
 let currentCategory = 0;
 
+/**@@
+ * 1. div.classList.remove() / div.classList.add()
+ * 2. div.addEventListener() / div.removeEventListener()
+ * 3. animation-play-state: paused / playing
+ * 4. setTimeout() / clearTimeout()
+ */
+
 /**
  * 언론사 리스트의 INIT
  */
