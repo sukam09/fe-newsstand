@@ -1,4 +1,9 @@
 import Component from "../../core/Component.js";
+import {
+  setSubscribe,
+  setUnSubscribe,
+  subscribeStore,
+} from "../../Store/subscribeStore.js";
 
 export default class PressNews extends Component {
   setup() {
@@ -19,7 +24,14 @@ export default class PressNews extends Component {
         <span class="news-list__press-news__info__date">${
           this.$state.nowNews.edit_date
         } 편집</span>
-        <img src="./assets/icons/SubscribeButton.svg" alt="Button" />
+        ${
+          subscribeStore
+            .getState()
+            .subscribe.filter((elem) => elem.id === this.$state.nowNews.id)
+            .length === 0
+            ? `<img class="news-list__press-news__subscribe subscribeButton" src="./assets/icons/SubscribeButton_List.svg" alt="Button" />`
+            : `<img class="news-list__press-news__subscribe unSubscribeButton" src="./assets/icons/UnSubscribeButton_List.svg" alt="Button" />`
+        }
       </div>
       <div class="news-list__press-news__news">
         <div class="news-list__press-news__main">
@@ -47,5 +59,27 @@ export default class PressNews extends Component {
         </div>
       </div>
     `;
+  }
+
+  mounted() {
+    const $subscribeButton = document.querySelector(
+      ".news-list__press-news__subscribe"
+    );
+    const $snackBar = document.querySelector(".news-list__snack-bar");
+
+    $subscribeButton.addEventListener("click", () => {
+      if ($subscribeButton.classList.contains("subscribeButton")) {
+        subscribeStore.dispatch(setSubscribe(this.$state.nowNews));
+
+        $snackBar.classList.remove("hidden");
+        setTimeout(() => {
+          $snackBar.classList.add("hidden");
+        }, 5000);
+      } else {
+        subscribeStore.dispatch(setUnSubscribe(this.$state.nowNews));
+      }
+      this.render();
+      console.log(subscribeStore.getState().subscribe);
+    });
   }
 }

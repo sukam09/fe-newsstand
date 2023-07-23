@@ -17,7 +17,9 @@ export const subscribeStore = createStore((state = initState, action = {}) => {
     case "SET_UNSUBSCRIBE":
       return {
         ...state,
-        subscribe: subscribeState.filter((item) => item !== action.payload),
+        subscribe: subscribeState.filter(
+          (item) => item.id !== action.payload.id
+        ),
       };
     default:
       return state;

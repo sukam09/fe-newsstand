@@ -24,12 +24,14 @@ export default class NewsGridItems extends Component {
                 />
               </div>
               ${
-                subscribeStore.getState().subscribe.indexOf(item.id) < 0
+                subscribeStore
+                  .getState()
+                  .subscribe.filter((elem) => elem.id === item.id).length === 0
                   ? `<div class="card-back subscribeButton">
-                  <img src="./assets/icons/SubscribeButtonWhite.svg" alt="subscribeButton" />
+                  <img src="./assets/icons/SubscribeButton_Grid.svg" alt="subscribeButton" />
               </div>`
                   : `<div class="card-back unSubscribeButton">
-                  <img src="./assets/icons/UnSubscribeButton.svg" alt="unSubscribeButton" />
+                  <img src="./assets/icons/UnSubscribeButton_Grid.svg" alt="unSubscribeButton" />
               </div>`
               }
             </div>
@@ -46,14 +48,15 @@ export default class NewsGridItems extends Component {
       item.addEventListener("click", () => {
         if (item.classList.contains("subscribeButton")) {
           subscribeStore.dispatch(
-            setSubscribe(this.$props.nowPageIndexArr[index].id)
+            setSubscribe(this.$props.nowPageIndexArr[index])
           );
         } else {
           subscribeStore.dispatch(
-            setUnSubscribe(this.$props.nowPageIndexArr[index].id)
+            setUnSubscribe(this.$props.nowPageIndexArr[index])
           );
         }
         this.render();
+        console.log(subscribeStore.getState().subscribe);
       });
     });
   }

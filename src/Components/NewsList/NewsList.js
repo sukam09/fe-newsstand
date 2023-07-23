@@ -60,6 +60,10 @@ export default class NewsList extends Component {
           <path d="M1 41L25 21L1 1" stroke="#6E8091" />
         </svg>
       </div>
+
+      <div class="news-list__snack-bar hidden">
+        내가 구독한 언론사에 추가되었습니다.
+      </div>
     `;
   }
 
