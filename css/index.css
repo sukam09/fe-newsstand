@@ -58,6 +58,7 @@ body {
   display: flex;
 }
 .main-list {
+  position: relative;
   height: 388px;
 }
 
@@ -92,7 +93,7 @@ body {
 }
 
 /* 그리드뷰 구독하기 버튼 */
-.grid-view ul li .subscribe {
+.grid-view ul li .sub {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -108,7 +109,7 @@ body {
   border: 1px solid var(--border-default);
   background: var(--surface-default);
 }
-.press-info .subscribe span {
+.press-info .sub span {
   padding-right: 4px;
 }
 
@@ -365,7 +366,7 @@ a:hover {
 }
 
 /* 구독했을 때 스낵바*/
-.press-news .snackbar {
+.snackbar {
   padding: 16px 24px;
   position: absolute;
   top: 50%;
