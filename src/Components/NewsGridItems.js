@@ -12,8 +12,8 @@ export default class NewsGridItems extends Component {
                 <img
                   src=${
                     this.$props.mode === constants.LIGHT_MODE
-                      ? item.lightSrc
-                      : item.darkSrc
+                      ? item.path
+                      : item.path_dark
                   }
                   alt=${item.name}
                 />
@@ -26,5 +26,15 @@ export default class NewsGridItems extends Component {
         `
       )
       .join(" ");
+  }
+
+  mounted() {
+    const $newspaperSubscribe = this.$target.querySelectorAll(".card-back");
+
+    $newspaperSubscribe.forEach((item, index) => {
+      item.addEventListener("click", () =>
+        console.log(this.$props.nowPageIndexArr[index])
+      );
+    });
   }
 }

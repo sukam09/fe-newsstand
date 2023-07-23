@@ -11,13 +11,13 @@ export default class PressNews extends Component {
     return `
       <div class="news-list__press-news__info">
         <img
-          src=${this.$state.nowNews.logo}
+          src=${this.$state.nowNews.path}
           alt="Brandmark"
           height="24"
           class="news-list__press-news__info__brandmark"
         />
         <span class="news-list__press-news__info__date">${
-          this.$state.nowNews.editTime
+          this.$state.nowNews.edit_date
         } 편집</span>
         <img src="./assets/icons/SubscribeButton.svg" alt="Button" />
       </div>
@@ -25,20 +25,20 @@ export default class PressNews extends Component {
         <div class="news-list__press-news__main">
           <div class="news-list__press-news__thumbnail">
             <img
-              src="./assets/images/Thumbnail.png"
+              src=${this.$state.nowNews.main_img_src}
               alt="Thumbnail"
               class="news-list__press-news__thumbnail-image"
             />
           </div>
           <span class="news-list__press-news__title">${
-            this.$state.nowNews.mainArticle.title
+            this.$state.nowNews.main_title
           }</span>
         </div>
         <div class="news-list__press-news__sub">
-        ${this.$state.nowNews.subArticles
+        ${this.$state.nowNews.sub_title
           .map(
-            (item) =>
-              `<span class="news-list__press-news__subtitle">${item.title}</span>`
+            (title) =>
+              `<span class="news-list__press-news__subtitle">${title}</span>`
           )
           .join("")}
           <span class="news-list__press-news__subcaption">${

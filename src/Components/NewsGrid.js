@@ -1,20 +1,18 @@
 import Component from "../core/Component.js";
 import { constants } from "../Data/constants.js";
-import newspaperData from "../Data/newspaper.js";
 import NewsGridItems from "./NewsGridItems.js";
 
 export default class NewsGrid extends Component {
   setup() {
     this.$state = {
-      newspaperRandom: [],
       $leftButton: undefined,
       $rightButton: undefined,
       page: 0,
       mode: constants.LIGHT_MODE,
+      pressNewsData: [],
     };
 
-    const newspaperRandom = [...newspaperData].sort(() => Math.random() - 0.5);
-    this.setState({ newspaperRandom: newspaperRandom });
+    this.fetchNewsData();
   }
 
   template() {
@@ -63,7 +61,7 @@ export default class NewsGrid extends Component {
   }
 
   renderNewspaper() {
-    const nowPageIndexArr = this.$state.newspaperRandom.slice(
+    const nowPageIndexArr = this.$state.pressNewsData.slice(
       this.$state.page * constants.ONE_PAGE_NEWSPAPER,
       (this.$state.page + 1) * constants.ONE_PAGE_NEWSPAPER
     );
@@ -91,5 +89,17 @@ export default class NewsGrid extends Component {
   setGridPageButton() {
     this.$state.$leftButton.addEventListener("click", () => this.movePage(-1));
     this.$state.$rightButton.addEventListener("click", () => this.movePage(1));
+  }
+
+  async fetchNewsData() {
+    const pressNewsData = await fetch("./src/Data/pressNews.json").then(
+      (res) => {
+        return res.json();
+      }
+    );
+
+    const randomNewsData = pressNewsData.news.sort(() => Math.random() - 0.5);
+
+    this.setState({ pressNewsData: randomNewsData });
   }
 }

@@ -25,7 +25,7 @@ export default class NewsList extends Component {
           <span>종합/경제</span>
           <span class="news-list__field-tab__progress-count">
             1
-            <span class="news-list__field-tab__progress-entire">/ 75</span>
+            <span class="news-list__field-tab__progress-entire">/ 14</span>
           </span>
         </li>
         <li class="news-list__field-tab__general">방송/통신</li>
