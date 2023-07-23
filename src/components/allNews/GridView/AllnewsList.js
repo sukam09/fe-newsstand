@@ -1,7 +1,5 @@
-import { SNACKBAR_DURATION } from "../../../constants/index.js";
-import Icon from "../../common/Icon.js";
 import Logo from "../../common/Logo.js";
-import { createSubscribeButton } from "../SubscribeButton.js";
+import SubButton from "../SubButton.js";
 
 export default class AllNewsList {
   constructor(name) {
@@ -10,7 +8,7 @@ export default class AllNewsList {
     this.render(name);
 
     this.$component.addEventListener("mouseenter", (e) =>
-      this.showSubButton(e)
+      this.showSubButton(e, name)
     );
     this.$component.addEventListener("mouseleave", (e) =>
       this.hideSubButton(e, name)
@@ -23,10 +21,10 @@ export default class AllNewsList {
     this.$component.appendChild(this.createLogoImage(name));
   }
 
-  showSubButton(event) {
+  showSubButton(event, name) {
     const li = event.target;
     li.replaceChildren();
-    li.appendChild(createSubscribeButton());
+    li.appendChild(new SubButton(name));
   }
 
   hideSubButton(event, name) {
@@ -39,18 +37,5 @@ export default class AllNewsList {
   createLogoImage(name) {
     const $logoImg = new Logo({ name });
     return $logoImg;
-  }
-
-  handleClickSubBtn(event) {
-    const $gridWrapper = document.querySelector(".news-list-wrapper");
-    const snackBar = `
-      <div class="snackBar-sub">
-        내가 구독한 언론사에 추가되었습니다.
-      </div>
-    `;
-    $gridWrapper.innerHTML += snackBar;
-    setTimeout(() => {
-      $gridWrapper.removeChild(document.querySelector(".snackBar-sub"));
-    }, SNACKBAR_DURATION);
   }
 }

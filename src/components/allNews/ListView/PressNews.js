@@ -1,7 +1,7 @@
-import { createSubscribeButton } from "../SubscribeButton.js";
 import Logo from "../../common/Logo.js";
 import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
 import categories from "../../../constants/categories.js";
+import SubButton from "../SubButton.js";
 
 export default class PressNews {
   constructor() {
@@ -21,7 +21,7 @@ export default class PressNews {
       <div class="press-info">
         ${this.createPressLogo(this.mainNews.logo).outerHTML}
         <span class="pressInfo-date">${this.mainNews.editTime} 편집</span>
-        ${createSubscribeButton().outerHTML}
+        ${new SubButton().outerHTML}
       </div>
     `;
 
