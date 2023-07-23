@@ -1,4 +1,4 @@
-import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { PROGRESS_FLAG } from "../../constant.js";
 import { _changeClass } from "../../utils.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { drawPressNews } from "./pressNews.js";
@@ -60,7 +60,7 @@ function startProgressAnimation() {
 
   const $progrsesAnimation = document.querySelector('.progress');
   $progrsesAnimation.addEventListener('animationstart', (event) => {
-    turnNewsPage(1)
+    turnNewsPage(PROGRESS_FLAG)
   })
 }
 

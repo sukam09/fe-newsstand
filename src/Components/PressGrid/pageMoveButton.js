@@ -1,4 +1,4 @@
-import { FIRST_PAGE_IDX, LEFT_UNDISPLAY, RIGHT_UNDISPLAY } from "../../constant.js";
+import { LEFT_UNDISPLAY, PRESS_CNT_PER_PAGE } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import { getPage, getPress, getSubscribedPressId, setPage } from "../../store.js";
 import { _changeDispay } from "../../utils.js";
@@ -40,12 +40,12 @@ function setPageTurner() {
 }
 
 function showPageTurner(whatPress) {
-  if (whatPress.length % 24 === 0 && whatPress.length === 0) {
+  if (whatPress.length % PRESS_CNT_PER_PAGE === 0 && whatPress.length === 0) {
     _changeDispay($pagePrevButton, 'none', $pageNextButton, 'none');
   }
   else {
     $pagePrevButton.style.display = getPage() === LEFT_UNDISPLAY ? "none" : "block";
-    $pageNextButton.style.display = getPage() === Math.ceil(whatPress.length / 24) - 1 ? "none" : "block"
+    $pageNextButton.style.display = getPage() === Math.ceil(whatPress.length / PRESS_CNT_PER_PAGE) - 1 ? "none" : "block"
   }
 
 }

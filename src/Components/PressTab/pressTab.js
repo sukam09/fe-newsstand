@@ -8,6 +8,8 @@ const $pressGrid = document.querySelector('.press-grid-container');
 const $newsList = document.querySelector('.press-news-list-container');
 const $allPress = document.querySelector('.tab-all-press');
 const $mySubscribedPress = document.querySelector('.tab-subscribed-press');
+const $listViewBtnContent = document.querySelector('.list-button-content');
+const $gridViewBtnContent = document.querySelector('.grid-button-content');
 
 /** 모든 언론사 또는 내가 구독한 언론사 클릭 이벤트 설정*/
 function clickChangePressViewBtn() {
@@ -27,6 +29,7 @@ function changePressView() {
   setViewIconColor();
 }
 
+/** 클릭한 언론사 보기에 따른 메인 화면 설정 */
 function setPressViewDisplay() {
   if (getPress() === 'all') setClickAllPress();
   else setClickMyPress();
@@ -90,16 +93,20 @@ function setViewerViewDisplay() {
 
 /** 클릭한 리스트 보기 또는 뷰어에 따라 뷰 아이콘 색 설정 */
 function setViewIconColor() {
-  const $listViewBtnContent = document.querySelector('.list-button-content');
-  const $gridViewBtnContent = document.querySelector('.grid-button-content');
-  if (getView() === 'list') {
-    $listViewBtnContent.setAttribute('fill', TEXT_POINT);
-    $gridViewBtnContent.setAttribute('fill', TEXT_WEAK);
-  }
-  else {
-    $listViewBtnContent.setAttribute('fill', TEXT_WEAK);
-    $gridViewBtnContent.setAttribute('fill', TEXT_POINT);
-  }
+  if (getView() === 'list') setViewIconColorOfList();
+  else setViewIconColorOfGrid();
+}
+
+/** 리스트 보기 클릭 했을 때의 뷰 아이콘 색 설정 */
+function setViewIconColorOfList() {
+  $listViewBtnContent.setAttribute('fill', TEXT_POINT);
+  $gridViewBtnContent.setAttribute('fill', TEXT_WEAK);
+}
+
+/** 그리드 보기 클릭 했을 때의 뷰 아이콘 색 설정 */
+function setViewIconColorOfGrid() {
+  $listViewBtnContent.setAttribute('fill', TEXT_WEAK);
+  $gridViewBtnContent.setAttribute('fill', TEXT_POINT);
 }
 
 function changeView() {
@@ -112,6 +119,7 @@ function clickchangeViewBtn() {
   clickChangePressViewBtn();
 }
 
+/** 초기화면 설정 */
 function initView() {
   $allPress.classList.add('press-view-active')
   $mySubscribedPress.classList.add('press-view-nonactive')

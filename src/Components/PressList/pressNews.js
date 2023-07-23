@@ -1,4 +1,4 @@
-import { START_CATEGORY_IDX, FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { START_CATEGORY_IDX, FIRST_PAGE_IDX } from "../../constant.js"
 import pressStore from "../../pressDataStore.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { showNewsOfCategory } from "./categoryTab.js";
@@ -6,7 +6,7 @@ import { initProgress } from "./progressBar.js";
 import { getClickedCategoryIndex, getPage, setClickedCategoryIndex, setPage } from "../../store.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
-const shuffledAllPressNewsCategory = pressStore.getShuffledAllPressNewsCategory
+const allPressNewsCategory = pressStore.getAllPressNewsCategory
 
 /**
 뉴스 띄우기
@@ -56,8 +56,8 @@ function handlerHoverNewsTitle(whatStyle) {
 초기값으로 첫번 째 종합/경제 뉴스 보여주기
  */
 async function initNews() {
-  setClickedCategoryIndex(0);
-  setPage(0);
+  setClickedCategoryIndex(START_CATEGORY_IDX);
+  setPage(FIRST_PAGE_IDX);
   drawPressNews();
   const $mySubscribedPress = document.querySelector('.tab-subscribed-press');
   const $listIcon = document.querySelector('.list-button');

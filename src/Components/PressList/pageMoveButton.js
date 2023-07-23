@@ -1,18 +1,19 @@
-import { FIRST_NEWS_PAGE_INDEX, NEWS_PAGE_CNT } from "../../constant.js";
 import { changeCategory } from "./categoryTab.js";
 import { drawPressNews } from "./pressNews.js";
-import { initProgress, setProgressPage, startProgressAnimation } from "./progressBar.js";
+import { setProgressPage, startProgressAnimation } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
 import { getClickedCategoryIndex, getPage, setClickedCategoryIndex, setPage } from "../../store.js";
+import { PROGRESS_FLAG } from "../../constant.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
+const allPressNewsCategory = pressStore.getAllPressNewsCategory
 
 const $newsPrevButton = document.querySelector('.press-news-left-button');
 const $newsNextButton = document.querySelector('.press-news-right-button');
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
-let progressEventFlagPerCategory = Array.from({ length: NEWS_PAGE_CNT }, () => false);
+let progressEventFlagPerCategory = Array.from({ length: allPressNewsCategory.length }, () => false);
 
 /**
 페이지 넘기는 버튼의 클릭 및 animation이 반복되는지의 이벤트 핸들링,
@@ -37,7 +38,7 @@ function turnNewsPage(progressFlag) {
   }
 
   //20초마다 다음 페이지로 뉴스 넘김
-  if (progressFlag === 1 && progressEventFlagPerCategory[getClickedCategoryIndex()] === false) {
+  if (progressFlag === PROGRESS_FLAG && progressEventFlagPerCategory[getClickedCategoryIndex()] === false) {
     const $progrsesAnimation = document.querySelector('.progress');
     $progrsesAnimation.addEventListener('animationiteration', (event) => {
       clickNewsTurner('right')
@@ -59,7 +60,7 @@ function showNewsTurner() {
  */
 function moveNextCategoryOfProgress() {
   if (getPage() === shuffledAllPressNews[getClickedCategoryIndex()].length) {
-    setClickedCategoryIndex((getClickedCategoryIndex() + 1) % NEWS_PAGE_CNT)
+    setClickedCategoryIndex((getClickedCategoryIndex() + 1) % allPressNewsCategory.length)
     changeCategory();
   }
 }

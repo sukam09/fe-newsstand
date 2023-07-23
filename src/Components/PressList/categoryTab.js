@@ -1,4 +1,4 @@
-import { FIRST_NEWS_PAGE_INDEX } from "../../constant.js";
+import { FIRST_PAGE_IDX } from "../../constant.js"
 import { drawPressNews } from "./pressNews.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { initProgress } from "./progressBar.js";
@@ -7,9 +7,9 @@ import { setClickedCategoryIndex, setPage } from "../../store.js";
 import { _changeDispay } from "../../utils.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
-const shuffledAllPressNewsCategory = pressStore.getShuffledAllPressNewsCategory
+const allPressNewsCategory = pressStore.getAllPressNewsCategory
 
-let categoryClickEventFlag = Array.from({ length: shuffledAllPressNewsCategory.length }, () => false);
+let categoryClickEventFlag = Array.from({ length: allPressNewsCategory.length }, () => false);
 
 /**
  카테고리를 클릭하면 handleClickCategory함수 호출
@@ -31,7 +31,7 @@ function showNewsOfCategory() {
  어떤 카테고리를 클릭했는지 확인함
  */
 function handleClickCategory(event) {
-  const categoryIndex = shuffledAllPressNewsCategory.findIndex(category => category === event.target.innerText)
+  const categoryIndex = allPressNewsCategory.findIndex(category => category === event.target.innerText)
   setClickedCategoryIndex(categoryIndex);
   changeCategory()
 }
@@ -40,7 +40,7 @@ function handleClickCategory(event) {
  클릭한 카테고리에 대해서 화면에 나타냄
  */
 function changeCategory() {
-  setPage(0)
+  setPage(FIRST_PAGE_IDX)
   resetNewsTurner();
   drawPressNews();
   turnNewsPage();

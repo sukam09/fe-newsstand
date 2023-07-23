@@ -1,4 +1,4 @@
-import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
+import { PRESS_CNT_PER_PAGE, FIRST_PAGE_IDX, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import turnPressPage from "./pageMoveButton.js";
 import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
@@ -11,7 +11,7 @@ const shuffledAllPress = pressStore.getShuffledAllPress
  언론사 이미지 띄우기
  */
 function drawPressImgContent(whatPress) {
-  const currentPageGridPress = whatPress.slice(getPage() * 24, getPage() * 24 + 24);
+  const currentPageGridPress = whatPress.slice(getPage() * PRESS_CNT_PER_PAGE, getPage() * PRESS_CNT_PER_PAGE + PRESS_CNT_PER_PAGE);
   const $pressList = document.querySelectorAll('.current-logos-container');
   for (let i = 0; i < currentPageGridPress.length; i++) {
     $pressList[i].innerHTML = `
@@ -66,14 +66,14 @@ function handleShowSubUnsubBtn({ target }, whatDisplay) {
     const isSubscribedPress = store.isSubscribed(hoveredPressId);
 
     if (whatDisplay === 'subscribeBtn' && !isSubscribedPress) {
-      setImgAndBackgroundColor(target, "/assets/Icon/subscribeButton.svg", '#F5F7F9')
+      setImgAndBackgroundColor(target, "/assets/Icon/subscribeButton.svg", SURFACE_ALT)
     }
     else if (whatDisplay === 'subscribeBtn' && isSubscribedPress) {
-      setImgAndBackgroundColor(target, "/assets/Icon/unsubscribeButton.svg", '#F5F7F9')
+      setImgAndBackgroundColor(target, "/assets/Icon/unsubscribeButton.svg", SURFACE_ALT)
     }
     else if (whatDisplay === 'logo') {
       shuffledAllPress.filter(press => press.id === hoveredPressId)
-        .forEach(press => setImgAndBackgroundColor(target, press.lightSrc, '#FFFFFF'))
+        .forEach(press => setImgAndBackgroundColor(target, press.lightSrc, SURFACE_DEFAULT))
     }
   }
 }
@@ -91,7 +91,7 @@ function handleClickSubUnsubBtn({ target }) {
   const clickedPressId = parseInt(target.getAttribute('data-id'));
   if (store.isSubscribed(clickedPressId) && getPress() === 'my') {
     removepress(clickedPressId);
-    target.parentElement.style.backgroundColor = '#FFFFFF'
+    target.parentElement.style.backgroundColor = SURFACE_DEFAULT
     drawPressImg();
   }
   else if (store.isSubscribed(clickedPressId) && getPress() === 'all') {
@@ -108,7 +108,7 @@ function handleClickSubUnsubBtn({ target }) {
 /** 구독하면 내가 구독한 언론사 리스트로 이동 */
 function moveSubscribedList(target) {
   const $moveSubscribedListTimeout = setTimeout(() => {
-    target.parentElement.style.backgroundColor = '#FFFFFF'
+    target.parentElement.style.backgroundColor = SURFACE_DEFAULT
     setView('list');
     setPress('my');
     changeView();
@@ -120,7 +120,7 @@ function moveSubscribedList(target) {
 function drawBorder() {
   const $pressLists = document.querySelector('.press-lists');
   $pressLists.innerHTML = `
-    ${new Array(24).fill('').map(arr =>
+    ${new Array(PRESS_CNT_PER_PAGE).fill('').map(arr =>
     `<li class="current-logos-container"></li>`).join('')
     }
   `
@@ -143,7 +143,7 @@ function handleSubscribe() {
  맨 처음 화면을 구성하는 전체 언론사 그리드 페이지 띄우기
  */
 function initPressImg() {
-  setPage(0);
+  setPage(FIRST_PAGE_IDX);
   drawBorder();
   drawPressImg();
   turnPressPage();

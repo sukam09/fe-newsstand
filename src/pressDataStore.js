@@ -7,7 +7,7 @@ class pressDataStore {
   #shuffledAllPress
   #shuffledAllPressNews
   #shuffledMyPressNews
-  #shuffledAllPressNewsCategory
+  #allPressNewsCategory
   #shuffledMyPressNewsCategory
   constructor(allpressArr) {
     this.#allpressArr = allpressArr;
@@ -29,7 +29,7 @@ class pressDataStore {
     ));
 
     this.#shuffledAllPressNews = shuffledAllPressNews;
-    this.#shuffledAllPressNewsCategory = categories;
+    this.#allPressNewsCategory = categories;
   }
 
   get getAllpressArr() {
@@ -44,8 +44,8 @@ class pressDataStore {
     return this.#shuffledAllPressNews;
   }
 
-  get getShuffledAllPressNewsCategory() {
-    return this.#shuffledAllPressNewsCategory
+  get getAllPressNewsCategory() {
+    return this.#allPressNewsCategory
   }
 }
 
