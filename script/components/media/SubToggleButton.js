@@ -52,7 +52,7 @@ const UnsubButton = (id, navStore, viewStore, withText) => {
   });
 };
 
-const SubToggleButton = (id, navStore, viewStore, withText = true) => {
+const SubToggleButton = ({ id, navStore, viewStore, withText = true }) => {
   if (navStore.getState().subscribed.includes(id)) {
     return UnsubButton(id, navStore, viewStore, withText);
   }
@@ -63,7 +63,7 @@ export const SubButtonArea = (id, navStore, viewStore) => {
   const subButtonArea = document.createElement('div');
 
   subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubToggleButton(id, navStore, viewStore));
+  subButtonArea.appendChild(SubToggleButton({ id, navStore, viewStore }));
   return subButtonArea;
 };
 
