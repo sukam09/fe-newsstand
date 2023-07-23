@@ -1,13 +1,20 @@
-import { checkPage } from "../utils/checkPage.js";
 import { changeView } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { getView, getPage, getSubscribedPress } from "../core/getter.js";
+import { shuffleImgIndex } from "../utils/shuffleIndex.js";
+import {
+  getView,
+  getPage,
+  getSubscribedPress,
+  getIndex,
+} from "../core/getter.js";
 function MainView() {
   // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
+
+  store.setState({ index: shuffleImgIndex() });
   showGridView();
   // checkPage();
 }

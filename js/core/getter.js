@@ -3,6 +3,10 @@ import { observe } from "./observer.js";
 export function getMode() {
   return store.state.mode;
 }
+
+export function getIndex() {
+  return store.state.index;
+}
 export function getView() {
   return store.state.view;
 }
@@ -21,3 +25,5 @@ observe(getMode);
 observe(getView);
 observe(getPage);
 observe(getTabMode);
+observe(getSubscribedPress);
+observe(getIndex);

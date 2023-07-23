@@ -26,8 +26,13 @@ function handleClick(e, press) {
     }
     //구독하지 않았을 때 => 구독됨
     else {
-      //추가
-      const updatedSubscribedPress = [...subscribedPress, press];
+      const pattern = /img(\d+)\.svg/; // 정규식 패턴
+
+      const updatePressObject = {
+        name: press.name,
+        index: press.src.match(pattern)[1],
+      };
+      const updatedSubscribedPress = [...subscribedPress, updatePressObject];
       store.setState({ subscribedPress: updatedSubscribedPress });
       //스낵바
       newDiv.classList.add("popup", "snackbar");

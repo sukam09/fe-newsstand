@@ -1,18 +1,15 @@
 import {
-  PRESS_CNT,
   PRESS_VIEW_COUNT,
   PRESS_LOGO_IMG_PATH,
   ICON_IMG_PATH,
 } from "../constants/constants.js";
-import { getPage, getSubscribedPress, getTabMode } from "../core/getter.js";
+import {
+  getIndex,
+  getPage,
+  getSubscribedPress,
+  getTabMode,
+} from "../core/getter.js";
 import { checkPage } from "./checkPage.js";
-const imgIndex = Array(PRESS_CNT)
-  .fill()
-  .map((arr, i) => i + 1);
-
-function shuffleImgIndex() {
-  return [...imgIndex].sort(() => Math.random() - 0.5);
-}
 
 const grid_view = `
     <ul class="main-list-ul"></ul>
@@ -40,10 +37,9 @@ export function showGridView() {
   - all 모드일 때
   - 2번에서 전체 언론사 갯수를 상수로 일단 잡아봄 
    */
-  const shuffledPress = shuffleImgIndex();
   let list;
   getTabMode() === "all"
-    ? (list = shuffledPress)
+    ? (list = getIndex())
     : (list = getSubscribedPress().map((item) => item.index));
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
