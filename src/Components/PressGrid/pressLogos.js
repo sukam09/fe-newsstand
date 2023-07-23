@@ -1,10 +1,11 @@
 import { FIRST_PAGE_IDX, ONE_PRESS_CNT } from "../../constant.js";
-import { shuffledAllPress } from "../../dataFetch.js";
+import pressStore from "../../pressDataStore.js";
 import turnPressPage from "./pageMoveButton.js";
 import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
 import { changeView } from "../PressTab/pressTab.js"
 
 const $gridSnackBar = document.querySelector('.grid-snackbar')
+const shuffledAllPress = pressStore.getShuffledAllPress
 
 /**
  언론사 이미지 띄우기

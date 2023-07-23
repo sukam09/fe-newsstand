@@ -24,6 +24,7 @@ const initState = {
   page: 0,
   howPress: '',
   howView: '',
+  clickedCategoryIndex: 0,
   mode: '',
 }
 
@@ -41,6 +42,8 @@ export function reducer(state = initState, action) {
       return { ...state, mode: action.mode };
     case "setPage":
       return { ...state, page: action.page };
+    case "setCategory":
+      return { ...state, clickedCategoryIndex: action.clickedCategoryIndex };
   }
 }
 
@@ -77,6 +80,10 @@ export function setPage(whatPage) {
   store.dispatch(actionCreator("setPage", { page: whatPage }));
 }
 
+export function setClickedCategoryIndex(whatCategory) {
+  store.dispatch(actionCreator("setCategory", { clickedCategoryIndex: whatCategory }))
+}
+
 export function getSubscribedPressId() {
   return store.getState().subscribedPressesId;
 }
@@ -95,6 +102,10 @@ export function getMode() {
 
 export function getPage() {
   return store.getState().page;
+}
+
+export function getClickedCategoryIndex() {
+  return store.getState().clickedCategoryIndex;
 }
 
 

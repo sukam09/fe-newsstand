@@ -14,8 +14,5 @@ async function fetchpressNews() {
   return dataFetch("./assets/data/pressNews.json");
 }
 
-const allpressArr = await fetchpressNews();
-const shuffledAllPress = [...allpressArr].sort(() => Math.random() - 0.5);
-
-export { allpressArr, shuffledAllPress }
+export { fetchpressNews }
 

@@ -14,31 +14,30 @@
   pointer-events: none;
 }
 
-.progress:hover{
+.progress:hover {
   text-decoration: none;
 }
 
-.progress::after{
-  content: '';
+.progress::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 40px;
   background-color: var(--blue-500);
-  
 }
 
 .progress.effect::after {
-  animation: progressBar 20s ease infinite;
+  animation: progressBar 2s ease infinite;
 }
 
 @keyframes progressBar {
- 0% {
-  width: 0%;
- }
- 100% {
-  width: 100%;
- }
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 /*progress 설정 class*/
@@ -54,7 +53,7 @@
   color: var(--grayscale-200);
 }
 
-.non-progress:hover{
+.non-progress:hover {
   text-decoration: underline;
 }
 
