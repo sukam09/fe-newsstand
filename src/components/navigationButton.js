@@ -1,13 +1,13 @@
-import { MAX_GRID_COUNT } from "../constant/constants.js";
-import { getState, resister, setState } from "./observer/observer.js";
+import { MAX_GRID_COUNT } from "../../constant/constants.js";
+import { getState, resister, setState } from "../core/observer/observer.js";
 import {
   gridPageIdx,
   isGrid,
   isSubTab,
   listPageIdx,
   subscribeList,
-} from "./store/store.js";
-import { $ } from "./util.js";
+} from "../core/store/store.js";
+import { $ } from "../core/util.js";
 
 const leftButton = $(".left_navigation_button");
 const rightButton = $(".right_navigation_button");

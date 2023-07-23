@@ -1,8 +1,8 @@
 import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
-import { getPressObj } from "./api.js";
-import { getState, resister, setState } from "./observer/observer.js";
-import { gridPageIdx, isSubTab, subscribeList } from "./store/store.js";
-import { $, $All, shuffleArray } from "./util.js";
+import { getPressObj } from "./core/api.js";
+import { getState, resister, setState } from "./core/observer/observer.js";
+import { gridPageIdx, isSubTab, subscribeList } from "./core/store/store.js";
+import { $, $All, shuffleArray } from "./core/util.js";
 
 let pressObj = null;
 

@@ -1,12 +1,12 @@
-import { $, $All } from "./util.js";
-import { getState, resister, setState } from "./observer/observer.js";
+import { $, $All } from "./core/util.js";
+import { getState, resister, setState } from "./core/observer/observer.js";
 import {
   gridPageIdx,
   isGrid,
   isSubTab,
   listPageIdx,
   subscribeList,
-} from "./store/store.js";
+} from "./core/store/store.js";
 
 // 로고 새로고침
 function refreshWindow() {

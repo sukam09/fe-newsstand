@@ -6,9 +6,9 @@ import {
   PREV_BANNER,
   ROLLING_NEWS_NUM,
   ROLLING_TIME,
-} from "../constant/constants.js";
-import { getRollingList } from "./api.js";
-import { $ } from "./util.js";
+} from "../../constant/constants.js";
+import { getRollingList } from "../core/api.js";
+import { $ } from "../core/util.js";
 
 // 왼쪽 배너 롤링 반복
 let rollingIntervalLeft = setInterval(() => {
