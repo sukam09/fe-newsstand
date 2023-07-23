@@ -1,8 +1,8 @@
 import { NewsStandHeaderSubject } from './subject.js';
-import { TimeObserver } from './observer.js';
+import { NewsStandHeaderObserver } from './observer.js';
 
 const newsStandHeaderSubject = new NewsStandHeaderSubject();
-const timeObserver = new TimeObserver(newsStandHeaderSubject);
-newsStandHeaderSubject.addObserver(timeObserver);
+const newsStandHeaderObserver = new NewsStandHeaderObserver(newsStandHeaderSubject);
+newsStandHeaderSubject.addObserver(newsStandHeaderObserver);
 
 export default newsStandHeaderSubject;

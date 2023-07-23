@@ -1,6 +1,6 @@
 import { Observer } from '../../utils/observer.js';
 
-class TimeObserver extends Observer {
+class NewsStandHeaderObserver extends Observer {
   constructor(subject) {
     super(subject);
   }
@@ -11,4 +11,4 @@ class TimeObserver extends Observer {
   }
 }
 
-export { TimeObserver };
+export { NewsStandHeaderObserver };
