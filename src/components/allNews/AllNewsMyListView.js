@@ -1,4 +1,4 @@
-import db from '../../../store/db.js';
+import { pressStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Icon from '../common/Icon.js';
@@ -11,7 +11,7 @@ let savedCurrentPressIndex = 0;
 
 export default class AllNewsMyListView extends Component {
   setup() {
-    this.pressOrder = db.getFilteredPress;
+    this.pressOrder = pressStore.getFilteredPress();
     this.headerList = this.pressOrder.map(({ name }) => name);
 
     this.state = {
@@ -78,7 +78,9 @@ export default class AllNewsMyListView extends Component {
 
     new SubscribeButton(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
-      text: db.getDbData.includes(this.state.currentPress.number) ? '' : TEXT.SUBSCRIBE_KO,
+      text: pressStore.subscribedList.includes(this.state.currentPress.number)
+        ? ''
+        : TEXT.SUBSCRIBE_KO,
       name: this.state.currentPress.name,
       number: this.state.currentPress.number,
     });

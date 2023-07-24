@@ -1,4 +1,4 @@
-import db from '../../../store/db.js';
+import { pressStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -78,7 +78,9 @@ export default class AllNewsListView extends Component {
 
     new SubscribeButton(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
-      text: db.getDbData.includes(this.state.currentPress.number) ? '' : TEXT.SUBSCRIBE_KO,
+      text: pressStore.subscribedList.includes(this.state.currentPress.number)
+        ? ''
+        : TEXT.SUBSCRIBE_KO,
       name: this.state.currentPress.name,
       number: this.state.currentPress.number,
     });
@@ -211,7 +213,7 @@ export default class AllNewsListView extends Component {
       지역: [],
     };
 
-    db.allPress.forEach(press => listPress[press.category].push(press));
+    pressStore.getAllPress().forEach(press => listPress[press.category].push(press));
 
     return listPress;
   }

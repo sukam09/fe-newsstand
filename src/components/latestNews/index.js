@@ -1,11 +1,11 @@
-import db from '../../../store/db.js';
+import { pressStore } from '../../../store/index.js';
 import { customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
 
 export default class LatestNews extends Component {
   setup() {
-    this.latestNewses = db.getLatesstNews;
+    this.latestNewses = pressStore.getLatestNews();
   }
   template() {
     return `<div class='auto-rolling-news border-default surface-alt'></div>

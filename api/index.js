@@ -1,6 +1,7 @@
-export const fetchData = async () => {
+export const fetchData = async (url) => {
+  'src/mocks/news.json';
   try {
-    const response = await fetch('src/mocks/news.json');
+    const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (error) {

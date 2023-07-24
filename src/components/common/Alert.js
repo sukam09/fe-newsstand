@@ -1,4 +1,4 @@
-import db from '../../../store/db.js';
+import { pressStore } from '../../../store/index.js';
 import Component from '../core/Component.js';
 
 export default class Alert extends Component {
@@ -20,7 +20,7 @@ export default class Alert extends Component {
   setEvent() {
     this.$target.addEventListener('click', e => {
       if (e.target.classList.contains('alert-yes')) {
-        db.deleteDbData(this.props.number);
+        pressStore.deleteSubscribedList(this.props.number);
       }
       this.$target.innerHTML = '';
     });

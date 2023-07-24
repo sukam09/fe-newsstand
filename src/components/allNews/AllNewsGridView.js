@@ -4,7 +4,7 @@ import ArrowButton from './ArrowButton.js';
 
 import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
 import SubscribeButton from './SubscribeButton.js';
-import db from '../../../store/db.js';
+import { pressStore } from '../../../store/index.js';
 
 let [savedAllPage, savedMyPage] = [0, 0];
 
@@ -67,7 +67,7 @@ export default class AllNewsGridView extends Component {
         name,
         number,
         color: 'gray',
-        text: db.getDbData.includes(index) ? TEXT.SUBSCRIBE_KO : TEXT.UNSUBSCRIBE_KO,
+        text: pressStore.subscribedList.includes(number) ? TEXT.UNSUBSCRIBE_KO : TEXT.SUBSCRIBE_KO,
       });
     });
 
@@ -95,6 +95,6 @@ export default class AllNewsGridView extends Component {
   }
 
   getGridPress() {
-    return this.allType ? db.allPress : db.getFilteredPress;
+    return this.allType ? pressStore.getAllPress() : pressStore.getFilteredPress();
   }
 }
