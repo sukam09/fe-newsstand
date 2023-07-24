@@ -23,7 +23,7 @@ export function createPressList(categoryId, page) {
   `;
 }
 
-function createNewsHeader(press) {
+export function createNewsHeader(press) {
   const newsHeader = `
     <div class="news_header flex_row">
       <img src=${press.lightSrc} />
@@ -36,7 +36,7 @@ function createNewsHeader(press) {
   return newsHeader;
 }
 
-function createNewsBody(press) {
+export function createNewsBody(press) {
   const newsBody = `
     <div class="flex_row">
       ${createMainNews(press)}

@@ -24,7 +24,7 @@ export function createCategory(categoryList) {
     `;
 }
 
-function createCategoryItem(categoryName, categoryId, len) {
+export function createCategoryItem(categoryName, categoryId, len) {
   const listPage = getState(listPageState);
 
   return `

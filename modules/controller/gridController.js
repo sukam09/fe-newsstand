@@ -83,11 +83,10 @@ export function controllGridSubButtonShowing(id) {
   }
 }
 
-export function controlldMyPressGrid() {
+export function controllMyPressGrid() {
   const { pressList } = getState(pressDataState);
   const myPressList = getState(myPressListState);
   const myPressCnt = getState(myPressCntState);
-  console.log(myPressList);
 
   let i = 0;
   myPressList.forEach((pressId) => {
@@ -117,5 +116,4 @@ export function controlldMyPressGrid() {
     $targetGrid.replaceChild($emptyItem, $oldItem);
   }
   setState(myPressCntState, myPressList.length);
-  console.log(getState(myPressCntState));
 }

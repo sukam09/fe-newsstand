@@ -6,7 +6,7 @@ let timeoutId;
 export function controllSnackbarShowing(subState) {
   const isSub = getState(subState);
   if (isSub) {
-    const snackbarDelay = 2300;
+    const snackbarDelay = 300;
     displaySnackbar(snackbarDelay);
   }
 }

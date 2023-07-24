@@ -2,7 +2,6 @@ import { getState, setState } from "../store/observer.js";
 import { myPressListState } from "../store/subState.js";
 
 export function updateMyPressList(subState, pressId) {
-  console.log("update");
   const isSub = getState(subState);
   const myPressList = getState(myPressListState);
 

@@ -2,8 +2,10 @@ import { getState, setState } from "../store/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_LIST_PAGE,
+  MODE_ALL,
   categoryIdState,
   listPageState,
+  pageModeState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import {
@@ -12,12 +14,18 @@ import {
 } from "./pageController/pageController.js";
 
 export function handleCategoryItemClick({ currentTarget }) {
+  const pageMode = getState(pageModeState);
   const id = currentTarget.id;
-  const [, categoryId] = id.split("_");
   const clicked = currentTarget.classList.contains("category_clicked");
 
-  setState(categoryIdState, parseInt(categoryId));
-  setState(listPageState, 0);
+  if (pageMode === MODE_ALL) {
+    const [, categoryId] = id.split("_");
+    setState(categoryIdState, parseInt(categoryId));
+    setState(listPageState, 0);
+  } else {
+    const [, , pressId] = id.split("_");
+    setState(listPageState, parseInt(pressId));
+  }
 
   if (!clicked) {
     highlightCategoryItem();
@@ -27,15 +35,23 @@ export function handleCategoryItemClick({ currentTarget }) {
 export function highlightCategoryItem() {
   const categoryId = getState(categoryIdState);
   const $clickedElements = qsa(".category_clicked");
-  const $category = qs(`#category_${parseInt(categoryId)}`);
-  const $progressbar = $category.getElementsByClassName("progressbar")[0];
-
+  const pageMode = getState(pageModeState);
   [...$clickedElements].forEach((elemnet) => {
     elemnet.classList.remove("category_clicked");
   });
-  $category.classList.add("category_clicked");
 
-  startProgressAnimation($progressbar);
+  if (pageMode === MODE_ALL) {
+    const $category = qs(`#category_${parseInt(categoryId)}`);
+    const $progressbar = $category.getElementsByClassName("progressbar")[0];
+    $category.classList.add("category_clicked");
+    startProgressAnimation($progressbar);
+  } else {
+    const listPage = getState(listPageState);
+    const $category = qs(`#category_my_${parseInt(listPage)}`);
+    $category.classList.add("category_clicked");
+    const $progressbar = $category.querySelector(".progressbar");
+    startProgressAnimation($progressbar);
+  }
 }
 
 function startProgressAnimation($progressbar) {
@@ -45,6 +61,7 @@ function startProgressAnimation($progressbar) {
   let start;
   const listPage = getState(listPageState);
   const startPage = listPage;
+  const startMode = getState(pageModeState);
   const categoryId = getState(categoryIdState);
 
   const performAnimation = (timestamp) => {
@@ -83,6 +100,11 @@ function startProgressAnimation($progressbar) {
     if (startPage !== getState(listPageState)) {
       cancelAnimationFrame(raf);
       highlightCategoryItem();
+      return;
+    }
+
+    if (startMode !== getState(pageModeState)) {
+      cancelAnimationFrame(raf);
       return;
     }
     percentage = (elapsed / runningTime) * 100;

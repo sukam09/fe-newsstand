@@ -10,7 +10,11 @@ import {
   addEventsOnTitle,
   addEventsOnViewButton,
 } from "./events.js";
-import { addObserverOnIsSub, addObserverOnPageMode } from "./observers.js";
+import {
+  addObserverOnIsSub,
+  addObserverOnMyPressList,
+  addObserverOnPageMode,
+} from "./observers.js";
 import {
   addObserverOnGridPage,
   addObserverOnListPage,
@@ -36,4 +40,5 @@ export function initObservers() {
   addObserverOnPageType();
   addObserverOnIsSub();
   addObserverOnPageMode();
+  addObserverOnMyPressList();
 }
