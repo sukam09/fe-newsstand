@@ -1,24 +1,22 @@
-import { pressStore } from '../../../store/index.js';
+import { pageStore, pressStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Icon from '../common/Icon.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
-import { changeCurrentView } from './index.js';
-
-let savedCurrentPressIndex = 0;
 
 export default class AllNewsMyListView extends Component {
   setup() {
     this.pressOrder = pressStore.getFilteredPress();
     this.headerList = this.pressOrder.map(({ name }) => name);
+    const currentPressIndex =
+      pageStore.getPage({ type: TEXT.LIST, option: TEXT.SUBSCRIBE_EN }) % this.headerList.length;
 
     this.state = {
-      currentPressIndex: savedCurrentPressIndex,
-      currentPress: this.pressOrder[savedCurrentPressIndex],
+      currentPressIndex,
+      currentPress: this.pressOrder[currentPressIndex],
     };
-    changeCurrentView(TEXT.SUBSCRIBE_EN);
   }
 
   template() {
@@ -69,7 +67,11 @@ export default class AllNewsMyListView extends Component {
     this.navigationMount();
     this.detailListMount();
 
-    savedCurrentPressIndex = this.state.currentPressIndex;
+    pageStore.setPage({
+      type: TEXT.LIST,
+      option: TEXT.SUBSCRIBE_EN,
+      page: this.state.currentPressIndex,
+    });
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',
@@ -104,7 +106,6 @@ export default class AllNewsMyListView extends Component {
 
   navigationMount() {
     const currentCategory = this.headerList[this.state.currentPressIndex];
-
     customQuerySelector('nav', this.$target).innerHTML = this.headerList.reduce(
       (innerHTML, press) => {
         if (press === currentCategory) {
@@ -141,8 +142,8 @@ export default class AllNewsMyListView extends Component {
         const nextIndex = this.headerList.indexOf(targetPress);
 
         this.setState({
-          nextIndex,
           currentPressIndex: nextIndex,
+          currentPress: this.pressOrder[nextIndex],
         });
       }
     });

@@ -36,7 +36,7 @@ export default class AllNews extends Component {
     }
 
     if (viewType === TEXT.LIST) {
-      this.state.option === TEXT.ALL
+      option === TEXT.ALL
         ? new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
             option,
           })
@@ -48,5 +48,3 @@ export default class AllNews extends Component {
     this.setState({ view: TEXT.LIST, option: TEXT.SUBSCRIBE_EN });
   }
 }
-
-export const changeCurrentView = view => (currentPressType = view);

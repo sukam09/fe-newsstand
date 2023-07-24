@@ -1,11 +1,9 @@
-import { pressStore, viewStore } from '../../../store/index.js';
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
-
-let [savedCurrentPage, savedCurrentPressIndex] = [1, 0];
 
 export default class AllNewsListView extends Component {
   setup() {
@@ -13,9 +11,9 @@ export default class AllNewsListView extends Component {
     this.headerList = this.getHeaderList();
 
     this.state = {
-      currentPage: savedCurrentPage,
-      currentPressIndex: savedCurrentPressIndex,
-      currentPress: this.getCurrentPress(savedCurrentPressIndex, savedCurrentPage),
+      currentPage: pageStore.allTypeListPage,
+      currentPress: this.getCurrentPress(pageStore.allTypeListPageIndex, pageStore.allTypeListPage),
+      currentPressIndex: pageStore.allTypeListPageIndex,
     };
   }
 
@@ -66,10 +64,7 @@ export default class AllNewsListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
-    [savedCurrentPage, savedCurrentPressIndex] = [
-      this.state.currentPage,
-      this.state.currentPressIndex,
-    ];
+    this.savePage({ page: this.state.currentPage, index: this.state.currentPressIndex });
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',
@@ -216,5 +211,14 @@ export default class AllNewsListView extends Component {
     pressStore.getAllPress().forEach(press => listPress[press.category].push(press));
 
     return listPress;
+  }
+
+  savePage({ page, index }) {
+    pageStore.setPage({
+      page,
+      index,
+      type: TEXT.LIST,
+      option: TEXT.ALL,
+    });
   }
 }

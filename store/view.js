@@ -5,8 +5,8 @@ import { Observable } from './observable.js';
 export class ViewModeStore extends Observable {
   constructor() {
     super();
-    this.viewType = 'grid';
-    this.option = 'all';
+    this.viewType = 'list';
+    this.option = 'subscribed';
     this.colorMode = getLocalStorage(KEY.COLOR_MODE) || 'light';
 
     document.body.className = this.colorMode;
