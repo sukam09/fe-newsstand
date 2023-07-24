@@ -24,6 +24,9 @@ const mediaApp = (themeStore, defaultMedia, defaultView) => {
 
     navArea.replaceWith(MediaNav(navStore));
     mediaView.replaceWith(MediaView(themeStore, navStore));
+    mediaView.querySelectorAll('.snack_bar').forEach(snackbar => {
+      snackbar.remove();
+    });
   };
   const createLayout = () => {
     const wrapper = document.querySelector('#media_view_wrapper');

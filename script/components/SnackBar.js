@@ -12,6 +12,7 @@ const SnackBar = (msg, action) => {
   );
   snackBar.innerText = msg;
   setTimeout(() => {
+    if (!snackBar.parentNode) return;
     snackBar.remove();
     if (action) action();
   }, SNACKBAR_DELAY);
