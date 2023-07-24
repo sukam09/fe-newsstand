@@ -1,0 +1,35 @@
+/***** 언론사 뷰 선택 style *****/
+.press-section {
+  margin-top: 30px;
+  width: 930px;
+}
+
+.press-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.press-option {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.not-clicked {
+  color: var(--text-text-weak, #879298);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.total-press,
+.subscribed-press,
+.list-symbol,
+.grid-symbol {
+  cursor: pointer;
+}

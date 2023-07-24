@@ -1,4 +1,5 @@
-import { appendCategoryTabNum } from "./progressBar.js";
+import { appendCategoryTabNum } from "./listNews.js";
+import { setDisplay, setDisplayofArr } from "./util/utils.js";
 
 /***** 초기 화면 *****/
 function countDisplayNone() {
@@ -8,12 +9,16 @@ function countDisplayNone() {
 }
 
 function initDisplay() {
-  document.querySelector(".list-selected").style.display = "none";
-  document.querySelector(".press-list-section").style.display = "none";
-  document.getElementById("grid-prev").style.display = "none";
+  const none_display = [
+    ".list-selected",
+    ".press-list-section",
+    "#grid-prev",
+    ".sub-alert",
+  ];
+  setDisplayofArr(none_display, "none");
   appendCategoryTabNum();
   countDisplayNone();
-  document.querySelector(".count").style.display = "block";
+  setDisplay(".count", "block");
 }
 
 export { countDisplayNone, initDisplay };

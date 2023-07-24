@@ -18,35 +18,44 @@ https://github.com/jhyep/fe-newsstand/assets/80496795/df0374d9-cabf-4e4d-bf44-13
 
 ```
 fe-newsstand
+├─ app.js
 ├─ assets
 │  ├─ dark
 │  ├─ light
 │  └─ others
 ├─ data
-│  └─ newsContents.js
-├─ icons
-│  ├─ .DS_Store
-│  ├─ darkmode_logo
-│  ├─ others
-│  └─ press_logo
+│  ├─ newsContents.js
+│  ├─ newsContents.json
+│  └─ pressObj.json
 ├─ main.html
-├─ app.js
+├─ readme.md
 ├─ src
+│  ├─ api
+│  │  └─ api.js
 │  ├─ bringDate.js
 │  ├─ changeView.js
 │  ├─ initialDisplay.js
 │  ├─ listNews.js
 │  ├─ progressBar.js
 │  ├─ randomGrid.js
-│  └─ rollingBanner.js
+│  ├─ rollingBanner.js
+│  ├─ snackBar.js
+│  ├─ store
+│  │  └─ subscribeState.js
+│  ├─ subGrid.js
+│  └─ util
+│     └─ utils.js
 └─ style
    ├─ arrow-style.css
    ├─ grid-style.css
-   ├─ header.css
+   ├─ header-style.css
    ├─ list-style.css
-   ├─ main-style.css
+   ├─ reset.css
    ├─ rolling-banner.css
+   ├─ style.css
+   ├─ sub-alert.css
    └─ view-option.css
+
 ```
 
 ## 📌 CSS 고려사항

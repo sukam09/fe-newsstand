@@ -1,13 +1,22 @@
-import { categoryList } from "../data/NewsContents.js";
+import { getNewsContent } from "./api/api.js";
 import { drawListView } from "./listNews.js";
-import { countDisplayNone } from "./initialDisplay.js";
+import { setDisplay } from "./util/utils.js";
 
 const CATEGORY_NUM = 7;
-const PROGRESS_TIME = 20000;
-let current_page = 0;
-let up_count = 2;
+const PROGRESS_TIME = 2000;
+let current_category = 0;
+let up_count = 1;
 let total_count = 0;
 let progress_interval;
+let categoryList = null;
+
+async function getTabNum(current_category) {
+  if (categoryList === null) {
+    categoryList = await getNewsContent();
+  }
+  const tabNum = categoryList[current_category].tabs;
+  return tabNum;
+}
 
 function checkTotalCount() {
   total_count = parseInt(
@@ -15,17 +24,11 @@ function checkTotalCount() {
   );
 }
 
-/***** 카테고리별 탭 넘버 append *****/
-function appendCategoryTabNum() {
-  for (let i = 0; i < CATEGORY_NUM; i++) {
-    const tab = document.querySelectorAll(".progress-item .count");
-    const $span = document.createElement("span");
-    $span.innerHTML = `${categoryList[i].tabs}`;
-    tab[i].append($span);
-  }
+function putUpCountToNowCount() {
+  document.querySelector(".progress-bar .now-count").innerHTML =
+    up_count.toString();
 }
 
-/***** 카테고리 count 올리기 *****/
 //카운트 올릴 시 프로그레스바 다시 차오르게 해주는 함수
 function reloadProgressAnimation() {
   const currentCategory = document.querySelector(".progress-bar");
@@ -34,30 +37,48 @@ function reloadProgressAnimation() {
   currentCategory.classList.add("progress-bar");
 }
 
-//카운트 올리고, total_count에 도달하면 다음 카테고리로 넘어가는 함수
+//마지막 카테고리인지 아닌지 판별
+function isLastCategory() {
+  return current_category === CATEGORY_NUM - 1;
+}
+
+function isNotLastCategory() {
+  return current_category < CATEGORY_NUM - 1 && current_category >= 0;
+}
+
+function clearAndReload() {
+  clearProgress();
+  putUpCountToNowCount();
+  reloadProgressAnimation();
+}
+
+/***** 카운트 올리고, total_count에 도달하면 다음 카테고리로 넘어가는 함수 *****/
+function countUpInSameCategory() {
+  document.querySelector(".progress-bar .now-count").innerHTML =
+    up_count.toString();
+  reloadProgressAnimation();
+  drawListView(current_category, up_count - 1);
+  up_count++;
+}
+
 function countUp() {
   checkTotalCount();
   if (up_count > total_count) {
-    up_count = 2;
     document.querySelector(".progress-bar .now-count").innerHTML = "1";
-    if (current_page <= CATEGORY_NUM - 1 && current_page >= 0) {
-      if (current_page === CATEGORY_NUM - 1) {
-        changeCategory(current_page, 0);
-        drawListView(0, 0);
-        current_page = 0;
-        up_count = 2;
-      } else {
-        changeCategory(current_page, current_page + 1);
-        drawListView(current_page + 1, 0);
-        current_page++;
-      }
+    if (current_category === CATEGORY_NUM - 1) {
+      changeCategory(current_category, 0);
+      drawListView(current_category, 0);
+      up_count = 1;
+    } else if (isNotLastCategory) {
+      changeCategory(current_category, current_category + 1);
+      drawListView(current_category, 0);
+      up_count = 2;
     }
   } else {
-    document.querySelector(".progress-bar .now-count").innerHTML =
-      up_count.toString();
-    reloadProgressAnimation();
-    drawListView(current_page, up_count - 1);
-    up_count++;
+    if (current_category === 0 && up_count === 1) {
+      up_count = 2;
+    }
+    countUpInSameCategory();
   }
 }
 
@@ -73,17 +94,6 @@ function clearProgress() {
   clearInterval(progress_interval);
 }
 
-function setNowCount(increment) {
-  let now_count = document.querySelector(".progress-bar .now-count").innerHTML;
-  if (now_count === 1) {
-    up_count = 2;
-    document.querySelector(".progress-bar .now-count").innerHTML = up_count;
-  } else {
-    up_count = up_count + increment;
-    document.querySelector(".progress-bar .now-count").innerHTML = up_count;
-  }
-}
-
 /***** 프로그레스바 카테고리 이동 함수 *****/
 function changeCategory(idx_1, idx_2) {
   document
@@ -95,20 +105,16 @@ function changeCategory(idx_1, idx_2) {
     .getElementsByClassName("progress-item")
     [idx_2].classList.add("progress-bar");
   document.getElementsByClassName("count")[idx_2].style.display = "block";
+
+  current_category = idx_2;
 }
 
 /***** 프로그레스바 카테고리 누르면 이동 *****/
 const categories = document.querySelectorAll(".progress-item");
 for (let i = 0; i < categories.length; i++) {
   categories[i].addEventListener("click", () => {
-    countDisplayNone();
-    const counts = document.querySelectorAll(".count");
-    counts[i].style.display = "block";
     clearProgress();
-    document.querySelector(".progress-bar .now-count").innerHTML = "1";
-    document.querySelector(".progress-bar").classList.remove("progress-bar");
-    categories[i].classList.add("progress-bar");
-    current_page = i;
+    changeCategory(current_category, i);
     up_count = 2;
     runProgress();
     drawListView(i, 0);
@@ -119,43 +125,64 @@ for (let i = 0; i < categories.length; i++) {
 /* 다음으로 넘기기 */
 const list_next = document.getElementById("list-next");
 list_next.addEventListener("click", () => {
-  const current_page = parseInt(
+  up_count = parseInt(
     document.querySelector(".progress-bar .now-count").innerHTML
   );
   checkTotalCount();
   up_count++;
-  if (up_count < total_count) {
-    reloadProgressAnimation();
-    clearProgress();
+  if (up_count <= total_count) {
+    clearAndReload();
+    up_count++;
     runProgress();
-    drawListView(0, current_page - 1);
+    drawListView(current_category, up_count - 2);
   } else {
-    reloadProgressAnimation();
-    clearProgress();
     up_count = 1;
+    clearAndReload();
+    if (current_category === CATEGORY_NUM - 1) {
+      changeCategory(current_category, 0);
+      drawListView(current_category, 0);
+    } else if (isNotLastCategory) {
+      changeCategory(current_category, current_category + 1);
+      drawListView(current_category, 0);
+    }
+    up_count = 2;
     runProgress();
-    drawListView(0, 0);
   }
 });
 
 /* 앞으로 넘기기 */
 const list_prev = document.getElementById("list-prev");
-list_prev.addEventListener("click", () => {
-  const current_page = parseInt(
+list_prev.addEventListener("click", async () => {
+  up_count = parseInt(
     document.querySelector(".progress-bar .now-count").innerHTML
   );
   up_count--;
-  reloadProgressAnimation();
-  clearProgress();
-  //runProgress();
-  drawListView(0, current_page - 1);
+  if (up_count >= 1) {
+    clearAndReload();
+    drawListView(current_category, up_count - 1);
+  } else if (up_count === 0) {
+    clearProgress();
+    reloadProgressAnimation();
+    if (current_category > 0) {
+      changeCategory(current_category, current_category - 1);
+    } else if (current_category === 0) {
+      changeCategory(current_category, CATEGORY_NUM - 1);
+    }
+    const tab_num = await getTabNum(current_category);
+    up_count = tab_num;
+    putUpCountToNowCount();
+    checkTotalCount();
+    drawListView(current_category, total_count - 1);
+  }
+  up_count++;
+  runProgress();
 });
 
 function initializeProgress() {
-  current_page = 0;
+  current_category = 0;
   up_count = 2;
   document.querySelector(".now-count").innerHTML = "1";
-  document.getElementsByClassName("count")[0].style.display = "block";
+  setDisplay(".count", "block");
 }
 
 export {
@@ -163,7 +190,5 @@ export {
   clearProgress,
   initializeProgress,
   reloadProgressAnimation,
-  setNowCount,
-  appendCategoryTabNum,
   CATEGORY_NUM,
 };
