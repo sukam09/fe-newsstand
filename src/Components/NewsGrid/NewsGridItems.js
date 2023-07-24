@@ -7,37 +7,36 @@ export default class NewsGridItems extends Component {
   }
 
   template() {
-    return this.$props.nowPageIndexArr
-      .map(
-        (item) => `
-          <li class="newspaper__item">
-            <div class="newspaper__item__card">
-              <div class="card-front">
-                <img
-                  src=${
-                    this.$props.mode === constants.LIGHT_MODE
-                      ? item.path
-                      : item.path_dark
-                  }
-                  alt=${item.name}
-                />
-              </div>
-              ${
-                this.$props.SubscribeStore.subscribeList.filter(
-                  (elem) => elem.id === item.id
-                ).length === 0
-                  ? `<div class="card-back subscribeButton">
-                  <img src="./assets/icons/SubscribeButton_Grid.svg" alt="subscribeButton" />
-              </div>`
-                  : `<div class="card-back unSubscribeButton">
-                  <img src="./assets/icons/UnSubscribeButton_Grid.svg" alt="unSubscribeButton" />
-              </div>`
-              }
+    return this.$props.nowPageIndexArr.reduce((acc, item) => {
+      return (
+        acc +
+        `<li class="newspaper__item">
+          <div class="newspaper__item__card">
+            <div class="card-front">
+              <img
+                src=${
+                  this.$props.mode === constants.LIGHT_MODE
+                    ? item.path
+                    : item.path_dark
+                }
+                alt=${item.name}
+              />
             </div>
-          </li>
-        `
-      )
-      .join(" ");
+            ${
+              this.$props.SubscribeStore.subscribeList.filter(
+                (elem) => elem.id === item.id
+              ).length === 0
+                ? `<div class="card-back subscribeButton">
+                <img src="./assets/icons/SubscribeButton_Grid.svg" alt="subscribeButton" />
+            </div>`
+                : `<div class="card-back unSubscribeButton">
+                <img src="./assets/icons/UnSubscribeButton_Grid.svg" alt="unSubscribeButton" />
+            </div>`
+            }
+          </div>
+        </li>`
+      );
+    }, "");
   }
 
   mounted() {

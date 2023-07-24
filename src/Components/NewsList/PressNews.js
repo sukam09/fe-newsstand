@@ -45,12 +45,12 @@ export default class PressNews extends Component {
           }</span>
         </div>
         <div class="news-list__press-news__sub">
-        ${this.$state.nowNews.sub_title
-          .map(
-            (title) =>
-              `<span class="news-list__press-news__subtitle">${title}</span>`
-          )
-          .join("")}
+        ${this.$state.nowNews.sub_title.reduce((acc, title) => {
+          return (
+            acc +
+            `<span class="news-list__press-news__subtitle">${title}</span>`
+          );
+        }, "")}
           <span class="news-list__press-news__subcaption">${
             this.$state.nowNews.name
           } 언론사에서 직접 편집한 뉴스입니다.</span>
