@@ -1,7 +1,7 @@
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
-import { Alert } from "../Alert/Alert.js";
-import { SnackBar } from "../SnackBar/SnackBar.js";
+import alert from "../Alert/Alert.js";
+import snackbar from "../SnackBar/SnackBar.js";
 
 // 구독 or 해지 버튼 누르고 버튼 다시 렌더시키는 것 필요
 
@@ -26,9 +26,6 @@ export const makeGrid = (data) => {
 
   document.querySelector(".agency-grid").appendChild(li);
 };
-
-const alert = new Alert();
-const snackbar = new SnackBar();
 
 // 호버 시 나타날 구독 or 해지 버튼 생성
 
@@ -76,8 +73,7 @@ const createButton = (data) => {
       dispatcher({
         type: "TOGGLE_SUBSCRIPTIONS",
         name: e.target.id,
-        value: !store.subscriptions.find((item) => item.name === e.target.id)
-          .subscribe,
+        value: !isSubscribed,
       });
     }
     updateButton(data.name);

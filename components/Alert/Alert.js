@@ -1,5 +1,7 @@
 import { dispatcher } from "../../store/dispatcher.js";
+import { store } from "../../store/store.js";
 import { makeGrid } from "../Grid/gridElement.js";
+import { updateSubscribeButton } from "../List/subscribeButton.js";
 
 export class Alert {
   constructor() {
@@ -57,7 +59,9 @@ export class Alert {
       }
 
       [this.name, this.isSubscribed] = this.getState();
+
       this.dispatch(this.name, this.isSubscribed);
+      updateSubscribeButton(this.name);
       this.close();
     });
 
@@ -104,8 +108,12 @@ export class Alert {
   dispatch(name, isSubscribed) {
     dispatcher({
       type: "TOGGLE_SUBSCRIPTIONS",
-      name: name,
+      name,
       value: !isSubscribed,
     });
+    console.log(store);
   }
 }
+
+const alert = new Alert();
+export default alert;

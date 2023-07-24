@@ -3,6 +3,7 @@ export class SnackBar {
     this.modal = null;
     this.container = null;
     this.content = null;
+
     this.root = document.getElementById("root");
     this.initializeElement();
   }
@@ -37,7 +38,10 @@ export class SnackBar {
 
   close() {
     this.modal.classList.remove("fadeout-animation");
-
     this.modal.style.display = "none";
   }
 }
+
+const snackbar = new SnackBar();
+
+export default snackbar;

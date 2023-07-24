@@ -1,15 +1,12 @@
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
-import { Alert } from "../Alert/Alert.js";
-import { SnackBar } from "../SnackBar/SnackBar.js";
+import alert from "../Alert/Alert.js";
+import snackbar from "../SnackBar/SnackBar.js";
 
 export const makeSubscribeBtn = (agency) => {
   const isSubscribed = store.subscriptions.find(
     (item) => item.name === agency.name
   ).subscribe;
-
-  const alert = new Alert();
-  const snackbar = new SnackBar();
 
   const $press_subscribe = document.createElement("button");
   $press_subscribe.className = "press-subscribe";
@@ -33,13 +30,17 @@ export const makeSubscribeBtn = (agency) => {
   $press_subscribe.appendChild($subscribe);
 
   $press_subscribe.addEventListener("click", ({ target }) => {
+    const isSubscribed = store.subscriptions.find(
+      (item) => item.name === target.id
+    ).subscribe;
+
     const message = isSubscribed
       ? `${agency.name}`
       : "내가 구독한 언론사에 추가되었습니다.";
 
     if (isSubscribed) {
       alert.show(message);
-      alert.setState(agency.name, isSubscribed);
+      alert.setState(target.id, isSubscribed);
     } else {
       snackbar.show(message);
       dispatcher({
@@ -53,14 +54,14 @@ export const makeSubscribeBtn = (agency) => {
   return $press_subscribe;
 };
 
-const updateSubscribeButton = (name) => {
+export const updateSubscribeButton = (name) => {
   const btn = document.getElementById(`${name}`);
   if (btn) {
     const data = store.subscriptions.find((item) => item.name === name);
     const icon = btn.querySelector("img");
     const $subscribe = btn.querySelector(".subscribe-text");
     const sr_only = btn.querySelector(".screen-reader-only");
-
+    console.log(data);
     icon.alt = data.subscribe ? "minus" : "plus";
     icon.src = data.subscribe
       ? "./asset/icon/closed.svg"
