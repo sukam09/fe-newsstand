@@ -11,6 +11,7 @@ import {
 
 import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
+import Alert from './common/Alert.js';
 
 export default function PressGridView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -36,27 +37,27 @@ export default function PressGridView({ $target, initialState }) {
 
   function handleClickCell({ target }, subscribeButton) {
     let id = target.dataset.id;
+    let name = target.dataset.name;
 
-    // li가 아닌걸 클릭했을 경우
+    // li가 아닌 element를 클릭했을 경우
     if (!id) {
-      id = target.closest('li').dataset.id;
+      const dataset = target.closest('li').dataset;
+      id = dataset.id;
+      name = dataset.name;
     }
 
-    handleSubscribe(id, subscribeButton);
+    handleSubscribe(id, name, subscribeButton);
   }
 
   function getSubscribed(id, myPress) {
     return myPress.indexOf(id) !== -1;
   }
 
-  // TODO: 옵저버 패턴 적용 필요
-  const handleSubscribe = (id, subscribeButton) => {
+  const handleSubscribe = (id, name, subscribeButton) => {
     const { isSubscribed } = subscribeButton.state;
 
-    // Optimistic UI 적용
     if (isSubscribed) {
-      subscribeButton.setState({ ...subscribeButton.state, isSubscribed: false });
-      store.dispatch(actionCreator('unsubscribe', { pid: id }));
+      this.alert.setState({ ...this.alert.state, isShow: true, pid: id, pressName: name, subscribeButton });
     } else {
       subscribeButton.setState({ ...subscribeButton.state, isSubscribed: true });
 
@@ -85,7 +86,7 @@ export default function PressGridView({ $target, initialState }) {
     const endIndex = startIndex + 23;
     const currentData = data.slice(startIndex, endIndex + 1);
 
-    currentData.forEach(({ id, logo }) => {
+    currentData.forEach(({ id, name, logo }) => {
       const $li = document.createElement('li');
       const $img = document.createElement('img');
 
@@ -93,9 +94,13 @@ export default function PressGridView({ $target, initialState }) {
       $img.classList.add('press-logo');
 
       $li.appendChild($img);
+
       $li.classList.add('news-press-item');
       $li.classList.add('data-id');
+      $li.classList.add('data-name');
+
       $li.dataset.id = id;
+      $li.dataset.name = name;
 
       const { myPress } = store.getState();
 
@@ -168,6 +173,14 @@ export default function PressGridView({ $target, initialState }) {
       initialState: {
         isShow: false,
         text: SUBSCRIBE_MESSAGE,
+      },
+    });
+
+    this.alert = new Alert({
+      $target: $section,
+      initialState: {
+        isShow: false,
+        pressName: '',
       },
     });
   };

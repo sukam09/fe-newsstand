@@ -579,6 +579,100 @@ header {
   line-height: 22px;
 }
 
+.alert {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 140px;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+
+.alert-frame {
+  display: flex;
+  padding: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-default, #fff);
+  color: var(--text-text-default, #5f6e76);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.alert-frame span {
+  color: var(--text-text-strong, #14212b);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.alert-button {
+  display: flex;
+  flex-direction: row;
+  width: 320px;
+  height: 48px;
+  background: var(--surface-surface-alt, #f5f7f9);
+}
+
+.positive-button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  border-top: 0;
+  color: var(--text-text-default, #5f6e76);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.positive-button:hover {
+  text-decoration: underline;
+}
+
+.negative-button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  border-top: 0;
+  border-left: 0;
+  color: var(--text-text-strong, #14212b);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.negative-button:hover {
+  text-decoration: underline;
+}
+
 .hidden {
   display: none;
 }
