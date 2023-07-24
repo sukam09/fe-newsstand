@@ -1,9 +1,9 @@
 import { PROGRESS_FLAG } from "../../constant.js";
 import { _changeClass } from "../../utils.js";
 import { setProgressEventFlag, turnNewsPage } from "./pageMoveButton.js";
-import { drawPressNews } from "./pressNews.js";
+import { setDrawPressNews } from "./pressNews.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, getPress, getView } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView } from "../../store.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 
@@ -37,24 +37,34 @@ function setProgress() {
 }
 
 /** 
- progressbar의 현재 페이지 업데이트
+전체 언론사 리스트인지 내가 구독한 언론사 리스트인지에 따라 
+progressbar 페이지 정보 업데이트
  */
 function setProgressPage() {
-  if (getView() === 'list' && getPress() === 'all') {
-    $pageInfo.innerHTML = `
-    <div class="display-bold12 text-white-default">${getPage() + 1}</div>
-    <img src="./assets/Icon/division.svg">
-    <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getClickedCategoryIndex()].length}</div>
-  `
-  }
+  getView() === 'list' && getPress() === 'all'
+    ? setProgressPageOfAllList()
+    : ''
+  getView() === 'list' && getPress() === 'my'
+    ? setProgressPageOfMyList()
+    : ''
+}
 
-  else if (getView() === 'list' && getPress() === 'my') {
-    $pageInfo.innerHTML = `
-    <div class="display-bold12 text-white-default"></div>
-    <img src="./assets/Icon/Symbol.svg">
-    <div class="display-bold12 text-white-weak"></div>
-  `
-  }
+/** 전체 언론사 리스트의 프로그래스바 페이지 정보 나타냄*/
+function setProgressPageOfAllList() {
+  $pageInfo.innerHTML = `
+  <div class="display-bold12 text-white-default">${getPage() + 1}</div>
+  <img src="./assets/Icon/division.svg">
+  <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getClickedCategoryIndex()].length}</div>
+`
+}
+
+/** 내가 구독한 언론사의 프로그래스바 정보 나타냄 */
+function setProgressPageOfMyList() {
+  $pageInfo.innerHTML = `
+  <div class="display-bold12 text-white-default"></div>
+  <img src="./assets/Icon/Symbol.svg">
+  <div class="display-bold12 text-white-weak"></div>
+`
 }
 
 /**
@@ -62,15 +72,19 @@ function setProgressPage() {
  버튼으로 뉴스 페이지 넘기면 애니메이션 재시작, 뉴스 페이지 정보 유지
  */
 function startProgressAnimation() {
+  restartProgressAnimation();
+  const $progrsesAnimation = document.querySelector('.progress');
+  $progrsesAnimation.addEventListener('animationstart', (event) => {
+    turnNewsPage(PROGRESS_FLAG);
+  })
+}
+
+/** 애니메이션 재시작 */
+function restartProgressAnimation() {
   const $effect = document.querySelector('.effect');
   $effect.classList.remove('effect');
   void $effect.offsetWidth;
   $effect.classList.add('effect');
-
-  const $progrsesAnimation = document.querySelector('.progress');
-  $progrsesAnimation.addEventListener('animationstart', (event) => {
-    turnNewsPage(PROGRESS_FLAG)
-  })
 }
 
 /**
@@ -83,4 +97,4 @@ function initProgress() {
   startProgressAnimation();
 }
 
-export { initProgress, setProgressPage, startProgressAnimation };
+export { initProgress, setProgressPage, startProgressAnimation, removeProgress };

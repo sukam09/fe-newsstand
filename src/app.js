@@ -3,13 +3,11 @@ import handleClickLogo from "./Components/Header/titleLogo.js"
 import rollNews from "./Components/RollingNews/RollingNews.js";
 import { initPressImg } from "./Components/PressGrid/pressLogos.js"
 import { initView } from "./Components/PressTab/pressTab.js";
-import { initNews } from "./Components/PressList/pressNews.js";
 handleClickLogo();
 showDate();
 initView();
 initPressImg();
 
-//initNews();
 rollNews();
 
 

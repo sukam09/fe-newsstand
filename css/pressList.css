@@ -118,3 +118,14 @@
 .list-snackbar {
   display: none;
 }
+
+.no-subscribed-press-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-subscribed-press-message {
+  color: var(--grayscale-200);
+}

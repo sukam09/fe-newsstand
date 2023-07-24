@@ -1,5 +1,5 @@
 import { TEXT_WEAK, TEXT_POINT } from "../../constant.js";
-import { getPress, getView, setClickedCategoryIndex, setPage, setPress, setView, store } from "../../store.js";
+import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage, setPress, setView, store } from "../../store.js";
 import { _changeClass, _changeDispay } from "../../utils.js";
 import { initPressImg } from "../PressGrid/pressLogos.js";
 import { setProgressEventFlag } from "../PressList/pageMoveButton.js";
@@ -51,7 +51,6 @@ function setClickMyPress() {
   _changeDispay($pressGrid, 'none', $newsList, 'block')
   setPress('my');
   setView('list');
-  setProgressEventFlag();
   initNews();
 }
 
@@ -85,7 +84,6 @@ function changeViewerView() {
 function setViewerViewDisplay() {
   if (getView() === 'list') {
     _changeDispay($pressGrid, 'none', $newsList, 'block')
-    setProgressEventFlag();
     initNews();
   }
   else {

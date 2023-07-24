@@ -1,39 +1,36 @@
 import { FIRST_PAGE_IDX } from "../../constant.js"
-import { drawPressNews, underlineNewsTitle } from "./pressNews.js";
+import { setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList } from "./pressNews.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { initProgress } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
 import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../store.js";
 import { _changeDispay } from "../../utils.js";
-import { getSubscribedPress } from "../PressGrid/pressLogos.js";
+import { getSubscribedPressOfGrid } from "../PressGrid/pressLogos.js";
 
-
-const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 const allPressNewsCategory = pressStore.getAllPressNewsCategory
 const $pressNewsBar = document.querySelector('.press-news-bar');
 
 /** 전체 언론사 리스트 보기 내가 구독한 언론사 리스트 보기에 따라 카테고리 설정 */
 function setCategory() {
-  if (getView() === 'list' && getPress() === 'all') {
-    $pressNewsBar.innerHTML = `
-      ${allPressNewsCategory.map(category => (
-      `<li class="non-progress pointer">
-        <div class="progress-category">${category}</div>
-      </li>`
-    )).join('')}
-  `
-  }
+  const MyPress = getSubscribedPressOfList();
+  const MyPressNewsCategory = MyPress.map(press => press[0].name)
+  getView() === 'list' && getPress() === 'all'
+    ? setCategoryOfList(allPressNewsCategory)
+    : ''
+  getView() === 'list' && getPress() === 'my'
+    ? setCategoryOfList(MyPressNewsCategory)
+    : ''
+}
 
-  else if (getView() === 'list' && getPress() === 'my' && getSubscribedPressId().length !== 0) {
-    const MyPressNewsCategory = getSubscribedPress();
-    $pressNewsBar.innerHTML = `
-      ${MyPressNewsCategory.map(press => (
-      `<li class="non-progress pointer">
-          <div class="progress-category">${press.name}</div>
-        </li>`
-    )).join('')}
-    `
-  }
+/** 카테고리 설정 */
+function setCategoryOfList(whatCategory) {
+  $pressNewsBar.innerHTML = `
+  ${whatCategory.map(category => (
+    `<li class="non-progress pointer">
+    <div class="progress-category">${category}</div>
+  </li>`
+  )).join('')}
+`
 }
 
 /** 카테고리를 클릭하면 handleClickCategory함수 호출 */
@@ -46,20 +43,24 @@ function showNewsOfCategory() {
 }
 
 /**
- 어떤 카테고리를 클릭했는지 확인함
+ 어떤 카테고리를 클릭했는지 확인하고 클릭한 카테고리로 이동
  */
-function handleClickCategory(event) {
-  if (getView() === 'list' && getPress() === 'all') {
-    const categoryIndex = allPressNewsCategory.findIndex(category => category === event.target.innerText);
-    setClickedCategoryIndex(categoryIndex);
-    changeCategory();
-  }
-  else if (getView() === 'list' && getPress() === 'my' && getSubscribedPressId().length !== 0) {
-    const MyPressNewsCategory = getSubscribedPress();
-    const categoryIndex = MyPressNewsCategory.findIndex(category => category.name === event.target.innerText);
-    setClickedCategoryIndex(categoryIndex);
-    changeCategory();
-  }
+function handleClickCategory({ target }) {
+  const MyPress = getSubscribedPressOfList();
+  const MyPressNewsCategory = MyPress.map(press => press[0].name)
+  getView() === 'list' && getPress() === 'all'
+    ? handleClickCategoryOfList(target, allPressNewsCategory)
+    : ''
+  getView() === 'list' && getPress() === 'my'
+    ? handleClickCategoryOfList(target, MyPressNewsCategory)
+    : ''
+}
+
+/** 클릭한 카테고리로 이동 */
+function handleClickCategoryOfList(target, whatNewsCategory) {
+  const categoryIndex = whatNewsCategory.findIndex(category => category === target.innerText);
+  setClickedCategoryIndex(categoryIndex);
+  changeCategory();
 }
 
 /**
@@ -77,7 +78,7 @@ function resetNewsTurner() {
 function changeCategory() {
   setPage(FIRST_PAGE_IDX)
   resetNewsTurner();
-  drawPressNews();
+  setDrawPressNews();
   initProgress();
   underlineNewsTitle();
 }
