@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뉴스스탠드</title>
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+    <script src="../js/app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="title-wrapper">
+          <div class="title">
+            <img src="../images/icon/NewsstandLogo.svg" />
+            <span class="display-text">뉴스스탠드</span>
+          </div>
+
+          <span class="date"></span>
+        </div>
+      </header>
+
+      <main>
+        <div class="auto-rolling-news-bar">
+          <div class="auto-rolling-news">
+            <ul data-type="left-rolling">
+              <li class="current">
+                <span class="press">연합뉴스1</span>
+                <span class="news-title">[1111보] 김기현,안철수~~</span>
+              </li>
+              <li class="next">
+                <span class="press">연합뉴스2</span>
+                <span class="news-title">[2222보] 김기현,안철수~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스3</span>
+                <span class="news-title">[3333보] 김기현,안철수~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스4</span>
+                <span class="news-title">[4444보] 김기현,안철수~~</span>
+              </li>
+              <li class="prev">
+                <span class="press">연합뉴스5</span>
+                <span class="news-title">[5555보] 김기현,안철수~~</span>
+              </li>
+            </ul>
+          </div>
+          <div class="auto-rolling-news">
+            <ul data-type="right-rolling">
+              <li class="current">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보1] 최고위원 본경선,~~</span>
+              </li>
+              <li class="next">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보2] 최고위원 본경선,~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보3] 최고위원 본경선,~~</span>
+              </li>
+              <li>
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보4] 최고위원 본경선,~~</span>
+              </li>
+              <li class="prev">
+                <span class="press">연합뉴스</span>
+                <span class="news-title">[속보5] 최고위원 본경선,~~</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <section>
+          <div class="main-container">
+            <div class="main-tab-viewer">
+              <div class="main-tab-btn">
+                <button><span class="clicked-press">전체 언론사</span></button>
+
+                <button>
+                  <span class="unclicked-press">내가 구독한 언론사</span>
+                </button>
+              </div>
+
+              <div class="viewer-btn">
+                <button>
+                  <img
+                    src="../images/icon/List-view-unchecked.svg"
+                    alt="images"
+                  />
+                </button>
+                <button>
+                  <img
+                    src="../images/icon/Grid-view-checked.svg"
+                    alt="images"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div class="main">
+              <button id="grid-left-btn">
+                <img id="grid-left" src="../images/icon/LeftButton.svg" />
+              </button>
+
+              <button id="list-left-btn" style="display: none">
+                <img id="list-left" src="../images/icon/LeftButton.svg" />
+              </button>
+
+              <div class="grid-view">
+                <ul class="grid-view-ul"></ul>
+              </div>
+
+              <div class="list-view" style="display: none">
+                <ul class="category"></ul>
+
+                <div class="press-info">
+                  <img class="press-info-img" />
+                  <span></span>
+                  <button>
+                    <img />
+                  </button>
+                </div>
+
+                <div class="list-view-news">
+                  <div class="list-view-main">
+                    <img />
+                    <div class="list-main-title"></div>
+                  </div>
+                  <div class="list-view-sub"></div>
+                </div>
+              </div>
+
+              <button id="list-right-btn" style="display: none">
+                <img id="list-right" src="../images/icon/RightButton.svg" />
+              </button>
+              <button id="grid-right-btn">
+                <img id="grid-right" src="../images/icon/RightButton.svg" />
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <img src="../images/icon/Snackbar.svg" class="snackbar" />
+      <div class="confirm">
+        <div class="question"></div>
+        <div class="answer">
+          <div>예, 해지합니다.</div>
+          <div>아니오</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

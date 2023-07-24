@@ -1,0 +1,103 @@
+@import url("./reset.css");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url("./color.css");
+@import url("../css/components/header.css");
+@import url("../css/components/rollingNews.css");
+@import url("../css/components/gridView.css");
+@import url("../css/components/listView.css");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  height: 720px;
+}
+
+.wrapper {
+  justify-content: center;
+  align-items: center;
+  width: 1074px;
+}
+
+.title-wrapper,
+.auto-rolling-news-bar,
+.main-tab-viewer,
+.grid-view,
+.list-view {
+  width: 930px;
+  margin: 0 auto;
+}
+
+.auto-rolling-news-bar,
+.main-tab-viewer,
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-wrapper,
+.auto-rolling-news-bar {
+  margin-bottom: 36px;
+}
+.main-tab-viewer {
+  margin-bottom: 25px;
+}
+
+button:hover,
+.title:hover,
+li:hover,
+.news-title:hover {
+  cursor: pointer;
+}
+
+.snackbar,
+.confirm {
+  display: none;
+  position: fixed;
+  top: 55%;
+  left: 39.5%;
+}
+
+.confirm {
+  width: 320px;
+  height: 140px;
+  border: 1px solid var(--border-default);
+}
+.question {
+  display: flex;
+  flex-direction: column;
+  height: 92px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--surface-default);
+  color: var(--text-default);
+  font-weight: 500;
+}
+.question span span {
+  color: var(--text-strong);
+  font-weight: 700;
+}
+
+.answer {
+  display: flex;
+  height: 48px;
+  background-color: var(--surface-alt);
+  color: var(--text-default);
+  font-weight: 500;
+  font-size: 16px;
+}
+.answer div {
+  display: flex;
+  width: 160px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-default);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.answer div:hover {
+  color: var(--text-default);
+  text-decoration: underline;
+}

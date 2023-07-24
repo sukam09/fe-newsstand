@@ -1,0 +1,133 @@
+/* 리스트 뷰 */
+.list-view {
+  border: 1px solid var(--border-default);
+  box-sizing: border-box;
+  height: 388px;
+}
+
+.category {
+  display: flex;
+  height: 40px;
+  background-color: var(--surface-alt);
+  overflow: scroll;
+}
+
+.category::-webkit-scrollbar {
+  display: none;
+}
+
+.category li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--text-weak);
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.press-info {
+  margin: 24px auto 16px auto;
+  width: 882px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.press-info span {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 10px;
+  color: var(--text-default);
+}
+.press-info-img {
+  width: 52.5px;
+  height: 20px;
+}
+.list-view-news {
+  margin: 0 auto;
+  width: 882px;
+  height: 260px;
+  display: flex;
+}
+.list-view-main {
+  width: 320px;
+  height: 260px;
+  margin-right: 32px;
+}
+.list-view-main img {
+  width: 320px;
+  height: 200px;
+}
+
+.list-view-sub {
+  width: 530px;
+  height: 245px;
+}
+.list-view-sub li:hover {
+  text-decoration: underline;
+}
+
+.list-view-sub li {
+  color: var(--text-bold);
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.list-view-sub li.sub-caption {
+  font-size: 14px;
+  color: var(--text-weak);
+}
+.list-main-title {
+  margin-top: 16px;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.category .selected-category {
+  position: relative;
+  padding: 0;
+  min-width: 15%;
+  background-color: var(--surface-brand-alt);
+  pointer-events: none;
+}
+
+.category .selected-category div {
+  height: 100%;
+  background-color: var(--surface-brand-default);
+  animation-name: progressBar;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+.category div {
+  pointer-events: none;
+}
+
+.category .selected-category span {
+  position: absolute;
+  color: var(--text-white-default);
+  font-weight: 700;
+}
+
+.category-item {
+  left: 10px;
+}
+.category-num {
+  right: 10px;
+  display: none;
+}
+.category li:hover {
+  text-decoration: underline;
+}
