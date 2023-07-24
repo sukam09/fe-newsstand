@@ -1,6 +1,11 @@
 import { NEWS_COUNT, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { NewsDB } from "../core/db.js";
-import { store, useSelector } from "../store/index.js";
+import {
+  modalStore,
+  snackbarStore,
+  store,
+  useSelector,
+} from "../store/index.js";
 import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
@@ -10,10 +15,16 @@ import { $nextPageButton, $prevPageButton } from "./doms.js";
 const $gridView = document.querySelector(".grid-view");
 
 function fillGridView(newsData, currentPage) {
-  const theme = useSelector((state) => state.theme.currentTheme);
+  const theme = useSelector({
+    store,
+    selector: (state) => state.theme.currentTheme,
+  });
 
   const startIdx = currentPage * NEWS_COUNT;
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
 
   $gridView.innerHTML = Array.from(
     { length: NEWS_COUNT },
@@ -43,11 +54,11 @@ function handleSubscribeButtonClick(e) {
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    store.dispatch(openModal(name));
+    modalStore.dispatch(openModal(name));
     return;
   }
 
-  store.dispatch(openSnackbar());
+  snackbarStore.dispatch(openSnackbar());
   store.dispatch(addSubscribe(name));
 }
 
@@ -56,7 +67,10 @@ function addEventHandlerOnGridView() {
 }
 
 function initGridView(newsData) {
-  const currentPage = useSelector((state) => state.page.currentPage);
+  const currentPage = useSelector({
+    store,
+    selector: (state) => state.page.currentPage,
+  });
   fillGridView(newsData, currentPage);
 }
 
@@ -79,7 +93,10 @@ function updateButtonUI(currentPage, maxPage) {
 }
 
 function renderGridViewOnSubscribe(currentPage) {
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
   const newsData = subscribeList.map((press) => ({
     name: press,
     ...NewsDB.getNewsOneByName(press),
@@ -91,7 +108,11 @@ function renderGridViewOnSubscribe(currentPage) {
 }
 
 function gridViewSubscriber(newsData, maxPage) {
-  const { currentPage, viewType, tabType } = useSelector((state) => state.page);
+  const { currentPage, viewType, tabType } = useSelector({
+    store,
+    selector: (state) => state.page,
+  });
+
   if (viewType !== VIEW_TYPE.GRID) {
     return;
   }

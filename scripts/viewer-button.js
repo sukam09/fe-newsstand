@@ -13,7 +13,10 @@ function handleViewerButtonClick(e) {
 }
 
 function viewerButtonSubscriber() {
-  const viewType = useSelector((state) => state.page.viewType);
+  const viewType = useSelector({
+    store,
+    selector: (state) => state.page.viewType,
+  });
 
   $mainNavViewerButtons.forEach(($button) => {
     if (viewType !== $button.dataset.view) {

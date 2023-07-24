@@ -1,8 +1,11 @@
 import { THEME } from "../constants/index.js";
-import { useSelector } from "../store/index.js";
+import { store, useSelector } from "../store/index.js";
 
 export function setTheme() {
-  const theme = useSelector((state) => state.theme.currentTheme);
+  const theme = useSelector({
+    store,
+    selector: (state) => state.theme.currentTheme,
+  });
 
   if (theme === THEME.DARK) {
     document.documentElement.classList.add(THEME.DARK);

@@ -6,9 +6,10 @@ import { nextCategory, nextPage } from "../store/reducer/page.js";
 const $listViewTab = document.querySelector(".list-view_tab");
 
 function handleProgressAnimationIteration() {
-  const { currentCategoryIdx, currentPage } = useSelector(
-    (state) => state.page
-  );
+  const { currentCategoryIdx, currentPage } = useSelector({
+    store,
+    selector: (state) => state.page,
+  });
   const currentCategory = CATEGORIES[currentCategoryIdx];
   const totalCount = NewsDB.getCountByCategory(currentCategory);
 

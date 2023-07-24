@@ -1,5 +1,10 @@
 import { NewsDB } from "../core/index.js";
-import { store, useSelector } from "../store/index.js";
+import {
+  modalStore,
+  snackbarStore,
+  store,
+  useSelector,
+} from "../store/index.js";
 import { CATEGORIES, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 import {
@@ -86,10 +91,16 @@ function unshowCategoryTab() {
 }
 
 function fillArticle(articleData) {
-  const theme = useSelector((state) => state.theme.currentTheme);
-  const { name, src, edit_date, main_news, sub_news } = articleData;
+  const theme = useSelector({
+    store,
+    selector: (state) => state.theme.currentTheme,
+  });
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
 
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const { name, src, edit_date, main_news, sub_news } = articleData;
   const isSubscribed = subscribeList.includes(name);
 
   $listViewHeader.innerHTML = `
@@ -144,7 +155,10 @@ function handleListViewTabClick(e) {
 }
 
 function handleSubscribeTabsClick(e) {
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
   const pressName = e.target.innerText;
 
   const pressIdx = subscribeList.indexOf(pressName);
@@ -164,11 +178,11 @@ function handleSubscribeButtonClick(e) {
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    store.dispatch(openModal(name));
+    modalStore.dispatch(openModal(name));
     return;
   }
 
-  store.dispatch(openSnackbar());
+  snackbarStore.dispatch(openSnackbar());
   store.dispatch(addSubscribe(name));
 }
 
@@ -198,7 +212,10 @@ function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
 }
 
 function fillArticleOnSubscribeTab({ currentPage }) {
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
   const pressName = subscribeList[currentPage];
   const articleData = {
     name: pressName,
@@ -224,7 +241,10 @@ function fillArticleOnSubscribeTab({ currentPage }) {
 }
 
 function listViewSubscriber() {
-  const page = useSelector((state) => state.page);
+  const page = useSelector({
+    store,
+    selector: (state) => state.page,
+  });
   const { viewType, tabType } = page;
 
   if (viewType !== VIEW_TYPE.LIST) return;

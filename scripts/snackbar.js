@@ -1,5 +1,5 @@
 import { TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
-import { store, useSelector } from "../store/index.js";
+import { store, snackbarStore, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { closeSnackbar } from "../store/reducer/snackbar.js";
 
@@ -9,15 +9,21 @@ const $snackbar = document.querySelector(".snackbar");
 let timer;
 
 function snackbarSubscriber() {
-  const open = useSelector((state) => state.snackbar.open);
-  const viewType = useSelector((state) => state.page.viewType);
+  const open = useSelector({
+    store: snackbarStore,
+    selector: (state) => state.open,
+  });
+  const viewType = useSelector({
+    store,
+    selector: (state) => state.page.viewType,
+  });
 
   if (open) {
     $snackbar.classList.add("snackbar-open");
     clearTimeout(timer);
 
     timer = setTimeout(() => {
-      store.dispatch(closeSnackbar());
+      snackbarStore.dispatch(closeSnackbar());
 
       if (viewType === VIEW_TYPE.LIST) {
         store.dispatch(changeTab(TAB_TYPE.SUBSCRIBE));
@@ -31,5 +37,5 @@ function snackbarSubscriber() {
 }
 
 export function setSnackbar() {
-  store.subscribe(snackbarSubscriber);
+  snackbarStore.subscribe(snackbarSubscriber);
 }
