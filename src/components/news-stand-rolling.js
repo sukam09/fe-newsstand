@@ -1,6 +1,6 @@
-import { HEADER_CLASS, ROLLING, SIDE } from '../../constants/news-stand-rolling.js';
+import { HEADER_CLASS, ROLLING, SIDE } from '../constants/news-stand-rolling.js';
 
-class RollingManager {
+class RollingNews {
   constructor(newsWrappers, intervals, side) {
     this.newsWrappers = newsWrappers;
     this.intervals = intervals;
@@ -83,7 +83,7 @@ class RollingManager {
 }
 
 const startRolling = (newsWrappers, intervals, side) => {
-  const rollingManager = new RollingManager(newsWrappers, intervals, side);
+  const rollingManager = new RollingNews(newsWrappers, intervals, side);
   rollingManager.setupHover();
   rollingManager.initRolling();
   rollingManager.setupRolling();

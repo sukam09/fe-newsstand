@@ -1,11 +1,9 @@
-import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../../constants/news-stand-rolling.js';
-import { getFetchData } from '../../utils/fetch.js';
-import { Subject } from '../../utils/observer.js';
-import { startRolling } from './rolling.js';
+import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../constants/news-stand-rolling.js';
+import { getFetchData } from '../utils/fetch.js';
+import { startRolling } from './news-stand-rolling.js';
 
-class LatestNewsSubject extends Subject {
+class LatestNews {
   constructor() {
-    super();
     this.newsWrappers = {
       left: document.querySelector(`.${HEADER_CLASS.LEFT}`),
       right: document.querySelector(`.${HEADER_CLASS.RIGHT}`),
@@ -31,7 +29,7 @@ class LatestNewsSubject extends Subject {
   }
 
   showNews(latestNews, side) {
-    this.renderNewsWrapper(latestNews, side);
+    this.renderWrapper(latestNews, side);
     startRolling(this.newsWrappers, this.intervals, side);
   }
 
@@ -40,16 +38,16 @@ class LatestNewsSubject extends Subject {
     if (side === SIDE.RIGHT) return latestNews.slice(NEWS_SLICE.MAX / NEWS_SLICE.NUM, NEWS_SLICE.MAX);
   }
 
-  getNewsWrapper(side) {
+  getWrapper(side) {
     return this.newsWrappers[side];
   }
 
-  renderNewsWrapper(latestNews, side) {
-    const newsWrapper = this.getNewsWrapper(side);
-    latestNews.forEach((news) => this.renderNewsElement(newsWrapper, news));
+  renderWrapper(latestNews, side) {
+    const newsWrapper = this.getWrapper(side);
+    latestNews.forEach((news) => this.renderElement(newsWrapper, news));
   }
 
-  renderNewsElement(newsWrapper, news) {
+  renderElement(newsWrapper, news) {
     const newsElement = `
       <li class=${HEADER_CLASS.LI}>
         <h2 class=${HEADER_CLASS.H2}>${news.press}</h2>
@@ -60,4 +58,5 @@ class LatestNewsSubject extends Subject {
   }
 }
 
-export { LatestNewsSubject };
+const latestNews = new LatestNews();
+export default latestNews;
