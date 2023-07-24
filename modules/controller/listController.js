@@ -1,4 +1,4 @@
-import { subStateList } from "../store/gridState.js";
+import { subStateList } from "../store/subState.js";
 import { getState, setState } from "../store/observer.js";
 import { qsa } from "../utils.js";
 

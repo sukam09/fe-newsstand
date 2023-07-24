@@ -35,9 +35,8 @@ export function createEmptyPressGrid(page) {
  * @returns
  */
 export function createPressItem(key, press) {
-  console.log(press);
   return `
-  <li key="${key}" class="grid_item" id="press_${press.id}">
+  <li key="${key}" class="grid_item id_${press.id}" id="press_${press.id}">
     <img class="light_press_logo" src=${press.lightSrc}  / >
     <img class="dark_press_logo" src=${press.darkSrc}  / >
     ${createSubButton()}
