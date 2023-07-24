@@ -7,10 +7,16 @@ export function initDarkMode() {
   const $body = document.querySelector("body");
   subscribe(isDark, drawNews);
   subscribe(isDark, drawGridView);
-  document.querySelector(".dark-btn").addEventListener("click", setDarkMode.bind("null", $body));
+  const $dark_mode_icon = document.querySelectorAll(".dark-mode-icon");
+  $dark_mode_icon.forEach(icon => icon.addEventListener("click", e => setDarkMode($body, e.target)));
 }
 
-function setDarkMode($body) {
+function setDarkMode($body, target) {
   setState(isDark, !getState(isDark));
-  $body.classList.toggle("dark");
+  if (getState(isDark)) {
+    target.classList.replace("xi-brightness", "xi-moon");
+  } else {
+    target.classList.replace("xi-moon", "xi-brightness");
+  }
+  $body.classList.toggle("dark"), 100;
 }
