@@ -22,7 +22,7 @@ export default function Headline({ $target, initialState }) {
     $next.classList.remove('next');
     $next.classList.add('current');
 
-    if ($next.nextElementSibling === null) {
+    if (!$next.nextElementSibling) {
       const $first = $div.querySelector('li:first-child');
       $first.classList.add('next');
     } else {
