@@ -1,4 +1,4 @@
-const RadioInput = (viewStore, state, selected, name) => {
+const RadioInput = (navStore, state, selected, name) => {
   const inputElement = document.createElement('input');
 
   inputElement.type = 'radio';
@@ -10,17 +10,17 @@ const RadioInput = (viewStore, state, selected, name) => {
     const newState = { [name]: state };
 
     if (name === 'media')
-      newState.view = viewStore.getState().defaultView[state];
-    viewStore.setState(newState);
+      newState.view = navStore.getState().defaultView[state];
+    navStore.setState(newState);
   });
   return inputElement;
 };
 
-const RadioInputWrapper = (viewStore, state, selected, name) => {
+const RadioInputWrapper = (navStore, state, selected, name) => {
   const radioInputWrapper = document.createElement('div');
 
   radioInputWrapper.appendChild(
-    RadioInput(viewStore, state.name, selected, name)
+    RadioInput(navStore, state.name, selected, name)
   );
   radioInputWrapper.insertAdjacentHTML(
     'beforeend',
@@ -29,28 +29,28 @@ const RadioInputWrapper = (viewStore, state, selected, name) => {
   return radioInputWrapper;
 };
 
-const NavSelector = (viewStore, states, selectedName, name) => {
+const NavSelector = (navStore, states, selectedName, name) => {
   const navSelector = document.createElement('div');
 
   navSelector.classList.add(`${name}_select_wrapper`);
   states.forEach(state => {
     navSelector.appendChild(
-      RadioInputWrapper(viewStore, state, state.name === selectedName, name)
+      RadioInputWrapper(navStore, state, state.name === selectedName, name)
     );
   });
   return navSelector;
 };
 
-const MediaNav = viewStore => {
-  const state = viewStore.getState();
+const MediaNav = navStore => {
+  const state = navStore.getState();
   const mediaViewNav = document.createElement('nav');
 
   mediaViewNav.id = 'media_view_nav';
   mediaViewNav.appendChild(
-    NavSelector(viewStore, state.data.media, state.media, 'media')
+    NavSelector(navStore, state.data.media, state.media, 'media')
   );
   mediaViewNav.appendChild(
-    NavSelector(viewStore, state.data.view, state.view, 'view')
+    NavSelector(navStore, state.data.view, state.view, 'view')
   );
   return mediaViewNav;
 };
