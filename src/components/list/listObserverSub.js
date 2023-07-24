@@ -65,7 +65,10 @@ class ListViewSub extends ListViewInfo {
     if (!isListSubscribeView()) return;
     is_add
       ? this.initProgressBar({ category_old: this.getCategoryNow(), category_now: this.data.length - 1 })
-      : this.initProgressBar({ category_old: 0, category_now: 0 });
+      : this.initProgressBar({
+          category_old: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
+          category_now: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
+        });
   };
 
   // 언론사 리스트 -> 언론사 뉴스 리스트
