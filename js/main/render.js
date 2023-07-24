@@ -1,7 +1,7 @@
-import { getState, subscribe } from "../observer.js";
+import { getState } from "../store/observer.js";
 import { renderGridView } from "./gridView/renderGridView.js";
 import { renderListView } from "./listView/renderListView.js";
-import { viewType } from "../store.js";
+import { viewType } from "../store/store.js";
 
 function render() {
   if (getState(viewType) === "grid") {

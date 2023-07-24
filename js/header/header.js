@@ -1,5 +1,5 @@
-import { refreshPage } from "../utils/refreshPage.js";
-import { getDate } from "../utils/getDate.js";
+import { refreshPage } from "./refreshPage.js";
+import { getDate } from "./getDate.js";
 
 function initHeader() {
   getDate(".date", 60000);
