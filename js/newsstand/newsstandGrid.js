@@ -8,7 +8,6 @@ import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { navTag } from "../tag/mediaNavTag.js";
 import { MESSAGE, EVENT, VIEW } from "../utils/constant.js";
-import { View } from "../store/viewState.js";
 import {
   subscribe,
   unsubscribe,

@@ -141,7 +141,7 @@ export function nextContents(
     // 애니메이션을 지웠다가 다시 실행.
     removeProgressAction();
     addProgressAction(element);
-    console.log(element);
+
     element.children[0].style.animationIterationCount = reCount;
   } else if (clickPosition === POSITION.LEFT) {
     const reCount =

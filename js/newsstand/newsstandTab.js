@@ -2,7 +2,6 @@ import { paintNewsCategory } from "./newsCategory.js";
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
 import { EVENT } from "../utils/constant.js";
-import { View } from "../store/viewState.js";
 import { setUserViewToList, setUserViewToGrid } from "../store/redux.js";
 const VIEW_DISABLED = "view-disabled";
 

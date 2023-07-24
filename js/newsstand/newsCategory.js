@@ -1,5 +1,4 @@
 import { CATEGORY } from "../state/categoryState.js";
-import { View } from "../store/viewState.js";
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
@@ -12,7 +11,13 @@ import {
   onUserLeftClickCategory,
   onUserClickCategory,
 } from "../utils/category.js";
-import { getSubscrbeList, getUserView } from "../store/redux.js";
+import {
+  getUserView,
+  getSubscrbeList,
+  getNavTabView,
+  setNavTabViewToMy,
+  setNavTabViewToAll,
+} from "../store/redux.js";
 import {
   removeChildElement,
   handleElementClass,
@@ -61,20 +66,20 @@ export function paintNewsCategory() {
   CATEGORY.currentCategory = 0;
   CATEGORY.currentContents = 1;
   const categoryNameList =
-    View.getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
+    getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
 
   const totalCategory =
-    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+    getNavTabView() === MESSAGE.MY_PUBLISHER
       ? mySubArray().length
       : CATEROY_NUMBER;
 
   const contentsLength =
-    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+    getNavTabView() === MESSAGE.MY_PUBLISHER
       ? new Array(mySubArray().length).fill(1)
       : categoryDataLength;
 
   const categoryNewsData =
-    View.getNavTabView() === MESSAGE.MY_PUBLISHER
+    getNavTabView() === MESSAGE.MY_PUBLISHER
       ? makeMySubNews()
       : categoryDataList;
 
@@ -188,14 +193,14 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
     if (getUserView() === VIEW.LIST) {
-      View.setNavTabView(VIEW.MY_SUB, true);
+      setNavTabViewToMy();
       onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
     }
   });
   allPublisher.addEventListener("click", () => {
     if (getUserView() === VIEW.LIST) {
-      View.setNavTabView(VIEW.ALL_SUB, true);
+      setNavTabViewToAll();
       onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
     }
