@@ -19,6 +19,8 @@ class Store {
     };
 
     this.getState = () => state;
+
+    this.getMyPress = () => state.myPress;
   }
 }
 
