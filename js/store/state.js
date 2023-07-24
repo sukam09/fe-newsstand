@@ -62,8 +62,14 @@ export function setCategoryIndex(page) {
   store.dispatch(actionCreator(ACTION.CATEGORY, page));
 }
 
+// SET: goBefore
 export function setGoBefore(status) {
   store.dispatch(actionCreator(ACTION.GO_BEFORE, status));
+}
+
+// SET: selectedPage
+export function setSelectedPage(page) {
+  store.dispatch(actionCreator(ACTION.SELECTED_PAGE, page));
 }
 
 // 구독중인 언론사 리스트
@@ -103,6 +109,11 @@ export function getGoBefore() {
 // GET: first_page
 export function getFirstPage() {
   return store.getState()?.listPage?.first_page || initListPage.first_page;
+}
+
+// 그리드 뷰에서 GET: selectedPage
+export function getSelectedPage() {
+  return store.getState()?.gridPage?.selectedPage || 0;
 }
 
 // 구독중인지 확인

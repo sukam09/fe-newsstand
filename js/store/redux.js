@@ -38,6 +38,9 @@ const InitState = {
     goBefore: false,
     first_page: 0,
   },
+  gridPage: {
+    selectedPage: 0,
+  },
 };
 
 function reducer(state = InitState, action) {
@@ -102,6 +105,15 @@ function reducer(state = InitState, action) {
           goBefore: action.data,
         },
       };
+    case ACTION.SELECTED_PAGE: {
+      return {
+        ...state,
+        gridPage: {
+          ...state.gridPage,
+          selectedPage: action.data,
+        },
+      };
+    }
 
     default:
       return { ...state };

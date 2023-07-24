@@ -17,6 +17,8 @@ import {
   setNavTabViewToAll,
   setNavTabViewToMy,
   getUserView,
+  setSelectedPage,
+  getSelectedPage,
 } from "../store/state.js";
 import { store } from "../store/redux.js";
 
@@ -30,13 +32,14 @@ const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
 
 let LAST_PAGE = 3;
-let selectedPage = 0;
 
 const ul = document.querySelector(".newsstand-area—six-col-list");
 const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
+
+store.subscribe(gridObserved);
 
 export async function paintGridNewsstand() {
   initPaintNews();
@@ -49,8 +52,8 @@ function initPaintNews() {
   publisherData = shuffle(publisherData);
   const ul = document.querySelector(".newsstand-area—six-col-list");
   for (
-    let idx = selectedPage * VIEWED_CONTENS;
-    idx < selectedPage * VIEWED_CONTENS + VIEWED_CONTENS;
+    let idx = getSelectedPage() * VIEWED_CONTENS;
+    idx < getSelectedPage() * VIEWED_CONTENS + VIEWED_CONTENS;
     idx++
   ) {
     const li = document.createElement("li");
@@ -77,7 +80,7 @@ function initPaintNews() {
 // 이후에 페이지가 바뀔때 img 태그의 속성값만 변경함.
 function paintNews(paintData = publisherData) {
   const element = [...ul.children];
-  let idx = selectedPage * VIEWED_CONTENS; // 데이터의 인덱스 순서
+  let idx = getSelectedPage() * VIEWED_CONTENS; // 데이터의 인덱스 순서
   let elementIdx = 0; // 로고를 새로 등록할 li 순서
 
   element.map((child) => {
@@ -128,6 +131,18 @@ function paintNews(paintData = publisherData) {
   });
 }
 
+function gridObserved() {
+  const subList = getSubscrbeList() || [];
+
+  getUserView() === VIEW.GRID &&
+    getNavTabView() === VIEW.MY_SUB &&
+    paintNews(subList);
+
+  getUserView() === VIEW.GRID &&
+    getNavTabView() === VIEW.ALL_SUB &&
+    paintNews();
+}
+
 // 전체 언론사 & 내가 구독한 언론사에 이벤트리스너 등록
 function addEventOnMySubAndAllSub() {
   // 내가 구독한 언론사 클릭됬을때.
@@ -141,12 +156,10 @@ function addEventOnMySubAndAllSub() {
       onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
 
       // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
-      selectedPage = 0; // selectedPage 0에서 시작
+      setSelectedPage(0); // selectedPage 0에서 시작
 
       LAST_PAGE = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
       isBtnDisabled(); // 버튼 활성화 조건 실행.
-
-      paintNews(subscribeList);
     }
     // store에서 구독중인 목록을 가져와서 그려준다. [paint 함수 실행] 이때, 남는 영역은 빈칸으로 채운다. [이때, 마우스오버 효과 삭제]
   });
@@ -158,11 +171,9 @@ function addEventOnMySubAndAllSub() {
       // 전체 언론사에 포커스 효과주기
       onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
 
-      selectedPage = 0; // selectedPage 0에서 시작
+      setSelectedPage(0); // selectedPage 0에서 시작
       LAST_PAGE = 3;
       isBtnDisabled(); // 버튼 활성화 조건 실행.
-
-      paintNews();
     }
   });
 }
@@ -211,7 +222,6 @@ function userClickSubscribeButton(liElement) {
 
       // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
       const subList = getSubscrbeList();
-      getNavTabView() === VIEW.MY_SUB && paintNews(subList);
     }
     // 구독하기 버튼을 눌렀을때.
     else {
@@ -226,17 +236,16 @@ function userClickSubscribeButton(liElement) {
 // 페이지네이션
 function pagination() {
   leftBtn.addEventListener(EVENT.CLICK, (e) => {
-    const subList = getSubscrbeList();
-    selectedPage -= 1;
-    getNavTabView() === VIEW.MY_SUB ? paintNews(subList) : paintNews();
+    let page = getSelectedPage();
+    setSelectedPage(--page);
+
     isBtnDisabled();
   });
 
   rightBtn.addEventListener(EVENT.CLICK, (e) => {
-    const subList = getSubscrbeList();
-    selectedPage += 1;
-    console.log(subList);
-    getNavTabView() === VIEW.MY_SUB ? paintNews(subList) : paintNews();
+    let page = getSelectedPage();
+    setSelectedPage(++page);
+
     isBtnDisabled();
   });
 }
@@ -244,12 +253,12 @@ function pagination() {
 // 페이지에 따라 버튼을 비활성화
 function isBtnDisabled() {
   // 보고있는 페이지가 첫 페이지라면 좌측 버튼 삭제.
-  selectedPage === FIRST_PAGE
+  getSelectedPage() === FIRST_PAGE
     ? handleElementClass(leftBtn, "add", "btn-disabled")
     : handleElementClass(leftBtn, "remove", "btn-disabled");
 
   // 보고있는 페이지가 마지막 페이지라면 우측 버튼 삭제.
-  selectedPage === LAST_PAGE
+  getSelectedPage() === LAST_PAGE
     ? handleElementClass(rightBtn, "add", "btn-disabled")
     : handleElementClass(rightBtn, "remove", "btn-disabled");
   // 첫 페이지와 마지막 페이지가 같다면 모든 버튼 삭제.
@@ -261,10 +270,10 @@ function isBtnDisabled() {
 }
 
 export function addGridButton() {
-  selectedPage === FIRST_PAGE
+  getSelectedPage() === FIRST_PAGE
     ? handleElementClass(leftBtn, "add", "btn-disabled")
     : handleElementClass(leftBtn, "remove", "btn-disabled");
-  selectedPage === LAST_PAGE
+  getSelectedPage() === LAST_PAGE
     ? handleElementClass(rightBtn, "add", "btn-disabled")
     : handleElementClass(rightBtn, "remove", "btn-disabled");
 }

@@ -24,6 +24,7 @@ import {
   getGoBefore,
   getFirstPage,
 } from "../store/state.js";
+import { store } from "../store/redux.js";
 import {
   removeChildElement,
   handleElementClass,
@@ -65,12 +66,11 @@ const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
+store.subscribe(() => {
+  getUserView() === VIEW.LIST && paintNewsCategory();
+});
+
 export function paintNewsCategory() {
-  makeMySubNews();
-
-  setCategoryIndex(0);
-  setContentsPage(1);
-
   const categoryNameList =
     getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
 
@@ -142,9 +142,6 @@ export function paintNewsCategory() {
 
 // 그리드 뷰에서 리스트 뷰로 전환시 프로그래스 바를 처음부터 진행시켜주는 함수.
 function restartProgressBar(categoryList, contentsLength) {
-  // 첫 번째 카테고리로 초기화
-  setCategoryIndex(0);
-
   // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
   removeProgressAction();
   // 종합/경제 카테고리 li에 프로그래스 바 클래스 추가.
@@ -203,14 +200,18 @@ function addEventOnMySubAndAllSub() {
     if (getUserView() === VIEW.LIST) {
       setNavTabViewToMy();
       onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
-      paintNewsCategory();
+      setCategoryIndex(0);
+      setContentsPage(1);
+      // paintNewsCategory();
     }
   });
   allPublisher.addEventListener("click", () => {
     if (getUserView() === VIEW.LIST) {
       setNavTabViewToAll();
       onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
-      paintNewsCategory();
+      setCategoryIndex(0);
+      setContentsPage(1);
+      // paintNewsCategory();
     }
   });
 }
@@ -228,11 +229,16 @@ function handlProgressAnimationEnd(
 ) {
   return function () {
     removeProgressAction();
-    let tmp = getCategoryIdx();
-    getGoBefore() ? setCategoryIndex(--tmp) : setCategoryIndex(++tmp);
-    tmp = tmp < 0 ? totalCategory - 1 : tmp;
-    tmp %= totalCategory;
-    setCategoryIndex(tmp);
+    let categoryIdx = getCategoryIdx();
+
+    getGoBefore()
+      ? setCategoryIndex(--categoryIdx)
+      : setCategoryIndex(++categoryIdx);
+
+    categoryIdx = categoryIdx < 0 ? totalCategory - 1 : categoryIdx;
+    categoryIdx %= totalCategory;
+    setCategoryIndex(categoryIdx);
+    setContentsPage(1);
     setGoBefore(false);
 
     startProgressAction(categoryList, contentsLength);

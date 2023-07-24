@@ -1,5 +1,5 @@
 import { removeChildElement, snackBarAction } from "../utils/util.js";
-import { MESSAGE, POSITION, EVENT } from "./constant.js";
+import { MESSAGE, POSITION, EVENT, VIEW } from "./constant.js";
 import { paintNewsCategory } from "../newsstand/newsCategory.js";
 import {
   isSubscribe,
@@ -8,10 +8,11 @@ import {
   getCurrentContent,
   setCategoryIndex,
   setContentsPage,
-  setGoBefore,
   getCategoryIdx,
   getGoBefore,
   getFirstPage,
+  getNavTabView,
+  getSubscrbeList,
 } from "../store/state.js";
 
 // 프로그래스 바 활성화
@@ -31,7 +32,7 @@ export function activeProgressClass(element, childIndex, categoryDataLength) {
 
   // animationIterationCount 속성을부여해 원하는 횟수만큼 프로그래스 바 진행.
   element.children[0].style.animationIterationCount =
-    categoryDataLength[childIndex];
+    categoryDataLength[childIndex] - getCurrentContent() + 1;
 }
 
 // 프로그래스 바 비활성화
@@ -149,8 +150,8 @@ export function nextContents(
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) - 1;
     // 애니메이션을 지웠다가 다시 실행.
-    removeProgressAction();
-    addProgressAction(element);
+    // removeProgressAction();
+    // addProgressAction(element);
 
     element.children[0].style.animationIterationCount = reCount;
   } else if (clickPosition === POSITION.LEFT) {
@@ -158,14 +159,8 @@ export function nextContents(
       parseInt(element.children[0].style.animationIterationCount) + 1;
 
     if (getGoBefore()) {
-      // 애니메이션을 지웠다가 다시 실행.
-      removeProgressAction();
-      addProgressAction(element);
       element.children[0].style.animationIterationCount = 0;
     } else {
-      // 애니메이션을 지웠다가 다시 실행.
-      removeProgressAction();
-      addProgressAction(element);
       element.children[0].style.animationIterationCount = reCount;
     }
   }
@@ -251,10 +246,9 @@ export function onUserClickCategory(
     element.addEventListener("click", (e) => {
       // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
       removeProgressAction();
-
       setCategoryIndex(idx % CATEGORY_NUMBER);
+      setContentsPage(1);
       startProgressAction(categoryList, categoryDataLength);
-
       // 목록에 맞는 데이터 생성
       makeNewsList(getFirstPage(), CATEROY_NUMBER, categoryDataList);
     });
@@ -269,10 +263,23 @@ export function leftBtnEvent(
 ) {
   return function () {
     let currentContents = getCurrentContent();
-    setContentsPage(--cc);
+
+    setContentsPage(--currentContents);
 
     if (currentContents <= 0) {
-      setGoBefore(true);
+      // setGoBefore(true);
+      if (getNavTabView() === VIEW.MY_SUB) {
+        let idx =
+          getCategoryIdx() <= 0
+            ? getSubscrbeList().length - 1
+            : getCategoryIdx() - 1;
+
+        setCategoryIndex(idx);
+      } else {
+        let idx = getCategoryIdx() <= 0 ? 7 - 1 : getCategoryIdx() - 1;
+
+        setCategoryIndex(idx);
+      }
     }
     currentContents = currentContents <= 0 ? 1 : currentContents;
     setContentsPage(currentContents);
@@ -308,8 +315,8 @@ export function rightBtnEvent(
 
 // 카테고리 변경시 프로그래스 바 진행.
 export function startProgressAction(categoryList, categoryDataLength) {
-  setContentsPage(1);
-  const childIndex = getCategoryIdx();
+  const idx = getNavTabView() === VIEW.MY_SUB ? getSubscrbeList().length : 7;
+  const childIndex = getCategoryIdx() % idx;
 
   const element = categoryList[childIndex]; // 자식 찾기
 
