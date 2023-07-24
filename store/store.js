@@ -32,6 +32,9 @@ class Store {
         this.viewState = {...this.viewState,  ...newState};
         // this.renderView();
         this.notify();
+        if (this.viewState.isChangeView === true){
+            this.viewState.isChangeView = false
+        }
     }
     setSubList(id, type){
         switch(type){
