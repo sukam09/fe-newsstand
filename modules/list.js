@@ -2,6 +2,7 @@ import { MESSAGE, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
+import { getState } from "../observer/observer.js";
 
 let mediaInfo;
 let categoryInfo = {
@@ -53,14 +54,14 @@ const setListArrowEvent = () => {
 
   $leftArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX--;
+      if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX--;
       else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX--;
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
     if (!STATE.MODE.IS_GRID) {
-      if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX++;
+      if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX++;
       else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
       setFullList();
     }
@@ -109,7 +110,7 @@ const clickSubButton = () => {
       STATE.LIST_MODE.CATE_MEDIA_IDX
     ];
   const subsId = STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
-  const mediaId = STATE.MODE.IS_TOTAL ? totalId : subsId;
+  const mediaId = getState("isTotalMode") ? totalId : subsId;
   const mediaName = mediaInfo[mediaId].name;
   changeSubState({ mediaId, mediaName });
 };
@@ -120,7 +121,7 @@ const clickSubButton = () => {
 const changeIdx = () => {
   let cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
 
-  if (STATE.MODE.IS_TOTAL) {
+  if (getState("isTotalMode")) {
     if (
       STATE.LIST_MODE.CATE_IDX === 0 &&
       STATE.LIST_MODE.CATE_MEDIA_IDX === -1
@@ -152,7 +153,7 @@ const changeIdx = () => {
       STATE.LIST_MODE.CATE_IDX++;
       STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
     }
-  } else if (!STATE.MODE.IS_TOTAL) {
+  } else if (!getState("isTotalMode")) {
     if (STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === -1) {
       STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
     } else if (
@@ -169,7 +170,7 @@ const changeIdx = () => {
  */
 const setCategoryBar = () => {
   $categoryBar.innerHTML = "";
-  if (STATE.MODE.IS_TOTAL) {
+  if (getState("isTotalMode")) {
     setACategoryBar({ keyList: categoryKeys });
   } else {
     const subMediaName = STATE.SUBSCRIBE_LIST.map(
@@ -183,7 +184,7 @@ const setCategoryBar = () => {
  * @returns 현재 카테고리인지 여부
  */
 const isCurCategory = ({ cateIdx }) => {
-  if (STATE.MODE.IS_TOTAL) {
+  if (getState("isTotalMode")) {
     // 전체모드일 때
     return STATE.LIST_MODE.CATE_IDX === cateIdx;
   } else {
@@ -200,7 +201,7 @@ const setACategoryBar = ({ keyList }) => {
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
       if (isCurCategory({ cateIdx: idx })) return;
-      if (STATE.MODE.IS_TOTAL) {
+      if (getState("isTotalMode")) {
         STATE.LIST_MODE.CATE_IDX = idx;
         STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
       } else {
@@ -236,14 +237,14 @@ const setProgressBar = () => {
   });
 
   // 2. 모드 따라 현재 선택한 카테고리 위치에 프로그래스바 추가
-  const curCateIdx = STATE.MODE.IS_TOTAL
+  const curCateIdx = getState("isTotalMode")
     ? STATE.LIST_MODE.CATE_IDX
     : STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX;
   const $li = $categoryBar.children[curCateIdx];
   $li.className = "category_selected";
 
   const $cntDiv = $li.children[1];
-  if (STATE.MODE.IS_TOTAL) {
+  if (getState("isTotalMode")) {
     // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
   <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
@@ -261,7 +262,7 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    if (STATE.MODE.IS_TOTAL) STATE.LIST_MODE.CATE_MEDIA_IDX++;
+    if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX++;
     else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
     setFullList();
   });
@@ -274,7 +275,7 @@ const setListView = () => {
   const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
 
   // 모드에 따라 mediaId 세팅
-  const mediaId = STATE.MODE.IS_TOTAL
+  const mediaId = getState("isTotalMode")
     ? categoryInfo[cate][STATE.LIST_MODE.CATE_MEDIA_IDX]
     : STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
 
@@ -310,7 +311,7 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
-  if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
+  if (!getState("isTotalMode") && STATE.SUBSCRIBE_LIST.length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;

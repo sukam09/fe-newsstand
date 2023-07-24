@@ -1,5 +1,6 @@
 import { STATE } from "../constant.js";
 import { moveGridView, moveListView } from "./utils.js";
+import { getState, setState } from "../observer/observer.js";
 
 const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");
@@ -24,7 +25,7 @@ const onClickSubscribeMode = ({ className }) => {
   $unselected.classList.remove("main-nav_selected");
   $unselected.classList.add("main-nav_unselected");
 
-  STATE.MODE.IS_TOTAL = $selected === $totalMedia;
+  setState("isTotalMode", $selected === $totalMedia);
 
   // 전체 언론사 -> 그리드 / 내가 구독한 언론사 -> 리스트뷰 디폴트
   className === "main-nav_total" ? moveGridView() : moveListView();

@@ -2,6 +2,8 @@ import { MEDIA, MESSAGE, STATE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
+import { getState, register, setState } from "../observer/observer.js";
+import { gridPageNum, isLightMode } from "../store/index.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -17,7 +19,7 @@ const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 const makeGrid = () => {
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
-    const imgSrc = STATE.MODE.IS_LIGHT
+    const imgSrc = isLightMode
       ? `${mediaInfo[idList[i]].path_light}`
       : `${mediaInfo[idList[i]].path_dark}`;
 
@@ -42,7 +44,9 @@ const makeGrid = () => {
  * 구독 버튼 영역 추가
  */
 const addSubscribeButton = (idx) => {
-  const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
+  const mediaId = getState("isTotalMode")
+    ? idList[idx]
+    : STATE.SUBSCRIBE_LIST[idx];
   const $buttonWrapper = document.createElement("div");
   $buttonWrapper.classList.add("news-grid_button_wrapper");
 
@@ -70,7 +74,9 @@ const addSubscribeButton = (idx) => {
  * @parm idx - idList 내에 위치한 미디어 idx
  */
 const clickSubButton = (idx) => {
-  const mediaId = STATE.MODE.IS_TOTAL ? idList[idx] : STATE.SUBSCRIBE_LIST[idx];
+  const mediaId = getState("isTotalMode")
+    ? idList[idx]
+    : STATE.SUBSCRIBE_LIST[idx];
   const mediaName = mediaInfo[mediaId].name;
 
   changeSubState({ mediaId, mediaName });
@@ -119,21 +125,21 @@ const setGridModeEvent = () => {
  */
 const onClickGridMode = ({ className }) => {
   onClickSubscribeMode({ className });
-  STATE.GRID_PAGE_NUM = 0;
-  setNewPage(0, MEDIA_NUM);
+  setState("gridPageNum", 0);
+  setNewPage();
 };
 
 /**
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
-const setNewPage = (start) => {
-  if (!STATE.MODE.IS_TOTAL && STATE.SUBSCRIBE_LIST.length === 0) {
+const setNewPage = () => {
+  if (!getState("isTotalMode") && STATE.SUBSCRIBE_LIST.length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;
   }
-  changeButtonView(start);
-  changeImgSrc(start);
+  changeButtonView();
+  changeImgSrc();
   setArrowVisible();
 };
 
@@ -141,9 +147,12 @@ const setNewPage = (start) => {
  * 언론사 이미지 src 변경
  * @param {언론사 리스트 중 시작 idx} start
  */
-const changeImgSrc = (start) => {
+const changeImgSrc = () => {
+  const start = getState("gridPageNum") * MEDIA_NUM;
   for (let i = start; i < start + MEDIA_NUM; i++) {
-    const mediaIdx = STATE.MODE.IS_TOTAL ? idList[i] : STATE.SUBSCRIBE_LIST[i];
+    const mediaIdx = getState("isTotalMode")
+      ? idList[i]
+      : STATE.SUBSCRIBE_LIST[i];
 
     const $img = document.querySelector(`.img${i - start}`);
     const $buttonWrapper = $img.nextSibling;
@@ -174,7 +183,8 @@ const changeImgSrc = (start) => {
 /**
  * @param {현재 페이지 media 정보} mediaList
  */
-const changeButtonView = (start) => {
+const changeButtonView = () => {
+  const start = getState("gridPageNum") * MEDIA_NUM;
   const $newsList = $newsWrapper.querySelectorAll("li");
 
   $newsList.forEach((li, idx) => {
@@ -189,10 +199,8 @@ const changeButtonView = (start) => {
  * @param num 페이지 이동을 위한 카운트 변수
  */
 const clickArrow = (num) => {
-  STATE.GRID_PAGE_NUM += num;
-
-  let start = STATE.GRID_PAGE_NUM * MEDIA_NUM;
-  setNewPage(start);
+  setState("gridPageNum", getState("gridPageNum") + num);
+  setNewPage();
 };
 
 /**
@@ -203,23 +211,23 @@ const setArrowVisible = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   // 페이지 제한 0~3에 따른 hidden 여부
-  if (STATE.GRID_PAGE_NUM === 0) {
+  if (getState("gridPageNum") === 0) {
     $leftArrow.classList.add("hidden");
     $rightArrow.classList.remove("hidden");
-  } else if (STATE.GRID_PAGE_NUM > 0 && STATE.GRID_PAGE_NUM < 3) {
+  } else if (getState("gridPageNum") > 0 && getState("gridPageNum") < 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.remove("hidden");
-  } else if (STATE.GRID_PAGE_NUM === 3) {
+  } else if (getState("gridPageNum") === 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.add("hidden");
   }
 
   // 미디어 개수에 따른 hidden 여부
-  const totalPage = STATE.MODE.IS_TOTAL
+  const totalPage = getState("isTotalMode")
     ? idList.length / MEDIA_NUM
     : STATE.SUBSCRIBE_LIST.length / MEDIA_NUM;
 
-  if (STATE.GRID_PAGE_NUM < totalPage - 1) {
+  if (getState("gridPageNum") < totalPage - 1) {
     $rightArrow.classList.remove("hidden");
   } else {
     $rightArrow.classList.add("hidden");
@@ -236,6 +244,10 @@ const getGridInfo = async () => {
 async function initGridView() {
   await getGridInfo();
   idList = shuffleList(idList);
+  register(isLightMode, makeGrid);
+  register(gridPageNum, changeButtonView);
+  register(gridPageNum, changeImgSrc);
+
   makeGrid();
   setArrowVisible();
   setGridArrowEvent();

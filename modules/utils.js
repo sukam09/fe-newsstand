@@ -1,4 +1,5 @@
 import { IMAGE, MEDIA, MESSAGE, STATE } from "../constant.js";
+import { setState } from "../observer/observer.js";
 import { changeImgSrc, setNewPage } from "./grid.js";
 import { setCategoryBar, setFullList, setListView } from "./list.js";
 
@@ -28,12 +29,12 @@ const setColorModeEvent = () => {
 
   $colorModeBtn.addEventListener("click", () => {
     $html.classList.toggle("dark");
-    STATE.MODE.IS_LIGHT = !STATE.MODE.IS_LIGHT;
+
+    setState("isLightMode", $html.className !== "dark");
+
     $colorModeBtn.src =
       $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
-    STATE.MODE.IS_GRID
-      ? changeImgSrc(MEDIA_NUM * STATE.GRID_PAGE_NUM)
-      : setListView();
+    STATE.MODE.IS_GRID ? changeImgSrc() : setListView();
   });
 };
 /**
@@ -87,10 +88,7 @@ const moveGridView = () => {
 
   STATE.MODE.IS_GRID = true;
   const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-  setNewPage(
-    STATE.GRID_PAGE_NUM * MEDIA_NUM,
-    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-  );
+  setNewPage();
 };
 
 /**
@@ -129,10 +127,7 @@ const initSubsModalView = () => {
 
     if (STATE.MODE.IS_GRID) {
       const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-      setNewPage(
-        STATE.GRID_PAGE_NUM * MEDIA_NUM,
-        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-      );
+      setNewPage();
     } else {
       setCategoryBar();
       setFullList();
@@ -146,7 +141,7 @@ const initSubsModalView = () => {
 /**
  * 공통뷰 & 공통 이벤트 세팅
  */
-async function initCommonView() {
+function initCommonView() {
   setColorModeEvent();
   setReload();
   setDate();
