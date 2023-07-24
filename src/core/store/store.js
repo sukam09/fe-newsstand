@@ -32,7 +32,22 @@ const gridPageIdx = initState({
 
 const subscribeList = initState({
   key: "subscribeList",
-  defaultState: [],
+  defaultState: ["datanews", "세계일보"],
+});
+
+const isAlertOn = initState({
+  key: "isAlertOn",
+  defaultState: false,
+});
+
+const isSnackOn = initState({
+  key: "isSnackOn",
+  defaultState: false,
+});
+
+const deletePress = initState({
+  key: "deletePress",
+  defaultState: "",
 });
 
 export {
@@ -43,4 +58,7 @@ export {
   listPageIdx,
   gridPageIdx,
   subscribeList,
+  isAlertOn,
+  isSnackOn,
+  deletePress,
 };

@@ -1,21 +1,23 @@
-import { MAX_GRID_COUNT } from "../constant/constants.js";
-import { getState, resister, setState } from "./observer/observer.js";
+import { MAX_GRID_COUNT } from "../core/store/constants.js";
+import { getState, register, setState } from "../core/observer/observer.js";
 import {
   gridPageIdx,
   isGrid,
   isSubTab,
   listPageIdx,
   subscribeList,
-} from "./store/store.js";
-import { $ } from "./util.js";
+} from "../core/store/store.js";
+import { $ } from "../core/utils/util.js";
 
 const leftButton = $(".left_navigation_button");
 const rightButton = $(".right_navigation_button");
 
 function updatePages(increment) {
-  const currentMode = getState(isGrid);
-  const key = currentMode ? gridPageIdx : listPageIdx;
-  setState(key, getState(key) + increment);
+  return () => {
+    const currentMode = getState(isGrid);
+    const key = currentMode ? gridPageIdx : listPageIdx;
+    setState(key, getState(key) + increment);
+  };
 }
 
 function updateNavigationButton() {
@@ -74,13 +76,13 @@ function showLeftButton() {
 }
 
 function setNavigationButton() {
-  leftButton.addEventListener("click", () => updatePages(-1));
-  rightButton.addEventListener("click", () => updatePages(1));
-  resister(gridPageIdx, updateNavigationButton);
-  resister(listPageIdx, updateNavigationButton);
-  resister(isGrid, updateNavigationButton);
-  resister(isSubTab, updateNavigationButton);
-  resister(isSubTab, () => setState(gridPageIdx, 0));
+  leftButton.addEventListener("click", updatePages(-1));
+  rightButton.addEventListener("click", updatePages(1));
+  register(gridPageIdx, updateNavigationButton);
+  register(listPageIdx, updateNavigationButton);
+  register(isGrid, updateNavigationButton);
+  register(isSubTab, updateNavigationButton);
+  register(isSubTab, () => setState(gridPageIdx, 0));
 }
 
 export { setNavigationButton };

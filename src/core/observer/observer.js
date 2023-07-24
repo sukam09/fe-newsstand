@@ -23,6 +23,6 @@ function notify(key) {
   });
 }
 
-export function resister(key, observer) {
+export function register(key, observer) {
   globalStates[key].observers.add(observer);
 }

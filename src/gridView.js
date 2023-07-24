@@ -1,38 +1,52 @@
-import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
-import { getPressObj } from "./api.js";
-import { getState, resister, setState } from "./observer/observer.js";
-import { gridPageIdx, isSubTab, subscribeList } from "./store/store.js";
-import { $, $All, shuffleArray } from "./util.js";
+import { MAX_GRID_COUNT, PRESS_COUNT } from "./core/store/constants.js";
+import { getPressObj } from "./core/utils/api.js";
+import { getState, register, setState } from "./core/observer/observer.js";
+import {
+  deletePress,
+  gridPageIdx,
+  isAlertOn,
+  isGrid,
+  isSnackOn,
+  isSubTab,
+  subscribeList,
+} from "./core/store/store.js";
+import { $, $All, shuffleArray } from "./core/utils/util.js";
 
 let pressObj = null;
 
 // 셔플된 리스트 그리드리스트에 append
 function appendGridList(shuffledArr) {
   const isSubscribeTab = getState(isSubTab);
+  const isGridMode = getState(isGrid);
   const subList = getState(subscribeList);
   const gridContainerList = $All(".grid_container");
   gridContainerList.forEach((item) => (item.innerHTML = ""));
-  if (isSubscribeTab) {
-    const subPressList = pressObj.filter((item) => {
-      return subList.includes(item.name);
-    });
-    subPressList.forEach((element, idx) => {
-      const id = Math.floor(idx / MAX_GRID_COUNT);
-      const gridItem = createGridItem(element);
-      gridContainerList[id].appendChild(gridItem);
-    });
-    for (let i = subPressList.length; i < PRESS_COUNT; i++) {
-      const id = Math.floor(i / MAX_GRID_COUNT);
-      const gridItem = document.createElement("li");
-      gridItem.className = "grid_item";
-      gridContainerList[id].appendChild(gridItem);
+  if (isGridMode) {
+    gridContainerList[0].style.display = "grid";
+    if (isSubscribeTab) {
+      const subPressList = pressObj.filter((item) => {
+        return subList.includes(item.name);
+      });
+      subPressList.forEach((element, idx) => {
+        const id = Math.floor(idx / MAX_GRID_COUNT);
+        const gridItem = createGridItem(element);
+        gridContainerList[id].appendChild(gridItem);
+      });
+      for (let i = subPressList.length; i < PRESS_COUNT; i++) {
+        const id = Math.floor(i / MAX_GRID_COUNT);
+        const gridItem = document.createElement("li");
+        gridItem.className = "grid_item";
+        gridContainerList[id].appendChild(gridItem);
+      }
+    } else {
+      shuffledArr.forEach((element, idx) => {
+        const id = Math.floor(idx / MAX_GRID_COUNT);
+        const gridItem = createGridItem(element);
+        gridContainerList[id].appendChild(gridItem);
+      });
     }
   } else {
-    shuffledArr.forEach((element, idx) => {
-      const id = Math.floor(idx / MAX_GRID_COUNT);
-      const gridItem = createGridItem(element);
-      gridContainerList[id].appendChild(gridItem);
-    });
+    gridContainerList.forEach((item) => (item.style.display = "none"));
   }
 }
 
@@ -54,6 +68,7 @@ function createSubButton(id) {
     const currentSubList = getState(subscribeList);
     const targetPress = pressObj.find((item) => item.id === id);
     setState(subscribeList, [...currentSubList, targetPress.name]);
+    setState(isSnackOn, true);
     toggleSubButton(targetPress, subButtonContainer);
   });
   subButtonContainer.appendChild(subButton);
@@ -68,17 +83,17 @@ function createUnSubButton(id) {
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const currentSubList = getState(subscribeList);
     const targetPress = pressObj.find((item) => item.id === id);
-    const newSubList = currentSubList.filter((item) => {
-      return item != targetPress.name;
-    });
-    setState(subscribeList, newSubList);
+    setVisible(targetPress);
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
   unSubButtonContainer.appendChild(unSubButton);
 
   return unSubButtonContainer;
+}
+function setVisible(targetPress) {
+  setState(isAlertOn, true);
+  setState(deletePress, targetPress.name);
 }
 
 // 그리드 아이템 리스트 태그 생성
@@ -141,7 +156,19 @@ function showGridPage() {
 
 function checkMode() {
   const isSubView = getState(isSubTab);
+  const subListCount = getState(subscribeList).length;
   if (isSubView) {
+    switch (subListCount) {
+      case 0:
+        setState(isSubTab, false);
+        return;
+      case MAX_GRID_COUNT:
+        setState(gridPageIdx, 0);
+        return;
+      case MAX_GRID_COUNT * 2:
+        setState(gridPageIdx, 1);
+        return;
+    }
     appendGridList();
   }
 }
@@ -150,11 +177,17 @@ async function setGridEvents() {
   pressObj = await getPressObj();
   const shuffledArr = shuffleArray(pressObj);
   appendGridList(shuffledArr);
-  resister(gridPageIdx, showGridPage);
-  resister(isSubTab, () => {
+  register(gridPageIdx, showGridPage);
+  register(isSubTab, () => {
     appendGridList(shuffledArr);
   });
-  resister(subscribeList, checkMode);
+  register(isGrid, () => {
+    appendGridList(shuffledArr);
+  });
+  register(subscribeList, checkMode);
+  register(subscribeList, () => {
+    console.log(getState(subscribeList));
+  });
 }
 
 export { setGridEvents };

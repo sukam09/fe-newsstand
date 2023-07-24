@@ -1,12 +1,13 @@
-import { $, $All } from "./util.js";
-import { getState, resister, setState } from "./observer/observer.js";
+import { $, $All } from "./core/utils/util.js";
+import { getState, register, setState } from "./core/observer/observer.js";
 import {
+  categoryIdx,
   gridPageIdx,
   isGrid,
   isSubTab,
   listPageIdx,
   subscribeList,
-} from "./store/store.js";
+} from "./core/store/store.js";
 
 // 로고 새로고침
 function refreshWindow() {
@@ -81,9 +82,13 @@ function toggleGridClicked() {
 
 function toggleSubClicked() {
   const subListCount = getState(subscribeList).length;
-  subListCount === 0
-    ? alert("구독한 언론사가 없습니다!")
-    : setState(isSubTab, !getState(isSubTab));
+  if (subListCount === 0) {
+    alert("구독한 언론사가 없습니다!");
+  } else {
+    setState(isSubTab, !getState(isSubTab));
+    setState(categoryIdx, 0);
+    setState(listPageIdx, 1);
+  }
 }
 
 function toggleMainView() {
@@ -120,8 +125,8 @@ function setEvent() {
 
 (function init() {
   setEvent();
-  resister(isGrid, toggleMainView);
-  resister(isSubTab, updateSubViewButton);
+  register(isGrid, toggleMainView);
+  register(isSubTab, updateSubViewButton);
 })();
 
 export { updateDate };

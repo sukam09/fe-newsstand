@@ -1,8 +1,11 @@
-import { CATEGORY_TAB_TIME, CATEGORY_CLICKED } from "../constant/constants.js";
-import { getNewsContents } from "./api.js";
-import { getState, resister, setState } from "./observer/observer.js";
-import { categoryIdx, isGrid, listPageIdx } from "./store/store.js";
-import { $, $All } from "./util.js";
+import {
+  CATEGORY_TAB_TIME,
+  CATEGORY_CLICKED,
+} from "../core/store/constants.js";
+import { getNewsContents } from "../core/utils/api.js";
+import { getState, register, setState } from "../core/observer/observer.js";
+import { categoryIdx, isGrid, listPageIdx } from "../core/store/store.js";
+import { $, $All } from "../core/utils/util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval;
@@ -53,20 +56,20 @@ function appendCategoryList(newsList) {
 // 카테고리 리스트 태그 생성
 function createCategoryList(item, idx) {
   // li 생성
-  const newList = document.createElement("li");
+  const newCategory = document.createElement("li");
   idx === 0
-    ? (newList.className = "category_list category_list--clicked")
-    : (newList.className = "category_list");
-  newList.addEventListener("click", () => {
+    ? (newCategory.className = "category_list category_list--clicked")
+    : (newCategory.className = "category_list");
+  newCategory.addEventListener("click", () => {
     categoryClicked(item);
   });
-  newList.id = `category${item.id}`;
+  newCategory.id = `category${item.id}`;
 
   // 제목 생성
   const title = document.createElement("span");
   title.className = "category_list__title";
   title.innerHTML = `${item.categoryName}`;
-  newList.appendChild(title);
+  newCategory.appendChild(title);
 
   // 페이지 카운터 생성
   const counterContainer = document.createElement("wrapper");
@@ -79,13 +82,13 @@ function createCategoryList(item, idx) {
   allPage.innerHTML = `${item.data.length}`;
   counterContainer.appendChild(nowPage);
   counterContainer.appendChild(allPage);
-  newList.appendChild(counterContainer);
+  newCategory.appendChild(counterContainer);
 
   // 프로그레스 바 생성
   const progressBar = document.createElement("div");
   progressBar.className = "progressbar";
-  newList.appendChild(progressBar);
-  return newList;
+  newCategory.appendChild(progressBar);
+  return newCategory;
 }
 
 // 현재 리스트 페이지에 카테고리 동기화
@@ -134,9 +137,9 @@ function updateCategory() {
 
 export async function setCategory() {
   const newsList = await getNewsContents();
-  resister(isGrid, startCategoryInterval);
-  resister(listPageIdx, refreshInterval);
-  resister(listPageIdx, updateCategory);
-  resister(categoryIdx, updateCategoryClicked);
+  register(isGrid, startCategoryInterval);
+  register(listPageIdx, refreshInterval);
+  register(listPageIdx, updateCategory);
+  register(categoryIdx, updateCategoryClicked);
   appendCategoryList(newsList);
 }
