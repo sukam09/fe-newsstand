@@ -9,7 +9,6 @@ const headerApp = () => {
 
   const setDate = () => {
     const timeElement = document.querySelector('time');
-
     const options = {
       year: 'numeric',
       month: '2-digit',

@@ -1,28 +1,64 @@
 import NavPageIndicator from './NavPageIndicator.js';
 import ListProgressBar from './Progress.js';
 
+const addMouseEvents = (listNavItem, mouse, onClick) => {
+  listNavItem.addEventListener('mousedown', ({ clientX, clientY }) => {
+    mouse = { x: clientX, y: clientY };
+  });
+  listNavItem.addEventListener('mouseup', ({ clientX, clientY }) => {
+    if (mouse.x !== clientX || mouse.y !== clientY) return;
+    onClick();
+  });
+};
+
+const navItemName = (selected, title) => {
+  return `<div class="name ${
+    selected ? 'selected_bold14' : ''
+  }">${title}</div>`;
+};
+
+const ListNavContent = (selected, title, indicator, onClick) => {
+  const listNavContent = document.createElement('div');
+  let mouse = { x: null, y: null };
+
+  addMouseEvents(listNavContent, mouse, onClick);
+  listNavContent.classList.add('list_view_select_content', 'pointer');
+  listNavContent.insertAdjacentHTML('beforeend', navItemName(selected, title));
+  if (selected) {
+    listNavContent.id = 'selected_nav_item';
+    listNavContent.classList.add('text_white_default');
+    listNavContent.appendChild(NavPageIndicator(indicator));
+  } else {
+    listNavContent.classList.add('hover_medium14', 'text_weak');
+  }
+  return listNavContent;
+};
+
+const addProgressBar = (element, afterDelay) => {
+  const progressBar = ListProgressBar(afterDelay);
+  const callback = (mutationList, observer) => {
+    mutationList.forEach(mutation => {
+      if (mutation.removedNodes[0] !== progressBar) return;
+      observer.disconnect();
+      progressBar.cancelLoop();
+    });
+  };
+  const observer = new MutationObserver(callback);
+
+  element.appendChild(progressBar);
+  observer.observe(element, { childList: true });
+};
+
 const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
   const listNavItem = document.createElement('li');
-  const listNavItemContent = document.createElement('div');
-  const listNavItemName = document.createElement('div');
+  const listNavContent = ListNavContent(selected, title, indicator, onClick);
 
   listNavItem.classList.add('list_view_select');
-  listNavItemContent.classList.add('list_view_select_content', 'pointer');
-  listNavItemName.classList.add('name');
-  listNavItemName.innerText = title;
-  listNavItemContent.addEventListener('click', onClick);
-  listNavItemContent.appendChild(listNavItemName);
   if (selected) {
-    listNavItemName.classList.add('selected_bold14');
     listNavItem.classList.add('surface_brand_alt');
-    listNavItemContent.id = 'selected_nav_item';
-    listNavItemContent.classList.add('text_white_default');
-    listNavItemContent.appendChild(NavPageIndicator(indicator));
-    listNavItem.appendChild(ListProgressBar(afterDelay));
-  } else {
-    listNavItemContent.classList.add('hover_medium14', 'text_weak');
+    addProgressBar(listNavItem, afterDelay);
   }
-  listNavItem.appendChild(listNavItemContent);
+  listNavItem.appendChild(listNavContent);
   return listNavItem;
 };
 

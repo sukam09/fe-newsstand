@@ -1,65 +1,40 @@
-import gridApp from './newsGridApp.js';
-import addMediaNav from './nav/mediaNav.js';
-import listApp from './newsListApp.js';
-import { ArrowButton } from '../../components/Button.js';
+import ArrowButton from '../../components/media/ArrowButton.js';
+import MediaNav from '../../components/media/MediaNav.js';
+import MediaView from '../../components/media/MediaView.js';
+import { MEDIA_APP_DATA } from '../../constants.js';
+import Store from '../../core/Store.js';
 
-const createMediaViewWrapper = () => {
-  const mediaViewWrapper = document.createElement('div');
-  const mediaView = document.createElement('div');
-
-  mediaViewWrapper.id = 'media_view_wrapper';
-  mediaView.id = 'media_view';
-  mediaViewWrapper.appendChild(ArrowButton('left'));
-  mediaViewWrapper.appendChild(mediaView);
-  mediaViewWrapper.appendChild(ArrowButton('right'));
-
-  return mediaViewWrapper;
-};
-
-const setLayout = mediaWrapper => {
-  addMediaNav(mediaWrapper);
-  mediaWrapper.appendChild(createMediaViewWrapper());
-};
-
-const initMedia = mediaWrapper => {
-  setLayout(mediaWrapper);
-};
-
-const mediaApp = () => {
-  const mediaWrapper = document.querySelector('#media_wrapper');
-
-  mediaWrapper.mediaSelectData = [
-    {
-      id: 'media_select_all',
-      text: '전체 언론사',
-      handler: () => {
-        console.log('전체');
-      },
-      checked: true,
+const mediaApp = (defaultMedia, defaultView) => {
+  const store = new Store({
+    data: MEDIA_APP_DATA,
+    defaultView: {
+      all: 'grid',
+      subscribed: 'list',
     },
-    {
-      id: 'media_select_subscribed',
-      text: '내가 구독한 언론사',
-      handler: () => {
-        console.log('구독');
-      },
-    },
-  ];
-  mediaWrapper.viewSelectData = [
-    {
-      id: 'view_list',
-      icon: 'listView',
-      handler: listApp,
-    },
-    {
-      id: 'view_grid',
-      icon: 'gridView',
-      handler: gridApp,
-      checked: true,
-    },
-  ];
-  initMedia(mediaWrapper);
-  gridApp();
+    subscribed: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+    media: defaultMedia,
+    view: defaultView,
+  });
+
+  const render = () => {
+    const navArea = document.querySelector('#media_view_nav');
+    const mediaView = document.querySelector('#media_view');
+
+    navArea.replaceWith(MediaNav(store));
+    mediaView.replaceWith(MediaView(store));
+  };
+
+  const createLayout = () => {
+    const wrapper = document.querySelector('#media_view_wrapper');
+    const mediaView = document.createElement('div');
+
+    mediaView.id = 'media_view';
+    wrapper.append(ArrowButton('left'), mediaView, ArrowButton('right'));
+  };
+
+  store.subscribe(render);
+  createLayout();
+  render();
 };
 
 export default mediaApp;

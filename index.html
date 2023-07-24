@@ -9,13 +9,14 @@
     <script defer type="module" src="script/main.js"></script>
 </head>
 
-<body>
+<body class="surface_default">
     <div class="news_stand_wrapper">
         <header class="news_stand_header">
             <div class="title_wrapper">
                 <img src="assets/images/newsstand.svg" alt="뉴스스탠드 아이콘">
                 <h1 class="text_strong display_bold24">뉴스스탠드</h1>
             </div>
+            <div id="theme_toggle" class="text_default">◐</div>
             <time class="display_medium16 text_default"></time>
         </header>
         <div id="headline_news_wrapper">
@@ -35,6 +36,7 @@
             </article>
         </div>
         <main id="media_wrapper">
+            <nav id="media_view_nav"></nav>
             <div id="media_view_wrapper"></div>
         </main>
     </div>
