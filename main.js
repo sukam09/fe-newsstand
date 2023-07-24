@@ -1,9 +1,5 @@
-import { RollingRender } from "./module/components/Rolling.js";
-import { printGrid } from "./module/view/GridView.js";
-import { initDate } from "./module/utility/Date.js";
-import { PressFilterTab } from "./module/components/PressFilterTab.js";
-import SelectViewStyle from "./module/components/LayoutBtn.js";
-import { BtnEventHandlerRegister } from "./module/components/Arrow.js";
+import { initDate } from "./src/util/data.js";
+import { RollingRender } from "./src/view/rolling.js";
 import { renderGrid } from "./src/view/grid.js";
 import { controller } from "./src/controller/controlIndex.js";
 

@@ -2,7 +2,7 @@ import { fetchNews } from "../../api.js";
 import { store } from "../model/store.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
 import { GRID_PAGE, VIEW } from "../model/global.js";
-import { shuffle_press } from "../../module/utility/Shuffle.js";
+import { shuffle_press } from "../util/shuffle.js";
 
 export let news_data;
 const GRID_ROW = 4;

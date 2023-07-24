@@ -1,4 +1,4 @@
-import { shuffle_press } from "./module/utility/Shuffle.js";
+import { shuffle_press } from "./src/util/shuffle.js";
 
 export async function fetchNews(path) {
   const jsonData = await jsonfetch(path);

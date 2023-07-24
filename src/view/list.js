@@ -1,4 +1,4 @@
-import { shuffle_press } from "../../module/utility/Shuffle.js";
+import { shuffle_press } from "../util/shuffle.js";
 import { fieldClick } from "../controller/Components/field.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
 import { startTimer } from "../controller/timer.js";

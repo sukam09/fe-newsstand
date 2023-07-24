@@ -1,4 +1,4 @@
-import { shuffle_press } from "../../module/utility/Shuffle.js";
+import { shuffle_press } from "../util/shuffle.js";
 import { VIEW, LIST_PAGE } from "../model/global.js";
 import { store } from "../model/store.js";
 import { news_data } from "./grid.js";
