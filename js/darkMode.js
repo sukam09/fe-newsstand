@@ -1,15 +1,16 @@
-import { STATE } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
+import { getState, setState, subscribe } from "./observer/observer.js";
+import { isDark } from "./store/store.js";
 
 export function initDarkMode() {
   const $body = document.querySelector("body");
-  document.querySelector(".dark-btn").addEventListener("click",() => setDarkMode($body));
+  document.querySelector(".dark-btn").addEventListener("click", () => setDarkMode($body));
 }
 
 function setDarkMode($body) {
-  STATE.IS_DARK = !STATE.IS_DARK;
-    $body.classList.toggle("dark");
-    drawGridView();
-    drawNews();
+  setState(isDark, !getState(isDark));
+  $body.classList.toggle("dark");
+  subscribe(isDark, drawNews);
+  subscribe(isDark, drawGridView);
 }
