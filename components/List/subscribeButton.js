@@ -3,14 +3,14 @@ import { store } from "../../store/store.js";
 import alert from "../Alert/Alert.js";
 import snackbar from "../SnackBar/SnackBar.js";
 
-export const makeSubscribeBtn = (agency) => {
+export const makeSubscribeBtn = (current_page, agencies) => {
   const isSubscribed = store.subscriptions.find(
-    (item) => item.name === agency.name
+    (item) => item.name === agencies[current_page].name
   ).subscribe;
 
   const $press_subscribe = document.createElement("button");
   $press_subscribe.className = "press-subscribe";
-  $press_subscribe.id = `${agency.name}`;
+  $press_subscribe.id = `${agencies[current_page].name}`;
 
   const sr_only = document.createElement("span");
   sr_only.className = "screen-reader-only";
@@ -35,21 +35,21 @@ export const makeSubscribeBtn = (agency) => {
     ).subscribe;
 
     const message = isSubscribed
-      ? `${agency.name}`
+      ? `${agencies[current_page].name}`
       : "내가 구독한 언론사에 추가되었습니다.";
 
     if (isSubscribed) {
       alert.show(message);
-      alert.setState(target.id, isSubscribed);
+      alert.setState(target.id, isSubscribed, current_page, agencies);
     } else {
       snackbar.show(message);
       dispatcher({
         type: "TOGGLE_SUBSCRIPTIONS",
-        name: agency.name,
+        name: agencies[current_page].name,
         value: !isSubscribed,
       });
     }
-    updateSubscribeButton(agency.name);
+    updateSubscribeButton(agencies[current_page].name);
   });
   return $press_subscribe;
 };
@@ -61,7 +61,7 @@ export const updateSubscribeButton = (name) => {
     const icon = btn.querySelector("img");
     const $subscribe = btn.querySelector(".subscribe-text");
     const sr_only = btn.querySelector(".screen-reader-only");
-    console.log(data);
+
     icon.alt = data.subscribe ? "minus" : "plus";
     icon.src = data.subscribe
       ? "./asset/icon/closed.svg"

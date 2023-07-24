@@ -1,7 +1,9 @@
+import { INITIAL_CATEGORY } from "../../constants/constant.js";
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
 import { makeGrid } from "../Grid/gridElement.js";
 import { updateSubscribeButton } from "../List/subscribeButton.js";
+import { ListComponent } from "../ListComponent.js";
 
 export class Alert {
   constructor() {
@@ -46,6 +48,9 @@ export class Alert {
       const subscribe_press = document.querySelector(".subscribe_press");
       const agency_list = document.querySelector(".agency-grid");
 
+      [this.name, this.isSubscribed, this.current_page, this.agencies] =
+        this.getState();
+
       // 내가 구독한 언론사를 보고 있다면 GridComponent 다시 호출해야함.
       if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
         if (agency_list.style.display === "grid") {
@@ -53,15 +58,20 @@ export class Alert {
           cancel_elem.remove();
           makeGrid({ name: "", logo: "" });
         } else {
-          const cancel_elem = document.querySelector(".field-tab-progress");
-          cancel_elem.remove();
+          this.agencies.splice(this.current_page, 1);
+
+          updateSubscribeButton(this.name);
+          ListComponent(
+            this.current_page,
+            this.agencies,
+            this.agencies[this.current_page].name,
+            INITIAL_CATEGORY
+          );
         }
       }
 
-      [this.name, this.isSubscribed] = this.getState();
-
       this.dispatch(this.name, this.isSubscribed);
-      updateSubscribeButton(this.name);
+
       this.close();
     });
 
@@ -96,13 +106,15 @@ export class Alert {
     this.modal.style.display = "none";
   }
 
-  setState(name, isSubscribed) {
+  setState(name, isSubscribed, current_page, agencies) {
     this.name = name;
     this.isSubscribed = isSubscribed;
+    this.current_page = current_page;
+    this.agencies = agencies;
   }
 
   getState() {
-    return [this.name, this.isSubscribed];
+    return [this.name, this.isSubscribed, this.current_page, this.agencies];
   }
 
   dispatch(name, isSubscribed) {

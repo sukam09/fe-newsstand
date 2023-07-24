@@ -43,12 +43,12 @@ export const ListComponent = (
     const filtered_agencies = filterCategory(sorted_agencies, focus);
     // 카테고리 FieldTab, 메인 및 서브 뉴스 생성
     makeFieldTab(current_page, sorted_agencies, focus);
-    makePressNews(filtered_agencies[current_page]);
+    makePressNews(current_page, filtered_agencies);
     stopProgress();
     startProgress(sorted_agencies, current_page, current_category);
   } else {
     makeFieldTab(current_page, sorted_agencies, focus);
-    makePressNews(sorted_agencies[current_page]);
+    makePressNews(current_page, sorted_agencies);
     stopProgress();
     startProgress(sorted_agencies, current_page, current_category);
   }
