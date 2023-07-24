@@ -1,22 +1,32 @@
 import { html } from '../core/createElement.js';
-function createCategoryHtml(categorys, CURRENT_INDEX, KEY) {
-  const categoryCount = categorys.filter((name) => name === KEY).length;
-  const newCategorys = categorysParser(categorys);
+import { globalStore } from '../store/globalVarStore.js';
+
+function createCategoryHtml(NEWCATEGORY, KEY) {
   let htmls = '';
-  newCategorys.map((category) => {
-    if (category === KEY) {
-      htmls += html`
-        <div class="category-item select-category">${category} <span></span> ${CURRENT_INDEX}/${categoryCount}</div>
-      `;
-    } else {
-      htmls += html` <div class="category-item">${category}</div> `;
+  NEWCATEGORY.map((category) => {
+    if (globalStore.state.KEY === '전체언론_리스트') {
+      if (category === KEY) {
+        htmls += html`
+          <div class="category-item select-category">
+            ${category} <span></span> ${globalStore.state.전체언론_리스트.뉴스_인덱스 + 1}/${globalStore.state
+              .전체언론_리스트.전체카테고리}
+          </div>
+        `;
+      } else {
+        htmls += html` <div class="category-item">${category}</div> `;
+      }
+    } else if (globalStore.state.KEY === '구독언론_리스트') {
+      if (category === KEY) {
+        htmls += html` <div class="category-item select-category">${category} <span></span> ></div> `;
+      } else {
+        htmls += html` <div class="category-item">${category}</div> `;
+      }
     }
   });
-  document.querySelector('.newsstand__category').innerHTML = '';
-  document.querySelector('.newsstand__category').insertAdjacentHTML('beforeend', htmls);
+  const newsCategoryTag = document.querySelector('.newsstand__category');
+
+  newsCategoryTag.innerHTML = '';
+  newsCategoryTag.insertAdjacentHTML('beforeend', htmls);
 }
 
-function categorysParser(datas) {
-  return [...new Set(datas)];
-}
 export { createCategoryHtml };

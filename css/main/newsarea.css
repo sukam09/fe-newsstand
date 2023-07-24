@@ -13,6 +13,7 @@
 .newsstand__tab {
   display: flex;
   flex: 0.5;
+  gap: 3%;
 }
 .newsstand__media-nav :nth-child(2) {
   justify-content: flex-end;
@@ -21,7 +22,6 @@
   font-weight: bold;
 }
 .newsstand—text-unclicked {
-  margin-left: 3%;
   color: #879298;
 }
 
@@ -32,11 +32,14 @@
 .newsstand-area—six-col-list {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(4, 100px);
 
   border-top: 1px solid #d2dae0;
   border-left: 1px solid #d2dae0;
 
   padding-left: 0px;
+
+  height: 350px;
 }
 .newsstand—subscrtion-box {
   text-align: center;
@@ -44,18 +47,59 @@
 
   border-bottom: 1px solid #d2dae0;
   border-right: 1px solid #d2dae0;
+  position: relative;
+  perspective: 1000px;
+}
+.front {
+  width: 84px;
+  height: 20px;
+  background-size: cover;
+}
+.inner-back {
+  transform: rotateY(180deg);
+}
+.inner-front,
+.inner-back {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.back {
+  background: #ffffff;
+  height: 100%;
+
+  gap: 2px;
+
+  color: #879298;
+}
+.newsstand—subscrtion-box:hover .inner {
+  transform: rotateY(180deg);
+}
+.newsstand—subscrtion-box:hover {
+  background-color: #f5f7f9;
 }
 
 .newsstand-btn-thumb {
   margin-left: 2%;
 }
-.newsstand--left-btn {
+.newsgrid--left-btn {
   cursor: pointer;
   position: absolute;
   top: 193px;
   left: -60px;
 }
-.newsstand--right-btn {
+.newsgrid--right-btn {
   cursor: pointer;
   position: absolute;
   top: 193px;

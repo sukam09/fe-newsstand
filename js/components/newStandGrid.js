@@ -1,16 +1,29 @@
 import { html } from '../core/createElement.js';
-
+import { subScribeStore } from '../store/subScribeStore.js';
 function paintNewsstand(datas, SELECTED_PAGE) {
+  const ul = document.querySelector('.newsstand-area—six-col-list');
   let htmls = '';
   for (let idx = SELECTED_PAGE * 24; idx < SELECTED_PAGE * 24 + 24; idx++) {
     const [name, src] = datas[idx];
+    let num = '';
+    if (!name) num = 0;
     htmls += html`
       <li class="newsstand—subscrtion-box">
-        <img src="${src}" alt="${name}" />
+        <div class="inner" style="opacity: ${num};">
+          <div class="inner-front">
+            <img class="front" src="${src}" alt="${name}" />
+          </div>
+          <div class="inner-back">
+            <button class="back">
+              ${subScribeStore.getGetter('getsubscribeData').includes(name) ? '해제하기' : '+ 구독하기'}
+            </button>
+          </div>
+        </div>
       </li>
     `;
   }
-  document.querySelector('.newsstand-area—six-col-list').insertAdjacentHTML('beforeend', htmls);
+  ul.innerHTML = '';
+  ul.insertAdjacentHTML('beforeend', htmls);
 }
 
 export { paintNewsstand };

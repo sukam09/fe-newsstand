@@ -1,104 +1,78 @@
 import { getNewsListData } from '../core/apis.js';
 import { createCategoryHtml } from '../components/newsCategory.js.js';
-import { addEventListener, removeEventListener } from '../core/eventListener.js';
 import { createNewsListHtml } from '../components/newsStandList.js';
+import { shuffle } from '../utils/utils.js';
+import { subScribeStore } from '../store/subScribeStore.js';
+import { globalStore } from '../store/globalVarStore.js';
+import { reRenderComponent } from '../utils/reRenderComponent.js';
 
-let CATEGORY = [];
-let NEWS_LIST = [];
-let KEY = '방송/통신';
-let CURRENT_CATEGORY = 0;
-let CURRENT_INDEX = 1;
-let NEWCATEGORY = [];
+let EntireCateGoryCount = 0;
 
 async function initNewsStandList() {
   const datas = await getNewsListData();
-  CATEGORY = getCategoryList(datas);
-  NEWCATEGORY = categorysParser(CATEGORY);
-  createCategoryHtml(CATEGORY, CURRENT_INDEX, KEY);
-  NEWS_LIST = getNewsListFilter(NEWCATEGORY, datas);
-  createNewsListHtml(NEWS_LIST[0][0]);
-}
+  if (globalStore.state.KEY === '전체언론_리스트') {
+    const [category, categorysList] = getCategoryDataPaser(datas);
+    EntireCateGoryCount = category.length;
+    const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
 
-function handleRightBtn() {
-  console.log('right');
-  const newNewsList = nextNewsList();
-  createCategoryHtml(CATEGORY, CURRENT_INDEX, KEY);
-  createNewsListHtml(newNewsList);
+    const categoryCount = categorysList.filter((name) => name === KEY).length;
+    globalStore.commit('updateCateGoryCount', categoryCount);
 
-  isBtnDisabled();
-}
-function handleLeftBtn() {
-  console.log('left');
-  const newNewsList = prevNewsList();
-  createCategoryHtml(CATEGORY, CURRENT_INDEX, KEY);
-  createNewsListHtml(newNewsList);
-
-  //isBtnDisabled();
-}
-
-function addListBtn() {
-  const rightBtn = document.querySelector('.newslist--right-btn');
-  const leftBtn = document.querySelector('.newslist--left-btn');
-
-  addEventListener('click', rightBtn, handleRightBtn);
-  addEventListener('click', leftBtn, handleLeftBtn);
-  isBtnDisabled();
-}
-function removeListBtn() {
-  const rightBtn = document.querySelector('.newslist--right-btn');
-  //const leftBtn = document.querySelector('.newslist--left-btn');
-  removeEventListener('click', rightBtn, handleRightBtn);
-  //removeEventListener('click', leftBtn, handleLeftBtn);
-
-  document.querySelector('.news-Rbtn').classList.remove('newslist--right-btn');
-  //document.querySelector('.news-Lbtn').classList.remove('newslist--left-btn');
-}
-
-function nextNewsList() {
-  if (CURRENT_INDEX === NEWS_LIST[CURRENT_CATEGORY].length) {
-    CURRENT_CATEGORY++;
-    CURRENT_INDEX = 0;
-    KEY = NEWCATEGORY[CURRENT_CATEGORY];
+    createCategoryHtml(category, KEY);
+    const NEWS_LIST = getCurrentNewsList(category, datas);
+    createNewsListHtml(
+      NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
+    );
+    isProgressBarFinish();
+    moveSelectedCategory(category);
+  } else if (globalStore.state.KEY === '구독언론_리스트') {
+    const scribeNews = subScribeStore.state.subscribeData;
+    if (scribeNews.length === globalStore.state.구독언론_리스트.카테고리_인덱스) {
+      globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: scribeNews.length - 1 });
+    }
+    const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
+    const newsDatas = datas.filter((data) => scribeNews.includes(data.name));
+    createCategoryHtml(scribeNews, KEY);
+    createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
   }
-  return NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX++];
 }
 
-function prevNewsList() {
-  CURRENT_INDEX -= 1;
-  if (CURRENT_INDEX < 1) {
-    KEY = NEWCATEGORY[--CURRENT_CATEGORY];
-    CURRENT_INDEX = CATEGORY.filter((name) => name === KEY).length - 1;
-  }
-  return NEWS_LIST[CURRENT_CATEGORY][CURRENT_INDEX];
-}
-
-function getCategoryList(datas) {
-  return datas.map((data) => data.category);
-}
-
-function getNewsListFilter(category, datas) {
+function getCurrentNewsList(category, datas) {
   const newsList = [];
-  category.forEach((d) => {
-    newsList.push(datas.filter((data) => data.category === d));
-  });
+  category.forEach((d) => newsList.push(datas.filter((data) => data.category === d)));
   return newsList;
 }
 
-function categorysParser(datas) {
-  return [...new Set(datas)];
+function getCategoryDataPaser(datas) {
+  const categorys = datas.map((data) => data.category);
+  const newData = [...new Set(categorys)];
+  return [newData, categorys]; // [카테고리, 중복제거 안한 카테고리]
 }
 
-function isBtnDisabled() {
-  const leftBtn = document.querySelector('.newslist--left-btn');
-  CURRENT_INDEX === 1 ? leftBtn.classList.add('disabled') : leftBtn.classList.remove('disabled');
+function isProgressBarFinish() {
+  const progressBar = document.querySelector('.select-category');
+  progressBar.addEventListener('animationiteration', () => progressBarHandler());
 }
-export { initNewsStandList, addListBtn, removeListBtn };
 
-/*
-프로그래시브바가 한번씩 찰때마다 
-언론사를 20초 마다 한개씩 보여줌
-버튼을 통해서 언론사 이동 가능
+const progressBarHandler = () => {
+  globalStore.commit('nextIndex', '전체언론_리스트');
+  if (globalStore.state.전체언론_리스트.뉴스_인덱스 >= globalStore.state.전체언론_리스트.전체카테고리) {
+    globalStore.commit('nextCategoryIndex');
+    if (EntireCateGoryCount - 1 < globalStore.state.전체언론_리스트.카테고리_인덱스)
+      globalStore.commit('resetNewsList');
+  }
+  reRenderComponent('LIST_ALL');
+};
 
-마지막 순서의 언론사를 보여주면 다음 카테고리로 이동 
-마지막에 보인 카테고리에서 넘어가려면 첫카테고리로 이동
-*/
+function moveSelectedCategory(category) {
+  const categoryElement = document.querySelector('.newsstand__category');
+  categoryElement.addEventListener('click', (e) => moveSelectedCategoryHandler(e, category));
+}
+
+const moveSelectedCategoryHandler = (e, category) => {
+  const text = e.target.textContent;
+  globalStore.commit('resetNewsIndex');
+  globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: category.indexOf(text) });
+  reRenderComponent('LIST_ALL');
+};
+export { initNewsStandList };
