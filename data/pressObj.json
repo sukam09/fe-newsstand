@@ -5,6 +5,15 @@
       "name": "YTN 사이언스",
       "darkSrc": "./assets/dark/img1.svg",
       "lightSrc": "./assets/light/img1.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결"
+      ],
       "isSub": false
     },
     {
@@ -12,6 +21,15 @@
       "name": "Able뉴스",
       "darkSrc": "./assets/dark/img2.svg",
       "lightSrc": "./assets/light/img2.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -19,6 +37,15 @@
       "name": "뉴스토마토",
       "darkSrc": "./assets/dark/img3.svg",
       "lightSrc": "./assets/light/img3.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화"
+      ],
       "isSub": false
     },
     {
@@ -26,6 +53,15 @@
       "name": "데일리한국",
       "darkSrc": "./assets/dark/img4.svg",
       "lightSrc": "./assets/light/img4.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
+      ],
       "isSub": false
     },
     {
@@ -33,6 +69,15 @@
       "name": "시사오늘",
       "darkSrc": "./assets/dark/img5.svg",
       "lightSrc": "./assets/light/img5.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
+      ],
       "isSub": false
     },
     {
@@ -40,6 +85,15 @@
       "name": "대전방송",
       "darkSrc": "./assets/dark/img6.svg",
       "lightSrc": "./assets/light/img6.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
+      ],
       "isSub": false
     },
     {
@@ -47,6 +101,15 @@
       "name": "이코노타임즈",
       "darkSrc": "./assets/dark/img7.svg",
       "lightSrc": "./assets/light/img7.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
+      ],
       "isSub": false
     },
     {
@@ -54,6 +117,15 @@
       "name": "독서신문",
       "darkSrc": "./assets/dark/img8.svg",
       "lightSrc": "./assets/light/img8.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
+      ],
       "isSub": false
     },
     {
@@ -61,6 +133,15 @@
       "name": "산",
       "darkSrc": "./assets/dark/img9.svg",
       "lightSrc": "./assets/light/img9.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
+      ],
       "isSub": false
     },
     {
@@ -68,6 +149,15 @@
       "name": "시사 IN",
       "darkSrc": "./assets/dark/img10.svg",
       "lightSrc": "./assets/light/img10.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
+      ],
       "isSub": false
     },
     {
@@ -75,6 +165,15 @@
       "name": "한국경제",
       "darkSrc": "./assets/dark/img11.svg",
       "lightSrc": "./assets/light/img11.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
+      ],
       "isSub": false
     },
     {
@@ -82,6 +181,15 @@
       "name": "NEWSIS",
       "darkSrc": "./assets/dark/img12.svg",
       "lightSrc": "./assets/light/img12.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
+      ],
       "isSub": false
     },
     {
@@ -89,6 +197,15 @@
       "name": "동아일보",
       "darkSrc": "./assets/dark/img13.svg",
       "lightSrc": "./assets/light/img13.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -96,6 +213,15 @@
       "name": "KBS",
       "darkSrc": "./assets/dark/img14.svg",
       "lightSrc": "./assets/light/img14.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
+      ],
       "isSub": false
     },
     {
@@ -103,6 +229,15 @@
       "name": "BLOTER",
       "darkSrc": "./assets/dark/img15.svg",
       "lightSrc": "./assets/light/img15.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
+      ],
       "isSub": false
     },
     {
@@ -110,6 +245,15 @@
       "name": "한국경제TV",
       "darkSrc": "./assets/dark/img16.svg",
       "lightSrc": "./assets/light/img16.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
+      ],
       "isSub": false
     },
     {
@@ -117,6 +261,15 @@
       "name": "전자신문",
       "darkSrc": "./assets/dark/img17.svg",
       "lightSrc": "./assets/light/img17.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다"
+      ],
       "isSub": false
     },
     {
@@ -124,6 +277,15 @@
       "name": "스포츠조선",
       "darkSrc": "./assets/dark/img18.svg",
       "lightSrc": "./assets/light/img18.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
+      ],
       "isSub": false
     },
     {
@@ -131,6 +293,15 @@
       "name": "서울신문",
       "darkSrc": "./assets/dark/img19.svg",
       "lightSrc": "./assets/light/img19.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
+      ],
       "isSub": false
     },
     {
@@ -138,6 +309,15 @@
       "name": "중앙일보",
       "darkSrc": "./assets/dark/img20.svg",
       "lightSrc": "./assets/light/img20.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스"
+      ],
       "isSub": false
     },
     {
@@ -145,6 +325,15 @@
       "name": "노컷뉴스",
       "darkSrc": "./assets/dark/img21.svg",
       "lightSrc": "./assets/light/img21.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
+      ],
       "isSub": false
     },
     {
@@ -152,6 +341,15 @@
       "name": "프레시안",
       "darkSrc": "./assets/dark/img22.svg",
       "lightSrc": "./assets/light/img22.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
+      ],
       "isSub": false
     },
     {
@@ -159,6 +357,15 @@
       "name": "sportalkorea",
       "darkSrc": "./assets/dark/img23.svg",
       "lightSrc": "./assets/light/img23.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
+      ],
       "isSub": false
     },
     {
@@ -166,6 +373,15 @@
       "name": "한국일보",
       "darkSrc": "./assets/dark/img24.svg",
       "lightSrc": "./assets/light/img24.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
+      ],
       "isSub": false
     },
     {
@@ -173,6 +389,15 @@
       "name": "여성경제신문",
       "darkSrc": "./assets/dark/img25.svg",
       "lightSrc": "./assets/light/img25.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신"
+      ],
       "isSub": false
     },
     {
@@ -180,6 +405,15 @@
       "name": "IT조선",
       "darkSrc": "./assets/dark/img26.svg",
       "lightSrc": "./assets/light/img26.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다"
+      ],
       "isSub": false
     },
     {
@@ -187,6 +421,15 @@
       "name": "철강금속신문",
       "darkSrc": "./assets/dark/img27.svg",
       "lightSrc": "./assets/light/img27.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리"
+      ],
       "isSub": false
     },
     {
@@ -194,6 +437,15 @@
       "name": "정신의학신문",
       "darkSrc": "./assets/dark/img28.svg",
       "lightSrc": "./assets/light/img28.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진"
+      ],
       "isSub": false
     },
     {
@@ -201,6 +453,15 @@
       "name": "뉴스포스트",
       "darkSrc": "./assets/dark/img29.svg",
       "lightSrc": "./assets/light/img29.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공"
+      ],
       "isSub": false
     },
     {
@@ -208,6 +469,15 @@
       "name": "씨네21",
       "darkSrc": "./assets/dark/img30.svg",
       "lightSrc": "./assets/light/img30.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진"
+      ],
       "isSub": false
     },
     {
@@ -215,6 +485,15 @@
       "name": "정책프리핑",
       "darkSrc": "./assets/dark/img31.svg",
       "lightSrc": "./assets/light/img31.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전"
+      ],
       "isSub": false
     },
     {
@@ -222,6 +501,15 @@
       "name": "텐아시아",
       "darkSrc": "./assets/dark/img32.svg",
       "lightSrc": "./assets/light/img32.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성"
+      ],
       "isSub": false
     },
     {
@@ -229,6 +517,15 @@
       "name": "MK스포츠",
       "darkSrc": "./assets/dark/img33.svg",
       "lightSrc": "./assets/light/img33.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상"
+      ],
       "isSub": false
     },
     {
@@ -236,6 +533,15 @@
       "name": "MONDE",
       "darkSrc": "./assets/dark/img34.svg",
       "lightSrc": "./assets/light/img34.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들"
+      ],
       "isSub": false
     },
     {
@@ -243,6 +549,15 @@
       "name": "BBS NEWS",
       "darkSrc": "./assets/dark/img35.svg",
       "lightSrc": "./assets/light/img35.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
+        "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속"
+      ],
       "isSub": false
     },
     {
@@ -250,6 +565,15 @@
       "name": "티브이데일리",
       "darkSrc": "./assets/dark/img36.svg",
       "lightSrc": "./assets/light/img36.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
+        "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
+        "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인"
+      ],
       "isSub": false
     },
     {
@@ -257,6 +581,15 @@
       "name": "TV Report",
       "darkSrc": "./assets/dark/img37.svg",
       "lightSrc": "./assets/light/img37.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결"
+      ],
       "isSub": false
     },
     {
@@ -264,6 +597,15 @@
       "name": "Forbes",
       "darkSrc": "./assets/dark/img38.svg",
       "lightSrc": "./assets/light/img38.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -271,6 +613,15 @@
       "name": "주간경향",
       "darkSrc": "./assets/dark/img39.svg",
       "lightSrc": "./assets/light/img39.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화"
+      ],
       "isSub": false
     },
     {
@@ -278,6 +629,15 @@
       "name": "비즈한국",
       "darkSrc": "./assets/dark/img40.svg",
       "lightSrc": "./assets/light/img40.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
+      ],
       "isSub": false
     },
     {
@@ -285,6 +645,15 @@
       "name": "metro",
       "darkSrc": "./assets/dark/img41.svg",
       "lightSrc": "./assets/light/img41.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
+      ],
       "isSub": false
     },
     {
@@ -292,6 +661,15 @@
       "name": "JTBC",
       "darkSrc": "./assets/dark/img42.svg",
       "lightSrc": "./assets/light/img42.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
+      ],
       "isSub": false
     },
     {
@@ -299,6 +677,15 @@
       "name": "조선Biz",
       "darkSrc": "./assets/dark/img43.svg",
       "lightSrc": "./assets/light/img43.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
+      ],
       "isSub": false
     },
     {
@@ -306,6 +693,15 @@
       "name": "한겨레",
       "darkSrc": "./assets/dark/img44.svg",
       "lightSrc": "./assets/light/img44.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
+      ],
       "isSub": false
     },
     {
@@ -313,6 +709,15 @@
       "name": "연합뉴스TV",
       "darkSrc": "./assets/dark/img45.svg",
       "lightSrc": "./assets/light/img45.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
+      ],
       "isSub": false
     },
     {
@@ -320,6 +725,15 @@
       "name": "미디어오늘",
       "darkSrc": "./assets/dark/img46.svg",
       "lightSrc": "./assets/light/img46.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
+      ],
       "isSub": false
     },
     {
@@ -327,6 +741,15 @@
       "name": "디지털타임스",
       "darkSrc": "./assets/dark/img47.svg",
       "lightSrc": "./assets/light/img47.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
+      ],
       "isSub": false
     },
     {
@@ -334,6 +757,15 @@
       "name": "OSEN",
       "darkSrc": "./assets/dark/img48.svg",
       "lightSrc": "./assets/light/img48.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
+      ],
       "isSub": false
     },
     {
@@ -341,6 +773,15 @@
       "name": "소년한국일보",
       "darkSrc": "./assets/dark/img49.svg",
       "lightSrc": "./assets/light/img49.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -348,6 +789,15 @@
       "name": "OBS",
       "darkSrc": "./assets/dark/img50.svg",
       "lightSrc": "./assets/light/img50.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
+      ],
       "isSub": false
     },
     {
@@ -355,6 +805,15 @@
       "name": "맥스무비",
       "darkSrc": "./assets/dark/img51.svg",
       "lightSrc": "./assets/light/img51.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
+      ],
       "isSub": false
     },
     {
@@ -362,6 +821,15 @@
       "name": "엑스포츠뉴스",
       "darkSrc": "./assets/dark/img52.svg",
       "lightSrc": "./assets/light/img52.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
+      ],
       "isSub": false
     },
     {
@@ -369,6 +837,15 @@
       "name": "서울파이낸스",
       "darkSrc": "./assets/dark/img53.svg",
       "lightSrc": "./assets/light/img53.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다"
+      ],
       "isSub": false
     },
     {
@@ -376,6 +853,15 @@
       "name": "한국대학신문",
       "darkSrc": "./assets/dark/img54.svg",
       "lightSrc": "./assets/light/img54.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
+      ],
       "isSub": false
     },
     {
@@ -383,6 +869,15 @@
       "name": "datanews",
       "darkSrc": "./assets/dark/img55.svg",
       "lightSrc": "./assets/light/img55.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
+      ],
       "isSub": false
     },
     {
@@ -390,6 +885,15 @@
       "name": "DigitalToday",
       "darkSrc": "./assets/dark/img56.svg",
       "lightSrc": "./assets/light/img56.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스"
+      ],
       "isSub": false
     },
     {
@@ -397,6 +901,15 @@
       "name": "시사위크",
       "darkSrc": "./assets/dark/img57.svg",
       "lightSrc": "./assets/light/img57.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
+      ],
       "isSub": false
     },
     {
@@ -404,6 +917,15 @@
       "name": "YTN",
       "darkSrc": "./assets/dark/img58.svg",
       "lightSrc": "./assets/light/img58.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
+      ],
       "isSub": false
     },
     {
@@ -411,6 +933,15 @@
       "name": "MBN",
       "darkSrc": "./assets/dark/img59.svg",
       "lightSrc": "./assets/light/img59.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
+      ],
       "isSub": false
     },
     {
@@ -418,6 +949,15 @@
       "name": "매일경제",
       "darkSrc": "./assets/dark/img60.svg",
       "lightSrc": "./assets/light/img60.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
+      ],
       "isSub": false
     },
     {
@@ -425,6 +965,15 @@
       "name": "오마이뉴스",
       "darkSrc": "./assets/dark/img61.svg",
       "lightSrc": "./assets/light/img61.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신"
+      ],
       "isSub": false
     },
     {
@@ -432,6 +981,15 @@
       "name": "SBS",
       "darkSrc": "./assets/dark/img62.svg",
       "lightSrc": "./assets/light/img62.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다"
+      ],
       "isSub": false
     },
     {
@@ -439,6 +997,15 @@
       "name": "머니투데이",
       "darkSrc": "./assets/dark/img63.svg",
       "lightSrc": "./assets/light/img63.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리"
+      ],
       "isSub": false
     },
     {
@@ -446,6 +1013,15 @@
       "name": "마이데일리",
       "darkSrc": "./assets/dark/img64.svg",
       "lightSrc": "./assets/light/img64.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진"
+      ],
       "isSub": false
     },
     {
@@ -453,6 +1029,15 @@
       "name": "ZDNET Korea",
       "darkSrc": "./assets/dark/img65.svg",
       "lightSrc": "./assets/light/img65.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본",
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공"
+      ],
       "isSub": false
     },
     {
@@ -460,6 +1045,15 @@
       "name": "경향신문",
       "darkSrc": "./assets/dark/img66.svg",
       "lightSrc": "./assets/light/img66.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 블록체인 기술, 신뢰와 투명성을 위한 혁신",
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진"
+      ],
       "isSub": false
     },
     {
@@ -467,6 +1061,15 @@
       "name": "일간스포츠",
       "darkSrc": "./assets/dark/img67.svg",
       "lightSrc": "./assets/light/img67.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 미술 산업, 창의적인 예술 작품으로 세계를 감동시키다",
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전"
+      ],
       "isSub": false
     },
     {
@@ -474,6 +1077,15 @@
       "name": "국민일보",
       "darkSrc": "./assets/dark/img68.svg",
       "lightSrc": "./assets/light/img68.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 해양 산업, 바다의 자원을 지속 가능하게 관리",
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성"
+      ],
       "isSub": false
     },
     {
@@ -481,6 +1093,15 @@
       "name": "뉴데일리",
       "darkSrc": "./assets/dark/img69.svg",
       "lightSrc": "./assets/light/img69.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 고용 창출, 창조경제를 통한 일자리 창출 추진",
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상"
+      ],
       "isSub": false
     },
     {
@@ -488,6 +1109,15 @@
       "name": "뉴스타파",
       "darkSrc": "./assets/dark/img70.svg",
       "lightSrc": "./assets/light/img70.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 헬스케어 혁신, 디지털 건강 솔루션으로 더 나은 삶 제공",
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들"
+      ],
       "isSub": false
     },
     {
@@ -495,6 +1125,15 @@
       "name": "MBC",
       "darkSrc": "./assets/dark/img71.svg",
       "lightSrc": "./assets/light/img71.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 사회복지 정책, 모든 시민을 위한 공평한 복지 추진",
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
+        "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속"
+      ],
       "isSub": false
     },
     {
@@ -502,6 +1141,15 @@
       "name": "한국헤럴드",
       "darkSrc": "./assets/dark/img72.svg",
       "lightSrc": "./assets/light/img72.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 체육 산업, 글로벌 스포츠 이벤트 개최에 도전",
+        "한국의 도시재생 프로젝트, 역사와 현대가 어우러지는 도시 조성",
+        "한국의 농업 혁신, 스마트팜과 첨단 기술로 농산물 생산성 향상",
+        "한국의 인플루언서 산업, SNS 시대의 새로운 스타들",
+        "한국의 자율 주행차 연구, 안전과 편의성을 위한 노력 지속",
+        "한국의 지능형 건축, 스마트 도시 건설을 위한 혁신적인 디자인"
+      ],
       "isSub": false
     },
     {
@@ -509,6 +1157,15 @@
       "name": "KNN",
       "darkSrc": "./assets/dark/img73.svg",
       "lightSrc": "./assets/light/img73.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 대통령, 국내 산업 발전을 위한 새로운 정책 발표",
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결"
+      ],
       "isSub": false
     },
     {
@@ -516,6 +1173,15 @@
       "name": "CEO스코어데일리",
       "darkSrc": "./assets/dark/img74.svg",
       "lightSrc": "./assets/light/img74.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "국제 사회, 한반도 평화 정착을 위한 대화 촉진에 힘",
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -523,6 +1189,15 @@
       "name": "BUSINESS POST",
       "darkSrc": "./assets/dark/img75.svg",
       "lightSrc": "./assets/light/img75.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "전 세계를 강타한 한류 열풍, 한국 문화의 글로벌 인기 지속",
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화"
+      ],
       "isSub": false
     },
     {
@@ -530,6 +1205,15 @@
       "name": "에너지경제",
       "darkSrc": "./assets/dark/img76.svg",
       "lightSrc": "./assets/light/img76.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "기후 변화 대응, 한국의 녹색 에너지 전환 정책 강화",
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립"
+      ],
       "isSub": false
     },
     {
@@ -537,6 +1221,15 @@
       "name": "조이뉴스24",
       "darkSrc": "./assets/dark/img77.svg",
       "lightSrc": "./assets/light/img77.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 의료 기술 혁신, 국제적으로 주목받다",
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진"
+      ],
       "isSub": false
     },
     {
@@ -544,6 +1237,15 @@
       "name": "한국농어촌방송",
       "darkSrc": "./assets/dark/img78.svg",
       "lightSrc": "./assets/light/img78.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국과 중국, 경제 협력 강화를 위한 새로운 협정 체결",
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다"
+      ],
       "isSub": false
     },
     {
@@ -551,6 +1253,15 @@
       "name": "시사저널e",
       "darkSrc": "./assets/dark/img79.svg",
       "lightSrc": "./assets/light/img79.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 IT 산업, 혁신과 창조성으로 글로벌 시장 선도",
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도"
+      ],
       "isSub": false
     },
     {
@@ -558,6 +1269,15 @@
       "name": "법률방송뉴스",
       "darkSrc": "./assets/dark/img80.svg",
       "lightSrc": "./assets/light/img80.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스타트업 열풍, 창업 생태계 활성화",
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상"
+      ],
       "isSub": false
     },
     {
@@ -565,6 +1285,15 @@
       "name": "인사이트",
       "darkSrc": "./assets/dark/img81.svg",
       "lightSrc": "./assets/light/img81.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 관광 업계, 새로운 코로나 대응 전략 수립",
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화"
+      ],
       "isSub": false
     },
     {
@@ -572,6 +1301,15 @@
       "name": "한국중앙데일리",
       "darkSrc": "./assets/dark/img82.svg",
       "lightSrc": "./assets/light/img82.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 연구 개발, 산학 협력 강화를 통한 혁신성장 추진",
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지"
+      ],
       "isSub": false
     },
     {
@@ -579,6 +1317,15 @@
       "name": "KBS WORLD",
       "darkSrc": "./assets/dark/img83.svg",
       "lightSrc": "./assets/light/img83.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 영화 산업, 세계적인 인정과 수상에 빛나다",
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기"
+      ],
       "isSub": false
     },
     {
@@ -586,6 +1333,15 @@
       "name": "석간문화일보",
       "darkSrc": "./assets/dark/img84.svg",
       "lightSrc": "./assets/light/img84.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 금융 시장, 디지털화와 혁신으로 변화의 선도",
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다"
+      ],
       "isSub": false
     },
     {
@@ -593,6 +1349,15 @@
       "name": "스포츠동아",
       "darkSrc": "./assets/dark/img85.svg",
       "lightSrc": "./assets/light/img85.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 첨단 제조업, 스마트 팩토리 구축으로 생산성 향상",
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도"
+      ],
       "isSub": false
     },
     {
@@ -600,6 +1365,15 @@
       "name": "소포츠서울",
       "darkSrc": "./assets/dark/img86.svg",
       "lightSrc": "./assets/light/img86.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 교육 혁신, 창의적인 학습 방법으로 글로벌 경쟁력 강화",
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다"
+      ],
       "isSub": false
     },
     {
@@ -607,6 +1381,15 @@
       "name": "파이낸셜뉴스",
       "darkSrc": "./assets/dark/img87.svg",
       "lightSrc": "./assets/light/img87.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 신재생 에너지 산업, 확대된 정책 지원으로 성장세 유지",
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다"
+      ],
       "isSub": false
     },
     {
@@ -614,6 +1397,15 @@
       "name": "아이뉴스24",
       "darkSrc": "./assets/dark/img88.svg",
       "lightSrc": "./assets/light/img88.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 식품 문화, 건강과 다양성을 반영한 글로벌 인기",
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행"
+      ],
       "isSub": false
     },
     {
@@ -621,6 +1413,15 @@
       "name": "조선일보",
       "darkSrc": "./assets/dark/img89.svg",
       "lightSrc": "./assets/light/img89.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 코로나19 대응, 모범 사례로 국제 사회에서 인정받다",
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다"
+      ],
       "isSub": false
     },
     {
@@ -628,6 +1429,15 @@
       "name": "이데일리",
       "darkSrc": "./assets/dark/img90.svg",
       "lightSrc": "./assets/light/img90.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 자동차 산업, 친환경 차량 생산 확대로 글로벌 시장 선도",
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장"
+      ],
       "isSub": false
     },
     {
@@ -635,6 +1445,15 @@
       "name": "아시아경제",
       "darkSrc": "./assets/dark/img91.svg",
       "lightSrc": "./assets/light/img91.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 여성 리더십, 다양성과 평등 추구에 앞장서다",
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보"
+      ],
       "isSub": false
     },
     {
@@ -642,6 +1461,15 @@
       "name": "세계일보",
       "darkSrc": "./assets/dark/img92.svg",
       "lightSrc": "./assets/light/img92.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 스포츠 산업, 글로벌 플레이어로 도약하다",
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스"
+      ],
       "isSub": false
     },
     {
@@ -649,6 +1477,15 @@
       "name": "SBS Biz",
       "darkSrc": "./assets/dark/img93.svg",
       "lightSrc": "./assets/light/img93.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 음식 문화, 전 세계에서 사랑받는 맛의 여행",
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응"
+      ],
       "isSub": false
     },
     {
@@ -656,6 +1493,15 @@
       "name": "헤럴드경제",
       "darkSrc": "./assets/dark/img94.svg",
       "lightSrc": "./assets/light/img94.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 인공지능 기술, 혁신과 미래를 열다",
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진"
+      ],
       "isSub": false
     },
     {
@@ -663,6 +1509,15 @@
       "name": "데일리안",
       "darkSrc": "./assets/dark/img95.svg",
       "lightSrc": "./assets/light/img95.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 플라스틱 감축 정책, 지속 가능한 환경 보호에 앞장",
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자"
+      ],
       "isSub": false
     },
     {
@@ -670,6 +1525,15 @@
       "name": "서울경제",
       "darkSrc": "./assets/dark/img96.svg",
       "lightSrc": "./assets/light/img96.svg",
+      "thumbSrc": "./assets/others/Thumbnail.png",
+      "subTitle": [
+        "한국의 모바일 게임 산업, 창조적인 콘텐츠로 글로벌 시장 독보",
+        "한국의 음악 씬, 한류의 새로운 레지던스",
+        "한국의 사이버 보안, 빠르게 진화하는 위협에 대응",
+        "한국의 공공 건강 관리, 예방 중심의 혁신적인 정책 추진",
+        "한국의 미디어 산업, 디지털 플랫폼 시대의 선두주자",
+        "한국의 스마트 시티 구축, 효율적인 도시 관리의 표본"
+      ],
       "isSub": false
     }
   ]
