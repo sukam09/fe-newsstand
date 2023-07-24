@@ -11,10 +11,12 @@ import {
   createNewsHeader,
 } from "../components/mainSection/mainBody/content/pressList/pressList.js";
 import { handleCategoryItemClick } from "./categoryController.js";
+import { addEventsOnListSubButton } from "./events.js";
 
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
   const subState = getState(subStateList[pressId]);
+  console.log(subState);
   setState(subStateList[pressId], !subState);
 }
 
@@ -22,7 +24,6 @@ export function handleListSubButton({ currentTarget: $button }) {
 export function controllListsSubButtonShowing(id) {
   const isSub = getState(subStateList[id]);
   const $pressLists = qsa(`.list_press_${id}`);
-  console.log($pressLists);
 
   if (!$pressLists) {
     console.log("리스트 뷰에 데이터 엄씀");
@@ -52,6 +53,7 @@ export function controllMyPressList() {
   const category = createCategory([]);
   const $category = strToHtmlElemnt(category);
   const $ul = $category.querySelector("ul");
+  let $news;
 
   $container.innerHTML = "";
 
@@ -63,11 +65,13 @@ export function controllMyPressList() {
     $categoryItem.addEventListener("click", (e) => handleCategoryItemClick(e));
     $ul.appendChild($categoryItem);
 
-    console.log(idx);
     // body
-    const $news = document.createElement("div");
+    $news = document.createElement("div");
     $news.className = `list_press_${press.id} news news_my${idx}`;
     $news.innerHTML = createNewsHeader(press) + createNewsBody(press);
+    const $unsubButton = $news.querySelector(".list_unsub_button");
+    $unsubButton.addEventListener("click", (e) => handleListSubButton(e));
+
     $container.appendChild($news);
     controllListsSubButtonShowing(press.id);
   });
