@@ -478,14 +478,20 @@ a:hover {
 
 /* main-news */
 .main-news {
-  width: 320px;
   padding-right: 32px;
 }
 
-.main-news img {
-  padding-bottom: 16px;
+.main-img {
+  margin-bottom: 16px;
   width: 320px;
   height: 200px;
+  overflow: hidden;
+}
+
+.main-news .main-img img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  object-fit: cover;
 }
 
 .thumbnail-title {
