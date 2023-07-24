@@ -25,8 +25,7 @@ export default class AllNewsList {
     this.$component.appendChild(this.createLogoImage(name));
   }
 
-  showSubButton(event, name) {
-    const li = event.target;
+  showSubButton({ target: li }, name) {
     li.replaceChildren();
     if (store.press.includes(name)) {
       li.appendChild(new UnsubButton(name, "해지하기"));
@@ -35,8 +34,7 @@ export default class AllNewsList {
     }
   }
 
-  hideSubButton(event, name) {
-    const li = event.target;
+  hideSubButton({ target: li }, name) {
     li.replaceChildren();
     li.appendChild(this.createLogoImage(name));
   }
