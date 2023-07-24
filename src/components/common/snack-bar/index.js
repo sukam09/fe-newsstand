@@ -1,9 +1,9 @@
-import { subscribe } from "../../../store/observer.js";
-import { setEvents, showSnackBar } from "./SnackBar.js";
-import { snackBarMsgState } from "../../../store/storeKey.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
+import { renderSnackBar, setEvents } from "./SnackBar.js";
+import { snackBarMsgState } from "../../../store/store.js";
 
 export const setSnackBar = () => {
-  subscribe(snackBarMsgState, showSnackBar);
+  useSubscribeAtom(snackBarMsgState, renderSnackBar);
 
   setEvents();
 };

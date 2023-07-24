@@ -1,72 +1,94 @@
 import {
-  gridPageState,
-  isDarkMode,
-  subscribeGridPageState,
-  subscribeState,
-} from "../../../store/storeKey.js";
-import {
   checkIsAllType,
   pressObjectToArray,
   shuffleArrayRandom,
 } from "../../../utils/utils.js";
 import {
+  gridPageState,
+  isDarkMode,
+  subscribeGridPageState,
+  subscribeState,
+} from "../../../store/store.js";
+import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState } from "../../../store/observer.js";
+import { useGetAtom } from "../../../store/atom.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
-import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
+import { getSubscribeButton } from "../../common/subscribe-button/SubscribeButton.js";
 
 const $gridView = _querySelector(".grid-view");
 const $gridViewList = _querySelectorAll("li", $gridView);
 
-const pressIcons = shuffleArrayRandom(pressObjectToArray(PRESS_ICON));
+const randomPressIcons = shuffleArrayRandom(pressObjectToArray(PRESS_ICON));
 
-const fillPressIcons = () => {
-  const startIndex = checkIsAllType()
-    ? getState(gridPageState) * NEWS_COUNT
-    : getState(subscribeGridPageState) * NEWS_COUNT;
+const renderGrid = () => {
+  const currentGridPage = useGetAtom(gridPageState);
+  const currentSubGridPage = useGetAtom(subscribeGridPageState);
+  const isCurrentDarkMode = useGetAtom(isDarkMode);
+  const subscribedList = useGetAtom(subscribeState);
+  const isAllType = checkIsAllType();
+  const { pressIcons, startIndex, endIndex } = getGridRenderItems(
+    isAllType,
+    subscribedList,
+    currentGridPage,
+    currentSubGridPage
+  );
 
-  const isCurrentDarkMode = getState(isDarkMode);
-  const pressIcons = getPressIcons();
-
-  resetGrid();
-
-  pressIcons
-    .slice(startIndex, startIndex + NEWS_COUNT)
-    .forEach(({ name, light, dark }, idx) => {
-      $gridViewList[idx].appendChild(
-        createGridContent(name, isCurrentDarkMode ? dark : light)
-      );
-    });
+  renderItemsToGrid(pressIcons, startIndex, endIndex, isCurrentDarkMode);
 };
 
-const resetGrid = () => {
+const getGridRenderItems = (
+  isAllType,
+  subscribedList,
+  currentGridPage,
+  currentSubGridPage
+) => {
+  if (isAllType) {
+    const startIndex = currentGridPage * NEWS_COUNT;
+    const endIndex = startIndex + NEWS_COUNT;
+
+    return { pressIcons: randomPressIcons, startIndex, endIndex };
+  }
+
+  const startIndex = currentSubGridPage * NEWS_COUNT;
+  const endIndex = startIndex + NEWS_COUNT;
+  const pressIcons = randomPressIcons.filter(({ name }) =>
+    subscribedList.includes(name)
+  );
+
+  return { pressIcons, startIndex, endIndex };
+};
+
+const renderItemsToGrid = (
+  pressIcons,
+  startIndex,
+  endIndex,
+  isCurrentDarkMode
+) => {
   $gridViewList.forEach((elem) => {
     elem.innerHTML = "";
   });
-};
 
-const getPressIcons = () => {
-  const subscribedData = getState(subscribeState);
-
-  if (!checkIsAllType()) {
-    const subPressIcons = pressIcons.filter(({ name }) =>
-      subscribedData.includes(name)
-    );
-    return subPressIcons;
+  if (isCurrentDarkMode) {
+    pressIcons.slice(startIndex, endIndex).forEach(({ name, dark }, idx) => {
+      $gridViewList[idx].appendChild(getGridContent(name, dark));
+    });
+  } else {
+    pressIcons.slice(startIndex, endIndex).forEach(({ name, light }, idx) => {
+      $gridViewList[idx].appendChild(getGridContent(name, light));
+    });
   }
-  return pressIcons;
 };
 
-const createGridContent = (name, light) => {
+const getGridContent = (name, src) => {
   const $gridContent = document.createElement("div");
   $gridContent.className = "content";
 
   const $front = `
     <div class="front">
       <button>
-        <img class="grid-cell_news-img" src=${light} alt=${name} />
+        <img class="grid-cell_news-img" src=${src} alt=${name} />
       </button>
     </div>`;
 
@@ -80,4 +102,5 @@ const createGridContent = (name, light) => {
 
   return $gridContent;
 };
-export { fillPressIcons, getPressIcons };
+
+export { renderGrid };

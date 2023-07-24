@@ -4,16 +4,16 @@ import {
   subscribeGridPageState,
   subscribeState,
   viewOptionState,
-} from "../../../store/storeKey.js";
-import { fillPressIcons } from "./Grid.js";
-import { subscribe } from "../../../store/observer.js";
+} from "../../../store/store.js";
+import { renderGrid } from "./Grid.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
 
 export const setGrid = () => {
-  subscribe(gridPageState, fillPressIcons);
-  subscribe(isDarkMode, fillPressIcons);
-  subscribe(subscribeState, fillPressIcons);
-  subscribe(viewOptionState, fillPressIcons);
-  subscribe(subscribeGridPageState, fillPressIcons);
+  renderGrid();
 
-  fillPressIcons();
+  useSubscribeAtom(gridPageState, renderGrid);
+  useSubscribeAtom(isDarkMode, renderGrid);
+  useSubscribeAtom(subscribeState, renderGrid);
+  useSubscribeAtom(viewOptionState, renderGrid);
+  useSubscribeAtom(subscribeGridPageState, renderGrid);
 };

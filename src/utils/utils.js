@@ -1,6 +1,6 @@
-import { getState } from "../store/observer.js";
+import { useGetAtom } from "../store/atom.js";
 import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
-import { isDarkMode, viewOptionState, viewState } from "../store/storeKey.js";
+import { viewOptionState, viewState } from "../store/store.js";
 
 const customFetch = async (url, callback, options) => {
   try {
@@ -71,21 +71,15 @@ const shuffleObjectRandom = (data) => {
 };
 
 const checkIsAllType = () => {
-  const currentViewOption = getState(viewOptionState);
+  const currentViewOption = useGetAtom(viewOptionState);
 
   return currentViewOption === VIEW_OPTION_TYPE.ALL;
 };
 
 const checkIsGridView = () => {
-  const currentView = getState(viewState);
+  const currentView = useGetAtom(viewState);
 
   return currentView === VIEW_TYPE.GRID;
-};
-
-const checkIsDarkMode = () => {
-  const currentMode = getState(isDarkMode);
-
-  return currentMode;
 };
 
 export {
@@ -97,5 +91,4 @@ export {
   newsObjectToArray,
   checkIsAllType,
   checkIsGridView,
-  checkIsDarkMode,
 };

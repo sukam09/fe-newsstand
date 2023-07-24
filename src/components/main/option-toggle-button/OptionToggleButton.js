@@ -2,9 +2,9 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { setState } from "../../../store/observer.js";
-import { viewOptionState } from "../../../store/storeKey.js";
+import { useSetAtom } from "../../../store/atom.js";
 import { checkIsAllType } from "../../../utils/utils.js";
+import { viewOptionState } from "../../../store/store.js";
 import { VIEW_OPTION_TYPE } from "../../../constants/constants.js";
 
 const $mainNavTabs = _querySelector(".main-nav_tabs");
@@ -13,11 +13,11 @@ const $allButton = $modeToggleButtons[0];
 const $subscribeButton = $modeToggleButtons[1];
 
 const handleSubscribeButtonClick = () => {
-  setState(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
+  useSetAtom(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
 };
 
 const handleAllButtonClick = () => {
-  setState(viewOptionState, VIEW_OPTION_TYPE.ALL);
+  useSetAtom(viewOptionState, VIEW_OPTION_TYPE.ALL);
 };
 
 const changeActivateState = () => {

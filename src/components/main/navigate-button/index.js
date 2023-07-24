@@ -9,17 +9,15 @@ import {
   subscribeState,
   viewOptionState,
   viewState,
-} from "../../../store/storeKey.js";
-import { subscribe } from "../../../store/observer.js";
+} from "../../../store/store.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
 
 export const setNavigateButton = () => {
-  subscribe(gridPageState, setGridButtonDisplay);
-  subscribe(viewOptionState, setGridButtonDisplay);
-  subscribe(subscribeGridPageState, setGridButtonDisplay);
-  subscribe(subscribeState, setGridButtonDisplay);
-  subscribe(subscribeState, toggleNavigateButtonDisplay);
-  subscribe(viewState, toggleNavigateButtonDisplay);
-  subscribe(viewOptionState, toggleNavigateButtonDisplay);
-
   setEvents();
+
+  useSubscribeAtom(gridPageState, setGridButtonDisplay);
+  useSubscribeAtom(viewOptionState, setGridButtonDisplay);
+  useSubscribeAtom(subscribeGridPageState, setGridButtonDisplay);
+  useSubscribeAtom(subscribeState, setGridButtonDisplay);
+  useSubscribeAtom(viewState, toggleNavigateButtonDisplay);
 };

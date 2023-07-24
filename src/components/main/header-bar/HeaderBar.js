@@ -2,12 +2,12 @@ import {
   categoryState,
   subscribeState,
   selectedSubscribeState,
-} from "../../../store/storeKey.js";
+} from "../../../store/store.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState, setState } from "../../../store/observer.js";
+import { useGetAtom, useSetAtom } from "../../../store/atom.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
@@ -19,29 +19,29 @@ const setDragSlider = () => {
   let startX;
   let scrollLeft;
 
-  $slider.addEventListener("mousedown", (e) => {
+  $slider.addEventListener("mousedown", ({ pageX }) => {
     isDown = true;
-    startX = e.pageX - $slider.offsetLeft;
+    startX = pageX - $slider.offsetLeft;
     scrollLeft = $slider.scrollLeft;
   });
-  $slider.addEventListener("mouseleave", (e) => {
+  $slider.addEventListener("mouseleave", () => {
     isDown = false;
     $slider.classList.remove("grab");
   });
-  $slider.addEventListener("mouseup", (e) => {
+  $slider.addEventListener("mouseup", () => {
     isDown = false;
     $slider.classList.remove("grab");
   });
-  $slider.addEventListener("mousemove", (e) => {
+  $slider.addEventListener("mousemove", ({ pageX }) => {
     if (!isDown) return;
     $slider.classList.add("grab");
-    const x = e.pageX - $slider.offsetLeft;
+    const x = pageX - $slider.offsetLeft;
     const walk = x - startX;
     $slider.scrollLeft = scrollLeft - walk;
   });
 };
 
-const setCategoryBar = (categoryList) => () => {
+const renderCategoryBar = (categoryList) => {
   $categoryBar.innerHTML = "";
 
   categoryList.forEach((category) => {
@@ -53,19 +53,20 @@ const setCategoryBar = (categoryList) => () => {
     $categoryBar.appendChild($li);
   });
 
-  const currentCategory = getState(categoryState) || categoryList[0];
+  const currentCategory = useGetAtom(categoryState) || categoryList[0];
 
   setCategoryState(currentCategory)();
 };
-const setCategoryState = (category) => () => setState(categoryState, category);
+const setCategoryState = (category) => () =>
+  useSetAtom(categoryState, category);
 
-const setSubscribePressBar = () => {
+const renderSubscribePressBar = () => {
   const isAllType = checkIsAllType();
   const isGridView = checkIsGridView();
 
   if (isAllType || isGridView) return;
 
-  const subscribedList = getState(subscribeState);
+  const subscribedList = useGetAtom(subscribeState);
   $categoryBar.innerHTML = "";
 
   subscribedList.forEach((press) => {
@@ -78,21 +79,21 @@ const setSubscribePressBar = () => {
   });
 
   const currentSelectedSubState =
-    getState(selectedSubscribeState) || subscribedList[0];
+    useGetAtom(selectedSubscribeState) || subscribedList[0];
 
   setSelectedSubState(currentSelectedSubState)();
 };
 const setSelectedSubState = (press) => () => {
-  setState(selectedSubscribeState, press);
+  useSetAtom(selectedSubscribeState, press);
 };
 
-const setHeaderBar = (categoryList) => () => {
+const renderHeaderBar = (categoryList) => () => {
   const isListView = !checkIsGridView();
   const isAllType = checkIsAllType();
 
   isListView && isAllType
-    ? setCategoryBar(categoryList)()
-    : setSubscribePressBar();
+    ? renderCategoryBar(categoryList)
+    : renderSubscribePressBar();
 };
 
-export { setHeaderBar, setDragSlider, setSubscribePressBar };
+export { renderHeaderBar, setDragSlider, renderSubscribePressBar };

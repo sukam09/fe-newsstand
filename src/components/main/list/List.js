@@ -1,50 +1,54 @@
 import {
-  checkIsAllType,
-  checkIsDarkMode,
-  checkIsGridView,
-} from "../../../utils/utils.js";
-import {
   categoryState,
+  isDarkMode,
   listPageState,
   selectedSubscribeState,
   subscribeListPageState,
-} from "../../../store/storeKey.js";
-import { getState } from "../../../store/observer.js";
+} from "../../../store/store.js";
+import { useGetAtom } from "../../../store/atom.js";
 import { PRESS_ICON } from "../../../constants/constants.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
-import { getSubscribeButton } from "../subscribe-button/SubscribeButton.js";
+import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
+import { getSubscribeButton } from "../../common/subscribe-button/SubscribeButton.js";
 
 const $listView = _querySelector(".list-view_main");
 
-const fillNewsList = (newsList, pressNewsList) => () => {
+const renderNewsList = (newsList, pressNewsList) => () => {
   const isGridView = checkIsGridView();
   if (isGridView) return;
 
-  const currentNewsList = getCurrentNewsList(newsList, pressNewsList);
-  const { press, editTime, img, title, subNews, info } = currentNewsList;
+  const isSubscribeType = !checkIsAllType();
+  const currentIsDarkMode = useGetAtom(isDarkMode);
+  const currentNewsList = getCurrentNewsList(
+    newsList,
+    pressNewsList,
+    isSubscribeType
+  );
+
+  const { press, editTime, img, title, subNews } = currentNewsList;
+  const $subscribeButton = getSubscribeButton(press);
+  const imgSrc = currentIsDarkMode
+    ? PRESS_ICON[press].dark
+    : PRESS_ICON[press].light;
 
   $listView.innerHTML = "";
-  $listView.appendChild(createNewsHeader(press, editTime));
-  $listView.appendChild(createNewsList(img, title, subNews, press));
+  $listView.appendChild(getNewsHeader(editTime, imgSrc, $subscribeButton));
+  $listView.appendChild(getNewsList(img, title, subNews, press));
 };
 
-const getCurrentNewsList = (newsList, pressNewsList) => {
-  const isSubscribeType = !checkIsAllType();
-
+const getCurrentNewsList = (newsList, pressNewsList, isSubscribeType) => {
   if (isSubscribeType) {
-    const currentPage = getState(subscribeListPageState);
-    const currentPress = getState(selectedSubscribeState);
+    const currentPage = useGetAtom(subscribeListPageState);
+    const currentPress = useGetAtom(selectedSubscribeState);
     return pressNewsList[currentPress][currentPage];
   } else {
-    const currentCategory = getState(categoryState);
-    const currentPage = getState(listPageState);
+    const currentCategory = useGetAtom(categoryState);
+    const currentPage = useGetAtom(listPageState);
     return newsList[currentCategory][currentPage];
   }
 };
 
-const createNewsHeader = (press, editTime) => {
-  const isDarkMode = checkIsDarkMode();
-  const imgSrc = isDarkMode ? PRESS_ICON[press].dark : PRESS_ICON[press].light;
+const getNewsHeader = (editTime, imgSrc, $subscribeButton) => {
   const $header = document.createElement("header");
 
   $header.className = "list-view_main-header";
@@ -56,13 +60,12 @@ const createNewsHeader = (press, editTime) => {
       <div>
         <span class="display-medium12">${editTime} 편집</span>
       </div>`;
-  const $subscribeButton = getSubscribeButton(press);
   $header.appendChild($subscribeButton);
 
   return $header;
 };
 
-const createNewsList = (img, title, subNews, press) => {
+const getNewsList = (img, title, subNews, press) => {
   const $listBox = document.createElement("div");
 
   const newsListContent = subNews.reduce((acc, cur) => {
@@ -85,4 +88,4 @@ const createNewsList = (img, title, subNews, press) => {
   return $listBox;
 };
 
-export { fillNewsList };
+export { renderNewsList };

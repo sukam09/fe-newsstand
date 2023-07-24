@@ -4,23 +4,25 @@ import {
   snackBarMsgState,
   subscribeGridPageState,
   subscribeState,
-} from "../../../store/storeKey.js";
+} from "../../../store/store.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { getState, setState } from "../../../store/observer.js";
+import { useGetAtom, useSetAtom } from "../../../store/atom.js";
 import { NEWS_COUNT, SUBSCRIBE_MESSAGE } from "../../../constants/constants.js";
 
 const $snackBar = _querySelector(".snackbar");
+const snackClassList = $snackBar.classList;
 const $alert = _querySelector(".alert");
+const alertClassList = $alert.classList;
 const $alertInner = _querySelector(".alert-font-activate", $alert);
 const $alertButtons = _querySelectorAll("button", $alert);
 const $unSubscribeButton = $alertButtons[0];
 const $closeButton = $alertButtons[1];
 
-const showAlert = () => {
-  const content = getState(alertMsgState);
+const renderAlert = () => {
+  const content = useGetAtom(alertMsgState);
 
   $alertInner.firstChild.textContent = content;
 
@@ -28,21 +30,16 @@ const showAlert = () => {
 };
 
 const visibleToInvisible = () => {
-  const classList = $alert.classList;
-  const snackClassList = $snackBar.classList;
-
   snackClassList.replace("visible", "invisible");
-  classList.replace("visible", "invisible");
+  alertClassList.replace("visible", "invisible");
 };
 const invisibleToVisible = () => {
-  const classList = $alert.classList;
-
-  classList.replace("invisible", "visible");
+  alertClassList.replace("invisible", "visible");
 };
 
 const handleUnSubscribeButtonClick = () => {
-  const subscribeList = getState(subscribeState);
-  const subscribeItem = getState(alertMsgState);
+  const subscribeList = useGetAtom(subscribeState);
+  const subscribeItem = useGetAtom(alertMsgState);
 
   const itemIndex = subscribeList.indexOf(subscribeItem);
 
@@ -50,17 +47,17 @@ const handleUnSubscribeButtonClick = () => {
   const selectedSubscribeItem =
     updateArray[itemIndex % (subscribeList.length - 1)];
 
-  setState(selectedSubscribeState, selectedSubscribeItem);
-  setState(subscribeState, updateArray);
+  useSetAtom(selectedSubscribeState, selectedSubscribeItem);
+  useSetAtom(subscribeState, updateArray);
 
   if (updateArray.length % NEWS_COUNT === 0) {
-    const currentPage = getState(subscribeGridPageState);
+    const currentPage = useGetAtom(subscribeGridPageState);
 
-    currentPage !== 0 && setState(subscribeGridPageState, currentPage - 1);
+    currentPage !== 0 && useSetAtom(subscribeGridPageState, currentPage - 1);
   }
 
   visibleToInvisible();
-  setState(snackBarMsgState, SUBSCRIBE_MESSAGE.DELETE);
+  useSetAtom(snackBarMsgState, SUBSCRIBE_MESSAGE.DELETE);
 };
 
 const handleCloseButtonClick = () => {
@@ -72,4 +69,4 @@ const setEvents = () => {
   $closeButton.addEventListener("click", handleCloseButtonClick);
 };
 
-export { showAlert, setEvents };
+export { renderAlert, setEvents };

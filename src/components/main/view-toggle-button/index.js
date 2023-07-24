@@ -1,9 +1,9 @@
-import { viewState } from "../../../store/storeKey.js";
-import { subscribe } from "../../../store/observer.js";
-import { setCurrentView, setEvents } from "./ViewToggleButton.js";
+import { viewState } from "../../../store/store.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
+import { setDisplayCurrentView, setEvents } from "./ViewToggleButton.js";
 
 export const setViewToggleButton = () => {
-  subscribe(viewState, setCurrentView);
-
   setEvents();
+
+  useSubscribeAtom(viewState, setDisplayCurrentView);
 };

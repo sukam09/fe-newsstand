@@ -1,14 +1,14 @@
-import { getState } from "../../../store/observer.js";
-import { snackBarMsgState } from "../../../store/storeKey.js";
+import { useGetAtom } from "../../../store/atom.js";
+import { snackBarMsgState } from "../../../store/store.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const $snackBar = _querySelector(".snackbar");
+const classList = $snackBar.classList;
 const $snackBarInner = _querySelector(".snackbar-body", $snackBar);
 const $snackBarProgress = _querySelector(".snackbar-progress", $snackBar);
 
-const showSnackBar = () => {
-  const content = getState(snackBarMsgState);
-
+const renderSnackBar = () => {
+  const content = useGetAtom(snackBarMsgState);
   const isInvisible = $snackBar.classList.contains("invisible");
 
   $snackBarInner.textContent = content;
@@ -22,13 +22,9 @@ const showSnackBar = () => {
 };
 
 const visibleToInvisible = () => {
-  const classList = $snackBar.classList;
-
   classList.replace("visible", "invisible");
 };
 const invisibleToVisible = () => {
-  const classList = $snackBar.classList;
-
   classList.replace("invisible", "visible");
 };
 
@@ -37,4 +33,4 @@ const setEvents = () => {
   $snackBarProgress.addEventListener("animationend", visibleToInvisible);
 };
 
-export { showSnackBar, setEvents };
+export { renderSnackBar, setEvents };

@@ -1,32 +1,31 @@
-import { isDarkMode } from "../../../store/storeKey.js";
-import { checkIsDarkMode } from "../../../utils/utils.js";
-import { getState, setState } from "../../../store/observer.js";
+import { isDarkMode } from "../../../store/store.js";
+import { useGetAtom, useSetAtom } from "../../../store/atom.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
+const $body = _querySelector("body");
+const $toggleButton = _querySelector(".darkmode-toggle");
 const $modeToggleButton = _querySelector(".darkmode-toggle");
 
 const toggleMode = () => {
-  const isDarkMode = checkIsDarkMode();
-  const $body = _querySelector("body");
-  const $toggleBtn = _querySelector(".darkmode-toggle");
+  const currentIsDarkMode = useGetAtom(isDarkMode);
 
-  if (isDarkMode) {
-    !$toggleBtn.classList.contains("input-checked") &&
-      $toggleBtn.classList.add("input-checked");
+  if (currentIsDarkMode) {
+    !$toggleButton.classList.contains("input-checked") &&
+      $toggleButton.classList.add("input-checked");
 
     $body.className = "dark";
   } else {
-    $toggleBtn.classList.contains("input-checked") &&
-      $toggleBtn.classList.remove("input-checked");
+    $toggleButton.classList.contains("input-checked") &&
+      $toggleButton.classList.remove("input-checked");
 
     $body.className = "";
   }
 };
 
 const handleToggleButtonClick = () => {
-  const currentMode = getState(isDarkMode);
+  const currentMode = useGetAtom(isDarkMode);
 
-  setState(isDarkMode, !currentMode);
+  useSetAtom(isDarkMode, !currentMode);
 };
 
 const setEvents = () => {

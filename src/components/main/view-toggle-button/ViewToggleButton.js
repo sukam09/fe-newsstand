@@ -2,8 +2,8 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { viewState } from "../../../store/storeKey.js";
-import { setState } from "../../../store/observer.js";
+import { viewState } from "../../../store/store.js";
+import { useSetAtom } from "../../../store/atom.js";
 import { checkIsGridView } from "../../../utils/utils.js";
 import { VIEW_TYPE } from "../../../constants/constants.js";
 
@@ -15,14 +15,14 @@ const $listButton = $mainNavView[0];
 const $gridButton = $mainNavView[1];
 
 const handleListButtonClick = () => {
-  setState(viewState, VIEW_TYPE.LIST);
+  useSetAtom(viewState, VIEW_TYPE.LIST);
 };
 
 const handleGridButtonClick = () => {
-  setState(viewState, VIEW_TYPE.GRID);
+  useSetAtom(viewState, VIEW_TYPE.GRID);
 };
 
-const setCurrentView = () => {
+const setDisplayCurrentView = () => {
   const isListView = !checkIsGridView();
 
   if (isListView) {
@@ -45,4 +45,4 @@ const setEvents = () => {
   $gridButton.addEventListener("click", handleGridButtonClick);
 };
 
-export { setCurrentView, setEvents };
+export { setDisplayCurrentView, setEvents };

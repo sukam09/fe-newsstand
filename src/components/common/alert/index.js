@@ -1,9 +1,9 @@
-import { setEvents, showAlert } from "./Alert.js";
-import { alertMsgState } from "../../../store/storeKey.js";
-import { subscribe } from "../../../store/observer.js";
+import { renderAlert, setEvents } from "./Alert.js";
+import { alertMsgState } from "../../../store/store.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
 
 export const setAlert = () => {
-  subscribe(alertMsgState, showAlert);
+  useSubscribeAtom(alertMsgState, renderAlert);
 
   setEvents();
 };

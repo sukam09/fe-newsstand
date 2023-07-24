@@ -4,12 +4,12 @@ import {
   snackBarMsgState,
   subscribeState,
   viewOptionState,
-} from "../../../store/storeKey.js";
+} from "../../../store/store.js";
 import {
   SUBSCRIBE_MESSAGE,
   VIEW_OPTION_TYPE,
 } from "../../../constants/constants.js";
-import { getState, setState } from "../../../store/observer.js";
+import { useGetAtom, useSetAtom } from "../../../store/atom.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
@@ -99,27 +99,27 @@ const getSubscribeButton = (name) => {
 };
 
 const handleSubscribeButtonClick = (subItem) => () => {
-  const subList = getState(subscribeState);
+  const subList = useGetAtom(subscribeState);
 
   const isSubscribed = checkSubscribe(subItem);
   const isAllType = checkIsAllType();
   const isListView = !checkIsGridView();
 
   if (isSubscribed) {
-    setState(alertMsgState, subItem);
+    useSetAtom(alertMsgState, subItem);
   } else {
-    setState(subscribeState, [...subList, subItem]);
-    setState(snackBarMsgState, SUBSCRIBE_MESSAGE.ADD);
+    useSetAtom(subscribeState, [...subList, subItem]);
+    useSetAtom(snackBarMsgState, SUBSCRIBE_MESSAGE.ADD);
 
     if (isAllType && isListView) {
-      setState(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
-      setState(selectedSubscribeState, subItem);
+      useSetAtom(viewOptionState, VIEW_OPTION_TYPE.SUBSCRIBE);
+      useSetAtom(selectedSubscribeState, subItem);
     }
   }
 };
 
 const checkSubscribe = (subItem) => {
-  const subList = getState(subscribeState);
+  const subList = useGetAtom(subscribeState);
 
   const result = subList.includes(subItem);
 

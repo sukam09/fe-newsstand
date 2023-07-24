@@ -1,9 +1,9 @@
-import { subscribe } from "../../../store/observer.js";
-import { viewOptionState } from "../../../store/storeKey.js";
+import { useSubscribeAtom } from "../../../store/atom.js";
+import { viewOptionState } from "../../../store/store.js";
 import { changeActivateState, setEvents } from "./OptionToggleButton.js";
 
 export const setOptionToggleButton = () => {
-  subscribe(viewOptionState, changeActivateState);
-
   setEvents();
+
+  useSubscribeAtom(viewOptionState, changeActivateState);
 };
