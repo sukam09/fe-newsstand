@@ -1,10 +1,12 @@
 import State from "../store/StateStore.js";
 import NewsData from "../store/NewsStore.js";
+import Store from "../store/SubscribeStore.js"
 
 export default function controListlMinMaxException(){
+    let isAll = State.getAllState();
     let currentPage = State.getCurrentPage();
     let categoryNum = State.getCategoryNum();
-    let MAX_CATEGORY_NUM = NewsData.getListCategory().length - 1;
+    let MAX_CATEGORY_NUM = State.getMaxCategoryNum();
     let MAX_PAGE_NUMBER = State.getMaxPage();
     let MIN_PAGE_NUMBER = State.getMinPage();
 
@@ -17,8 +19,9 @@ export default function controListlMinMaxException(){
         else{
            State.setCategoryNum(categoryNum);
         }
-        State.setCurrentPage(NewsData.getListNews(categoryNum).length-1);
+        isAll ? State.setCurrentPage(NewsData.getListNews(categoryNum).length-1): State.setCurrentPage(1);
      }
+
      else if(currentPage > MAX_PAGE_NUMBER){
         categoryNum++;
         if(categoryNum > MAX_CATEGORY_NUM){
@@ -29,6 +32,6 @@ export default function controListlMinMaxException(){
             State.setCategoryNum(categoryNum);
         }
         State.setCurrentPage(MIN_PAGE_NUMBER);
-        State.setMaxPage(NewsData.getListNews(categoryNum).length - 1);
+        isAll ? State.setMaxPage(NewsData.getListNews(categoryNum).length - 1): State.setMaxPage(1);  
      }
 } 

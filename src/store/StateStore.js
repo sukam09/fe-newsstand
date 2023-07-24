@@ -8,6 +8,7 @@ class StateStore{
         this.pageState = {
             currentPage: 1,
             categoryNum: 0,
+            maxCategoryNum: 6,
             minPage: 1,
             maxPage: 4,
             countPerPage: 24
@@ -56,6 +57,10 @@ class StateStore{
         return this.pageState.maxPage
     }
 
+    getMaxCategoryNum(){
+        return this.pageState.maxCategoryNum
+    }
+
     getCountPerPage(){
         return this.pageState.countPerPage
     }
@@ -74,6 +79,10 @@ class StateStore{
 
     setMaxPage(maxPage){
         this.pageState.maxPage = maxPage;
+    }
+
+    setMaxCategoryNum(maxCategoryNum){
+        this.pageState.maxCategoryNum = maxCategoryNum;
     }
 
     setList(){

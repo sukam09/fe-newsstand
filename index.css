@@ -266,6 +266,7 @@ input[type="radio"]:checked + label
     padding: 0;
     border-bottom:1px #D2DAE0 solid;
     background-color: #F5F7F9;
+    overflow: scroll;
 }
 
 .categoryBar li{

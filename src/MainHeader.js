@@ -8,6 +8,7 @@ const allNews = document.getElementById("main-left-radio-01");
     allNews.addEventListener('click',(e)=>{
         State.setAll();
         State.setCurrentPage(1);
+        State.setCategoryNum(0);
         renderMain();
     });
 }
@@ -17,6 +18,7 @@ const subscribeNews = document.getElementById("main-left-radio-02");
     subscribeNews.addEventListener('click',()=>{
        State.setSubscribe();
        State.setCurrentPage(1);
+       State.setCategoryNum(0);
        renderMain();
     });
 } 

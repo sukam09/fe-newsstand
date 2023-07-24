@@ -25,33 +25,73 @@ function makeCategory(){
     const pageinfo = document.createElement("span");
     pageinfo.classList.add("pageinfo");
 
+    if(isAll){
+        listArticle.forEach((value, index) =>{
+            const list = document.createElement("li");
+            list.id = value[0];
+            
+            if(index === categoryNum){
+                const progress = document.createElement("div");
+                progress.classList.add("selectedprogress");
+                newCategroy.appendChild(progress);
+                list.classList.add("selected");
+                categoryinfo.innerHTML = value[0];
+                pageinfo.innerHTML =currentPage + "/" + pageMAX; 
+                progress.appendChild(list);
+                progress.appendChild(categoryinfo);
+                progress.appendChild(pageinfo);
+            }
+            else{
+                list.innerHTML = value[0]; 
+                newCategroy.appendChild(list);   
+            }
+        })
+    }
+
+   else{
     listArticle.forEach((value, index) =>{
         const list = document.createElement("li");
-        list.id = value[0];
+        let id;
+        if(isAll){
+            id = value[0];
+        }
+        else{
+            id = value.name;
+        }
         
+        list.id = id;
+
         if(index === categoryNum){
             const progress = document.createElement("div");
             progress.classList.add("selectedprogress");
             newCategroy.appendChild(progress);
             list.classList.add("selected");
-            categoryinfo.innerHTML = value[0];
+            categoryinfo.innerHTML = id;
             pageinfo.innerHTML =currentPage + "/" + pageMAX; 
             progress.appendChild(list);
             progress.appendChild(categoryinfo);
             progress.appendChild(pageinfo);
         }
         else{
-            list.innerHTML = value[0]; 
+            list.innerHTML = id; 
             newCategroy.appendChild(list);   
         }
     })
+   }
 }
 
 function addCategoryOnclick(){
     document.querySelector(`#main-center ul`).childNodes.forEach((value, index)=>{
         value.addEventListener("click", (e) => {
             listArticle.forEach((value, index)=> {
-                if(e.target.innerHTML === value[0]){
+                let id;
+                if(isAll){
+                    id = value[0];
+                }
+                else{
+                    id = value.name;
+                }
+                if(e.target.innerHTML === id){
                     State.setCurrentPage(1);
                     State.setMaxPage(NewsData.getListNews(index % categoryMAX).length - 1);
                     State.setCategoryNum(index);
@@ -67,20 +107,37 @@ function  makeSubscribeButton(){
     const subscribeBtn = document.createElement("button");
     subscribeBtn.classList.add("subscribebtn");
 
-    if(isAll === true){
+    let articleInfo;
+    if(isAll){
+        articleInfo = listArticle[categoryNum][currentPage];
+    }
+    else{
+        articleInfo = listArticle[categoryNum];
+    }
+
+    if(isAll){
         subscribeBtn.innerText = "+ 구독하기";
     }
-    else if(isAll === false){
+    else{
         subscribeBtn.innerText = "x";
     }
     ListHeader.appendChild(subscribeBtn);
     subscribeBtn.addEventListener("click", ()=>{
-        subscribedNews.push(listArticle[categoryNum][currentPage].subArticles.title);
+        subscribedNews.push(articleInfo.subArticles.title);
         main()
     })
 }
 
 function viewArticle(){
+
+    let articleInfo;
+    if(isAll){
+        articleInfo = listArticle[categoryNum][currentPage];
+    }
+    else{
+        articleInfo = listArticle[categoryNum];
+    }
+
     const mainCenter = document.getElementById("main-center");
     const mainList   = document.createElement("div");
     const ListHeader = document.createElement("div"); 
@@ -99,10 +156,9 @@ function viewArticle(){
     mainList.style.paddingBottom = 20 + 'px';
     
     ListHeader.classList.add("listHeader");
-    
-    console.log(currentPage);
-    brandmark.src = listArticle[categoryNum][currentPage].logo;
-    lastEditDate.innerHTML = listArticle[categoryNum][currentPage].editTime;  
+
+    brandmark.src = articleInfo.logo;
+    lastEditDate.innerHTML = articleInfo.editTime;  
     lastEditDate.style.marginLeft = 20 + 'px';
 
     article.classList.add("article");
@@ -112,16 +168,16 @@ function viewArticle(){
     articleMain.style.marginRight = 30 + 'px'
 
     mainImgFrame.classList.add("mainImgFrame");
-    mainImg.src = listArticle[categoryNum][currentPage].mainArticle.thumbnail;
+    mainImg.src = articleInfo.mainArticle.thumbnail;
     mainImg.classList.add("mainImg");
 
-    mainArticle.innerHTML = listArticle[categoryNum][currentPage].mainArticle.title;
+    mainArticle.innerHTML = articleInfo.mainArticle.title;
     mainArticle.style.marginTop = 16 + 'px';
     mainArticle.style.fontSize = 16 + 'px';
     
     articleList.classList.add("articleList");
 
-    listArticle[categoryNum][currentPage].subArticles.forEach((value)=>{
+    articleInfo.subArticles.forEach((value)=>{
         const articleText = document.createElement("div");
         articleText.classList.add("articleText");
         articleText.innerHTML = value.title;
@@ -134,7 +190,7 @@ function viewArticle(){
 
     //편집 가이드 추가
     const editGuide = document.createElement("div");
-    // editGuide.innerHTML = listArticle[categoryNum][currentPage].subArticles.editGuide;
+    // editGuide.innerHTML = articleInfo.subArticles.editGuide;
     editGuide.style.fontSize = 14 + 'px';
     editGuide.style.color = "#879298";
 
@@ -166,13 +222,19 @@ export default function MainList(){
     categoryNum = State.getCategoryNum();
     isAll = State.getAllState();
 
-    if(isAll === true){
+    if(isAll){
         listArticle = NewsData.getListArticle();
-        pageMAX = NewsData.getListArticle()[categoryNum].length - 1;
+        pageMAX = NewsData.getListArticle()[categoryNum].length;
         categoryMAX = NewsData.getListArticle().length;
+        State.setMaxCategoryNum(categoryMAX - 1);
     }
-    else if(isAll === false){
+    else{
+        Store.makeSubscribeCategory();
         listArticle = Store.getSubscribe();
+        pageMAX = 1;
+        categoryMAX = listArticle.length;
+        State.setMaxPage(1);    
+        State.setMaxCategoryNum(categoryMAX - 1);
     }
     
 
