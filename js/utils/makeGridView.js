@@ -36,9 +36,10 @@ function handleEvent(event, img) {
       getPressName(_index).then((pressName) => {
         const press = {
           name: pressName,
-          index: _index,
+          index: Number(_index),
         };
         handleSubscribe(press);
+        showGridView();
       });
       break;
     default:
@@ -63,9 +64,10 @@ export function showGridView() {
    */
 
   let list;
-  getTabMode() === "all"
-    ? (list = getIndex())
-    : (list = getSubscribedPress().map((item) => item.index));
+  const subscribedIndex = getSubscribedPress().map((item) => item.index);
+
+  getTabMode() === "all" ? (list = getIndex()) : (list = subscribedIndex);
+  const sub = list.filter((item) => subscribedIndex.includes(item));
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
@@ -75,9 +77,7 @@ export function showGridView() {
     i < PRESS_VIEW_COUNT * getPage();
     i++
   ) {
-    const isSubscribed = getSubscribedPress().some(
-      (press) => press.index === list[i]
-    );
+    const isSubscribed = subscribedIndex.includes(list[i]);
     const li = document.createElement("li");
     let img = document.createElement("img");
     img.setAttribute("class", "logo-img");
@@ -89,7 +89,7 @@ export function showGridView() {
       img = li.querySelector("img");
       li.addEventListener("mouseover", () => handleEvent("over", img));
       li.addEventListener("mouseout", () => handleEvent("out", img));
-      // button.addEventListener("click", () => handleEvent("click", img));
+      li.addEventListener("click", () => handleEvent("click", img));
     } else {
       li.style.cursor = "default";
     }

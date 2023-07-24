@@ -2,6 +2,7 @@ import { getSubscribedPress } from "../core/getter.js";
 import { store } from "../core/store.js";
 import { ICON_IMG_PATH } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
+import { showGridView } from "./makeGridView.js";
 
 export function showSubscribeButton(isSubscribed) {
   return isSubscribed
@@ -37,14 +38,13 @@ function checkAnswer(e, _press) {
       (press) => press.name === _press.name
     );
     button = showSubscribeButton(isSubscribed);
-
     showListView(currentIndex + 1);
   } else {
     console.log("no");
   }
 }
 export function handleSubscribe(_press) {
-  const button = document.querySelector(".sub");
+  let button = document.querySelector(".sub");
   const press_news = document.querySelector(".press-news");
   const main_list = document.querySelector(".main-list");
   const newDiv = document.createElement("div");
@@ -54,7 +54,6 @@ export function handleSubscribe(_press) {
   );
   //구독한 상태에서 누를 경우
   if (isSubscribed) {
-    console.log("dd");
     newDiv.classList.add("popup", "alert");
     newDiv.innerHTML = `
         <div class="message"><span class="press">${_press.name}</span>을(를)\n구독해지하시겠습니까?</div>
@@ -76,6 +75,8 @@ export function handleSubscribe(_press) {
     main_list.appendChild(newDiv);
     //구독한 상태로 바뀜
     //버튼 변경
-    button.innerHTML = showSubscribeButton(!isSubscribed);
+    // button = showSubscribeButton(!isSubscribed);
+    button = "";
+    console.log(button);
   }
 }
