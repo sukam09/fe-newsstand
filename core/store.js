@@ -23,11 +23,12 @@ class Store {
 }
 
 function reducer(state = initialState, action) {
-  switch (action.type) {
+  const { type, pid, pressName } = action;
+  switch (type) {
     case 'subscribe':
-      return { ...state, myPress: [...state.myPress, action.pid] };
+      return { ...state, myPress: [...state.myPress, { pid, pressName }] };
     case 'unsubscribe':
-      return { ...state, myPress: state.myPress.filter(press => press !== action.pid) };
+      return { ...state, myPress: state.myPress.filter(press => press.pid !== pid) };
     default:
       return { ...state };
   }

@@ -72,7 +72,7 @@ export default function PressGridView({ $target, initialState }) {
         // TODO: 내가 구독한 리스트로 이동
       }, SNACKBAR_DURATION);
 
-      store.dispatch(actionCreator('subscribe', { pid: id }));
+      store.dispatch(actionCreator('subscribe', { pid: id, pressName: name }));
     }
   };
 
