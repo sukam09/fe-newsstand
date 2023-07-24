@@ -6,7 +6,6 @@ export default class NewsList extends Component {
   setup() {
     this.$state = {
       pressNewsData: [],
-      progressTimer: undefined,
       page: 1,
       nowCategoryNewsData: [],
     };
@@ -104,16 +103,7 @@ export default class NewsList extends Component {
     this.currentPercentage = 0;
   };
 
-  stopProgress() {
-    if (this.$state.progressTimer) {
-      this.clearProgress();
-      clearInterval(this.$state.progressTimer);
-      this.setState({ progressTimer: undefined }, false);
-    }
-  }
-
   startProgress() {
-    this.stopProgress();
     const $progress = document.querySelector(".news-list__field-tab__progress");
     const increment = 100 / (constants.PROGRESS_DURATION_MS / 16); // 16ms 마다 업데이트
 
@@ -128,7 +118,7 @@ export default class NewsList extends Component {
       $progress.style.background = `linear-gradient(to right, #4362d0 ${this.currentPercentage}%, #7890e7 ${this.currentPercentage}%)`;
     }, 16); // 16ms 마다 업데이트
 
-    this.setState({ progressTimer: progressTimer }, false);
+    this.$props.setProgressTimer(progressTimer);
   }
 
   renderContent() {
@@ -240,7 +230,6 @@ export default class NewsList extends Component {
     );
     [...$fieldTabList].forEach((item) => {
       item.addEventListener("click", (event) => {
-        this.stopProgress();
         constants.FIELDTAB_LIST.forEach((item) => this.makeTag(event, item));
         document.querySelector(".news-list__field-tab").innerHTML =
           this.tabLiteral;
