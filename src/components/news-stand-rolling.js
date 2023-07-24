@@ -12,12 +12,8 @@ class RollingNews {
     const liList = newsWrapper.querySelectorAll(`.${HEADER_CLASS.LI}`);
 
     liList.forEach((li) => {
-      li.addEventListener('mouseover', () => {
-        this.stopRollingHover();
-      });
-      li.addEventListener('mouseout', () => {
-        this.startRollingHover();
-      });
+      li.addEventListener('mouseover', () => this.stopRollingHover());
+      li.addEventListener('mouseout', () => this.startRollingHover());
     });
   }
 
@@ -83,10 +79,10 @@ class RollingNews {
 }
 
 const startRolling = (newsWrappers, intervals, side) => {
-  const rollingManager = new RollingNews(newsWrappers, intervals, side);
-  rollingManager.setupHover();
-  rollingManager.initRolling();
-  rollingManager.setupRolling();
+  const rollingNews = new RollingNews(newsWrappers, intervals, side);
+  rollingNews.setupHover();
+  rollingNews.initRolling();
+  rollingNews.setupRolling();
 };
 
 export { startRolling };
