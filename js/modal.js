@@ -2,10 +2,12 @@ import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay,
 import { STATE, DATA, setSubData } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
+import { getState,setState,subscribe } from "./observer/observer.js";
+import { categoryPageCount, isGridView, isSubView, nowCategory, subListPageCount, subscribedPress } from "./store/store.js";
 import {  setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
 
-let news_by_category;
+let news_by_category = null;
 
 function onUndiscribeModal({target: target}) {
   const $press_name = document.querySelector(".sub-press-name");
@@ -19,7 +21,10 @@ function offUndiscribeModal() { //grid
 
 function onListUndiscribeModal() { // 리스트 구독 모달
   const $sub_modal = document.querySelector(".list-subscribe-modal");
-  const $press = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : news_by_category[DATA.now_category][DATA.page_count[DATA.now_category]];
+  const subscribed_presses = getState(subscribedPress);
+  const now_category = getState(nowCategory);
+  const page_count = getState(categoryPageCount)
+  const $press = getState(isSubView) ? subscribed_presses[getState(subListPageCount)]: news_by_category[now_category][page_count[now_category]];
   $sub_modal.querySelector(".sub-press-name").textContent = $press.name;
   setDisplay(".list-subscribe-modal", "query", "block");
 }
@@ -38,7 +43,7 @@ function handleModalBtn({target:target}) {
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
     //예 ?
-    if (STATE.IS_GRID_VIEW) {
+    if (getState(isGridView)) {
       //그리드뷰일때
       const $press_name_span = findSpanNearby(target);
       const $find_press = findPress("name", $press_name_span);
@@ -47,8 +52,8 @@ function handleModalBtn({target:target}) {
     } else {
       // 리스트뷰일때
       setSubData(STATE.CLICKED_UNSUB_NEWS);
-      STATE.SUB_NEWS_PAGE = 0;
-      if (STATE.SUB_DATA.length === 0) {
+      setState(subListPageCount,0);
+      if (getState(subscribedPress).length === 0) {
         removeDisplay();
         changeOption("subscribe");
         setDisplay(".no-sub-item-div", "query", "block");
