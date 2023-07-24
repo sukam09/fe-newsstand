@@ -6,7 +6,7 @@ export class ViewModeStore extends Observable {
   constructor() {
     super();
     this.viewType = TEXT.LIST;
-    this.option = TEXT.SUBSCRIBE_EN;
+    this.option = TEXT.ALL;
     this.colorMode = getLocalStorage(KEY.COLOR_MODE) || TEXT.LIGHT;
 
     document.body.className = this.colorMode;
@@ -30,5 +30,9 @@ export class ViewModeStore extends Observable {
 
   isDarkMode() {
     return this.colorMode === TEXT.DARK;
+  }
+
+  potalMyPress() {
+    this.toggleOption(TEXT.SUBSCRIBE_EN);
   }
 }

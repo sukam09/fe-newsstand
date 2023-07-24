@@ -1,5 +1,5 @@
 import { pageStore, pressStore, viewStore } from '../../../store/index.js';
-import { LIST_TEMPLATE, TEXT } from '../../constants/index.js';
+import { LIST_KEYS_TEMPLATE, TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
@@ -198,7 +198,8 @@ export default class AllNewsListView extends Component {
   }
 
   getListPress() {
-    let listPress = { ...LIST_TEMPLATE };
+    const listPress = {};
+    LIST_KEYS_TEMPLATE.forEach(category => (listPress[category] = []));
     pressStore.getAllPress().forEach(press => listPress[press.category].push(press));
     return listPress;
   }

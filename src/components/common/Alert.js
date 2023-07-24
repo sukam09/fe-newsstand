@@ -18,8 +18,8 @@ export default class Alert extends Component {
   }
 
   setEvent() {
-    this.$target.addEventListener('click', e => {
-      if (e.target.classList.contains('alert-yes')) {
+    this.$target.addEventListener('click', ({ target }) => {
+      if (target.classList.contains('alert-yes')) {
         pressStore.deleteSubscribedList(this.props.number);
       }
       this.$target.innerHTML = '';

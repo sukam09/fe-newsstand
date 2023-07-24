@@ -7,13 +7,10 @@ import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 import AllNewsMyListView from './AllNewsMyListView.js';
 
-export let myListPotal;
-
 export default class AllNews extends Component {
   setup() {
     this.state = { view: viewStore.viewType, option: viewStore.option };
     viewStore.subscribe(this);
-    myListPotal = this.moveMyList.bind(this);
   }
 
   template() {
@@ -42,9 +39,5 @@ export default class AllNews extends Component {
           })
         : new AllNewsMyListView(customQuerySelector('.all-news-wrapper', this.$target));
     }
-  }
-
-  moveMyList() {
-    this.setState({ view: TEXT.LIST, option: TEXT.SUBSCRIBE_EN });
   }
 }
