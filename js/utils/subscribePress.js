@@ -36,7 +36,6 @@ function checkAnswer(e, _press) {
     const isSubscribed = getSubscribedPress().some(
       (press) => press.name === _press.name
     );
-    button = showSubscribeButton(isSubscribed);
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   } else {
   }
@@ -49,7 +48,7 @@ function handleAnimationEnd(e, _press) {
   if (e.animationName === "fade-out") {
     setTimeout(() => {
       store.setState({ tabMode: "subscribe" });
-      changeView();
+      changeView("list");
       showListView(currentIndex);
     }, 1000);
   }
@@ -74,10 +73,10 @@ export function handleSubscribe(_press) {
     view_content.appendChild(newDiv);
     const btn = document.querySelector(".buttons");
     btn.addEventListener("click", (e) => checkAnswer(e, _press));
-    getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   }
   //구독하지 않았을 때 => 구독됨
   else {
+    button = showSubscribeButton(!isSubscribed);
     const updatedSubscribedPress = [...getSubscribedPress(), _press];
     store.setState({ subscribedPress: updatedSubscribedPress });
     document.addEventListener("animationend", (e) =>
@@ -90,6 +89,6 @@ export function handleSubscribe(_press) {
     view_content.appendChild(newDiv);
     //구독한 상태로 바뀜
     //버튼 변경
-    button = showSubscribeButton(!isSubscribed);
+    getView() === "grid" ? showGridView() : showListView();
   }
 }

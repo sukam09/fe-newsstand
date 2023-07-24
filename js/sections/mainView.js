@@ -36,7 +36,7 @@ function handleClick(e) {
     case "list-btn":
     case "list-view-btn":
       store.setState({ page: FIRST_PAGE_NUM });
-      changeView();
+      changeView(target.slice(0, 4));
       getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
       break;
     case "left":
