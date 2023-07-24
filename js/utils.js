@@ -36,14 +36,12 @@ function findPress(type, target) {
   if (type === "src") {
     let $target_src = target.getElementsByTagName("img")[0].src;
     $target_src = ".." + $target_src.split("5500")[1];
-    console.log($target_src);
     const press_name = presses.find(press => {
       const press_src = getState(isDark) ? press.path_dark : press.path_light;
       return $target_src === press_src;
     }).name;
     return press_name;
   } else if (type === "name") {
-    console.log(target.textContent);
     return presses.find(press => press.name === target.textContent); // 객체반환
   }
 }

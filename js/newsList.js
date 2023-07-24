@@ -2,7 +2,16 @@ import { listSubMouseClick } from "./subscribe.js";
 import { checkIsSubscribe, getJSON, setDisplay } from "./utils.js";
 import { setSubListNav } from "./subscribeListView.js";
 import { getState, setState, subscribe, setDictState } from "./observer/observer.js";
-import { categoryPageCount, clickedUnsubPress, isDark, isSubView, nowCategory, subListPageCount, subscribedPress, totalCategoryPages } from "./store/store.js";
+import {
+  categoryPageCount,
+  clickedUnsubPress,
+  isDark,
+  isSubView,
+  nowCategory,
+  subListPageCount,
+  subscribedPress,
+  totalCategoryPages,
+} from "./store/store.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let news;
@@ -65,6 +74,9 @@ function drawNews() {
   const news = getState(isSubView)
     ? getState(subscribedPress)[getState(subListPageCount)]
     : news_by_category[getState(categoryPageCount)[now_category]];
+  if (news === undefined) {
+    return;
+  }
   document.querySelector(".press-brandmark").src = getState(isDark) ? news.path_dark : news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;
@@ -88,6 +100,9 @@ function drawNews() {
 
 function restartAnimation() {
   // 프로그래스 애니메이션 재시작
+  if (checkSubPressEmpty) {
+    return;
+  }
   const _class = getState(isSubView) ? "list-progress-bar" : "progress-bar";
   const c_query = "." + _class;
   const $animation = document.querySelector(c_query);
@@ -105,12 +120,6 @@ function pressListArrow(increment) {
   } else {
     setDictState(categoryPageCount, { [now_category]: category_page_count[now_category] + increment });
   }
-
-  // drawListArrow();
-  // drawNews();
-  // restartAnimation();
-  // setSubListNav();
-  // setNowCount();
 }
 
 function clickCategory({ target: target }) {
@@ -144,7 +153,7 @@ function initCategoryClass() {
     const news = getState(isSubView)
       ? getState(subscribedPress)[getState(subListPageCount)]
       : getNews()[getState(categoryPageCount)[getState(nowCategory)]];
-      setState(clickedUnsubPress, news);
+    setState(clickedUnsubPress, news);
     listSubMouseClick(news);
   });
 }
@@ -231,6 +240,13 @@ function setFisrtCategory() {
   setState(nowCategory, category[0]);
   const $first_category = document.querySelector(".nav-item").parentElement;
   clickCategory({ target: $first_category });
+}
+
+function checkSubPressEmpty() {
+  if (getState(subscribedPress).length === 0) {
+    return true;
+  }
+  return false;
 }
 
 export { drawListArrow, setNowCount, drawNews, clickCategory, initCategoryClass, initNewsInfo };

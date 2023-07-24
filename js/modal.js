@@ -16,7 +16,6 @@ import { changeOption } from "./viewHandler.js";
 let news_by_category = null;
 
 function onGridUndiscribeModal({ target: target }) {
-  console.log(target);
   const $press_name = document.querySelector(".grid-sub-press-name");
 
   $press_name.textContent = findPress("src", target);
@@ -58,11 +57,8 @@ function handleModalBtn({ target: target }) {
     if (getState(isGridView)) {
       //그리드뷰일때
       const $press_name_span = findSpanNearby(target);
-      console.log($press_name_span);
       const $find_press = findPress("name", $press_name_span);
-      console.log($find_press);
       setSubData($find_press);
-      drawGridView();
     } else {
       // 리스트뷰일때
       setSubData(getState(clickedUnsubPress));

@@ -1,4 +1,5 @@
-import { getState, setState } from "./observer/observer.js";
+import { drawGridView } from "./gridFunction.js";
+import { getState, setState, subscribe } from "./observer/observer.js";
 import { subscribedPress } from "./store/store.js";
 
 const PAGE_SIZE = 24;
@@ -7,20 +8,16 @@ const ROLLING_LATENCY = 1000;
 const MODAL_POPUP_TIME = 5000;
 
 function setSubData(target) {
+  subscribe(subscribedPress, drawGridView);
   const subscribed_presses = getState(subscribedPress);
   if (subscribed_presses.find(press => press.name === target.name) === undefined) {
     setState(subscribedPress, [...subscribed_presses, target]);
   } else {
-    console.log(
-      "set",
-      subscribed_presses.filter(press => press.name !== target.name),
-    );
     setState(
       subscribedPress,
       subscribed_presses.filter(press => press.name !== target.name),
     );
   }
-  console.log(getState(subscribedPress));
 }
 
 const ARROW_SVG_PATH = `
