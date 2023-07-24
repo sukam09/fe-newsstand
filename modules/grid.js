@@ -30,7 +30,7 @@ const makeGrid = () => {
     $img.style.height = "20px";
     $li.appendChild($img);
 
-    const $buttonWrapper = addSubscribeButton(i);
+    const $buttonWrapper = setButttonWrapper(i);
     $li.append($buttonWrapper);
     $newsWrapper.append($li);
   }
@@ -49,52 +49,41 @@ const changeImgSrc = () => {
       ? idList[i]
       : getState(subscribeList)[i];
 
-    const $Wrapper = $newsWrapper.childNodes[i - start];
-    const $buttonWrapper = $Wrapper.querySelector(".news-grid_button_wrapper");
     const $img = document.querySelector(`.img${i - start}`);
 
     if (mediaIdx === undefined) {
       $img.src = "";
-      $buttonWrapper.style.display = "none";
       continue;
     }
-
-    $buttonWrapper.style.display = "";
 
     const imgSrc = getState(isLightMode)
       ? `${mediaInfo[mediaIdx].path_light}`
       : `${mediaInfo[mediaIdx].path_dark}`;
-    // $img.src = imgSrc;
-
-    const checkImg = new Image();
-    checkImg.src = imgSrc;
-    checkImg.onload = () => {
-      $img.src = imgSrc;
-    };
-    checkImg.onerror = () => {
-      $img.src = "";
-      $buttonWrapper.style.display = "none";
-    };
+    $img.src = imgSrc;
   }
 };
 
 /**
  * 구독 버튼 영역 추가
  */
-const addSubscribeButton = (idx) => {
-  const mediaId = getState("isTotalMode")
+const setButttonWrapper = (idx) => {
+  const mediaId = getState(isTotalMode)
     ? idList[idx]
-    : getState("subscribeList")[idx];
+    : getState(subscribeList)[idx];
   const $buttonWrapper = document.createElement("div");
   $buttonWrapper.classList.add("news-grid_button_wrapper");
 
+  const mediaIdx = getState(isTotalMode)
+    ? idList[idx]
+    : getState(subscribeList)[idx];
+
   const $button = document.createElement("button");
   $button.classList.add(
-    getState("subscribeList").includes(mediaId)
+    getState(subscribeList).includes(mediaId)
       ? "news-grid_subscribed_btn"
       : "news-grid_unsubscribed_btn"
   );
-  $button.innerText = getState("subscribeList").includes(mediaId)
+  $button.innerText = getState(subscribeList).includes(mediaId)
     ? "x 해지하기"
     : "+ 구독하기";
 
@@ -103,6 +92,12 @@ const addSubscribeButton = (idx) => {
   });
 
   $buttonWrapper.append($button);
+
+  if (mediaIdx === undefined) {
+    $buttonWrapper.style.display = "none";
+  } else {
+    $buttonWrapper.style.display = "";
+  }
 
   return $buttonWrapper;
 };
@@ -124,7 +119,7 @@ const clickSubButton = (idx) => {
   );
 
   $buttonWrapper.remove();
-  $newsWrapper.children[idx % MEDIA_NUM].append(addSubscribeButton(idx));
+  $newsWrapper.children[idx % MEDIA_NUM].append(setButttonWrapper(idx));
 };
 
 /**
@@ -190,7 +185,7 @@ const changeButtonView = () => {
   $newsList.forEach((li, idx) => {
     const $buttonWrapper = li.querySelector(".news-grid_button_wrapper");
     $buttonWrapper.remove();
-    li.append(addSubscribeButton(start + idx));
+    li.append(setButttonWrapper(start + idx));
   });
 };
 
@@ -238,18 +233,22 @@ const getGridInfo = async () => {
   mediaInfo = await getJSON("/assets/media-content.json");
 };
 
-/**
- * 초기 그리드뷰 세팅
- */
-async function initGridView() {
-  await getGridInfo();
-  idList = shuffleList(idList);
-
+const initGridRegister = () => {
   register(
     [gridPageNum, isTotalMode, subscribeList, isLightMode],
     changeImgSrc
   );
+  register([isTotalMode, subscribeList], setButttonWrapper);
+};
 
+/**
+ * 초기 그리드뷰 세팅
+ */
+async function initGridView() {
+  initGridRegister();
+
+  await getGridInfo();
+  idList = shuffleList(idList);
   makeGrid();
   setArrowVisible();
   setGridArrowEvent();
