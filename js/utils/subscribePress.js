@@ -7,11 +7,18 @@ import { changeView } from "./changeView.js";
 
 export function showSubscribeButton(isSubscribed) {
   return isSubscribed
-    ? `
+    ? getView() === "grid"
+      ? `
         <button class="sub cancel">
           <img src="${ICON_IMG_PATH}closed.svg" />
+          <span>해지하기</span>
         </button>
       `
+      : `
+      <button class="sub cancel">
+        <img src="${ICON_IMG_PATH}closed.svg" />
+      </button>
+    `
     : `
         <button class="sub subscribe">
           <img src="${ICON_IMG_PATH}plus.svg" />
@@ -78,7 +85,6 @@ export function handleSubscribe(_press) {
         </div>`;
     view_content.appendChild(newDiv);
     const btn = document.querySelector(".buttons");
-    console.log(view_content);
     btn.addEventListener("click", (e) => checkAnswer(e, _press));
   }
   //구독하지 않았을 때 => 구독됨
@@ -93,7 +99,6 @@ export function handleSubscribe(_press) {
     newDiv.textContent = "내가 구독한 언론사에 추가되었습니다.";
     view_content.appendChild(newDiv);
     //구독한 상태로 바뀜
-    //버튼 변경
     getView() === "grid" ? showGridView() : showListView();
   }
 }
