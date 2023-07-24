@@ -1,6 +1,5 @@
 import { UNSUB_BTN_IMG, GRID_SUB_BTN_IMG } from "./path.js";
 import { getPressObj } from "./api/api.js";
-import { removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 
 const PRESS_NUM_IN_GRID = 24;
