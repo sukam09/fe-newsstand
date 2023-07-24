@@ -157,7 +157,10 @@ function handleSubscribeButtonClick(e) {
     return;
   }
 
-  const name = $button.previousElementSibling.previousElementSibling.alt;
+  const $header = e.target.closest("header");
+  const $brandMark = $header.querySelector("img");
+
+  const name = $brandMark.alt;
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
