@@ -1,4 +1,4 @@
-import { fieldClick } from "./Components/field.js";
+import { fieldClick, fieldXScroll } from "./Components/field.js";
 import { pageButton } from "./Components/pageButton.js";
 import { pressFilterTabs } from "./Components/pressFilterTabs.js";
 import { viewButton } from "./Components/viewButton.js";
@@ -12,4 +12,5 @@ export function controller() {
   pressFilterTabs();
   //
   fieldClick();
+  // fieldXScroll();
 }

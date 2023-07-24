@@ -1,6 +1,6 @@
 import { LIST_PAGE, VIEW } from "../../model/global.js";
 import { timerId } from "../timer.js";
-import { fieldClick } from "./field.js";
+import { fieldClick, fieldXScroll } from "./field.js";
 
 const Tabs = document.querySelector(".tab-and-viewer .tabs");
 const EntirePressBtn = Tabs.querySelector(".all-press-btn");
@@ -20,5 +20,6 @@ export function pressFilterTabs() {
     LIST_PAGE.category = 0;
     VIEW.setTab("subscribe");
     fieldClick();
+    fieldXScroll();
   });
 }

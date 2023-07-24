@@ -1,5 +1,5 @@
 import { shuffle_press } from "../util/shuffle.js";
-import { fieldClick } from "../controller/Components/field.js";
+import { fieldClick, fieldXScroll } from "../controller/Components/field.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
 import { startTimer } from "../controller/timer.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
@@ -85,6 +85,7 @@ export function renderList(changeSubscribeView = false) {
   }
   if (VIEW.tab === "subscribe") {
     fieldClick();
+    fieldXScroll();
   }
 
   if (news.length > 0) {

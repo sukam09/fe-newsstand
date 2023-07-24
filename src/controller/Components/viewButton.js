@@ -1,6 +1,6 @@
 import { VIEW } from "../../model/global.js";
 import { startTimer, timerId } from "../timer.js";
-import { fieldClick } from "./field.js";
+import { fieldClick, fieldXScroll } from "./field.js";
 
 export function viewButton() {
   const list_Btn = document.querySelector("#list-btn");
@@ -8,6 +8,7 @@ export function viewButton() {
   list_Btn.addEventListener("click", () => {
     VIEW.setLayout("list");
     fieldClick();
+    fieldXScroll();
     if (timerId) {
       clearInterval(timerId);
     }
