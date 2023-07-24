@@ -1,5 +1,5 @@
-import { html } from "../lib/jsx.js";
-const NewsRollingBar = (animationDelay = 0) => {
+import { html } from "../../lib/jsx.js";
+const NewsRollingBar = (delay = 0) => {
     const updateRecentNews = ({ currentTarget }) => {
         // JSX parsing 과정에서 생긴 빈 text node를 제거합니다.
         // if ((currentTarget as Node)!.firstChild?.nodeValue === " ") {
@@ -22,7 +22,7 @@ const NewsRollingBar = (animationDelay = 0) => {
           <h3 class="news-article__company">연합뉴스</h3>
           <ul
             class="news-article__list"
-            style=${`animation-delay: ${animationDelay}s`}
+            style=${`animation-delay: ${delay}s`}
             onAnimationIteration=${updateRecentNews}
             onMouseEnter=${changeAnimationPlayState("paused")}
             onMouseLeave=${changeAnimationPlayState("running")}
