@@ -30,7 +30,8 @@ class Store {
 
     setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
-        this.renderView();
+        // this.renderView();
+        this.notify();
     }
     setSubList(id, type){
         switch(type){
@@ -42,32 +43,19 @@ class Store {
                 this.subList.splice(idx,1)
                 break;
         }
-        this.renderView();
+        // this.renderView();
+        this.notify();
     }  
     setShuffledList(arr){
         this.shuffledList = arr;
     }
 
 
-
-
-    addSubscriber(subscriber) {
-        this.observers.add(subscriber)
+    subscribe(observer) {
+        this.observers.add(observer)
     }
-    notifySubscribers(){
+    notify(){
         this.observers.forEach(func => func());
-    }
-
-    renderView(){
-        switch (this.viewState.crntView){
-            case VIEW_TYPE.GRID:
-                drawGrid(this.viewState.crntPage);
-                break;
-            case VIEW_TYPE.LIST:
-                drawList(this.viewState.crntCategory);
-                break;
-        }
-        drawArrow();
     }
 }
 
