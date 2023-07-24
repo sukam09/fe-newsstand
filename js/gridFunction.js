@@ -1,128 +1,80 @@
-import presses from "../assets/light-media.js";
-import { initGridItemEvent, initSubGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE } from "./const.js";
-import { setDisplay } from "./utils.js";
-import { changeToGrid, changeToList, addEventInSymbol } from "./viewHandler.js";
-let grid_page_count = 0;
-let sub_grid_page_count = 0;
+import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
+import { PAGE_SIZE, STATE } from "./const.js";
+import { setDisplay, getJSON } from "./utils.js";
 
 const shuffle = () => Math.random() - 0.5;
-let shuffled_presses = [...presses].sort(shuffle);
+let presses;
+let shuffled_presses;
 
-function drawSubGridArrow() {
-  const subscribed_presses = presses.filter(press => press.isSub === true);
-  const total_sub_grid_page = parseInt(subscribed_presses.length / PAGE_SIZE);
-  setDisplay("sub-grid-next", "id", "block");
-  setDisplay("sub-grid-prev", "id", "block");
-  if (sub_grid_page_count === 0) {
-    setDisplay("sub-grid-prev", "id", "none");
-  }
-  if (sub_grid_page_count === total_sub_grid_page) {
-    setDisplay("sub-grid-next", "id", "none");
+function drawGridArrow() {
+  // 그리드 상태에 따른 화살표 출력
+  const total_grid_page = STATE.IS_SUB_VIEW ? parseInt(STATE.SUB_DATA.length / PAGE_SIZE) : parseInt(shuffled_presses.length / PAGE_SIZE);
+  setDisplay("grid-next", "id", "block");
+  setDisplay("grid-prev", "id", "block");
+  const now_page = STATE.IS_SUB_VIEW ? STATE.SUB_GRID_PAGE : STATE.GRID_PAGE;
+  if (total_grid_page === 0) {
+    setDisplay("grid-prev", "id", "none");
+    setDisplay("grid-next", "id", "none");
+  } else if (now_page === 0) {
+    setDisplay("grid-prev", "id", "none");
+  } else if (now_page+1 >= total_grid_page) {
+    setDisplay("grid-next", "id", "none");
   }
 }
 
 function appendPressInGrid(press) {
+  // grid에 뉴스 기사 넣기
   const $list = document.createElement("li");
   $list.classList.add("press-item");
-  initGridItemEvent($list);
+  initGridItemEvent($list, press);
   const $image = document.createElement("img");
-  $image.src = `${press.src}`;
+  $image.src = STATE.IS_DARK ? `${press.path_dark}` : `${press.path_light}`;
   $image.classList.add("original");
   const $button = document.createElement("button");
   $button.classList.add("hidden");
   preventButtonClick($button, false);
   const $sub_img = document.createElement("img");
-  $sub_img.src = press.isSub ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+  if (STATE.IS_SUB_VIEW) {
+    $sub_img.src = "../img/icons/unsubBtn.svg";
+  } else {
+    $sub_img.src = STATE.SUB_DATA.some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+  }
   $button.append($sub_img);
-
   $list.append($image, $button);
   document.getElementById("press-list").appendChild($list);
 }
 
-function appendSubPressInGrid(press) {
-  const $list = document.createElement("li");
-  $list.classList.add("press-item");
-  initSubGridItemEvent($list);
-  const $image = document.createElement("img");
-  $image.src = `${press.src}`;
-  $image.classList.add("original");
-  const $button = document.createElement("button");
-  $button.classList.add("hidden");
-  preventButtonClick($button, true);
-  const $sub_img = document.createElement("img");
-  $sub_img.src = "../img/icons/unsubBtn.svg";
-  $button.append($sub_img);
-  $list.append($image, $button);
-  document.getElementById("sub-press-list").appendChild($list);
-}
-
-function turnSubGridNextPage() {
-  sub_grid_page_count += 1;
-  drawSubGridView();
-}
-
-function turnSubGridPrevPage() {
-  sub_grid_page_count -= 1;
-  drawSubGridView();
-}
-
-function turnGridNextPage() {
-  if (grid_page_count + 1 === parseInt(presses.length / PAGE_SIZE) - 1) {
-    setDisplay("grid-next", "id", "none");
-  }
-  if (grid_page_count + 1 < parseInt(presses.length / PAGE_SIZE)) {
-    setDisplay("grid-prev", "id", "block");
-    document.getElementById("press-list").innerHTML = "";
-    grid_page_count += 1;
-    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * PAGE_SIZE, (grid_page_count + 1) * PAGE_SIZE);
-    slice_shuffled_presses.forEach(press => {
-      appendPressInGrid(press);
-    });
-  }
-}
-
-function turnGridPrevPage() {
-  if (grid_page_count - 1 === 0) {
-    setDisplay("grid-prev", "id", "none");
-  }
-  if (grid_page_count - 1 >= 0) {
-    setDisplay("grid-next", "id", "block");
-    document.getElementById("press-list").innerHTML = "";
-    grid_page_count -= 1;
-    const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * PAGE_SIZE, (grid_page_count + 1) * PAGE_SIZE);
-    slice_shuffled_presses.forEach(press => {
-      appendPressInGrid(press);
-    });
-  }
+function pressGridArrow(increment) {
+  // grid 화살표 클릭
+  STATE.IS_SUB_VIEW ? (STATE.SUB_GRID_PAGE = STATE.SUB_GRID_PAGE + increment) : (STATE.GRID_PAGE = STATE.GRID_PAGE + increment);
+  drawGridView();
 }
 
 function addEventGridArrow() {
-  document.getElementById("grid-next").addEventListener("click", turnGridNextPage);
-  document.getElementById("grid-prev").addEventListener("click", turnGridPrevPage);
-  document.getElementById("sub-grid-next").addEventListener("click", turnSubGridNextPage);
-  document.getElementById("sub-grid-prev").addEventListener("click", turnSubGridPrevPage);
+  // grid 화살표 이벤트 등록
+  document.getElementById("grid-next").addEventListener("click", () => pressGridArrow(1));
+  document.getElementById("grid-prev").addEventListener("click", () => pressGridArrow(-1));
 }
 
-function initPressGrid() {
-  let shuffled_presses = [...presses].sort(shuffle);
-  const slice_shuffled_presses = shuffled_presses.slice(0, PAGE_SIZE);
-  slice_shuffled_presses.forEach(press => {
-    appendPressInGrid(press);
+async function initPressGrid() {
+  // grid 초기화
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
   });
+  shuffled_presses = [...presses].sort(shuffle);
+  drawGridView();
   addEventGridArrow();
-  addEventInSymbol();
 }
 
 function drawGridView() {
-  let count = 0;
+  // 페이지에 따른 grid 그리기
   const $press_list = document.getElementById("press-list");
   $press_list.innerHTML = "";
-  const slice_shuffled_presses = shuffled_presses.slice(grid_page_count * PAGE_SIZE, (grid_page_count + 1) * PAGE_SIZE);
-  slice_shuffled_presses.forEach(press => {
-    appendPressInGrid(press);
-    count += 1;
-  });
+  const press_data = STATE.IS_SUB_VIEW ? STATE.SUB_DATA : shuffled_presses;
+  const PAGE_TYPE = STATE.IS_SUB_VIEW ? STATE.SUB_GRID_PAGE : STATE.GRID_PAGE;
+  const sliced_data = press_data.slice(PAGE_TYPE * PAGE_SIZE, (PAGE_TYPE + 1) * PAGE_SIZE);
+  const count = appendPress(sliced_data);
   if (count < PAGE_SIZE) {
     for (let i = 0; i < PAGE_SIZE - count + 1; i++) {
       const $li = document.createElement("li");
@@ -130,27 +82,16 @@ function drawGridView() {
       $press_list.appendChild($li);
     }
   }
+  drawGridArrow();
 }
 
-function drawSubGridView() {
+function appendPress(presses) {
   let count = 0;
-  const $sub_press_list = document.getElementById("sub-press-list");
-  $sub_press_list.innerHTML = "";
-  const subscribed_presses = presses
-    .filter(press => press.isSub === true)
-    .slice(sub_grid_page_count * PAGE_SIZE, (sub_grid_page_count + 1) * PAGE_SIZE);
-  subscribed_presses.forEach(press => {
-    appendSubPressInGrid(press);
-    count += 1;
+  presses.forEach(press => {
+    appendPressInGrid(press);
+    count++;
   });
-  if (count < PAGE_SIZE) {
-    for (let i = 0; i < PAGE_SIZE - count; i++) {
-      const $li = document.createElement("li");
-      $li.classList.add("press-item");
-      $sub_press_list.appendChild($li);
-    }
-  }
-  drawSubGridArrow();
+  return count;
 }
 
-export { appendPressInGrid, changeToList, initPressGrid, drawSubGridView, drawGridView, drawSubGridArrow };
+export { appendPressInGrid, initPressGrid, drawGridView };

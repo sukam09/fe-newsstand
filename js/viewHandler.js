@@ -1,84 +1,119 @@
-import { removeDisplay, setDisplay } from "./utils.js";
-import { setSubListNav } from "./newsList.js";
-import { drawSubGridView } from "./gridFunction.js";
+import { removeDisplay, setDisplay, getJSON } from "./utils.js";
+import { drawNews, setNowCount } from "./newsList.js";
+import { drawGridView } from "./gridFunction.js";
+import { STATE } from "./const.js";
+import { setSubListNav } from "./subscribeListView.js";
 
-let sub_view_selected = false;
-let grid_view_selected = true;
+let presses;
 
-function checkViewStatus(target) {
-  // option 선택
-  document.querySelector(".option-selected").classList.remove("option-selected");
-  target.classList.add("option-selected");
-  removeDisplay();
-  if (target.textContent === "내가 구독한 언론사") {
-    setDisplay(".grid-selected", "query", "none");
-    setDisplay(".list-selected", "query", "flex");
-    setDisplay(".sub-press-list-section", "query", "block");
-    sub_view_selected = true;
-    grid_view_selected = false;
-  } else {
-    setDisplay(".grid-selected", "query", "flex");
-    setDisplay(".list-selected", "query", "none");
-    setDisplay(".press-grid", "query", "block");
-    sub_view_selected = false;
-    grid_view_selected = true;
-  }
-}
+async function addEventInSymbol() {
+  presses = await getJSON("../assets/media.json");
+  presses = Object.values(presses).reduce((acc, cur) => {
+    return acc.concat(cur);
+  });
 
-function changeToGrid() {
-  console.log("click");
-  //그리드 클릭 시
-  setDisplay(".grid-selected", "query", "flex");
-  setDisplay(".list-selected", "query", "none");
-  removeDisplay();
-  if (sub_view_selected) {
-    setDisplay(".press-grid-sub", "query", "block");
-    drawSubGridView();
-    sub_view_selected = true;
-  } else {
-    setDisplay(".press-grid", "query", "block");
-    sub_view_selected = false;
-  }
-  grid_view_selected = true;
-}
-
-function changeToList() {
-  //리스트 클릭 시
-  setDisplay(".grid-selected", "query", "none");
-  setDisplay(".list-selected", "query", "flex");
-  removeDisplay();
-  if (sub_view_selected) {
-    // svs true면
-    setDisplay(".sub-press-list-section", "query", "block");
-    sub_view_selected = true;
-    setSubListNav();
-  } else {
-    // svs false면
-    setDisplay(".press-list-section", "query", "block");
-    sub_view_selected = false;
-  }
-  grid_view_selected = false;
-}
-
-function addEventInSymbol() {
   let $list_symbol = document.querySelectorAll(".list-symbol");
   let $grid_symbol = document.querySelectorAll(".grid-symbol");
   $list_symbol.forEach(symbol => {
-    symbol.addEventListener("click", () => {
-      if (grid_view_selected) {
-        // grid 상태이면
-        changeToList();
-      }
+    symbol.addEventListener("click", event => {
+      handleView(event.target);
     });
   });
   $grid_symbol.forEach(symbol => {
-    symbol.addEventListener("click", () => {
-      if (!grid_view_selected) {
-        // grid 상태 아니면
-        changeToGrid();
-      }
+    symbol.addEventListener("click", event => {
+      handleView(event.target);
     });
   });
 }
 
-export { checkViewStatus, changeToGrid, changeToList, addEventInSymbol };
+function changeViewIcon(selected) {
+  if (selected === "list") {
+    setDisplay(".grid-selected", "query", "none");
+    setDisplay(".list-selected", "query", "flex");
+  } else {
+    //grid 선택
+    setDisplay(".grid-selected", "query", "flex");
+    setDisplay(".list-selected", "query", "none");
+  }
+}
+
+function changeOption(selected) {
+  const $total = document.querySelector(".total-press");
+  const $subscribe = document.querySelector(".subscribed-press");
+  if (selected === "total") {
+    $subscribe.classList.remove("selected-bold16", "text-strong");
+    $total.classList.add("selected-bold16", "text-strong");
+  } else {
+    $subscribe.classList.add("selected-bold16", "text-strong");
+    $total.classList.remove("selected-bold16", "text-strong");
+  }
+}
+
+function handleView(target) {
+  const target_class = target.classList;
+  function checkClass(_class) {
+    return target_class.contains(_class); // 있으면 true 반환
+  }
+  removeDisplay();
+  if (checkClass("list-symbol")) {
+    //list 버튼 눌렀을 때
+    STATE.SUB_NEWS_PAGE = 0;
+    changeViewIcon("list");
+    STATE.IS_GRID_VIEW = false;
+    if (STATE.IS_SUB_VIEW) {
+      // list 선택, list 구독 뷰 출력
+      if (STATE.SUB_DATA.length === 0) {
+        setDisplay(".no-sub-item-div", "query", "block");
+      } else {
+        setDisplay(".press-list-section", "query", "block");
+        setDisplay(".sub-list-nav",'query','block');
+        setDisplay(".list-nav",'query','none');  
+        setSubListNav();
+        drawNews();
+      }
+    } else {
+      // list선택, total list 뷰 출력
+      setDisplay(".press-list-section", "query", "block");
+      setDisplay(".sub-list-nav",'query','none');
+      setDisplay(".list-nav",'query','block');
+      drawNews();
+      setNowCount();
+    }
+  }
+  if (checkClass("grid-symbol")) {
+    //grid 버튼 눌렀을 때
+    changeViewIcon("grid");
+    setDisplay(".press-grid", "query", "block");
+    drawGridView();
+    STATE.IS_GRID_VIEW = true;
+    STATE.IS_SUB_VIEW = true;
+  }
+  if (checkClass("total-press")) {
+    // 전체 언론사 클릭
+    STATE.IS_GRID_VIEW = true;
+    STATE.IS_SUB_VIEW = false;
+    setDisplay(".press-grid", "query", "block");
+    changeViewIcon("grid");
+    changeOption("total");
+    drawGridView();
+  }
+  if (checkClass("subscribed-press")) {
+    // 내 구독 언론사 클릭
+    changeViewIcon("list");
+    changeOption("subscribe");
+    STATE.SUB_NEWS_PAGE = 0;
+    STATE.IS_SUB_VIEW = true;
+    STATE.IS_GRID_VIEW = false;
+    if (STATE.SUB_DATA.length === 0) {
+      setDisplay(".no-sub-item-div", "query", "block");
+    } else {
+      setDisplay(".press-list-section", "query", "block");
+      setSubListNav();
+      drawNews();
+      setDisplay(".sub-list-nav",'query','block');
+      setDisplay(".list-nav",'query','none');
+    }
+  }
+}
+
+export { handleView, addEventInSymbol, changeViewIcon, changeOption };

@@ -1,99 +1,101 @@
-import { category, news_by_category } from "../assets/news.js";
 import { listSubMouseClick } from "./subscribe.js";
-import presses from "../assets/light-media.js";
+import { checkIsSubscribe, getJSON, setDisplay } from "./utils.js";
+import { DATA, STATE } from "./const.js";
+import { setSubListNav } from "./subscribeListView.js";
 
-let now_category = category[0];
-const total_pages = {};
-let page_count = {};
-category.forEach(item => {
-  total_pages[item] = news_by_category[item].length;
-  page_count[item] = 0;
-});
+const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+let news;
 
-function getNews(category) {
-  return news_by_category[category];
+function getNews() {
+  // 현재 카테고리의 뉴스 가져오기
+  return news[DATA.now_category];
+}
+async function initNewsInfo() {
+  // news 정보 세팅
+  news = await getJSON("/assets/media.json");
+  DATA.now_category = "종합/경제";
+  category.forEach(item => {
+    DATA.total_pages[item] = news[item].length;
+    DATA.page_count[item] = 0;
+  });
 }
 
-function drawArrow() {
-  if (page_count[now_category] === total_pages[now_category] - 1) {
-    hideArrow("right");
-    showArrow("left");
-  } else if (page_count[now_category] === 0) {
-    hideArrow("left");
-    showArrow("right");
-  } else {
-    showArrow("right");
-    showArrow("left");
+function drawListArrow() {
+  setDisplay(".list-prev", "query", "block");
+  setDisplay(".list-next", "query", "block");
+  if(STATE.IS_SUB_VIEW) {
+    if(STATE.SUB_DATA.length === 1) {
+      setDisplay(".list-prev", "query", "none");
+      setDisplay(".list-next", "query", "none");
+    }
+    else if(STATE.SUB_NEWS_PAGE === 0) {
+      setDisplay(".list-prev", "query", "none");
+    } else if ( STATE.SUB_NEWS_PAGE + 1 === STATE.SUB_DATA.length) {
+      setDisplay(".list-next", "query", "none");
+    }
+  } else { // 그냥 리스트 뷰
+    if (DATA.page_count[DATA.now_category] + 1 === DATA.total_pages[DATA.now_category]) {
+      setDisplay(".list-next", "query", "none");
+    } else if (DATA.page_count[DATA.now_category] === 0) {
+      setDisplay(".list-prev", "query", "none");
+    }  
   }
+  setNowCount();
 }
 
-function drawNews(category, page) {
-  const news = getNews(category);
-  document.querySelector(".press-brandmark").src = news[page].src;
-  document.querySelector(".edit-date").textContent = news[page].editDate;
-  document.querySelector(".thumbnail").src = news[page].thumbSrc;
-  document.querySelector(".news-main .font-init").textContent = news[page].headTitle;
+function drawNews() {
+  const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]];
+  document.querySelector(".press-brandmark").src = STATE.IS_DARK ? news.path_dark : news.path_light;
+  document.querySelector(".edit-date").textContent = news.editDate;
+  document.querySelector(".thumbnail").src = news.thumbSrc;
+  document.querySelector(".news-main p").textContent = news.headTitle;
   const subList = document.querySelector(".news-sub-list");
   subList.innerHTML = "";
-  news[page].subTitle.forEach(subnews => {
+  news.subTitle.forEach(subnews => {
     const $li = document.createElement("li");
+    $li.classList.add("text-bold", "available-medium16");
     $li.innerText = subnews;
     subList.append($li);
   });
   const $caption = document.createElement("li");
-  $caption.classList.add("caption");
-  $caption.innerText = `${news[page].name} 언론사에서 직접 편집한 뉴스입니다.`;
+  $caption.classList.add("caption", "display-medium14", "text-weak");
+  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
   subList.append($caption);
   const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.src = news[page].isSub ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
-  $sub_btn.addEventListener("click", e => listSubMouseClick(news[page], e.target));
+  $sub_btn.src = checkIsSubscribe("name", news.name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
+  drawListArrow();
 }
 
-function restartAnimation() {
-  const $animation = document.querySelector(".progress-bar");
-  $animation.classList.remove("progress-bar");
-  void $animation.offsetWidth; // Reflow를 유발하여 애니메이션 재시작을 위한 트리거
-  $animation.classList.add("progress-bar");
+function restartAnimation(_class) { // 프로그래스 애니메이션 재시작
+  const c_query = "."+_class;
+  const $animation = document.querySelector(c_query);
+  $animation.classList.remove(_class);
+  void $animation.offsetWidth; 
+  $animation.classList.add(_class);
 }
 
-function clickListRightBtn(category) {
-  if (page_count[category] + 1 === total_pages[category] - 1) {
-    page_count[category] += 1;
-    drawNews(category, page_count[category]);
-    hideArrow("right");
+function pressListArrow(increment) { 
+  if(STATE.IS_SUB_VIEW) {
+    STATE.SUB_NEWS_PAGE += increment;
   } else {
-    page_count[category] += 1;
-    drawNews(category, page_count[category]);
+    DATA.page_count[DATA.now_category] += increment;
   }
-  showArrow("left");
-  restartAnimation();
+  drawListArrow();
+  drawNews();
+  const progress_bar = STATE.IS_SUB_VIEW ? "list-progress-bar" : "progress-bar"
+  restartAnimation(progress_bar);
+  setSubListNav();
   setNowCount();
 }
 
-function clickListLeftBtn(category) {
-  if (page_count[category] - 1 === -1) {
-    return;
-  } else if (page_count[category] - 1 === 0) {
-    page_count[category] -= 1;
-    drawNews(category, page_count[category]);
-    hideArrow("left");
-  } else {
-    page_count[category] -= 1;
-    drawNews(category, page_count[category]);
-  }
-  showArrow("right");
-  restartAnimation();
-  setNowCount();
-}
 
-function clickCategory(target) {
+function clickCategory({target:target}) {
   checkSameCategory(target);
-  page_count[target.firstElementChild.innerText.trim()] = 0;
-  now_category = target.querySelector(".nav-item").textContent.trim();
-  showArrow("right");
-  hideArrow("left");
+  DATA.page_count[target.firstElementChild.innerText.trim()] = 0;
+  DATA.now_category = target.querySelector(".nav-item").textContent.trim();
+  drawListArrow()
   initProgressWhenCategoryClick(target);
-  drawNews(now_category, page_count[now_category]);
+  drawNews(DATA.now_category, DATA.page_count[DATA.now_category]);
 }
 
 function initProgressWhenCategoryClick(target) {
@@ -107,26 +109,32 @@ function initProgressWhenCategoryClick(target) {
 
 function initCategoryClass() {
   const categories = document.querySelectorAll(".list-nav li");
-  categories.forEach(category => category.addEventListener("click", e => clickCategory(e.target)));
+  categories.forEach(category => category.addEventListener("click",clickCategory));
   const $progress_bar = document.querySelector(".progress-bar");
   insertCountDiv($progress_bar);
   addProgressIterEvent($progress_bar);
-  document.querySelector(".right-btn").addEventListener("click", () => clickListRightBtn(now_category));
-  document.querySelector(".left-btn").addEventListener("click", () => clickListLeftBtn(now_category));
+  document.querySelector(".list-next").addEventListener("click", () => pressListArrow(1));
+  document.querySelector(".list-prev").addEventListener("click", () => pressListArrow(-1));
+  const $sub_btn = document.querySelector(".list-sub-btn"); // 구독버튼!
+  $sub_btn.addEventListener("click", () => {
+    const news = STATE.IS_SUB_VIEW ? STATE.SUB_DATA[STATE.SUB_NEWS_PAGE] : getNews()[DATA.page_count[DATA.now_category]];
+    STATE.CLICKED_UNSUB_NEWS = news;
+    listSubMouseClick(news);
+  });
 }
 
 function nextNewsWhenProgressEnd() {
-  if (page_count[now_category] === total_pages[now_category] - 1) {
+  if (DATA.page_count[DATA.now_category] === DATA.total_pages[DATA.now_category] - 1) {
     if (checkLastCategory()) {
       setFisrtCategory();
     } else {
-      page_count[now_category] = 0;
+      DATA.page_count[DATA.now_category] = 0;
       const $progress_bar = document.querySelector(".progress-bar");
       removeProgressIterEvent($progress_bar);
-      now_category = category[category.indexOf(now_category) + 1];
+      DATA.now_category = category[category.indexOf(DATA.now_category) + 1];
       removeProgressStatus();
       document.querySelectorAll(".nav-item").forEach(nav => {
-        if (nav.textContent === now_category) {
+        if (nav.textContent === DATA.now_category) {
           const $nav_li = nav.parentElement;
           $nav_li.classList.add("progress-bar");
           insertCountDiv($nav_li);
@@ -135,24 +143,24 @@ function nextNewsWhenProgressEnd() {
       });
     }
   } else {
-    page_count[now_category] += 1;
+    DATA.page_count[DATA.now_category] += 1;
   }
   redrawNewsContents();
 }
 
 function redrawNewsContents() {
-  drawNews(now_category, page_count[now_category]);
+  drawNews();
   setNowCount();
-  drawArrow();
+  drawListArrow();
 }
 
 function insertCountDiv(component) {
   component.insertAdjacentHTML(
     "beforeend",
     `
-  <div class="count font-init"><span class="now-count">${page_count[now_category] + 1}</span> <span>/</span><span class="total-count">${
-      total_pages[now_category]
-    }</span></div>
+  <div class="count font-init"><span class="now-count">${
+    DATA.page_count[DATA.now_category] + 1
+  }</span> <span>/</span><span class="total-count">${DATA.total_pages[DATA.now_category]}</span></div>
   `,
   );
 }
@@ -171,46 +179,31 @@ function removeProgressStatus() {
 }
 
 function setNowCount() {
-  document.querySelector(".now-count").textContent = page_count[now_category] + 1;
+  document.querySelector(".now-count").textContent = DATA.page_count[DATA.now_category] + 1;
+  document.querySelector(".total-count").textContent = DATA.total_pages[DATA.now_category];
 }
 
-function hideArrow(direction) {
-  document.querySelector(`.${direction}-btn`).classList.add("hidden");
-}
-
-function showArrow(direction) {
-  document.querySelector(`.${direction}-btn`).classList.remove("hidden");
-}
 
 function checkSameCategory(target) {
-  if (now_category === target.firstElementChild.textContent.trim()) {
+  if (DATA.now_category === target.firstElementChild.textContent.trim()) {
     return;
   }
 }
 
 function checkLastCategory() {
-  if (now_category === category[category.length - 1] && page_count[now_category] === total_pages[now_category] - 1) {
+  if (
+    DATA.now_category === category[category.length - 1] &&
+    DATA.page_count[DATA.now_category] === DATA.total_pages[DATA.now_category] - 1
+  ) {
     return true;
   }
   return false;
 }
 
 function setFisrtCategory() {
-  now_category = category[0];
+  DATA.now_category = category[0];
   const $first_category = document.querySelector(".nav-item").parentElement;
   clickCategory($first_category);
 }
 
-function setSubListNav() {
-  const subscribed_presses = presses.filter(press => press.isSub === true);
-  console.log(subscribed_presses);
-  const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
-  [...subscribed_presses].forEach(press => {
-    const $li = document.createElement("li");
-    $li.classList.add("sub-nav-item");
-    $li.textContent = press.name;
-    $sub_list_nav.append($li);
-  });
-}
-
-export { now_category, drawNews, clickListRightBtn, clickListLeftBtn, clickCategory, initCategoryClass, setSubListNav };
+export { drawListArrow,setNowCount, drawNews, clickCategory, initCategoryClass, initNewsInfo };
