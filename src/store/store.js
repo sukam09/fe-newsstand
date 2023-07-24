@@ -1,42 +1,107 @@
-class Store {
-  #states;
+import { atom, selector } from "./atom.js";
+import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
 
-  constructor() {
-    this.#states = new Map();
-  }
+const viewState = atom({
+  key: "viewState",
+  defaultValue: VIEW_TYPE.GRID,
+});
 
-  getState(key) {
-    return this.#states.get(key);
-  }
+const viewOptionState = atom({
+  key: "viewOptionState",
+  defaultValue: VIEW_OPTION_TYPE.ALL,
+});
 
-  setState(key, state) {
-    this.#states.set(key, state);
-  }
-}
+const isDarkMode = atom({
+  key: "isDarkMode",
+  defaultValue: false,
+});
 
-class State {
-  #value;
-  #observers;
+const gridPageState = atom({
+  key: "gridPageState",
+  defaultValue: 0,
+});
 
-  constructor(value) {
-    this.#value = value;
-    this.#observers = new Set();
-  }
+const subscribeGridPageState = atom({
+  key: "subscribeGridPageState",
+  defaultValue: 0,
+});
 
-  getValue() {
-    return this.#value;
-  }
+const listPageState = atom({
+  key: "listPageState",
+  defaultValue: 0,
+});
 
-  getObserbers() {
-    return this.#observers;
-  }
+const subscribeListPageState = atom({
+  key: "subscribeListPageState",
+  defaultValue: 0,
+});
 
-  setValue(value) {
-    this.#value = value;
-  }
-  setObserbers(observer) {
-    this.#observers.add(observer);
-  }
-}
+const categoryState = atom({
+  key: "categoryState",
+  defaultValue: "",
+});
+const selectedSubscribeState = atom({
+  key: "selectedSubscribeState",
+  defaultValue: "",
+});
 
-export { Store, State };
+const subscribeState = atom({
+  key: "subscribeState",
+  defaultValue: [],
+});
+
+const snackBarMsgState = atom({
+  key: "snackBarMsgState",
+  defaultValue: "",
+});
+
+const alertMsgState = atom({
+  key: "alertMsgState",
+  defaultValue: "",
+});
+
+const pageSelector = selector({
+  key: "pageSelector",
+  get: ({ get }) => {
+    const currentView = get(viewState);
+    const currentViewOption = get(viewOptionState);
+
+    if (currentView === VIEW_TYPE.LIST) {
+      if (currentViewOption === VIEW_OPTION_TYPE.ALL) return get(listPageState);
+      return get(subscribeListPageState);
+    } else if (currentView === VIEW_TYPE.GRID) {
+      if (currentViewOption === VIEW_OPTION_TYPE.ALL) return get(gridPageState);
+      return get(subscribeGridPageState);
+    }
+  },
+  set: ({ set, get }, value) => {
+    const currentView = get(viewState);
+    const currentViewOption = get(viewOptionState);
+
+    if (currentView === VIEW_TYPE.LIST) {
+      currentViewOption === VIEW_OPTION_TYPE.ALL
+        ? set(listPageState, value)
+        : set(subscribeListPageState, value);
+    } else if (currentView === VIEW_TYPE.GRID) {
+      currentViewOption === VIEW_OPTION_TYPE.ALL
+        ? set(gridPageState, value)
+        : set(subscribeGridPageState, value);
+    }
+  },
+});
+
+export {
+  viewState,
+  isDarkMode,
+  gridPageState,
+  listPageState,
+  categoryState,
+  subscribeState,
+  snackBarMsgState,
+  alertMsgState,
+  viewOptionState,
+  subscribeGridPageState,
+  selectedSubscribeState,
+  subscribeListPageState,
+  pageSelector,
+};
