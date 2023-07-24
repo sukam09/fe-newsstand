@@ -6,6 +6,8 @@ export const SNACK_BAR_SECOND = 5 * SECOND;
 
 export const GRID_NEWS_COUNT = 24;
 
+export const NEWS_DATA_URL = 'src/mocks/news.json';
+
 export const TEXT = Object.freeze({
   SUBSCRIBE_KO: '구독하기',
   UNSUBSCRIBE_KO: '해지하기',

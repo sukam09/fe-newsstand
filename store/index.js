@@ -16,8 +16,6 @@ export const toggleAlert = name => {
   }
 };
 
-let timer = null;
-
 export const showSnackBar = () => {
-  const $snackbar = new SnackBar(customQuerySelector(TEXT.SNACK_BAR_CLASS_NAME));
+  new SnackBar(customQuerySelector(TEXT.SNACK_BAR_CLASS_NAME));
 };

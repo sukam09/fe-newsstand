@@ -67,7 +67,7 @@ export default class AllNewsGridView extends Component {
         name,
         number,
         color: 'gray',
-        text: db.getDbData.includes(this.props.number) ? TEXT.SUBSCRIBE_KO : TEXT.UNSUBSCRIBE_KO,
+        text: db.getDbData.includes(index) ? TEXT.SUBSCRIBE_KO : TEXT.UNSUBSCRIBE_KO,
       });
     });
 

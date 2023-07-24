@@ -1,5 +1,5 @@
 import { fetchData, getLocalStorage, setLocalStorage } from '../api/index.js';
-import { TEXT } from '../src/constants/index.js';
+import { NEWS_DATA_URL, TEXT } from '../src/constants/index.js';
 import { shufflePressOrder } from '../src/utils/index.js';
 import { showSnackBar } from './index.js';
 
@@ -10,7 +10,7 @@ class DB {
     this.allPress = [];
     this.isLoading = true;
 
-    fetchData().then(data => {
+    fetchData(NEWS_DATA_URL).then(data => {
       this.allPress = shufflePressOrder(data);
       this.isLoading = false;
       this.render();
