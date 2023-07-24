@@ -3,7 +3,8 @@ import pressStore from "../../pressDataStore.js";
 import { turnNewsPage, setProgressEventFlag } from "./pageMoveButton.js";
 import { setCategory, showNewsOfCategory } from "./categoryTab.js";
 import { initProgress, removeProgress } from "./progressBar.js";
-import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store } from "../../store.js";
+import { PATH_UNSUBSCRIBE_X_BTN, PATH_SUBSCRIBE_BTN } from "../../path.js";
 
 const shuffledAllPress = pressStore.getShuffledAllPress
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
@@ -28,13 +29,16 @@ function drawPressNews(whatPressNews) {
   drawPressNewsMain(whatPressNews);
 }
 
-/** 언론사 로고, 편집 날짜 띄우기 */
+/** 언론사 로고, 편집 날짜, 구독/해지 띄우기 */
 function drawPressNewsHeader(whatPressNews) {
+  const subUnsubBtnImg = store.isSubscribed(whatPressNews[getClickedCategoryIndex()][getPage()]["id"]) === true
+    ? PATH_UNSUBSCRIBE_X_BTN
+    : PATH_SUBSCRIBE_BTN
   $pressNews.innerHTML = `
   <div class="press-news-info">
-    <img src="./assets/logo/light/img${whatPressNews[getClickedCategoryIndex()][getPage()]["id"]}.svg" alt="${whatPressNews[getClickedCategoryIndex()][getPage()]["name"]}">
+    <img src=${whatPressNews[getClickedCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getClickedCategoryIndex()][getPage()]["name"]}">
     <span class="display-medium12 text-default">${whatPressNews[getClickedCategoryIndex()][getPage()]["editDate"]}</span>
-    <img src="./assets/Icon/subscribeButton.svg" alt="">
+    <img src=${subUnsubBtnImg} alt="">
   </div>
   `
 }
