@@ -9,6 +9,8 @@ function main() {
 
   //컨트롤
   controller();
+
+  //뷰
   renderGrid();
 }
 

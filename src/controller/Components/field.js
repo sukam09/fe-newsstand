@@ -2,7 +2,7 @@ import { LIST_PAGE } from "../../model/global.js";
 import { prevProgressWidthChange } from "../../view/field.js";
 import { timerId, startTimer } from "../timer.js";
 
-function categoryClickEventHandler(index) {
+function categoryClickEventHandler(index, tab) {
   if (timerId) {
     clearInterval(timerId);
   }
@@ -15,13 +15,26 @@ function categoryClickEventHandler(index) {
   LIST_PAGE.setCategory(index);
 
   startTimer();
+
+  // 카테고리가 양 옆에 걸쳐있을 때
+  const field = document.querySelector("main .news-list-wrap .field-tab");
+  const fieldRectRight = field.getBoundingClientRect().right;
+  const tabRectRight = tab.getBoundingClientRect().right;
+  const fieldRectLeft = field.getBoundingClientRect().left;
+  const tabRectLeft = tab.getBoundingClientRect().left;
+  if (fieldRectRight < tabRectRight) {
+    field.scrollLeft += tabRectRight - fieldRectRight;
+  }
+  if (fieldRectLeft > tabRectLeft) {
+    field.scrollLeft += tabRectLeft - fieldRectLeft;
+  }
 }
 
 export function fieldClick() {
   const tabs = document.querySelectorAll("main .news-list-wrap .each-tab");
 
   tabs.forEach((tab, index) => {
-    tab.addEventListener("click", categoryClickEventHandler.bind(this, index));
+    tab.addEventListener("click", categoryClickEventHandler.bind(this, index, tab));
   });
 }
 
