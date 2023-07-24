@@ -4,14 +4,13 @@ import ArrowButton from './ArrowButton.js';
 
 import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
 import SubscribeButton from './SubscribeButton.js';
-import { pressStore } from '../../../store/index.js';
+import { pressStore, viewStore } from '../../../store/index.js';
 
 let [savedAllPage, savedMyPage] = [0, 0];
 
 export default class AllNewsGridView extends Component {
   setup() {
-    const page = this.allType ? savedAllPage : savedMyPage;
-    this.allType = this.props.pressType === TEXT.ALL;
+    this.allType = viewStore.option === TEXT.ALL;
     this.state = { ...this.props, page: this.allType ? savedAllPage : savedMyPage };
   }
 

@@ -1,4 +1,4 @@
-import { pressStore } from '../../../store/index.js';
+import { pressStore, viewStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -20,7 +20,7 @@ export default class AllNewsListView extends Component {
   }
 
   template() {
-    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+    const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
 
     return `
       <div class="news-list-wrapper">

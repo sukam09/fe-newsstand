@@ -1,3 +1,4 @@
+import { viewStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
@@ -6,14 +7,12 @@ import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 import AllNewsMyListView from './AllNewsMyListView.js';
 
-let currentView = 'list';
-let currentPressType = 'all';
 export let myListPotal;
 
 export default class AllNews extends Component {
   setup() {
-    const isDarkMode = document.body.className === 'dark';
-    this.state = { isDarkMode, view: currentView, pressType: currentPressType };
+    this.state = { view: viewStore.viewType, option: viewStore.option };
+    viewStore.subscribe(this);
     myListPotal = this.moveMyList.bind(this);
   }
 
@@ -23,34 +22,30 @@ export default class AllNews extends Component {
   }
 
   mounted() {
+    const { viewType, option } = viewStore;
+
     new AllNewHeader(customQuerySelector('.all-news-header', this.$target), {
-      onClick: this.onClick.bind(this),
-      view: this.state.view,
-      type: this.state.pressType,
+      viewType,
+      option,
     });
 
-    if (this.state.view === TEXT.GRID) {
+    if (viewType === TEXT.GRID) {
       new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
-        pressType: this.state.pressType,
+        option,
       });
     }
 
-    if (this.state.view === TEXT.LIST) {
-      this.state.pressType === TEXT.ALL
+    if (viewType === TEXT.LIST) {
+      this.state.option === TEXT.ALL
         ? new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
-            pressType: this.state.pressType,
+            option,
           })
         : new AllNewsMyListView(customQuerySelector('.all-news-wrapper', this.$target));
     }
-    this.state.view === TEXT.GRID;
-  }
-
-  onClick(props) {
-    this.setState(props);
   }
 
   moveMyList() {
-    this.setState({ view: TEXT.LIST, pressType: TEXT.SUBSCRIBE_EN });
+    this.setState({ view: TEXT.LIST, option: TEXT.SUBSCRIBE_EN });
   }
 }
 

@@ -47,6 +47,7 @@ export class PressStore extends Observable {
     setLocalStorage('subscribed', this.subscribedList);
     showSnackBar(TEXT.SUBSCRIBE_KO);
 
+    this.filteredPress = this.setFilteredPress();
     this.notify();
   }
 
@@ -54,6 +55,7 @@ export class PressStore extends Observable {
     this.subscribedList = this.subscribedList.filter(item => item !== list);
     setLocalStorage('subscribed', this.subscribedList);
 
+    this.filteredPress = this.setFilteredPress();
     this.notify();
   }
 }

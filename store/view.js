@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from '../api/index.js';
-import { KEY } from '../src/constants/index.js';
+import { KEY, TEXT } from '../src/constants/index.js';
 import { Observable } from './observable.js';
 
 export class ViewModeStore extends Observable {
@@ -12,17 +12,23 @@ export class ViewModeStore extends Observable {
     document.body.className = this.colorMode;
   }
 
-  toggleViewMode() {
-    this.viewType = this.viewType === 'grid' ? 'list' : 'grid';
+  toggleViewType(type) {
+    this.viewType = type;
+    this.notify();
   }
 
-  toggleOption() {
-    this.option = this.option === 'all' ? 'subscribed' : 'all';
+  toggleOption(type) {
+    this.option = type;
+    this.notify();
   }
 
   toggleColorMode() {
     this.colorMode = this.colorMode === 'light' ? 'dark' : 'light';
     document.body.className = this.colorMode;
     setLocalStorage(this.colorMode);
+  }
+
+  isDarkMode() {
+    return this.colorMode === 'dark';
   }
 }
