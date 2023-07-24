@@ -1,10 +1,13 @@
+//components
 import Component from './core/Component.js';
-
 import AllNews from './allNews/index.js';
 import Header from './header/index.js';
 import LatestNews from './latestNews/index.js';
 
+//utils
 import { customQuerySelector } from '../utils/index.js';
+
+//store
 import { pressStore } from '../../store/index.js';
 
 export default class App extends Component {

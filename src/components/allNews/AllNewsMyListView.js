@@ -1,10 +1,17 @@
-import { pageStore, pressStore, viewStore } from '../../../store/index.js';
-import { TEXT } from '../../constants/index.js';
-import { customQuerySelector } from '../../utils/index.js';
-import Icon from '../common/Icon.js';
+//components
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
+import Icon from '../common/Icon.js';
+
+//constants
+import { TEXT } from '../../constants/index.js';
+
+//utils
+import { customQuerySelector } from '../../utils/index.js';
+
+//store
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 
 export default class AllNewsMyListView extends Component {
   setup() {
@@ -33,7 +40,7 @@ export default class AllNewsMyListView extends Component {
             <div class="press-news-info">
               <img
                 class="press-logo"
-                src="src/assets/${logoMode}/${this.state.currentPress?.number ?? 0}.png"
+                src="src/assets/${logoMode}/${this.state.currentPress?.number}.png"
               />
               <span class="display-medium12 text-default">2023.02.10. 19:38 편집</span>
               <div class="subscribe-button-wrapper"></div>

@@ -1,13 +1,13 @@
+import Observable from './observable.js';
+import { showSnackBar } from './index.js';
 import { fetchData, getLocalStorage, setLocalStorage } from '../api/index.js';
 import { NEWS_DATA_URL, TEXT } from '../src/constants/index.js';
 import { shufflePressOrder } from '../src/utils/index.js';
-import { showSnackBar } from './index.js';
-import { Observable } from './observable.js';
 
 export class PressStore extends Observable {
   constructor() {
     super();
-    this.subscribedList = getLocalStorage('subscribed') ?? [];
+    this.subscribedList = getLocalStorage(TEXT.SUBSCRIBE_EN) ?? [];
     this.allPress = [];
     this.filteredPress = [];
     this.isLoading = true;
@@ -44,7 +44,7 @@ export class PressStore extends Observable {
 
   putSubscribedList(list) {
     this.subscribedList = [...this.subscribedList, list];
-    setLocalStorage('subscribed', this.subscribedList);
+    setLocalStorage(TEXT.SUBSCRIBE_EN, this.subscribedList);
     showSnackBar(TEXT.SUBSCRIBE_KO);
 
     this.filteredPress = this.setFilteredPress();
@@ -53,7 +53,7 @@ export class PressStore extends Observable {
 
   deleteSubscribedList(list) {
     this.subscribedList = this.subscribedList.filter(item => item !== list);
-    setLocalStorage('subscribed', this.subscribedList);
+    setLocalStorage(TEXT.SUBSCRIBE_EN, this.subscribedList);
 
     this.filteredPress = this.setFilteredPress();
     this.notify();

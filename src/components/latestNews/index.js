@@ -1,7 +1,7 @@
-import { pressStore } from '../../../store/index.js';
-import { customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import LatestNewsComponent from './LatestNewsComponent.js';
+import { customQuerySelectorAll } from '../../utils/index.js';
+import { pressStore } from '../../../store/index.js';
 
 export default class LatestNews extends Component {
   setup() {

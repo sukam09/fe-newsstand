@@ -1,9 +1,15 @@
-import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
+//component
 import Component from '../core/Component.js';
+import SubscribeButton from './SubscribeButton.js';
 import ArrowButton from './ArrowButton.js';
 
+//utils
+import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
+
+//constants
 import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
-import SubscribeButton from './SubscribeButton.js';
+
+//store
 import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 
 export default class AllNewsGridView extends Component {
@@ -27,7 +33,7 @@ export default class AllNewsGridView extends Component {
 
   mounted() {
     const pressOrder = this.getGridPress();
-    const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
+    const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT) < 0 && 0;
     const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
 
     this.state.page > maxPage && this.setState({ page: maxPage });
@@ -42,7 +48,7 @@ export default class AllNewsGridView extends Component {
             <div class="flip-card-front surface-default">
               <img
                 class="press-logo"
-                src="src/assets/${logoMode}/${pressOrder[index].number}.png"
+                src="src/assets/${logoMode}/${pressOrder[index]?.number}.png"
               />
             </div>
             <div class="flip-card-back surface-alt">

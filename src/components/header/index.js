@@ -1,6 +1,6 @@
-import { customQuerySelector, getTodayDate } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
+import { customQuerySelector, getTodayDate } from '../../utils/index.js';
 
 export default class Header extends Component {
   setup() {

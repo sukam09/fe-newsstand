@@ -1,6 +1,8 @@
+import SnackBar from '../src/components/common/SnackBar.js';
 import { TEXT } from '../src/constants/index.js';
 import { customQuerySelector } from '../src/utils/index.js';
-import SnackBar from '../src/components/common/SnackBar.js';
+
+//store
 import { PressStore } from './press.js';
 import { ViewModeStore } from './view.js';
 import { PageStore } from './page.js';

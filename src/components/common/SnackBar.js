@@ -1,6 +1,6 @@
-import { pageStore, viewStore } from '../../../store/index.js';
-import { SNACK_BAR_SECOND, TEXT } from '../../constants/index.js';
 import Component from '../core/Component.js';
+import { SNACK_BAR_SECOND, TEXT } from '../../constants/index.js';
+import { viewStore } from '../../../store/index.js';
 
 let timer = null;
 

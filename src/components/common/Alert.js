@@ -1,5 +1,5 @@
-import { pressStore } from '../../../store/index.js';
 import Component from '../core/Component.js';
+import { pressStore } from '../../../store/index.js';
 
 export default class Alert extends Component {
   template() {

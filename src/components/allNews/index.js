@@ -1,11 +1,18 @@
-import { viewStore } from '../../../store/index.js';
-import { TEXT } from '../../constants/index.js';
-import { customQuerySelector } from '../../utils/index.js';
+//components
 import Component from '../core/Component.js';
 import AllNewHeader from './AllNewHeader.js';
 import AllNewsGridView from './AllNewsGridView.js';
 import AllNewsListView from './AllNewsListView.js';
 import AllNewsMyListView from './AllNewsMyListView.js';
+
+//constants
+import { TEXT } from '../../constants/index.js';
+
+//utils
+import { customQuerySelector } from '../../utils/index.js';
+
+//store
+import { viewStore } from '../../../store/index.js';
 
 export default class AllNews extends Component {
   setup() {

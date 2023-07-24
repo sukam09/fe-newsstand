@@ -1,5 +1,5 @@
+import Observable from './observable.js';
 import { TEXT } from '../src/constants/index.js';
-import { Observable } from './observable.js';
 
 export class PageStore extends Observable {
   constructor() {

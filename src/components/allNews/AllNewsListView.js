@@ -1,10 +1,16 @@
-import { pageStore, pressStore, viewStore } from '../../../store/index.js';
-import { LIST_KEYS_TEMPLATE, TEXT } from '../../constants/index.js';
-import { customQuerySelector } from '../../utils/index.js';
+//components
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
 
+//constants
+import { LIST_KEYS_TEMPLATE, TEXT } from '../../constants/index.js';
+
+//utils
+import { customQuerySelector } from '../../utils/index.js';
+
+//store
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 export default class AllNewsListView extends Component {
   setup() {
     this.pressOrder = this.getListPress();

@@ -1,7 +1,7 @@
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
-import { customQuerySelector } from '../../utils/index.js';
 import { TEXT } from '../../constants/index.js';
+import { customQuerySelector } from '../../utils/index.js';
 import { viewStore } from '../../../store/index.js';
 
 export default class AllNewHeader extends Component {

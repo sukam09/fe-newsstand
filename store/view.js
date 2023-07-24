@@ -1,12 +1,12 @@
+import Observable from './observable.js';
 import { getLocalStorage, setLocalStorage } from '../api/index.js';
 import { KEY, TEXT } from '../src/constants/index.js';
-import { Observable } from './observable.js';
 
 export class ViewModeStore extends Observable {
   constructor() {
     super();
-    this.viewType = TEXT.LIST;
-    this.option = TEXT.ALL;
+    this.viewType = TEXT.GRID;
+    this.option = TEXT.SUBSCRIBE_EN;
     this.colorMode = getLocalStorage(KEY.COLOR_MODE) || TEXT.LIGHT;
 
     document.body.className = this.colorMode;
