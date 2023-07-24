@@ -1,4 +1,5 @@
 import ArrowButton from '../components/media/ArrowButton.js';
+import { getMediaLogo, getNewsData } from '../fetch/getNewsData.js';
 
 export const clearAllChildren = element => {
   Array.from(element.childNodes).forEach(child => child.remove());
@@ -31,4 +32,9 @@ export const fadeOutElement = element => {
 
   element.style.opacity = 1;
   requestAnimationFrame(loop);
+};
+
+export const setMediaLogo = (element, id, theme) => {
+  element.src = getMediaLogo(id, theme);
+  element.alt = getNewsData(id).name;
 };

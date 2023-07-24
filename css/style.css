@@ -117,16 +117,17 @@ h2.headline_area_item {
 
 .view_select + label svg {
   display: block;
-  fill: var(--grayscale-200);
+  fill: var(--text-weak);
 }
 
 .media_select:checked + label {
   font: var(--bold-M);
-  color: var(--grayscale-black);
+  color: var(--text-strong);
 }
 
 .view_select:checked + label svg {
-  fill: var(--blue-500);
+  /* fill: var(--blue-500); */
+  fill: var(--text-point);
 }
 
 .view_select_wrapper {
@@ -172,6 +173,17 @@ h2.headline_area_item {
 #right_arrow img {
   width: 100%;
   height: 100%;
+}
+
+/* theme toggle */
+#theme_toggle {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+#theme_toggle svg {
+  fill: var(--text-bold);
 }
 
 /* main */
