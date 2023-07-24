@@ -27,34 +27,31 @@ export default class AllNewsGridView extends Component {
     const pressOrder = this.getGridPress();
     const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
     const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
-    let innerHTML = '';
 
     this.state.page > maxPage && this.setState({ page: maxPage });
 
-    for (
-      let i = this.state.page * GRID_NEWS_COUNT;
-      i < GRID_NEWS_COUNT * (this.state.page + 1);
-      i++
-    ) {
-      innerHTML += ` 
-      <li class="grid-logo-wrapper border-default">
-      ${
-        pressOrder.length > i
-          ? `<div class="flip-card-inner">
+    const innerHTML = Array.from({ length: GRID_NEWS_COUNT })
+      .map((_, i) => {
+        const index = this.state.page * GRID_NEWS_COUNT + i;
+        return ` <li class="grid-logo-wrapper border-default">
+        ${
+          pressOrder.length > index
+            ? `<div class="flip-card-inner">
             <div class="flip-card-front surface-default">
               <img
                 class="press-logo"
-                src="src/assets/${logoMode}/${pressOrder[i].number}.png"
+                src="src/assets/${logoMode}/${pressOrder[index].number}.png"
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper" data-index=${i}></div>
+              <div class="subscribe-button-wrapper" data-index=${index}></div>
             </div>
           </div>`
-          : ``
-      }
+            : ``
+        }
       </li>`;
-    }
+      })
+      .join('');
 
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
