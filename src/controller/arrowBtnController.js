@@ -1,7 +1,7 @@
 import { updateCategory } from "./fieldTabController.js";
 import { MODE, GLOBAL } from "../model/variable.js";
 import { setState } from "./observer.js";
-import { moveGrid } from "../model/store.js";
+import { moveGrid, moveList } from "../model/store.js";
 
 function initArrowBtnEvnet() {
   const leftBtn = document.querySelector(".left-btn");
@@ -19,7 +19,7 @@ function moveLeft() {
     const listModeMaxPage = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : GLOBAL.SUBSCRIBE_NEWS_NUM;
     GLOBAL.LIST_CURRENT_PAGE = GLOBAL.LIST_CURRENT_PAGE === 0 ? listModeMaxPage - 1 : GLOBAL.LIST_CURRENT_PAGE - 1;
     updateCategory();
-    setState(moveGrid, true);
+    setState(moveList, true);
   }
 }
 
@@ -31,7 +31,7 @@ function moveRight() {
     const listModeMaxPage = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : GLOBAL.SUBSCRIBE_NEWS_NUM;
     GLOBAL.LIST_CURRENT_PAGE = (GLOBAL.LIST_CURRENT_PAGE + 1) % listModeMaxPage;
     updateCategory();
-    setState(moveGrid, true);
+    setState(moveList, true);
   }
 }
 

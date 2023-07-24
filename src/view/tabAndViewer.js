@@ -1,6 +1,6 @@
 import { PATH, MODE, GLOBAL } from "../model/variable.js";
 import { subscribe } from "../controller/observer.js";
-import { toggleView, toggleSubscription } from "../model/store.js";
+import { toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
 
 function initTabAndViewer(parentNode) {
   const dom = `
@@ -52,5 +52,6 @@ subscribe(toggleView, drawTab);
 subscribe(toggleSubscription, drawTab);
 subscribe(toggleView, drawViewer);
 subscribe(toggleSubscription, drawViewer);
+subscribe(toggleDarkMode, drawViewer);
 
 export { initTabAndViewer, drawTab, drawViewer };

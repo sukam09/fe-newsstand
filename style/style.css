@@ -16,6 +16,7 @@ html {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background: var(--surface-default);
 }
 
 body {
@@ -31,4 +32,11 @@ body {
   width: 930px;
   margin: 0 auto;
   padding: 58px 0 76px 0;
+}
+
+.dark-mode-btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
 }

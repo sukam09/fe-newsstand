@@ -1,4 +1,6 @@
 import { PATH } from "../model/variable.js";
+import { subscribe } from "../controller/observer.js";
+import { toggleDarkMode } from "../model/store.js";
 
 function initHeader(parentNode) {
   const dom = `
@@ -30,5 +32,7 @@ function initDate() {
   const todaystr = `${date.getFullYear()}. ${String(date.getMonth() + 1).padStart(2, "0")}. ${String(date.getDate()).padStart(2, "0")}. ${week[date.getDay()]}`;
   return todaystr;
 }
+
+subscribe(toggleDarkMode, drawHeader);
 
 export { initHeader, drawHeader };

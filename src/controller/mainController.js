@@ -3,7 +3,7 @@ import { initGridEvent } from "./gridController.js";
 import { initListEvent } from "./listController.js";
 import { initArrowBtnEvnet } from "./arrowBtnController.js";
 import { initTabAndViewerEvent } from "./tabAndViewerController.js";
-import { initAlertEvent } from "./componentController.js";
+import { initAlertEvent, initDarkToggleBtn } from "./componentController.js";
 import { initFieldTabEvent } from "./fieldTabController.js";
 
 function initEvent() {
@@ -14,6 +14,7 @@ function initEvent() {
   initTabAndViewerEvent();
   initAlertEvent();
   initFieldTabEvent();
+  initDarkToggleBtn();
 }
 
 export { initEvent };

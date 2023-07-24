@@ -28,55 +28,17 @@ function drawFieldTab() {
   settingFieldTab();
 
   const fieldTab = document.querySelector(".field-tab");
-  const navBarDefaultLeft = fieldTab.querySelector("button").getBoundingClientRect().left;
-  const curPageInCategory = GLOBAL.LIST_CURRENT_PAGE - GLOBAL.CATEGORY_START_INDEX[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)] + 1;
 
-  const progressRemoveTarget = fieldTab.querySelector(".progress");
-  if (progressRemoveTarget) {
-    progressRemoveTarget.className = "available-medium14";
-  }
-
-  fieldTab.querySelectorAll("div").forEach((element) => {
-    if (element.className !== "progress-bar") {
-      element.style.display = "none";
-    }
-  });
-
-  const targetDomAll = document.querySelectorAll(".field-tab button");
-
-  let targetDomIndex = 0;
-  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
-    for (let category in CATEGORY) {
-      if (CATEGORY[category] === GLOBAL.LIST_CURRENT_CATEGORY) {
-        break;
-      }
-      targetDomIndex++;
-    }
-  } else {
-    targetDomIndex = GLOBAL.LIST_CURRENT_PAGE;
-  }
-  const targetDom = targetDomAll[targetDomIndex];
-
+  removePreviousProgressBar(fieldTab);
+  const targetDom = findProgressTargetDom();
   targetDom.querySelector("div").style.display = "flex";
 
   if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
-    targetDom.className = "progress selected-bold14";
-    targetDom.querySelector("img").src = PATH.DIVISION;
-    const spanTagAll = targetDom.querySelectorAll("span");
-    spanTagAll[1].style.display = "block";
-    spanTagAll[2].style.display = "block";
-    spanTagAll[1].innerHTML = curPageInCategory;
-    spanTagAll[2].innerHTML = GLOBAL.CATEGORY_NUM[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)];
+    drawListAllProgressBar(targetDom);
   } else {
-    targetDom.className = "progress selected-bold14";
-    targetDom.querySelector("img").src = PATH.ARROW;
-    const spanTagAll = targetDom.querySelectorAll("span");
-    spanTagAll[1].style.display = "none";
-    spanTagAll[2].style.display = "none";
+    drawListSubProgressBar(targetDom);
   }
-
-  const progressBar = document.querySelector(".progress-bar");
-  progressBar.style.left = `${targetDom.getBoundingClientRect().left - navBarDefaultLeft}px`;
+  setProgressBarPosition(fieldTab, targetDom);
 }
 
 function settingFieldTab() {
@@ -99,6 +61,61 @@ function settingFieldTab() {
     </button>`;
     fieldTab.innerHTML += buttonDom;
   }
+}
+
+function removePreviousProgressBar(fieldTab) {
+  const progressRemoveTarget = fieldTab.querySelector(".progress");
+  if (progressRemoveTarget) {
+    progressRemoveTarget.className = "available-medium14";
+  }
+
+  fieldTab.querySelectorAll("div").forEach((element) => {
+    if (element.className !== "progress-bar") {
+      element.style.display = "none";
+    }
+  });
+}
+
+function findProgressTargetDom() {
+  const targetDomAll = document.querySelectorAll(".field-tab button");
+
+  let targetDomIndex = 0;
+  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+    for (let category in CATEGORY) {
+      if (CATEGORY[category] === GLOBAL.LIST_CURRENT_CATEGORY) {
+        break;
+      }
+      targetDomIndex++;
+    }
+  } else {
+    targetDomIndex = GLOBAL.LIST_CURRENT_PAGE;
+  }
+  return targetDomAll[targetDomIndex];
+}
+
+function drawListAllProgressBar(targetDom) {
+  const curPageInCategory = GLOBAL.LIST_CURRENT_PAGE - GLOBAL.CATEGORY_START_INDEX[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)] + 1;
+  targetDom.className = "progress selected-bold14";
+  targetDom.querySelector("img").src = PATH.DIVISION;
+  const spanTagAll = targetDom.querySelectorAll("span");
+  spanTagAll[1].style.display = "block";
+  spanTagAll[2].style.display = "block";
+  spanTagAll[1].innerHTML = curPageInCategory;
+  spanTagAll[2].innerHTML = GLOBAL.CATEGORY_NUM[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)];
+}
+
+function drawListSubProgressBar(targetDom) {
+  targetDom.className = "progress selected-bold14";
+  targetDom.querySelector("img").src = PATH.ARROW;
+  const spanTagAll = targetDom.querySelectorAll("span");
+  spanTagAll[1].style.display = "none";
+  spanTagAll[2].style.display = "none";
+}
+
+function setProgressBarPosition(fieldTab, targetDom) {
+  const progressBar = document.querySelector(".progress-bar");
+  const navBarDefaultLeft = fieldTab.querySelector("button").getBoundingClientRect().left;
+  progressBar.style.left = `${targetDom.getBoundingClientRect().left - navBarDefaultLeft}px`;
 }
 
 export { initFieldTab, drawFieldTab };

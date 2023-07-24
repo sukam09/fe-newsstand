@@ -70,4 +70,12 @@ function strToCategory(str) {
   return categoryMapping[str];
 }
 
-export { initData, strToCategory };
+function isDarkMode() {
+  const dark = document.querySelector(".dark-mode");
+  if (dark !== null) {
+    return true;
+  }
+  return false;
+}
+
+export { initData, strToCategory, isDarkMode };
