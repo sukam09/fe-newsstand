@@ -40,17 +40,29 @@ const makeFocusTab = (currentPage, filteredAgencies, item) => {
 };
 
 const makeTab = (sorted_agencies, item) => {
+  const fieldtab_item = Boolean(all_press.getAttribute("subscribetype"))
+    ? FIELDTAB_LIST
+    : sorted_agencies.map((item) => item.name);
+
   const $li = document.createElement("li");
   $li.className = "field-tab-normal";
   $li.innerText = item;
   $li.addEventListener("click", () => {
-    let current_category = FIELDTAB_LIST.findIndex((tag) => tag === item);
-    ListComponent(
-      INITIAL_PAGE,
-      sorted_agencies,
-      FIELDTAB_LIST[current_category],
-      current_category
-    );
+    let current_category = fieldtab_item.findIndex((tag) => tag === item);
+
+    Boolean(all_press.getAttribute("subscribetype"))
+      ? ListComponent(
+          INITIAL_PAGE,
+          sorted_agencies,
+          fieldtab_item[current_category],
+          current_category
+        )
+      : ListComponent(
+          current_category,
+          sorted_agencies,
+          fieldtab_item[current_category],
+          current_category
+        );
   });
   return $li;
 };
