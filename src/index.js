@@ -1,21 +1,17 @@
+import { getLocalStorage, setLocalStorage } from '../api/index.js';
+
 import App from './components/App.js';
+import { KEY } from './constants/index.js';
+
 import { customQuerySelector } from './utils/index.js';
 
 const $app = new App(customQuerySelector('#root'));
 
-export const toggleDarkMode = () => {
-  document.body.className = document.body.className === 'dark' ? 'light' : 'dark';
-  $app.render();
-};
+document.body.className = getLocalStorage(KEY.COLOR_MODE) || 'light';
 
-export const toggleAlert = () => {
-  const $alertModal = customQuerySelector('.alert-modal');
-  const isAlertModalOn = $alertModal.classList.contains('on');
-  if (isAlertModalOn) {
-    $alertModal.classList.remove('on');
-    $alertModal.classList.add('off');
-  } else {
-    $alertModal.classList.remove('off');
-    $alertModal.classList.add('on');
-  }
+export const toggleDarkMode = () => {
+  const colorMode = document.body.className === 'dark' ? 'light' : 'dark';
+  setLocalStorage(KEY.COLOR_MODE, colorMode);
+  document.body.className = colorMode;
+  $app.render();
 };

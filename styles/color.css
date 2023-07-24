@@ -82,6 +82,9 @@
   border: 1px solid var(--gray-scale-100);
 }
 
+body {
+  transition: background-color 0.3s ease-in-out;
+}
 /*dark*/
 .dark {
   background-color: var(--surface-default);
@@ -124,4 +127,8 @@
 }
 .dark .border-default {
   border: 1px solid var(--gray-scale-400);
+}
+
+.pop-up {
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }

@@ -1,12 +1,12 @@
-import { toggleAlert } from '../../index.js';
+import db from '../../../store/db.js';
 import Component from '../core/Component.js';
 
 export default class Alert extends Component {
   template() {
     return `
-      <div class='alert-wrapper border-default'>
+      <div class='alert-wrapper border-default pop-up'>
         <div class='alert-content-wrapper surface-default text-default display-medium16'>
-          <p><span class='text-strong display-bold16'>{언론사명}</span>을(를)</p>
+          <p><span class='text-strong display-bold16'>${this.props.name}</span>을(를)</p>
           <p >구독해지하시겠습니까?</p>
         </div>
         <div class='alert-confirm-wrapper surface-alt border-default'>
@@ -20,10 +20,9 @@ export default class Alert extends Component {
   setEvent() {
     this.$target.addEventListener('click', e => {
       if (e.target.classList.contains('alert-yes')) {
-        console.log('yes');
-      } else if (e.target.classList.contains('alert-no')) {
-        toggleAlert();
+        db.deleteDbData(this.props.number);
       }
+      this.$target.innerHTML = '';
     });
   }
 }

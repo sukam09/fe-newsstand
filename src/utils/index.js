@@ -10,10 +10,8 @@ const getTodayDate = () => {
   return today.toLocaleDateString('ko-KR', options);
 };
 
-const shufflePressOrder = () => {
-  const array = Array.from({ length: 96 }, (_, idx) => idx);
-  array.sort(() => Math.random() - 0.5);
-  return array;
+const shufflePressOrder = (array = []) => {
+  return array.sort(() => Math.random() - 0.5);
 };
 
 export const customQuerySelector = (selector, $target = document) => {
@@ -26,12 +24,12 @@ export const customQuerySelector = (selector, $target = document) => {
     const $node = childNodes.shift();
 
     if (tagType === '#' && $node.id === name) return $node;
-    else if (tagType === '.' && $node.classList && $node.classList.contains(name)) return $node;
-    else if ($node.tagName === targetSelctor.toUpperCase()) return $node;
-    else {
-      const $result = customQuerySelector(selector, $node);
-      if ($result) return $result;
-    }
+    if (tagType === '.' && $node.classList && $node.classList.contains(name)) return $node;
+    if ($node.tagName === targetSelctor.toUpperCase()) return $node;
+
+    const $result = customQuerySelector(selector, $node);
+
+    if ($result) return $result;
   }
 
   return null;

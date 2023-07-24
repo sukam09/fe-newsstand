@@ -1,51 +1,73 @@
-import {
-  customQuerySelector,
-  customQuerySelectorAll,
-  shufflePressOrder,
-} from '../../utils/index.js';
+import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
-import Button from '../common/Button.js';
-import { toggleAlert } from '../../index.js';
+
+import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
+import SubscribeButton from './SubscribeButton.js';
+import db from '../../../store/db.js';
+
+let [savedAllPage, savedMyPage] = [0, 0];
 
 export default class AllNewsGridView extends Component {
   setup() {
-    this.state = { pressOrder: shufflePressOrder(), page: 0 };
+    const page = this.allType ? savedAllPage : savedMyPage;
+    this.allType = this.props.pressType === TEXT.ALL;
+    this.state = { ...this.props, page: this.allType ? savedAllPage : savedMyPage };
   }
 
   template() {
-    return `<div class='news-list-wrapper'>
-              <button class='left-button'></button>
-              <ul class='news-list-grid border-default'></ul>
-              <button class='right-button'></button>
-            </div>`;
+    return `
+    <div class="news-list-wrapper">
+      <button class="left-button"></button>
+      <ul class="news-list-grid border-default"></ul>
+      <button class="right-button"></button>
+    </div>`;
   }
 
   mounted() {
+    const pressOrder = this.getGridPress();
+    const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
     const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
-
     let innerHTML = '';
-    for (let i = this.state.page * 24; i < 24 * (this.state.page + 1); i++) {
-      innerHTML += `<li class='grid-logo-wrapper border-default'>
-                      <div class="flip-card-inner">
-                        <div class="flip-card-front surface-default">
-                          <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
-                        </div>
-                        <div class="flip-card-back surface-alt">
-                          <div class='subscribe-button-wrapper'></div>
-                        </div>
-                      </div>
-                    </li>`;
+
+    this.state.page > maxPage && this.setState({ page: maxPage });
+
+    for (
+      let i = this.state.page * GRID_NEWS_COUNT;
+      i < GRID_NEWS_COUNT * (this.state.page + 1);
+      i++
+    ) {
+      innerHTML += ` 
+      <li class="grid-logo-wrapper border-default">
+      ${
+        pressOrder.length > i
+          ? `<div class="flip-card-inner">
+            <div class="flip-card-front surface-default">
+              <img
+                class="press-logo"
+                src="src/assets/${logoMode}/${pressOrder[i].number}.png"
+              />
+            </div>
+            <div class="flip-card-back surface-alt">
+              <div class="subscribe-button-wrapper" data-index=${i}></div>
+            </div>
+          </div>`
+          : ``
+      }
+      </li>`;
     }
+
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
     customQuerySelectorAll('.subscribe-button-wrapper', this.$target).forEach(node => {
-      new Button(node, {
+      const index = node.dataset.index;
+      const { number, name } = pressOrder[index];
+
+      new SubscribeButton(node, {
+        name,
+        number,
         color: 'gray',
-        text: '구독하기',
-        icon: document.body.className === 'dark' ? 'plus-dark' : 'plus',
-        states: 'default',
-        action: () => toggleAlert(),
+        text: db.getDbData.includes(index) ? TEXT.SUBSCRIBE_KO : TEXT.UNSUBSCRIBE_KO,
       });
     });
 
@@ -57,25 +79,22 @@ export default class AllNewsGridView extends Component {
 
     new ArrowButton(customQuerySelector('.right-button', this.$target), {
       name: 'right-button',
-      isVisible: this.state.page !== 3,
+      isVisible: this.state.page < maxPage,
       action: this.goNextPage.bind(this),
     });
   }
 
   goNextPage() {
     this.setState({ page: this.state.page + 1 });
+    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
   }
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
+    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
   }
-}
 
-{
-  /* <div class='flip-card-inner'>
-                        <img class='press-logo' src='src/assets/${logoMode}/${this.state.pressOrder[i]}.png'/>
-                      </div>
-                      <div class='flip-card-back'>
-                        <div class='subscribe-button-wrapper'></div>
-                      </div> */
+  getGridPress() {
+    return this.allType ? db.allPress : db.getFilteredPress;
+  }
 }

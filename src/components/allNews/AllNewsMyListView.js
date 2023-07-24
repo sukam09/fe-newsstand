@@ -1,22 +1,24 @@
 import db from '../../../store/db.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
+import Icon from '../common/Icon.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
+import { changeCurrentView } from './index.js';
 
-let [savedCurrentPage, savedCurrentPressIndex] = [1, 0];
+let savedCurrentPressIndex = 0;
 
-export default class AllNewsListView extends Component {
+export default class AllNewsMyListView extends Component {
   setup() {
-    this.pressOrder = this.getListPress();
-    this.headerList = this.getHeaderList();
+    this.pressOrder = db.getFilteredPress;
+    this.headerList = this.pressOrder.map(({ name }) => name);
 
     this.state = {
-      currentPage: savedCurrentPage,
       currentPressIndex: savedCurrentPressIndex,
-      currentPress: this.getCurrentPress(savedCurrentPressIndex, savedCurrentPage),
+      currentPress: this.pressOrder[savedCurrentPressIndex],
     };
+    changeCurrentView(TEXT.SUBSCRIBE_EN);
   }
 
   template() {
@@ -66,10 +68,8 @@ export default class AllNewsListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
-    [savedCurrentPage, savedCurrentPressIndex] = [
-      this.state.currentPage,
-      this.state.currentPressIndex,
-    ];
+
+    savedCurrentPressIndex = this.state.currentPressIndex;
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',
@@ -83,6 +83,8 @@ export default class AllNewsListView extends Component {
       number: this.state.currentPress.number,
     });
 
+    new Icon(customQuerySelector('.chevron-icon', this.$target), { name: 'chevron-right' });
+
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
       isVisible: true,
@@ -94,12 +96,12 @@ export default class AllNewsListView extends Component {
       isVisible: true,
       action: this.goNextPage.bind(this),
     });
+
+    customQuerySelector('.press-header-focus', this.$target).scrollIntoView(false);
   }
 
   navigationMount() {
     const currentCategory = this.headerList[this.state.currentPressIndex];
-
-    const totalPage = this.pressOrder[currentCategory]?.length;
 
     customQuerySelector('nav', this.$target).innerHTML = this.headerList.reduce(
       (innerHTML, press) => {
@@ -108,10 +110,7 @@ export default class AllNewsListView extends Component {
             innerHTML +
             `<li class="press-header-focus surface-brand-alt ">
               <span class="selected-bold14 text-white-default">${press}</span>
-              <div>
-                <span class="display-bold12 text-white-default">${this.state.currentPage}</span>
-                <span class="display-bold12 text-white-weak"> / ${totalPage}</span>
-              </div>
+              <img class='chevron-icon'/>
             </li>`
           );
         }
@@ -134,85 +133,35 @@ export default class AllNewsListView extends Component {
   }
 
   setEvent() {
-    this.$target.addEventListener('click', e => {
-      if (e.target.classList.contains('press-type-name')) {
-        const targetPress = e.target.innerHTML;
-        const currentPressIndex = this.headerList.indexOf(targetPress);
+    this.$target.addEventListener('click', ({ target }) => {
+      if (target.classList.contains('press-type-name')) {
+        const targetPress = target.innerHTML;
+        const nextIndex = this.headerList.indexOf(targetPress);
 
         this.setState({
-          currentPressIndex,
-          currentPage: 1,
-          currentPress: this.getCurrentPress(currentPressIndex),
+          nextIndex,
+          currentPressIndex: nextIndex,
         });
       }
     });
   }
 
   goPrevPage() {
-    if (this.state.currentPage === 1) {
-      const currentPressIndex =
-        (this.state.currentPressIndex + this.headerList.length - 1) % this.headerList.length;
-      this.setState({
-        currentPressIndex,
-        currentPage: 1,
-        currentPress: this.getCurrentPress(currentPressIndex, 1),
-      });
-    } else {
-      this.setState({
-        currentPage: this.state.currentPage - 1,
-        currentPress: this.getCurrentPress(
-          this.state.currentPressIndex,
-          this.state.currentPage - 1,
-        ),
-      });
-    }
+    const nextIndex =
+      (this.state.currentPressIndex + this.headerList.length - 1) % this.headerList.length;
+
+    this.setState({
+      currentPressIndex: nextIndex,
+      currentPress: this.pressOrder[nextIndex],
+    });
   }
 
   goNextPage() {
-    const currentCategory = this.headerList[this.state.currentPressIndex];
-    const totalPage = this.pressOrder[currentCategory].length;
+    const nextIndex = (this.state.currentPressIndex + 1) % this.headerList.length;
 
-    if (this.state.currentPage === totalPage) {
-      const currentPressIndex = (this.state.currentPressIndex + 1) % this.headerList.length;
-
-      this.setState({
-        currentPressIndex,
-        currentPage: 1,
-        currentPress: this.getCurrentPress(currentPressIndex, 1),
-      });
-    } else {
-      this.setState({
-        currentPage: this.state.currentPage + 1,
-        currentPress: this.getCurrentPress(
-          this.state.currentPressIndex,
-          this.state.currentPage + 1,
-        ),
-      });
-    }
-  }
-
-  getCurrentPress(pressIndex = 0, currentPage = 1) {
-    const currentPressName = this.headerList[pressIndex];
-    return this.pressOrder[currentPressName][currentPage - 1];
-  }
-
-  getHeaderList() {
-    return Object.keys(this.pressOrder);
-  }
-
-  getListPress() {
-    let listPress = {
-      '종합/경제': [],
-      '방송/통신': [],
-      IT: [],
-      영자지: [],
-      '스포츠/연예': [],
-      '매거진/전문지': [],
-      지역: [],
-    };
-
-    db.allPress.forEach(press => listPress[press.category].push(press));
-
-    return listPress;
+    this.setState({
+      currentPressIndex: nextIndex,
+      currentPress: this.pressOrder[nextIndex],
+    });
   }
 }
