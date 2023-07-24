@@ -82,4 +82,16 @@ yes.addEventListener("click", () => {
   setSubGrid();
 });
 
+//const modal = document.querySelector(".sub-alert");
+window.addEventListener("click", (e) => {
+  const parent = e.target.closest(".sub-alert");
+  if (parent === null) {
+    if (e.target.classList.contains("un-sub")) {
+      setDisplay(".sub-alert", "block");
+    } else {
+      setDisplay(".sub-alert", "none");
+    }
+  }
+});
+
 export { setSubGrid, appendPressItemli };
