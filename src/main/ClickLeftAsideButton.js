@@ -1,5 +1,5 @@
 import State from "../store/StateStore.js";
-import mainNews from "./renderMain.js";
+import renderMain from "./renderMain.js";
 import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
 
 export default function clickLeftAsideButton(){

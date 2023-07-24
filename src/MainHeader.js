@@ -1,4 +1,4 @@
-import mainNews from "./main/renderMain.js";
+import renderMain from "./main/renderMain.js";
 import State from "./store/StateStore.js";
 import changeImageSrc from "./utils/changeImageSrc.js";
 import newsData from "./store/NewsStore.js";
@@ -8,7 +8,7 @@ const allNews = document.getElementById("main-left-radio-01");
     allNews.addEventListener('click',(e)=>{
         State.setAll();
         State.setCurrentPage(1);
-        mainNews();
+        renderMain();
     });
 }
 
@@ -17,7 +17,7 @@ const subscribeNews = document.getElementById("main-left-radio-02");
     subscribeNews.addEventListener('click',()=>{
        State.setSubscribe();
        State.setCurrentPage(1);
-       mainNews();
+       renderMain();
     });
 } 
 
@@ -30,7 +30,7 @@ function clickGridImage(){
             State.setMaxPage();
             State.setGrid();
             State.setCurrentPage(1);
-            mainNews();
+            renderMain();
         });
     }
     
@@ -45,7 +45,7 @@ function clickCardListImage(){
             State.setMaxPage(MAX_PAGE_NUMBER);
             State.setCurrentPage(1);
             State.setCategoryNum(0);
-            mainNews();
+            renderMain();
         });
     }
 

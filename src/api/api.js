@@ -10,5 +10,11 @@ function getListJSON(){
     return gridArticle;
 }
 
+function getPressJSON(){
+    const pressData = fetch("./data/press_data.json")
+    .then(res => res.json());
+    return pressData;
+}
 
-export { getGridJSON, getListJSON };
+export { getPressJSON };
+// export default getPressJSON();

@@ -35,7 +35,7 @@ export default function clickRightAsideButton(){
             State.setCurrentPage(currentPage);
             controlListlMinMaxException();
         }
-        mainNews();
+        renderMain();
     });
 
     rightAsideButton.appendChild(asideRight);

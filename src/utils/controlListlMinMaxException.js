@@ -17,7 +17,7 @@ export default function controListlMinMaxException(){
         else{
            State.setCategoryNum(categoryNum);
         }
-        State.setCurrentPage(NewsData.getListNews(categoryNum).length);
+        State.setCurrentPage(NewsData.getListNews(categoryNum).length-1);
      }
      else if(currentPage > MAX_PAGE_NUMBER){
         categoryNum++;
@@ -29,6 +29,6 @@ export default function controListlMinMaxException(){
             State.setCategoryNum(categoryNum);
         }
         State.setCurrentPage(MIN_PAGE_NUMBER);
-        State.setMaxPage(NewsData.getListNews(categoryNum).length);
+        State.setMaxPage(NewsData.getListNews(categoryNum).length - 1);
      }
 } 

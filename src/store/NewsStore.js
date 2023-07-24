@@ -1,42 +1,67 @@
 class NewsStore{
     constructor(){
-        this.gridArticle;
-        this.listArticle;
+        this.pressData;
+        this.listArticle = [];
     }
 
-    getGridArticle(){
-        return this.gridArticle;
-    }
 
     getListArticle(){
         return this.listArticle;
     }
 
+    getPressData(){
+        return this.pressData;
+    }
+
+    makeListCategory(){
+        let category = [];
+        this.pressData.forEach(value => {
+            category.push(value.category);
+        });
+        let categorySet = new Set(category);
+        category = [...categorySet];
+        category.forEach((value)=>{
+            this.listArticle.push([value]);
+        })
+    }
+    
+    makeListArticle(){
+        this.pressData.forEach((press) => {
+            this.listArticle.forEach((category, categoryNum) => {
+                if(category[0] === press.category){
+                    this.listArticle[categoryNum].push(press);
+                }
+            })
+        })
+    }
+
     getListNews(categoryNum){
-        return this.listArticle[categoryNum].news
+        console.log(this.listArticle);
+        return this.listArticle[categoryNum]
     }
 
     getListCategory(){
         let category = [];
         this.listArticle.forEach(value => {
-            category.push(value.category);
+            category.push(value[0]);
         });
+
         return category;
     }
 
-    getCategoryMaxPage(categoryNum){
-        return this.listArticle[categoryNum].news.length;
+    findGridArticle(id){
+        return this.pressData[id - 1];
     }
 
-    setGridArticle(data){
-        this.gridArticle = data;
+    getCategoryMaxPage(categoryNum){
+        return this.listArticle[categoryNum].length;
     }
-    setListArticle(data){
-        this.listArticle = data;
+
+    setPressData(data){
+        this.pressData = data;
     }
+
 }
 
 const newsData = new NewsStore();
 export default newsData;
-
-//바깥에서 선언을 하거나 contructor 안에 선언
