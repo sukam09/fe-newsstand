@@ -219,6 +219,9 @@ const updateCategoryProgress = () => {
   setNewsData();
 };
 
+export const resetProgressBar = () => {
+  document.querySelectorAll('.category_item').forEach(item => item.style.background = '');
+}
 /**
  * 
  * @param {Object} items 
@@ -290,7 +293,16 @@ const updatePageAndData = () => {
  */
 const animateProgressBar = (element, endWidth, duration) => {
   const start = performance.now();
+  console.log(lastProgressed);
+  if(lastProgressed){
+    if(lastProgressed !== element){
+      console.log("TEST");
+      lastProgressed.style.background = '';
+      lastProgressed = element;
+    }
+  }
   lastProgressed = element;
+
 
   const step = (timestamp) => {
     const elapsed = timestamp - start;

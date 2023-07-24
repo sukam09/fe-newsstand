@@ -1,6 +1,6 @@
 import createStore from './createStore.js';
 import { GridController,PageController } from '../main/gridView.js';
-import { listViewInit,setNewsData } from '../main/listView.js';
+import { listViewInit,setNewsData,resetProgressBar } from '../main/listView.js';
 import { toggleClass } from '../main/selector.js';
 export const pageStore = createStore(0);
 pageStore.setObserver(() => {
@@ -24,6 +24,7 @@ mode.setObserver( () => {
 export const category_page = createStore(0);
 category_page.setObserver ( () => {
   setNewsData();
+  resetProgressBar();
 })
 
 export const media_page = createStore(0);
