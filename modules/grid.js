@@ -3,7 +3,13 @@ import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
 import { getState, register, setState } from "../observer/observer.js";
-import { isGridMode, isLightMode } from "../store/index.js";
+import {
+  gridPageNum,
+  isGridMode,
+  isLightMode,
+  isTotalMode,
+  subscribeList,
+} from "../store/index.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -19,24 +25,56 @@ const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 const makeGrid = () => {
   for (let i = 0; i < MEDIA_NUM; i++) {
     const $li = document.createElement("li");
-    const imgSrc = isLightMode
-      ? `${mediaInfo[idList[i]].path_light}`
-      : `${mediaInfo[idList[i]].path_dark}`;
+    const $img = document.createElement("img");
+    $img.classList.add(`img${i}`);
+    $img.style.height = "20px";
+    $li.appendChild($img);
+
+    const $buttonWrapper = addSubscribeButton(i);
+    $li.append($buttonWrapper);
+    $newsWrapper.append($li);
+  }
+  changeImgSrc();
+};
+
+/**
+ * 언론사 이미지 src 변경
+ * @param {언론사 리스트 중 시작 idx} start
+ */
+const changeImgSrc = () => {
+  const start = getState(gridPageNum) * MEDIA_NUM;
+
+  for (let i = start; i < start + MEDIA_NUM; i++) {
+    const mediaIdx = getState(isTotalMode)
+      ? idList[i]
+      : getState(subscribeList)[i];
+
+    const $Wrapper = $newsWrapper.childNodes[i - start];
+    const $buttonWrapper = $Wrapper.querySelector(".news-grid_button_wrapper");
+    const $img = document.querySelector(`.img${i - start}`);
+
+    if (mediaIdx === undefined) {
+      $img.src = "";
+      $buttonWrapper.style.display = "none";
+      continue;
+    }
+
+    $buttonWrapper.style.display = "";
+
+    const imgSrc = getState(isLightMode)
+      ? `${mediaInfo[mediaIdx].path_light}`
+      : `${mediaInfo[mediaIdx].path_dark}`;
+    // $img.src = imgSrc;
 
     const checkImg = new Image();
     checkImg.src = imgSrc;
     checkImg.onload = () => {
-      const $img = document.createElement("img");
-      $img.classList.add(`img${i}`);
       $img.src = imgSrc;
-      $img.style.height = "20px";
-      $li.appendChild($img);
-
-      const $buttonWrapper = addSubscribeButton(i);
-      $li.append($buttonWrapper);
     };
-
-    $newsWrapper.append($li);
+    checkImg.onerror = () => {
+      $img.src = "";
+      $buttonWrapper.style.display = "none";
+    };
   }
 };
 
@@ -139,45 +177,7 @@ const setNewPage = () => {
     return;
   }
   changeButtonView();
-  changeImgSrc();
   setArrowVisible();
-};
-
-/**
- * 언론사 이미지 src 변경
- * @param {언론사 리스트 중 시작 idx} start
- */
-const changeImgSrc = () => {
-  const start = getState("gridPageNum") * MEDIA_NUM;
-  for (let i = start; i < start + MEDIA_NUM; i++) {
-    const mediaIdx = getState("isTotalMode")
-      ? idList[i]
-      : getState("subscribeList")[i];
-
-    const $img = document.querySelector(`.img${i - start}`);
-    const $buttonWrapper = $img.nextSibling;
-
-    if (mediaIdx === undefined) {
-      $img.src = "";
-      $buttonWrapper.style.display = "none";
-      continue;
-    }
-
-    $buttonWrapper.style.display = "";
-
-    const imgSrc = getState("isLightMode")
-      ? `${mediaInfo[mediaIdx].path_light}`
-      : `${mediaInfo[mediaIdx].path_dark}`;
-
-    const checkImg = new Image();
-    checkImg.src = imgSrc;
-    checkImg.onload = () => {
-      $img.src = imgSrc;
-    };
-    checkImg.onerror = () => {
-      $img.src = "";
-    };
-  }
 };
 
 /**
@@ -244,6 +244,11 @@ const getGridInfo = async () => {
 async function initGridView() {
   await getGridInfo();
   idList = shuffleList(idList);
+
+  register(
+    [gridPageNum, isTotalMode, subscribeList, isLightMode],
+    changeImgSrc
+  );
 
   makeGrid();
   setArrowVisible();
