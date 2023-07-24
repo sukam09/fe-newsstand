@@ -1,5 +1,6 @@
-import { changeState } from "./mainController.js";
-import { STATE, CATEGORY, MODE, GLOBAL } from "../model/variable.js";
+import { CATEGORY, MODE, GLOBAL } from "../model/variable.js";
+import { setState } from "./observer.js";
+import { toggleView } from "../model/store.js";
 
 function initTabAndViewerEvent() {
   const allPressBtn = document.querySelector(".all-press-btn");
@@ -18,10 +19,10 @@ function moveAllPress() {
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
     GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-    changeState(STATE.MOVE_GRID_ALL);
+    setState(toggleView, true);
   } else if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
     GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
-    changeState(STATE.MOVE_LIST_ALL);
+    setState(toggleView, true);
   }
 }
 
@@ -32,10 +33,10 @@ function moveSubPress() {
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
     GLOBAL.CURRENT_MODE = MODE.GRID_SUB;
-    changeState(STATE.MOVE_GRID_SUB);
+    setState(toggleView, true);
   } else if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
     GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    changeState(STATE.MOVE_LIST_SUB);
+    setState(toggleView, true);
   }
 }
 
@@ -44,10 +45,10 @@ function moveGridMode() {
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
     GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-    changeState(STATE.MOVE_GRID_ALL);
+    setState(toggleView, true);
   } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
     GLOBAL.CURRENT_MODE = MODE.GRID_SUB;
-    changeState(STATE.MOVE_GRID_SUB);
+    setState(toggleView, true);
   }
 }
 
@@ -56,10 +57,10 @@ function moveListMode() {
 
   if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
     GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
-    changeState(STATE.MOVE_LIST_ALL);
+    setState(toggleView, true);
   } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
     GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    changeState(STATE.MOVE_LIST_SUB);
+    setState(toggleView, true);
   }
 }
 

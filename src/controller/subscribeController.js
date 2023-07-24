@@ -1,7 +1,8 @@
-import { CONSTANT, MODE, STATE, GLOBAL } from "../model/variable.js";
-import { changeState } from "./mainController.js";
+import { CONSTANT, MODE, GLOBAL, PATH } from "../model/variable.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
 import { moveLeft } from "./arrowBtnController.js";
+import { setState } from "./observer.js";
+import { showAlert, showSnackBar, toggleSubscription } from "../model/store.js";
 
 function initSubscribeBtnEvnet(target) {
   target.addEventListener("click", (event) => {
@@ -29,7 +30,7 @@ function findTargetNewsFromSrc(src) {
 function clickSubscribeBtn(src) {
   if (checkSubscribe(src) === true) {
     GLOBAL.TEMP_TARGET = findTargetNewsFromSrc(src);
-    changeState(STATE.SHOW_ALERT);
+    setState(showAlert, true);
   } else {
     toggleSubscribe(src);
   }
@@ -48,9 +49,11 @@ function toggleSubscribe(src) {
   if (targetNews.is_subscribe === "true") {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
     GLOBAL.SUBSCRIBE_NEWS_NUM++;
+    setState(showSnackBar, true);
 
-    changeState(STATE.SHOW_SNACKBAR);
-    changeState(STATE.SUBSCRIBE_NEWS);
+    const listSubBtn = document.querySelector(".list-sub-btn");
+    listSubBtn.childNodes[0].src = PATH.X;
+    listSubBtn.childNodes[1].style.display = "none";
   } else {
     GLOBAL.SUBSCRIBE_NEWS_DATA = GLOBAL.SUBSCRIBE_NEWS_DATA.filter((value) => {
       return !(value.path.slice(-6) === src.slice(-6));
@@ -72,7 +75,7 @@ function toggleSubscribe(src) {
     if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
       moveLeft();
     }
-    changeState(STATE.UNSUBSCRIBE_NEWS);
+    setState(toggleSubscription, true);
   }
 }
 
