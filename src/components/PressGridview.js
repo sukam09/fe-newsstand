@@ -1,7 +1,13 @@
 import { fetchPressInfo } from '../api.js';
 import { shuffle } from '../utils.js';
-import { store, actionCreator } from '../../store/store.js';
-import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
+import { store, actionCreator } from '../../core/store.js';
+import {
+  NEWS_PRESS_NUMBERS_PER_PAGE,
+  PAGE_MIN_NUMBER,
+  PAGE_MAX_NUMBER,
+  SNACKBAR_DURATION,
+  SUBSCRIBE_MESSAGE,
+} from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
@@ -31,7 +37,7 @@ export default function PressGridView({ $target, initialState }) {
   function handleClickCell({ target }, subscribeButton) {
     let id = target.dataset.id;
 
-    // li가 아닌 button을 클릭했을 경우
+    // li가 아닌걸 클릭했을 경우
     if (!id) {
       id = target.closest('li').dataset.id;
     }
@@ -63,7 +69,8 @@ export default function PressGridView({ $target, initialState }) {
       this.timer = setTimeout(() => {
         this.snackBar.setState({ ...this.snackBar.state, isShow: false });
         // TODO: 내가 구독한 리스트로 이동
-      }, 5000);
+      }, SNACKBAR_DURATION);
+
       store.dispatch(actionCreator('subscribe', { pid: id }));
     }
   };
@@ -160,7 +167,7 @@ export default function PressGridView({ $target, initialState }) {
       $target: $section,
       initialState: {
         isShow: false,
-        text: '내가 구독한 언론사에 추가되었습니다.',
+        text: SUBSCRIBE_MESSAGE,
       },
     });
   };
