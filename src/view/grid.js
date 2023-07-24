@@ -1,8 +1,8 @@
 import { fetchNews } from "../../api.js";
-import { store } from "../model/store.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
 import { GRID_PAGE, VIEW } from "../model/global.js";
 import { shuffle_press } from "../util/shuffle.js";
+import { store } from "../model/store.js";
 
 export let news_data;
 const GRID_ROW = 4;
@@ -74,3 +74,5 @@ export async function renderGrid() {
     console.error(e);
   }
 }
+console.log("그리드뷰");
+// store.subscribe(renderGrid, "unsubscribe", "grid");

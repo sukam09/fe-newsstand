@@ -38,16 +38,16 @@ export const VIEW = {
     if (VIEW.layout === "grid") {
       renderGrid();
     } else {
-      renderList(changeSubscribeView);
+      renderList();
     }
   },
-  setTab: (tab, changeSubscribeView) => {
+  setTab: (tab) => {
     VIEW.tab = tab;
     renderPressFilterTab(VIEW.tab);
     if (VIEW.tab === "entire") {
       VIEW.setLayout("grid");
     } else {
-      VIEW.setLayout("list", changeSubscribeView);
+      VIEW.setLayout("list");
     }
   },
 };

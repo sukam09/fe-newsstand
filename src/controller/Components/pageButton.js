@@ -51,10 +51,8 @@ function arrowBtnClickHandler(dir) {
       LIST_PAGE.setCategory(currentCategoryIdx);
     }
   }
-  if (timerId) {
-    clearInterval(timerId);
-    startTimer();
-  }
+  timerId && clearInterval(timerId);
+  startTimer();
 }
 
 export function pageButton() {

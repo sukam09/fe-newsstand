@@ -1,22 +1,48 @@
+import { VIEW } from "./global.js";
+
 class Store {
   #state;
-  #handler;
+  #subscribeHandler;
+  #gridUnsubscribeHandler;
+  #listUnsubscribeHandler;
   constructor(reducer) {
     this.#state = reducer(undefined, {
       type: "@@__init__@@",
     });
-    this.#handler = [];
+    this.#subscribeHandler = [];
+    this.#gridUnsubscribeHandler = [];
+    this.#listUnsubscribeHandler = [];
   }
 
   dispatch(action) {
     this.#state = reducer(this.#state, action);
-    this.#handler.forEach((h) => {
-      h();
-    });
+    if (action.type === "subscribe" && VIEW.layout === "list") {
+      this.#subscribeHandler.forEach((renderFn) => {
+        renderFn();
+      });
+    } else if (action.type === "unsubscribe") {
+      if (VIEW.layout === "grid") {
+        this.#gridUnsubscribeHandler.forEach((renderFn) => {
+          renderFn();
+        });
+      } else {
+        this.#listUnsubscribeHandler.forEach((renderFn) => {
+          renderFn();
+        });
+      }
+    }
   }
 
-  subscribe(listener) {
-    this.#handler.push(listener);
+  subscribe(listener, type, view) {
+    if (type === "subscribe") {
+      this.#subscribeHandler.push(listener);
+    } else if (type === "unsubscribe") {
+      if (view === "grid") {
+        this.#gridUnsubscribeHandler.push(listener);
+      } else {
+        this.#listUnsubscribeHandler.push(listener);
+      }
+    }
   }
 
   getSubscribe() {
@@ -56,3 +82,7 @@ export function actionCreator(type, data) {
 }
 
 export const store = new Store(reducer);
+
+export function storeInit() {
+  console.log(store);
+}

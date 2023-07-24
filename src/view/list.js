@@ -1,7 +1,6 @@
 import { shuffle_press } from "../util/shuffle.js";
-import { fieldClick, fieldXScroll } from "../controller/Components/field.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
-import { startTimer } from "../controller/timer.js";
+import { startTimer, timerId } from "../controller/timer.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
 import { store } from "../model/store.js";
 import { renderTabs } from "./field.js";
@@ -55,8 +54,8 @@ export function renderSection(news) {
 
   subscribeButton();
 }
-
-export function renderList(changeSubscribeView = false) {
+// store.subscribe(renderList);
+export function renderList() {
   category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
   category.forEach((category, index) => {
     let length = 0;
@@ -79,14 +78,6 @@ export function renderList(changeSubscribeView = false) {
 
   renderTabs(news);
   renderSection(news);
-
-  if (changeSubscribeView) {
-    LIST_PAGE.setCategory(news.length - 1);
-  }
-  if (VIEW.tab === "subscribe") {
-    fieldClick();
-    fieldXScroll();
-  }
 
   if (news.length > 0) {
     startTimer();
@@ -131,3 +122,16 @@ function updateSection() {
 export function updateList() {
   updateSection();
 }
+
+console.log("리스트뷰");
+// if (store) {
+//   console.log("리스트뷰 구독 등록");
+//   store.subscribe(
+//     () => {
+//       VIEW.setTab("subscribe");
+//     },
+//     "subscribe",
+//     "list"
+//   );
+//   store.subscribe(renderList, "unsubscribe", "list");
+// }
