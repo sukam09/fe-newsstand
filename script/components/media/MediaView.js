@@ -21,8 +21,8 @@ const createMediaData = view => {
   });
 };
 
-const MediaView = (themeStore, viewStore) => {
-  const { view, subscribed } = viewStore.getState();
+const MediaView = (themeStore, navStore) => {
+  const { view, subscribed } = navStore.getState();
   const mediaView = document.createElement('div');
   const mediaData = createMediaData(view);
 
@@ -30,12 +30,12 @@ const MediaView = (themeStore, viewStore) => {
   if (view === 'list') {
     mediaData.then(mediaData => {
       mediaView.appendChild(
-        MediaList(themeStore, viewStore, { mediaData, subscribed })
+        MediaList(themeStore, navStore, { mediaData, subscribed })
       );
     });
   } else {
     mediaView.appendChild(
-      MediaGrid(themeStore, viewStore, { mediaData, subscribed })
+      MediaGrid(themeStore, navStore, { mediaData, subscribed })
     );
   }
   return mediaView;

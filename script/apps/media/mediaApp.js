@@ -5,7 +5,7 @@ import { MEDIA_APP_DATA } from '../../constants.js';
 import Store from '../../core/Store.js';
 
 const mediaApp = (themeStore, defaultMedia, defaultView) => {
-  const viewStore = new Store({
+  const navStore = new Store({
     data: MEDIA_APP_DATA,
     defaultView: {
       all: 'grid',
@@ -15,7 +15,6 @@ const mediaApp = (themeStore, defaultMedia, defaultView) => {
     media: defaultMedia,
     view: defaultView,
   });
-
   const clearThemeStates = () => {
     themeStore.unsubscribe('view');
   };
@@ -23,10 +22,9 @@ const mediaApp = (themeStore, defaultMedia, defaultView) => {
     const navArea = document.querySelector('#media_view_nav');
     const mediaView = document.querySelector('#media_view');
 
-    navArea.replaceWith(MediaNav(viewStore));
-    mediaView.replaceWith(MediaView(themeStore, viewStore));
+    navArea.replaceWith(MediaNav(navStore));
+    mediaView.replaceWith(MediaView(themeStore, navStore));
   };
-
   const createLayout = () => {
     const wrapper = document.querySelector('#media_view_wrapper');
     const mediaView = document.createElement('div');
@@ -35,8 +33,8 @@ const mediaApp = (themeStore, defaultMedia, defaultView) => {
     wrapper.append(ArrowButton('left'), mediaView, ArrowButton('right'));
   };
 
-  viewStore.subscribe(clearThemeStates);
-  viewStore.subscribe(render);
+  navStore.subscribe(clearThemeStates);
+  navStore.subscribe(render);
   createLayout();
   render();
 };
