@@ -1,17 +1,17 @@
 import { initState } from "../controller/observer.js";
 
 const moveGrid = initState({
-  key: "moveGridPage",
+  key: "moveGrid",
   defaultValue: false,
 });
 
 const moveList = initState({
-  key: "moveListPage",
+  key: "moveList",
   defaultValue: false,
 });
 
 const toggleView = initState({
-  key: "moveView",
+  key: "toggleView",
   defaultValue: false,
 });
 
