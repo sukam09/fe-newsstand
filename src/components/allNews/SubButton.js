@@ -13,24 +13,27 @@ export default class SubButton {
     this.$subButton.appendChild(this.$plusIcon);
     this.$subButton.appendChild(this.$text);
 
-    this.name = name;
-
-    this.$subButton.addEventListener("click", () =>
-      this.handleClickSubBtn(name)
-    );
+    this.$subButton.addEventListener("click", () => {
+      this.handleClickSubBtn(name);
+    });
 
     return this.$subButton;
   }
 
   handleClickSubBtn(name) {
     const $gridWrapper = document.querySelector(".news-list-wrapper");
+    const $listWrapper = document.querySelector(".list-container");
     const $snackBar = document.createElement("div");
     $snackBar.classList.add("snackBar-sub");
     $snackBar.innerText = "내가 구독한 언론사에 추가되었습니다.";
-    subscribedPress.press = [name, ...subscribedPress.press];
-    $gridWrapper.appendChild($snackBar);
+    if ($gridWrapper) $gridWrapper.appendChild($snackBar);
+    if ($listWrapper) $listWrapper.appendChild($snackBar);
+
+    subscribedPress.press = [...subscribedPress.press, name];
+
     setTimeout(() => {
-      $gridWrapper.removeChild($snackBar);
+      if ($gridWrapper) $gridWrapper.removeChild($snackBar);
+      if ($listWrapper) $listWrapper.removeChild($snackBar);
     }, SNACKBAR_DURATION);
   }
 }

@@ -11,7 +11,7 @@ export default class UnsubButton {
 
     this.$text.innerText = text;
     this.$subButton.appendChild(this.$plusIcon);
-    this.$subButton.appendChild(this.$text);
+    if (text !== "") this.$subButton.appendChild(this.$text);
 
     this.$subButton.addEventListener("click", () =>
       this.handleClickUnsubBtn(name)
@@ -22,7 +22,10 @@ export default class UnsubButton {
 
   handleClickUnsubBtn(name) {
     const $gridWrapper = document.querySelector(".news-list-wrapper");
-    $gridWrapper.appendChild(this.createUnsubModal(name));
+    const $listWrapper = document.querySelector(".list-container");
+
+    if ($gridWrapper) $gridWrapper.appendChild(this.createUnsubModal(name));
+    if ($listWrapper) $listWrapper.appendChild(this.createUnsubModal(name));
   }
 
   createUnsubModal(name) {
@@ -56,9 +59,11 @@ export default class UnsubButton {
   }
 
   removeModal() {
-    const $container = document.querySelector(".news-list-wrapper");
+    const $gridWrapper = document.querySelector(".news-list-wrapper");
+    const $listWrapper = document.querySelector(".list-container");
     const $modal = document.querySelector(".unsub-modal");
 
-    $container.removeChild($modal);
+    if ($gridWrapper) $gridWrapper.removeChild($modal);
+    if ($listWrapper) $listWrapper.removeChild($modal);
   }
 }

@@ -1,5 +1,6 @@
 .list-container {
   width: 930px;
+  position: relative;
 }
 
 .list-wrapper {

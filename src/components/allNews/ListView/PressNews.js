@@ -2,6 +2,8 @@ import Logo from "../../common/Logo.js";
 import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
 import categories from "../../../constants/categories.js";
 import SubButton from "../SubButton.js";
+import { subscribedPress } from "../../../core/store.js";
+import UnsubButton from "../UnsubButton.js";
 
 export default class PressNews {
   constructor() {
@@ -17,16 +19,24 @@ export default class PressNews {
   render() {
     this.$wrapper.replaceChildren();
 
-    const nameTemplate = `
-      <div class="press-info">
-        ${this.createPressLogo(this.mainNews.logo).outerHTML}
-        <span class="pressInfo-date">${this.mainNews.editTime} 편집</span>
-        ${new SubButton().outerHTML}
-      </div>
-    `;
+    const $nameWrapper = document.createElement("div");
+    const $mainWrapper = document.createElement("div");
+    $nameWrapper.className = "press-info";
+    $mainWrapper.className = "press-main";
+
+    const $editTime = document.createElement("span");
+    $editTime.className = "pressInfo-date";
+    $editTime.innerText = `${this.mainNews.editTime} 편집`;
+
+    $nameWrapper.appendChild(this.createPressLogo(this.mainNews.logo));
+    $nameWrapper.appendChild($editTime);
+    if (subscribedPress.press.includes(this.mainNews.id)) {
+      $nameWrapper.appendChild(new UnsubButton(this.mainNews.id));
+    } else {
+      $nameWrapper.appendChild(new SubButton(this.mainNews.id));
+    }
 
     const mainTemplate = `
-      <div class="press-main">
         <div class="press-imageInfo">
           <div class="news-img">
           <img class="pressImage" src=${this.mainNews.mainArticle.thumbnail} />
@@ -43,11 +53,11 @@ export default class PressNews {
             this.mainNews.name
           } 언론사에서 직접 편집한 뉴스입니다.</p>
         </div>
-      </div>
     `;
+    $mainWrapper.innerHTML += mainTemplate;
 
-    this.$wrapper.innerHTML += nameTemplate;
-    this.$wrapper.innerHTML += mainTemplate;
+    this.$wrapper.appendChild($nameWrapper);
+    this.$wrapper.appendChild($mainWrapper);
   }
 
   /** 언론사 로고 요소 생성 */
