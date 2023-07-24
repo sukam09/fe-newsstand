@@ -5,6 +5,7 @@ import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
 import { changeImageSrc } from "../utils/utils.js";
 
+let timeOut;
 const drawNews = (news) => {
   let progressBarId =
     document.getElementsByClassName("progress-bar")[currentCategoryIndex].id;
@@ -14,21 +15,15 @@ const drawNews = (news) => {
 };
 
 function drawNewsImage(news, progressBarId) {
-  return `<img class="news-main-image" src="${
-    news[progressBarId][currentCategoryPageNumber - 1].thumbnail
-  }">${news[progressBarId][currentCategoryPageNumber - 1].title}`;
+  return `<img class="news-main-image" src="${news[progressBarId][0].thumbnail}">${news[progressBarId][0].title}`;
 }
 
 function drawNewsArticle(news, progressBarId) {
   let article_div = "";
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
-    article_div += `<div class="news-main-article">${
-      news[progressBarId][currentCategoryPageNumber - 1].article[article_cnt]
-    }</div>`;
+    article_div += `<div class="news-main-article">${news[progressBarId][0].article[article_cnt]}</div>`;
   }
-  article_div += `<div class="news-main-article-press">${
-    news[progressBarId][currentCategoryPageNumber - 1].press
-  }언론사에서 직접 편집한 뉴스입니다.</div>`;
+  article_div += `<div class="news-main-article-press">${news[progressBarId][0].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
   return article_div;
 }
 
@@ -82,12 +77,13 @@ function clickSubscribeButton(news, progressBarId) {
         news[progressBarId][currentCategoryPageNumber - 1].id
       );
       snackBar("내가 구독한 언론사에 추가되었습니다!");
-      setTimeout(() => {
+      let timeOut = setTimeout(() => {
         Stores.setSubscribedMode("subscribed");
         renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
       }, rollingTime);
       replaceSubscribeButton("cancel");
     } else {
+      if (timeOut) clearTimeout(timeOut);
       alert(
         news,
         news[progressBarId][currentCategoryPageNumber - 1].press,
@@ -115,8 +111,9 @@ function alertClick(news, alertDiv, progressBarId) {
     );
     Stores.setPageMode("list");
     replaceSubscribeButton("subscribe");
+    if (!Object.keys(Stores.getSubscribeNewsContent()).length)
+      Stores.setSubscribedMode("all");
     renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
-    Stores.setSubscribedMode("subscribed");
   });
   alertNo.addEventListener("click", () => {
     alertDiv.style.display = "none";

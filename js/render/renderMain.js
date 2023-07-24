@@ -18,6 +18,7 @@ const renderAll = async (pageMode) => {
 
 const renderSubscribe = (pageMode) => {
   if (!Object.keys(Stores.getSubscribeNewsContent()).length) {
+    Stores.setSubscribedMode("all");
     snackBar("구독한 언론사가 없습니다.");
     return;
   }
