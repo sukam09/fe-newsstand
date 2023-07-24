@@ -46,7 +46,9 @@ export default class Categories {
         <span class="category-name">${category}</span>
         <span class="category-count">${this.currentPage}/${categories[category].press.length}</span>
       `;
-    $categoryList.addEventListener("click", (e) => this.handleCategoryClick(e));
+    $categoryList.addEventListener("click", () =>
+      this.handleCategoryClick(category)
+    );
 
     return $categoryList;
   }
@@ -82,10 +84,8 @@ export default class Categories {
   /**
    * 카테고리 클릭 시 카테고리 이동
    */
-  handleCategoryClick(event) {
+  handleCategoryClick(categoryName) {
     clearInterval(this.interval);
-    const targetCategory = event.target;
-    const categoryName = targetCategory.innerText;
     const targetIndex = Object.keys(categories).findIndex(
       (cate) => cate === categoryName
     );
