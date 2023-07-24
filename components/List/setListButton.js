@@ -1,7 +1,7 @@
 import { FIELDTAB_LIST } from "../../constants/constant.js";
 import { filterCategory } from "../../utils/filterCategory.js";
 import { setButton } from "../Button/setButton.js";
-import { ListComponent } from "../ListComponent.js";
+import { ListComponent } from "./ListComponent.js";
 
 const all_press = document.querySelector(".all_press");
 

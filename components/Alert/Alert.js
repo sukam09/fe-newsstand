@@ -1,9 +1,12 @@
 import { INITIAL_CATEGORY } from "../../constants/constant.js";
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
+
 import { makeGrid } from "../Grid/gridElement.js";
 import { updateSubscribeButton } from "../List/subscribeButton.js";
-import { ListComponent } from "../ListComponent.js";
+import { ListComponent } from "../List/ListComponent.js";
+import { setGrid } from "../../utils/setGrid.js";
+import { setList } from "../../utils/setList.js";
 
 export class Alert {
   constructor() {
@@ -46,32 +49,54 @@ export class Alert {
 
     this.confirmBtn.addEventListener("click", () => {
       const subscribe_press = document.querySelector(".subscribe_press");
+      const all_press = document.querySelector(".all_press");
+
       const agency_list = document.querySelector(".agency-grid");
 
       [this.name, this.isSubscribed, this.current_page, this.agencies] =
         this.getState();
 
-      // 내가 구독한 언론사를 보고 있다면 GridComponent 다시 호출해야함.
+      // 내가 구독한 언론사
       if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
+        // Grid View in 내가 구독한 언론사
         if (agency_list.style.display === "grid") {
           const cancel_elem = document.querySelector(`.${this.getState()[0]}`);
           cancel_elem.remove();
           makeGrid({ name: "", logo: "" });
-        } else {
+
+          // 구독한 언론사가 하나도 없으면 전체 언론사로 이동
+          const $ul = document.querySelector(".agency-grid");
+          const first_child = $ul.querySelector("li:first-child").className;
+          if (first_child === "") {
+            all_press.setAttribute("subscribetype", true);
+            subscribe_press.removeAttribute("subscribetype");
+            setGrid();
+          }
+        }
+        // List View in 내가 구독한 언론사
+        else {
           this.agencies.splice(this.current_page, 1);
 
           updateSubscribeButton(this.name);
-          ListComponent(
-            this.current_page,
-            this.agencies,
-            this.agencies[this.current_page].name,
-            INITIAL_CATEGORY
-          );
+          // 구독한 언론사가 존재하는 경우
+          if (this.agencies.length > 0) {
+            ListComponent(
+              this.current_page,
+              this.agencies,
+              this.agencies[this.current_page].name,
+              INITIAL_CATEGORY
+            );
+          }
+          // 구독한 언론사가 존재하지 않는 경우
+          else {
+            all_press.setAttribute("subscribetype", true);
+            subscribe_press.removeAttribute("subscribetype");
+            setList();
+          }
         }
       }
 
       this.dispatch(this.name, this.isSubscribed);
-
       this.close();
     });
 

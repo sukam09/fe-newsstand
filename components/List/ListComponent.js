@@ -1,14 +1,14 @@
-import { filterCategory } from "../utils/filterCategory.js";
-import { removeAllChildNodes } from "../utils/utils.js";
+import { filterCategory } from "../../utils/filterCategory.js";
+import { removeAllChildNodes } from "../../utils/utils.js";
 
-import { makeFieldTab } from "./List/fieldTab.js";
-import { makePressNews } from "./List/pressNews.js";
-import { startProgress, stopProgress } from "./List/progress.js";
+import { makeFieldTab } from "./fieldTab.js";
+import { makePressNews } from "./pressNews.js";
+import { startProgress, stopProgress } from "./progress.js";
 import {
   moveToNextPage,
   moveToPrevPage,
   setListButton,
-} from "./List/setListButton.js";
+} from "./setListButton.js";
 
 const all_press = document.querySelector(".all_press");
 

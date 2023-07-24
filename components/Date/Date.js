@@ -1,4 +1,4 @@
-export const TimeComponent = () => {
+export const DateComponent = () => {
   const $time = document.querySelector(".time time");
   const today = new Date();
   const DAYS = ["일", "월", "화", "수", "목", "금", "토"];
