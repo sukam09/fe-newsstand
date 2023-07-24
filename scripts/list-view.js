@@ -18,6 +18,7 @@ import { SubscribeButton } from "./components.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
 import { openModal } from "../store/reducer/modal.js";
+import { activateCurrentTab } from "./tab-button.js";
 
 const $listViewTab = document.querySelector(".list-view_tab");
 const [$categoryTab, $subscribeTab] = $listViewTab.querySelectorAll("ul");

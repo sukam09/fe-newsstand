@@ -2,6 +2,7 @@ import { TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { store, snackbarStore, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { closeSnackbar } from "../store/reducer/snackbar.js";
+import { activateCurrentTab } from "./tab-button.js";
 
 const SNACKBAR_SHOW_DURATION = "5000";
 
@@ -27,6 +28,7 @@ function snackbarSubscriber() {
 
       if (viewType === VIEW_TYPE.LIST) {
         store.dispatch(changeTab(TAB_TYPE.SUBSCRIBE));
+        activateCurrentTab(TAB_TYPE.SUBSCRIBE);
       }
     }, SNACKBAR_SHOW_DURATION);
 

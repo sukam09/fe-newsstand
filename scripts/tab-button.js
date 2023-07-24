@@ -21,9 +21,15 @@ function handleTabsClick(e) {
   }
 
   const tabType = $currentButton.dataset.tab;
+  activateCurrentTab(tabType);
 
+  store.dispatch(changeTab(tabType));
+}
+
+export function activateCurrentTab(tabType) {
   $mainNavButtons.forEach(($button) => {
-    if ($button === $currentButton) {
+    const type = $button.dataset.tab;
+    if (type === tabType) {
       $button.classList.add("main-nav_tabs--selected");
       $button.classList.replace("available-medium16", "selected-bold16");
       return;
@@ -32,8 +38,6 @@ function handleTabsClick(e) {
     $button.classList.remove("main-nav_tabs--selected");
     $button.classList.replace("selected-bold16", "available-medium16");
   });
-
-  store.dispatch(changeTab(tabType));
 }
 
 export function addEventOnTabs() {
