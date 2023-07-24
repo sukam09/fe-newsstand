@@ -16,28 +16,16 @@ function initTabAndViewerEvent() {
 
 function moveAllPress() {
   resetPage();
-
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-    setState(toggleView, true);
-  } else if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
-    setState(toggleView, true);
-  }
+  GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
+  setState(toggleView, true);
 }
 
 function moveSubPress() {
   if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) return;
 
   resetPage();
-
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.GRID_SUB;
-    setState(toggleView, true);
-  } else if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    setState(toggleView, true);
-  }
+  GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
+  setState(toggleView, true);
 }
 
 function moveGridMode() {
