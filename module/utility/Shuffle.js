@@ -11,7 +11,8 @@ export function shuffle_id(news_icon) {
     news_icon[randomIndex] = tempValue;
   }
 }
-export function shuffle_press(press) {
+export function shuffle_press(item) {
+  let press = item;
   let currentIndex = press.length,
     tempValue,
     randomIndex;
@@ -23,4 +24,5 @@ export function shuffle_press(press) {
     press[currentIndex] = press[randomIndex];
     press[randomIndex] = tempValue;
   }
+  return press;
 }
