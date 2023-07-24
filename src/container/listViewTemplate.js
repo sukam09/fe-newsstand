@@ -111,24 +111,36 @@ export function createNewsNav(subscribe_mode, state) {
     return $container;
 }
 
-// 언론사 정보 생성
-function createPressInfo(press_news, subscribe_mode, is_subscribe) {
-    const $container = create.div({ className: "list-view-press-info" });
-    if (!press_news.press_light_src) return $container;
+function resetBtn($container, press_id) {
+    $container.querySelector(".btn-subscribe").remove();
+    $container.appendChild(
+        btnFactory
+            .create({
+                type: "subscribe",
+                isSubscribe: true,
+                events: {
+                    click: () => {
+                        document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
+                        setTimeout(() => {
+                            document.querySelector(".snack-bar").remove();
+                            onClickSubBtn(true, false);
+                            _sub_press_list.addState(press_id);
+                        }, SNACK_BAR_TIME);
+                    },
+                },
+            })
+            .getButton()
+    );
+}
 
-    const $img = create.img({
-        className: "press_img",
-        attributes: { src: press_news.press_light_src, alt: "press-logo" },
-    });
-    const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_news.edit_date });
-
+function createPressInfoBtn($container, press_name, press_id, subscribe_mode, is_subscribe) {
     let $subscribe_btn;
     if (subscribe_mode === DOM.LIST_SUBSCRIBE_VIEW || is_subscribe) {
         $subscribe_btn = btnFactory
             .create({
                 type: "closed",
                 events: {
-                    click: () => $container.appendChild(createAlert(press_news.press, press_news.press_id)),
+                    click: () => $container.appendChild(createAlert(press_name, press_id, $container, resetBtn)),
                 },
             })
             .getButton();
@@ -143,15 +155,32 @@ function createPressInfo(press_news, subscribe_mode, is_subscribe) {
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
                             onClickSubBtn(true, false);
-                            _sub_press_list.addState(press_news.press_id);
+                            _sub_press_list.addState(press_id);
                         }, SNACK_BAR_TIME);
                     },
                 },
             })
             .getButton();
     }
+    return $subscribe_btn;
+}
 
-    $container.append($img, $edit_date, $subscribe_btn);
+// 언론사 정보 생성
+function createPressInfo(press_news, subscribe_mode, is_subscribe) {
+    const $container = create.div({ className: "list-view-press-info" });
+    if (!press_news.press_light_src) return $container;
+
+    const $img = create.img({
+        className: "press_img",
+        attributes: { src: press_news.press_light_src, alt: "press-logo" },
+    });
+    const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_news.edit_date });
+
+    $container.append(
+        $img,
+        $edit_date,
+        createPressInfoBtn($container, press_news.press, press_news.press_id, subscribe_mode, is_subscribe)
+    );
     return $container;
 }
 

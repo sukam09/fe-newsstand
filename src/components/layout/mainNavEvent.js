@@ -63,6 +63,7 @@ const view_info = (function () {
                 ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
                 : ((grid_entire_view.style.display = "flex"), (grid_sub_view.style.display = "none"));
         } else {
+            // 리스트 아이콘 클릭
             list_icon.style.filter =
                 "invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg) brightness(87%) contrast(85%)";
             grid_icon.style.filter = "none";
