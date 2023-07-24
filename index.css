@@ -254,7 +254,6 @@ body {
     font-size: 14px;
     font-weight: 500;
     height: 40px;
-    /* 가로 스크롤 */
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -262,13 +261,14 @@ body {
 
 .main_nav_title {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 200px;
     gap: 8px;
 }
 .main_nav_title span {
-    z-index: 1;
+    z-index: 2;
     margin: 0 16px 0 16px;
     color: var(--text-white-default);
     font-weight: 700;
@@ -285,7 +285,7 @@ body {
 
 .main_nav_progress {
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     width: 200px;
     border-radius: 0;
     height: 40px;
@@ -293,7 +293,6 @@ body {
 
 .main_nav_progress::-webkit-progress-bar {
     background: #7890e7;
-    overflow: hidden;
 }
 
 .main_nav_progress::-webkit-progress-value {
@@ -348,7 +347,7 @@ body {
     margin-left: 8px;
 }
 
-.content_subscribe {
+.content_subscribe_active {
     cursor: pointer;
     display: flex;
     justify-content: center;

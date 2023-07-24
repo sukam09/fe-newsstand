@@ -7,10 +7,12 @@ import {
 } from "./globals.js";
 import {
     showToday,
+    getOptions,
     setOptions,
     currentHourToMode,
     renderOptions,
     getCalPage,
+    setNavCategoryIndex,
     setCategoryIndex,
     setPageIndex,
     setSubscribeNewsData,
@@ -65,7 +67,7 @@ function optionListener(event, selected) {
     const clicked_option = event.target;
 
     view_option[selected] = clicked_option.id.split("_")[1];
-    const { main: main_option, press: press_option } = setOptions();
+    const { main: main_option, press: press_option } = getOptions();
 
     const option_elements = document.querySelectorAll(`.option_${selected}`);
     option_elements.forEach((option_name) => {
@@ -75,9 +77,7 @@ function optionListener(event, selected) {
                 : `option_${selected}`;
     });
 
-    if (selected === "main")
-        updateMainNewsContainer(option_elements, main_option);
-    clearAndRender(main_option, press_option);
+    clearAndRender(main_option, press_option, option_elements, selected);
 }
 
 function updateMainNewsContainer(option_elements, main_option) {
@@ -101,13 +101,20 @@ function updateMainNewsContainer(option_elements, main_option) {
     news_data_container.classList.add(view_mode);
 }
 
-function clearAndRender(main, press) {
+function clearAndRender(main, press, option_elements, selected) {
+    if (selected && selected === "main")
+        updateMainNewsContainer(option_elements, main);
+        
     clear("main_news_container", list_option);
+    clear("snack_bar_container", "remove");
+    clear("modal_bar_container", "remove");
 
+    createSnackBarView("container_center");
+    createModalBarView("container_center");
     const { data, page, category } = renderOptions()[main][press];
 
     changeViewArrow(main);
-    render(setOptions("all", [changeCategoryEvent]), data, page, category);
+    render(getOptions("all", [changeCategoryEvent]), data, page, category);
     togglePressEvent();
 }
 
@@ -124,7 +131,7 @@ function arrowPagingEvent() {
     const list_right_arrow = document.querySelector(".list_right_arrow");
 
     grid_left_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
+        const { main, press } = getOptions();
         const { data, page } = renderOptions()[main][press];
         if (page <= 0) return;
         handlePage(main, press, getCalPage(-1), data);
@@ -132,7 +139,7 @@ function arrowPagingEvent() {
     });
 
     grid_right_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
+        const { main, press } = getOptions();
         const { data, page } = renderOptions()[main][press];
         if (page >= length) return;
         handlePage(main, press, getCalPage(1), data);
@@ -140,7 +147,7 @@ function arrowPagingEvent() {
     });
 
     list_left_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
+        const { main, press } = getOptions();
         const { data, category } = renderOptions()[main][press];
         handlePage(main, press, getCalPage(-1), data, category, [
             changeCategoryEvent,
@@ -149,7 +156,7 @@ function arrowPagingEvent() {
     });
 
     list_right_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
+        const { main, press } = getOptions();
         const { data, category } = renderOptions()[main][press];
         handlePage(main, press, getCalPage(1), data, category, [
             changeCategoryEvent,
@@ -242,18 +249,15 @@ function toggleSubscribeEvent() {
         press.addEventListener("click", () => {
             clearTimeout(snack_animation_time);
 
-            const { main: main_option, press: press_option } = setOptions();
-            const { page } = renderOptions()[main_option];
-
             if (press.value === "true") {
                 modalBarEvent(press.name, press.value);
                 return;
             }
-
             const snack_bar = document.querySelector(".snack_bar_text");
-            snack_animation_time = setSnackBar();
+            const { main: main_option, press: press_option } = getOptions();
+            render(getOptions("sub", [togglePressEvent]), press);
 
-            render(setOptions("sub", [togglePressEvent]), press, page);
+            snack_animation_time = setSnackBar(clearAndRender);
             subscribe_option.subscribe_press[press.name] = press.value;
             subscribe_option.subscribe_categories.push(press.name);
             setSubscribeNewsData();
@@ -278,14 +282,14 @@ function changeCategoryEvent() {
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            const { main: main_option, press: press_option } = setOptions();
-            setCategoryIndex(item.innerHTML, press_option);
+            const { main: main_option, press: press_option } = getOptions();
+            setNavCategoryIndex(item.innerHTML, press_option);
             setPageIndex(0);
             const { data, page, category } =
                 renderOptions()[main_option][press_option];
 
             render(
-                setOptions("all", [changeCategoryEvent, togglePressEvent]),
+                getOptions("all", [changeCategoryEvent, toggleSubscribeEvent]),
                 data,
                 page,
                 category
@@ -318,7 +322,7 @@ function bannerMouseEvent(action) {
     });
 }
 
-function modalBarEvent(name, value) {
+function modalBarEvent(name) {
     const modal_bar_container = document.querySelector(".modal_bar_container");
 
     modal_bar_container.style.display = "block";
@@ -334,12 +338,16 @@ function modalBarEvent(name, value) {
         const modal_bar_container = document.querySelector(
             ".modal_bar_container"
         );
-        const { main: main_option, press: press_option } = setOptions();
+        const { main: main_option, press: press_option } = getOptions();
+        const { category } = renderOptions()[main_option][press_option];
         subscribe_option.subscribe_press[name] = "false";
         subscribe_option.subscribe_categories.splice(
             subscribe_option.subscribe_categories.indexOf(name),
             1
         );
+        if (category >= subscribe_option.subscribe_categories.length) {
+            setCategoryIndex(press_option, category - 1);
+        }
         setSubscribeNewsData();
         modal_bar_container.style.animation = "disappear 0.5s forwards";
         clearAndRender(main_option, press_option);
@@ -352,7 +360,7 @@ function modalBarEvent(name, value) {
         const modal_bar_container = document.querySelector(
             ".modal_bar_container"
         );
-        const { main: main_option, press: press_option } = setOptions();
+        const { main: main_option, press: press_option } = getOptions();
         modal_bar_container.style.animation = "disappear 0.5s forwards";
         clearAndRender(main_option, press_option);
         setTimeout(() => {
@@ -376,7 +384,7 @@ async function initEvent() {
 
         view_option.hot_topic_data = data["hot_topic_data"];
 
-        render(setOptions(), grid_option.press_data, grid_option.page);
+        render(getOptions(), grid_option.press_data, grid_option.page);
         renderHotTopicsView(
             data["hot_topic_data"][0],
             data["hot_topic_data"][1],

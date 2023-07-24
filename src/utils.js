@@ -52,7 +52,7 @@ export function isSubscribed(item) {
  * @param {*} target
  * @returns options
  */
-export function setOptions(target, callback) {
+export function getOptions(target, callback) {
     return {
         main: view_option.main,
         press: view_option.press,
@@ -62,6 +62,11 @@ export function setOptions(target, callback) {
     };
 }
 
+export function setOptions(options) {
+    view_option.main = options.main;
+    view_option.press = options.press;
+}
+
 export function setSubscribeNewsData() {
     list_option.subscribe_news_data = groupDataByPressName(
         list_option.unrefined_new_data.filter(
@@ -69,6 +74,14 @@ export function setSubscribeNewsData() {
                 subscribe_option.subscribe_press[press["press_name"]] === "true"
         )
     );
+}
+
+export function setActiveClass() {
+    const press_all = document.getElementById("option_all_press");
+    const press_sub = document.getElementById("option_subscribe_press");
+
+    press_all.classList.remove("option_press_active");
+    press_sub.classList.add("option_press_active");
 }
 
 function groupDataByPressName(data) {
@@ -120,7 +133,7 @@ export function renderOptions() {
 }
 
 export function getCalPage(page) {
-    const { main, press } = setOptions();
+    const { main, press } = getOptions();
 
     if (main === "grid") {
         if (press === "all") {
@@ -142,11 +155,17 @@ export function getCalPage(page) {
     }
 }
 
-export function setCategoryIndex(text, press) {
+export function setNavCategoryIndex(text, press) {
     if (press === "all") list_option.category = CATEGORIES.indexOf(text);
     else
         subscribe_option.subscribe_current =
             subscribe_option.subscribe_categories.indexOf(text);
+}
+
+export function setCategoryIndex(press, index) {
+    if (index === -1) index = 0;
+    if (press === "all") list_option.category = index;
+    else subscribe_option.subscribe_current = index;
 }
 
 export function setPageIndex(page) {

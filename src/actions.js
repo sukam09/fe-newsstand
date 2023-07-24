@@ -12,8 +12,10 @@ import {
     fetchPressData,
     fetchNewsData,
     fetchHotTopicData,
+    getOptions,
     setOptions,
     updateCategoryIndex,
+    setActiveClass,
 } from "./utils.js";
 import { renderGridView } from "./views/grid_views.js";
 import { renderListView } from "./views/list_views.js";
@@ -32,7 +34,11 @@ export function render(options, data, page, category) {
     }
     if (options.main === "list") {
         renderListView(options, data, category, page);
-        if (options.target === "sub" || data === undefined) {
+        if (
+            options.target === "sub" ||
+            data === undefined ||
+            Object.keys(data).length === 0
+        ) {
             return;
         }
         setProgress(
@@ -80,13 +86,16 @@ export async function save() {
  * @param {*} container
  * @param {*} option
  */
-export function clear(container, option) {
-    const news_data_container = document.querySelector(`.${container}`);
-    news_data_container.innerHTML = "";
+export function clear(main_container, option) {
+    const container = document.querySelector(`.${main_container}`);
+    if (option === "remove") {
+        container.remove();
+    } else {
+        container.innerHTML = "";
 
-    // 임시
-    clearInterval(option.interval);
-    option.progress_time = 0;
+        clearInterval(option.interval);
+        option.progress_time = 0;
+    }
 }
 
 /**
@@ -185,22 +194,26 @@ export function useMovePage(press, page, data, category, callbacks) {
         category = updateCategoryIndex(category - 1, "prev", press)["category"];
         page = data[new_category[category]].length - 1;
     }
-    render(setOptions("all", callbacks), data, page, category);
+    render(getOptions("all", callbacks), data, page, category);
 }
 /**
  * @description
  * 1. snack bar의 애니메이션을 설정한다.
  * @returns {Object} options
  */
-export function setSnackBar() {
+export function setSnackBar(callback) {
     const snack_bar_container = document.querySelector(".snack_bar_container");
 
     snack_bar_container.style.display = "block";
     snack_bar_container.style.animation = "appear 0.5s forwards";
 
     const snack_animation_time = setTimeout(() => {
-        // disappear animation
         snack_bar_container.style.animation = "disappear 0.5s forwards";
+        setOptions({ main: "list", press: "subscribe" });
+        const { main: main_option, press: press_option } = getOptions();
+        const option_elements = document.querySelectorAll(`.option_main`);
+        setActiveClass();
+        callback(main_option, press_option, option_elements, "main");
     }, SNACKBAR_DELAY);
 
     return snack_animation_time;
@@ -271,6 +284,6 @@ function updateBanner(banner, banner_time, loc) {
  * @param {String} view - grid, list
  */
 export function handlePage(main, press, page, data, category, callbacks) {
-    if (main === "grid") render(setOptions(), data, page);
+    if (main === "grid") render(getOptions(), data, page);
     else useMovePage(press, page, data, category, callbacks);
 }
