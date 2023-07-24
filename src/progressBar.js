@@ -1,4 +1,4 @@
-import { categoryList } from "../data/NewsContents.js";
+import { getNewsContent } from "./api/api.js";
 import { drawListView } from "./listNews.js";
 import { setDisplay } from "./util/utils.js";
 
@@ -8,6 +8,15 @@ let current_category = 0;
 let up_count = 1;
 let total_count = 0;
 let progress_interval;
+let categoryList = null;
+
+async function getTabNum(current_category) {
+  if (categoryList === null) {
+    categoryList = await getNewsContent();
+  }
+  const tabNum = categoryList[current_category].tabs;
+  return tabNum;
+}
 
 function checkTotalCount() {
   total_count = parseInt(
@@ -143,7 +152,7 @@ list_next.addEventListener("click", () => {
 
 /* 앞으로 넘기기 */
 const list_prev = document.getElementById("list-prev");
-list_prev.addEventListener("click", () => {
+list_prev.addEventListener("click", async () => {
   up_count = parseInt(
     document.querySelector(".progress-bar .now-count").innerHTML
   );
@@ -159,7 +168,8 @@ list_prev.addEventListener("click", () => {
     } else if (current_category === 0) {
       changeCategory(current_category, CATEGORY_NUM - 1);
     }
-    up_count = categoryList[current_category].tabs;
+    const tab_num = await getTabNum(current_category);
+    up_count = tab_num;
     putUpCountToNowCount();
     checkTotalCount();
     drawListView(current_category, total_count - 1);
