@@ -163,6 +163,7 @@ section {
   cursor: pointer;
 }
 
+/* 스낵바 */
 .snackbar {
   position: absolute;
   display: none;
@@ -200,4 +201,93 @@ section {
   to {
     width: 250px;
   }
+}
+
+/* 구독 해지 알림 */
+.alert_container {
+  position: absolute;
+  display: none;
+  width: 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  left: 50%;
+  top: 430px;
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+.alert_text_wrapper {
+  display: flex;
+  padding: 24px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-default, #fff);
+}
+.alert_press {
+  flex: 1 0 0;
+  color: var(--text-text-strong, #14212b);
+  text-align: center;
+
+  /* display-bold16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.alert_text {
+  flex: 1 0 0;
+  color: var(--text-text-strong, #14212b);
+  text-align: center;
+  color: var(--text-text-default, #5f6e76);
+  padding: 0;
+
+  /* display-medium16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.confirm_button_wrapper {
+  display: flex;
+  height: 48px;
+  align-items: flex-start;
+  align-self: stretch;
+  border-right: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-alt, #f5f7f9);
+}
+.confirm_button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-bottom: 1px solid var(--border-border-default, #d2dae0);
+  border-left: 1px solid var(--border-border-default, #d2dae0);
+  color: var(--text-text-default, #5f6e76);
+}
+.confirm_button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.confirm_button--yes {
+  color: var(--text-text-default, #5f6e76);
+}
+.confirm_button--no {
+  color: var(--text-text-strong, #14212b);
+}
+
+.calligraphy {
+  display: flex;
+  color: #000;
+  font-style: normal;
 }
