@@ -1,5 +1,5 @@
-import { getState } from "../store/observer.js";
-import { viewOption } from "../store/store.js";
+import { getState, setState } from "../store/observer.js";
+import { gridAllPage, viewOption } from "../store/store.js";
 import {
   changeViewOptionToAll,
   changeViewOptionToSub,
@@ -12,27 +12,18 @@ function changeView() {
   subPress.addEventListener("click", changeViewOptionToSub);
 }
 
-// function changeViewOptionToSub() {
-//   if (getState(viewOption) === "all") {
-//     setState(viewOption, "sub");
-//   }
-// }
-// function changeViewOptionToAll() {
-//   if (getState(viewOption) === "sub") {
-//     setState(viewOption, "all");
-//   }
-// }
-
-function changeViewOptionClass() {
+function changeViewOption() {
   const allPress = document.querySelector(".all-press span");
   const subPress = document.querySelector(".sub-press span");
   if (getState(viewOption) === "all") {
     allPress.classList.replace("unclicked-press", "clicked-press");
     subPress.classList.replace("clicked-press", "unclicked-press");
+    setState(gridAllPage, 1);
   } else if (getState(viewOption) === "sub") {
     subPress.classList.replace("unclicked-press", "clicked-press");
     allPress.classList.replace("clicked-press", "unclicked-press");
+    setState(gridAllPage, 1);
   }
 }
 
-export { changeView, changeViewOptionClass };
+export { changeView, changeViewOption };

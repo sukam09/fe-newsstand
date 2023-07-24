@@ -1,4 +1,3 @@
-// import { fetchData } from "../../../utils/fetchData.js";
 import { fetchData } from "../../utils/fetchData.js";
 import { manipulateSubPress } from "./manipulateSubPress.js";
 import { getState } from "../../store/observer.js";

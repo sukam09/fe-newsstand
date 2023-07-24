@@ -1,9 +1,9 @@
-import { getState } from "./store/observer.js";
-import { viewType } from "./store/store.js";
-import { confirmModal } from "./confirmModal.js";
-const SET_TIME = 5000;
+import { getState, setState } from "./store/observer.js";
+import { subPress, viewType } from "./store/store.js";
+import { SNACKBAR_TIME } from "./constant.js";
+import { clickNo, clickYes } from "./eventHandlers.js";
 
-let SNACKBAR_TIME;
+let clearSnackbar;
 function clickSubscribeBtn(selectedPress, _img) {
   let SubscribePress = JSON.parse(localStorage.getItem("press"));
 
@@ -17,8 +17,8 @@ function clickSubscribeBtn(selectedPress, _img) {
 
     const snackbar = document.querySelector(".snackbar");
     snackbar.style.display = "block";
-    clearTimeout(SNACKBAR_TIME);
-    SNACKBAR_TIME = setTimeout(() => moveToSubList(snackbar), SET_TIME);
+    clearTimeout(clearSnackbar);
+    clearSnackbar = setTimeout(() => moveToSubList(snackbar), SNACKBAR_TIME);
 
     if (getState(viewType) === "list")
       _img.setAttribute("src", "../images/icon/Unsubscribe2.svg");
@@ -26,6 +26,23 @@ function clickSubscribeBtn(selectedPress, _img) {
 
     localStorage.setItem("press", JSON.stringify(SubscribePress));
   }
+}
+
+function confirmModal(selectedPress, _img) {
+  document.querySelector(".confirm").style.display = "block";
+  document.querySelector(
+    ".question"
+  ).innerHTML = `<span><span>${selectedPress}</span>을(를)</span> 구독해지하시겠습니까?`;
+
+  const _answer = document.querySelector(".answer");
+  //YES
+  _answer.children[0].addEventListener(
+    "click",
+    () => clickYes(selectedPress, _img),
+    { once: true }
+  );
+  //NO
+  _answer.children[1].addEventListener("click", clickNo);
 }
 
 function moveToSubList(snackbar) {

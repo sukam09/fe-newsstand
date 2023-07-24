@@ -1,5 +1,11 @@
 import { GRID_NUM, MIN_PAGE, MAX_PAGE, PRESS_NUM } from "../../constant.js";
-import { gridPage, viewOption } from "../../store/store.js";
+import {
+  gridAllPage,
+  gridSubPage,
+  subPress,
+  viewOption,
+  viewType,
+} from "../../store/store.js";
 import { getState } from "../../store/observer.js";
 import {
   changePage,
@@ -24,13 +30,12 @@ function makeGridView(press) {
   if (press !== null) {
     _press = press;
   }
-
   const main_list_ul = document.querySelector(".grid-view-ul");
 
   main_list_ul.innerHTML = "";
   for (
-    let i = GRID_NUM * (getState(gridPage) - 1);
-    i < GRID_NUM * getState(gridPage);
+    let i = GRID_NUM * (getState(gridAllPage) - 1);
+    i < GRID_NUM * getState(gridAllPage);
     i++
   ) {
     let _li, _img;
@@ -76,34 +81,34 @@ function checkPage() {
   const left_btn = document.getElementById("grid-left-btn");
   const right_btn = document.getElementById("grid-right-btn");
 
-  if (getState(gridPage) === MIN_PAGE) {
-    left_btn.style.visibility = "hidden";
-  } else if (getState(gridPage) === MAX_PAGE) {
-    right_btn.style.visibility = "hidden";
-  } else {
-    left_btn.style.visibility = "visible";
-    right_btn.style.visibility = "visible";
-  }
-  //   if (store.state.type === "grid-all") {
-  //     if (getState(gridPage) === MIN_PAGE)
-  //       left_btn.style.visibility = "hidden";
-  //     else if (getState(gridPage) === MAX_PAGE)
-  //       right_btn.style.visibility = "hidden";
-  //   } else {
-  //     const subPress = JSON.parse(localStorage.getItem("press"));
+  left_btn.style.visibility = "visible";
+  right_btn.style.visibility = "visible";
 
-  //     if (
-  //       getState(gridPage) <= MIN_PAGE &&
-  //       getState(gridPage) === Math.ceil(subPress.length / 24)
-  //     ) {
-  //       right_btn.style.visibility = "hidden";
-  //       left_btn.style.visibility = "hidden";
-  //     } else if (getState(gridPage) === Math.ceil(subPress.length / 24))
-  //       right_btn.style.visibility = "hidden";
-  //     else if (getState(gridPage) === MIN_PAGE) {
-  //       left_btn.style.visibility = "hidden";
-  //     }
-  //   }
+  if (getState(viewType) === "grid" && getState(viewOption) === "all") {
+    if (getState(gridAllPage) === MIN_PAGE) {
+      left_btn.style.visibility = "hidden";
+    } else if (getState(gridAllPage) === MAX_PAGE) {
+      right_btn.style.visibility = "hidden";
+    }
+  } else if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
+    console.log(
+      getState(gridSubPage),
+      Math.ceil(getState(subPress).length / 24)
+    );
+    if (
+      getState(gridSubPage) <= MIN_PAGE &&
+      getState(gridSubPage) === Math.ceil(getState(subPress).length / 24)
+    ) {
+      left_btn.style.visibility = "hidden";
+      right_btn.style.visibility = "hidden";
+    } else if (getState(gridSubPage) === MIN_PAGE) {
+      left_btn.style.visibility = "hidden";
+    } else if (
+      getState(gridSubPage) === Math.ceil(getState(subPress).length / 24)
+    ) {
+      right_btn.style.visibility = "hidden";
+    }
+  }
 }
 function addEventToGridBtn() {
   const left_btn = document.getElementById("grid-left-btn");

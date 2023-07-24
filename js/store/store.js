@@ -4,10 +4,28 @@ const viewType = initState({ key: "viewType", defaultState: "grid" });
 
 const viewOption = initState({ key: "viewOption", defaultState: "all" });
 
-const listPage = initState({ key: "listPage", defaultState: 0 });
+const listAllPage = initState({ key: "listPage", defaultState: 0 });
 
-const gridPage = initState({ key: "gridPage", defaultState: 1 });
+const gridAllPage = initState({ key: "gridAllPage", defaultState: 1 });
 
 const isDark = initState({ key: "isDark", defaultState: false });
 
-export { viewType, listPage, gridPage, viewOption, isDark };
+const subPress = initState({
+  key: "subPress",
+  defaultState: JSON.parse(localStorage.getItem("press")),
+});
+
+const listSubPage = initState({ key: "listPage", defaultState: 0 });
+
+const gridSubPage = initState({ key: "gridAllPage", defaultState: 1 });
+
+export {
+  viewType,
+  listAllPage,
+  gridAllPage,
+  viewOption,
+  isDark,
+  subPress,
+  listSubPage,
+  gridSubPage,
+};

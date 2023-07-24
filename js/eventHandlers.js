@@ -1,15 +1,16 @@
 import { makeGridView } from "./main/gridView/makeGridView.js";
 import { checkPressInLocal } from "./subscribe.js";
 import { setState, getState } from "./store/observer.js";
-import { gridPage, viewOption, viewType } from "./store/store.js";
+import { gridAllPage, subPress, viewOption, viewType } from "./store/store.js";
 import { GRID_NUM } from "./constant.js";
+import { renderGridView } from "./main/gridView/renderGridView.js";
 
 /* grid View */
 function changePage(e) {
   if (e.target.id === "grid-left") {
-    setState(gridPage, getState(gridPage) - 1);
+    setState(gridAllPage, getState(gridAllPage) - 1);
   } else {
-    setState(gridPage, getState(gridPage) + 1);
+    setState(gridAllPage, getState(gridAllPage) + 1);
   }
 
   makeGridView(null);
@@ -44,7 +45,7 @@ function clickYes(selectedPress, _img) {
   let SubscribePress = JSON.parse(localStorage.getItem("press"));
   SubscribePress = SubscribePress.filter((ele) => ele !== selectedPress);
   localStorage.setItem("press", JSON.stringify(SubscribePress));
-
+  setState(subPress, SubscribePress);
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
   if (getState(viewType) === "list") {
@@ -66,13 +67,13 @@ function clickYes(selectedPress, _img) {
   // if (store.state.type === "grid-sub") {
   //   //페이지의 마지막 요소라면
   //   if (SubscribePress.length % GRID_NUM === 0)
-  //     store.setGridPage(store.state.grid_page - 1);
+  //     store.setgridAllPage(store.state.grid_page - 1);
   //   renderGridView();
   // }
 
   if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
     if (SubscribePress.length % GRID_NUM === 0)
-      setState(gridPage, getState(gridPage) - 1);
+      setState(gridAllPage, getState(gridAllPage) - 1);
   }
 }
 function clickNo() {
