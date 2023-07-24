@@ -27,6 +27,8 @@ export function startTimer() {
   }
 
   function resetProgressBar() {
+    const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+    const progressRatioTab = progressTab.querySelector(".progress-ratio");
     progressRatioTab.style.width = "0px";
     currentWidth = 0;
   }
