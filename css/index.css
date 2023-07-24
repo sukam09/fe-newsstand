@@ -469,6 +469,13 @@ a:hover {
   color: var(--text-default);
 }
 
+/* news */
+.news-content li:hover,
+.main-news p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* main-news */
 .main-news {
   width: 320px;
