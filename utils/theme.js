@@ -4,7 +4,7 @@ import { store, useSelector } from "../store/index.js";
 export function setTheme() {
   const theme = useSelector({
     store,
-    selector: (state) => state.theme.currentTheme,
+    selector: (state) => state.theme,
   });
 
   if (theme === THEME.DARK) {

@@ -17,7 +17,7 @@ const $gridView = document.querySelector(".grid-view");
 function fillGridView(newsData, currentPage) {
   const theme = useSelector({
     store,
-    selector: (state) => state.theme.currentTheme,
+    selector: (state) => state.theme,
   });
 
   const startIdx = currentPage * NEWS_COUNT;

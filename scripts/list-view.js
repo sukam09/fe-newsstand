@@ -93,7 +93,7 @@ function unshowCategoryTab() {
 function fillArticle(articleData) {
   const theme = useSelector({
     store,
-    selector: (state) => state.theme.currentTheme,
+    selector: (state) => state.theme,
   });
   const subscribeList = useSelector({
     store,
