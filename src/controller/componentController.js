@@ -12,6 +12,12 @@ function initSnackBarTimer() {
   }, CONSTANT.SNACK_BAR_TIME);
 }
 
+function resetSnackBarTimer() {
+  document.querySelector(".snack-bar").style.display = "none";
+  window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
+  GLOBAL.SNACKBAR_TIME_OUT = null;
+}
+
 function initAlertEvent() {
   const alert = document.querySelector(".alert");
   const yesBtn = document.querySelector(".yes-btn");
@@ -26,4 +32,4 @@ function initAlertEvent() {
   });
 }
 
-export { initSnackBarTimer, initAlertEvent };
+export { initSnackBarTimer, resetSnackBarTimer, initAlertEvent };
