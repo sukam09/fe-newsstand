@@ -1,6 +1,6 @@
 import { showListView } from "./makeListView.js";
 import { store } from "../core/store.js";
-import { getPage } from "../core/getter.js";
+import { getPage, getTabMode } from "../core/getter.js";
 
 function checkProgress(current) {
   const progress = document.getElementById("play-animation");
@@ -13,6 +13,24 @@ function checkProgress(current) {
   }
 }
 
+function drawNext(contents) {
+  if (getTabMode() === "all") {
+    return `
+    <div class="count">
+      <span>${getPage()}</span>
+      <span>/</span>
+      <span class = "entire">${contents.length}</span>
+    </div>`;
+  } else {
+    return `
+    <div class="next">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M5.48341 10.5L4.66675 9.68333L7.35008 7L4.66675 4.31667L5.48341 3.5L8.98342 7L5.48341 10.5Z" fill="white"/>
+      </svg>
+    </div>
+  `;
+  }
+}
 //all일 때 list는 category, subscribe일 때에는 subscribedPress를 받음
 export function drawCategory(current, list, contents) {
   const main_list = document.querySelector(".main-list");
@@ -21,10 +39,23 @@ export function drawCategory(current, list, contents) {
   list.forEach((element) => {
     list_content +=
       current === element
-        ? `<li class="category selected"><div class="progress-bar" id="play-animation"></div><div class="ctg-wrapper"><span class="ctg">${element}</span><div class="count"><span>${getPage()}</span><span>/</span><span class = "entire">${
-            contents.length
-          }</span></div></div></li>`
-        : `<li class="category"><div class="progress-bar"></div><div class="ctg-wrapper"><span class="ctg">${element}</span></div></li>`;
+        ? `
+      <li class="category selected">
+        <div class="progress-bar" id="play-animation">
+        </div>
+        <div class="ctg-wrapper">
+          <span class="ctg">${element}</span>
+          ${drawNext(contents)}
+        </div>
+      </li>`
+        : `
+        <li class="category">
+          <div class="progress-bar">
+          </div>
+            <div class="ctg-wrapper">
+              <span class="ctg">${element}</span>
+            </div
+        </li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${list_content}</ul></div>`;
   document.addEventListener("DOMContentLoaded", checkProgress(current));

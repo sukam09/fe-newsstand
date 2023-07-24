@@ -58,7 +58,6 @@ body {
   display: flex;
 }
 .main-list {
-  position: relative;
   height: 388px;
 }
 
@@ -365,6 +364,10 @@ a:hover {
     0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 
+.view-content {
+  position: relative;
+}
+
 /* 구독했을 때 스낵바*/
 .snackbar {
   padding: 16px 24px;
@@ -376,7 +379,8 @@ a:hover {
   background-color: var(--surface-brand-default);
   font-size: 16px;
   line-height: 22px;
-  animation: fade-in 0.3s forwards, fade-out 0.3s 4.7s forwards;
+  /* animation: fade-in 0.3s forwards, fade-out 0.3s 4.7s forwards; */
+  animation: fade-in 0.3s forwards, fade-out 0.3s 1s forwards;
 }
 
 @keyframes fade-in {
@@ -407,7 +411,7 @@ a:hover {
 }
 
 /* 구독해지 알럿 */
-.press-news .alert {
+.alert {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -415,7 +419,7 @@ a:hover {
   width: 320px;
 }
 
-.press-news .alert .message {
+.alert .message {
   border: 1px solid var(--border-default);
   border-bottom: 0;
   display: flex;
@@ -423,7 +427,7 @@ a:hover {
   padding: 24px;
   background-color: var(--surface-default);
 }
-.press-news .alert .message .press {
+.alert .message .press {
   color: var(--text-strong);
   font-weight: 700;
   font-size: 16px;
