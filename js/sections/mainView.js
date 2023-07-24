@@ -4,19 +4,13 @@ import { showListView } from "../utils/makeListView.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { shuffleImgIndex } from "../utils/shuffleIndex.js";
-import {
-  getView,
-  getPage,
-  getSubscribedPress,
-  getIndex,
-} from "../core/getter.js";
+import { getView, getPage, getSubscribedPress } from "../core/getter.js";
 function MainView() {
   // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
 
   store.setState({ index: shuffleImgIndex() });
   showGridView();
-  // checkPage();
 }
 
 function changePage(target) {
@@ -31,7 +25,6 @@ function changePage(target) {
   } else {
     showListView("");
   }
-  // checkPage();
 }
 
 function handleClick(e) {
@@ -45,7 +38,6 @@ function handleClick(e) {
       store.setState({ page: FIRST_PAGE_NUM });
       changeView();
       getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
-      // checkPage();
       break;
     case "left":
     case "right":
@@ -59,10 +51,8 @@ function handleClick(e) {
       store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
       if (getView() === "grid") {
         showGridView();
-        // checkPage();
       } else {
         showListView(CATEGORY[0]);
-        // checkPage();
       }
       break;
     case "subscribe":
@@ -71,10 +61,8 @@ function handleClick(e) {
       store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
       if (getView() === "grid") {
         showGridView();
-        // checkPage();
       } else {
         showListView(getSubscribedPress[0]);
-        // checkPage();
       }
       break;
     default:

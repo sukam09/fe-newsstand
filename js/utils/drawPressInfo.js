@@ -1,14 +1,6 @@
 import { store } from "../core/store.js";
-import { ICON_IMG_PATH, SNACKBAR_WAIT_TIME } from "../constants/constants.js";
 import { getPage, getSubscribedPress } from "../core/getter.js";
 import { handleSubscribe, showSubscribeButton } from "./subscribePress.js";
-
-// function handleAnimationEnd() {
-//   const main_list = document.querySelector(".main-list");
-//   setTimeout(() => {
-//     main_list.innerHTML = ""; //TODO 내가 구독한 언론사 탭으로 이동
-//   }, SNACKBAR_WAIT_TIME);
-// }
 
 export function drawPressInfo(list_content) {
   const press_news = document.querySelector(".press-news");
@@ -31,6 +23,13 @@ export function drawPressInfo(list_content) {
   press_news.appendChild(newDiv);
   const sub_btn = document.querySelector(".press-info .sub");
   sub_btn.addEventListener("click", (e) => {
-    handleSubscribe(list_content[getPage() - 1]);
+    const pattern = /img(\d+)\.svg/; // 정규식 패턴
+    const _index = list_content[getPage() - 1].src.match(pattern)[1];
+
+    const press = {
+      name: list_content[getPage() - 1].name,
+      index: Number(_index),
+    };
+    handleSubscribe(press);
   });
 }

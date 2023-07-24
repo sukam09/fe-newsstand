@@ -1,5 +1,5 @@
 import { FIRST_PAGE_NUM, LAST_PAGE_NUM } from "../constants/constants.js";
-import { getPage, getView } from "../core/getter.js";
+import { getPage, getSubscribedPress, getView } from "../core/getter.js";
 export function checkPage(hiddenMode = "false") {
   const left_btn = document.getElementById("left-btn");
   const right_btn = document.getElementById("right-btn");

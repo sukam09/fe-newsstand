@@ -18,7 +18,6 @@ const grid_view = `
 function handleEvent(event, img) {
   const li = img.parentNode;
   const button = img.nextElementSibling;
-  // const button = document.querySelector("button");
   switch (event) {
     case "over":
       img.style.display = "none";
@@ -39,7 +38,6 @@ function handleEvent(event, img) {
           index: Number(_index),
         };
         handleSubscribe(press);
-        showGridView();
       });
       break;
     default:
@@ -67,7 +65,6 @@ export function showGridView() {
   const subscribedIndex = getSubscribedPress().map((item) => item.index);
 
   getTabMode() === "all" ? (list = getIndex()) : (list = subscribedIndex);
-  const sub = list.filter((item) => subscribedIndex.includes(item));
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
