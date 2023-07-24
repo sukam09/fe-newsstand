@@ -39,6 +39,10 @@
   position: relative;
 }
 
+.category-current img {
+  z-index: 999;
+}
+
 .category-current::after {
   position: absolute;
   content: "";
