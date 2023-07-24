@@ -18,6 +18,7 @@ import {
   setNavTabViewToMy,
   getUserView,
 } from "../store/state.js";
+import { store } from "../store/redux.js";
 
 let publisherData = await getPressData("./data/pressObj.json");
 
@@ -36,7 +37,6 @@ const rightBtn = document.querySelector(".newsstand--right-btn");
 const leftBtn = document.querySelector(".newsstand--left-btn");
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
-// let isMySubscribe = false;
 
 export async function paintGridNewsstand() {
   initPaintNews();

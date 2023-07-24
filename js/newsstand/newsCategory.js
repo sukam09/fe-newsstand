@@ -250,8 +250,8 @@ function handleProgressAnimationIteration(
   contentsLength
 ) {
   return function () {
-    let cc = getCurrentContent();
-    setContentsPage(++cc);
+    let currentContents = getCurrentContent();
+    setContentsPage(++currentContents);
 
     nextContents(
       "auto",

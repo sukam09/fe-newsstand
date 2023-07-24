@@ -268,14 +268,14 @@ export function leftBtnEvent(
   categoryDataLength
 ) {
   return function () {
-    let cc = getCurrentContent();
+    let currentContents = getCurrentContent();
     setContentsPage(--cc);
 
-    if (cc <= 0) {
+    if (currentContents <= 0) {
       setGoBefore(true);
     }
-    cc = cc <= 0 ? 1 : cc;
-    setContentsPage(cc);
+    currentContents = currentContents <= 0 ? 1 : currentContents;
+    setContentsPage(currentContents);
 
     nextContents(
       POSITION.LEFT,
@@ -293,8 +293,8 @@ export function rightBtnEvent(
   categoryDataLength
 ) {
   return function () {
-    let cc = getCurrentContent();
-    setContentsPage(++cc);
+    let currentContents = getCurrentContent();
+    setContentsPage(++currentContents);
 
     nextContents(
       POSITION.RIGHT,
