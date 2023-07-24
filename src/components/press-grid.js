@@ -1,117 +1,207 @@
-let pageNum = 0;
+import { HEADER_CLASS, PATH, NUMBER, CONTENT, MODE, BUTTON, ATTRIBUTE } from '../constants/press-grid.js';
+import { LIST, PAGE } from '../constants/press-data.js';
+import { getSliceIds } from '../utils/shuffle.js';
+import { getSnackBar, getAlert } from '../utils/popup.js';
 
 /**
- * 언론사 불러오기
+ * 언론사 그리드의 INIT
  */
-const setTotalPressGrid = (isLightMode) => {
-  fetch('./assets/data/total-press.json')
-    .then((response) => response.json())
-    .then((data) => {
-      let shufflePress = setPressList(data);
-      getPressLogoElement(data, shufflePress, isLightMode);
-      makePressGrid(data, shufflePress, isLightMode);
-    })
-    .catch((error) => {
-      console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
-    });
+const initPressGrid = (pressData, pressList) => {
+  setGrid();
+  setGridFrame();
+  setGridArrow(pressData, pressList);
+  setGridLogo(pressData, pressList);
+  setGridButton(pressData, pressList);
+  changeIcon();
 };
 
-const shuffleList = (list) => {
-  list.sort(() => Math.random() - 0.5);
+/**
+ * 언론사 그리드의 설정
+ */
+const setGrid = () => {
+  const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
+  const gridElement = `
+    <ul class=${HEADER_CLASS.LOGO_WRAPPER_GRID}></ul>
+    <img class='${HEADER_CLASS.ARROW_LOGO_LEFT} ${HEADER_CLASS.NONE}' src=${PATH.ARROW_LEFT}></img>
+    <img class=${HEADER_CLASS.ARROW_LOGO_RIGHT} src=${PATH.ARROW_RIGHT}></img>
+  `;
+  gridWrapper.innerHTML = gridElement;
 };
 
-const setPressList = (pressData) => {
-  let shufflePress = Array.from({ length: pressData.length }, (_, idx) => idx + 1);
-  shuffleList(shufflePress);
+const setGridFrame = () => {
+  const pressWrapper = document.querySelector(`.${HEADER_CLASS.LOGO_WRAPPER_GRID}`);
+  const initFrame = Array.from({ length: NUMBER.GRID_LENGTH }, (_, idx) => idx);
+  initFrame.sort((a, b) => b - a);
 
-  return shufflePress;
-};
-
-const makePressGrid = (pressData, shufflePress, isLightMode) => {
-  const pressLogoWrapper = document.querySelector('.press-logo__wrapper');
-
-  let shufflePressNum = shufflePress.slice(pageNum * 24, pageNum * 24 + 24);
-  shufflePressNum.forEach((pressNum, idx) => {
-    const $li = document.createElement('li');
-    $li.classList.add('press-logo__li');
-
-    const selectPress = pressData.filter((data) => data.id === pressNum);
-    const imgSrc = isLightMode ? selectPress[0].lightSrc : selectPress[0].darkSrc;
-
-    let checkImg = new Image();
-    checkImg.src = imgSrc;
-    checkImg.onload = () => {
-      const $img = document.createElement('img');
-      $img.classList.add(`img${idx}`);
-      $img.src = imgSrc;
-      $li.appendChild($img);
-      pressLogoWrapper.append($li);
-    };
+  initFrame.forEach((frame) => {
+    const pressElement = `
+      <li class=${HEADER_CLASS.LOGO_LI}>
+        <img class='${HEADER_CLASS.IMG}${frame}' src=${HEADER_CLASS.BLANK}></img>
+        <button class='${HEADER_CLASS.LOGO_LI_BUTTON} ${HEADER_CLASS.NONE}'>
+          <img class=${HEADER_CLASS.LOGO_LI_IMG} src=${PATH.BUTTON_PLUS}></img>
+          <p class=${HEADER_CLASS.LOGO_LI_P}>${CONTENT.SUBSCRIBE}</p>
+        </button>
+      </li>
+    `;
+    pressWrapper.insertAdjacentHTML('afterbegin', pressElement);
   });
 };
 
 /**
- * 그리드 화살표
+ * 언론사 그리드의 화살표
  */
-const getPressLogoElement = (pressData, shufflePress, isLightMode) => {
-  const arrowsWrapper = document.querySelector('.arrows__wrapper-grid');
+const setGridArrow = (pressData, pressIds) => {
+  const arrowLeft = document.querySelector(`.${HEADER_CLASS.ARROW_LOGO_LEFT}`);
+  const arrowRight = document.querySelector(`.${HEADER_CLASS.ARROW_LOGO_RIGHT}`);
+  const arrowNumber = Math.ceil(pressIds.length / NUMBER.GRID_LENGTH);
+  if (!(arrowNumber > NUMBER.ARROW_MIN)) arrowRight.classList.add(HEADER_CLASS.NONE);
 
-  const $ul = document.createElement('ul');
-  $ul.classList.add('press-logo__wrapper');
-
-  const $imgLeft = document.createElement('img');
-  $imgLeft.classList.add('arrows__img-left');
-  $imgLeft.classList.add('display-none');
-  $imgLeft.src = './assets/icons/chevron-left.svg';
-  $imgLeft.addEventListener('click', () => {
-    pageNum -= 1;
-    changePressLogo(pressData, shufflePress, isLightMode);
-    setArrowVisible();
-  });
-
-  const $imgRight = document.createElement('img');
-  $imgRight.classList.add('arrows__img-right');
-  $imgRight.src = './assets/icons/chevron-right.svg';
-  $imgRight.addEventListener('click', () => {
-    pageNum += 1;
-    changePressLogo(pressData, shufflePress, isLightMode);
-    setArrowVisible();
-  });
-
-  arrowsWrapper.appendChild($ul);
-  arrowsWrapper.appendChild($imgLeft);
-  arrowsWrapper.appendChild($imgRight);
+  setGridArrowEvent(pressData, pressIds, arrowLeft, NUMBER.ARROW_MINUS);
+  setGridArrowEvent(pressData, pressIds, arrowRight, NUMBER.ARROW_PLUS);
 };
 
-const changePressLogo = (pressData, shufflePress, isLightMode) => {
-  let shufflePressNum = shufflePress.slice(pageNum * 24, pageNum * 24 + 24);
-  shufflePressNum.forEach((pressNum, idx) => {
-    const $img = document.querySelector(`.img${idx}`);
+const setGridArrowEvent = (pressData, pressIds, arrowDirect, direction) => {
+  arrowDirect.addEventListener('click', () => {
+    PAGE.GRID += direction;
 
-    const selectPress = pressData.filter((data) => data.id === pressNum);
-    const imgSrc = isLightMode ? selectPress[0].lightSrc : selectPress[0].darkSrc;
-
-    let checkImg = new Image();
-    checkImg.src = imgSrc;
-    checkImg.onload = () => ($img.src = imgSrc);
-    checkImg.onerror = () => $img.remove();
+    setGridLogo(pressData, pressIds);
+    setGridArrowNone(pressIds);
   });
 };
 
-const setArrowVisible = () => {
-  const leftArrow = document.querySelector('.arrows__img-left');
-  const rightArrow = document.querySelector('.arrows__img-right');
+const setGridArrowNone = (pressIds) => {
+  const arrowLeft = document.querySelector(`.${HEADER_CLASS.ARROW_LOGO_LEFT}`);
+  const arrowRight = document.querySelector(`.${HEADER_CLASS.ARROW_LOGO_RIGHT}`);
+  const arrowNumber = Math.ceil(pressIds.length / NUMBER.GRID_LENGTH);
 
-  if (pageNum === 0) {
-    leftArrow.classList.add('display-none');
-  }
-  if (pageNum > 0 && pageNum < 3) {
-    leftArrow.classList.remove('display-none');
-    rightArrow.classList.remove('display-none');
-  }
-  if (pageNum === 3) {
-    rightArrow.classList.add('display-none');
+  const showLeftArrow = PAGE.GRID > PAGE.MIN;
+  const showRightArrow = PAGE.GRID < PAGE.MAX;
+
+  arrowLeft.classList.toggle(HEADER_CLASS.NONE, !(arrowNumber > NUMBER.ARROW_MIN) || !showLeftArrow);
+  arrowRight.classList.toggle(HEADER_CLASS.NONE, !(arrowNumber > NUMBER.ARROW_MIN) || !showRightArrow);
+};
+
+/**
+ * 언론사 그리드의 로고
+ */
+const setGridLogo = (pressData, pressIds) => {
+  const sliceIds = getSliceIds(pressIds, PAGE.GRID, NUMBER.GRID_LENGTH);
+  getGridLogo(pressData, sliceIds);
+};
+
+const getGridLogo = (pressData, sliceIds) => {
+  sliceIds.forEach((sliceId, idx) => {
+    const selectPress = pressData.find((data) => data.id === sliceId);
+    const logoWapper = document.querySelector(`.${HEADER_CLASS.IMG}${idx}`);
+    logoWapper.setAttribute(ATTRIBUTE.PRESS_ID, sliceId); // 속성 넣어주기
+
+    let mode = localStorage.getItem(ATTRIBUTE.MODE);
+    if (mode === MODE.LIGHT) logoWapper.src = selectPress.lightSrc;
+    if (mode === MODE.DARK) logoWapper.src = selectPress.darkSrc;
+  });
+};
+
+/**
+ * 언론사 그리드의 라이트/다크모드
+ */
+const toggleMode = () => {
+  const pressLogos = document.querySelectorAll(`.${HEADER_CLASS.LOGO_WRAPPER_GRID} ${HEADER_CLASS.IMG}`);
+  pressLogos.forEach((logo) => changeSrc(logo));
+};
+
+const changeIcon = () => {
+  const modeImg = document.querySelector(`.${HEADER_CLASS.MODE_IMG}`);
+  modeImg.addEventListener('click', () => toggleMode());
+};
+
+const changeSrc = (logo) => {
+  const isLightMode = logo.src.includes(MODE.LIGHT_LOGO);
+  const isDarkMode = logo.src.includes(MODE.DARK_LOGO);
+
+  if (isLightMode || isDarkMode) {
+    const newLogoSrc = isLightMode
+      ? logo.src.replace(MODE.LIGHT_LOGO, MODE.DARK_LOGO)
+      : logo.src.replace(MODE.DARK_LOGO, MODE.LIGHT_LOGO);
+
+    logo.src = newLogoSrc;
   }
 };
 
-export { setTotalPressGrid };
+/**
+ * 언론사 그리드의 구독하기 버튼
+ */
+const setGridButton = (pressData, pressIds) => {
+  const pressLis = document.querySelectorAll(`.${HEADER_CLASS.LOGO_LI}`);
+  const pressIdsLen = pressIds.length;
+  const slicePressLis = [];
+  pressLis.forEach((li, idx) => (idx < pressIdsLen ? slicePressLis.push(li) : ''));
+  slicePressLis.forEach((li) => {
+    const isSubscribe = getSubscribeState(li);
+    setGridButtonChange(isSubscribe, li);
+    setGridButtonHover(li);
+    setGridButtonClick(pressData, pressIds, li);
+  });
+};
+
+const getSubscribeState = (li) => {
+  const pressImg = li.querySelector(HEADER_CLASS.IMG);
+  const pressId = Number(pressImg.getAttribute(ATTRIBUTE.PRESS_ID));
+  const pressSub = LIST.SUBSCRIBE_ID.includes(pressId);
+  return pressSub;
+};
+
+const setGridButtonChange = (isSubscribe, li) => {
+  const buttonImg = li.querySelector(`.${HEADER_CLASS.LOGO_LI_IMG}`);
+  const buttonP = li.querySelector(`.${HEADER_CLASS.LOGO_LI_P}`);
+
+  const newButtonSrc = isSubscribe
+    ? buttonImg.src.replace(BUTTON.PLUS, BUTTON.CLOSED)
+    : buttonImg.src.replace(BUTTON.CLOSED, BUTTON.PLUS);
+  const newButtonP = isSubscribe ? CONTENT.UNSUBSCRIBE : CONTENT.SUBSCRIBE;
+
+  buttonImg.src = newButtonSrc;
+  buttonP.innerText = newButtonP;
+};
+
+const setGridButtonHover = (li) => {
+  const pressImg = li.querySelector(HEADER_CLASS.IMG);
+  const pressButton = li.querySelector(HEADER_CLASS.BUTTON);
+
+  li.addEventListener('mouseover', () => {
+    pressImg.classList.add(HEADER_CLASS.NONE);
+    pressButton.classList.remove(HEADER_CLASS.NONE);
+    li.classList.add(HEADER_CLASS.LOGO_LI_HOVER);
+  });
+
+  li.addEventListener('mouseout', () => {
+    pressImg.classList.remove(HEADER_CLASS.NONE);
+    pressButton.classList.add(HEADER_CLASS.NONE);
+    li.classList.remove(HEADER_CLASS.LOGO_LI_HOVER);
+  });
+};
+
+const setGridButtonClick = (pressData, pressIds, li) => {
+  li.addEventListener('click', () => {
+    const pressImg = li.querySelector(HEADER_CLASS.IMG);
+    const pressId = Number(pressImg.getAttribute(ATTRIBUTE.PRESS_ID));
+    const pressName = pressData.find((press) => press.id === pressId).name;
+    const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+
+    if (isSubscribe) {
+      LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId);
+      LIST.SUBSCRIBE_NAME = LIST.SUBSCRIBE_NAME.filter((name) => name !== pressName);
+    }
+    if (!isSubscribe) {
+      LIST.SUBSCRIBE_ID.push(pressId);
+      LIST.SUBSCRIBE_NAME.push(pressName);
+    }
+    setSubscribe(pressData, pressIds, pressName, isSubscribe);
+  });
+};
+
+const setSubscribe = (pressData, pressIds, pressName, isSubscribe) => {
+  if (isSubscribe) getAlert(pressData, pressIds, pressName);
+  if (!isSubscribe) getSnackBar(pressData);
+};
+
+export { initPressGrid };

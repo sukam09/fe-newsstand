@@ -3,15 +3,15 @@
 
 @import url('./reset.css');
 @import url('./design.css');
-@import url('./global.css');
 
 @import url('./components/news-stand-header.css');
-
 @import url('./components/latest-news.css');
 @import url('./components/light-dark-mode.css');
 @import url('./components/press-header.css');
 @import url('./components/press-grid.css');
 @import url('./components/press-list.css');
+
+@import url('./global.css'); /*실행순서*/
 
 body {
   display: flex;

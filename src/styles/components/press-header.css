@@ -1,7 +1,6 @@
 /* 언론사별 기사들을 확인하는 영역 */
 .press__wrapper {
   margin-top: 33px;
-  background-color: var(--grayscale-white);
 }
 
 .press__header {
@@ -18,12 +17,12 @@
   gap: 24px;
 }
 
-.press__h2-entire {
+.press__h2-select {
   font: var(--bold-M);
   color: var(--grayscale-black);
 }
 
-.press__h2-subscribe {
+.press__h2-unselect {
   font: var(--medium-M);
   color: var(--grayscale-400);
 }

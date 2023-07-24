@@ -1,4 +1,4 @@
-.arrows__wrapper-list {
+.press__wrapper-list {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -20,6 +20,7 @@
 }
 
 /* 언론사 리스트의 NAV */
+
 .press-category__ul {
   display: flex;
   flex-direction: row;
@@ -31,6 +32,14 @@
   padding: 16px 0;
   border-bottom: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
+
+  white-space: nowrap;
+  /* overflow-x: scroll; */
+  overflow-y: hidden;
+}
+
+.press-category__ul::-webkit-scrollbar {
+  display: none;
 }
 
 .press-category__li {
@@ -46,8 +55,17 @@
   color: var(--grayscale-200);
 }
 
+.press-category__p:hover {
+  text-decoration: underline;
+}
+
 .press-category__div {
   display: flex;
+}
+
+.press-category__div-img {
+  width: 14px;
+  height: 14px;
 }
 
 .press-category__div-now {
@@ -66,11 +84,14 @@
 }
 
 .progress-start {
+  flex-shrink: 0;
   width: 134px;
+  height: 40px;
+  padding: 0 16px;
 
   background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
   background-size: 200% 100%;
-  animation: fill-progress-bar 20s infinite linear forwards;
+  animation: fill-progress-bar 10s infinite linear forwards;
 }
 
 .progress-start > p {
@@ -128,6 +149,7 @@
 }
 
 .section-main__button {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -139,6 +161,10 @@
   border-radius: 50px;
   border: 1px solid var(--grayscale-100);
   background-color: var(--grayscale-50);
+}
+.section-main__button-closed {
+  width: 12px;
+  height: 24px;
 }
 
 .section-main__img-button {
@@ -155,6 +181,14 @@
   width: 320px;
   height: 200px;
   object-fit: cover;
+
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+.section-main__img-article-hover {
+  transform: scale(1.05);
+  transition: 0.5s;
 }
 
 .section-main__h2 {
@@ -163,6 +197,10 @@
 
   font: var(--medium-M);
   color: var(--grayscale-black);
+}
+
+.section-main__h2:hover {
+  text-decoration: underline;
 }
 
 /* 언론사 리스트 ARTICLE-SUB */
@@ -174,13 +212,13 @@
   gap: 16px;
 }
 
-.press-category__a-sub {
+.section-sub__a {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: none;
 }
 
-.press-category__a-sub:hover {
+.section-sub__a:hover {
   font: var(--medium-M);
   color: var(--grayscale-500);
   text-decoration: underline;
@@ -195,7 +233,7 @@
 }
 
 /* 화살표 영역 */
-.arrows__img-left {
+.arrows-category__img-left {
   cursor: pointer;
   position: absolute;
   width: 24px;
@@ -204,7 +242,7 @@
   left: -72px; /* 0 - 24 - 48 */
 }
 
-.arrows__img-right {
+.arrows-category__img-right {
   cursor: pointer;
   position: absolute;
   width: 24px;

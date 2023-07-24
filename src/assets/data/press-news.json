@@ -1,0 +1,3750 @@
+{
+  "press": [
+    {
+      "id": 1,
+      "name": "YTN 사이언스",
+      "darkSrc": "./assets/images/dark-press-logo/img1.svg",
+      "lightSrc": "./assets/images/light-press-logo/img1.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail1.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Able뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img2.svg",
+      "lightSrc": "./assets/images/light-press-logo/img2.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail2.jpg",
+      "categoryMainTitle": "韓 작년 경제규모 '톱10' 유지 실패···13위 추정",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "뉴스토마토",
+      "darkSrc": "./assets/images/dark-press-logo/img3.svg",
+      "lightSrc": "./assets/images/light-press-logo/img3.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail3.jpg",
+      "categoryMainTitle": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+      "categorySubTitle": [
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "데일리한국",
+      "darkSrc": "./assets/images/dark-press-logo/img4.svg",
+      "lightSrc": "./assets/images/light-press-logo/img4.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail4.jpg",
+      "categoryMainTitle": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "시사오늘",
+      "darkSrc": "./assets/images/dark-press-logo/img5.svg",
+      "lightSrc": "./assets/images/light-press-logo/img5.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail5.jpg",
+      "categoryMainTitle": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "대전방송",
+      "darkSrc": "./assets/images/dark-press-logo/img6.svg",
+      "lightSrc": "./assets/images/light-press-logo/img6.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail6.jpg",
+      "categoryMainTitle": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "이코노타임즈",
+      "darkSrc": "./assets/images/dark-press-logo/img7.svg",
+      "lightSrc": "./assets/images/light-press-logo/img7.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail7.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "독서신문",
+      "darkSrc": "./assets/images/dark-press-logo/img8.svg",
+      "lightSrc": "./assets/images/light-press-logo/img8.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail8.jpg",
+      "categoryMainTitle": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "산",
+      "darkSrc": "./assets/images/dark-press-logo/img9.svg",
+      "lightSrc": "./assets/images/light-press-logo/img9.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail9.jpg",
+      "categoryMainTitle": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "시사 IN",
+      "darkSrc": "./assets/images/dark-press-logo/img10.svg",
+      "lightSrc": "./assets/images/light-press-logo/img10.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail10.jpg",
+      "categoryMainTitle": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+      "categorySubTitle": [
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "한국경제",
+      "darkSrc": "./assets/images/dark-press-logo/img11.svg",
+      "lightSrc": "./assets/images/light-press-logo/img11.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail11.jpg",
+      "categoryMainTitle": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "NEWSIS",
+      "darkSrc": "./assets/images/dark-press-logo/img12.svg",
+      "lightSrc": "./assets/images/light-press-logo/img12.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail12.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "동아일보",
+      "darkSrc": "./assets/images/dark-press-logo/img13.svg",
+      "lightSrc": "./assets/images/light-press-logo/img13.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail13.jpg",
+      "categoryMainTitle": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "KBS",
+      "darkSrc": "./assets/images/dark-press-logo/img14.svg",
+      "lightSrc": "./assets/images/light-press-logo/img14.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail14.jpg",
+      "categoryMainTitle": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "BLOTER",
+      "darkSrc": "./assets/images/dark-press-logo/img15.svg",
+      "lightSrc": "./assets/images/light-press-logo/img15.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail15.jpg",
+      "categoryMainTitle": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "한국경제TV",
+      "darkSrc": "./assets/images/dark-press-logo/img16.svg",
+      "lightSrc": "./assets/images/light-press-logo/img16.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail16.jpg",
+      "categoryMainTitle": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "전자신문",
+      "darkSrc": "./assets/images/dark-press-logo/img17.svg",
+      "lightSrc": "./assets/images/light-press-logo/img17.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail17.jpg",
+      "categoryMainTitle": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "스포츠조선",
+      "darkSrc": "./assets/images/dark-press-logo/img18.svg",
+      "lightSrc": "./assets/images/light-press-logo/img18.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail18.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "서울신문",
+      "darkSrc": "./assets/images/dark-press-logo/img19.svg",
+      "lightSrc": "./assets/images/light-press-logo/img19.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail19.jpg",
+      "categoryMainTitle": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+      "categorySubTitle": [
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "중앙일보",
+      "darkSrc": "./assets/images/dark-press-logo/img20.svg",
+      "lightSrc": "./assets/images/light-press-logo/img20.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail20.jpg",
+      "categoryMainTitle": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "노컷뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img21.svg",
+      "lightSrc": "./assets/images/light-press-logo/img21.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail21.jpg",
+      "categoryMainTitle": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "프레시안",
+      "darkSrc": "./assets/images/dark-press-logo/img22.svg",
+      "lightSrc": "./assets/images/light-press-logo/img22.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail22.jpg",
+      "categoryMainTitle": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+      "categorySubTitle": [
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "sportalkorea",
+      "darkSrc": "./assets/images/dark-press-logo/img23.svg",
+      "lightSrc": "./assets/images/light-press-logo/img23.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "종합/경제",
+      "categoryEdit": "2023.05.10 13:00",
+      "categoryImg": "./assets/images/main-press/thumbnail23.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "한국일보",
+      "darkSrc": "./assets/images/dark-press-logo/img24.svg",
+      "lightSrc": "./assets/images/light-press-logo/img24.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail24.jpg",
+      "categoryMainTitle": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "여성경제신문",
+      "darkSrc": "./assets/images/dark-press-logo/img25.svg",
+      "lightSrc": "./assets/images/light-press-logo/img25.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail25.jpg",
+      "categoryMainTitle": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+      "categorySubTitle": [
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "IT조선",
+      "darkSrc": "./assets/images/dark-press-logo/img26.svg",
+      "lightSrc": "./assets/images/light-press-logo/img26.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail26.jpg",
+      "categoryMainTitle": "오늘도 전남·경남 중심으로 많은 비",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "철강금속신문",
+      "darkSrc": "./assets/images/dark-press-logo/img27.svg",
+      "lightSrc": "./assets/images/light-press-logo/img27.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail27.jpg",
+      "categoryMainTitle": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+      "categorySubTitle": [
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "정신의학신문",
+      "darkSrc": "./assets/images/dark-press-logo/img28.svg",
+      "lightSrc": "./assets/images/light-press-logo/img28.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail28.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "뉴스포스트",
+      "darkSrc": "./assets/images/dark-press-logo/img29.svg",
+      "lightSrc": "./assets/images/light-press-logo/img29.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail29.jpg",
+      "categoryMainTitle": "오늘도 전남·경남 중심으로 많은 비",
+      "categorySubTitle": [
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "씨네21",
+      "darkSrc": "./assets/images/dark-press-logo/img30.svg",
+      "lightSrc": "./assets/images/light-press-logo/img30.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail30.jpg",
+      "categoryMainTitle": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "정책프리핑",
+      "darkSrc": "./assets/images/dark-press-logo/img31.svg",
+      "lightSrc": "./assets/images/light-press-logo/img31.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail31.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "텐아시아",
+      "darkSrc": "./assets/images/dark-press-logo/img32.svg",
+      "lightSrc": "./assets/images/light-press-logo/img32.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail32.jpg",
+      "categoryMainTitle": "오늘도 전남·경남 중심으로 많은 비",
+      "categorySubTitle": [
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "MK스포츠",
+      "darkSrc": "./assets/images/dark-press-logo/img33.svg",
+      "lightSrc": "./assets/images/light-press-logo/img33.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail33.jpg",
+      "categoryMainTitle": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+      "categorySubTitle": [
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "MONDE",
+      "darkSrc": "./assets/images/dark-press-logo/img34.svg",
+      "lightSrc": "./assets/images/light-press-logo/img34.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail34.jpg",
+      "categoryMainTitle": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+      "categorySubTitle": [
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "BBS NEWS",
+      "darkSrc": "./assets/images/dark-press-logo/img35.svg",
+      "lightSrc": "./assets/images/light-press-logo/img35.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail35.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "티브이데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img36.svg",
+      "lightSrc": "./assets/images/light-press-logo/img36.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail36.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "TV Report",
+      "darkSrc": "./assets/images/dark-press-logo/img37.svg",
+      "lightSrc": "./assets/images/light-press-logo/img37.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail37.jpg",
+      "categoryMainTitle": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Forbes",
+      "darkSrc": "./assets/images/dark-press-logo/img38.svg",
+      "lightSrc": "./assets/images/light-press-logo/img38.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail38.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "주간경향",
+      "darkSrc": "./assets/images/dark-press-logo/img39.svg",
+      "lightSrc": "./assets/images/light-press-logo/img39.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail39.jpg",
+      "categoryMainTitle": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "비즈한국",
+      "darkSrc": "./assets/images/dark-press-logo/img40.svg",
+      "lightSrc": "./assets/images/light-press-logo/img40.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail40.jpg",
+      "categoryMainTitle": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "metro",
+      "darkSrc": "./assets/images/dark-press-logo/img41.svg",
+      "lightSrc": "./assets/images/light-press-logo/img41.svg",
+      "isSub": false,
+
+      "categoryId": 1,
+      "categoryName": "방송/통신",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail41.jpg",
+      "categoryMainTitle": "오늘도 전남·경남 중심으로 많은 비",
+      "categorySubTitle": [
+        {
+          "title": "직결 vs 경유…5호선 연장 놓고 김포-검단 신경전",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "내년 최저임금 결정 임박…1만원 돌파 여부 주목",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "'진작 샀어야 했나'...한샘, 현대리바트 슬금슬금 인상",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "‘26.7억 대박’ 터진 1076회 로또 1등, 또 '무더기' 1등",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "오늘도 전남·경남 중심으로 많은 비",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        },
+        {
+          "title": "늘어지는 장마 언제까지? 기상청 '아직 분석 어려워'",
+          "link": "https://lucas.codesquad.kr/hyundai-softeerbootcamp-2nd"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "JTBC",
+      "darkSrc": "./assets/images/dark-press-logo/img42.svg",
+      "lightSrc": "./assets/images/light-press-logo/img42.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail42.jpg",
+      "categoryMainTitle": "생성 AI, ‘저작권’ 암초 만나다",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "조선Biz",
+      "darkSrc": "./assets/images/dark-press-logo/img43.svg",
+      "lightSrc": "./assets/images/light-press-logo/img43.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail43.jpg",
+      "categoryMainTitle": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "한겨레",
+      "darkSrc": "./assets/images/dark-press-logo/img44.svg",
+      "lightSrc": "./assets/images/light-press-logo/img44.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail44.jpg",
+      "categoryMainTitle": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "연합뉴스TV",
+      "darkSrc": "./assets/images/dark-press-logo/img45.svg",
+      "lightSrc": "./assets/images/light-press-logo/img45.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail45.jpg",
+      "categoryMainTitle": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "미디어오늘",
+      "darkSrc": "./assets/images/dark-press-logo/img46.svg",
+      "lightSrc": "./assets/images/light-press-logo/img46.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail46.jpg",
+      "categoryMainTitle": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "디지털타임스",
+      "darkSrc": "./assets/images/dark-press-logo/img47.svg",
+      "lightSrc": "./assets/images/light-press-logo/img47.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail47.jpg",
+      "categoryMainTitle": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "OSEN",
+      "darkSrc": "./assets/images/dark-press-logo/img48.svg",
+      "lightSrc": "./assets/images/light-press-logo/img48.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail48.jpg",
+      "categoryMainTitle": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+      "categorySubTitle": [
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "소년한국일보",
+      "darkSrc": "./assets/images/dark-press-logo/img49.svg",
+      "lightSrc": "./assets/images/light-press-logo/img49.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail49.jpg",
+      "categoryMainTitle": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "name": "OBS",
+      "darkSrc": "./assets/images/dark-press-logo/img50.svg",
+      "lightSrc": "./assets/images/light-press-logo/img50.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail50.jpg",
+      "categoryMainTitle": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+      "categorySubTitle": [
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "맥스무비",
+      "darkSrc": "./assets/images/dark-press-logo/img51.svg",
+      "lightSrc": "./assets/images/light-press-logo/img51.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail51.jpg",
+      "categoryMainTitle": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "name": "엑스포츠뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img52.svg",
+      "lightSrc": "./assets/images/light-press-logo/img52.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail52.jpg",
+      "categoryMainTitle": "생성 AI, ‘저작권’ 암초 만나다",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "name": "서울파이낸스",
+      "darkSrc": "./assets/images/dark-press-logo/img53.svg",
+      "lightSrc": "./assets/images/light-press-logo/img53.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail53.jpg",
+      "categoryMainTitle": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "name": "한국대학신문",
+      "darkSrc": "./assets/images/dark-press-logo/img54.svg",
+      "lightSrc": "./assets/images/light-press-logo/img54.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail54.jpg",
+      "categoryMainTitle": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "name": "datanews",
+      "darkSrc": "./assets/images/dark-press-logo/img55.svg",
+      "lightSrc": "./assets/images/light-press-logo/img55.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail55.jpg",
+      "categoryMainTitle": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "name": "DigitalToday",
+      "darkSrc": "./assets/images/dark-press-logo/img56.svg",
+      "lightSrc": "./assets/images/light-press-logo/img56.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail56.jpg",
+      "categoryMainTitle": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "name": "시사위크",
+      "darkSrc": "./assets/images/dark-press-logo/img57.svg",
+      "lightSrc": "./assets/images/light-press-logo/img57.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail57.jpg",
+      "categoryMainTitle": "생성 AI, ‘저작권’ 암초 만나다",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "name": "YTN",
+      "darkSrc": "./assets/images/dark-press-logo/img58.svg",
+      "lightSrc": "./assets/images/light-press-logo/img58.svg",
+      "isSub": false,
+
+      "categoryId": 2,
+      "categoryName": "IT",
+      "categoryEdit": "2023.03.23 11:27",
+      "categoryImg": "./assets/images/main-press/thumbnail58.jpg",
+      "categoryMainTitle": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+      "categorySubTitle": [
+        {
+          "title": "생성 AI, ‘저작권’ 암초 만나다",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "'AI 신약 개발' 붐...커절리, 760억 투자 유치",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "구글, 챗봇 '바드' 업데이트...40개 언어로 '듣기 기능' ",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "韓 게임사, 모바일·콘솔 게임 앞세워 유럽으로 진격",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "머스크 'AI사업' 선수들… 알파고 개발자·MS·구글 출신 직원 공개",
+          "link": "https://github.com/"
+        },
+        {
+          "title": "[OTT레이더] 보는 순간 모든 게 끝난다, 넷플릭스",
+          "link": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "name": "MBN",
+      "darkSrc": "./assets/images/dark-press-logo/img59.svg",
+      "lightSrc": "./assets/images/light-press-logo/img59.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail59.jpg",
+      "categoryMainTitle": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "매일경제",
+      "darkSrc": "./assets/images/dark-press-logo/img60.svg",
+      "lightSrc": "./assets/images/light-press-logo/img60.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail60.jpg",
+      "categoryMainTitle": "Koreans to get international driving permit in Vietnam",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "오마이뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img61.svg",
+      "lightSrc": "./assets/images/light-press-logo/img61.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail61.jpg",
+      "categoryMainTitle": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "name": "SBS",
+      "darkSrc": "./assets/images/dark-press-logo/img62.svg",
+      "lightSrc": "./assets/images/light-press-logo/img62.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail62.jpg",
+      "categoryMainTitle": "Food safety agency to keep current aspartame regulations",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "name": "머니투데이",
+      "darkSrc": "./assets/images/dark-press-logo/img63.svg",
+      "lightSrc": "./assets/images/light-press-logo/img63.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail63.jpg",
+      "categoryMainTitle": "US Southwest swelters under dangerous heat wave",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "마이데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img64.svg",
+      "lightSrc": "./assets/images/light-press-logo/img64.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail64.jpg",
+      "categoryMainTitle": "US Southwest swelters under dangerous heat wave",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "name": "ZDNET Korea",
+      "darkSrc": "./assets/images/dark-press-logo/img65.svg",
+      "lightSrc": "./assets/images/light-press-logo/img65.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail65.jpg",
+      "categoryMainTitle": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "name": "경향신문",
+      "darkSrc": "./assets/images/dark-press-logo/img66.svg",
+      "lightSrc": "./assets/images/light-press-logo/img66.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail66.jpg",
+      "categoryMainTitle": "Koreans to get international driving permit in Vietnam",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "name": "일간스포츠",
+      "darkSrc": "./assets/images/dark-press-logo/img67.svg",
+      "lightSrc": "./assets/images/light-press-logo/img67.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail67.jpg",
+      "categoryMainTitle": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "name": "국민일보",
+      "darkSrc": "./assets/images/dark-press-logo/img68.svg",
+      "lightSrc": "./assets/images/light-press-logo/img68.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail68.jpg",
+      "categoryMainTitle": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "name": "뉴데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img69.svg",
+      "lightSrc": "./assets/images/light-press-logo/img69.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail69.jpg",
+      "categoryMainTitle": "US Southwest swelters under dangerous heat wave",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "name": "뉴스타파",
+      "darkSrc": "./assets/images/dark-press-logo/img70.svg",
+      "lightSrc": "./assets/images/light-press-logo/img70.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail70.jpg",
+      "categoryMainTitle": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "MBC",
+      "darkSrc": "./assets/images/dark-press-logo/img71.svg",
+      "lightSrc": "./assets/images/light-press-logo/img71.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail71.jpg",
+      "categoryMainTitle": "Koreans to get international driving permit in Vietnam",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "name": "한국헤럴드",
+      "darkSrc": "./assets/images/dark-press-logo/img72.svg",
+      "lightSrc": "./assets/images/light-press-logo/img72.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail72.jpg",
+      "categoryMainTitle": "Food safety agency to keep current aspartame regulations",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "name": "KNN",
+      "darkSrc": "./assets/images/dark-press-logo/img73.svg",
+      "lightSrc": "./assets/images/light-press-logo/img73.svg",
+      "isSub": false,
+
+      "categoryId": 3,
+      "categoryName": "영자지",
+      "categoryEdit": "2023.06.17 12:43",
+      "categoryImg": "./assets/images/main-press/thumbnail73.jpg",
+      "categoryMainTitle": "US Southwest swelters under dangerous heat wave",
+      "categorySubTitle": [
+        {
+          "title": "Yoon makes surprise visit to Ukraine to meet Zelenskyy",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Koreans to get international driving permit in Vietnam",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Torrential Rains Leave At least 35 Dead, 10 Missing",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Yoon makes surprise visit to Kyiv to meet Zelensky",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "Food safety agency to keep current aspartame regulations",
+          "link": "https://papago.naver.com/"
+        },
+        {
+          "title": "US Southwest swelters under dangerous heat wave",
+          "link": "https://papago.naver.com/"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "name": "CEO스코어데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img74.svg",
+      "lightSrc": "./assets/images/light-press-logo/img74.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail74.jpg",
+      "categoryMainTitle": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "name": "BUSINESS POST",
+      "darkSrc": "./assets/images/dark-press-logo/img75.svg",
+      "lightSrc": "./assets/images/light-press-logo/img75.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail75.jpg",
+      "categoryMainTitle": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "name": "에너지경제",
+      "darkSrc": "./assets/images/dark-press-logo/img76.svg",
+      "lightSrc": "./assets/images/light-press-logo/img76.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail76.jpg",
+      "categoryMainTitle": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "name": "조이뉴스24",
+      "darkSrc": "./assets/images/dark-press-logo/img77.svg",
+      "lightSrc": "./assets/images/light-press-logo/img77.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail77.jpg",
+      "categoryMainTitle": "아이브 장원영, '여름 여신'의 독보적 청량미",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "name": "한국농어촌방송",
+      "darkSrc": "./assets/images/dark-press-logo/img78.svg",
+      "lightSrc": "./assets/images/light-press-logo/img78.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail78.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "name": "시사저널e",
+      "darkSrc": "./assets/images/dark-press-logo/img79.svg",
+      "lightSrc": "./assets/images/light-press-logo/img79.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail79.jpg",
+      "categoryMainTitle": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "name": "법률방송뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img80.svg",
+      "lightSrc": "./assets/images/light-press-logo/img80.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail80.jpg",
+      "categoryMainTitle": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "name": "인사이트",
+      "darkSrc": "./assets/images/dark-press-logo/img81.svg",
+      "lightSrc": "./assets/images/light-press-logo/img81.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail81.jpg",
+      "categoryMainTitle": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "name": "한국중앙데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img82.svg",
+      "lightSrc": "./assets/images/light-press-logo/img82.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail82.jpg",
+      "categoryMainTitle": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "name": "KBS WORLD",
+      "darkSrc": "./assets/images/dark-press-logo/img83.svg",
+      "lightSrc": "./assets/images/light-press-logo/img83.svg",
+      "isSub": false,
+
+      "categoryId": 4,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.07.10 10:27",
+      "categoryImg": "./assets/images/main-press/thumbnail1.jpg",
+      "categoryMainTitle": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+      "categorySubTitle": [
+        {
+          "title": "'해냈다!' 박준용, 김동현의 韓 UFC 최다 4연승과 타이",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "류현진, 복귀 후 세번째 재활등판서 5이닝 1실점",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "역시 톰 크루즈…미션 임파서블7, 130만 돌파",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "아이브 장원영, '여름 여신'의 독보적 청량미",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "소원대로 마이크 찬 손석구, '진짜 연기' 어땠나",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "title": "BTS 정국, 美 스포티파이·日 오리콘 1위 진입…독보적 '男 솔로'",
+          "link": "https://www.youtube.com/"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "name": "석간문화일보",
+      "darkSrc": "./assets/images/dark-press-logo/img84.svg",
+      "lightSrc": "./assets/images/light-press-logo/img84.svg",
+      "isSub": false,
+
+      "categoryId": 0,
+      "categoryName": "스포츠/연예",
+      "categoryEdit": "2023.02.10 18:27",
+      "categoryImg": "./assets/images/main-press/thumbnail1.jpg",
+      "categoryMainTitle": "[단독] 양평군, '국토부'안에 끝까지 미온적이었다",
+      "categorySubTitle": [
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[단독] 가락시장 공사 잡음···서울농수산공사 나몰라라?",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "\"나 살려고 남 속이라니\"···전세사기 피해자들 절규",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "새마을금고 논란···힘받는 예금자보호 상향 논의",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "주차시비 여성 폭행한 전직 보디빌더···구속 피했다",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'포르쉐 의혹' 박영수 혐의 부인···\"잘못된 처신 죄송\"",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "스포츠동아",
+      "darkSrc": "./assets/images/dark-press-logo/img85.svg",
+      "lightSrc": "./assets/images/light-press-logo/img85.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail85.jpg",
+      "categoryMainTitle": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "name": "소포츠서울",
+      "darkSrc": "./assets/images/dark-press-logo/img86.svg",
+      "lightSrc": "./assets/images/light-press-logo/img86.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail86.jpg",
+      "categoryMainTitle": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "name": "파이낸셜뉴스",
+      "darkSrc": "./assets/images/dark-press-logo/img87.svg",
+      "lightSrc": "./assets/images/light-press-logo/img87.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail87.jpg",
+      "categoryMainTitle": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "아이뉴스24",
+      "darkSrc": "./assets/images/dark-press-logo/img88.svg",
+      "lightSrc": "./assets/images/light-press-logo/img88.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail88.jpg",
+      "categoryMainTitle": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "name": "조선일보",
+      "darkSrc": "./assets/images/dark-press-logo/img89.svg",
+      "lightSrc": "./assets/images/light-press-logo/img89.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail89.jpg",
+      "categoryMainTitle": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "name": "이데일리",
+      "darkSrc": "./assets/images/dark-press-logo/img90.svg",
+      "lightSrc": "./assets/images/light-press-logo/img90.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail90.jpg",
+      "categoryMainTitle": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "name": "아시아경제",
+      "darkSrc": "./assets/images/dark-press-logo/img91.svg",
+      "lightSrc": "./assets/images/light-press-logo/img91.svg",
+      "isSub": false,
+
+      "categoryId": 5,
+      "categoryName": "매거진/전문지",
+      "categoryEdit": "2023.07.07 17:27",
+      "categoryImg": "./assets/images/main-press/thumbnail91.jpg",
+      "categoryMainTitle": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+      "categorySubTitle": [
+        {
+          "title": "육군 군사경찰, 마약류 탐지견 투입 영내 반입 물품 불시 단속",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "24시간 잠들지 않는 매의 눈으로… 조국의 바다 지킨다",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[알쏭달쏭 군사상식] 보라매·골든 이글·파이팅…항공기 이름에 담긴 뜻",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "돌아온 템플스테이, 짧은 휴식 즐기기 좋은 사찰 4",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "세계 바이오 산업 트렌드를 한 눈에...대한민국 기업 수준은?",
+          "link": "https://ko.javascript.info/"
+        },
+        {
+          "title": "[펭귄의 서재] 나는 쇼핑한다, 고로 존재한다",
+          "link": "https://ko.javascript.info/"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "name": "세계일보",
+      "darkSrc": "./assets/images/dark-press-logo/img92.svg",
+      "lightSrc": "./assets/images/light-press-logo/img92.svg",
+      "isSub": false,
+
+      "categoryId": 6,
+      "categoryName": "지역",
+      "categoryEdit": "2023.01.21 09:45",
+      "categoryImg": "./assets/images/main-press/thumbnail92.jpg",
+      "categoryMainTitle": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+      "categorySubTitle": [
+        {
+          "title": "한 총리 '오송 지하차도' 침수 '인력·자원 총동원'",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "집중호우로 영동·태백선 열차 운행 중지",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "name": "SBS Biz",
+      "darkSrc": "./assets/images/dark-press-logo/img93.svg",
+      "lightSrc": "./assets/images/light-press-logo/img93.svg",
+      "isSub": false,
+
+      "categoryId": 6,
+      "categoryName": "지역",
+      "categoryEdit": "2023.01.21 09:45",
+      "categoryImg": "./assets/images/main-press/thumbnail93.jpg",
+      "categoryMainTitle": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+      "categorySubTitle": [
+        {
+          "title": "한 총리 '오송 지하차도' 침수 '인력·자원 총동원'",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "집중호우로 영동·태백선 열차 운행 중지",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "헤럴드경제",
+      "darkSrc": "./assets/images/dark-press-logo/img94.svg",
+      "lightSrc": "./assets/images/light-press-logo/img94.svg",
+      "isSub": false,
+
+      "categoryId": 6,
+      "categoryName": "지역",
+      "categoryEdit": "2023.01.21 09:45",
+      "categoryImg": "./assets/images/main-press/thumbnail94.jpg",
+      "categoryMainTitle": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+      "categorySubTitle": [
+        {
+          "title": "한 총리 '오송 지하차도' 침수 '인력·자원 총동원'",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "집중호우로 영동·태백선 열차 운행 중지",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "name": "데일리안",
+      "darkSrc": "./assets/images/dark-press-logo/img95.svg",
+      "lightSrc": "./assets/images/light-press-logo/img95.svg",
+      "isSub": false,
+
+      "categoryId": 6,
+      "categoryName": "지역",
+      "categoryEdit": "2023.01.21 09:45",
+      "categoryImg": "./assets/images/main-press/thumbnail95.jpg",
+      "categoryMainTitle": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+      "categorySubTitle": [
+        {
+          "title": "한 총리 '오송 지하차도' 침수 '인력·자원 총동원'",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "집중호우로 영동·태백선 열차 운행 중지",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "name": "서울경제",
+      "darkSrc": "./assets/images/dark-press-logo/img96.svg",
+      "lightSrc": "./assets/images/light-press-logo/img96.svg",
+      "isSub": false,
+
+      "categoryId": 6,
+      "categoryName": "지역",
+      "categoryEdit": "2023.01.21 09:45",
+      "categoryImg": "./assets/images/main-press/thumbnail96.jpg",
+      "categoryMainTitle": "집중호우로 영동·태백선 열차 운행 중지",
+      "categorySubTitle": [
+        {
+          "title": "한 총리 '오송 지하차도' 침수 '인력·자원 총동원'",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상]'고마곰, 돌아와!' '공주 마스코트'도 떠내려가",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "[영상] 해수욕장 개장 앞두고 경북 동해안 잇단 상어 출물",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "집중호우로 영동·태백선 열차 운행 중지",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "'올 여름은 촌캉스다' 주목받는 경기도 농촌 체험 마을",
+          "link": "https://chat.openai.com/"
+        },
+        {
+          "title": "불꺼진 심야약국… 인천지역, 약 찾아 삼만리",
+          "link": "https://chat.openai.com/"
+        }
+      ]
+    }
+  ]
+}

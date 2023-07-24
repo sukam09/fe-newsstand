@@ -6,3 +6,122 @@
 .hidden {
   visibility: hidden;
 }
+
+/* utils CSS */
+.snack-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin-left: 320px;
+  margin-top: -320px;
+  padding: 16px 24px;
+  height: 22px;
+
+  position: fixed;
+  z-index: 1;
+
+  background-color: var(--blue-500);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  color: var(--grayscale-white-alt);
+
+  opacity: 0;
+}
+
+.snack-bar.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 140px;
+
+  margin-left: 305px;
+  margin-top: -305px;
+
+  position: fixed;
+  z-index: 1;
+
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+
+  opacity: 0;
+}
+
+.alert.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.alert-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 272px;
+  height: 44px;
+  padding: 24px;
+  background-color: var(--grayscale-white-alt);
+  border: 1px solid var(--border-border-default, #d2dae0);
+}
+
+.alert-press {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.alert-name {
+  font: var(--bold-M);
+  color: var(--grayscale-black);
+}
+
+.alert-info,
+.alert-unsubscribe {
+  font: var(--medium-M);
+  color: var(--grayscale-400);
+}
+
+.alert-yes-no {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+
+  width: 322px;
+  height: 28px;
+}
+
+.alert-yes,
+.alert-no {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 140px;
+  height: 28px;
+  padding: 10px;
+
+  background-color: var(--grayscale-50);
+  font: var(--medium-M);
+  color: var(--grayscale-400);
+
+  border-left: 1px solid var(--border-border-default, #d2dae0);
+  border-bottom: 1px solid var(--border-border-default, #d2dae0);
+}
+
+.alert-no {
+  color: var(--grayscale-black);
+  border-right: 1px solid var(--border-border-default, #d2dae0);
+}
+
+.alert-yes:hover,
+.alert-no:hover {
+  text-decoration: underline;
+}

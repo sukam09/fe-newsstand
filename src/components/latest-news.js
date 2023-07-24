@@ -64,8 +64,12 @@ const setHover = (side) => {
   const liList = newsWrapper.querySelectorAll(`.latest_news__li`);
 
   liList.forEach((li) => {
-    li.addEventListener('mouseover', setHoverOver, side);
-    li.addEventListener('mouseout', setHoverOut);
+    li.addEventListener('mouseover', () => {
+      setHoverOver(side);
+    });
+    li.addEventListener('mouseout', () => {
+      setHoverOut();
+    });
   });
 };
 

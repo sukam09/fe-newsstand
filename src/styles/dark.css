@@ -12,7 +12,7 @@ body {
   color: var(--grayscale-100);
 }
 
-/* 최신 뉴스 자동롤링 영역 */
+/* 자동 롤링 영역 */
 .latest_news__wrapper-left,
 .latest_news__wrapper-right {
   background-color: var(--grayscale-500);
@@ -25,4 +25,86 @@ body {
 
 .latest_news__p {
   color: var(--grayscale-100);
+}
+
+/* 언론사 헤더 영역 */
+.press__h2-entire {
+  color: var(--grayscale-white);
+}
+
+.press__h2-subscribe {
+  color: var(--grayscale-100);
+}
+
+/* 언론사 그리드 영역 */
+.press-logo__li-button {
+  background-color: var(--grayscale-50);
+}
+
+.press-logo__li-hover {
+  background-color: var(--grayscale-500);
+}
+
+/* 알림창 영역 */
+.alert-info {
+  background-color: var(--grayscale-black);
+}
+.alert-name {
+  color: var(--grayscale-white-alt);
+}
+
+.alert-info,
+.alert-unsubscribe {
+  color: var(--grayscale-100);
+}
+
+.alert-yes,
+.alert-no {
+  background-color: var(--grayscale-500);
+  color: var(--grayscale-100);
+}
+
+.alert-no {
+  color: var(--grayscale-white-alt);
+}
+
+/* 언론사 리스트 영역 */
+.press-category__ul {
+  background-color: var(--grayscale-500);
+}
+
+.press-category__p {
+  color: var(--grayscale-white-alt);
+}
+
+.section-main__edit-time {
+  color: var(--grayscale-100);
+}
+
+.section-main__edit-p {
+  color: var(--grayscale-100);
+}
+
+.section-main__button {
+  background-color: var(--grayscale-500);
+}
+
+.section-main__p-button {
+  color: var(--grayscale-white-alt);
+}
+
+.section-main__h2 {
+  color: var(--grayscale-white);
+}
+
+.section-sub__a {
+  color: var(--grayscale-50);
+}
+
+.section-sub__a:hover {
+  color: var(--grayscale-50);
+}
+
+.section-sub__footer {
+  color: var(--grayscale-white-alt);
 }
