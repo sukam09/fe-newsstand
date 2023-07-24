@@ -1,4 +1,5 @@
 import { fetchPressInfo, fetchListView } from '../api.js';
+import { store } from '../../core/store.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
@@ -33,15 +34,13 @@ export default function PressListView({ $target, initialState }) {
     }
   };
 
-  const { categories } = this.state;
-
   const initListView = async () => {
-    const { index, listViewData } = this.state;
+    const { index, press, listViewData } = this.state;
 
-    const entire = listViewData[index].length;
+    const entire = press === 'all' ? listViewData[index].length : 1;
     const present = this.state.present === 0 ? entire : this.state.present;
 
-    const newsData = listViewData[index][present - 1];
+    const newsData = listViewData[index % CATEGORY_NUMBERS][present - 1];
     const { materials, pid, regDate } = newsData;
     const mainNews = materials[0];
 
@@ -65,6 +64,13 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const initFieldTab = () => {
+    if (this.state.press === 'my') {
+      const myCategories = store.getMyPress().map(({ pressName }) => pressName);
+      this.setState({ ...this.state, categories: myCategories }, false);
+    }
+
+    const { categories } = this.state;
+
     $section.innerHTML = `
       <nav class="field-tab">
         ${categories.map(category => `<button class="text-button">${category}</button>`).join('')}
@@ -95,12 +101,12 @@ export default function PressListView({ $target, initialState }) {
 
     // percentage가 정확히 100이 안될 수가 있으므로 등호가 아닌 부등호를 써야 함
     if (this.percentage >= 100) {
-      const { present, entire } = this.state;
+      const { present, entire, length } = this.state;
 
       if (present === entire) {
         this.setState({
           ...this.state,
-          index: (this.state.index + 1) % CATEGORY_NUMBERS,
+          index: (this.state.index + 1) % length,
           present: 1,
         });
       } else {
@@ -119,8 +125,8 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickLeftButton = () => {
-    const { index, present } = this.state;
-    const prevIndex = (index - 1 + CATEGORY_NUMBERS) % CATEGORY_NUMBERS;
+    const { index, present, length } = this.state;
+    const prevIndex = (index - 1 + length) % length;
 
     if (present === 1) {
       this.setState({
@@ -137,8 +143,8 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickRightButton = () => {
-    const { index, present, entire } = this.state;
-    const nextIndex = (index + 1) % CATEGORY_NUMBERS;
+    const { index, present, entire, length } = this.state;
+    const nextIndex = (index + 1) % length;
 
     if (present === entire) {
       this.setState({
@@ -170,7 +176,7 @@ export default function PressListView({ $target, initialState }) {
 
     await initListView();
 
-    const { index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
+    const { press, index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
       this.state;
 
     $article.innerHTML = `
@@ -211,12 +217,16 @@ export default function PressListView({ $target, initialState }) {
     $selectedButton.classList.add('text-button-selected');
     $selectedButton.innerHTML = `
       <div class="text-button-name">${selectedCategory}</div>
-      <div class="text-button-count">
-        <p class="text-button-present">${present}</p>
-        <img src="../asset/icons/division.svg" />
-        <p class="text-button-entire">${entire}</p>
-      </div>
     `;
+
+    $selectedButton.innerHTML +=
+      press === 'all'
+        ? `<div class="text-button-count">
+            <p class="text-button-present">${present}</p>
+            <img src="../asset/icons/division.svg" />
+            <p class="text-button-entire">${entire}</p>
+          </div>`
+        : `<img src="../asset/icons/right-arrow.svg" />`;
 
     initProgressBar($selectedButton);
   };

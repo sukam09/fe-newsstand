@@ -1,3 +1,6 @@
+import { store } from '../core/store.js';
+import { CATEGORY_NUMBERS } from './constants.js';
+
 import Header from './components/Header.js';
 import AutoRollingNews from './components/AutoRollingNews.js';
 import PressTab from './components/PressTab.js';
@@ -45,6 +48,12 @@ export default function App({ $app }) {
       if (this.state.press === press) {
         return;
       }
+
+      // 내가 구독한 언론사가 하나도 없으면 이동하지 않음
+      if (press === 'my' && store.getMyPress().length === 0) {
+        return;
+      }
+
       this.setState({ ...this.state, press });
       pressTab.setState({ ...this.state, press });
     },
@@ -60,8 +69,12 @@ export default function App({ $app }) {
   const $div = document.createElement('div');
   $app.appendChild($div);
 
+  const defaultCategories = ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'];
+
   this.render = () => {
     $div.innerHTML = '';
+
+    const myPressLength = store.getMyPress().length;
 
     this.state.view === 'grid'
       ? new PressGridView({
@@ -77,9 +90,10 @@ export default function App({ $app }) {
           initialState: {
             press: this.state.press,
             index: 0,
+            length: this.state.press === 'all' ? CATEGORY_NUMBERS : myPressLength,
             present: 1,
-            entire: 81,
-            categories: ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'],
+            entire: 1,
+            categories: defaultCategories,
           },
         });
   };

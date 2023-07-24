@@ -330,6 +330,11 @@ header {
   align-items: center;
   border: 1px solid var(--border-border-default, #d2dae0);
   background: var(--surface-surface-alt, #f5f7f9);
+  overflow-x: scroll;
+}
+
+.field-tab::-webkit-scrollbar {
+  display: none;
 }
 
 .text-button {
@@ -345,6 +350,7 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  white-space: nowrap;
   cursor: pointer;
 }
 
