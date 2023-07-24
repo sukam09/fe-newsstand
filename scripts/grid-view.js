@@ -97,7 +97,7 @@ function gridViewSubscriber(newsData, maxPage) {
   }
 
   if (tabType === TAB_TYPE.ALL) {
-    renderGridView(newsData, currentPage);
+    fillGridView(newsData, currentPage);
     updateButtonUI(currentPage, maxPage);
   } else {
     renderGridViewOnSubscribe(currentPage);
