@@ -42,12 +42,20 @@ export class Alert {
 
     this.confirmBtn.addEventListener("click", () => {
       const subscribe_press = document.querySelector(".subscribe_press");
+      const agency_list = document.querySelector(".agency-grid");
+
       // 내가 구독한 언론사를 보고 있다면 GridComponent 다시 호출해야함.
       if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
-        const cancel_elem = document.querySelector(`.${this.getState()[0]}`);
-        cancel_elem.remove();
-        makeGrid({ name: "", logo: "" });
+        if (agency_list.style.display === "grid") {
+          const cancel_elem = document.querySelector(`.${this.getState()[0]}`);
+          cancel_elem.remove();
+          makeGrid({ name: "", logo: "" });
+        } else {
+          const cancel_elem = document.querySelector(".field-tab-progress");
+          cancel_elem.remove();
+        }
       }
+
       [this.name, this.isSubscribed] = this.getState();
       this.dispatch(this.name, this.isSubscribed);
       this.close();
