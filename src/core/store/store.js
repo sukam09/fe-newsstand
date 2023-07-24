@@ -40,6 +40,11 @@ const isAlertOn = initState({
   defaultState: false,
 });
 
+const isSnackOn = initState({
+  key: "isSnackOn",
+  defaultState: false,
+});
+
 const deletePress = initState({
   key: "deletePress",
   defaultState: "",
@@ -54,5 +59,6 @@ export {
   gridPageIdx,
   subscribeList,
   isAlertOn,
+  isSnackOn,
   deletePress,
 };

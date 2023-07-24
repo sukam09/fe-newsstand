@@ -1,7 +1,14 @@
 import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./core/api.js";
 import { getState, register, setState } from "./core/observer/observer.js";
-import { gridPageIdx, isSubTab, subscribeList } from "./core/store/store.js";
+import {
+  deletePress,
+  gridPageIdx,
+  isAlertOn,
+  isSnackOn,
+  isSubTab,
+  subscribeList,
+} from "./core/store/store.js";
 import { $, $All, shuffleArray } from "./core/util.js";
 
 let pressObj = null;
@@ -54,6 +61,7 @@ function createSubButton(id) {
     const currentSubList = getState(subscribeList);
     const targetPress = pressObj.find((item) => item.id === id);
     setState(subscribeList, [...currentSubList, targetPress.name]);
+    setState(isSnackOn, true);
     toggleSubButton(targetPress, subButtonContainer);
   });
   subButtonContainer.appendChild(subButton);
@@ -68,17 +76,17 @@ function createUnSubButton(id) {
   unSubButton.innerHTML = "✕ 해지하기";
 
   unSubButton.addEventListener("click", () => {
-    const currentSubList = getState(subscribeList);
     const targetPress = pressObj.find((item) => item.id === id);
-    const newSubList = currentSubList.filter((item) => {
-      return item != targetPress.name;
-    });
-    setState(subscribeList, newSubList);
+    setVisible(targetPress);
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
   unSubButtonContainer.appendChild(unSubButton);
 
   return unSubButtonContainer;
+}
+function setVisible(targetPress) {
+  setState(isAlertOn, true);
+  setState(deletePress, targetPress.name);
 }
 
 // 그리드 아이템 리스트 태그 생성
