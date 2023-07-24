@@ -24,10 +24,10 @@ async function addEventInSymbol() {
   subscribe(isGridView, drawNews);
   subscribe(isGridView, setSubListNav);
   subscribe(isGridView, drawGridView);
+  subscribe(isGridView, setNowCount);
   subscribe(isSubView, drawNews);
   subscribe(isSubView, setSubListNav);
   subscribe(isSubView, drawGridView);
-  subscribe(isGridView, setNowCount);
   subscribe(isSubView, setNowCount);
 }
 
@@ -68,7 +68,7 @@ function handleView({ target: target }) {
     if (getState(isSubView)) {
       // list 선택, list 구독 뷰 출력
       if (getState(subscribedPress).length === 0) {
-        setDisplay(".no-sub-item-div", "query", "block");
+        setDisplay(".no-sub-item-div", "query", "flex");
       } else {
         setDisplay(".press-list-section", "query", "block");
         setDisplay(".sub-list-nav", "query", "block");
@@ -105,7 +105,7 @@ function handleView({ target: target }) {
     setState(isGridView, false);
     setState(isSubView, true);
     if (getState(subscribedPress).length === 0) {
-      setDisplay(".no-sub-item-div", "query", "block");
+      setDisplay(".no-sub-item-div", "query", "flex");
     } else {
       setDisplay(".press-list-section", "query", "block");
       // setSubListNav();

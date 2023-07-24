@@ -2,7 +2,7 @@ import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
 import { PAGE_SIZE } from "./const.js";
 import { setDisplay, getJSON } from "./utils.js";
 import { setState, getState, subscribe } from "./observer/observer.js";
-import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "./store/store.js";
+import { gridPageCount, isDark, isGridView, isSubView, subGridPageCount, subscribedPress } from "./store/store.js";
 
 const shuffle = () => Math.random() - 0.5;
 let presses = null;
@@ -10,7 +10,7 @@ let presses = null;
 function drawGridArrow() {
   // 그리드 상태에 따른 화살표 출력
   const is_sub_view = getState(isSubView);
-  const sub_presses_length = getState(subscribedPress).length
+  const sub_presses_length = getState(subscribedPress).length;
   const total_grid_page = is_sub_view ? parseInt(sub_presses_length / PAGE_SIZE) : parseInt(presses.length / PAGE_SIZE);
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
@@ -40,7 +40,9 @@ function appendPressInGrid(press) {
   if (getState(isSubView)) {
     $sub_img.src = "../img/icons/unsubBtn.svg";
   } else {
-    $sub_img.src = getState(subscribedPress).some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+    $sub_img.src = getState(subscribedPress).some(data => data.name === press.name)
+      ? "../img/icons/unsubBtn.svg"
+      : "../img/icons/Button.svg";
   }
   $button.append($sub_img);
   $list.append($image, $button);
@@ -72,6 +74,7 @@ async function initPressGrid() {
   subscribe(gridPageCount, drawGridView);
   subscribe(subGridPageCount, drawGridArrow);
   subscribe(gridPageCount, drawGridArrow);
+  subscribe(isGridView, drawGridArrow);
   drawGridView();
   addEventGridArrow();
 }

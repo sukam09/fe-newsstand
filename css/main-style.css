@@ -186,7 +186,7 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: progress 3s linear infinite;
+  animation: progress 20s linear infinite;
   z-index: -1;
 }
 .list-progress-bar:after {
@@ -606,6 +606,30 @@ h1 {
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
+  transition: 0.5s linear;
+}
+
+.grid-snackbar {
+  display: inline-flex;
+  padding: 16px 24px;
+  width: 238px;
+  height: 22px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-brand-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  position: absolute;
+  transform: translate(226%, 60vh);
+  display: none;
+  z-index: 3;
+  color: var(--text-white-default);
+  /* display-medium16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  transition: 1s linear;
 }
 
 .press-grid-sub {

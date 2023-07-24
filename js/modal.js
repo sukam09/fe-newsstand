@@ -66,7 +66,7 @@ function handleModalBtn({ target: target }) {
       if (getState(subscribedPress).length === 0) {
         removeDisplay();
         changeOption("subscribe");
-        setDisplay(".no-sub-item-div", "query", "block");
+        setDisplay(".no-sub-item-div", "query", "flex");
       }
     }
   }

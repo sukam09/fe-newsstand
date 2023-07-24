@@ -182,13 +182,6 @@ function nextNewsWhenProgressEnd() {
   } else {
     setDictState(categoryPageCount, { [now_category]: page_count[now_category] + 1 });
   }
-  // redrawNewsContents();
-}
-
-function redrawNewsContents() {
-  drawNews();
-  setNowCount();
-  drawListArrow();
 }
 
 function insertCountDiv(component) {

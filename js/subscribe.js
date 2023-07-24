@@ -1,6 +1,5 @@
 import { setDisplay, getJSON, checkIsSubscribe } from "./utils.js";
-import { MODAL_POPUP_TIME, setSubData } from "./const.js";
-import { drawGridView } from "./gridFunction.js";
+import { MODAL_POPUP_TIME, SNACKBAR_POPUP_TIME, setSubData } from "./const.js";
 import { handleView, changeOption } from "./viewHandler.js";
 import { onGridUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { drawNews } from "./newsList.js";
@@ -22,13 +21,14 @@ function gridMouseOut({ target: target }) {
 }
 
 function gridMouseClick({ target: target }) {
+  setDisplay(".grid-snackbar", "query", "block");
+  setTimeout(() => setDisplay(".grid-snackbar", "query", "none"), SNACKBAR_POPUP_TIME);
   const $original = target.getElementsByTagName("img")[0];
   const $original_path = ".." + $original.src.split("5500")[1];
   const $target_object = presses.find(target =>
     getState(isDark) ? target.path_dark === $original_path : target.path_light === $original_path,
   );
   setSubData($target_object);
-  drawGridView();
 }
 
 function listSubMouseClick(news) {
