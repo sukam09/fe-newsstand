@@ -12,7 +12,7 @@ import {
   onUserLeftClickCategory,
   onUserClickCategory,
 } from "../utils/category.js";
-import { subscribeState } from "../store/subscribeState.js";
+import { getSubscrbeList, getUserView } from "../store/redux.js";
 import {
   removeChildElement,
   handleElementClass,
@@ -57,7 +57,7 @@ addEventOnMySubAndAllSub();
 
 export function paintNewsCategory() {
   makeMySubNews();
-  console.log(View.getNavTabView(), View.getUserView());
+
   CATEGORY.currentCategory = 0;
   CATEGORY.currentContents = 1;
   const categoryNameList =
@@ -140,7 +140,7 @@ function restartProgressBar(categoryList, contentsLength) {
 }
 
 function makeMySubNews() {
-  const subData = subscribeState.getSubscribeState();
+  const subData = getSubscrbeList() || [];
   let newSubDatas = [];
   subData.map((it) => {
     newSubDatas.push(newsData.filter((el) => el.name === it[0]));
@@ -187,14 +187,14 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
 // 내가 구독한 언론사일때 실행되는 함수
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
-    if (View.getUserView() === "list") {
+    if (getUserView() === VIEW.LIST) {
       View.setNavTabView(VIEW.MY_SUB, true);
       onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
     }
   });
   allPublisher.addEventListener("click", () => {
-    if (View.getUserView() === "list") {
+    if (getUserView() === VIEW.LIST) {
       View.setNavTabView(VIEW.ALL_SUB, true);
       onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
       paintNewsCategory();
@@ -203,7 +203,8 @@ function addEventOnMySubAndAllSub() {
 }
 
 function mySubArray() {
-  return subscribeState.getSubscribeState().map((it) => it[0]);
+  const subList = getSubscrbeList() || [];
+  return subList.map((it) => it[0]);
 }
 
 // 프로그래스 바 애니매이션 종료시 실행하는 함수

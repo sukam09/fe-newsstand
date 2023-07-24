@@ -1,8 +1,8 @@
 import { removeChildElement, snackBarAction } from "../utils/util.js";
 import { CATEGORY } from "../state/categoryState.js";
-import { subscribeState } from "../store/subscribeState.js";
 import { MESSAGE, POSITION, EVENT } from "./constant.js";
 import { paintNewsCategory } from "../newsstand/newsCategory.js";
+import { isSubscribe, unsubscribe, subscribe } from "../store/redux.js";
 
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
@@ -55,7 +55,7 @@ function makeMainNewsNav(logo, edit, name) {
   let subButton = "";
 
   // 구독중일때.
-  if (subscribeState.getSubscribeByName(name).length) {
+  if (isSubscribe(name)) {
     subButton = `<button class="newsstand__current-button">${MESSAGE.UNSUBSCRIBE}</button>`;
   } else {
     subButton = `<button class="newsstand__current-button">${MESSAGE.SUBSCRIBE}</button>`;
@@ -67,16 +67,16 @@ function makeMainNewsNav(logo, edit, name) {
   // 카테고리 뉴스에서 구독하기 버튼을 눌렀을때.
   newsNavParent.children[2].addEventListener("click", () => {
     // 해지하기 버튼을 눌렀을때.
-    if (subscribeState.getSubscribeByName(name)[0]) {
+    if (isSubscribe(name)) {
       newsNavParent.children[2].textContent = MESSAGE.SUBSCRIBE;
-      subscribeState.setUnSubscribeState(name);
+      unsubscribe(name);
       snackBarAction(MESSAGE.UN_SUB);
       paintNewsCategory();
     }
     // 구독하기 버튼을 눌렀을때.
     else {
       newsNavParent.children[2].textContent = MESSAGE.UNSUBSCRIBE;
-      subscribeState.setSubscribeState(name, logo);
+      subscribe(name, logo);
       snackBarAction(MESSAGE.SUB);
     }
   });

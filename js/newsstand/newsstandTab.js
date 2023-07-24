@@ -3,6 +3,7 @@ import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
 import { EVENT } from "../utils/constant.js";
 import { View } from "../store/viewState.js";
+import { setUserViewToList, setUserViewToGrid } from "../store/redux.js";
 const VIEW_DISABLED = "view-disabled";
 
 export function newsstandListTab() {
@@ -17,7 +18,8 @@ export function newsstandListTab() {
 function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
   // 뉴스 리스트 버튼 클릭됬을때.
   listButton.addEventListener(EVENT.CLICK, () => {
-    View.setUserView("list");
+    setUserViewToList();
+
     // 그리드 버튼 삭제
     deleteGridButton();
     addListdButton();
@@ -34,7 +36,7 @@ function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
 
   // 뉴스 그리드 버튼 클릭됬을때.
   thumbButton.addEventListener(EVENT.CLICK, () => {
-    View.setUserView("grid");
+    setUserViewToGrid();
     // 그리드 버튼 추가
     deleteListButton();
     addGridButton();
