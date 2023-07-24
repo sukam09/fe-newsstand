@@ -1,8 +1,8 @@
 import Component from '../core/Component.js';
 import Icon from '../common/Icon.js';
 import { customQuerySelector } from '../../utils/index.js';
-import { toggleDarkMode } from '../../index.js';
 import { TEXT } from '../../constants/index.js';
+import { viewStore } from '../../../store/index.js';
 
 export default class AllNewHeader extends Component {
   setup() {
@@ -49,7 +49,7 @@ export default class AllNewHeader extends Component {
           this.props.onClick({ view: TEXT.GRID });
           break;
         case 'darkmode-icon':
-          toggleDarkMode();
+          viewStore.toggleColorMode();
           break;
         case 'all-press':
           this.props.onClick({ pressType: TEXT.ALL });
