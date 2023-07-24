@@ -12,6 +12,7 @@
 .container {
   margin: 0 auto;
   width: 1000px;
+  position: relative;
 }
 
 /* 메인 헤더 부분 */
@@ -160,4 +161,43 @@ section {
 }
 .right_navigation_button:hover {
   cursor: pointer;
+}
+
+.snackbar {
+  position: absolute;
+  display: none;
+  padding: 16px 24px;
+  background: var(--surface-surface-brand-default, #4362d0);
+  color: var(--text-text-white-default, #fff);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  z-index: 10;
+  left: 50%;
+  top: 430px;
+  transform: translate(-50%, -50%);
+}
+
+.progress_line {
+  display: none;
+  position: absolute;
+  padding: 2px;
+  background: var(--surface-surface-brand-default, #d2dae0);
+  color: var(--text-text-white-default, #fff);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+    0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  z-index: 10;
+  left: 50%;
+  width: 0%;
+  top: 450px;
+  transform: translate(-50%, 50%);
+  animation: progress 5s linear;
+}
+
+@keyframes progress {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 250px;
+  }
 }
