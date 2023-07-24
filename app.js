@@ -5,6 +5,7 @@ import { setListViewEvents } from "./src/listView.js";
 import { setNavigationButton } from "./src/components/navigationButton.js";
 import { setCategory } from "./src/components/category.js";
 import { setSnackbar } from "./src/components/snackbar.js";
+import { setAlert } from "./src/components/alert.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   updateDate();
@@ -14,4 +15,5 @@ document.addEventListener("DOMContentLoaded", function () {
   setListViewEvents();
   setNavigationButton();
   setSnackbar();
+  setAlert();
 });

@@ -35,6 +35,16 @@ const subscribeList = initState({
   defaultState: [],
 });
 
+const isAlertOn = initState({
+  key: "isAlertOn",
+  defaultState: false,
+});
+
+const deletePress = initState({
+  key: "deletePress",
+  defaultState: "",
+});
+
 export {
   isDarkMode,
   isGrid,
@@ -43,4 +53,6 @@ export {
   listPageIdx,
   gridPageIdx,
   subscribeList,
+  isAlertOn,
+  deletePress,
 };
