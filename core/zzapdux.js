@@ -1,5 +1,5 @@
 // reducer 합치는 함수
-export const combineReducers = (reducers) => {
+export function combineReducers(reducers) {
   const reducerKeys = Object.keys(reducers);
 
   return (state = {}, action) => {
@@ -19,13 +19,13 @@ export const combineReducers = (reducers) => {
 
     return changed ? nextState : state;
   };
-};
+}
 
-export const actionCreator = (type, payload) => {
+export function actionCreator(type, payload) {
   return { type, payload };
-};
+}
 
-export const createStore = (reducer) => {
+export function createStore(reducer) {
   let state = undefined;
 
   const subscribers = [];
@@ -59,4 +59,4 @@ export const createStore = (reducer) => {
     subscribe,
     dispatch,
   };
-};
+}

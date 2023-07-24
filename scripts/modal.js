@@ -1,8 +1,9 @@
-import { NEWS_COUNT } from "../constants/index.js";
-import { store, useSelector } from "../store/index.js";
+import { NEWS_COUNT, TAB_TYPE } from "../constants/index.js";
+import { modalStore, store, useSelector } from "../store/index.js";
 import { closeModal } from "../store/reducer/modal.js";
-import { prevPage } from "../store/reducer/page.js";
+import { changeTab, prevPage } from "../store/reducer/page.js";
 import { cancelSubscribe } from "../store/reducer/subscribe-list.js";
+import { activateCurrentTab } from "./tab-button.js";
 
 const $modal = document.querySelector(".modal");
 const $confirmButton = $modal.querySelector(".btns_confirm");
@@ -10,47 +11,66 @@ const $cancelButton = $modal.querySelector(".btns_cancel");
 
 let handlerOnConfirmButton;
 
-const handleClickOutSideModal = (e) => {
-  const open = useSelector((state) => state.modal.open);
+function handleClickOutSideModal(e) {
+  const open = useSelector({
+    store: modalStore,
+    selector: (state) => state.open,
+  });
+
   if (!open) return;
   if (e.target.closest(".modal") || e.target.closest(".subscribe-btn")) return;
 
-  store.dispatch(closeModal());
-};
+  modalStore.dispatch(closeModal());
+}
 
-const handleClickModalCancelButton = () => {
-  store.dispatch(closeModal());
-};
+function handleClickModalCancelButton() {
+  modalStore.dispatch(closeModal());
+}
 
-const replaceEventListenerOnConfirmButton = (press) => {
+function replaceEventListenerOnConfirmButton(press) {
   $confirmButton.removeEventListener("click", handlerOnConfirmButton);
   handlerOnConfirmButton = () => {
     store.dispatch(cancelSubscribe(press));
-    store.dispatch(closeModal());
+    modalStore.dispatch(closeModal());
 
-    const subscribeList = useSelector((state) => state.subscribeList);
+    const subscribeList = useSelector({
+      store,
+      selector: (state) => state.subscribeList,
+    });
+
+    if (subscribeList.length === 0) {
+      store.dispatch(changeTab(TAB_TYPE.ALL));
+      activateCurrentTab(TAB_TYPE.ALL);
+      alert("구독한 언론사가 존재하지 않아 전체보기로 전환됩니다.");
+      return;
+    }
+
     if (subscribeList.length % NEWS_COUNT === 0) {
       store.dispatch(prevPage());
     }
   };
   $confirmButton.addEventListener("click", handlerOnConfirmButton);
-};
+}
 
-export const setModal = () => {
+function modalSubscriber() {
+  const { open, press } = useSelector({
+    store: modalStore,
+  });
+
+  if (open) {
+    $modal.querySelector(".contents_press-name").innerText = press;
+    $modal.classList.remove("hidden");
+
+    replaceEventListenerOnConfirmButton(press);
+    return;
+  }
+
+  $modal.classList.add("hidden");
+}
+
+export function setModal() {
   window.addEventListener("click", handleClickOutSideModal);
   $cancelButton.addEventListener("click", handleClickModalCancelButton);
 
-  store.subscribe(() => {
-    const { open, press } = useSelector((state) => state.modal);
-
-    if (open) {
-      $modal.querySelector(".contents_press-name").innerText = press;
-      $modal.classList.remove("hidden");
-
-      replaceEventListenerOnConfirmButton(press);
-      return;
-    }
-
-    $modal.classList.add("hidden");
-  });
-};
+  modalStore.subscribe(modalSubscriber);
+}

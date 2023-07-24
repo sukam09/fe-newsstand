@@ -15,51 +15,83 @@ import {
   setTheme,
 } from "./utils/index.js";
 import { store } from "./store/index.js";
-import { changeTheme } from "./store/reducer/theme.js";
+import { changeTheme, initTheme } from "./store/reducer/theme.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
+import { THEME } from "./constants/index.js";
 
-const $headerDate = document.querySelector(".container-header_date");
+async function initDB() {
+  const NEWS_DATA_SOURCE = "./mocks/news.json";
 
-const initDB = async () => {
-  const mockData = await customFetch("./mocks/news.json", shuffleData);
+  const mockData = await customFetch(NEWS_DATA_SOURCE, shuffleData);
   NewsDB.instance = mockData;
-};
+}
 
-const initSubscribeList = () => {
+function initSubscribeList() {
   const subscribeList = JSON.parse(getLocalStorageItem("subscribeList")) || [];
   store.dispatch(initSubscribe(subscribeList));
-};
+}
 
-const setHeaderDate = () => {
+function initAppTheme() {
+  let theme = getLocalStorageItem("theme");
+
+  const isUserPreferDarkTheme =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  // theme 설정이 없을 시 사용자의 OS 테마 설정을 따름
+  if (!theme && isUserPreferDarkTheme) {
+    theme = THEME.DARK;
+  }
+
+  // 위의 케이스가 모두 해당하지 않을 시 기본 테마를 light로 설정
+  if (!theme) {
+    theme = THEME.LIGHT;
+  }
+
+  store.dispatch(initTheme(theme));
+  setTheme();
+}
+
+function setHeaderDate() {
+  const $headerDate = document.querySelector(".container-header_date");
   $headerDate.innerText = getKRLocaleDateString(new Date());
-};
+}
 
-const addEventOnThemeButton = () => {
+function addEventOnThemeButton() {
   const $themeButton = document.querySelector(".theme-btn");
 
   $themeButton.addEventListener("click", () => {
     store.dispatch(changeTheme());
     setTheme();
   });
-};
-// main
-(async function () {
-  await initDB();
-  initSubscribeList();
-  const newsData = NewsDB.getNewsData();
+}
 
-  setHeaderDate();
-  setSnackbar();
-  setModal();
-  startRollingBanner();
-
-  renderGridView(newsData);
+function renderViews() {
+  renderGridView();
   renderListView();
+}
 
+function addEventHandlers() {
   addEventOnThemeButton();
   addEventOnPaginationButton();
   addEventOnTabs();
   addEventOnViewerButton();
   addEventOnProgressBar();
-})();
+}
+
+async function initApp() {
+  await initDB();
+  initAppTheme();
+  initSubscribeList();
+
+  setHeaderDate();
+  setSnackbar();
+  setModal();
+
+  startRollingBanner();
+  renderViews();
+  addEventHandlers();
+}
+
+window.addEventListener("DOMContentLoaded", initApp);

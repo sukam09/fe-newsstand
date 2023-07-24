@@ -1,6 +1,11 @@
 import { NEWS_COUNT, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { NewsDB } from "../core/db.js";
-import { store, useSelector } from "../store/index.js";
+import {
+  modalStore,
+  snackbarStore,
+  store,
+  useSelector,
+} from "../store/index.js";
 import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
 import { addSubscribe } from "../store/reducer/subscribe-list.js";
@@ -9,11 +14,17 @@ import { $nextPageButton, $prevPageButton } from "./doms.js";
 
 const $gridView = document.querySelector(".grid-view");
 
-const fillGridView = (newsData, currentPage) => {
-  const theme = useSelector((state) => state.theme.currentTheme);
+function fillGridView(newsData, currentPage) {
+  const theme = useSelector({
+    store,
+    selector: (state) => state.theme,
+  });
 
   const startIdx = currentPage * NEWS_COUNT;
-  const subscribeList = useSelector((state) => state.subscribeList);
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
 
   $gridView.innerHTML = Array.from(
     { length: NEWS_COUNT },
@@ -33,9 +44,9 @@ const fillGridView = (newsData, currentPage) => {
       ${SubscribeButton(isSubscribed)}
     </li>`);
   }, "");
-};
+}
 
-const handleSubscribeButtonClick = (e) => {
+function handleSubscribeButtonClick(e) {
   const $button = e.target.closest(".subscribe-btn");
   if (!$button) return;
 
@@ -43,28 +54,31 @@ const handleSubscribeButtonClick = (e) => {
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    store.dispatch(openModal(name));
+    modalStore.dispatch(openModal(name));
     return;
   }
 
-  store.dispatch(openSnackbar());
+  snackbarStore.dispatch(openSnackbar());
   store.dispatch(addSubscribe(name));
-};
+}
 
-const addEventOnGridView = () => {
+function addEventHandlerOnGridView() {
   $gridView.addEventListener("click", handleSubscribeButtonClick);
-};
+}
 
-const initGridView = (newsData) => {
-  const currentPage = useSelector((state) => state.page.currentPage);
+function initGridView(newsData) {
+  const currentPage = useSelector({
+    store,
+    selector: (state) => state.page.currentPage,
+  });
   fillGridView(newsData, currentPage);
-};
+}
 
-const getMaxPage = (data) => {
+function getMaxPage(data) {
   return Math.floor((data.length - 1) / NEWS_COUNT);
-};
+}
 
-const updateButtonUI = (currentPage, maxPage) => {
+function updateButtonUI(currentPage, maxPage) {
   if (currentPage === 0) {
     $prevPageButton.classList.add("hidden");
   } else {
@@ -76,10 +90,13 @@ const updateButtonUI = (currentPage, maxPage) => {
   } else {
     $nextPageButton.classList.remove("hidden");
   }
-};
+}
 
-const renderGridViewOnSubscribe = (currentPage) => {
-  const subscribeList = useSelector((state) => state.subscribeList);
+function renderGridViewOnSubscribe(currentPage) {
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
   const newsData = subscribeList.map((press) => ({
     name: press,
     ...NewsDB.getNewsOneByName(press),
@@ -88,24 +105,31 @@ const renderGridViewOnSubscribe = (currentPage) => {
 
   fillGridView(newsData, currentPage);
   updateButtonUI(currentPage, maxPage);
-};
+}
 
-export const renderGridView = (newsData) => {
+function gridViewSubscriber(newsData, maxPage) {
+  const { currentPage, viewType, tabType } = useSelector({
+    store,
+    selector: (state) => state.page,
+  });
+
+  if (viewType !== VIEW_TYPE.GRID) {
+    return;
+  }
+
+  if (tabType === TAB_TYPE.ALL) {
+    fillGridView(newsData, currentPage);
+    updateButtonUI(currentPage, maxPage);
+  } else {
+    renderGridViewOnSubscribe(currentPage);
+  }
+}
+
+export function renderGridView() {
+  const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
-  addEventOnGridView();
+  addEventHandlerOnGridView();
 
-  store.subscribe(() => {
-    const { currentPage, viewType, tabType } = useSelector(
-      (state) => state.page
-    );
-    if (viewType !== VIEW_TYPE.GRID) return;
-
-    if (tabType === TAB_TYPE.ALL) {
-      fillGridView(newsData, currentPage);
-      updateButtonUI(currentPage, maxPage);
-    } else {
-      renderGridViewOnSubscribe(currentPage);
-    }
-  });
-};
+  store.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
+}

@@ -1,5 +1,10 @@
 import { NewsDB } from "../core/index.js";
-import { store, useSelector } from "../store/index.js";
+import {
+  modalStore,
+  snackbarStore,
+  store,
+  useSelector,
+} from "../store/index.js";
 import { CATEGORIES, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 import {
@@ -30,7 +35,7 @@ const $listViewSubNews = $listViewMain.querySelector(
 );
 const $listViewNotice = $listViewMain.querySelector(".list-view-main_notice");
 
-const SubscribeItem = (press, selected) => {
+function SubscribeItem(press, selected) {
   return `
   <li ${selected ? `class="category-selected selected-bold14"` : ``} >
     <div class="tab_progress-bar"></div>
@@ -39,9 +44,9 @@ const SubscribeItem = (press, selected) => {
       <path d="M9.4 18L8 16.6L12.6 12L8 7.4L9.4 6L15.4 12L9.4 18Z" fill="inherit"/>
     </svg>
   </li>`;
-};
+}
 
-const setSubscribeTabsDraggable = () => {
+function setSubscribeTabsDraggable() {
   let isMouseDown = false;
   let startPageX;
 
@@ -65,31 +70,37 @@ const setSubscribeTabsDraggable = () => {
     isMouseDown = false;
     $listViewTab.classList.remove("dragging");
   });
-};
+}
 
-const showSubscribeTab = (subscribeList, selected) => {
+function showSubscribeTab(subscribeList, selected) {
   $subscribeTab.innerHTML = subscribeList.reduce((acc, curr) => {
     return acc + SubscribeItem(curr, selected === curr);
   }, "");
-};
+}
 
-const unshowSubscribeTab = () => {
+function unshowSubscribeTab() {
   $subscribeTab.innerHTML = "";
-};
+}
 
-const showCategoryTab = () => {
+function showCategoryTab() {
   $categoryTab.style.display = "flex";
-};
+}
 
-const unshowCategoryTab = () => {
+function unshowCategoryTab() {
   $categoryTab.style.display = "none";
-};
+}
 
-const fillArticle = (articleData) => {
-  const theme = useSelector((state) => state.theme.currentTheme);
+function fillArticle(articleData) {
+  const theme = useSelector({
+    store,
+    selector: (state) => state.theme,
+  });
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
+
   const { name, src, edit_date, main_news, sub_news } = articleData;
-
-  const subscribeList = useSelector((state) => state.subscribeList);
   const isSubscribed = subscribeList.includes(name);
 
   $listViewHeader.innerHTML = `
@@ -106,14 +117,14 @@ const fillArticle = (articleData) => {
   }, "");
 
   $listViewNotice.innerText = `${name} 언론사에서 직접 편집한 뉴스입니다.`;
-};
+}
 
-const updateButtonUI = () => {
+function updateButtonUI() {
   $prevPageButton.classList.remove("hidden");
   $nextPageButton.classList.remove("hidden");
-};
+}
 
-const activateCategory = (category) => {
+function activateCategory(category) {
   $listViewTabItems.forEach(($item) => {
     const tabCategory = $item.querySelector(".tab_category").innerText;
     if (tabCategory === category) {
@@ -122,9 +133,9 @@ const activateCategory = (category) => {
       $item.className = "";
     }
   });
-};
+}
 
-const showTabCount = (currentPage, totalCnt) => {
+function showTabCount(currentPage, totalCnt) {
   const $categorySelected = document.querySelector(".category-selected");
   const $tabCount = $categorySelected.querySelector(".tab-count");
   const $tabCountCurrent = $tabCount.querySelector(".tab-count_current");
@@ -132,45 +143,123 @@ const showTabCount = (currentPage, totalCnt) => {
 
   $tabCountCurrent.innerText = currentPage + 1;
   $tabCountTotal.innerText = totalCnt;
-};
+}
 
-const handleListViewTabClick = (e) => {
+function handleListViewTabClick(e) {
   const $tabCategory = e.currentTarget.querySelector(".tab_category");
   const category = $tabCategory.innerText;
 
   activateCategory(category);
 
   store.dispatch(setCategory(category));
-};
+}
 
-const handleSubscribeTabsClick = (e) => {
-  const subscribeList = useSelector((state) => state.subscribeList);
+function handleSubscribeTabsClick(e) {
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
   const pressName = e.target.innerText;
 
-  console.log(e.target);
   const pressIdx = subscribeList.indexOf(pressName);
   store.dispatch(setPage(pressIdx));
-};
+}
 
-const handleSubscribeButtonClick = (e) => {
+function handleSubscribeButtonClick(e) {
   const $button = e.target.closest(".subscribe-btn");
   if (!$button) {
     return;
   }
 
-  const name = $button.previousElementSibling.previousElementSibling.alt;
+  const $header = e.target.closest("header");
+  const $brandMark = $header.querySelector("img");
+
+  const name = $brandMark.alt;
   const isSubscribed = JSON.parse($button.dataset.subscribed);
 
   if (isSubscribed) {
-    store.dispatch(openModal(name));
+    modalStore.dispatch(openModal(name));
     return;
   }
 
-  store.dispatch(openSnackbar());
+  snackbarStore.dispatch(openSnackbar());
   store.dispatch(addSubscribe(name));
-};
+}
 
-export const renderListView = () => {
+function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
+  const currentCategory = CATEGORIES[currentCategoryIdx];
+  const totalCnt = NewsDB.getCountByCategory(currentCategory);
+  const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
+
+  const isFirstPage = currentPage < 0;
+  const isLastPage = currentPage >= totalCnt;
+
+  if (isFirstPage) {
+    store.dispatch(prevCategory());
+    return;
+  }
+
+  if (isLastPage) {
+    store.dispatch(nextCategory());
+    return;
+  }
+
+  showCategoryTab();
+  unshowSubscribeTab();
+  activateCategory(currentCategory);
+  showTabCount(currentPage, totalCnt);
+  fillArticle(articleData);
+}
+
+function fillArticleOnSubscribeTab({ currentPage }) {
+  const subscribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
+  const pressName = subscribeList[currentPage];
+  const articleData = {
+    name: pressName,
+    ...NewsDB.getNewsOneByName(pressName),
+  };
+
+  const isFirstPage = currentPage < 0;
+  const isLastPage = currentPage >= subscribeList.length;
+
+  if (isFirstPage) {
+    store.dispatch(setPage(subscribeList.length - 1));
+    return;
+  }
+
+  if (isLastPage) {
+    store.dispatch(setPage(0));
+    return;
+  }
+
+  unshowCategoryTab();
+  showSubscribeTab(subscribeList, subscribeList[currentPage]);
+  fillArticle(articleData);
+}
+
+function listViewSubscriber() {
+  const page = useSelector({
+    store,
+    selector: (state) => state.page,
+  });
+  const { viewType, tabType } = page;
+
+  if (viewType !== VIEW_TYPE.LIST) return;
+
+  if (tabType === TAB_TYPE.ALL) {
+    fillArticleOnAllTab(page);
+  } else {
+    fillArticleOnSubscribeTab(page);
+  }
+
+  resetProgress();
+  updateButtonUI();
+}
+
+export function renderListView() {
   $listViewTabItems.forEach(($tabItem) => {
     $tabItem.addEventListener("click", handleListViewTabClick);
   });
@@ -179,55 +268,5 @@ export const renderListView = () => {
 
   setSubscribeTabsDraggable();
 
-  store.subscribe(() => {
-    const { currentPage, currentCategoryIdx, viewType, tabType } = useSelector(
-      (state) => state.page
-    );
-    if (viewType !== VIEW_TYPE.LIST) return;
-
-    if (tabType === TAB_TYPE.ALL) {
-      const currentCategory = CATEGORIES[currentCategoryIdx];
-      const totalCnt = NewsDB.getCountByCategory(currentCategory);
-      const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
-
-      if (currentPage < 0) {
-        store.dispatch(prevCategory());
-        return;
-      }
-
-      if (currentPage >= totalCnt) {
-        store.dispatch(nextCategory());
-        return;
-      }
-
-      showCategoryTab();
-      unshowSubscribeTab();
-      activateCategory(currentCategory);
-      showTabCount(currentPage, totalCnt);
-      fillArticle(articleData);
-    } else {
-      const subscribeList = useSelector((state) => state.subscribeList);
-      const pressName = subscribeList[currentPage];
-      const articleData = {
-        name: pressName,
-        ...NewsDB.getNewsOneByName(pressName),
-      };
-
-      if (currentPage < 0) {
-        store.dispatch(setPage(subscribeList.length - 1));
-        return;
-      }
-
-      if (currentPage >= subscribeList.length) {
-        store.dispatch(setPage(0));
-        return;
-      }
-
-      unshowCategoryTab();
-      showSubscribeTab(subscribeList, subscribeList[currentPage]);
-      fillArticle(articleData);
-    }
-    resetProgress();
-    updateButtonUI();
-  });
-};
+  store.subscribe(listViewSubscriber);
+}
