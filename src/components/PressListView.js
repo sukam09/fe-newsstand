@@ -226,7 +226,7 @@ export default function PressListView({ $target, initialState }) {
             <img src="../asset/icons/division.svg" />
             <p class="text-button-entire">${entire}</p>
           </div>`
-        : `<img src="../asset/icons/right-arrow.svg" />`;
+        : `<img src="../asset/icons/chevron-right.svg" />`;
 
     initProgressBar($selectedButton);
   };
