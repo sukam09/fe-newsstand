@@ -1,4 +1,5 @@
 import { allNewsObj } from "../../constants/index.js";
+import { store } from "../../core/store.js";
 import Icon from "../common/Icon.js";
 
 export default class AllNewsNavigation {
@@ -58,45 +59,51 @@ export default class AllNewsNavigation {
     return $iconNavigation;
   }
 
-  /** 리스트 아이콘 클릭 시 */
-  handleListIconClick(event) {
-    const $listIconImg = event.target;
-    const $gridIconImg = event.target.nextSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}-selected.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}.svg`;
-    this.callRenderListView.call(allNewsObj);
-  }
-
-  /** 그리드 아이콘 클릭 시 */
-  handleGridIconClick(event) {
-    const $gridIconImg = event.target;
-    const $listIconImg = event.target.previousSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}-selected.svg`;
-    this.callRenderGridView.call(allNewsObj);
-  }
-
-  callRenderListView() {
-    this.renderListView();
-  }
-
-  callRenderGridView() {
-    this.renderGridView();
-  }
-
-  callRenderSubGridView() {
-    this.renderSubGridView();
-  }
-
+  /* 전체 언론사 버튼 클릭 시 */
   handleAllPressClick({ target: span }) {
     span.nextSibling.className = "";
     span.className = "selected-type";
-    this.callRenderGridView.call(allNewsObj);
+    store.isShowAllPress = true;
+
+    this.callRender.call(allNewsObj);
   }
 
+  /* 구독한 언론사 클릭 시 */
   handleSubPressClick({ target: span }) {
     span.previousSibling.className = "";
     span.className = "selected-type";
-    this.callRenderSubGridView.call(allNewsObj);
+    store.isShowAllPress = false;
+
+    this.callRender.call(allNewsObj);
+  }
+
+  /** 리스트 아이콘 클릭 시 */
+  handleListIconClick({ target: $listIconImg }) {
+    const $gridIconImg = $listIconImg.nextSibling;
+    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}-selected.svg`;
+    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}.svg`;
+    store.isShowGrid = false;
+
+    this.callRender.call(allNewsObj);
+  }
+
+  /** 그리드 아이콘 클릭 시 */
+  handleGridIconClick({ target: $gridIconImg }) {
+    const $listIconImg = $gridIconImg.previousSibling;
+    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}.svg`;
+    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}-selected.svg`;
+    store.isShowGrid = true;
+
+    this.callRender.call(allNewsObj);
+  }
+
+  callRender() {
+    store.isShowGrid
+      ? store.isShowAllPress
+        ? this.renderAllGridView()
+        : this.renderSubGridView()
+      : store.isShowAllPress
+      ? this.renderAllListView()
+      : this.renderSubListView();
   }
 }
