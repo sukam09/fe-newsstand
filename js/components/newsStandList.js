@@ -3,7 +3,10 @@ import { subScribeStore } from '../store/subScribeStore.js';
 
 function createNewsListHtml(d) {
   let htmls = '';
-  htmls = html`
+  if (!d) {
+    htmls = html` <div></div> `;
+  } else {
+    htmls = html`
     <div class="list-header">
       <div class="list-header-title">${d.name}</div>
       <div class="list-header-sub">
@@ -25,6 +28,8 @@ function createNewsListHtml(d) {
       </div>
     </div>
   `;
+  }
+
   document.querySelector('.newsstand__list-box').innerHTML = '';
   document.querySelector('.newsstand__list-box').insertAdjacentHTML('beforeend', htmls);
 }

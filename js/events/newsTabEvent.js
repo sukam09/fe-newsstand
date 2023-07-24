@@ -1,5 +1,5 @@
 import { globalStore } from '../store/globalVarStore.js';
-
+import { reRenderComponent } from '../utils/reRenderComponent.js';
 const newsList = document.querySelector('.newsstand__tab-list img');
 const newsGrid = document.querySelector('.newsstand__tab-thumb img');
 const mediaArea = document.querySelector('.newsstand__media-area');
@@ -19,7 +19,10 @@ const UI_Type = {
     newsGrid.src = Tab_Imgs.thumbOff;
     mediaArea.classList.add('disabled');
     listArea.classList.remove('disabled');
-    globalStore.commit('updateKey', '전체언론_리스트');
+    if (globalStore.state.OPTION === '전체_언론사') globalStore.commit('updateKey', '전체언론_리스트');
+    if (globalStore.state.OPTION === '구독_언론사') globalStore.commit('updateKey', '구독언론_리스트');
+
+    reRenderComponent('LIST_ALL');
   },
   grid: () => {
     newsList.disabled = true;
@@ -28,7 +31,9 @@ const UI_Type = {
     newsGrid.src = Tab_Imgs.thumbOn;
     mediaArea.classList.remove('disabled');
     listArea.classList.add('disabled');
-    globalStore.commit('updateKey', '전체언론_그리드_인덱스');
+    if (globalStore.state.OPTION === '전체_언론사') globalStore.commit('updateKey', '전체언론_그리드_인덱스');
+    if (globalStore.state.OPTION === '구독_언론사') globalStore.commit('updateKey', '구독언론_그리드_인덱스');
+    reRenderComponent('GRID_ALL');
   },
 };
 

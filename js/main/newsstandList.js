@@ -10,22 +10,31 @@ let EntireCateGoryCount = 0;
 
 async function initNewsStandList() {
   const datas = await getNewsListData();
+  if (globalStore.state.KEY === '전체언론_리스트') {
+    const [category, categorysList] = getCategoryDataPaser(datas);
+    EntireCateGoryCount = category.length;
+    const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
 
-  const [category, categorysList] = getCategoryDataPaser(datas);
-  EntireCateGoryCount = category.length;
-  const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
+    const categoryCount = categorysList.filter((name) => name === KEY).length;
+    globalStore.commit('updateCateGoryCount', categoryCount);
 
-  const categoryCount = categorysList.filter((name) => name === KEY).length;
-  globalStore.commit('updateCateGoryCount', categoryCount);
-
-  createCategoryHtml(category, KEY);
-  const NEWS_LIST = getCurrentNewsList(category, datas);
-  createNewsListHtml(
-    NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
-  );
-
-  isProgressBarFinish();
-  moveSelectedCategory(category);
+    createCategoryHtml(category, KEY);
+    const NEWS_LIST = getCurrentNewsList(category, datas);
+    createNewsListHtml(
+      NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
+    );
+    isProgressBarFinish();
+    moveSelectedCategory(category);
+  } else if (globalStore.state.KEY === '구독언론_리스트') {
+    const scribeNews = subScribeStore.state.subscribeData;
+    if (scribeNews.length === globalStore.state.구독언론_리스트.카테고리_인덱스) {
+      globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: scribeNews.length - 1 });
+    }
+    const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
+    const newsDatas = datas.filter((data) => scribeNews.includes(data.name));
+    createCategoryHtml(scribeNews, KEY);
+    createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
+  }
 }
 
 function getCurrentNewsList(category, datas) {
@@ -63,7 +72,7 @@ function moveSelectedCategory(category) {
 const moveSelectedCategoryHandler = (e, category) => {
   const text = e.target.textContent;
   globalStore.commit('resetNewsIndex');
-  globalStore.commit('updateCategoryIndex', category.indexOf(text));
+  globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: category.indexOf(text) });
   reRenderComponent('LIST_ALL');
 };
 export { initNewsStandList };

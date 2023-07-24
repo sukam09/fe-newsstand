@@ -8,7 +8,7 @@ let datas = [];
 async function initNewsStandGrid() {
   const newsData = await getNewsData();
   if (globalStore.state.OPTION === '전체_언론사') 전체_언론사(newsData);
-  else if (globalStore.state.OPTION === '내가_구독한_언론사') 내가_구독한_언론사(newsData);
+  else if (globalStore.state.OPTION === '구독_언론사') 내가_구독한_언론사(newsData);
 }
 
 function 전체_언론사(newsData) {

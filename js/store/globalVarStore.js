@@ -9,24 +9,26 @@ const globalStore = new Store({
       전체카테고리: 0,
     },
     구독언론_그리드_인덱스: 0,
-    구독언론_리스트_인덱스: 0,
+    구독언론_리스트: {
+      뉴스_인덱스: 0,
+      카테고리_인덱스: 0,
+      전체카테고리: 0,
+    },
     KEY: '전체언론_그리드_인덱스',
     OPTION: '전체_언론사',
   },
   mutations: {
     nextIndex(state, payload) {
-      if (payload === '전체언론_리스트') {
-        state.전체언론_리스트.뉴스_인덱스++;
-      } else {
-        state[payload]++;
-      }
+      if (payload === '전체언론_리스트') state.전체언론_리스트.뉴스_인덱스++;
+      if (payload === '구독언론_리스트') state.구독언론_리스트.카테고리_인덱스++;
+      if (payload === '전체언론_그리드_인덱스') state[payload]++;
+      if (payload === '구독언론_그리드_인덱스') state[payload]++;
     },
     prevIndex(state, payload) {
-      if (payload === '전체언론_리스트') {
-        state.전체언론_리스트.뉴스_인덱스--;
-      } else {
-        state[payload]--;
-      }
+      if (payload === '전체언론_리스트') state.전체언론_리스트.뉴스_인덱스--;
+      if (payload === '구독언론_리스트') state.구독언론_리스트.카테고리_인덱스--;
+      if (payload === '전체언론_그리드_인덱스') state[payload]--;
+      if (payload === '구독언론_그리드_인덱스') state[payload]--;
     },
     nextCategoryIndex(state) {
       state.전체언론_리스트.카테고리_인덱스++;
@@ -46,7 +48,8 @@ const globalStore = new Store({
       state.전체언론_리스트.전체카테고리 = payload;
     },
     updateCategoryIndex(state, payload) {
-      state.전체언론_리스트.카테고리_인덱스 = payload;
+      if (payload.key === '전체언론_리스트') state.전체언론_리스트.카테고리_인덱스 = payload.val;
+      if (payload.key === '구독언론_리스트') state.구독언론_리스트.카테고리_인덱스 = payload.val;
     },
     resetNewsList(state) {
       state.전체언론_리스트.카테고리_인덱스 = 0;

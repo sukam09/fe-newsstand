@@ -34,6 +34,7 @@ const hasSubStoreData = (data, element) => {
     subScribeStore.commit('updateState', data);
     element.textContent = '+ 구독하기';
   }
+  reRenderComponent('GRID_ALL');
 };
 
 function subNewsList() {
@@ -53,7 +54,8 @@ const NewsBoxHandler = (e) => {
       subScribeStore.commit('updateState', data);
       titleElement.closest('.list-header').querySelector('.header-btn-subscribe').textContent = '+ 구독하기';
     }
-    reRenderComponent('GRID_ALL');
+    //reRenderComponent('GRID_ALL');
+    reRenderComponent('LIST_ALL');
   }
 };
 
