@@ -5,8 +5,10 @@ import { handleView, changeOption } from "./viewHandler.js";
 import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { setSubListNav } from "./subscribeListView.js";
 import { drawNews } from "./newsList.js";
+import { isDark, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
+import { getState, setState } from "./observer/observer.js";
 
-let presses;
+let presses = null;
 
 function gridMouseOver({target:target}) {
   const $original = target.querySelector("img");
@@ -24,7 +26,7 @@ function gridMouseClick({target:target}) {
   const $original = target.getElementsByTagName("img")[0];
   const $original_path = ".." + $original.src.split("5500")[1];
   const $target_object = presses.find(target => 
-    STATE.IS_DARK ? target.path_dark === $original_path :  target.path_light === $original_path);
+    getState(isDark) ? target.path_dark === $original_path :  target.path_light === $original_path);
   setSubData($target_object);
   drawGridView();
 }
@@ -38,14 +40,14 @@ function listSubMouseClick(news) {
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
     setTimeout(() => {
-      STATE.IS_SUB_VIEW = true;
+      setState(isSubView, true); // 뷰 상태 바뀔 때 모두 렌더링
       setDisplay(".subscribe-modal", "query", "none");
-      STATE.SUB_NEWS_PAGE = STATE.SUB_DATA.length-1;
+      setState(subListPageCount, getState(subscribedPress).length - 1);
       changeOption("subscribe");
       setDisplay(".sub-list-nav",'query','block');
       setDisplay(".list-nav",'query','none');  
-      setSubListNav();
-      drawNews();
+      // setSubListNav();
+      // drawNews();
     }, MODAL_POPUP_TIME);
   } else {
     // 구독 상태면
@@ -54,9 +56,10 @@ function listSubMouseClick(news) {
 }
 
 function initGridItemEvent(item,press) {
+  const subscribed_press = getState(subscribedPress);
   item.addEventListener("mouseenter", gridMouseOver);
   item.addEventListener("mouseleave", gridMouseOut);
-  if(STATE.SUB_DATA.find(data => data.name === press.name) === undefined) {
+  if(subscribed_press.find(data => data.name === press.name) === undefined) {
     item.addEventListener("click", gridMouseClick);    
   } else {
     item.addEventListener("click",onUndiscribeModal);

@@ -66,6 +66,7 @@ function drawNews() {
   const news = getState(isSubView)
     ? getState(subscribedPress)[getState(subListPageCount)]
     : news_by_category[getState(categoryPageCount)[now_category]];
+  console.log(getState(subscribedPress)[getState(subListPageCount)]);
   document.querySelector(".press-brandmark").src = getState(isDark) ? news.path_dark : news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;

@@ -2,7 +2,7 @@ import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
 import { PAGE_SIZE, STATE } from "./const.js";
 import { setDisplay, getJSON } from "./utils.js";
 import { setState, getState, subscribe } from "./observer/observer.js";
-import { gridPageCount, isDark, isSubView, subGridPageCount } from "./store/store.js";
+import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "./store/store.js";
 
 const shuffle = () => Math.random() - 0.5;
 let presses = null;
@@ -10,10 +10,11 @@ let presses = null;
 function drawGridArrow() {
   // 그리드 상태에 따른 화살표 출력
   const _isSubView = getState(isSubView);
-  const total_grid_page = _isSubView ? parseInt(STATE.SUB_DATA.length / PAGE_SIZE) : parseInt(presses.length / PAGE_SIZE);
+  const sub_presses_length = getState(subscribedPress).length
+  const total_grid_page = _isSubView ? parseInt(sub_presses_length / PAGE_SIZE) : parseInt(presses.length / PAGE_SIZE);
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
-  const now_page = _isSubView ? STATE.SUB_GRID_PAGE : getState(gridPageCount);
+  const now_page = _isSubView ? getState(subGridPageCount) : getState(gridPageCount);
   if (total_grid_page === 0) {
     setDisplay("grid-prev", "id", "none");
     setDisplay("grid-next", "id", "none");
@@ -39,7 +40,7 @@ function appendPressInGrid(press) {
   if (getState(isSubView)) {
     $sub_img.src = "../img/icons/unsubBtn.svg";
   } else {
-    $sub_img.src = STATE.SUB_DATA.some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+    $sub_img.src = getState(subscribedPress).some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
   }
   $button.append($sub_img);
   $list.append($image, $button);
@@ -80,7 +81,7 @@ function drawGridView() {
   const is_sub_view = getState(isSubView);
   const $press_list = document.getElementById("press-list");
   $press_list.innerHTML = "";
-  const press_data = is_sub_view ? STATE.SUB_DATA : presses;
+  const press_data = is_sub_view ? getState(subscribedPress) : presses;
   const page_count = is_sub_view ? getState(subGridPageCount) : getState(gridPageCount);
   const sliced_data = press_data.slice(page_count * PAGE_SIZE, (page_count + 1) * PAGE_SIZE);
   const count = appendPress(sliced_data);

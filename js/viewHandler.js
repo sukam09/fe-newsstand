@@ -3,6 +3,8 @@ import { drawNews, setNowCount } from "./newsList.js";
 import { drawGridView } from "./gridFunction.js";
 import { STATE } from "./const.js";
 import { setSubListNav } from "./subscribeListView.js";
+import { setState, subscribe,getState } from "./observer/observer.js";
+import { isGridView, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
 
 let presses;
 
@@ -20,6 +22,15 @@ async function addEventInSymbol() {
   $grid_symbol.forEach(symbol => {
     symbol.addEventListener("click", handleView)
     });
+    subscribe(isGridView,drawNews)
+    subscribe(isGridView,setSubListNav)
+    subscribe(isGridView,drawGridView)
+    subscribe(isSubView,drawNews)
+    subscribe(isSubView,setSubListNav)
+    subscribe(isSubView,drawGridView)
+    subscribe(isGridView,setNowCount)
+    subscribe(isSubView,setNowCount)
+
 }
 
 function changeViewIcon(selected) {
@@ -53,27 +64,23 @@ function handleView({target:target}) {
   removeDisplay();
   if (checkClass("list-symbol")) {
     //list 버튼 눌렀을 때
-    STATE.SUB_NEWS_PAGE = 0;
+    setState(subListPageCount,0);
     changeViewIcon("list");
-    STATE.IS_GRID_VIEW = false;
-    if (STATE.IS_SUB_VIEW) {
+    setState(isGridView, false);
+    if (getState(isSubView)) {
       // list 선택, list 구독 뷰 출력
-      if (STATE.SUB_DATA.length === 0) {
+      if (getState(subscribedPress).length === 0) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setDisplay(".press-list-section", "query", "block");
         setDisplay(".sub-list-nav",'query','block');
         setDisplay(".list-nav",'query','none');  
-        setSubListNav();
-        drawNews();
       }
     } else {
       // list선택, total list 뷰 출력
       setDisplay(".press-list-section", "query", "block");
       setDisplay(".sub-list-nav",'query','none');
       setDisplay(".list-nav",'query','block');
-      drawNews();
-      setNowCount();
     }
   }
   if (checkClass("grid-symbol")) {
@@ -81,31 +88,30 @@ function handleView({target:target}) {
     changeViewIcon("grid");
     setDisplay(".press-grid", "query", "block");
     drawGridView();
-    STATE.IS_GRID_VIEW = true;
-    STATE.IS_SUB_VIEW = true;
+    setState(isGridView,true);
+    setState(isSubView,true);
   }
   if (checkClass("total-press")) {
     // 전체 언론사 클릭
-    STATE.IS_GRID_VIEW = true;
-    STATE.IS_SUB_VIEW = false;
+    setState(isGridView,true);
+    setState(isSubView,false);
     setDisplay(".press-grid", "query", "block");
     changeViewIcon("grid");
     changeOption("total");
-    drawGridView();
   }
   if (checkClass("subscribed-press")) {
     // 내 구독 언론사 클릭
     changeViewIcon("list");
     changeOption("subscribe");
-    STATE.SUB_NEWS_PAGE = 0;
-    STATE.IS_SUB_VIEW = true;
-    STATE.IS_GRID_VIEW = false;
-    if (STATE.SUB_DATA.length === 0) {
+    setState(subListPageCount, 0);
+    setState(isGridView,false);
+    setState(isSubView,true);
+    if (getState(subscribedPress).length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
       setDisplay(".press-list-section", "query", "block");
-      setSubListNav();
-      drawNews();
+      // setSubListNav();
+      // drawNews();
       setDisplay(".sub-list-nav",'query','block');
       setDisplay(".list-nav",'query','none');
     }

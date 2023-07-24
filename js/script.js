@@ -9,9 +9,9 @@ import { addEventInSymbol } from "./viewHandler.js";
 import { initDarkMode } from "./darkMode.js";
 const init = async () => {
   setDate();
+  await initNewsInfo();
   await initUtilData();
   initPressGrid();
-  await initNewsInfo();
   await addEventInSymbol();
   initRolling();
   initCategoryClass();
