@@ -58,8 +58,32 @@ export function setOptions(target, callback) {
         press: view_option.press,
         mode: view_option.mode,
         target: target || "all",
-        callback: typeof callback === 'function' ? callback : undefined
+        callbacks: callback || undefined,
     };
+}
+
+export function setSubscribeNewsData() {
+    list_option.subscribe_news_data = groupDataByPressName(
+        list_option.unrefined_new_data.filter(
+            (press) =>
+                subscribe_option.subscribe_press[press["press_name"]] === "true"
+        )
+    );
+}
+
+function groupDataByPressName(data) {
+    const grouped_data = {};
+
+    data.forEach((item) => {
+        const { press_name, ...rest } = item;
+        if (grouped_data[press_name]) {
+            grouped_data[press_name].push({ press_name, ...rest });
+        } else {
+            grouped_data[press_name] = [{ press_name, ...rest }];
+        }
+    });
+
+    return grouped_data;
 }
 
 export function renderOptions() {
@@ -87,16 +111,9 @@ export function renderOptions() {
                 category: list_option.category,
             },
             subscribe: {
-                data: list_option.unrefined_new_data.filter(
-                    (press) =>
-                        subscribe_option.subscribe_press[
-                            press["press_name"]
-                        ] === "true"
-                ),
+                data: list_option.subscribe_news_data,
                 page: list_option.subscribe_page,
-                category: Object.keys(subscribe_option.subscribe_press).filter(
-                    (press) => subscribe_option.subscribe_press[press]
-                ),
+                category: subscribe_option.subscribe_current,
             },
         },
     };
@@ -125,31 +142,56 @@ export function getCalPage(page) {
     }
 }
 
-export function setCategoryIndex(text) {
-    list_option.category = CATEGORIES.indexOf(text);
+export function setCategoryIndex(text, press) {
+    if (press === "all") list_option.category = CATEGORIES.indexOf(text);
+    else
+        subscribe_option.subscribe_current =
+            subscribe_option.subscribe_categories.indexOf(text);
+}
+
+export function setPageIndex(page) {
+    list_option.page = page;
+    list_option.subscribe_page = page;
 }
 
 export function getCategoryIndex() {
     return list_option.category;
 }
 
-export function updateCategoryIndex(category, direction) {
-    if (category === MAX_CATEGORY) {
-        list_option.category = 0;
-        list_option.page = 0;
-    } else if (category < 0) {
-        list_option.category = MAX_CATEGORY - 1;
-        list_option.page =
-            list_option.news_data[CATEGORIES[list_option.category]].length - 1;
-    } else {
-        list_option.category = category;
-        if (direction === "next") list_option.page = 0;
-        else if (direction === "prev")
+export function updateCategoryIndex(category, direction, press) {
+    if (press === "all") {
+        if (category === MAX_CATEGORY) {
+            list_option.category = 0;
+            list_option.page = 0;
+        } else if (category < 0) {
+            list_option.category = MAX_CATEGORY - 1;
             list_option.page =
                 list_option.news_data[CATEGORIES[list_option.category]].length -
                 1;
+        } else {
+            list_option.category = category;
+            if (direction === "next") {
+                list_option.page = 0;
+            } else if (direction === "prev")
+                list_option.page =
+                    list_option.news_data[CATEGORIES[list_option.category]]
+                        .length - 1;
+        }
+        return { category: list_option.category, page: list_option.page };
+    } else {
+        if (category == subscribe_option.subscribe_categories.length) {
+            subscribe_option.subscribe_current = 0;
+            list_option.subscribe_page = 0;
+        } else if (category < 0) {
+            subscribe_option.subscribe_current =
+                subscribe_option.subscribe_categories.length - 1;
+            list_option.subscribe_page = 0;
+        } else {
+            subscribe_option.subscribe_current = category;
+            list_option.subscribe_page = 0;
+        }
+        return { category: subscribe_option.subscribe_current, page: 0 };
     }
-    return { category: list_option.category, page: list_option.page };
 }
 
 // brute force로 구현 - 순차탐색

@@ -29,5 +29,7 @@ export const list_option = {
 
 export const subscribe_option = {
     subscribe_press: {},
-    subscribe_news: {},
+    subscribe_categories: [],
+    subscribe_current: 0,
+    subscribe_news_data: {},
 };

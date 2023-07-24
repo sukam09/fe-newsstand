@@ -1,4 +1,9 @@
-import { list_option, grid_option, view_option } from "../globals.js";
+import {
+    list_option,
+    grid_option,
+    view_option,
+    subscribe_option,
+} from "../globals.js";
 import {
     ASSETS_IMAGE_PATH,
     CATEGORIES,
@@ -9,19 +14,55 @@ import {
 import { isSubscribed } from "../utils.js";
 
 function renderListView(options, data, category, page) {
-    // console.log(data, category, page);
     const list_news_container = document.querySelector(".main_news_container");
-    list_news_container.innerHTML = "";
+
     const main_content = document.createElement("div");
-    main_content.classList.add("main_content");
 
-    // 임시
-    clearInterval(list_option.interval);
-    list_option.progress_time = 0;
+    if (data === undefined) {
+        main_content.classList.add("main_content");
+        main_content.innerHTML = `<p class="error_message">구독한 언론사가 없습니다.</p>
+        `;
+        list_news_container.appendChild(main_content);
+        return;
+    }
+    const new_category =
+        options.press === "all"
+            ? CATEGORIES
+            : subscribe_option.subscribe_categories;
+    const new_data =
+        options.press === "all"
+            ? data[new_category[category]]
+            : data[new_category[category]];
 
-    createNewsNav(list_news_container, data[CATEGORIES[category]], page + 1);
-    createNewsHeader(main_content, data[CATEGORIES[category]], page);
-    createMainContents(main_content, data[CATEGORIES[category]], page);
+    const new_page =
+        options.press === "all" ? page : list_option.subscribe_page;
+    const new_current =
+        options.press === "all"
+            ? list_option.category
+            : subscribe_option.subscribe_current;
+
+    switch (options.target) {
+        case "all":
+            list_news_container.innerHTML = "";
+            main_content.classList.add("main_content");
+            clearInterval(list_option.interval);
+            list_option.progress_time = 0;
+            createNewsNav(
+                list_news_container,
+                new_data,
+                new_page + 1,
+                new_category,
+                new_current
+            );
+            createNewsHeader(main_content, new_data, new_page, new_current);
+            createMainContents(main_content, new_data, new_page, new_current);
+            break;
+        case "sub":
+            renderSubscribeButton();
+            break;
+        default:
+            break;
+    }
 
     list_news_container.appendChild(main_content);
 }
@@ -32,22 +73,43 @@ function renderNewsItem(mode) {
     content_press.src = `${ASSETS_IMAGE_PATH}${mode}${content_press.alt}`;
 }
 
-function createNewsNav(container, data, page) {
+function renderSubscribeButton() {
+    // button className 찾기
+    const subscribe_toggle = document.querySelector(".content_header button");
+
+    if (subscribe_toggle.className === "content_subscribe") {
+        subscribe_toggle.className = "content_subscribe_cancel";
+        subscribe_toggle.value = "true";
+        subscribe_toggle.innerHTML = `<img src="./assets/icons/symbol.png" />`;
+    } else {
+        subscribe_toggle.className = "content_subscribe";
+        subscribe_toggle.value = "false";
+        subscribe_toggle.innerHTML = `<img src="./assets/icons/plus.png" />
+        <span>${SUBSCRIBE_TEXT}</span>`;
+    }
+}
+
+function createNewsNav(container, data, page, category, current) {
     const nav = document.createElement("nav");
     nav.classList.add("main_nav");
     const ul = document.createElement("ul");
 
-    CATEGORIES.forEach((item) => {
-        if (item === CATEGORIES[list_option.category]) {
+    category.forEach((item) => {
+        if (item === category[current]) {
             ul.innerHTML += `<li class="main_nav_title">
             <progress class="main_nav_progress"
                 value="${list_option.progress_time}"
                 min="0"
                 max="${PROGRESS_MAX}"></progress>
-            <span>${CATEGORIES[list_option.category]}</span>
-            <span class="progress_cnt">${page} / <b>${
-                data.length
-            }</b></span></li>`;
+            <span>${category[current]}</span>
+            ${
+                data.length > 1
+                    ? `<span class="progress_cnt">
+                    ${page} / <b>${data.length}</b>
+                </span>`
+                    : `<span class="progress_cnt"> > </span>`
+            }
+            </li>`;
         } else {
             ul.innerHTML += `<li class="main_nav_item">${item}</li>`;
         }
@@ -56,12 +118,11 @@ function createNewsNav(container, data, page) {
     container.appendChild(nav);
 }
 
-function createNewsHeader(parent, data, page) {
+function createNewsHeader(parent, data, page, current) {
     const container = document.createElement("div");
     container.classList.add("content_header");
 
     let press_url = 0;
-
     grid_option.press_data.forEach((item) => {
         if (item.name === data[page].press_name) {
             press_url = item.url;
@@ -74,11 +135,13 @@ function createNewsHeader(parent, data, page) {
         class="content_press" alt="${press_url}"/>
         <p class="content_edit">${data[page].last_edit} 편집</p>
         ${
-            subscribe
-                ? `<button class="content_subscribe_cancel">
+            subscribe === "true"
+                ? `<button class="content_subscribe_cancel"
+                name="${data[page].press_name}" value="${subscribe}">
                 <img src="./assets/icons/symbol.png" />
                 </button>`
-                : `<button class="content_subscribe">
+                : `<button class="content_subscribe"
+                name="${data[page].press_name}" value="${subscribe}">
                     <img src="./assets/icons/plus.png" />
                     <span>${SUBSCRIBE_TEXT}</span>
                     </button>`

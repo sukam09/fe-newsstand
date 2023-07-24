@@ -7,7 +7,7 @@ import {
     PROGRESS_MAX,
     MAX_CATEGORY,
 } from "./constants.js";
-import { list_option } from "./globals.js";
+import { list_option, subscribe_option } from "./globals.js";
 import {
     fetchPressData,
     fetchNewsData,
@@ -32,17 +32,22 @@ export function render(options, data, page, category) {
     }
     if (options.main === "list") {
         renderListView(options, data, category, page);
+        if (options.target === "sub" || data === undefined) {
+            return;
+        }
         setProgress(
             options,
             data,
             page,
             category,
             "main_nav_progress",
-            options.callback
+            options.callbacks
         );
         // options.callback 실행
-        if (options.callback) {
-            options.callback();
+        if (options.callbacks) {
+            options.callbacks.forEach((callback) => {
+                callback();
+            });
         }
     }
 }
@@ -91,7 +96,7 @@ export function clear(container, option) {
  * @param {*} name
  * @param {*} list_option
  */
-export function setProgress(options, data, page, category, name, callback) {
+export function setProgress(options, data, page, category, name, callbacks) {
     const progress = document.querySelector(`.${name}`);
 
     list_option.interval = setInterval(() => {
@@ -105,7 +110,7 @@ export function setProgress(options, data, page, category, name, callback) {
                 page + 1,
                 data,
                 category,
-                callback
+                callbacks
             );
         }
         progress.value = list_option.progress_time;
@@ -169,16 +174,18 @@ function toggleArrow(mode, page, max) {
  * @param {*} view
  * @param {*} option
  */
-export function useMovePage(page, data, category, callback) {
-    if (page >= data[CATEGORIES[category]].length) {
-        category = updateCategoryIndex(category + 1, "next")["category"];
+export function useMovePage(press, page, data, category, callbacks) {
+    const new_category =
+        press === "all" ? CATEGORIES : subscribe_option.subscribe_categories;
+    if (page >= data[new_category[category]].length) {
+        category = updateCategoryIndex(category + 1, "next", press)["category"];
         page = 0;
     }
-    if (page < 0) {
-        category = updateCategoryIndex(category - 1, "prev")["category"];
-        page = data[CATEGORIES[category]].length - 1;
+    if (page === -1) {
+        category = updateCategoryIndex(category - 1, "prev", press)["category"];
+        page = data[new_category[category]].length - 1;
     }
-    render(setOptions(undefined, callback), data, page, category);
+    render(setOptions("all", callbacks), data, page, category);
 }
 /**
  * @description
@@ -263,7 +270,7 @@ function updateBanner(banner, banner_time, loc) {
  * @param {String} direction - prev, next
  * @param {String} view - grid, list
  */
-export function handlePage(main, press, page, data, category, callback) {
+export function handlePage(main, press, page, data, category, callbacks) {
     if (main === "grid") render(setOptions(), data, page);
-    else useMovePage(page, data, category, callback);
+    else useMovePage(press, page, data, category, callbacks);
 }

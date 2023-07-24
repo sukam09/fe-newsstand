@@ -12,6 +12,8 @@ import {
     renderOptions,
     getCalPage,
     setCategoryIndex,
+    setPageIndex,
+    setSubscribeNewsData,
 } from "./utils.js";
 import {
     render,
@@ -29,6 +31,7 @@ import {
     renderSnackBarView,
     createSnackBarView,
 } from "./views/snack_bar_views.js";
+import { createModalBarView } from "./views/modal_bar_views.js";
 
 /**
  * @description
@@ -49,7 +52,7 @@ function subscribeOptionEvent() {
  * 1. 메인 옵션 변경 이벤트
  * 2. grid_views, list_views, 메인 옵션 클릭 이벤트
  */
-function main_ptionEvent() {
+function mainOptionEvent() {
     const option_main_elements = document.querySelectorAll(".option_main");
     option_main_elements.forEach((option_main) => {
         option_main.addEventListener("click", (event) =>
@@ -74,7 +77,6 @@ function optionListener(event, selected) {
 
     if (selected === "main")
         updateMainNewsContainer(option_elements, main_option);
-
     clearAndRender(main_option, press_option);
 }
 
@@ -105,12 +107,7 @@ function clearAndRender(main, press) {
     const { data, page, category } = renderOptions()[main][press];
 
     changeViewArrow(main);
-    render(setOptions(undefined, changeCategoryEvent), data, page, category);
-
-    // if (main === "list") {
-    //     changeCategoryEvent();
-    // }
-
+    render(setOptions("all", [changeCategoryEvent]), data, page, category);
     togglePressEvent();
 }
 
@@ -131,7 +128,6 @@ function arrowPagingEvent() {
         const { data, page } = renderOptions()[main][press];
         if (page <= 0) return;
         handlePage(main, press, getCalPage(-1), data);
-
         togglePressEvent();
     });
 
@@ -140,34 +136,25 @@ function arrowPagingEvent() {
         const { data, page } = renderOptions()[main][press];
         if (page >= length) return;
         handlePage(main, press, getCalPage(1), data);
-
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
         const { main, press } = setOptions();
         const { data, category } = renderOptions()[main][press];
-        handlePage(
-            main,
-            press,
-            getCalPage(-1),
-            data,
-            category,
-            changeCategoryEvent
-        );
+        handlePage(main, press, getCalPage(-1), data, category, [
+            changeCategoryEvent,
+            togglePressEvent,
+        ]);
     });
 
     list_right_arrow.addEventListener("click", () => {
         const { main, press } = setOptions();
         const { data, category } = renderOptions()[main][press];
-        handlePage(
-            main,
-            press,
-            getCalPage(1),
-            data,
-            category,
-            changeCategoryEvent
-        );
+        handlePage(main, press, getCalPage(1), data, category, [
+            changeCategoryEvent,
+            togglePressEvent,
+        ]);
     });
 }
 
@@ -248,24 +235,34 @@ const handleMouseLeave = (event) => {
  */
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
+
     let snack_animation_time;
 
     subscribe.forEach((press) => {
         press.addEventListener("click", () => {
             clearTimeout(snack_animation_time);
+
+            const { main: main_option, press: press_option } = setOptions();
+            const { page } = renderOptions()[main_option];
+
+            if (press.value === "true") {
+                modalBarEvent(press.name, press.value);
+                return;
+            }
+
             const snack_bar = document.querySelector(".snack_bar_text");
             snack_animation_time = setSnackBar();
 
-            const { main: main_ption, press: press_option } = setOptions();
-            const { page } = renderOptions()[main_ption];
-
-            render(setOptions("sub"), press, page);
+            render(setOptions("sub", [togglePressEvent]), press, page);
             subscribe_option.subscribe_press[press.name] = press.value;
+            subscribe_option.subscribe_categories.push(press.name);
+            setSubscribeNewsData();
+
             if (press_option === "subscribe") {
-                clearAndRender(main_ption, press_option);
+                clearAndRender(main_option, press_option);
             }
 
-            renderSnackBarView(snack_bar, press.value);
+            renderSnackBarView(snack_bar);
         });
     });
 }
@@ -281,12 +278,14 @@ function changeCategoryEvent() {
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            setCategoryIndex(item.innerHTML);
             const { main: main_option, press: press_option } = setOptions();
+            setCategoryIndex(item.innerHTML, press_option);
+            setPageIndex(0);
             const { data, page, category } =
                 renderOptions()[main_option][press_option];
+
             render(
-                setOptions(undefined, changeCategoryEvent),
+                setOptions("all", [changeCategoryEvent, togglePressEvent]),
                 data,
                 page,
                 category
@@ -319,9 +318,50 @@ function bannerMouseEvent(action) {
     });
 }
 
-async function initEvent() {
-    showToday("today");
+function modalBarEvent(name, value) {
+    const modal_bar_container = document.querySelector(".modal_bar_container");
 
+    modal_bar_container.style.display = "block";
+    modal_bar_container.style.animation = "appear 0.5s forwards";
+
+    const modal_bar_name = document.querySelector(".modal_bar_text b");
+    modal_bar_name.innerHTML = name;
+
+    const modal_bar_terminate = document.querySelector(".modal_bar_terminate");
+    const modal_bar_cancel = document.querySelector(".modal_bar_cancel");
+
+    modal_bar_terminate.addEventListener("click", () => {
+        const modal_bar_container = document.querySelector(
+            ".modal_bar_container"
+        );
+        const { main: main_option, press: press_option } = setOptions();
+        subscribe_option.subscribe_press[name] = "false";
+        subscribe_option.subscribe_categories.splice(
+            subscribe_option.subscribe_categories.indexOf(name),
+            1
+        );
+        setSubscribeNewsData();
+        modal_bar_container.style.animation = "disappear 0.5s forwards";
+        clearAndRender(main_option, press_option);
+        setTimeout(() => {
+            modal_bar_container.style.display = "none";
+        }, 500);
+    });
+
+    modal_bar_cancel.addEventListener("click", () => {
+        const modal_bar_container = document.querySelector(
+            ".modal_bar_container"
+        );
+        const { main: main_option, press: press_option } = setOptions();
+        modal_bar_container.style.animation = "disappear 0.5s forwards";
+        clearAndRender(main_option, press_option);
+        setTimeout(() => {
+            modal_bar_container.style.display = "none";
+        }, 500);
+    });
+}
+
+async function initEvent() {
     try {
         const data = await save();
 
@@ -337,9 +377,6 @@ async function initEvent() {
         view_option.hot_topic_data = data["hot_topic_data"];
 
         render(setOptions(), grid_option.press_data, grid_option.page);
-        /*
-            render(view_option, grid_option);
-        */
         renderHotTopicsView(
             data["hot_topic_data"][0],
             data["hot_topic_data"][1],
@@ -347,12 +384,10 @@ async function initEvent() {
                 bannerMouseEvent(controlBanner());
             }
         );
-        /*
-            render(view_option, ...);
-        */
 
         togglePressEvent();
         createSnackBarView("container_center");
+        createModalBarView("container_center");
     } catch (error) {
         console.log(error);
     }
@@ -361,9 +396,10 @@ async function initEvent() {
 function handleEvents() {
     initEvent();
     subscribeOptionEvent();
-    main_ptionEvent();
+    mainOptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
+    showToday("today");
 }
 
 export { handleEvents };

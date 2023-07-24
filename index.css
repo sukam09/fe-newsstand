@@ -254,6 +254,10 @@ body {
     font-size: 14px;
     font-weight: 500;
     height: 40px;
+    /* 가로 스크롤 */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
 .main_nav_title {
@@ -279,7 +283,7 @@ body {
     font-weight: 700;
 }
 
-.main_nav_title progress {
+.main_nav_progress {
     position: absolute;
     z-index: 0;
     width: 200px;
@@ -287,12 +291,12 @@ body {
     height: 40px;
 }
 
-.main_nav_title progress::-webkit-progress-bar {
+.main_nav_progress::-webkit-progress-bar {
     background: #7890e7;
     overflow: hidden;
 }
 
-.main_nav_title progress::-webkit-progress-value {
+.main_nav_progress::-webkit-progress-value {
     background: var(--surface-brand-default);
     transition: all 1s ease-out;
 }
@@ -324,6 +328,13 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 16px;
+}
+
+.error_message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .content_header {
@@ -457,6 +468,75 @@ body {
     color: var(--text-white-default);
     font-weight: 500;
     margin: 0;
+}
+
+.modal_bar_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 320px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
+        0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+
+.modal_bar_text {
+    font-size: 16px;
+    font-style: normal;
+    color: var(--text-default);
+    gap: 10px;
+    align-self: stretch;
+
+    text-align: center;
+    font-weight: 500;
+    line-height: 22px;
+    height: 100%;
+    margin: 0;
+    padding: 24px;
+
+    border: 1px solid var(--border-default);
+    border-bottom: none;
+    background: var(--surface-default);
+}
+
+.modal_bar_text b {
+    font-weight: 700;
+    line-height: normal;
+    color: var(--text-strong);
+}
+
+.modal_bar_button_container {
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    background-color: var(--surface-default);
+}
+
+.modal_bar_button {
+    display: flex;
+    padding: 10px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border: 1px solid var(--border-default);
+    background-color: var(--surface-alt);
+    cursor: pointer;
+}
+
+.modal_bar_button:hover {
+    color: var(--text-default, #5f6e76);
+    text-decoration: underline;
+}
+
+.modal_bar_terminate {
+    border-right: none;
 }
 
 @keyframes roll-up-left {
