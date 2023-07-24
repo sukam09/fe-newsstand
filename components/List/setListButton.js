@@ -73,6 +73,7 @@ export const moveToPrevPage = (
         current_category
       );
     } else {
+      current_page--;
       ListComponent(
         current_page,
         sorted_agencies,
