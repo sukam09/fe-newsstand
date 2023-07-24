@@ -1,13 +1,17 @@
-import { RollingRender } from "./module/components/Rolling.js";
-import { printGrid } from "./module/view/GridView.js";
-import { initDate } from "./module/utility/Date.js";
-import SelectViewStyle from "./module/ViewStyle.js";
+import { initDate } from "./src/util/data.js";
+import { RollingRender } from "./src/view/rolling.js";
+import { renderGrid } from "./src/view/grid.js";
+import { controller } from "./src/controller/controlIndex.js";
 
 function main() {
   initDate(); // 오늘 날짜
   RollingRender(); // 롤링
-  printGrid(); // 그리드뷰
-  SelectViewStyle(); // 뷰 선택
+
+  //컨트롤
+  controller();
+
+  //뷰
+  renderGrid();
 }
 
 main();

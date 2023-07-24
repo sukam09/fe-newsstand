@@ -1,6 +1,13 @@
+import { shuffle_press } from "./src/util/shuffle.js";
+
+export async function fetchNews(path) {
+  const jsonData = await jsonfetch(path);
+  return jsonData;
+}
+
+//////////
 export async function fetchPressData(path) {
   const jsonData = await jsonfetch(path);
-  shuffle_id(jsonData);
   return jsonData;
 }
 
@@ -21,32 +28,4 @@ async function jsonfetch(path) {
   return fetch(path).then((response) => {
     return response.json();
   });
-}
-
-function shuffle_id(news_icon) {
-  let currentIndex = news_icon.length,
-    tempValue,
-    randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    tempValue = news_icon[currentIndex].path;
-    news_icon[currentIndex].path = news_icon[randomIndex].path;
-    news_icon[randomIndex].path = tempValue;
-  }
-}
-function shuffle_press(press) {
-  console.log(press);
-  let currentIndex = press.length,
-    tempValue,
-    randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    tempValue = press[currentIndex];
-    press[currentIndex] = press[randomIndex];
-    press[randomIndex] = tempValue;
-  }
 }

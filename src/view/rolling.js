@@ -53,22 +53,24 @@ function ChangeArticlesOrder(articles, rollingWrap) {
 }
 
 function DoingRolling(leftArticles, rightArticles) {
-  IntervalId = setInterval(() => {
-    //왼쪽 롤링
-    RollingAnimation(leftRollingWrap);
+  function delay() {
+    return new Promise((resolve) => setTimeout(resolve, 1000));
+  }
 
-    // 왼쪽 transition delay 처리
-    setTimeout(() => {
-      ChangeArticlesOrder(leftArticles, leftRollingWrap);
-      //오른쪽 롤링
+  function rolling(wrapElement, articles) {
+    return new Promise((resolve) => {
+      RollingAnimation(wrapElement);
       setTimeout(() => {
-        RollingAnimation(rightRollingWrap);
-        //오른쪽 transition delay
-        setTimeout(() => {
-          ChangeArticlesOrder(rightArticles, rightRollingWrap);
-        }, ANIMATION_DELAY); //1.5초 뒤
-      }, LEFT_RIGHT_ROLLING_GAP_TIME / 2); //1초 뒤
-    }, ANIMATION_DELAY); //0.5초 뒤
+        ChangeArticlesOrder(articles, wrapElement);
+        resolve();
+      }, ANIMATION_DELAY);
+    });
+  }
+
+  IntervalId = setInterval(() => {
+    rolling(leftRollingWrap, leftArticles)
+      .then(delay)
+      .then(() => rolling(rightRollingWrap, rightArticles));
   }, ARTICLE_CHANGE_TIME);
 }
 
