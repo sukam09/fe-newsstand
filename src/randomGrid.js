@@ -57,8 +57,8 @@ grid_next.addEventListener("click", () => {
     document.getElementById("press-list").innerHTML = "";
     grid_page_count += 1;
     const slice_shuffled_presses = shuffled_presses.slice(
-      grid_page_count * 24,
-      grid_page_count * 24 + 24
+      grid_page_count * PRESS_NUM_IN_GRID,
+      PRESS_NUM_IN_GRID * (grid_page_count + 1)
     );
     slice_shuffled_presses.forEach((press) => {
       appendPressInGrid(press);
@@ -77,8 +77,8 @@ grid_prev.addEventListener("click", () => {
     document.getElementById("press-list").innerHTML = "";
     grid_page_count -= 1;
     const slice_shuffled_presses = shuffled_presses.slice(
-      grid_page_count * 24,
-      grid_page_count * 24 + 24
+      grid_page_count * PRESS_NUM_IN_GRID,
+      PRESS_NUM_IN_GRID * (grid_page_count + 1)
     );
     slice_shuffled_presses.forEach((press) => {
       appendPressInGrid(press);
