@@ -1,155 +1,91 @@
-# :file_folder: 뉴스스탠드 2주차
-### 필요기능(2주차) 
-#### 최신 뉴스 자동 롤링 영역
-- [X] 왼쪽 바와 오른 쪽 바 각각 다른 최신 뉴스의 헤드라인 5개가 5초마다 자동으로 무한 롤링
-- [X] 좌우 영역의 시간차는 1초 (= 두 영역의 뉴스가 동시에 롤링 X)
-- [X] 각 영역에 마우스를 호버하면, 무한 롤링 일시정지 후 헤드라인에 밑줄 표시
-   
-![ezgif com-video-to-gif](https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/62049151/3e41cd92-644d-4daa-90d4-b8e7f4bff87e)   
-(시연을 위해 자동롤링 시간을 3초로 변경)
-#### 전체 언론사 : 리스트 보기
-- [X] 언론사 리스트 뷰 html, css 구현
-- [X] 언론사 리스트 뷰와 그리드 뷰 전환 가능
-- [X] 선택된 카테고리의 이름 옆에 전체 언론사 개수 및 현재 언론사의 순서 표시
-- [ ] 새로고침시 언론사 순서 랜덤 배정
-- [ ] 프로그래스바 구현
-- [ ] 한 언론사당 프로그래스바에 20초 시간 부여 및 20초 후 다음 언론사로 전환
-- [ ] 선택된 카테고리의 마지막 언론사의 할당 시간(20초)이 지날 경우 다음 카테고리로 전환
-- [ ] 좌우 화살표를 통해 이전/이후 언론사 즉시 변경 가능
+# :file_folder: 뉴스스탠드 3주차
+### 기능 구현
+2주차 때 못했던 기능 구현 이어서 하기
 
-![ezgif com-video-to-gif (1)](https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/62049151/1191698a-2bfa-4004-9cdb-1038ed119c5f)
-<br><br><br>
-### 학습 목표 및 계획   
-- [X] 함수 단위로 애플리케이션 나누기
-- [X] ES Modules을 사용하여 모듈단위 프로그래밍 개발하기
-- [X] 가시적인 폴더 구조 만들기
-- [X] 범용성을 고려한 util 모듈 만들기
-- [X] 개발 목적 및 구조 명확하게 이해하기
-- [X] 깃 커밋 컨벤션 지키기
-<a href='https://ifh.cc/v-AxXcNz' target='_blank'><img src='https://ifh.cc/g/AxXcNz.jpg' border='0'></a>
-- [X] fetch를 이용해 JSON객체 데이터 받아오기
-```javascript
-export async function fetchData(url) {
+### 📍 카테고리바 기능 개발
+- [x] 카테고리 데이터 받아오기(이름 및 개수)
+- [x] 카테고리 누를 때마다 이동
+- [x] press content에 페이지 이동 화살표로 카테고리 전환
+
+### 📍 리스트뷰일 때 각각에 해당하는 뉴스 데이터 받아오기
+- [x] JSON 데이터에 SubNews 목록 및 사진 데이터 추가
+- [x] 화면에 따른 데이터 받아서 출력
+
+![ezgif com-video-to-gif (3)](https://github.com/meanz1/fe-newsstand/assets/62049151/4156c594-1495-4771-86e7-47566c03a5ab)
+
+
+### 📍 프로그레스바 효과주기
+- [x] 프로그레스바 효과 넣기 (CSS)
+- [x] 20초 지날 때마다 페이지 인덱스 변화주기 (JS)
+
+![ezgif com-video-to-gif (2)](https://github.com/meanz1/fe-newsstand/assets/62049151/5894c1f9-a0ba-4712-90ba-9c175c7e3613)
+
+(데모영상에서는 프로그레스바 진행 시간을 2초로 설정함)
+
+
+### 배운 점 및 고민했던 점   
+#### 시도한 것 및 배운 것
+- Reduce 함수 사용(다양한 메소드 및 함수들 사용해보려 노력함)
+  ```javascript
+  const putSubTitles = categoryData.subNews.reduce((acc, _, idx)=> {
+    return acc + `<span class="press-content-news-title">${categoryData.subNews[idx]}</span>`
+  }, "");
+  ```
+  ```javascript
+  const categoryMap = categoryNames.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {})
+  ```
+- JSON 데이터를 받아와서 카테고리 이름 및 개수 parsing 한 값 사용
+  ```javascript
+  const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
+  const categoryNames = categoryPath.newsList.map((elem) => elem.category);
+
+  // 누적합 연산을 통한 카테고리 개수세기
+  const categoryMap = categoryNames.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {})
+  ```
+- fetch를 이용하여 데이터 통신
+  ```javascript
+  export async function fetchData(url) {
   try {
     const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (err) {
-    console.log("Error : ", err);
+    console.error("Error : ", err);
     return null;
-  }
-}
-```
-
-```javascript
-const imgPath = await fetchData("../assets/data/newspaperSrc.json");
-  const imgId = imgPath.newsList.map((elem) => {
-    return elem.id;
-  })
-```
-<br><br><br>
-### 설계
-<a href='https://ifh.cc/v-1OMqfJ' target='_blank'><img src='https://ifh.cc/g/1OMqfJ.jpg' border='0'></a>
-<a href='https://ifh.cc/v-ozkAbJ' target='_blank'><img src='https://ifh.cc/g/ozkAbJ.jpg' border='0'></a>
-<br><br><br>
-### 구조   
-```bash
-├── assets
-│   ├── data
-│   │   ├── newsTitle.json (헤드라인 뉴스 자동롤링 구현 시 필요한 데이터)
-│   │   └── newspaperSrc.json (언론사 그리드 뷰에서 필요한 데이터)
-│   └── images
-│       ├── pressLogo
-│       │   ├── dark (다크모드에서 사용하는 언론사 이미지)
-│       │   └── light (라이트모드에서 사용하는 언론사 이미지)
-│       └── symbols (언론사 이미지를 제외하고 사용하는 여러 심볼 이미지)
-├── css
-│   ├── header (헤더에서 사용하는 css)
-│   │   └── header.css
-│   ├── newsbar (자동롤링 구현 시 사용하는 css)
-│   │   └── rolling.css
-│   ├── pressContent (언론사 그리드/리스트 뷰 구현 시 사용하는 css)
-│   │   └── pressContent.css
-│   └── style.css (공통으로 사용하는 css)
-├── index.html (메인 html 파일)
-├── readme.md
-├── script
-│   ├── app.js (html 파일과 이어주는 js)
-│   ├── header (헤더에서 사용하는 js)
-│   │   └── showTodayDate.js
-│   ├── newsbar (자동롤링 구현 시 사용하는 js)
-│   │   └── rolling.js
-│   └── pressContent (언론사 그리드/리스트 뷰 구현 시 사용하는 js)
-│       ├── pressGridList.js
-│       └── pressViewChange.js
-└── utils (범용성을 고려해 다른 프로젝트에서도 사용할 수 있는 파일)
-    ├── css 
-    │   └── reset.css (css 초기화 파일)
-    └── js
-        ├── getElements.js (원하는 요소를 얻을 수 있는 함수 재구조화)
-        └── getJson.js (fetch를 이용해 데이터를 주고 받는 js파일)
-```
-<br><br><br>
-### 배운 점 및 고민했던 점   
-#### 범용성
-
-- 모듈화
-
-```javascript
-import { startRolling, getNewsHeadline } from './newsbar/rolling.js';
-import { pressViewChange } from './pressContent/pressViewChange.js';
-import { showDate } from './header/showTodayDate.js';
-import { shuffleImgs, changePressGrid } from './pressContent/pressGridList.js';
-```
-+  다른 프로젝트에서도 사용할 수 있는 util 생성   
-
-```javascript
-function getElemId(base, id) {
-  return base.getElementById(id);
-}
-
-function getElemClass(base, className) {
-  return base.getElementsByClassName(className);
-}
-
-function getQuerySelector(base, selector) {
-  return base.querySelector(selector)
-}
-
-function getQuerySelectorAll(base, selector) {
-  return base.querySelectorAll(selector);
-}
-
-export { getElemId, getElemClass, getQuerySelector, getQuerySelectorAll };
-```
+     }
+   }
+   ```
+- 깃 이슈 생성하고, 각 이슈에 따른 브랜치 생성 및 개발 후 메인에 merge
+  <a href='https://ifh.cc/v-p9ytJ6' target='_blank'><img src='https://ifh.cc/g/p9ytJ6.jpg' border='0'></a>
+- constants 파일을 이용하여 매직 넘버 줄이기
+  ```javascript
+  // 롤링 뉴스 개수
+   export const HEADLINE_ROLLING_NEWS_NUM = 5;
+   
+   // 좌 우 롤링 컨테이너 시간차
+   export const HEADLINE_ROLLING_TIME_GAP = 1000;
+   
+   // 롤링 컨테이너 롤링 주기
+   export const HEADLINE_ROLLING_TIME = 5000;
+   ```
 
 
-#### 가독성
-- 고차함수(map, forEach)를 사용하려고 노력
-- 시맨틱한 함수, 변수 명 설정
-- 삼항연산자 사용
-- 최대한 함수 인자 사용
-```javascript
-// 각각의 페이지에 올바른 뉴스데이터 나타내기
-function showPressImg(flag) {
-  const pressContentView = getElemClass(document, 'press-content-view');
-  pageNumber = (flag >= 0) ? ++pageNumber : --pageNumber;
+#### 고민했던 것
+- 카테고리바에서 현재 페이지 및 전체 페이지 받아오는 부분  
+  <a href='https://ifh.cc/v-FWolAd' target='_blank'><img src='https://ifh.cc/g/FWolAd.jpg' border='0'></a>
+- 프로그레스 바 구현을 어떻게 할지
 
-  sectionPrevButton.style.visibility = pageNumber !== 0 ? "visible" : "hidden";
-  sectionNextButton.style.visibility = pageNumber >= 3 ? "hidden" : "visible";
-  let imgSrcContent = "";
-  page[pageNumber].forEach((elem) => {
-    imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
-  })
-  pressContentView[0].innerHTML = imgSrcContent;
-}
-```
 
-<br><br><br>
 ### 아쉬운 점 및 개선할 점
-- 지식의 부족으로 설계에 어려움 겪음(거의 할 수 없었음)...
-- 시맨틱한 함수 및 변수 이름 설정하기
-- html에서 좀 더 시맨틱한 태그 사용하기
-- 매직넘버를 사용하기
-- classList 사용하여 DOM객체 불러오는 것 줄이기
+- 리스트뷰에 있다가 그리드뷰 갔다가 다시 리스트뷰에 오면 현재 페이지의 정보가 저장되는 것(현재 페이지 번호 초기화 해주어야함)
+- 지식의 부족으로 여전히 설계에 어려움을 겪고 있는 것  
+  <a href='https://ifh.cc/v-TfMW0v' target='_blank'><img src='https://ifh.cc/g/TfMW0v.jpg' border='0'></a>
+- rAF로 프로그레스바 구현해보고 싶었는데 하지 못한 것
+- 3주차 진도를 따라가지 못해 동료들이 하는 이야기를 온전히 알아듣지 못한 것
 

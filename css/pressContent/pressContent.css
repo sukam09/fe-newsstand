@@ -38,54 +38,97 @@
   border-bottom: 1px solid #d2dae0;
   display: flex;
   align-items: center;
-
-}
-
-#category-all-economy {
-  display: flex;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
-  width: 134px;
-  background-color: #7890E7;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.press-content-category-name {
-  color: #ffffff;
-}
-
-.press-content-category-num-now {
-  color: #ffffff;
-}
-
-.press-content-category-num-all {
-  color: #FFFFFFB2;
+ 
 }
 
 .press-content-category {
-  justify-content: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
   padding: 0px 16px;
   color: #879298;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  position: relative;
+  z-index: 1;
 }
 
-#press-content-prev {
+.press-content-category * {
+  z-index: 3;
+  white-space: nowrap;
+}
+
+@keyframes progress {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 166px;
+  }
+}
+
+.selected .press-content-category-progressbar {
+  height: 40px;
+  width: 166px;
+  background-color: blue;
+  left: 0px;
+  z-index: 2;
+  animation: 2s linear progress;
+  position: absolute;
+}
+
+.selected {
+  width: 134px;
+  background-color: #7890E7;
+  color: #ffffff;
+  position: relative;
+}
+
+.selected > .press-content-category-cnt {
+  display: block;
+}
+
+.unselected {
+  background-color: none;
+  color: #879298;
+}
+
+.press-content-category-cnt-now {
+  color: #ffffff;
+}
+
+.press-content-category-cnt {
+  display: none;
+}
+
+.press-content-category-cnt-all {
+  color: #FFFFFFB2;
+}
+
+#press-content-grid-prev {
   position: absolute;
   left: -71px;
-  visibility: hidden;
-
+  display: none;
 }
 
-#press-content-next {
+#press-content-grid-next {
   position: absolute;
   left: 978px;
+}
+
+#press-content-list-prev {
+  position: absolute;
+  left: -71px;
+  display: none;
+}
+
+#press-content-list-next {
+  position: absolute;
+  left: 978px;
+  display: none;
 }
 
 .press-content-news {
@@ -135,10 +178,16 @@
   gap: 16px;
 }
 
+.press-content-big-news > img {
+  width: 320px;
+  height: 200px;
+}
+
 .press-content-news-headlines {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding-bottom: 16px;
 }
 
 .press-content-news-title {

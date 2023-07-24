@@ -9,7 +9,7 @@ function showDate() {
     weekday: "long",
   };
   const formattedTodayDate = new Date().toLocaleDateString("ko", options);
-  const todayDate = getElemClass(document, 'header-date');
+  const todayDate = getElemClass('header-date');
   todayDate[0].innerHTML = formattedTodayDate;
 }
 
