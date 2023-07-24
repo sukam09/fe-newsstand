@@ -1,5 +1,5 @@
-import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
-import { getPressObj } from "./core/api.js";
+import { MAX_GRID_COUNT, PRESS_COUNT } from "./core/store/constants.js";
+import { getPressObj } from "./core/utils/api.js";
 import { getState, register, setState } from "./core/observer/observer.js";
 import {
   deletePress,
@@ -9,7 +9,7 @@ import {
   isSubTab,
   subscribeList,
 } from "./core/store/store.js";
-import { $, $All, shuffleArray } from "./core/util.js";
+import { $, $All, shuffleArray } from "./core/utils/util.js";
 
 let pressObj = null;
 

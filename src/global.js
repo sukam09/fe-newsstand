@@ -1,4 +1,4 @@
-import { $, $All } from "./core/util.js";
+import { $, $All } from "./core/utils/util.js";
 import { getState, register, setState } from "./core/observer/observer.js";
 import {
   gridPageIdx,

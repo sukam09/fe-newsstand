@@ -1,6 +1,6 @@
 import { getState, register, setState } from "../core/observer/observer.js";
 import { deletePress, isAlertOn, subscribeList } from "../core/store/store.js";
-import { $ } from "../core/util.js";
+import { $ } from "../core/utils/util.js";
 
 const alert = $(".alert_container");
 const yesButton = $(".confirm_button--yes", alert);

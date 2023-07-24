@@ -1,4 +1,4 @@
-import { MAX_GRID_COUNT } from "../../constant/constants.js";
+import { MAX_GRID_COUNT } from "../core/store/constants.js";
 import { getState, register, setState } from "../core/observer/observer.js";
 import {
   gridPageIdx,
@@ -7,7 +7,7 @@ import {
   listPageIdx,
   subscribeList,
 } from "../core/store/store.js";
-import { $ } from "../core/util.js";
+import { $ } from "../core/utils/util.js";
 
 const leftButton = $(".left_navigation_button");
 const rightButton = $(".right_navigation_button");

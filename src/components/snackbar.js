@@ -1,6 +1,6 @@
 import { register } from "../core/observer/observer.js";
 import { isAlertOn, isSnackOn, subscribeList } from "../core/store/store.js";
-import { $ } from "../core/util.js";
+import { $ } from "../core/utils/util.js";
 
 const snackbar = $(".snackbar");
 const progressLine = $(".progress_line");

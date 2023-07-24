@@ -1,8 +1,8 @@
-import { MAX_NEWS_COUNT } from "../constant/constants.js";
-import { getNewsContents } from "./core/api.js";
+import { MAX_NEWS_COUNT } from "./core/store/constants.js";
+import { getNewsContents } from "./core/utils/api.js";
 import { getState, register } from "./core/observer/observer.js";
 import { categoryIdx, isGrid, listPageIdx } from "./core/store/store.js";
-import { $ } from "./core/util.js";
+import { $ } from "./core/utils/util.js";
 
 // 리스트뷰 element querySelector 함수
 function getListViewElement() {

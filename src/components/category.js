@@ -1,11 +1,11 @@
 import {
   CATEGORY_TAB_TIME,
   CATEGORY_CLICKED,
-} from "../../constant/constants.js";
-import { getNewsContents } from "../core/api.js";
+} from "../core/store/constants.js";
+import { getNewsContents } from "../core/utils/api.js";
 import { getState, register, setState } from "../core/observer/observer.js";
 import { categoryIdx, isGrid, listPageIdx } from "../core/store/store.js";
-import { $, $All } from "../core/util.js";
+import { $, $All } from "../core/utils/util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval;
