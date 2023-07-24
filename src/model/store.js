@@ -30,4 +30,9 @@ const showAlert = initState({
   defaultValue: false,
 });
 
-export { moveGrid, moveList, toggleView, toggleSubscription, showSnackBar, showAlert };
+const toggleDarkMode = initState({
+  key: "showAlert",
+  defaultValue: false,
+});
+
+export { moveGrid, moveList, toggleView, toggleSubscription, showSnackBar, showAlert, toggleDarkMode };

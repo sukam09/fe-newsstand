@@ -2,6 +2,7 @@ import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
 import { subscribe } from "../controller/observer.js";
 import { moveList, toggleView, toggleSubscription } from "../model/store.js";
+import { isDarkMode } from "../model/model.js";
 
 function initList(parentNode) {
   const dom = document.createElement("div");
@@ -47,7 +48,7 @@ function drawList() {
   const targetNews = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE] : GLOBAL.SUBSCRIBE_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE];
 
   const listPressIcon = listView.querySelector(".list-press-icon");
-  listPressIcon.src = targetNews.path;
+  listPressIcon.src = isDarkMode() ? targetNews.path_dark : targetNews.path;
 
   const editData = listView.querySelector(".edit-date");
   editData.innerHTML = `${targetNews.edit_date} 편집`;

@@ -16,6 +16,7 @@ html {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background: var(--surface-default);
 }
 
 body {
