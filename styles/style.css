@@ -451,6 +451,24 @@ header {
   line-height: normal;
 }
 
+.grid-unsubscribe-button {
+  display: none;
+  height: 24px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-border-bold, #6e8091);
+  background: var(--surface-surface-alt, #f5f7f9);
+  color: var(--text-text-bold, #4b5966);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .list-subscribe-button {
   display: flex;
   justify-content: center;
