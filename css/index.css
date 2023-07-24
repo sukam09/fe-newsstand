@@ -408,6 +408,7 @@ a:hover {
 
 /* press-news 구독해지 버튼 */
 .press-info .cancel {
+  box-sizing: content-box;
   height: 24px;
   padding: 0px 6px;
   border-radius: 50px;
@@ -480,7 +481,7 @@ a:hover {
 
 .thumbnail-title {
   overflow: hidden;
-  color: var(--text-text-strong);
+  color: var(--text-strong);
   text-overflow: ellipsis;
   font-size: 16px;
   line-height: 22px;
