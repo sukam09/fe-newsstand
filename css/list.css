@@ -52,8 +52,6 @@
   position: absolute;
 
   background-color: var(--color-surface-brand-default);
-
-  transition: width 1s linear;
 }
 .progress-component {
   width: 166px;

@@ -32,8 +32,8 @@ import { setOptionToggleButton } from "./components/main/option-toggle-button/in
   setHeader(headLineData);
   setGrid();
   setHeaderBar(categoryList);
-  setList(newsList, categoryList);
   setProgressBar(newsList, categoryList);
+  setList(newsList, categoryList);
   setNavigateButton();
   setViewToggleButton();
   setModeToggleButton();

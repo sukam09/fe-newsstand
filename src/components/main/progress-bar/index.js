@@ -4,7 +4,7 @@ import {
   changeCategory,
   changePress,
   initProgress,
-  startProgress,
+  renderProgress,
   updateCurrentPage,
 } from "./ProgressBar.js";
 import {
@@ -24,10 +24,10 @@ export const setProgressBar = async (newsList, categoryList) => {
 
   useSubscribeAtom(listPageState, changeCategory(newsList, categoryList));
   useSubscribeAtom(listPageState, updateCurrentPage(newsList));
-  useSubscribeAtom(listPageState, startProgress);
+  useSubscribeAtom(listPageState, renderProgress);
 
   useSubscribeAtom(subscribeListPageState, changePress(pressNewsList));
-  useSubscribeAtom(subscribeListPageState, startProgress);
+  useSubscribeAtom(subscribeListPageState, renderProgress);
 
   useSubscribeAtom(
     categoryState,

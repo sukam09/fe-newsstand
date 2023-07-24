@@ -15,9 +15,9 @@ import {
 } from "../../../store/store.js";
 import {
   CATEGORY_LENGTH,
-  PROGRESS_DIFF,
-  PROGRESS_MAX,
-  PROGRESS_TIME,
+  PROGRESS_DURATION,
+  PROGRESS_MAX_RATE,
+  PROGRESS_SCROLL_DURATION,
   VIEW_TYPE,
 } from "../../../constants/constants.js";
 import {
@@ -78,41 +78,45 @@ const initSubscribeListPageState = () => {
   useSetAtom(subscribeListPageState, 0);
 };
 
-let timeElapsed = 0;
-let interval;
+let startTime;
+let animationId = null;
+const renderProgress = () => {
+  startTime = performance.now();
+  cancelAnimationFrame(animationId);
+
+  animationId = requestAnimationFrame(startProgress);
+};
+
 const startProgress = () => {
-  const currentPage = useGetSelector(pageSelector);
+  const currentTime = performance.now();
+  const elapsedTime = currentTime - startTime;
+  const rate = (elapsedTime / PROGRESS_DURATION) * PROGRESS_MAX_RATE;
 
-  stopProgress();
+  updateProgress(rate);
+  if (rate >= PROGRESS_MAX_RATE) {
+    const currentPage = useGetSelector(pageSelector);
 
-  interval = setInterval(() => {
-    timeElapsed += PROGRESS_DIFF;
-    updateProgress();
+    startTime = performance.now();
 
-    if (timeElapsed === PROGRESS_MAX) {
-      timeElapsed = 0;
-
-      updateProgress();
-
-      useSetSelector(pageSelector, currentPage + 1);
-    }
-  }, PROGRESS_TIME);
+    useSetSelector(pageSelector, currentPage + 1);
+  } else {
+    animationId = requestAnimationFrame(startProgress);
+  }
 };
 
 const stopProgress = () => {
-  timeElapsed = 0;
-  clearInterval(interval);
-  updateProgress();
+  cancelAnimationFrame(animationId);
 };
-const updateProgress = () => {
+
+const updateProgress = (rate) => {
   const $progress = _querySelector(".progress");
-  if ($progress) $progress.style.width = timeElapsed + "%";
+  if ($progress) $progress.style.width = rate + "%";
 };
 
 const initProgress = () => {
   const currentViewState = useGetAtom(viewState);
 
-  currentViewState === VIEW_TYPE.LIST ? startProgress() : stopProgress();
+  currentViewState === VIEW_TYPE.LIST ? renderProgress() : stopProgress();
 };
 
 const updateCurrentPage = (newsList) => () => {
@@ -205,14 +209,13 @@ const activatePressScroll = () => {
   const containerLeft = wrapper.getBoundingClientRect().left;
   const targetLeft = targetElement.getBoundingClientRect().left;
 
-  const scrollDuration = 500;
   const startTime = performance.now();
   const originalScrollLeft = wrapper.scrollLeft;
   const targetScrollLeft = wrapper.scrollLeft + targetLeft - containerLeft;
 
   const smoothScroll = (timestamp) => {
     const currentTime = timestamp - startTime;
-    if (currentTime >= scrollDuration) {
+    if (currentTime >= PROGRESS_SCROLL_DURATION) {
       wrapper.scrollLeft = targetScrollLeft;
       return;
     }
@@ -220,19 +223,29 @@ const activatePressScroll = () => {
     const easeValue = easeInOutQuad(
       currentTime,
       originalScrollLeft,
-      targetScrollLeft - originalScrollLeft,
-      scrollDuration
+      targetScrollLeft - originalScrollLeft
     );
     wrapper.scrollLeft = easeValue;
 
     requestAnimationFrame(smoothScroll);
   };
 
-  const easeInOutQuad = (t, b, c, d) => {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
+  const easeInOutQuad = (
+    currentTime,
+    originalScrollLeft,
+    diffScrollLeft,
+    scrollDuration
+  ) => {
+    currentTime /= scrollDuration / 2;
+    if (currentTime < 1)
+      return (
+        (diffScrollLeft / 2) * currentTime * currentTime + originalScrollLeft
+      );
+    currentTime--;
+    return (
+      (-diffScrollLeft / 2) * (currentTime * (currentTime - 2) - 1) +
+      originalScrollLeft
+    );
   };
 
   requestAnimationFrame(smoothScroll);
@@ -273,7 +286,7 @@ const createPressProgressInner = (title) => {
 
 export {
   updateCurrentPage,
-  startProgress,
+  renderProgress,
   stopProgress,
   changeCategory,
   changeActivateCategory,
