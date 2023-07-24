@@ -27,11 +27,11 @@ const setArrowDisplay = (store, leftArrow, rightArrow) => {
   rightArrow.style.display = rightDisplay;
 };
 
-const GridItem = (themeStore, index, navStore, store) => {
+const GridItem = (themeStore, index, navStore, viewStore) => {
   const gridItem = document.createElement('li');
   const gridItemImage = document.createElement('img');
-  const page = store.getState().page;
-  const mediaId = store.getState().media[index + page * MEDIA.PAGE_SIZE];
+  const page = viewStore.getState().page;
+  const mediaId = viewStore.getState().media[index + page * MEDIA.PAGE_SIZE];
 
   gridItem.appendChild(gridItemImage);
   gridItemImage.classList.add('media_logo');
@@ -42,7 +42,7 @@ const GridItem = (themeStore, index, navStore, store) => {
   );
   gridItemImage.classList.add(`media_${mediaId}`);
   setMediaLogo(gridItemImage, mediaId, themeStore.getState().theme);
-  gridItem.appendChild(SubButtonArea(mediaId, navStore, store));
+  gridItem.appendChild(SubButtonArea({ id: mediaId, navStore, viewStore }));
   return gridItem;
 };
 

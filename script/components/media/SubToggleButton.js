@@ -1,4 +1,5 @@
 import { MSG } from '../../constants.js';
+import { getNewsData } from '../../fetch/getNewsData.js';
 import Button from '../Button.js';
 import SnackBar from '../SnackBar.js';
 import UnsubAlert from './UnsubAlert.js';
@@ -25,9 +26,9 @@ const SubButton = (id, navStore) => {
   });
 };
 
-const unsubscribe = (id, navStore, viewStore, button) => {
+const unsubscribe = (id, name, navStore, viewStore, button) => {
   document.querySelector('#media_view').appendChild(
-    UnsubAlert(id, 'asdf', id => {
+    UnsubAlert(id, name, id => {
       const { media, subscribed } = navStore.getState();
       const { page, media: sub } = viewStore.getState();
 
@@ -41,29 +42,39 @@ const unsubscribe = (id, navStore, viewStore, button) => {
   );
 };
 
-const UnsubButton = (id, navStore, viewStore, withText) => {
+const UnsubButton = (id, name, navStore, viewStore, withText) => {
   return Button({
     icon: 'close',
     isWhite: false,
     text: withText ? MSG.BUTTON_UNSUB : null,
     onClick: button => {
-      unsubscribe(id, navStore, viewStore, button);
+      unsubscribe(id, name, navStore, viewStore, button);
     },
   });
 };
 
-const SubToggleButton = ({ id, navStore, viewStore, withText = true }) => {
+const SubToggleButton = ({
+  id,
+  name,
+  navStore,
+  viewStore,
+  withText = true,
+}) => {
   if (navStore.getState().subscribed.includes(id)) {
-    return UnsubButton(id, navStore, viewStore, withText);
+    return UnsubButton(id, name, navStore, viewStore, withText);
   }
   return SubButton(id, navStore);
 };
 
-export const SubButtonArea = (id, navStore, viewStore) => {
+export const SubButtonArea = ({ id, navStore, viewStore }) => {
   const subButtonArea = document.createElement('div');
 
+  getNewsData(id).then(({ name }) => {
+    subButtonArea.appendChild(
+      SubToggleButton({ id, name, navStore, viewStore })
+    );
+  });
   subButtonArea.classList.add('media_hover', 'surface_alt');
-  subButtonArea.appendChild(SubToggleButton({ id, navStore, viewStore }));
   return subButtonArea;
 };
 

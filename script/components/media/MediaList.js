@@ -89,7 +89,13 @@ const MediaInfo = (themeStore, id, newsData, navStore, viewStore) => {
   mediaInfo.appendChild(MediaLogoImg(themeStore, id));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
   mediaInfo.appendChild(
-    SubToggleButton({ id, navStore, viewStore, withText: false })
+    SubToggleButton({
+      id,
+      name: newsData.name,
+      navStore,
+      viewStore,
+      withText: false,
+    })
   );
   return mediaInfo;
 };
