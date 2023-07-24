@@ -561,8 +561,9 @@ header {
 .snack-bar {
   display: flex;
   position: absolute;
-  top: 167px;
-  left: 322px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 286px;
   height: 54px;
   padding: 16px 24px;
