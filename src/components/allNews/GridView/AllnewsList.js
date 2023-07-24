@@ -2,17 +2,19 @@ import Logo from "../../common/Logo.js";
 import SubButton from "../SubButton.js";
 
 export default class AllNewsList {
-  constructor(name) {
+  constructor(name = -1) {
     this.$component = document.createElement("li");
 
-    this.render(name);
+    if (name > 0) {
+      this.render(name);
 
-    this.$component.addEventListener("mouseenter", (e) =>
-      this.showSubButton(e, name)
-    );
-    this.$component.addEventListener("mouseleave", (e) =>
-      this.hideSubButton(e, name)
-    );
+      this.$component.addEventListener("mouseenter", (e) =>
+        this.showSubButton(e, name)
+      );
+      this.$component.addEventListener("mouseleave", (e) =>
+        this.hideSubButton(e, name)
+      );
+    }
 
     return this.$component;
   }

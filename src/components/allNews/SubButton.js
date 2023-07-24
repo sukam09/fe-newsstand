@@ -27,6 +27,7 @@ export default class SubButton {
     const $snackBar = document.createElement("div");
     $snackBar.classList.add("snackBar-sub");
     $snackBar.innerText = "내가 구독한 언론사에 추가되었습니다.";
+    subscribedPress.press = [name, ...subscribedPress.press];
     $gridWrapper.appendChild($snackBar);
     setTimeout(() => {
       $gridWrapper.removeChild($snackBar);

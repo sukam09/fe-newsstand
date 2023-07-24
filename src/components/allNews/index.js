@@ -1,4 +1,5 @@
 import AllNewsNavigation from "./AllNewsNavigation.js";
+import SubGridView from "./GridView/SubGridView.js";
 import GridView from "./GridView/index.js";
 import ListView from "./ListView/index.js";
 
@@ -24,5 +25,13 @@ export default class AllNews {
 
     this.$wrapper.appendChild(this.allNewsNavigationObj);
     this.$wrapper.appendChild(new ListView());
+  }
+
+  /* 구독한 언론사 그리드뷰 렌더링 */
+  renderSubGridView() {
+    this.$wrapper.replaceChildren();
+
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new SubGridView());
   }
 }

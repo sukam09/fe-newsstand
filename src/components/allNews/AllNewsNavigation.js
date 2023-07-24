@@ -25,6 +25,12 @@ export default class AllNewsNavigation {
 
     $allPress.innerText = "전체 언론사";
     $subscibedPress.innerText = "내가 구독한 언론사";
+    $allPress.classList.add("selected-type");
+
+    $allPress.addEventListener("click", (e) => this.handleAllPressClick(e));
+    $subscibedPress.addEventListener("click", (e) =>
+      this.handleSubPressClick(e)
+    );
 
     $titleNavigation.appendChild($allPress);
     $titleNavigation.appendChild($subscibedPress);
@@ -76,5 +82,21 @@ export default class AllNewsNavigation {
 
   callRenderGridView() {
     this.renderGridView();
+  }
+
+  callRenderSubGridView() {
+    this.renderSubGridView();
+  }
+
+  handleAllPressClick({ target: span }) {
+    span.nextSibling.className = "";
+    span.className = "selected-type";
+    this.callRenderGridView.call(allNewsObj);
+  }
+
+  handleSubPressClick({ target: span }) {
+    span.previousSibling.className = "";
+    span.className = "selected-type";
+    this.callRenderSubGridView.call(allNewsObj);
   }
 }
