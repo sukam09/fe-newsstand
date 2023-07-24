@@ -5,9 +5,9 @@ import { Observable } from './observable.js';
 export class ViewModeStore extends Observable {
   constructor() {
     super();
-    this.viewType = 'list';
-    this.option = 'subscribed';
-    this.colorMode = getLocalStorage(KEY.COLOR_MODE) || 'light';
+    this.viewType = TEXT.LIST;
+    this.option = TEXT.SUBSCRIBE_EN;
+    this.colorMode = getLocalStorage(KEY.COLOR_MODE) || TEXT.LIGHT;
 
     document.body.className = this.colorMode;
   }
@@ -23,12 +23,12 @@ export class ViewModeStore extends Observable {
   }
 
   toggleColorMode() {
-    this.colorMode = this.colorMode === 'light' ? 'dark' : 'light';
+    this.colorMode = this.colorMode === TEXT.LIGHT ? TEXT.DARK : TEXT.LIGHT;
     document.body.className = this.colorMode;
     setLocalStorage(this.colorMode);
   }
 
   isDarkMode() {
-    return this.colorMode === 'dark';
+    return this.colorMode === TEXT.DARK;
   }
 }

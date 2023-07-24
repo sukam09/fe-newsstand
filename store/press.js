@@ -58,4 +58,8 @@ export class PressStore extends Observable {
     this.filteredPress = this.setFilteredPress();
     this.notify();
   }
+
+  isSubscribed(number) {
+    return this.subscribedList.includes(number);
+  }
 }

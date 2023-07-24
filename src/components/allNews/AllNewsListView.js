@@ -1,5 +1,5 @@
 import { pageStore, pressStore, viewStore } from '../../../store/index.js';
-import { TEXT } from '../../constants/index.js';
+import { LIST_TEMPLATE, TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
@@ -198,18 +198,8 @@ export default class AllNewsListView extends Component {
   }
 
   getListPress() {
-    let listPress = {
-      '종합/경제': [],
-      '방송/통신': [],
-      IT: [],
-      영자지: [],
-      '스포츠/연예': [],
-      '매거진/전문지': [],
-      지역: [],
-    };
-
+    let listPress = { ...LIST_TEMPLATE };
     pressStore.getAllPress().forEach(press => listPress[press.category].push(press));
-
     return listPress;
   }
 

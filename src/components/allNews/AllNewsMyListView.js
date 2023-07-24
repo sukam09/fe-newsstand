@@ -1,4 +1,4 @@
-import { pageStore, pressStore } from '../../../store/index.js';
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 import Icon from '../common/Icon.js';
@@ -20,7 +20,7 @@ export default class AllNewsMyListView extends Component {
   }
 
   template() {
-    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+    const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
 
     return `
       <div class="news-list-wrapper">
@@ -80,9 +80,7 @@ export default class AllNewsMyListView extends Component {
 
     new SubscribeButton(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
-      text: pressStore.subscribedList.includes(this.state.currentPress.number)
-        ? ''
-        : TEXT.SUBSCRIBE_KO,
+      text: pressStore.isSubscribed(this.state.currentPress.number) ? '' : TEXT.SUBSCRIBE_KO,
       name: this.state.currentPress.name,
       number: this.state.currentPress.number,
     });

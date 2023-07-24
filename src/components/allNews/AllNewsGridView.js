@@ -8,10 +8,9 @@ import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
-    this.allType = viewStore.option === TEXT.ALL;
     this.state = {
       ...this.props,
-      page: pageStore.getPage({ type: TEXT.GRID, option: this.allType }),
+      page: pageStore.getPage({ type: TEXT.GRID, option: viewStore.option }),
     };
 
     pageStore.subscribe(this);
@@ -29,7 +28,7 @@ export default class AllNewsGridView extends Component {
   mounted() {
     const pressOrder = this.getGridPress();
     const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
-    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+    const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
 
     this.state.page > maxPage && this.setState({ page: maxPage });
 
@@ -66,7 +65,7 @@ export default class AllNewsGridView extends Component {
         name,
         number,
         color: 'gray',
-        text: pressStore.subscribedList.includes(number) ? TEXT.UNSUBSCRIBE_KO : TEXT.SUBSCRIBE_KO,
+        text: pressStore.isSubscribed(number) ? TEXT.UNSUBSCRIBE_KO : TEXT.SUBSCRIBE_KO,
       });
     });
 
@@ -85,15 +84,17 @@ export default class AllNewsGridView extends Component {
 
   goNextPage() {
     this.setState({ page: this.state.page + 1 });
-    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.allType });
+    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.state.option });
   }
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
-    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.allType });
+    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.state.option });
   }
 
   getGridPress() {
-    return this.allType ? pressStore.getAllPress() : pressStore.getFilteredPress();
+    return this.state.option === TEXT.ALL
+      ? pressStore.getAllPress()
+      : pressStore.getFilteredPress();
   }
 }
