@@ -17,3 +17,15 @@ export const CATEGORY_COUNT_ARR = list_news_data.map((category) => {
 
 export const SET_TIME = 5000;
 export const START_PRESS_NUM = 1;
+export const SNACK_BAR_TIME = 1000;
+
+export const IMG_EXPAND = 1.05;
+export const IMG_NORM = 1.0;
+
+export const NEWS_CATEGORY = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+
+export const PRESS_IDX = (function () {
+    const tmp = [];
+    for (let i = 1; i <= press_list.length; i++) tmp.push(i);
+    return tmp;
+})();

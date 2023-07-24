@@ -1,3 +1,22 @@
+export const init_news_data = {
+    press_id: 0,
+    press: "",
+    press_dark_src: "",
+    press_light_src: "",
+    edit_date: "",
+    main_news_thumbnail: "",
+    main_news: {
+        title: "",
+        url: "",
+    },
+    sub_news: [
+        {
+            title: "",
+            url: "",
+        },
+    ],
+};
+
 export const list_news_data = [
     {
         category: "종합/경제",
