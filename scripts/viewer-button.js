@@ -12,26 +12,28 @@ function handleViewerButtonClick(e) {
   store.dispatch(changeView(viewType));
 }
 
-export function addEventOnViewerButton() {
-  store.subscribe(() => {
-    const viewType = useSelector((state) => state.page.viewType);
+function viewerButtonSubscriber() {
+  const viewType = useSelector((state) => state.page.viewType);
 
-    $mainNavViewerButtons.forEach(($button) => {
-      if (viewType !== $button.dataset.view) {
-        $button.classList.remove("main-nav_viewer--selected");
-      } else {
-        $button.classList.add("main-nav_viewer--selected");
-      }
-    });
-
-    if (viewType === VIEW_TYPE.GRID) {
-      $gridView.classList.remove("hidden");
-      $listView.classList.add("hidden");
+  $mainNavViewerButtons.forEach(($button) => {
+    if (viewType !== $button.dataset.view) {
+      $button.classList.remove("main-nav_viewer--selected");
     } else {
-      $gridView.classList.add("hidden");
-      $listView.classList.remove("hidden");
+      $button.classList.add("main-nav_viewer--selected");
     }
   });
+
+  if (viewType === VIEW_TYPE.GRID) {
+    $gridView.classList.remove("hidden");
+    $listView.classList.add("hidden");
+  } else {
+    $gridView.classList.add("hidden");
+    $listView.classList.remove("hidden");
+  }
+}
+
+export function addEventOnViewerButton() {
+  store.subscribe(viewerButtonSubscriber);
 
   $mainNavViewerButtons.forEach(($button) => {
     $button.addEventListener("click", handleViewerButtonClick);

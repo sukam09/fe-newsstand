@@ -36,21 +36,23 @@ function replaceEventListenerOnConfirmButton(press) {
   $confirmButton.addEventListener("click", handlerOnConfirmButton);
 }
 
+function modalSubscriber() {
+  const { open, press } = useSelector((state) => state.modal);
+
+  if (open) {
+    $modal.querySelector(".contents_press-name").innerText = press;
+    $modal.classList.remove("hidden");
+
+    replaceEventListenerOnConfirmButton(press);
+    return;
+  }
+
+  $modal.classList.add("hidden");
+}
+
 export function setModal() {
   window.addEventListener("click", handleClickOutSideModal);
   $cancelButton.addEventListener("click", handleClickModalCancelButton);
 
-  store.subscribe(() => {
-    const { open, press } = useSelector((state) => state.modal);
-
-    if (open) {
-      $modal.querySelector(".contents_press-name").innerText = press;
-      $modal.classList.remove("hidden");
-
-      replaceEventListenerOnConfirmButton(press);
-      return;
-    }
-
-    $modal.classList.add("hidden");
-  });
+  store.subscribe(modalSubscriber);
 }

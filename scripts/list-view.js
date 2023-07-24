@@ -147,7 +147,6 @@ function handleSubscribeTabsClick(e) {
   const subscribeList = useSelector((state) => state.subscribeList);
   const pressName = e.target.innerText;
 
-  console.log(e.target);
   const pressIdx = subscribeList.indexOf(pressName);
   store.dispatch(setPage(pressIdx));
 }
@@ -170,6 +169,73 @@ function handleSubscribeButtonClick(e) {
   store.dispatch(addSubscribe(name));
 }
 
+function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
+  const currentCategory = CATEGORIES[currentCategoryIdx];
+  const totalCnt = NewsDB.getCountByCategory(currentCategory);
+  const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
+
+  const isFirstPage = currentPage < 0;
+  const isLastPage = currentPage >= totalCnt;
+
+  if (isFirstPage) {
+    store.dispatch(prevCategory());
+    return;
+  }
+
+  if (isLastPage) {
+    store.dispatch(nextCategory());
+    return;
+  }
+
+  showCategoryTab();
+  unshowSubscribeTab();
+  activateCategory(currentCategory);
+  showTabCount(currentPage, totalCnt);
+  fillArticle(articleData);
+}
+
+function fillArticleOnSubscribeTab({ currentPage }) {
+  const subscribeList = useSelector((state) => state.subscribeList);
+  const pressName = subscribeList[currentPage];
+  const articleData = {
+    name: pressName,
+    ...NewsDB.getNewsOneByName(pressName),
+  };
+
+  const isFirstPage = currentPage < 0;
+  const isLastPage = currentPage >= subscribeList.length;
+
+  if (isFirstPage) {
+    store.dispatch(setPage(subscribeList.length - 1));
+    return;
+  }
+
+  if (isLastPage) {
+    store.dispatch(setPage(0));
+    return;
+  }
+
+  unshowCategoryTab();
+  showSubscribeTab(subscribeList, subscribeList[currentPage]);
+  fillArticle(articleData);
+}
+
+function listViewSubscriber() {
+  const page = useSelector((state) => state.page);
+  const { viewType, tabType } = page;
+
+  if (viewType !== VIEW_TYPE.LIST) return;
+
+  if (tabType === TAB_TYPE.ALL) {
+    fillArticleOnAllTab(page);
+  } else {
+    fillArticleOnSubscribeTab(page);
+  }
+
+  resetProgress();
+  updateButtonUI();
+}
+
 export function renderListView() {
   $listViewTabItems.forEach(($tabItem) => {
     $tabItem.addEventListener("click", handleListViewTabClick);
@@ -179,55 +245,5 @@ export function renderListView() {
 
   setSubscribeTabsDraggable();
 
-  store.subscribe(() => {
-    const { currentPage, currentCategoryIdx, viewType, tabType } = useSelector(
-      (state) => state.page
-    );
-    if (viewType !== VIEW_TYPE.LIST) return;
-
-    if (tabType === TAB_TYPE.ALL) {
-      const currentCategory = CATEGORIES[currentCategoryIdx];
-      const totalCnt = NewsDB.getCountByCategory(currentCategory);
-      const articleData = NewsDB.queryByCategory(currentCategory)[currentPage];
-
-      if (currentPage < 0) {
-        store.dispatch(prevCategory());
-        return;
-      }
-
-      if (currentPage >= totalCnt) {
-        store.dispatch(nextCategory());
-        return;
-      }
-
-      showCategoryTab();
-      unshowSubscribeTab();
-      activateCategory(currentCategory);
-      showTabCount(currentPage, totalCnt);
-      fillArticle(articleData);
-    } else {
-      const subscribeList = useSelector((state) => state.subscribeList);
-      const pressName = subscribeList[currentPage];
-      const articleData = {
-        name: pressName,
-        ...NewsDB.getNewsOneByName(pressName),
-      };
-
-      if (currentPage < 0) {
-        store.dispatch(setPage(subscribeList.length - 1));
-        return;
-      }
-
-      if (currentPage >= subscribeList.length) {
-        store.dispatch(setPage(0));
-        return;
-      }
-
-      unshowCategoryTab();
-      showSubscribeTab(subscribeList, subscribeList[currentPage]);
-      fillArticle(articleData);
-    }
-    resetProgress();
-    updateButtonUI();
-  });
+  store.subscribe(listViewSubscriber);
 }

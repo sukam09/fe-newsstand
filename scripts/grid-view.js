@@ -90,23 +90,25 @@ function renderGridViewOnSubscribe(currentPage) {
   updateButtonUI(currentPage, maxPage);
 }
 
+function gridViewSubscriber(newsData, maxPage) {
+  const { currentPage, viewType, tabType } = useSelector((state) => state.page);
+  if (viewType !== VIEW_TYPE.GRID) {
+    return;
+  }
+
+  if (tabType === TAB_TYPE.ALL) {
+    renderGridView(newsData, currentPage);
+    updateButtonUI(currentPage, maxPage);
+  } else {
+    renderGridViewOnSubscribe(currentPage);
+  }
+}
+
 export function renderGridView() {
   const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
   addEventHandlerOnGridView();
 
-  store.subscribe(() => {
-    const { currentPage, viewType, tabType } = useSelector(
-      (state) => state.page
-    );
-    if (viewType !== VIEW_TYPE.GRID) return;
-
-    if (tabType === TAB_TYPE.ALL) {
-      fillGridView(newsData, currentPage);
-      updateButtonUI(currentPage, maxPage);
-    } else {
-      renderGridViewOnSubscribe(currentPage);
-    }
-  });
+  store.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
 }
