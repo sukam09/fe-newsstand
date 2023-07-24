@@ -29,22 +29,14 @@ class LatestNews {
   }
 
   showNews(latestNews, side) {
-    this.renderWrapper(latestNews, side);
+    const newsWrapper = this.newsWrappers[side];
+    latestNews.forEach((news) => this.renderElement(newsWrapper, news));
     startRolling(this.newsWrappers, this.intervals, side);
   }
 
   splitNews(latestNews, side) {
     if (side === SIDE.LEFT) return latestNews.slice(NEWS_SLICE.MIN, NEWS_SLICE.MAX / NEWS_SLICE.NUM);
     if (side === SIDE.RIGHT) return latestNews.slice(NEWS_SLICE.MAX / NEWS_SLICE.NUM, NEWS_SLICE.MAX);
-  }
-
-  getWrapper(side) {
-    return this.newsWrappers[side];
-  }
-
-  renderWrapper(latestNews, side) {
-    const newsWrapper = this.getWrapper(side);
-    latestNews.forEach((news) => this.renderElement(newsWrapper, news));
   }
 
   renderElement(newsWrapper, news) {
