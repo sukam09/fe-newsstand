@@ -39,3 +39,17 @@ export async function getNewsContents() {
     return null;
   }
 }
+
+export async function getNewsContent() {
+  try {
+    const response = await fetch("../data/newsContent.json")
+      .then((response) => response.json())
+      .then((json) => {
+        return json.newsList;
+      });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

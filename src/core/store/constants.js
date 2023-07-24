@@ -19,3 +19,13 @@ export const PREV_BANNER = "newsbanner__list--prev";
 export const NOW_BANNER = "newsbanner__list--now";
 export const NEXT_BANNER = "newsbanner__list--next";
 export const BANNER_LIST = "newsbanner__list";
+
+export const CATEGORY_TABS = [
+  "종합/경제",
+  "방송/통신",
+  "IT",
+  "영자지",
+  "스포츠/연예",
+  "매거진/전문지",
+  "지역",
+];

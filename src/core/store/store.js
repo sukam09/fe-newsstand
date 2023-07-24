@@ -32,7 +32,7 @@ const gridPageIdx = initState({
 
 const subscribeList = initState({
   key: "subscribeList",
-  defaultState: [],
+  defaultState: ["datanews", "세계일보"],
 });
 
 const isAlertOn = initState({

@@ -5,6 +5,7 @@ import {
   deletePress,
   gridPageIdx,
   isAlertOn,
+  isGrid,
   isSnackOn,
   isSubTab,
   subscribeList,
@@ -16,30 +17,36 @@ let pressObj = null;
 // 셔플된 리스트 그리드리스트에 append
 function appendGridList(shuffledArr) {
   const isSubscribeTab = getState(isSubTab);
+  const isGridMode = getState(isGrid);
   const subList = getState(subscribeList);
   const gridContainerList = $All(".grid_container");
   gridContainerList.forEach((item) => (item.innerHTML = ""));
-  if (isSubscribeTab) {
-    const subPressList = pressObj.filter((item) => {
-      return subList.includes(item.name);
-    });
-    subPressList.forEach((element, idx) => {
-      const id = Math.floor(idx / MAX_GRID_COUNT);
-      const gridItem = createGridItem(element);
-      gridContainerList[id].appendChild(gridItem);
-    });
-    for (let i = subPressList.length; i < PRESS_COUNT; i++) {
-      const id = Math.floor(i / MAX_GRID_COUNT);
-      const gridItem = document.createElement("li");
-      gridItem.className = "grid_item";
-      gridContainerList[id].appendChild(gridItem);
+  if (isGridMode) {
+    gridContainerList[0].style.display = "grid";
+    if (isSubscribeTab) {
+      const subPressList = pressObj.filter((item) => {
+        return subList.includes(item.name);
+      });
+      subPressList.forEach((element, idx) => {
+        const id = Math.floor(idx / MAX_GRID_COUNT);
+        const gridItem = createGridItem(element);
+        gridContainerList[id].appendChild(gridItem);
+      });
+      for (let i = subPressList.length; i < PRESS_COUNT; i++) {
+        const id = Math.floor(i / MAX_GRID_COUNT);
+        const gridItem = document.createElement("li");
+        gridItem.className = "grid_item";
+        gridContainerList[id].appendChild(gridItem);
+      }
+    } else {
+      shuffledArr.forEach((element, idx) => {
+        const id = Math.floor(idx / MAX_GRID_COUNT);
+        const gridItem = createGridItem(element);
+        gridContainerList[id].appendChild(gridItem);
+      });
     }
   } else {
-    shuffledArr.forEach((element, idx) => {
-      const id = Math.floor(idx / MAX_GRID_COUNT);
-      const gridItem = createGridItem(element);
-      gridContainerList[id].appendChild(gridItem);
-    });
+    gridContainerList.forEach((item) => (item.style.display = "none"));
   }
 }
 
@@ -174,7 +181,13 @@ async function setGridEvents() {
   register(isSubTab, () => {
     appendGridList(shuffledArr);
   });
+  register(isGrid, () => {
+    appendGridList(shuffledArr);
+  });
   register(subscribeList, checkMode);
+  register(subscribeList, () => {
+    console.log(getState(subscribeList));
+  });
 }
 
 export { setGridEvents };
