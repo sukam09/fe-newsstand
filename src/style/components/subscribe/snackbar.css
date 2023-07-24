@@ -1,0 +1,5 @@
+.snack-bar {
+  padding: 1rem 1.5rem;
+  background-color: var(--color-surface-brand-default);
+  color: var(--color-text-white-default);
+}
