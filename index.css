@@ -2,6 +2,7 @@
 @import "./css/rollingBanner.css";
 @import "./css/category.css";
 @import "./css/newsMain.css";
+@import "./css/alert.css";
 img {
   width: 24px;
   height: 24px;

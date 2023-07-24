@@ -1,82 +1,140 @@
-import news from "../json/news.json" assert { type: "json" };
 import { currentCategoryIndex, currentCategoryPageNumber } from "./category.js";
 import Stores from "./core/Store.js";
 import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
+import { changeImageSrc } from "../utils/utils.js";
 
-const drawNews = (categoryNews) => {
-  console.log(categoryNews);
-  drawNewsDiv(categoryNews);
-  drawNewsHeader(categoryNews);
-  clickSubscribeButton();
+const drawNews = (news) => {
+  let progressBarId =
+    document.getElementsByClassName("progress-bar")[currentCategoryIndex].id;
+  drawNewsDiv(news, progressBarId);
+  drawNewsHeader(news, progressBarId);
+  clickSubscribeButton(news, progressBarId);
 };
 
-function drawNewsImage(categoryNews, PageNumberIndex) {
-  return `<img class="news-main-image" src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}">${categoryNews[currentCategoryIndex][PageNumberIndex].title}`;
+function drawNewsImage(news, progressBarId) {
+  return `<img class="news-main-image" src="${
+    news[progressBarId][currentCategoryPageNumber - 1].thumbnail
+  }">${news[progressBarId][currentCategoryPageNumber - 1].title}`;
 }
 
-function drawNewsArticle(categoryNews, PageNumberIndex) {
+function drawNewsArticle(news, progressBarId) {
   let article_div = "";
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
     article_div += `<div class="news-main-article">${
-      news.News[Stores.getPage()].article[article_cnt]
+      news[progressBarId][currentCategoryPageNumber - 1].article[article_cnt]
     }</div>`;
   }
-  article_div += `<div class="news-main-article-press">${categoryNews[currentCategoryIndex][PageNumberIndex].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
+  article_div += `<div class="news-main-article-press">${
+    news[progressBarId][currentCategoryPageNumber - 1].press
+  }언론사에서 직접 편집한 뉴스입니다.</div>`;
   return article_div;
 }
 
-function drawNewsDiv(categoryNews) {
-  const PageNumberIndex = currentCategoryPageNumber - 1;
+function drawNewsDiv(news, progressBarId) {
   const listDiv = document.querySelector(".news-content");
   listDiv.innerHTML = "";
   let new_div = `<div class="news-main-left-div">${drawNewsImage(
-    categoryNews,
-    PageNumberIndex
+    news,
+    progressBarId
   )}</div><div class="news-main-right-div">${drawNewsArticle(
-    categoryNews,
-    PageNumberIndex
+    news,
+    progressBarId
   )}</div>`;
   listDiv.innerHTML = new_div;
 }
 
-function drawNewsHeader(categoryNews) {
-  let PageNumberIndex = currentCategoryPageNumber - 1;
+function drawNewsHeader(news, progressBarId) {
   const news_header = document.querySelector(".news-header");
   news_header.innerHTML = "";
-  let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${categoryNews[currentCategoryIndex][PageNumberIndex].press}"  src="${categoryNews[currentCategoryIndex][PageNumberIndex].thumbnail}"><span class="news-edit-time">${categoryNews[currentCategoryIndex][PageNumberIndex].editTime}</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
-  // replaceSubscribeCancelButton(document.querySelector(".subscribe-button"));
+  let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${
+    news[progressBarId][currentCategoryPageNumber - 1].press
+  }"  src="${
+    news[progressBarId][currentCategoryPageNumber - 1].img
+  }"><span class="news-edit-time">${
+    news[progressBarId][currentCategoryPageNumber - 1].editTime
+  }</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
+  if (isSubscribed(news, progressBarId)) replaceSubscribeButton("cancel");
 }
 
-function clickSubscribeButton(categoryNews) {
-  const subscribedButton = document.querySelector(".subscribe-button");
-  subscribedButton.addEventListener("click", function () {
-    Stores.setSubscribeNewsCnt(
-      subscribedButton.previousSibling.previousSibling.id
-    );
-    Stores.setSubscribeNewsContent("a");
-    Stores.setSubscribedMode("subscribed");
-    for (const categoryIndex in categoryNews) {
-      const newsList = categoryNews[categoryIndex];
-      for (const news of newsList) {
-        if (news.id === Stores.getPage()) console.log(news.id);
+function isSubscribed(news, progressBarId) {
+  if (Stores.getSubscribedMode() != "all") return true;
+  else {
+    const subscribeData = Stores.getSubscribeNewsContent();
+    for (const key in subscribeData) {
+      const articles = subscribeData[key];
+      for (const article of articles) {
+        if (article.id == news[progressBarId][currentCategoryPageNumber - 1].id)
+          return true;
       }
     }
-    snackBar("내가 구독한 언론사에 추가되었습니다.");
-    setTimeout(() => {
-      renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
-    }, rollingTime);
-    // replaceSubscribeCancelButton(subscribedButton);
+  }
+  return false;
+}
+
+function clickSubscribeButton(news, progressBarId) {
+  const subscribedButton = document.querySelector(".subscribe-button");
+  subscribedButton.addEventListener("click", async function () {
+    if (!isSubscribed(news, progressBarId)) {
+      Stores.setSubscribeNewsContent(
+        news[progressBarId][currentCategoryPageNumber - 1].id
+      );
+      snackBar("내가 구독한 언론사에 추가되었습니다!");
+      setTimeout(() => {
+        Stores.setSubscribedMode("subscribed");
+        renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+      }, rollingTime);
+      replaceSubscribeButton("cancel");
+    } else {
+      alert(
+        news,
+        news[progressBarId][currentCategoryPageNumber - 1].press,
+        progressBarId
+      );
+    }
   });
 }
 
-function replaceSubscribeCancelButton(subscribeButton) {
-  Stores.getSubscribeNews().forEach(() => {});
-  const cancelButton = document.createElement("img");
-  cancelButton.src = "./img/subscribe_cancel_button.svg";
-  subscribeButton.replaceWith(cancelButton);
+function alert(news, newsPress, progressBarId) {
+  const alertDiv = document.querySelector(".alert");
+  alertDiv.style.display = "flex";
+  let alertInnerDiv = `<div class="alert-main"><div class="alert-question"><div><span>${newsPress}</span>을(를)</div>구독해지하시겠습니까?</div><div class="alert-answer"><div class="alert-yes">예, 해지합니다</div><div class="alert-no">아니오</div></div></div>`;
+  alertDiv.innerHTML = alertInnerDiv;
+  alertClick(news, alertDiv, progressBarId);
+}
+
+function alertClick(news, alertDiv, progressBarId) {
+  const alertYes = document.querySelector(".alert-yes");
+  const alertNo = document.querySelector(".alert-no");
+  alertYes.addEventListener("click", () => {
+    alertDiv.style.display = "none";
+    Stores.removeSubscribeNewsContent(
+      news[progressBarId][currentCategoryPageNumber - 1].id
+    );
+    Stores.setPageMode("list");
+    replaceSubscribeButton("subscribe");
+    renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+    Stores.setSubscribedMode("subscribed");
+  });
+  alertNo.addEventListener("click", () => {
+    alertDiv.style.display = "none";
+  });
+}
+
+function replaceSubscribeButton(buttonType) {
+  if (buttonType === "subscribe") {
+    changeImageSrc(
+      document.querySelector(".subscribe-button"),
+      "./img/subscribe_button.svg"
+    );
+  } else {
+    changeImageSrc(
+      document.querySelector(".subscribe-button"),
+      "./img/subscribe_cancel_button.svg"
+    );
+  }
 }
 
 export { drawNews };

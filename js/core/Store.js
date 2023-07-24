@@ -1,16 +1,19 @@
+import { fetchData } from "../setData/fetchCategoryData.js";
+
 class Store {
   #pageNumber;
   #progressInterval;
   #pageMode;
   #subscribedStatus;
-  #subscribedNewsCnt;
   #subscribedNewsContent;
   constructor() {
     this.#pageNumber = 0;
     this.#pageMode = "grid";
     this.#subscribedStatus = "all";
-    this.#subscribedNewsCnt = [];
     this.#subscribedNewsContent = {};
+    this.getOriginalNews = async function () {
+      return fetchData();
+    };
     this.setPage = function (pagenumber) {
       this.#pageNumber = pagenumber;
     };
@@ -38,18 +41,32 @@ class Store {
     this.getPageMode = function () {
       return this.#pageMode;
     };
-    this.setSubscribeNewsCnt = function (key) {
-      this.#subscribedNewsCnt.push({ key: key, value: 1, arrow: true });
+    this.setSubscribeNewsContent = async function (itemId) {
+      const news = await Stores.getOriginalNews();
+      for (const category in news) {
+        const newsItems = news[category];
+        const foundItem = newsItems.find((item) => item.id === itemId);
+        if (foundItem) {
+          foundItem["arrow"] = true;
+          if (!this.#subscribedNewsContent[foundItem.id])
+            this.#subscribedNewsContent[foundItem.press] = [foundItem];
+          else this.#subscribedNewsContent[foundItem.press].push(foundItem);
+        }
+      }
     };
-    this.getSubscribeNewsCnt = function () {
-      return this.#subscribedNewsCnt;
+    this.getSubscribeNewsContent = function () {
+      return this.#subscribedNewsContent;
     };
-    this.setSubscribeNewsContent = function (object) {
-      // console.log(object);
-      // this.#subscribedNewsContent.push(object);
-    };
-    this.getSubscribeNewsContent = function (pageIndex) {
-      return this.#subscribedNewsContent[pageIndex];
+    this.removeSubscribeNewsContent = function (id) {
+      const newData = {};
+      const data = this.#subscribedNewsContent;
+      for (const key in data) {
+        newData[key] = data[key].filter((item) => item.id !== id);
+        if (newData[key].length === 0) {
+          delete newData[key]; // Remove the key if the filtered result is empty
+        }
+      }
+      this.#subscribedNewsContent = newData;
     };
   }
 }

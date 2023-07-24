@@ -7,7 +7,7 @@
 }
 .categoryItem progress {
   flex-grow: 1;
-  width: 100%;
+  width: 166px;
   height: 20px;
   border: 2px black solid;
 }
@@ -42,7 +42,6 @@
 .categoryItem:hover {
   cursor: pointer;
 }
-
 
 .progress-bar {
   pointer-events: none;
