@@ -1,13 +1,12 @@
 import pressList from "../../asset/data/pressList.js"
-import listViewData from "../../asset/data/listViewData.js";
 import { store } from "../../store/store.js";
-import { CATEGORY_LIST, FILTER_TYPE, GRID_ITEMS_COUNT, VIEW_TYPE } from "../../asset/data/constants.js";
-import { filterData } from "./filter-data.js";
+import { FILTER_TYPE, GRID_ITEMS_COUNT, VIEW_TYPE } from "../../asset/data/constants.js";
+import { filterData } from "../view-utils/filter-data.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
-function showArrow(){
+function showAllArrows(){
     leftArrow.classList.remove("hidden");
     rightArrow.classList.remove("hidden");
 }
@@ -19,13 +18,14 @@ function drawArrow(){
     } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
         dataInfo = store.getSubList();
     }
-    let maxPage;
-    if (crntFilter === FILTER_TYPE.SUBSCRIBED && store.getSubList().length === 0){
+    
+    if (crntFilter === FILTER_TYPE.SUBSCRIBED && dataInfo.length === 0){ // subscription list empty > hide all arrows
         leftArrow.classList.add("hidden");
         rightArrow.classList.add("hidden");
         return;
     }
-    showArrow();
+    let maxPage;
+    showAllArrows();
     switch (crntView){
         case VIEW_TYPE.GRID:
             maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_COUNT);

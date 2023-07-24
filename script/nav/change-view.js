@@ -24,10 +24,10 @@ function toggleViewVisibility(nextView) {
         }      
     })
 }
-function changeView(nextView) {
+function changeView(nextView) { // re-draw everything below rolling section
     toggleViewVisibility(nextView);
     changeViewIcons(nextView)
-    store.setViewState({crntView: nextView, crntPage: 0, crntCategory: 0})
+    store.setViewState({crntView: nextView, crntPage: 0, crntCategory: 0}) // re-draw arrows, grid or list
 }
 function handleViewChange() {
     viewChangeBtns.forEach((btn) => {

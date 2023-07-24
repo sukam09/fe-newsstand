@@ -5,7 +5,7 @@ import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 
-function listenProgressBar() {
+function listenProgressBarEnd() {
     const progressBar = document.querySelector(".progress-bar");
     let {crntPage, crntCategory} = store.getViewState();
     const {navData, numOfListPages} = filterData();
@@ -29,7 +29,7 @@ function drawProgressBar() {
     progressBarElem.classList.add("progress-bar", "progressing");
     target.insertBefore(progressBarElem, target.firstChild);
     
-    listenProgressBar();
+    listenProgressBarEnd();
     
 }
 export {drawProgressBar, removeProgressBar}

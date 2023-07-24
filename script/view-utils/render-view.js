@@ -1,8 +1,8 @@
 import { VIEW_TYPE } from "../../asset/data/constants.js";
 import { store } from "../../store/store.js";
-import { drawGrid } from "../grid-view/grid-view.js";
-import { drawList } from "../list-view/list-view.js";
-import { drawArrow } from "./arrow.js";
+import { drawGrid } from "../grid-view/grid.js";
+import { drawList } from "../list-view/list.js";
+import { drawArrow } from "../arrow/arrow.js";
 
 function renderView(){
     switch (store.getViewState().crntView){
@@ -13,7 +13,6 @@ function renderView(){
             drawList(store.getViewState().crntCategory);
             break;
     }
-    drawArrow();
 }
 
 export {renderView}

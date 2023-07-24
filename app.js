@@ -1,10 +1,10 @@
-import { drawArrow, handleArrowClick } from "./script/view-utils/arrow.js";
-import { drawDate } from "./script/date.js";
-import { drawGrid} from "./script/grid-view/grid-view.js";
-import { handleViewChange } from "./script/view-utils/change-view.js";
-import {handleFilterChange} from "./script/view-utils/change-filter.js"
-import { handleReload } from "./script/reload.js";
-import { rollInit } from "./script/rolling-view.js";
+import { drawArrow, handleArrowClick } from "./script/arrow/arrow.js";
+import { drawDate } from "./script/view-utils/date.js";
+import { drawGrid} from "./script/grid-view/grid.js";
+import { handleViewChange } from "./script/nav/change-view.js";
+import {handleFilterChange} from "./script/nav/change-filter.js"
+import { handleReload } from "./script/view-utils/reload.js";
+import { rollInit } from "./script/rolling-section/rolling.js";
 import { shuffleArray } from "./util/shuffleArray.js";
 import pressList from "../asset/data/pressList.js";
 import { handleSubscribe } from "./script/view-utils/handle-subscribe.js";
@@ -22,6 +22,7 @@ function init () {
     rollInit();
 
     store.subscribe(renderView);
+    store.subscribe(drawArrow);
     handleReload();
     handleArrowClick();
     handleViewChange();

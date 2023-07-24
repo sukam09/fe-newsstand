@@ -1,8 +1,8 @@
 
 import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { drawArrow } from "../script/view-utils/arrow.js";
-import { drawGrid } from "../script/grid-view/grid-view.js";
-import { drawList } from "../script/list-view/list-view.js";
+import { drawArrow } from "../script/arrow/arrow.js";
+import { drawGrid } from "../script/grid-view/grid.js";
+import { drawList } from "../script/list-view/list.js";
 
 class Store {
     constructor () {

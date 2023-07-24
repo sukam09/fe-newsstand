@@ -1,7 +1,7 @@
 import { FILTER_TYPE, VIEW_TYPE } from "../../asset/data/constants.js";
 import pressList from "../../asset/data/pressList.js";
 import { store } from "../../store/store.js";
-import { changeFilter } from "./change-filter.js";
+import { changeFilter } from "../nav/change-filter.js";
 
 const alertContainer = document.querySelector(".unsub-alert-container")
 const subBtn = document.querySelector(".sub-btn");

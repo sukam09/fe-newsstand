@@ -1,4 +1,4 @@
-import rollingList from "../asset/data/rollingList.js";
+import rollingList from "../../asset/data/rollingList.js";
 
 const rollingContent = document.querySelectorAll(".rolling-content");
 
