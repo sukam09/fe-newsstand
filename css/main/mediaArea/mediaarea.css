@@ -62,15 +62,15 @@
 
   /* background-color: antiquewhite; */
 }
+
 .newsstand—subscrtion-box {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 
   border-bottom: 1px solid #d2dae0;
   border-right: 1px solid #d2dae0;
-
-  /* height: 25%; */
 }
 
 .newsstand-btn-thumb {
@@ -87,4 +87,30 @@
   position: absolute;
   top: 220px;
   right: -60px;
+}
+
+.newsstand__subscribe-button {
+  position: absolute;
+  display: flex;
+  height: 24px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-border-default);
+  background: var(--surface-surface-alt);
+
+  font-family: Pretendard;
+  color: var(--text-text-weak);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  overflow: hidden;
+}
+
+.newsstand__subscribe-background {
+  background: var(--surface-surface-alt);
 }

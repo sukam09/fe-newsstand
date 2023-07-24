@@ -1,91 +1,48 @@
 const CARD_SLIDING = "card_sliding";
 const CARD_SLIDING_AFTER = "card_sliding_after";
 
-function moveTopContent(
-  firstTitle,
-  secondTitle,
-  thirdTitle,
-  firstCorp,
-  secondCorp,
-  thirdCorp
-) {
-  rollingAction(firstTitle, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
-  rollingAction(secondTitle, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
-  rollingAction(
-    thirdTitle,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
+function moveTopContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT) {
+  rollingAction(firstT, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(secondT, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(thirdT, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
 
-  rollingAction(firstCorp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
-  rollingAction(secondCorp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
-  rollingAction(
-    thirdCorp,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
+  rollingAction(firstCp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(secondCp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(thirdCp, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
 }
 
 function moveMiddleContent(
-  firstTitle,
-  secondTitle,
-  thirdTitle,
-  firstCorp,
-  secondCorp,
-  thirdCorp
+  firstCp,
+  secondCp,
+  thirdCp,
+  firstT,
+  secondT,
+  thirdT
 ) {
-  rollingAction(firstTitle, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
-  rollingAction(
-    secondTitle,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
-  rollingAction(thirdTitle, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(firstT, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(secondT, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
+  rollingAction(thirdT, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
 
-  rollingAction(firstCorp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
-  rollingAction(
-    secondCorp,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
-  rollingAction(thirdCorp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(firstCp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(secondCp, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
+  rollingAction(thirdCp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
 }
 
 function moveBottomContent(
-  firstTitle,
-  secondTitle,
-  thirdTitle,
-  firstCorp,
-  secondCorp,
-  thirdCorp
+  firstCp,
+  secondCp,
+  thirdCp,
+  firstT,
+  secondT,
+  thirdT
 ) {
-  rollingAction(
-    firstTitle,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
-  rollingAction(secondTitle, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
-  rollingAction(thirdTitle, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(firstT, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
+  rollingAction(secondT, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(thirdT, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
 
-  rollingAction(
-    firstCorp,
-    "remove",
-    CARD_SLIDING_AFTER,
-    "remove",
-    CARD_SLIDING
-  );
-  rollingAction(secondCorp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
-  rollingAction(thirdCorp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
+  rollingAction(firstCp, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
+  rollingAction(secondCp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
+  rollingAction(thirdCp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
 }
 
 function replaceText(
@@ -95,12 +52,10 @@ function replaceText(
   dataCnt,
   headlineData
 ) {
-  document.getElementsByClassName(whereCorp)[0].children[
-    currentChildIndex
-  ].textContent = headlineData[dataCnt].publisher;
-  document.getElementsByClassName(whereTitle)[0].children[
-    currentChildIndex
-  ].textContent = headlineData[dataCnt].title;
+  document.querySelector(whereCorp).children[currentChildIndex].textContent =
+    headlineData[dataCnt].publisher;
+  document.querySelector(whereTitle).children[currentChildIndex].textContent =
+    headlineData[dataCnt].title;
 }
 
 function rollingAction(position, action1, class1, action2, class2) {

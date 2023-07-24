@@ -1,7 +1,8 @@
-import { restartProgressBar } from "./newsCategory.js";
+import { paintNewsCategory } from "./newsCategory.js";
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
-
+import { EVENT } from "../utils/constant.js";
+import { setUserViewToList, setUserViewToGrid } from "../store/state.js";
 const VIEW_DISABLED = "view-disabled";
 
 export function newsstandListTab() {
@@ -15,7 +16,9 @@ export function newsstandListTab() {
 
 function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
   // 뉴스 리스트 버튼 클릭됬을때.
-  listButton.addEventListener("click", () => {
+  listButton.addEventListener(EVENT.CLICK, () => {
+    setUserViewToList();
+
     // 그리드 버튼 삭제
     deleteGridButton();
     addListdButton();
@@ -23,16 +26,16 @@ function hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea) {
     listButton.src = "./assets/basicIcon/list-symbol-selected.svg";
     thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
-    // 리스트 뷰로 선택되면 맨 처음 카테고리부터 시작되게 만듬.
-    listArea.className === VIEW_DISABLED ? restartProgressBar() : () => {};
-
     // display: none 속성 부여.
     listArea.classList.remove(VIEW_DISABLED);
     gridArea.classList.add(VIEW_DISABLED);
+
+    paintNewsCategory();
   });
 
   // 뉴스 그리드 버튼 클릭됬을때.
-  thumbButton.addEventListener("click", () => {
+  thumbButton.addEventListener(EVENT.CLICK, () => {
+    setUserViewToGrid();
     // 그리드 버튼 추가
     deleteListButton();
     addGridButton();

@@ -1,3 +1,5 @@
+import { MESSAGE } from "./constant.js";
+
 function date() {
   const headerDate = document.querySelector(".header—-date");
   const today = new Date();
@@ -12,7 +14,7 @@ function date() {
   const date = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
   const day = today.getDay();
 
-  const todayString = `${year}. ${month}. ${date}. ${dayList[day]}요일`;
+  const todayString = `${year}. ${month}. ${date}. ${dayList[day]}${MESSAGE.DAY}`;
 
   headerDate.innerText = todayString;
 }

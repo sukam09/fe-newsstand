@@ -94,3 +94,174 @@
    ⚠️ 전역변수로 선언된 현재 콘텐츠 페이지의 수가 한바퀴를 돌고나면 이상하게 +2씩 증가하고 +4씩 증가하는 이상한 현상을 겪는중이다.
    방금 든 생각인데 프로그래스 바 효과를 넣어줄때 이벤트리스너를 중첩해서 추가하는 것 같아서 발생하는 문제인 것 같다.
    우선 오류를 찾기위해서는 코드의 흐름부터 정리해서 수정한 다음에 코드를 수정해보자.
+   ![화면_기록_2023-07-14_오후_6_40_12_AdobeExpress](https://github.com/devMingu/fe-newsstand/assets/96288558/9e235c4e-7f39-4220-ad4c-7b8baf4ca286)
+
+   ❔ 무엇이 문제점이였을까?
+
+   이벤트리스너에대한 이해부족이 가장 큰 문제였다. 그 이유는 현재 진행중인 카테고리와 다른 카테고리가 실행될때 해당 카테고리를 addProgressAction 함수를 호출해서 카테고리에 페이지와 프로그래스 바를 실행시켰다.
+
+   ```javascript
+   function 해당카테고리에_프로그래스바_추가() {
+     element.children[0].addEventListener("animationiteration", callback);
+     element.children[0].addEventListener("animationend", callback);
+   }
+   ```
+
+   여기서 위에서 언급한 한바퀴를 돌고났을때 문제가 발생하던 지점이다. 한바퀴를 돌고나면 똑같은 카테고리에 이벤트리스너가 중복되어 적용이 된다. 따라서 +2씩 +4씩 증가하는 문제점이 발생한 것이였다. 이벤트 핸들링 과정을 이해하면 조금 더 빠르게 찾을 수 있던 문제점이지 않을까 싶다.
+
+**7월 17일**
+
+### 구독하기와 해제하기 기능 오류
+
+### 오류 발생
+
+1. '전체 언론사'에서 언론사 구독
+2. '내가 구독한 언론사' 탭으로 이동하고 다시 '전체 언론사'로 넘어와서 구독한 언론사를 확인하면 구독이 안되어있음.
+   ![구독하기_오류_AdobeExpress (1)](https://github.com/devMingu/fe-newsstand/assets/96288558/fb01f2dd-300f-4b8d-82ea-5a4ef83f174f)
+
+### 정상적으로 진행될때
+
+1. '전체 언론사'에서 언론사 구독
+2. '내가 구독한 언론사' 탭으로 이동하고 구독된 언론사를 해제하기하고 다시 '전체 언론사'로 이동.
+3. '전체 언론사'에서 언론사 구독
+4. '내가 구독한 언론사' 탭으로 이동했다가 다시 '전체 언론사' 탭으로 넘어오면 구독이 되어있는것을 확인할 수 있음.
+   ![구독하기_제대로_됨_AdobeExpress (1)](https://github.com/devMingu/fe-newsstand/assets/96288558/f44fd31d-4f5d-4fcc-b6d1-7d60836f8dcc)
+
+### 예상하는 문제점
+
+1. mouseover 타입의 이벤트리스너를 등록할때 버블링이 일어남. -> mouserenter 타입으로 변경했지만 별 소용없음.
+   (가끔 오류발생나던 과정에서 제대로 동작할때도 있어서 위와같은 오류를 예상해봤음)
+
+### 문제해결
+
+생각보다 문제는 쉽게 해결됬다. 바로 코드를 잘못 작성해서 그렇다.
+
+```javascript
+// 변경전
+const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].imgSrc;
+const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+
+// 변경후
+const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].name;
+const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+```
+
+변경전 alt 값에 imgSrc를 넣어줘서 발생한 문제였다. 당연히 구독목록에 존재하지 않는 값을 넣어주니 발생한 문제점이였다.
+그래도 설계를 구체적으로해서 코드가 흘러가는 흐름을 잘 찾을 수 있어서 금방 오류를 해결했다.
+
+**7월 18일**
+
+### 코드 개선을 위해 단축평가 적용하기
+
+뉴스스탠드 미션을 진행하면서 if문 사용을 지양하고자 삼항연산자를 많이 활용하는 패턴을 적용시켰다.
+
+### 기존 코드의 문제점
+
+- if문으로 충분한 문장에서 삼항연산자를 적용시킬때. 불 필요한 에로우 함수가 만들어져있다.
+
+```javascript
+// 구독을해지하면 바로 다시 그려준다. 삼항연산자 적용
+const subList = subscribeState.getSubscribeState();
+navTab.isMySubscribe ? paintNews(subList) : () => {};
+```
+
+### 기존 코드 개선
+
+- 논리연산자를 활용한 단축평가
+
+```javascript
+// 구독을해지하면 바로 다시 그려준다. 단축평가 적용
+const subList = subscribeState.getSubscribeState();
+navTab.isMySubscribe && paintNews(subList);
+```
+
+### 요약
+
+- 논리곱(&&): A && B 모두 true일때 B를 반환
+- 논리합(||): A || B중 true를 만나면 바로 반환.
+
+**7월 19일**
+
+### [내가 구독한 언론사 카테고리 리스트에 반영하기](https://github.com/devMingu/fe-newsstand/issues/10)
+
+---
+
+### 잘 반영되어있는것처럼 보이지만 수정할게 많다.
+
+![화면_기록_2023-07-19_오후_6_33_51_AdobeExpress](https://github.com/devMingu/fe-newsstand/assets/96288558/27c221b0-2aa4-4b80-acca-5248e745e467)
+
+### 오류발생
+
+'전체 언론사'와 '내가 구독중인 언론사' 두 개의 탭에
+리스트 뷰에서의 이벤트리스너와 그리드 뷰에서의 이벤트리스너가 등록되어있어서 클릭될때마다 동시에 실행이되는 경우가있다. 이럴때 원하지 않는 코드까지 실행되어 서로 다른 영역에 영향을 미치게되고 원하지 않는 결과가 등장했다.
+현재 보고있는 페이지를 참조하여 실행되는 조건을 바꿀 생각이다.
+
+**7월 20일**
+
+7월 19일에 발생한 문제점을 해결하기위해서는 사용자가 현재 보고있는 페이지를 담고있는 상태가 필요했다.
+사용자가 보고있는 페이지가 '그리디' 페이지라면 해당 페이지에서 상태가 변경됬을때 '리스트' 페이지를 다시 그려주지 않아도 된다.
+사용자가 보고있는 뷰를 관리하는 상태는 클래스를 사용했다.
+
+```javascript
+// 사용자가 포커스한 뷰가 어딘지 기억하는 ViewState 클래스
+class ViewState {
+  // '전체 언론사' or '내가 구독한 언론사'중 포커싱이 어디에 되어있는지? navTab
+  // 사용자가 '그리드' or '리스트'뷰 중 어디를 포커싱하는지.
+  constructor() {
+    this.view = {
+      navTab: {
+        MY_PUBLISHER: false,
+        ALL_PUBLISHER: true,
+      },
+      user: {
+        grid: true,
+        list: false,
+      },
+    };
+  }
+}
+```
+
+### 크롱님 코드리뷰 반영
+
+- Spread operator 사용
+  ```javascript
+  // 수정전
+  const categoryList = Array.from(categoryParent.children);
+  // 수정후
+  const categoryList = [...categoryParent.children];
+  ```
+- 객체에 직접적인 접근 피하기
+  - View를 담당하는 클래스를 만들어서 메소드를통해 간접적으로 접근.
+  ```javascript
+  // 수정전
+  navTab.isMySubscribe = true;
+  // 수정후
+  View.setNavTabView(VIEW.MY_SUB, true);
+  ```
+
+**7월 21일**
+
+### 롤링 로직 리팩토링
+
+```javascript
+// 수정 전
+function moveLeftContent() {
+  // 왼쪽 뉴스 롤링 로직
+}
+function moveRightContent() {
+  // 오른쪽 뉴스 롤링 로직
+}
+
+// 수정 후
+function moveContent(position) {
+  // position을 인자로 받아서 방향에 맞는 로직을 실행해준다.
+  const headlineData =
+    position === "right" ? rightHeadlineData : leftHeadlineData;
+  // 생략 ...
+}
+```
+
+### 구독하기 스낵바 추가
+
+<img width="955" alt="스크린샷 2023-07-21 오후 6 43 43" src="https://github.com/devMingu/fe-newsstand/assets/96288558/488fbc98-6eba-4ece-aaa2-da16c3aa3a05">
