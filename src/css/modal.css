@@ -1,0 +1,43 @@
+.unsub-modal {
+  width: 320px;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 170px;
+  left: 50%;
+  z-index: 999;
+}
+
+.unsub-modal__text {
+  background-color: var(--gray-scale-white-alt);
+  border: 1px solid var(--gray-scale-100);
+  text-align: center;
+  font-size: 16px;
+  padding: 24px;
+  color: var(--gray-scale-400);
+  line-height: 22px;
+}
+
+.unsub-modal__text span {
+  color: var(--gray-scale-black);
+  font-weight: 700;
+}
+
+.unsub-modal__buttons {
+  display: flex;
+  height: 48px;
+}
+
+.unsub-modal__buttons button {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: var(--gray-scale-50);
+  border: 1px solid var(--gray-scale-100);
+}
+
+.unsub-modal__buttons button:hover {
+  text-decoration: underline;
+}
