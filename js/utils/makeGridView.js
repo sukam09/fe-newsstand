@@ -7,6 +7,7 @@ import {
   getPage,
   getSubscribedPress,
   getTabMode,
+  getMode,
 } from "../core/getter.js";
 import { checkPage } from "./checkPage.js";
 import { handleSubscribe, showSubscribeButton } from "./subscribePress.js";
@@ -80,7 +81,10 @@ export function showGridView() {
     img.setAttribute("class", "logo-img");
     main_list_ul.appendChild(li);
     if (list.length > i) {
-      img.setAttribute("src", `${PRESS_LOGO_IMG_PATH}${list[i]}.svg`);
+      img.setAttribute(
+        "src",
+        `${PRESS_LOGO_IMG_PATH}${getMode()}/img${list[i]}.svg`
+      );
       li.append(img);
       li.innerHTML += showSubscribeButton(isSubscribed);
       img = li.querySelector("img");

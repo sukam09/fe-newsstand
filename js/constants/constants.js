@@ -17,7 +17,7 @@ export const CATEGORY = Object.freeze([
 // export const SNACKBAR_WAIT_TIME = 5000;
 export const SNACKBAR_WAIT_TIME = 1000;
 
-export const PRESS_LOGO_IMG_PATH = "../assets/images/logo/light/img";
+export const PRESS_LOGO_IMG_PATH = `../assets/images/logo/`;
 export const ICON_IMG_PATH = "../assets/icons/";
 export const DATA_PATH = "../data/";
 Object.freeze({
