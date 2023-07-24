@@ -146,3 +146,10 @@
 .list-view_news-list > li:last-child {
   color: var(--color-text-weak);
 }
+
+.grab {
+  cursor: grabbing;
+}
+.grab > ul {
+  pointer-events: none;
+}
