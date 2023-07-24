@@ -21,10 +21,10 @@ export function showSubscribeButton(isSubscribed) {
 }
 
 function checkAnswer(e, _press) {
+  const view_content = document.querySelector(".view-content");
   const currentIndex = getSubscribedPress().findIndex(
     (press) => press.name === _press.name
   );
-  let button = document.querySelector(".sub");
   const target = e.target.closest("button");
   const alert = document.querySelector(".alert");
   alert.style.display = "none";
@@ -36,17 +36,24 @@ function checkAnswer(e, _press) {
     const isSubscribed = getSubscribedPress().some(
       (press) => press.name === _press.name
     );
+    const popup = view_content.querySelector(".popup");
+    if (popup) popup.parentNode.removeChild(popup);
+
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   } else {
   }
 }
 
 function handleAnimationEnd(e, _press) {
+  const view_content = document.querySelector(".view-content");
+
   const currentIndex = getSubscribedPress().findIndex(
     (press) => press.name === _press.name
   );
   if (e.animationName === "fade-out") {
     setTimeout(() => {
+      const popup = view_content.querySelector(".popup");
+      if (popup) popup.parentNode.removeChild(popup);
       store.setState({ tabMode: "subscribe" });
       changeView("list");
       showListView(currentIndex);
@@ -55,7 +62,6 @@ function handleAnimationEnd(e, _press) {
 }
 
 export function handleSubscribe(_press) {
-  let button = document.querySelector(".sub");
   const view_content = document.querySelector(".view-content");
   const newDiv = document.createElement("div");
   const isSubscribed = getSubscribedPress().some(
@@ -72,17 +78,16 @@ export function handleSubscribe(_press) {
         </div>`;
     view_content.appendChild(newDiv);
     const btn = document.querySelector(".buttons");
+    console.log(view_content);
     btn.addEventListener("click", (e) => checkAnswer(e, _press));
   }
   //구독하지 않았을 때 => 구독됨
   else {
-    button = showSubscribeButton(!isSubscribed);
     const updatedSubscribedPress = [...getSubscribedPress(), _press];
     store.setState({ subscribedPress: updatedSubscribedPress });
     document.addEventListener("animationend", (e) =>
       handleAnimationEnd(e, _press)
     );
-
     //스낵바
     newDiv.classList.add("popup", "snackbar");
     newDiv.textContent = "내가 구독한 언론사에 추가되었습니다.";

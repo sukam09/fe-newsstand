@@ -9,7 +9,6 @@ export function changeView(e_target) {
   const subscribed_press = document.getElementById("subscribe");
   const target = document.querySelector(`.${getView()}-view`);
   if (e_target === "grid") {
-    console.log(e_target);
     target.classList.remove(`${getView()}-view`);
     store.setState({ view: "grid" });
     target.classList.add(`${getView()}-view`);
