@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  white-space: nowrap;
 }
 /* .newsstand__category > span {
   content: none;

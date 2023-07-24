@@ -30,8 +30,12 @@ async function initNewsStandList() {
     if (scribeNews.length === globalStore.state.구독언론_리스트.카테고리_인덱스) {
       globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: scribeNews.length - 1 });
     }
+    if (scribeNews.length === 1) globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: 0 });
+
     const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
-    const newsDatas = datas.filter((data) => scribeNews.includes(data.name));
+    const newsDatas = [];
+    scribeNews.forEach((category) => newsDatas.push(...datas.filter((d) => d.name === category)));
+
     createCategoryHtml(scribeNews, KEY);
     createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
   }
