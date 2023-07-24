@@ -1,9 +1,7 @@
-import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../../constants/news-stand-header.js';
-import { Subject } from '../../utils/observer.js';
+import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../constants/news-stand-header.js';
 
-class NewsStandHeaderSubject extends Subject {
+class NewsStandHeader {
   constructor() {
-    super();
     this.dateFormat = null;
     this.headerWrapper = null;
     this.headerButton = null;
@@ -11,12 +9,12 @@ class NewsStandHeaderSubject extends Subject {
   }
 
   initHeader() {
-    this.renderHeaderElement();
-    this.addButtonClickEvent();
-    this.updateHeaderTime();
+    this.renderHeader();
+    this.setupEvent();
+    this.updateTime();
   }
 
-  renderHeaderElement() {
+  renderHeader() {
     this.headerWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER}`);
     const headerElement = `
         <button class=${HEADER_CLASS.BUTTON}>
@@ -28,18 +26,19 @@ class NewsStandHeaderSubject extends Subject {
     this.headerWrapper.innerHTML = headerElement;
   }
 
-  addButtonClickEvent() {
+  setupEvent() {
     this.headerButton = document.querySelector(`.${HEADER_CLASS.BUTTON}`);
     this.headerButton.addEventListener('click', () => {
-      this.notifyObservers(); // 옵저버들에게 알림을 보냄
+      location.reload();
     });
   }
 
-  updateHeaderTime() {
+  updateTime() {
     this.headerTime = document.querySelector(`.${HEADER_CLASS.TIME}`);
     this.dateFormat = new Date().toLocaleDateString('ko-KR', DATE_OPTIONS);
     this.headerTime.innerText = this.dateFormat;
   }
 }
 
-export { NewsStandHeaderSubject };
+const newsStandHeader = new NewsStandHeader();
+export default newsStandHeader;

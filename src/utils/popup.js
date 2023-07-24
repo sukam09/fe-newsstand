@@ -1,6 +1,6 @@
 import { HEADER_CLASS } from '../constants/press-header.js';
 import { STATE, LIST } from '../constants/press-data.js';
-import { subscribeEvent } from '../components/press-header.js';
+// import { subscribeEvent } from '../components/press-header.js';
 import { initPressGrid } from '../components/press-grid.js';
 import { initPressList } from '../components/press-list.js';
 
@@ -20,7 +20,7 @@ const getSnackBar = (pressData) => {
     const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
     const listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
 
-    subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper);
+    // subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper);
   }, 5000);
 };
 

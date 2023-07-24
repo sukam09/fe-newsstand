@@ -1,147 +1,99 @@
-import { HEADER_CLASS, PATH, TITLE, STYLE } from '../constants/press-header.js';
-import { STATE, LIST } from '../constants/press-data.js';
+import { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE } from '../constants/press-header.js';
+import { LIST } from '../constants/press-data.js'; // 변수 빼기
+import { Store } from '../utils/store.js';
 import { getFetchData } from '../utils/fetch.js';
-import { initLightDarkMode } from '../components/light-dark-mode.js';
+import { initLightDarkMode } from './light-dark-mode.js';
 import { initPressGrid } from './press-grid.js';
 import { initPressList } from './press-list.js';
 
-/**
- * 언론사의 INIT
- * 언론사 데이터를 받아와서 GRID, LIST에게 전달 📁
- */
-const initPressHeader = async () => {
-  try {
-    const fetchData = await getFetchData('./assets/data/press-news.json');
-    let pressData = fetchData.press;
+class PressHeaderStore extends Store {
+  constructor() {
+    super();
+    this.state = {
+      isGrid: true,
+      isEntire: true,
+    };
 
-    setNav(getNavLeft());
-    setNav(getNavRight());
-    setNavClick(pressData);
-
-    initLightDarkMode();
-    initPressGrid(pressData, LIST.SUFFLE_ID);
-    initPressList(pressData, LIST.CATEGORY_NAME);
-  } catch (error) {
-    console.error('언론사 정보를 불러오는 중에 오류가 발생했습니다.', error);
+    this.pressData = [];
+    this.renderDOM();
+    this.setupEvent();
   }
-};
 
-const setNav = (pressElement) => {
-  const pressHeader = document.querySelector(`.${HEADER_CLASS.PRESS_HEADER}`);
-  pressHeader.insertAdjacentHTML('beforeend', pressElement);
-};
+  async initPress() {
+    try {
+      const fetchData = await getFetchData(URL.DATA);
+      this.pressData = fetchData.press;
 
-const getNavLeft = () => {
-  return `
-    <nav class=${HEADER_CLASS.NAV_LEFT}>
-      <h2 class="${HEADER_CLASS.H2_ENTIRE} press__h2-select">${TITLE.ENTIRE}</h2>
-      <h2 class="${HEADER_CLASS.H2_SUBSCRIBE} press__h2-unselect">${TITLE.SUBSCRIBE}</h2>
-    </nav>
-  `;
-};
-
-const getNavRight = () => {
-  return `
-    <nav class=${HEADER_CLASS.NAV_RIGHT}>
-      <img class=${HEADER_CLASS.IMG_LIST} src=${PATH.HIDE_LIST_ICON} />
-      <img class=${HEADER_CLASS.IMG_GRID} src=${PATH.GRID_ICON}  />
-    </nav>
-  `;
-};
-
-/**
- * 언론사의 헤더 설정
- */
-const setNavClick = (pressData) => {
-  const h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
-  const h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
-  const imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
-  const imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
-  const gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
-  const listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
-
-  h2Entire.addEventListener('click', () =>
-    entireEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper)
-  );
-  h2Subscribe.addEventListener('click', () =>
-    subscribeEvent(pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper)
-  );
-  imgList.addEventListener('click', () => listEvent(pressData, imgList, imgGrid, gridWrapper, listWrapper));
-  imgGrid.addEventListener('click', () => gridEvent(pressData, imgList, imgGrid, gridWrapper, listWrapper));
-};
-
-const entireEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper) => {
-  gridWrapper.classList.remove('none');
-  listWrapper.classList.add('none');
-
-  h2Entire.classList.add('press__h2-select');
-  h2Entire.classList.remove('press__h2-unselect');
-  h2Subscribe.classList.add('press__h2-unselect');
-  h2Subscribe.classList.remove('press__h2-select');
-
-  imgList.src = PATH.HIDE_LIST_ICON;
-  imgGrid.src = PATH.GRID_ICON;
-
-  STATE.IS_GRID = true;
-  STATE.IS_TOTAL = true;
-
-  initPressGrid(pressData, LIST.SUFFLE_ID);
-};
-
-const subscribeEvent = (pressData, h2Entire, h2Subscribe, imgList, imgGrid, gridWrapper, listWrapper) => {
-  listWrapper.classList.remove('none');
-  gridWrapper.classList.add('none');
-
-  h2Entire.classList.add('press__h2-unselect');
-  h2Entire.classList.remove('press__h2-select');
-  h2Subscribe.classList.add('press__h2-select');
-  h2Subscribe.classList.remove('press__h2-unselect');
-
-  imgList.src = PATH.LIST_ICON;
-  imgGrid.src = PATH.HIDE_GRID_ICON;
-
-  STATE.IS_GRID = false;
-  STATE.IS_TOTAL = false;
-
-  initPressList(pressData, LIST.SUBSCRIBE_NAME);
-};
-
-const listEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
-  if (STATE.IS_TOTAL) {
-    listWrapper.classList.remove('none');
-    gridWrapper.classList.add('none');
-
-    imgList.src = PATH.LIST_ICON;
-    imgGrid.src = PATH.HIDE_GRID_ICON;
-    initPressList(pressData, LIST.CATEGORY_NAME);
+      initLightDarkMode(); //
+      this.render();
+      this.subscribe(this.render.bind(this));
+    } catch (error) {
+      console.error(ERROR.MESSESE, error);
+    }
   }
-  if (!STATE.IS_TOTAL) {
-    listWrapper.classList.remove('none');
-    gridWrapper.classList.add('none');
 
-    imgList.src = PATH.LIST_ICON;
-    imgGrid.src = PATH.HIDE_GRID_ICON;
-    initPressList(pressData, LIST.SUBSCRIBE_NAME);
+  renderDOM() {
+    const pressHeader = document.querySelector(`.${HEADER_CLASS.PRESS_HEADER}`);
+    pressHeader.insertAdjacentHTML('beforeend', this.renderNavLeft());
+    pressHeader.insertAdjacentHTML('beforeend', this.renderNavRight());
+
+    this.gridWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_GRID}`);
+    this.listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
+    this.h2Entire = document.querySelector(`.${HEADER_CLASS.H2_ENTIRE}`);
+    this.h2Subscribe = document.querySelector(`.${HEADER_CLASS.H2_SUBSCRIBE}`);
+    this.imgList = document.querySelector(`.${HEADER_CLASS.IMG_LIST}`);
+    this.imgGrid = document.querySelector(`.${HEADER_CLASS.IMG_GRID}`);
   }
-};
 
-const gridEvent = (pressData, imgList, imgGrid, gridWrapper, listWrapper) => {
-  if (STATE.IS_TOTAL) {
-    gridWrapper.classList.remove('none');
-    listWrapper.classList.add('none');
-
-    imgList.src = PATH.HIDE_LIST_ICON;
-    imgGrid.src = PATH.GRID_ICON;
-    initPressGrid(pressData, LIST.SUFFLE_ID);
+  renderNavLeft() {
+    return `
+      <nav class=${HEADER_CLASS.NAV_LEFT}>
+        <h2 class="${HEADER_CLASS.H2_ENTIRE} press__h2-select">${TITLE.ENTIRE}</h2>
+        <h2 class="${HEADER_CLASS.H2_SUBSCRIBE} press__h2-unselect">${TITLE.SUBSCRIBE}</h2>
+      </nav>
+    `;
   }
-  if (!STATE.IS_TOTAL) {
-    gridWrapper.classList.remove('none');
-    listWrapper.classList.add('none');
 
-    imgList.src = PATH.HIDE_LIST_ICON;
-    imgGrid.src = PATH.GRID_ICON;
-    initPressGrid(pressData, LIST.SUBSCRIBE_ID);
+  renderNavRight() {
+    return `
+      <nav class=${HEADER_CLASS.NAV_RIGHT}>
+        <img class=${HEADER_CLASS.IMG_LIST} src=${PATH.HIDE_LIST_ICON} />
+        <img class=${HEADER_CLASS.IMG_GRID} src=${PATH.GRID_ICON}  />
+      </nav>
+    `;
   }
-};
 
-export { initPressHeader, subscribeEvent };
+  setupEvent() {
+    this.h2Entire.addEventListener('click', () => this.setState({ isEntire: true, isGrid: true }));
+    this.h2Subscribe.addEventListener('click', () => this.setState({ isEntire: false, isGrid: false }));
+    this.imgList.addEventListener('click', () => this.setState({ isGrid: false }));
+    this.imgGrid.addEventListener('click', () => this.setState({ isGrid: true }));
+  }
+
+  render() {
+    const isGrid = this.state.isGrid;
+    const isEntire = this.state.isEntire;
+
+    this.gridWrapper.classList.toggle(STYLE.NONE, !isGrid);
+    this.listWrapper.classList.toggle(STYLE.NONE, isGrid);
+    this.h2Entire.classList.toggle(HEADER_CLASS.H2_SELECT, isEntire);
+    this.h2Entire.classList.toggle(HEADER_CLASS.H2_UNSELECT, !isEntire);
+    this.h2Subscribe.classList.toggle(HEADER_CLASS.H2_SELECT, !isEntire);
+    this.h2Subscribe.classList.toggle(HEADER_CLASS.H2_UNSELECT, isEntire);
+
+    if (isEntire && isGrid) this.renderPress(PATH.HIDE_LIST_ICON, PATH.GRID_ICON, LIST.SUFFLE_ID);
+    if (isEntire && !isGrid) this.renderPress(PATH.LIST_ICON, PATH.HIDE_GRID_ICON, LIST.CATEGORY_NAME);
+    if (!isEntire && isGrid) this.renderPress(PATH.HIDE_LIST_ICON, PATH.GRID_ICON, LIST.SUBSCRIBE_ID);
+    if (!isEntire && !isGrid) this.renderPress(PATH.LIST_ICON, PATH.HIDE_GRID_ICON, LIST.SUBSCRIBE_NAME);
+  }
+
+  renderPress(listIcon, gridIcon, initPress) {
+    this.imgList.src = listIcon;
+    this.imgGrid.src = gridIcon;
+    if (this.state.isGrid) initPressGrid(this.pressData, initPress);
+    if (!this.state.isGrid) initPressList(this.pressData, initPress);
+  }
+}
+
+const pressHeaderStore = new PressHeaderStore();
+export default pressHeaderStore;
