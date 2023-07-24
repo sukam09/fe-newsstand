@@ -1,6 +1,6 @@
 import { PATH, MODE, GLOBAL, CONSTANT } from "../model/variable.js";
 import { subscribe } from "../controller/observer.js";
-import { moveGrid, moveList, toggleView, toggleSubscription } from "../model/store.js";
+import { moveGrid, moveList, toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
 
 function initArrowBtn(parentNode) {
   const dom = `
@@ -46,9 +46,11 @@ subscribe(moveGrid, drawLeftArrowBtn);
 subscribe(moveList, drawLeftArrowBtn);
 subscribe(toggleView, drawLeftArrowBtn);
 subscribe(toggleSubscription, drawLeftArrowBtn);
+subscribe(toggleDarkMode, drawLeftArrowBtn);
 subscribe(moveGrid, drawRightArrowBtn);
 subscribe(moveList, drawRightArrowBtn);
 subscribe(toggleView, drawRightArrowBtn);
 subscribe(toggleSubscription, drawRightArrowBtn);
+subscribe(toggleDarkMode, drawRightArrowBtn);
 
 export { initArrowBtn, drawLeftArrowBtn, drawRightArrowBtn };

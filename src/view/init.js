@@ -5,7 +5,7 @@ import { initArrowBtn, drawLeftArrowBtn, drawRightArrowBtn } from "./arrowBtn.js
 import { initSnackBar } from "./snackBar.js";
 import { initAlert } from "./alert.js";
 import { initGrid, drawGrid } from "./grid.js";
-import { initList } from "./list.js";
+import { initList, drawList } from "./list.js";
 
 const container = document.querySelector(".container");
 
@@ -30,6 +30,7 @@ function drawInit() {
   drawLeftArrowBtn();
   drawRightArrowBtn();
   drawGrid();
+  drawList();
 }
 
 export { initDom };

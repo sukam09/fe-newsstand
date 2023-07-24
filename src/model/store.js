@@ -31,7 +31,7 @@ const showAlert = initState({
 });
 
 const toggleDarkMode = initState({
-  key: "showAlert",
+  key: "toggleDarkMode",
   defaultValue: false,
 });
 

@@ -1,6 +1,6 @@
 import { CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { subscribe } from "../controller/observer.js";
-import { moveGrid, toggleView, toggleSubscription } from "../model/store.js";
+import { moveGrid, toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
 import { isDarkMode } from "../model/model.js";
 
 function initGrid(parentNode) {
@@ -47,5 +47,6 @@ function drawGrid() {
 subscribe(moveGrid, drawGrid);
 subscribe(toggleView, drawGrid);
 subscribe(toggleSubscription, drawGrid);
+subscribe(toggleDarkMode, drawGrid);
 
 export { initGrid, drawGrid };

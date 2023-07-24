@@ -1,7 +1,7 @@
 import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
 import { subscribe } from "../controller/observer.js";
-import { moveList, toggleView, toggleSubscription } from "../model/store.js";
+import { moveList, toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
 import { isDarkMode } from "../model/model.js";
 
 function initList(parentNode) {
@@ -82,5 +82,6 @@ function drawList() {
 subscribe(moveList, drawList);
 subscribe(toggleView, drawList);
 subscribe(toggleSubscription, drawList);
+subscribe(toggleDarkMode, drawList);
 
 export { initList, drawList };

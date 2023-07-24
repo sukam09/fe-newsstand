@@ -1,6 +1,9 @@
 import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
 import { moveListMode } from "./tabAndViewerController.js";
+import { isDarkMode } from "../model/model.js";
+import { setState } from "./observer.js";
+import { toggleDarkMode } from "../model/store.js";
 
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
@@ -32,4 +35,22 @@ function initAlertEvent() {
   });
 }
 
-export { initSnackBarTimer, resetSnackBarTimer, initAlertEvent };
+function initDarkToggleBtn() {
+  const darkToggleBtn = document.querySelector(".dark-mode-btn");
+
+  darkToggleBtn.addEventListener("click", () => {
+    const gridLiAll = document.querySelectorAll(".grid-view li");
+    gridLiAll.forEach((li) => {
+      li.style.backgroundColor = "";
+    });
+
+    if (isDarkMode()) {
+      document.querySelector("html").className = "";
+    } else {
+      document.querySelector("html").className = "dark-mode";
+    }
+    setState(toggleDarkMode, true);
+  });
+}
+
+export { initSnackBarTimer, resetSnackBarTimer, initAlertEvent, initDarkToggleBtn };

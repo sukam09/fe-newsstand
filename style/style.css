@@ -33,3 +33,10 @@ body {
   margin: 0 auto;
   padding: 58px 0 76px 0;
 }
+
+.dark-mode-btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+}
