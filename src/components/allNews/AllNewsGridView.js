@@ -4,14 +4,17 @@ import ArrowButton from './ArrowButton.js';
 
 import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
 import SubscribeButton from './SubscribeButton.js';
-import { pressStore, viewStore } from '../../../store/index.js';
-
-let [savedAllPage, savedMyPage] = [0, 0];
+import { gridStore, pressStore, viewStore } from '../../../store/index.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
     this.allType = viewStore.option === TEXT.ALL;
-    this.state = { ...this.props, page: this.allType ? savedAllPage : savedMyPage };
+    this.state = {
+      ...this.props,
+      page: this.allType ? gridStore.allTypePage : gridStore.subscribedTypePage,
+    };
+
+    gridStore.subscribe(this);
   }
 
   template() {
@@ -82,12 +85,16 @@ export default class AllNewsGridView extends Component {
 
   goNextPage() {
     this.setState({ page: this.state.page + 1 });
-    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
+    this.allType
+      ? gridStore.setAllTypePage(this.state.page)
+      : gridStore.setSubscribedTypePage(this.state.page);
   }
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
-    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
+    this.allType
+      ? gridStore.setAllTypePage(this.state.page)
+      : gridStore.setSubscribedTypePage(this.state.page);
   }
 
   getGridPress() {

@@ -3,6 +3,7 @@ import { customQuerySelector } from '../src/utils/index.js';
 import SnackBar from '../src/components/common/SnackBar.js';
 import { PressStore } from './press.js';
 import { ViewModeStore } from './view.js';
+import { GridPageStore } from './gridPage.js';
 
 export const toggleAlert = name => {
   const $alertModal = customQuerySelector(TEXT.ALERT_MODAL_CLASS_NAME);
@@ -24,5 +25,6 @@ export const showSnackBar = () => {
 
 const pressStore = new PressStore();
 const viewStore = new ViewModeStore();
+const gridStore = new GridPageStore();
 
-export { pressStore, viewStore };
+export { pressStore, viewStore, gridStore };
