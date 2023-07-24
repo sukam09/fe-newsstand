@@ -196,17 +196,6 @@ header {
   align-items: center;
 }
 
-.news-press-tab-menu-activated {
-  color: var(--text-text-strong, #14212b);
-
-  /* selected-bold16 */
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
 .news-press-tab-menu {
   color: var(--text-text-weak, #879298);
 
@@ -216,6 +205,17 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
+}
+
+.news-press-tab-menu-activated {
+  color: var(--text-text-strong, #14212b);
+
+  /* selected-bold16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .news-press-tab-menu:hover {
