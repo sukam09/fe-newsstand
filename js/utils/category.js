@@ -13,7 +13,7 @@ import {
   getFirstPage,
   getNavTabView,
   getSubscrbeList,
-} from "../store/state.js";
+} from "../store/dispatch.js";
 
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {

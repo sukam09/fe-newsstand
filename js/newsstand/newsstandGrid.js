@@ -19,8 +19,8 @@ import {
   getUserView,
   setSelectedPage,
   getSelectedPage,
-} from "../store/state.js";
-import { store } from "../store/redux.js";
+} from "../store/dispatch.js";
+import { store } from "../store/reducer.js";
 
 let publisherData = await getPressData("./data/pressObj.json");
 

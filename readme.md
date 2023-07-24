@@ -264,4 +264,17 @@ function moveContent(position) {
 
 ### 구독하기 스낵바 추가
 
-<img width="955" alt="스크린샷 2023-07-21 오후 6 43 43" src="https://github.com/devMingu/fe-newsstand/assets/96288558/488fbc98-6eba-4ece-aaa2-da16c3aa3a05">
+<img width="955" alt="스크린샷 2023-07-21 오후 6 43 43" src="https://github.com/devMingu/fe-newsstand/assets/96288558/91e53b7a-b3c7-4370-84ca-02b09cee7038">
+
+---
+
+**7월 24일**
+
+### 구독하기 스낵바 수정 (7월 24일)
+
+![스크린샷 2023-07-24 오후 10 16 21](https://github.com/devMingu/fe-newsstand/assets/96288558/6991b320-8ebe-4559-94b5-6bb4b7b786ea)
+
+오늘은 리덕스 개념을 store에 적용시키는 작업을 했다. 예전에 리액트를 사용할때 리덕스를 사용해봐서 개념을 적용시키고 활용하는데에 시간이 엄청 걸리지는 않았지만 다양한 상태들을 관리하다보니까 dispatch 함수가 너무 많아져 버렸다...
+(지금까지 최소 10개나 된다) 그리고 지금 dispatch 파일에 get하는 함수들도 넣어놨는데 이 부분은 내일 옮겨봐야겠다.
+
+리덕스 개념 도입하는거는 위키에 정리해놨다!

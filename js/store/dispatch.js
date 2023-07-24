@@ -1,4 +1,4 @@
-import { store, actionCreator } from "./redux.js";
+import { store, actionCreator } from "./reducer.js";
 import { ACTION } from "../utils/constant.js";
 
 const initSubTabView = {
