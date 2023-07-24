@@ -11,6 +11,6 @@ import Store from './core/Store.js';
 
   headerApp();
   headlineApp();
-  mediaApp(themeStore, 'all', 'grid');
+  mediaApp(themeStore);
   themeModeApp(themeStore);
 })();

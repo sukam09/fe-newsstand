@@ -1,20 +1,10 @@
 import ArrowButton from '../../components/media/ArrowButton.js';
 import MediaNav from '../../components/media/MediaNav.js';
 import MediaView from '../../components/media/MediaView.js';
-import { MEDIA_APP_DATA } from '../../constants.js';
-import Store from '../../core/Store.js';
+import NavStore from '../../store/NavStore.js';
 
-const mediaApp = (themeStore, defaultMedia, defaultView) => {
-  const navStore = new Store({
-    data: MEDIA_APP_DATA,
-    defaultView: {
-      all: 'grid',
-      subscribed: 'list',
-    },
-    subscribed: [],
-    media: defaultMedia,
-    view: defaultView,
-  });
+const mediaApp = themeStore => {
+  const navStore = new NavStore();
   const clearThemeStates = () => {
     themeStore.unsubscribe('view');
   };

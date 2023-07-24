@@ -1,64 +1,19 @@
 import updateListNav from '../../apps/media/updateListNav.js';
 import { replaceArrow } from '../../components/media/ArrowButton.js';
-import SubToggleButton from '../../components/media/SubToggleButton.js';
 import { MSG } from '../../constants.js';
-import Store from '../../core/Store.js';
 import { getNewsData } from '../../fetch/getNewsData.js';
+import ListStore from '../../store/ListStore.js';
 import { setMediaLogo } from '../../utils/utils.js';
-
-const setPage = (store, newPage) => {
-  const { category, media } = store.getState();
-  const catLength = media.length;
-  const pageLength = media[category].media.length;
-
-  switch (newPage) {
-    case -1:
-      const newCategory = (category - 1 + catLength) % catLength;
-
-      store.setState({
-        category: newCategory,
-        page: media[newCategory].media.length - 1,
-      });
-      break;
-    case pageLength:
-      store.setState({
-        category: (category + 1) % catLength,
-        page: 0,
-      });
-      break;
-    default:
-      store.setState({ page: newPage });
-  }
-};
-
-const setSubPage = (store, newPage) => {
-  const { media } = store.getState();
-  const pageLength = media.length;
-
-  switch (newPage) {
-    case -1:
-      store.setState({ page: pageLength - 1 });
-      break;
-    case pageLength:
-      store.setState({ page: 0 });
-      break;
-    default:
-      store.setState({ page: newPage });
-  }
-};
+import Button from '../Button.js';
 
 const setArrowButtons = (store, viewAll) => {
   const [leftArrow, rightArrow] = replaceArrow();
 
   leftArrow.addEventListener('click', () => {
-    viewAll
-      ? setPage(store, store.getState().page - 1)
-      : setSubPage(store, store.getState().page - 1);
+    viewAll ? store.setPage(-1) : store.setSubPage(-1);
   });
   rightArrow.addEventListener('click', () => {
-    viewAll
-      ? setPage(store, store.getState().page + 1)
-      : setSubPage(store, store.getState().page + 1);
+    viewAll ? store.setPage(1) : store.setSubPage(1);
   });
 };
 
@@ -89,13 +44,14 @@ const MediaInfo = (themeStore, id, newsData, navStore, viewStore) => {
   mediaInfo.appendChild(MediaLogoImg(themeStore, id));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
   mediaInfo.appendChild(
-    SubToggleButton({
-      id,
-      name: newsData.name,
-      navStore,
-      viewStore,
-      withText: false,
-    })
+    Button(
+      navStore.buttonData({
+        id,
+        name: newsData.name,
+        viewStore,
+        withText: false,
+      })
+    )
   );
   return mediaInfo;
 };
@@ -125,7 +81,7 @@ const NewsContent = (mediaId, newsData) => {
   news.innerHTML = `
   <section class="thumbnail_news pointer hover_medium16 text_strong">
     <div class="thumbnail">
-      <img class="thumbnail" src="https://picsum.photos/600/400" alt="기사 사진">
+      <img class="thumbnail" src=${newsData.thumbnailSrc} alt="기사 사진">
     </div>
     <h2 class="title"><a>${newsData.thumbnailNews}</a></h2>
   </section>`;
@@ -153,30 +109,25 @@ const ListContent = (themeStore, navStore, viewStore, viewAll) => {
 
 const MediaList = (themeStore, navStore, viewData) => {
   const viewAll = navStore.getState().media === 'all';
-  const viewStore = new Store({
-    category: 0,
-    page: 0,
-    media: viewAll ? viewData.mediaData : viewData.subscribed,
-    scrollLeft: 0,
-  });
+  const listStore = new ListStore(viewData, viewAll);
   const mediaList = document.createElement('div');
 
   const render = () => {
     const nav = mediaList.querySelector('#list_nav');
     const listContent = mediaList.querySelector('#list_view');
 
-    updateListNav(nav, viewAll, viewStore);
+    updateListNav(nav, viewAll, navStore, listStore);
     listContent.replaceWith(
-      ListContent(themeStore, navStore, viewStore, viewAll)
+      ListContent(themeStore, navStore, listStore, viewAll)
     );
   };
 
   mediaList.innerHTML = `
     <nav id="list_nav" class="surface_alt"></nav>
     <div id="list_view"></div>`;
-  setArrowButtons(viewStore, viewAll);
+  setArrowButtons(listStore, viewAll);
   mediaList.id = 'list_view_wrapper';
-  viewStore.subscribe(render);
+  listStore.subscribe(render);
   render();
   return mediaList;
 };

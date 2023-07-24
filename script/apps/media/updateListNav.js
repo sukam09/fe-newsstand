@@ -42,16 +42,16 @@ const setSubPage = (store, newPage) => {
   }
 };
 
-const listNavOnClick = (category, index, viewStore) => {
+const listNavOnClick = (category, index, listStore) => {
   if (category === index) return;
-  viewStore.setState({
+  listStore.setState({
     category: index,
     page: 0,
   });
 };
 
-const appendListNavItems = (navList, viewStore) => {
-  const { category, page, media } = viewStore.getState();
+const appendListNavItems = (navList, listStore) => {
+  const { category, page, media } = listStore.getState();
 
   media.forEach((categoryData, index) => {
     navList.appendChild(
@@ -59,14 +59,14 @@ const appendListNavItems = (navList, viewStore) => {
         selected: category === index,
         title: categoryData.name,
         indicator: { index: page, total: categoryData.media.length },
-        onClick: () => listNavOnClick(category, index, viewStore),
-        afterDelay: () => setPage(viewStore, page + 1),
+        onClick: () => listNavOnClick(category, index, listStore),
+        afterDelay: () => setPage(listStore, page + 1),
       })
     );
   });
 };
 
-const ListNav = viewStore => {
+const ListNav = listStore => {
   const nav = document.createElement('nav');
   const navList = document.createElement('ul');
 
@@ -74,7 +74,7 @@ const ListNav = viewStore => {
   nav.classList.add('surface_alt');
   navList.id = 'list_nav_list';
   nav.appendChild(navList);
-  appendListNavItems(navList, viewStore);
+  appendListNavItems(navList, listStore);
   return nav;
 };
 
@@ -94,13 +94,13 @@ const setSubNavMouseEvent = navList => {
   });
 };
 
-const subNavOnClick = (page, index, viewStore) => {
+const subNavOnClick = (page, index, listStore) => {
   if (page === index) return;
-  viewStore.setState({ page: index });
+  listStore.setState({ page: index });
 };
 
-const appendSubNavItems = (navList, viewStore) => {
-  const { page, media, scrollLeft } = viewStore.getState();
+const appendSubNavItems = (navList, listStore) => {
+  const { page, media, scrollLeft } = listStore.getState();
 
   getMediaArray(media).then(mediaArray => {
     mediaArray.forEach((mediaItem, index) => {
@@ -108,8 +108,8 @@ const appendSubNavItems = (navList, viewStore) => {
         ListNavItem({
           selected: page === index,
           title: mediaItem.name,
-          onClick: () => subNavOnClick(page, index, viewStore),
-          afterDelay: () => setSubPage(viewStore, page + 1),
+          onClick: () => subNavOnClick(page, index, listStore),
+          afterDelay: () => setSubPage(listStore, page + 1),
         })
       );
     });
@@ -117,7 +117,7 @@ const appendSubNavItems = (navList, viewStore) => {
   });
 };
 
-const ListSubNav = viewStore => {
+const ListSubNav = listStore => {
   const nav = document.createElement('nav');
   const navList = document.createElement('ul');
 
@@ -125,48 +125,50 @@ const ListSubNav = viewStore => {
   nav.classList.add('surface_alt');
   navList.id = 'list_nav_list';
   nav.appendChild(navList);
-  appendSubNavItems(navList, viewStore);
+  appendSubNavItems(navList, listStore);
   return nav;
 };
 
-const selectNav = (navItem, index, page, viewStore) => {
+const selectNav = (navItem, index, page, listStore) => {
   navItem.replaceWith(
     ListNavItem({
       selected: true,
       title: navItem.querySelector('.name').innerText,
-      onClick: () => subNavOnClick(page, index, viewStore),
-      afterDelay: () => setSubPage(viewStore, page + 1),
+      onClick: () => subNavOnClick(page, index, listStore),
+      afterDelay: () => setSubPage(listStore, page + 1),
     })
   );
 };
 
-const unSelectNav = (navItem, index, page, viewStore) => {
+const unSelectNav = (navItem, index, page, listStore) => {
   if (!navItem.classList.contains('surface_brand_alt')) return;
   navItem.querySelector('.list_progress')?.remove();
   navItem.replaceWith(
     ListNavItem({
       selected: false,
       title: navItem.querySelector('.name').innerText,
-      onClick: () => subNavOnClick(page, index, viewStore),
+      onClick: () => subNavOnClick(page, index, listStore),
     })
   );
 };
 
-const updateListSubNav = (nav, viewStore) => {
-  const navList = nav.querySelector('#list_nav_list');
-  const { page } = viewStore.getState();
+const updateListSubNav = (nav, navStore, listStore) => {
+  const navItems = nav.querySelector('#list_nav_list')?.childNodes;
+  const { page } = listStore.getState();
 
-  if (!navList) return nav.replaceWith(ListSubNav(viewStore));
-  navList.childNodes.forEach((navItem, index) => {
-    if (index === page) return selectNav(navItem, index, page, viewStore);
-    unSelectNav(navItem, index, page, viewStore);
+  if (!navItems) {
+    return nav.replaceWith(ListSubNav(listStore));
+  }
+  navItems.forEach((navItem, index) => {
+    if (index === page) return selectNav(navItem, index, page, listStore);
+    unSelectNav(navItem, index, page, listStore);
   });
 };
 
-const updateListNav = (nav, viewAll, viewStore) => {
-  if (!viewAll) return updateListSubNav(nav, viewStore);
+const updateListNav = (nav, viewAll, navStore, listStore) => {
+  if (!viewAll) return updateListSubNav(nav, navStore, listStore);
   nav.querySelector('.list_progress')?.remove();
-  nav.replaceWith(ListNav(viewStore));
+  nav.replaceWith(ListNav(listStore));
 };
 
 export default updateListNav;

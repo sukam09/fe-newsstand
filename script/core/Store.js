@@ -2,9 +2,9 @@ class Store {
   #state;
   #listeners;
 
-  constructor(state) {
+  constructor(state, listeners = {}) {
     this.#state = state;
-    this.#listeners = {};
+    this.#listeners = listeners;
   }
 
   subscribe(listener, key = '') {
