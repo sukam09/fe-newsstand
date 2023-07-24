@@ -155,8 +155,9 @@ const unSelectNav = (navItem, index, page, listStore) => {
 const updateListSubNav = (nav, navStore, listStore) => {
   const navItems = nav.querySelector('#list_nav_list')?.childNodes;
   const { page } = listStore.getState();
+  const { subscribed } = navStore.getState();
 
-  if (!navItems) {
+  if (navItems?.length !== subscribed.length) {
     return nav.replaceWith(ListSubNav(listStore));
   }
   navItems.forEach((navItem, index) => {
