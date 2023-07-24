@@ -6,6 +6,7 @@
 }
 
 .header__title {
+  cursor: pointer;
   font: var(--display-bold24);
   padding-left: 2rem;
   text-decoration: none;
