@@ -1,9 +1,19 @@
+import { EventHandlerRegister } from "../../../components/SubscribeBtn.js";
+import { ENTIRE, VIEW_MODE } from "../../../../global.js";
+import { store } from "../../../../store.js";
+import { press_names } from "../ListView.js";
+
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 
 const FIRST_CATEGORY = 0;
 const FIRST_PAGE = 1;
 
-export function createPressNewsSection(news_data) {
+function SubscribeEventRegister(news_data, press_names) {
+  const btnElement = document.querySelector(".list .press-news-wrap .press-info .subscribe-btn");
+  EventHandlerRegister({ btnElement, news_data, press_names });
+}
+
+export function createPressNewsSection(news_data, press_names) {
   const pressNewsDiv = document.createElement("div");
   pressNewsDiv.className = "press-news-wrap";
   try {
@@ -20,7 +30,7 @@ export function createPressNewsSection(news_data) {
           <button class="subscribe-btn">
           
             <img  class="plus-btn" src="../../asset/button/plus.png"/>
-            <span class="scribe-text available-medium12">구독하기</span>
+            <span class="subscribe-text available-medium12">구독하기</span>
           
           </button>
       </div>
@@ -41,6 +51,9 @@ export function createPressNewsSection(news_data) {
 
     const news_list_wrap = document.querySelector("main .news-list-wrap");
     news_list_wrap.appendChild(pressNewsDiv);
+
+    //언론사별 구독 버튼 이벤트 등록
+    SubscribeEventRegister(news_data, press_names);
   } catch (e) {
     console.error(e);
   }
@@ -50,8 +63,9 @@ function createTabs() {
   const category_section_tab = document.createElement("section");
   category_section_tab.className = "field-tab";
   let tabs = "";
-
-  category.forEach((category, index) => {
+  9;
+  const tabContent = VIEW_MODE.CURRENT_TAB === ENTIRE ? category : press_names;
+  tabContent.forEach((category, index) => {
     tabs += `
           <div class="each-tab ${index === 0 ? "progress-tab" : "text-tab"}">
               <div class="text-wrap">
@@ -61,7 +75,7 @@ function createTabs() {
                       <span class="entire display-bold12"></span>
                   </span>
               </div>
-              <div class="progress-ratio">
+              <div  class="progress-ratio">
               </div>
           </div>
   `;

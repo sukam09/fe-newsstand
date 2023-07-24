@@ -2,17 +2,58 @@ import { fetchCategoryNews } from "../../../api.js";
 import { createListElement, createPressNewsSection } from "./Actions/CreateElement.js";
 import { timerId, startTimer } from "./Timer.js";
 import { prevProgressWidthChange } from "./Actions/ChangeTabStyle.js";
-import { LIST_PAGE } from "../../../global.js";
-
-export const categoryLength = [];
+import { ENTIRE, LIST_PAGE, SUBSCRIBE } from "../../../global.js";
+import { VIEW_MODE } from "../../../global.js";
+import { store } from "../../../store.js";
 
 export let news_data;
+export const categoryLength = [];
+export const press_names = [];
+export const subscribe_press_name = [];
 
 //뉴스 데이터 패치 -> 탭 정보(언론사 개수 초기화) -> 언론사 뉴스 html 요소 생성 및 초기화
 async function fetchCategoryNewsData() {
   try {
     news_data = await fetchCategoryNews("../Data/category_news.json");
-    createPressNewsSection(news_data);
+    categoryLength.length = 0;
+    press_names.length = 0;
+
+    if (VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
+      const subscribePressIds = store.getSubscribe();
+      const subscribe_news = [];
+
+      if (subscribePressIds.length >= 1) {
+        news_data.forEach((category) => {
+          category.press.forEach((press) => {
+            const isSubscribe = subscribePressIds.find((id) => id == press.ID);
+
+            if (isSubscribe) {
+              subscribe_news.push(press);
+            }
+          });
+        });
+        news_data = [];
+        news_data = subscribe_news;
+        console.log(news_data);
+      }
+    }
+    news_data.forEach((category) => {
+      if (VIEW_MODE.CURRENT_TAB === ENTIRE) {
+        categoryLength.push(category.press.length);
+        const eachNames = [];
+        category.press.forEach((press) => {
+          eachNames.push(press.name);
+        });
+        press_names.push(eachNames);
+      }
+      // else {
+      //   press_names = [];
+      //   press_names = news_data.map((press) => press.name);
+      //   console.log(press_names);
+      // }
+    });
+
+    createPressNewsSection(news_data, press_names);
     fieldInit();
   } catch (e) {
     console.error(e);
@@ -20,11 +61,6 @@ async function fetchCategoryNewsData() {
 }
 
 async function fieldInit() {
-  categoryLength.length = 0;
-  news_data.forEach((data) => {
-    categoryLength.push(data.press.length);
-  });
-
   //전역변수 초기화
   LIST_PAGE.setCategory(0);
   LIST_PAGE.setPage(1);
@@ -61,7 +97,7 @@ export function printList() {
   main.className = "list";
   main.innerHTML = ``;
   //HTML 요소 생성
-  createListElement();
+  createListElement(press_names);
 
   //카테고리 탭 클릭 이벤트
   tabClickEventRegister();
@@ -69,7 +105,6 @@ export function printList() {
   //데이터 패치 및 세팅 초기화
   fetchCategoryNewsData();
 
-  //
   const left_btn = document.querySelector(".left-btn");
   left_btn.style.display = "block";
 }

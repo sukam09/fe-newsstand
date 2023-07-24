@@ -1,18 +1,25 @@
 import { store, actionCreator } from "../../store.js";
 import { updateGrid, FetchData } from "../view/GridView.js";
-import { VIEW_MODE, SUBSCRIBE } from "../../global.js";
+import { VIEW_MODE, SUBSCRIBE, LIST_PAGE } from "../../global.js";
+import { GRID, LIST } from "./LayoutBtn.js";
 
-let timeoutId;
+function snackBarForceDisappear() {
+  const main = VIEW_MODE.CURRENT_LAYOUT === GRID ? document.querySelector(".grid") : document.querySelector(".list");
+  const snackBarElement = main.querySelector(".snack-bar");
+  if (snackBarElement) {
+    main.removeChild(snackBarElement);
+  }
+}
 
 function snackBar() {
   const snackBarElement = document.createElement("div");
   snackBarElement.className = "snack-bar";
   snackBarElement.innerHTML = `<span class="snack-bar-text display-medium16">내가 구독한 언론사에 추가되었습니다.</span>`;
-  const gridMain = document.querySelector(".grid");
-  gridMain.appendChild(snackBarElement);
+  const main = VIEW_MODE.CURRENT_LAYOUT === GRID ? document.querySelector(".grid") : document.querySelector(".list");
+  main.appendChild(snackBarElement);
 
-  timeoutId = setTimeout(() => {
-    gridMain.removeChild(snackBarElement);
+  setTimeout(() => {
+    main.removeChild(snackBarElement);
   }, 5000);
 }
 
@@ -30,17 +37,20 @@ function createAlert(pressName) {
           </div>
       `;
 
-  const gridMain = document.querySelector(".grid");
-  gridMain.appendChild(alertElement);
+  const main = VIEW_MODE.CURRENT_LAYOUT === GRID ? document.querySelector(".grid") : document.querySelector(".list");
+  main.appendChild(alertElement);
 
   return alertElement;
 }
 function AlertHandler(pressID, press_names) {
-
-
-  const pressName = press_names[pressID-1];
-
-
+  let pressName;
+  if (VIEW_MODE.CURRENT_LAYOUT === GRID) {
+    pressName = press_names[pressID - 1];
+  } else {
+    //리스트뷰
+    pressName = press_names[LIST_PAGE.CURRENT_CATEGORY][LIST_PAGE.CURRENT_PAGE - 1];
+  }
+  snackBarForceDisappear();
   const alertElement = createAlert(pressName);
   const confirmBtn = alertElement.querySelector(".confirm-unsubscribe");
   const rejectBtn = alertElement.querySelector(".reject");
@@ -48,28 +58,41 @@ function AlertHandler(pressID, press_names) {
   confirmBtn.addEventListener("click", async () => {
     store.dispatch(actionCreator("unsubscribe", { pressID }));
 
-    const gridMain = document.querySelector(".grid");
-    gridMain.removeChild(alertElement);
+    const main = VIEW_MODE.CURRENT_LAYOUT === GRID ? document.querySelector(".grid") : document.querySelector(".list");
+    main.removeChild(alertElement);
 
-    if (VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
+    if (VIEW_MODE.CURRENT_LAYOUT === GRID && VIEW_MODE.CURRENT_TAB === SUBSCRIBE) {
       await FetchData();
       updateGrid();
+    } else if (VIEW_MODE.CURRENT_LAYOUT === LIST) {
+      const listBtn = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
+      listBtn.querySelector(".subscribe-text").innerHTML = "구독하기";
+      listBtn.querySelector(".plus-btn").setAttribute("src", "../../../../asset/button/plus.png");
     }
   });
 
   rejectBtn.addEventListener("click", () => {
-    const gridMain = document.querySelector(".grid");
-    gridMain.removeChild(alertElement);
+    const main = VIEW_MODE.CURRENT_LAYOUT === GRID ? document.querySelector(".grid") : document.querySelector(".list");
+    main.removeChild(alertElement);
   });
 }
 
-function SubscribeBtnEventHandler(e, btnElement, pressID, press_names) {
+function SubscribeBtnEventHandler(e, btnElement, pressID, press_names, news_data) {
+  if (!pressID && VIEW_MODE.CURRENT_LAYOUT === LIST) {
+    pressID = news_data[LIST_PAGE.CURRENT_CATEGORY].press[LIST_PAGE.CURRENT_PAGE - 1].ID;
+  }
+
   const isSubscribe = SubscribeState(pressID);
   if (!isSubscribe) {
     snackBar(e);
     store.dispatch(actionCreator("subscribe", { pressID }));
-    btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
-    btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png") = "해지하기";
+    if (VIEW_MODE.CURRENT_LAYOUT === LIST) {
+      btnElement.querySelector(".subscribe-text").innerHTML = "";
+      btnElement.querySelector(".plus-btn").setAttribute("src", "../../../../asset/button/closed.png");
+    } else {
+      btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
+      btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
+    }
   } else {
     const grid = document.querySelector(".grid");
     const snackBar = document.querySelector(".grid .snack-bar");
@@ -81,8 +104,8 @@ function SubscribeBtnEventHandler(e, btnElement, pressID, press_names) {
   }
 }
 
-export function EventHandlerRegister(btnElement, pressID, press_names) {
-  btnElement.addEventListener("click", (e) => SubscribeBtnEventHandler(e, btnElement, pressID, press_names));
+export function EventHandlerRegister({ btnElement, pressID, press_names, news_data = [] }) {
+  btnElement.addEventListener("click", (e) => SubscribeBtnEventHandler(e, btnElement, pressID, press_names, news_data));
 }
 
 export function SubscribeState(pressID) {

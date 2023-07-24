@@ -1,6 +1,7 @@
 import { tabClassChange } from "./ChangeTabStyle.js";
 import { LIST_PAGE } from "../../../../global.js";
 import { news_data } from "../../ListView/ListView.js";
+import { store } from "../../../../store.js";
 
 /**
  * 현재 카테고리의 페이지 정보 변경
@@ -28,6 +29,16 @@ function changePressNewsSection() {
   const pressInfo = document.querySelector("main .news-list-wrap .press-news-wrap .press-info ");
   const pressLogo = pressInfo.querySelector(".press-icon");
   pressLogo.src = `../../../../asset/icons/basic/${news_data[LIST_PAGE.CURRENT_CATEGORY].press[LIST_PAGE.CURRENT_PAGE - 1].path}`;
+
+  const subscribe_icon = pressInfo.querySelector(".subscribe-btn");
+  const pressID = news_data[LIST_PAGE.CURRENT_CATEGORY].press[LIST_PAGE.CURRENT_PAGE - 1].ID;
+  if (store.getIsSubscribe(pressID)) {
+    subscribe_icon.querySelector(".subscribe-text").innerHTML = "";
+    subscribe_icon.querySelector(".plus-btn").setAttribute("src", "../../../../asset/button/closed.png");
+  } else {
+    subscribe_icon.querySelector(".subscribe-text").innerHTML = "구독하기";
+    subscribe_icon.querySelector(".plus-btn").setAttribute("src", "../../../../asset/button/plus.png");
+  }
 
   const mainNews = document.querySelector(".press-news-wrap .news .news-main");
   const subNews = document.querySelector(".press-news-wrap .news .news-sub");

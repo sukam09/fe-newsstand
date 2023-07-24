@@ -47,6 +47,7 @@ export const VIEW_MODE = {
     btnColorChange();
   },
 };
+
 const ENTIRE = "ENTIRE",
   SUBSCRIBE = "SUBSCRIBE";
 

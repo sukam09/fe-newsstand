@@ -3,6 +3,7 @@
     "category": "종합/경제",
     "press": [
       {
+        "ID": "1",
         "name": "머니투데이",
         "path": "news_logo1.svg",
         "news": [
@@ -16,6 +17,7 @@
         ]
       },
       {
+        "ID": "2",
         "name": "경향신문",
         "path": "news_logo2.svg",
         "news": [
@@ -29,6 +31,7 @@
         ]
       },
       {
+        "ID": "3",
         "name": "뉴스타파",
         "path": "news_logo3.svg",
         "news": [
@@ -47,6 +50,7 @@
     "category": "방송/통신",
     "press": [
       {
+        "ID": "4",
         "name": "오마이뉴스",
         "path": "news_logo4.svg",
         "news": [
@@ -61,6 +65,7 @@
         ]
       },
       {
+        "ID": "5",
         "name": "데일리안",
         "path": "news_logo5.svg",
         "news": [
@@ -74,6 +79,7 @@
         ]
       },
       {
+        "ID": "6",
         "name": "헤드럴경제",
         "path": "news_logo6.svg",
         "news": [
@@ -87,6 +93,7 @@
         ]
       },
       {
+        "ID": "7",
         "name": "세계일보",
         "path": "news_logo7.svg",
         "news": [
@@ -106,6 +113,7 @@
     "category": "IT",
     "press": [
       {
+        "ID": "8",
         "name": "아시아경제",
         "path": "news_logo8.svg",
         "news": [
@@ -119,6 +127,7 @@
         ]
       },
       {
+        "ID": "9",
         "name": "이데일리",
         "path": "news_logo9.svg",
         "news": [
@@ -133,6 +142,7 @@
         ]
       },
       {
+        "ID": "10",
         "name": "한국일보",
         "path": "news_logo10.svg",
         "news": [
@@ -146,6 +156,7 @@
         ]
       },
       {
+        "ID": "11",
         "name": "아이뉴스24",
         "path": "news_logo11.svg",
         "news": [
@@ -160,6 +171,7 @@
         ]
       },
       {
+        "ID": "12",
         "name": "파이낸셜뉴스",
         "path": "news_logo12.svg",
         "news": [
@@ -178,6 +190,7 @@
     "category": "영자지",
     "press": [
       {
+        "ID": "13",
         "name": "스포츠서울",
         "path": "news_logo13.svg",
         "news": [
@@ -192,6 +205,7 @@
         ]
       },
       {
+        "ID": "14",
         "name": "스포츠동아",
         "path": "news_logo14.svg",
         "news": [
@@ -210,6 +224,7 @@
     "category": "스포츠/연예",
     "press": [
       {
+        "ID": "15",
         "name": "석간 문화일보",
         "path": "news_logo15.svg",
         "news": [
@@ -223,6 +238,7 @@
         ]
       },
       {
+        "ID": "16",
         "name": "KBS WORLD",
         "path": "news_logo16.svg",
         "news": [
@@ -241,6 +257,7 @@
     "category": "매거진/전문지",
     "press": [
       {
+        "ID": "17",
         "name": "Korea JoongAng Daily",
         "path": "news_logo17.svg",
         "news": [
@@ -254,6 +271,7 @@
         ]
       },
       {
+        "ID": "18",
         "name": "Insight",
         "path": "news_logo18.svg",
         "news": [
@@ -272,6 +290,7 @@
     "category": "지역",
     "press": [
       {
+        "ID": "19",
         "name": "법률방송뉴스",
         "path": "news_logo19.svg",
         "news": [
@@ -286,6 +305,7 @@
         ]
       },
       {
+        "ID": "20",
         "name": "시사저널e",
         "path": "news_logo20.svg",
         "news": [

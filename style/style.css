@@ -202,6 +202,9 @@ section {
   gap: 8px;
   cursor: pointer;
 }
+.text-tab .text-wrap .text-category-number {
+  display: none;
+}
 .text-tab .text-category-name {
   color: var(--text-text-weak);
 }
@@ -385,7 +388,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
 }
 
 .snack-bar {
-  z-index: 10;
+  z-index: 500;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -459,4 +462,23 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
 }
 .unsubscribe-alert .alert-buttons .each-button:hover {
   text-decoration: underline;
+}
+.no-press {
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.chevron-right {
+  display: flex;
+  width: 14px;
+  height: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.text-tab .text-wrap .chevron-right {
+  display: none;
 }

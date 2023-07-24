@@ -12,7 +12,7 @@ const press_names = [];
 const ICONS_PER_PAGE = 24;
 
 function createSubscribeDiv(li, pressID) {
-  let SubscribeBtn;
+  let btnElement;
   const isSubscribe = SubscribeState(pressID);
   const UnSubscribeModeDiv = `
   <div class="subscribe-wrap">
@@ -23,8 +23,8 @@ function createSubscribeDiv(li, pressID) {
   </div>`;
 
   li.innerHTML += UnSubscribeModeDiv;
-  SubscribeBtn = li.querySelector(".subscribe-btn");
-  EventHandlerRegister(SubscribeBtn, pressID, press_names);
+  btnElement = li.querySelector(".subscribe-btn");
+  EventHandlerRegister({ btnElement, pressID, press_names });
 }
 
 function pressMouseOver(li) {
