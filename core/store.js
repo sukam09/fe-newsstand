@@ -46,4 +46,8 @@ function actionCreator(type, data) {
 
 const store = new Store(reducer);
 
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
 export { store, actionCreator };
