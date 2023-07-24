@@ -1,10 +1,19 @@
 import { changeView } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
-import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
+import {
+  FIRST_PAGE_NUM,
+  CATEGORY,
+  ICON_IMG_PATH,
+} from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { shuffleImgIndex } from "../utils/shuffleIndex.js";
-import { getView, getPage, getSubscribedPress } from "../core/getter.js";
+import {
+  getView,
+  getPage,
+  getSubscribedPress,
+  getMode,
+} from "../core/getter.js";
 function MainView() {
   // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
@@ -31,6 +40,16 @@ function handleClick(e) {
   const view_content = document.querySelector(".view-content");
   const target = e.target.id;
   switch (target) {
+    case "light-dark":
+      let _mode;
+      getMode() === "light" ? (_mode = "dark") : (_mode = "light");
+      store.setState({ mode: _mode });
+      document
+        .getElementById(`${target}`)
+        .setAttribute("src", `${ICON_IMG_PATH}${_mode}-mode.svg`);
+      document.documentElement.setAttribute("color-theme", getMode());
+      getView() === "grid" ? showGridView() : showListView();
+      break;
     case "grid-btn":
     case "grid-view-btn":
     case "list-btn":

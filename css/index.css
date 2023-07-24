@@ -3,6 +3,7 @@
 @import url("./color.css");
 html {
   height: 100%;
+  background-color: var(--surface-default);
 }
 body {
   display: flex;
@@ -221,13 +222,17 @@ a:hover {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: #000;
+  color: var(--text-default);
 }
 
 .auto-rolling-news a:hover {
   text-decoration: underline;
 }
-
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 92px;
+}
 .viewer-btn {
   display: flex;
   height: 24px;
@@ -236,7 +241,7 @@ a:hover {
   vertical-align: middle;
   align-items: center;
 }
-.viewer-btn button {
+.btn-wrapper button {
   display: flex;
   height: 24px;
   width: 24px;
@@ -426,6 +431,7 @@ a:hover {
   justify-content: center;
   padding: 24px;
   background-color: var(--surface-default);
+  color: var(--text-default);
 }
 .alert .message .press {
   color: var(--text-strong);
@@ -436,17 +442,6 @@ a:hover {
 .alert .buttons {
   display: flex;
   background-color: var(--surface-alt);
-  /* justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-  border: 1px solid var(--border-default);
-  color: var(--text-text-strong);
-  text-align: center;
-  
-  font-size: 16px;
-  line-height: 22px; */
 }
 
 .alert .btn-yes,
@@ -464,7 +459,11 @@ a:hover {
   line-height: 22px; /* 137.5% */
 }
 .alert .btn-yes {
+  color: var(--text-strong);
   border-right: 0;
+}
+.alert .btn-no {
+  color: var(--text-default);
 }
 
 /* main-news */
