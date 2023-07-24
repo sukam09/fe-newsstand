@@ -23,6 +23,8 @@ function notify(key) {
   });
 }
 
-export function register(key, observer) {
-  globalStates[key].observers.add(observer);
+export function register(keyList, observer) {
+  keyList.map((key) => {
+    globalStates[key].observers.add(observer);
+  });
 }

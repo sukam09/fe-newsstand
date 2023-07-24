@@ -1,8 +1,8 @@
-import { MESSAGE, STATE } from "../constant.js";
+import { MESSAGE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState } from "../observer/observer.js";
+import { getState, setState } from "../observer/observer.js";
 
 let mediaInfo;
 let categoryInfo = {
@@ -53,16 +53,22 @@ const setListArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
-      if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX--;
-      else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX--;
+    if (!getState("isGridMode")) {
+      if (getState("isTotalMode")) {
+        setState("listCateMediaIdx", getState("listCateMediaIdx") - 1);
+      } else {
+        setState("listSubsMediaIdx", getState("listSubsMediaIdx") - 1);
+      }
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
-      if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX++;
-      else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
+    if (!getState("isGridMode")) {
+      if (getState("isTotalMode")) {
+        setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
+      } else {
+        setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
+      }
       setFullList();
     }
   });
@@ -70,12 +76,12 @@ const setListArrowEvent = () => {
 
 const setListModeEvent = () => {
   $totalMedia.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
+    if (!getState("isGridMode")) {
       onClickListMode({ className: "main-nav_total" });
     }
   });
   $subscribeMedia.addEventListener("click", () => {
-    if (!STATE.MODE.IS_GRID) {
+    if (!getState("isGridMode")) {
       onClickListMode({ className: "main-nav_subscribe" });
     }
   });
@@ -87,14 +93,17 @@ const setListModeEvent = () => {
  */
 const onClickListMode = ({ className }) => {
   onClickSubscribeMode({ className });
-  [STATE.LIST_MODE.CATE_IDX, STATE.LIST_MODE.CATE_MEDIA_IDX] = [0, 0];
+
+  setState("listCateIdx", 0);
+  setState("listCateMediaIdx", 0);
+
   setFullList();
 };
 
 const setListSubscribeEvent = () => {
   $plusSubBtn.addEventListener("click", () => {
     clickSubButton();
-    STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
+    setState("listSubsMediaIdx", getState("subscribeList").length - 1);
     onClickListMode({ className: "main-nav_subscribe" });
   });
   $xSubBtn.addEventListener("click", () => {
@@ -106,10 +115,10 @@ const setListSubscribeEvent = () => {
 
 const clickSubButton = () => {
   const totalId =
-    categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]][
-      STATE.LIST_MODE.CATE_MEDIA_IDX
+    categoryInfo[categoryKeys[getState("listCateIdx")]][
+      getState("listCateMediaIdx")
     ];
-  const subsId = STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
+  const subsId = getState("subscribeList")[getState("listSubsMediaIdx")];
   const mediaId = getState("isTotalMode") ? totalId : subsId;
   const mediaName = mediaInfo[mediaId].name;
   changeSubState({ mediaId, mediaName });
@@ -119,47 +128,49 @@ const clickSubButton = () => {
  * 페이지 이동 시 예외처리
  */
 const changeIdx = () => {
-  let cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
+  let cateLen = categoryInfo[categoryKeys[getState("listCateIdx")]].length;
+  let [listCateIdx, cateMediaIdx] = [
+    getState("listCateIdx"),
+    getState("listCateMediaIdx"),
+  ];
 
   if (getState("isTotalMode")) {
-    if (
-      STATE.LIST_MODE.CATE_IDX === 0 &&
-      STATE.LIST_MODE.CATE_MEDIA_IDX === -1
-    ) {
+    if (listCateIdx === 0 && cateMediaIdx === -1) {
       // 첫 카테고리 첫 페이지에서 이전 페이지 이동 시
-      STATE.LIST_MODE.CATE_IDX = 6;
-      cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
-      STATE.LIST_MODE.CATE_MEDIA_IDX = cateLen - 1;
+      setState("listCateIdx", 6);
+      cateLen = categoryInfo[categoryKeys[listCateIdx]].length;
+      setState("listCateMediaIdx", cateLen - 1);
+      // cateMediaIdx = cateLen - 1;
     } else if (
       // 첫 카테고리 아닐 때, 첫 페이지에서 이전 페이지 이동 시
-      STATE.LIST_MODE.CATE_IDX !== 0 &&
-      STATE.LIST_MODE.CATE_MEDIA_IDX === -1
+      listCateIdx !== 0 &&
+      cateMediaIdx === -1
     ) {
-      STATE.LIST_MODE.CATE_IDX--;
-      cateLen = categoryInfo[categoryKeys[STATE.LIST_MODE.CATE_IDX]].length;
-      STATE.LIST_MODE.CATE_MEDIA_IDX = cateLen - 1;
+      setState("listCateIdx", listCateIdx - 1);
+      cateLen = categoryInfo[categoryKeys[listCateIdx]].length;
+      setState("listCateMediaIdx", cateLen - 1);
     } else if (
       // 마지막 카테고리일 때, 마지막 페이지라면,
-      STATE.LIST_MODE.CATE_IDX === 6 &&
-      STATE.LIST_MODE.CATE_MEDIA_IDX === cateLen
+      listCateIdx === 6 &&
+      cateMediaIdx === cateLen
     ) {
-      STATE.LIST_MODE.CATE_IDX = 0;
-      STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+      setState("listCateIdx", 0);
+      setState("listCateMediaIdx", 0);
     } else if (
       // 마지막 카테고리가 아닐 때, 마지막 페이지라면,
-      STATE.LIST_MODE.CATE_IDX !== 6 &&
-      STATE.LIST_MODE.CATE_MEDIA_IDX === cateLen
+      listCateIdx !== 6 &&
+      cateMediaIdx === cateLen
     ) {
-      STATE.LIST_MODE.CATE_IDX++;
-      STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+      setState("listCateIdx", listCateIdx + 1);
+      setState("listCateMediaIdx", 0);
     }
   } else if (!getState("isTotalMode")) {
-    if (STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === -1) {
-      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
-    } else if (
-      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === STATE.SUBSCRIBE_LIST.length
-    ) {
-      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = 0;
+    const subsMediaIdx = getState("listSubsMediaIdx");
+
+    if (subsMediaIdx === -1) {
+      setState("listSubsMediaIdx", getState("subscribeList").length - 1);
+    } else if (subsMediaIdx === getState("subscribeList").length) {
+      setState("listSubsMediaIdx", 0);
     }
   }
 };
@@ -173,7 +184,7 @@ const setCategoryBar = () => {
   if (getState("isTotalMode")) {
     setACategoryBar({ keyList: categoryKeys });
   } else {
-    const subMediaName = STATE.SUBSCRIBE_LIST.map(
+    const subMediaName = getState("subscribeList").map(
       (subIdx) => mediaInfo[subIdx].name
     );
     setACategoryBar({ keyList: subMediaName });
@@ -186,9 +197,9 @@ const setCategoryBar = () => {
 const isCurCategory = ({ cateIdx }) => {
   if (getState("isTotalMode")) {
     // 전체모드일 때
-    return STATE.LIST_MODE.CATE_IDX === cateIdx;
+    return getState("listCateIdx") === cateIdx;
   } else {
-    return STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX === cateIdx;
+    return getState("listSubsMediaIdx") === cateIdx;
   }
 };
 
@@ -202,10 +213,10 @@ const setACategoryBar = ({ keyList }) => {
     $li.addEventListener("click", () => {
       if (isCurCategory({ cateIdx: idx })) return;
       if (getState("isTotalMode")) {
-        STATE.LIST_MODE.CATE_IDX = idx;
-        STATE.LIST_MODE.CATE_MEDIA_IDX = 0;
+        setState("listCateIdx", idx);
+        setState("listCateMediaIdx", 0);
       } else {
-        STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = idx;
+        setState("listSubsMediaIdx", idx);
       }
       setFullList();
     });
@@ -223,7 +234,7 @@ const setACategoryBar = ({ keyList }) => {
  * 페이지 전환 따른 프로그래스바 이동
  */
 const setProgressBar = () => {
-  const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
+  const cate = categoryKeys[getState("listCateIdx")];
   const $cateList = $categoryBar.querySelectorAll("li");
 
   // 1. 모든 li 하위 돌면서 프로그래스바 삭제해주기
@@ -238,8 +249,8 @@ const setProgressBar = () => {
 
   // 2. 모드 따라 현재 선택한 카테고리 위치에 프로그래스바 추가
   const curCateIdx = getState("isTotalMode")
-    ? STATE.LIST_MODE.CATE_IDX
-    : STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX;
+    ? getState("listCateIdx")
+    : getState("listSubsMediaIdx");
   const $li = $categoryBar.children[curCateIdx];
   $li.className = "category_selected";
 
@@ -247,7 +258,7 @@ const setProgressBar = () => {
   if (getState("isTotalMode")) {
     // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
-  <p>${STATE.LIST_MODE.CATE_MEDIA_IDX + 1}</p>
+  <p>${getState("listCateMediaIdx") + 1}</p>
   <p>&nbsp; / ${categoryInfo[cate].length}</p>
 `;
   } else {
@@ -262,8 +273,11 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    if (getState("isTotalMode")) STATE.LIST_MODE.CATE_MEDIA_IDX++;
-    else STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX++;
+    if (getState("isTotalMode"))
+      setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
+    else {
+      setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
+    }
     setFullList();
   });
 };
@@ -272,19 +286,21 @@ const setProgressBar = () => {
  * 페이지 전환 따른 뉴스 영역 변경
  */
 const setListView = () => {
-  const cate = categoryKeys[STATE.LIST_MODE.CATE_IDX];
+  const cate = categoryKeys[getState("listCateIdx")];
 
   // 모드에 따라 mediaId 세팅
   const mediaId = getState("isTotalMode")
-    ? categoryInfo[cate][STATE.LIST_MODE.CATE_MEDIA_IDX]
-    : STATE.SUBSCRIBE_LIST[STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX];
+    ? categoryInfo[cate][getState("listCateMediaIdx")]
+    : getState("subscribeList")[getState("listSubsMediaIdx")];
 
   const nowMedia = mediaInfo[mediaId];
 
-  $logo.src = STATE.MODE.IS_LIGHT ? nowMedia.path_light : nowMedia.path_dark;
+  $logo.src = getState("isLightMode")
+    ? nowMedia.path_light
+    : nowMedia.path_dark;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
-  if (STATE.SUBSCRIBE_LIST.includes(mediaId)) {
+  if (getState("subscribeList").includes(mediaId)) {
     $plusSubBtn.classList.add("hidden");
     $xSubBtn.classList.remove("hidden");
   } else {
@@ -311,7 +327,7 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
-  if (!getState("isTotalMode") && STATE.SUBSCRIBE_LIST.length === 0) {
+  if (!getState("isTotalMode") && getState("subscribeList").length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;

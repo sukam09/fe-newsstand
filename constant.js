@@ -26,20 +26,4 @@ const MESSAGE = Object.freeze({
   ERROR_NO_SUBSCRIBE: "구독중인 언론사가 없습니다!",
 });
 
-const STATE = {
-  GRID_PAGE_NUM: 0,
-  SUBSCRIBE_LIST: [],
-  SELECT_SUBSCRIBE_IDX: 0,
-  MODE: {
-    IS_LIGHT: true,
-    IS_GRID: true,
-    IS_TOTAL: true,
-  },
-  LIST_MODE: {
-    CATE_IDX: 0,
-    CATE_MEDIA_IDX: 0,
-    SUBSCRIBE_MEDIA_IDX: 0,
-  },
-};
-
-export { MEDIA, TOPIC, IMAGE, MESSAGE, STATE };
+export { MEDIA, TOPIC, IMAGE, MESSAGE };

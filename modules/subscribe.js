@@ -1,4 +1,3 @@
-import { STATE } from "../constant.js";
 import { moveGridView, moveListView } from "./utils.js";
 import { getState, setState } from "../observer/observer.js";
 
@@ -32,19 +31,19 @@ const onClickSubscribeMode = ({ className }) => {
 };
 
 const changeSubState = ({ mediaId, mediaName }) => {
-  const subIdx = STATE.SUBSCRIBE_LIST.indexOf(mediaId);
-  STATE.SELECT_SUBSCRIBE_IDX = subIdx;
+  const subIdx = getState("subscribeList").indexOf(mediaId);
+  setState("selectSubscribeIdx", subIdx);
 
   if (subIdx !== -1) {
     $subAlertName.innerText = mediaName;
     $subsAlert.classList.remove("hidden");
   } else {
-    STATE.SUBSCRIBE_LIST = [...STATE.SUBSCRIBE_LIST, mediaId];
+    setState("subscribeList", [...getState("subscribeList"), mediaId]);
 
     $snackBar.classList.remove("hidden");
     setTimeout(() => {
       $snackBar.classList.add("hidden");
-      STATE.LIST_MODE.SUBSCRIBE_MEDIA_IDX = STATE.SUBSCRIBE_LIST.length - 1;
+      setState("listSubsMediaIdx", getState("subscribeList").length - 1);
       onClickSubscribeMode({ className: "main-nav_subscribe" });
     }, 1000);
   }

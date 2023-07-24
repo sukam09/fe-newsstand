@@ -1,9 +1,7 @@
-import { IMAGE, MEDIA, MESSAGE, STATE } from "../constant.js";
-import { setState } from "../observer/observer.js";
+import { IMAGE, MEDIA, MESSAGE } from "../constant.js";
+import { getState, setState } from "../observer/observer.js";
 import { changeImgSrc, setNewPage } from "./grid.js";
 import { setCategoryBar, setFullList, setListView } from "./list.js";
-
-const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -34,7 +32,7 @@ const setColorModeEvent = () => {
 
     $colorModeBtn.src =
       $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
-    STATE.MODE.IS_GRID ? changeImgSrc() : setListView();
+    getState("isGridMode") ? changeImgSrc() : setListView();
   });
 };
 /**
@@ -86,7 +84,7 @@ const moveGridView = () => {
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
 
-  STATE.MODE.IS_GRID = true;
+  getState("isGridMode", true);
   const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
   setNewPage();
 };
@@ -107,7 +105,7 @@ const moveListView = () => {
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
 
-  STATE.MODE.IS_GRID = false;
+  getState("isGridMode", false);
 
   setCategoryBar();
   setFullList();
@@ -119,19 +117,22 @@ const initSubsModalView = () => {
   const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
 
   $subBtnYes.addEventListener("click", () => {
-    const subIdx = STATE.SELECT_SUBSCRIBE_IDX;
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    const subIdx = getState("selectSubscribeIdx");
+
+    const newSubscribeList = getState("subscribeList");
+    newSubscribeList.splice(subIdx, 1);
+    setState("subscribeList", newSubscribeList);
+
     $subsAlert.classList.add("hidden");
 
-    alert(MESSAGE.UNSUBSCRIBE);
-
-    if (STATE.MODE.IS_GRID) {
-      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+    if (getState("isGridMode")) {
       setNewPage();
     } else {
       setCategoryBar();
       setFullList();
     }
+
+    alert(MESSAGE.UNSUBSCRIBE);
   });
   $subBtnNo.addEventListener("click", () => {
     $subsAlert.classList.add("hidden");

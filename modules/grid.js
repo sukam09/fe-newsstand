@@ -1,9 +1,9 @@
-import { MEDIA, MESSAGE, STATE } from "../constant.js";
+import { MEDIA, MESSAGE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState, register, setState } from "../observer/observer.js";
-import { gridPageNum, isLightMode } from "../store/index.js";
+import { getState, setState } from "../observer/observer.js";
+import { isLightMode } from "../store/index.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -46,17 +46,17 @@ const makeGrid = () => {
 const addSubscribeButton = (idx) => {
   const mediaId = getState("isTotalMode")
     ? idList[idx]
-    : STATE.SUBSCRIBE_LIST[idx];
+    : getState("subscribeList")[idx];
   const $buttonWrapper = document.createElement("div");
   $buttonWrapper.classList.add("news-grid_button_wrapper");
 
   const $button = document.createElement("button");
   $button.classList.add(
-    STATE.SUBSCRIBE_LIST.includes(mediaId)
+    getState("subscribeList").includes(mediaId)
       ? "news-grid_subscribed_btn"
       : "news-grid_unsubscribed_btn"
   );
-  $button.innerText = STATE.SUBSCRIBE_LIST.includes(mediaId)
+  $button.innerText = getState("subscribeList").includes(mediaId)
     ? "x 해지하기"
     : "+ 구독하기";
 
@@ -76,7 +76,7 @@ const addSubscribeButton = (idx) => {
 const clickSubButton = (idx) => {
   const mediaId = getState("isTotalMode")
     ? idList[idx]
-    : STATE.SUBSCRIBE_LIST[idx];
+    : getState("subscribeList")[idx];
   const mediaName = mediaInfo[mediaId].name;
 
   changeSubState({ mediaId, mediaName });
@@ -97,10 +97,10 @@ const setGridArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (STATE.MODE.IS_GRID) clickArrow(-1);
+    if (getState("isGridMode")) clickArrow(-1);
   });
   $rightArrow.addEventListener("click", () => {
-    if (STATE.MODE.IS_GRID) clickArrow(+1);
+    if (getState("isGridMode")) clickArrow(+1);
   });
 };
 
@@ -109,12 +109,12 @@ const setGridArrowEvent = () => {
  */
 const setGridModeEvent = () => {
   $totalMedia.addEventListener("click", () => {
-    if (STATE.MODE.IS_GRID) {
+    if (getState("isGridMode")) {
       onClickGridMode({ className: "main-nav_total" });
     }
   });
   $subscribeMedia.addEventListener("click", () => {
-    if (STATE.MODE.IS_GRID) {
+    if (getState("isGridMode")) {
       onClickGridMode({ className: "main-nav_subscribe" });
     }
   });
@@ -133,7 +133,7 @@ const onClickGridMode = ({ className }) => {
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
 const setNewPage = () => {
-  if (!getState("isTotalMode") && STATE.SUBSCRIBE_LIST.length === 0) {
+  if (!getState("isTotalMode") && getState("subscribeList").length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;
@@ -152,7 +152,7 @@ const changeImgSrc = () => {
   for (let i = start; i < start + MEDIA_NUM; i++) {
     const mediaIdx = getState("isTotalMode")
       ? idList[i]
-      : STATE.SUBSCRIBE_LIST[i];
+      : getState("subscribeList")[i];
 
     const $img = document.querySelector(`.img${i - start}`);
     const $buttonWrapper = $img.nextSibling;
@@ -165,7 +165,7 @@ const changeImgSrc = () => {
 
     $buttonWrapper.style.display = "";
 
-    const imgSrc = STATE.MODE.IS_LIGHT
+    const imgSrc = getState("isLightMode")
       ? `${mediaInfo[mediaIdx].path_light}`
       : `${mediaInfo[mediaIdx].path_dark}`;
 
@@ -225,7 +225,7 @@ const setArrowVisible = () => {
   // 미디어 개수에 따른 hidden 여부
   const totalPage = getState("isTotalMode")
     ? idList.length / MEDIA_NUM
-    : STATE.SUBSCRIBE_LIST.length / MEDIA_NUM;
+    : getState("subscribeList").length / MEDIA_NUM;
 
   if (getState("gridPageNum") < totalPage - 1) {
     $rightArrow.classList.remove("hidden");
@@ -244,9 +244,6 @@ const getGridInfo = async () => {
 async function initGridView() {
   await getGridInfo();
   idList = shuffleList(idList);
-  register(isLightMode, makeGrid);
-  register(gridPageNum, changeButtonView);
-  register(gridPageNum, changeImgSrc);
 
   makeGrid();
   setArrowVisible();
