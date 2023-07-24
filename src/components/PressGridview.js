@@ -4,6 +4,7 @@ import { store, actionCreator } from '../../store/store.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
+import SnackBar from './common/SnackBar.js';
 
 export default function PressGridView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -43,7 +44,7 @@ export default function PressGridView({ $target, initialState }) {
   }
 
   // TODO: 옵저버 패턴 적용 필요
-  function handleSubscribe(id, subscribeButton) {
+  const handleSubscribe = (id, subscribeButton) => {
     const { isSubscribed } = subscribeButton.state;
 
     // Optimistic UI 적용
@@ -52,9 +53,20 @@ export default function PressGridView({ $target, initialState }) {
       store.dispatch(actionCreator('unsubscribe', { pid: id }));
     } else {
       subscribeButton.setState({ ...subscribeButton.state, isSubscribed: true });
+
+      // 만약 스낵바 타이머가 걸려 있으면 초기화하고 다시 5초 카운트
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+
+      this.snackBar.setState({ ...this.snackBar.state, isShow: true });
+      this.timer = setTimeout(() => {
+        this.snackBar.setState({ ...this.snackBar.state, isShow: false });
+        // TODO: 내가 구독한 리스트로 이동
+      }, 5000);
       store.dispatch(actionCreator('subscribe', { pid: id }));
     }
-  }
+  };
 
   const initPressItems = () => {
     const $ul = $section.querySelector('ul');
@@ -88,7 +100,7 @@ export default function PressGridView({ $target, initialState }) {
         },
       });
 
-      $li.addEventListener('click', (event, params) => handleClickCell(event, subscribeButton, params));
+      $li.addEventListener('click', event => handleClickCell(event, subscribeButton));
 
       $ul.appendChild($li);
     });
@@ -143,6 +155,14 @@ export default function PressGridView({ $target, initialState }) {
 
     $prevPageButton.addEventListener('click', () => handleMovePage(this.state.page - 1));
     $nextPageButton.addEventListener('click', () => handleMovePage(this.state.page + 1));
+
+    this.snackBar = new SnackBar({
+      $target: $section,
+      initialState: {
+        isShow: false,
+        text: '내가 구독한 언론사에 추가되었습니다.',
+      },
+    });
   };
 
   this.render();
