@@ -21,18 +21,22 @@ const createMediaData = view => {
   });
 };
 
-const MediaView = store => {
-  const { view, subscribed } = store.getState();
+const MediaView = (themeStore, viewStore) => {
+  const { view, subscribed } = viewStore.getState();
   const mediaView = document.createElement('div');
   const mediaData = createMediaData(view);
 
   mediaView.id = 'media_view';
   if (view === 'list') {
     mediaData.then(mediaData => {
-      mediaView.appendChild(MediaList(store, { list: mediaData, subscribed }));
+      mediaView.appendChild(
+        MediaList(themeStore, viewStore, { mediaData, subscribed })
+      );
     });
   } else {
-    mediaView.appendChild(MediaGrid(store, { grid: mediaData, subscribed }));
+    mediaView.appendChild(
+      MediaGrid(themeStore, viewStore, { mediaData, subscribed })
+    );
   }
   return mediaView;
 };

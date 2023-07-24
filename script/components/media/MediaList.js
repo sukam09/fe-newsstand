@@ -3,7 +3,8 @@ import { replaceArrow } from '../../components/media/ArrowButton.js';
 import SubToggleButton from '../../components/media/SubToggleButton.js';
 import { MSG } from '../../constants.js';
 import Store from '../../core/Store.js';
-import { getMediaLogo, getNewsData } from '../../fetch/getNewsData.js';
+import { getNewsData } from '../../fetch/getNewsData.js';
+import { setMediaLogo } from '../../utils/utils.js';
 
 const setPage = (store, newPage) => {
   const { category, media } = store.getState();
@@ -61,12 +62,16 @@ const setArrowButtons = (store, viewAll) => {
   });
 };
 
-const MediaLogoImg = id => {
-  const mediaLogoElement = document.createElement('img');
+const MediaLogoImg = (themeStore, id) => {
+  const mediaLogoImg = document.createElement('img');
 
-  mediaLogoElement.classList.add('media_logo');
-  mediaLogoElement.src = getMediaLogo(id);
-  return mediaLogoElement;
+  themeStore.subscribe(
+    state => setMediaLogo(mediaLogoImg, id, state.theme),
+    'view'
+  );
+  mediaLogoImg.classList.add('media_logo');
+  setMediaLogo(mediaLogoImg, id, themeStore.getState().theme);
+  return mediaLogoImg;
 };
 
 const UpdatedTime = time => {
@@ -77,11 +82,11 @@ const UpdatedTime = time => {
   return updatedTimeElement;
 };
 
-const MediaInfo = (id, newsData, navStore, viewStore) => {
+const MediaInfo = (themeStore, id, newsData, navStore, viewStore) => {
   const mediaInfo = document.createElement('div');
 
   mediaInfo.classList.add('media_info');
-  mediaInfo.appendChild(MediaLogoImg(id));
+  mediaInfo.appendChild(MediaLogoImg(themeStore, id));
   mediaInfo.appendChild(UpdatedTime(newsData.updated));
   mediaInfo.appendChild(
     SubToggleButton({ id, navStore, viewStore, withText: false })
@@ -98,7 +103,8 @@ const NewsList = (name, newsData) => {
       (fragment, title) =>
         (fragment += `<li>
           <a class="pointer text_bold hover_medium16">${title}</a>
-        </li>`)
+        </li>`),
+      ''
     ) +
     `<li class="text_weak display_medium14">
       ${name} ${MSG.MEDIA_EDITED}
@@ -123,7 +129,7 @@ const NewsContent = (mediaId, newsData) => {
   return news;
 };
 
-const ListContent = (navStore, viewStore, viewAll) => {
+const ListContent = (themeStore, navStore, viewStore, viewAll) => {
   const listContent = document.createElement('div');
   const { category, page, media } = viewStore.getState();
   const mediaId = viewAll ? media[category].media[page] : media[page];
@@ -131,18 +137,20 @@ const ListContent = (navStore, viewStore, viewAll) => {
   getNewsData(mediaId).then(newsData => {
     listContent.id = 'list_view';
     if (mediaId === undefined) return listContent;
-    listContent.appendChild(MediaInfo(mediaId, newsData, navStore, viewStore));
+    listContent.appendChild(
+      MediaInfo(themeStore, mediaId, newsData, navStore, viewStore)
+    );
     listContent.appendChild(NewsContent(mediaId, newsData));
   });
   return listContent;
 };
 
-const MediaList = (navStore, mediaData) => {
+const MediaList = (themeStore, navStore, viewData) => {
   const viewAll = navStore.getState().media === 'all';
   const viewStore = new Store({
     category: 0,
     page: 0,
-    media: viewAll ? mediaData.list : mediaData.subscribed,
+    media: viewAll ? viewData.mediaData : viewData.subscribed,
     scrollLeft: 0,
   });
   const mediaList = document.createElement('div');
@@ -152,7 +160,9 @@ const MediaList = (navStore, mediaData) => {
     const listContent = mediaList.querySelector('#list_view');
 
     updateListNav(nav, viewAll, viewStore);
-    listContent.replaceWith(ListContent(navStore, viewStore, viewAll));
+    listContent.replaceWith(
+      ListContent(themeStore, navStore, viewStore, viewAll)
+    );
   };
 
   mediaList.innerHTML = `

@@ -4,24 +4,27 @@ import MediaView from '../../components/media/MediaView.js';
 import { MEDIA_APP_DATA } from '../../constants.js';
 import Store from '../../core/Store.js';
 
-const mediaApp = (defaultMedia, defaultView) => {
-  const store = new Store({
+const mediaApp = (themeStore, defaultMedia, defaultView) => {
+  const viewStore = new Store({
     data: MEDIA_APP_DATA,
     defaultView: {
       all: 'grid',
       subscribed: 'list',
     },
-    subscribed: [],
+    subscribed: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
     media: defaultMedia,
     view: defaultView,
   });
 
+  const clearThemeStates = () => {
+    themeStore.unsubscribe('view');
+  };
   const render = () => {
     const navArea = document.querySelector('#media_view_nav');
     const mediaView = document.querySelector('#media_view');
 
-    navArea.replaceWith(MediaNav(store));
-    mediaView.replaceWith(MediaView(store));
+    navArea.replaceWith(MediaNav(viewStore));
+    mediaView.replaceWith(MediaView(themeStore, viewStore));
   };
 
   const createLayout = () => {
@@ -32,7 +35,8 @@ const mediaApp = (defaultMedia, defaultView) => {
     wrapper.append(ArrowButton('left'), mediaView, ArrowButton('right'));
   };
 
-  store.subscribe(render);
+  viewStore.subscribe(clearThemeStates);
+  viewStore.subscribe(render);
   createLayout();
   render();
 };

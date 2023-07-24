@@ -1,7 +1,6 @@
 import { MEDIA } from '../../constants.js';
 import Store from '../../core/Store.js';
-import { getMediaLogo, getNewsData } from '../../fetch/getNewsData.js';
-import { clearAllChildren } from '../../utils/utils.js';
+import { clearAllChildren, setMediaLogo } from '../../utils/utils.js';
 import { replaceArrow } from './ArrowButton.js';
 import { SubButtonArea } from './SubToggleButton.js';
 
@@ -28,7 +27,7 @@ const setArrowDisplay = (store, leftArrow, rightArrow) => {
   rightArrow.style.display = rightDisplay;
 };
 
-const GridItem = (index, navStore, store) => {
+const GridItem = (themeStore, index, navStore, store) => {
   const gridItem = document.createElement('li');
   const gridItemImage = document.createElement('img');
   const page = store.getState().page;
@@ -36,20 +35,22 @@ const GridItem = (index, navStore, store) => {
 
   gridItem.appendChild(gridItemImage);
   gridItemImage.classList.add('media_logo');
-  if (mediaId !== undefined) {
-    gridItemImage.classList.add(`media_${mediaId}`);
-    gridItemImage.src = getMediaLogo(mediaId);
-    gridItemImage.alt = getNewsData(mediaId).name;
-    gridItem.appendChild(SubButtonArea(mediaId, navStore, store));
-  }
+  if (mediaId === undefined) return gridItem;
+  themeStore.subscribe(
+    state => setMediaLogo(gridItemImage, mediaId, state.theme),
+    'view'
+  );
+  gridItemImage.classList.add(`media_${mediaId}`);
+  setMediaLogo(gridItemImage, mediaId, themeStore.getState().theme);
+  gridItem.appendChild(SubButtonArea(mediaId, navStore, store));
   return gridItem;
 };
 
-const MediaGrid = (navStore, mediaData) => {
+const MediaGrid = (themeStore, navStore, viewData) => {
   const viewAll = navStore.getState().media === 'all';
   const viewStore = new Store({
     page: 0,
-    media: viewAll ? mediaData.grid : mediaData.subscribed,
+    media: viewAll ? viewData.mediaData : viewData.subscribed,
   });
   const mediaGrid = document.createElement('ul');
   const [leftArrow, rightArrow] = setArrowButtons(viewStore);
@@ -57,7 +58,7 @@ const MediaGrid = (navStore, mediaData) => {
   const draw = () => {
     clearAllChildren(mediaGrid);
     Array.from({ length: MEDIA.PAGE_SIZE }, (_, index) => {
-      mediaGrid.appendChild(GridItem(index, navStore, viewStore));
+      mediaGrid.appendChild(GridItem(themeStore, index, navStore, viewStore));
     });
     setArrowDisplay(viewStore, leftArrow, rightArrow);
   };

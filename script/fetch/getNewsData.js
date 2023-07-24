@@ -21,8 +21,7 @@ export const getMediaArray = async idArray => {
     .then(data => idArray.map(id => data.media[id]));
 };
 
-export const getMediaLogo = id => {
-  const theme = document.documentElement.getAttribute(THEME.ATTR);
+export const getMediaLogo = (id, theme) => {
   const themePath = theme === THEME.DARK ? 'dark/' : 'light/';
 
   return `${MEDIA_LOGO_PATH}${themePath}${id}.png`;
