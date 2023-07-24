@@ -1,9 +1,14 @@
 import { filterCategory } from "../utils/filterCategory.js";
 import { removeAllChildNodes } from "../utils/utils.js";
+
 import { makeFieldTab } from "./List/fieldTab.js";
 import { makePressNews } from "./List/pressNews.js";
 import { startProgress, stopProgress } from "./List/progress.js";
-import { moveToNextPage, moveToPrevPage } from "./List/setListButton.js";
+import {
+  moveToNextPage,
+  moveToPrevPage,
+  setListButton,
+} from "./List/setListButton.js";
 
 const all_press = document.querySelector(".all_press");
 
@@ -16,12 +21,22 @@ export const ListComponent = (
   // 초기화
   const press = document.querySelector(".press-news");
   const field = document.querySelector(".field-tab");
+  const prev_btn = document.querySelector(".prev-page-btn");
+  const next_btn = document.querySelector(".next-page-btn");
+
   if (press.childNodes.length > 0) {
     removeAllChildNodes(press);
   }
   if (field.childNodes.length > 0) {
     removeAllChildNodes(field);
   }
+
+  if (prev_btn && next_btn) {
+    prev_btn.remove();
+    next_btn.remove();
+  }
+
+  setListButton(sorted_agencies, current_page, current_category);
 
   if (Boolean(all_press.getAttribute("subscribetype"))) {
     // 해당 카테고리 언론사의 뉴스를 렌더하기 위해 필터링
@@ -32,15 +47,11 @@ export const ListComponent = (
     stopProgress();
     startProgress(sorted_agencies, current_page, current_category);
   } else {
-    console.log(current_page, sorted_agencies, focus);
     makeFieldTab(current_page, sorted_agencies, focus);
     makePressNews(sorted_agencies[current_page]);
     stopProgress();
     startProgress(sorted_agencies, current_page, current_category);
   }
-
-  const prev_btn = document.querySelector(".prev-page-btn");
-  const next_btn = document.querySelector(".next-page-btn");
 
   prev_btn.addEventListener("click", () => {
     moveToPrevPage(sorted_agencies, current_page, current_category);
