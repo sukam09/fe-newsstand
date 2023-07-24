@@ -1,12 +1,12 @@
 import AllNewsList from "./AllnewsList.js";
-import { subscribedPress } from "../../../core/store.js";
+import { store } from "../../../core/store.js";
 import ArrowButton from "../ArrowButton.js";
 
 export default class SubGridView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "grid-wrapper";
-    this.$subPressOrder = subscribedPress.press;
+    this.$subPressOrder = store.press;
     this.page = 0;
     this.maxPage = Math.floor(this.$subPressOrder.length / 25);
     this.render();

@@ -1,4 +1,4 @@
-import { subscribedPress } from "../../../core/store.js";
+import { store } from "../../../core/store.js";
 import Logo from "../../common/Logo.js";
 import SubButton from "../SubButton.js";
 import UnsubButton from "../UnsubButton.js";
@@ -28,7 +28,7 @@ export default class AllNewsList {
   showSubButton(event, name) {
     const li = event.target;
     li.replaceChildren();
-    if (subscribedPress.press.includes(name)) {
+    if (store.press.includes(name)) {
       li.appendChild(new UnsubButton(name, "해지하기"));
     } else {
       li.appendChild(new SubButton(name));

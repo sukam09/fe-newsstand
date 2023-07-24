@@ -2,7 +2,7 @@ import Logo from "../../common/Logo.js";
 import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
 import categories from "../../../constants/categories.js";
 import SubButton from "../SubButton.js";
-import { subscribedPress } from "../../../core/store.js";
+import { store } from "../../../core/store.js";
 import UnsubButton from "../UnsubButton.js";
 
 export default class PressNews {
@@ -30,7 +30,7 @@ export default class PressNews {
 
     $nameWrapper.appendChild(this.createPressLogo(this.mainNews.logo));
     $nameWrapper.appendChild($editTime);
-    if (subscribedPress.press.includes(this.mainNews.id)) {
+    if (store.press.includes(this.mainNews.id)) {
       $nameWrapper.appendChild(new UnsubButton(this.mainNews.id));
     } else {
       $nameWrapper.appendChild(new SubButton(this.mainNews.id));
