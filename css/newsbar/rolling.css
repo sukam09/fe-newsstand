@@ -4,7 +4,6 @@
   align-items: center;
   width: 930px;
   padding-top: 40px;
-
 }
 
 .newsbar-container h4 {
@@ -19,13 +18,13 @@
 .newsbar-content-container {
   width: 461px;
   height: 49px;
-  background-color: #F5F7F9;
-  border: 1px solid #D2DAE0;
+  background-color: #f5f7f9;
+  border: 1px solid #d2dae0;
   align-items: center;
   position: relative;
 }
 
-.newsbar-content-container>.wrap {
+.newsbar-content-container > .wrap {
   position: absolute;
   width: 100%;
   height: 16.5px;
