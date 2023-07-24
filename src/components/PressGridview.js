@@ -49,10 +49,6 @@ export default function PressGridView({ $target, initialState }) {
     handleSubscribe(id, name, subscribeButton);
   }
 
-  function getSubscribed(id, myPress) {
-    return myPress.indexOf(id) !== -1;
-  }
-
   const handleSubscribe = (id, name, subscribeButton) => {
     const { isSubscribed } = subscribeButton.state;
 
@@ -75,6 +71,10 @@ export default function PressGridView({ $target, initialState }) {
       store.dispatch(actionCreator('subscribe', { pid: id, pressName: name }));
     }
   };
+
+  function getSubscribed(id) {
+    return store.getMyPress().find(({ pid }) => parseInt(pid, 10) === id);
+  }
 
   const initPressItems = () => {
     const $ul = $section.querySelector('ul');
@@ -102,13 +102,11 @@ export default function PressGridView({ $target, initialState }) {
       $li.dataset.id = id;
       $li.dataset.name = name;
 
-      const { myPress } = store.getState();
-
       const subscribeButton = new SubscribeButton({
         $target: $li,
         initialState: {
           type: 'grid',
-          isSubscribed: getSubscribed(id, myPress),
+          isSubscribed: getSubscribed(id),
         },
       });
 
