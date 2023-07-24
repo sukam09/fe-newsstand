@@ -1,4 +1,4 @@
-import { UNSUB_BTN_IMG, SUB_BTN_IMG } from "./path.js";
+import { UNSUB_BTN_IMG, GRID_SUB_BTN_IMG } from "./path.js";
 import { getPressObj } from "./api/api.js";
 import { removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
@@ -26,7 +26,7 @@ function appendPressInGrid(press) {
 
   //구독하기 이미지 추가
   const $sub = document.createElement("img");
-  $sub.src = SUB_BTN_IMG;
+  $sub.src = GRID_SUB_BTN_IMG;
   $sub.classList.add("sub", `${press.id}`);
 
   //ul에 li 추가

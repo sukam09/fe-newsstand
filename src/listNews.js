@@ -1,4 +1,4 @@
-import { SUB_BTN_IMG, X_BTN_IMG } from "./path.js";
+import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "./path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
 import { getNewsContent, getPressObj } from "./api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
@@ -74,7 +74,7 @@ function putSubscribeBtnImg(name) {
     img.src = X_BTN_IMG;
     removeAddClass(img, "subscribe-press-btn", "x-btn");
   } else {
-    img.src = SUB_BTN_IMG;
+    img.src = LIST_SUB_BTN_IMG;
     removeAddClass(img, "x-btn", "subscribe-press-btn");
   }
 }

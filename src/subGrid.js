@@ -82,7 +82,7 @@ yes.addEventListener("click", () => {
   setSubGrid();
 });
 
-//const modal = document.querySelector(".sub-alert");
+//alert 창 바깥 누르면 꺼짐
 window.addEventListener("click", (e) => {
   const parent = e.target.closest(".sub-alert");
   if (parent === null) {
