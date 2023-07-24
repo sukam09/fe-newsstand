@@ -1,6 +1,6 @@
 /* global layout */
 
-body {
+#root {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +9,7 @@ body {
   font-family: "Pretendard";
 }
 
-#container {
+#app {
   width: 930px;
   margin: 0 auto;
 }
@@ -18,4 +18,8 @@ body {
 .newsflash,
 .newspaper {
   width: 100%;
+}
+
+.hidden {
+  display: none;
 }
