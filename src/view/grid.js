@@ -1,4 +1,6 @@
 import { CONSTANT, MODE, GLOBAL } from "../model/variable.js";
+import { subscribe } from "../controller/observer.js";
+import { moveGrid, toggleView, toggleSubscription } from "../model/store.js";
 
 function initGrid(parentNode) {
   const dom = document.createElement("div");
@@ -21,6 +23,8 @@ function initGrid(parentNode) {
 }
 
 function drawGrid() {
+  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) return;
+
   document.querySelector(".list-view").style.display = "none";
   document.querySelector(".grid-view").style.display = "flex";
 
@@ -32,5 +36,9 @@ function drawGrid() {
     img.src = targetData[iconIndex] ? targetData[iconIndex++].path : "";
   });
 }
+
+subscribe(moveGrid, drawGrid);
+subscribe(toggleView, drawGrid);
+subscribe(toggleSubscription, drawGrid);
 
 export { initGrid, drawGrid };

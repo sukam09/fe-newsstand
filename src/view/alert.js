@@ -1,3 +1,7 @@
+import { GLOBAL } from "../model/variable.js";
+import { subscribe } from "../controller/observer.js";
+import { showAlert } from "../model/store.js";
+
 function initAlert(parentNode) {
   const dom = `
   <div class="alert">
@@ -12,11 +16,14 @@ function initAlert(parentNode) {
   return 0;
 }
 
-function drawAlert(press) {
+function drawAlert() {
+  const press = GLOBAL.TEMP_TARGET;
   const alert = document.querySelector(".alert");
   const alertPress = alert.querySelector(".alert-main-press");
   alertPress.innerHTML = press.name;
   alert.style.display = "block";
 }
+
+subscribe(showAlert, drawAlert);
 
 export { initAlert, drawAlert };

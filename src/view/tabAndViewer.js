@@ -1,4 +1,6 @@
 import { PATH, MODE, GLOBAL } from "../model/variable.js";
+import { subscribe } from "../controller/observer.js";
+import { toggleView, toggleSubscription } from "../model/store.js";
 
 function initTabAndViewer(parentNode) {
   const dom = `
@@ -45,5 +47,10 @@ function drawViewer() {
     gridBtnImg.src = PATH.GRID_BTN;
   }
 }
+
+subscribe(toggleView, drawTab);
+subscribe(toggleSubscription, drawTab);
+subscribe(toggleView, drawViewer);
+subscribe(toggleSubscription, drawViewer);
 
 export { initTabAndViewer, drawTab, drawViewer };

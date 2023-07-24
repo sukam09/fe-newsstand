@@ -1,5 +1,7 @@
 import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
+import { subscribe } from "../controller/observer.js";
+import { moveList, toggleView, toggleSubscription } from "../model/store.js";
 
 function initList(parentNode) {
   const dom = document.createElement("div");
@@ -36,6 +38,8 @@ function initList(parentNode) {
 }
 
 function drawList() {
+  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) return;
+
   const listView = document.querySelector(".list-view");
   listView.style.display = "flex";
   document.querySelector(".grid-view").style.display = "none";
@@ -73,5 +77,9 @@ function drawList() {
 
   drawFieldTab();
 }
+
+subscribe(moveList, drawList);
+subscribe(toggleView, drawList);
+subscribe(toggleSubscription, drawList);
 
 export { initList, drawList };

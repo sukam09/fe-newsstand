@@ -1,8 +1,9 @@
-import { MODE, STATE, CONSTANT, GLOBAL } from "../model/variable.js";
+import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { clickSubscribeBtn } from "./subscribeController.js";
 import { updateCategory } from "./fieldTabController.js";
-import { changeState } from "./mainController.js";
 import { strToCategory } from "../model/model.js";
+import { setState } from "./observer.js";
+import { moveList } from "../model/store.js";
 
 function initListEvent() {
   const listSubscribeBtn = document.querySelector(".list-view .list-sub-btn");
@@ -17,7 +18,7 @@ function moveListPage(pagenum) {
   GLOBAL.LIST_CURRENT_PAGE = pagenum;
   resetProgressAnimation();
   updateCategory();
-  changeState(STATE.MOVE_LIST_PAGE);
+  setState(moveList, true);
 }
 
 function resetProgressAnimation() {
