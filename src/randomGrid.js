@@ -24,10 +24,18 @@ function appendPressInGrid(press) {
   $image.src = is_light_mode ? `${press.lightSrc}` : `${press.darkSrc}`;
   $image.classList.add("original", `${press.id}`);
 
-  //구독하기 이미지 추가
+  //구독 여부 확인 후 구독하기/해지하기 이미지 추가
   const $sub = document.createElement("img");
-  $sub.src = GRID_SUB_BTN_IMG;
-  $sub.classList.add("sub", `${press.id}`);
+  const sub_press = subscribeState.getSubInfoById(press.id.toString());
+  if (sub_press.length === 0) {
+    //구독 안했으면
+    $sub.src = GRID_SUB_BTN_IMG;
+  } else {
+    //구독 했으면
+    $sub.src = UNSUB_BTN_IMG;
+  }
+
+  $sub.classList.add("sub", `id${press.id}`);
 
   //ul에 li 추가
   const $list = document.createElement("li");
@@ -45,6 +53,16 @@ async function setGrid() {
   });
 }
 
+function drawGrid(page_num) {
+  const slice_shuffled_presses = shuffled_presses.slice(
+    page_num * PRESS_NUM_IN_GRID,
+    PRESS_NUM_IN_GRID * (page_num + 1)
+  );
+  slice_shuffled_presses.forEach((press) => {
+    appendPressInGrid(press);
+  });
+}
+
 /***** grid 넘기는 화살표 관련 함수 *****/
 /* 뒤로 넘기기 */
 const grid_next = document.getElementById("grid-next");
@@ -56,13 +74,7 @@ grid_next.addEventListener("click", () => {
     document.getElementById("grid-prev").style.display = "block";
     document.getElementById("press-list").innerHTML = "";
     grid_page_count += 1;
-    const slice_shuffled_presses = shuffled_presses.slice(
-      grid_page_count * PRESS_NUM_IN_GRID,
-      PRESS_NUM_IN_GRID * (grid_page_count + 1)
-    );
-    slice_shuffled_presses.forEach((press) => {
-      appendPressInGrid(press);
-    });
+    drawGrid(grid_page_count);
   }
 });
 
@@ -76,16 +88,12 @@ grid_prev.addEventListener("click", () => {
     document.getElementById("grid-next").style.display = "block";
     document.getElementById("press-list").innerHTML = "";
     grid_page_count -= 1;
-    const slice_shuffled_presses = shuffled_presses.slice(
-      grid_page_count * PRESS_NUM_IN_GRID,
-      PRESS_NUM_IN_GRID * (grid_page_count + 1)
-    );
-    slice_shuffled_presses.forEach((press) => {
-      appendPressInGrid(press);
-    });
+    drawGrid(grid_page_count);
   }
 });
 
+/***** 구독하기 버튼 누르면 구독 *****/
+//id로 언론사 찾기
 async function getPressItemById(id) {
   presses = await getPressObj();
   const subPress = await Promise.all(
@@ -93,11 +101,12 @@ async function getPressItemById(id) {
   );
   return subPress;
 }
-
+//구독하기 버튼 이벤트 리스너
 const sub_btns = document.querySelector("#press-list");
 sub_btns.addEventListener("click", async (e) => {
   const target = e.target;
-  const press_id = target.classList[1];
+  const target_class = target.classList[1];
+  const press_id = target_class.slice(2, target_class.length);
   if (target.classList.contains("sub")) {
     const subPress = await getPressItemById(press_id);
     subscribeState.setSubscribeState(
@@ -106,8 +115,8 @@ sub_btns.addEventListener("click", async (e) => {
       subPress[0].lightSrc
     );
     target.src = UNSUB_BTN_IMG;
-    removeAddClass(target, "sub", "un-sub");
+    target.className = `un-sub id${press_id}`;
   }
 });
 
-export { PRESS_NUM_IN_GRID, setGrid };
+export { PRESS_NUM_IN_GRID, setGrid, drawGrid };

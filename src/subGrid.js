@@ -1,4 +1,4 @@
-import { UNSUB_BTN_IMG } from "./path.js";
+import { GRID_SUB_BTN_IMG, UNSUB_BTN_IMG } from "./path.js";
 import { setDisplay, removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 import { PRESS_NUM_IN_GRID } from "./randomGrid.js";
@@ -63,7 +63,7 @@ no.addEventListener("click", () => {
   setDisplay(".sub-alert", "none");
 });
 
-//구독 헤지하기
+//구독 해지하기
 const yes = document.querySelector(".yes");
 yes.addEventListener("click", () => {
   setDisplay(".sub-alert", "none");
@@ -72,14 +72,20 @@ yes.addEventListener("click", () => {
     ".alert-message .bold-font-init"
   ).innerHTML;
   const target_press = subscribeState.getSubInfoByName(press_name)[0];
+  const target_press_id = subscribeState.getSubInfoByName(press_name)[0][0];
   subscribeState.removePressFromSubList(target_press);
   //다시 렌더링
-  const $list = document.querySelectorAll(".press-sub-grid .full");
-  $list.forEach((element) => {
+  const $sub_list = document.querySelectorAll(".press-sub-grid .full");
+  $sub_list.forEach((element) => {
     element.innerHTML = "";
     removeAddClass(element, "full", "empty");
   });
   setSubGrid();
+  const target_class_name = `#press-list .id${target_press_id}`; // 해결해야됨 !!!!!!!!!!!!!!!!!
+  const $list = document.querySelector(target_class_name);
+  $list.src = GRID_SUB_BTN_IMG;
+  $list.className = `sub id${target_press_id}`;
+  removeAddClass($list, "un-sub", "sub");
 });
 
 //alert 창 바깥 누르면 꺼짐
