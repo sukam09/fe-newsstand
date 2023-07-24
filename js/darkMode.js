@@ -5,12 +5,12 @@ import { isDark } from "./store/store.js";
 
 export function initDarkMode() {
   const $body = document.querySelector("body");
-  document.querySelector(".dark-btn").addEventListener("click", () => setDarkMode($body));
+  subscribe(isDark, drawNews);
+  subscribe(isDark, drawGridView);
+  document.querySelector(".dark-btn").addEventListener("click", setDarkMode.bind("null", $body));
 }
 
 function setDarkMode($body) {
   setState(isDark, !getState(isDark));
   $body.classList.toggle("dark");
-  subscribe(isDark, drawNews);
-  subscribe(isDark, drawGridView);
 }
