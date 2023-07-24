@@ -6,11 +6,11 @@ let categories = [];
 let categorizedData;
 let animationId;
 let idx;
+let lastProgressed;
 /**
  * category_page, media_page에 따라 section안에 내용 바꾸는 함수
  */
 export const setNewsData = () => {
-  console.log(categorizedData);
   const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
@@ -195,13 +195,6 @@ const setArrowHandler = () => {
  * news data가져와서 기본 셋팅 함수
  */
 const getNewsData = async () => {
-  var progressBar = document.querySelector(".progress_bar");
-  var progressed = document.querySelector(".category_item.progressed");
-  if (progressed && progressBar) {
-    var rect = progressed.getBoundingClientRect();
-    progressBar.style.top = rect.top + "px";
-    progressBar.style.left = rect.left + "px";
-  }
   categorizedData = categorizeData();
   createCategoryElements(categorizedData);
   setProgressed();
@@ -214,22 +207,14 @@ const getNewsData = async () => {
 const updateCategoryProgress = () => {
   var categoryItems = document.querySelectorAll(".category_item");
   var progressedItem = document.querySelector(".category_item.progressed");
-  var progressBar = document.querySelector(".progress_bar");
 
+  categoryItems.forEach(item => item.style.background = '');
   if (progressedItem) {
     progressedItem.classList.remove("progressed");
   }
 
   if (categoryItems[category_page.getState()]) {
     categoryItems[category_page.getState()].classList.add("progressed");
-  }
-
-  var progressed = document.querySelector(".category_item.progressed");
-
-  if (progressed && progressBar) {
-    var rect = progressed.getBoundingClientRect();
-    progressBar.style.top = rect.top + "px";
-    progressBar.style.left = rect.left + "px";
   }
   setNewsData();
 };
@@ -241,26 +226,10 @@ const updateCategoryProgress = () => {
  * 카테고리 클릭하면 progressed class 추가하는 함수
  */
 const toggleProgressedClass = (items, index) => {
+  lastProgressed.style.background = '';
   items.forEach(item => item.classList.remove("progressed"));
+  document.querySelectorAll('category_item').forEach(item => item.style.bacgkround = '');
   items[index].classList.add("progressed");
-};
-
-/**
- * 
- * @param {Object} progressed 
- * @param {querySelector} progressBar 
- * progressBar의 기본 위치 설정하는 함수
- */
-const setProgressBarPosition = (progressed, progressBar) => {
-  if (!progressed || !progressBar) return;
-
-  const rect = progressed.getBoundingClientRect();
-  
-  Object.assign(progressBar.style, {
-    position: "absolute",
-    top: `${rect.top}px`,
-    left: `${rect.left}px`
-  });
 };
 
 /**
@@ -273,7 +242,6 @@ const setProgressBarPosition = (progressed, progressBar) => {
 const addClickListenerToCategoryItem = (item, index, items) => {
   item.addEventListener("click", () => {
     toggleProgressedClass(items, index);
-    setProgressBarPosition(items[index], document.querySelector(".progress_bar"));
     progressBarControl();
   });
 };
@@ -292,13 +260,6 @@ const setProgressed = () => {
  * @param {number} width 
  * progress bar 기본 width 설정하는 함수
  */
-const setWidth = (element, width) => {
-  element.style.width = `${width}px`;
-};
-
-const incrementPageOrReset = (current, max) => {
-  return current < max ? current + 1 : 0;
-};
 
 /**
  * 페이지 번호 로직 구현한 함수
@@ -329,17 +290,20 @@ const updatePageAndData = () => {
  */
 const animateProgressBar = (element, endWidth, duration) => {
   const start = performance.now();
+  lastProgressed = element;
 
   const step = (timestamp) => {
     const elapsed = timestamp - start;
     const currentWidth = Math.min((endWidth * elapsed) / duration, endWidth);
-    setWidth(element, currentWidth);
-
+    // setWidth(element, currentWidth);
+    element.style.background = `linear-gradient(to right, 
+      #4362d0 ${currentWidth}%, 
+      #7890E7 0%)`;
     if (currentWidth < endWidth) {
       animationId = requestAnimationFrame(step);
     } else {
       updatePageAndData();
-      setWidth(element, 0);
+      element.style.background = '';
       progressBarControl();
     }
   };
@@ -351,11 +315,9 @@ const animateProgressBar = (element, endWidth, duration) => {
  * progressBar 관련하여 초기 설정, 세팅하는 함수
  */
 const progressBarControl = () => {
-  const progressBar = document.querySelector(".progress_bar");
+  const progressBar = document.querySelector(".progressed");
   const duration = 2000;
-  const endWidth = 166;
-
-  setWidth(progressBar, 0);
+  const endWidth = 100;
   animateProgressBar(progressBar, endWidth, duration);
 };
 

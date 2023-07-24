@@ -246,7 +246,7 @@ ul li:hover .media-hover .subscribedWrapper {
 
 .list_wrapper .category .category_item.progressed{
     position: relative;
-    width : 134px;
+    min-width : 134px;
     display:flex;
     gap:8px;
     color: #FFF;
