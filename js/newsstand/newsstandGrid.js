@@ -9,15 +9,15 @@ import { makeButtonTag } from "../tag/buttonTag.js";
 import { navTag } from "../tag/mediaNavTag.js";
 import { MESSAGE, EVENT, VIEW } from "../utils/constant.js";
 import {
-  subscribe,
-  unsubscribe,
+  setSubscribe,
+  setUnsubscribe,
   getSubscrbeList,
   isSubscribe,
   getNavTabView,
   setNavTabViewToAll,
   setNavTabViewToMy,
   getUserView,
-} from "../store/redux.js";
+} from "../store/state.js";
 
 let publisherData = await getPressData("./data/pressObj.json");
 
@@ -205,7 +205,7 @@ function userClickSubscribeButton(liElement) {
     // 해지하기를 눌렀을때.
     if (isSubscribe(name)) {
       liElement.children[1].textContent = MESSAGE.SUBSCRIBE;
-      unsubscribe(name);
+      setUnsubscribe(name);
 
       snackBarAction(MESSAGE.UN_SUB);
 
@@ -216,7 +216,7 @@ function userClickSubscribeButton(liElement) {
     // 구독하기 버튼을 눌렀을때.
     else {
       liElement.children[1].textContent = MESSAGE.UNSUBSCRIBE;
-      subscribe(name, src);
+      setSubscribe(name, src);
 
       snackBarAction(MESSAGE.SUB);
     }

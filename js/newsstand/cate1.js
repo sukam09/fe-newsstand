@@ -1,3 +1,4 @@
+import { CATEGORY } from "../state/categoryState.js";
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
@@ -21,8 +22,6 @@ import {
   setCategoryIndex,
   setContentsPage,
   setGoBefore,
-  getGoBefore,
-  getFirstPage,
 } from "../store/state.js";
 import {
   removeChildElement,
@@ -66,7 +65,16 @@ const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
 export function paintNewsCategory() {
+  console.log(
+    getCategoryIdx(),
+    getCurrentContent(),
+    CATEGORY.currentCategory,
+    CATEGORY.currentContents
+  );
   makeMySubNews();
+
+  //   CATEGORY.currentCategory = 0;
+  //   CATEGORY.currentContents = 1;
 
   setCategoryIndex(0);
   setContentsPage(1);
@@ -113,7 +121,7 @@ export function paintNewsCategory() {
   addAnimationEvent(categoryList, totalCategory, contentsLength);
 
   // 뉴스리스트 생성
-  makeNewsList(getFirstPage(), totalCategory, categoryNewsData);
+  makeNewsList(CATEGORY.FIRST_PAGE, totalCategory, categoryNewsData);
   // 각각의 클릭, 버튼 이벤트 추가
   onUserClickCategory(
     totalCategory,
@@ -144,7 +152,7 @@ export function paintNewsCategory() {
 function restartProgressBar(categoryList, contentsLength) {
   // 첫 번째 카테고리로 초기화
   setCategoryIndex(0);
-
+  CATEGORY.currentCategory = 0;
   // 이전에 선택된 li에 들어가있는 모든 클래스 삭제.
   removeProgressAction();
   // 종합/경제 카테고리 li에 프로그래스 바 클래스 추가.
@@ -228,16 +236,28 @@ function handlProgressAnimationEnd(
 ) {
   return function () {
     removeProgressAction();
+
+    CATEGORY.goBefore ? --CATEGORY.currentCategory : ++CATEGORY.currentCategory;
+
+    CATEGORY.currentCategory =
+      CATEGORY.currentCategory < 0
+        ? totalCategory - 1
+        : CATEGORY.currentCategory;
+
+    CATEGORY.currentCategory %= totalCategory;
+
+    startProgressAction(categoryList, contentsLength);
+
+    makeNewsList(CATEGORY.FIRST_PAGE, totalCategory, categoryDataList);
+
+    CATEGORY.goBefore = 0;
+
     let tmp = getCategoryIdx();
-    getGoBefore() ? setCategoryIndex(--tmp) : setCategoryIndex(++tmp);
+    CATEGORY.goBefore ? setCategoryIndex(--tmp) : setCategoryIndex(++tmp);
     tmp = tmp < 0 ? totalCategory - 1 : tmp;
     tmp %= totalCategory;
     setCategoryIndex(tmp);
     setGoBefore(false);
-
-    startProgressAction(categoryList, contentsLength);
-
-    makeNewsList(getFirstPage(), totalCategory, categoryDataList);
   };
 }
 
@@ -252,7 +272,7 @@ function handleProgressAnimationIteration(
   return function () {
     let cc = getCurrentContent();
     setContentsPage(++cc);
-
+    // ++CATEGORY.currentContents;
     nextContents(
       "auto",
       totalCategory,
@@ -260,10 +280,9 @@ function handleProgressAnimationIteration(
       contentsLength,
       categoryDataList
     );
-
-    element.children[2].textContent = `${getCurrentContent()}`;
+    element.children[2].textContent = `${CATEGORY.currentContents}`;
     element.children[3].textContent = `/`;
     element.children[4].textContent = `${contentsLength[idx]}`;
-    makeNewsList(getCurrentContent() - 1, totalCategory, categoryDataList);
+    makeNewsList(CATEGORY.currentContents - 1, totalCategory, categoryDataList);
   };
 }

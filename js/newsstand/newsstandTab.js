@@ -2,7 +2,7 @@ import { paintNewsCategory } from "./newsCategory.js";
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsCategory.js";
 import { EVENT } from "../utils/constant.js";
-import { setUserViewToList, setUserViewToGrid } from "../store/redux.js";
+import { setUserViewToList, setUserViewToGrid } from "../store/state.js";
 const VIEW_DISABLED = "view-disabled";
 
 export function newsstandListTab() {
