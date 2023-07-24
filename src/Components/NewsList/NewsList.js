@@ -80,6 +80,7 @@ export default class NewsList extends Component {
     new PressNews(document.querySelector(".news-list__press-news"), {
       nowCategoryNewsData: this.$state.nowCategoryNewsData,
       page: this.$state.page,
+      SubscribeStore: this.$props.SubscribeStore,
     });
   }
 

@@ -1,12 +1,11 @@
 import Component from "../../core/Component.js";
 import { constants } from "../../Data/constants.js";
-import {
-  setSubscribe,
-  setUnSubscribe,
-  subscribeStore,
-} from "../../Store/subscribeStore.js";
 
 export default class NewsGridItems extends Component {
+  setEvent() {
+    this.$props.SubscribeStore.subscribe(() => this.render());
+  }
+
   template() {
     return this.$props.nowPageIndexArr
       .map(
@@ -24,9 +23,9 @@ export default class NewsGridItems extends Component {
                 />
               </div>
               ${
-                subscribeStore
-                  .getState()
-                  .subscribe.filter((elem) => elem.id === item.id).length === 0
+                this.$props.SubscribeStore.subscribeList.filter(
+                  (elem) => elem.id === item.id
+                ).length === 0
                   ? `<div class="card-back subscribeButton">
                   <img src="./assets/icons/SubscribeButton_Grid.svg" alt="subscribeButton" />
               </div>`
@@ -47,16 +46,14 @@ export default class NewsGridItems extends Component {
     $newspaperSubscribe.forEach((item, index) => {
       item.addEventListener("click", () => {
         if (item.classList.contains("subscribeButton")) {
-          subscribeStore.dispatch(
-            setSubscribe(this.$props.nowPageIndexArr[index])
+          this.$props.SubscribeStore.subscribeNews(
+            this.$props.nowPageIndexArr[index]
           );
         } else {
-          subscribeStore.dispatch(
-            setUnSubscribe(this.$props.nowPageIndexArr[index])
+          this.$props.SubscribeStore.unSubscribeNews(
+            this.$props.nowPageIndexArr[index]
           );
         }
-        this.render();
-        console.log(subscribeStore.getState().subscribe);
       });
     });
   }

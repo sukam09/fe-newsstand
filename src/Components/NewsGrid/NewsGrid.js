@@ -69,6 +69,7 @@ export default class NewsGrid extends Component {
     new NewsGridItems(document.querySelector(".newspaper__list"), {
       nowPageIndexArr: nowPageIndexArr,
       mode: this.$state.mode,
+      SubscribeStore: this.$props.SubscribeStore,
     });
 
     this.setDisplayButton();

@@ -4,8 +4,13 @@ import Headline from "./Components/Headline/Headline.js";
 import NavBar from "./Components/NavBar/NavBar.js";
 import NewsGrid from "./Components/NewsGrid/NewsGrid.js";
 import NewsList from "./Components/NewsList/NewsList.js";
+import SubscribeStore from "./Store/SubscribeStore.js";
 
 export default class App extends Component {
+  setup() {
+    this.SubscribeStore = new SubscribeStore();
+  }
+
   template() {
     return `
       <div id="app">
@@ -24,7 +29,11 @@ export default class App extends Component {
     new Header(document.querySelector(".header"));
     new Headline(document.querySelector(".headline"));
     new NavBar(document.querySelector(".news-navbar"));
-    new NewsGrid(document.querySelector(".news-section-grid"));
-    new NewsList(document.querySelector(".news-section-list"));
+    new NewsGrid(document.querySelector(".news-section-grid"), {
+      SubscribeStore: this.SubscribeStore,
+    });
+    new NewsList(document.querySelector(".news-section-list"), {
+      SubscribeStore: this.SubscribeStore,
+    });
   }
 }
