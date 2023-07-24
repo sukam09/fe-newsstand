@@ -1,9 +1,9 @@
 import { PROGRESS_FLAG } from "../../constant.js";
 import { _changeClass } from "../../utils.js";
-import { turnNewsPage } from "./pageMoveButton.js";
+import { setProgressEventFlag, turnNewsPage } from "./pageMoveButton.js";
 import { drawPressNews } from "./pressNews.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getView } from "../../store.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 
@@ -30,7 +30,6 @@ function removeProgress() {
  */
 function setProgress() {
   const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${getClickedCategoryIndex() + 1})`);
-
   _changeClass($CategoryContainer, 'non-progress', 'progress');
   _changeClass($CategoryContainer, 'pointer', 'effect');
   $pageInfo.classList.add('progress-page');
@@ -41,11 +40,21 @@ function setProgress() {
  progressbar의 현재 페이지 업데이트
  */
 function setProgressPage() {
-  $pageInfo.innerHTML = `
-  <div class="display-bold12 text-white-default">${getPage() + 1}</div>
-  <img src="./assets/Icon/division.svg">
-  <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getClickedCategoryIndex()].length}</div>
-`
+  if (getView() === 'list' && getPress() === 'all') {
+    $pageInfo.innerHTML = `
+    <div class="display-bold12 text-white-default">${getPage() + 1}</div>
+    <img src="./assets/Icon/division.svg">
+    <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getClickedCategoryIndex()].length}</div>
+  `
+  }
+
+  else if (getView() === 'list' && getPress() === 'my') {
+    $pageInfo.innerHTML = `
+    <div class="display-bold12 text-white-default"></div>
+    <img src="./assets/Icon/Symbol.svg">
+    <div class="display-bold12 text-white-weak"></div>
+  `
+  }
 }
 
 /**

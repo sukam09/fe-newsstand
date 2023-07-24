@@ -9,7 +9,7 @@ showDate();
 initView();
 initPressImg();
 
-initNews();
+//initNews();
 rollNews();
 
 

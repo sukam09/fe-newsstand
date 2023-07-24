@@ -152,4 +152,4 @@ function initPressImg() {
 }
 
 
-export { initPressImg, drawPressImg, handleSubscribe }
+export { initPressImg, drawPressImg, handleSubscribe, getSubscribedPress }

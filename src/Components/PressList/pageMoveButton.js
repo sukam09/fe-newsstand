@@ -1,9 +1,10 @@
 import { changeCategory } from "./categoryTab.js";
-import { drawPressNews } from "./pressNews.js";
+import { drawPressNews, underlineNewsTitle } from "./pressNews.js";
 import { setProgressPage, startProgressAnimation } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, setClickedCategoryIndex, setPage } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../store.js";
 import { PROGRESS_FLAG } from "../../constant.js";
+import { getSubscribedPress } from "../PressGrid/pressLogos.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 const allPressNewsCategory = pressStore.getAllPressNewsCategory
@@ -13,7 +14,16 @@ const $newsNextButton = document.querySelector('.press-news-right-button');
 
 let newsPrevBtnClickEventFlag = false;
 let newsNextBtnClickEventFlag = false;
-let progressEventFlagPerCategory = Array.from({ length: allPressNewsCategory.length }, () => false);
+let progressEventFlagPerCategory = null;
+
+function setProgressEventFlag() {
+  if (getView() === 'list' && getPress() === 'all') {
+    progressEventFlagPerCategory = Array.from({ length: allPressNewsCategory.length }, () => false);
+  }
+  else if (getView() === 'list' && getPress() === 'my') {
+    progressEventFlagPerCategory = Array.from({ length: getSubscribedPressId().length }, () => false)
+  }
+}
 
 /**
 페이지 넘기는 버튼의 클릭 및 animation이 반복되는지의 이벤트 핸들링,
@@ -26,12 +36,12 @@ function turnNewsPage(progressFlag) {
 
   if ((!newsPrevBtnClickEventFlag) && (!newsNextBtnClickEventFlag)) {
     $newsPrevButton.addEventListener('click', (event) => {
-      clickNewsTurner('left')
-      startProgressAnimation()
+      clickNewsTurner('left');
+      startProgressAnimation();
     });
     $newsNextButton.addEventListener('click', (event) => {
-      clickNewsTurner('right')
-      startProgressAnimation()
+      clickNewsTurner('right');
+      startProgressAnimation();
     });
     newsPrevBtnClickEventFlag = true;
     newsNextBtnClickEventFlag = true;
@@ -51,20 +61,35 @@ function turnNewsPage(progressFlag) {
 페이지 넘기는 버튼 유무 설정
  */
 function showNewsTurner() {
-  $newsPrevButton.style.display = getPage() === 0 ? 'none' : 'block';
-  $newsNextButton.style.display = getPage() === shuffledAllPressNews[getClickedCategoryIndex()].length - 1 ? 'none' : 'block';
+  if (getView() === 'list' && getPress() === 'all') {
+    $newsPrevButton.style.display = getPage() === 0 ? 'none' : 'block';
+    $newsNextButton.style.display = getPage() === shuffledAllPressNews[getClickedCategoryIndex()].length - 1 ? 'none' : 'block';
+  }
+  else if (getView() === 'list' && getPress() === 'my') {
+    const MyPressNews = getSubscribedPress();
+    $newsPrevButton.style.display = getPage() === 0 ? 'none' : 'block';
+    $newsNextButton.style.display = getPage() === 0 ? 'none' : 'block';
+  }
+
 }
 
 /**
  (progressBar) 끝 페이지면 다음 페이지로 이동
  */
 function moveNextCategoryOfProgress() {
-  if (getPage() === shuffledAllPressNews[getClickedCategoryIndex()].length) {
-    setClickedCategoryIndex((getClickedCategoryIndex() + 1) % allPressNewsCategory.length)
+  if (getView() === 'list' && getPress() === 'all') {
+    if (getPage() === shuffledAllPressNews[getClickedCategoryIndex()].length) {
+      setClickedCategoryIndex((getClickedCategoryIndex() + 1) % allPressNewsCategory.length)
+      changeCategory();
+    }
+  }
+  else if (getView() === 'list' && getPress() === 'my') {
+    const MyPressNews = getSubscribedPress();
+    setClickedCategoryIndex((getClickedCategoryIndex() + 1) % MyPressNews.length)
     changeCategory();
   }
-}
 
+}
 
 /**
  해당 페이지에 맞는 뉴스 띄우기
@@ -75,6 +100,7 @@ function clickNewsTurner(whatButton) {
   showNewsTurner();
   drawPressNews();
   setProgressPage();
+  underlineNewsTitle();
 }
 
-export { turnNewsPage }
+export { turnNewsPage, clickNewsTurner, setProgressEventFlag }
