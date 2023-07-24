@@ -18,10 +18,11 @@ export function handleListSubButton({ currentTarget: $button }) {
   setState(subStateList[pressId], !subState);
 }
 
-// id의 리스트 뷰의 구독, 해지 버튼 조정
+// 리스트 뷰의 구독, 해지 버튼 조정
 export function controllListsSubButtonShowing(id) {
   const isSub = getState(subStateList[id]);
   const $pressLists = qsa(`.list_press_${id}`);
+  console.log($pressLists);
 
   if (!$pressLists) {
     console.log("리스트 뷰에 데이터 엄씀");
@@ -65,9 +66,10 @@ export function controllMyPressList() {
     console.log(idx);
     // body
     const $news = document.createElement("div");
-    $news.className = `news news_my${idx}`;
+    $news.className = `list_press_${press.id} news news_my${idx}`;
     $news.innerHTML = createNewsHeader(press) + createNewsBody(press);
     $container.appendChild($news);
+    controllListsSubButtonShowing(press.id);
   });
   const $ref = $container.querySelector(".news");
 
