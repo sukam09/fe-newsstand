@@ -1,5 +1,4 @@
-import { STATE, ARROW_SVG_PATH } from "./const.js";
-import { drawNews } from "./newsList.js";
+import { ARROW_SVG_PATH } from "./const.js";
 import { subListPageCount, subscribedPress } from "./store/store.js";
 import { getState, setState } from "./observer/observer.js";
 

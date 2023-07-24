@@ -1,5 +1,5 @@
 import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE, STATE } from "./const.js";
+import { PAGE_SIZE } from "./const.js";
 import { setDisplay, getJSON } from "./utils.js";
 import { setState, getState, subscribe } from "./observer/observer.js";
 import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "./store/store.js";

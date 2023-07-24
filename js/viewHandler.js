@@ -1,9 +1,8 @@
 import { removeDisplay, setDisplay, getJSON } from "./utils.js";
 import { drawNews, setNowCount } from "./newsList.js";
 import { drawGridView } from "./gridFunction.js";
-import { STATE } from "./const.js";
 import { setSubListNav } from "./subscribeListView.js";
-import { setState, subscribe,getState } from "./observer/observer.js";
+import { setState, subscribe, getState } from "./observer/observer.js";
 import { isGridView, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
 
 let presses;
@@ -17,20 +16,19 @@ async function addEventInSymbol() {
   let $list_symbol = document.querySelectorAll(".list-symbol");
   let $grid_symbol = document.querySelectorAll(".grid-symbol");
   $list_symbol.forEach(symbol => {
-    symbol.addEventListener("click",handleView)
+    symbol.addEventListener("click", handleView);
   });
   $grid_symbol.forEach(symbol => {
-    symbol.addEventListener("click", handleView)
-    });
-    subscribe(isGridView,drawNews)
-    subscribe(isGridView,setSubListNav)
-    subscribe(isGridView,drawGridView)
-    subscribe(isSubView,drawNews)
-    subscribe(isSubView,setSubListNav)
-    subscribe(isSubView,drawGridView)
-    subscribe(isGridView,setNowCount)
-    subscribe(isSubView,setNowCount)
-
+    symbol.addEventListener("click", handleView);
+  });
+  subscribe(isGridView, drawNews);
+  subscribe(isGridView, setSubListNav);
+  subscribe(isGridView, drawGridView);
+  subscribe(isSubView, drawNews);
+  subscribe(isSubView, setSubListNav);
+  subscribe(isSubView, drawGridView);
+  subscribe(isGridView, setNowCount);
+  subscribe(isSubView, setNowCount);
 }
 
 function changeViewIcon(selected) {
@@ -56,7 +54,7 @@ function changeOption(selected) {
   }
 }
 
-function handleView({target:target}) {
+function handleView({ target: target }) {
   const target_class = target.classList;
   function checkClass(_class) {
     return target_class.contains(_class); // 있으면 true 반환
@@ -64,7 +62,7 @@ function handleView({target:target}) {
   removeDisplay();
   if (checkClass("list-symbol")) {
     //list 버튼 눌렀을 때
-    setState(subListPageCount,0);
+    setState(subListPageCount, 0);
     changeViewIcon("list");
     setState(isGridView, false);
     if (getState(isSubView)) {
@@ -73,14 +71,14 @@ function handleView({target:target}) {
         setDisplay(".no-sub-item-div", "query", "block");
       } else {
         setDisplay(".press-list-section", "query", "block");
-        setDisplay(".sub-list-nav",'query','block');
-        setDisplay(".list-nav",'query','none');  
+        setDisplay(".sub-list-nav", "query", "block");
+        setDisplay(".list-nav", "query", "none");
       }
     } else {
       // list선택, total list 뷰 출력
       setDisplay(".press-list-section", "query", "block");
-      setDisplay(".sub-list-nav",'query','none');
-      setDisplay(".list-nav",'query','block');
+      setDisplay(".sub-list-nav", "query", "none");
+      setDisplay(".list-nav", "query", "block");
     }
   }
   if (checkClass("grid-symbol")) {
@@ -88,13 +86,13 @@ function handleView({target:target}) {
     changeViewIcon("grid");
     setDisplay(".press-grid", "query", "block");
     drawGridView();
-    setState(isGridView,true);
-    setState(isSubView,true);
+    setState(isGridView, true);
+    setState(isSubView, true);
   }
   if (checkClass("total-press")) {
     // 전체 언론사 클릭
-    setState(isGridView,true);
-    setState(isSubView,false);
+    setState(isGridView, true);
+    setState(isSubView, false);
     setDisplay(".press-grid", "query", "block");
     changeViewIcon("grid");
     changeOption("total");
@@ -104,16 +102,16 @@ function handleView({target:target}) {
     changeViewIcon("list");
     changeOption("subscribe");
     setState(subListPageCount, 0);
-    setState(isGridView,false);
-    setState(isSubView,true);
+    setState(isGridView, false);
+    setState(isSubView, true);
     if (getState(subscribedPress).length === 0) {
       setDisplay(".no-sub-item-div", "query", "block");
     } else {
       setDisplay(".press-list-section", "query", "block");
       // setSubListNav();
       // drawNews();
-      setDisplay(".sub-list-nav",'query','block');
-      setDisplay(".list-nav",'query','none');
+      setDisplay(".sub-list-nav", "query", "block");
+      setDisplay(".list-nav", "query", "none");
     }
   }
 }

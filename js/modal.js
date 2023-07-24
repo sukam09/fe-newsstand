@@ -1,8 +1,7 @@
 import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay, getJSON } from "../js/utils.js";
-import { STATE, DATA, setSubData } from "./const.js";
+import { setSubData } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
-import { drawNews } from "./newsList.js";
-import { getState, setState, subscribe } from "./observer/observer.js";
+import { getState, setState } from "./observer/observer.js";
 import {
   categoryPageCount,
   clickedUnsubPress,
@@ -12,7 +11,6 @@ import {
   subListPageCount,
   subscribedPress,
 } from "./store/store.js";
-import { setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
 
 let news_by_category = null;

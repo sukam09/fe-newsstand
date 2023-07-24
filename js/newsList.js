@@ -1,6 +1,5 @@
 import { listSubMouseClick } from "./subscribe.js";
 import { checkIsSubscribe, getJSON, setDisplay } from "./utils.js";
-import { DATA, STATE } from "./const.js";
 import { setSubListNav } from "./subscribeListView.js";
 import { getState, setState, subscribe, setDictState } from "./observer/observer.js";
 import { categoryPageCount, clickedUnsubPress, isDark, isSubView, nowCategory, subListPageCount, subscribedPress, totalCategoryPages } from "./store/store.js";
