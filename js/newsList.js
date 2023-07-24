@@ -3,7 +3,7 @@ import { checkIsSubscribe, getJSON, setDisplay } from "./utils.js";
 import { DATA, STATE } from "./const.js";
 import { setSubListNav } from "./subscribeListView.js";
 import { getState, setState, subscribe, setDictState } from "./observer/observer.js";
-import { categoryPageCount, isDark, isSubView, nowCategory, subListPageCount, subscribedPress, totalCategoryPages } from "./store/store.js";
+import { categoryPageCount, clickedUnsubPress, isDark, isSubView, nowCategory, subListPageCount, subscribedPress, totalCategoryPages } from "./store/store.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let news;
@@ -66,7 +66,6 @@ function drawNews() {
   const news = getState(isSubView)
     ? getState(subscribedPress)[getState(subListPageCount)]
     : news_by_category[getState(categoryPageCount)[now_category]];
-  console.log(getState(subscribedPress)[getState(subListPageCount)]);
   document.querySelector(".press-brandmark").src = getState(isDark) ? news.path_dark : news.path_light;
   document.querySelector(".edit-date").textContent = news.editDate;
   document.querySelector(".thumbnail").src = news.thumbSrc;
@@ -146,7 +145,7 @@ function initCategoryClass() {
     const news = getState(isSubView)
       ? getState(subscribedPress)[getState(subListPageCount)]
       : getNews()[getState(categoryPageCount)[getState(nowCategory)]];
-    STATE.CLICKED_UNSUB_NEWS = news;
+      setState(clickedUnsubPress, news);
     listSubMouseClick(news);
   });
 }

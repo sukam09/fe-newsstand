@@ -2,29 +2,43 @@ import { setDisplay, findPress, findSpanNearby, checkIsSubscribe, removeDisplay,
 import { STATE, DATA, setSubData } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { drawNews } from "./newsList.js";
-import { getState,setState,subscribe } from "./observer/observer.js";
-import { categoryPageCount, isGridView, isSubView, nowCategory, subListPageCount, subscribedPress } from "./store/store.js";
-import {  setSubListNav } from "./subscribeListView.js";
+import { getState, setState, subscribe } from "./observer/observer.js";
+import {
+  categoryPageCount,
+  clickedUnsubPress,
+  isGridView,
+  isSubView,
+  nowCategory,
+  subListPageCount,
+  subscribedPress,
+} from "./store/store.js";
+import { setSubListNav } from "./subscribeListView.js";
 import { changeOption } from "./viewHandler.js";
 
 let news_by_category = null;
 
-function onUndiscribeModal({target: target}) {
-  const $press_name = document.querySelector(".sub-press-name");
+function onGridUndiscribeModal({ target: target }) {
+  console.log(target);
+  const $press_name = document.querySelector(".grid-sub-press-name");
+
   $press_name.textContent = findPress("src", target);
   setDisplay(".grid-subscribe-modal", "query", "block");
 }
 
-function offUndiscribeModal() { //grid
+function offUndiscribeModal() {
+  //grid
   setDisplay(".grid-subscribe-modal", "query", "none");
 }
 
-function onListUndiscribeModal() { // 리스트 구독 모달
+function onListUndiscribeModal() {
+  // 리스트 구독 모달
   const $sub_modal = document.querySelector(".list-subscribe-modal");
   const subscribed_presses = getState(subscribedPress);
   const now_category = getState(nowCategory);
-  const page_count = getState(categoryPageCount)
-  const $press = getState(isSubView) ? subscribed_presses[getState(subListPageCount)]: news_by_category[now_category][page_count[now_category]];
+  const page_count = getState(categoryPageCount);
+  const $press = getState(isSubView)
+    ? subscribed_presses[getState(subListPageCount)]
+    : news_by_category[now_category][page_count[now_category]];
   $sub_modal.querySelector(".sub-press-name").textContent = $press.name;
   setDisplay(".list-subscribe-modal", "query", "block");
 }
@@ -39,32 +53,31 @@ async function initModalBtn() {
   $button.forEach(btn => btn.addEventListener("click", handleModalBtn));
 }
 
-function handleModalBtn({target:target}) {
+function handleModalBtn({ target: target }) {
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
     //예 ?
     if (getState(isGridView)) {
       //그리드뷰일때
       const $press_name_span = findSpanNearby(target);
+      console.log($press_name_span);
       const $find_press = findPress("name", $press_name_span);
+      console.log($find_press);
       setSubData($find_press);
       drawGridView();
     } else {
       // 리스트뷰일때
-      setSubData(STATE.CLICKED_UNSUB_NEWS);
-      setState(subListPageCount,0);
+      setSubData(getState(clickedUnsubPress));
+      setState(subListPageCount, 0);
       if (getState(subscribedPress).length === 0) {
         removeDisplay();
         changeOption("subscribe");
         setDisplay(".no-sub-item-div", "query", "block");
-      } else {
-        setSubListNav();
-        drawNews();
       }
     }
-    offUndiscribeModal();
-    offListUndiscribeModal();
   }
+  offUndiscribeModal();
+  offListUndiscribeModal();
 }
 
-export { onUndiscribeModal, offUndiscribeModal, onListUndiscribeModal, initModalBtn };
+export { onGridUndiscribeModal, offUndiscribeModal, onListUndiscribeModal, initModalBtn };

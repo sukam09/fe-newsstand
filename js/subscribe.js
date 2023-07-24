@@ -2,7 +2,7 @@ import { setDisplay, getJSON, checkIsSubscribe } from "./utils.js";
 import { MODAL_POPUP_TIME, STATE, setSubData, DATA } from "./const.js";
 import { drawGridView } from "./gridFunction.js";
 import { handleView, changeOption } from "./viewHandler.js";
-import { onUndiscribeModal, onListUndiscribeModal } from "./modal.js";
+import { onGridUndiscribeModal, onListUndiscribeModal } from "./modal.js";
 import { setSubListNav } from "./subscribeListView.js";
 import { drawNews } from "./newsList.js";
 import { isDark, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
@@ -62,7 +62,7 @@ function initGridItemEvent(item,press) {
   if(subscribed_press.find(data => data.name === press.name) === undefined) {
     item.addEventListener("click", gridMouseClick);    
   } else {
-    item.addEventListener("click",onUndiscribeModal);
+    item.addEventListener("click",onGridUndiscribeModal);
   }  
   }
 

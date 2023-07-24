@@ -28,11 +28,16 @@ function setSubData(target) {
   if (subscribed_presses.find(press => press.name === target.name) === undefined) {
     setState(subscribedPress, [...subscribed_presses, target]);
   } else {
+    console.log(
+      "set",
+      subscribed_presses.filter(press => press.name !== target.name),
+    );
     setState(
       subscribedPress,
       subscribed_presses.filter(press => press.name !== target.name),
     );
   }
+  console.log(getState(subscribedPress));
 }
 
 const ARROW_SVG_PATH = `

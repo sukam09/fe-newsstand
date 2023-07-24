@@ -1,4 +1,5 @@
-import { STATE } from "./const.js";
+import { isDark, subscribedPress } from "./store/store.js";
+import { getState } from "./observer/observer.js";
 
 let presses;
 
@@ -35,10 +36,14 @@ function findPress(type, target) {
   if (type === "src") {
     let $target_src = target.getElementsByTagName("img")[0].src;
     $target_src = ".." + $target_src.split("5500")[1];
-    const press_name = presses.find(press => 
-      $target_src === STATE.IS_DARK ? press.path_dark : press.path_light).name
+    console.log($target_src);
+    const press_name = presses.find(press => {
+      const press_src = getState(isDark) ? press.path_dark : press.path_light;
+      return $target_src === press_src;
+    }).name;
     return press_name;
   } else if (type === "name") {
+    console.log(target.textContent);
     return presses.find(press => press.name === target.textContent); // 객체반환
   }
 }
@@ -68,13 +73,13 @@ function findSpanNearby(element) {
   src, name에 따라 요소 있는지 확인
 */
 function checkIsSubscribe(type, target) {
+  const subscribed_presses = getState(subscribedPress);
   if (type === "src") {
-    return STATE.SUB_DATA.find(data => 
-      target === STATE.IS_DARK ? data.path_dark : data.path_light);
+    return subscribed_presses.find(data => (target === getState(isDark) ? data.path_dark : data.path_light));
   } else if (type === "name") {
     let rt;
     try {
-      rt = STATE.SUB_DATA.find(data => data.name === target);
+      rt = subscribed_presses.find(data => data.name === target);
     } catch (e) {
       return undefined;
     }

@@ -1,9 +1,5 @@
 import { initState } from "../observer/observer.js";
 
-const STATE = {
-  CLICKED_UNSUB_NEWS: {},
-};
-
 const isDark = initState({
   key: "isDark",
   defaultState: false,
@@ -11,7 +7,7 @@ const isDark = initState({
 
 const isGridView = initState({
   key: "isGridView",
-  defaultState: false,
+  defaultState: true,
 });
 
 const isSubView = initState({
@@ -54,6 +50,11 @@ const categoryPageCount = initState({
   defaultState: {},
 });
 
+const clickedUnsubPress = initState({
+  key: "clickedUnsubPress",
+  defaultState: {},
+});
+
 export {
   isDark,
   isGridView,
@@ -65,4 +66,5 @@ export {
   nowCategory,
   totalCategoryPages,
   categoryPageCount,
+  clickedUnsubPress,
 };

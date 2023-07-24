@@ -9,12 +9,12 @@ let presses = null;
 
 function drawGridArrow() {
   // 그리드 상태에 따른 화살표 출력
-  const _isSubView = getState(isSubView);
+  const is_sub_view = getState(isSubView);
   const sub_presses_length = getState(subscribedPress).length
-  const total_grid_page = _isSubView ? parseInt(sub_presses_length / PAGE_SIZE) : parseInt(presses.length / PAGE_SIZE);
+  const total_grid_page = is_sub_view ? parseInt(sub_presses_length / PAGE_SIZE) : parseInt(presses.length / PAGE_SIZE);
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
-  const now_page = _isSubView ? getState(subGridPageCount) : getState(gridPageCount);
+  const now_page = is_sub_view ? getState(subGridPageCount) : getState(gridPageCount);
   if (total_grid_page === 0) {
     setDisplay("grid-prev", "id", "none");
     setDisplay("grid-next", "id", "none");
