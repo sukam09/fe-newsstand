@@ -260,6 +260,8 @@ a:hover {
   display: flex;
   border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
+  white-space: nowrap;
+  overflow: hidden;
 }
 .list-view .field-tab .category {
   display: inline-block;

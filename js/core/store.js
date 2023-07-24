@@ -12,6 +12,15 @@ class Store {
         { name: "서울경제", index: 96 },
         { name: "데일리안", index: 95 },
         { name: "헤럴드경제", index: 94 },
+        { name: "SBS Biz", index: 93 },
+        { name: "세계일보", index: 92 },
+        { name: "아시아경제", index: 91 },
+        { name: "이데일리", index: 90 },
+        { name: "아이뉴스24", index: 89 },
+        { name: "파이낸셜뉴스", index: 87 },
+        { name: "스포츠서울", index: 86 },
+        { name: "스포츠동아", index: 85 },
+        { name: "석간문화일보", index: 84 },
       ],
     });
   }
