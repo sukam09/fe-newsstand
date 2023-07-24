@@ -3,6 +3,8 @@ import { shuffle } from '../utils.js';
 import { store, actionCreator } from '../../store/store.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, PAGE_MIN_NUMBER, PAGE_MAX_NUMBER } from '../constants.js';
 
+import SubscribeButton from './common/SubscribeButton.js';
+
 export default function PressGridView({ $target, initialState }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
@@ -25,7 +27,7 @@ export default function PressGridView({ $target, initialState }) {
     });
   };
 
-  function handleClickCell({ target }) {
+  function handleClickCell({ target }, subscribeButton) {
     let id = target.dataset.id;
 
     // li가 아닌 button을 클릭했을 경우
@@ -33,17 +35,24 @@ export default function PressGridView({ $target, initialState }) {
       id = target.closest('li').dataset.id;
     }
 
-    handleSubscribe(id);
+    handleSubscribe(id, subscribeButton);
   }
 
-  const isSubscribed = (id, myPress) => myPress.indexOf(id) !== -1;
+  function getSubscribed(id, myPress) {
+    return myPress.indexOf(id) !== -1;
+  }
 
-  function handleSubscribe(id) {
-    const { myPress } = store.getState();
-    if (!isSubscribed(id, myPress)) {
-      store.dispatch(actionCreator('subscribe', { pid: id }));
-    } else {
+  // TODO: 옵저버 패턴 적용 필요
+  function handleSubscribe(id, subscribeButton) {
+    const { isSubscribed } = subscribeButton.state;
+
+    // Optimistic UI 적용
+    if (isSubscribed) {
+      subscribeButton.setState({ ...subscribeButton.state, isSubscribed: false });
       store.dispatch(actionCreator('unsubscribe', { pid: id }));
+    } else {
+      subscribeButton.setState({ ...subscribeButton.state, isSubscribed: true });
+      store.dispatch(actionCreator('subscribe', { pid: id }));
     }
   }
 
@@ -60,22 +69,26 @@ export default function PressGridView({ $target, initialState }) {
     currentData.forEach(({ id, logo }) => {
       const $li = document.createElement('li');
       const $img = document.createElement('img');
-      const $button = document.createElement('button');
 
       $img.src = logo;
       $img.classList.add('press-logo');
 
-      $button.innerHTML = `
-        <img src="../asset/icons/plus.svg" />
-        <p>구독하기</p>
-      `;
-      $button.classList.add('grid-subscribe-button');
-
-      $li.append($img, $button);
+      $li.appendChild($img);
       $li.classList.add('news-press-item');
       $li.classList.add('data-id');
       $li.dataset.id = id;
-      $li.addEventListener('click', event => handleClickCell(event));
+
+      const { myPress } = store.getState();
+
+      const subscribeButton = new SubscribeButton({
+        $target: $li,
+        initialState: {
+          type: 'grid',
+          isSubscribed: getSubscribed(id, myPress),
+        },
+      });
+
+      $li.addEventListener('click', (event, params) => handleClickCell(event, subscribeButton, params));
 
       $ul.appendChild($li);
     });
