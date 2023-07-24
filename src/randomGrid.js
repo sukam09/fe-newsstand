@@ -1,11 +1,12 @@
+import { UNSUB_BTN_IMG, SUB_BTN_IMG } from "./path.js";
 import { getPressObj } from "./api/api.js";
+import { removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 
 const PRESS_NUM_IN_GRID = 24;
 const TOTAL_PRESS_NUM = 96;
 let grid_page_count = 0;
 let is_light_mode = true;
-const unsub_btn = "../assets/others/unsubButton.svg";
 
 /***** 언론사 사진 셔플 *****/
 let presses;
@@ -25,7 +26,7 @@ function appendPressInGrid(press) {
 
   //구독하기 이미지 추가
   const $sub = document.createElement("img");
-  $sub.src = `./assets/others/Button.svg`;
+  $sub.src = SUB_BTN_IMG;
   $sub.classList.add("sub", `${press.id}`);
 
   //ul에 li 추가
@@ -104,9 +105,8 @@ sub_btns.addEventListener("click", async (e) => {
       subPress[0].name,
       subPress[0].lightSrc
     );
-    target.src = unsub_btn;
-    target.classList.remove("sub");
-    target.classList.add("un-sub");
+    target.src = UNSUB_BTN_IMG;
+    removeAddClass(target, "sub", "un-sub");
   }
 });
 

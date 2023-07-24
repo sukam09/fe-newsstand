@@ -1,3 +1,4 @@
+import { SUB_BTN_IMG, X_BTN_IMG } from "./path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
 import { getNewsContent, getPressObj } from "./api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
@@ -16,8 +17,6 @@ let news_main_title = document.querySelector(".news-main .font-init");
 let caption = document.querySelector(".caption");
 let tab = document.querySelectorAll(".progress-item .count");
 let news_sub_list = document.querySelectorAll(".news-sub-list li");
-const sub_btn = `./assets/others/subscribeBtn.svg`;
-const x_btn = `./assets/others/xButton.svg`;
 
 /***** 리스트뷰 프로그레스바 카운트/탭넘버 추가 *****/
 async function appendCategoryTabNum() {
@@ -72,10 +71,10 @@ function drawListView(category_idx, count_idx) {
 function putSubscribeBtnImg(name) {
   const img = document.querySelector(".subbtn-or-xbtn img");
   if (subscribeState.getSubInfoByName(name).length !== 0) {
-    img.src = x_btn;
+    img.src = X_BTN_IMG;
     removeAddClass(img, "subscribe-press-btn", "x-btn");
   } else {
-    img.src = sub_btn;
+    img.src = SUB_BTN_IMG;
     removeAddClass(img, "x-btn", "subscribe-press-btn");
   }
 }
@@ -112,7 +111,7 @@ subscribe_btn.addEventListener("click", async () => {
     const press_name = await getNameFromArticle(category_idx, count_idx);
     const subscribed_press = await getPressItemByName(press_name);
     subscribeState.setSubscribeState(
-      subscribed_press[0].id,
+      subscribed_press[0].id.toString(),
       press_name,
       subscribed_press[0].lightSrc
     );

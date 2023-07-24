@@ -1,3 +1,4 @@
+import { UNSUB_BTN_IMG } from "./path.js";
 import { setDisplay, removeAddClass } from "./util/utils.js";
 import { subscribeState } from "./store/subscribeState.js";
 import { PRESS_NUM_IN_GRID } from "./randomGrid.js";
@@ -17,11 +18,10 @@ function appendPressItemli() {
 
 /***** 구독 언론사 로고 채우기 *****/
 function appendPressInSubGrid(press, idx) {
-  const sub_img = `./assets/others/unsubButton.svg`;
   const $list = document.querySelectorAll(".press-sub-grid .press-item");
   removeAddClass($list[idx], "empty", "full");
   $list[idx].innerHTML = `<img src=${press[2]} class="original">
-  <img src=${sub_img} class="un-sub ${press[0]}">`;
+  <img src=${UNSUB_BTN_IMG} class="un-sub ${press[0]}">`;
 }
 
 //아이템 비우기
@@ -49,7 +49,7 @@ const un_sub_btns = document.querySelector("#press-sub-list");
 un_sub_btns.addEventListener("click", (e) => {
   const target_class = e.target.classList;
   if (target_class.contains("un-sub")) {
-    const press = subscribeState.getSubInfoById(parseInt(target_class[1]));
+    const press = subscribeState.getSubInfoById(target_class[1]);
     setDisplay(".sub-alert", "block");
     document.querySelector(
       ".alert-message .bold-font-init"
