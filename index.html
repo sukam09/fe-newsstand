@@ -9,8 +9,8 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="stylesheet" type="text/css" href="./global-style.css" />
+    <link rel="stylesheet" type="text/css" href="./style/style.css" />
+    <link rel="stylesheet" type="text/css" href="./style/global-style.css" />
   </head>
   <body>
     <header class="header">
@@ -21,12 +21,14 @@
       <div class="header-right light-text-default display-medium16"></div>
     </header>
     <section class="rolling-section">
+      <!-- ROLLING CONTAINER 1 -->
       <div class="rolling-container light-surface-alt light-border-default">
         <span class="display-bold14 light-text-strong">연합뉴스</span>
         <div class="rolling-window available-medium14 light-text-default">
           <div class="rolling-content"></div>
         </div>
       </div>
+      <!-- ROLLING CONTAINER 2 -->
       <div class="rolling-container light-surface-alt light-border-default">
         <span class="display-bold14 light-text-strong">연합뉴스</span>
         <div class="rolling-window available-medium14 light-text-default">
@@ -34,30 +36,58 @@
         </div>
       </div>
     </section>
-    <section class="grid-section">
-      <div class="grid-section-nav">
+    <section class="view-section">
+      <div class="view-section-nav">
+        <!-- LEFT NAV : FILTER BTNS -->
         <div class="nav-left">
-          <span class="light-text-strong selected-bold16">전체 언론사</span>
-          <span class="light-text-weak available-medium16"
-            >내가 구독한 언론사</span
-          >
+          <span class="filter-btn selected-filter" type="all">전체 언론사</span>
+          <span class="filter-btn" type="subscribed">내가 구독한 언론사</span>
         </div>
+        <!-- RIGHT NAV : VIEW CHANGE BTNS -->
         <div class="nav-right">
-          <img src="./asset/icons/list-view.png" class="icon btn" />
-          <img src="./asset/icons/grid-view.png" class="icon btn" />
+          <img
+            src="./asset/icons/list-view.png"
+            class="icon btn list-btn view-btn"
+            type="list"
+          />
+          <img
+            src="./asset/icons/grid-view-active.png"
+            class="icon btn grid-btn view-btn"
+            type="grid"
+          />
         </div>
       </div>
-      <div class="grid-section-container">
+      <div class="view-section-container">
+        <!-- LEFT ARROW -->
         <div class="arrow-container arrow-left btn">
           <img src="./asset/icons/LeftButton.png" />
         </div>
-        <ul class="grid-box"></ul>
-
+        <div class="view-section-content">
+          <!-- GRID VIEW -->
+          <ul class="grid-box" type="grid"></ul>
+          <!-- LIST VIEW -->
+          <div class="list-box light-border-default hide" type="list">
+            <ul
+              class="list-nav light-surface-alt light-text-weak available-medium14"
+            ></ul>
+            <div class="list-content"></div>
+          </div>
+          <!-- EMPTY VIEW -->
+          <div class="empty-view hide">구독한 언론사가 없습니다.</div>
+        </div>
+        <!-- RIGHT ARROW -->
         <div class="arrow-container arrow-right btn">
           <img src="./asset/icons/RightButton.png" />
         </div>
+        <!-- GRID VIEW : SUBSCRIBE NOTIFICATION -->
+        <div class="sub-snack-bar hide">
+          내가 구독한 언론사에 추가되었습니다.
+        </div>
+        <!-- UNSUBSCRIBE ALERT -->
+        <div class="unsub-alert-container"></div>
       </div>
     </section>
+    <!-- GRID VIEW : LIST ITEM COVER -->
     <div class="press-cover light-surface-alt hidden">
       <img src="./asset/icons/subscribe-button.png" class="btn sub-btn hide" />
       <img
@@ -65,6 +95,6 @@
         class="btn unsub-btn hide"
       />
     </div>
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
