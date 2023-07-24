@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NewsStand</title>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <header class="container_block">
+            <div></div>
+            <!-- header, newsstand -->
+            <header class="container_between">
+                <!-- logo, title -->
+                <div class="header_left">
+                    <img
+                        src="./assets/icons/newspaper.png"
+                        alt="logo"
+                        onClick="location.href='index.html'"
+                    />
+                    <h1>뉴스스탠드</h1>
+                </div>
+                <!-- mode, today -->
+                <div class="header_right">
+                    <div class="toggle_mode_container">
+                        <button class="toggle_mode">
+                            <img
+                                src="./assets/icons/moon.svg"
+                                alt="dark_mode"
+                            />
+                        </button>
+                    </div>
+                    <p class="today"></p>
+                </div>
+            </header>
+            <div></div>
+        </header>
+        <div class="container_block">
+            <div></div>
+            <!-- rolling banner -->
+            <section class="container_between">
+                <div class="sec_hot_topics">
+                    <div class="rolling_banner" id="rollingBannerLeft"></div>
+                    <div class="rolling_banner" id="rollingBannerRight"></div>
+                </div>
+            </section>
+            <div></div>
+        </div>
+        <div class="container_block">
+            <!-- left arrow button -->
+            <div class="arrow">
+                <i class="grid_left_arrow">
+                    <img src="./assets/icons/LeftButton.png" alt="grid_left" />
+                </i>
+                <i class="list_left_arrow">
+                    <img src="./assets/icons/LeftButton.png" alt="list_left" />
+                </i>
+            </div>
+            <div>
+                <!-- navbar -->
+                <nav class="nav_container">
+                    <div id="navLeft">
+                        <span>
+                            <p
+                                class="option_press option_press_active"
+                                id="option_all_press"
+                            >
+                                전체 언론사
+                            </p>
+                        </span>
+                        <span>
+                            <p class="option_press" id="option_subscribe_press">
+                                내가 구독한 언론사
+                            </p>
+                        </span>
+                    </div>
+                    <div id="navRight">
+                        <i>
+                            <img
+                                class="option_main"
+                                id="option_list_main"
+                                src="./assets/icons/option_list_main.png"
+                                alt="search"
+                            />
+                        </i>
+                        <i>
+                            <img
+                                class="option_main"
+                                id="option_grid_main"
+                                src="./assets/icons/option_grid_main_active.png"
+                                alt="search"
+                            />
+                        </i>
+                    </div>
+                </nav>
+                <!-- main list or grid view -->
+                <div class="container_center">
+                    <main
+                        class="main_news_container grid_view_container"
+                    ></main>
+                </div>
+            </div>
+            <!-- right arrow button -->
+            <div class="arrow">
+                <i class="grid_right_arrow">
+                    <img
+                        src="./assets/icons/RightButton.png"
+                        alt="list_right"
+                    />
+                </i>
+                <i class="list_right_arrow">
+                    <img
+                        src="./assets/icons/RightButton.png"
+                        alt="list_right"
+                    />
+                </i>
+            </div>
+        </div>
+    </body>
+    <script type="module" src="./src/utils.js"></script>
+    <script type="module" src="./app.js"></script>
+</html>
