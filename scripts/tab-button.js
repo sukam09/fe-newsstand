@@ -1,4 +1,4 @@
-import { store } from "../store/index.js";
+import { store, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { $mainNav } from "./doms.js";
 
@@ -10,6 +10,16 @@ function handleTabsClick(e) {
   if (!$currentButton) {
     return;
   }
+  const subcribeList = useSelector({
+    store,
+    selector: (state) => state.subscribeList,
+  });
+
+  if (subcribeList.length === 0) {
+    alert("구독한 언론사가 없습니다.");
+    return;
+  }
+
   const tabType = $currentButton.dataset.tab;
 
   $mainNavButtons.forEach(($button) => {
