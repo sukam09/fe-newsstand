@@ -145,7 +145,7 @@ function categoryClicked(item) {
   targetOff.classList.remove(CATEGORY_CLICKED);
   item.classList.add(CATEGORY_CLICKED);
   setState(listPageIdx, 1);
-  setState(categoryIdx, item.id - 1);
+  setState(categoryIdx, CATEGORY_TABS.indexOf(item.children[0].innerHTML));
 }
 // 현재 리스트 페이지에 카테고리 동기화
 function updateCategoryClicked() {

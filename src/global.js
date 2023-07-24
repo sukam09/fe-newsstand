@@ -1,6 +1,7 @@
 import { $, $All } from "./core/utils/util.js";
 import { getState, register, setState } from "./core/observer/observer.js";
 import {
+  categoryIdx,
   gridPageIdx,
   isGrid,
   isSubTab,
@@ -81,9 +82,13 @@ function toggleGridClicked() {
 
 function toggleSubClicked() {
   const subListCount = getState(subscribeList).length;
-  subListCount === 0
-    ? alert("구독한 언론사가 없습니다!")
-    : setState(isSubTab, !getState(isSubTab));
+  if (subListCount === 0) {
+    alert("구독한 언론사가 없습니다!");
+  } else {
+    setState(isSubTab, !getState(isSubTab));
+    setState(categoryIdx, 0);
+    setState(listPageIdx, 1);
+  }
 }
 
 function toggleMainView() {
