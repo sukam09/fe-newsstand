@@ -2,8 +2,8 @@
 Main 컴포넌트의 컨텐츠를 변경하는 네비게이션 컴포넌트
 */
 
-import PressType from "./ContentNav/PressType.js";
-import ViewerType from "./ContentNav/viewerType.js";
+import PressType from "../ContentNav/PressType.js";
+import ViewerType from "../ContentNav/viewerType.js";
 
 export default function ContentNav($target, props) {
   const pressTypeProps = {

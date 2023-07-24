@@ -3,9 +3,9 @@
 카테고리 변경시 MainContents의 lastPage변경
 */
 
-import CategoryNav from "./NewsListView/CategoryNav.js";
-import Contents from "./NewsListView/Contents.js";
-import getRandomIndexArr from "../../../api/getRandomIndexArr.js";
+import CategoryNav from "../NewsListView/CategoryNav.js";
+import Contents from "../NewsListView/Contents.js";
+import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 
 let indexArr;
 let prevCategory = undefined;

@@ -4,10 +4,10 @@
 */
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import { fetchNews, fetchPress } from "../../api/fetchNews.js";
-import Button from "./MainContent/Button.js";
-import PressGridView from "./MainContent/PressGridView.js";
-import NewsListView from "./MainContent/NewsListView.js";
-import store from "../../Store/Store.js";
+import Button from "../MainContent/Button.js";
+import PressGridView from "../MainContent/PressGridView.js";
+import NewsListView from "../MainContent/NewsListView.js";
+import store from "../../store/Store.js";
 
 const listViewData = await fetchNews();
 const pressData = await fetchPress();
@@ -29,15 +29,27 @@ const suffile = (len) => {
   indexArr.sort(() => Math.random() - 0.5);
 };
 
+const $alertDiv = document.createElement("div");
+$alertDiv.setAttribute("class", "alert");
+const okButton = document.createElement("button");
+const cancelButton = document.createElement("button");
+
+okButton.innerHTML = "예, 해지합니다.";
+cancelButton.innerHTML = "아니오";
+
+$alertDiv.appendChild(document.createElement("div"));
+$alertDiv.appendChild(okButton);
+$alertDiv.appendChild(cancelButton);
+
 export default function MainContent($target, props) {
+  this.state = { currentPage: 1, category: 0 };
+
   let $section = document.querySelector(".news-section");
   let lastPage;
 
   let $div = document.createElement("div");
   $div.setAttribute("class", "snack-bar");
   $div.innerText = snackBarText;
-
-  this.state = { currentPage: 1, category: 0 };
 
   cancelAnimation();
 
@@ -127,6 +139,7 @@ export default function MainContent($target, props) {
     new Button($section, { ...commonButtonProps, direction: "right" });
 
     $section.appendChild($div);
+    // $section.appendChild($alertDiv);
     $target.appendChild($section);
   };
 

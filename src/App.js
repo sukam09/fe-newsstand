@@ -4,28 +4,38 @@
 
 state: dark, light
 */
+
+import Component from "./utils/Component.js";
 import Header from "./App/Header.js";
 import Rolling from "./App/Rolling.js";
 import Main from "./App/Main.js";
 
-export default function App($target, mode) {
-  this.state = "Light";
+const startTimes = [0, 1];
 
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
-  this.render = () => {
-    const $app = document.createElement("div");
-    $app.setAttribute("id", "container");
-
-    new Header($app, { mode: this.state });
-    new Rolling($app, { mode: this.state });
-    new Main($app, { mode: this.state });
-
-    $target.appendChild($app);
-  };
-
-  this.render();
+function App($target, props) {
+  Component.call(this, $target, props);
 }
+
+Object.setPrototypeOf(App.prototype, Component.prototype);
+
+App.prototype.initState = function () {
+  return { mode: "Light" };
+};
+
+App.prototype.template = function () {
+  return `
+  <div id="container">
+    <header class="header"></header>
+    <section class="newsflash"></section>
+  </div>`;
+};
+
+App.prototype.mounted = function () {
+  const $header = this.$el.querySelector(".header");
+  const $section = this.$el.querySelector(".newsflash");
+
+  new Header($header, this.props);
+  new Rolling($section, this.props);
+};
+
+export default App;

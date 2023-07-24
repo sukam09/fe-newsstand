@@ -1,9 +1,9 @@
 /*
 신문사 컨텐츠 컴포넌트
 */
-import getRandomIndexArr from "../../../api/getRandomIndexArr.js";
-import findTargetChildNode from "../../../api/findTargetChildNode.js";
-import store from "../../../Store/Store.js";
+import getRandomIndexArr from "../../api/getRandomIndexArr.js";
+import findTargetChildNode from "../../api/findTargetChildNode.js";
+import store from "../../store/Store.js";
 
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
