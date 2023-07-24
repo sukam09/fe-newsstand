@@ -1,4 +1,4 @@
-import { setDate } from "./setDate.js";
+import { setHeader } from "./setHeader.js";
 import { initRolling } from "./newsRolling.js";
 import { initPressGrid } from "./gridFunction.js";
 import { initCategoryClass, initNewsInfo } from "./newsList.js";
@@ -8,7 +8,7 @@ import { initUtilData } from "./utils.js";
 import { addEventInSymbol } from "./viewHandler.js";
 import { initDarkMode } from "./darkMode.js";
 const init = async () => {
-  setDate();
+  setHeader();
   await initNewsInfo();
   await initUtilData();
   initPressGrid();
