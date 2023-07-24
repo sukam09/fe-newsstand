@@ -260,6 +260,8 @@ a:hover {
   display: flex;
   border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
+  white-space: nowrap;
+  overflow: hidden;
 }
 .list-view .field-tab .category {
   display: inline-block;
@@ -408,6 +410,7 @@ a:hover {
 
 /* press-news 구독해지 버튼 */
 .press-info .cancel {
+  box-sizing: content-box;
   height: 24px;
   padding: 0px 6px;
   border-radius: 50px;
@@ -466,21 +469,34 @@ a:hover {
   color: var(--text-default);
 }
 
+/* news */
+.news-content li:hover,
+.main-news p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* main-news */
 .main-news {
-  width: 320px;
   padding-right: 32px;
 }
 
-.main-news img {
-  padding-bottom: 16px;
+.main-img {
+  margin-bottom: 16px;
   width: 320px;
   height: 200px;
+  overflow: hidden;
+}
+
+.main-news .main-img img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  object-fit: cover;
 }
 
 .thumbnail-title {
   overflow: hidden;
-  color: var(--text-text-strong);
+  color: var(--text-strong);
   text-overflow: ellipsis;
   font-size: 16px;
   line-height: 22px;
@@ -512,4 +528,5 @@ a:hover {
 
 #caption:hover {
   cursor: default;
+  text-decoration: none;
 }

@@ -9,7 +9,7 @@ export function drawPressNews(list_content) {
       getTabMode() === "all" &&
       news.name === list_content[getPage() - 1].name
     ) {
-      main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
+      main_news = `<div class="main-img"><img src="${news.main_news.thumbnail}" alt="thumbnail"/></div>
         <p class="thumbnail-title">${news.main_news.title}</p>`;
       news.sub_news.forEach((subnews) => {
         sub_news += `<li>

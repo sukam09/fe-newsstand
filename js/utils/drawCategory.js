@@ -1,6 +1,16 @@
 import { showListView } from "./makeListView.js";
 import { store } from "../core/store.js";
 import { getPage, getTabMode } from "../core/getter.js";
+import { FIRST_PAGE_NUM } from "../constants/constants.js";
+
+function handleClick(e) {
+  const li_target = e.target.closest("li");
+  if (li_target && li_target.classList.contains("category")) {
+    const current = li_target.querySelector(".ctg").textContent.trim();
+    store.setState({ page: FIRST_PAGE_NUM });
+    showListView(current);
+  }
+}
 
 function checkProgress(current) {
   const progress = document.getElementById("play-animation");
@@ -31,6 +41,7 @@ function drawNext(contents) {
   `;
   }
 }
+
 //all일 때 list는 category, subscribe일 때에는 subscribedPress를 받음
 export function drawCategory(current, list, contents) {
   const main_list = document.querySelector(".main-list");
@@ -59,4 +70,31 @@ export function drawCategory(current, list, contents) {
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${list_content}</ul></div>`;
   document.addEventListener("DOMContentLoaded", checkProgress(current));
+  let isDragging = false;
+  let startScrollX;
+  let startClickX;
+  const tabContainer = document.querySelector(".field-tab ul");
+  const tabContent = document.querySelector(".category");
+
+  tabContainer.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startScrollX = e.pageX + tabContainer.scrollLeft;
+    tabContent.style.cursor = "grabbing"; // Change the cursor to indicate dragging
+    startClickX = e.pageX;
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const scrollX = startScrollX - e.pageX;
+    tabContainer.scrollLeft = scrollX;
+  });
+
+  window.addEventListener("mouseup", (e) => {
+    isDragging = false;
+    tabContent.style.cursor = "grab"; // Reset cursor back to grabbing
+    if (startClickX === e.pageX) {
+      handleClick(e);
+    }
+  });
 }

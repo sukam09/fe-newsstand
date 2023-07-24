@@ -52,16 +52,6 @@ async function drawList(current) {
   }
 }
 
-function handleClick(e) {
-  const li_target = e.target.closest("li");
-  if (li_target && li_target.classList.contains("category")) {
-    const current = li_target.querySelector(".ctg").textContent.trim();
-    store.setState({ page: FIRST_PAGE_NUM });
-    drawList(current);
-  }
-}
-
 export function showListView(current = "") {
   drawList(current);
-  document.addEventListener("click", (e) => handleClick(e));
 }
