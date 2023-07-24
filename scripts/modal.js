@@ -1,8 +1,9 @@
-import { NEWS_COUNT } from "../constants/index.js";
+import { NEWS_COUNT, TAB_TYPE } from "../constants/index.js";
 import { modalStore, store, useSelector } from "../store/index.js";
 import { closeModal } from "../store/reducer/modal.js";
-import { prevPage } from "../store/reducer/page.js";
+import { changeTab, prevPage } from "../store/reducer/page.js";
 import { cancelSubscribe } from "../store/reducer/subscribe-list.js";
+import { activateCurrentTab } from "./tab-button.js";
 
 const $modal = document.querySelector(".modal");
 const $confirmButton = $modal.querySelector(".btns_confirm");
@@ -36,6 +37,14 @@ function replaceEventListenerOnConfirmButton(press) {
       store,
       selector: (state) => state.subscribeList,
     });
+
+    if (subscribeList.length === 0) {
+      store.dispatch(changeTab(TAB_TYPE.ALL));
+      activateCurrentTab(TAB_TYPE.ALL);
+      alert("구독한 언론사가 존재하지 않아 전체보기로 전환됩니다.");
+      return;
+    }
+
     if (subscribeList.length % NEWS_COUNT === 0) {
       store.dispatch(prevPage());
     }
