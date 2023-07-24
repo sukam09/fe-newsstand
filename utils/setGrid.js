@@ -1,8 +1,8 @@
 import { GridComponent } from "../components/Grid/GridComponent.js";
 import { setGridButton } from "../components/Grid/setGridButton.js";
-import { filterSubscribePress } from "./filterSubscription.js";
+import { filterSubscribePress } from "./filter/filterSubscription.js";
 import { getAllAgencies } from "./setAgencies.js";
-import { sortPages } from "./sortPage.js";
+import { sortPages } from "./sort/sortPage.js";
 import { removeButton } from "../components/Button/removeButton.js";
 import { INITIAL_PAGE } from "../constants/constant.js";
 

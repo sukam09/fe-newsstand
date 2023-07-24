@@ -1,10 +1,10 @@
 import { ListComponent } from "../components/List/ListComponent.js";
 import { setListButton } from "../components/List/setListButton.js";
 import { store } from "../store/store.js";
-import { filterSubscribePress } from "./filterSubscription.js";
+import { filterSubscribePress } from "./filter/filterSubscription.js";
 import { getAllAgencies } from "./setAgencies.js";
 import { removeButton } from "../components/Button/removeButton.js";
-import { sortCategory } from "./sortCategory.js";
+import { sortCategory } from "./sort/sortCategory.js";
 import {
   FIELDTAB_LIST,
   INITIAL_CATEGORY,

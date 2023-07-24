@@ -1,4 +1,4 @@
-import { MAX_PAGE_NUM, PAGINATION_NUM } from "../constants/constant.js";
+import { MAX_PAGE_NUM, PAGINATION_NUM } from "../../constants/constant.js";
 
 // 전체 신문사 리스트를 24개로 그룹 나누기
 export const sortPages = (agencies) => {

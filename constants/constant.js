@@ -3,7 +3,7 @@ export const MAX_PAGE_NUM = 4;
 export const RECENT_NEWS_NUM = 10;
 export const INITIAL_PAGE = 0;
 export const INITIAL_CATEGORY = 0;
-export const PROGRESS_DURATION_MS = 5000;
+export const PROGRESS_DURATION_MS = 10000;
 export const FIELDTAB_LIST = [
   "종합/경제",
   "방송/통신",

@@ -1,5 +1,5 @@
 import { FIELDTAB_LIST, INITIAL_PAGE } from "../../constants/constant.js";
-import { filterCategory } from "../../utils/filterCategory.js";
+import { filterCategory } from "../../utils/filter/filterCategory.js";
 import { ListComponent } from "./ListComponent.js";
 
 const all_press = document.querySelector(".all_press");

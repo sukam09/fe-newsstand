@@ -1,5 +1,5 @@
 import { INITIAL_PAGE } from "../../constants/constant.js";
-import { sortPages } from "../../utils/sortPage.js";
+import { sortPages } from "../../utils/sort/sortPage.js";
 import { GridComponent } from "./GridComponent.js";
 
 export const initGrid = (agencies) => {

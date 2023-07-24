@@ -1,4 +1,4 @@
-import { filterCategory } from "../../utils/filterCategory.js";
+import { filterCategory } from "../../utils/filter/filterCategory.js";
 import { removeAllChildNodes } from "../../utils/utils.js";
 
 import { makeFieldTab } from "./fieldTab.js";

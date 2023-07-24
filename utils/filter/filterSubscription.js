@@ -1,4 +1,4 @@
-import { store } from "../store/store.js";
+import { store } from "../../store/store.js";
 
 export const filterSubscribePress = (copy_agencies) => {
   const subscribe_agencies = store.subscriptions.filter(
