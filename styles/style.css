@@ -326,7 +326,6 @@ header {
   display: flex;
   width: 930px;
   height: 40px;
-  padding: 16px 0px;
   margin-top: 24px;
   align-items: center;
   border: 1px solid var(--border-border-default, #d2dae0);
