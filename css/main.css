@@ -40,6 +40,7 @@
 .news .news-navbar_content .select {
   fill: #4362d0;
 }
+
 /* newspapers section */
 .newspaper__list {
   display: grid;
@@ -48,12 +49,36 @@
   border-left: 1px solid #d2dae0;
 }
 
-.newspaper__list .newspaper__item {
+.newspaper__list .newspaper__item,
+.blank {
   height: 96.25px;
   border-bottom: 1px solid #d2dae0;
   border-right: 1px solid #d2dae0;
   text-align: center;
   line-height: 96.25px;
+}
+
+.newspaper__list .newspaper__item button {
+  width: 72px;
+  height: 24px;
+  top: 36px;
+  left: 41px;
+  padding: 0px 6px 0px 6px;
+  border-radius: 50px;
+  border: 1px solid #d2dae0;
+}
+
+.newspaper__list .newspaper__item:hover {
+  background-color: #f5f7f9;
+  cursor: pointer;
+}
+
+.newspaper__list .newspaper__item:hover img {
+  display: none;
+}
+
+.newspaper__list .newspaper__item:hover button {
+  display: inline-block;
 }
 /*  page button */
 
@@ -73,4 +98,21 @@
   top: 50%;
   left: 0;
   transform: translate(-61px, -21px);
+}
+
+.snack-bar {
+  z-index: -1;
+  box-sizing: border-box;
+  position: absolute;
+  width: 286px;
+  height: 54px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 54px;
+  background-color: #4362d0;
+  color: #ffffff;
+  transition: 0.5s;
+  opacity: 0;
 }

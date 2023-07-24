@@ -20,7 +20,7 @@
   color: #5f6e76;
 }
 
-.list-content .list-header .subscribe-btn {
+.news-section .subscribe-btn {
   border: 1px solid #d2dae0;
   border-radius: 50px;
   background-color: #f5f7f9;
@@ -32,8 +32,13 @@
   gap: 2px;
 }
 
-.list-content .list-header .subscribe-btn svg {
+.news-section .subscribe-btn svg {
   padding-top: 3px;
+}
+
+.news-section .newspaper__item .subscribe-btn {
+  display: none;
+  background-color: #ffffff;
 }
 
 .list-content .list-news {
@@ -49,10 +54,18 @@
   height: 260px;
 }
 
+.list-content .list-news .main-news .img-container {
+  height: 200px;
+}
+
+.list-content .list-news .main-news .img-container img {
+  transition: 0.3s;
+}
+
 .list-content .list-news .main-title {
   width: 320px;
   height: 44px;
-  margin-top: 10px;
+  margin-top: 15px;
   color: #14212b;
   font-weight: 500;
   font-size: 16px;
@@ -68,8 +81,18 @@
   height: 100%;
   color: #4b5966;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-content: space-between;
+}
+
+.list-content .list-news .sub-news .sub-title {
+  cursor: pointer;
+}
+
+.list-content .list-news .sub-news .sub-title:hover {
+  text-decoration: underline;
 }
 
 .list-content .list-news .sub-news ul .caption {

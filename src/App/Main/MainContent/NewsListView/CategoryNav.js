@@ -1,29 +1,61 @@
 /*
 기사 컨텐츠 네비게이션 컴포넌트
 */
+
+import store from "../../../../Store/Store.js";
+import { fetchPress } from "../../../../api/fetchNews.js";
+
+const press = await fetchPress();
+
+const categories = [
+  "종합/경제",
+  "방송/통신",
+  "IT",
+  "영자지",
+  "스포츠/연예",
+  "매거진/전문지",
+  "지역",
+];
+
 const FIRST_CATEGORY = 0;
 const LAST_CATEGORY = 6;
 
 const FIRST_PAGE = 1;
 
-const categoryLengthArr = [4, 12, 3, 5, 6, 4, 7, 10];
+const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+<path d="M5.48341 10.5L4.66675 9.68333L7.35008 7L4.66675 4.31667L5.48341 3.5L8.98342 7L5.48341 10.5Z" fill="white"/>
+</svg>`;
+const createNav = function (pressType, navElements) {
+  let liString = "";
+
+  const indexArr = Array.from({ length: navElements.length }, (_, i) => i);
+  liString = indexArr.reduce((accumulator, index) => {
+    return (
+      accumulator +
+      `<li data-key=${index}><span>${
+        pressType === "all"
+          ? navElements[index]
+          : press[store.myPressList[index]].name
+      }</span></li>`
+    );
+  }, "");
+
+  return liString;
+};
 
 export default function CategoryNav($target, props) {
   const initCategoryState = {
     currentPage: FIRST_PAGE,
-    lastPage: categoryLengthArr[FIRST_CATEGORY],
     category: FIRST_CATEGORY,
   };
 
   const nextCategoryState = {
     currentPage: 1,
-    lastPage: categoryLengthArr[props.category + 1],
     category: props.category + 1,
   };
 
   const nextPageState = {
     currentPage: props.currentPage + 1,
-    lastPage: props.lastPage,
     category: props.category,
   };
 
@@ -76,19 +108,12 @@ export default function CategoryNav($target, props) {
     const $ul = document.createElement("ul");
     $ul.setAttribute("class", "categoty-list");
 
-    $ul.innerHTML = `
-    <li data-key=0><span>종합/경제</span></li>
-    <li data-key=1><span>방송/통신</span></li>
-    <li data-key=2><span>IT</span></li>
-    <li data-key=3><span>영자지</span></li>
-    <li data-key=4><span>스포츠/연예</span></li>
-    <li data-key=5><span>매거진/전문지</span></li>
-    <li data-key=6><span>지역</span></li>
-    `;
+    $ul.innerHTML =
+      props.pressType === "all"
+        ? createNav("all", categories)
+        : createNav("my", store.myPressList);
 
     $ul.addEventListener("click", (e) => {
-      // data fetch
-
       let targetElement = e.target;
 
       while (targetElement && targetElement.tagName !== "LI")
@@ -105,7 +130,6 @@ export default function CategoryNav($target, props) {
 
         props.setContentState({
           currentPage: 1,
-          lastPage: categoryLengthArr[targetElement.dataset.key],
           category: Number(targetElement.dataset.key),
         });
       }
@@ -119,7 +143,16 @@ export default function CategoryNav($target, props) {
 
     targetElement.style.zIndex = 1;
     targetElement.classList.add("select");
-    targetElement.innerHTML += `<span>${props.currentPage}/${props.lastPage}</span>`;
+
+    // if pressType all
+    targetElement.innerHTML += `<span>
+    ${
+      props.pressType === "all"
+        ? `${props.currentPage}/${props.lastPage}`
+        : arrowIcon
+    }
+    </span>`;
+
     targetElement.appendChild($div);
 
     $nav.appendChild($ul);

@@ -45,6 +45,7 @@ export default function Button($target, props) {
         props.onClick(props.currentPage + 1);
       });
     }
+
     $target.appendChild($button);
   };
 
