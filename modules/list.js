@@ -2,7 +2,8 @@ import { MESSAGE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState, setState } from "../observer/observer.js";
+import { getState, register, setState } from "../observer/observer.js";
+import { isGridMode, isTotalMode } from "../store/mode.js";
 
 let mediaInfo;
 let categoryInfo = {
@@ -53,8 +54,8 @@ const setListArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
-      if (getState("isTotalMode")) {
+    if (!getState(isGridMode)) {
+      if (getState(isTotalMode)) {
         setState("listCateMediaIdx", getState("listCateMediaIdx") - 1);
       } else {
         setState("listSubsMediaIdx", getState("listSubsMediaIdx") - 1);
@@ -63,8 +64,8 @@ const setListArrowEvent = () => {
     }
   });
   $rightArrow.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
-      if (getState("isTotalMode")) {
+    if (!getState(isGridMode)) {
+      if (getState(isTotalMode)) {
         setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
       } else {
         setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
@@ -342,6 +343,9 @@ const setFullList = () => {
  */
 async function initListView() {
   await getListInfo();
+
+  // register([isGridMode, isTotalMode], setListArrowEvent);
+
   setListArrowEvent();
   setListModeEvent();
   setListSubscribeEvent();

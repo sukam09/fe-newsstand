@@ -2,8 +2,8 @@ import { MEDIA, MESSAGE } from "../constant.js";
 import { getJSON } from "./data.js";
 import { shuffleList } from "./utils.js";
 import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState, setState } from "../observer/observer.js";
-import { isLightMode } from "../store/index.js";
+import { getState, register, setState } from "../observer/observer.js";
+import { isGridMode, isLightMode } from "../store/index.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
 let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
@@ -97,10 +97,10 @@ const setGridArrowEvent = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   $leftArrow.addEventListener("click", () => {
-    if (getState("isGridMode")) clickArrow(-1);
+    if (getState(isGridMode)) clickArrow(-1);
   });
   $rightArrow.addEventListener("click", () => {
-    if (getState("isGridMode")) clickArrow(+1);
+    if (getState(isGridMode)) clickArrow(+1);
   });
 };
 
@@ -109,12 +109,12 @@ const setGridArrowEvent = () => {
  */
 const setGridModeEvent = () => {
   $totalMedia.addEventListener("click", () => {
-    if (getState("isGridMode")) {
+    if (getState(isGridMode)) {
       onClickGridMode({ className: "main-nav_total" });
     }
   });
   $subscribeMedia.addEventListener("click", () => {
-    if (getState("isGridMode")) {
+    if (getState(isGridMode)) {
       onClickGridMode({ className: "main-nav_subscribe" });
     }
   });

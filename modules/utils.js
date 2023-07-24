@@ -84,7 +84,7 @@ const moveGridView = () => {
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
 
-  getState("isGridMode", true);
+  setState("isGridMode", true);
   const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
   setNewPage();
 };
@@ -105,7 +105,7 @@ const moveListView = () => {
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
 
-  getState("isGridMode", false);
+  setState("isGridMode", false);
 
   setCategoryBar();
   setFullList();
