@@ -1,4 +1,4 @@
-import AllNews from "./allNews/index.js";
+import { allNewsObj } from "../constants/index.js";
 import Header from "./header/index.js";
 import LatestNews from "./latestNews/index.js";
 
@@ -11,6 +11,6 @@ export default class App {
   render() {
     this.$app.appendChild(new Header());
     this.$app.appendChild(new LatestNews());
-    this.$app.appendChild(new AllNews());
+    this.$app.appendChild(allNewsObj.$wrapper);
   }
 }

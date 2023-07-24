@@ -1,3 +1,4 @@
+import { LATEST_NEWS_COUNT, ROLLING_SPEED } from "../../constants/index.js";
 import latestNewsTitle from "../../data/latestNewsData.js";
 
 export default class LatestNews {
@@ -8,9 +9,6 @@ export default class LatestNews {
     // interval 변수 초기화
     this.leftInterval = 0;
     this.rightInterval = 0;
-
-    this.LATEST_NEWS_COUNT = 6;
-    this.ROLLING_SPEED = 5000;
 
     this.render();
     return this.$wrapper;
@@ -85,27 +83,27 @@ export default class LatestNews {
   /* 롤링 구현 함수 (왼쪽) */
   handleLeftRolling(wrapper, order) {
     this.leftInterval = setInterval(() => {
-      if (order >= this.LATEST_NEWS_COUNT) {
+      if (order >= LATEST_NEWS_COUNT) {
         wrapper.classList.remove("left-play" + (order - 1));
         order = 0;
       }
       wrapper.classList.add("left-play" + order);
       wrapper.classList.remove("left-play" + (order - 1));
       order += 1;
-    }, this.ROLLING_SPEED);
+    }, ROLLING_SPEED);
   }
 
   /* 롤링 구현 함수 (오른쪽) */
   handleRightRolling(wrapper, order) {
     this.rightInterval = setInterval(() => {
-      if (order >= this.LATEST_NEWS_COUNT) {
+      if (order >= LATEST_NEWS_COUNT) {
         wrapper.classList.remove("right-play" + (order - 1));
         order = 0;
       }
       wrapper.classList.add("right-play" + order);
       wrapper.classList.remove("right-play" + (order - 1));
       order += 1;
-    }, this.ROLLING_SPEED);
+    }, ROLLING_SPEED);
   }
 
   /**

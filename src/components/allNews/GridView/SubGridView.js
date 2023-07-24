@@ -1,14 +1,14 @@
-import { shufflePressOrder } from "../../../utils/index.js";
 import AllNewsList from "./AllnewsList.js";
+import { store } from "../../../core/store.js";
 import ArrowButton from "../ArrowButton.js";
 
-export default class AllNewsGrid {
+export default class SubGridView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "grid-wrapper";
-    this.$pressOrder = shufflePressOrder();
+    this.$subPressOrder = store.press;
     this.page = 0;
-
+    this.maxPage = Math.floor(this.$subPressOrder.length / 25);
     this.render();
 
     return this.$wrapper;
@@ -20,7 +20,7 @@ export default class AllNewsGrid {
     const $newsLists = document.createElement("ul");
     $newsLists.className = "news-list";
     for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(this.$pressOrder[i]));
+      $newsLists.appendChild(new AllNewsList(this.$subPressOrder[i]));
     }
     $newsListGrid.appendChild($newsLists);
 
@@ -36,6 +36,7 @@ export default class AllNewsGrid {
     this.page -= 1;
     this.render();
   }
+
   render() {
     this.$wrapper.replaceChildren();
 
@@ -50,7 +51,7 @@ export default class AllNewsGrid {
     this.$wrapper.appendChild(
       new ArrowButton({
         name: "RightButton",
-        isVisible: this.page !== 3,
+        isVisible: this.page !== this.maxPage,
         action: this.goNextPage.bind(this),
       })
     );

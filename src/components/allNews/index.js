@@ -1,98 +1,46 @@
-import Icon from "../common/Icon.js";
-import AllNewsGrid from "./GridView/AllNewsGrid.js";
-import ListView from "./ListView/ListView.js";
+import AllNewsNavigation from "./AllNewsNavigation.js";
+import SubGridView from "./GridView/SubGridView.js";
+import GridView from "./GridView/index.js";
+import SubListView from "./ListView/SubListView.js";
+import ListView from "./ListView/index.js";
 
 export default class AllNews {
   constructor() {
     this.$wrapper = document.createElement("section");
+    this.allNewsNavigationObj = new AllNewsNavigation();
 
-    this.GRIDVIEW_ICON = "grid-view";
-    this.LISTVIEW_ICON = "list-view";
-
-    this.renderGridView(); // 초기 그리드뷰 출력
-
-    return this.$wrapper;
+    this.renderAllGridView(); // 초기 그리드뷰 출력
   }
 
-  /** 그리드뷰 렌더링 */
-  renderGridView() {
+  /** 전체 언론사 그리드뷰 렌더링 */
+  renderAllGridView() {
     this.$wrapper.replaceChildren();
 
-    this.$wrapper.appendChild(this.createAllNewHeader());
-    this.$wrapper.appendChild(new AllNewsGrid());
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new GridView());
   }
 
-  /** 리스트뷰 렌더링 */
-  renderListView() {
+  /** 전체 언론사 리스트뷰 렌더링 */
+  renderAllListView() {
     this.$wrapper.replaceChildren();
 
-    this.$wrapper.appendChild(this.createAllNewHeader());
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
     this.$wrapper.appendChild(new ListView());
   }
 
-  /** 그리드(리스트)뷰 헤더 생성 */
-  createAllNewHeader() {
-    const $header = document.createElement("div");
-    $header.className = "all-news-header";
+  /** 구독한 언론사 그리드뷰 렌더링 */
+  renderSubGridView() {
+    this.$wrapper.replaceChildren();
 
-    $header.appendChild(this.addTitleNavigator());
-    $header.appendChild(this.addIconNavigator());
-
-    return $header;
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new SubGridView());
   }
 
-  /** 헤더 텍스트 부분 생성 */
-  addTitleNavigator() {
-    const $titleNavigation = document.createElement("nav");
-    $titleNavigation.className = "view-type-wrapper";
+  /** 구독한 언로사 리스트뷰 렌더링 */
+  renderSubListView() {
+    this.$wrapper.replaceChildren();
 
-    const $allPress = document.createElement("span");
-    const $subscibedPress = document.createElement("span");
-
-    $allPress.innerText = "전체 언론사";
-    $subscibedPress.innerText = "내가 구독한 언론사";
-
-    $titleNavigation.appendChild($allPress);
-    $titleNavigation.appendChild($subscibedPress);
-
-    return $titleNavigation;
-  }
-
-  /** 헤더 아이콘 부분 생성 */
-  addIconNavigator() {
-    const $iconNavigation = document.createElement("div");
-    $iconNavigation.className = "view-type-icon";
-
-    const $listViewIcon = new Icon({ name: this.LISTVIEW_ICON });
-    const $gridViewIcon = new Icon({ name: `${this.GRIDVIEW_ICON}-selected` });
-
-    $listViewIcon.classList.add("img-icon");
-    $gridViewIcon.classList.add("img-icon");
-
-    $listViewIcon.addEventListener("click", (e) => this.handleListIconClick(e));
-    $gridViewIcon.addEventListener("click", (e) => this.handleGridIconClick(e));
-
-    $iconNavigation.appendChild($listViewIcon);
-    $iconNavigation.appendChild($gridViewIcon);
-
-    return $iconNavigation;
-  }
-
-  /** 리스트 아이콘 클릭 시 */
-  handleListIconClick(event) {
-    const $listIconImg = event.target;
-    const $gridIconImg = event.target.nextSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}-selected.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}.svg`;
-    this.renderListView();
-  }
-
-  /** 그리드 아이콘 클릭 시 */
-  handleGridIconClick(event) {
-    const $gridIconImg = event.target;
-    const $listIconImg = event.target.previousSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}-selected.svg`;
-    this.renderGridView();
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new SubListView());
   }
 }
