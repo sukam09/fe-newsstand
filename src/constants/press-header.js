@@ -8,6 +8,8 @@ const HEADER_CLASS = {
   IMG_GRID: 'press__img-grid',
   WRAPPER_GRID: 'press__wrapper-grid',
   WRAPPER_LIST: 'press__wrapper-list',
+  H2_SELECT: 'press__h2-select',
+  H2_UNSELECT: 'press__h2-unselect',
 };
 
 const PATH = {
@@ -15,6 +17,14 @@ const PATH = {
   GRID_ICON: './assets/icons/grid-view.svg',
   HIDE_LIST_ICON: './assets/icons/list-hide.svg',
   HIDE_GRID_ICON: './assets/icons/grid-hide.svg',
+};
+
+const URL = {
+  DATA: './assets/data/press-news.json',
+};
+
+const ERROR = {
+  MESSESE: '언론사 정보를 불러오는 중에 오류가 발생했습니다.',
 };
 
 const TITLE = {
@@ -26,4 +36,4 @@ const STYLE = {
   NONE: 'none',
 };
 
-export { HEADER_CLASS, PATH, TITLE, STYLE };
+export { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE };
