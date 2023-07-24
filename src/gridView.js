@@ -1,6 +1,6 @@
 import { MAX_GRID_COUNT, PRESS_COUNT } from "../constant/constants.js";
 import { getPressObj } from "./core/api.js";
-import { getState, resister, setState } from "./core/observer/observer.js";
+import { getState, register, setState } from "./core/observer/observer.js";
 import { gridPageIdx, isSubTab, subscribeList } from "./core/store/store.js";
 import { $, $All, shuffleArray } from "./core/util.js";
 
@@ -162,11 +162,11 @@ async function setGridEvents() {
   pressObj = await getPressObj();
   const shuffledArr = shuffleArray(pressObj);
   appendGridList(shuffledArr);
-  resister(gridPageIdx, showGridPage);
-  resister(isSubTab, () => {
+  register(gridPageIdx, showGridPage);
+  register(isSubTab, () => {
     appendGridList(shuffledArr);
   });
-  resister(subscribeList, checkMode);
+  register(subscribeList, checkMode);
 }
 
 export { setGridEvents };

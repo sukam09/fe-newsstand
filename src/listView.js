@@ -1,6 +1,6 @@
 import { MAX_NEWS_COUNT } from "../constant/constants.js";
 import { getNewsContents } from "./core/api.js";
-import { getState, resister } from "./core/observer/observer.js";
+import { getState, register } from "./core/observer/observer.js";
 import { categoryIdx, isGrid, listPageIdx } from "./core/store/store.js";
 import { $ } from "./core/util.js";
 
@@ -25,31 +25,27 @@ function createNewsList(content) {
 
 // 리스트 뷰의 뉴스 append
 function appendNewsList(newsList) {
-  const elements = getListViewElement();
-  elements.newsListContainer.innerHTML = "";
-  const nowData =
-    newsList[getState("categoryIdx")].data[getState(listPageIdx) - 1];
-  elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  elements.topicHeaderLogo.src = nowData.logoSrc;
-  elements.topicThumbnail.src = nowData.imgSrc;
-  elements.topicMain.innerHTML = nowData.mainTitle;
-  for (let i = 0; i < MAX_NEWS_COUNT; i++) {
-    const newNewsList = createNewsList(nowData.subTitleList[i].title);
-    elements.newsListContainer.appendChild(newNewsList);
-  }
+  return () => {
+    const elements = getListViewElement();
+    elements.newsListContainer.innerHTML = "";
+    const nowData =
+      newsList[getState("categoryIdx")].data[getState(listPageIdx) - 1];
+    elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
+    elements.topicHeaderLogo.src = nowData.logoSrc;
+    elements.topicThumbnail.src = nowData.imgSrc;
+    elements.topicMain.innerHTML = nowData.mainTitle;
+    for (let i = 0; i < MAX_NEWS_COUNT; i++) {
+      const newNewsList = createNewsList(nowData.subTitleList[i].title);
+      elements.newsListContainer.appendChild(newNewsList);
+    }
+  };
 }
 
 async function setListViewEvents() {
   const newsList = await getNewsContents();
-  resister(listPageIdx, () => {
-    appendNewsList(newsList);
-  });
-  resister(categoryIdx, () => {
-    appendNewsList(newsList);
-  });
-  resister(isGrid, () => {
-    appendNewsList(newsList);
-  });
+  register(listPageIdx, appendNewsList(newsList));
+  register(categoryIdx, appendNewsList(newsList));
+  register(isGrid, appendNewsList(newsList));
 }
 
 export { setListViewEvents };

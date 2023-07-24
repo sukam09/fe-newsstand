@@ -1,5 +1,5 @@
 import { $, $All } from "./core/util.js";
-import { getState, resister, setState } from "./core/observer/observer.js";
+import { getState, register, setState } from "./core/observer/observer.js";
 import {
   gridPageIdx,
   isGrid,
@@ -120,8 +120,8 @@ function setEvent() {
 
 (function init() {
   setEvent();
-  resister(isGrid, toggleMainView);
-  resister(isSubTab, updateSubViewButton);
+  register(isGrid, toggleMainView);
+  register(isSubTab, updateSubViewButton);
 })();
 
 export { updateDate };

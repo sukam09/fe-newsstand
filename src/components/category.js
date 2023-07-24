@@ -3,7 +3,7 @@ import {
   CATEGORY_CLICKED,
 } from "../../constant/constants.js";
 import { getNewsContents } from "../core/api.js";
-import { getState, resister, setState } from "../core/observer/observer.js";
+import { getState, register, setState } from "../core/observer/observer.js";
 import { categoryIdx, isGrid, listPageIdx } from "../core/store/store.js";
 import { $, $All } from "../core/util.js";
 
@@ -137,9 +137,9 @@ function updateCategory() {
 
 export async function setCategory() {
   const newsList = await getNewsContents();
-  resister(isGrid, startCategoryInterval);
-  resister(listPageIdx, refreshInterval);
-  resister(listPageIdx, updateCategory);
-  resister(categoryIdx, updateCategoryClicked);
+  register(isGrid, startCategoryInterval);
+  register(listPageIdx, refreshInterval);
+  register(listPageIdx, updateCategory);
+  register(categoryIdx, updateCategoryClicked);
   appendCategoryList(newsList);
 }
