@@ -1,5 +1,4 @@
 import Component from "../core/Component.js";
-import { cancelSubscribe, subscribeStore } from "../store.js";
 
 export default class Alert extends Component {
     template() {
@@ -29,12 +28,14 @@ export default class Alert extends Component {
     }
 
     unsubscribePress() {
+        const subscribeList = JSON.parse(localStorage.getItem("subscribeList"));
         const pressName = this.$target.querySelector(".alert-message > span");
-        subscribeStore.dispatch(cancelSubscribe(pressName.textContent.trim()));
-        // console.log(subscribeStore.getState().subscribeList);
-        localStorage.setItem(
-            "subscribeList",
-            JSON.stringify(subscribeStore.getState().subscribeList)
+        const indexToRemove = subscribeList.findIndex(
+            (data) => data.name === pressName.textContent.trim()
         );
+        if (indexToRemove !== -1) {
+            subscribeList.splice(indexToRemove, 1);
+        }
+        localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
     }
 }

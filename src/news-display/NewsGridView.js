@@ -2,7 +2,6 @@ import Component from "../core/Component.js";
 import { shuffleNewsPress, updateSubscribeList } from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
-import { subscribeStore } from "../store.js";
 
 const MIN_PAGE = 0;
 let max_page = 3;
@@ -11,7 +10,7 @@ export default class NewsGridView extends Component {
     setup() {
         this.state = {
             pressData: shuffleNewsPress(this.props.newsData),
-            subscribeList: subscribeStore.getState().subscribeList,
+            subscribeList: this.props.subscribeList,
             page: 0,
         };
     }
@@ -93,26 +92,20 @@ export default class NewsGridView extends Component {
     }
 
     getGridCell(i) {
-        // 수정하기
-        const data = this.filterSubscribeData(
-            this.props.allNewsData,
-            subscribeStore.getState().subscribeList
-        );
-
-        if (i > data.length - 1) {
+        if (i > this.state.pressData.length - 1) {
             return `
                 <li class="news-press-item"></li>
                 `;
         } else {
             return `<li class="news-press-item" 
-                    data-id=${data[i].id} 
-                    data-name=${data[i].name}
+                    data-id=${this.state.pressData[i].id} 
+                    data-name=${this.state.pressData[i].name}
                     >
                     <div class="flip-card-container">
                         <div class="flip-front">
                             <img class="news-press-item-logo" 
-                                src=${data[i].logo} 
-                                alt="${data[i].name}"
+                                src=${this.state.pressData[i].logo} 
+                                alt="${this.state.pressData[i].name}"
                             />
                         </div>
                         <div class="flip-back">
@@ -126,22 +119,5 @@ export default class NewsGridView extends Component {
         return Math.floor(this.state.pressData.length / 24) === 4
             ? 3
             : Math.floor(this.state.pressData.length / 24);
-    }
-
-    // 수정하기
-    filterSubscribeData(jsonData, subscribeList) {
-        const filteredSubscribeData = [];
-
-        subscribeList.forEach((subscription) => {
-            const subscriptionId = subscription.id;
-            const subscribedData = jsonData.find(
-                (data) => data.id === subscriptionId
-            );
-
-            if (subscribedData) {
-                filteredSubscribeData.push(subscribedData);
-            }
-        });
-        return filteredSubscribeData;
     }
 }

@@ -1,6 +1,5 @@
 import { $app } from "../app.js";
 import Component from "../core/Component.js";
-import { addSubscribe, subscribeStore } from "../store.js";
 
 const COLOR_SURFACE_ALT = "#F5F7F9";
 const COLOR_SURFACE_DEFAULT = "#FFFFFF";
@@ -86,22 +85,11 @@ export default class SubscribeButton extends Component {
     }
 
     subscribePress() {
-        // const subscribeList = JSON.parse(localStorage.getItem("subscribeList"));
-        // subscribeList.push({
-        //     id: Number(this.state.pressId),
-        //     name: this.state.pressName,
-        // });
-
-        subscribeStore.dispatch(
-            addSubscribe({
-                id: Number(this.state.pressId),
-                name: this.state.pressName,
-            })
-        );
-        console.log(subscribeStore.getState().subscribeList);
-        localStorage.setItem(
-            "subscribeList",
-            JSON.stringify(subscribeStore.getState().subscribeList)
-        );
+        const subscribeList = JSON.parse(localStorage.getItem("subscribeList"));
+        subscribeList.push({
+            id: Number(this.state.pressId),
+            name: this.state.pressName,
+        });
+        localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
     }
 }
