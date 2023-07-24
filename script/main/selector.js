@@ -1,5 +1,5 @@
 import listViewInit from "./listView.js";
-import { pageStore,mode } from "../util/store.js";
+import { pageStore,mode,view } from "../util/store.js";
 const viewSelector = () => {
   const listBtn = document.querySelector('.view_select img[src$="list_gray.svg"]');
   const gridBtn = document.querySelector('.view_select img[src$="grid_blue.svg"]');
@@ -9,9 +9,10 @@ const viewSelector = () => {
   listBtn.addEventListener('click', () => {
     gridWrapper.classList.remove('selected');
     listWrapper.classList.add('selected');
-    
+  
     listBtn.src = "assets/images/list_blue.svg";
     gridBtn.src = "assets/images/grid_gray.svg";
+    view.setState('List');
     listViewInit();
   });
 
@@ -21,6 +22,7 @@ const viewSelector = () => {
 
     listBtn.src = "assets/images/list_gray.svg";
     gridBtn.src = "assets/images/grid_blue.svg";
+    view.setState('Grid');
   });
 }
 export const toggleClass = () => {

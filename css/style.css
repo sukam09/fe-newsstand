@@ -229,6 +229,7 @@ ul li:hover .media-hover .subscribedWrapper {
     width:100%;
     height : 40px;
     display : flex;
+    overflow:auto;
 }
 
 .list_wrapper .category .category_item {
@@ -236,6 +237,7 @@ ul li:hover .media-hover .subscribedWrapper {
     padding : 0 16px 0 16px;
     height: 40px;
     align-items: center;
+    white-space: nowrap;
 }
 .list_wrapper .category .category_item:hover{
     text-decoration: underline;

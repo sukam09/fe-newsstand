@@ -1,21 +1,20 @@
 import {getJSON,shuffle } from '../util/util.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
 const newsData = await getJSON("../../assets/data/news_data.json");
-import {subscribedStore,mode } from '../util/store.js'; 
+import {subscribedStore,mode,category_page,media_page } from '../util/store.js'; 
 let categories = [];
-let category_page = 0;
-let media_page = 0;
 let categorizedData;
 let animationId;
 let idx;
 /**
  * category_page, media_page에 따라 section안에 내용 바꾸는 함수
  */
-const setNewsData = (category_page) => {
-  const newsItem = categorizedData[categories[category_page]][media_page];
+export const setNewsData = () => {
+  console.log(categorizedData);
+  const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
-  const selectedCategory = document.querySelectorAll('.category_progress')[category_page];
+  const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
   let subscribedElem = document.querySelector('.subscribed');
   if(subscribedStore.getState().includes(index)){ // 구독중인지 아닌지
       subscribedElem.innerHTML = `<img src = "assets/images/delete.svg">`;
@@ -45,14 +44,14 @@ const setNewsData = (category_page) => {
         setTimeout(function() {
           snackBar.classList.add('hide');  
           mode.setState('Sub');
-          
+
         }, 3000);
       }
     });
     subscribedElem._hasClickListener = true; // 이벤트 리스너가 등록되었음을 표시
   }
   if(mode.getState()==='All'){
-    selectedCategory.innerHTML = (media_page + 1) + "/" + categorizedData[categories[category_page]].length;
+    selectedCategory.innerHTML = (media_page.getState() + 1) + "/" + categorizedData[categories[category_page.getState()]].length;
   }
   else{
     selectedCategory.innerHTML = ">";
@@ -83,7 +82,6 @@ const setNewsData = (category_page) => {
 function categorizeData() {
   let categorizedData = {};
   if(mode.getState()==='All'){
-
     for(let i = 0; i < newsData.length; i++) {
       let item = newsData[i];
       let category = item.category;
@@ -93,7 +91,6 @@ function categorizeData() {
       categorizedData[category].push(item);
     }
 
-    // Shuffle each category's data
     for (let category in categorizedData) {
       shuffle(categorizedData[category]);
     }
@@ -113,7 +110,6 @@ function categorizeData() {
     }
   }
   return categorizedData;
-  
 }
 
 /**
@@ -143,10 +139,9 @@ function createCategoryElements(categorizedData) {
     [categoryNameP, categoryProgressP].forEach(p => categoryItemDiv.appendChild(p));
     
     categoryItemDiv.addEventListener('click', function() {
-      category_page = index;
-      media_page = 0;
+      category_page.setState(index);
+      media_page.setState(0);
       cancelAnimationFrame(animationId);
-      setNewsData(index);
     });
     categoriesWrapper.appendChild(categoryItemDiv);
   });
@@ -161,15 +156,15 @@ const setArrowHandler = () => {
     return;
   }
   leftArrowWrapper.addEventListener("click", () => {
-    if (media_page === 0) {
-      if (category_page === 0) {
-        category_page = Object.keys(categorizedData).length - 1;
+    if (media_page.getState() === 0) {
+      if (category_page.getState() === 0) {
+        category_page.setState(Object.keys(categorizedData).length - 1);
       } else {
-        category_page -= 1;
+        category_page.setState(category_page.getState()-1);
       }
-      media_page = categorizedData[categories[category_page]].length - 1; // 해당 카테고리의 마지막 media_page로 설정
+      media_page.setState(categorizedData[categories[category_page.getState()]].length - 1); // 해당 카테고리의 마지막 media_page로 설정
     } else {
-      media_page -= 1;
+      media_page.setState(media_page.getState()-1);
     }
     cancelAnimationFrame(animationId);
     progressBarControl();
@@ -177,17 +172,17 @@ const setArrowHandler = () => {
   });
   
   rightArrowWrapper.addEventListener("click", () => {
-    const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
-    const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
+    const isLastMedia = categorizedData[categories[category_page.getState()]].length - 1 === media_page.getState();
+    const isLastCategory = Object.keys(categorizedData).length - 1 === category_page.getState();
     if (isLastMedia) {
       if (isLastCategory) {
-        category_page = 0;
+        category_page.setState(0);
       } else {
-        category_page += 1;
+        category_page.setState(category_page.getState()+1);
       }
-      media_page = 0; // 새 카테고리의 첫 media_page로 설정
+      media_page.setState(0); // 새 카테고리의 첫 media_page로 설정
     } else {
-      media_page += 1;
+      media_page.setState(media_page.getState()+1);
     }
     cancelAnimationFrame(animationId);
     progressBarControl();
@@ -210,7 +205,7 @@ const getNewsData = async () => {
   categorizedData = categorizeData();
   createCategoryElements(categorizedData);
   setProgressed();
-  setNewsData(category_page);
+  setNewsData();
 }
 
 /**
@@ -225,8 +220,8 @@ const updateCategoryProgress = () => {
     progressedItem.classList.remove("progressed");
   }
 
-  if (categoryItems[category_page]) {
-    categoryItems[category_page].classList.add("progressed");
+  if (categoryItems[category_page.getState()]) {
+    categoryItems[category_page.getState()].classList.add("progressed");
   }
 
   var progressed = document.querySelector(".category_item.progressed");
@@ -236,7 +231,7 @@ const updateCategoryProgress = () => {
     progressBar.style.top = rect.top + "px";
     progressBar.style.left = rect.left + "px";
   }
-  setNewsData(category_page);
+  setNewsData();
 };
 
 /**
@@ -309,14 +304,17 @@ const incrementPageOrReset = (current, max) => {
  * 페이지 번호 로직 구현한 함수
  */
 const updatePageAndData = () => {
-  const isLastMedia = categorizedData[categories[category_page]].length - 1 === media_page;
-  const isLastCategory = Object.keys(categorizedData).length - 1 === category_page;
+  const isLastMedia = categorizedData[categories[category_page.getState()]].length - 1 === media_page.getState();
+  const isLastCategory = Object.keys(categorizedData).length - 1 === category_page.getState();
   
   if (isLastMedia) {
-    media_page = 0;
-    category_page = isLastCategory ? 0 : category_page + 1;
+    media_page.setState(0);
+    if(isLastCategory)
+      category_page.setState(0);
+    else
+      category_page.setState(category_page.getState()+1);
   } else {
-    media_page += 1;
+    media_page.setState(media_page.getState()+1);
   }
 
   updateCategoryProgress();
@@ -354,7 +352,7 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progress_bar");
-  const duration = 1000;
+  const duration = 2000;
   const endWidth = 166;
 
   setWidth(progressBar, 0);
@@ -366,10 +364,9 @@ let categoriesWrapper;
 export const listViewInit = () => {
   cancelAnimationFrame(animationId);
   categories = [];
-  category_page = 0;
-  media_page = 0;
+  
   animationId = null;
-
+  
   if(categoriesWrapper) {
     categoriesWrapper.innerHTML = `<div class="progress_bar surface-brand-default"></div>`;
   } else {
@@ -378,6 +375,8 @@ export const listViewInit = () => {
   getNewsData();
   progressBarControl();
   setArrowHandler();
+  category_page.setState(0);
+  media_page.setState(0);
 };
 
 
