@@ -1,3 +1,4 @@
+import { TAB_TYPE } from "../constants/index.js";
 import { store, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { $mainNav } from "./doms.js";
@@ -14,13 +15,15 @@ function handleTabsClick(e) {
     store,
     selector: (state) => state.subscribeList,
   });
+  const tabType = $currentButton.dataset.tab;
+  const hasEmptySubscribeList =
+    subcribeList.length === 0 && tabType === TAB_TYPE.SUBSCRIBE;
 
-  if (subcribeList.length === 0) {
+  if (hasEmptySubscribeList) {
     alert("구독한 언론사가 없습니다.");
     return;
   }
 
-  const tabType = $currentButton.dataset.tab;
   activateCurrentTab(tabType);
 
   store.dispatch(changeTab(tabType));
