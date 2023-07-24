@@ -1,5 +1,11 @@
 import { shuffle_press } from "./module/utility/Shuffle.js";
 
+export async function fetchNews(path) {
+  const jsonData = await jsonfetch(path);
+  return jsonData;
+}
+
+//////////
 export async function fetchPressData(path) {
   const jsonData = await jsonfetch(path);
   return jsonData;
