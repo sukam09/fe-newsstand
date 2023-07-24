@@ -1,6 +1,7 @@
 import { $app } from "../app.js";
 import Alert from "../common/Alert.js";
 import Component from "../core/Component.js";
+import { initSubscribe, subscribeStore } from "../store.js";
 import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
 import NewsListView from "./NewsListView.js";
@@ -35,6 +36,7 @@ export default class NewsDisplay extends Component {
 
         const subscribeList = [];
         this.mountSubscribe(jsonData, subscribeList);
+        subscribeStore.dispatch(initSubscribe(subscribeList));
 
         new NewsDisplayTab(newsDisplayTab, {
             pressTab: this.state.pressTab,
@@ -48,15 +50,19 @@ export default class NewsDisplay extends Component {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
+                        allNewsData: jsonData,
                         newsData: jsonData,
-                        subscribeList: subscribeList,
+                        subscribeList: subscribeStore.getState().subscribeList,
                         page: 0,
                     }
                 );
             } else {
                 new NewsListView(
                     this.$target.querySelector(".news-display-container"),
-                    { newsData: jsonData, subscribeList: subscribeList }
+                    {
+                        newsData: jsonData,
+                        subscribeList: subscribeStore.getState().subscribeList,
+                    }
                 );
             }
         } else {
@@ -64,11 +70,12 @@ export default class NewsDisplay extends Component {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
+                        allNewsData: jsonData,
                         newsData: this.filterSubscribeData(
                             jsonData,
-                            subscribeList
+                            subscribeStore.getState().subscribeList
                         ),
-                        subscribeList: subscribeList,
+                        subscribeList: subscribeStore.getState().subscribeList,
                         page: 0,
                     }
                 );
@@ -78,9 +85,9 @@ export default class NewsDisplay extends Component {
                     {
                         newsData: this.filterSubscribeData(
                             jsonData,
-                            subscribeList
+                            subscribeStore.getState().subscribeList
                         ),
-                        subscribeList: subscribeList,
+                        subscribeList: subscribeStore.getState().subscribeList,
                     }
                 );
             }
