@@ -30,13 +30,13 @@ header {
   margin-top: 54px;
 }
 
-body{
+body {
   -ms-overflow-style: none;
-  }
-  
- ::-webkit-scrollbar {
-   display: none;
- }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 
 .container {
   width: 930px;
@@ -186,7 +186,7 @@ h1 {
   height: 40px;
   width: 0;
   background: var(--progress-after);
-  animation: progress 20s linear infinite;
+  animation: progress 3s linear infinite;
   z-index: -1;
 }
 .list-progress-bar:after {
@@ -289,7 +289,7 @@ h1 {
   background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
 }
 .news-main > p {
-  height:44px;
+  height: 44px;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;

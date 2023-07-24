@@ -18,6 +18,11 @@ export function setState(key, state) {
   notify(key);
 }
 
+export function setDictState(key, state) {
+  globalStates[key].state = { ...getState(key), ...state };
+  notify(key);
+}
+
 function notify(key) {
   globalStates[key].observers.forEach(observer => {
     observer();

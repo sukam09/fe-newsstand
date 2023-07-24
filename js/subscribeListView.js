@@ -1,8 +1,10 @@
 import { STATE,ARROW_SVG_PATH } from "./const.js";
 import { drawNews } from "./newsList.js";
+import { subListPageCount, subscribedPress } from "./store/store.js";
+import { getState, setState } from "./observer/observer.js";
 
 function setSubListNav() {
-  const subscribed_presses = STATE.SUB_DATA;
+  const subscribed_presses = getState(subscribedPress);
   const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
   $sub_list_nav.innerHTML = ""; 
   subscribed_presses.forEach((press, index) => {
@@ -11,7 +13,7 @@ function setSubListNav() {
     $li.textContent = press.name;
     $li.addEventListener("click", clickSubListNav);
     $li.addEventListener("animationiteration", progressEnd);
-    if (index === STATE.SUB_NEWS_PAGE) {
+    if (index === getState(subListPageCount)) {
       $li.classList.add("list-progress-bar","text-white-default");
       $li.insertAdjacentHTML('beforeend',
       `<span>
@@ -25,9 +27,8 @@ function setSubListNav() {
 
 
 function progressEnd() {
-  STATE.SUB_NEWS_PAGE = STATE.SUB_NEWS_PAGE + 1 === STATE.SUB_DATA.length ? 0 : STATE.SUB_NEWS_PAGE + 1;
-  setSubListNav();
-  drawNews();
+  const next_sub_list_page = getState(subListPageCount)+1 === getState(subscribedPress).length ? 0 : getState(subListPageCount) + 1
+  setState(subListPageCount, next_sub_list_page);
 }
 
 /*
