@@ -33,7 +33,7 @@ class subscribeSubject extends Subject {
             try {
                 sbs.update(this._state, is_add);
             } catch (err) {
-                console.error("observer error", idx, err);
+                throw new Error("update error: ", sbs);
             }
         });
     }
