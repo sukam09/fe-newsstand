@@ -1,8 +1,9 @@
 import { MEDIA } from '../../constants.js';
+import { getNewsData } from '../../fetch/getNewsData.js';
 import GridStore from '../../store/GridStore.js';
 import { clearAllChildren, setMediaLogo } from '../../utils/utils.js';
+import Button from '../Button.js';
 import { replaceArrow } from './ArrowButton.js';
-import SubButtonArea from './SubToggleButton.js';
 
 const setArrowDisplay = (gridStore, leftArrow, rightArrow) => {
   const { page, media } = gridStore.getState();
@@ -12,6 +13,18 @@ const setArrowDisplay = (gridStore, leftArrow, rightArrow) => {
 
   leftArrow.style.display = leftDisplay;
   rightArrow.style.display = rightDisplay;
+};
+
+const SubButtonArea = ({ id, navStore, viewStore }) => {
+  const subButtonArea = document.createElement('div');
+
+  getNewsData(id).then(({ name }) => {
+    subButtonArea.appendChild(
+      Button(navStore.buttonData({ id, name, viewStore }))
+    );
+  });
+  subButtonArea.classList.add('media_hover', 'surface_alt');
+  return subButtonArea;
 };
 
 const GridItem = (themeStore, mediaId, navStore, gridStore) => {

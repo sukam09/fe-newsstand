@@ -25,16 +25,18 @@
 
 news_stand_wrapper
 │
-├── news_stand_header
+├── header.ews_stand_header
 │   ├── title_wrapper
 │   │   ├── logo
-│   │   └── title
+│   │   └── h1: title
+│   ├── button#theme_toggle
+│   │   └── svg
 │   └── time
 │
-├── article_wrapper
-│   └── article
-│       ├── title
-│       └── news_title
+├── hedline_news_wrapper * 2
+│   └── article.headline_news
+│       ├── h2: title
+│       └── news_title_wrapper
 │
 └── main
     ├── media_view_nav
@@ -90,3 +92,7 @@ list_wrapper
         │   └── li * 6
         └── notice
 ```
+
+## 코드 구조
+
+![screenshot](https://github.com/jhynsoo/fe-newsstand/assets/38831776/afce6bca-e213-4ae3-b9a1-92e4b9e41df3)
