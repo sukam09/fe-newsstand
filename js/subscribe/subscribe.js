@@ -4,10 +4,11 @@ import { setSubData } from "../util/utils.js";
 import { handleView, changeOption } from "../view/viewHandler.js";
 import { onGridUndiscribeModal, onListUndiscribeModal } from "../component/modal.js";
 import { drawNews } from "../view/listView.js";
-import { isDark, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
+import { isDark, isSnackbarVisible, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
 import { getState, setState } from "../observer/observer.js";
 
 let presses = null;
+let snackbarTimer;
 
 function gridMouseOver({ target: target }) {
   const $original = target.querySelector("img");
@@ -24,8 +25,14 @@ function gridMouseOut({ target: target }) {
 }
 
 function gridMouseClick({ target: target }) {
+  if (snackbarTimer) {
+    clearTimeout(snackbarTimer);
+  }
   setDisplay(".grid-snackbar", "query", "block");
-  setTimeout(() => setDisplay(".grid-snackbar", "query", "none"), SNACKBAR_POPUP_TIME);
+  snackbarTimer = setTimeout(() => {
+    setDisplay(".grid-snackbar", "query", "none");
+  }, SNACKBAR_POPUP_TIME);
+
   const $original = target.getElementsByTagName("img")[0];
   const $original_path = ".." + $original.src.split("5500")[1];
   const $target_object = presses.find(target =>
