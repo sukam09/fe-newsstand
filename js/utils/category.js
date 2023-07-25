@@ -14,17 +14,21 @@ import {
   getSubscrbeList,
 } from "../store/dispatch.js";
 
+const progressClassList = [
+  "newsstand__progress",
+  "newsstand__progress-category",
+  "newsstand__progress-now",
+  "newsstand__progress-slash",
+  "newsstand__progress-total",
+];
+
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.style.padding = 0; // 선택된 카테고리의 padding 제거
   element.classList.add("newsstand__focus");
   element.classList.add("newsstand__focus-font");
-  element.children[0].classList.add("newsstand__progress"); // 첫번째 자식: 프로그래스 바
-  element.children[1].classList.add("newsstand__progress-category"); // 두번째 자식: 카테고리 제목
-  element.children[2].classList.add("newsstand__progress-now"); // 세번째 자식: 진행상황 (1/82)
-  element.children[3].classList.add("newsstand__progress-slash"); // 세번째 자식: 진행상황 (1/82)
-  element.children[4].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
 
+  progressClassList.map((it, idx) => element.children[idx].classList.add(it));
   showTextByNavTab(element, categoryDataLength, childIndex);
 
   // animationIterationCount 속성을부여해 원하는 횟수만큼 프로그래스 바 진행.
@@ -34,18 +38,20 @@ export function activeProgressClass(element, childIndex, categoryDataLength) {
 
 // 프로그래스 바 비활성화
 export function deactiveProgressClass(element) {
+  const textData = ["", "", ""];
   element.style.padding = "16px";
   element.classList.remove("newsstand__focus");
   element.classList.remove("newsstand__focus-font");
-  element.children[0].classList.remove("newsstand__progress");
-  element.children[1].classList.remove("newsstand__progress-category");
-  element.children[2].classList.remove("newsstand__progress-now");
-  element.children[3].classList.remove("newsstand__progress-slash");
-  element.children[4].classList.remove("newsstand__progress-total");
 
-  element.children[2].textContent = "";
-  element.children[3].textContent = "";
-  element.children[4].textContent = "";
+  // 클래스 제거
+  progressClassList.map((it, idx) =>
+    element.children[idx].classList.remove(it)
+  );
+
+  // 텍스트 초기화
+  textData.map((it, idx) => {
+    element.children[idx + 2].textContent = it;
+  });
 
   // animationIterationCount 제거
   element.children[0].style.animationIterationCount = 0;
@@ -216,7 +222,6 @@ export function onUserLeftClickCategory(
 
 // 사용자가 직접 카테고리를 클릭했을때.
 export function onUserClickCategory(
-  CATEROY_NUMBER,
   categoryDataList,
   categoryList,
   categoryDataLength,
@@ -230,7 +235,7 @@ export function onUserClickCategory(
       setContentsPage(1);
       startProgressAction(categoryList, categoryDataLength);
       // 목록에 맞는 데이터 생성
-      makeNewsList(getFirstPage(), CATEROY_NUMBER, categoryDataList);
+      makeNewsList(getFirstPage(), CATEGORY_NUMBER, categoryDataList);
     });
   });
 }
@@ -311,13 +316,17 @@ function showTextByNavTab(element, categoryDataLength, childIndex) {
 
 // 전체 언론사일때 1/82 형식으로 보여줌
 function showCurrentContentText(element, categoryDataLength, childIndex) {
-  element.children[2].textContent = `${getCurrentContent()}`;
-  element.children[3].textContent = `/`;
-  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
+  const textData = [getCurrentContent(), "/", categoryDataLength[childIndex]];
+
+  textData.map((it, idx) => {
+    element.children[idx + 2].textContent = it;
+  });
 }
 // 내가 구독한 언론사일때 '>' 형식으로 보여줌
 function showNextContentText(element) {
-  element.children[2].textContent = "";
-  element.children[3].textContent = "";
-  element.children[4].textContent = ">";
+  const textData = ["", "", ">"];
+
+  textData.map((it, idx) => {
+    element.children[idx + 2].textContent = it;
+  });
 }
