@@ -50,6 +50,8 @@ function confirmModal(selectedPress, _img) {
 function moveToSubList(snackbar) {
   snackbar.style.display = "none";
   //move to ListView
+  document.querySelector(".sub-press").click();
+  document.querySelector(".list-view-btn").click();
 }
 
 function checkPressInLocal(press) {

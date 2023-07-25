@@ -92,6 +92,7 @@ src="../images/icon/Grid-view-checked.svg"
   alt="images"
 />`;
   displayView();
+  document.querySelector(".warning-message").style.display = "none";
 }
 function displayView() {
   const gridView = document.querySelector(".grid-view");

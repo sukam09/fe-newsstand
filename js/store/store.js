@@ -15,8 +15,6 @@ const subPress = initState({
   defaultState: JSON.parse(localStorage.getItem("press")),
 });
 
-// const listSubPage = initState({ key: "listPage", defaultState: 0 });
-
 const gridSubPage = initState({ key: "gridAllPage", defaultState: 1 });
 
 export {
