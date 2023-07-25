@@ -69,9 +69,9 @@ h1 {
   position: relative;
 }
 
-.press-item:hover {
+/* .press-item:hover {
   background-color: var(--surface-alt);
-}
+} */
 
 #press-list,
 #sub-press-list {
@@ -84,6 +84,7 @@ h1 {
   border-bottom: none;
   position: relative;
 }
+
 /* */
 
 /* view icon style */
@@ -468,9 +469,6 @@ h1 {
   cursor: pointer;
 }
 
-#press-list > li {
-  cursor: pointer;
-}
 #sub-press-list > li {
   cursor: pointer;
 }

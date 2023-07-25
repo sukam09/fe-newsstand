@@ -12,12 +12,14 @@ let presses = null;
 function gridMouseOver({ target: target }) {
   const $original = target.querySelector("img");
   const $button = target.querySelector("button");
+  target.classList.add("surface-alt");
   addRemoveHidden($original, $button);
 }
 
 function gridMouseOut({ target: target }) {
   const $original = target.querySelector("img");
   const $button = target.querySelector("button");
+  target.classList.remove("surface-alt");
   addRemoveHidden($button, $original);
 }
 
@@ -62,6 +64,7 @@ function initGridItemEvent(item, press) {
   } else {
     item.addEventListener("click", onGridUndiscribeModal);
   }
+  item.style.cursor = "pointer";
 }
 
 function preventButtonClick(button) {
