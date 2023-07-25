@@ -4,6 +4,8 @@
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import findTargetChildNode from "../../api/findTargetChildNode.js";
 import store from "../../store/Store.js";
+import Component from "../../utils/Component.js";
+import { mainStore, ALL, MY } from "../../store/MainStore.js";
 
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
@@ -16,8 +18,6 @@ const unsubscibeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="13
   <path d="M4.26699 9L3.66699 8.4L6.06699 6L3.66699 3.6L4.26699 3L6.66699 5.4L9.06699 3L9.66699 3.6L7.26699 6L9.66699 8.4L9.06699 9L6.66699 6.6L4.26699 9Z" fill="#879298"/>
   </svg>해지하기`;
 
-let indexArr;
-
 const createButtonHTML = function (pressId, mode) {
   const buttonInner = store.isSubscribed(pressId)
     ? unsubscibeButtonInner
@@ -29,16 +29,17 @@ ${buttonInner}
 </button>`;
 };
 
-const allPressArr = Array.from({ length: TOTAL_PRESS_NUMBER }, (_, i) => i + 1);
-const createNewspaperItem = function (index, pressArr, mode) {
-  const pressId = String(pressArr[index]);
+const createNewspaperItem = function (index, mode) {
+  const pressId = String(index);
   const button = createButtonHTML(pressId, mode);
 
   return `
     <li class=${index > -1 ? "newspaper__item" : "blank"}>
     ${
       index > -1
-        ? `<img src="./assets/newspaper/${mode}/${pressId}.png" alt=${"name"} />`
+        ? `<img src="./assets/newspaper/${mode}/${
+            Number(pressId) + 1
+          }.png" alt=${"name"} />`
         : ""
     }
     ${index > -1 ? button : ""}
@@ -47,16 +48,14 @@ const createNewspaperItem = function (index, pressArr, mode) {
 };
 
 const createPressList = function (page, pressArr, mode) {
-  const nowPageIndexArr = indexArr.slice(
+  const nowPageIndexArr = pressArr.slice(
     (page - 1) * GRID_PRESS_NUBER,
     page * GRID_PRESS_NUBER
   );
 
   while (nowPageIndexArr.length < GRID_PRESS_NUBER) nowPageIndexArr.push(-1);
 
-  const liArr = nowPageIndexArr.map((item) =>
-    createNewspaperItem(item, pressArr, mode)
-  );
+  const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
   let pressList = liArr.reduce((news, currentIndex) => news + currentIndex);
 
   return pressList;
@@ -77,33 +76,30 @@ const handleSubscriptionButtonClick = (e) => {
   }
 };
 
-export default function PressGridView($target, props) {
-  this.render = () => {
-    const $ul = document.createElement("ul");
+function PressGridView($target, props) {
+  const mainState = mainStore.getState();
 
-    $ul.setAttribute("class", "newspaper__list");
+  this.indexArr = undefined;
+  if (mainState.pressType === ALL) {
+    this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
+  } else {
+    this.indexArr = store.myPressList;
+  }
 
-    if (props.pressType === "all") {
-      indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
-      $ul.innerHTML = createPressList(
-        props.currentPage,
-        allPressArr,
-        props.mode
-      );
-    } else {
-      indexArr = getRandomIndexArr(store.myPressList.length);
-      $ul.innerHTML = createPressList(
-        props.currentPage,
-        store.myPressList,
-        props.mode
-      );
-    }
-
-    $ul.addEventListener("click", handleSubscriptionButtonClick);
-
-    $target.innerHTML = "";
-    $target.appendChild($ul);
-  };
-
-  this.render();
+  Component.call(this, $target, props);
 }
+
+Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
+
+PressGridView.prototype.template = function () {
+  const mainState = mainStore.getState();
+
+  if (mainState.pressType === ALL) {
+    return createPressList(1, this.indexArr, this.props.mode);
+  } else {
+    return createPressList(1, this.indexArr, this.props.mode);
+  }
+};
+
+PressGridView.prototype.setEvent = function () {};
+export default PressGridView;

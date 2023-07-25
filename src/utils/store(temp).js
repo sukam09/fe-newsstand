@@ -1,6 +1,6 @@
 import { observable } from "./observer.js";
 
-export class Store {
+export default class Store {
   constructor(reducer) {
     this.state = observable(reducer()); // initState
 

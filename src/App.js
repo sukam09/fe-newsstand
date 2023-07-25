@@ -27,15 +27,18 @@ App.prototype.template = function () {
   <div id="container">
     <header class="header"></header>
     <section class="newsflash"></section>
+    <main class="news"></main>
   </div>`;
 };
 
 App.prototype.mounted = function () {
   const $header = this.$el.querySelector(".header");
   const $section = this.$el.querySelector(".newsflash");
+  const $main = this.$el.querySelector(".news");
 
   new Header($header, this.props);
   new Rolling($section, this.props);
+  new Main($main, this.props);
 };
 
 export default App;

@@ -1,7 +1,15 @@
 /* 
 Main 컴포넌트의 컨텐츠를 변경하는 네비게이션 컴포넌트
 */
+import Component from "../../utils/Component.js";
 import Button from "./Button.js";
+import {
+  GRID,
+  LIST,
+  SET_VIEW,
+  mainStore,
+  setView,
+} from "../../store/MainStore.js";
 
 const listButtonIcon = `<svg
 class="view-line"
@@ -29,36 +37,39 @@ xmlns="http://www.w3.org/2000/svg"
 />
 </svg>`;
 
-export default function ViewerType($target, props) {
-  this.render = () => {
-    const $div = document.createElement("div");
-    $div.setAttribute("class", "news-navbar_content");
+const types = [LIST, GRID];
+const buttonInners = [listButtonIcon, gridButtonIcon];
 
-    const commonButtonProps = {
-      changeType: "viewer",
-      mainViewerType: props.mainContentType,
-      onClick: props.setViewerType,
-    };
-
-    const listButtonProps = {
-      ...commonButtonProps,
-      inner: listButtonIcon,
-      className: "news-navbar_content-news",
-      buttonType: "list",
-    };
-
-    const gridButtonProps = {
-      ...commonButtonProps,
-      inner: gridButtonIcon,
-      className: "news-navbar_content-newspaper",
-      buttonType: "grid",
-    };
-
-    new Button($div, listButtonProps);
-    new Button($div, gridButtonProps);
-
-    $target.appendChild($div);
+const createButton = (button, index) => {
+  const buttonProps = {
+    selected: mainStore.getState().viewType === types[index],
+    inner: buttonInners[index],
+    actionType: SET_VIEW,
+    onClick: () => {
+      const newViewType = setView(types[index]);
+      mainStore.dispatch(newViewType);
+    },
   };
 
-  this.render();
+  new Button(button, buttonProps);
+};
+
+function ViewerType($target, props) {
+  Component.call(this, $target, props);
 }
+
+Object.setPrototypeOf(ViewerType.prototype, Component.prototype);
+
+ViewerType.prototype.template = function () {
+  return `
+  <button class="news-navbar_content-news"></button>
+  <button class="news-navbar_content-newspaper"></button>
+  `;
+};
+
+ViewerType.prototype.mounted = function () {
+  const buttons = this.$el.querySelectorAll("button");
+  buttons.forEach(createButton);
+};
+
+export default ViewerType;

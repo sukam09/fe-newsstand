@@ -33,6 +33,22 @@ const titleArr = [
   },
 ];
 
+const createList = (accumulator, currentValue) => {
+  return (
+    accumulator +
+    `
+    <li>
+      <div class="newsflash__content__newspaper">
+        ${currentValue.press}
+      </div>
+      <span class="newsflash__content__title">
+        ${currentValue.title}
+      </span>
+    </li>
+    `
+  );
+};
+
 const pauseRolling = function (timer) {
   clearTimeout(timer);
 };
@@ -59,31 +75,27 @@ const startRolling = function (rollingElement) {
   return setInterval(moveUpElement, ROLLING_INTERVAL);
 };
 
+const over = function ({ target }) {
+  target.style.textDecoration = "underline";
+  pauseRolling(this.timeId);
+};
+
+const out = function ({ target }) {
+  target.style.textDecoration = "none";
+  this.timeId = startRolling(this.rolling);
+};
+
 function RollingContents($target, props) {
   Component.call(this, $target, props);
 
   this.timeId;
-  this.init = false;
+  this.init = true;
   this.rolling;
 }
 
 Object.setPrototypeOf(RollingContents.prototype, Component.prototype);
 
 RollingContents.prototype.template = function () {
-  const createList = (accumulator, currentValue) => {
-    return (
-      accumulator +
-      `
-      <li>
-      <div class="newsflash__content__newspaper">${currentValue.press}</div>
-      <span class="newsflash__content__title">
-        ${currentValue.title}
-      </span>
-      </li>
-      `
-    );
-  };
-
   return `
   <ul>
     ${titleArr.reduce(createList, "")}
@@ -92,25 +104,14 @@ RollingContents.prototype.template = function () {
 };
 
 RollingContents.prototype.setEvent = function () {
-  const on = function ({ target }) {
-    target.style.textDecoration = "underline";
-    pauseRolling(this.timeId);
-  };
-
-  const out = function ({ target }) {
-    target.style.textDecoration = "none";
-    this.timeId = startRolling(this.rolling);
-  };
-
-  const handleMouseOver = on.bind(this);
+  const handleMouseOver = over.bind(this);
   const handleMouseOut = out.bind(this);
 
-  if (!this.init) {
+  if (this.init) {
     this.$el.addEventListener("mouseover", handleMouseOver);
-
     this.$el.addEventListener("mouseout", handleMouseOut);
 
-    this.init = true;
+    this.init = false;
   }
 };
 

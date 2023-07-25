@@ -1,6 +1,8 @@
 /* 
 메인 컨텐츠를 선택하는 버튼(전체/구독, 리스트 뷰/그리드를 선택 가능)
 */
+import Component from "../../utils/Component.js";
+import { SET_VIEW, SET_PRESS } from "../../store/MainStore.js";
 
 const findTargetChildNode = (element, targetTagName) => {
   if (!element) {
@@ -14,39 +16,26 @@ const findTargetChildNode = (element, targetTagName) => {
   return findTargetChildNode(element.firstElementChild, targetTagName);
 };
 
-export default function Button($target, props) {
-  const changePressType = () => {
-    props.onClick(props.buttonType);
-  };
+function Button($target, props) {
+  Component.call(this, $target, props);
 
-  const changeViewerType = () => {
-    props.onClick(props.buttonType);
-  };
-
-  this.render = () => {
-    const $button = document.createElement("button");
-    $button.setAttribute("class", props.className);
-
-    $button.innerHTML = props.inner;
-
-    if (props.changeType === "viewer") {
-      $button.addEventListener("click", changeViewerType);
-
-      let targetElement = findTargetChildNode($button, "path");
-
-      targetElement.style.fill =
-        props.buttonType === props.mainViewerType ? "#4362D0" : "";
-    } else {
-      $button.addEventListener("click", changePressType);
-
-      $button.style.color =
-        props.buttonType === props.mainPressType ? "#14212B" : "#879298";
-      $button.style.fontWeight =
-        props.buttonType === props.mainPressType ? 700 : 500;
-    }
-
-    $target.appendChild($button);
-  };
-
-  this.render();
+  if (this.props.actionType === SET_PRESS) {
+    this.$el.style.color = this.props.selected ? "#14212B" : "#879298";
+    this.$el.style.fontWeight = this.props.selected ? 700 : 500;
+  } else {
+    const path = this.$el.querySelector("path");
+    path.style.fill = this.props.selected ? "#4362D0" : "";
+  }
 }
+
+Object.setPrototypeOf(Button.prototype, Component.prototype);
+
+Button.prototype.template = function () {
+  return this.props.inner;
+};
+
+Button.prototype.setEvent = function () {
+  this.$el.addEventListener("click", this.props.onClick);
+};
+
+export default Button;
