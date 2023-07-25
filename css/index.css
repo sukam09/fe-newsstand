@@ -119,7 +119,6 @@ body {
 }
 .date {
   color: var(--text-default);
-  font-size: 16px;
 }
 .main-tab-btn .clicked {
   color: var(--text-strong);
@@ -261,7 +260,13 @@ a:hover {
   border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.field-tab ul::-webkit-scrollbar {
+  display: none;
 }
 .list-view .field-tab .category {
   display: inline-block;
