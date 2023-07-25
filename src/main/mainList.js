@@ -106,7 +106,8 @@ function  makeSubscribeButton(){
     const ListHeader = document.querySelector(`.listHeader`);
     const subscribeBtn = document.createElement("button");
     subscribeBtn.classList.add("subscribebtn");
-
+    
+    let categoryNum = State.getCategoryNum();
     let articleInfo;
     if(isAll){
         articleInfo = listArticle[categoryNum][currentPage];
@@ -116,15 +117,30 @@ function  makeSubscribeButton(){
     }
 
     if(isAll){
-        subscribeBtn.innerText = "+ 구독하기";
+        if(Store.findSubscribe(articleInfo.id)){
+            subscribeBtn.innerText = "해지하기";
+        }
+        else{
+            subscribeBtn.innerText = "+ 구독하기";
+        } 
     }
     else{
         subscribeBtn.innerText = "x";
     }
     ListHeader.appendChild(subscribeBtn);
     subscribeBtn.addEventListener("click", ()=>{
-        subscribedNews.push(articleInfo.subArticles.title);
-        renderMain()
+        if(Store.findSubscribe(articleInfo.id)){
+            Store.removeSubscribe(articleInfo);
+            //구독보기에서 마지막 삭제 시 예외처리
+            if(categoryNum + 1 === categoryMAX){
+                State.setCategoryNum(--categoryNum);
+            }
+            renderMain();
+        }
+        else{
+            Store.addSubscribe(articleInfo);
+            renderMain();
+        } 
     })
 }
 
@@ -233,7 +249,6 @@ export default function MainList(){
         listArticle = Store.getSubscribe();
         pageMAX = 1;
         categoryMAX = listArticle.length;
-        console.log(listArticle.length);
         State.setMaxPage(1);    
         State.setMaxCategoryNum(categoryMAX - 1);
     }
