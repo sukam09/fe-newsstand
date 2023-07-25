@@ -4,10 +4,16 @@ import { addEventArrowGrid } from "../addEventArrowGrid.js";
 import { snackBar } from "../snackBar.js";
 import { changeImageSrc } from "../../utils/utils.js";
 import { renderMain } from "./renderMain.js";
+import { rollingTime } from "../../utils/constants.js";
+import { removeArrow } from "../../utils/utils.js";
 
 const gridMain = document.getElementById("main-grid");
+const listMain = document.getElementById("main-list");
 
 const renderGrid = (logos) => {
+  gridMain.style.display = "grid";
+  listMain.style.display = "none";
+  removeArrow();
   if (Stores.getSubscribedMode() == "all") shuffle(logos);
   makeGrid(logos);
   addEventArrowGrid(logos);
@@ -46,8 +52,12 @@ function clickSubscribeButtonGrid(logos) {
         Stores.setSubscribeNewsContent(subscribeButton[index].id);
         replaceSubscribeButton(subscribeButton[index], "cancel");
         snackBar("내가 구독한 언론사에 추가되었습니다!");
+        Stores.setSubscribedMode("subscribe");
         Stores.setPageMode("list");
-        renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+        setTimeout(() => {
+          Stores.setSubscribedMode("subscribed");
+          renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+        }, rollingTime);
       } else alertGrid(subscribeButton[index]);
     });
   });
@@ -79,14 +89,11 @@ function alertClickGrid(subscribeButton, alertDiv) {
 }
 
 function isSubscribedGrid(subscribeButton) {
-  if (Stores.getSubscribedMode() != "all") return true;
-  else {
-    const subscribeData = Stores.getSubscribeNewsContent();
-    for (const key in subscribeData) {
-      const articles = subscribeData[key];
-      for (const article of articles) {
-        if (article.id == subscribeButton.id) return true;
-      }
+  const subscribeData = Stores.getSubscribeNewsContent();
+  for (const key in subscribeData) {
+    const articles = subscribeData[key];
+    for (const article of articles) {
+      if (article.id == subscribeButton.id) return true;
     }
   }
   return false;

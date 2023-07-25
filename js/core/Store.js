@@ -1,48 +1,42 @@
 import { fetchData } from "../setData/fetchCategoryData.js";
 
 class Store {
-  #pageNumber;
-  #progressInterval;
-  #pageMode;
-  #subscribedStatus;
-  #subscribedNewsContent;
-  #subscribeLogo;
   constructor() {
-    this.#pageNumber = 0;
-    this.#pageMode = "grid";
-    this.#subscribedStatus = "all";
-    this.#subscribedNewsContent = {};
-    this.#subscribeLogo = [];
+    this.pageNumber = 0;
+    this.pageMode = "grid";
+    this.subscribedStatus = "all";
+    this.subscribedNewsContent = {};
+    this.subscribeLogo = [];
   }
   async getOriginalNews() {
     return fetchData();
   }
   setPage(pagenumber) {
-    this.#pageNumber = pagenumber;
+    this.pageNumber = pagenumber;
   }
   getPage() {
-    return this.#pageNumber;
+    return this.pageNumber;
   }
   setProgressInterval(setInterval) {
-    this.#progressInterval = setInterval;
+    this.progressInterval = setInterval;
   }
   getProgressInterval() {
-    return this.#progressInterval;
+    return this.progressInterval;
   }
   clearProgressInterval() {
-    clearInterval(this.#progressInterval);
+    clearInterval(this.progressInterval);
   }
   setSubscribedMode(status) {
-    this.#subscribedStatus = status;
+    this.subscribedStatus = status;
   }
   setPageMode(status) {
-    this.#pageMode = status;
+    this.pageMode = status;
   }
   getSubscribedMode() {
-    return this.#subscribedStatus;
+    return this.subscribedStatus;
   }
   getPageMode() {
-    return this.#pageMode;
+    return this.pageMode;
   }
   async setSubscribeNewsContent(itemId) {
     const news = await Stores.getOriginalNews();
@@ -51,31 +45,32 @@ class Store {
       const foundItem = newsItems.find((item) => item.id === parseInt(itemId));
       if (foundItem) {
         foundItem["arrow"] = true;
-        if (!this.#subscribedNewsContent[foundItem.id]) {
-          this.#subscribedNewsContent[foundItem.name] = [foundItem];
-          this.#subscribeLogo.push(foundItem);
+        if (!this.subscribedNewsContent[foundItem.id]) {
+          this.subscribedNewsContent[foundItem.name] = [foundItem];
+          this.subscribeLogo.push(foundItem);
         } else {
-          this.#subscribedNewsContent[foundItem.name].push(foundItem);
-          this.#subscribeLogo.push(foundItem);
+          this.subscribedNewsContent[foundItem.name].push(foundItem);
+          this.subscribeLogo.push(foundItem);
         }
       }
     }
+    console.log(this.subscribedNewsContent);
   }
   getSubscribeNewsContent() {
-    return this.#subscribedNewsContent;
+    return this.subscribedNewsContent;
   }
   removeSubscribeNewsContent(id) {
     const newData = {};
-    const data = this.#subscribedNewsContent;
+    const data = this.subscribedNewsContent;
     for (const key in data) {
       newData[key] = data[key].filter((item) => item.id != id);
       if (newData[key].length === 0) delete newData[key];
     }
-    this.#subscribedNewsContent = newData;
-    this.#subscribeLogo = this.removeNewsById(this.#subscribeLogo, id);
+    this.subscribedNewsContent = newData;
+    this.subscribeLogo = this.removeNewsById(this.subscribeLogo, id);
   }
   getSubscribeLogo() {
-    return this.#subscribeLogo;
+    return this.subscribeLogo;
   }
   removeNewsById(newsArray, idToRemove) {
     return newsArray.filter((item) => item.id !== idToRemove);
