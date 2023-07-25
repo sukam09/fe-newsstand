@@ -22,7 +22,7 @@ export default function PressGridView({ $target, initialState }) {
   };
 
   const myPress = store.getMyPress().map(({ pid }) => pid);
-  const data = this.state.press === 'all' ? this.state.pressInfo : myPress;
+  const data = this.state.press === 'all' ? shuffle(this.state.pressInfo) : myPress;
   if (this.state.press === 'my') {
     this.setState({ ...this.state, maxPage: Math.ceil(myPress.length / NEWS_PRESS_NUMBERS_PER_PAGE) }, false);
   }
