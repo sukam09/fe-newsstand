@@ -1,13 +1,17 @@
+import Button from '../components/Button.js';
 import SnackBar from '../components/SnackBar.js';
 import UnsubAlert from '../components/media/UnsubAlert.js';
-import { MEDIA_APP_DATA, MSG } from '../constants.js';
+import { MEDIA, MEDIA_APP_DATA, MSG } from '../constants.js';
 import Store from '../core/Store.js';
 
 class NavStore extends Store {
   constructor() {
     super({
       data: MEDIA_APP_DATA,
-      subscribed: [],
+      subscribed: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26,
+      ],
       media: 'all',
       view: 'grid',
     });
@@ -39,15 +43,22 @@ class NavStore extends Store {
   unsubMedia(id, name, viewStore, button) {
     document.querySelector('#media_view').appendChild(
       UnsubAlert(id, name, id => {
-        const { media, subscribed } = this.getState();
+        const { media, view, subscribed } = this.getState();
         const { page, media: sub } = viewStore.getState();
 
         subscribed.splice(subscribed.indexOf(id), 1);
-        if (media === 'subscribed') {
-          viewStore.setState({ page: page % sub.length });
-        } else {
-          button.replaceWith(SubButton(id, this));
+        if (media !== 'subscribed') {
+          return button.replaceWith(
+            Button(this.buttonData({ id, name, viewStore }))
+          );
         }
+
+        const newPage =
+          view === 'grid'
+            ? Math.min(Math.ceil(sub.length / MEDIA.PAGE_SIZE) - 1, page)
+            : page % sub.length;
+
+        viewStore.setState({ page: newPage });
       })
     );
   }
