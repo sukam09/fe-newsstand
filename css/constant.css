@@ -1,4 +1,4 @@
-:root {
+:root[color-theme='light']{
   --bold-L: 700 24px "Pretendard";
   --bold-M: 700 16px "Pretendard";
   --bold-R: 700 14px "Pretendard";
@@ -22,6 +22,29 @@
   --border-default : 1px solid var(--grayscale-100);
 }
 
+:root[color-theme='dark']{
+  --bold-L: 700 24px "Pretendard";
+  --bold-M: 700 16px "Pretendard";
+  --bold-R: 700 14px "Pretendard";
+  --bold-S: 700 12px "Pretendard";
+
+  --medium-M: 500 16px/22px "Pretendard";
+  --medium-R: 500 14px "Pretendard";
+  --medium-S: 500 12px "Pretendard";
+  --grayscale-white-alt: #ffffff;
+  --grayscale-white: #14212b;
+  --grayscale-50: #4b5966;
+  --grayscale-100: #5f6e76;
+  --grayscale-200: #ffffff;
+  --grayscale-300: rgba(255, 255, 255, 0.7);
+  --grayscale-400: #d2dae0;
+  --grayscale-500: #f5f7f9;
+  --grayscale-black: rgba(255, 255, 255, 0.7);
+
+  --blue-100: #7890e7;
+  --blue-500: #4362d0;
+  --border-default : 1px solid var(--grayscale-400);
+}
 .display-bold24 {
   font: var(--bold-L);
 }

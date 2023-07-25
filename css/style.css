@@ -9,6 +9,7 @@ body {
     flex-direction : column;
     min-width: 930px;
     height: 100vh;
+    background-color: var(--grayscale-white);
 }
 .news_stand_wrapper {
     width: 930px;
@@ -187,6 +188,7 @@ ul li:hover .media-hover .subscribedWrapper {
     position: absolute;
     top: -36px;
     left: 0;
+
 }
 .news_title_wrapper a{
     display: block;
@@ -195,7 +197,6 @@ ul li:hover .media-hover .subscribedWrapper {
     -webkit-line-clamp: 1;
     -webkit-box-orient:vertical;
     overflow: hidden;
-    color: #000;
 }
 
 .article_wrapper p:hover{
