@@ -1,9 +1,9 @@
 import Component from "../core/Component.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
-import { addObserver, getState } from "../observer/observer.js";
+import { addObserver, getState, setState } from "../observer/observer.js";
 import { filterSubscribeData } from "../utils/utils.js";
-import { subscribeDataState } from "../store/store.js";
+import { listPageState, subscribeDataState } from "../store/store.js";
 
 const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
@@ -12,22 +12,22 @@ const COLOR_PROGRESS_BACKGROUND = "#7890e7";
 export default class SubscribeListView extends Component {
     setup() {
         this.state = {
-            currentCategoryIndex: 0,
-            currentPage: 1,
             subscribeList: this.props.subscribeList,
             pressData: this.props.newsData,
         };
         addObserver(subscribeDataState, this.render.bind(this));
+        addObserver(listPageState, this.render.bind(this));
     }
 
     template() {
         // 중복
         const subscribeData = getState(subscribeDataState);
+        const currentPage = getState(listPageState);
         const pressData = filterSubscribeData(
             this.props.newsData,
             subscribeData
         );
-        const newsData = pressData[this.state.currentPage - 1];
+        const newsData = pressData[currentPage - 1];
 
         return `
             <div class="news-press-list-view">
@@ -105,9 +105,9 @@ export default class SubscribeListView extends Component {
             this.props.newsData,
             subscribeData
         );
-
+        const currentPage = getState(listPageState);
         const categoryBarList = pressData.reduce((accumulator, data, index) => {
-            if (index === this.state.currentPage - 1) {
+            if (index === currentPage - 1) {
                 return (
                     accumulator +
                     `<li class="category-selected">
@@ -171,36 +171,27 @@ export default class SubscribeListView extends Component {
                 const clickedIndex = pressData.findIndex(
                     (item) => item.name === target.textContent.trim()
                 );
-                console.log(target.textContent.trim(), clickedIndex);
-
-                this.setState({
-                    currentPage: clickedIndex + 1,
-                });
+                // console.log(target.textContent.trim(), clickedIndex);
+                setState(listPageState, clickedIndex + 1);
             }
         });
     }
 
     setPrevPage() {
         if (this.state.currentPage === 1) {
-            this.setState({
-                currentPage: this.state.pressData.length,
-            });
+            setState(listPageState, this.state.pressData.length);
         } else {
-            this.setState({
-                currentPage: this.state.currentPage - 1,
-            });
+            const currentPage = getState(listPageState);
+            setState(listPageState, currentPage - 1);
         }
     }
 
     setNextPage() {
-        if (this.state.currentPage === this.state.pressData.length) {
-            this.setState({
-                currentPage: 1,
-            });
+        const currentPage = getState(listPageState);
+        if (currentPage === this.state.pressData.length) {
+            setState(listPageState, 1);
         } else {
-            this.setState({
-                currentPage: this.state.currentPage + 1,
-            });
+            setState(listPageState, currentPage + 1);
         }
     }
 

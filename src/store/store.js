@@ -14,4 +14,9 @@ const subscribeDataState = initState({
     value: initSubscribeList(jsonData),
 });
 
-export { pressDataState, subscribeDataState };
+const listPageState = initState({
+    key: "listPageState",
+    value: 1,
+});
+
+export { pressDataState, subscribeDataState, listPageState };

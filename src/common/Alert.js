@@ -1,6 +1,6 @@
 import Component from "../core/Component.js";
-import { setState } from "../observer/observer.js";
-import { subscribeDataState } from "../store/store.js";
+import { getState, setState } from "../observer/observer.js";
+import { listPageState, subscribeDataState } from "../store/store.js";
 
 export default class Alert extends Component {
     template() {
@@ -39,6 +39,13 @@ export default class Alert extends Component {
             subscribeList.splice(indexToRemove, 1);
         }
         localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
+
+        const subscribeData = getState(subscribeDataState);
+        const listPageIndex = getState(listPageState);
+        // console.log(subscribeData.length, listPageIndex);
+        if (subscribeData.length === listPageIndex) {
+            setState(listPageState, 1);
+        }
         setState(subscribeDataState, subscribeList);
     }
 }

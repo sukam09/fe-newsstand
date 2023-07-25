@@ -71,7 +71,8 @@ export default class NewsGridView extends Component {
     }
 
     isSubscribed(id) {
-        return this.state.subscribeList.some((data) => data.id === Number(id));
+        const subscribeList = getState(subscribeDataState);
+        return subscribeList.some((data) => data.id === Number(id));
     }
 
     setGridView() {
