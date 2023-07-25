@@ -1,6 +1,13 @@
 import { getState, setState } from "../../observer/observer.js";
-import { categoryInfo, mediaInfo } from "../../store/media.js";
+import {
+  categoryInfo,
+  listCateIdx,
+  listCateMediaIdx,
+  listSubsMediaIdx,
+  mediaInfo,
+} from "../../store/media.js";
 import { isGridMode, isTotalMode } from "../../store/mode.js";
+import { subscribeList } from "../../store/subscribe.js";
 import { changeSubState, onClickSubscribeMode } from "../subscribe.js";
 import { setFullList } from "./list.js";
 
@@ -21,9 +28,9 @@ const setListArrowEvent = () => {
   $leftArrow.addEventListener("click", () => {
     if (!getState(isGridMode)) {
       if (getState(isTotalMode)) {
-        setState("listCateMediaIdx", getState("listCateMediaIdx") - 1);
+        setState(listCateMediaIdx, getState(listCateMediaIdx) - 1);
       } else {
-        setState("listSubsMediaIdx", getState("listSubsMediaIdx") - 1);
+        setState(listSubsMediaIdx, getState(listSubsMediaIdx) - 1);
       }
       setFullList();
     }
@@ -31,9 +38,9 @@ const setListArrowEvent = () => {
   $rightArrow.addEventListener("click", () => {
     if (!getState(isGridMode)) {
       if (getState(isTotalMode)) {
-        setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
+        setState(listCateMediaIdx, getState(listCateMediaIdx) + 1);
       } else {
-        setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
+        setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
       }
       setFullList();
     }
@@ -42,12 +49,12 @@ const setListArrowEvent = () => {
 
 const setListModeEvent = () => {
   $totalMedia.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
+    if (!getState(isGridMode)) {
       onClickListMode({ className: "main-nav_total" });
     }
   });
   $subscribeMedia.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
+    if (!getState(isGridMode)) {
       onClickListMode({ className: "main-nav_subscribe" });
     }
   });
@@ -56,13 +63,11 @@ const setListModeEvent = () => {
 const setListSubscribeEvent = () => {
   $plusSubBtn.addEventListener("click", () => {
     clickSubButton();
-    setState("listSubsMediaIdx", getState("subscribeList").length - 1);
+    setState(listSubsMediaIdx, getState(subscribeList).length - 1);
     onClickListMode({ className: "main-nav_subscribe" });
   });
   $xSubBtn.addEventListener("click", () => {
     clickSubButton();
-    setCategoryBar();
-    setFullList();
   });
 };
 
@@ -73,19 +78,19 @@ const setListSubscribeEvent = () => {
 const onClickListMode = ({ className }) => {
   onClickSubscribeMode({ className });
 
-  setState("listCateIdx", 0);
-  setState("listCateMediaIdx", 0);
+  setState(listCateIdx, 0);
+  setState(listCateMediaIdx, 0);
 
   setFullList();
 };
 
 const clickSubButton = () => {
   const totalId =
-    getState(categoryInfo)[categoryKeys[getState("listCateIdx")]][
-      getState("listCateMediaIdx")
+    getState(categoryInfo)[categoryKeys[getState(listCateIdx)]][
+      getState(listCateMediaIdx)
     ];
-  const subsId = getState("subscribeList")[getState("listSubsMediaIdx")];
-  const mediaId = getState("isTotalMode") ? totalId : subsId;
+  const subsId = getState(subscribeList)[getState(listSubsMediaIdx)];
+  const mediaId = getState(isTotalMode) ? totalId : subsId;
   const mediaName = getState(mediaInfo)[mediaId].name;
   changeSubState({ mediaId, mediaName });
 };

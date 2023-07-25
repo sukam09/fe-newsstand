@@ -1,5 +1,4 @@
 import { MESSAGE } from "/constant.js";
-import { getJSON } from "/modules/data.js";
 import { shuffleList } from "/modules/utils.js";
 import { onClickSubscribeMode } from "/modules/subscribe.js";
 import { getState, setState } from "/observer/observer.js";
@@ -8,7 +7,15 @@ import {
   setListModeEvent,
   setListSubscribeEvent,
 } from "./event.js";
-import { categoryInfo, mediaInfo } from "../../store/media.js";
+import {
+  categoryInfo,
+  listCateIdx,
+  listCateMediaIdx,
+  listSubsMediaIdx,
+  mediaInfo,
+} from "../../store/media.js";
+import { isLightMode, isTotalMode } from "../../store/mode.js";
+import { subscribeList } from "../../store/subscribe.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(getState(categoryInfo));
@@ -44,48 +51,48 @@ const getListInfo = async () => {
  */
 const changeIdx = () => {
   let cateLen =
-    getState(categoryInfo)[categoryKeys[getState("listCateIdx")]].length;
-  let [listCateIdx, cateMediaIdx] = [
-    getState("listCateIdx"),
-    getState("listCateMediaIdx"),
+    getState(categoryInfo)[categoryKeys[getState(listCateIdx)]].length;
+  let [cateIdx, cateMediaIdx] = [
+    getState(listCateIdx),
+    getState(listCateMediaIdx),
   ];
 
-  if (getState("isTotalMode")) {
-    if (listCateIdx === 0 && cateMediaIdx === -1) {
+  if (getState(isTotalMode)) {
+    if (cateIdx === 0 && cateMediaIdx === -1) {
       // 첫 카테고리 첫 페이지에서 이전 페이지 이동 시
-      setState("listCateIdx", 6);
-      cateLen = getState(categoryInfo)[categoryKeys[listCateIdx]].length;
-      setState("listCateMediaIdx", cateLen - 1);
+      setState(listCateIdx, 6);
+      cateLen = getState(categoryInfo)[categoryKeys[cateIdx]].length;
+      setState(listCateMediaIdx, cateLen - 1);
     } else if (
       // 첫 카테고리 아닐 때, 첫 페이지에서 이전 페이지 이동 시
-      listCateIdx !== 0 &&
+      cateIdx !== 0 &&
       cateMediaIdx === -1
     ) {
-      setState("listCateIdx", listCateIdx - 1);
-      cateLen = getState(categoryInfo)[categoryKeys[listCateIdx]].length;
-      setState("listCateMediaIdx", cateLen - 1);
+      setState(listCateIdx, cateIdx - 1);
+      cateLen = getState(categoryInfo)[categoryKeys[cateIdx]].length;
+      setState(listCateMediaIdx, cateLen - 1);
     } else if (
       // 마지막 카테고리일 때, 마지막 페이지라면,
-      listCateIdx === 6 &&
+      cateIdx === 6 &&
       cateMediaIdx === cateLen
     ) {
-      setState("listCateIdx", 0);
-      setState("listCateMediaIdx", 0);
+      setState(listCateIdx, 0);
+      setState(listCateMediaIdx, 0);
     } else if (
       // 마지막 카테고리가 아닐 때, 마지막 페이지라면,
-      listCateIdx !== 6 &&
+      cateIdx !== 6 &&
       cateMediaIdx === cateLen
     ) {
-      setState("listCateIdx", listCateIdx + 1);
-      setState("listCateMediaIdx", 0);
+      setState(listCateIdx, cateIdx + 1);
+      setState(listCateMediaIdx, 0);
     }
-  } else if (!getState("isTotalMode")) {
-    const subsMediaIdx = getState("listSubsMediaIdx");
+  } else if (!getState(isTotalMode)) {
+    const subsMediaIdx = getState(listSubsMediaIdx);
 
     if (subsMediaIdx === -1) {
-      setState("listSubsMediaIdx", getState("subscribeList").length - 1);
-    } else if (subsMediaIdx === getState("subscribeList").length) {
-      setState("listSubsMediaIdx", 0);
+      setState(listSubsMediaIdx, getState(subscribeList).length - 1);
+    } else if (subsMediaIdx === getState(subscribeList).length) {
+      setState(listSubsMediaIdx, 0);
     }
   }
 };
@@ -96,10 +103,10 @@ const changeIdx = () => {
  */
 const setCategoryBar = () => {
   $categoryBar.innerHTML = "";
-  if (getState("isTotalMode")) {
+  if (getState(isTotalMode)) {
     setACategoryBar({ keyList: categoryKeys });
   } else {
-    const subMediaName = getState("subscribeList").map(
+    const subMediaName = getState(subscribeList).map(
       (subIdx) => getState(mediaInfo)[subIdx].name
     );
     setACategoryBar({ keyList: subMediaName });
@@ -110,10 +117,10 @@ const setCategoryBar = () => {
  * @returns 현재 카테고리인지 여부
  */
 const isCurCategory = ({ cateIdx }) => {
-  if (getState("isTotalMode")) {
-    return getState("listCateIdx") === cateIdx;
+  if (getState(isTotalMode)) {
+    return getState(listCateIdx) === cateIdx;
   } else {
-    return getState("listSubsMediaIdx") === cateIdx;
+    return getState(listSubsMediaIdx) === cateIdx;
   }
 };
 
@@ -126,11 +133,11 @@ const setACategoryBar = ({ keyList }) => {
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
       if (isCurCategory({ cateIdx: idx })) return;
-      if (getState("isTotalMode")) {
-        setState("listCateIdx", idx);
-        setState("listCateMediaIdx", 0);
+      if (getState(isTotalMode)) {
+        setState(listCateIdx, idx);
+        setState(listCateMediaIdx, 0);
       } else {
-        setState("listSubsMediaIdx", idx);
+        setState(listSubsMediaIdx, idx);
       }
       setFullList();
     });
@@ -148,7 +155,7 @@ const setACategoryBar = ({ keyList }) => {
  * 페이지 전환 따른 프로그래스바 이동
  */
 const setProgressBar = () => {
-  const cate = categoryKeys[getState("listCateIdx")];
+  const cate = categoryKeys[getState(listCateIdx)];
   const $cateList = $categoryBar.querySelectorAll("li");
 
   // 1. 모든 li 하위 돌면서 프로그래스바 삭제해주기
@@ -162,17 +169,17 @@ const setProgressBar = () => {
   });
 
   // 2. 모드 따라 현재 선택한 카테고리 위치에 프로그래스바 추가
-  const curCateIdx = getState("isTotalMode")
-    ? getState("listCateIdx")
-    : getState("listSubsMediaIdx");
+  const curCateIdx = getState(isTotalMode)
+    ? getState(listCateIdx)
+    : getState(listSubsMediaIdx);
   const $li = $categoryBar.children[curCateIdx];
   $li.className = "category_selected";
 
   const $cntDiv = $li.children[1];
-  if (getState("isTotalMode")) {
+  if (getState(isTotalMode)) {
     // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
-  <p>${getState("listCateMediaIdx") + 1}</p>
+  <p>${getState(listCateMediaIdx) + 1}</p>
   <p>&nbsp; / ${getState(categoryInfo)[cate].length}</p>
 `;
   } else {
@@ -187,10 +194,10 @@ const setProgressBar = () => {
   $li.append($progressBar);
 
   $progressBar.addEventListener("animationend", () => {
-    if (getState("isTotalMode"))
-      setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
+    if (getState(isTotalMode))
+      setState(listCateMediaIdx, getState(listCateMediaIdx) + 1);
     else {
-      setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
+      setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
     }
     setFullList();
   });
@@ -200,21 +207,19 @@ const setProgressBar = () => {
  * 페이지 전환 따른 뉴스 영역 변경
  */
 const setListView = () => {
-  const cate = categoryKeys[getState("listCateIdx")];
+  const cate = categoryKeys[getState(listCateIdx)];
 
   // 모드에 따라 mediaId 세팅
-  const mediaId = getState("isTotalMode")
-    ? getState(categoryInfo)[cate][getState("listCateMediaIdx")]
-    : getState("subscribeList")[getState("listSubsMediaIdx")];
+  const mediaId = getState(isTotalMode)
+    ? getState(categoryInfo)[cate][getState(listCateMediaIdx)]
+    : getState(subscribeList)[getState(listSubsMediaIdx)];
 
   const nowMedia = getState(mediaInfo)[mediaId];
 
-  $logo.src = getState("isLightMode")
-    ? nowMedia.path_light
-    : nowMedia.path_dark;
+  $logo.src = getState(isLightMode) ? nowMedia.path_light : nowMedia.path_dark;
   $date.innerText = `${nowMedia.edit_date} 편집`;
 
-  if (getState("subscribeList").includes(mediaId)) {
+  if (getState(subscribeList).includes(mediaId)) {
     $plusSubBtn.classList.add("hidden");
     $xSubBtn.classList.remove("hidden");
   } else {
@@ -241,7 +246,7 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
-  if (!getState("isTotalMode") && getState("subscribeList").length === 0) {
+  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;

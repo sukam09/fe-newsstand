@@ -53,6 +53,15 @@ const setGridArrowEvent = () => {
 };
 
 /**
+ * Grid 화살표 클릭하기
+ * @param num 페이지 이동을 위한 카운트 변수
+ */
+const clickArrow = (num) => {
+  setState(gridPageNum, getState(gridPageNum) + num);
+  setNewPage();
+};
+
+/**
  * 그리드 뷰 내 전체 언론사 / 내가 구독한 언론사 전환 이벤트
  */
 const setGridModeEvent = () => {

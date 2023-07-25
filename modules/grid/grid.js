@@ -107,7 +107,7 @@ const setButttonWrapper = (idx) => {
  * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
  */
 const setNewPage = () => {
-  if (!getState("isTotalMode") && getState("subscribeList").length === 0) {
+  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
     alert(MESSAGE.ERROR_NO_SUBSCRIBE);
     onClickSubscribeMode({ className: "main-nav_total" });
     return;
@@ -120,7 +120,7 @@ const setNewPage = () => {
  * @param {현재 페이지 media 정보} mediaList
  */
 const changeButtonView = () => {
-  const start = getState("gridPageNum") * MEDIA_NUM;
+  const start = getState(gridPageNum) * MEDIA_NUM;
   const $newsList = $newsWrapper.querySelectorAll("li");
 
   $newsList.forEach((li, idx) => {
@@ -131,15 +131,6 @@ const changeButtonView = () => {
 };
 
 /**
- * Grid 화살표 클릭하기
- * @param num 페이지 이동을 위한 카운트 변수
- */
-const clickArrow = (num) => {
-  setState("gridPageNum", getState("gridPageNum") + num);
-  setNewPage();
-};
-
-/**
  * Grid 화살표 hidden 처리하기
  */
 const setArrowVisible = () => {
@@ -147,23 +138,23 @@ const setArrowVisible = () => {
   const $rightArrow = document.querySelector(".right-arrow");
 
   // 페이지 제한 0~3에 따른 hidden 여부
-  if (getState("gridPageNum") === 0) {
+  if (getState(gridPageNum) === 0) {
     $leftArrow.classList.add("hidden");
     $rightArrow.classList.remove("hidden");
-  } else if (getState("gridPageNum") > 0 && getState("gridPageNum") < 3) {
+  } else if (getState(gridPageNum) > 0 && getState(gridPageNum) < 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.remove("hidden");
-  } else if (getState("gridPageNum") === 3) {
+  } else if (getState(gridPageNum) === 3) {
     $leftArrow.classList.remove("hidden");
     $rightArrow.classList.add("hidden");
   }
 
   // 미디어 개수에 따른 hidden 여부
-  const totalPage = getState("isTotalMode")
+  const totalPage = getState(isTotalMode)
     ? getState(mediaIdList).length / MEDIA_NUM
-    : getState("subscribeList").length / MEDIA_NUM;
+    : getState(subscribeList).length / MEDIA_NUM;
 
-  if (getState("gridPageNum") < totalPage - 1) {
+  if (getState(gridPageNum) < totalPage - 1) {
     $rightArrow.classList.remove("hidden");
   } else {
     $rightArrow.classList.add("hidden");
