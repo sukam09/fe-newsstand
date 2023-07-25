@@ -12,11 +12,11 @@ function showAllArrows(){
 }
 function drawArrow(){
     let {crntPage, crntView, crntFilter, isStillList} = store.getViewState();
-    if (isStillList){ 
-        // (in list) click arrow > setViewState() > drawArrow
-        // no need to redraw arrows when in list
-        return;
-    }
+    // if (isStillList){ 
+    //     // (in list) click arrow > setViewState() > drawArrow
+    //     // no need to redraw arrows when in list
+    //     return;
+    // }
     let dataInfo;
     if (crntFilter === FILTER_TYPE.ALL){
         dataInfo = pressList;
