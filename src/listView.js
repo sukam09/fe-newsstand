@@ -54,10 +54,26 @@ function appendNewsList(newsList) {
     elements.topicHeaderLogo.src = nowData[nowListIdx].lightSrc;
     elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
     elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
+    updateSubButtons(nowData);
     for (let i = 0; i < MAX_NEWS_COUNT; i++) {
       const newNewsList = createNewsList(nowData[nowListIdx].subNews[i]);
       elements.newsListContainer.appendChild(newNewsList);
     }
+  }
+}
+
+function updateSubButtons(nowData) {
+  const subList = getState(subscribeList);
+  const nowListIdx = getState(listPageIdx) - 1;
+  const subButton = $(".list_sub_button");
+  const unSubButton = $(".list_unsub_button");
+
+  if (subList.includes(nowData[nowListIdx].name)) {
+    subButton.style.display = "none";
+    unSubButton.style.display = "block";
+  } else {
+    subButton.style.display = "block";
+    unSubButton.style.display = "none";
   }
 }
 

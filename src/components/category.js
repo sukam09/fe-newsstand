@@ -148,6 +148,7 @@ function updateCategory() {
   } else if (!isGridMode && isSubMode) {
     if (currentListIdx > 1) {
       setState(listPageIdx, 1);
+      clickedCategory.classList.remove(CATEGORY_CLICKED);
       if (clickedCategory.nextElementSibling === null) {
         categoryList[0].classList.add(CATEGORY_CLICKED);
         setState(categoryIdx, 0);
@@ -155,7 +156,6 @@ function updateCategory() {
         clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
         setState(categoryIdx, currentCategoryIdx + 1);
       }
-      clickedCategory.classList.remove(CATEGORY_CLICKED);
     }
   }
 }
@@ -199,5 +199,6 @@ export async function setCategory() {
   register(listPageIdx, updateCategory);
   register(categoryIdx, updateCategory);
   register(listPageIdx, refreshInterval);
+  register(categoryIdx, refreshInterval);
   register(categoryIdx, updateCategoryClicked);
 }

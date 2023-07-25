@@ -93,16 +93,6 @@
   font-size: 12px;
   color: #5f6e76;
 }
-.list_container__wrapper__header__button {
-  font-size: 12px;
-  color: #879298;
-  background-color: #f5f7fb;
-  border-radius: 12px;
-  border: solid 1px #d2dae0;
-  padding: 5px 10px 5px 8.5px;
-  height: 24px;
-  line-height: 12px;
-}
 .list_container__wrapper__main {
   display: flex;
   align-items: flex-start;
