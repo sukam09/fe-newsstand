@@ -87,6 +87,7 @@ function makeMainNewsNav(logo, edit, name) {
   });
 }
 
+// 메인 뉴스 생성
 function makeMainNews(img, title) {
   const newsMainContentParent = document.querySelector(".newsstand__list-left");
 
@@ -105,12 +106,12 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   const newsListParent = document.querySelector(".newsstand__list-right");
 
   const data = categoryDataList[getCategoryIdx() % CATEROY_NUMBER];
-  const name = data[page].name;
-  const img = data[page].imgSrc;
-  const title = data[page].title[0];
-  const logo = data[page].lightSrc;
-  const edit = data[page].edit;
-  const newsTitles = data[page].title;
+  const name = data[page].name; // 언론사
+  const img = data[page].imgSrc; // 뉴스 이미지 src
+  const title = data[page].title[0]; // 뉴스 제목
+  const logo = data[page].lightSrc; // 언론사 로고 src
+  const edit = data[page].edit; // 편집일
+  const newsTitles = data[page].title; // 6개짜리 뉴스 목록.
   // 기존 뉴스 목록 데이터 삭제.
   removeChildElement(newsListParent);
 
@@ -176,18 +177,6 @@ export function removeProgressAction() {
   }
 }
 
-function addProgressAction(element) {
-  void element.offsetWidth;
-  element.style.padding = 0; // 선택된 카테고리의 padding 제거
-  element.classList.add("newsstand__focus");
-  element.classList.add("newsstand__focus-font");
-  element.children[0].classList.add("newsstand__progress"); // 첫번째 자식: 프로그래스 바
-  element.children[1].classList.add("newsstand__progress-category"); // 두번째 자식: 카테고리 제목
-  element.children[2].classList.add("newsstand__progress-now"); // 세번째 자식: 진행상황 (1/82)
-  element.children[3].classList.add("newsstand__progress-slash"); // 세번째 자식: 진행상황 (1/82)
-  element.children[4].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
-}
-
 export function onUserRightClickCategory(
   rightBtn,
   CATEROY_NUMBER,
@@ -225,6 +214,7 @@ export function onUserLeftClickCategory(
   );
 }
 
+// 사용자가 직접 카테고리를 클릭했을때.
 export function onUserClickCategory(
   CATEROY_NUMBER,
   categoryDataList,
@@ -245,6 +235,7 @@ export function onUserClickCategory(
   });
 }
 
+// 좌측버튼을 클릭했을때.
 export function leftBtnEvent(
   categoryList,
   CATEROY_NUMBER,
@@ -253,11 +244,9 @@ export function leftBtnEvent(
 ) {
   return function () {
     let currentContents = getCurrentContent();
-
     setContentsPage(--currentContents);
 
     if (currentContents <= 0) {
-      // setGoBefore(true);
       if (getNavTabView() === VIEW.MY_SUB) {
         let idx =
           getCategoryIdx() <= 0
@@ -313,17 +302,20 @@ export function startProgressAction(categoryList, categoryDataLength) {
   activeProgressClass(element, childIndex, categoryDataLength);
 }
 
+// 내가 구독한 언론사 or 전체 언론사일때 보여지는 텍스트가 다르기때문에 처리해주는 함수.
 function showTextByNavTab(element, categoryDataLength, childIndex) {
   getNavTabView() === VIEW.ALL_SUB
     ? showCurrentContentText(element, categoryDataLength, childIndex)
     : showNextContentText(element);
 }
 
+// 전체 언론사일때 1/82 형식으로 보여줌
 function showCurrentContentText(element, categoryDataLength, childIndex) {
   element.children[2].textContent = `${getCurrentContent()}`;
   element.children[3].textContent = `/`;
   element.children[4].textContent = `${categoryDataLength[childIndex]}`;
 }
+// 내가 구독한 언론사일때 '>' 형식으로 보여줌
 function showNextContentText(element) {
   element.children[2].textContent = "";
   element.children[3].textContent = "";

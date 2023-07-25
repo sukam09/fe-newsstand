@@ -149,12 +149,15 @@ function paintNews(paintData = publisherData) {
 
 function gridObserved() {
   const subList = getSubscrbeList() || [];
+  const currentUserView = getUserView();
 
-  getUserView() === VIEW.GRID &&
+  // 그리드 뷰 && 내가 구독한 언론사일때.
+  currentUserView === VIEW.GRID &&
     getNavTabView() === VIEW.MY_SUB &&
     paintNews(subList);
 
-  getUserView() === VIEW.GRID &&
+  // 그리드 뷰 && 전체 언론사일때.
+  currentUserView === VIEW.GRID &&
     getNavTabView() === VIEW.ALL_SUB &&
     paintNews();
 }

@@ -42,8 +42,6 @@ const category = [
   "지역",
 ];
 
-// 카테고리 태그, 리스트 버튼 태그 생성.
-// makeCategoryTag(category);
 makeButtonTag(
   ".newsstand__list-navigation-btn",
   "left-list-button btn-disabled",
@@ -66,9 +64,7 @@ const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
-store.subscribe(() => {
-  getUserView() === VIEW.LIST && paintNewsCategory();
-});
+store.subscribe(listObserved);
 
 export function paintNewsCategory() {
   const categoryNameList =
@@ -272,4 +268,8 @@ function handleProgressAnimationIteration(
     element.children[4].textContent = `${contentsLength[idx]}`;
     makeNewsList(getCurrentContent() - 1, totalCategory, categoryDataList);
   };
+}
+
+function listObserved() {
+  getUserView() === VIEW.LIST && paintNewsCategory();
 }
