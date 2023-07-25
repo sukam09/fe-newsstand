@@ -8,6 +8,7 @@ import {
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
 import { useGetAtom, useSetAtom } from "../../../store/atom.js";
+import { CATEGORY_LIST } from "../../../constants/constants.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
@@ -48,17 +49,17 @@ const renderCategoryBar = (categoryList) => {
     const $li = document.createElement("li");
     $li.innerHTML = category;
     $li.className = "hover-underline";
-    $li.addEventListener("click", setCategoryState(category));
 
     $categoryBar.appendChild($li);
   });
 
   const currentCategory = useGetAtom(categoryState) || categoryList[0];
 
-  setCategoryState(currentCategory)();
+  setCategoryState(currentCategory);
 };
-const setCategoryState = (category) => () =>
+const setCategoryState = (category) => {
   useSetAtom(categoryState, category);
+};
 
 const renderSubscribePressBar = () => {
   const isAllType = checkIsAllType();
@@ -73,7 +74,6 @@ const renderSubscribePressBar = () => {
     const $li = document.createElement("li");
     $li.innerHTML = press;
     $li.className = "hover-underline available-medium14 ";
-    $li.addEventListener("click", setSelectedSubState(press));
 
     $categoryBar.appendChild($li);
   });
@@ -81,9 +81,9 @@ const renderSubscribePressBar = () => {
   const currentSelectedSubState =
     useGetAtom(selectedSubscribeState) || subscribedList[0];
 
-  setSelectedSubState(currentSelectedSubState)();
+  setSelectedSubState(currentSelectedSubState);
 };
-const setSelectedSubState = (press) => () => {
+const setSelectedSubState = (press) => {
   useSetAtom(selectedSubscribeState, press);
 };
 
@@ -96,4 +96,22 @@ const renderHeaderBar = (categoryList) => () => {
     : renderSubscribePressBar();
 };
 
-export { renderHeaderBar, setDragSlider, renderSubscribePressBar };
+const handleHeaderClick = ({ target }) => {
+  const updateText = target.textContent;
+  const currentSubscribeState = useGetAtom(subscribeState);
+  const categoryList = CATEGORY_LIST;
+
+  const isAllType = checkIsAllType();
+
+  if (isAllType) {
+    categoryList.includes(updateText) && setCategoryState(updateText);
+  } else {
+    currentSubscribeState.includes(updateText) &&
+      setSelectedSubState(updateText);
+  }
+};
+const setEvents = () => {
+  $categoryBar.addEventListener("click", handleHeaderClick);
+};
+
+export { renderHeaderBar, setDragSlider, renderSubscribePressBar, setEvents };

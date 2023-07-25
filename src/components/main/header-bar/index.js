@@ -2,6 +2,7 @@ import {
   renderHeaderBar,
   setDragSlider,
   renderSubscribePressBar,
+  setEvents,
 } from "./HeaderBar.js";
 import {
   viewState,
@@ -12,6 +13,7 @@ import { useSubscribeAtom } from "../../../store/atom.js";
 
 export const setHeaderBar = (categoryList) => {
   setDragSlider();
+  setEvents();
 
   useSubscribeAtom(viewState, renderHeaderBar(categoryList));
   useSubscribeAtom(subscribeState, renderSubscribePressBar);
