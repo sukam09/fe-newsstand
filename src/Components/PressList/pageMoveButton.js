@@ -1,5 +1,5 @@
 import { changeCategory } from "./categoryTab.js";
-import { setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList } from "./pressNews.js";
+import { setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList, clickSubUnsubBtnAtList } from "./pressNews.js";
 import { setProgressPage, startProgressAnimation } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
 import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../store.js";
@@ -125,6 +125,7 @@ function clickNewsTurner(whatButton) {
   setDrawPressNews();
   setProgressPage();
   underlineNewsTitle();
+  clickSubUnsubBtnAtList();
 }
 
 export { turnNewsPage, clickNewsTurner, setProgressEventFlag }

@@ -114,7 +114,6 @@ function handleClickSubUnsubBtn({ target }) {
 function removeClickedPressId(clickedPressId) {
   removepress(clickedPressId);
   drawPressImg();
-  initNews();
 }
 
 /** 구독하면 내가 구독한 언론사 리스트로 이동 */

@@ -3,8 +3,9 @@ import pressStore from "../../pressDataStore.js";
 import { turnNewsPage, setProgressEventFlag } from "./pageMoveButton.js";
 import { setCategory, showNewsOfCategory } from "./categoryTab.js";
 import { initProgress, removeProgress } from "./progressBar.js";
-import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store, addpress } from "../../store.js";
 import { PATH_UNSUBSCRIBE_X_BTN, PATH_SUBSCRIBE_BTN } from "../../path.js";
+import { initView } from "../PressTab/pressTab.js";
 
 const shuffledAllPress = pressStore.getShuffledAllPress
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
@@ -36,9 +37,9 @@ function drawPressNewsHeader(whatPressNews) {
     : PATH_SUBSCRIBE_BTN
   $pressNews.innerHTML = `
   <div class="press-news-info">
-    <img src=${whatPressNews[getClickedCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getClickedCategoryIndex()][getPage()]["name"]}">
+    <img class = "press-list-logo" data-id = "${whatPressNews[getClickedCategoryIndex()][getPage()]["id"]}" src=${whatPressNews[getClickedCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getClickedCategoryIndex()][getPage()]["name"]}">
     <span class="display-medium12 text-default">${whatPressNews[getClickedCategoryIndex()][getPage()]["editDate"]}</span>
-    <img src=${subUnsubBtnImg} alt="">
+    <img class = "sub-unsub-btn pointer" data-src=${subUnsubBtnImg} src=${subUnsubBtnImg} alt="">
   </div>
   `
 }
@@ -81,6 +82,7 @@ function getSubscribedPressOfList() {
   return myPress
 }
 
+/** 내가 구독한 언론사가 없을 때 메시지 띄우기 */
 function drawEmptyMessage() {
   $pressNews.innerHTML = `
     <div class = "no-subscribed-press-container">
@@ -89,25 +91,54 @@ function drawEmptyMessage() {
   `
 }
 
-/**
-초기값으로 첫번 째 종합/경제 뉴스 보여주기
- */
-async function initNews() {
-  if (getPress() === 'all' || getSubscribedPressId().length !== 0) {
-    setClickedCategoryIndex(START_CATEGORY_IDX);
-    setPage(FIRST_PAGE_IDX);
-    setCategory();
-    setDrawPressNews();
-    setProgressEventFlag();
-    initProgress();
-    showNewsOfCategory()
-    underlineNewsTitle();
-  }
-  else {
-    removeProgress();
-    setCategory();
-    drawEmptyMessage()
-  }
+/** 구독하기/해지하기 클릭 이벤트 리스너 등록 */
+function clickSubUnsubBtnAtList() {
+  const $subUnsubBtnAtList = document.querySelector('.sub-unsub-btn');
+  $subUnsubBtnAtList.addEventListener('click', handleClickSubUnsubBtnAtList);
 }
 
-export { initNews, setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList }
+/** 구독하기/해지하기 클릭 이벤트 리스너 핸들링 */
+function handleClickSubUnsubBtnAtList() {
+  const $subUnsubBtnAtList = document.querySelector('.sub-unsub-btn');
+  const $pressListLogo = document.querySelector('.press-list-logo');
+  const currentPressId = parseInt($pressListLogo.getAttribute('data-id'));
+  const subUnsubButtonSrc = $subUnsubBtnAtList.getAttribute('data-src');
+  subUnsubButtonSrc === PATH_SUBSCRIBE_BTN
+    ? addpress(currentPressId)
+    : removepress(currentPressId)
+  initNews();
+}
+
+/** 내가 구독한 언론사가 없을 때의 리스트 보기 초기화 */
+function initNewsWhenMyPressEmpty() {
+  removeProgress();
+  setCategory();
+  drawEmptyMessage()
+}
+
+/** 전체 언론사 보기 이거나 내가 구독한 언론사가 있을 때의 리스트 보기 초기화 */
+function initNewsWhenAllPressOrMyPressNotEmpty() {
+  setClickedCategoryIndex(START_CATEGORY_IDX);
+  setPage(FIRST_PAGE_IDX);
+  setCategory();
+  setDrawPressNews();
+  setProgressEventFlag();
+  initProgress();
+  showNewsOfCategory()
+  clickSubUnsubBtnAtList();
+  underlineNewsTitle();
+}
+
+/** 전체 언론사 리스트 또는 내가 구독한 언론사가 있는 리스트인지 판단 */
+function isAllPressOrMyPressNotEmpty() {
+  return getPress() === 'all' || getSubscribedPressId().length !== 0
+}
+
+/** 상황 별 리스트 초기화 */
+function initNews() {
+  isAllPressOrMyPressNotEmpty() === true
+    ? initNewsWhenAllPressOrMyPressNotEmpty()
+    : initNewsWhenMyPressEmpty()
+}
+
+export { initNews, setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList, clickSubUnsubBtnAtList }

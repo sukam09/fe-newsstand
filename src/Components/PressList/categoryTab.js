@@ -1,5 +1,5 @@
 import { FIRST_PAGE_IDX } from "../../constant.js"
-import { setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList } from "./pressNews.js";
+import { setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList, clickSubUnsubBtnAtList } from "./pressNews.js";
 import { turnNewsPage } from "./pageMoveButton.js";
 import { initProgress } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
@@ -81,6 +81,7 @@ function changeCategory() {
   setDrawPressNews();
   initProgress();
   underlineNewsTitle();
+  clickSubUnsubBtnAtList();
 }
 
 export { showNewsOfCategory, changeCategory, setCategory }
