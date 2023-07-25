@@ -62,4 +62,11 @@
   flex-direction: column;
   flex: 1 0 0;
   z-index: 999;
+  white-space: nowrap;
+}
+
+.press-news-bar {
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
 }
