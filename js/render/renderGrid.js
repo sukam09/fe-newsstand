@@ -8,7 +8,6 @@ import { renderMain } from "./renderMain.js";
 const gridMain = document.getElementById("main-grid");
 
 const renderGrid = (logos) => {
-  // console.log(logos);
   if (Stores.getSubscribedMode() == "all") shuffle(logos);
   makeGrid(logos);
   addEventArrowGrid(logos);
@@ -47,10 +46,9 @@ function clickSubscribeButtonGrid(logos) {
         Stores.setSubscribeNewsContent(subscribeButton[index].id);
         replaceSubscribeButton(subscribeButton[index], "cancel");
         snackBar("내가 구독한 언론사에 추가되었습니다!");
-      } else {
-        alertGrid(subscribeButton[index]);
-        replaceSubscribeButton(subscribeButton[index], "subscribe");
-      }
+        Stores.setPageMode("list");
+        renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+      } else alertGrid(subscribeButton[index]);
     });
   });
 }
@@ -69,9 +67,9 @@ function alertClickGrid(subscribeButton, alertDiv) {
   alertYes.addEventListener("click", () => {
     alertDiv.style.display = "none";
     Stores.removeSubscribeNewsContent(subscribeButton.id);
-    Stores.setPageMode("list");
+    Stores.setPageMode("grid");
     replaceSubscribeButton(subscribeButton, "subscribe");
-    if (!Object.keys(Stores.getSubscribeNewsContent()).length)
+    if (Object.keys(Stores.getSubscribeNewsContent()).length === 0)
       Stores.setSubscribedMode("all");
     renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
   });

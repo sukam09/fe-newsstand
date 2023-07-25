@@ -23,7 +23,7 @@ function drawNewsArticle(news, progressBarId) {
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
     article_div += `<div class="news-main-article">${news[progressBarId][0].article[article_cnt]}</div>`;
   }
-  article_div += `<div class="news-main-article-press">${news[progressBarId][0].press}언론사에서 직접 편집한 뉴스입니다.</div>`;
+  article_div += `<div class="news-main-article-press">${news[progressBarId][0].name}언론사에서 직접 편집한 뉴스입니다.</div>`;
   return article_div;
 }
 
@@ -44,7 +44,7 @@ function drawNewsHeader(news, progressBarId) {
   const news_header = document.querySelector(".news-header");
   news_header.innerHTML = "";
   let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${
-    news[progressBarId][currentCategoryPageNumber - 1].press
+    news[progressBarId][currentCategoryPageNumber - 1].name
   }"  src="${
     news[progressBarId][currentCategoryPageNumber - 1].logo
   }"><span class="news-edit-time">${
@@ -86,7 +86,7 @@ function clickSubscribeButton(news, progressBarId) {
       if (timeOut) clearTimeout(timeOut);
       alert(
         news,
-        news[progressBarId][currentCategoryPageNumber - 1].press,
+        news[progressBarId][currentCategoryPageNumber - 1].name,
         progressBarId
       );
     }

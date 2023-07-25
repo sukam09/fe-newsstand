@@ -26,7 +26,7 @@ const renderSubscribe = (pageMode) => {
   Stores.setPage(0);
   boldSubscribed();
   return pageMode === "grid"
-    ? renderGrid(subscribeNews)
+    ? renderGrid(Stores.getSubscribeLogo())
     : renderCardList(subscribeNews);
 };
 

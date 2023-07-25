@@ -185,7 +185,7 @@ section.main {
   padding: 16px 24px 16px 24px;
   gap: 10px;
   z-index: 1;
-  transition: opacity 1s ease-in-out;
+  /* transition: opacity 1s ease-in-out; */
 }
 
 .progress-bar {
