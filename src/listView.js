@@ -1,9 +1,12 @@
 import { CATEGORY_TABS, MAX_NEWS_COUNT } from "./core/store/constants.js";
 import { getNewsContent } from "./core/utils/api.js";
-import { getState, register } from "./core/observer/observer.js";
+import { getState, register, setState } from "./core/observer/observer.js";
 import {
   categoryIdx,
+  deletePress,
+  isAlertOn,
   isGrid,
+  isSnackOn,
   isSubTab,
   listPageIdx,
   subscribeList,
@@ -31,7 +34,8 @@ function createNewsList(content) {
 
 // 리스트 뷰의 뉴스 append
 function appendNewsList(newsList) {
-  return () => {
+  const isGridMode = getState(isGrid);
+  if (!isGridMode) {
     const isSubMode = getState(isSubTab);
     const nowCategoryIdx = getState(categoryIdx);
     const nowListIdx = getState(listPageIdx) - 1;
@@ -48,23 +52,70 @@ function appendNewsList(newsList) {
         return press.category === CATEGORY_TABS[nowCategoryIdx];
       });
     }
+    if (nowData[nowListIdx] === undefined) return;
+    $(".list_container").dataset.press = nowData[nowListIdx].name;
     elements.newsDetail.innerHTML = `${nowData[nowListIdx].name} 언론사에서 직접 편집한 뉴스입니다.`;
     elements.topicHeaderLogo.src = nowData[nowListIdx].lightSrc;
     elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
     elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
+    updateSubButtons(nowData);
     for (let i = 0; i < MAX_NEWS_COUNT; i++) {
       const newNewsList = createNewsList(nowData[nowListIdx].subNews[i]);
       elements.newsListContainer.appendChild(newNewsList);
     }
-  };
+  }
+}
+
+function updateSubButtons(nowData) {
+  const subList = getState(subscribeList);
+  const nowListIdx = getState(listPageIdx) - 1;
+  const subButton = $(".list_sub_button");
+  const unSubButton = $(".list_unsub_button");
+
+  if (subList.includes(nowData[nowListIdx].name)) {
+    subButton.style.display = "none";
+    unSubButton.style.display = "block";
+  } else {
+    subButton.style.display = "block";
+    unSubButton.style.display = "none";
+  }
+}
+
+function subButtonClicked() {
+  const currentSubList = getState(subscribeList);
+  setState(subscribeList, [
+    ...currentSubList,
+    $(".list_container").dataset.press,
+  ]);
+  setState(isSnackOn, true);
+}
+
+function unSubButtonClicked() {
+  setState(isAlertOn, true);
+  setState(deletePress, $(".list_container").dataset.press);
 }
 
 async function setListViewEvents() {
   const newsList = await getNewsContent();
-  register(listPageIdx, appendNewsList(newsList));
-  register(categoryIdx, appendNewsList(newsList));
-  register(isGrid, appendNewsList(newsList));
-  register(isSubTab, appendNewsList(newsList));
+  const subButton = $(".list_sub_button");
+  const unSubButton = $(".list_unsub_button");
+  subButton.addEventListener("click", subButtonClicked);
+  unSubButton.addEventListener("click", unSubButtonClicked);
+  register(listPageIdx, () => {
+    appendNewsList(newsList);
+  });
+  register(categoryIdx, () => {
+    appendNewsList(newsList);
+  });
+  register(isGrid, () => {
+    appendNewsList(newsList);
+  });
+  register(isSubTab, () => {
+    appendNewsList(newsList);
+  });
+  register(subscribeList, () => {
+    appendNewsList(newsList);
+  });
 }
 
 export { setListViewEvents };

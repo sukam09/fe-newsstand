@@ -185,9 +185,6 @@ async function setGridEvents() {
     appendGridList(shuffledArr);
   });
   register(subscribeList, checkMode);
-  register(subscribeList, () => {
-    console.log(getState(subscribeList));
-  });
 }
 
 export { setGridEvents };

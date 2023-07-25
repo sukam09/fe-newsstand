@@ -1,5 +1,10 @@
-import { register } from "../core/observer/observer.js";
-import { isAlertOn, isSnackOn, subscribeList } from "../core/store/store.js";
+import { register, setState } from "../core/observer/observer.js";
+import {
+  isAlertOn,
+  isSnackOn,
+  isSubTab,
+  subscribeList,
+} from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
 
 const snackbar = $(".snackbar");
@@ -24,6 +29,9 @@ function setInvisible() {
 export function setSnackbar() {
   register(isSnackOn, toggleSnackbar);
   register(isAlertOn, setInvisible);
-  progressLine.addEventListener("animationend", setInvisible);
+  progressLine.addEventListener("animationend", () => {
+    setInvisible();
+    setState(isSubTab, true);
+  });
   snackbar.addEventListener("click", setInvisible);
 }
