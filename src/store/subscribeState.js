@@ -3,7 +3,7 @@ class SubscribeState {
     this.subPressList = [];
   }
 
-  getSubState() {
+  getSubscribeState() {
     return this.subPressList;
   }
 

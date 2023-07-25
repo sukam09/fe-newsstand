@@ -3,9 +3,12 @@ import {
   runProgress,
   clearProgress,
 } from "./progressBar.js";
+import { runSubProgress } from "./subProgressBar.js";
 import { setDisplayofArr, removeAddClass } from "./util/utils.js";
 import { setSubGrid } from "./subGrid.js";
 import { drawListView } from "./listNews.js";
+import { appendSubCategory, drawSubListView } from "./subListNews.js";
+import { subscribeState } from "./store/subscribeState.js";
 
 let grid_view_selected = true;
 let total_press;
@@ -86,6 +89,7 @@ function changeToSubListView() {
   getTotalSubClass();
   removeAddClass(total_press, "bold-font-init", "not-clicked");
   removeAddClass(subscribed_press, "not-clicked", "bold-font-init");
+  appendSubCategory();
   grid_view_selected = false;
 }
 
@@ -125,6 +129,13 @@ my_sub.addEventListener("click", () => {
     changeToSubGridView();
   } else {
     changeToSubListView();
+    if (subscribeState.getSubscribeState().length !== 0) {
+      document
+        .querySelector(".sub-list-nav .progress-item")
+        .classList.add("progress-bar");
+      runSubProgress();
+      drawSubListView(0);
+    }
   }
 });
 

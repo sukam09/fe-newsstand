@@ -33,7 +33,7 @@ function makeItemEmpty(idx) {
 
 function setSubGrid() {
   let idx = 0;
-  const sub_press_list = subscribeState.getSubState();
+  const sub_press_list = subscribeState.getSubscribeState();
   sub_press_list.forEach((press) => {
     appendPressInSubGrid(press, idx);
     idx++;
