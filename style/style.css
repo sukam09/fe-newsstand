@@ -46,3 +46,13 @@ body {
   width: 20px;
   height: 20px;
 }
+
+.no-view {
+  display: none;
+  height: 388px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-border-default) solid var(--border-default);
+  background: var(--surface-default);
+}

@@ -26,6 +26,7 @@ function drawGrid() {
   const curMode = getState(currentMode);
   if (curMode === MODE.LIST_ALL || curMode === MODE.LIST_SUB) return;
 
+  document.querySelector(".no-view").style.display = "none";
   document.querySelector(".list-view").style.display = "none";
   document.querySelector(".grid-view").style.display = "flex";
 
