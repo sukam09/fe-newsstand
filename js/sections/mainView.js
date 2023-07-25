@@ -5,9 +5,10 @@ import {
   FIRST_PAGE_NUM,
   CATEGORY,
   ICON_IMG_PATH,
+  gridIndex,
 } from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { shuffleImgIndex } from "../utils/shuffleIndex.js";
+import { shuffleArray } from "../utils/shuffleIndex.js";
 import {
   getView,
   getPage,
@@ -15,10 +16,14 @@ import {
   getMode,
   getCurrentPress,
 } from "../core/getter.js";
+import { getData } from "../core/api.js";
 function MainView() {
   document.addEventListener("click", handleClick);
-  store.setState({ index: shuffleImgIndex() });
 
+  store.setState({
+    gridIndex: shuffleArray(gridIndex),
+    // listIndex: shuffleArray(data),
+  });
   drawPopup();
   showGridView();
 }
@@ -43,12 +48,12 @@ function drawPopup() {
   const new_div_alert = document.createElement("div");
   new_div_alert.classList.add("popup", "alert");
   new_div_alert.innerHTML += `
-        <div class="message"><span class="press">${
+        <div class="display-medium16 message"><span class="display-bold16 press">${
           getCurrentPress().name
-        }</span>을(를)\n구독해지하시겠습니까?</div>
+        }</span>을(를)<br>구독해지하시겠습니까?</div>
         <div class="buttons">
-          <button class="btn-yes">예, 해지합니다</button>
-          <button class="btn-no">아니오</button>
+          <button class="available-medium16 btn-yes">예, 해지합니다</button>
+          <button class="available-medium16 btn-no">아니오</button>
         </div>`;
 
   // snackbar 그리는 부분

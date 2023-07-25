@@ -55,7 +55,9 @@ export function showGridView() {
   let list;
   const subscribedIndex = getSubscribedPress().map((item) => item.index);
 
-  getTabMode() === "all" ? (list = getIndex()) : (list = subscribedIndex);
+  getTabMode() === "all"
+    ? (list = getIndex("gridIndex"))
+    : (list = subscribedIndex);
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");

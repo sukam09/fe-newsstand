@@ -3,7 +3,12 @@ import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
 import { store } from "../core/store.js";
 import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
-import { getPage, getTabMode, getSubscribedPress } from "../core/getter.js";
+import {
+  getPage,
+  getTabMode,
+  getSubscribedPress,
+  getIndex,
+} from "../core/getter.js";
 import { getData } from "../core/api.js";
 import { checkPage } from "./checkPage.js";
 
@@ -20,6 +25,7 @@ async function drawList(current) {
 
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
+    // const data = getIndex("listIndex");
     const data = await getData("newsListData");
     let list_content = data.News.filter((news) =>
       getTabMode() === "all" ? news.category === current : news.name === current

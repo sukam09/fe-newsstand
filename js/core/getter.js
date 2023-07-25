@@ -4,8 +4,8 @@ export function getMode() {
   return store.state.mode;
 }
 
-export function getIndex() {
-  return store.state.index;
+export function getIndex(index) {
+  return index === "gridIndex" ? store.state.gridIndex : store.state.listIndex;
 }
 export function getView() {
   return store.state.view;

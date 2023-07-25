@@ -14,6 +14,9 @@ export const CATEGORY = Object.freeze([
   "스포츠/연예",
   "매거진/전문지",
 ]);
+export const gridIndex = Array(PRESS_CNT)
+  .fill()
+  .map((arr, i) => i + 1);
 
 export const PRESS_LOGO_IMG_PATH = `../assets/images/logo/`;
 export const ICON_IMG_PATH = "../assets/icons/";
@@ -28,4 +31,5 @@ Object.freeze({
   PRESS_CNT,
   PRESS_LOGO_IMG_PATH,
   ICON_IMG_PATH,
+  gridIndex,
 });
