@@ -58,11 +58,17 @@ function handleAnimationEnd(e, _press) {
 
 function checkRange(e) {
   if (!e.target.closest(".popup") && !e.target.closest(".sub")) {
-    const popups = document.querySelectorAll(".popup");
+    deletePopupAndAnimation();
+  }
+}
+
+function deletePopupAndAnimation() {
+  const popups = document.querySelectorAll(".popup");
+  if (popups)
     popups.forEach((popup) => {
       popup.style.display = "none";
     });
-  }
+  document.addEventListener("animationend", (e) => handleAnimationEnd);
 }
 
 export function handleSubscribe(_press) {
@@ -70,7 +76,7 @@ export function handleSubscribe(_press) {
     (press) => press.name === _press.name
   );
   document.addEventListener("click", (e) => checkRange(e));
-
+  deletePopupAndAnimation();
   //구독한 상태에서 누를 경우
   if (isSubscribed) {
     store.setState({ currentPress: _press });
