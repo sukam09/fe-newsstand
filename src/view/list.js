@@ -1,7 +1,7 @@
 import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
 import { getState, subscribe } from "../controller/observer.js";
-import { toggleSubscription, toggleDarkMode, listCurrentPage, currentMode } from "../model/store.js";
+import { toggleDarkMode, listCurrentPage, currentMode, subscribeNewsNum } from "../model/store.js";
 
 function initList(parentNode) {
   const dom = document.createElement("div");
@@ -79,10 +79,9 @@ function drawList() {
   drawFieldTab();
 }
 
-subscribe(toggleSubscription, drawList);
-
 subscribe(listCurrentPage, drawList);
 subscribe(currentMode, drawList);
+subscribe(subscribeNewsNum, drawList);
 subscribe(toggleDarkMode, drawList);
 
 export { initList, drawList };

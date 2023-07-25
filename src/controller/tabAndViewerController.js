@@ -1,6 +1,6 @@
 import { CATEGORY, MODE, GLOBAL } from "../model/variable.js";
 import { getState, setState } from "./observer.js";
-import { currentMode, gridCurrentPage, listCurrentPage } from "../model/store.js";
+import { currentMode, gridCurrentPage, listCurrentPage, subscribeNewsNum } from "../model/store.js";
 
 function initTabAndViewerEvent() {
   const allPressBtn = document.querySelector(".all-press-btn");
@@ -20,7 +20,7 @@ function moveAllPress() {
 }
 
 function moveSubPress() {
-  if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) return;
+  if (getState(subscribeNewsNum) === 0) return;
 
   setState(listCurrentPage, 0);
   GLOBAL.LIST_CURRENT_CATEGORY = CATEGORY.ECONOMY;

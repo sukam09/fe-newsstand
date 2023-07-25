@@ -2,7 +2,7 @@ import { CONSTANT, MODE, GLOBAL, PATH } from "../model/variable.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
 import { moveLeft } from "./arrowBtnController.js";
 import { getState, setState, setStateOnce } from "./observer.js";
-import { currentMode, gridCurrentPage, listCurrentPage, showAlert, showSnackBar, toggleSubscription } from "../model/store.js";
+import { currentMode, gridCurrentPage, listCurrentPage, showAlert, showSnackBar, subscribeNewsNum } from "../model/store.js";
 import { resetSnackBarTimer } from "./componentController.js";
 import { updateCategory } from "./fieldTabController.js";
 
@@ -48,20 +48,20 @@ function toggleSubscribe(src) {
 
   if (targetNews.is_subscribe === "true") {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
-    GLOBAL.SUBSCRIBE_NEWS_NUM++;
     setSubscribeBtnX();
     setStateOnce(showSnackBar);
+    setState(subscribeNewsNum, getState(subscribeNewsNum) + 1);
   } else {
     GLOBAL.SUBSCRIBE_NEWS_DATA = GLOBAL.SUBSCRIBE_NEWS_DATA.filter((value) => {
       return !(value.path.slice(-6) === src.slice(-6));
     });
-    GLOBAL.SUBSCRIBE_NEWS_NUM--;
 
-    viewExceptionHandling();
-    if (getState(currentMode) === MODE.LIST_SUB) {
+    const newSubscribeNewsNum = getState(subscribeNewsNum) - 1;
+    viewExceptionHandling(newSubscribeNewsNum);
+    if (getState(currentMode) === MODE.LIST_SUB && getState(listCurrentPage) >= newSubscribeNewsNum) {
       moveLeft();
     }
-    setStateOnce(toggleSubscription);
+    setState(subscribeNewsNum, newSubscribeNewsNum);
   }
 }
 
@@ -71,15 +71,15 @@ function setSubscribeBtnX() {
   listSubBtn.childNodes[1].style.display = "none";
 }
 
-function viewExceptionHandling() {
+function viewExceptionHandling(newSubscribeNewsNum) {
   if (getState(currentMode) === MODE.GRID_SUB) {
-    if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
+    if (newSubscribeNewsNum === 0) {
       setState(currentMode, MODE.GRID_ALL);
-    } else if (getState(gridCurrentPage) > Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
+    } else if (getState(gridCurrentPage) > Math.floor((newSubscribeNewsNum - 1) / CONSTANT.GRID_NEWS_NUM)) {
       setState(gridCurrentPage, getState(gridCurrentPage) - 1);
     }
   } else if (getState(currentMode) === MODE.LIST_SUB) {
-    if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
+    if (newSubscribeNewsNum === 0) {
       updateCategory(0);
       setState(currentMode, MODE.LIST_ALL);
     }

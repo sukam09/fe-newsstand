@@ -1,11 +1,6 @@
 import { MODE } from "./variable.js";
 import { initState } from "../controller/observer.js";
 
-const toggleSubscription = initState({
-  key: "toggleSubscription",
-  defaultValue: false,
-});
-
 const showSnackBar = initState({
   key: "showSnackBar",
   defaultValue: false,
@@ -36,4 +31,9 @@ const currentMode = initState({
   defaultValue: MODE.GRID_ALL,
 });
 
-export { toggleSubscription, showSnackBar, showAlert, toggleDarkMode, gridCurrentPage, listCurrentPage, currentMode };
+const subscribeNewsNum = initState({
+  key: "subscribeNewsNum",
+  defaultValue: 0,
+});
+
+export { showSnackBar, showAlert, toggleDarkMode, gridCurrentPage, listCurrentPage, currentMode, subscribeNewsNum };
