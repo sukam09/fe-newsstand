@@ -36,9 +36,11 @@ export default class AllNews extends Component {
     });
 
     if (viewType === TEXT.GRID) {
-      new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
-        option,
-      });
+      option === TEXT.SUBSCRIBE_EN && subscribedList.length === 0
+        ? new AllNewsBlankView(customQuerySelector('.all-news-wrapper', this.$target))
+        : new AllNewsGridView(customQuerySelector('.all-news-wrapper', this.$target), {
+            option,
+          });
     }
 
     if (viewType === TEXT.LIST) {

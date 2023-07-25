@@ -34,7 +34,7 @@ export default class AllNewsGridView extends Component {
   mounted() {
     const pressOrder = this.getGridPress();
     const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
-    const maxPage = Math.max(Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT), 0);
+    const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
 
     this.state.page > maxPage && this.setState({ page: maxPage });
 
