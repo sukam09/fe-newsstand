@@ -1,8 +1,8 @@
 import Observable from './Observable.js';
-import { showSnackBar } from './index.js';
 import { fetchData, getLocalStorage, setLocalStorage } from '../api/index.js';
 import { NEWS_DATA_URL, TEXT } from '../src/constants/index.js';
 import { shufflePressOrder } from '../src/utils/index.js';
+import { showSnackBar } from '../src/utils/showSnackBar.js';
 
 export class PressStore extends Observable {
   constructor() {
