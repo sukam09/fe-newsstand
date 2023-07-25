@@ -1,12 +1,6 @@
 import { shuffle } from '../utils.js';
 import { store, actionCreator } from '../../core/store.js';
-import {
-  NEWS_PRESS_NUMBERS_PER_PAGE,
-  PAGE_MIN_NUMBER,
-  PAGE_MAX_NUMBER,
-  SNACKBAR_DURATION,
-  SUBSCRIBE_MESSAGE,
-} from '../constants.js';
+import { NEWS_PRESS_NUMBERS_PER_PAGE, SNACKBAR_DURATION, SUBSCRIBE_MESSAGE } from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
