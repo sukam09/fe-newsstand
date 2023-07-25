@@ -56,7 +56,7 @@ export default class AllNewsMyListView extends Component {
                 </div>
 
                 <label class="available-medium16  text-strong">
-                ${this.state.currentPress?.main_news.title}
+                  ${this.state.currentPress?.main_news.title}
                 </label>
               </div>
 

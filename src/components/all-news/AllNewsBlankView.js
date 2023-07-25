@@ -5,7 +5,6 @@ export default class AllNewsBlankView extends Component {
     return `
       <div class="news-list-wrapper">
         <div class="newslist-list-view border-default">
-          <nav class="border-default surface-alt"></nav>
           <article>
             <p class="display-bold16 text-strong">구독한 언론사가 없습니다.</p>
 
