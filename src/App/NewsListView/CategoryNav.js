@@ -2,7 +2,7 @@
 기사 컨텐츠 네비게이션 컴포넌트
 */
 
-import store from "../../store/Store.js";
+import store from "../../store/PressStore.js";
 import { fetchPress } from "../../api/fetchNews.js";
 
 const press = await fetchPress();

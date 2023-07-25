@@ -3,9 +3,11 @@
 */
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import findTargetChildNode from "../../api/findTargetChildNode.js";
-import store from "../../store/Store.js";
+import findTargetParentNode from "../../api/findTargetParentNode.js";
+import { addPress, removePress, pressStore } from "../../store/PressStore.js";
 import Component from "../../utils/Component.js";
 import { mainStore, ALL, MY } from "../../store/MainStore.js";
+import { gridStore } from "../../store/GridStore.js";
 
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
@@ -18,8 +20,11 @@ const unsubscibeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="13
   <path d="M4.26699 9L3.66699 8.4L6.06699 6L3.66699 3.6L4.26699 3L6.66699 5.4L9.06699 3L9.66699 3.6L7.26699 6L9.66699 8.4L9.06699 9L6.66699 6.6L4.26699 9Z" fill="#879298"/>
   </svg>해지하기`;
 
+const isSubscribed = (pressId) => {
+  return pressStore.getState().pressArr.indexOf(pressId) > -1;
+};
 const createButtonHTML = function (pressId, mode) {
-  const buttonInner = store.isSubscribed(pressId)
+  const buttonInner = isSubscribed(pressId)
     ? unsubscibeButtonInner
     : subscibeButtonInner;
 
@@ -61,18 +66,32 @@ const createPressList = function (page, pressArr, mode) {
   return pressList;
 };
 
-const handleSubscriptionButtonClick = (e) => {
+const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
   let $button;
-  if (e.currentTarget !== e.target) {
-    $button = findTargetChildNode(e.target, "button");
-    if ($button) {
-      store.dispatch($button.innerText, $button.dataset.key);
+  let newPress;
+  const pressState = pressStore.getState().pressArr;
 
-      $button.innerHTML =
-        $button.innerText === "구독하기"
-          ? unsubscibeButtonInner
-          : subscibeButtonInner;
+  if (currentTarget !== target) {
+    $button = findTargetChildNode(target, "button");
+    if (!$button) {
+      $button = findTargetParentNode(target, "button");
     }
+
+    if ($button.innerText === "구독하기") {
+      $button.innerHTML = unsubscibeButtonInner;
+      pressState.push($button.dataset.key);
+      newPress = addPress(pressState);
+    } else {
+      $button.innerHTML = subscibeButtonInner;
+      const index = pressState.indexOf($button.dataset.key);
+      if (index > -1) {
+        // only splice array when item is found
+        pressState.splice(index, 1); // 2nd parameter means remove one item only
+      }
+      newPress = removePress(pressState);
+    }
+
+    pressStore.dispatch(newPress);
   }
 };
 
@@ -83,7 +102,7 @@ function PressGridView($target, props) {
   if (mainState.pressType === ALL) {
     this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
   } else {
-    this.indexArr = store.myPressList;
+    this.indexArr = pressStore.getState().pressArr;
   }
 
   Component.call(this, $target, props);
@@ -93,13 +112,24 @@ Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
 
 PressGridView.prototype.template = function () {
   const mainState = mainStore.getState();
+  const gridState = gridStore.getState();
 
   if (mainState.pressType === ALL) {
-    return createPressList(1, this.indexArr, this.props.mode);
+    return createPressList(
+      gridState.currentPage,
+      this.indexArr,
+      this.props.mode
+    );
   } else {
-    return createPressList(1, this.indexArr, this.props.mode);
+    return createPressList(
+      gridState.currentPage,
+      this.indexArr,
+      this.props.mode
+    );
   }
 };
 
-PressGridView.prototype.setEvent = function () {};
+PressGridView.prototype.setEvent = function () {
+  this.$el.addEventListener("click", handleSubscriptionButtonClick);
+};
 export default PressGridView;

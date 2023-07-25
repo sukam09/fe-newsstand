@@ -7,7 +7,7 @@ import { fetchNews, fetchPress } from "../../api/fetchNews.js";
 import Button from "../MainContent/Button.js";
 import PressGridView from "../MainContent/PressGridView.js";
 import NewsListView from "../MainContent/NewsListView.js";
-import store from "../../store/Store.js";
+import store from "../../store/PressStore.js";
 import Component from "../../utils/Component.js";
 import { mainStore, GRID, LIST } from "../../store/MainStore.js";
 
@@ -42,6 +42,17 @@ cancelButton.innerHTML = "아니오";
 $alertDiv.appendChild(document.createElement("div"));
 $alertDiv.appendChild(okButton);
 $alertDiv.appendChild(cancelButton);
+
+const createButtons = function () {
+  let buttonTemplate = "";
+  const direction = ["left", "right"];
+
+  buttonTemplate = direction.reduce((result, currentValue) => {
+    return result + `<button class="${currentValue}-button_content"}></button>`;
+  }, buttonTemplate);
+
+  return buttonTemplate;
+};
 
 function MainContent($target, props) {
   Component.call(this, $target, props);
@@ -98,9 +109,9 @@ MainContent.prototype.template = function () {
   const mainState = mainStore.getState();
 
   if (mainState.viewType === GRID) {
-    return `<ul class="newspaper__list"></ul>`;
+    return `<ul class="newspaper__list"></ul>${createButtons()}`;
   } else {
-    return `<div class="news-container"></div>`;
+    return `<div class="news-container"></div>${createButtons()}`;
   }
 };
 
