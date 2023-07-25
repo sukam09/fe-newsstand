@@ -60,6 +60,7 @@ function handleClickCategory({ target }) {
 function handleClickCategoryOfList(target, whatNewsCategory) {
   const categoryIndex = whatNewsCategory.findIndex(category => category === target.innerText);
   setClickedCategoryIndex(categoryIndex);
+  setPage(0);
   changeCategory();
 }
 
@@ -76,7 +77,7 @@ function resetNewsTurner() {
  클릭한 카테고리에 대해서 화면에 나타냄
  */
 function changeCategory() {
-  setPage(FIRST_PAGE_IDX)
+  //setPage(FIRST_PAGE_IDX)
   resetNewsTurner();
   setDrawPressNews();
   initProgress();

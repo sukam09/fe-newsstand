@@ -92,33 +92,50 @@ function showNewsTurnerOfList(whatPressNews) {
   $newsNextButton.style.display = 'block';
 }
 
-/**
- 끝 페이지면 다음 페이지로 이동
- */
-function moveNextCategory() {
+/** 페이지 이동에 따른 카테고리 설정 */
+function moveCategory() {
   const MyPressNews = getSubscribedPressOfList();
-  getView() === 'list' && getPress() === 'all'
-    ? moveNextCategoryOfList(shuffledAllPressNews, allPressNewsCategory)
-    : ''
-  getView() === 'list' && getPress() === 'my'
-    ? moveNextCategoryOfList(MyPressNews, getSubscribedPressId())
-    : ''
+  if (getView() === 'list' && getPress() === 'all') {
+    moveNextCategoryOfList(shuffledAllPressNews, allPressNewsCategory)
+    movePrevCategoryOfList(shuffledAllPressNews, allPressNewsCategory)
+  }
+  else if (getView() === 'list' && getPress() === 'my') {
+    moveNextCategoryOfList(MyPressNews, getSubscribedPressId());
+    movePrevCategoryOfList(MyPressNews, getSubscribedPressId())
+  }
 }
 
+/** 다음 카테고리 이동 */
 function moveNextCategoryOfList(whatPressNews, category) {
   if (getPage() === whatPressNews[getClickedCategoryIndex()].length) {
     setClickedCategoryIndex((getClickedCategoryIndex() + 1) % category.length)
+    setPage(0);
     changeCategory();
   }
+}
+
+/** 이전 카테고리 이동 */
+function movePrevCategoryOfList(whatPressNews, category) {
+  if (getPage() === -1) {
+    if (getClickedCategoryIndex() === 0) setClickedCategoryIndex(category.length - 1)
+    else setClickedCategoryIndex((getClickedCategoryIndex() - 1))
+    setPage(whatPressNews[getClickedCategoryIndex()].length - 1)
+    changeCategory();
+  }
+}
+
+/** 페이지 이동 */
+function movePage(whatButton) {
+  whatButton === 'left' ? setPage(getPage() - 1) : setPage(getPage() + 1);
 }
 
 /**
  해당 페이지에 맞는 뉴스 띄우기
  */
 function clickNewsTurner(whatButton) {
-  whatButton === 'left' ? setPage(getPage() - 1) : setPage(getPage() + 1);
+  movePage(whatButton);
+  moveCategory();
   showNewsTurner();
-  moveNextCategory()
   setDrawPressNews();
   setProgressPage();
   underlineNewsTitle();
