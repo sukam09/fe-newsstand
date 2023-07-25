@@ -1,3 +1,5 @@
+import { store } from "../store/store.js";
+
 export const fetchData = async () => {
   const agencies = await fetch("../data/press.json").then((res) => {
     return res.json();
@@ -17,4 +19,10 @@ export const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
+};
+
+export const checkSubscription = () => {
+  return (
+    store.subscriptions.filter((item) => item.subscribe === true).length === 0
+  );
 };
