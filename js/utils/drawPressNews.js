@@ -28,8 +28,7 @@ export function drawPressNews(list_content) {
       getTabMode() === "subscribe" &&
       news.category === list_content[getPage() - 1].category
     ) {
-      main_news = `<img src="${news.main_news.thumbnail}" alt="thumbnail"/>
-      <p class="thumbnail-title">${news.main_news.title}</p>`;
+      main_news = generateMainNews(news.main_news);
       sub_news = generateSubNews(news.sub_news);
     }
   });
