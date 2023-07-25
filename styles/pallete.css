@@ -3,6 +3,11 @@
 }
 
 :root {
+    --width-default: 930px;
+    --height-default: 388px;
+    --height-banner: 49px;
+    --height-banner-neg: -49px;
+
     --color-grayscale-100: #d2dae0;
     --color-grayscale-black: #14212b;
     --color-blue-500: #4362d0;
@@ -14,6 +19,7 @@
     --color-grayscale-50: #f5f7f9;
     --color-grayscale-white: #ffffff;
     --color-grayscale-white-alt: rgba(255, 255, 255, 0.7);
+
     --text-text-strong: var(--color-grayscale-black);
     --text-text-bold: var(--color-grayscale-500);
     --text-text-default: var(--color-grayscale-400);

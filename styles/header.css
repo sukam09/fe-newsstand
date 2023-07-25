@@ -1,0 +1,26 @@
+@import url("./pallete.css");
+
+/* header */
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    width: inherit;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-text-strong);
+}
+
+.header-right {
+    color: var(--text-text-default);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}

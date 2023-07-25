@@ -80,12 +80,12 @@ function createCategoryBtn(category_name, category_size, idx) {
         className: "btn-tab-category selected-bold14",
         txt: category_name,
     });
-    const $btn_tab_count = create.div({ className: "btn-tab-count" });
+    const $btn_tab_count = create.div({ className: "btn-tab-count display-bold12" });
     $btn_tab_count.append(
-        create.span({ className: "btn-tab-count-present display-bold12", txt: 1 }),
-        create.span({ className: "btn-tab-count-divison display-bold12", txt: "/" }),
+        create.span({ className: "btn-tab-count-present", txt: 1 }),
+        create.span({ className: "btn-tab-count-divison", txt: "/" }),
         create.span({
-            className: "btn-tab-count-entire display-bold12",
+            className: "btn-tab-count-entire",
             txt: category_size,
         })
     );
@@ -213,7 +213,7 @@ function createSubNews(press, sub_news) {
     });
 
     const $editor = create.span({
-        className: "display-medium14",
+        className: "editor display-medium14",
         txt: press + " 언론사에서 직접 편집한 뉴스입니다.",
     });
 
