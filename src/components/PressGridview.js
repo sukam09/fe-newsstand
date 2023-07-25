@@ -40,7 +40,7 @@ export default function PressGridView({ $target, initialState }) {
     const { page, pidMap } = this.state;
 
     const startIndex = NEWS_PRESS_NUMBERS_PER_PAGE * (page - 1);
-    const endIndex = startIndex + 23;
+    const endIndex = startIndex + NEWS_PRESS_NUMBERS_PER_PAGE - 1;
     const currentData = data.slice(startIndex, endIndex + 1);
 
     currentData.forEach(item => {
