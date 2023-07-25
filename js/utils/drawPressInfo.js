@@ -17,7 +17,9 @@ export function drawPressInfo(list_content) {
       alt="press-logo"
       src="${PRESS_LOGO_IMG_PATH}${getMode()}/img${_index}.svg"
     />
-    <span class="edit-date">${list_content[getPage() - 1].edit_date} 편집</span>
+    <span class="display-medium12 edit-date">${
+      list_content[getPage() - 1].edit_date
+    } 편집</span>
     <div class="sub">${button}</div>
   </div>`;
   const newDiv = document.createElement("div");

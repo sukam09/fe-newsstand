@@ -5,20 +5,26 @@ import {
   FIRST_PAGE_NUM,
   CATEGORY,
   ICON_IMG_PATH,
+  gridIndex,
 } from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { shuffleImgIndex } from "../utils/shuffleIndex.js";
+import { shuffleArray } from "../utils/shuffleIndex.js";
 import {
   getView,
   getPage,
   getSubscribedPress,
   getMode,
+  getCurrentPress,
 } from "../core/getter.js";
+import { getData } from "../core/api.js";
 function MainView() {
-  // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
 
-  store.setState({ index: shuffleImgIndex() });
+  store.setState({
+    gridIndex: shuffleArray(gridIndex),
+    // listIndex: shuffleArray(data),
+  });
+  drawPopup();
   showGridView();
 }
 
@@ -33,6 +39,50 @@ function changePage(target) {
     showGridView();
   } else {
     showListView("");
+  }
+}
+
+function drawPopup() {
+  const view_content = document.querySelector(".view-content");
+  // alert 그리는 부분
+  const new_div_alert = document.createElement("div");
+  new_div_alert.classList.add("popup", "alert");
+  new_div_alert.innerHTML += `
+        <div class="display-medium16 message"><span class="display-bold16 press">${
+          getCurrentPress().name
+        }</span>을(를)<br>구독해지하시겠습니까?</div>
+        <div class="buttons">
+          <button class="available-medium16 btn-yes">예, 해지합니다</button>
+          <button class="available-medium16 btn-no">아니오</button>
+        </div>`;
+
+  // snackbar 그리는 부분
+  const new_div_snackbar = document.createElement("div");
+  new_div_snackbar.classList.add("popup", "snackbar");
+  new_div_snackbar.textContent = "내가 구독한 언론사에 추가되었습니다.";
+
+  // popup창들 추가
+  view_content.append(new_div_alert, new_div_snackbar);
+}
+
+function updateTabSelection(selectedTab) {
+  const allTab = document.getElementById("all");
+  const subscribeTab = document.getElementById("subscribe");
+
+  allTab.classList.remove("selected-bold16", "clicked");
+  allTab.classList.add("available-medium16");
+  subscribeTab.classList.remove("selected-bold16", "clicked");
+  subscribeTab.classList.add("available-medium16");
+  selectedTab.classList.remove("available-medium16");
+  selectedTab.classList.add("selected-bold16", "clicked");
+  store.setState({ page: FIRST_PAGE_NUM, tabMode: `${selectedTab.id}` });
+
+  if (getView() === "grid") {
+    showGridView();
+  } else {
+    showListView(
+      selectedTab.id === "all" ? CATEGORY[0] : getSubscribedPress()[0]
+    );
   }
 }
 
@@ -65,24 +115,10 @@ function handleClick(e) {
         : changePage(target);
       break;
     case "all":
-      document.getElementById("subscribe").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-      } else {
-        showListView(CATEGORY[0]);
-      }
+      updateTabSelection(document.getElementById("all"));
       break;
     case "subscribe":
-      document.getElementById("all").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-      } else {
-        showListView(getSubscribedPress[0]);
-      }
+      updateTabSelection(document.getElementById("subscribe"));
       break;
     default:
       break;

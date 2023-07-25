@@ -52,20 +52,12 @@ async function getPressName(index) {
   return name;
 }
 export function showGridView() {
-  /*
-  - sub모드일 때 더이상 없으면 checkpage(true);로 오른쪽 버튼 hidden 처리
-  - 1. 시작(getPage()-1) * press view count
-  - 2. 만약, 구독한 언론사 길이가 i 보다 작다면 img 노노
-  - 3. 그리고 마지막에 checkpage(hidden); 해주기
-  //
-  - all 모드일 때
-  - 2번에서 전체 언론사 갯수를 상수로 일단 잡아봄 
-   */
-
   let list;
   const subscribedIndex = getSubscribedPress().map((item) => item.index);
 
-  getTabMode() === "all" ? (list = getIndex()) : (list = subscribedIndex);
+  getTabMode() === "all"
+    ? (list = getIndex("gridIndex"))
+    : (list = subscribedIndex);
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");

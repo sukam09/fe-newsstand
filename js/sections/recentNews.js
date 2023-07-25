@@ -21,7 +21,7 @@ function drawRollingHtml(target, news) {
   let newsHTML = `<div class="wrap"><ul>`;
   for (let i = 0; i < RECENT_NEWS_CNT; i++) {
     newsHTML +=
-      '<li class="' +
+      '<li class="available-medium14 ' +
       (i === 0
         ? "current"
         : i === 1
@@ -31,7 +31,7 @@ function drawRollingHtml(target, news) {
         : "") +
       '">';
     newsHTML +=
-      '<span class="press">' +
+      '<span class="display-bold14 press">' +
       news[i].press +
       "</span>" +
       '<a href="#">' +
