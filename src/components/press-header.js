@@ -3,7 +3,10 @@ import { LIST } from '../constants/press-data.js'; // 변수 빼기
 import { Store } from '../utils/store.js';
 import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from './light-dark-mode.js';
-import { initPressGrid } from './press-grid.js';
+
+import { initPressGrid } from './grid.js';
+
+// import { initPressGrid } from './press-grid.js';
 import { initPressList } from './press-list.js';
 
 class PressHeaderStore extends Store {
@@ -17,6 +20,7 @@ class PressHeaderStore extends Store {
     this.pressData = [];
     this.renderDOM();
     this.setupEvent();
+    initLightDarkMode();
   }
 
   async initPress() {
@@ -24,7 +28,6 @@ class PressHeaderStore extends Store {
       const fetchData = await getFetchData(URL.DATA);
       this.pressData = fetchData.press;
 
-      initLightDarkMode(); //
       this.render();
       this.subscribe(this.render.bind(this));
     } catch (error) {
