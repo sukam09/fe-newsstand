@@ -1,6 +1,6 @@
-import { store, actionCreator } from '../../core/store.js';
-import { shuffle, getSubscribed } from '../utils.js';
-import { NEWS_PRESS_NUMBERS_PER_PAGE, SNACKBAR_DURATION, SUBSCRIBE_MESSAGE } from '../constants.js';
+import { store } from '../../core/store.js';
+import { shuffle, getSubscribed, handleSubscribe } from '../utils.js';
+import { NEWS_PRESS_NUMBERS_PER_PAGE, SUBSCRIBE_MESSAGE } from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
@@ -77,7 +77,7 @@ export default function PressGridView({ $target, initialState }) {
     });
   };
 
-  function handleClickCell({ target }, subscribeButton) {
+  const handleClickCell = ({ target }, subscribeButton) => {
     // dataset에서 꺼낸 id는 string임에 주의
     let id = target.dataset.id;
     let name = target.dataset.name;
@@ -89,30 +89,7 @@ export default function PressGridView({ $target, initialState }) {
       name = dataset.name;
     }
 
-    handleSubscribe(parseInt(id, 10), name, subscribeButton);
-  }
-
-  const handleSubscribe = (id, name, subscribeButton) => {
-    const { isSubscribed } = subscribeButton.state;
-
-    if (isSubscribed) {
-      this.alert.setState({ ...this.alert.state, isShow: true, pid: id, pressName: name, subscribeButton });
-    } else {
-      subscribeButton.setState({ ...subscribeButton.state, isSubscribed: true });
-
-      // 만약 스낵바 타이머가 걸려 있으면 초기화하고 다시 5초 카운트
-      if (this.timer) {
-        clearTimeout(this.timer);
-      }
-
-      this.snackBar.setState({ ...this.snackBar.state, isShow: true });
-      this.timer = setTimeout(() => {
-        this.snackBar.setState({ ...this.snackBar.state, isShow: false });
-        // TODO: 내가 구독한 리스트로 이동
-      }, SNACKBAR_DURATION);
-
-      store.dispatch(actionCreator('subscribe', { pid: id, pressName: name }));
-    }
+    handleSubscribe(parseInt(id, 10), name, this, subscribeButton);
   };
 
   const validatePage = page => {
