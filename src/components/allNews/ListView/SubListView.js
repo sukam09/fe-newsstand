@@ -1,5 +1,5 @@
+import { subCategoriesObj, subPressObj } from "../../../constants/index.js";
 import ArrowButton from "../ArrowButton.js";
-import SubCategories from "./SubCategories.js";
 
 export default class SubListView {
   constructor() {
@@ -14,8 +14,31 @@ export default class SubListView {
   render() {
     const $container = document.createElement("div");
     $container.classList.add("list-container");
-    $container.appendChild(new SubCategories().$wrapper);
+    $container.appendChild(subCategoriesObj.$wrapper);
+    $container.appendChild(subPressObj.$wrapper);
 
+    this.$wrapper.appendChild(
+      new ArrowButton({
+        name: "LeftButton",
+        isVisible: true,
+        action: this.goPreviousNews.bind(subPressObj),
+      })
+    );
     this.$wrapper.appendChild($container);
+    this.$wrapper.appendChild(
+      new ArrowButton({
+        name: "rightButton",
+        isVisible: true,
+        action: this.goNextNews.bind(subPressObj),
+      })
+    );
+  }
+
+  goNextNews() {
+    this.goNextPageByArrowBtn();
+  }
+
+  goPreviousNews() {
+    this.goPreviousPageByArrowBtn();
   }
 }

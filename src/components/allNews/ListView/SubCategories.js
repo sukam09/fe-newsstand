@@ -1,4 +1,4 @@
-import { PROGRESS_SPEED } from "../../../constants/index.js";
+import { PROGRESS_SPEED, subPressObj } from "../../../constants/index.js";
 import pressName from "../../../constants/pressName.js";
 import { store } from "../../../core/store.js";
 import Icon from "../../common/Icon.js";
@@ -56,6 +56,7 @@ export default class SubCategories {
         this.currentCategory = 0;
       }
       this.render();
+      this.goNextNews.call(subPressObj);
     }, PROGRESS_SPEED);
   }
 
@@ -66,6 +67,11 @@ export default class SubCategories {
     this.goNextPage();
   }
 
+  /** 특정 카테고리 이동 */
+  goSpecificCategory(currentCategory) {
+    this.goSpecificPress(currentCategory);
+  }
+
   /**
    * 카테고리 클릭 시 카테고리 이동
    */
@@ -73,6 +79,7 @@ export default class SubCategories {
     clearInterval(this.progressInterval);
     const targetIndex = this.subCategories.findIndex((v) => v === pressId);
     this.currentCategory = targetIndex;
+    this.goSpecificCategory.call(subPressObj, this.currentCategory);
     this.handleProgress();
   }
 }

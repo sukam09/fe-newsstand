@@ -1,4 +1,4 @@
-import categories from "../../../constants/categories.js";
+import { categories } from "../../../constants/categories.js";
 import {
   CATEGORIES_COUNT,
   PROGRESS_SPEED,

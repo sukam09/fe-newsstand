@@ -1,6 +1,7 @@
-import AllNewsNavigation from "../components/allNews/AllNewsNavigation.js";
 import Categories from "../components/allNews/ListView/Categories.js";
 import PressNews from "../components/allNews/ListView/PressNews.js";
+import SubCategories from "../components/allNews/ListView/SubCategories.js";
+import SubPressNews from "../components/allNews/ListView/SubPressNews.js";
 import AllNews from "../components/allNews/index.js";
 
 export const CATEGORIES_COUNT = 7;
@@ -12,3 +13,5 @@ export const ROLLING_SPEED = 5000;
 export const pressObj = new PressNews();
 export const categoriesObj = new Categories();
 export const allNewsObj = new AllNews();
+export const subPressObj = new SubPressNews();
+export const subCategoriesObj = new SubCategories();
