@@ -1,6 +1,9 @@
 const NEWS_COUNT = 24;
 const ROLLING_WAIT_TIME = 5000;
 const ROLLING_DIFF_TIME = 1000;
+const PROGRESS_DURATION = 2000;
+const PROGRESS_MAX_RATE = 100;
+const PROGRESS_SCROLL_DURATION = 500;
 const PROGRESS_TIME = 1000;
 const PROGRESS_MAX = 100;
 const PROGRESS_DIFF = 5;
@@ -13,8 +16,20 @@ const CATEGORY_LIST = [
   "매거진/전문지",
   "지역",
 ];
-const CATEGORY_LENGTH = 7;
-const PRESS_ICON = {
+const CATEGORY_LENGTH = CATEGORY_LIST.length;
+const VIEW_TYPE = Object.freeze({
+  LIST: "LIST",
+  GRID: "GRID",
+});
+const VIEW_OPTION_TYPE = Object.freeze({
+  SUBSCRIBE: "SUBSCRIBE",
+  ALL: "ALL",
+});
+const SUBSCRIBE_MESSAGE = Object.freeze({
+  ADD: "내가 구독한 언론사에 추가되었습니다.",
+  DELETE: "내가 구독한 언론사에서 삭제되었습니다.",
+});
+const PRESS_ICON = Object.freeze({
   오마이뉴스: {
     light: "./src/assets/images/light/0.png",
     dark: "./src/assets/images/dark/0.png",
@@ -399,7 +414,7 @@ const PRESS_ICON = {
     light: "./src/assets/images/light/95.png",
     dark: "./src/assets/images/dark/95.png",
   },
-};
+});
 
 export {
   NEWS_COUNT,
@@ -411,4 +426,10 @@ export {
   PROGRESS_DIFF,
   PROGRESS_MAX,
   CATEGORY_LENGTH,
+  VIEW_TYPE,
+  VIEW_OPTION_TYPE,
+  SUBSCRIBE_MESSAGE,
+  PROGRESS_DURATION,
+  PROGRESS_MAX_RATE,
+  PROGRESS_SCROLL_DURATION,
 };
