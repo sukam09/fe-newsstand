@@ -1,4 +1,5 @@
 import { store } from '../core/store.js';
+import { getPressList } from './utils.js';
 import { CATEGORY_NUMBERS } from './constants.js';
 
 import Header from './components/Header.js';
@@ -7,16 +8,23 @@ import PressTab from './components/PressTab.js';
 import PressGridView from './components/PressGridview.js';
 import PressListView from './components/PressListView.js';
 
+const pressList = await getPressList();
+
 export default function App({ $app }) {
   this.state = {
     press: 'all',
     view: 'grid',
+    pressList: [],
   };
 
-  this.setState = nextState => {
+  this.setState = (nextState, isRender = true``) => {
     this.state = nextState;
-    this.render();
+    if (isRender) {
+      this.render();
+    }
   };
+
+  this.setState({ ...this.state, pressList }, false);
 
   new Header({ $target: $app });
 
@@ -83,6 +91,7 @@ export default function App({ $app }) {
             press: this.state.press,
             page: 1,
             data: [],
+            pressList,
           },
         })
       : new PressListView({
