@@ -3,6 +3,8 @@ import { store } from '../../core/store.js';
 import { convertRegDate, getSubscribed } from '../utils.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
+import SubscribeButton from './common/SubscribeButton.js';
+
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
 
@@ -53,6 +55,7 @@ export default function PressListView({ $target, initialState }) {
         ...this.state,
         present,
         entire,
+        pid,
         pressLogo: logo,
         pressName: name,
         regDate,
@@ -186,10 +189,6 @@ export default function PressListView({ $target, initialState }) {
           <img class="press-image" src="${pressLogo}"/>
         </div>
         <div class="edit-date">${convertRegDate(regDate)} 편집</div>
-        <button class="list-subscribe-button">
-          <img src="../asset/icons/plus.svg" />
-          <p>구독하기</p>
-        </button>
       </div>
       <div class="news">
         <div class="news-main">
@@ -204,6 +203,15 @@ export default function PressListView({ $target, initialState }) {
         </div>
       </div>
     `;
+
+    const $pressInfo = $article.querySelector('.press-info');
+    new SubscribeButton({
+      $target: $pressInfo,
+      initialState: {
+        type: 'list',
+        isSubscribed: press === 'my' ? true : getSubscribed(parseInt(this.state.pid, 10)),
+      },
+    });
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {

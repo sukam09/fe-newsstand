@@ -17,10 +17,15 @@ export default function SubscribeButton({ $target, initialState }) {
 
     $button.className = className;
 
-    $button.innerHTML = `
-      <img src="../asset/icons/${icon}.svg" />
-      <p>${text}</p>
-    `;
+    $button.innerHTML =
+      type === 'grid'
+        ? `<img src="../asset/icons/${icon}.svg" />
+    <p>${text}</p>`
+        : `<img src="../asset/icons/${icon}.svg" />`;
+
+    if (type === 'list' && !isSubscribed) {
+      $button.innerHTML += `<p>${text}</p>`;
+    }
   };
 
   this.render();

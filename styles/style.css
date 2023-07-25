@@ -487,6 +487,19 @@ header {
   line-height: normal;
 }
 
+.list-unsubscribe-button {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-default, #fff);
+}
+
 .news {
   display: flex;
   width: 882px;
