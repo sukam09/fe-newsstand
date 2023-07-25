@@ -1,21 +1,20 @@
 import { shuffle_press } from "../util/shuffle.js";
 import { subscribeButton } from "../controller/Components/subscribeButton.js";
-import { startTimer, timerId } from "../controller/timer.js";
+import { startTimer } from "../controller/timer.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
 import { store } from "../model/store.js";
-import { renderTabs } from "./field.js";
+import { renderTabs, updateField } from "./field.js";
 import { news_data } from "./grid.js";
 
 export let category;
-export const eachCategoryLength = [];
 export let news;
+export let eachCategoryLength = [];
 export const setNews = (item) => {
   news = item;
 };
 
-export function renderSection(news) {
+function renderSection(news) {
   const index = VIEW.tab === "subscribe" ? LIST_PAGE.category : LIST_PAGE.page;
-
   const currentPress = news[index];
   const eachNews = currentPress?.news?.slice(1);
 
@@ -54,16 +53,14 @@ export function renderSection(news) {
 
   subscribeButton();
 }
-// store.subscribe(renderList);
 export function renderList() {
   category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
-  category.forEach((category, index) => {
-    let length = 0;
-    news_data.forEach((press) => {
-      if (press.category === category) length++;
-    });
-    eachCategoryLength[index] = length;
-  });
+
+  eachCategoryLength = category.reduce((acc, currCategory) => {
+    const length = news_data.filter((press) => press.category === currCategory).length;
+    acc.push(length);
+    return acc;
+  }, []);
 
   const main = document.querySelector("main");
   main.className = "list";
@@ -86,7 +83,6 @@ export function renderList() {
 
 function updateSection() {
   const index = VIEW.tab === "subscribe" ? LIST_PAGE.category : LIST_PAGE.page;
-
   const currentPress = news[index];
 
   if (currentPress) {
@@ -96,12 +92,15 @@ function updateSection() {
 
     const subscribe_icon = pressInfo.querySelector(".subscribe-btn");
     const pressID = currentPress.ID;
+
+    const subscribeTextElement = subscribe_icon.querySelector(".subscribe-text");
+    const subscribeBtnElement = subscribe_icon.querySelector(".plus-btn");
     if (store.getIsSubscribe(pressID)) {
-      subscribe_icon.querySelector(".subscribe-text").innerHTML = "";
-      subscribe_icon.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
+      subscribeTextElement.innerHTML = "";
+      subscribeBtnElement.setAttribute("src", "../../asset/button/closed.png");
     } else {
-      subscribe_icon.querySelector(".subscribe-text").innerHTML = "구독하기";
-      subscribe_icon.querySelector(".plus-btn").setAttribute("src", "../../asset/button/plus.png");
+      subscribeTextElement.innerHTML = "구독하기";
+      subscribeBtnElement.setAttribute("src", "../../asset/button/plus.png");
     }
 
     const mainNews = document.querySelector(".press-news-wrap .news .news-main");
@@ -114,24 +113,44 @@ function updateSection() {
       news.innerHTML = currentPress.news[index + 1];
     });
     subNews.querySelector(".explain").innerHTML = `${currentPress.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  } else {
-    const press_news_wrap = document.querySelector("main .news-list-wrap .press-news-wrap");
-    press_news_wrap.innerHTML = "<div class='no-press'>구독한 언론사가 없습니다</div>";
   }
+  // else {
+  //   const press_news_wrap = document.querySelector("main .news-list-wrap .press-news-wrap");
+  //   press_news_wrap.innerHTML = "<div class='no-press'>구독한 언론사가 없습니다</div>";
+  // }
 }
 export function updateList() {
   updateSection();
+  if (VIEW.tab === "entire") {
+    updateField();
+  }
 }
 
-console.log("리스트뷰");
-// if (store) {
-//   console.log("리스트뷰 구독 등록");
-//   store.subscribe(
-//     () => {
-//       VIEW.setTab("subscribe");
-//     },
-//     "subscribe",
-//     "list"
-//   );
-//   store.subscribe(renderList, "unsubscribe", "list");
-// }
+/**
+ * 리스트뷰 구독(옵져버)
+ * 리스트뷰에서 구독할 때 내가 구독한 언론사 페이지로 넘어감(setTab -> renderList(renderTabs, renderSection) 자동렌더링)
+ * 해지할 때 리스트 전체를 렌더하지 않고 버튼 상태만 변경
+ */
+function subscriber() {
+  if (store) {
+    store.subscribe(
+      () => {
+        const autoMoveSubscribePage = true;
+        LIST_PAGE.category = store.getSubscribe().length - 1;
+        VIEW.setTab("subscribe", autoMoveSubscribePage);
+      },
+      "subscribe",
+      "list"
+    );
+    store.subscribe(
+      () => {
+        const subscribeBtnElement = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
+        subscribeBtnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
+        subscribeBtnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/plus.png");
+      },
+      "unsubscribe",
+      "list"
+    );
+  }
+}
+subscriber();

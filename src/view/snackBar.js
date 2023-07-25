@@ -13,7 +13,7 @@ function snackBar() {
     const snackBarElement = document.createElement("div");
     snackBarElement.className = "snack-bar";
     snackBarElement.innerHTML = `<span class="snack-bar-text display-medium16">내가 구독한 언론사에 추가되었습니다.</span>`;
-    const main = VIEW.layout === "grid" ? document.querySelector(".grid") : document.querySelector(".list");
+    const main = document.querySelector("main");
     main.appendChild(snackBarElement);
 
     setTimeout(() => {

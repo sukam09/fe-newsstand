@@ -1,6 +1,5 @@
 import { shuffle_press } from "../util/shuffle.js";
 import { VIEW, LIST_PAGE } from "../model/global.js";
-import { store } from "../model/store.js";
 import { news_data } from "./grid.js";
 import { category, eachCategoryLength, setNews } from "./list.js";
 import { fieldClick, fieldXScroll } from "../controller/Components/field.js";
@@ -47,16 +46,15 @@ export function renderTabs(news) {
   fieldXScroll();
 }
 export function updateField() {
-  if (VIEW.tab === "entire") {
-    const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
-    const progressTabNumber = progressTab.querySelector(".text-category-number");
-    progressTabNumber.querySelector(".present").innerHTML = `${LIST_PAGE.page + 1} / `;
-  }
+  const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
+  const progressTabNumber = progressTab.querySelector(".text-category-number");
+  progressTabNumber.querySelector(".present").innerHTML = `${LIST_PAGE.page + 1} / `;
 }
-// store.subscribe(updateCategory);
 export function updateCategory() {
-  const categoryNews = news_data.filter((press) => press.category === category[LIST_PAGE.category]);
-  setNews(VIEW.tab === "entire" ? shuffle_press(categoryNews) : store.getSubscribe());
+  if (VIEW.tab === "entire") {
+    const categoryNews = news_data.filter((press) => press.category === category[LIST_PAGE.category]);
+    setNews(shuffle_press(categoryNews));
+  }
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
   const nextProgressEl = document.querySelectorAll(".news-list-wrap .field-tab .each-tab")[LIST_PAGE.category];
 

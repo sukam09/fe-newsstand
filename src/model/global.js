@@ -19,7 +19,6 @@ export const LIST_PAGE = {
   setPage: (page) => {
     LIST_PAGE.page = page;
     updateList();
-    updateField();
   },
   setCategory: (category, prevCateLength) => {
     LIST_PAGE.category = category;
@@ -31,23 +30,25 @@ export const LIST_PAGE = {
 export const VIEW = {
   layout: "grid",
   tab: "entire",
-  setLayout: (layout, changeSubscribeView = false) => {
+  setLayout: (layout, autoMoveSubscribePage = false) => {
     VIEW.layout = layout;
     renderViewButton(VIEW.layout);
     renderPageButton();
     if (VIEW.layout === "grid") {
+      GRID_PAGE.page = 0;
       renderGrid();
     } else {
+      if (!autoMoveSubscribePage) LIST_PAGE.category = 0;
       renderList();
     }
   },
-  setTab: (tab) => {
+  setTab: (tab, autoMoveSubscribePage = false) => {
     VIEW.tab = tab;
     renderPressFilterTab(VIEW.tab);
     if (VIEW.tab === "entire") {
       VIEW.setLayout("grid");
     } else {
-      VIEW.setLayout("list");
+      VIEW.setLayout("list", autoMoveSubscribePage);
     }
   },
 };

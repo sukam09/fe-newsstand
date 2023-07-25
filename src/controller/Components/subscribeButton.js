@@ -21,20 +21,19 @@ function SubscribeBtnEventHandler(e, btnElement, pressID) {
   //구독하기
   if (!isSubscribe) {
     //구독 배열에 저장
-    store.dispatch(actionCreator("subscribe", { press: pressData }));
 
     if (VIEW.layout === "list") {
       // 내가 구독한 언론사 페이지로 이동
       snackBar(e).then(() => {
         timerId && clearInterval(timerId);
-        LIST_PAGE.category = store.getSubscribe().length - 1;
-        VIEW.setTab("subscribe");
+        store.dispatch(actionCreator("subscribe", { press: pressData }));
       });
     } else {
       //그리드뷰
       snackBar(e);
       btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
       btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
+      store.dispatch(actionCreator("subscribe", { press: pressData }));
     }
   } else {
     //해지하기

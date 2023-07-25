@@ -1,5 +1,5 @@
 import { fetchRollingArticle } from "../../api.js";
-console.log("롤링");
+
 const ARTICLE_CHANGE_TIME = 5000;
 const ANIMATION_DELAY = 500;
 const LEFT_RIGHT_ROLLING_GAP_TIME = 1000;

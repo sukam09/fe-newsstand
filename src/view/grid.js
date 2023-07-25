@@ -74,5 +74,7 @@ export async function renderGrid() {
     console.error(e);
   }
 }
-console.log("그리드뷰");
-// store.subscribe(renderGrid, "unsubscribe", "grid");
+function subscriber() {
+  store.subscribe(renderGrid, "unsubscribe", "grid");
+}
+subscriber();

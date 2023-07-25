@@ -1,7 +1,5 @@
-import { LIST_PAGE, VIEW } from "../../model/global.js";
+import { VIEW } from "../../model/global.js";
 import { actionCreator, store } from "../../model/store.js";
-import { renderGrid } from "../../view/grid.js";
-import { news, renderList } from "../../view/list.js";
 import { snackBarForceDisappear } from "../../view/snackBar.js";
 import { timerId } from "../timer.js";
 
@@ -31,37 +29,17 @@ export function AlertHandler({ pressName, pressData }) {
   const confirmBtn = alertElement.querySelector(".confirm-unsubscribe");
   const rejectBtn = alertElement.querySelector(".reject");
 
+  const main = document.querySelector("main");
   confirmBtn.addEventListener("click", async () => {
     timerId && clearInterval(timerId);
 
     store.dispatch(actionCreator("unsubscribe", { press: pressData }));
 
-    const main = VIEW.layout === "grid" ? document.querySelector(".grid") : document.querySelector(".list");
     main.removeChild(alertElement);
-
-    if (VIEW.layout === "grid") {
-      //그리드뷰 구독 해지 후 리렌더
-      //   renderGrid();
-    } else {
-      //리스트뷰 구독 해지 후
-      //전체언론사일 경우 - 버튼상태 변경(??)
-      //구독언론사일 경우 - 전체 변경(renderList)
-      if (VIEW.tab === "subscribe") {
-        //렌더
-        // if (news.length - 1 === LIST_PAGE.category) {
-        //   LIST_PAGE.setCategory(0);
-        // }
-      } else {
-        // const listBtn = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
-        // listBtn.querySelector(".subscribe-text").innerHTML = "구독하기";
-        // listBtn.querySelector(".plus-btn").setAttribute("src", "../../../../asset/button/plus.png");
-      }
-      //   renderList();
-    }
   });
 
   rejectBtn.addEventListener("click", () => {
-    const main = VIEW.layout === "grid" ? document.querySelector(".grid") : document.querySelector(".list");
+    const main = document.querySelector("main");
     main.removeChild(alertElement);
   });
 }

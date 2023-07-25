@@ -23,7 +23,9 @@ class Store {
     } else if (action.type === "unsubscribe") {
       if (VIEW.layout === "grid") {
         this.#gridUnsubscribeHandler.forEach((renderFn) => {
-          renderFn();
+          if (VIEW.tab === "subscribe") {
+            renderFn();
+          }
         });
       } else {
         this.#listUnsubscribeHandler.forEach((renderFn) => {
@@ -82,7 +84,3 @@ export function actionCreator(type, data) {
 }
 
 export const store = new Store(reducer);
-
-export function storeInit() {
-  console.log(store);
-}
