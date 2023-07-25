@@ -67,7 +67,7 @@ export default function PressGridView({ $target, initialState }) {
         $target: $li,
         initialState: {
           type: 'grid',
-          isSubscribed: getSubscribed(parseInt(id, 10)),
+          isSubscribed: this.state.press === 'my' ? true : getSubscribed(parseInt(id, 10)),
         },
       });
 
