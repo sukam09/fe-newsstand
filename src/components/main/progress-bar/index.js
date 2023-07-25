@@ -22,12 +22,21 @@ import { newsObjectToArray } from "../../../utils/utils.js";
 export const setProgressBar = async (newsList, categoryList) => {
   const pressNewsList = newsObjectToArray(newsList);
 
-  useSubscribeAtom(listPageState, changeCategory(newsList, categoryList));
-  useSubscribeAtom(listPageState, updateCurrentPage(newsList));
-  useSubscribeAtom(listPageState, renderProgress);
+  useSubscribeAtom(
+    listPageState,
+    changeCategory(newsList, categoryList),
+    updateCurrentPage(newsList),
+    renderProgress
+  );
+  //   useSubscribeAtom(listPageState, updateCurrentPage(newsList));
+  //   useSubscribeAtom(listPageState, renderProgress);
 
-  useSubscribeAtom(subscribeListPageState, changePress(pressNewsList));
-  useSubscribeAtom(subscribeListPageState, renderProgress);
+  useSubscribeAtom(
+    subscribeListPageState,
+    changePress(pressNewsList),
+    renderProgress
+  );
+  //   useSubscribeAtom(subscribeListPageState, renderProgress);
 
   useSubscribeAtom(
     categoryState,

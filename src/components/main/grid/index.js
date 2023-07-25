@@ -4,6 +4,7 @@ import {
   subscribeGridPageState,
   subscribeState,
   viewOptionState,
+  viewState,
 } from "../../../store/store.js";
 import { renderGrid } from "./Grid.js";
 import { useSubscribeAtom } from "../../../store/atom.js";
@@ -15,5 +16,6 @@ export const setGrid = () => {
   useSubscribeAtom(isDarkMode, renderGrid);
   useSubscribeAtom(subscribeState, renderGrid);
   useSubscribeAtom(viewOptionState, renderGrid);
+  useSubscribeAtom(viewState, renderGrid);
   useSubscribeAtom(subscribeGridPageState, renderGrid);
 };

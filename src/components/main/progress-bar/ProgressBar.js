@@ -202,6 +202,9 @@ const changeActivatePress = () => {
 };
 
 const activatePressScroll = () => {
+  const currentSubscribeState = useGetAtom(subscribeState);
+  if (currentSubscribeState.length < 2) return;
+
   const wrapper = _querySelector(".list-view_category-bar");
   const container = _querySelector("ul", wrapper);
   const targetElement = _querySelector(".category--selected", container);
@@ -223,7 +226,8 @@ const activatePressScroll = () => {
     const easeValue = easeInOutQuad(
       currentTime,
       originalScrollLeft,
-      targetScrollLeft - originalScrollLeft
+      targetScrollLeft - originalScrollLeft,
+      PROGRESS_SCROLL_DURATION
     );
     wrapper.scrollLeft = easeValue;
 

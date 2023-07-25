@@ -17,6 +17,9 @@ class Atom {
     this.#listeners.forEach((listener) => {
       listener();
     });
+    // for (const listener of Array.from(this.#listeners)) {
+    //   listener(this.snapshot());
+    // }
   }
 
   update(value) {
@@ -61,8 +64,8 @@ const useSetAtom = (atom, value) => {
   atom.update(value);
 };
 
-const useSubscribeAtom = (atom, callback) => {
-  atom.subscribe(callback);
+const useSubscribeAtom = (atom, ...callbacks) => {
+  callbacks.forEach((callback) => atom.subscribe(callback));
 };
 
 const selector = ({ key, get, set }) => {
