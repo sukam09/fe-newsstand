@@ -38,14 +38,14 @@ export default function PressGridView({ $target, initialState }) {
     const currentData = data.slice(startIndex, endIndex + 1);
 
     currentData.forEach(item => {
-      const id = this.state.press === 'all' ? item.id : parseInt(item, 10);
+      const id = this.state.press === 'all' ? item.id : item;
       let name, logo;
 
       if (this.state.press === 'all') {
         name = item.name;
         logo = item.logo;
       } else {
-        ({ name, logo } = pidMap.get(id));
+        ({ name, logo } = pidMap.get(parseInt(id, 10)));
       }
 
       const $li = document.createElement('li');
@@ -78,6 +78,7 @@ export default function PressGridView({ $target, initialState }) {
   };
 
   function handleClickCell({ target }, subscribeButton) {
+    // dataset에서 꺼낸 id는 string임에 주의
     let id = target.dataset.id;
     let name = target.dataset.name;
 
@@ -88,7 +89,7 @@ export default function PressGridView({ $target, initialState }) {
       name = dataset.name;
     }
 
-    handleSubscribe(id, name, subscribeButton);
+    handleSubscribe(parseInt(id, 10), name, subscribeButton);
   }
 
   const handleSubscribe = (id, name, subscribeButton) => {
