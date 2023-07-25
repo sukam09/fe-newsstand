@@ -47,14 +47,12 @@ function checkAnswer(e, _press) {
 function handleAnimationEnd(e, _press) {
   const view_content = document.querySelector(".view-content");
   const snackbar = view_content.querySelector(".snackbar");
-  const currentIndex = getSubscribedPress().findIndex(
-    (press) => press.name === _press.name
-  );
+
   if (e.animationName === "fade-out") {
     snackbar.style.display = "none";
     store.setState({ tabMode: "subscribe" });
     changeView("list");
-    showListView(currentIndex);
+    showListView(_press.name);
   }
 }
 
