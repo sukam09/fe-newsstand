@@ -15,7 +15,7 @@ import {
 } from "../../../utils/my-query-selector.js";
 import { useGetAtom } from "../../../store/atom.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
-import { getSubscribeButton } from "../../common/subscribe-button/SubscribeButton.js";
+import { getSubscribeButton } from "../../common/subscribe-button/index.js";
 
 const $gridView = _querySelector(".grid-view");
 const $gridViewList = _querySelectorAll("li", $gridView);
