@@ -1,7 +1,7 @@
 import { updateCategory } from "./fieldTabController.js";
 import { MODE, GLOBAL } from "../model/variable.js";
-import { setState } from "./observer.js";
-import { moveGrid, moveList } from "../model/store.js";
+import { getState, setState } from "./observer.js";
+import { currentMode, gridCurrentPage, listCurrentPage, subscribeNewsNum } from "../model/store.js";
 
 function initArrowBtnEvnet() {
   const leftBtn = document.querySelector(".left-btn");
@@ -12,26 +12,28 @@ function initArrowBtnEvnet() {
 }
 
 function moveLeft() {
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
-    GLOBAL.GRID_CURRENT_PAGE--;
-    setState(moveGrid, true);
+  const curMode = getState(currentMode);
+
+  if (curMode === MODE.GRID_ALL || curMode === MODE.GRID_SUB) {
+    setState(gridCurrentPage, getState(gridCurrentPage) - 1);
   } else {
-    const listModeMaxPage = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : GLOBAL.SUBSCRIBE_NEWS_NUM;
-    GLOBAL.LIST_CURRENT_PAGE = GLOBAL.LIST_CURRENT_PAGE === 0 ? listModeMaxPage - 1 : GLOBAL.LIST_CURRENT_PAGE - 1;
-    updateCategory();
-    setState(moveList, true);
+    const listModeMaxPage = curMode === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : getState(subscribeNewsNum);
+    const nextListPage = getState(listCurrentPage) === 0 ? listModeMaxPage - 1 : getState(listCurrentPage) - 1;
+    updateCategory(nextListPage);
+    setState(listCurrentPage, nextListPage);
   }
 }
 
 function moveRight() {
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
-    GLOBAL.GRID_CURRENT_PAGE++;
-    setState(moveGrid, true);
+  const curMode = getState(currentMode);
+
+  if (curMode === MODE.GRID_ALL || curMode === MODE.GRID_SUB) {
+    setState(gridCurrentPage, getState(gridCurrentPage) + 1);
   } else {
-    const listModeMaxPage = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : GLOBAL.SUBSCRIBE_NEWS_NUM;
-    GLOBAL.LIST_CURRENT_PAGE = (GLOBAL.LIST_CURRENT_PAGE + 1) % listModeMaxPage;
-    updateCategory();
-    setState(moveList, true);
+    const listModeMaxPage = curMode === MODE.LIST_ALL ? GLOBAL.TOTAL_NEWS_NUM : getState(subscribeNewsNum);
+    const nextListPage = (getState(listCurrentPage) + 1) % listModeMaxPage;
+    updateCategory(nextListPage);
+    setState(listCurrentPage, nextListPage);
   }
 }
 

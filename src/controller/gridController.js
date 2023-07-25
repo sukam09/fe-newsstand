@@ -1,6 +1,7 @@
 import { drawSubscribeBtn } from "../view/subscribe.js";
 import { initSubscribeBtnEvnet } from "./subscribeController.js";
-import { isDarkMode } from "../model/model.js";
+import { getState } from "./observer.js";
+import { toggleDarkMode } from "../model/store.js";
 
 function initGridEvent() {
   const gridLiAll = document.querySelectorAll(".grid-row li");
@@ -19,7 +20,7 @@ function initGridEvent() {
 function gridHoverIn(event) {
   if (event.target.firstChild.src.slice(-3) !== "svg") return;
 
-  event.target.style.backgroundColor = isDarkMode() ? "#4b5966" : "#f5f7f9";
+  event.target.style.backgroundColor = getState(toggleDarkMode) ? "#4b5966" : "#f5f7f9";
   const subscribeBtn = drawSubscribeBtn(event.target.firstChild.src);
   event.target.appendChild(subscribeBtn);
   event.target.querySelector(".press-logo").style.display = "none";
@@ -29,7 +30,7 @@ function gridHoverIn(event) {
 function gridHoverOut(event) {
   if (event.target.firstChild.src.slice(-3) !== "svg") return;
 
-  event.target.style.backgroundColor = isDarkMode() ? "#14212b" : "#ffffff";
+  event.target.style.backgroundColor = getState(toggleDarkMode) ? "#14212b" : "#ffffff";
   event.target.querySelector(".list-sub-btn").remove();
   event.target.querySelector(".press-logo").style.display = "block";
 }

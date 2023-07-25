@@ -1,6 +1,6 @@
-import { PATH, MODE, GLOBAL, CONSTANT } from "../model/variable.js";
-import { subscribe } from "../controller/observer.js";
-import { moveGrid, moveList, toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
+import { PATH, MODE, CONSTANT } from "../model/variable.js";
+import { getState, subscribe } from "../controller/observer.js";
+import { toggleDarkMode, gridCurrentPage, listCurrentPage, currentMode, subscribeNewsNum } from "../model/store.js";
 
 function initArrowBtn(parentNode) {
   const dom = `
@@ -15,13 +15,14 @@ function initArrowBtn(parentNode) {
 }
 
 function drawLeftArrowBtn() {
+  const curMode = getState(currentMode);
   const leftBtn = document.querySelector(".left-btn");
 
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL && GLOBAL.GRID_CURRENT_PAGE === 0) {
+  if (curMode === MODE.GRID_ALL && getState(gridCurrentPage) === 0) {
     leftBtn.style.display = "none";
-  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB && GLOBAL.GRID_CURRENT_PAGE === 0) {
+  } else if (curMode === MODE.GRID_SUB && getState(gridCurrentPage) === 0) {
     leftBtn.style.display = "none";
-  } else if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB && GLOBAL.SUBSCRIBE_NEWS_NUM === 1) {
+  } else if (curMode === MODE.LIST_SUB && getState(subscribeNewsNum) === 1) {
     leftBtn.style.display = "none";
   } else {
     leftBtn.style.display = "block";
@@ -29,28 +30,29 @@ function drawLeftArrowBtn() {
 }
 
 function drawRightArrowBtn() {
+  const curMode = getState(currentMode);
   const rightBtn = document.querySelector(".right-btn");
 
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL && GLOBAL.GRID_CURRENT_PAGE === CONSTANT.GRID_MAX_PAGE) {
+  if (curMode === MODE.GRID_ALL && getState(gridCurrentPage) === CONSTANT.GRID_MAX_PAGE) {
     rightBtn.style.display = "none";
-  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB && GLOBAL.GRID_CURRENT_PAGE === Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
+  } else if (curMode === MODE.GRID_SUB && getState(gridCurrentPage) === Math.floor((getState(subscribeNewsNum) - 1) / CONSTANT.GRID_NEWS_NUM)) {
     rightBtn.style.display = "none";
-  } else if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB && GLOBAL.SUBSCRIBE_NEWS_NUM === 1) {
+  } else if (curMode === MODE.LIST_SUB && getState(subscribeNewsNum) === 1) {
     rightBtn.style.display = "none";
   } else {
     rightBtn.style.display = "block";
   }
 }
 
-subscribe(moveGrid, drawLeftArrowBtn);
-subscribe(moveList, drawLeftArrowBtn);
-subscribe(toggleView, drawLeftArrowBtn);
-subscribe(toggleSubscription, drawLeftArrowBtn);
+subscribe(gridCurrentPage, drawLeftArrowBtn);
+subscribe(listCurrentPage, drawLeftArrowBtn);
+subscribe(currentMode, drawLeftArrowBtn);
+subscribe(subscribeNewsNum, drawRightArrowBtn);
 subscribe(toggleDarkMode, drawLeftArrowBtn);
-subscribe(moveGrid, drawRightArrowBtn);
-subscribe(moveList, drawRightArrowBtn);
-subscribe(toggleView, drawRightArrowBtn);
-subscribe(toggleSubscription, drawRightArrowBtn);
+subscribe(gridCurrentPage, drawRightArrowBtn);
+subscribe(listCurrentPage, drawRightArrowBtn);
+subscribe(currentMode, drawRightArrowBtn);
+subscribe(subscribeNewsNum, drawLeftArrowBtn);
 subscribe(toggleDarkMode, drawRightArrowBtn);
 
 export { initArrowBtn, drawLeftArrowBtn, drawRightArrowBtn };
