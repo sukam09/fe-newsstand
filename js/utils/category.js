@@ -1,9 +1,8 @@
-import { removeChildElement, snackBarAction } from "../utils/util.js";
+import { removeChildElement, snackBarListAction } from "../utils/util.js";
 import { MESSAGE, POSITION, EVENT, VIEW } from "./constant.js";
-import { paintNewsCategory } from "../newsstand/newsCategory.js";
+import { unsubscribeModal } from "./unsubscribe.js";
 import {
   isSubscribe,
-  setUnsubscribe,
   setSubscribe,
   getCurrentContent,
   setCategoryIndex,
@@ -26,9 +25,7 @@ export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.children[3].classList.add("newsstand__progress-slash"); // 세번째 자식: 진행상황 (1/82)
   element.children[4].classList.add("newsstand__progress-total"); // 세번째 자식: 진행상황 (1/82)
 
-  element.children[2].textContent = `${getCurrentContent()}`;
-  element.children[3].textContent = `/`;
-  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
+  showTextByNavTab(element, categoryDataLength, childIndex);
 
   // animationIterationCount 속성을부여해 원하는 횟수만큼 프로그래스 바 진행.
   element.children[0].style.animationIterationCount =
@@ -79,16 +76,13 @@ function makeMainNewsNav(logo, edit, name) {
   newsNavParent.children[2].addEventListener("click", () => {
     // 해지하기 버튼을 눌렀을때.
     if (isSubscribe(name)) {
-      newsNavParent.children[2].textContent = MESSAGE.SUBSCRIBE;
-      setUnsubscribe(name);
-      snackBarAction(MESSAGE.UN_SUB);
-      paintNewsCategory();
+      unsubscribeModal(name);
     }
     // 구독하기 버튼을 눌렀을때.
     else {
       newsNavParent.children[2].textContent = MESSAGE.UNSUBSCRIBE;
       setSubscribe(name, logo);
-      snackBarAction(MESSAGE.SUB);
+      snackBarListAction(MESSAGE.SUB);
     }
   });
 }
@@ -149,9 +143,6 @@ export function nextContents(
   if (clickPosition === POSITION.RIGHT) {
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) - 1;
-    // 애니메이션을 지웠다가 다시 실행.
-    // removeProgressAction();
-    // addProgressAction(element);
 
     element.children[0].style.animationIterationCount = reCount;
   } else if (clickPosition === POSITION.LEFT) {
@@ -165,9 +156,8 @@ export function nextContents(
     }
   }
 
-  element.children[2].textContent = `${getCurrentContent()}`;
-  element.children[3].textContent = `/`;
-  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
+  showTextByNavTab(element, categoryDataLength, childIndex);
+
   makeNewsList(
     (getCurrentContent() - 1) % categoryDataLength[childIndex],
     CATEROY_NUMBER,
@@ -321,4 +311,21 @@ export function startProgressAction(categoryList, categoryDataLength) {
   const element = categoryList[childIndex]; // 자식 찾기
 
   activeProgressClass(element, childIndex, categoryDataLength);
+}
+
+function showTextByNavTab(element, categoryDataLength, childIndex) {
+  getNavTabView() === VIEW.ALL_SUB
+    ? showCurrentContentText(element, categoryDataLength, childIndex)
+    : showNextContentText(element);
+}
+
+function showCurrentContentText(element, categoryDataLength, childIndex) {
+  element.children[2].textContent = `${getCurrentContent()}`;
+  element.children[3].textContent = `/`;
+  element.children[4].textContent = `${categoryDataLength[childIndex]}`;
+}
+function showNextContentText(element) {
+  element.children[2].textContent = "";
+  element.children[3].textContent = "";
+  element.children[4].textContent = ">";
 }

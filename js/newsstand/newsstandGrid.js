@@ -3,14 +3,15 @@ import {
   onFocusToClicked,
   handleElementClass,
   snackBarAction,
+  removeChildElement,
 } from "../utils/util.js";
 import { getPressData } from "../fetchAPI.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { navTag } from "../tag/mediaNavTag.js";
 import { MESSAGE, EVENT, VIEW } from "../utils/constant.js";
+import { unsubscribeModal } from "../utils/unsubscribe.js";
 import {
   setSubscribe,
-  setUnsubscribe,
   getSubscrbeList,
   isSubscribe,
   getNavTabView,
@@ -47,6 +48,20 @@ export async function paintGridNewsstand() {
   addEventOnMySubAndAllSub();
 }
 
+export function addGridButton() {
+  getSelectedPage() === FIRST_PAGE
+    ? handleElementClass(leftBtn, "add", "btn-disabled")
+    : handleElementClass(leftBtn, "remove", "btn-disabled");
+  getSelectedPage() === LAST_PAGE
+    ? handleElementClass(rightBtn, "add", "btn-disabled")
+    : handleElementClass(rightBtn, "remove", "btn-disabled");
+}
+
+export function deleteGridButton() {
+  handleElementClass(leftBtn, "add", "btn-disabled");
+  handleElementClass(rightBtn, "add", "btn-disabled");
+}
+
 // 시작할때 img태그를 만들어서 뉴스 로고를 화면에 띄어줌.
 function initPaintNews() {
   publisherData = shuffle(publisherData);
@@ -69,6 +84,7 @@ function initPaintNews() {
     const img = document.createElement("img");
     const icon = publisherData[idx].lightSrc;
     const alt = publisherData[idx].name;
+    img.style.height = "20px";
     img.src = icon;
     img.alt = alt;
     li.appendChild(img);
@@ -215,13 +231,9 @@ function userClickSubscribeButton(liElement) {
 
     // 해지하기를 눌렀을때.
     if (isSubscribe(name)) {
-      liElement.children[1].textContent = MESSAGE.SUBSCRIBE;
-      setUnsubscribe(name);
-
-      snackBarAction(MESSAGE.UN_SUB);
-
-      // 내가 구독한 언론사에 있을때 해지하기하면 바로 다시 그려줌.
-      const subList = getSubscrbeList();
+      unsubscribeModal(name);
+      // setUnsubscribe(name);
+      // snackBarAction(MESSAGE.UN_SUB);
     }
     // 구독하기 버튼을 눌렀을때.
     else {
@@ -267,18 +279,4 @@ function isBtnDisabled() {
     handleElementClass(leftBtn, "add", "btn-disabled");
     handleElementClass(rightBtn, "add", "btn-disabled");
   }
-}
-
-export function addGridButton() {
-  getSelectedPage() === FIRST_PAGE
-    ? handleElementClass(leftBtn, "add", "btn-disabled")
-    : handleElementClass(leftBtn, "remove", "btn-disabled");
-  getSelectedPage() === LAST_PAGE
-    ? handleElementClass(rightBtn, "add", "btn-disabled")
-    : handleElementClass(rightBtn, "remove", "btn-disabled");
-}
-
-export function deleteGridButton() {
-  handleElementClass(leftBtn, "add", "btn-disabled");
-  handleElementClass(rightBtn, "add", "btn-disabled");
 }
