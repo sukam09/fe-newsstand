@@ -4,10 +4,11 @@ import {
   getQuerySelectorAll,
 } from "../../utils/js/getElements.js";
 import { getState, register, setState } from "../observer/observer.js";
-import { nowCategoryIdx, listPageIdx } from "../store/store.js";
+import { nowCategoryIdx } from "../store/store.js";
 
 const numOfEachCategory = [];
 const nameOfEachCategory = [];
+let flag = false;
 
 export async function getCategoryInfo() {
   const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
@@ -39,17 +40,12 @@ export async function getCategoryInfo() {
   getQuerySelector(".press-content-categorybar").innerHTML = putCategory;
   getQuerySelector(".press-content-category").classList.add("selected");
 
-  // register(nowCategoryIdx, initSelectedState);
+  register(nowCategoryIdx, initSelectedState);
   register(nowCategoryIdx, changeCategory);
-  // register(nowCategoryIdx, updatePageAndCategory);
   register(nowCategoryIdx, putCurrentPage);
   register(nowCategoryIdx, restartProgressbar);
+  register(nowCategoryIdx, updatePageAndCategory);
 
-  // register(listPageIdx, initSelectedState);
-  // register(listPageIdx, changeCategory);
-  // register(listPageIdx, updatePageAndCategory);
-  register(listPageIdx, putCurrentPage);
-  register(listPageIdx, restartProgressbar);
   moveCategoryProgressbar();
   selectCategory();
 }
@@ -62,7 +58,7 @@ function initSelectedState() {
 
 //selected 클래스 추가(완)
 function changeCategory() {
-  const idx = getState(nowCategoryIdx);
+  const idx = getState(nowCategoryIdx).category;
   const categories = getQuerySelectorAll(".press-content-category");
   categories[idx].classList.add("selected");
 }
@@ -72,27 +68,46 @@ function selectCategory() {
   const categories = getQuerySelectorAll(".press-content-category");
   categories.forEach((elem) => {
     elem.addEventListener("click", (e) => {
-      initSelectedState();
       e.currentTarget.classList.add("selected");
-
-      setState(listPageIdx, 1);
+      let newCateIdx = getState(nowCategoryIdx);
+      newCateIdx.list = 1;
+      newCateIdx.category = nameOfEachCategory.indexOf(
+        e.currentTarget.children[1].textContent
+      );
+      setState(nowCategoryIdx, newCateIdx);
     });
   });
 }
 
-register(listPageIdx, updatePageAndCategory);
-
 function updatePageAndCategory() {
-  console.log(getState(listPageIdx));
-  if (getState(listPageIdx) < 1) {
-    setState(listPageIdx, 19);
-    setState(nowCategoryIdx, numOfEachCategory.length);
+  const currentIdx = getState(nowCategoryIdx);
+  let newCateIdx = getState(nowCategoryIdx);
+  if (currentIdx.list < 1) {
+    if (currentIdx.category === 0) {
+      newCateIdx.list = numOfEachCategory[numOfEachCategory.length - 1];
+      newCateIdx.category = numOfEachCategory.length - 1;
+      setState(nowCategoryIdx, newCateIdx);
+    } else {
+      newCateIdx.list = numOfEachCategory[currentIdx.category - 1];
+      newCateIdx.category = currentIdx.category - 1;
+      setState(nowCategoryIdx, newCateIdx);
+    }
+  } else if (currentIdx.list > numOfEachCategory[currentIdx.category]) {
+    if (currentIdx.category + 1 === numOfEachCategory.length) {
+      newCateIdx.list = 1;
+      newCateIdx.category = 0;
+      setState(nowCategoryIdx, newCateIdx);
+    } else if (currentIdx.category + 1 !== numOfEachCategory.length) {
+      newCateIdx.list = 1;
+      newCateIdx.category = currentIdx.category + 1;
+      setState(nowCategoryIdx, newCateIdx);
+    }
   }
 }
 
 function putCurrentPage() {
   getQuerySelector(".selected .press-content-category-cnt-now").innerHTML =
-    getState(listPageIdx);
+    getState(nowCategoryIdx).list;
 }
 
 function moveCategoryProgressbar() {
@@ -100,7 +115,10 @@ function moveCategoryProgressbar() {
     ".selected .press-content-category-progressbar"
   );
   progressbarState.addEventListener("animationend", () => {
-    setState(listPageIdx, getState(listPageIdx) + 1);
+    let newCateIdx = getState(nowCategoryIdx);
+    newCateIdx.list = getState(nowCategoryIdx).list + 1;
+    newCateIdx.category = getState(nowCategoryIdx).category;
+    setState(nowCategoryIdx, newCateIdx);
   });
 }
 

@@ -1,6 +1,6 @@
 import { getQuerySelector } from "../utils/js/getElements.js";
 import { getState, register, setState } from "./observer/observer.js";
-import { gridPageIdx, listPageIdx, isGrid } from "./store/store.js";
+import { gridPageIdx, isGrid, nowCategoryIdx } from "./store/store.js";
 
 const prevPageBtn = getQuerySelector("#press-content-btn-prev");
 const nextPageBtn = getQuerySelector("#press-content-btn-next");
@@ -31,8 +31,14 @@ function updatePageBtn() {
 // 페이지 이동
 function movePage(increment) {
   const currentMode = getState(isGrid);
-  const key = currentMode ? gridPageIdx : listPageIdx;
-  setState(key, getState(key) + increment);
+  if (currentMode) {
+    setState(gridPageIdx, getState(gridPageIdx) + increment);
+  } else {
+    let currentIdx = getState(nowCategoryIdx);
+    currentIdx.list = getState(nowCategoryIdx).list + increment;
+    currentIdx.category = getState(nowCategoryIdx).category;
+    setState(nowCategoryIdx, currentIdx);
+  }
 }
 
 export function initPageBtn() {

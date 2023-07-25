@@ -1,7 +1,7 @@
 import { fetchData } from "../../utils/js/getJson.js";
 import { getQuerySelector } from "../../utils/js/getElements.js";
 import { getState, register } from "../observer/observer.js";
-import { listPageIdx, nowCategoryIdx } from "../store/store.js";
+import { nowCategoryIdx } from "../store/store.js";
 
 const categoryObj = {
   "종합/경제": [],
@@ -27,15 +27,14 @@ export async function getNewsData() {
   );
 
   register(nowCategoryIdx, showListNewsData);
-  register(listPageIdx, showListNewsData);
 }
 
 // 뉴스리스트 요소들 보여주기
 export function showListNewsData() {
-  const category = getState(nowCategoryIdx);
-  const newsIdx = getState(listPageIdx);
+  const categoryIdx = getState(nowCategoryIdx).category;
+  const newsIdx = getState(nowCategoryIdx).list;
   const categoryData =
-    categoryObj[Object.keys(categoryObj)[category]][newsIdx - 1];
+    categoryObj[Object.keys(categoryObj)[categoryIdx]][newsIdx - 1];
   const contentBigNews = getQuerySelector(".press-content-big-news");
   const pressContentNewsLogo = getQuerySelector(".press-content-news-info");
   const pressNewsContentHeadlines = getQuerySelector(
