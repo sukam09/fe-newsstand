@@ -1,4 +1,3 @@
-import { shuffle } from '../utils.js';
 import { store, actionCreator } from '../../core/store.js';
 import { shuffle, getSubscribed } from '../utils.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, SNACKBAR_DURATION, SUBSCRIBE_MESSAGE } from '../constants.js';
@@ -115,10 +114,6 @@ export default function PressGridView({ $target, initialState }) {
       store.dispatch(actionCreator('subscribe', { pid: id, pressName: name }));
     }
   };
-
-  function getSubscribed(id) {
-    return store.getMyPress().find(({ pid }) => parseInt(pid, 10) === id);
-  }
 
   const validatePage = page => {
     const { minPage, maxPage } = this.state;
