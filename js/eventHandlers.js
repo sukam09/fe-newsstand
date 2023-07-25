@@ -111,7 +111,7 @@ function displayView() {
 
   if (getState(viewType) === "list") {
     gridView.style.display = "none";
-    listView.style.display = "flex";
+    listView.style.display = "block";
     listViewLeftBtn.style.display = "block";
     listViewRightBtn.style.display = "block";
     gridLeftBtn.style.display = "none";
