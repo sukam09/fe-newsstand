@@ -129,11 +129,11 @@ export default function PressGridView({ $target, initialState }) {
     return page >= minPage && page <= maxPage;
   };
 
-  const handleMovePage = newPage => {
-    if (!validatePage(newPage)) {
+  const handleMovePage = page => {
+    if (!validatePage(page)) {
       return;
     }
-    this.setState({ ...this.state, page: newPage });
+    this.setState({ ...this.state, page });
   };
 
   const checkShowPageButton = ($prevPageButton, $nextPageButton) => {
