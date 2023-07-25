@@ -324,12 +324,27 @@ ul li:hover .media-hover .subscribedWrapper {
     flex-direction: column;
     gap : 16px;
 }
+.listView_wrapper .media_section .thumbnail p{
+    cursor:pointer;
+}
 
+.listView_wrapper .media_section .thumbnail img{
+    transition: all 0.2s linear;
+}
+
+.listView_wrapper .media_section .thumbnail img:hover{
+    transform: scale(1.05);
+}
 .listView_wrapper .media_section .media_section_list {
     display:flex;
     flex-direction: column;
     gap : 16px;
 }
+.listView_wrapper .media_section .media_section_list p{
+    cursor : pointer;
+}
+
+
 #arrow_wrapper_left_list{
     position: absolute;
     left:-72px;
