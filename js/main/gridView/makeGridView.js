@@ -100,7 +100,8 @@ function checkPage() {
     } else if (getState(gridSubPage) === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
     } else if (
-      getState(gridSubPage) === Math.ceil(getState(subPress).length / 24)
+      getState(gridSubPage) ===
+      Math.ceil(getState(subPress).length / 24 || getState(gridSubPage) === 0)
     ) {
       right_btn.style.visibility = "hidden";
     }

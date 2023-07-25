@@ -137,3 +137,12 @@
 .category li:hover {
   text-decoration: underline;
 }
+
+.main {
+  position: relative;
+}
+.warning-message {
+  position: absolute;
+  top: 40%;
+  left: 43%;
+}

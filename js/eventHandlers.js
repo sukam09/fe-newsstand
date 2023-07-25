@@ -4,6 +4,7 @@ import { setState, getState } from "./store/observer.js";
 import { gridAllPage, viewOption, viewType, subPress } from "./store/store.js";
 import { GRID_NUM } from "./constant.js";
 import { renderGridView } from "./main/gridView/renderGridView.js";
+import { renderListView } from "./main/listView/renderListView.js";
 
 /* grid View */
 function changePage(e) {
@@ -49,19 +50,10 @@ function clickYes(selectedPress, _img) {
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
   if (getState(viewType) === "list") {
+    if (getState(viewOption) === "sub") {
+      renderListView();
+    }
     _img.setAttribute("src", "../images/icon/subscribe.svg");
-    // if (store.state.type === "list-press") {
-    //   //다음 카테고리로 ?
-    //   // selectedPress인 li 삭제
-    //   const lists = document.querySelectorAll(".category li");
-    //   lists.forEach((list) => {
-    //     if (list.dataset.category === selectedPress) {
-    //       addAnimation(list.nextElementSibling, "Next");
-    //       lists[0].parentElement.removeChild(list);
-    //     }
-    //   });
-    //   //li 삭제 후 애미메이션 넘겨주기 && 뉴스 가져오기
-    // }
   }
 
   if (getState(viewType) === "grid" && getState(viewOption) === "sub") {

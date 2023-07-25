@@ -19,6 +19,8 @@ function makeRandomNews() {
 }
 
 function makeCategory() {
+  showView();
+
   let _category;
   if (getState(viewOption) === "all") {
     _category = category;
@@ -60,6 +62,7 @@ function makeCategory() {
       }
     });
   } else {
+    hideView();
   }
 }
 
@@ -178,10 +181,26 @@ function addEventPressInfo() {
   _img.addEventListener("click", () => {
     clickSubscribeBtn(
       document.querySelector(".press-info-img").dataset.press,
-
       _img
     );
   });
+}
+
+function hideView() {
+  document.querySelector(".list-view").style.visibility = "hidden";
+  document.getElementById("list-right").style.visibility = "hidden";
+  document.getElementById("list-left").style.visibility = "hidden";
+  document.querySelector(".warning-message").style.display = "block";
+}
+
+function showView() {
+  const listView = document.querySelector(".list-view");
+  if (listView.style.visibility === "hidden") {
+    document.querySelector(".list-view").style.visibility = "visible";
+    document.getElementById("list-right").style.visibility = "visible";
+    document.getElementById("list-left").style.visibility = "visible";
+    document.querySelector(".warning-message").style.display = "none";
+  }
 }
 
 export {

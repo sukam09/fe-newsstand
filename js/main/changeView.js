@@ -1,5 +1,5 @@
 import { getState, setState } from "../store/observer.js";
-import { gridAllPage, viewOption } from "../store/store.js";
+import { gridAllPage, listAllPage, viewOption } from "../store/store.js";
 import {
   changeViewOptionToAll,
   changeViewOptionToSub,
@@ -29,10 +29,12 @@ function changeViewOption() {
     allPress.classList.replace("unclicked-press", "clicked-press");
     subPress.classList.replace("clicked-press", "unclicked-press");
     setState(gridAllPage, 1);
+    setState(listAllPage, 0);
   } else if (getState(viewOption) === "sub") {
     subPress.classList.replace("unclicked-press", "clicked-press");
     allPress.classList.replace("clicked-press", "unclicked-press");
     setState(gridAllPage, 1);
+    setState(listAllPage, 0);
   }
 }
 
