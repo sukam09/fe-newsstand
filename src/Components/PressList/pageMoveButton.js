@@ -67,7 +67,7 @@ function setProgressNewsTurner(progressFlag) {
   if (progressFlag === PROGRESS_FLAG && progressEventFlagPerCategory[getClickedCategoryIndex()] === false) {
     const $progrsesAnimation = document.querySelector('.progress');
     $progrsesAnimation.addEventListener('animationiteration', (event) => {
-      clickNewsTurner('right')
+      clickNewsTurner('right');
     })
     progressEventFlagPerCategory[getClickedCategoryIndex()] = true;
   }
@@ -120,6 +120,7 @@ function moveNextCategoryOfList(whatPressNews, category) {
  */
 function clickNewsTurner(whatButton) {
   whatButton === 'left' ? setPage(getPage() - 1) : setPage(getPage() + 1);
+  showNewsTurner();
   moveNextCategory()
   setDrawPressNews();
   setProgressPage();
