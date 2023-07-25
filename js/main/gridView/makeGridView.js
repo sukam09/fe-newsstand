@@ -91,10 +91,6 @@ function checkPage() {
       right_btn.style.visibility = "hidden";
     }
   } else if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
-    console.log(
-      getState(gridSubPage),
-      Math.ceil(getState(subPress).length / 24)
-    );
     if (
       getState(gridSubPage) <= MIN_PAGE &&
       getState(gridSubPage) === Math.ceil(getState(subPress).length / 24)

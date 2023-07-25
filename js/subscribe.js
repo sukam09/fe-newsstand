@@ -24,6 +24,7 @@ function clickSubscribeBtn(selectedPress, _img) {
       _img.setAttribute("src", "../images/icon/Unsubscribe2.svg");
     else _img.setAttribute("src", "../images/icon/Unsubscribe.svg");
 
+    setState(subPress, SubscribePress);
     localStorage.setItem("press", JSON.stringify(SubscribePress));
   }
 }
@@ -41,6 +42,7 @@ function confirmModal(selectedPress, _img) {
     () => clickYes(selectedPress, _img),
     { once: true }
   );
+
   //NO
   _answer.children[1].addEventListener("click", clickNo);
 }

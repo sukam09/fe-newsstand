@@ -60,6 +60,12 @@
   height: 200px;
 }
 
+#list-left,
+#list-right {
+  width: 24px;
+  height: 40px;
+}
+
 .list-view-sub {
   width: 530px;
   height: 245px;
