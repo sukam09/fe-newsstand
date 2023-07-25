@@ -77,6 +77,10 @@ export function drawCategory(current, list, contents) {
   const tabContent = document.querySelector(".category");
 
   tabContainer.addEventListener("mousedown", (e) => {
+    const popups = document.querySelectorAll(".popup");
+    popups.forEach((popup) => {
+      popup.style.display = "none";
+    });
     isDragging = true;
     startScrollX = e.pageX + tabContainer.scrollLeft;
     tabContent.style.cursor = "grabbing";
