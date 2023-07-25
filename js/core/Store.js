@@ -45,7 +45,7 @@ class Store {
       const news = await Stores.getOriginalNews();
       for (const category in news) {
         const newsItems = news[category];
-        const foundItem = newsItems.find((item) => item.id === itemId);
+        const foundItem = newsItems.find((item) => item.id == parseInt(itemId));
         if (foundItem) {
           foundItem["arrow"] = true;
           if (!this.#subscribedNewsContent[foundItem.id])
@@ -63,7 +63,7 @@ class Store {
       for (const key in data) {
         newData[key] = data[key].filter((item) => item.id !== id);
         if (newData[key].length === 0) {
-          delete newData[key]; // Remove the key if the filtered result is empty
+          delete newData[key];
         }
       }
       this.#subscribedNewsContent = newData;

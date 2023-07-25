@@ -1,5 +1,5 @@
 import { makeArrow } from "../utils/utils.js";
-import { makeGrid } from "./render/renderGrid.js";
+import { makeGrid, clickSubscribeButton } from "./render/renderGrid.js";
 import Stores from "./core/Store.js";
 
 const MAX_PAGE_NUMBER = 3;
@@ -22,11 +22,13 @@ function increaseGridPage(logos, leftAsideButton, rightAsideButton) {
     rightAsideButton.style.visibility = "hidden";
     Stores.setPage(parseInt(Stores.getPage()) + 1);
     makeGrid(logos);
+    clickSubscribeButton(logos);
     return;
   }
   leftAsideButton.style.visibility = "visible";
   Stores.setPage(parseInt(Stores.getPage()) + 1);
   makeGrid(logos);
+  clickSubscribeButton(logos);
 }
 
 function decreaseGridPage(logos, leftAsideButton, rightAsideButton) {
@@ -34,11 +36,13 @@ function decreaseGridPage(logos, leftAsideButton, rightAsideButton) {
     leftAsideButton.style.visibility = "hidden";
     Stores.setPage(parseInt(Stores.getPage()) - 1);
     makeGrid(logos);
+    clickSubscribeButton(logos);
     return;
   }
   rightAsideButton.style.visibility = "visible";
   Stores.setPage(parseInt(Stores.getPage()) - 1);
   makeGrid(logos);
+  clickSubscribeButton(logos);
 }
 
 export { addEventArrowGrid };

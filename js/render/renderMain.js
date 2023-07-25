@@ -17,7 +17,8 @@ const renderAll = async (pageMode) => {
 };
 
 const renderSubscribe = (pageMode) => {
-  if (!Object.keys(Stores.getSubscribeNewsContent()).length) {
+  const subscribeNews = Stores.getSubscribeNewsContent();
+  if (Object.keys(subscribeNews).length === 0) {
     Stores.setSubscribedMode("all");
     snackBar("구독한 언론사가 없습니다.");
     return;
@@ -25,8 +26,8 @@ const renderSubscribe = (pageMode) => {
   Stores.setPage(0);
   boldSubscribed();
   return pageMode === "grid"
-    ? renderGrid(logo)
-    : renderCardList(Stores.getSubscribeNewsContent());
+    ? renderGrid(subscribeNews)
+    : renderCardList(subscribeNews);
 };
 
 export { renderMain };

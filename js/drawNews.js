@@ -46,7 +46,7 @@ function drawNewsHeader(news, progressBarId) {
   let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${
     news[progressBarId][currentCategoryPageNumber - 1].press
   }"  src="${
-    news[progressBarId][currentCategoryPageNumber - 1].img
+    news[progressBarId][currentCategoryPageNumber - 1].logo
   }"><span class="news-edit-time">${
     news[progressBarId][currentCategoryPageNumber - 1].editTime
   }</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
