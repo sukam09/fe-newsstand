@@ -50,6 +50,11 @@ export const gridPageState = initState({
   value: 0,
 });
 
+export const myGridPageState = initState({
+  key: "myGirdPage",
+  value: 0,
+});
+
 export const categoryIdState = initState({
   key: "categoryId",
   value: 0,

@@ -12,7 +12,7 @@ import {
 } from "./events.js";
 import {
   addObserverOnIsSub,
-  addObserverOnMyPressList,
+  addObserverOnMyPress,
   addObserverOnPageMode,
 } from "./observers.js";
 import {
@@ -40,5 +40,5 @@ export function initObservers() {
   addObserverOnPageType();
   addObserverOnIsSub();
   addObserverOnPageMode();
-  addObserverOnMyPressList();
+  addObserverOnMyPress();
 }

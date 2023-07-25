@@ -9,10 +9,7 @@ import {
   pageModeState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
-import {
-  showListPage,
-  updatePageCount,
-} from "./pageController/pageController.js";
+import { updatePageCount } from "./pageController/pageController.js";
 
 export function handleCategoryItemClick({ currentTarget }) {
   const pageMode = getState(pageModeState);
@@ -84,7 +81,6 @@ function startProgressAnimation($progressbar) {
       } else {
         setState(listPageState, listPage + 1);
       }
-      showListPage(getState(categoryIdState), getState(listPageState));
       updatePageCount();
       highlightCategoryItem();
 

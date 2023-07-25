@@ -4,7 +4,7 @@ import { MODE_ALL, initPageState } from "./store/pageState.js";
 import { initComponents } from "./components/initComponents.js";
 import { initSubStateList } from "./store/subState.js";
 import { initEvents, initObservers } from "./controller/initControllers.js";
-import { showGridPage } from "./controller/pageController/pageController.js";
+import { showModeAllGridPage } from "./controller/pageController/pageController.js";
 
 (async function init() {
   //fetch data
@@ -22,5 +22,5 @@ import { showGridPage } from "./controller/pageController/pageController.js";
 
   // 초기 화면
   startRollingAnimation();
-  showGridPage(MODE_ALL, 0);
+  showModeAllGridPage(0);
 })();

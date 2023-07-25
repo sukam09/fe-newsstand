@@ -12,12 +12,6 @@ import { getState, setState } from "../store/observer.js";
 import { NUM_IN_A_GRID } from "../store/pageState.js";
 import { qs, strToHtmlElemnt } from "../utils.js";
 
-function getGridItemIndex($gridItem) {
-  const gridItemKey = $gridItem.getAttribute("key");
-  const [page, indexOfPage] = gridItemKey.split("_");
-  const index = parseInt(page) * NUM_IN_A_GRID + parseInt(indexOfPage);
-  return index;
-}
 function getPressId($gridItem) {
   const press_id = $gridItem.classList[1].split("_")[1];
   return press_id;
@@ -83,7 +77,7 @@ export function controllGridSubButtonShowing(id) {
   }
 }
 
-export function controllMyPressGrid() {
+export function drawMyPressToGrid() {
   const { pressList } = getState(pressDataState);
   const myPressList = getState(myPressListState);
   const myPressCnt = getState(myPressCntState);

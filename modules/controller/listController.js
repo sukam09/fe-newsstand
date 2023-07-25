@@ -11,7 +11,6 @@ import {
   createNewsHeader,
 } from "../components/mainSection/mainBody/content/pressList/pressList.js";
 import { handleCategoryItemClick } from "./categoryController.js";
-import { addEventsOnListSubButton } from "./events.js";
 
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
@@ -43,7 +42,8 @@ export function controllListsSubButtonShowing(id) {
   });
 }
 
-export function controllMyPressList() {
+// 내가 구독한 언론사 리스트 추가
+export function drawMyPressToList() {
   const $container = qs("#mode_my_list_container");
   const myPressList = [...getState(myPressListState)];
   const { pressList } = getState(pressDataState);

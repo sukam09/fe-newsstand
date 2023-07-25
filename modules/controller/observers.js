@@ -3,11 +3,11 @@ import { addObserver } from "../store/observer.js";
 import { pageModeState } from "../store/pageState.js";
 import {
   controllGridSubButtonShowing,
-  controllMyPressGrid,
+  drawMyPressToGrid,
 } from "./gridController.js";
 import {
   controllListsSubButtonShowing,
-  controllMyPressList,
+  drawMyPressToList,
 } from "./listController.js";
 import { controllPage } from "./pageController/pageController.js";
 import { controllSnackbarShowing } from "./popupController.js";
@@ -22,9 +22,9 @@ export function addObserverOnIsSub() {
   });
 }
 
-export function addObserverOnMyPressList() {
-  addObserver(myPressListState, controllMyPressGrid);
-  addObserver(myPressListState, controllMyPressList);
+export function addObserverOnMyPress() {
+  addObserver(myPressListState, drawMyPressToGrid);
+  addObserver(myPressListState, drawMyPressToList);
 }
 
 export function addObserverOnPageMode() {
