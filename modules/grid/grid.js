@@ -1,23 +1,24 @@
-import { MEDIA, MESSAGE } from "../constant.js";
-import { getJSON } from "./data.js";
-import { shuffleList } from "./utils.js";
-import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState, register, setState } from "../observer/observer.js";
+import { MEDIA, MESSAGE } from "../../constant.js";
+import { getJSON } from "../data.js";
+import { shuffleList } from "../utils.js";
+import { onClickSubscribeMode } from "../subscribe.js";
+import { getState, register, setState } from "../../observer/observer.js";
 import {
   gridPageNum,
-  isGridMode,
   isLightMode,
   isTotalMode,
+  mediaIdList,
+  mediaInfo,
   subscribeList,
-} from "../store/index.js";
+} from "../../store/index.js";
+import {
+  clickSubButton,
+  setGridArrowEvent,
+  setGridModeEvent,
+} from "./event.js";
 
 const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-let idList = Array.from({ length: MEDIA.TOTAL_NUM }, (_, idx) => idx);
-let mediaInfo;
-
 const $newsWrapper = document.querySelector(".news-grid-wrapper");
-const $totalMedia = document.querySelector(".main-nav_total");
-const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 /**
  * 언론사 Grid 제작하기
@@ -46,7 +47,7 @@ const changeImgSrc = () => {
 
   for (let i = start; i < start + MEDIA_NUM; i++) {
     const mediaIdx = getState(isTotalMode)
-      ? idList[i]
+      ? getState(mediaIdList)[i]
       : getState(subscribeList)[i];
 
     const $img = document.querySelector(`.img${i - start}`);
@@ -57,8 +58,8 @@ const changeImgSrc = () => {
     }
 
     const imgSrc = getState(isLightMode)
-      ? `${mediaInfo[mediaIdx].path_light}`
-      : `${mediaInfo[mediaIdx].path_dark}`;
+      ? `${getState(mediaInfo)[mediaIdx].path_light}`
+      : `${getState(mediaInfo)[mediaIdx].path_dark}`;
     $img.src = imgSrc;
   }
 };
@@ -68,13 +69,13 @@ const changeImgSrc = () => {
  */
 const setButttonWrapper = (idx) => {
   const mediaId = getState(isTotalMode)
-    ? idList[idx]
+    ? getState(mediaIdList)[idx]
     : getState(subscribeList)[idx];
   const $buttonWrapper = document.createElement("div");
   $buttonWrapper.classList.add("news-grid_button_wrapper");
 
   const mediaIdx = getState(isTotalMode)
-    ? idList[idx]
+    ? getState(mediaIdList)[idx]
     : getState(subscribeList)[idx];
 
   const $button = document.createElement("button");
@@ -100,66 +101,6 @@ const setButttonWrapper = (idx) => {
   }
 
   return $buttonWrapper;
-};
-
-/**
- * 구독 버튼 이벤트 추가
- * @parm idx - idList 내에 위치한 미디어 idx
- */
-const clickSubButton = (idx) => {
-  const mediaId = getState("isTotalMode")
-    ? idList[idx]
-    : getState("subscribeList")[idx];
-  const mediaName = mediaInfo[mediaId].name;
-
-  changeSubState({ mediaId, mediaName });
-
-  const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
-    ".news-grid_button_wrapper"
-  );
-
-  $buttonWrapper.remove();
-  $newsWrapper.children[idx % MEDIA_NUM].append(setButttonWrapper(idx));
-};
-
-/**
- * 그리드 뷰 내 페이지 전환 이벤트
- */
-const setGridArrowEvent = () => {
-  const $leftArrow = document.querySelector(".left-arrow");
-  const $rightArrow = document.querySelector(".right-arrow");
-
-  $leftArrow.addEventListener("click", () => {
-    if (getState(isGridMode)) clickArrow(-1);
-  });
-  $rightArrow.addEventListener("click", () => {
-    if (getState(isGridMode)) clickArrow(+1);
-  });
-};
-
-/**
- * 그리드 뷰 내 전체 언론사 / 내가 구독한 언론사 전환 이벤트
- */
-const setGridModeEvent = () => {
-  $totalMedia.addEventListener("click", () => {
-    if (getState(isGridMode)) {
-      onClickGridMode({ className: "main-nav_total" });
-    }
-  });
-  $subscribeMedia.addEventListener("click", () => {
-    if (getState(isGridMode)) {
-      onClickGridMode({ className: "main-nav_subscribe" });
-    }
-  });
-};
-
-/**
- * @param {언론사 토글 중 선택한 클래스 이름} className
- */
-const onClickGridMode = ({ className }) => {
-  onClickSubscribeMode({ className });
-  setState("gridPageNum", 0);
-  setNewPage();
 };
 
 /**
@@ -219,7 +160,7 @@ const setArrowVisible = () => {
 
   // 미디어 개수에 따른 hidden 여부
   const totalPage = getState("isTotalMode")
-    ? idList.length / MEDIA_NUM
+    ? getState(mediaIdList).length / MEDIA_NUM
     : getState("subscribeList").length / MEDIA_NUM;
 
   if (getState("gridPageNum") < totalPage - 1) {
@@ -230,7 +171,8 @@ const setArrowVisible = () => {
 };
 
 const getGridInfo = async () => {
-  mediaInfo = await getJSON("/assets/media-content.json");
+  setState(mediaInfo, await getJSON("/assets/media-content.json"));
+  setState(mediaIdList, shuffleList(getState(mediaIdList)));
 };
 
 const initGridRegister = () => {
@@ -248,10 +190,9 @@ async function initGridView() {
   initGridRegister();
 
   await getGridInfo();
-  idList = shuffleList(idList);
   makeGrid();
   setArrowVisible();
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, setNewPage, changeImgSrc };
+export { initGridView, setNewPage, changeImgSrc, setButttonWrapper };

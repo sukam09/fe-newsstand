@@ -1,26 +1,17 @@
-import { MESSAGE } from "../constant.js";
-import { getJSON } from "./data.js";
-import { shuffleList } from "./utils.js";
-import { onClickSubscribeMode, changeSubState } from "./subscribe.js";
-import { getState, register, setState } from "../observer/observer.js";
-import { isGridMode, isTotalMode } from "../store/mode.js";
-
-let mediaInfo;
-let categoryInfo = {
-  "종합/경제": [],
-  "방송/통신": [],
-  IT: [],
-  영자지: [],
-  "스포츠/연예": [],
-  "매거진/전문지": [],
-  지역: [],
-};
-
-const $totalMedia = document.querySelector(".main-nav_total");
-const $subscribeMedia = document.querySelector(".main-nav_subscribe");
+import { MESSAGE } from "/constant.js";
+import { getJSON } from "/modules/data.js";
+import { shuffleList } from "/modules/utils.js";
+import { onClickSubscribeMode } from "/modules/subscribe.js";
+import { getState, setState } from "/observer/observer.js";
+import {
+  setListArrowEvent,
+  setListModeEvent,
+  setListSubscribeEvent,
+} from "./event.js";
+import { categoryInfo, mediaInfo } from "../../store/media.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
-const categoryKeys = Object.keys(categoryInfo);
+const categoryKeys = Object.keys(getState(categoryInfo));
 
 const $logo = document.querySelector(".news-list_media_header img");
 const $date = document.querySelector(".news-list_media_header p");
@@ -33,103 +24,27 @@ const $thumbnail = document.querySelector(".news-list_media_content_main img");
  * 리스트뷰 렌더링 전 데이터 가져오기
  */
 const getListInfo = async () => {
-  mediaInfo = await getJSON("/assets/media-content.json");
-
   // 미디어 정보 필터링해서 카테고리 정보에 넣기
-  mediaInfo.forEach((media, idx) => {
+  let newCateInfo = getState(categoryInfo);
+  getState(mediaInfo).forEach((media, idx) => {
     let cate = media.category;
-    categoryInfo[cate].push(idx);
+    newCateInfo[cate].push(idx);
   });
+  setState(categoryInfo, newCateInfo);
 
+  newCateInfo = getState(categoryInfo);
   categoryKeys.forEach((key) => {
-    categoryInfo[key] = shuffleList(categoryInfo[key]);
+    newCateInfo[key] = shuffleList(newCateInfo[key]);
   });
-};
-
-/**
- * 리스트뷰 내 화면 전환
- */
-const setListArrowEvent = () => {
-  const $leftArrow = document.querySelector(".left-arrow");
-  const $rightArrow = document.querySelector(".right-arrow");
-
-  $leftArrow.addEventListener("click", () => {
-    if (!getState(isGridMode)) {
-      if (getState(isTotalMode)) {
-        setState("listCateMediaIdx", getState("listCateMediaIdx") - 1);
-      } else {
-        setState("listSubsMediaIdx", getState("listSubsMediaIdx") - 1);
-      }
-      setFullList();
-    }
-  });
-  $rightArrow.addEventListener("click", () => {
-    if (!getState(isGridMode)) {
-      if (getState(isTotalMode)) {
-        setState("listCateMediaIdx", getState("listCateMediaIdx") + 1);
-      } else {
-        setState("listSubsMediaIdx", getState("listSubsMediaIdx") + 1);
-      }
-      setFullList();
-    }
-  });
-};
-
-const setListModeEvent = () => {
-  $totalMedia.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
-      onClickListMode({ className: "main-nav_total" });
-    }
-  });
-  $subscribeMedia.addEventListener("click", () => {
-    if (!getState("isGridMode")) {
-      onClickListMode({ className: "main-nav_subscribe" });
-    }
-  });
-};
-
-/**
- *
- * @param {언론사 토글 중 선택한 클래스 이름} className
- */
-const onClickListMode = ({ className }) => {
-  onClickSubscribeMode({ className });
-
-  setState("listCateIdx", 0);
-  setState("listCateMediaIdx", 0);
-
-  setFullList();
-};
-
-const setListSubscribeEvent = () => {
-  $plusSubBtn.addEventListener("click", () => {
-    clickSubButton();
-    setState("listSubsMediaIdx", getState("subscribeList").length - 1);
-    onClickListMode({ className: "main-nav_subscribe" });
-  });
-  $xSubBtn.addEventListener("click", () => {
-    clickSubButton();
-    setCategoryBar();
-    setFullList();
-  });
-};
-
-const clickSubButton = () => {
-  const totalId =
-    categoryInfo[categoryKeys[getState("listCateIdx")]][
-      getState("listCateMediaIdx")
-    ];
-  const subsId = getState("subscribeList")[getState("listSubsMediaIdx")];
-  const mediaId = getState("isTotalMode") ? totalId : subsId;
-  const mediaName = mediaInfo[mediaId].name;
-  changeSubState({ mediaId, mediaName });
+  setState(categoryInfo, newCateInfo);
 };
 
 /**
  * 페이지 이동 시 예외처리
  */
 const changeIdx = () => {
-  let cateLen = categoryInfo[categoryKeys[getState("listCateIdx")]].length;
+  let cateLen =
+    getState(categoryInfo)[categoryKeys[getState("listCateIdx")]].length;
   let [listCateIdx, cateMediaIdx] = [
     getState("listCateIdx"),
     getState("listCateMediaIdx"),
@@ -139,16 +54,15 @@ const changeIdx = () => {
     if (listCateIdx === 0 && cateMediaIdx === -1) {
       // 첫 카테고리 첫 페이지에서 이전 페이지 이동 시
       setState("listCateIdx", 6);
-      cateLen = categoryInfo[categoryKeys[listCateIdx]].length;
+      cateLen = getState(categoryInfo)[categoryKeys[listCateIdx]].length;
       setState("listCateMediaIdx", cateLen - 1);
-      // cateMediaIdx = cateLen - 1;
     } else if (
       // 첫 카테고리 아닐 때, 첫 페이지에서 이전 페이지 이동 시
       listCateIdx !== 0 &&
       cateMediaIdx === -1
     ) {
       setState("listCateIdx", listCateIdx - 1);
-      cateLen = categoryInfo[categoryKeys[listCateIdx]].length;
+      cateLen = getState(categoryInfo)[categoryKeys[listCateIdx]].length;
       setState("listCateMediaIdx", cateLen - 1);
     } else if (
       // 마지막 카테고리일 때, 마지막 페이지라면,
@@ -186,7 +100,7 @@ const setCategoryBar = () => {
     setACategoryBar({ keyList: categoryKeys });
   } else {
     const subMediaName = getState("subscribeList").map(
-      (subIdx) => mediaInfo[subIdx].name
+      (subIdx) => getState(mediaInfo)[subIdx].name
     );
     setACategoryBar({ keyList: subMediaName });
   }
@@ -197,7 +111,6 @@ const setCategoryBar = () => {
  */
 const isCurCategory = ({ cateIdx }) => {
   if (getState("isTotalMode")) {
-    // 전체모드일 때
     return getState("listCateIdx") === cateIdx;
   } else {
     return getState("listSubsMediaIdx") === cateIdx;
@@ -260,7 +173,7 @@ const setProgressBar = () => {
     // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
   <p>${getState("listCateMediaIdx") + 1}</p>
-  <p>&nbsp; / ${categoryInfo[cate].length}</p>
+  <p>&nbsp; / ${getState(categoryInfo)[cate].length}</p>
 `;
   } else {
     $cntDiv.innerHTML = `<img
@@ -291,10 +204,10 @@ const setListView = () => {
 
   // 모드에 따라 mediaId 세팅
   const mediaId = getState("isTotalMode")
-    ? categoryInfo[cate][getState("listCateMediaIdx")]
+    ? getState(categoryInfo)[cate][getState("listCateMediaIdx")]
     : getState("subscribeList")[getState("listSubsMediaIdx")];
 
-  const nowMedia = mediaInfo[mediaId];
+  const nowMedia = getState(mediaInfo)[mediaId];
 
   $logo.src = getState("isLightMode")
     ? nowMedia.path_light
@@ -343,8 +256,6 @@ const setFullList = () => {
  */
 async function initListView() {
   await getListInfo();
-
-  // register([isGridMode, isTotalMode], setListArrowEvent);
 
   setListArrowEvent();
   setListModeEvent();

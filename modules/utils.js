@@ -1,7 +1,11 @@
 import { IMAGE, MEDIA, MESSAGE } from "../constant.js";
 import { getState, setState } from "../observer/observer.js";
-import { changeImgSrc, setNewPage } from "./grid.js";
-import { setCategoryBar, setFullList, setListView } from "./list.js";
+import { changeImgSrc, setNewPage } from "./grid/grid.js";
+import {
+  setCategoryBar,
+  setFullList,
+  setListView,
+} from "/modules/list/list.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
