@@ -1,6 +1,6 @@
-import { HEADER_CLASS, PATH, NUMBER, CONTENT, MODE, BUTTON, ATTRIBUTE } from '../constants/press-grid.js';
+import { HEADER_CLASS, NUMBER, MODE, ATTRIBUTE } from '../constants/press-grid.js';
 import { getSliceIds } from '../utils/shuffle.js';
-import { Store } from '../utils/store.js'; //
+import { Store } from '../utils/store.js';
 
 class GridArrowStore extends Store {
   constructor(pressData, pressList) {
@@ -12,9 +12,8 @@ class GridArrowStore extends Store {
     this.pressList = pressList;
 
     this.setupEvent();
-    this.renderLogo();
-    this.renderArrow();
     this.setupIcon();
+    this.render();
   }
 
   initArrow() {
@@ -41,10 +40,7 @@ class GridArrowStore extends Store {
       this.selectPress = this.pressData.find((data) => data.id === sliceId);
       this.logoWapper = document.querySelector(`.${HEADER_CLASS.IMG}${idx}`);
       this.logoWapper.setAttribute(ATTRIBUTE.PRESS_ID, sliceId);
-
-      this.mode = localStorage.getItem(ATTRIBUTE.MODE);
-      if (this.mode === MODE.LIGHT) this.logoWapper.src = this.selectPress.lightSrc;
-      if (this.mode === MODE.DARK) this.logoWapper.src = this.selectPress.darkSrc;
+      this.logoWapper.src = this.selectPress.lightSrc;
     });
   }
 
