@@ -1,6 +1,6 @@
 import { PROGRESS_SPEED, subPressObj } from "../../../../constants/index.js";
 import pressName from "../../../../constants/pressName.js";
-import { store } from "../../../../core/store.js";
+import store from "../../../../core/Store.js";
 import Icon from "../../../common/Icon.js";
 
 export default class SubCategories {
@@ -10,7 +10,7 @@ export default class SubCategories {
 
     this.progressInterval;
     this.currentCategory = 0;
-    this.subCategories = store.press;
+    this.subCategories = store.getState();
 
     this.handleProgress();
   }

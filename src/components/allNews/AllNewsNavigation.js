@@ -3,7 +3,7 @@ import {
   LISTVIEW_ICON,
   allNewsObj,
 } from "../../constants/index.js";
-import { store } from "../../core/store.js";
+import { showStatus } from "../../core/showStatus.js";
 import Icon from "../common/Icon.js";
 
 export default class AllNewsNavigation {
@@ -64,7 +64,7 @@ export default class AllNewsNavigation {
   handleAllPressClick({ target: span }) {
     span.nextSibling.className = "";
     span.className = "selected-type";
-    store.isShowAllPress = true;
+    showStatus.isShowAllPress = true;
 
     this.callRender.call(allNewsObj);
   }
@@ -73,7 +73,7 @@ export default class AllNewsNavigation {
   handleSubPressClick({ target: span }) {
     span.previousSibling.className = "";
     span.className = "selected-type";
-    store.isShowAllPress = false;
+    showStatus.isShowAllPress = false;
 
     this.callRender.call(allNewsObj);
   }
@@ -83,7 +83,7 @@ export default class AllNewsNavigation {
     const $gridIconImg = $listIconImg.nextSibling;
     $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}-selected.svg`;
     $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}.svg`;
-    store.isShowGrid = false;
+    showStatus.isShowGrid = false;
 
     this.callRender.call(allNewsObj);
   }
@@ -93,17 +93,17 @@ export default class AllNewsNavigation {
     const $listIconImg = $gridIconImg.previousSibling;
     $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}.svg`;
     $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}-selected.svg`;
-    store.isShowGrid = true;
+    showStatus.isShowGrid = true;
 
     this.callRender.call(allNewsObj);
   }
 
   callRender() {
-    store.isShowGrid
-      ? store.isShowAllPress
+    showStatus.isShowGrid
+      ? showStatus.isShowAllPress
         ? this.renderAllGridView()
         : this.renderSubGridView()
-      : store.isShowAllPress
+      : showStatus.isShowAllPress
       ? this.renderAllListView()
       : this.renderSubListView();
   }

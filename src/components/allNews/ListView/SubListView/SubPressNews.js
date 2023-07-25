@@ -1,6 +1,6 @@
 import { pressData } from "../../../../constants/categories.js";
 import { subCategoriesObj } from "../../../../constants/index.js";
-import { store } from "../../../../core/store.js";
+import store from "../../../../core/Store.js";
 import Logo from "../../../common/Logo.js";
 import UnsubButton from "../../Buttons/UnsubButton.js";
 
@@ -10,8 +10,10 @@ export default class SubPressNews {
     this.$wrapper.className = "press-news";
 
     this.storePIndex = 0;
-    if (store.press.length > 0) {
-      this.pressIndex = store.press[this.storePIndex] - 1;
+
+    this.pressArray = store.getState();
+    if (store.getStateSize() > 0) {
+      this.pressIndex = this.pressArray[this.storePIndex] - 1;
       this.mainNews = pressData[this.pressIndex];
 
       this.render();
@@ -101,7 +103,7 @@ export default class SubPressNews {
   decreaseCurrentPage() {
     this.currentCategory -= 1;
     if (this.currentCategory === -1) {
-      this.currentCategory = store.press.length - 1;
+      this.currentCategory = store.getStateSize() - 1;
     }
 
     clearInterval(this.progressInterval);
@@ -111,7 +113,7 @@ export default class SubPressNews {
   /** 현재 페이지 증가 */
   increaseCurrentPage() {
     this.currentCategory += 1;
-    if (this.currentCategory === store.press.length) {
+    if (this.currentCategory === store.getStateSize()) {
       this.currentCategory = 0;
     }
 
@@ -121,17 +123,17 @@ export default class SubPressNews {
 
   /** 새로운 페이지 렌더링 */
   newRender() {
-    this.pressIndex = store.press[this.storePIndex] - 1;
+    this.pressIndex = this.pressArray[this.storePIndex] - 1;
     this.mainNews = pressData[this.pressIndex];
     this.render();
   }
 
   checkStorePIndex() {
-    if (this.storePIndex === store.press.length) {
+    if (this.storePIndex === store.getStateSize()) {
       this.storePIndex = 0;
     }
     if (this.storePIndex === -1) {
-      this.storePIndex = store.press.length - 1;
+      this.storePIndex = store.getStateSize() - 1;
     }
   }
 }

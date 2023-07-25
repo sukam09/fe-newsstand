@@ -1,4 +1,4 @@
-import { store } from "../../../core/store.js";
+import store from "../../../core/Store.js";
 import Logo from "../../common/Logo.js";
 import SubButton from "../Buttons/SubButton.js";
 import UnsubButton from "../Buttons/UnsubButton.js";
@@ -27,7 +27,7 @@ export default class AllNewsList {
 
   showSubButton({ target: li }, name) {
     li.replaceChildren();
-    if (store.press.includes(name)) {
+    if (store.getState().includes(name)) {
       li.appendChild(new UnsubButton(name, "해지하기"));
     } else {
       li.appendChild(new SubButton(name));

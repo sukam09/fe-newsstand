@@ -1,5 +1,5 @@
 import { SNACKBAR_DURATION } from "../../../constants/index.js";
-import { store } from "../../../core/store.js";
+import store from "../../../core/Store.js";
 import Icon from "../../common/Icon.js";
 
 export default class SubButton {
@@ -29,7 +29,7 @@ export default class SubButton {
     if ($gridWrapper) $gridWrapper.appendChild($snackBar);
     if ($listWrapper) $listWrapper.appendChild($snackBar);
 
-    store.press = [...store.press, name];
+    store.addState(name);
 
     setTimeout(() => {
       if ($gridWrapper) $gridWrapper.removeChild($snackBar);

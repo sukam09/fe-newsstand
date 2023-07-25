@@ -1,5 +1,5 @@
 import pressName from "../../../constants/pressName.js";
-import { store } from "../../../core/store.js";
+import store from "../../../core/Store.js";
 import Icon from "../../common/Icon.js";
 
 export default class UnsubButton {
@@ -54,7 +54,8 @@ export default class UnsubButton {
   }
 
   handleClickYesButton(name) {
-    store.press = store.press.filter((v) => v !== name);
+    store.removeState(name);
+
     this.removeModal();
   }
 

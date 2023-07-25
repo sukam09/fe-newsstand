@@ -5,8 +5,8 @@ import {
 } from "../../../../constants/index.js";
 import { categories } from "../../../../constants/categories.js";
 import SubButton from "../../Buttons/SubButton.js";
-import { store } from "../../../../core/store.js";
 import UnsubButton from "../../Buttons/UnsubButton.js";
+import store from "../../../../core/Store.js";
 
 export default class PressNews {
   constructor() {
@@ -33,7 +33,7 @@ export default class PressNews {
 
     $nameWrapper.appendChild(this.createPressLogo(this.mainNews.logo));
     $nameWrapper.appendChild($editTime);
-    if (store.press.includes(this.mainNews.id)) {
+    if (store.getState().includes(this.mainNews.id)) {
       $nameWrapper.appendChild(new UnsubButton(this.mainNews.id));
     } else {
       $nameWrapper.appendChild(new SubButton(this.mainNews.id));
