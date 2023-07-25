@@ -1,4 +1,16 @@
 :root {
+  /* Typography Default Value */
+  /* font size */
+  --text-size-large: 24px;
+  --text-size-medium: 16px;
+  --text-size-regular: 14px;
+  --text-size-small: 12px;
+
+  /* font weight */
+  --text-weight-bold: 700;
+  --text-weight-medium: 500;
+
+  /* Color Default Value */
   --grayscalewhite-alt: rgba(255, 255, 255, 0.7);
   --grayscalewhite: #ffffff;
   --grayscale50: #f5f7f9;

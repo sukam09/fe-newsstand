@@ -26,9 +26,11 @@ function checkProgress(current) {
 function drawNext(contents) {
   if (getTabMode() === "all") {
     return `
-    <div class="count">
-      <span>${getPage()}</span>
-      <span>/</span>
+    <div class="display-bold12 count">
+      <span class=>${getPage()}</span>
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="5" height="12" viewBox="0 0 5 12" fill="none">
+      <path d="M5 0.919922H3.5L0.769531 11.0801H2.25781L5 0.919922Z" fill="white" fill-opacity="0.7"/>
+      </svg></span>
       <span class = "entire">${contents.length}</span>
     </div>`;
   } else {
@@ -55,7 +57,7 @@ export function drawCategory(current, list, contents) {
         <div class="progress-bar" id="play-animation">
         </div>
         <div class="ctg-wrapper">
-          <span class="ctg">${element}</span>
+          <span class="selected-bold14 ctg">${element}</span>
           ${drawNext(contents)}
         </div>
       </li>`
@@ -64,7 +66,7 @@ export function drawCategory(current, list, contents) {
           <div class="progress-bar">
           </div>
             <div class="ctg-wrapper">
-              <span class="ctg">${element}</span>
+              <span class="available-medium14 ctg">${element}</span>
             </div
         </li>`;
   });

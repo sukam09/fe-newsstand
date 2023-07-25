@@ -60,6 +60,27 @@ function drawPopup() {
   view_content.append(new_div_alert, new_div_snackbar);
 }
 
+function updateTabSelection(selectedTab) {
+  const allTab = document.getElementById("all");
+  const subscribeTab = document.getElementById("subscribe");
+
+  allTab.classList.remove("selected-bold16", "clicked");
+  allTab.classList.add("available-medium16");
+  subscribeTab.classList.remove("selected-bold16", "clicked");
+  subscribeTab.classList.add("available-medium16");
+  selectedTab.classList.remove("available-medium16");
+  selectedTab.classList.add("selected-bold16", "clicked");
+  store.setState({ page: FIRST_PAGE_NUM, tabMode: `${selectedTab.id}` });
+
+  if (getView() === "grid") {
+    showGridView();
+  } else {
+    showListView(
+      selectedTab.id === "all" ? CATEGORY[0] : getSubscribedPress()[0]
+    );
+  }
+}
+
 function handleClick(e) {
   const view_content = document.querySelector(".view-content");
   const target = e.target.id;
@@ -89,24 +110,10 @@ function handleClick(e) {
         : changePage(target);
       break;
     case "all":
-      document.getElementById("subscribe").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-      } else {
-        showListView(CATEGORY[0]);
-      }
+      updateTabSelection(document.getElementById("all"));
       break;
     case "subscribe":
-      document.getElementById("all").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-      } else {
-        showListView(getSubscribedPress[0]);
-      }
+      updateTabSelection(document.getElementById("subscribe"));
       break;
     default:
       break;

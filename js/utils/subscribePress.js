@@ -15,7 +15,7 @@ export function showSubscribeButton(isSubscribed) {
       ? `
         <button class="sub cancel">
           <img src="${ICON_IMG_PATH}closed.svg" />
-          <span>해지하기</span>
+          <span class="available-medium12">해지하기</span>
         </button>
       `
       : `
@@ -26,7 +26,7 @@ export function showSubscribeButton(isSubscribed) {
     : `
         <button class="sub subscribe">
           <img src="${ICON_IMG_PATH}plus.svg" />
-          <span>구독하기</span>
+          <span class="available-medium12">구독하기</span>
         </button>
         `;
 }
