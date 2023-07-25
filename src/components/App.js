@@ -1,8 +1,8 @@
 //components
 import Component from './core/Component.js';
-import AllNews from './allNews/index.js';
 import Header from './header/index.js';
-import LatestNews from './latestNews/index.js';
+import AllNews from './all-news/index.js';
+import LatestNews from './latest-news/index.js';
 
 //utils
 import { customQuerySelector } from '../utils/index.js';

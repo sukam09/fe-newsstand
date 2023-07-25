@@ -1,3 +1,7 @@
+/**
+ * 오늘 날짜를 원하는 포맷에 반환하는 함수
+ * @returns {String}
+ */
 const getTodayDate = () => {
   const today = new Date();
   const options = {
@@ -10,10 +14,21 @@ const getTodayDate = () => {
   return today.toLocaleDateString('ko-KR', options);
 };
 
+/**
+ * 배열을 랜덤하게 섞어주는 함수
+ * @param {Array} array
+ * @returns {Array}
+ */
 const shufflePressOrder = (array = []) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
+/**
+ * querySelector와 같은 기능을 하는 커스텀 함수
+ * @param {String} selector
+ * @param {HTMLElement} $target
+ * @returns {HTMLElement}
+ */
 export const customQuerySelector = (selector, $target = document) => {
   const childNodes = [...$target.childNodes];
   const targetSelctor = selector.trim();
@@ -35,6 +50,12 @@ export const customQuerySelector = (selector, $target = document) => {
   return null;
 };
 
+/**
+ * querySelectorAll과 같은 기능을 하는 커스텀 함수
+ * @param {String} selector
+ * @param {HTMLElement} $target
+ * @returns {Array}
+ */
 export const customQuerySelectorAll = (selector, $target = document) => {
   const result = [];
   const childNodes = [...$target.childNodes];
