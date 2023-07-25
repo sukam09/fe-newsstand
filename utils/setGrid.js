@@ -9,7 +9,6 @@ import { INITIAL_PAGE } from "../constants/constant.js";
 const grid_btn = document.querySelector(".grid-view-btn");
 const list_btn = document.querySelector(".list-view-btn");
 
-const all_press = document.querySelector(".all_press");
 const subscribe_press = document.querySelector(".subscribe_press");
 
 // Grid 뷰 선택 시
@@ -29,18 +28,16 @@ export const setGrid = () => {
   $grid.style.display = "grid";
   $list.style.display = "none";
 
-  // 내가 구독한 언론사가 클릭된 상태라면
-  if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
-    agencies = filterSubscribePress(agencies);
+  // 전체 언론사 보기인지 내가 구독한 언론사 보기인지 체크
+  const isSubscribedMode = Boolean(
+    subscribe_press.getAttribute("subscribetype")
+  );
 
-    const pages = sortPages(agencies);
-    setGridButton(pages);
-    GridComponent(INITIAL_PAGE, pages);
-  }
-  // 전체 언론사라면
-  else {
-    const pages = sortPages(agencies);
-    setGridButton(pages);
-    GridComponent(INITIAL_PAGE, pages);
-  }
+  agencies = isSubscribedMode ? filterSubscribePress(agencies) : agencies;
+
+  const pages = sortPages(agencies);
+
+  setGridButton(pages);
+
+  GridComponent(INITIAL_PAGE, pages);
 };
