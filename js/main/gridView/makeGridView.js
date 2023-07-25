@@ -92,16 +92,15 @@ function checkPage() {
     }
   } else if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
     if (
-      getState(gridSubPage) <= MIN_PAGE &&
-      getState(gridSubPage) === Math.ceil(getState(subPress).length / 24)
+      getState(gridSubPage) === MIN_PAGE &&
+      getState(gridSubPage) >= Math.ceil(getState(subPress).length / 24)
     ) {
       left_btn.style.visibility = "hidden";
       right_btn.style.visibility = "hidden";
     } else if (getState(gridSubPage) === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
     } else if (
-      getState(gridSubPage) ===
-      Math.ceil(getState(subPress).length / 24 || getState(gridSubPage) === 0)
+      getState(gridSubPage) >= Math.ceil(getState(subPress).length / 24)
     ) {
       right_btn.style.visibility = "hidden";
     }
