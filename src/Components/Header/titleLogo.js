@@ -6,4 +6,4 @@ function handleClickLogo() {
   $logo.addEventListener('click', function () { location.reload() });
 }
 
-export default handleClickLogo
+export default handleClickLogo;

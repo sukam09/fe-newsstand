@@ -12,4 +12,4 @@ function showDate() {
   $todayDate.innerText = `${year}. ${month}. ${date}. ${day}요일`;
 }
 
-export default showDate
+export default showDate;

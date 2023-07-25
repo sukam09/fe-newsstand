@@ -1,3 +1,20 @@
+.rolling-news-container {
+  display: flex;
+  width: 930px;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.rolling-news {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border: 1px solid var(--border-default);
+}
+
 .rolling-banner {
   position: relative;
 }

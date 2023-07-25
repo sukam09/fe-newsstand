@@ -1,5 +1,4 @@
-{
-  "pressInfoArr":[
+[
   {
     "id": 1,
     "name": "YTN 사이언스",
@@ -671,5 +670,5 @@
     "darkSrc": "./assets/logo/dark/img96.svg",
     "lightSrc": "./assets/logo/light/img96.svg",
     "isSub": false
-  }]
-}
+  }
+]
