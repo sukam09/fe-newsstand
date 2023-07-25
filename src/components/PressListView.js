@@ -1,5 +1,6 @@
 import { fetchPressInfo, fetchListView } from '../api.js';
 import { store } from '../../core/store.js';
+import { convertRegDate } from '../utils.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {
@@ -184,7 +185,7 @@ export default function PressListView({ $target, initialState }) {
         <div class="press-name">
           <img class="press-image" src="${pressLogo}"/>
         </div>
-        <div class="edit-date">${regDate} 편집</div>
+        <div class="edit-date">${convertRegDate(regDate)} 편집</div>
         <button class="list-subscribe-button">
           <img src="../asset/icons/plus.svg" />
           <p>구독하기</p>
