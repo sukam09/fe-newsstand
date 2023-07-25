@@ -12,6 +12,7 @@ let lastProgressed;
  */
 export const setNewsData = () => {
   const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
+  console.log(newsItem);
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
@@ -151,7 +152,6 @@ const setArrowHandler = () => {
   const leftArrowWrapper = document.querySelector("#arrow_wrapper_left_list");
   const rightArrowWrapper = document.querySelector("#arrow_wrapper_right_list");
   
-  // 이벤트 리스너가 이미 등록되어 있다면 리턴하여 다시 추가하지 않습니다.
   if (leftArrowWrapper._hasClickListener || rightArrowWrapper._hasClickListener) {
     return;
   }
@@ -167,8 +167,8 @@ const setArrowHandler = () => {
       media_page.setState(media_page.getState()-1);
     }
     cancelAnimationFrame(animationId);
-    progressBarControl();
     updateCategoryProgress();
+    progressBarControl();
   });
   
   rightArrowWrapper.addEventListener("click", () => {
@@ -185,8 +185,8 @@ const setArrowHandler = () => {
       media_page.setState(media_page.getState()+1);
     }
     cancelAnimationFrame(animationId);
-    progressBarControl();
     updateCategoryProgress();
+    progressBarControl();
   });  
   leftArrowWrapper._hasClickListener = true;
   rightArrowWrapper._hasClickListener = true;
@@ -219,9 +219,6 @@ const updateCategoryProgress = () => {
   setNewsData();
 };
 
-export const resetProgressBar = () => {
-  document.querySelectorAll('.category_item').forEach(item => item.style.background = '');
-}
 /**
  * 
  * @param {Object} items 
@@ -229,9 +226,7 @@ export const resetProgressBar = () => {
  * 카테고리 클릭하면 progressed class 추가하는 함수
  */
 const toggleProgressedClass = (items, index) => {
-  lastProgressed.style.background = '';
   items.forEach(item => item.classList.remove("progressed"));
-  document.querySelectorAll('category_item').forEach(item => item.style.bacgkround = '');
   items[index].classList.add("progressed");
 };
 
@@ -244,6 +239,7 @@ const toggleProgressedClass = (items, index) => {
  */
 const addClickListenerToCategoryItem = (item, index, items) => {
   item.addEventListener("click", () => {
+    updateCategoryProgress();
     toggleProgressedClass(items, index);
     progressBarControl();
   });
@@ -293,21 +289,9 @@ const updatePageAndData = () => {
  */
 const animateProgressBar = (element, endWidth, duration) => {
   const start = performance.now();
-  console.log(lastProgressed);
-  if(lastProgressed){
-    if(lastProgressed !== element){
-      console.log("TEST");
-      lastProgressed.style.background = '';
-      lastProgressed = element;
-    }
-  }
-  lastProgressed = element;
-
-
   const step = (timestamp) => {
     const elapsed = timestamp - start;
     const currentWidth = Math.min((endWidth * elapsed) / duration, endWidth);
-    // setWidth(element, currentWidth);
     element.style.background = `linear-gradient(to right, 
       #4362d0 ${currentWidth}%, 
       #7890E7 0%)`;
@@ -315,11 +299,9 @@ const animateProgressBar = (element, endWidth, duration) => {
       animationId = requestAnimationFrame(step);
     } else {
       updatePageAndData();
-      element.style.background = '';
       progressBarControl();
     }
   };
-
   animationId = requestAnimationFrame(step);
 };
 
