@@ -58,7 +58,7 @@ export default function App({ $app }) {
       }
 
       // 내가 구독한 언론사가 하나도 없으면 이동하지 않음
-      if (press === 'my' && store.getMyPress().length === 0) {
+      if (store.getMyPress().length === 0) {
         return;
       }
 
