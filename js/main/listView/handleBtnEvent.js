@@ -7,7 +7,7 @@ import { listAllPage, viewOption } from "../../store/store.js";
 
 /* about list view left, right Btn */
 
-function addEventToBtn() {
+function addEventToListBtn() {
   const left_btn = document.getElementById("list-left-btn");
   const right_btn = document.getElementById("list-right-btn");
   left_btn.addEventListener("click", () => handleBtnClick("Left"));
@@ -38,7 +38,7 @@ function handleLeftBtn(currentCategory) {
     } else {
       prevMaxPage = news_by_press[prevCategory.innerText].length;
     }
-    setState(listAllPage, getState(listAllPage) - 1);
+    setState(listAllPage, prevMaxPage - 1);
     addAnimation(prevCategory, "Prev");
   } else {
     setState(listAllPage, getState(listAllPage) - 1);
@@ -65,4 +65,4 @@ function findPageNum(category) {
   }
 }
 
-export { addEventToBtn, handleBtnClick };
+export { addEventToListBtn, handleBtnClick };

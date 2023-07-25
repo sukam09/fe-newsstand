@@ -4,9 +4,9 @@ import {
   transformMainNews,
 } from "./handleNewsData.js";
 
-function makeListView() {
+function makeListView(manipulatedNews) {
   makeRandomNews();
-  makeCategory();
+  makeCategory(manipulatedNews);
   transformMainNews();
 }
 export { makeListView };

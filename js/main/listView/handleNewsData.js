@@ -25,6 +25,7 @@ function makeCategory() {
   } else {
     _category = press;
   }
+
   if (_category.length !== 0) {
     const _ul = document.querySelector(".category");
     _ul.innerHTML = ``;
@@ -58,11 +59,12 @@ function makeCategory() {
         _li.children[2].style.display = "flex";
       }
     });
+  } else {
   }
 }
 
 /* change */
-function chageNews(e) {
+function changeNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
   //press-info
   if (news !== undefined) {
@@ -176,7 +178,7 @@ function addEventPressInfo() {
   _img.addEventListener("click", () => {
     clickSubscribeBtn(
       document.querySelector(".press-info-img").dataset.press,
-      "list",
+
       _img
     );
   });
@@ -188,6 +190,6 @@ export {
   transformMainNews,
   getPagesNum,
   findCurrentCategory,
-  chageNews,
+  changeNews,
   addEventPressInfo,
 };

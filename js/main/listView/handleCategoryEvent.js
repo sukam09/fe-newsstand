@@ -1,7 +1,7 @@
 import { getState, setState } from "../../store/observer.js";
 import { listAllPage } from "../../store/store.js";
 import { addAnimation, removeAnimation } from "./handleAnimation.js";
-import { chageNews, getPagesNum } from "./handleNewsData.js";
+import { changeNews, getPagesNum } from "./handleNewsData.js";
 /* category event listeners */
 
 function handleCategoryClick(e) {
@@ -11,14 +11,14 @@ function handleCategoryClick(e) {
 }
 
 function handleAniamtionStart(e) {
-  chageNews(e);
+  changeNews(e);
 }
 
 function handleAniamtionIteration(e) {
   const totalPageNum = getPagesNum(e.currentTarget.dataset.category);
   if (getState(listAllPage) + 1 < totalPageNum) {
     setState(listAllPage, getState(listAllPage) + 1);
-    chageNews(e);
+    changeNews(e);
   }
   //다음 카테고리로 넘어갈 때
   else {
