@@ -1,9 +1,11 @@
 import { fetchPressInfo, fetchListView } from '../api.js';
 import { store } from '../../core/store.js';
-import { convertRegDate, getSubscribed } from '../utils.js';
-import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
+import { convertRegDate, getSubscribed, handleSubscribe } from '../utils.js';
+import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA, SUBSCRIBE_MESSAGE } from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
+import SnackBar from './common/SnackBar.js';
+import Alert from './common/Alert.js';
 
 export default function PressListView({ $target, initialState }) {
   const $section = document.createElement('section');
@@ -164,6 +166,11 @@ export default function PressListView({ $target, initialState }) {
     }
   };
 
+  const handleClickSubscribeButton = subscribeButton => {
+    const { pid, pressName } = this.state;
+    handleSubscribe(parseInt(pid, 10), pressName, this, subscribeButton);
+  };
+
   let isInit = false;
 
   this.render = async () => {
@@ -189,6 +196,7 @@ export default function PressListView({ $target, initialState }) {
           <img class="press-image" src="${pressLogo}"/>
         </div>
         <div class="edit-date">${convertRegDate(regDate)} 편집</div>
+        <div class="list-subscribe-button-wrapper"></div>
       </div>
       <div class="news">
         <div class="news-main">
@@ -204,14 +212,15 @@ export default function PressListView({ $target, initialState }) {
       </div>
     `;
 
-    const $pressInfo = $article.querySelector('.press-info');
-    new SubscribeButton({
-      $target: $pressInfo,
+    const $buttonWrapper = $article.querySelector('.list-subscribe-button-wrapper');
+    const subscribeButton = new SubscribeButton({
+      $target: $buttonWrapper,
       initialState: {
         type: 'list',
         isSubscribed: press === 'my' ? true : getSubscribed(parseInt(this.state.pid, 10)),
       },
     });
+    $buttonWrapper.addEventListener('click', () => handleClickSubscribeButton(subscribeButton));
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
@@ -236,6 +245,22 @@ export default function PressListView({ $target, initialState }) {
             <p class="text-button-entire">${entire}</p>
           </div>`
         : `<img src="../asset/icons/chevron-right.svg" />`;
+
+    this.snackBar = new SnackBar({
+      $target: $article,
+      initialState: {
+        isShow: false,
+        text: SUBSCRIBE_MESSAGE,
+      },
+    });
+
+    this.alert = new Alert({
+      $target: $article,
+      initialState: {
+        isShow: false,
+        pressName: '',
+      },
+    });
 
     initProgressBar($selectedButton);
   };
