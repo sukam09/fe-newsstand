@@ -1,8 +1,5 @@
 
 import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { drawArrow } from "../script/arrow/arrow.js";
-import { drawGrid } from "../script/grid-view/grid.js";
-import { drawList } from "../script/list-view/list.js";
 
 class Store {
     constructor () {
@@ -12,6 +9,7 @@ class Store {
             crntCategory : 0,  // category index (list view)
             crntFilter : FILTER_TYPE.ALL,
             isChangeView : false,
+            isStillList : false,
         }
         this.subList = [];
         this.shuffledList = [];
@@ -28,13 +26,18 @@ class Store {
         return this.shuffledList;
     }
     
-
+    initFlagVar() {
+        if (this.viewState.isChangeView === true){
+            this.viewState.isChangeView = false;
+        }
+        if (this.viewState.isStillList === true){
+            this.viewState.isStillList = false;
+        }
+    }
     setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
         this.notify();
-        if (this.viewState.isChangeView === true){
-            this.viewState.isChangeView = false
-        }
+        this.initFlagVar();
     }
     setSubList(id, type){
         switch(type){
@@ -51,7 +54,6 @@ class Store {
     setShuffledList(arr){
         this.shuffledList = arr;
     }
-
 
     subscribe(observer) {
         this.observers.add(observer)

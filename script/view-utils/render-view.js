@@ -30,12 +30,12 @@ function toggleViewVisibility(nextView) {
 function renderView(){
     const {crntPage, crntCategory, crntView, isChangeView} = store.getViewState();
     if (isChangeView){
-        // Possible case :
-        // 1. change filter thru nav btns
-        // 2. change view thru nav btns
-        // 3. grid view subscribe > forced filter/view change
+        // Possible cases :
+        // 1. 전체 언론사 또는 내가 구독한 언론사 클릭
+        // 2. 리스트뷰 또는 그리드뷰 버튼 클릭
+        // 3. 그리드에서 구독하기 클릭해서 구독한 언론사 페이지로 넘어갈 경우
         toggleViewVisibility(crntView);
-        changeViewIcons(crntView)
+        changeViewIcons(crntView);
     }
     switch (crntView){
         case VIEW_TYPE.GRID:

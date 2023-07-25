@@ -11,7 +11,12 @@ function showAllArrows(){
     rightArrow.classList.remove("hidden");
 }
 function drawArrow(){
-    let {crntPage, crntView, crntFilter} = store.getViewState();
+    let {crntPage, crntView, crntFilter, isStillList} = store.getViewState();
+    if (isStillList){ 
+        // (in list) click arrow > setViewState() > drawArrow
+        // no need to redraw arrows when in list
+        return;
+    }
     let dataInfo;
     if (crntFilter === FILTER_TYPE.ALL){
         dataInfo = pressList;
@@ -49,11 +54,11 @@ function handleArrowClick(){
         if (crntView == VIEW_TYPE.LIST) {
             const {navData} = filterData();
             if (crntPage == 0 && crntCategory == 0) { 
-                store.setViewState({crntCategory: navData.length - 1, crntPage : 0});
+                store.setViewState({crntCategory: navData.length - 1, crntPage : 0, isStillList:true});
             } else if (crntPage == 0 && crntCategory > 0){ 
-                store.setViewState({crntCategory: crntCategory - 1, crntPage: 0})
+                store.setViewState({crntCategory: crntCategory - 1, crntPage: 0, isStillList:true})
             } else {
-                store.setViewState({crntPage: crntPage-1});
+                store.setViewState({crntPage: crntPage-1, isStillList:true});
             }
         } else { // crntView == VIEW_TYPE.GRID
             store.setViewState({crntPage: crntPage-1});
@@ -65,11 +70,11 @@ function handleArrowClick(){
         if (crntView == VIEW_TYPE.LIST) {
             const {navData, numOfListPages} = filterData();
             if (crntPage >= numOfListPages - 1 && crntCategory >= navData.length - 1){ // last page of the last category
-                store.setViewState({crntCategory: 0, crntPage : 0});
+                store.setViewState({crntCategory: 0, crntPage : 0, isStillList:true});
             } else if (crntPage >= numOfListPages - 1 && crntCategory < navData.length - 1) { // last page of a category
-                store.setViewState({crntCategory: crntCategory + 1, crntPage : 0});
+                store.setViewState({crntCategory: crntCategory + 1, crntPage : 0,isStillList:true});
             } else {
-                store.setViewState({crntPage: crntPage + 1});
+                store.setViewState({crntPage: crntPage + 1,isStillList:true});
             }
         } else { // crntView == VIEW_TYPE.GRID
             store.setViewState({crntPage: crntPage + 1});
