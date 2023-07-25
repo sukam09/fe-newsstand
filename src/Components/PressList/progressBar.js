@@ -1,9 +1,9 @@
 import { PROGRESS_FLAG } from "../../constant.js";
 import { _changeClass } from "../../utils.js";
-import { setProgressEventFlag, turnNewsPage } from "./pageMoveButton.js";
-import { setDrawPressNews } from "./pressNews.js";
+import { setProgressNewsTurner } from "./pageMoveButton.js";
 import pressStore from "../../pressDataStore.js";
 import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView } from "../../store.js";
+
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 
@@ -75,7 +75,7 @@ function startProgressAnimation() {
   restartProgressAnimation();
   const $progrsesAnimation = document.querySelector('.progress');
   $progrsesAnimation.addEventListener('animationstart', (event) => {
-    turnNewsPage(PROGRESS_FLAG);
+    setProgressNewsTurner(PROGRESS_FLAG);
   })
 }
 
@@ -97,4 +97,4 @@ function initProgress() {
   startProgressAnimation();
 }
 
-export { initProgress, setProgressPage, startProgressAnimation, removeProgress };
+export { initProgress, startProgressAnimation, removeProgress };

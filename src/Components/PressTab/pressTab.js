@@ -2,7 +2,6 @@ import { TEXT_WEAK, TEXT_POINT } from "../../constant.js";
 import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage, setPress, setView, store } from "../../store.js";
 import { _changeClass, _changeDispay } from "../../utils.js";
 import { initPressImg } from "../PressGrid/pressLogos.js";
-import { setProgressEventFlag } from "../PressList/pageMoveButton.js";
 import { initNews } from "../PressList/pressNews.js";
 
 const $pressGrid = document.querySelector('.press-grid-container');

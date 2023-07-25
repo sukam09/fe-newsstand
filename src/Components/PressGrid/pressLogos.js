@@ -1,11 +1,9 @@
 import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_BTN } from "../../path.js";
 import { PRESS_CNT_PER_PAGE, FIRST_PAGE_IDX, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
-import turnPressPage from "./pageMoveButton.js";
+import { turnPressPage, setPageTurner } from "./pageMoveButton.js";
 import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
 import { changeView } from "../PressTab/pressTab.js"
-import { initNews } from "../PressList/pressNews.js";
-import { removeProgress } from "../PressList/progressBar.js";
 
 const $gridSnackBar = document.querySelector('.grid-snackbar')
 const shuffledAllPress = pressStore.getShuffledAllPress
@@ -14,6 +12,7 @@ const shuffledAllPress = pressStore.getShuffledAllPress
  언론사 이미지 띄우기
  */
 function drawPressImgContent(whatPress) {
+  resetGridView();
   const currentPageGridPress = whatPress.slice(getPage() * PRESS_CNT_PER_PAGE, getPage() * PRESS_CNT_PER_PAGE + PRESS_CNT_PER_PAGE);
   const $pressList = document.querySelectorAll('.current-logos-container');
   for (let i = 0; i < currentPageGridPress.length; i++) {
@@ -21,29 +20,21 @@ function drawPressImgContent(whatPress) {
     <img class = "pointer current-logos" data-id = "${currentPageGridPress[i].id}" src="${currentPageGridPress[i].lightSrc}">
     `
   }
-}
-
-/**
- 내가 구독한 언론사에 대한 정보 받아오기
- */
-function getSubscribedPressOfGrid() {
-  const myPress = shuffledAllPress.filter(press => getSubscribedPressId().includes(press.id))
-  return myPress
-}
-
-/**
- 전체 언론사 보기 / 내가 구독한 언론사 보기
- */
-function drawPressImg() {
-  resetGridView();
-  const subscribedPress = getSubscribedPressOfGrid();
-  getView() === 'grid' && getPress() === 'all'
-    ? drawPressImgContent(shuffledAllPress)
-    : ''
-  getView() === 'grid' && getPress() === 'my'
-    ? drawPressImgContent(subscribedPress)
-    : ''
   handleSubscribe();
+}
+
+/** 그리드 초기화 */
+function resetGridView() {
+  const $allLogos = document.querySelectorAll('.current-logos');
+  $allLogos.forEach(press => {
+    press.remove();
+  })
+}
+
+/** 구독하기/해지하기 마우스 호버, 클릭 이벤트 등록과 핸들링 */
+function handleSubscribe() {
+  showSubUnsubBtn();
+  clickSubUnsubBtn();
 }
 
 /** 언론사 이미지 마우스 호버 이벤트 걸기 */
@@ -53,12 +44,6 @@ function showSubUnsubBtn() {
     press.parentElement.addEventListener('mouseenter', () => handleShowSubUnsubBtn(event, 'subscribeBtn'));
     press.parentElement.addEventListener('mouseleave', () => handleShowSubUnsubBtn.call(this, event, 'logo'));
   })
-}
-
-/** 마우스 호버시 버튼과 배경색 바뀜 */
-function setImgAndBackgroundColor(target, path, backgroundColor) {
-  target.children[0].src = path;
-  target.style.backgroundColor = backgroundColor;
 }
 
 /** 구독하기/해지하기 어떤 것 띄울 지 결정하기 */
@@ -85,6 +70,12 @@ function isLogoExist(target) {
   return (target.getElementsByClassName('current-logos').length !== 0)
 }
 
+/** 마우스 호버시 버튼과 배경색 바뀜 */
+function setImgAndBackgroundColor(target, path, backgroundColor) {
+  target.children[0].src = path;
+  target.style.backgroundColor = backgroundColor;
+}
+
 /** 구독하기 또는 해지하기 클릭 이벤트 걸기 */
 function clickSubUnsubBtn() {
   const $presses = document.querySelectorAll(".current-logos");
@@ -93,7 +84,7 @@ function clickSubUnsubBtn() {
   })
 }
 
-/** 구독/해지 하기  */
+/** 구독하기/해지하기  */
 function handleClickSubUnsubBtn({ target }) {
   const clickedPressId = parseInt(target.getAttribute('data-id'));
   if (store.isSubscribed(clickedPressId) && getPress() === 'my') {
@@ -137,17 +128,25 @@ function drawBorder() {
   `
 }
 
-/** 그리드 초기화 */
-function resetGridView() {
-  const $allLogos = document.querySelectorAll('.current-logos');
-  $allLogos.forEach(press => {
-    press.remove();
-  })
+/**
+ 내가 구독한 언론사에 대한 정보 받아오기[{},{},{}]
+ */
+function getSubscribedPressOfGrid() {
+  const myPress = shuffledAllPress.filter(press => getSubscribedPressId().includes(press.id))
+  return myPress
 }
 
-function handleSubscribe() {
-  showSubUnsubBtn();
-  clickSubUnsubBtn();
+/**
+ 전체 언론사 보기 / 내가 구독한 언론사 보기
+ */
+function drawPressImg() {
+  const subscribedPress = getSubscribedPressOfGrid();
+  getView() === 'grid' && getPress() === 'all'
+    ? drawPressImgContent(shuffledAllPress)
+    : ''
+  getView() === 'grid' && getPress() === 'my'
+    ? drawPressImgContent(subscribedPress)
+    : ''
 }
 
 /**
@@ -157,9 +156,9 @@ function initPressImg() {
   setPage(FIRST_PAGE_IDX);
   drawBorder();
   drawPressImg();
+  setPageTurner();
   turnPressPage();
-  handleSubscribe();
 }
 
 
-export { initPressImg, drawPressImg, handleSubscribe, getSubscribedPressOfGrid }
+export { initPressImg, drawPressImg, getSubscribedPressOfGrid }

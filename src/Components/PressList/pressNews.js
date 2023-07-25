@@ -1,34 +1,14 @@
 import { START_CATEGORY_IDX, FIRST_PAGE_IDX } from "../../constant.js"
 import pressStore from "../../pressDataStore.js";
-import { turnNewsPage, setProgressEventFlag } from "./pageMoveButton.js";
-import { setCategory, showNewsOfCategory } from "./categoryTab.js";
+import { setProgressEventFlag, setClickNewsTurner, showNewsTurner } from "./pageMoveButton.js";
+import { setCategories, clickCategoryOfPressList } from "./categoryTab.js";
 import { initProgress, removeProgress } from "./progressBar.js";
 import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store, addpress } from "../../store.js";
 import { PATH_UNSUBSCRIBE_X_BTN, PATH_SUBSCRIBE_BTN } from "../../path.js";
-import { initView } from "../PressTab/pressTab.js";
 
 const shuffledAllPress = pressStore.getShuffledAllPress
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 const $pressNews = document.querySelector('.press-news');
-
-/**
-전체 언론사 리스트보기, 내가 구독한 언론사 리스트보기에 따라 뉴스 띄우기
- */
-function setDrawPressNews() {
-  const myPressNews = getSubscribedPressOfList();
-  getView() === 'list' && getPress() === 'all'
-    ? drawPressNews(shuffledAllPressNews)
-    : ''
-  getView() === 'list' && getPress() === 'my' && getSubscribedPressId().length !== 0
-    ? drawPressNews(myPressNews)
-    : ''
-}
-
-/** 뉴스 띄우기 */
-function drawPressNews(whatPressNews) {
-  drawPressNewsHeader(whatPressNews);
-  drawPressNewsMain(whatPressNews);
-}
 
 /** 언론사 로고, 편집 날짜, 구독/해지 띄우기 */
 function drawPressNewsHeader(whatPressNews) {
@@ -112,7 +92,7 @@ function handleClickSubUnsubBtnAtList() {
 /** 내가 구독한 언론사가 없을 때의 리스트 보기 초기화 */
 function initNewsWhenMyPressEmpty() {
   removeProgress();
-  setCategory();
+  setCategories();
   drawEmptyMessage()
 }
 
@@ -120,13 +100,13 @@ function initNewsWhenMyPressEmpty() {
 function initNewsWhenAllPressOrMyPressNotEmpty() {
   setClickedCategoryIndex(START_CATEGORY_IDX);
   setPage(FIRST_PAGE_IDX);
-  setCategory();
+  setCategories();
   setDrawPressNews();
+  showNewsTurner();
   setProgressEventFlag();
   initProgress();
-  showNewsOfCategory()
-  clickSubUnsubBtnAtList();
-  underlineNewsTitle();
+  setClickNewsTurner();
+  clickCategoryOfPressList();
 }
 
 /** 전체 언론사 리스트 또는 내가 구독한 언론사가 있는 리스트인지 판단 */
@@ -134,11 +114,32 @@ function isAllPressOrMyPressNotEmpty() {
   return getPress() === 'all' || getSubscribedPressId().length !== 0
 }
 
-/** 상황 별 리스트 초기화 */
+/**
+전체 언론사 리스트보기, 내가 구독한 언론사 리스트보기에 따라 뉴스 띄우기
+ */
+function setDrawPressNews() {
+  const myPressNews = getSubscribedPressOfList();
+  getView() === 'list' && getPress() === 'all'
+    ? drawPressNews(shuffledAllPressNews)
+    : ''
+  getView() === 'list' && getPress() === 'my' && getSubscribedPressId().length !== 0
+    ? drawPressNews(myPressNews)
+    : ''
+}
+
+/** 뉴스 띄우기 */
+function drawPressNews(whatPressNews) {
+  drawPressNewsHeader(whatPressNews);
+  drawPressNewsMain(whatPressNews);
+  clickSubUnsubBtnAtList();
+  underlineNewsTitle();
+}
+
+/** 상황 별 언론사 리스트 화면 초기화 */
 function initNews() {
   isAllPressOrMyPressNotEmpty() === true
     ? initNewsWhenAllPressOrMyPressNotEmpty()
     : initNewsWhenMyPressEmpty()
 }
 
-export { initNews, setDrawPressNews, underlineNewsTitle, getSubscribedPressOfList, clickSubUnsubBtnAtList }
+export { initNews, setDrawPressNews, getSubscribedPressOfList }
