@@ -12,7 +12,8 @@ import { TEXT } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
 
 //store
-import { viewStore } from '../../../store/index.js';
+import { viewStore, pressStore } from '../../../store/index.js';
+import AllNewsBlankView from './AllNewsBlankView.js';
 
 export default class AllNews extends Component {
   setup() {
@@ -27,6 +28,7 @@ export default class AllNews extends Component {
 
   mounted() {
     const { viewType, option } = viewStore;
+    const { subscribedList } = pressStore;
 
     new AllNewHeader(customQuerySelector('.all-news-header', this.$target), {
       viewType,
@@ -44,6 +46,8 @@ export default class AllNews extends Component {
         ? new AllNewsListView(customQuerySelector('.all-news-wrapper', this.$target), {
             option,
           })
+        : subscribedList.length === 0
+        ? new AllNewsBlankView(customQuerySelector('.all-news-wrapper', this.$target))
         : new AllNewsMyListView(customQuerySelector('.all-news-wrapper', this.$target));
     }
   }
