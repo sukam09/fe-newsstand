@@ -81,6 +81,9 @@
 }
 
 .category_list {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+
   position: relative;
   width: 100%;
   font-size: 14px;
@@ -93,6 +96,9 @@
 .category_item {
   position: relative;
   height: 100%;
+  width: 80px;
+  flex: 0 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -106,7 +106,6 @@ export function showModeAllGridPage(page) {
 
   hideAllGridPage();
   const $gridPage = qs(gridPageID);
-  console.log($gridPage);
   $gridPage.style.display = "grid";
   controllButtonShowing();
 }
