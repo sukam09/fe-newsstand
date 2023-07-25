@@ -1,7 +1,7 @@
-import { drawGridView } from "./gridFunction.js";
-import { drawNews } from "./newsList.js";
-import { getState, setState, subscribe } from "./observer/observer.js";
-import { isDark } from "./store/store.js";
+import { drawGridView } from "../view/gridView.js";
+import { drawNews } from "../view/listView.js";
+import { getState, setState, subscribe } from "../observer/observer.js";
+import { isDark } from "../store/store.js";
 
 export function initDarkMode() {
   const $body = document.querySelector("body");

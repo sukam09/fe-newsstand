@@ -1,9 +1,9 @@
-import { removeDisplay, setDisplay, getJSON } from "./utils.js";
-import { drawNews, setNowCount } from "./newsList.js";
-import { drawGridView } from "./gridFunction.js";
-import { setSubListNav } from "./subscribeListView.js";
-import { setState, subscribe, getState } from "./observer/observer.js";
-import { isGridView, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
+import { removeDisplay, setDisplay, getJSON } from "../util/utils.js";
+import { drawNews, setNowCount } from "./listView.js";
+import { drawGridView } from "./gridView.js";
+import { setSubListNav } from "../subscribe/subscribeList.js";
+import { setState, subscribe, getState } from "../observer/observer.js";
+import { isGridView, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
 
 let presses;
 

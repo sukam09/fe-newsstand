@@ -1,10 +1,11 @@
-import { setDisplay, getJSON, checkIsSubscribe } from "./utils.js";
-import { MODAL_POPUP_TIME, SNACKBAR_POPUP_TIME, setSubData } from "./const.js";
-import { handleView, changeOption } from "./viewHandler.js";
-import { onGridUndiscribeModal, onListUndiscribeModal } from "./modal.js";
-import { drawNews } from "./newsList.js";
-import { isDark, isSubView, subListPageCount, subscribedPress } from "./store/store.js";
-import { getState, setState } from "./observer/observer.js";
+import { setDisplay, getJSON, checkIsSubscribe } from "../util/utils.js";
+import { MODAL_POPUP_TIME, SNACKBAR_POPUP_TIME } from "../store/const.js";
+import { setSubData } from "../util/utils.js";
+import { handleView, changeOption } from "../view/viewHandler.js";
+import { onGridUndiscribeModal, onListUndiscribeModal } from "../component/modal.js";
+import { drawNews } from "../view/listView.js";
+import { isDark, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
+import { getState, setState } from "../observer/observer.js";
 
 let presses = null;
 

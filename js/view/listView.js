@@ -1,7 +1,7 @@
-import { listSubMouseClick } from "./subscribe.js";
-import { checkIsSubscribe, getJSON, setDisplay } from "./utils.js";
-import { setSubListNav } from "./subscribeListView.js";
-import { getState, setState, subscribe, setDictState } from "./observer/observer.js";
+import { listSubMouseClick } from "../subscribe/subscribe.js";
+import { checkIsSubscribe, getJSON, setDisplay } from "../util/utils.js";
+import { setSubListNav } from "../subscribe/subscribeList.js";
+import { getState, setState, subscribe, setDictState } from "../observer/observer.js";
 import {
   categoryPageCount,
   clickedUnsubPress,
@@ -11,7 +11,7 @@ import {
   subListPageCount,
   subscribedPress,
   totalCategoryPages,
-} from "./store/store.js";
+} from "../store/store.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let news;

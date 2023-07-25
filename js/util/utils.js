@@ -1,5 +1,5 @@
-import { isDark, subscribedPress } from "./store/store.js";
-import { getState } from "./observer/observer.js";
+import { isDark, subscribedPress } from "../store/store.js";
+import { getState,setState } from "../observer/observer.js";
 
 let presses;
 
@@ -85,6 +85,19 @@ function checkIsSubscribe(type, target) {
   }
 }
 
+function setSubData(target) {
+  subscribe(subscribedPress, drawGridView);
+  const subscribed_presses = getState(subscribedPress);
+  if (subscribed_presses.find(press => press.name === target.name) === undefined) {
+    setState(subscribedPress, [...subscribed_presses, target]);
+  } else {
+    setState(
+      subscribedPress,
+      subscribed_presses.filter(press => press.name !== target.name),
+    );
+  }
+}
+
 async function initUtilData() {
   presses = await getJSON("../assets/media.json");
   presses = Object.values(presses).reduce((acc, cur) => {
@@ -92,4 +105,4 @@ async function initUtilData() {
   });
 }
 
-export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe };
+export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe, setSubData };

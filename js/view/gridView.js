@@ -1,8 +1,8 @@
-import { initGridItemEvent, preventButtonClick } from "./subscribe.js";
-import { PAGE_SIZE } from "./const.js";
-import { setDisplay, getJSON } from "./utils.js";
-import { setState, getState, subscribe } from "./observer/observer.js";
-import { gridPageCount, isDark, isGridView, isSubView, subGridPageCount, subscribedPress } from "./store/store.js";
+import { initGridItemEvent, preventButtonClick } from "../subscribe/subscribe.js";
+import { PAGE_SIZE } from "../store/const.js";
+import { setDisplay, getJSON } from "../util/utils.js";
+import { setState, getState, subscribe } from "../observer/observer.js";
+import { gridPageCount, isDark, isGridView, isSubView, subGridPageCount, subscribedPress } from "../store/store.js";
 
 const shuffle = () => Math.random() - 0.5;
 let presses = null;

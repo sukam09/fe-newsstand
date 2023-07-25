@@ -1,6 +1,6 @@
-import { ARROW_SVG_PATH } from "./const.js";
-import { subListPageCount, subscribedPress } from "./store/store.js";
-import { getState, setState } from "./observer/observer.js";
+import { ARROW_SVG_PATH } from "../store/const.js";
+import { subListPageCount, subscribedPress } from "../store/store.js";
+import { getState, setState } from "../observer/observer.js";
 
 function setSubListNav() {
   const subscribed_presses = getState(subscribedPress);
