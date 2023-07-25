@@ -33,8 +33,8 @@ function listPageUp() {
 // 자동 탭 넘김 인터벌 새로고침
 function refreshInterval() {
   const isGridMode = getState(isGrid);
+  stopCategoryInterval();
   if (!isGridMode) {
-    stopCategoryInterval();
     startCategoryInterval();
     const clickedCategory = $(`.${CATEGORY_CLICKED}`);
     clickedCategory?.children[2].classList.remove("progressbar");
