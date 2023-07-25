@@ -10,7 +10,8 @@ class Store {
             crntView : VIEW_TYPE.GRID, // this.crntView = VIEW_TYPE.GRID;
             crntPage : 0,  // page index (grid, list view)
             crntCategory : 0,  // category index (list view)
-            crntFilter : FILTER_TYPE.ALL
+            crntFilter : FILTER_TYPE.ALL,
+            isChangeView : false,
         }
         this.subList = [];
         this.shuffledList = [];
@@ -30,7 +31,6 @@ class Store {
 
     setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
-        // this.renderView();
         this.notify();
         if (this.viewState.isChangeView === true){
             this.viewState.isChangeView = false
@@ -46,7 +46,6 @@ class Store {
                 this.subList.splice(idx,1)
                 break;
         }
-        // this.renderView();
         this.notify();
     }  
     setShuffledList(arr){

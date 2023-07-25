@@ -1,6 +1,5 @@
 import { FILTER_TYPE, VIEW_TYPE } from "../../asset/data/constants.js";
 import { store } from "../../store/store.js";
-import { changeView } from "./change-view.js";
 
 const filterBtns = document.querySelectorAll(".filter-btn")
 
@@ -14,7 +13,6 @@ function changeFilterBtn(nextFilter) {
     })
 }
 function changeFilter(nextFilter){
-    store.setViewState({crntFilter: nextFilter});
     changeFilterBtn(nextFilter)
     let nextView;
     switch (nextFilter){
@@ -25,7 +23,7 @@ function changeFilter(nextFilter){
             nextView = VIEW_TYPE.LIST;
             break;
     }
-    changeView(nextView);
+    store.setViewState({crntFilter:nextFilter, crntView:nextView, crntPage:0, crntCategory:0, isChangeView:true})
 }
 function handleFilterChange(){
     filterBtns.forEach((btn)=> {

@@ -4,13 +4,45 @@ import { drawGrid } from "../grid-view/grid.js";
 import { drawList } from "../list-view/list.js";
 import { drawArrow } from "../arrow/arrow.js";
 
+const viewContainer = document.querySelector(".view-section-content")
+const listBtn = document.querySelector(".list-btn");
+const gridBtn = document.querySelector(".grid-btn");
+
+function changeViewIcons(nextView) {
+    if (nextView === VIEW_TYPE.LIST){
+        listBtn.src = "../asset/icons/list-view-active.png"
+        gridBtn.src = "../asset/icons/grid-view.png"
+    } else if (nextView === VIEW_TYPE.GRID){
+        listBtn.src = "../asset/icons/list-view.png";
+        gridBtn.src = "../asset/icons/grid-view-active.png"
+    }
+}
+function toggleViewVisibility(nextView) {
+    Array.prototype.forEach.call(viewContainer.children, (view) => {
+        if (view.getAttribute("type") == nextView){
+            view.classList.remove("hide");
+        } else {
+            view.classList.add("hide")
+        }      
+    })
+}
+
 function renderView(){
-    switch (store.getViewState().crntView){
+    const {crntPage, crntCategory, crntView, isChangeView} = store.getViewState();
+    if (isChangeView){
+        // Possible case :
+        // 1. change filter thru nav btns
+        // 2. change view thru nav btns
+        // 3. grid view subscribe > forced filter/view change
+        toggleViewVisibility(crntView);
+        changeViewIcons(crntView)
+    }
+    switch (crntView){
         case VIEW_TYPE.GRID:
-            drawGrid(store.getViewState().crntPage);
+            drawGrid(crntPage);
             break;
         case VIEW_TYPE.LIST:
-            drawList(store.getViewState().crntCategory);
+            drawList(crntCategory);
             break;
     }
 }
