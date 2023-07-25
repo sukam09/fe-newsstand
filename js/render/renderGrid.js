@@ -3,15 +3,16 @@ import Stores from "../core/Store.js";
 import { addEventArrowGrid } from "../addEventArrowGrid.js";
 import { snackBar } from "../snackBar.js";
 import { changeImageSrc } from "../../utils/utils.js";
+import { renderMain } from "./renderMain.js";
 
 const gridMain = document.getElementById("main-grid");
 
 const renderGrid = (logos) => {
-  console.log(logos);
+  // console.log(logos);
   if (Stores.getSubscribedMode() == "all") shuffle(logos);
   makeGrid(logos);
   addEventArrowGrid(logos);
-  clickSubscribeButton(logos);
+  clickSubscribeButtonGrid(logos);
 };
 
 function makeGrid(logos) {
@@ -30,33 +31,56 @@ function makeGrid(logos) {
 
 function drawLogo(logos, LOGO_INDEX) {
   if (logos[LOGO_INDEX]) {
-    const newsLogo = `<div class="hover-subscribe-button"><img id="${logos[LOGO_INDEX].id}" class="subscribe-button" src="./img/subscribe_button.svg"></div><img class="grid-image" src="${logos[LOGO_INDEX].logo}">`;
+    const newsLogo = `<div class="hover-subscribe-button"><img id="${logos[LOGO_INDEX].id}" class="subscribe-button" alt="${logos[LOGO_INDEX].name}" src="./img/subscribe_button.svg"></div><img class="grid-image" src="${logos[LOGO_INDEX].logo}">`;
     return newsLogo;
   }
   return "";
 }
 
-function clickSubscribeButton(logos) {
+function clickSubscribeButtonGrid(logos) {
   const subscribeButton = document.querySelectorAll(".subscribe-button");
   subscribeButton.forEach((value, index) => {
-    if (isSubscribed(subscribeButton[index]))
+    if (isSubscribedGrid(subscribeButton[index]))
       replaceSubscribeButton(subscribeButton[index], "cancel");
     subscribeButton[index].addEventListener("click", function () {
-      if (!isSubscribed(subscribeButton[index])) {
-        console.log("A");
+      if (!isSubscribedGrid(subscribeButton[index])) {
         Stores.setSubscribeNewsContent(subscribeButton[index].id);
         replaceSubscribeButton(subscribeButton[index], "cancel");
         snackBar("내가 구독한 언론사에 추가되었습니다!");
       } else {
-        snackBar("구독이 해지되었습니다");
+        alertGrid(subscribeButton[index]);
         replaceSubscribeButton(subscribeButton[index], "subscribe");
-        console.log("구독중~");
       }
     });
   });
 }
 
-function isSubscribed(subscribeButton) {
+function alertGrid(subscribeButton) {
+  const alertDiv = document.querySelector(".alert");
+  alertDiv.style.display = "flex";
+  let alertInnerDiv = `<div class="alert-main"><div class="alert-question"><div><span>${subscribeButton.alt}</span>을(를)</div>구독해지하시겠습니까?</div><div class="alert-answer"><div class="alert-yes">예, 해지합니다</div><div class="alert-no">아니오</div></div></div>`;
+  alertDiv.innerHTML = alertInnerDiv;
+  alertClickGrid(subscribeButton, alertDiv);
+}
+
+function alertClickGrid(subscribeButton, alertDiv) {
+  const alertYes = document.querySelector(".alert-yes");
+  const alertNo = document.querySelector(".alert-no");
+  alertYes.addEventListener("click", () => {
+    alertDiv.style.display = "none";
+    Stores.removeSubscribeNewsContent(subscribeButton.id);
+    Stores.setPageMode("list");
+    replaceSubscribeButton(subscribeButton, "subscribe");
+    if (!Object.keys(Stores.getSubscribeNewsContent()).length)
+      Stores.setSubscribedMode("all");
+    renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
+  });
+  alertNo.addEventListener("click", () => {
+    alertDiv.style.display = "none";
+  });
+}
+
+function isSubscribedGrid(subscribeButton) {
   if (Stores.getSubscribedMode() != "all") return true;
   else {
     const subscribeData = Stores.getSubscribeNewsContent();
@@ -79,4 +103,4 @@ function replaceSubscribeButton(subscribeButton, buttonType) {
   );
 }
 
-export { renderGrid, makeGrid, clickSubscribeButton };
+export { renderGrid, makeGrid, clickSubscribeButtonGrid };

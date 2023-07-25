@@ -61,7 +61,7 @@ class Store {
       const newData = {};
       const data = this.#subscribedNewsContent;
       for (const key in data) {
-        newData[key] = data[key].filter((item) => item.id !== id);
+        newData[key] = data[key].filter((item) => item.id != id);
         if (newData[key].length === 0) {
           delete newData[key];
         }

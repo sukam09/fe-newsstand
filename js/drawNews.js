@@ -49,7 +49,7 @@ function drawNewsHeader(news, progressBarId) {
     news[progressBarId][currentCategoryPageNumber - 1].logo
   }"><span class="news-edit-time">${
     news[progressBarId][currentCategoryPageNumber - 1].editTime
-  }</span><img class="subscribe-button" src="./img/subscribe_button.svg"></div>`;
+  }</span><img class="subscribe-buttonList" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
   if (isSubscribed(news, progressBarId)) replaceSubscribeButton("cancel");
 }
@@ -70,14 +70,14 @@ function isSubscribed(news, progressBarId) {
 }
 
 function clickSubscribeButton(news, progressBarId) {
-  const subscribedButton = document.querySelector(".subscribe-button");
-  subscribedButton.addEventListener("click", async function () {
+  const subscribedButton = document.querySelector(".subscribe-buttonList");
+  subscribedButton.addEventListener("click", function () {
     if (!isSubscribed(news, progressBarId)) {
       Stores.setSubscribeNewsContent(
         news[progressBarId][currentCategoryPageNumber - 1].id
       );
       snackBar("내가 구독한 언론사에 추가되었습니다!");
-      let timeOut = setTimeout(() => {
+      timeOut = setTimeout(() => {
         Stores.setSubscribedMode("subscribed");
         renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
       }, rollingTime);
@@ -123,12 +123,12 @@ function alertClick(news, alertDiv, progressBarId) {
 function replaceSubscribeButton(buttonType) {
   if (buttonType === "subscribe") {
     changeImageSrc(
-      document.querySelector(".subscribe-button"),
+      document.querySelector(".subscribe-buttonList"),
       "./img/subscribe_button.svg"
     );
   } else {
     changeImageSrc(
-      document.querySelector(".subscribe-button"),
+      document.querySelector(".subscribe-buttonList"),
       "./img/subscribe_cancel_button.svg"
     );
   }
