@@ -129,13 +129,11 @@ my_sub.addEventListener("click", () => {
     changeToSubGridView();
   } else {
     changeToSubListView();
-    if (subscribeState.getSubscribeState().length !== 0) {
-      document
-        .querySelector(".sub-list-nav .progress-item")
-        .classList.add("progress-bar");
-      runSubProgress();
-      drawSubListView(0);
-    }
+    document
+      .querySelector(".sub-list-nav .progress-item")
+      .classList.add("progress-bar");
+    runSubProgress();
+    drawSubListView(0);
   }
 });
 

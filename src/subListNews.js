@@ -60,11 +60,10 @@ async function appendNewsSub(press) {
 
 function appendSubCategory() {
   const sub_list = subscribeState.getSubscribeState();
-  if (sub_length !== sub_list.length - 1) {
-    for (let i = sub_length; i < sub_list.length; i++) {
-      appendPressInCategory(sub_list[i]);
-    }
-    sub_length = sub_list.length - 1;
+  const sub_nav = document.querySelector(".sub-list-nav ul");
+  sub_nav.innerHTML = "";
+  for (let i = 0; i < sub_list.length; i++) {
+    appendPressInCategory(sub_list[i]);
   }
 }
 
