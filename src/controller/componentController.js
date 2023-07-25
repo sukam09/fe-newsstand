@@ -1,7 +1,6 @@
 import { PATH, MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
-import { isDarkMode } from "../model/model.js";
-import { setState, setState2 } from "./observer.js";
+import { getState, setState } from "./observer.js";
 import { currentMode, listCurrentPage, toggleDarkMode } from "../model/store.js";
 
 function initSnackBarTimer() {
@@ -43,14 +42,15 @@ function initDarkToggleBtn() {
       li.style.backgroundColor = "";
     });
 
-    if (isDarkMode()) {
+    if (getState(toggleDarkMode)) {
       document.querySelector("html").className = "";
       document.querySelector(".dark-mode-btn img").src = PATH.SUN;
+      setState(toggleDarkMode, false);
     } else {
       document.querySelector("html").className = "dark-mode";
       document.querySelector(".dark-mode-btn img").src = PATH.MOON;
+      setState(toggleDarkMode, true);
     }
-    setState2(toggleDarkMode, true);
   });
 }
 

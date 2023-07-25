@@ -45,15 +45,15 @@ function drawRightArrowBtn() {
 }
 
 subscribe(toggleSubscription, drawLeftArrowBtn);
-subscribe(toggleDarkMode, drawLeftArrowBtn);
 subscribe(toggleSubscription, drawRightArrowBtn);
-subscribe(toggleDarkMode, drawRightArrowBtn);
 
 subscribe(gridCurrentPage, drawLeftArrowBtn);
 subscribe(listCurrentPage, drawLeftArrowBtn);
 subscribe(currentMode, drawLeftArrowBtn);
+subscribe(toggleDarkMode, drawLeftArrowBtn);
 subscribe(gridCurrentPage, drawRightArrowBtn);
 subscribe(listCurrentPage, drawRightArrowBtn);
 subscribe(currentMode, drawRightArrowBtn);
+subscribe(toggleDarkMode, drawRightArrowBtn);
 
 export { initArrowBtn, drawLeftArrowBtn, drawRightArrowBtn };

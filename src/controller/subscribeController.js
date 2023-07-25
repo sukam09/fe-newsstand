@@ -1,7 +1,7 @@
 import { CONSTANT, MODE, GLOBAL, PATH } from "../model/variable.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
 import { moveLeft } from "./arrowBtnController.js";
-import { getState, setState, setState2 } from "./observer.js";
+import { getState, setState, setStateOnce } from "./observer.js";
 import { currentMode, gridCurrentPage, listCurrentPage, showAlert, showSnackBar, toggleSubscription } from "../model/store.js";
 import { resetSnackBarTimer } from "./componentController.js";
 import { updateCategory } from "./fieldTabController.js";
@@ -32,7 +32,7 @@ function findTargetNewsFromSrc(src) {
 function clickSubscribeBtn(src) {
   if (checkSubscribe(src) === true) {
     GLOBAL.TEMP_TARGET = findTargetNewsFromSrc(src);
-    setState2(showAlert, true);
+    setStateOnce(showAlert);
   } else {
     toggleSubscribe(src);
   }
@@ -50,7 +50,7 @@ function toggleSubscribe(src) {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
     GLOBAL.SUBSCRIBE_NEWS_NUM++;
     setSubscribeBtnX();
-    setState2(showSnackBar, true);
+    setStateOnce(showSnackBar);
   } else {
     GLOBAL.SUBSCRIBE_NEWS_DATA = GLOBAL.SUBSCRIBE_NEWS_DATA.filter((value) => {
       return !(value.path.slice(-6) === src.slice(-6));
@@ -61,7 +61,7 @@ function toggleSubscribe(src) {
     if (getState(currentMode) === MODE.LIST_SUB) {
       moveLeft();
     }
-    setState2(toggleSubscription, true);
+    setStateOnce(toggleSubscription);
   }
 }
 

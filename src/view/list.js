@@ -2,7 +2,6 @@ import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
 import { getState, subscribe } from "../controller/observer.js";
 import { toggleSubscription, toggleDarkMode, listCurrentPage, currentMode } from "../model/store.js";
-import { isDarkMode } from "../model/model.js";
 
 function initList(parentNode) {
   const dom = document.createElement("div");
@@ -49,7 +48,7 @@ function drawList() {
   const targetNews = curMode === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[getState(listCurrentPage)] : GLOBAL.SUBSCRIBE_NEWS_DATA[getState(listCurrentPage)];
 
   const listPressIcon = listView.querySelector(".list-press-icon");
-  listPressIcon.src = isDarkMode() ? targetNews.path_dark : targetNews.path;
+  listPressIcon.src = getState(toggleDarkMode) ? targetNews.path_dark : targetNews.path;
 
   const editData = listView.querySelector(".edit-date");
   editData.innerHTML = `${targetNews.edit_date} 편집`;
@@ -81,9 +80,9 @@ function drawList() {
 }
 
 subscribe(toggleSubscription, drawList);
-subscribe(toggleDarkMode, drawList);
 
 subscribe(listCurrentPage, drawList);
 subscribe(currentMode, drawList);
+subscribe(toggleDarkMode, drawList);
 
 export { initList, drawList };

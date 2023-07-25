@@ -21,11 +21,8 @@ const setState = (key, newState) => {
   _notify(key);
 };
 
-const setState2 = (key, newState) => {
-  globalState[key]._state = newState;
+const setStateOnce = (key) => {
   _notify(key);
-
-  globalState[key]._state = false;
 };
 
-export { subscribe, initState, getState, setState, setState2 };
+export { subscribe, initState, getState, setState, setStateOnce };

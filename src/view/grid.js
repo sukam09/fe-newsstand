@@ -1,7 +1,6 @@
 import { CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { getState, subscribe } from "../controller/observer.js";
 import { toggleSubscription, toggleDarkMode, gridCurrentPage, currentMode } from "../model/store.js";
-import { isDarkMode } from "../model/model.js";
 
 function initGrid(parentNode) {
   const dom = document.createElement("div");
@@ -34,7 +33,7 @@ function drawGrid() {
   const pressLogo = document.querySelectorAll(".press-logo");
   const targetData = curMode === MODE.GRID_ALL ? GLOBAL.NEWS_DATA : GLOBAL.SUBSCRIBE_NEWS_DATA;
 
-  if (isDarkMode()) {
+  if (getState(toggleDarkMode)) {
     pressLogo.forEach((img) => {
       img.src = targetData[iconIndex] ? targetData[iconIndex++].path_dark : "";
     });
@@ -46,9 +45,9 @@ function drawGrid() {
 }
 
 subscribe(toggleSubscription, drawGrid);
-subscribe(toggleDarkMode, drawGrid);
 
 subscribe(gridCurrentPage, drawGrid);
 subscribe(currentMode, drawGrid);
+subscribe(toggleDarkMode, drawGrid);
 
 export { initGrid, drawGrid };

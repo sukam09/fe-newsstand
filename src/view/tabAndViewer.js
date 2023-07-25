@@ -50,10 +50,10 @@ function drawViewer() {
 
 subscribe(toggleSubscription, drawTab);
 subscribe(toggleSubscription, drawViewer);
-subscribe(toggleDarkMode, drawTab);
-subscribe(toggleDarkMode, drawViewer);
 
 subscribe(currentMode, drawTab);
+subscribe(toggleDarkMode, drawTab);
 subscribe(currentMode, drawViewer);
+subscribe(toggleDarkMode, drawViewer);
 
 export { initTabAndViewer, drawTab, drawViewer };
