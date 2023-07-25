@@ -10,6 +10,9 @@ export const SNACKBAR_DURATION = 5000;
 export const LATEST_NEWS_COUNT = 6;
 export const ROLLING_SPEED = 5000;
 
+export const GRIDVIEW_ICON = "grid-view";
+export const LISTVIEW_ICON = "list-view";
+
 export const pressObj = new PressNews();
 export const categoriesObj = new Categories();
 export const allNewsObj = new AllNews();

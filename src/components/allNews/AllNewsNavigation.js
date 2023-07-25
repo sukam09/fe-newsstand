@@ -1,4 +1,8 @@
-import { allNewsObj } from "../../constants/index.js";
+import {
+  GRIDVIEW_ICON,
+  LISTVIEW_ICON,
+  allNewsObj,
+} from "../../constants/index.js";
 import { store } from "../../core/store.js";
 import Icon from "../common/Icon.js";
 
@@ -6,9 +10,6 @@ export default class AllNewsNavigation {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "all-news-header";
-
-    this.GRIDVIEW_ICON = "grid-view";
-    this.LISTVIEW_ICON = "list-view";
 
     this.$wrapper.appendChild(this.addTitleNavigator());
     this.$wrapper.appendChild(this.addIconNavigator());
@@ -44,8 +45,8 @@ export default class AllNewsNavigation {
     const $iconNavigation = document.createElement("div");
     $iconNavigation.className = "view-type-icon";
 
-    const $listViewIcon = new Icon({ name: this.LISTVIEW_ICON });
-    const $gridViewIcon = new Icon({ name: `${this.GRIDVIEW_ICON}-selected` });
+    const $listViewIcon = new Icon({ name: LISTVIEW_ICON });
+    const $gridViewIcon = new Icon({ name: `${GRIDVIEW_ICON}-selected` });
 
     $listViewIcon.classList.add("img-icon");
     $gridViewIcon.classList.add("img-icon");
@@ -80,8 +81,8 @@ export default class AllNewsNavigation {
   /** 리스트 아이콘 클릭 시 */
   handleListIconClick({ target: $listIconImg }) {
     const $gridIconImg = $listIconImg.nextSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}-selected.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}.svg`;
+    $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}-selected.svg`;
+    $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}.svg`;
     store.isShowGrid = false;
 
     this.callRender.call(allNewsObj);
@@ -90,8 +91,8 @@ export default class AllNewsNavigation {
   /** 그리드 아이콘 클릭 시 */
   handleGridIconClick({ target: $gridIconImg }) {
     const $listIconImg = $gridIconImg.previousSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}-selected.svg`;
+    $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}.svg`;
+    $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}-selected.svg`;
     store.isShowGrid = true;
 
     this.callRender.call(allNewsObj);
