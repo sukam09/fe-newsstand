@@ -12,7 +12,6 @@ let lastProgressed;
  */
 export const setNewsData = () => {
   const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
-  console.log(newsItem);
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
@@ -28,7 +27,6 @@ export const setNewsData = () => {
   }
   idx = index;
   // 감싸는 요소에 이벤트 추가
-  // 이전에 이벤트 리스너가 추가된 상태인지 확인하고, 그렇지 않은 경우에만 이벤트 리스너를 추가합니다.
   if (!subscribedElem._hasClickListener) {
     subscribedElem.addEventListener('click', function(e) {
       if (subscribedStore.getState().includes(idx)) {
@@ -45,11 +43,11 @@ export const setNewsData = () => {
         setTimeout(function() {
           snackBar.classList.add('hide');  
           mode.setState('Sub');
-
+          
         }, 3000);
       }
     });
-    subscribedElem._hasClickListener = true; // 이벤트 리스너가 등록되었음을 표시
+    subscribedElem._hasClickListener = true; 
   }
   if(mode.getState()==='All'){
     selectedCategory.innerHTML = (media_page.getState() + 1) + "/" + categorizedData[categories[category_page.getState()]].length;
@@ -329,7 +327,7 @@ export const listViewInit = () => {
     categoriesWrapper = document.querySelector('.category');
   }
   getNewsData();
-  // progressBarControl();
+  progressBarControl();
   setArrowHandler();
   category_page.setState(0);
   media_page.setState(0);
