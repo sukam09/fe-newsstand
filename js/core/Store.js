@@ -54,7 +54,6 @@ class Store {
         }
       }
     }
-    console.log(this.subscribedNewsContent);
   }
   getSubscribeNewsContent() {
     return this.subscribedNewsContent;
@@ -67,13 +66,10 @@ class Store {
       if (newData[key].length === 0) delete newData[key];
     }
     this.subscribedNewsContent = newData;
-    this.subscribeLogo = this.removeNewsById(this.subscribeLogo, id);
+    this.subscribeLogo = this.subscribeLogo.filter((item) => item.id != id);
   }
   getSubscribeLogo() {
     return this.subscribeLogo;
-  }
-  removeNewsById(newsArray, idToRemove) {
-    return newsArray.filter((item) => item.id !== idToRemove);
   }
 }
 

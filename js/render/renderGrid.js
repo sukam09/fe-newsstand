@@ -16,7 +16,7 @@ const renderGrid = (logos) => {
   removeArrow();
   if (Stores.getSubscribedMode() == "all") shuffle(logos);
   makeGrid(logos);
-  addEventArrowGrid(logos);
+  if (Stores.getSubscribedMode() == "all") addEventArrowGrid(logos);
   clickSubscribeButtonGrid(logos);
 };
 
@@ -77,7 +77,6 @@ function alertClickGrid(subscribeButton, alertDiv) {
   alertYes.addEventListener("click", () => {
     alertDiv.style.display = "none";
     Stores.removeSubscribeNewsContent(subscribeButton.id);
-    Stores.setPageMode("grid");
     replaceSubscribeButton(subscribeButton, "subscribe");
     if (Object.keys(Stores.getSubscribeNewsContent()).length === 0)
       Stores.setSubscribedMode("all");
