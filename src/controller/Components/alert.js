@@ -1,3 +1,4 @@
+import { UNSUBSCRIBE } from "../../constant.js";
 import { VIEW } from "../../model/global.js";
 import { actionCreator, store } from "../../model/store.js";
 import { snackBarForceDisappear } from "../../view/snackBar.js";
@@ -17,7 +18,7 @@ function createAlert(pressName) {
               </div>
           `;
 
-  const main = VIEW.layout === "grid" ? document.querySelector(".grid") : document.querySelector(".list");
+  const main = document.querySelector("main");
   main.appendChild(alertElement);
 
   return alertElement;
@@ -33,7 +34,7 @@ export function AlertHandler({ pressName, pressData }) {
   confirmBtn.addEventListener("click", async () => {
     timerId && clearInterval(timerId);
 
-    store.dispatch(actionCreator("unsubscribe", { press: pressData }));
+    store.dispatch(actionCreator(UNSUBSCRIBE, { press: pressData }));
 
     main.removeChild(alertElement);
   });

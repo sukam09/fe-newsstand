@@ -3,6 +3,7 @@ import { subscribeButton } from "../controller/Components/subscribeButton.js";
 import { GRID_PAGE, VIEW } from "../model/global.js";
 import { shuffle_press } from "../util/shuffle.js";
 import { store } from "../model/store.js";
+import { ENTIRE, GRID, UNSUBSCRIBE } from "../constant.js";
 
 export let news_data;
 const GRID_ROW = 4;
@@ -38,11 +39,11 @@ export function gridPageMove() {
 
 export async function renderGrid() {
   const grid = document.querySelector("main");
-  grid.className = "grid";
+  grid.className = GRID;
   grid.innerHTML = ``;
 
   try {
-    if (VIEW.tab === "entire") {
+    if (VIEW.tab === ENTIRE) {
       news_data = await fetchNews("../../Data/news_list.json");
       news_data = shuffle_press(news_data);
     } else {
@@ -75,6 +76,6 @@ export async function renderGrid() {
   }
 }
 function subscriber() {
-  store.subscribe(renderGrid, "unsubscribe", "grid");
+  store.subscribe(renderGrid, UNSUBSCRIBE, GRID);
 }
 subscriber();

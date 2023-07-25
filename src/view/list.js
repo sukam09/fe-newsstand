@@ -5,6 +5,7 @@ import { LIST_PAGE, VIEW } from "../model/global.js";
 import { store } from "../model/store.js";
 import { renderTabs, updateField } from "./field.js";
 import { news_data } from "./grid.js";
+import { ENTIRE, LIST, SUBSCRIBE, UNSUBSCRIBE } from "../constant.js";
 
 export let category;
 export let news;
@@ -14,7 +15,7 @@ export const setNews = (item) => {
 };
 
 function renderSection(news) {
-  const index = VIEW.tab === "subscribe" ? LIST_PAGE.category : LIST_PAGE.page;
+  const index = VIEW.tab === SUBSCRIBE ? LIST_PAGE.category : LIST_PAGE.page;
   const currentPress = news[index];
   const eachNews = currentPress?.news?.slice(1);
 
@@ -63,7 +64,7 @@ export function renderList() {
   }, []);
 
   const main = document.querySelector("main");
-  main.className = "list";
+  main.className = LIST;
   main.innerHTML = ``;
 
   const news_list_wrap = document.createElement("div");
@@ -71,7 +72,7 @@ export function renderList() {
   main.appendChild(news_list_wrap);
 
   const categoryNews = news_data.filter((press) => press.category === category[LIST_PAGE.category]);
-  news = VIEW.tab === "entire" ? shuffle_press(categoryNews) : store.getSubscribe();
+  news = VIEW.tab === ENTIRE ? shuffle_press(categoryNews) : store.getSubscribe();
 
   renderTabs(news);
   renderSection(news);
@@ -82,7 +83,7 @@ export function renderList() {
 }
 
 function updateSection() {
-  const index = VIEW.tab === "subscribe" ? LIST_PAGE.category : LIST_PAGE.page;
+  const index = VIEW.tab === SUBSCRIBE ? LIST_PAGE.category : LIST_PAGE.page;
   const currentPress = news[index];
 
   if (currentPress) {
@@ -121,7 +122,7 @@ function updateSection() {
 }
 export function updateList() {
   updateSection();
-  if (VIEW.tab === "entire") {
+  if (VIEW.tab === ENTIRE) {
     updateField();
   }
 }
@@ -137,10 +138,10 @@ function subscriber() {
       () => {
         const autoMoveSubscribePage = true;
         LIST_PAGE.category = store.getSubscribe().length - 1;
-        VIEW.setTab("subscribe", autoMoveSubscribePage);
+        VIEW.setTab(SUBSCRIBE, autoMoveSubscribePage);
       },
-      "subscribe",
-      "list"
+      SUBSCRIBE,
+      LIST
     );
     store.subscribe(
       () => {
@@ -148,8 +149,8 @@ function subscriber() {
         subscribeBtnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
         subscribeBtnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/plus.png");
       },
-      "unsubscribe",
-      "list"
+      UNSUBSCRIBE,
+      LIST
     );
   }
 }

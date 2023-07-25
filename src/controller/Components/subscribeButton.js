@@ -5,11 +5,12 @@ import { news } from "../../view/list.js";
 import { timerId } from "../timer.js";
 import { snackBar } from "../../view/snackBar.js";
 import { AlertHandler } from "./alert.js";
+import { GRID, LIST, SUBSCRIBE } from "../../constant.js";
 
 function SubscribeBtnEventHandler(e, btnElement, pressID) {
   let pressData;
-  if (VIEW.layout === "list") {
-    const index = VIEW.tab === "subscribe" ? LIST_PAGE.category : LIST_PAGE.page;
+  if (VIEW.layout === LIST) {
+    const index = VIEW.tab === SUBSCRIBE ? LIST_PAGE.category : LIST_PAGE.page;
 
     pressData = news[index];
     pressID = news[index].ID;
@@ -22,18 +23,18 @@ function SubscribeBtnEventHandler(e, btnElement, pressID) {
   if (!isSubscribe) {
     //구독 배열에 저장
 
-    if (VIEW.layout === "list") {
+    if (VIEW.layout === LIST) {
       // 내가 구독한 언론사 페이지로 이동
       snackBar(e).then(() => {
         timerId && clearInterval(timerId);
-        store.dispatch(actionCreator("subscribe", { press: pressData }));
+        store.dispatch(actionCreator(SUBSCRIBE, { press: pressData }));
       });
     } else {
       //그리드뷰
       snackBar(e);
       btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
       btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
-      store.dispatch(actionCreator("subscribe", { press: pressData }));
+      store.dispatch(actionCreator(SUBSCRIBE, { press: pressData }));
     }
   } else {
     //해지하기
@@ -87,7 +88,7 @@ export function subscribeButton(element) {
     }
   }
 
-  if (VIEW.layout === "grid") {
+  if (VIEW.layout === GRID) {
     element.addEventListener("mouseenter", pressMouseOver.bind(this, element));
     element.addEventListener("mouseleave", pressMouseOut.bind(this, element));
   } else {

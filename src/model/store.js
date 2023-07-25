@@ -1,3 +1,4 @@
+import { GRID, LIST, SUBSCRIBE, UNSUBSCRIBE } from "../constant.js";
 import { VIEW } from "./global.js";
 
 class Store {
@@ -16,14 +17,14 @@ class Store {
 
   dispatch(action) {
     this.#state = reducer(this.#state, action);
-    if (action.type === "subscribe" && VIEW.layout === "list") {
+    if (action.type === SUBSCRIBE && VIEW.layout === LIST) {
       this.#subscribeHandler.forEach((renderFn) => {
         renderFn();
       });
-    } else if (action.type === "unsubscribe") {
-      if (VIEW.layout === "grid") {
+    } else if (action.type === UNSUBSCRIBE) {
+      if (VIEW.layout === GRID) {
         this.#gridUnsubscribeHandler.forEach((renderFn) => {
-          if (VIEW.tab === "subscribe") {
+          if (VIEW.tab === SUBSCRIBE) {
             renderFn();
           }
         });
@@ -36,10 +37,10 @@ class Store {
   }
 
   subscribe(listener, type, view) {
-    if (type === "subscribe") {
+    if (type === SUBSCRIBE) {
       this.#subscribeHandler.push(listener);
-    } else if (type === "unsubscribe") {
-      if (view === "grid") {
+    } else if (type === UNSUBSCRIBE) {
+      if (view === GRID) {
         this.#gridUnsubscribeHandler.push(listener);
       } else {
         this.#listUnsubscribeHandler.push(listener);
@@ -61,12 +62,12 @@ const InitState = {
 
 function reducer(state = InitState, action) {
   switch (action.type) {
-    case "subscribe":
+    case SUBSCRIBE:
       return {
         ...state,
         subscriptions: [...state.subscriptions, action.press],
       };
-    case "unsubscribe":
+    case UNSUBSCRIBE:
       return {
         ...state,
         subscriptions: state.subscriptions.filter((press) => press.ID !== action.press.ID),

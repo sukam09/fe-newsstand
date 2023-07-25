@@ -1,4 +1,5 @@
-import { updateCategory, updateField } from "../view/field.js";
+import { ENTIRE, GRID, LIST } from "../constant.js";
+import { updateCategory } from "../view/field.js";
 import { renderGrid, gridPageMove } from "../view/grid.js";
 import { renderList, updateList } from "../view/list.js";
 import { renderPageButton } from "../view/pageButton.js";
@@ -28,13 +29,13 @@ export const LIST_PAGE = {
 };
 
 export const VIEW = {
-  layout: "grid",
-  tab: "entire",
+  layout: GRID,
+  tab: ENTIRE,
   setLayout: (layout, autoMoveSubscribePage = false) => {
     VIEW.layout = layout;
     renderViewButton(VIEW.layout);
     renderPageButton();
-    if (VIEW.layout === "grid") {
+    if (VIEW.layout === GRID) {
       GRID_PAGE.page = 0;
       renderGrid();
     } else {
@@ -45,10 +46,10 @@ export const VIEW = {
   setTab: (tab, autoMoveSubscribePage = false) => {
     VIEW.tab = tab;
     renderPressFilterTab(VIEW.tab);
-    if (VIEW.tab === "entire") {
-      VIEW.setLayout("grid");
+    if (VIEW.tab === ENTIRE) {
+      VIEW.setLayout(GRID);
     } else {
-      VIEW.setLayout("list", autoMoveSubscribePage);
+      VIEW.setLayout(LIST, autoMoveSubscribePage);
     }
   },
 };

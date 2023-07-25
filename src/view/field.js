@@ -3,6 +3,7 @@ import { VIEW, LIST_PAGE } from "../model/global.js";
 import { news_data } from "./grid.js";
 import { category, eachCategoryLength, setNews } from "./list.js";
 import { fieldClick, fieldXScroll } from "../controller/Components/field.js";
+import { ENTIRE } from "../constant.js";
 
 export function renderTabs(news) {
   let CATEGORY = category;
@@ -11,7 +12,7 @@ export function renderTabs(news) {
 
   if (news?.length > 0) {
     const subscribePressNames = news.map((press) => press.name);
-    CATEGORY = currentTab === "entire" ? CATEGORY : subscribePressNames;
+    CATEGORY = currentTab === ENTIRE ? CATEGORY : subscribePressNames;
     const category_section_tab = document.createElement("section");
     category_section_tab.className = "field-tab";
 
@@ -22,7 +23,7 @@ export function renderTabs(news) {
                   <div class="text-wrap">
                       <span class="text-category-name ${index === LIST_PAGE.category ? "selected-bold14" : " available-medium14"}">${category}</span>
                       ${
-                        currentTab === "entire"
+                        currentTab === ENTIRE
                           ? `      <span class="text-category-number">
                                         <span class="present display-bold12">${LIST_PAGE.page + 1} / </span>
                                         <span class="entire display-bold12">${news.length}</span>
@@ -51,7 +52,7 @@ export function updateField() {
   progressTabNumber.querySelector(".present").innerHTML = `${LIST_PAGE.page + 1} / `;
 }
 export function updateCategory() {
-  if (VIEW.tab === "entire") {
+  if (VIEW.tab === ENTIRE) {
     const categoryNews = news_data.filter((press) => press.category === category[LIST_PAGE.category]);
     setNews(shuffle_press(categoryNews));
   }
@@ -78,7 +79,7 @@ function tabClassChange(targetTab, previousProgressTab) {
   targetTab.classList.remove("text-tab");
   targetTab.classList.add("progress-tab");
 
-  if (VIEW.tab === "entire") {
+  if (VIEW.tab === ENTIRE) {
     const textTabName = targetTab.querySelector(".text-category-name");
     const textTabNumber = targetTab.querySelector(".text-category-number");
     textTabName.classList.remove("available-medium14");

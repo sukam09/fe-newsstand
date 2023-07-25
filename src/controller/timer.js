@@ -1,3 +1,4 @@
+import { ENTIRE } from "../constant.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
 import { eachCategoryLength } from "../view/list.js";
 import { news } from "../view/list.js";
@@ -38,7 +39,7 @@ export function startTimer() {
     resetProgressBar();
 
     //페이지 & 카테고리 변수 변경
-    if (VIEW.tab === "entire") {
+    if (VIEW.tab === ENTIRE) {
       if (LIST_PAGE.page === eachCategoryLength[LIST_PAGE.category] - 1) {
         LIST_PAGE.setCategory((LIST_PAGE.category + 1) % eachCategoryLength.length);
       } else {

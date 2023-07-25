@@ -1,3 +1,4 @@
+import { ENTIRE, GRID, LIST } from "../../constant.js";
 import { GRID_PAGE, LIST_PAGE, VIEW } from "../../model/global.js";
 import { category, news } from "../../view/list.js";
 import { eachCategoryLength } from "../../view/list.js";
@@ -9,7 +10,7 @@ export const LEFT = 0;
 function arrowBtnClickHandler(dir) {
   const layout = VIEW.layout;
   //그리드 뷰
-  if (layout === "grid") {
+  if (layout === GRID) {
     if (dir === RIGHT) {
       GRID_PAGE.setPage(GRID_PAGE.page + 1);
     } else {
@@ -17,8 +18,8 @@ function arrowBtnClickHandler(dir) {
     }
   }
   //리스트뷰
-  else if (layout === "list") {
-    if (VIEW.tab === "entire") {
+  else if (layout === LIST) {
+    if (VIEW.tab === ENTIRE) {
       let page = LIST_PAGE.page;
       let currentCategoryIdx = LIST_PAGE.category;
 

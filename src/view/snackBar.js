@@ -1,7 +1,7 @@
 import { VIEW } from "../model/global.js";
 
 function snackBarForceDisappear() {
-  const main = VIEW.layout === "grid" ? document.querySelector(".grid") : document.querySelector(".list");
+  const main = document.querySelector("main");
   const snackBarElement = main.querySelector(".snack-bar");
   if (snackBarElement) {
     main.removeChild(snackBarElement);
