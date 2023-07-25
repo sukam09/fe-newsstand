@@ -145,9 +145,16 @@ function subscriber() {
     );
     store.subscribe(
       () => {
-        const subscribeBtnElement = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
-        subscribeBtnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
-        subscribeBtnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/plus.png");
+        if (VIEW.tab === ENTIRE) {
+          const subscribeBtnElement = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
+          subscribeBtnElement.querySelector(".subscribe-text").innerHTML = "구독하기";
+          subscribeBtnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/plus.png");
+        } else {
+          if (LIST_PAGE.category === store.getSubscribe().length) {
+            LIST_PAGE.category = 0;
+          }
+          renderList();
+        }
       },
       UNSUBSCRIBE,
       LIST

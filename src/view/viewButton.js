@@ -1,4 +1,4 @@
-import { GRID } from "../constant";
+import { GRID } from "../constant.js";
 
 function btnColorChange(targetBtn, inactiveBtn) {
   const rootStyles = getComputedStyle(document.documentElement);
