@@ -54,3 +54,8 @@ export const categoryIdState = initState({
   key: "categoryId",
   value: 0,
 });
+
+export const myListPageState = initState({
+  key: "myListPage",
+  value: 0,
+});

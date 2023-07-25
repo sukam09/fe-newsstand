@@ -7,6 +7,7 @@ import {
   categoryIdState,
   gridPageState,
   listPageState,
+  myListPageState,
   pageModeState,
   pageTypeState,
 } from "../../store/pageState.js";
@@ -30,7 +31,8 @@ export function addObserverOnListPage() {
     updatePageCount();
   };
 
-  addObserver(listPageState, controllListPage);
+  addObserver(listPageState, controllPage);
+  addObserver(myListPageState, controllPage);
 }
 
 export function controllPage() {
@@ -123,18 +125,19 @@ export function showListPage(categoryId, page) {
       $newsPage.style.display = "none";
     });
   };
-  let $targetNewsPage;
 
+  let $targetNewsPage;
   const pageMode = getState(pageModeState);
   hideAllListPage();
+
   if (pageMode === MODE_ALL) {
     $targetNewsPage = qs(`.news_${parseInt(categoryId)}_${page}`);
   } else if (pageMode === MODE_MY) {
+    const page = getState(myListPageState);
     $targetNewsPage = qs(`.news_my${page}`);
   } else {
     return;
   }
-  console.log(page);
   $targetNewsPage.style.display = "block";
 
   highlightCategoryItem();

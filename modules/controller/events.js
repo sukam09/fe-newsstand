@@ -31,6 +31,10 @@ import {
   gridPageState,
   listPageState,
   pageTypeState,
+  pageModeState,
+  MODE_ALL,
+  MODE_MY,
+  myListPageState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { handleListSubButton } from "./listController.js";
@@ -42,6 +46,7 @@ import {
   handleModeAllClick,
   handleModeMyClick,
 } from "./pageController/modeController.js";
+import { myPressCntState } from "../store/subState.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
@@ -58,60 +63,90 @@ export function addEventsOnPageButton() {
 
   $leftBtn.addEventListener("click", () => {
     const pageType = getState(pageTypeState);
+    const pageMode = getState(pageModeState);
 
     if (pageType === GRID) {
       const prevPage = Math.max(getState(gridPageState) - 1, 0);
       setState(gridPageState, prevPage);
     } else if (pageType === LIST) {
-      const categoryId = getState(categoryIdState);
-      const listPage = getState(listPageState);
-      let prevListPage;
-      let prevCategoryId;
+      if (pageMode === MODE_ALL) {
+        const categoryId = getState(categoryIdState);
+        const listPage = getState(listPageState);
+        let prevListPage;
+        let prevCategoryId;
 
-      if (listPage <= 0 && categoryId > 0) {
-        prevCategoryId = categoryId - 1;
-        prevListPage = MAX_LIST_PAGE[categoryId - 1] - 1;
-      } else if (categoryId <= 0 && listPage <= 0) {
-        prevCategoryId = MAX_CATEGORY_ID - 1;
-        prevListPage = MAX_LIST_PAGE[categoryId] - 1;
-      } else {
-        prevCategoryId = categoryId;
-        prevListPage = listPage - 1;
+        if (listPage <= 0 && categoryId > 0) {
+          prevCategoryId = categoryId - 1;
+          prevListPage = MAX_LIST_PAGE[categoryId - 1] - 1;
+        } else if (categoryId <= 0 && listPage <= 0) {
+          prevCategoryId = MAX_CATEGORY_ID - 1;
+          prevListPage = MAX_LIST_PAGE[categoryId] - 1;
+        } else {
+          prevCategoryId = categoryId;
+          prevListPage = listPage - 1;
+        }
+        setState(categoryIdState, prevCategoryId);
+        setState(listPageState, prevListPage);
+      } else if (pageMode === MODE_MY) {
+        const myListPage = getState(myListPageState);
+        const maxPage = getState(myPressCntState);
+        let prevPage;
+
+        if (myListPage <= 0) {
+          prevPage = maxPage - 1;
+        } else {
+          prevPage = myListPage - 1;
+        }
+        setState(myListPageState, parseInt(prevPage));
+        console.log(prevPage);
       }
-      setState(categoryIdState, prevCategoryId);
-      setState(listPageState, prevListPage);
     }
   });
 
   $rightBtn.addEventListener("click", () => {
     const pageType = getState(pageTypeState);
+    const pageMode = getState(pageModeState);
     const categoryId = getState(categoryIdState);
 
     if (pageType === GRID) {
       const nextPage = Math.min(getState(gridPageState) + 1, MAX_GRID_PAGE - 1);
       setState(gridPageState, nextPage);
     } else if (pageType === LIST) {
-      let nextListPage;
-      let nextCategoryId;
-      const listPage = getState(listPageState);
-      if (
-        listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
-        categoryId < MAX_CATEGORY_ID - 1
-      ) {
-        nextCategoryId = categoryId + 1;
-        nextListPage = 0;
-      } else if (
-        listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
-        categoryId >= MAX_CATEGORY_ID - 1
-      ) {
-        nextCategoryId = 0;
-        nextListPage = 0;
-      } else {
-        nextCategoryId = categoryId;
-        nextListPage = listPage + 1;
+      if (pageMode === MODE_ALL) {
+        let nextListPage;
+        let nextCategoryId;
+        const listPage = getState(listPageState);
+        if (
+          listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+          categoryId < MAX_CATEGORY_ID - 1
+        ) {
+          nextCategoryId = categoryId + 1;
+          nextListPage = 0;
+        } else if (
+          listPage >= MAX_LIST_PAGE[categoryId] - 1 &&
+          categoryId >= MAX_CATEGORY_ID - 1
+        ) {
+          nextCategoryId = 0;
+          nextListPage = 0;
+        } else {
+          nextCategoryId = categoryId;
+          nextListPage = listPage + 1;
+        }
+        setState(categoryIdState, nextCategoryId);
+        setState(listPageState, nextListPage);
+      } else if (pageMode === MODE_MY) {
+        let nextPage;
+        const myListPage = getState(myListPageState);
+        const maxPage = getState(myPressCntState);
+
+        if (myListPage >= maxPage - 1) {
+          nextPage = 0;
+        } else {
+          nextPage = myListPage + 1;
+        }
+
+        setState(myListPageState, parseInt(nextPage));
       }
-      setState(categoryIdState, nextCategoryId);
-      setState(listPageState, nextListPage);
     }
   });
 }

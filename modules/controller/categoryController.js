@@ -5,6 +5,7 @@ import {
   MODE_ALL,
   categoryIdState,
   listPageState,
+  myListPageState,
   pageModeState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
@@ -46,8 +47,8 @@ export function highlightCategoryItem() {
     $category.classList.add("category_clicked");
     startProgressAnimation($progressbar);
   } else {
-    const listPage = getState(listPageState);
-    const $category = qs(`#category_my_${parseInt(listPage)}`);
+    const myListPage = getState(myListPageState);
+    const $category = qs(`#category_my_${parseInt(myListPage)}`);
     $category.classList.add("category_clicked");
     const $progressbar = $category.querySelector(".progressbar");
     startProgressAnimation($progressbar);
