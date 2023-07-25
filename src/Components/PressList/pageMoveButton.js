@@ -88,11 +88,8 @@ function showNewsTurner() {
 
 /** 페이지 넘기는 버튼 유무 설정 */
 function showNewsTurnerOfList(whatPressNews) {
-  $newsPrevButton.style.display = getPage() === 0 ? 'none' : 'block';
-  $newsNextButton.style.display = getPage() ===
-    whatPressNews[getClickedCategoryIndex()].length - 1
-    ? 'none' : 'block';
-
+  $newsPrevButton.style.display = 'block';
+  $newsNextButton.style.display = 'block';
 }
 
 /**
