@@ -8,7 +8,6 @@ import {
 import {
     showToday,
     getOptions,
-    setOptions,
     currentHourToMode,
     renderOptions,
     getCalPage,
@@ -66,8 +65,14 @@ function mainOptionEvent() {
 function optionListener(event, selected) {
     const clicked_option = event.target;
 
-    view_option[selected] = clicked_option.id.split("_")[1];
-    const { main: main_option, press: press_option } = getOptions();
+    view_option.dispatch(
+        {
+            type: "CHANGE_VIEW_OPTION",
+            value: clicked_option.id.split("_")[1],
+        },
+        selected
+    );
+    const { main, press } = view_option.getState(["main", "press"]);
 
     const option_elements = document.querySelectorAll(`.option_${selected}`);
     option_elements.forEach((option_name) => {
@@ -77,7 +82,32 @@ function optionListener(event, selected) {
                 : `option_${selected}`;
     });
 
-    clearAndRender(main_option, press_option, option_elements, selected);
+    clearAndRender({
+        main: main,
+        press: press,
+        option_elements: option_elements,
+        selected: selected,
+    });
+}
+
+function clearAndRender(options) {
+    const { main, press, option_elements, selected } = options;
+
+    clearTimeout(snack_animation_time);
+    if (selected && selected === "main")
+        updateMainNewsContainer(option_elements, main);
+
+    clear("main_news_container", list_option);
+    clear("snack_bar_container", "remove");
+    clear("modal_bar_container", "remove");
+
+    createSnackBarView("container_center");
+    createModalBarView("container_center");
+    const { data, page, category } = renderOptions()[main][press];
+
+    changeViewArrow(main);
+    render(getOptions("all", [changeCategoryEvent]), data, page, category);
+    togglePressEvent();
 }
 
 function updateMainNewsContainer(option_elements, main_option) {
@@ -99,23 +129,6 @@ function updateMainNewsContainer(option_elements, main_option) {
         "grid_view_container"
     );
     news_data_container.classList.add(view_mode);
-}
-
-function clearAndRender(main, press, option_elements, selected) {
-    if (selected && selected === "main")
-        updateMainNewsContainer(option_elements, main);
-        
-    clear("main_news_container", list_option);
-    clear("snack_bar_container", "remove");
-    clear("modal_bar_container", "remove");
-
-    createSnackBarView("container_center");
-    createModalBarView("container_center");
-    const { data, page, category } = renderOptions()[main][press];
-
-    changeViewArrow(main);
-    render(getOptions("all", [changeCategoryEvent]), data, page, category);
-    togglePressEvent();
 }
 
 /**
@@ -196,15 +209,9 @@ function toggleModeEvent() {
         // current view re render
         if (view_option.main === "grid") {
             renderPressItem(view_option.mode);
-            /*
-                render(view_option, grid_option);
-            */
         }
         if (view_option.main === "list") {
             renderNewsItem(view_option.mode);
-            /*
-                render(view_option, grid_option);
-            */
         }
     });
 }
@@ -240,10 +247,9 @@ const handleMouseLeave = (event) => {
  * 1. 구독/구독해제 이벤트
  * 2. grid_views, 언론사 구독 클릭 이벤트
  */
+let snack_animation_time;
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
-
-    let snack_animation_time;
 
     subscribe.forEach((press) => {
         press.addEventListener("click", () => {
@@ -263,7 +269,7 @@ function toggleSubscribeEvent() {
             setSubscribeNewsData();
 
             if (press_option === "subscribe") {
-                clearAndRender(main_option, press_option);
+                clearAndRender({ main: main_option, press: press_option });
             }
 
             renderSnackBarView(snack_bar);
@@ -350,7 +356,7 @@ function modalBarEvent(name) {
         }
         setSubscribeNewsData();
         modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender(main_option, press_option);
+        clearAndRender({ main: main_option, press: press_option });
         setTimeout(() => {
             modal_bar_container.style.display = "none";
         }, 500);
@@ -362,7 +368,7 @@ function modalBarEvent(name) {
         );
         const { main: main_option, press: press_option } = getOptions();
         modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender(main_option, press_option);
+        clearAndRender({ main: main_option, press: press_option });
         setTimeout(() => {
             modal_bar_container.style.display = "none";
         }, 500);

@@ -17,21 +17,21 @@ function renderListView(options, data, category, page) {
     const list_news_container = document.querySelector(".main_news_container");
 
     const main_content = document.createElement("div");
-    const new_category =
+    const new_categories =
         options.press === "all"
             ? CATEGORIES
             : subscribe_option.subscribe_categories;
-    const new_data =
-        options.press === "all"
-            ? data[new_category[category]]
-            : data[new_category[category]];
-
     const new_page =
         options.press === "all" ? page : list_option.subscribe_page;
-    const new_current =
+    let new_current =
         options.press === "all"
             ? list_option.category
             : subscribe_option.subscribe_current;
+    if (new_categories[new_current] === undefined) {
+        new_current = 0;
+    }
+    const new_data =
+        data === undefined ? undefined : data[new_categories[new_current]];
 
     switch (options.target) {
         case "all":
@@ -42,6 +42,7 @@ function renderListView(options, data, category, page) {
                 list_news_container.appendChild(main_content);
                 return;
             }
+
             list_news_container.innerHTML = "";
             main_content.classList.add("main_content");
             clearInterval(list_option.interval);
@@ -50,11 +51,11 @@ function renderListView(options, data, category, page) {
                 list_news_container,
                 new_data,
                 new_page + 1,
-                new_category,
+                new_categories,
                 new_current
             );
-            createNewsHeader(main_content, new_data, new_page, new_current);
-            createMainContents(main_content, new_data, new_page, new_current);
+            createNewsHeader(main_content, new_data, new_page);
+            createMainContents(main_content, new_data, new_page);
             break;
         case "sub":
             renderSubscribeButton();

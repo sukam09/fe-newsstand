@@ -201,7 +201,7 @@ export function useMovePage(press, page, data, category, callbacks) {
  * 1. snack bar의 애니메이션을 설정한다.
  * @returns {Object} options
  */
-export function setSnackBar(callback) {
+export function setSnackBar(clearAndRender) {
     const snack_bar_container = document.querySelector(".snack_bar_container");
 
     snack_bar_container.style.display = "block";
@@ -213,7 +213,12 @@ export function setSnackBar(callback) {
         const { main: main_option, press: press_option } = getOptions();
         const option_elements = document.querySelectorAll(`.option_main`);
         setActiveClass();
-        callback(main_option, press_option, option_elements, "main");
+        clearAndRender({
+            main: main_option,
+            press: press_option,
+            option_elements: option_elements,
+            selected: "main",
+        });
     }, SNACKBAR_DELAY);
 
     return snack_animation_time;
