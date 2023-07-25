@@ -12,7 +12,7 @@ const constants = {
   SHOW_GRID: "grid",
   SHOW_MY_LIST: "my_list",
   SHOW_MY_GRID: "my_grid",
-  PROGRESS_DURATION_MS: 3000,
+  PROGRESS_DURATION_MS: 20000,
   FIELDTAB_LIST: [
     "종합/경제",
     "방송/통신",

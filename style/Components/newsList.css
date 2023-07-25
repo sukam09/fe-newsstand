@@ -15,13 +15,19 @@
   text-align: center;
   font-size: var(--font-size-regular);
   color: var(--color-text-weak);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.news-list__field-tab::-webkit-scrollbar {
+  display: none;
 }
 
 .news-list__field-tab__progress {
   display: flex;
+  flex: 0 0 166px;
   justify-content: space-between;
   align-items: center;
-  width: 166px;
   padding: 0 16px;
   background: linear-gradient(
     to right,
