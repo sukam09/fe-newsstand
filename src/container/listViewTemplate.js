@@ -10,6 +10,7 @@ import { _sub_press_list } from "../Store.js";
 import { list_view_subscribe } from "../components/list/listObserverSub.js";
 import { list_view_entire } from "../components/list/listObserverEntire.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
+import { dark_mode } from "../components/layout/darkModeEvent.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
@@ -166,13 +167,13 @@ function createPressInfoBtn($container, press_name, press_id, subscribe_mode, is
 }
 
 // 언론사 정보 생성
-function createPressInfo(press_news, subscribe_mode, is_subscribe) {
+function createPressInfo(press_news, subscribe_mode, is_subscribe, isDark) {
     const $container = create.div({ className: "list-view-press-info" });
     if (!press_news.press_light_src) return $container;
 
     const $img = create.img({
         className: "press_img",
-        attributes: { src: press_news.press_light_src, alt: "press-logo" },
+        attributes: { src: isDark ? press_news.press_dark_src : press_news.press_light_src, alt: "press-logo" },
     });
     const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_news.edit_date });
 
@@ -258,7 +259,10 @@ export function createPressNews(news_category_press, isInit, subscribe_mode, is_
         createMainNews(news_category_press.main_news_thumbnail, news_category_press.main_news),
         createSubNews(news_category_press.press, news_category_press.sub_news)
     );
-    $container.append(createPressInfo(news_category_press, subscribe_mode, is_subscribe), $news_content);
+    $container.append(
+        createPressInfo(news_category_press, subscribe_mode, is_subscribe, dark_mode.getMode()),
+        $news_content
+    );
     return $container;
 }
 

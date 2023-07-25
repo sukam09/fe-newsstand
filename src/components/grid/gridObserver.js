@@ -3,6 +3,7 @@ import { press_list } from "../../../data/pressList.js";
 import { DOM } from "../../utils/domClassName.js";
 import { createMainGrid } from "../../container/gridViewTemplate.js";
 import { _sub_press_list } from "../../Store.js";
+import { dark_mode } from "../layout/darkModeEvent.js";
 
 class gridViewInfo {
     constructor(data, isSub) {
@@ -49,7 +50,7 @@ class gridViewInfo {
 class gridViewEntire extends gridViewInfo {
     // 구독한 언론사 리스트가 변경될 경우 뷰 업데이트
     update = function (state) {
-        createMainGrid(this, false, state);
+        createMainGrid(this, false, dark_mode.getMode());
     };
 }
 
@@ -61,7 +62,7 @@ class gridViewSub extends gridViewInfo {
         if (this.getCurrentPage() > this.getMaxPage() && this.getMaxPage() >= 0) {
             this.setPageNum(this.getMaxPage());
         }
-        createMainGrid(this, false, state);
+        createMainGrid(this, false, dark_mode.getMode());
     };
 
     setPageNum = function (page_num) {

@@ -28,3 +28,19 @@
     --border-border-bold: var(--color-grayscale-300);
     --border-border-default: var(--color-grayscale-100);
 }
+
+body.dark {
+    --text-text-strong: var(--color-grayscale-white);
+    --text-text-bold: var(--color-grayscale-50);
+    --text-text-default: var(--color-grayscale-100);
+    --text-text-weak: var(--color-grayscale-white-alt);
+    --text-text-white-default: var(--color-grayscale-white);
+    --text-text-white-weak: var(--color-grayscale-white-alt);
+    --text-text-point: var(--color-blue-500);
+    --surface-surface-default: var(--color-grayscale-black);
+    --surface-surface-alt: var(--color-grayscale-500);
+    --surface-surface-brand-default: var(--color-blue-500);
+    --surface-surface-brand-alt: var(--color-blue-100);
+    --border-border-bold: var(--color-grayscale-white-alt);
+    --border-border-default: var(--color-grayscale-400);
+}

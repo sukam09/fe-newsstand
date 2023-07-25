@@ -25,7 +25,6 @@ class ListViewSub extends ListViewInfo {
     initProgressBar = function (props) {
         if (props.category_old === this.data.length) props.category_old = 0;
         this.setValue(props).then(() => {
-            console.log(this.category_old, this.category_now);
             this.changeProgressBar();
             if (this.data.length) {
                 renderPressNews(this.data[this.category_now], DOM.LIST_SUBSCRIBE_VIEW);

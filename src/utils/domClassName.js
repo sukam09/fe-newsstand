@@ -30,4 +30,7 @@ export const DOM = {
     // tab
     TAB_ITEM: "tab-item",
     TAB_CLICKED: "tab-item-clicked",
+
+    // dark
+    DARK: "dark",
 };

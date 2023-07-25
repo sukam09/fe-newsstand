@@ -16,7 +16,7 @@ function createHeaderLeft() {
 
 // 헤더 오른쪽 사이드 생성
 function createHeaderRight() {
-    const $container = create.div({ className: "header-right", txt: showTodayDate() });
+    const $container = create.div({ className: "header-right display-medium16", txt: showTodayDate() });
     return $container;
 }
 

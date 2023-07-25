@@ -36,7 +36,7 @@ class arrowBtn extends button {
 
 class subscribeBtn extends button {
     constructor({ events, isDefault, isSubscribe, press_id, press_name }) {
-        super({ className: "btn-subscribe", events: events });
+        super({ className: isDefault ? "btn-subscribe grid_sub" : "btn-subscribe", events: events });
         this.is_subscribe = isSubscribe;
         this.$img = create.img({
             className: "btn-subscribe-icon",
@@ -46,7 +46,6 @@ class subscribeBtn extends button {
             className: "btn-subscribe-label available-medium12",
             txt: isSubscribe ? "구독하기" : "해지하기",
         });
-        if (isDefault) this.$btn.style.backgroundColor = "white";
         this.$btn.append(this.$img, this.$title);
         this.$press_id = press_id;
         this.$press_name = press_name;

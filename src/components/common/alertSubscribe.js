@@ -28,7 +28,7 @@ export function createAlert(press_name, press_id, $parent, resetBtn) {
         click: () => {
             _sub_press_list.deleteState(press_id);
             document.querySelector(".alert") && document.querySelector(".alert").remove();
-            resetBtn($parent, press_id);
+            resetBtn && resetBtn($parent, press_id);
         },
     });
     // 구독해지 알림 중 '아니오' 클릭할 경우
