@@ -15,12 +15,17 @@
   font-size: 14px;
   padding: 0px;
   margin: 0px;
+  overflow: scroll;
+}
+.category_list_container::-webkit-scrollbar {
+  display: none;
 }
 .category_list {
   position: relative;
   padding: 11.5px 16px 11.5px 16px;
   list-style: none;
   color: #879298;
+  min-width: fit-content;
 }
 
 .category_list:hover {
@@ -33,7 +38,7 @@
 }
 .category_list--clicked {
   background-color: #7890e7;
-  width: 166px;
+  min-width: 166px;
   color: #ffffff;
   display: flex;
   justify-content: space-between;
