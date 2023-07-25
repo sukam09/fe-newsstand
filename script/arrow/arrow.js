@@ -1,6 +1,6 @@
 import pressList from "../../asset/data/pressList.js"
 import { store } from "../../store/store.js";
-import { FILTER_TYPE, GRID_ITEMS_COUNT, VIEW_TYPE } from "../../asset/data/constants.js";
+import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, VIEW_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
 
 const leftArrow = document.querySelector(".arrow-left");
@@ -12,11 +12,6 @@ function showAllArrows(){
 }
 function drawArrow(){
     let {crntPage, crntView, crntFilter, isStillList} = store.getViewState();
-    // if (isStillList){ 
-    //     // (in list) click arrow > setViewState() > drawArrow
-    //     // no need to redraw arrows when in list
-    //     return;
-    // }
     let dataInfo;
     if (crntFilter === FILTER_TYPE.ALL){
         dataInfo = pressList;
@@ -33,7 +28,7 @@ function drawArrow(){
     showAllArrows();
     switch (crntView){
         case VIEW_TYPE.GRID:
-            maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_COUNT);
+            maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_PER_PAGE);
             if (crntPage == 0){
                 leftArrow.classList.add("hidden");
             } 

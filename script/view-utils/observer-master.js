@@ -5,7 +5,7 @@ import { renderView, toggleView } from "./render-view.js";
 
 function observer() {
     const {isStillList, isChangeView} = store.getViewState();
-    if (!isStillList) {
+    if (!isStillList) { // 리스트일 때 화살표 이동 > 화살표 다시 그리지 않음
         drawArrow();
     }
     if (isChangeView) {

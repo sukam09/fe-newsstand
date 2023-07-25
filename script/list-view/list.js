@@ -2,11 +2,10 @@ import { store } from "../../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
 import { FILTER_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
+import { drawEmptySubView } from "../view-utils/empty-sub-view.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
-const listContainer = document.querySelector(".list-box")
-const emptyView = document.querySelector(".empty-view");
 
 function handleCategoryChange(catBtns){
     Array.prototype.forEach.call(catBtns, (btn, index) => {
@@ -22,10 +21,7 @@ function handleCategoryChange(catBtns){
         })
     })
 }
-function drawEmptyList() {
-    listContainer.classList.add("hide");
-    emptyView.classList.remove("hide");
-}
+
 function drawListPage({listData, navData, filterType}) {
     let {crntPage, crntCategory} = store.getViewState();
     let crntData;
@@ -84,7 +80,7 @@ function drawList() {
     const filterType = store.getViewState().crntFilter;
     if (viewData.listData.length === 0){
         // no data to draw < in the case of filterType = "subscribed"
-        drawEmptyList();
+        drawEmptySubView();
     } else {
         drawListNav({...viewData, filterType})
         drawProgressBar()
