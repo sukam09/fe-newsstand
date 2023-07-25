@@ -1,3 +1,10 @@
+import {
+    viewReducer,
+    gridReducer,
+    listReducer,
+    subscribeReducer,
+} from "./reducers.js";
+
 export const view_option = {
     // initalize and render option
     press: "all",
@@ -7,6 +14,29 @@ export const view_option = {
 
     //hot_topic
     hot_topic_data: [],
+
+    observers: [],
+
+    getState(values) {
+        const state = {};
+        values.forEach((value) => {
+            state[value] = this[value];
+        });
+        return state;
+    },
+
+    subscribe(observers) {
+        this.observers.push(observers);
+    },
+
+    dispatch(action, value) {
+        this[value] = viewReducer(this[value], action, value);
+        this.notify(value);
+    },
+
+    notify(value) {
+        this.observers.forEach((observer) => observer(this[value]));
+    },
 };
 
 export const grid_option = {
