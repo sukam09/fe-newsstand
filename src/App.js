@@ -10,8 +10,6 @@ import Header from "./App/Header.js";
 import Rolling from "./App/Rolling.js";
 import Main from "./App/Main.js";
 
-const startTimes = [0, 1];
-
 function App($target, props) {
   Component.call(this, $target, props);
 }

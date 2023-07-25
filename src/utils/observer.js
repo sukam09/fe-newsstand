@@ -23,5 +23,6 @@ export const observable = (obj) => {
       },
     });
   });
+
   return obj;
 };

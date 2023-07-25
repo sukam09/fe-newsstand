@@ -6,6 +6,7 @@
 import CategoryNav from "../NewsListView/CategoryNav.js";
 import Contents from "../NewsListView/Contents.js";
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
+import Component from "../../utils/Component.js";
 
 let indexArr;
 let prevCategory = undefined;
@@ -51,63 +52,79 @@ const getPressId = function (object) {
   return object.pid;
 };
 
-export default function NewsListView($target, props) {
-  if (prevCategory !== props.category) {
-    prevCategory = props.category;
-    if (props.pressType === "all")
-      indexArr = getRandomIndexArr(props.data.length);
-  }
+function NewsListView($target, props) {
+  this.state = { lastCategory: 6 };
 
-  const newsOject =
-    props.pressType === "all"
-      ? props.data[indexArr[props.currentPage - 1]]
-      : props.data;
-
-  const categoryNavProps = {
-    pressType: props.pressType,
-    currentPage: props.currentPage,
-    lastPage: props.lastPage,
-    category: props.category,
-    setContentState: props.setContentState,
-    timerArr: props.timerArr,
+  this.setLastCategory = (nextLastCategory) => {
+    this.state.lastCategory = nextLastCategory;
   };
 
-  const contentsProps = {
-    headerData: {
-      pressId:
-        props.pressType === "all" ? getPressId(newsOject) : newsOject.pid,
-      pressLogo: getPressLogo(newsOject, props.mode),
-      editDate: getEditDate(newsOject),
-      setPressType: props.setPressType,
-    },
-    newsData: {
-      mainNewsData: {
-        mainThumbnail: getMainThumbnail(newsOject),
-        mainNewsTitle: getMainNewsTitle(newsOject),
-      },
-      subNewsData: {
-        subTitles: getsubTitles(newsOject),
-        press: getPressName(newsOject),
-      },
-    },
-  };
-
-  this.render = () => {
-    let $div = document.querySelector(".news-container");
-
-    if ($div) {
-      $target.removeChild($div);
-    }
-
-    $div = document.createElement("div");
-    $div.setAttribute("class", "news-container");
-
-    new CategoryNav($div, categoryNavProps);
-    new Contents($div, contentsProps);
-
-    $target.innerHtml = "";
-    $target.appendChild($div);
-  };
-
-  this.render();
+  Component.call(this, $target, props);
+  // if (prevCategory !== props.category) {
+  //   prevCategory = props.category;
+  //   if (props.pressType === "all")
+  //     indexArr = getRandomIndexArr(props.data.length);
+  // }
+  // const newsOject =
+  //   props.pressType === "all"
+  //     ? props.data[indexArr[props.currentPage - 1]]
+  //     : props.data;
+  // const categoryNavProps = {
+  //   pressType: props.pressType,
+  //   currentPage: props.currentPage,
+  //   lastPage: props.lastPage,
+  //   category: props.category,
+  //   setContentState: props.setContentState,
+  //   timerArr: props.timerArr,
+  // };
+  // const contentsProps = {
+  //   headerData: {
+  //     pressId:
+  //       props.pressType === "all" ? getPressId(newsOject) : newsOject.pid,
+  //     pressLogo: getPressLogo(newsOject, props.mode),
+  //     editDate: getEditDate(newsOject),
+  //     setPressType: props.setPressType,
+  //   },
+  //   newsData: {
+  //     mainNewsData: {
+  //       mainThumbnail: getMainThumbnail(newsOject),
+  //       mainNewsTitle: getMainNewsTitle(newsOject),
+  //     },
+  //     subNewsData: {
+  //       subTitles: getsubTitles(newsOject),
+  //       press: getPressName(newsOject),
+  //     },
+  //   },
+  // };
+  // let $div = document.querySelector(".news-container");
+  // if ($div) {
+  //   $target.removeChild($div);
+  // }
+  // $div = document.createElement("div");
+  // $div.setAttribute("class", "news-container");
+  // new CategoryNav($div, categoryNavProps);
+  // new Contents($div, contentsProps);
+  // $target.innerHtml = "";
+  // $target.appendChild($div);
 }
+
+Object.setPrototypeOf(NewsListView.prototype, Component.prototype);
+
+NewsListView.prototype.template = function () {
+  return `
+  <nav class="categoty-nav"></nav>
+  <section class="list-content"></section>
+  `;
+};
+
+NewsListView.prototype.mounted = function () {
+  const $nav = this.$el.querySelector("nav");
+  const $section = this.$el.querySelector("section");
+
+  new CategoryNav($nav, {
+    ...this.props,
+    setLastCategory: this.setLastCategory,
+  });
+  // new Contents($section, { ...this.props });
+};
+export default NewsListView;

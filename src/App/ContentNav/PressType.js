@@ -3,6 +3,7 @@ Main 컴포넌트의 컨텐츠를 변경하는 네비게이션 컴포넌트
 */
 import Component from "../../utils/Component.js";
 import Button from "./Button.js";
+import { gridStore, setPage, FIRST_PAGE } from "../../store/GridStore.js";
 import {
   ALL,
   MY,
@@ -21,6 +22,9 @@ const createButton = (button, index) => {
     actionType: SET_PRESS,
     onClick: () => {
       const newPressType = setPress(types[index]);
+      const initPage = setPage(FIRST_PAGE);
+
+      gridStore.dispatch(initPage);
       mainStore.dispatch(newPressType);
     },
   };

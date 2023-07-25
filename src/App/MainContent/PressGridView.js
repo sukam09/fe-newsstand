@@ -61,7 +61,7 @@ const createPressList = function (page, pressArr, mode) {
   while (nowPageIndexArr.length < GRID_PRESS_NUBER) nowPageIndexArr.push(-1);
 
   const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
-  let pressList = liArr.reduce((news, currentIndex) => news + currentIndex);
+  let pressList = liArr.reduce((news, currentIndex) => news + currentIndex, "");
 
   return pressList;
 };
@@ -80,7 +80,6 @@ const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
     if ($button.innerText === "구독하기") {
       $button.innerHTML = unsubscibeButtonInner;
       pressState.push($button.dataset.key);
-      newPress = addPress(pressState);
     } else {
       $button.innerHTML = subscibeButtonInner;
       const index = pressState.indexOf($button.dataset.key);
@@ -99,10 +98,18 @@ function PressGridView($target, props) {
   const mainState = mainStore.getState();
 
   this.indexArr = undefined;
+  this.prevState = undefined;
+  this.prePage = undefined;
+
   if (mainState.pressType === ALL) {
     this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
+    props.setLastPage(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER);
   } else {
     this.indexArr = pressStore.getState().pressArr;
+    const nextLastPage = Math.ceil(
+      this.indexArr.length / GRID_PRESS_NUBER + 0.5
+    );
+    props.setLastPage(nextLastPage);
   }
 
   Component.call(this, $target, props);
@@ -110,26 +117,27 @@ function PressGridView($target, props) {
 
 Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
 
+PressGridView.prototype.render = function () {
+  if (
+    this.prevState !== ALL ||
+    mainStore.getState().pressType !== ALL ||
+    this.prePage !== gridStore.getState().currentPage
+  ) {
+    // 구독시 깜빡임 제거
+    this.prevState = mainStore.getState().pressType;
+    this.prePage = gridStore.getState().currentPage;
+    this.$el.innerHTML = this.template();
+  }
+};
+
 PressGridView.prototype.template = function () {
-  const mainState = mainStore.getState();
   const gridState = gridStore.getState();
 
-  if (mainState.pressType === ALL) {
-    return createPressList(
-      gridState.currentPage,
-      this.indexArr,
-      this.props.mode
-    );
-  } else {
-    return createPressList(
-      gridState.currentPage,
-      this.indexArr,
-      this.props.mode
-    );
-  }
+  return createPressList(gridState.currentPage, this.indexArr, this.props.mode);
 };
 
 PressGridView.prototype.setEvent = function () {
   this.$el.addEventListener("click", handleSubscriptionButtonClick);
 };
+
 export default PressGridView;

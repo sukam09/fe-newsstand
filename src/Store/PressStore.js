@@ -24,5 +24,3 @@ export const pressStore = new Store(reducer);
 // reducer에서 사용될 action을 정의해준다.
 export const addPress = (payload) => ({ type: ADD_PRESS, payload });
 export const removePress = (payload) => ({ type: REMOVE_PRESS, payload });
-
-export default pressStore;
