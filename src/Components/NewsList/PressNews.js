@@ -72,6 +72,7 @@ export default class PressNews extends Component {
         $snackBar.classList.remove("hidden");
         setTimeout(() => {
           $snackBar.classList.add("hidden");
+          document.querySelector(".news-navbar_newspaper-list-my").click();
         }, 5000);
       } else {
         this.$props.SubscribeStore.unSubscribeNews(this.$state.nowNews);
