@@ -87,6 +87,8 @@ function initPaintNews() {
     img.style.height = "20px";
     img.src = icon;
     img.alt = alt;
+    img.dataset.id = publisherData[idx].id;
+
     li.appendChild(img);
     li.appendChild(btn);
     ul.appendChild(li);
@@ -125,6 +127,7 @@ function paintNews(paintData = publisherData) {
 
       child.children[0].src = icon;
       child.children[0].alt = alt;
+      child.children[0].dataset.id = paintData[idx].id;
       idx++;
       elementIdx++;
     } else {
@@ -141,6 +144,7 @@ function paintNews(paintData = publisherData) {
 
       child.children[0].src = icon;
       child.children[0].alt = alt;
+      child.children[0].dataset.id = paintData[idx].id;
       idx++;
       elementIdx++;
     }
@@ -231,7 +235,7 @@ function userClickSubscribeButton(liElement) {
   return function () {
     const name = liElement.children[0].alt;
     const src = liElement.children[0].attributes.src.nodeValue;
-
+    const id = liElement.children[0].dataset.id;
     // 해지하기를 눌렀을때.
     if (isSubscribe(name)) {
       unsubscribeModal(name);
@@ -241,7 +245,7 @@ function userClickSubscribeButton(liElement) {
     // 구독하기 버튼을 눌렀을때.
     else {
       liElement.children[1].textContent = MESSAGE.UNSUBSCRIBE;
-      setSubscribe(name, src);
+      setSubscribe(name, src, id);
 
       snackBarAction(MESSAGE.SUB);
     }

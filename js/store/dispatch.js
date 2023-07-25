@@ -19,8 +19,8 @@ const initListPage = {
 };
 
 // 언론사 구독하기
-export function setSubscribe(name, src) {
-  store.dispatch(actionCreator(ACTION.SUBSCRIBE, [name, src]));
+export function setSubscribe(name, src, id) {
+  store.dispatch(actionCreator(ACTION.SUBSCRIBE, [name, src, id]));
 }
 
 // 구독 해지하기

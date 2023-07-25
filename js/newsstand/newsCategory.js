@@ -246,15 +246,13 @@ function handlProgressAnimationEnd(
   contentsLength
 ) {
   return function () {
-    removeProgressAction();
     let categoryIdx = getCategoryIdx();
 
-    getGoBefore()
-      ? setCategoryIndex(--categoryIdx)
-      : setCategoryIndex(++categoryIdx);
+    getGoBefore() ? --categoryIdx : ++categoryIdx;
 
     categoryIdx = categoryIdx < 0 ? totalCategory - 1 : categoryIdx;
     categoryIdx %= totalCategory;
+
     setCategoryIndex(categoryIdx);
     setContentsPage(1);
     setGoBefore(false);
@@ -274,6 +272,7 @@ function handleProgressAnimationIteration(
   contentsLength
 ) {
   return function () {
+    const textData = [getCurrentContent(), "/", contentsLength[idx]];
     let currentContents = getCurrentContent();
     setContentsPage(++currentContents);
 
@@ -284,10 +283,9 @@ function handleProgressAnimationIteration(
       contentsLength,
       categoryDataList
     );
-
-    element.children[2].textContent = `${getCurrentContent()}`;
-    element.children[3].textContent = `/`;
-    element.children[4].textContent = `${contentsLength[idx]}`;
+    textData.map((it, idx) => {
+      element.children[idx + 2].textContent = it;
+    });
     makeNewsList(getCurrentContent() - 1, totalCategory, categoryDataList);
   };
 }

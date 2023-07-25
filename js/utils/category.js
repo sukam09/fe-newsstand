@@ -1,6 +1,7 @@
 import { removeChildElement, snackBarListAction } from "../utils/util.js";
 import { MESSAGE, POSITION, EVENT, VIEW } from "./constant.js";
 import { unsubscribeModal } from "./unsubscribe.js";
+import { getCategoryData } from "../fetchAPI.js";
 import {
   isSubscribe,
   setSubscribe,
@@ -21,6 +22,8 @@ const progressClassList = [
   "newsstand__progress-slash",
   "newsstand__progress-total",
 ];
+
+const newsData = await getCategoryData("./data/pressObj.json");
 
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
@@ -58,7 +61,7 @@ export function deactiveProgressClass(element) {
 }
 
 // 로고 / 편집일 / 구독하기 태그 생성
-function makeMainNewsNav(logo, edit, name) {
+function makeMainNewsNav(logo, edit, name, id) {
   const newsNavParent = document.querySelector(".newsstand__current-view");
 
   // 기존 메인 뉴스 navbar 삭제.
@@ -87,7 +90,7 @@ function makeMainNewsNav(logo, edit, name) {
     // 구독하기 버튼을 눌렀을때.
     else {
       newsNavParent.children[2].textContent = MESSAGE.UNSUBSCRIBE;
-      setSubscribe(name, logo);
+      setSubscribe(name, logo, id);
       snackBarListAction(MESSAGE.SUB);
     }
   });
@@ -110,19 +113,29 @@ function makeMainNews(img, title) {
 // idx는 뉴스 콘텐츠의 순서를 의미함. 처음 시작할때는 무조건 0, 진행중일때는 값이 변경될 수 있음.
 export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   const newsListParent = document.querySelector(".newsstand__list-right");
+  const idx =
+    getNavTabView() === VIEW.MY_SUB
+      ? getSubscrbeList()[getCategoryIdx() % CATEROY_NUMBER][2]
+      : getCategoryIdx() % CATEROY_NUMBER;
 
-  const data = categoryDataList[getCategoryIdx() % CATEROY_NUMBER];
+  const data =
+    getNavTabView() === VIEW.MY_SUB
+      ? [newsData[idx - 1]]
+      : categoryDataList[idx];
+
   const name = data[page].name; // 언론사
   const img = data[page].imgSrc; // 뉴스 이미지 src
   const title = data[page].title[0]; // 뉴스 제목
   const logo = data[page].lightSrc; // 언론사 로고 src
   const edit = data[page].edit; // 편집일
   const newsTitles = data[page].title; // 6개짜리 뉴스 목록.
+  const id = data[page].id.toString();
+
   // 기존 뉴스 목록 데이터 삭제.
   removeChildElement(newsListParent);
 
   // 메인뉴스 nav 생성
-  makeMainNewsNav(logo, edit, name);
+  makeMainNewsNav(logo, edit, name, id);
 
   // 왼쪽 헤더라인 생성.
   makeMainNews(img, title);

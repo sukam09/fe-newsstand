@@ -8,6 +8,7 @@ export function createStore(reducer) {
   return {
     dispatch: (action) => {
       state = reducer(state, action);
+      // notify
       handler.forEach((h) => {
         h();
       });
@@ -15,6 +16,7 @@ export function createStore(reducer) {
     subscribe: (listener) => {
       handler.push(listener);
     },
+    //unsubscribe
 
     getState: () => state,
   };
