@@ -83,14 +83,14 @@ export function drawCategory(current, list, contents) {
     startClickX = e.pageX;
   });
 
-  window.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
     e.preventDefault();
     const scrollX = startScrollX - e.pageX;
     tabContainer.scrollLeft = scrollX;
   });
 
-  window.addEventListener("mouseup", (e) => {
+  document.addEventListener("mouseup", (e) => {
     isDragging = false;
     tabContent.style.cursor = "grab";
     if (startClickX === e.pageX) {
