@@ -1,5 +1,7 @@
 import { PATH, MODE, CATEGORY, GLOBAL } from "../model/variable.js";
 import { strToCategory } from "../model/model.js";
+import { getState } from "../controller/observer.js";
+import { currentMode, listCurrentPage } from "../model/store.js";
 
 function initFieldTab() {
   const dom = document.createElement("nav");
@@ -33,7 +35,7 @@ function drawFieldTab() {
   const targetDom = findProgressTargetDom();
   targetDom.querySelector("div").style.display = "flex";
 
-  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+  if (getState(currentMode) === MODE.LIST_ALL) {
     drawListAllProgressBar(targetDom);
   } else {
     drawListSubProgressBar(targetDom);
@@ -47,9 +49,9 @@ function settingFieldTab() {
   const progressDom = `<div class="progress-bar"></div>`;
   fieldTab.innerHTML = progressDom;
 
-  const tabList = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? CATEGORY : GLOBAL.SUBSCRIBE_NEWS_DATA;
+  const tabList = getState(currentMode) === MODE.LIST_ALL ? CATEGORY : GLOBAL.SUBSCRIBE_NEWS_DATA;
   for (let tab in tabList) {
-    const tabName = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? tabList[tab] : tabList[tab].name;
+    const tabName = getState(currentMode) === MODE.LIST_ALL ? tabList[tab] : tabList[tab].name;
     const buttonDom = `
     <button class="available-medium14">
       <span>${tabName}</span>
@@ -80,7 +82,7 @@ function findProgressTargetDom() {
   const targetDomAll = document.querySelectorAll(".field-tab button");
 
   let targetDomIndex = 0;
-  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+  if (getState(currentMode) === MODE.LIST_ALL) {
     for (let category in CATEGORY) {
       if (CATEGORY[category] === GLOBAL.LIST_CURRENT_CATEGORY) {
         break;
@@ -88,13 +90,13 @@ function findProgressTargetDom() {
       targetDomIndex++;
     }
   } else {
-    targetDomIndex = GLOBAL.LIST_CURRENT_PAGE;
+    targetDomIndex = getState(listCurrentPage);
   }
   return targetDomAll[targetDomIndex];
 }
 
 function drawListAllProgressBar(targetDom) {
-  const curPageInCategory = GLOBAL.LIST_CURRENT_PAGE - GLOBAL.CATEGORY_START_INDEX[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)] + 1;
+  const curPageInCategory = getState(listCurrentPage) - GLOBAL.CATEGORY_START_INDEX[strToCategory(GLOBAL.LIST_CURRENT_CATEGORY)] + 1;
   targetDom.className = "progress selected-bold14";
   targetDom.querySelector("img").src = PATH.DIVISION;
   const spanTagAll = targetDom.querySelectorAll("span");

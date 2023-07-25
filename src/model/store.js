@@ -1,19 +1,5 @@
+import { MODE } from "./variable.js";
 import { initState } from "../controller/observer.js";
-
-const moveGrid = initState({
-  key: "moveGrid",
-  defaultValue: false,
-});
-
-const moveList = initState({
-  key: "moveList",
-  defaultValue: false,
-});
-
-const toggleView = initState({
-  key: "toggleView",
-  defaultValue: false,
-});
 
 const toggleSubscription = initState({
   key: "toggleSubscription",
@@ -35,4 +21,19 @@ const toggleDarkMode = initState({
   defaultValue: false,
 });
 
-export { moveGrid, moveList, toggleView, toggleSubscription, showSnackBar, showAlert, toggleDarkMode };
+const gridCurrentPage = initState({
+  key: "gridCurrentPage",
+  defaultValue: 0,
+});
+
+const listCurrentPage = initState({
+  key: "listCurrentPage",
+  defaultValue: 0,
+});
+
+const currentMode = initState({
+  key: "currentMode",
+  defaultValue: MODE.GRID_ALL,
+});
+
+export { toggleSubscription, showSnackBar, showAlert, toggleDarkMode, gridCurrentPage, listCurrentPage, currentMode };

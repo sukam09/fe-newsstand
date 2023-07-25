@@ -1,17 +1,16 @@
 import { PATH, MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
-import { moveListMode } from "./tabAndViewerController.js";
 import { isDarkMode } from "../model/model.js";
-import { setState } from "./observer.js";
-import { toggleDarkMode } from "../model/store.js";
+import { setState, setState2 } from "./observer.js";
+import { currentMode, listCurrentPage, toggleDarkMode } from "../model/store.js";
 
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
 
   GLOBAL.SNACKBAR_TIME_OUT = window.setTimeout(() => {
     snackBar.style.display = "none";
-    GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    moveListMode();
+    setState(listCurrentPage, 0);
+    setState(currentMode, MODE.LIST_SUB);
   }, CONSTANT.SNACK_BAR_TIME);
 }
 
@@ -51,7 +50,7 @@ function initDarkToggleBtn() {
       document.querySelector("html").className = "dark-mode";
       document.querySelector(".dark-mode-btn img").src = PATH.MOON;
     }
-    setState(toggleDarkMode, true);
+    setState2(toggleDarkMode, true);
   });
 }
 

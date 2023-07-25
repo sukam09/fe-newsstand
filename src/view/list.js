@@ -1,7 +1,7 @@
 import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
-import { subscribe } from "../controller/observer.js";
-import { moveList, toggleView, toggleSubscription, toggleDarkMode } from "../model/store.js";
+import { getState, subscribe } from "../controller/observer.js";
+import { toggleSubscription, toggleDarkMode, listCurrentPage, currentMode } from "../model/store.js";
 import { isDarkMode } from "../model/model.js";
 
 function initList(parentNode) {
@@ -39,13 +39,14 @@ function initList(parentNode) {
 }
 
 function drawList() {
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.GRID_SUB) return;
+  const curMode = getState(currentMode);
+  if (curMode === MODE.GRID_ALL || curMode === MODE.GRID_SUB) return;
 
   const listView = document.querySelector(".list-view");
   listView.style.display = "flex";
   document.querySelector(".grid-view").style.display = "none";
 
-  const targetNews = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE] : GLOBAL.SUBSCRIBE_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE];
+  const targetNews = curMode === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[getState(listCurrentPage)] : GLOBAL.SUBSCRIBE_NEWS_DATA[getState(listCurrentPage)];
 
   const listPressIcon = listView.querySelector(".list-press-icon");
   listPressIcon.src = isDarkMode() ? targetNews.path_dark : targetNews.path;
@@ -79,9 +80,10 @@ function drawList() {
   drawFieldTab();
 }
 
-subscribe(moveList, drawList);
-subscribe(toggleView, drawList);
 subscribe(toggleSubscription, drawList);
 subscribe(toggleDarkMode, drawList);
+
+subscribe(listCurrentPage, drawList);
+subscribe(currentMode, drawList);
 
 export { initList, drawList };

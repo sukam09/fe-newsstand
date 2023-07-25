@@ -2,8 +2,8 @@ import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { clickSubscribeBtn } from "./subscribeController.js";
 import { updateCategory } from "./fieldTabController.js";
 import { strToCategory } from "../model/model.js";
-import { setState } from "./observer.js";
-import { moveList } from "../model/store.js";
+import { getState, setState } from "./observer.js";
+import { currentMode, listCurrentPage } from "../model/store.js";
 
 function initListEvent() {
   const listSubscribeBtn = document.querySelector(".list-view .list-sub-btn");
@@ -15,10 +15,9 @@ function initListEvent() {
 }
 
 function moveListPage(pagenum) {
-  GLOBAL.LIST_CURRENT_PAGE = pagenum;
   resetProgressAnimation();
-  updateCategory();
-  setState(moveList, true);
+  updateCategory(pagenum);
+  setState(listCurrentPage, pagenum);
 }
 
 function resetProgressAnimation() {
@@ -31,7 +30,7 @@ function resetProgressAnimation() {
 function moveListPageFromClickFieldTab(event) {
   const target = (event.target.querySelector("span") || event.target).innerHTML; //해럴드경제
   let page = 0;
-  if (GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
+  if (getState(currentMode) === MODE.LIST_ALL) {
     page = GLOBAL.CATEGORY_START_INDEX[strToCategory(target)];
   } else {
     for (const news of GLOBAL.SUBSCRIBE_NEWS_DATA) {

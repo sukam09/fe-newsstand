@@ -1,6 +1,6 @@
 import { CATEGORY, MODE, GLOBAL } from "../model/variable.js";
-import { setState } from "./observer.js";
-import { toggleView } from "../model/store.js";
+import { getState, setState } from "./observer.js";
+import { currentMode, gridCurrentPage, listCurrentPage } from "../model/store.js";
 
 function initTabAndViewerEvent() {
   const allPressBtn = document.querySelector(".all-press-btn");
@@ -15,47 +15,38 @@ function initTabAndViewerEvent() {
 }
 
 function moveAllPress() {
-  resetPage();
-  GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-  setState(toggleView, true);
+  setState(gridCurrentPage, 0);
+  setState(currentMode, MODE.GRID_ALL);
 }
 
 function moveSubPress() {
   if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) return;
 
-  resetPage();
-  GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-  setState(toggleView, true);
+  setState(listCurrentPage, 0);
+  GLOBAL.LIST_CURRENT_CATEGORY = CATEGORY.ECONOMY;
+  setState(currentMode, MODE.LIST_SUB);
 }
 
 function moveGridMode() {
-  resetPage();
+  const curMode = getState(currentMode);
 
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
-    GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-    setState(toggleView, true);
-  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.GRID_SUB;
-    setState(toggleView, true);
+  if (curMode === MODE.GRID_ALL || curMode === MODE.LIST_ALL) {
+    setState(currentMode, MODE.GRID_ALL);
+  } else {
+    setState(currentMode, MODE.GRID_SUB);
   }
+  setState(gridCurrentPage, 0);
 }
 
 function moveListMode() {
-  resetPage();
+  const curMode = getState(currentMode);
 
-  if (GLOBAL.CURRENT_MODE === MODE.GRID_ALL || GLOBAL.CURRENT_MODE === MODE.LIST_ALL) {
-    GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
-    setState(toggleView, true);
-  } else if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB || GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
-    GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    setState(toggleView, true);
+  if (curMode === MODE.GRID_ALL || curMode === MODE.LIST_ALL) {
+    setState(currentMode, MODE.LIST_ALL);
+  } else {
+    setState(currentMode, MODE.LIST_SUB);
   }
-}
-
-function resetPage() {
-  GLOBAL.GRID_CURRENT_PAGE = 0;
-  GLOBAL.LIST_CURRENT_PAGE = 0;
-  GLOBAL.LIST_CURRENT_CATEGORY = CATEGORY.ECONOMY;
+  setState(listCurrentPage, 0);
 }
 
 export { initTabAndViewerEvent, moveListMode };
