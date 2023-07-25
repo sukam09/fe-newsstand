@@ -2,6 +2,7 @@ import renderMain from "./main/renderMain.js";
 import State from "./store/StateStore.js";
 import changeImageSrc from "./utils/changeImageSrc.js";
 import newsData from "./store/NewsStore.js";
+import Store from "./store/SubscribeStore.js";
 
 function clickAllNews(){
 const allNews = document.getElementById("main-left-radio-01");
@@ -14,12 +15,12 @@ const allNews = document.getElementById("main-left-radio-01");
 }
 
 function clickMySubscribeNews(){
-const subscribeNews = document.getElementById("main-left-radio-02");
+    const subscribeNews = document.getElementById("main-left-radio-02");
     subscribeNews.addEventListener('click',()=>{
-       State.setSubscribe();
-       State.setCurrentPage(1);
-       State.setCategoryNum(0);
-       renderMain();
+        State.setSubscribe();
+        State.setCurrentPage(1);
+        State.setCategoryNum(0);
+        renderMain();
     });
 } 
 

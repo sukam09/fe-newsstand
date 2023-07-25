@@ -12,7 +12,7 @@ label{
 
 div>img{
     width: auto;
-    height: auto;
+    height: 20px;
 }
 
 input[type="radio"]{
@@ -261,20 +261,30 @@ input[type="radio"]:checked + label
 .categoryBar{
     display: flex;
     flex-direction: row;
-    width:930px;
-    height: 50px;
+    width: 930px;
+    height: 40px;
     padding: 0;
-    border-bottom:1px #D2DAE0 solid;
+    border-bottom: 1px #D2DAE0 solid;
+    border-right: 1px #D2DAE0 solid;
     background-color: #F5F7F9;
-    overflow: auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    color: #879298;
+}
+
+.categoryBar::-webkit-scrollbar{
+    display: none;
 }
 
 .categoryBar li{
     display: flex;
     flex-direction: row;
     height: 100%;
-    padding: 15px 15px 15px 15px;
-    justify-content: space-between;
+    padding: 16px;
     align-items: center;
 }
 
@@ -292,8 +302,9 @@ input[type="radio"]:checked + label
 }
 
 .selected{
-     background-color: #4362D0;
-     animation: progressAnimation 10s;
+     width: 166px;
+     font-style: bold;
+     color: #FFFFFF;
 }
 
 .listHeader{
@@ -365,43 +376,29 @@ input[type="radio"]:checked + label
 
 .selectedprogress{	    
     background-color: #7890E7;
-    width: 200px;
+    width: 166px;
     display: flex; 
     flex-direction: row;
+    padding-left: 16px;
 }
 
 .pageinfo{
-    display: inline-block;
-    position: absolute;
-    padding-left: 150px;
-    padding-top: 15px;
-    z-index: 99;
-}
-
-.categoryinfo{
-    display: inline-block;
-    position: absolute;
-    padding-left: 15px;
-    padding-top: 15px;
-    z-index: 99;
+    display: flex;
+    color: #FFFFFF;
+    align-items: center;
+    padding-right: 16px;
 }
 
 .gridSubscribeBtn{
     display: flex;
     height: 24px;
     padding: 0px 6px;
-    justify-content: center;
     align-items: center;
     border-radius: 50px;
     border: 1px solid #D2DAE0;
     background-color: #FFFFFF;
     font-size: 12px;
     color: #879298;
-}
-
-@keyframes progressAnimation {
-    from { width: 0 }
-    to   { width: 100% }
 }
 
 @keyframes mainImgAnimation {

@@ -19,6 +19,7 @@ function addSubscribeBtn({target}){
     else{
         target.innerText = "해지하기";
         Store.addSubscribe(NewsData.findGridArticle(id));
+        renderMain();
     } 
 }
 
@@ -33,7 +34,7 @@ function logoMouseOver({target}){
 
     if(Store.findSubscribe(id)){
         subscribeBtn.innerText = "해지하기";
-    }
+    }   
     else{
         subscribeBtn.innerText = "+구독하기";
     } 
@@ -49,7 +50,6 @@ function logoMouseOut({target}){
 }
 
 function refreshGrid(){
-    console.log(pressData);
     //화면 초기화
     const mainCenter = document.getElementById("main-center");
     const mainGrid = document.createElement("div");

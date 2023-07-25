@@ -3,27 +3,27 @@ import State from "../store/StateStore.js";
 import NewsData from "../store/NewsStore.js";
 import Store from "../store/SubscribeStore.js"
 
-let subscribedNews = [];
+const PROGRESS_DURATION = 20000;
+const COLOR_IN_PROGRESS = "#4362d0";
+const COLOR_PROGRESS_BACKGROUND = "#7890e7";
 let currentPage;
 let categoryNum;
 let isAll;
 let listArticle;
 let pageMAX;
 let categoryMAX;
+let interval;
 
 function makeCategory(){
     const mainCenter = document.getElementById("main-center");
+    const categoryBarNav = document.createElement("nav");
     const newCategroy = document.createElement("ul");
     
+    categoryBarNav.style.width = 930 + 'px';
     newCategroy.classList.add("categoryBar");
     
-    mainCenter.appendChild(newCategroy);
-
-    const categoryinfo = document.createElement("span");
-    categoryinfo.classList.add("categoryinfo");
-
-    const pageinfo = document.createElement("span");
-    pageinfo.classList.add("pageinfo");
+    mainCenter.appendChild(categoryBarNav);
+    categoryBarNav.appendChild(newCategroy);
 
     if(isAll){
         listArticle.forEach((value, index) =>{
@@ -32,13 +32,19 @@ function makeCategory(){
             
             if(index === categoryNum){
                 const progress = document.createElement("div");
+                const pageinfo = document.createElement("div");
                 progress.classList.add("selectedprogress");
+                pageinfo.classList.add("pageinfo");
                 newCategroy.appendChild(progress);
                 list.classList.add("selected");
-                categoryinfo.innerHTML = value[0];
-                pageinfo.innerHTML =currentPage + "/" + pageMAX; 
+                list.innerHTML = value[0];
+                if(isAll){
+                    pageinfo.innerHTML += currentPage + "/" + pageMAX; 
+                }
+                else{
+                    pageinfo.innerHTML = ">"
+                }
                 progress.appendChild(list);
-                progress.appendChild(categoryinfo);
                 progress.appendChild(pageinfo);
             }
             else{
@@ -49,7 +55,7 @@ function makeCategory(){
     }
 
    else{
-    listArticle.forEach((value, index) =>{
+    listArticle.forEach((value, index) => {
         const list = document.createElement("li");
         let id;
         if(isAll){
@@ -63,13 +69,21 @@ function makeCategory(){
 
         if(index === categoryNum){
             const progress = document.createElement("div");
+            const pageinfo = document.createElement("div");
             progress.classList.add("selectedprogress");
+            pageinfo.classList.add("pageinfo");
             newCategroy.appendChild(progress);
             list.classList.add("selected");
-            categoryinfo.innerHTML = id;
-            pageinfo.innerHTML = currentPage + "/" + pageMAX; 
+            list.innerHTML = id;
+            if(isAll){
+                pageinfo.innerHTML += currentPage + "/" + pageMAX; 
+            }
+            else{
+                let arrowimg = document.createElement("img");
+                arrowimg.src = "./img/smallArrow.svg";
+                pageinfo.appendChild(arrowimg);
+            }
             progress.appendChild(list);
-            progress.appendChild(categoryinfo);
             progress.appendChild(pageinfo);
         }
         else{
@@ -82,7 +96,7 @@ function makeCategory(){
 
 function addCategoryOnclick(){
     document.querySelector(`#main-center ul`).childNodes.forEach((value, index)=>{
-        value.addEventListener("click", (e) => {
+        value.addEventListener("click", ({target}) => {
             listArticle.forEach((value, index)=> {
                 let id;
                 if(isAll){
@@ -91,7 +105,7 @@ function addCategoryOnclick(){
                 else{
                     id = value.name;
                 }
-                if(e.target.innerHTML === id){
+                if(target.innerHTML === id){
                     State.setCurrentPage(1);
                     State.setMaxPage(listArticle[index % categoryMAX].length - 1);
                     State.setCategoryNum(index);
@@ -145,7 +159,6 @@ function  makeSubscribeButton(){
 }
 
 function viewArticle(){
-
     let articleInfo;
     if(isAll){
         articleInfo = listArticle[categoryNum][currentPage];
@@ -167,6 +180,7 @@ function viewArticle(){
     const articleList = document.createElement("div");
 
     mainCenter.style.border = "1px solid #D2DAE0";
+    mainCenter.style.width = 930 + 'px';
 
     mainList.style.paddingLeft = 20 + 'px';
     mainList.style.paddingBottom = 20 + 'px';
@@ -228,16 +242,28 @@ function viewArticle(){
     articleMain.appendChild(mainArticle);
 }
 
+function progress(){
+    clearInterval(interval);
 
+    const activeCategory = document.querySelector(".selectedprogress");
 
-export default function MainList(){
-    const mainCenter = document.getElementById("main-center");
-    mainCenter.innerHTML='';
-    mainCenter.style.border = 'none';
-    currentPage = State.getCurrentPage();
-    categoryNum = State.getCategoryNum();
-    isAll = State.getAllState();
+    let progress = 0;
+    const increment = 100 / (PROGRESS_DURATION / 16);
 
+    interval = setInterval(() => {
+        if (progress < 100) {
+            activeCategory.style.background = `linear-gradient(to right, 
+                                                ${COLOR_IN_PROGRESS} ${progress}%, 
+                                                ${COLOR_PROGRESS_BACKGROUND} 0%)`;
+            progress += increment;
+        } else {
+            clearInterval(interval);
+            setNextPage();
+        }
+    }, 16);
+}
+
+function setData(){
     if(isAll){
         listArticle = NewsData.getListArticle();
         pageMAX = NewsData.getListArticle()[categoryNum].length - 1;
@@ -252,10 +278,30 @@ export default function MainList(){
         State.setMaxPage(1);    
         State.setMaxCategoryNum(categoryMAX - 1);
     }
-    
+}
 
-    makeCategory();
-    addCategoryOnclick();
-    viewArticle();
-    makeSubscribeButton();
+function showList(){
+    if(listArticle.length <= 0 ){
+        alert("구독한 언론사가 없습니다.");
+        
+    }  
+    else{
+        makeCategory();
+        progress();
+        addCategoryOnclick();
+        viewArticle();
+        makeSubscribeButton();
+    } 
+}
+
+export default function MainList(){
+    const mainCenter = document.getElementById("main-center");
+    mainCenter.innerHTML='';
+    mainCenter.style.border = 'none';
+    currentPage = State.getCurrentPage();
+    categoryNum = State.getCategoryNum();
+    isAll = State.getAllState();    
+
+    setData();
+    showList();
 }
