@@ -1,4 +1,4 @@
-import { setDisplay, getJSON, checkIsSubscribe } from "../util/utils.js";
+import { setDisplay, getJSON, checkIsSubscribe, showListNav } from "../util/utils.js";
 import { MODAL_POPUP_TIME, SNACKBAR_POPUP_TIME } from "../store/const.js";
 import { setSubData } from "../util/utils.js";
 import { handleView, changeOption } from "../view/viewHandler.js";
@@ -36,23 +36,21 @@ function listSubMouseClick(news) {
   if (checkIsSubscribe("name", news.name) === undefined) {
     //구독 상태가 아니면
     setSubData(news);
-
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
-    setTimeout(() => {
-      setState(isSubView, true); // 뷰 상태 바뀔 때 모두 렌더링
-      setDisplay(".subscribe-modal", "query", "none");
-      setState(subListPageCount, getState(subscribedPress).length - 1);
-      changeOption("subscribe");
-      setDisplay(".sub-list-nav", "query", "block");
-      setDisplay(".list-nav", "query", "none");
-      // setSubListNav();
-      // drawNews();
-    }, MODAL_POPUP_TIME);
+    setTimeout(moveSubListView, MODAL_POPUP_TIME);
   } else {
     // 구독 상태면
     onListUndiscribeModal();
   }
+}
+
+function moveSubListView() {
+  setState(isSubView, true); // 뷰 상태 바뀔 때 모두 렌더링
+  setDisplay(".subscribe-modal", "query", "none");
+  setState(subListPageCount, getState(subscribedPress).length - 1);
+  changeOption("subscribe");
+  showListNav("subscribe");
 }
 
 function initGridItemEvent(item, press) {

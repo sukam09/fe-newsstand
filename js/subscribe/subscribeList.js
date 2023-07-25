@@ -14,12 +14,7 @@ function setSubListNav() {
     $li.addEventListener("animationiteration", progressEnd);
     if (index === getState(subListPageCount)) {
       $li.classList.add("list-progress-bar", "text-white-default");
-      $li.insertAdjacentHTML(
-        "beforeend",
-        `<span>
-      ${ARROW_SVG_PATH}
-      </span>`,
-      );
+      insertNavArrow($li);
     }
     $sub_list_nav.append($li);
   });
@@ -36,7 +31,6 @@ function progressEnd() {
 function clickSubListNav({ target: target }) {
   const subscribed_presses = getState(subscribedPress);
   const $element = document.querySelector(".list-progress-bar");
-
   $element.classList.remove("list-progress-bar", "text-white-default");
   $element.querySelector("span").remove();
   const nav_item = target.textContent;
@@ -45,6 +39,10 @@ function clickSubListNav({ target: target }) {
     subscribed_presses.findIndex(data => data.name === nav_item),
   );
   target.classList.add("list-progress-bar");
+  insertNavArrow(target);
+}
+
+function insertNavArrow(target) {
   target.insertAdjacentHTML(
     "beforeend",
     `<span>

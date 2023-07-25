@@ -1,5 +1,6 @@
 import { isDark, subscribedPress } from "../store/store.js";
-import { getState,setState } from "../observer/observer.js";
+import { getState, setState, subscribe } from "../observer/observer.js";
+import { drawGridView } from "../view/gridView.js";
 
 let presses;
 
@@ -98,6 +99,16 @@ function setSubData(target) {
   }
 }
 
+function showListNav(type) {
+  if (type === "subscribe") {
+    setDisplay(".sub-list-nav", "query", "block");
+    setDisplay(".list-nav", "query", "none");
+  } else {
+    setDisplay(".sub-list-nav", "query", "none");
+    setDisplay(".list-nav", "query", "block");
+  }
+}
+
 async function initUtilData() {
   presses = await getJSON("../assets/media.json");
   presses = Object.values(presses).reduce((acc, cur) => {
@@ -105,4 +116,4 @@ async function initUtilData() {
   });
 }
 
-export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe, setSubData };
+export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe, setSubData, showListNav };

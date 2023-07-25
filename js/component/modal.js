@@ -16,7 +16,6 @@ let news_by_category = null;
 
 function onGridUndiscribeModal({ target: target }) {
   const $press_name = document.querySelector(".grid-sub-press-name");
-
   $press_name.textContent = findPress("src", target);
   setDisplay(".grid-subscribe-modal", "query", "block");
 }
@@ -43,12 +42,6 @@ function offListUndiscribeModal() {
   setDisplay(".list-subscribe-modal", "query", "none");
 }
 
-async function initModalBtn() {
-  news_by_category = await getJSON("/assets/media.json");
-  const $button = document.querySelectorAll(".pop-up-btn");
-  $button.forEach(btn => btn.addEventListener("click", handleModalBtn));
-}
-
 function handleModalBtn({ target: target }) {
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
@@ -71,6 +64,12 @@ function handleModalBtn({ target: target }) {
   }
   offUndiscribeModal();
   offListUndiscribeModal();
+}
+
+async function initModalBtn() {
+  news_by_category = await getJSON("/assets/media.json");
+  const $button = document.querySelectorAll(".pop-up-btn");
+  $button.forEach(btn => btn.addEventListener("click", handleModalBtn));
 }
 
 export { onGridUndiscribeModal, offUndiscribeModal, onListUndiscribeModal, initModalBtn };
