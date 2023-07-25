@@ -10,6 +10,8 @@ const PATH = {
   DIVISION: "/icons/SymbolDivision.svg",
   PLUS: "/icons/SymbolPlus.svg",
   X: "/icons/SymbolX.svg",
+  SUN: "/icons/SymbolSun.svg",
+  MOON: "/icons/SymbolMoon.svg",
   NEWS_DATA: "DATA/News_Data.json",
   ROLLING_NEWS: "/Data/Rolling_News.json",
 };
