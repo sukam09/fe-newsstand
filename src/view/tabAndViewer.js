@@ -1,6 +1,6 @@
 import { PATH, MODE } from "../model/variable.js";
 import { getState, subscribe } from "../controller/observer.js";
-import { toggleDarkMode, currentMode, subscribeNewsNum } from "../model/store.js";
+import { toggleDarkMode, currentMode, subscribeNewsNum, listCurrentPage } from "../model/store.js";
 
 function initTabAndViewer(parentNode) {
   const dom = `
@@ -48,9 +48,11 @@ function drawViewer() {
   }
 }
 
+subscribe(listCurrentPage, drawTab);
 subscribe(currentMode, drawTab);
 subscribe(subscribeNewsNum, drawTab);
 subscribe(toggleDarkMode, drawTab);
+subscribe(listCurrentPage, drawViewer);
 subscribe(currentMode, drawViewer);
 subscribe(subscribeNewsNum, drawViewer);
 subscribe(toggleDarkMode, drawViewer);
