@@ -1,6 +1,10 @@
 import { store } from "../core/store.js";
 import { getTabMode, getView, getSubscribedPress } from "../core/getter.js";
-import { ICON_IMG_PATH, FIRST_PAGE_NUM } from "../constants/constants.js";
+import {
+  CATEGORY,
+  ICON_IMG_PATH,
+  FIRST_PAGE_NUM,
+} from "../constants/constants.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 export function updateTabSelection(selectedTab) {

@@ -87,5 +87,5 @@ export function showGridView() {
       li.style.cursor = "default";
     }
   }
-  checkPage(list.length < PRESS_VIEW_COUNT * getPage());
+  checkPage(list.length <= PRESS_VIEW_COUNT * getPage());
 }
