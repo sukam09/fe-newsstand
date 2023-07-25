@@ -1,4 +1,4 @@
-import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
+import { PATH, MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
 import { moveListMode } from "./tabAndViewerController.js";
 import { isDarkMode } from "../model/model.js";
@@ -46,8 +46,10 @@ function initDarkToggleBtn() {
 
     if (isDarkMode()) {
       document.querySelector("html").className = "";
+      document.querySelector(".dark-mode-btn img").src = PATH.SUN;
     } else {
       document.querySelector("html").className = "dark-mode";
+      document.querySelector(".dark-mode-btn img").src = PATH.MOON;
     }
     setState(toggleDarkMode, true);
   });
