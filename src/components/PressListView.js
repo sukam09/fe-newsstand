@@ -1,6 +1,6 @@
 import { fetchPressInfo, fetchListView } from '../api.js';
 import { store } from '../../core/store.js';
-import { convertRegDate } from '../utils.js';
+import { convertRegDate, getSubscribed } from '../utils.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
 
 export default function PressListView({ $target, initialState }) {

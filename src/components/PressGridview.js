@@ -1,5 +1,6 @@
 import { shuffle } from '../utils.js';
 import { store, actionCreator } from '../../core/store.js';
+import { shuffle, getSubscribed } from '../utils.js';
 import { NEWS_PRESS_NUMBERS_PER_PAGE, SNACKBAR_DURATION, SUBSCRIBE_MESSAGE } from '../constants.js';
 
 import SubscribeButton from './common/SubscribeButton.js';
@@ -67,7 +68,7 @@ export default function PressGridView({ $target, initialState }) {
         $target: $li,
         initialState: {
           type: 'grid',
-          isSubscribed: getSubscribed(id),
+          isSubscribed: getSubscribed(parseInt(id, 10)),
         },
       });
 
