@@ -322,6 +322,12 @@ a:hover {
   display: flex;
   justify-content: space-between;
 }
+
+/* 마우스 호버시 */
+.category:hover {
+  text-decoration: underline;
+}
+
 /* press-info */
 .press-news {
   padding: 24px;
