@@ -1,6 +1,8 @@
 import { $app } from "../app.js";
 import Alert from "../common/Alert.js";
 import Component from "../core/Component.js";
+import { getState } from "../observer/observer.js";
+import { pressDataState, subscribeDataState } from "../store/store.js";
 import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
 import NewsListView from "./NewsListView.js";
@@ -11,7 +13,11 @@ let currentViewMode = "grid";
 
 export default class NewsDisplay extends Component {
     setup() {
-        this.state = { pressTab: currentPressTab, view: currentViewMode };
+        this.state = {
+            pressTab: currentPressTab,
+            view: currentViewMode,
+            pressData: getState(pressDataState),
+        };
     }
 
     template() {
@@ -30,11 +36,8 @@ export default class NewsDisplay extends Component {
             ".news-press-tab-container"
         );
 
-        const response = await fetch(`../data/press-data.json`);
-        const jsonData = await response.json();
-
         const subscribeList = [];
-        this.mountSubscribe(jsonData, subscribeList);
+        this.mountSubscribe(this.state.pressData, subscribeList);
 
         new NewsDisplayTab(newsDisplayTab, {
             pressTab: this.state.pressTab,
@@ -48,15 +51,19 @@ export default class NewsDisplay extends Component {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
-                        newsData: jsonData,
+                        newsData: this.state.pressData,
                         subscribeList: subscribeList,
                         page: 0,
+                        pressTab: this.state.pressTab,
                     }
                 );
             } else {
                 new NewsListView(
                     this.$target.querySelector(".news-display-container"),
-                    { newsData: jsonData, subscribeList: subscribeList }
+                    {
+                        newsData: this.state.pressData,
+                        subscribeList: subscribeList,
+                    }
                 );
             }
         } else {
@@ -64,12 +71,10 @@ export default class NewsDisplay extends Component {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
-                        newsData: this.filterSubscribeData(
-                            jsonData,
-                            subscribeList
-                        ),
+                        newsData: this.state.pressData,
                         subscribeList: subscribeList,
                         page: 0,
+                        pressTab: this.state.pressTab,
                     }
                 );
             } else {
@@ -77,7 +82,7 @@ export default class NewsDisplay extends Component {
                     this.$target.querySelector(".news-display-container"),
                     {
                         newsData: this.filterSubscribeData(
-                            jsonData,
+                            this.state.pressData,
                             subscribeList
                         ),
                         subscribeList: subscribeList,
@@ -100,9 +105,9 @@ export default class NewsDisplay extends Component {
         this.setState({ pressTab: currentPressTab });
     }
 
-    mountSubscribe(jsonData, subscribeList) {
+    mountSubscribe(pressData, subscribeList) {
         if (localStorage.getItem("subscribeList") === null) {
-            jsonData.forEach((data) => {
+            pressData.forEach((data) => {
                 if (data.subscribed === true) {
                     subscribeList.push({ id: data.id, name: data.name });
                 }
@@ -121,12 +126,12 @@ export default class NewsDisplay extends Component {
         }
     }
 
-    filterSubscribeData(jsonData, subscribeList) {
+    filterSubscribeData(pressData, subscribeList) {
         const filteredSubscribeData = [];
 
         subscribeList.forEach((subscription) => {
             const subscriptionId = subscription.id;
-            const subscribedData = jsonData.find(
+            const subscribedData = pressData.find(
                 (data) => data.id === subscriptionId
             );
 

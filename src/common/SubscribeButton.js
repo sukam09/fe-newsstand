@@ -1,5 +1,7 @@
 import { $app } from "../app.js";
 import Component from "../core/Component.js";
+import { setState } from "../observer/observer.js";
+import { subscribeDataState } from "../store/store.js";
 
 const COLOR_SURFACE_ALT = "#F5F7F9";
 const COLOR_SURFACE_DEFAULT = "#FFFFFF";
@@ -91,5 +93,6 @@ export default class SubscribeButton extends Component {
             name: this.state.pressName,
         });
         localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
+        setState(subscribeDataState, subscribeList);
     }
 }

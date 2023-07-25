@@ -1,7 +1,13 @@
 import Component from "../core/Component.js";
-import { shuffleNewsPress, updateSubscribeList } from "../utils/utils.js";
+import {
+    filterSubscribeData,
+    shuffleNewsPress,
+    updateSubscribeList,
+} from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
+import { addObserver, getState } from "../observer/observer.js";
+import { subscribeDataState } from "../store/store.js";
 
 const MIN_PAGE = 0;
 let max_page = 3;
@@ -26,22 +32,11 @@ export default class NewsGridView extends Component {
     }
 
     mounted() {
-        const newsPressGrid = this.$target.querySelector(
-            ".news-press-grid-view"
-        );
         const leftButton = this.$target.querySelector(".left-button");
         const rightButton = this.$target.querySelector(".right-button");
 
-        let gridList = "";
-        for (
-            let i = this.state.page * 24;
-            i < 24 * (this.state.page + 1);
-            i++
-        ) {
-            gridList += this.getGridCell(i);
-        }
-
-        newsPressGrid.innerHTML = gridList;
+        this.setGridView();
+        addObserver(subscribeDataState, this.setGridView.bind(this));
 
         new PageButton(leftButton, {
             type: "left",
@@ -52,18 +47,6 @@ export default class NewsGridView extends Component {
             type: "right",
             hidden: this.state.page === max_page,
             onClick: this.setNextPage.bind(this),
-        });
-
-        const subscribeButtons = this.$target.querySelectorAll(".flip-back");
-        subscribeButtons.forEach((item) => {
-            new SubscribeButton(item, {
-                viewMode: "grid",
-                subscribed: this.isSubscribed(
-                    item.parentNode.parentNode.dataset.id
-                ),
-                pressName: item.parentNode.parentNode.dataset.name,
-                pressId: item.parentNode.parentNode.dataset.id,
-            });
         });
     }
 
@@ -91,21 +74,57 @@ export default class NewsGridView extends Component {
         return this.state.subscribeList.some((data) => data.id === Number(id));
     }
 
+    setGridView() {
+        const newsPressGrid = this.$target.querySelector(
+            ".news-press-grid-view"
+        );
+
+        let gridList = "";
+        for (
+            let i = this.state.page * 24;
+            i < 24 * (this.state.page + 1);
+            i++
+        ) {
+            gridList += this.getGridCell(i);
+        }
+
+        newsPressGrid.innerHTML = gridList;
+
+        const subscribeButtons = this.$target.querySelectorAll(".flip-back");
+        subscribeButtons.forEach((item) => {
+            new SubscribeButton(item, {
+                viewMode: "grid",
+                subscribed: this.isSubscribed(
+                    item.parentNode.parentNode.dataset.id
+                ),
+                pressName: item.parentNode.parentNode.dataset.name,
+                pressId: item.parentNode.parentNode.dataset.id,
+            });
+        });
+    }
+
     getGridCell(i) {
-        if (i > this.state.pressData.length - 1) {
+        let pressData = [];
+        if (this.props.pressTab === "all") pressData = this.state.pressData;
+        else {
+            const subscribeData = getState(subscribeDataState);
+            pressData = filterSubscribeData(this.props.newsData, subscribeData);
+        }
+
+        if (i > pressData.length - 1) {
             return `
                 <li class="news-press-item"></li>
                 `;
         } else {
             return `<li class="news-press-item" 
-                    data-id=${this.state.pressData[i].id} 
-                    data-name=${this.state.pressData[i].name}
+                    data-id=${pressData[i].id} 
+                    data-name=${pressData[i].name}
                     >
                     <div class="flip-card-container">
                         <div class="flip-front">
                             <img class="news-press-item-logo" 
-                                src=${this.state.pressData[i].logo} 
-                                alt="${this.state.pressData[i].name}"
+                                src=${pressData[i].logo} 
+                                alt="${pressData[i].name}"
                             />
                         </div>
                         <div class="flip-back">

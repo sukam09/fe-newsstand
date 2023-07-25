@@ -1,4 +1,6 @@
 import Component from "../core/Component.js";
+import { setState } from "../observer/observer.js";
+import { subscribeDataState } from "../store/store.js";
 
 export default class Alert extends Component {
     template() {
@@ -37,5 +39,6 @@ export default class Alert extends Component {
             subscribeList.splice(indexToRemove, 1);
         }
         localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
+        setState(subscribeDataState, subscribeList);
     }
 }
