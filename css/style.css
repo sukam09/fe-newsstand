@@ -6,11 +6,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction : column;
     min-width: 930px;
     height: 100vh;
 }
 .news_stand_wrapper {
     width: 930px;
+    position: relative;
 }
 
 /* header */
@@ -354,4 +356,44 @@ ul li:hover .media-hover .subscribedWrapper {
 
 .snackBar.hide { 
     display: none;
+}
+
+.mode_wrapper {
+    position: absolute;
+    bottom: 120%;
+    right: 0;
+}
+.toggleSwitch {
+    width: 100px;
+    height: 50px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #000;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+}
+  
+.toggleSwitch .toggleButton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #fff;
+}
+
+#toggle:checked ~ .toggleSwitch {
+    background: #fff;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+    left: calc(100% - 44px);
+    background: #000;
+}
+
+.toggleSwitch, .toggleButton {
+    transition: all 0.2s ease-in;
 }
