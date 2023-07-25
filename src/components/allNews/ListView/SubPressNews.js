@@ -2,7 +2,7 @@ import { pressData } from "../../../constants/categories.js";
 import { subCategoriesObj } from "../../../constants/index.js";
 import { store } from "../../../core/store.js";
 import Logo from "../../common/Logo.js";
-import UnsubButton from "../UnsubButton.js";
+import UnsubButton from "../Buttons/UnsubButton.js";
 
 export default class SubPressNews {
   constructor() {

@@ -1,6 +1,6 @@
 import { shufflePressOrder } from "../../../utils/index.js";
 import AllNewsList from "./AllnewsList.js";
-import ArrowButton from "../ArrowButton.js";
+import ArrowButton from "../Buttons/ArrowButton.js";
 
 export default class GridView {
   constructor() {

@@ -1,9 +1,9 @@
 import Logo from "../../common/Logo.js";
 import { CATEGORIES_COUNT, categoriesObj } from "../../../constants/index.js";
 import { categories } from "../../../constants/categories.js";
-import SubButton from "../SubButton.js";
+import SubButton from "../Buttons/SubButton.js";
 import { store } from "../../../core/store.js";
-import UnsubButton from "../UnsubButton.js";
+import UnsubButton from "../Buttons/UnsubButton.js";
 
 export default class PressNews {
   constructor() {

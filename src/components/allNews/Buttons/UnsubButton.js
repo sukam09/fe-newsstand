@@ -1,6 +1,6 @@
-import pressName from "../../constants/pressName.js";
-import { store } from "../../core/store.js";
-import Icon from "../common/Icon.js";
+import pressName from "../../../constants/pressName.js";
+import { store } from "../../../core/store.js";
+import Icon from "../../common/Icon.js";
 
 export default class UnsubButton {
   constructor(name, text = "") {

@@ -1,6 +1,6 @@
-import { SNACKBAR_DURATION } from "../../constants/index.js";
-import { store } from "../../core/store.js";
-import Icon from "../common/Icon.js";
+import { SNACKBAR_DURATION } from "../../../constants/index.js";
+import { store } from "../../../core/store.js";
+import Icon from "../../common/Icon.js";
 
 export default class SubButton {
   constructor(name) {

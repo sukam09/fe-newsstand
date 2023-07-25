@@ -1,7 +1,7 @@
 import { store } from "../../../core/store.js";
 import Logo from "../../common/Logo.js";
-import SubButton from "../SubButton.js";
-import UnsubButton from "../UnsubButton.js";
+import SubButton from "../Buttons/SubButton.js";
+import UnsubButton from "../Buttons/UnsubButton.js";
 
 export default class AllNewsList {
   constructor(name = -1) {
