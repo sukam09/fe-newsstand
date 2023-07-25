@@ -1,4 +1,4 @@
-import Observable from './observable.js';
+import Observable from './Observable.js';
 import { getLocalStorage, setLocalStorage } from '../api/index.js';
 import { KEY, TEXT } from '../src/constants/index.js';
 

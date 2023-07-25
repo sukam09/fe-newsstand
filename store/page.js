@@ -1,4 +1,4 @@
-import Observable from './observable.js';
+import Observable from './Observable.js';
 import { TEXT } from '../src/constants/index.js';
 
 export class PageStore extends Observable {
