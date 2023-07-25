@@ -1,5 +1,8 @@
-class Store {
+import { Observable } from './Observable.js';
+
+class Store extends Observable {
   constructor(store) {
+    super();
     this.state = store.state;
     this.mutations = store.mutations;
     this.actions = store.actions;
@@ -8,6 +11,7 @@ class Store {
   // mutations 실행
   commit(mutationName, payload) {
     this.mutations[mutationName](this.state, payload);
+    this.notify(this.state);
   }
   // action 실행
   dispatch(actionName, payload) {

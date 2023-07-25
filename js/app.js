@@ -6,13 +6,15 @@ import { initNavEvent } from './events/navigateEvent.js';
 import { initNewsTabEvent } from './events/newsTabEvent.js';
 import { initNewsSubEvent } from './events/newsSubEvent.js';
 import { initOptionEvent } from './events/newsOptionEvent.js';
+import { subScribeStore } from './store/subScribeStore.js';
+
 // 기능
 headerRender();
 mainRender();
 initNewsTabEvent();
 initNewsSubEvent();
 initOptionEvent();
-
+//subScribeStore.subscribe(() => console.log('렌더링'));
 function headerRender() {
   date();
 }
