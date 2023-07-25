@@ -13,12 +13,13 @@ import {
   getPage,
   getSubscribedPress,
   getMode,
+  getCurrentPress,
 } from "../core/getter.js";
 function MainView() {
-  // 옵저버 함수를 등록
   document.addEventListener("click", handleClick);
-
   store.setState({ index: shuffleImgIndex() });
+
+  drawPopup();
   showGridView();
 }
 
@@ -34,6 +35,29 @@ function changePage(target) {
   } else {
     showListView("");
   }
+}
+
+function drawPopup() {
+  const view_content = document.querySelector(".view-content");
+  // alert 그리는 부분
+  const new_div_alert = document.createElement("div");
+  new_div_alert.classList.add("popup", "alert");
+  new_div_alert.innerHTML += `
+        <div class="message"><span class="press">${
+          getCurrentPress().name
+        }</span>을(를)\n구독해지하시겠습니까?</div>
+        <div class="buttons">
+          <button class="btn-yes">예, 해지합니다</button>
+          <button class="btn-no">아니오</button>
+        </div>`;
+
+  // snackbar 그리는 부분
+  const new_div_snackbar = document.createElement("div");
+  new_div_snackbar.classList.add("popup", "snackbar");
+  new_div_snackbar.textContent = "내가 구독한 언론사에 추가되었습니다.";
+
+  // popup창들 추가
+  view_content.append(new_div_alert, new_div_snackbar);
 }
 
 function handleClick(e) {

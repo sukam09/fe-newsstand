@@ -19,6 +19,9 @@ export function getTabMode() {
 export function getSubscribedPress() {
   return store.state.subscribedPress;
 }
+export function getCurrentPress() {
+  return store.state.currentPress;
+}
 
 // 옵저버 등록
 observe(getMode);
@@ -27,3 +30,4 @@ observe(getPage);
 observe(getTabMode);
 observe(getSubscribedPress);
 observe(getIndex);
+observe(getCurrentPress);

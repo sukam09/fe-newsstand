@@ -22,6 +22,7 @@ class Store {
         { name: "스포츠동아", index: 85 },
         { name: "석간문화일보", index: 84 },
       ],
+      currentPress: { name: "", index: 0 },
     });
   }
 

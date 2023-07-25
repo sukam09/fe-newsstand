@@ -79,7 +79,7 @@ export function drawCategory(current, list, contents) {
   tabContainer.addEventListener("mousedown", (e) => {
     isDragging = true;
     startScrollX = e.pageX + tabContainer.scrollLeft;
-    tabContent.style.cursor = "grabbing"; // Change the cursor to indicate dragging
+    tabContent.style.cursor = "grabbing";
     startClickX = e.pageX;
   });
 
@@ -92,7 +92,7 @@ export function drawCategory(current, list, contents) {
 
   window.addEventListener("mouseup", (e) => {
     isDragging = false;
-    tabContent.style.cursor = "grab"; // Reset cursor back to grabbing
+    tabContent.style.cursor = "grab";
     if (startClickX === e.pageX) {
       handleClick(e);
     }
