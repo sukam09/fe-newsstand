@@ -32,3 +32,9 @@ media_page.setObserver( () => {
 })
 
 export const view = createStore('Grid');
+
+export const viewMode = createStore('light');
+viewMode.setObserver(()=>{
+  GridController.setLogoList();
+  setNewsData();
+})

@@ -5,10 +5,10 @@ import getTopicInit from './main/topic.js';
 import selectorInit from './main/selector.js';
 import modeInit from './main/mode.js';
 ( () => {
+  modeInit();
   headerInit();
   rollingInit();
   getTopicInit();
   selectorInit();
   gridInit();
-  modeInit();
 })();

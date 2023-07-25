@@ -1,6 +1,6 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
-import { pageStore,subscribedStore,mode } from '../util/store.js'; 
+import { pageStore,subscribedStore,mode,viewMode } from '../util/store.js'; 
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -55,7 +55,7 @@ export const GridController = {
     const imageElement = mediaLogo[index];
     if(mode.getState() === 'All'){
       imageElement.className = `media_logo media_${logoIndex[media]}`;
-      imageElement.src = `assets/images/logo/light/${media_data[logoIndex[media]]?.src}`;
+      imageElement.src = `assets/images/logo/${viewMode.getState()}/${media_data[logoIndex[media]]?.src}`;
 
       // 이미지랑 같은 노드인 구독하기 or 해지하기 제거
       imageElement.nextElementSibling?.remove();
@@ -69,7 +69,7 @@ export const GridController = {
     }
     else{
       imageElement.className = `media_logo media_${media}`;
-      imageElement.src = `assets/images/logo/light/${media_data[media]?.src}`;
+      imageElement.src = `assets/images/logo/${viewMode.getState()}/${media_data[media]?.src}`;
 
       // 이미지랑 같은 노드인 구독하기 or 해지하기 제거
       imageElement.nextElementSibling?.remove();

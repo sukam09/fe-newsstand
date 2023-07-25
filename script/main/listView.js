@@ -1,7 +1,7 @@
 import {getJSON,shuffle } from '../util/util.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
 const newsData = await getJSON("../../assets/data/news_data.json");
-import {subscribedStore,mode,category_page,media_page } from '../util/store.js'; 
+import {subscribedStore,mode,category_page,media_page,viewMode } from '../util/store.js'; 
 let categories = [];
 let categorizedData;
 let animationId;
@@ -61,7 +61,7 @@ export const setNewsData = () => {
   document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
   document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
   document.querySelector(".source").innerHTML = newsItem["name"] + " 언론사에서 직접 편집한 뉴스입니다.";
-  document.querySelector(".media_info img").src = `assets/images/logo/light/${src}`;
+  document.querySelector(".media_info img").src = `assets/images/logo/${viewMode.getState()}/${src}`;
 
   const media_section_list_p_tags = document.querySelectorAll(".media_section_list p");
   
@@ -329,7 +329,7 @@ export const listViewInit = () => {
     categoriesWrapper = document.querySelector('.category');
   }
   getNewsData();
-  progressBarControl();
+  // progressBarControl();
   setArrowHandler();
   category_page.setState(0);
   media_page.setState(0);
