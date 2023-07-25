@@ -37,9 +37,9 @@ function refreshInterval() {
     stopCategoryInterval();
     startCategoryInterval();
     const clickedCategory = $(`.${CATEGORY_CLICKED}`);
-    clickedCategory.children[2].classList.remove("progressbar");
-    clickedCategory.offsetWidth;
-    clickedCategory.children[2].classList.add("progressbar");
+    clickedCategory?.children[2].classList.remove("progressbar");
+    clickedCategory?.offsetWidth;
+    clickedCategory?.children[2].classList.add("progressbar");
   }
 }
 
@@ -182,6 +182,7 @@ function updateCategoryClicked() {
     categoryList.forEach((item) => {
       item.classList.remove(CATEGORY_CLICKED);
     });
+    if (categoryList[currentCategoryIdx] === undefined) return;
     categoryList[currentCategoryIdx].classList.add(CATEGORY_CLICKED);
   }
 }
@@ -195,10 +196,18 @@ export async function setCategory() {
   register(isGrid, () => {
     appendCategoryList(newsList);
   });
+  register(subscribeList, () => {
+    appendCategoryList(newsList);
+  });
   appendCategoryList(newsList);
   register(listPageIdx, updateCategory);
   register(categoryIdx, updateCategory);
+  register(subscribeList, updateCategory);
   register(listPageIdx, refreshInterval);
   register(categoryIdx, refreshInterval);
+  register(subscribeList, refreshInterval);
+  register(isGrid, refreshInterval);
+  register(isSubTab, refreshInterval);
   register(categoryIdx, updateCategoryClicked);
+  register(subscribeList, updateCategoryClicked);
 }
