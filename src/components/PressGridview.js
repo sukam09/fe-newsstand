@@ -1,4 +1,3 @@
-import { fetchPressInfo } from '../api.js';
 import { shuffle } from '../utils.js';
 import { store, actionCreator } from '../../core/store.js';
 import {
@@ -21,17 +20,66 @@ export default function PressGridView({ $target, initialState }) {
 
   this.state = initialState;
 
-  this.setState = nextState => {
+  this.setState = (nextState, isRender = true) => {
     this.state = nextState;
-    this.render();
+    if (isRender) {
+      this.render();
+    }
   };
 
-  const initPressInfo = async () => {
-    const json = await fetchPressInfo();
-    const data = shuffle(json);
-    this.setState({
-      ...this.state,
-      data,
+  const myPress = store.getMyPress().map(({ pid }) => pid);
+  const data = this.state.press === 'all' ? this.state.pressInfo : myPress;
+  if (this.state.press === 'my') {
+    this.setState({ ...this.state, maxPage: Math.ceil(myPress.length / NEWS_PRESS_NUMBERS_PER_PAGE) }, false);
+  }
+
+  const initPressItems = () => {
+    const $ul = $section.querySelector('ul');
+    $ul.innerHTML = '';
+
+    const { page, pidMap } = this.state;
+
+    const startIndex = NEWS_PRESS_NUMBERS_PER_PAGE * (page - 1);
+    const endIndex = startIndex + 23;
+    const currentData = data.slice(startIndex, endIndex + 1);
+
+    currentData.forEach(item => {
+      const id = this.state.press === 'all' ? item.id : parseInt(item, 10);
+      let name, logo;
+
+      if (this.state.press === 'all') {
+        name = item.name;
+        logo = item.logo;
+      } else {
+        ({ name, logo } = pidMap.get(id));
+      }
+
+      const $li = document.createElement('li');
+      const $img = document.createElement('img');
+
+      $img.src = logo;
+      $img.classList.add('press-logo');
+
+      $li.appendChild($img);
+
+      $li.classList.add('news-press-item');
+      $li.classList.add('data-id');
+      $li.classList.add('data-name');
+
+      $li.dataset.id = id;
+      $li.dataset.name = name;
+
+      const subscribeButton = new SubscribeButton({
+        $target: $li,
+        initialState: {
+          type: 'grid',
+          isSubscribed: getSubscribed(id),
+        },
+      });
+
+      $li.addEventListener('click', event => handleClickCell(event, subscribeButton));
+
+      $ul.appendChild($li);
     });
   };
 
@@ -76,47 +124,10 @@ export default function PressGridView({ $target, initialState }) {
     return store.getMyPress().find(({ pid }) => parseInt(pid, 10) === id);
   }
 
-  const initPressItems = () => {
-    const $ul = $section.querySelector('ul');
-    $ul.innerHTML = '';
-
-    const { page, data } = this.state;
-
-    const startIndex = NEWS_PRESS_NUMBERS_PER_PAGE * (page - 1);
-    const endIndex = startIndex + 23;
-    const currentData = data.slice(startIndex, endIndex + 1);
-
-    currentData.forEach(({ id, name, logo }) => {
-      const $li = document.createElement('li');
-      const $img = document.createElement('img');
-
-      $img.src = logo;
-      $img.classList.add('press-logo');
-
-      $li.appendChild($img);
-
-      $li.classList.add('news-press-item');
-      $li.classList.add('data-id');
-      $li.classList.add('data-name');
-
-      $li.dataset.id = id;
-      $li.dataset.name = name;
-
-      const subscribeButton = new SubscribeButton({
-        $target: $li,
-        initialState: {
-          type: 'grid',
-          isSubscribed: getSubscribed(id),
-        },
-      });
-
-      $li.addEventListener('click', event => handleClickCell(event, subscribeButton));
-
-      $ul.appendChild($li);
-    });
+  const validatePage = page => {
+    const { minPage, maxPage } = this.state;
+    return page >= minPage && page <= maxPage;
   };
-
-  const validatePage = page => page >= PAGE_MIN_NUMBER && page <= PAGE_MAX_NUMBER;
 
   const handleMovePage = newPage => {
     if (!validatePage(newPage)) {
@@ -129,21 +140,17 @@ export default function PressGridView({ $target, initialState }) {
     $prevPageButton.classList.remove('disabled');
     $nextPageButton.classList.remove('disabled');
 
-    if (this.state.page === PAGE_MIN_NUMBER) {
+    const { minPage, maxPage } = this.state;
+
+    if (this.state.page === minPage) {
       $prevPageButton.classList.add('disabled');
-    } else if (this.state.page === PAGE_MAX_NUMBER) {
+    }
+    if (this.state.page === maxPage) {
       $nextPageButton.classList.add('disabled');
     }
   };
 
-  let isInit = false;
-
   this.render = () => {
-    if (!isInit) {
-      initPressInfo();
-      isInit = true;
-    }
-
     $section.innerHTML = `
       <div class="news-press-container">
         <ul class="news-press-grid-container">

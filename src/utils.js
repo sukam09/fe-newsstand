@@ -4,9 +4,7 @@ export function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-export async function getPressList() {
+export async function getPidMap() {
   const data = await fetchPressInfo();
-  const result = data.map(({ name, logo }) => ({ name, logo }));
-  result.unshift(null);
-  return result;
+  return new Map(data.map(({ id, name, logo }) => [id, { name, logo }]));
 }

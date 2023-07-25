@@ -1,14 +1,16 @@
 import { store } from '../core/store.js';
-import { getPressList } from './utils.js';
-import { CATEGORY_NUMBERS } from './constants.js';
+import { getPidMap } from './utils.js';
+import { CATEGORY_NUMBERS, PAGE_MAX_NUMBER, PAGE_MIN_NUMBER } from './constants.js';
 
 import Header from './components/Header.js';
 import AutoRollingNews from './components/AutoRollingNews.js';
 import PressTab from './components/PressTab.js';
 import PressGridView from './components/PressGridview.js';
 import PressListView from './components/PressListView.js';
+import { fetchPressInfo } from './api.js';
 
-const pressList = await getPressList();
+const pressInfo = await fetchPressInfo();
+const pidMap = await getPidMap();
 
 export default function App({ $app }) {
   this.state = {
@@ -17,14 +19,12 @@ export default function App({ $app }) {
     pressList: [],
   };
 
-  this.setState = (nextState, isRender = true``) => {
+  this.setState = (nextState, isRender = true) => {
     this.state = nextState;
     if (isRender) {
       this.render();
     }
   };
-
-  this.setState({ ...this.state, pressList }, false);
 
   new Header({ $target: $app });
 
@@ -90,8 +90,10 @@ export default function App({ $app }) {
           initialState: {
             press: this.state.press,
             page: 1,
-            data: [],
-            pressList,
+            minPage: PAGE_MIN_NUMBER,
+            maxPage: PAGE_MAX_NUMBER,
+            pressInfo,
+            pidMap,
           },
         })
       : new PressListView({
