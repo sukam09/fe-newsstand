@@ -6,8 +6,6 @@ export default function SubscribeButton({ $target, initialState }) {
     this.render();
   };
 
-  const { type } = this.state;
-
   const $button = document.createElement('button');
   $target.appendChild($button);
 
