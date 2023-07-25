@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
-
 1. 레이아웃 설계
 
     ![UI - 1](./docs/test5.png)
@@ -80,8 +76,15 @@ fe-newsstand
     - 모든 event는 event.js에서 정의됩니다. 정의된 event는 initEvent, conditionEvent로 분류되며, 시작부터 끝까지 사용되는 event는 initEvent로 바로 호출되며, 조건에 따라 conditionEvent가 호출됩니다. 호출된 event는 실행 될 행동을 action에서 가져옵니다. action에 따라 최종적으로 보여지는 view는 달라집니다.
 
 ---
+### 7.25 (화)
 
-### 7.19 (수)
+-   옵저버 패턴 적용 리팩토링
+
+### 7.21 (금), 7.24 (월)
+
+-   세부 기능 및 이벤트 구현
+
+### 7.19 (수), 7.20 (목)
 
 -   list_views 구독 구현
 -   리팩토링
@@ -150,4 +153,3 @@ fe-newsstand
 -   레이아웃 재구성 및 스타일 추가
 -   클릭 이벤트 구현
 -   데이터 정리
-    > > > > > > > upstream/main
