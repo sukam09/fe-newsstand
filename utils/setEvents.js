@@ -1,5 +1,5 @@
 import { setGrid } from "./setGrid.js";
-import { setList } from "./setList.js";
+import { setList, setSubList } from "./setList.js";
 
 const grid_btn = document.querySelector(".grid-view-btn");
 const list_btn = document.querySelector(".list-view-btn");
@@ -29,6 +29,6 @@ export const setEvents = () => {
       subscribe_press.setAttribute("subscribetype", true);
       all_press.removeAttribute("subscribetype");
     }
-    setList();
+    setSubList();
   });
 };
