@@ -10,7 +10,9 @@ const constants = {
   DARK_MODE: "dark",
   SHOW_LIST: "list",
   SHOW_GRID: "grid",
-  PROGRESS_DURATION_MS: 20000,
+  SHOW_MY_LIST: "my_list",
+  SHOW_MY_GRID: "my_grid",
+  PROGRESS_DURATION_MS: 3000,
   FIELDTAB_LIST: [
     "종합/경제",
     "방송/통신",

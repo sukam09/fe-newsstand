@@ -44,12 +44,8 @@ export default class NewsGrid extends Component {
   }
 
   mounted() {
-    const $leftButton = document.querySelector(
-      ".news-section-grid .left-button_content"
-    );
-    const $rightButton = document.querySelector(
-      ".news-section-grid .right-button_content"
-    );
+    const $leftButton = this.$target.querySelector(".left-button_content");
+    const $rightButton = this.$target.querySelector(".right-button_content");
 
     this.setState(
       { $leftButton: $leftButton, $rightButton: $rightButton },
@@ -66,7 +62,7 @@ export default class NewsGrid extends Component {
       (this.$state.page + 1) * constants.ONE_PAGE_NEWSPAPER
     );
 
-    new NewsGridItems(document.querySelector(".newspaper__list"), {
+    new NewsGridItems(this.$target.querySelector(".newspaper__list"), {
       nowPageIndexArr: nowPageIndexArr,
       mode: this.$state.mode,
       SubscribeStore: this.$props.SubscribeStore,

@@ -76,7 +76,7 @@ export default class NewsList extends Component {
   }
 
   renderPressNews() {
-    new PressNews(document.querySelector(".news-list__press-news"), {
+    new PressNews(this.$target.querySelector(".news-list__press-news"), {
       nowCategoryNewsData: this.$state.nowCategoryNewsData,
       page: this.$state.page,
       SubscribeStore: this.$props.SubscribeStore,
@@ -104,7 +104,9 @@ export default class NewsList extends Component {
   };
 
   startProgress() {
-    const $progress = document.querySelector(".news-list__field-tab__progress");
+    const $progress = this.$target.querySelector(
+      ".news-list__field-tab__progress"
+    );
     const increment = 100 / (constants.PROGRESS_DURATION_MS / 16); // 16ms 마다 업데이트
 
     const progressTimer = setInterval(() => {
@@ -149,7 +151,7 @@ export default class NewsList extends Component {
   }
 
   setNowPageTag() {
-    this.$nowPage = document.querySelector(
+    this.$nowPage = this.$target.querySelector(
       ".news-list__field-tab__progress-count"
     ).childNodes[0];
   }
@@ -161,12 +163,8 @@ export default class NewsList extends Component {
   }
 
   setListPageButton() {
-    const $leftButton = document.querySelector(
-      ".news-section-list .left-button_content"
-    );
-    const $rightButton = document.querySelector(
-      ".news-section-list .right-button_content"
-    );
+    const $leftButton = this.$target.querySelector(".left-button_content");
+    const $rightButton = this.$target.querySelector(".right-button_content");
 
     this.setNowPageTag();
 
@@ -200,7 +198,7 @@ export default class NewsList extends Component {
   }
 
   convertTab(amount) {
-    const $liAll = document.querySelectorAll(".news-list__field-tab > li");
+    const $liAll = this.$target.querySelectorAll(".news-list__field-tab > li");
     [...$liAll].forEach((item, index) => {
       if (item.className === "news-list__field-tab__progress") {
         $liAll[
@@ -225,13 +223,13 @@ export default class NewsList extends Component {
     }
 
     this.tabLiteral = "";
-    const $fieldTabList = document.querySelectorAll(
+    const $fieldTabList = this.$target.querySelectorAll(
       ".news-list__field-tab > li"
     );
     [...$fieldTabList].forEach((item) => {
       item.addEventListener("click", (event) => {
         constants.FIELDTAB_LIST.forEach((item) => this.makeTag(event, item));
-        document.querySelector(".news-list__field-tab").innerHTML =
+        this.$target.querySelector(".news-list__field-tab").innerHTML =
           this.tabLiteral;
 
         this.setFieldTab();

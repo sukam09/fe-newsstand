@@ -30,7 +30,7 @@ export default class Header extends Component {
 
   setHeaderDate() {
     const formattedToday = this.formatToday();
-    const $header__date = document.querySelector(".header__date");
+    const $header__date = this.$target.querySelector(".header__date");
 
     $header__date.innerHTML = formattedToday;
   }

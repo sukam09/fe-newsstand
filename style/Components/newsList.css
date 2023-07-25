@@ -1,6 +1,7 @@
 /* news list layout */
 
-.news-section-list {
+.news-section-list,
+.news-section-my-list {
   height: 388px;
   position: relative;
   border: 1px solid var(--color-border-default);
@@ -152,4 +153,5 @@
   background-color: var(--color-surface-brand-default);
   color: var(--color-text-white-default);
   font-size: var(--font-size-medium);
+  text-align: center;
 }
