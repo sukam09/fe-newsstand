@@ -19,6 +19,7 @@ export const TEXT = Object.freeze({
   GRID: 'grid',
   ALL: 'all',
   SUBSCRIBE_EN: 'subscribed',
+  COLOR_MODE: 'colorMode',
   LIGHT: 'light',
   DARK: 'dark',
 });

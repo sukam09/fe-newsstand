@@ -25,7 +25,7 @@ export class ViewModeStore extends Observable {
   toggleColorMode() {
     this.colorMode = this.colorMode === TEXT.LIGHT ? TEXT.DARK : TEXT.LIGHT;
     document.body.className = this.colorMode;
-    setLocalStorage(this.colorMode);
+    setLocalStorage(TEXT.COLOR_MODE, this.colorMode);
   }
 
   isDarkMode() {
