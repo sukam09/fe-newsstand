@@ -8,6 +8,7 @@ export default function clickLeftAsideButton(){
     let isAll = State.getAllState();
     let isGrid = State.getGridState();
     const MIN_PAGE_NUMBER = State.getMinPage();
+    const MAX_PAGE_NUMBER = State.getMaxPage();
 
     //leftButton 불러오고 초기화
     const leftAsideButton = document.getElementById("aside-left");

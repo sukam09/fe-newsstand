@@ -1,6 +1,5 @@
 import State from "../store/StateStore.js";
 import NewsData from "../store/NewsStore.js";
-import Store from "../store/SubscribeStore.js"
 
 export default function controListlMinMaxException(){
     let isAll = State.getAllState();
@@ -13,8 +12,9 @@ export default function controListlMinMaxException(){
     if(currentPage< MIN_PAGE_NUMBER){
         categoryNum--;
         if(categoryNum < 0){
-           categoryNum = MAX_CATEGORY_NUM;
+           categoryNum = MAX_CATEGORY_NUM ;
            State.setCategoryNum(categoryNum);
+           isAll ? State.setMaxPage(NewsData.getListNews(categoryNum).length - 1): State.setMaxPage(1);
         }
         else{
            State.setCategoryNum(categoryNum);
@@ -25,7 +25,7 @@ export default function controListlMinMaxException(){
      else if(currentPage > MAX_PAGE_NUMBER){
         categoryNum++;
         if(categoryNum > MAX_CATEGORY_NUM){
-            categoryNum = categoryNum % MAX_CATEGORY_NUM - 1;
+            categoryNum = categoryNum % (MAX_CATEGORY_NUM + 1);
             State.setCategoryNum(categoryNum);
         }
         else{

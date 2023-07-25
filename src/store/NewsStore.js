@@ -36,7 +36,6 @@ class NewsStore{
     }
 
     getListNews(categoryNum){
-        console.log(this.listArticle);
         return this.listArticle[categoryNum]
     }
 

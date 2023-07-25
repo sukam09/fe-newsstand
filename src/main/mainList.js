@@ -1,4 +1,4 @@
-import main from "./renderMain.js";
+import renderMain from "./renderMain.js";
 import State from "../store/StateStore.js";
 import NewsData from "../store/NewsStore.js";
 import Store from "../store/SubscribeStore.js"
@@ -67,7 +67,7 @@ function makeCategory(){
             newCategroy.appendChild(progress);
             list.classList.add("selected");
             categoryinfo.innerHTML = id;
-            pageinfo.innerHTML =currentPage + "/" + pageMAX; 
+            pageinfo.innerHTML = currentPage + "/" + pageMAX; 
             progress.appendChild(list);
             progress.appendChild(categoryinfo);
             progress.appendChild(pageinfo);
@@ -93,9 +93,9 @@ function addCategoryOnclick(){
                 }
                 if(e.target.innerHTML === id){
                     State.setCurrentPage(1);
-                    State.setMaxPage(NewsData.getListNews(index % categoryMAX).length - 1);
+                    State.setMaxPage(listArticle[index % categoryMAX].length - 1);
                     State.setCategoryNum(index);
-                    main();
+                    renderMain();
                 }   
             })
         });
@@ -124,7 +124,7 @@ function  makeSubscribeButton(){
     ListHeader.appendChild(subscribeBtn);
     subscribeBtn.addEventListener("click", ()=>{
         subscribedNews.push(articleInfo.subArticles.title);
-        main()
+        renderMain()
     })
 }
 
@@ -224,7 +224,7 @@ export default function MainList(){
 
     if(isAll){
         listArticle = NewsData.getListArticle();
-        pageMAX = NewsData.getListArticle()[categoryNum].length;
+        pageMAX = NewsData.getListArticle()[categoryNum].length - 1;
         categoryMAX = NewsData.getListArticle().length;
         State.setMaxCategoryNum(categoryMAX - 1);
     }
@@ -233,6 +233,7 @@ export default function MainList(){
         listArticle = Store.getSubscribe();
         pageMAX = 1;
         categoryMAX = listArticle.length;
+        console.log(listArticle.length);
         State.setMaxPage(1);    
         State.setMaxCategoryNum(categoryMAX - 1);
     }

@@ -1,16 +1,13 @@
 import { shuffled_data } from "../../data/shuffled_data.js";
-import gridArticle from "../../data/grid_article.json" assert { type: "json"};
 import NewsData from "../store/NewsStore.js";
 import State from "../store/StateStore.js";
 import Store from "../store/SubscribeStore.js";
 import renderMain from "./renderMain.js";
 
 let COUNT_PER_PAGE;
-let press;
 let isAll;
 let currentPage;
 let pressData;
-let subscribeData;
 
 function addSubscribeBtn({target}){
     let id = target.previousSibling.className
@@ -52,8 +49,7 @@ function logoMouseOut({target}){
 }
 
 function refreshGrid(){
-    isAll === true ? pressData = shuffled_data : pressData = Store.getSubscribe();
-
+    console.log(pressData);
     //화면 초기화
     const mainCenter = document.getElementById("main-center");
     const mainGrid = document.createElement("div");
@@ -96,10 +92,20 @@ function refreshGrid(){
     })
 }
 
+function setMaxpage(){
+    let maxPage = parseInt(pressData.length / COUNT_PER_PAGE) + 1;
+    State.setMaxPage(maxPage);
+}
+
+function setData(){
+    isAll ? pressData = shuffled_data : pressData = Store.getSubscribe();
+}
+
 export default function MainGrid(){
     COUNT_PER_PAGE = State.getCountPerPage();
     isAll = State.getAllState();
     currentPage = State.getCurrentPage();
-    subscribeData = Store.getSubscribe();
+    setData();
+    setMaxpage();
     refreshGrid();
 }

@@ -246,7 +246,6 @@ input[type="radio"]:checked + label
     overflow: hidden;
     color: #000;
     top: 0;
-    overflow: hidden;
     transition: top 0.5s ease;
 }
 
@@ -263,14 +262,16 @@ input[type="radio"]:checked + label
     display: flex;
     flex-direction: row;
     width:930px;
+    height: 50px;
     padding: 0;
     border-bottom:1px #D2DAE0 solid;
     background-color: #F5F7F9;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .categoryBar li{
     display: flex;
+    flex-direction: row;
     height: 100%;
     padding: 15px 15px 15px 15px;
     justify-content: space-between;
