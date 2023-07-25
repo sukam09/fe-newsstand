@@ -1,21 +1,21 @@
-import { pressData } from "../../../constants/categories.js";
-import { subCategoriesObj } from "../../../constants/index.js";
-import { store } from "../../../core/store.js";
-import Logo from "../../common/Logo.js";
-import UnsubButton from "../Buttons/UnsubButton.js";
+import Logo from "../../../common/Logo.js";
+import {
+  CATEGORIES_COUNT,
+  categoriesObj,
+} from "../../../../constants/index.js";
+import { categories } from "../../../../constants/categories.js";
+import SubButton from "../../Buttons/SubButton.js";
+import { store } from "../../../../core/store.js";
+import UnsubButton from "../../Buttons/UnsubButton.js";
 
-export default class SubPressNews {
+export default class PressNews {
   constructor() {
     this.$wrapper = document.createElement("main");
     this.$wrapper.className = "press-news";
 
-    this.storePIndex = 0;
-    if (store.press.length > 0) {
-      this.pressIndex = store.press[this.storePIndex] - 1;
-      this.mainNews = pressData[this.pressIndex];
+    this.mainNews = categories["종합/경제"].press[0];
 
-      this.render();
-    }
+    this.render();
   }
 
   /** 렌더링 */
@@ -33,7 +33,11 @@ export default class SubPressNews {
 
     $nameWrapper.appendChild(this.createPressLogo(this.mainNews.logo));
     $nameWrapper.appendChild($editTime);
-    $nameWrapper.appendChild(new UnsubButton(this.mainNews.id));
+    if (store.press.includes(this.mainNews.id)) {
+      $nameWrapper.appendChild(new UnsubButton(this.mainNews.id));
+    } else {
+      $nameWrapper.appendChild(new SubButton(this.mainNews.id));
+    }
 
     const mainTemplate = `
         <div class="press-imageInfo">
@@ -68,70 +72,60 @@ export default class SubPressNews {
 
   /** 다음 뉴스페이지로 이동 */
   goNextPage() {
-    this.storePIndex += 1;
-    this.checkStorePIndex();
-    this.newRender();
-  }
-
-  /** 특정 뉴스페이지로 이동 */
-  goSpecificPress(currentCategory) {
-    this.storePIndex = currentCategory;
     this.newRender();
   }
 
   /** 왼쪽 화살표 버튼 클릭  */
   goPreviousPageByArrowBtn() {
-    this.storePIndex -= 1;
-    this.checkStorePIndex();
-
-    this.decreaseCurrentPage.call(subCategoriesObj);
+    this.decreaseCurrentPage.call(categoriesObj);
     this.newRender();
   }
 
   /** 오른쪽 화살표 버튼 클릭 시  */
   goNextPageByArrowBtn() {
-    this.storePIndex += 1;
-    this.checkStorePIndex();
-
-    this.increaseCurrentPage.call(subCategoriesObj);
+    this.increaseCurrentPage.call(categoriesObj);
     this.newRender();
   }
 
   /** 현재 페이지 감소  */
   decreaseCurrentPage() {
-    this.currentCategory -= 1;
-    if (this.currentCategory === -1) {
-      this.currentCategory = store.press.length - 1;
+    this.currentPage -= 1;
+    let targetCategory = Object.keys(categories)[this.currentCategory - 1];
+    if (this.currentPage < 1) {
+      this.currentCategory -= 1;
+      if (this.currentCategory < 0) {
+        this.currentCategory = CATEGORIES_COUNT - 1;
+        targetCategory = Object.keys(categories)[this.currentCategory];
+        this.currentPage = categories[targetCategory].press.length - 1;
+      }
+      this.currentPage = categories[targetCategory].press.length;
     }
-
-    clearInterval(this.progressInterval);
+    clearInterval(this.interval);
     this.handleProgress();
   }
 
   /** 현재 페이지 증가 */
   increaseCurrentPage() {
-    this.currentCategory += 1;
-    if (this.currentCategory === store.press.length) {
-      this.currentCategory = 0;
+    this.currentPage += 1;
+    const targetCategory = Object.keys(categories)[this.currentCategory];
+    if (categories[targetCategory].press.length < this.currentPage) {
+      this.currentPage = 1;
+      this.currentCategory += 1;
+      if (this.currentCategory === CATEGORIES_COUNT) {
+        this.currentCategory = 0;
+        this.currentPage = 1;
+      }
     }
-
-    clearInterval(this.progressInterval);
+    clearInterval(this.interval);
     this.handleProgress();
   }
 
   /** 새로운 페이지 렌더링 */
   newRender() {
-    this.pressIndex = store.press[this.storePIndex] - 1;
-    this.mainNews = pressData[this.pressIndex];
+    const targetCategory =
+      Object.keys(categories)[categoriesObj.currentCategory];
+    this.mainNews =
+      categories[targetCategory].press[categoriesObj.currentPage - 1];
     this.render();
-  }
-
-  checkStorePIndex() {
-    if (this.storePIndex === store.press.length) {
-      this.storePIndex = 0;
-    }
-    if (this.storePIndex === -1) {
-      this.storePIndex = store.press.length - 1;
-    }
   }
 }

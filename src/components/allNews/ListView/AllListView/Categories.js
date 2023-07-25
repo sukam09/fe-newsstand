@@ -1,9 +1,9 @@
-import { categories } from "../../../constants/categories.js";
+import { categories } from "../../../../constants/categories.js";
 import {
   CATEGORIES_COUNT,
   PROGRESS_SPEED,
   pressObj,
-} from "../../../constants/index.js";
+} from "../../../../constants/index.js";
 
 export default class Categories {
   constructor() {

@@ -1,8 +1,8 @@
 import AllNewsNavigation from "./AllNewsNavigation.js";
 import SubGridView from "./GridView/SubGridView.js";
 import GridView from "./GridView/index.js";
-import SubListView from "./ListView/SubListView.js";
-import ListView from "./ListView/index.js";
+import SubListView from "./ListView/SubListView/SubListView.js";
+import ListView from "./ListView/AllListView/index.js";
 
 export default class AllNews {
   constructor() {

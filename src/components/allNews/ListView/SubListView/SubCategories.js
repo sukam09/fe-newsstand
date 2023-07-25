@@ -1,7 +1,7 @@
-import { PROGRESS_SPEED, subPressObj } from "../../../constants/index.js";
-import pressName from "../../../constants/pressName.js";
-import { store } from "../../../core/store.js";
-import Icon from "../../common/Icon.js";
+import { PROGRESS_SPEED, subPressObj } from "../../../../constants/index.js";
+import pressName from "../../../../constants/pressName.js";
+import { store } from "../../../../core/store.js";
+import Icon from "../../../common/Icon.js";
 
 export default class SubCategories {
   constructor() {

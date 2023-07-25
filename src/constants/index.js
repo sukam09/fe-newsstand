@@ -1,7 +1,7 @@
-import Categories from "../components/allNews/ListView/Categories.js";
-import PressNews from "../components/allNews/ListView/PressNews.js";
-import SubCategories from "../components/allNews/ListView/SubCategories.js";
-import SubPressNews from "../components/allNews/ListView/SubPressNews.js";
+import Categories from "../components/allNews/ListView/AllListView/Categories.js";
+import PressNews from "../components/allNews/ListView/AllListView/PressNews.js";
+import SubCategories from "../components/allNews/ListView/SubListView/SubCategories.js";
+import SubPressNews from "../components/allNews/ListView/SubListView/SubPressNews.js";
 import AllNews from "../components/allNews/index.js";
 
 export const CATEGORIES_COUNT = 7;

@@ -1,5 +1,5 @@
-import { subCategoriesObj, subPressObj } from "../../../constants/index.js";
-import ArrowButton from "../Buttons/ArrowButton.js";
+import { subCategoriesObj, subPressObj } from "../../../../constants/index.js";
+import ArrowButton from "../../Buttons/ArrowButton.js";
 
 export default class SubListView {
   constructor() {
