@@ -1,6 +1,6 @@
 import { drawArrow, handleArrowClick } from "./script/arrow/arrow.js";
 import { drawDate } from "./script/view-utils/date.js";
-import { drawGrid} from "./script/grid-view/grid.js";
+import { drawGrid, initGrid} from "./script/grid-view/grid.js";
 import { handleViewChange } from "./script/nav/change-view.js";
 import {handleFilterChange} from "./script/nav/change-filter.js"
 import { handleReload } from "./script/view-utils/reload.js";
@@ -18,7 +18,10 @@ let pressIdxArray = Array.from({length: pressList.length}, (_,i) => i+1); // cre
 function init () {
     shuffleArray(pressIdxArray); // shuffle grid only when reloading
     drawDate();
+
+    initGrid();
     drawGrid();
+    
     drawArrow();
     rollInit();
 

@@ -1,6 +1,5 @@
 import { store } from "../../store/store.js";
 import { FILTER_TYPE, GRID_ITEMS_PER_PAGE } from "../../asset/data/constants.js";
-import { drawEmptySubView } from "../view-utils/empty-sub-view.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const pressCover = document.querySelector(".press-cover");
@@ -8,9 +7,10 @@ const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 
 
+
 function getGridData() {
     let gridData;
-    let {crntFilter} = store.getViewState();
+    const {crntFilter} = store.getViewState();
     if (crntFilter === FILTER_TYPE.ALL){
         gridData = store.getShuffledList();
     } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
@@ -19,7 +19,7 @@ function getGridData() {
     return gridData
 }
 function showPressCoverBtn(item){
-    let subscribedPress = store.getSubList();
+    const subscribedPress = store.getSubList();
     if (subscribedPress.includes(parseInt(item.getAttribute("index")))){
         subBtn.classList.add("hide");
         unsubBtn.classList.remove("hide");
@@ -30,9 +30,6 @@ function showPressCoverBtn(item){
 }
 function handleGridHover(){
     const pressItems = document.querySelectorAll(".pressItem");
-    // gridContainer.addEventListener("mouseover",(event)=>{
-    //     console.log(event.target);
-    // })
     pressItems.forEach((item)=>{
         if (item.getAttribute("index") !== "undefined") {
             item.addEventListener("mouseover",()=>{
@@ -47,17 +44,30 @@ function handleGridHover(){
     })
 }
 function drawGrid(){
-    let {crntPage} = store.getViewState()
-    let imgIdxList = getGridData();
-    gridContainer.innerHTML = "";
+    const {crntPage} = store.getViewState()
+    const imgIdxList = getGridData();
+    const gridItems = document.querySelectorAll(".pressItem");
+
+    let itemIdx = 0
+
+    // update grid images according to crnt page index
     for (let i=GRID_ITEMS_PER_PAGE*crntPage;i<GRID_ITEMS_PER_PAGE*(crntPage+1);i++){
-        gridContainer.innerHTML += `
-            <li class="pressItem" index=${imgIdxList[i]}>
-            ${i >= imgIdxList.length ? "" : `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />` }   
-            </li>
-        `      
+        gridItems[itemIdx].setAttribute("index", imgIdxList[i]);
+        if (i < imgIdxList.length){
+            gridItems[itemIdx].innerHTML = `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />`
+        }
+        itemIdx++;   
     }
-    handleGridHover();    
+    
 }
 
-export {drawGrid}
+function initGrid () {
+    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
+        gridContainer.innerHTML += `
+            <li class="pressItem"></li>
+        `
+    }
+    handleGridHover();   
+}
+
+export {drawGrid, initGrid}

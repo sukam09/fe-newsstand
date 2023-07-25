@@ -8,7 +8,7 @@ function filterData() {
     let listData;
     let navData;
     let numOfListPages;
-    let {crntFilter, crntCategory} = store.getViewState();
+    const {crntFilter, crntCategory} = store.getViewState();
     switch (crntFilter){
         case FILTER_TYPE.ALL:
             listData = listViewData;

@@ -4,9 +4,9 @@ import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
 class Store {
     constructor () {
         this.viewState = {
-            crntView : VIEW_TYPE.GRID, // this.crntView = VIEW_TYPE.GRID;
-            crntPage : 0,  // page index (grid, list view)
-            crntCategory : 0,  // category index (list view)
+            crntView : VIEW_TYPE.GRID,  // this.crntView = VIEW_TYPE.GRID;
+            crntPage : 0,               // page index (grid, list view)
+            crntCategory : 0,           // category index (list view)
             crntFilter : FILTER_TYPE.ALL,
             isChangeView : false,
             isStillList : false,

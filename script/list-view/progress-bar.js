@@ -7,7 +7,7 @@ const listNav = document.querySelector(".list-nav");
 
 function listenProgressBarEnd() {
     const progressBar = document.querySelector(".progress-bar");
-    let {crntPage, crntCategory} = store.getViewState();
+    const {crntPage, crntCategory} = store.getViewState();
     const {navData, numOfListPages} = filterData();
     
     progressBar.addEventListener("animationend", () => {

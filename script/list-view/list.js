@@ -2,7 +2,6 @@ import { store } from "../../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
 import { FILTER_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
-import { drawEmptySubView } from "../view-utils/empty-sub-view.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
@@ -23,7 +22,7 @@ function handleCategoryChange(catBtns){
 }
 
 function drawListPage({listData, navData, filterType}) {
-    let {crntPage, crntCategory} = store.getViewState();
+    const {crntPage, crntCategory} = store.getViewState();
     let crntData;
     if (filterType === FILTER_TYPE.ALL){
         const filteredByCat = listData.filter(item => item.category == navData[crntCategory]);
@@ -52,7 +51,7 @@ function drawListPage({listData, navData, filterType}) {
     </div>`
 }
 function drawListNav({listData, navData, filterType}){
-    let {crntPage, crntCategory} = store.getViewState();
+    const {crntPage, crntCategory} = store.getViewState();
     listNav.innerHTML = "";
     navData.forEach((category, index) => {
         let numOfPages;
