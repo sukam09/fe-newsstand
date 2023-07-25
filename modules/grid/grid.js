@@ -1,7 +1,6 @@
-import { MEDIA, MESSAGE } from "../../constant.js";
+import { MEDIA } from "../../constant.js";
 import { getJSON } from "../data.js";
-import { shuffleList } from "../utils.js";
-import { onClickSubscribeMode } from "../subscribe.js";
+import { isPossible, shuffleList } from "../utils.js";
 import { getState, register, setState } from "../../observer/observer.js";
 import {
   gridPageNum,
@@ -36,6 +35,7 @@ const makeGrid = () => {
     $newsWrapper.append($li);
   }
   changeImgSrc();
+  changeButtonView();
 };
 
 /**
@@ -62,6 +62,22 @@ const changeImgSrc = () => {
       : `${getState(mediaInfo)[mediaIdx].path_dark}`;
     $img.src = imgSrc;
   }
+};
+
+/**
+ * 버튼 Wrapper 재설정
+ * @param {현재 페이지 media 정보} mediaList
+ */
+const changeButtonView = () => {
+  const rerender = getState(subscribeList);
+  const start = getState(gridPageNum) * MEDIA_NUM;
+  const $newsList = $newsWrapper.querySelectorAll("li");
+
+  $newsList.forEach((li, idx) => {
+    const $buttonWrapper = li.querySelector(".news-grid_button_wrapper");
+    $buttonWrapper.remove();
+    li.append(setButttonWrapper(start + idx));
+  });
 };
 
 /**
@@ -101,33 +117,6 @@ const setButttonWrapper = (idx) => {
   }
 
   return $buttonWrapper;
-};
-
-/**
- * 페이지 전환 / 모드 전환 시 새로운 페이지 세팅
- */
-const setNewPage = () => {
-  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
-    alert(MESSAGE.ERROR_NO_SUBSCRIBE);
-    onClickSubscribeMode({ className: "main-nav_total" });
-    return;
-  }
-  changeButtonView();
-  setArrowVisible();
-};
-
-/**
- * @param {현재 페이지 media 정보} mediaList
- */
-const changeButtonView = () => {
-  const start = getState(gridPageNum) * MEDIA_NUM;
-  const $newsList = $newsWrapper.querySelectorAll("li");
-
-  $newsList.forEach((li, idx) => {
-    const $buttonWrapper = li.querySelector(".news-grid_button_wrapper");
-    $buttonWrapper.remove();
-    li.append(setButttonWrapper(start + idx));
-  });
 };
 
 /**
@@ -171,7 +160,11 @@ const initGridRegister = () => {
     [gridPageNum, isTotalMode, subscribeList, isLightMode],
     changeImgSrc
   );
-  register([isTotalMode, subscribeList], setButttonWrapper);
+  register(
+    [gridPageNum, isTotalMode, mediaIdList, subscribeList, isTotalMode],
+    setArrowVisible
+  );
+  register([gridPageNum, subscribeList], changeButtonView);
 };
 
 /**
@@ -186,4 +179,4 @@ async function initGridView() {
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, setNewPage, changeImgSrc, setButttonWrapper };
+export { initGridView, changeImgSrc, setButttonWrapper };

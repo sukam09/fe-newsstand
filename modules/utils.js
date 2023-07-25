@@ -1,6 +1,14 @@
-import { IMAGE, MEDIA, MESSAGE } from "../constant.js";
+import { IMAGE, MESSAGE } from "../constant.js";
 import { getState, setState } from "../observer/observer.js";
-import { changeImgSrc, setNewPage } from "./grid/grid.js";
+import {
+  gridPageNum,
+  listCateIdx,
+  listCateMediaIdx,
+  listSubsMediaIdx,
+} from "../store/media.js";
+import { isGridMode, isTotalMode } from "../store/mode.js";
+import { subscribeList } from "../store/subscribe.js";
+import { changeImgSrc } from "./grid/grid.js";
 import {
   setCategoryBar,
   setFullList,
@@ -9,6 +17,9 @@ import {
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
+
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 const $gridView = document.querySelector(".news-grid-wrapper");
 const $listView = document.querySelector(".news-list-wrapper");
@@ -67,9 +78,6 @@ const setReload = () => {
 };
 
 const setViewEvent = () => {
-  const $listIcon = document.querySelector(".nav-list");
-  const $gridIcon = document.querySelector(".nav-grid");
-
   $listIcon.addEventListener("click", () => {
     moveListView();
   });
@@ -82,21 +90,25 @@ const setViewEvent = () => {
  * 그리드뷰로 이동할 수 있는 함수
  */
 const moveGridView = () => {
+  setState(isGridMode, true);
+  setState(gridPageNum, 0);
+
   $gridIcon.src = IMAGE.BLUE_GRID_ICON;
   $listIcon.src = IMAGE.GRAY_LIST_ICON;
 
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
-
-  setState("isGridMode", true);
-  const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-  setNewPage();
 };
 
 /**
  * 리스트뷰로 이동할 수 있는 함수
  */
 const moveListView = () => {
+  setState(isGridMode, false);
+  setState(listCateIdx, 0);
+  setState(listCateMediaIdx, 0);
+  setState(listSubsMediaIdx, 0);
+
   $gridIcon.src = IMAGE.GRAY_GRID_ICON;
   $listIcon.src = IMAGE.BLUE_LIST_ICON;
 
@@ -108,8 +120,6 @@ const moveListView = () => {
 
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
-
-  setState("isGridMode", false);
 
   setCategoryBar();
   setFullList();
@@ -129,19 +139,35 @@ const initSubsModalView = () => {
 
     $subsAlert.classList.add("hidden");
 
-    if (getState("isGridMode")) {
-      setNewPage();
-    } else {
+    if (!getState("isGridMode")) {
       setCategoryBar();
       setFullList();
     }
 
     alert(MESSAGE.UNSUBSCRIBE);
+    if (!isPossible()) return;
   });
   $subBtnNo.addEventListener("click", () => {
     $subsAlert.classList.add("hidden");
   });
 };
+
+function isPossible() {
+  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
+    alert(MESSAGE.ERROR_NO_SUBSCRIBE);
+    setState(isGridMode, true);
+    setState(isTotalMode, true);
+
+    $totalMedia.classList.add("main-nav_selected");
+    $subscribeMedia.classList.remove("main-nav_selected");
+
+    $totalMedia.classList.remove("main-nav_unselected");
+    $subscribeMedia.classList.add("main-nav_unselected");
+
+    return false;
+  }
+  return true;
+}
 
 /**
  * 공통뷰 & 공통 이벤트 세팅
@@ -154,4 +180,4 @@ function initCommonView() {
   initSubsModalView();
 }
 
-export { initCommonView, shuffleList, moveGridView, moveListView };
+export { initCommonView, shuffleList, moveGridView, moveListView, isPossible };

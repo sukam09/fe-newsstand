@@ -1,5 +1,7 @@
 import { moveGridView, moveListView } from "./utils.js";
 import { getState, setState } from "../observer/observer.js";
+import { selectSubscribeIdx, subscribeList } from "../store/subscribe.js";
+import { listSubsMediaIdx } from "../store/media.js";
 
 const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");
@@ -31,19 +33,19 @@ const onClickSubscribeMode = ({ className }) => {
 };
 
 const changeSubState = ({ mediaId, mediaName }) => {
-  const subIdx = getState("subscribeList").indexOf(mediaId);
-  setState("selectSubscribeIdx", subIdx);
+  const subIdx = getState(subscribeList).indexOf(mediaId);
+  setState(selectSubscribeIdx, subIdx);
 
   if (subIdx !== -1) {
     $subAlertName.innerText = mediaName;
     $subsAlert.classList.remove("hidden");
   } else {
-    setState("subscribeList", [...getState("subscribeList"), mediaId]);
+    setState(subscribeList, [...getState(subscribeList), mediaId]);
 
     $snackBar.classList.remove("hidden");
     setTimeout(() => {
       $snackBar.classList.add("hidden");
-      setState("listSubsMediaIdx", getState("subscribeList").length - 1);
+      setState(listSubsMediaIdx, getState(subscribeList).length - 1);
       onClickSubscribeMode({ className: "main-nav_subscribe" });
     }, 1000);
   }

@@ -1,6 +1,4 @@
-import { MESSAGE } from "/constant.js";
 import { shuffleList } from "/modules/utils.js";
-import { onClickSubscribeMode } from "/modules/subscribe.js";
 import { getState, setState } from "/observer/observer.js";
 import {
   setListArrowEvent,
@@ -16,6 +14,7 @@ import {
 } from "../../store/media.js";
 import { isLightMode, isTotalMode } from "../../store/mode.js";
 import { subscribeList } from "../../store/subscribe.js";
+import { isPossible } from "../utils.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(getState(categoryInfo));
@@ -246,11 +245,6 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
-  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
-    alert(MESSAGE.ERROR_NO_SUBSCRIBE);
-    onClickSubscribeMode({ className: "main-nav_total" });
-    return;
-  }
   changeIdx();
   setListView();
   setProgressBar();

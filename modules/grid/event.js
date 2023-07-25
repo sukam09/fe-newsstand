@@ -1,4 +1,3 @@
-import { MEDIA } from "../../constant.js";
 import { getState, setState } from "../../observer/observer.js";
 import {
   gridPageNum,
@@ -9,11 +8,7 @@ import {
   subscribeList,
 } from "../../store/index.js";
 import { changeSubState, onClickSubscribeMode } from "../subscribe.js";
-import { setButttonWrapper, setNewPage } from "./grid.js";
 
-const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-
-const $newsWrapper = document.querySelector(".news-grid-wrapper");
 const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
@@ -28,13 +23,6 @@ const clickSubButton = (idx) => {
   const mediaName = getState(mediaInfo)[mediaId].name;
 
   changeSubState({ mediaId, mediaName });
-
-  const $buttonWrapper = $newsWrapper.children[idx % MEDIA_NUM].querySelector(
-    ".news-grid_button_wrapper"
-  );
-
-  $buttonWrapper.remove();
-  $newsWrapper.children[idx % MEDIA_NUM].append(setButttonWrapper(idx));
 };
 
 /**
@@ -58,7 +46,6 @@ const setGridArrowEvent = () => {
  */
 const clickArrow = (num) => {
   setState(gridPageNum, getState(gridPageNum) + num);
-  setNewPage();
 };
 
 /**
@@ -67,23 +54,16 @@ const clickArrow = (num) => {
 const setGridModeEvent = () => {
   $totalMedia.addEventListener("click", () => {
     if (getState(isGridMode)) {
-      onClickGridMode({ className: "main-nav_total" });
+      onClickSubscribeMode({ className: "main-nav_total" });
+      setState(gridPageNum, 0);
     }
   });
   $subscribeMedia.addEventListener("click", () => {
     if (getState(isGridMode)) {
-      onClickGridMode({ className: "main-nav_subscribe" });
+      onClickSubscribeMode({ className: "main-nav_subscribe" });
+      setState(gridPageNum, 0);
     }
   });
-};
-
-/**
- * @param {언론사 토글 중 선택한 클래스 이름} className
- */
-const onClickGridMode = ({ className }) => {
-  onClickSubscribeMode({ className });
-  setState(gridPageNum, 0);
-  setNewPage();
 };
 
 export { clickSubButton, setGridArrowEvent, setGridModeEvent };
