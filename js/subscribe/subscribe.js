@@ -4,7 +4,7 @@ import { setSubData } from "../util/utils.js";
 import { handleView, changeOption } from "../view/viewHandler.js";
 import { onGridUndiscribeModal, onListUndiscribeModal } from "../component/modal.js";
 import { drawNews } from "../view/listView.js";
-import { isDark, isSnackbarVisible, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
+import { isDark, isSubView, subListPageCount, subscribedPress } from "../store/store.js";
 import { getState, setState } from "../observer/observer.js";
 
 let presses = null;
