@@ -6,12 +6,8 @@ import { filterData } from "../view-utils/filter-data.js";
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
-function showAllArrows(){
-    leftArrow.classList.remove("hidden");
-    rightArrow.classList.remove("hidden");
-}
 function drawArrow(){
-    let {crntPage, crntView, crntFilter, isStillList} = store.getViewState();
+    let {crntPage, crntView, crntFilter} = store.getViewState();
     let dataInfo;
     if (crntFilter === FILTER_TYPE.ALL){
         dataInfo = pressList;
@@ -25,7 +21,8 @@ function drawArrow(){
         return;
     }
     let maxPage;
-    showAllArrows();
+    leftArrow.classList.remove("hidden");
+    rightArrow.classList.remove("hidden");
     switch (crntView){
         case VIEW_TYPE.GRID:
             maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_PER_PAGE);

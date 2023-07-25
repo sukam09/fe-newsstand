@@ -30,6 +30,9 @@ function showPressCoverBtn(item){
 }
 function handleGridHover(){
     const pressItems = document.querySelectorAll(".pressItem");
+    // gridContainer.addEventListener("mouseover",(event)=>{
+    //     console.log(event.target);
+    // })
     pressItems.forEach((item)=>{
         if (item.getAttribute("index") !== "undefined") {
             item.addEventListener("mouseover",()=>{
@@ -46,9 +49,6 @@ function handleGridHover(){
 function drawGrid(){
     let {crntPage} = store.getViewState()
     let imgIdxList = getGridData();
-    if (imgIdxList.length === 0) {
-        drawEmptySubView();
-    }
     gridContainer.innerHTML = "";
     for (let i=GRID_ITEMS_PER_PAGE*crntPage;i<GRID_ITEMS_PER_PAGE*(crntPage+1);i++){
         gridContainer.innerHTML += `

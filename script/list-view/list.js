@@ -50,8 +50,6 @@ function drawListPage({listData, navData, filterType}) {
             </section>
         </section>
     </div>`
-
-    
 }
 function drawListNav({listData, navData, filterType}){
     let {crntPage, crntCategory} = store.getViewState();
@@ -78,16 +76,11 @@ function drawListNav({listData, navData, filterType}){
 function drawList() {
     const viewData = filterData(); // filter data to show according to crnt filter type
     const filterType = store.getViewState().crntFilter;
-    if (viewData.listData.length === 0){
-        // no data to draw < in the case of filterType = "subscribed"
-        drawEmptySubView();
-    } else {
-        drawListNav({...viewData, filterType})
-        drawProgressBar()
-        drawListPage({...viewData, filterType});
-        handleCategoryChange(listNav.children);
-    }
-    
+    drawListNav({...viewData, filterType})
+    drawProgressBar()
+    drawListPage({...viewData, filterType});
+    handleCategoryChange(listNav.children);
 }
+    
 
 export {drawList}
