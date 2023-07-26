@@ -3,6 +3,7 @@
 @import "./css/category.css";
 @import "./css/newsMain.css";
 @import "./css/alert.css";
+@import "./css/constant.css";
 img {
   width: 24px;
   height: 24px;
@@ -73,7 +74,6 @@ section.main {
 
 .section-div {
   padding: 15px 30px 15px 20px;
-  border: 0.5px #d2dae0 solid;
   background-color: #f5f7f9;
   display: flex;
   width: 400px;
