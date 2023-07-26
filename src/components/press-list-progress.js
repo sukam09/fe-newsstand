@@ -31,6 +31,8 @@ class ListProgress extends Store {
     sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
     sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
     sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
+    sectionMain.setAttribute('pressid', categoryArticle.id);
+    sectionMain.setAttribute('pressname', categoryArticle.name);
   }
 
   setupSub() {

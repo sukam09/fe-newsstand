@@ -91,7 +91,7 @@
 
   background: linear-gradient(to right, var(--blue-100) 0%, var(--blue-500) 100%);
   background-size: 200% 100%;
-  animation: fill-progress-bar 1s infinite linear forwards;
+  animation: fill-progress-bar 20s infinite linear forwards;
 }
 
 .progress-start > p {

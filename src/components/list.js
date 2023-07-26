@@ -1,6 +1,6 @@
 import { LIST } from '../constants/press-data.js';
 import { getShuffle } from '../utils/shuffle.js';
-
+import { initListButton } from './press-list-button.js';
 import { initListProgress } from './press-list-progress.js';
 import { Store } from '../utils/store.js';
 
@@ -13,11 +13,7 @@ class PressListStore extends Store {
 
     this.initList();
     initListProgress();
-
-    // const pressId = LIST.SUFFLE_CATEGORY[LIST.CATEGORY_COUNT - 1][LIST.PAGE_COUNT - 1].id;
-    // const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
-    // setListButtonChange(isSubscribe);
-    // setSubscribeArrow(isSubscribe);
+    initListButton(this.pressData, this.categoryList);
   }
 
   initList() {
@@ -26,6 +22,7 @@ class PressListStore extends Store {
     this.renderSub();
     this.renderNav();
     this.setShuffle();
+    this.setHover();
   }
 
   renderList() {
@@ -113,6 +110,20 @@ class PressListStore extends Store {
       LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
     });
   }
+
+  setHover() {
+    const article = document.querySelector('.press-category__article');
+    const mainImg = document.querySelector('.section-main__img-article');
+
+    const handleArticleHover = (isHover) => mainImg.classList.toggle('section-main__img-article-hover', isHover);
+    article.addEventListener('mouseenter', () => handleArticleHover(true));
+    article.addEventListener('mouseleave', () => handleArticleHover(false));
+  }
+
+  // const changeIcon = () => {
+  //   const modeImg = document.querySelector(`.mode__img`);
+  //   modeImg.addEventListener('click', () => setListArticle());
+  // };
 }
 
 const initPressList = (pressData, categoryList) => {
