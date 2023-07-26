@@ -159,13 +159,11 @@ export const GridController = {
   */
   setLiList() {
     const ul = document.querySelector(".grid_wrapper ul");
-    ul.innerHTML = '';
-    const liHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => `
+    ul.innerHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => `
       <li>
         <img src="" alt="" class="media_logo">
       </li>
     `).join('');
-    ul.innerHTML += liHTML;
   },
 };
 

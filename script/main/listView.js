@@ -12,12 +12,6 @@ let lastProgressed;
  */
 export const setNewsData = () => {
   const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
-  console.log("------");
-  console.log(categorizedData);
-  console.log(categories);
-  console.log(category_page.getState());
-  console.log(media_page.getState());
-  console.log("------");
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
@@ -85,26 +79,26 @@ export const setNewsData = () => {
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
 function categorizeData() {
-  let categorizedData = {};
+  const categorizedData = {};
   if(mode.getState()==='All'){
     for(let i = 0; i < newsData.length; i++) {
-      let item = newsData[i];
-      let category = item.category;
+      const item = newsData[i];
+      const category = item.category;
       if(!categorizedData[category]) {
         categorizedData[category] = [];
       }
       categorizedData[category].push(item);
     }
 
-    for (let category in categorizedData) {
+    for (const category in categorizedData) {
       shuffle(categorizedData[category]);
     }
   }
   else{
     for(let i =0;i<subscribedStore.getState().length;i++){
       for(let j = 0; j < newsData.length; j++) {
-        let item = newsData[j];
-        let category = item.name;
+        const item = newsData[j];
+        const category = item.name;
         if(category === media_data[subscribedStore.getState()[i]].name){ // 구독한 목록에 있을 때만 
           if(!categorizedData[category]) {
             categorizedData[category] = [];
@@ -114,6 +108,7 @@ function categorizeData() {
       }   
     }
   }
+  console.log(categorizedData);
   return categorizedData;
 }
 

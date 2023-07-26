@@ -235,6 +235,10 @@ ul li:hover .media-hover .subscribedWrapper {
     overflow:auto;
 }
 
+.list_wrapper .category::-webkit-scrollbar{
+    display:none;
+}
+
 .list_wrapper .category .category_item {
     display: flex;
     padding : 0 16px 0 16px;
