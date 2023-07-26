@@ -6,13 +6,10 @@ import {
 } from "./reducers.js";
 
 export const view_option = {
-    // initalize and render option
     press: "all",
     main: "grid",
     mode: "light-mode",
     target: "all",
-
-    //hot_topic
     hot_topic_data: [],
 
     observers: [],
@@ -31,11 +28,13 @@ export const view_option = {
 
     dispatch(action, value) {
         this[value] = viewReducer(this[value], action, value);
-        this.notify(value);
+        this.notify();
     },
 
-    notify(value) {
-        this.observers.forEach((observer) => observer(this[value]));
+    notify() {
+        this.observers.forEach((observer) => {
+            observer();
+        });
     },
 };
 
@@ -43,6 +42,29 @@ export const grid_option = {
     press_data: {},
     page: 0,
     subscribe_page: 0,
+
+    observers: [],
+
+    getState(values) {
+        const state = {};
+        values.forEach((value) => {
+            state[value] = this[value];
+        });
+        return state;
+    },
+
+    subscribe(observers) {
+        this.observers.push(observers);
+    },
+
+    dispatch(action, value) {
+        this[value] = gridReducer(this[value], action, value);
+        this.notify(value);
+    },
+
+    notify(value) {
+        this.observers.forEach((observer) => observer(this[value]));
+    },
 };
 
 export const list_option = {
@@ -52,9 +74,30 @@ export const list_option = {
     unrefined_new_data: {},
     news_data: {},
     category_size: 7,
-    progress_interval: new Object(),
+    progress_interval: null,
     progress_max: 200,
     progress_time: 0,
+
+    getState(values) {
+        const state = {};
+        values.forEach((value) => {
+            state[value] = this[value];
+        });
+        return state;
+    },
+
+    subscribe(observers) {
+        this.observers.push(observers);
+    },
+
+    dispatch(action, value) {
+        this[value] = listReducer(this[value], action, value);
+        this.notify(value);
+    },
+
+    notify(value) {
+        this.observers.forEach((observer) => observer(this[value]));
+    },
 };
 
 export const subscribe_option = {
@@ -78,7 +121,7 @@ export const subscribe_option = {
     },
 
     dispatch(action, value) {
-        this[value] = viewReducer(this[value], action, value);
+        this[value] = subscribeReducer(this[value], action, value);
         this.notify(value);
     },
 

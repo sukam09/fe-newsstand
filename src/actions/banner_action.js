@@ -1,9 +1,5 @@
 import { DELAY, INTERVAL } from "../constants.js";
-/**
- * @description
- * 1. 배너를 업데이트한다.
- * @returns {Object} options
- */
+
 export function controlBanner() {
     const banner_left =
         document.getElementById("rollingBannerLeft").childNodes[0];

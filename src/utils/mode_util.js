@@ -1,3 +1,5 @@
+import { view_option } from "../store.js";
+
 export function showToday(tag) {
     const date = new Date();
 
@@ -10,17 +12,13 @@ export function showToday(tag) {
     });
 }
 
-/**
- * @description
- * 1. 현재 시간을 기준으로 mode를 설정한다.
- * @returns {String} mode
- */
 export function currentHourToMode() {
     const current_hour = new Date().getHours();
-    return current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
+    view_option.mode =
+        current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
 }
 
-// brute force로 구현 - 순차탐색
+
 export function myQuerySelector(selector, element = document) {
     const matchesSelector = (el) => el.matches(selector);
 
@@ -34,12 +32,6 @@ export function myQuerySelector(selector, element = document) {
     }, null);
 }
 
-/**
- * @description
- * 1. grid_view의 arrow display를 변경한다.
- * @param {*} mode
- * @param {*} page
- */
 export function toggleArrow(mode, page, max) {
     const left_arrow = document.querySelector(`.grid_left_arrow`);
     const right_arrow = document.querySelector(`.grid_right_arrow`);

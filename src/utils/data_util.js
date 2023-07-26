@@ -56,24 +56,12 @@ export function setActiveClass() {
     press_sub.classList.add("option_press_active");
 }
 
-/**
- * @description
- * 1. 언론사 구독 여부를 확인한다.
- * @param {String} item
- * @returns Boolean
- */
 export function isSubscribed(item) {
     return subscribe_option.subscribe_press[item] === undefined
         ? false
         : subscribe_option.subscribe_press[item];
 }
 
-/**
- * @description
- * 1. view의 옵션을 준다.
- * @param {*} target
- * @returns options
- */
 export function getOptions(target, callback) {
     return {
         main: view_option.main,

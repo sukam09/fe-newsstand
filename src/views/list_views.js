@@ -74,11 +74,11 @@ function renderNewsItem(mode) {
 }
 
 function renderSubscribeButton() {
-    // button className 찾기
+
     const subscribe_toggle = document.querySelector(".content_header button");
 
     if (subscribe_toggle.value === "false") {
-        // add class without className property
+
         subscribe_toggle.classList.add("content_subscribe_cancel");
         subscribe_toggle.classList.remove("content_subscribe_active");
         subscribe_toggle.value = "true";

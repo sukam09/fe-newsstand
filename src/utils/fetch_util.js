@@ -9,7 +9,6 @@ export async function fetchHotTopicData() {
         const data = await fetch(HOT_DATA_PATH)
             .then((res) => res.json())
             .then((data) => data.sort(() => Math.random() - 0.5));
-        // then data.location = "left" or "right" two arr return
 
         const left = data.filter((item) => item.location === "left");
         const right = data.filter((item) => item.location === "right");
@@ -37,7 +36,7 @@ export async function fetchPressData() {
         const data = await fetch(PRESS_DATA_PATH)
             .then((res) => res.json())
             .then((data) => data.sort(() => Math.random() - 0.5));
-        // then return data
+
         return data;
     } catch (error) {
         console.log(error);

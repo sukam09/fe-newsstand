@@ -2,11 +2,6 @@ import { view_option } from "../store.js";
 import { setActiveClass } from "../utils/data_util.js";
 import { SNACKBAR_DELAY } from "../constants.js";
 
-/**
- * @description
- * 1. snack bar의 애니메이션을 설정한다.
- * @returns {Object} options
- */
 export function setSnackBar(clearAndRender) {
     const snack_bar_container = document.querySelector(".snack_bar_container");
 
@@ -38,7 +33,6 @@ export function setSnackBar(clearAndRender) {
             option_elements: option_elements,
             selected: "main",
         });
-        
     }, SNACKBAR_DELAY);
 
     return snack_animation_time;
