@@ -24,11 +24,6 @@ import {
 } from "./views/snack_bar_views.js";
 import { createModalBarView } from "./views/modal_bar_views.js";
 
-/**
- * @description
- * 1. 구독자 옵션 변경 이벤트
- * 2. grid_views, list_views, 구독자 옵션 클릭 이벤트
- */
 function subscribeOptionEvent() {
     const option_press_elements = document.querySelectorAll(".option_press");
     option_press_elements.forEach((option_press) => {
@@ -38,11 +33,6 @@ function subscribeOptionEvent() {
     });
 }
 
-/**
- * @description
- * 1. 메인 옵션 변경 이벤트
- * 2. grid_views, list_views, 메인 옵션 클릭 이벤트
- */
 function mainOptionEvent() {
     const option_main_elements = document.querySelectorAll(".option_main");
     option_main_elements.forEach((option_main) => {
@@ -129,11 +119,6 @@ function updateMainNewsContainer(option_elements, main_option) {
     news_data_container.classList.add(view_mode);
 }
 
-/**
- * @description
- * 1. 페이지 이동 이벤트
- * 2. list_views, grid_views, 화살표 클릭 이벤트
- */
 function arrowPagingEvent() {
     if (!length) length = MAX_PAGE;
     const grid_left_arrow = document.querySelector(".grid_left_arrow");
@@ -172,15 +157,8 @@ function arrowPagingEvent() {
     });
 }
 
-/**
- * @description
- * 1. 테마 변경 이벤트
- * 2. header, toggle_mode 클릭 이벤트
- */
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
-
-    view_option.mode = mode_util.currentHourToMode();
 
     if (view_option.mode === "dark-mode") {
         toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
@@ -190,10 +168,9 @@ function toggleModeEvent() {
     }
 
     toggle_mode.addEventListener("click", () => {
-        // body class toggle
         document.body.classList.toggle("dark_mode");
+
         if (view_option.mode === "light-mode") {
-            // toggle_mode child img src change
             toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
             view_option.mode = "dark-mode";
         } else {
@@ -209,11 +186,18 @@ function toggleModeEvent() {
     });
 }
 
-/**
- * @description
- * 1. 언론사 토글 기능
- * 2. grid_views, 언론사 호버 이벤트
- */
+function changeMode() {
+    const toggle_mode = document.querySelector(".toggle_mode");
+
+    if (view_option.mode === "dark-mode") {
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
+        document.body.classList.add("dark_mode");
+    } else {
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
+        document.body.classList.remove("dark_mode");
+    }
+}
+
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
     press_container.forEach((item) => {
@@ -235,11 +219,6 @@ const handleMouseLeave = (event) => {
     item.style.transition = "transform 0.5s";
 };
 
-/**
- * @description
- * 1. 구독/구독해제 이벤트
- * 2. grid_views, 언론사 구독 클릭 이벤트
- */
 let snack_animation_time;
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
@@ -270,12 +249,6 @@ function toggleSubscribeEvent() {
     });
 }
 
-/**
- * @description
- * 1. 카테고리 변경 이벤트
- * 2. list_views, 카테고리 클릭 이벤트
- * @param {Array} data
- */
 function changeCategoryEvent() {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
 
@@ -300,12 +273,6 @@ function changeCategoryEvent() {
     });
 }
 
-/**
- * @description
- * 1. 오토 롤링 애니메이션 제어 이벤트
- * 2. rolling_views, 오토 롤링 호버 이벤트
- * @param {*} action
- */
 function bannerMouseEvent(action) {
     action["banner_left"].addEventListener("mouseover", function () {
         action["banner_left"].style.animationPlayState = "paused";
@@ -368,6 +335,7 @@ function modalDisappear(main, press) {
 
 async function initEvent() {
     try {
+        mode_util.currentHourToMode();
         const data = await save();
 
         grid_option.press_data = data["press_data"];
@@ -409,6 +377,9 @@ function handleStandbyEvents() {
     arrowPagingEvent();
     toggleModeEvent();
     mode_util.showToday("today");
+
+    view_option.subscribe(mode_util.currentHourToMode);
+    view_option.subscribe(changeMode);
 }
 
 export { handleStandbyEvents };
