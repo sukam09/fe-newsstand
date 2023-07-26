@@ -1,13 +1,13 @@
 import { html } from '../core/createElement.js';
 import { subScribeStore } from '../store/subScribeStore.js';
-function paintNewsstand(datas, SELECTED_PAGE) {
+function gridView(datas, SELECTED_PAGE) {
   const ul = document.querySelector('.newsstand-area—six-col-list');
-  let htmls = '';
+  let template = '';
   for (let idx = SELECTED_PAGE * 24; idx < SELECTED_PAGE * 24 + 24; idx++) {
     const [name, src] = datas[idx];
     let num = '';
     if (!name) num = 0;
-    htmls += html`
+    template += html`
       <li class="newsstand—subscrtion-box">
         <div class="inner" style="opacity: ${num};">
           <div class="inner-front">
@@ -23,7 +23,7 @@ function paintNewsstand(datas, SELECTED_PAGE) {
     `;
   }
   ul.innerHTML = '';
-  ul.insertAdjacentHTML('beforeend', htmls);
+  ul.insertAdjacentHTML('beforeend', template);
 }
 
-export { paintNewsstand };
+export { gridView };
