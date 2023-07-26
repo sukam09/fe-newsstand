@@ -1,5 +1,5 @@
-import { getPressObj } from "./api/api.js";
-import { subscribeState } from "./store/subscribeState.js";
+import { getPressObj } from "../api/api.js";
+import { subscribeState } from "../store/subscribeState.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 let sub_length = 0;

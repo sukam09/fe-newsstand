@@ -2,12 +2,15 @@ import {
   initializeProgress,
   runProgress,
   clearProgress,
-} from "./progressBar.js";
-import { runSubProgress } from "./subProgressBar.js";
+} from "./components/progressBar.js";
+import { runSubProgress } from "./components/subProgressBar.js";
 import { setDisplayofArr, removeAddClass } from "./util/utils.js";
-import { setSubGrid } from "./subGrid.js";
-import { drawListView } from "./listNews.js";
-import { appendSubCategory, drawSubListView } from "./subListNews.js";
+import { setSubGrid } from "./components/subGrid.js";
+import { drawListView } from "./components/listNews.js";
+import {
+  appendSubCategory,
+  drawSubListView,
+} from "./components/subListNews.js";
 import { subscribeState } from "./store/subscribeState.js";
 
 let grid_view_selected = true;

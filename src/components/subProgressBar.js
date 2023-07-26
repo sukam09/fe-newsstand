@@ -1,5 +1,5 @@
 import { drawSubListView } from "./subListNews.js";
-import { subscribeState } from "./store/subscribeState.js";
+import { subscribeState } from "../store/subscribeState.js";
 
 const PROGRESS_TIME = 2000;
 let category_num = 0;

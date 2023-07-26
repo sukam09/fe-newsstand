@@ -1,9 +1,9 @@
-import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "./path.js";
+import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "../path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
-import { getNewsContent, getPressObj } from "./api/api.js";
+import { getNewsContent, getPressObj } from "../api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
-import { subscribeState } from "./store/subscribeState.js";
-import { removeAddClass } from "./util/utils.js";
+import { subscribeState } from "../store/subscribeState.js";
+import { removeAddClass } from "../util/utils.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;

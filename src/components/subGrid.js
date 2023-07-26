@@ -1,6 +1,6 @@
-import { GRID_SUB_BTN_IMG, UNSUB_BTN_IMG } from "./path.js";
-import { setDisplay, removeAddClass } from "./util/utils.js";
-import { subscribeState } from "./store/subscribeState.js";
+import { GRID_SUB_BTN_IMG, UNSUB_BTN_IMG } from "../path.js";
+import { setDisplay, removeAddClass } from "../util/utils.js";
+import { subscribeState } from "../store/subscribeState.js";
 import { PRESS_NUM_IN_GRID } from "./randomGrid.js";
 
 /***** 미리 24개의 아이템 채우기 *****/
@@ -81,7 +81,7 @@ yes.addEventListener("click", () => {
     removeAddClass(element, "full", "empty");
   });
   setSubGrid();
-  const target_class_name = `#press-list .id${target_press_id}`; // 해결해야됨 !!!!!!!!!!!!!!!!!
+  const target_class_name = `#press-list .id${target_press_id}`;
   const $list = document.querySelector(target_class_name);
   $list.src = GRID_SUB_BTN_IMG;
   $list.className = `sub id${target_press_id}`;

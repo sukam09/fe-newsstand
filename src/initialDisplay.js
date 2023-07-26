@@ -1,4 +1,4 @@
-import { appendCategoryTabNum } from "./listNews.js";
+import { appendCategoryTabNum } from "./components/listNews.js";
 import { setDisplay, setDisplayofArr } from "./util/utils.js";
 
 /***** 초기 화면 *****/
