@@ -7,6 +7,7 @@ import {
   gridPageCount,
   isGridView,
   isSubView,
+  isDark,
 } from "../store/store.js";
 import { drawListArrow, drawNews, setNowCount, restartAnimation } from "../view/listView.js";
 import { setSubListNav } from "../subscribe/subscribeList.js";

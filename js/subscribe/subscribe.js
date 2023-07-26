@@ -9,6 +9,7 @@ import { getState, setState } from "../observer/observer.js";
 
 let presses = null;
 let snackbarTimer;
+let subscribeModalTimer;
 
 function gridMouseOver({ target: target }) {
   const $original = target.querySelector("img");
@@ -47,14 +48,22 @@ function listSubMouseClick(news) {
     setSubData(news);
     setDisplay(".subscribe-modal", "query", "block"); // 구독 모달 출현
     drawNews(); // 화면 다시 뿌림
-    setTimeout(moveSubListView, MODAL_POPUP_TIME);
+    subscribeModalTimer = setTimeout(moveSubListView, MODAL_POPUP_TIME);
+    setTimeout(() => document.addEventListener("click", documentClick), 100); // 0.1s delay
   } else {
     // 구독 상태면
     onListUndiscribeModal();
   }
 }
 
+function documentClick() {
+  clearTimeout(subscribeModalTimer);
+  setDisplay(".subscribe-modal", "query", "none");
+  document.removeEventListener("click", documentClick);
+}
+
 function moveSubListView() {
+  document.removeEventListener("click", documentClick);
   setState(isSubView, true); // 뷰 상태 바뀔 때 모두 렌더링
   setDisplay(".subscribe-modal", "query", "none");
   setState(subListPageCount, getState(subscribedPress).length - 1);
