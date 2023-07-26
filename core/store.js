@@ -34,7 +34,7 @@ function reducer(state = initialState, action) {
     case 'subscribe':
       return { ...state, myPress: [...state.myPress, { pid, pressName }] };
     case 'unsubscribe':
-      return { ...state, myPress: state.myPress.filter(press => press.pid !== pid) };
+      return { ...state, myPress: state.myPress.filter(({ pid: originalPid }) => originalPid !== pid) };
     default:
       return { ...state };
   }
@@ -52,9 +52,5 @@ function actionCreator(type, data) {
 }
 
 const store = new Store(reducer);
-
-store.subscribe(() => {
-  console.log(store.getState());
-});
 
 export { store, actionCreator };
