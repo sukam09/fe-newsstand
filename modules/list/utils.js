@@ -35,6 +35,7 @@ const totalModeIdx = () => {
     setState(listCateMediaIdx, 0);
   }
   if (getState(listCateIdx) === categoryKeys.length) {
+    console.log(getState(listCateIdx), categoryKeys.length);
     setState(listCateIdx, 0);
   }
 };

@@ -14,6 +14,7 @@ import {
   isLightMode,
   isTotalMode,
   subscribeList,
+  isGridMode,
 } from "../../store/index.js";
 import { changeIdx } from "./utils.js";
 import { register } from "../../observer/observer.js";
@@ -78,7 +79,6 @@ const isCurCategory = ({ cateIdx }) => {
  */
 const setACategoryBar = ({ keyList }) => {
   keyList.forEach((key, idx) => {
-    let cateHTML;
     const $li = document.createElement("li");
     $li.addEventListener("click", () => {
       if (isCurCategory({ cateIdx: idx })) return;
@@ -88,10 +88,9 @@ const setACategoryBar = ({ keyList }) => {
       } else {
         setState(listSubsMediaIdx, idx);
       }
-      setFullList();
     });
     $li.classList.add("category_unselected");
-    cateHTML = `
+    const cateHTML = `
       <p>${key}</p>
       <div></div>
   `;
@@ -130,7 +129,6 @@ const setProgressBar = () => {
     getState(isTotalMode)
       ? setState(listCateMediaIdx, getState(listCateMediaIdx) + 1)
       : setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
-    setFullList();
   });
 };
 
@@ -195,29 +193,33 @@ const setListView = () => {
  * 프로그래스바, 뉴스영역 렌더링
  */
 const setFullList = () => {
+  if (getState(isGridMode)) return;
   changeIdx();
-  setListView();
   setProgressBar();
+  setListView();
 };
 
 function initListRegister() {
   register([isTotalMode, subscribeList], setCategoryBar);
-  register([listCateIdx, listCateMediaIdx, listSubsMediaIdx], setCategoryBar);
+
+  register([isTotalMode, isLightMode, isGridMode], setFullList);
+  register([subscribeList, listSubsMediaIdx, listCateMediaIdx], setFullList);
 }
 
 /**
  * 초기 리스트뷰 세팅
  */
 async function initListView() {
+  initListRegister();
+
   await getListInfo();
 
   setListArrowEvent();
   setListModeEvent();
   setListSubscribeEvent();
+
   setCategoryBar();
   setFullList();
-
-  initListRegister();
 }
 
-export { initListView, setCategoryBar, setFullList, setListView };
+export { initListView };

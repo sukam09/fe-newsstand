@@ -10,7 +10,6 @@ import {
   subscribeList,
 } from "../../store/index.js";
 import { changeSubState, onClickSubscribeMode } from "../subscribe.js";
-import { setFullList } from "./list.js";
 
 const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");
@@ -31,7 +30,6 @@ const setListArrowEvent = () => {
       getState(isTotalMode)
         ? setState(listCateMediaIdx, getState(listCateMediaIdx) - 1)
         : setState(listSubsMediaIdx, getState(listSubsMediaIdx) - 1);
-      setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
@@ -39,7 +37,6 @@ const setListArrowEvent = () => {
       getState(isTotalMode)
         ? setState(listCateMediaIdx, getState(listCateMediaIdx) + 1)
         : setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
-      setFullList();
     }
   });
 };
@@ -77,8 +74,6 @@ const onClickListMode = ({ className }) => {
 
   setState(listCateIdx, 0);
   setState(listCateMediaIdx, 0);
-
-  setFullList();
 };
 
 const clickSubButton = () => {
