@@ -25,9 +25,9 @@ async function drawList(current) {
 
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
-    // const data = getIndex("listIndex");
-    const data = await getData("newsListData");
-    let list_content = data.News.filter((news) =>
+    const data = getIndex("listIndex");
+
+    let list_content = data.filter((news) =>
       getTabMode() === "all" ? news.category === current : news.name === current
     );
     if (getPage() <= 0 || list_content.length < getPage()) {
@@ -38,7 +38,7 @@ async function drawList(current) {
         ? (current = list[prevIndex])
         : (current = list[nextIndex]);
       store.setState({ page: FIRST_PAGE_NUM });
-      list_content = data.News.filter((news) =>
+      list_content = data.filter((news) =>
         getTabMode() === "all"
           ? news.category === current
           : news.name === current
