@@ -1,4 +1,4 @@
-import { ENTIRE } from "../constant.js";
+import { ENTIRE, SUBSCRIBE } from "../constant.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
 import { eachCategoryLength } from "../view/list.js";
 import { news } from "../view/list.js";
@@ -21,10 +21,10 @@ export function startTimer() {
         clearInterval(timerId);
         pageChange();
       } else {
-        currentWidth += PROGRESS_TAB_WIDTH / 100;
+        currentWidth += PROGRESS_TAB_WIDTH / 1000;
         progressRatioTab.style.width = `${currentWidth}px`;
       }
-    }, PAGE_AUTO_MOVING_TIME / 100); //0.2초 단위로 이동
+    }, PAGE_AUTO_MOVING_TIME / 1000); //0.2초 단위로 이동
   }
 
   function resetProgressBar() {
@@ -32,6 +32,25 @@ export function startTimer() {
     const progressRatioTab = progressTab.querySelector(".progress-ratio");
     progressRatioTab.style.width = "0px";
     currentWidth = 0;
+  }
+
+  function scrollMove() {
+    const field = document.querySelector("main .news-list-wrap .field-tab");
+    const fieldRectRight = field.getBoundingClientRect().right;
+    const fieldRectLeft = field.getBoundingClientRect().left;
+
+    const progressBar = document.querySelector("main .news-list-wrap .progress-tab");
+    const progressBarRectRight = progressBar.getBoundingClientRect().right;
+    const progressBarRectLeft = progressBar.getBoundingClientRect().left;
+
+    if (fieldRectRight < progressBarRectRight) {
+      //왼쪽으로 땡김
+      field.scrollLeft += progressBarRectRight - fieldRectRight;
+    }
+    if (fieldRectLeft > progressBarRectLeft) {
+      //오른쪽으로 땡김
+      field.scrollLeft += progressBarRectLeft - fieldRectLeft;
+    }
   }
 
   function pageChange() {
@@ -47,6 +66,11 @@ export function startTimer() {
       }
     } else {
       LIST_PAGE.setCategory((LIST_PAGE.category + 1) % news.length);
+    }
+
+    //프로그래스 탭 위치로 스크롤 조정
+    if (VIEW.tab === SUBSCRIBE) {
+      scrollMove();
     }
 
     //타이머 다시 시작
