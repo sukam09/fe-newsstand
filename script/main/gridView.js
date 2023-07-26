@@ -92,9 +92,16 @@ export const GridController = {
   addSubButton(isSub,logoIndex){
     const subElement = document.createElement('div');
     subElement.className = 'media-hover surface-alt';
-    subElement.innerHTML = isSub ? `<div class="subscribedWrapper surface-default"><img src = "assets/images/add.svg">
-    <p class="subscribed_info text-weak available-medium12">구독하기</p></div>` :`<div class="subscribedWrapper surface-default border-default"><img src = "assets/images/delete.svg">
-    <p class="subscribed_info text-weak available-medium12">해지하기</p></div>`;
+    subElement.innerHTML = isSub ? `
+    <div class="subscribedWrapper surface-default">
+      <img src = "assets/images/add.svg">
+      <p class="subscribed_info text-weak available-medium12">구독하기</p>
+    </div>
+    ` :`
+    <div class="subscribedWrapper surface-default border-default">
+      <img src = "assets/images/delete.svg">
+      <p class="subscribed_info text-weak available-medium12">해지하기</p>
+    </div>`;
     const wrapperElement = subElement.querySelector('.subscribedWrapper');
     
     if(isSub){
@@ -155,7 +162,7 @@ export const GridController = {
     ul.innerHTML = '';
     const liHTML = Array(MEDIA.PAGE_SIZE).fill().map(() => `
       <li>
-          <img src="" alt="" class="media_logo">
+        <img src="" alt="" class="media_logo">
       </li>
     `).join('');
     ul.innerHTML += liHTML;
