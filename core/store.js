@@ -9,9 +9,7 @@ class Store {
 
     this.dispatch = action => {
       state = reducer(state, action);
-      handler.forEach(fn => {
-        fn();
-      });
+      this.notify();
     };
 
     this.subscribe = listener => {
@@ -21,6 +19,12 @@ class Store {
     this.getState = () => state;
 
     this.getMyPress = () => state.myPress;
+
+    this.notify = () => {
+      handler.forEach(fn => {
+        fn();
+      });
+    };
   }
 }
 

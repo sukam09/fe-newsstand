@@ -72,8 +72,6 @@ export default function PressListView({ $target, initialState }) {
       const { pid } = store.getMyPress()[index];
       const { name, logo } = pidMap.get(pid);
 
-      console.log(pidMap, pid, name, logo);
-
       this.setState(
         {
           ...this.state,
@@ -190,6 +188,22 @@ export default function PressListView({ $target, initialState }) {
 
   let isInit = false;
 
+  const updateCategories = () => {
+    const { press, index, length } = this.state;
+
+    if (press === 'all') {
+      return;
+    }
+
+    const myPress = store.getMyPress().map(({ pressName }) => pressName);
+    this.setState({
+      ...this.state,
+      categories: myPress,
+      index: index === length - 1 ? index - 1 : index,
+      length: this.state.length - 1,
+    });
+  };
+
   this.render = async () => {
     if (!isInit) {
       initFieldTab();
@@ -283,4 +297,6 @@ export default function PressListView({ $target, initialState }) {
   };
 
   this.render();
+
+  store.subscribe(updateCategories);
 }
