@@ -1,6 +1,7 @@
 /* news grid layout */
 
-.news-section-grid {
+.news-section-grid,
+.news-section-my-grid {
   height: 388px;
   position: relative;
 }

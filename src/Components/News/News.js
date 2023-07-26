@@ -2,6 +2,7 @@ import { constants } from "../../Data/constants.js";
 import SubscribeStore from "../../Store/SubscribeStore.js";
 import ViewStore from "../../Store/ViewStore.js";
 import Component from "../../core/Component.js";
+import MyNewsGrid from "../MyNewsGrid/MyNewsGrid.js";
 import MyNewsList from "../MyNewsList/MyNewsList.js";
 import NavBar from "../NavBar/NavBar.js";
 import NewsGrid from "../NewsGrid/NewsGrid.js";
@@ -27,13 +28,20 @@ export default class News extends Component {
     return `
       <nav class="news-navbar"></nav>
       <section class="news-section-grid ${
-        !this.isViewNewsType(constants.SHOW_GRID) && "hidden"
+        !this.isViewNewsType(constants.SHOW_ALL_NEWS, constants.SHOW_GRID) &&
+        "hidden"
       }"></section>
       <section class="news-section-list ${
-        !this.isViewNewsType(constants.SHOW_LIST) && "hidden"
+        !this.isViewNewsType(constants.SHOW_ALL_NEWS, constants.SHOW_LIST) &&
+        "hidden"
       }"></section>
       <section class="news-section-my-list ${
-        !this.isViewNewsType(constants.SHOW_MY_LIST) && "hidden"
+        !this.isViewNewsType(constants.SHOW_MY_NEWS, constants.SHOW_LIST) &&
+        "hidden"
+      }"></section>
+      <section class="news-section-my-grid ${
+        !this.isViewNewsType(constants.SHOW_MY_NEWS, constants.SHOW_GRID) &&
+        "hidden"
       }"></section>
     `;
   }
@@ -60,6 +68,10 @@ export default class News extends Component {
       progressTimerMy: this.progressTimerMy,
       setProgressTimerMy: this.setProgressTimerMy,
       clearProgressTimer: this.clearProgressTimer,
+    });
+
+    new MyNewsGrid(this.$target.querySelector(".news-section-my-grid"), {
+      SubscribeStore: this.SubscribeStore,
     });
   }
 
@@ -92,7 +104,10 @@ export default class News extends Component {
     }
   }
 
-  isViewNewsType(type) {
-    return this.ViewStore.showNewsType === type;
+  isViewNewsType(categoryType, viewType) {
+    return (
+      this.ViewStore.newsCategory === categoryType &&
+      this.ViewStore.newsView === viewType
+    );
   }
 }

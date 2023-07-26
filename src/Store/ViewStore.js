@@ -4,11 +4,17 @@ import Observable from "../core/Observable.js";
 export default class ViewStore extends Observable {
   constructor() {
     super();
-    this.showNewsType = constants.SHOW_GRID;
+    this.newsCategory = constants.SHOW_ALL_NEWS;
+    this.newsView = constants.SHOW_GRID;
+  }
+
+  setCategory(categoryType) {
+    this.newsCategory = categoryType;
+    this.notify(this.newsCategory);
   }
 
   setView(viewType) {
-    this.showNewsType = viewType;
-    this.notify(this.showNewsType);
+    this.newsView = viewType;
+    this.notify(this.newsView);
   }
 }
