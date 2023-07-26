@@ -4,11 +4,8 @@ import { drawGrid } from "../grid-view/grid.js";
 import { drawList } from "../list-view/list.js";
 import { drawEmptySubView } from "./empty-sub-view.js";
 
-
-
-
 function renderView(){
-    const {crntPage, crntCategory, crntView, crntFilter} = store.getViewState();
+    const {crntView, crntFilter} = store.getViewState();
     if (crntFilter === FILTER_TYPE.SUBSCRIBED && store.getSubList().length === 0){ 
         // 구독한 언론사 없음 페이지
         drawEmptySubView();
@@ -16,10 +13,10 @@ function renderView(){
     }
     switch (crntView){
         case VIEW_TYPE.GRID:
-            drawGrid(crntPage);
+            drawGrid();
             break;
         case VIEW_TYPE.LIST:
-            drawList(crntCategory);
+            drawList();
             break;
     }
 }

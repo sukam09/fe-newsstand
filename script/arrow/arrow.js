@@ -55,12 +55,12 @@ function handleArrowClick(){
             const {navData} = filterData();
             if (crntPage == 0 && crntCategory == 0) { 
                 // first page of first category
-                store.setViewState({crntCategory: navData.length - 1, crntPage : 0, isStillList:true});
+                store.setViewState({crntCategory: navData.length - 1, crntPage : 0, isChangeCategory:true});
             } else if (crntPage == 0 && crntCategory > 0){ 
                 // first page of category
-                store.setViewState({crntCategory: crntCategory - 1, crntPage: 0, isStillList:true})
+                store.setViewState({crntCategory: crntCategory - 1, crntPage: 0, isChangeCategory:true})
             } else {
-                store.setViewState({crntPage: crntPage-1, isStillList:true});
+                store.setViewState({crntPage: crntPage-1});
             }
         } else { // crntView == VIEW_TYPE.GRID
             store.setViewState({crntPage: crntPage-1});
@@ -73,17 +73,16 @@ function handleArrowClick(){
             const {navData, numOfListPages} = filterData();
             if (crntPage >= numOfListPages - 1 && crntCategory >= navData.length - 1){ 
                 // last page of the last category
-                store.setViewState({crntCategory: 0, crntPage : 0, isStillList:true});
+                store.setViewState({crntCategory: 0, crntPage : 0, isChangeCategory:true});
             } else if (crntPage >= numOfListPages - 1 && crntCategory < navData.length - 1) { 
                 // last page of category
-                store.setViewState({crntCategory: crntCategory + 1, crntPage : 0,isStillList:true});
+                store.setViewState({crntCategory: crntCategory + 1, crntPage : 0, isChangeCategory:true});
             } else {
-                store.setViewState({crntPage: crntPage + 1, isStillList:true});
+                store.setViewState({crntPage: crntPage + 1});
             }
         } else { // crntView == VIEW_TYPE.GRID
             store.setViewState({crntPage: crntPage + 1});
         }
-
     })
 }
 

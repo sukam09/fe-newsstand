@@ -9,7 +9,7 @@ class Store {
             crntCategory : 0,           // category index (list view)
             crntFilter : FILTER_TYPE.ALL,
             isChangeView : false,
-            isStillList : false,
+            isChangeCategory :  false,
         }
         this.subList = [];
         this.shuffledList = [];
@@ -30,8 +30,8 @@ class Store {
         if (this.viewState.isChangeView === true){
             this.viewState.isChangeView = false;
         }
-        if (this.viewState.isStillList === true){
-            this.viewState.isStillList = false;
+        if (this.viewState.isChangeCategory === true) {
+            this.viewState.isChangeCategory = false;
         }
     }
     setViewState(newState){

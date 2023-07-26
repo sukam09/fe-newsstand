@@ -1,19 +1,23 @@
 import { store } from "../../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
-import { FILTER_TYPE } from "../../asset/data/constants.js";
+import { CATEGORY_LIST, FILTER_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
 
 function handleCategoryChange(catBtns){
+    // listNav.addEventListener("click", ({target}) => {
+    //     console.log(target.nodeName)
+    //     if (target.nodeName == "LI") {
+    //         console.log(target.nodeName)
+    //     }
+    // })
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
             let {crntCategory} = store.getViewState()
             if (crntCategory !== index){ // change to different category
-                catBtns[crntCategory].classList.remove("selected")
-                catBtns[index].classList.add("selected");
-                store.setViewState({crntCategory: index, crntPage: 0})
+                store.setViewState({crntCategory: index, crntPage: 0, isChangeCategory:true})
             } else { 
                 // stay in crnt category
             }
@@ -21,13 +25,13 @@ function handleCategoryChange(catBtns){
     })
 }
 
-function drawListPage({listData, navData, filterType}) {
-    const {crntPage, crntCategory} = store.getViewState();
+function drawListPage({listData, navData}) {
+    const {crntPage, crntCategory, crntFilter} = store.getViewState();
     let crntData;
-    if (filterType === FILTER_TYPE.ALL){
+    if (crntFilter === FILTER_TYPE.ALL){
         const filteredByCat = listData.filter(item => item.category == navData[crntCategory]);
         crntData = filteredByCat[crntPage]
-    } else if (filterType === FILTER_TYPE.SUBSCRIBED){
+    } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
         crntData = listData[crntCategory];
     }
     
@@ -50,36 +54,65 @@ function drawListPage({listData, navData, filterType}) {
         </section>
     </div>`
 }
-function drawListNav({listData, navData, filterType}){
-    const {crntPage, crntCategory} = store.getViewState();
+function drawListNav({navData}){
+    const {crntCategory} = store.getViewState();
     listNav.innerHTML = "";
     navData.forEach((category, index) => {
-        let numOfPages;
-        if (filterType === FILTER_TYPE.ALL){
-            numOfPages = listData.filter(data => data.category == category).length;
-        } else if (filterType === FILTER_TYPE.SUBSCRIBED){
-            numOfPages = 1;
-        }
-        
         listNav.innerHTML += `
-        <li class="${crntCategory == index ? "selected category" : "category"}">
+        <li class="${crntCategory == index ? "category" : "category"}">
             <div class="category-title">${category}</div>
             <div class="${crntCategory == index ? "" : "hide"} list-page-info">
-                <span class=" display-bold12">
-                ${filterType === FILTER_TYPE.ALL ? `${crntPage+1}<span>/${numOfPages}</span>` : `<img src="../asset/icons/chevron-right.png"/>`}
-                </span>
             </div>
         </li>`
     })
 }
+function drawSelectedCategory() {
+    const {crntCategory} = store.getViewState();
+    const listCategories = document.querySelectorAll(".category");
+    const listPageInfos= document.querySelectorAll(".list-page-info");
+    listCategories.forEach((category, index) => {
+        if (category.classList.contains("selected")){
+            category.classList.remove("selected");
+            listPageInfos[index].classList.add("hide");
+        } 
+        if (crntCategory === index){
+            category.classList.add("selected");
+            listPageInfos[index].classList.remove("hide")
+        }
+    })
+}
+function drawPageInfo({listData}) {
+    const {crntPage, crntCategory, crntFilter} = store.getViewState();
+    let numOfPages;
+    if (crntFilter === FILTER_TYPE.ALL){
+        numOfPages = listData.filter(data => data.category == CATEGORY_LIST[crntCategory]).length;
+    }
+    const listPageInfo = document.querySelectorAll(".list-page-info")[crntCategory];
+    listPageInfo.innerHTML = `
+        <span class="display-bold12">
+            ${crntFilter === FILTER_TYPE.ALL ? `${crntPage+1}<span>/${numOfPages}</span>` : `<img src="../asset/icons/chevron-right.png"/>`}
+        </span>`
+}
+
 function drawList() {
     const viewData = filterData(); // filter data to show according to crnt filter type
-    const filterType = store.getViewState().crntFilter;
-    drawListNav({...viewData, filterType})
-    drawProgressBar()
-    drawListPage({...viewData, filterType});
-    handleCategoryChange(listNav.children);
+    const {isChangeView, isChangeCategory} = store.getViewState();
+    if (isChangeView){
+        // 그리드뷰 -> 리스트뷰로 바뀔 때 실행
+        drawListNav({...viewData});
+        handleCategoryChange(listNav.children);
+        drawSelectedCategory();
+    }
+    if (isChangeCategory){
+        // 카테고리가 바뀔 때 실행
+        drawSelectedCategory();
+    }
+
+    // 항상 실행 (페이지가 바뀔 때)
+    drawPageInfo({...viewData}); 
+    drawProgressBar() 
+    drawListPage({...viewData}); 
+
 }
-    
 
 export {drawList}
