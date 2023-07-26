@@ -83,7 +83,7 @@ export default function PressGridView({ $target, initialState }) {
     let name = target.dataset.name;
 
     // li가 아닌 element를 클릭했을 경우
-    if (!id) {
+    if (id === undefined) {
       const dataset = target.closest('li').dataset;
       id = dataset.id;
       name = dataset.name;
