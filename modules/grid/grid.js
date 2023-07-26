@@ -175,4 +175,4 @@ async function initGridView() {
   setGridArrowEvent();
   setGridModeEvent();
 }
-export { initGridView, changeImgSrc, setButttonWrapper };
+export { initGridView };

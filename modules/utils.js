@@ -8,8 +8,6 @@ import {
 } from "../store/media.js";
 import { isGridMode, isTotalMode } from "../store/mode.js";
 import { subscribeList } from "../store/subscribe.js";
-import { changeImgSrc } from "./grid/grid.js";
-import { setFullList, setListView } from "/modules/list/list.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
@@ -43,7 +41,6 @@ const setColorModeEvent = () => {
 
     $colorModeBtn.src =
       $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
-    getState("isGridMode") ? changeImgSrc() : setListView();
   });
 };
 /**
@@ -116,7 +113,6 @@ const moveListView = () => {
 
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
-  setFullList();
 };
 
 const initSubsModalView = () => {
@@ -132,10 +128,6 @@ const initSubsModalView = () => {
     setState("subscribeList", newSubscribeList);
 
     $subsAlert.classList.add("hidden");
-
-    if (!getState("isGridMode")) {
-      setFullList();
-    }
 
     alert(MESSAGE.UNSUBSCRIBE);
     if (!isPossible()) return;
