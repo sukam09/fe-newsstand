@@ -89,9 +89,6 @@ const setSubNavMouseEvent = navList => {
     navList.scrollLeft -= e.clientX - prevX;
     prevX = e.clientX;
   });
-  document.eventManager.register('mouseup', document, () => {
-    prevX = null;
-  });
 };
 
 const subNavOnClick = (page, index, listStore) => {
