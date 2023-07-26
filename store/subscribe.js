@@ -2,7 +2,7 @@ import { initState } from "../observer/observer.js";
 
 const subscribeList = initState({
   key: "subscribeList",
-  defaultState: [],
+  defaultState: [3, 5, 7],
 });
 
 const selectSubscribeIdx = initState({

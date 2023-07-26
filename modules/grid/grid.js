@@ -1,6 +1,6 @@
 import { MEDIA } from "../../constant.js";
 import { getJSON } from "../data.js";
-import { isPossible, shuffleList } from "../utils.js";
+import { shuffleList } from "../utils.js";
 import { getState, register, setState } from "../../observer/observer.js";
 import {
   gridPageNum,

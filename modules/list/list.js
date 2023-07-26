@@ -14,7 +14,6 @@ import {
 } from "../../store/media.js";
 import { isLightMode, isTotalMode } from "../../store/mode.js";
 import { subscribeList } from "../../store/subscribe.js";
-import { isPossible } from "../utils.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(getState(categoryInfo));
@@ -49,50 +48,37 @@ const getListInfo = async () => {
  * 페이지 이동 시 예외처리
  */
 const changeIdx = () => {
-  let cateLen =
-    getState(categoryInfo)[categoryKeys[getState(listCateIdx)]].length;
-  let [cateIdx, cateMediaIdx] = [
-    getState(listCateIdx),
-    getState(listCateMediaIdx),
-  ];
+  getState(isTotalMode) ? totalModeIdx() : subscribeModeIdx();
+};
 
-  if (getState(isTotalMode)) {
-    if (cateIdx === 0 && cateMediaIdx === -1) {
-      // 첫 카테고리 첫 페이지에서 이전 페이지 이동 시
-      setState(listCateIdx, 6);
-      cateLen = getState(categoryInfo)[categoryKeys[cateIdx]].length;
-      setState(listCateMediaIdx, cateLen - 1);
-    } else if (
-      // 첫 카테고리 아닐 때, 첫 페이지에서 이전 페이지 이동 시
-      cateIdx !== 0 &&
-      cateMediaIdx === -1
-    ) {
-      setState(listCateIdx, cateIdx - 1);
-      cateLen = getState(categoryInfo)[categoryKeys[cateIdx]].length;
-      setState(listCateMediaIdx, cateLen - 1);
-    } else if (
-      // 마지막 카테고리일 때, 마지막 페이지라면,
-      cateIdx === 6 &&
-      cateMediaIdx === cateLen
-    ) {
-      setState(listCateIdx, 0);
-      setState(listCateMediaIdx, 0);
-    } else if (
-      // 마지막 카테고리가 아닐 때, 마지막 페이지라면,
-      cateIdx !== 6 &&
-      cateMediaIdx === cateLen
-    ) {
-      setState(listCateIdx, cateIdx + 1);
-      setState(listCateMediaIdx, 0);
-    }
-  } else if (!getState(isTotalMode)) {
-    const subsMediaIdx = getState(listSubsMediaIdx);
+const totalModeIdx = () => {
+  const cateInfo = getState(categoryInfo);
+  // 왼쪽 화살표 눌렀을 때
+  if (getState(listCateMediaIdx) === -1) {
+    setState(listCateIdx, getState(listCateIdx) - 1);
+    setState(listCateMediaIdx, 0);
+  }
+  if (getState(listCateIdx) === -1) {
+    setState(listCateIdx, categoryKeys.length - 1);
+  }
 
-    if (subsMediaIdx === -1) {
-      setState(listSubsMediaIdx, getState(subscribeList).length - 1);
-    } else if (subsMediaIdx === getState(subscribeList).length) {
-      setState(listSubsMediaIdx, 0);
-    }
+  // 오른쪽 화살표 눌렀을 때
+  let cateLen = cateInfo[categoryKeys[getState(listCateIdx)]].length;
+  if (getState(listCateMediaIdx) === cateLen) {
+    setState(listCateIdx, getState(listCateIdx) + 1);
+    setState(listCateMediaIdx, 0);
+  }
+  if (getState(listCateIdx) === categoryKeys.length) {
+    setState(listCateIdx, 0);
+  }
+};
+
+const subscribeModeIdx = () => {
+  const subList = getState(subscribeList);
+  if (getState(listSubsMediaIdx) === -1) {
+    setState(listSubsMediaIdx, subList.length - 1);
+  } else if (getState(listSubsMediaIdx) === subList.length) {
+    setState(listSubsMediaIdx, 0);
   }
 };
 
