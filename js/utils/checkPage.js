@@ -9,12 +9,11 @@ export function checkPage(hiddenMode = "false") {
     //구독한 언론사 마지막 페이지
     if (hiddenMode) {
       right_btn.style.visibility = "hidden";
-    } else {
-      if (getPage() === FIRST_PAGE_NUM) {
-        left_btn.style.visibility = "hidden";
-      } else if (getPage() === LAST_PAGE_NUM) {
-        right_btn.style.visibility = "hidden";
-      }
+    }
+    if (getPage() === FIRST_PAGE_NUM) {
+      left_btn.style.visibility = "hidden";
+    } else if (getPage() === LAST_PAGE_NUM) {
+      right_btn.style.visibility = "hidden";
     }
   }
 }
