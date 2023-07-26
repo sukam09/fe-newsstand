@@ -3,14 +3,16 @@ import Stores from "./core/Store.js";
 import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
-import { changeImageSrc } from "../utils/utils.js";
+import { alertList, replaceSubscribeButtonList } from "./alert.js";
 
 let timeOut;
 const drawNews = (news) => {
-  let progressBarId =
+  const progressBarId =
     document.getElementsByClassName("progress-bar")[currentCategoryIndex].id;
-  let pageIndex = currentCategoryPageNumber - 1;
-  if (Stores.getSubscribedMode() === "subscribed") pageIndex = 0;
+  let pageIndex =
+    Stores.getSubscribedMode() === "subscribed"
+      ? 0
+      : currentCategoryPageNumber - 1;
   drawNewsDiv(news, progressBarId, pageIndex);
   drawNewsHeader(news, progressBarId, pageIndex);
   clickSubscribeButton(news, progressBarId);
@@ -49,7 +51,7 @@ function drawNewsHeader(news, progressBarId, pageIndex) {
   news_header.innerHTML = "";
   let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${news[progressBarId][pageIndex].name}"  src="${news[progressBarId][pageIndex].logo}"><span class="news-edit-time">${news[progressBarId][pageIndex].editTime}</span><img class="subscribe-buttonList" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
-  if (isSubscribed(news, progressBarId)) replaceSubscribeButton("cancel");
+  if (isSubscribed(news, progressBarId)) replaceSubscribeButtonList("cancel");
 }
 
 function isSubscribed(news, progressBarId) {
@@ -80,57 +82,16 @@ function clickSubscribeButton(news, progressBarId) {
         Stores.setSubscribedMode("subscribed");
         renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
       }, rollingTime);
-      replaceSubscribeButton("cancel");
+      replaceSubscribeButtonList("cancel");
     } else {
       if (timeOut) clearTimeout(timeOut);
-      alert(
+      alertList(
         news,
         news[progressBarId][currentCategoryPageNumber - 1].name,
         progressBarId
       );
     }
   });
-}
-
-function alert(news, newsPress, progressBarId) {
-  const alertDiv = document.querySelector(".alert");
-  alertDiv.style.display = "flex";
-  let alertInnerDiv = `<div class="alert-main"><div class="alert-question"><div><span>${newsPress}</span>을(를)</div>구독해지하시겠습니까?</div><div class="alert-answer"><div class="alert-yes">예, 해지합니다</div><div class="alert-no">아니오</div></div></div>`;
-  alertDiv.innerHTML = alertInnerDiv;
-  alertClick(news, alertDiv, progressBarId);
-}
-
-function alertClick(news, alertDiv, progressBarId) {
-  const alertYes = document.querySelector(".alert-yes");
-  const alertNo = document.querySelector(".alert-no");
-  alertYes.addEventListener("click", () => {
-    alertDiv.style.display = "none";
-    Stores.removeSubscribeNewsContent(
-      news[progressBarId][currentCategoryPageNumber - 1].id
-    );
-    Stores.setPageMode("list");
-    replaceSubscribeButton("subscribe");
-    if (!Object.keys(Stores.getSubscribeNewsContent()).length)
-      Stores.setSubscribedMode("all");
-    renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
-  });
-  alertNo.addEventListener("click", () => {
-    alertDiv.style.display = "none";
-  });
-}
-
-function replaceSubscribeButton(buttonType) {
-  if (buttonType === "subscribe") {
-    changeImageSrc(
-      document.querySelector(".subscribe-buttonList"),
-      "./img/subscribe_button.svg"
-    );
-  } else {
-    changeImageSrc(
-      document.querySelector(".subscribe-buttonList"),
-      "./img/subscribe_cancel_button.svg"
-    );
-  }
 }
 
 export { drawNews };

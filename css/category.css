@@ -4,7 +4,7 @@
   display: flex;
   align-items: flex-start;
   border-bottom: solid 1px #d2dae0;
-  overflow-x: scroll;
+  overflow: scroll;
 }
 
 .categoryItem progress {
@@ -54,4 +54,8 @@
 .categoryItem > span {
   z-index: 1;
   margin-right: 10px;
+}
+
+.categoryWrap > ul::-webkit-scrollbar {
+  display: none;
 }

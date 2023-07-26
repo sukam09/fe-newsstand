@@ -36,6 +36,30 @@ function boldAll() {
   document.getElementById("subscribedNews").style.color = "#879298";
 }
 
+function doBeforeRender(pageMode) {
+  if (pageMode === "list") {
+    document.getElementById("main-grid").style.display = "none";
+    document.getElementById("main-list").style.display = "flex";
+    changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
+    changeImageSrc(
+      document.getElementById("card-list-image"),
+      "./img/clicked_card_list.png"
+    );
+  } else {
+    document.getElementById("main-grid").style.display = "grid";
+    document.getElementById("main-list").style.display = "none";
+    changeImageSrc(
+      document.getElementById("card-list-image"),
+      "./img/card_list.svg"
+    );
+    changeImageSrc(
+      document.getElementById("grid-image"),
+      "./img/clicked_grid.png"
+    );
+  }
+  removeArrow();
+}
+
 export {
   shuffle,
   changeImageSrc,
@@ -43,4 +67,5 @@ export {
   removeArrow,
   boldSubscribed,
   boldAll,
+  doBeforeRender,
 };

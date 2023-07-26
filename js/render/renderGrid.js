@@ -1,34 +1,25 @@
 import Stores from "../core/Store.js";
 import { addEventArrowGrid } from "../clickEvent/addEventArrowGrid.js";
 import { snackBar } from "../snackBar.js";
-import { changeImageSrc, removeArrow, shuffle } from "../../utils/utils.js";
+import { shuffle, doBeforeRender } from "../../utils/utils.js";
 import { renderMain } from "./renderMain.js";
 import { rollingTime } from "../../utils/constants.js";
-
-const gridMain = document.getElementById("main-grid");
-const listMain = document.getElementById("main-list");
+import { replaceSubscribeButtonGrid } from "../alert.js";
 let timeOut;
 
 const renderGrid = (logos) => {
-  gridMain.style.display = "grid";
-  listMain.style.display = "none";
-  changeImageSrc(
-    document.getElementById("card-list-image"),
-    "./img/card_list.svg"
-  );
-  changeImageSrc(
-    document.getElementById("grid-image"),
-    "./img/clicked_grid.png"
-  );
-  removeArrow();
-  if (Stores.getSubscribedMode() == "all") shuffle(logos);
+  doBeforeRender("grid");
+  if (Stores.getSubscribedMode() == "all") {
+    shuffle(logos);
+    addEventArrowGrid(logos);
+  }
   makeGrid(logos);
-  if (Stores.getSubscribedMode() == "all") addEventArrowGrid(logos);
   clickSubscribeButtonGrid(logos);
 };
 
 function makeGrid(logos) {
   const COUNT_PER_PAGE = 24;
+  const gridMain = document.getElementById("main-grid");
   gridMain.innerHTML = "";
   let outerDiv = "";
   for (
@@ -53,7 +44,7 @@ function clickSubscribeButtonGrid() {
   const subscribeButton = document.querySelectorAll(".subscribe-button");
   subscribeButton.forEach((value, index) => {
     if (isSubscribedGrid(subscribeButton[index]))
-      replaceSubscribeButton(subscribeButton[index], "cancel");
+      replaceSubscribeButtonGrid(subscribeButton[index], "cancel");
     subscribeButton[index].addEventListener("click", function () {
       if (!isSubscribedGrid(subscribeButton[index])) {
         Stores.setSubscribeNewsContent(subscribeButton[index].id);
@@ -74,48 +65,14 @@ function clickSubscribeButtonGrid() {
   });
 }
 
-function alertGrid(subscribeButton) {
-  const alertDiv = document.querySelector(".alert");
-  alertDiv.style.display = "flex";
-  let alertInnerDiv = `<div class="alert-main"><div class="alert-question"><div><span>${subscribeButton.alt}</span>을(를)</div>구독해지하시겠습니까?</div><div class="alert-answer"><div class="alert-yes">예, 해지합니다</div><div class="alert-no">아니오</div></div></div>`;
-  alertDiv.innerHTML = alertInnerDiv;
-  alertClickGrid(subscribeButton, alertDiv);
-}
-
-function alertClickGrid(subscribeButton, alertDiv) {
-  const alertYes = document.querySelector(".alert-yes");
-  const alertNo = document.querySelector(".alert-no");
-  alertYes.addEventListener("click", () => {
-    alertDiv.style.display = "none";
-    Stores.removeSubscribeNewsContent(subscribeButton.id);
-    replaceSubscribeButton(subscribeButton, "subscribe");
-    if (Object.keys(Stores.getSubscribeNewsContent()).length === 0)
-      Stores.setSubscribedMode("all");
-    renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
-  });
-  alertNo.addEventListener("click", () => {
-    alertDiv.style.display = "none";
-  });
-}
-
 function isSubscribedGrid(subscribeButton) {
   const subscribeData = Stores.getSubscribeNewsContent();
   for (const key in subscribeData) {
     const articles = subscribeData[key];
-    for (const article of articles) {
+    for (const article of articles)
       if (article.id == subscribeButton.id) return true;
-    }
   }
   return false;
-}
-
-function replaceSubscribeButton(subscribeButton, buttonType) {
-  changeImageSrc(
-    subscribeButton,
-    buttonType === "subscribe"
-      ? "./img/subscribe_button.svg"
-      : "./img/dis-subscribe-button.svg"
-  );
 }
 
 export { renderGrid, makeGrid, clickSubscribeButtonGrid };

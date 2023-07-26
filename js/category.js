@@ -16,10 +16,10 @@ const drawCategory = (news) => {
 };
 
 function drawCategoryList(news) {
-  let categoryHtml = `<div class="categoryWrap"><ul>`;
+  let categoryHtml = `<div class="categoryWrap"><ul class="categoryUl">`;
   for (const categoryItem of Object.keys(news)) {
     categoryHtml += `<div class="categoryItem" id="category${categoryItem}">
-    <div class="progress-bar" id="${categoryItem}"></div><span class="category">${categoryItem}</span></li>${drawCategoryNumber(
+    <div class="progress-bar" id="${categoryItem}"></div><span class="category">${categoryItem}</span>${drawCategoryNumber(
       news[categoryItem]
     )}</div>`;
   }
@@ -209,4 +209,5 @@ function clickCategory(news) {
     }
   });
 }
+
 export { drawCategory, currentCategoryIndex, currentCategoryPageNumber };

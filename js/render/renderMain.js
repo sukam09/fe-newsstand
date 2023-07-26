@@ -4,7 +4,6 @@ import logo from "../../json/news_image.json" assert { type: "json" };
 import Stores from "../core/Store.js";
 import { snackBar } from "../snackBar.js";
 import { boldSubscribed, boldAll } from "../../utils/utils.js";
-
 const renderMain = (subscribeStatus, pageMode) =>
   subscribeStatus === "all" ? renderAll(pageMode) : renderSubscribe(pageMode);
 
