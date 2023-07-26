@@ -56,6 +56,7 @@ export function updateCategory() {
     const categoryNews = news_data.filter((press) => press.category === category[LIST_PAGE.category]);
     setNews(shuffle_press(categoryNews));
   }
+
   const progressTab = document.querySelector("main .news-list-wrap .field-tab .progress-tab");
   const nextProgressEl = document.querySelectorAll(".news-list-wrap .field-tab .each-tab")[LIST_PAGE.category];
 
@@ -64,6 +65,7 @@ export function updateCategory() {
 }
 
 function tabClassChange(targetTab, previousProgressTab) {
+  prevProgressWidthChange(previousProgressTab);
   const CURRENT_PAGE = LIST_PAGE.page;
   const CURRENT_CATEGORY = LIST_PAGE.category;
 
