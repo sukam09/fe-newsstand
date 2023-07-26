@@ -7,15 +7,14 @@ export default class SubGridView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "grid-wrapper";
-    this.$subPressOrder = store.getState();
     this.page = 0;
-    this.maxPage = Math.floor(this.$subPressOrder.length / (GRID_COUNT + 1));
-    this.render();
+    this.maxPage = Math.floor(store.getStateSize() / (GRID_COUNT + 1));
 
-    return this.$wrapper;
+    this.render();
   }
 
   addGrid() {
+    const subPressOrder = store.getState();
     const $newsListGrid = document.createElement("div");
     $newsListGrid.className = "news-list-wrapper";
     const $newsLists = document.createElement("ul");
@@ -25,7 +24,7 @@ export default class SubGridView {
       i < GRID_COUNT * (this.page + 1);
       i++
     ) {
-      $newsLists.appendChild(new AllNewsList(this.$subPressOrder[i]).$wrapper);
+      $newsLists.appendChild(new AllNewsList(subPressOrder[i]).$wrapper);
     }
     $newsListGrid.appendChild($newsLists);
 

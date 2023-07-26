@@ -3,6 +3,7 @@ import SubGridView from "./GridView/SubGridView.js";
 import GridView from "./GridView/index.js";
 import SubListView from "./ListView/SubListView/index.js";
 import ListView from "./ListView/AllListView/index.js";
+import store from "../../core/Store.js";
 
 export default class AllNews {
   constructor() {
@@ -32,8 +33,10 @@ export default class AllNews {
   renderSubGridView() {
     this.$wrapper.replaceChildren();
 
+    const subGridViewObj = new SubGridView();
+    store.subscribe(() => subGridViewObj.render());
     this.$wrapper.appendChild(this.allNewsNavigationObj);
-    this.$wrapper.appendChild(new SubGridView());
+    this.$wrapper.appendChild(subGridViewObj.$wrapper);
   }
 
   /** 구독한 언로사 리스트뷰 렌더링 */

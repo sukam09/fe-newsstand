@@ -55,16 +55,5 @@ export default class UnsubButton {
 
   handleClickYesButton(name) {
     store.removeState(name);
-
-    this.removeModal();
-  }
-
-  removeModal() {
-    const $gridWrapper = document.querySelector(".news-list-wrapper");
-    const $listWrapper = document.querySelector(".list-container");
-    const $modal = document.querySelector(".unsub-modal");
-
-    if ($gridWrapper) $gridWrapper.removeChild($modal);
-    if ($listWrapper) $listWrapper.removeChild($modal);
   }
 }
