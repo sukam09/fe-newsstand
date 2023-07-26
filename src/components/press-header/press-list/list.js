@@ -12,8 +12,8 @@ class PressListStore extends Store {
     this.categoryList = categoryList;
 
     this.initList();
-    initListProgress();
-    initListButton(this.pressData, this.categoryList);
+    initListProgress(pressData, categoryList);
+    // initListButton(this.pressData, this.categoryList);
   }
 
   initList() {

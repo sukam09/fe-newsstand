@@ -1,4 +1,5 @@
 import { HEADER_CLASS, MESSESE, NUMBER } from '../constants/press-popup.js';
+import { LIST } from '../constants/press-data.js';
 import pressHeaderStore from '../components/press-header/press-header.js';
 
 const getSnackBar = () => {
@@ -15,10 +16,10 @@ const getSnackBar = () => {
 const getAlert = (pressIds, pressName) => {
   const alert = document.querySelector(`.${HEADER_CLASS.ALERT}`);
   renderAlert(alert, pressName);
-  renderAlertEvent(alert, pressIds);
+  renderAlertEvent(alert, pressIds, pressName);
 };
 
-const renderAlertEvent = (alert, pressIds) => {
+const renderAlertEvent = (alert, pressIds, pressName) => {
   const alertYes = alert.querySelector(`.${HEADER_CLASS.ALERT_YES}`);
   const alertNo = alert.querySelector(`.${HEADER_CLASS.ALERT_NO}`);
   showPopup(alert);
@@ -26,7 +27,7 @@ const renderAlertEvent = (alert, pressIds) => {
   alertNo.addEventListener('click', () => hidePopup(alert));
   alertYes.addEventListener('click', () => {
     hidePopup(alert);
-    pressHeaderStore.setState({ isEntire: pressIds.length < NUMBER.MAX_PRESS ? false : true });
+    pressHeaderStore.setState({ isEntire: LIST.SUBSCRIBE_NAME.includes(pressName) ? true : false });
   });
 };
 

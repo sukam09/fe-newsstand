@@ -40,6 +40,7 @@ class ListButton {
     const sectionMain = document.querySelector('.press-category__section-main');
     const pressId = Number(sectionMain.getAttribute('pressid'));
     const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+    console.log();
     console.log(isSubscribe);
     const button = document.querySelector('.section-main__button');
     const buttonImg = button.querySelector(`.section-main__img-button`);

@@ -1,9 +1,12 @@
 import { LIST } from '../../../constants/press-data.js';
 import { Store } from '../../../utils/store.js';
+import { getSnackBar, getAlert } from '../../../utils/popup.js';
 
 class ListProgress extends Store {
-  constructor() {
+  constructor(pressData, categoryList) {
     super();
+    this.pressData = pressData;
+    this.categoryList = categoryList;
     this.state = {
       pageCount: 1,
       categoryCount: 1,
@@ -13,6 +16,7 @@ class ListProgress extends Store {
 
     this.setupProgress();
     this.setupClick();
+    this.setupButtonEvent();
     this.render();
     this.setupArrow('right');
     this.setupArrow('left');
@@ -22,6 +26,7 @@ class ListProgress extends Store {
   render() {
     this.setupMain();
     this.setupSub();
+    this.setupButton();
   }
 
   setupMain() {
@@ -177,10 +182,50 @@ class ListProgress extends Store {
     addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
     addLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
   }
+
+  setupButton() {
+    const sectionMain = document.querySelector('.press-category__section-main');
+    const pressId = Number(sectionMain.getAttribute('pressid'));
+    const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+
+    const button = document.querySelector('.section-main__button');
+    const buttonImg = button.querySelector(`.section-main__img-button`);
+    const buttonP = button.querySelector(`.section-main__p-button`);
+
+    const newButtonSrc = isSubscribe
+      ? buttonImg.src.replace('plus', 'closed')
+      : buttonImg.src.replace('closed', 'plus');
+    const newButtonP = isSubscribe ? '' : '구독하기';
+
+    button.classList.toggle('section-main__button-closed', isSubscribe);
+    buttonImg.src = newButtonSrc;
+    buttonP.innerText = newButtonP;
+  }
+
+  setupButtonEvent() {
+    const button = document.querySelector('.section-main__button');
+    button.addEventListener('click', () => {
+      const sectionMain = document.querySelector('.press-category__section-main');
+      const pressId = Number(sectionMain.getAttribute('pressid'));
+      const pressName = sectionMain.getAttribute('pressname');
+      const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
+
+      if (isSubscribe) {
+        LIST.SUBSCRIBE_ID = LIST.SUBSCRIBE_ID.filter((id) => id !== pressId);
+        LIST.SUBSCRIBE_NAME = LIST.SUBSCRIBE_NAME.filter((name) => name !== pressName);
+        getAlert(this.categoryList, pressName);
+      }
+      if (!isSubscribe) {
+        LIST.SUBSCRIBE_ID.push(pressId);
+        LIST.SUBSCRIBE_NAME.push(pressName);
+        getSnackBar(this.pressData);
+      }
+    });
+  }
 }
 
-const initListProgress = () => {
-  const listProgress = new ListProgress();
+const initListProgress = (pressData, categoryList) => {
+  const listProgress = new ListProgress(pressData, categoryList);
 };
 
 export { initListProgress };
