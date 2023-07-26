@@ -5,7 +5,7 @@ import { getFetchData } from '../utils/fetch.js';
 import { initLightDarkMode } from './light-dark-mode.js';
 
 import { initPressGrid } from './press-grid.js';
-import { initPressList } from './press-list.js';
+import { initPressList } from './list.js';
 
 class PressHeaderStore extends Store {
   constructor() {

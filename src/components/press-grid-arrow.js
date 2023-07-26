@@ -10,14 +10,13 @@ class GridArrowStore extends Store {
     };
     this.pressData = pressData;
     this.pressList = pressList;
-
-    this.setupEvent();
-    this.setupIcon();
-    this.render();
+    this.subscribe(this.render.bind(this));
   }
 
   initArrow() {
-    this.subscribe(this.render.bind(this));
+    this.setupEvent();
+    this.setupIcon();
+    this.render();
   }
 
   render() {
