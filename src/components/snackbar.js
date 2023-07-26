@@ -1,9 +1,9 @@
 import { register, setState } from "../core/observer/observer.js";
 import {
+  categoryIdx,
   isAlertOn,
   isSnackOn,
   isSubTab,
-  subscribeList,
 } from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
 
@@ -32,6 +32,7 @@ export function setSnackbar() {
   progressLine.addEventListener("animationend", () => {
     setInvisible();
     setState(isSubTab, true);
+    setState(categoryIdx, 0);
   });
   snackbar.addEventListener("click", setInvisible);
 }

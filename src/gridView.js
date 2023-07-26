@@ -5,6 +5,7 @@ import {
   deletePress,
   gridPageIdx,
   isAlertOn,
+  isDarkMode,
   isGrid,
   isSnackOn,
   isSubTab,
@@ -102,9 +103,9 @@ function createGridItem(element) {
   const li = document.createElement("li");
   const subButtonContainer = createSubButton(element.id);
   const unSubButtonContainer = createUnSubButton(element.id);
-
+  const isDark = getState(isDarkMode);
   // 이미지 로드
-  newImg.src = element.lightSrc;
+  newImg.src = isDark ? element.darkSrc : element.lightSrc;
   newImg.id = element.id;
   li.style.position = "relative";
 
@@ -185,6 +186,9 @@ async function setGridEvents() {
     appendGridList(shuffledArr);
   });
   register(subscribeList, checkMode);
+  register(isDarkMode, () => {
+    appendGridList(shuffledArr);
+  });
 }
 
 export { setGridEvents };

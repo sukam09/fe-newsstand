@@ -95,6 +95,11 @@ function toggleSubClicked() {
   if (subListCount === 0) {
     alert("구독한 언론사가 없습니다!");
   } else {
+    if (getState(isSubTab)) {
+      setState(isGrid, true);
+    } else {
+      setState(isGrid, false);
+    }
     setState(isSubTab, !getState(isSubTab));
     setState(categoryIdx, 0);
     setState(listPageIdx, 1);
