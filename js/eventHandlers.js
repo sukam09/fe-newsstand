@@ -5,6 +5,7 @@ import { gridAllPage, viewOption, viewType, subPress } from "./store/store.js";
 import { GRID_NUM } from "./constant.js";
 import { renderGridView } from "./main/gridView/renderGridView.js";
 import { renderListView } from "./main/listView/renderListView.js";
+import { LIST_VIEW, GRID_VIEW, ALL_PRESS, SUB_PRESS } from "./constant.js";
 
 /* grid View */
 function changePage(e) {
@@ -30,13 +31,13 @@ function handleMouseOut(_img, originImg) {
 
 /* change view */
 function changeViewOptionToSub() {
-  if (getState(viewOption) === "all") {
-    setState(viewOption, "sub");
+  if (getState(viewOption) === ALL_PRESS) {
+    setState(viewOption, SUB_PRESS);
   }
 }
 function changeViewOptionToAll() {
-  if (getState(viewOption) === "sub") {
-    setState(viewOption, "all");
+  if (getState(viewOption) === SUB_PRESS) {
+    setState(viewOption, ALL_PRESS);
   }
 }
 
@@ -49,14 +50,14 @@ function clickYes(selectedPress, _img) {
   setState(subPress, SubscribePress);
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
-  if (getState(viewType) === "list") {
-    if (getState(viewOption) === "sub") {
+  if (getState(viewType) === LIST_VIEW) {
+    if (getState(viewOption) === SUB_PRESS) {
       renderListView();
     }
     _img.setAttribute("src", "../images/icon/subscribe.svg");
   }
 
-  if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
+  if (getState(viewType) === GRID_VIEW && getState(viewOption) === SUB_PRESS) {
     if (SubscribePress.length % GRID_NUM === 0) {
       setState(gridAllPage, getState(gridAllPage) - 1);
     }
@@ -70,7 +71,7 @@ function clickNo() {
 
 /* viewType Btn*/
 function changeViewTypeToList(listViewBtn, gridViewBtn) {
-  setState(viewType, "list");
+  setState(viewType, LIST_VIEW);
   listViewBtn.innerHTML = `<img
     src="../images/icon/List-view-checked.svg"
     alt="images"
@@ -82,7 +83,7 @@ alt="images"
   displayView();
 }
 function changeViewTypeToGrid(listViewBtn, gridViewBtn) {
-  setState(viewType, "grid");
+  setState(viewType, GRID_VIEW);
   listViewBtn.innerHTML = `<img
   src="../images/icon/List-view-unchecked.svg"
   alt="images"
@@ -102,14 +103,14 @@ function displayView() {
   const gridLeftBtn = document.getElementById("grid-left-btn");
   const gridRightBtn = document.getElementById("grid-right-btn");
 
-  if (getState(viewType) === "list") {
+  if (getState(viewType) === LIST_VIEW) {
     gridView.style.display = "none";
     listView.style.display = "block";
     listViewLeftBtn.style.display = "block";
     listViewRightBtn.style.display = "block";
     gridLeftBtn.style.display = "none";
     gridRightBtn.style.display = "none";
-  } else if (getState(viewType) === "grid") {
+  } else if (getState(viewType) === GRID_VIEW) {
     listView.style.display = "none";
     gridView.style.display = "flex";
     listViewLeftBtn.style.display = "none";

@@ -1,6 +1,6 @@
 import { getState, setState } from "./store/observer.js";
 import { subPress, viewType } from "./store/store.js";
-import { SNACKBAR_TIME } from "./constant.js";
+import { SNACKBAR_TIME, LIST_VIEW } from "./constant.js";
 import { clickNo, clickYes } from "./eventHandlers.js";
 
 let clearSnackbar;
@@ -20,7 +20,7 @@ function clickSubscribeBtn(selectedPress, _img) {
     clearTimeout(clearSnackbar);
     clearSnackbar = setTimeout(() => moveToSubList(snackbar), SNACKBAR_TIME);
 
-    if (getState(viewType) === "list")
+    if (getState(viewType) === LIST_VIEW)
       _img.setAttribute("src", "../images/icon/Unsubscribe2.svg");
     else _img.setAttribute("src", "../images/icon/Unsubscribe.svg");
 

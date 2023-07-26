@@ -6,6 +6,7 @@ import {
   changeViewTypeToList,
   changeViewTypeToGrid,
 } from "../eventHandlers.js";
+import { ALL_PRESS, SUB_PRESS } from "../constant.js";
 
 function changeView() {
   const allPress = document.querySelector(".all-press");
@@ -25,12 +26,12 @@ function changeView() {
 function changeViewOption() {
   const allPress = document.querySelector(".all-press");
   const subPress = document.querySelector(".sub-press");
-  if (getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     allPress.classList.replace("unclicked-press", "clicked-press");
     subPress.classList.replace("clicked-press", "unclicked-press");
     setState(gridAllPage, 1);
     setState(listAllPage, 0);
-  } else if (getState(viewOption) === "sub") {
+  } else if (getState(viewOption) === SUB_PRESS) {
     subPress.classList.replace("unclicked-press", "clicked-press");
     allPress.classList.replace("clicked-press", "unclicked-press");
     setState(gridAllPage, 1);

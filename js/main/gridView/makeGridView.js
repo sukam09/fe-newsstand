@@ -1,11 +1,17 @@
-import { GRID_NUM, MIN_PAGE, MAX_PAGE, PRESS_NUM } from "../../constant.js";
+import {
+  GRID_NUM,
+  MIN_PAGE,
+  MAX_PAGE,
+  PRESS_NUM,
+  ALL_PRESS,
+  SUB_PRESS,
+} from "../../constant.js";
 import {
   gridAllPage,
   gridSubPage,
   isDark,
   subPress,
   viewOption,
-  viewType,
 } from "../../store/store.js";
 import { getState } from "../../store/observer.js";
 import {
@@ -40,7 +46,7 @@ function makeGridView(press) {
     i++
   ) {
     let _li, _img;
-    if (getState(viewOption) === "all") {
+    if (getState(viewOption) === ALL_PRESS) {
       [_li, _img] = makeGrid(_press[shuffledPress[i]]);
     } else {
       [_li, _img] = makeGrid(_press[i]);
@@ -93,23 +99,23 @@ function checkPage() {
   left_btn.style.visibility = "visible";
   right_btn.style.visibility = "visible";
 
-  if (getState(viewType) === "grid" && getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     if (getState(gridAllPage) === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
     } else if (getState(gridAllPage) === MAX_PAGE) {
       right_btn.style.visibility = "hidden";
     }
-  } else if (getState(viewType) === "grid" && getState(viewOption) === "sub") {
+  } else if (getState(viewOption) === SUB_PRESS) {
     if (
       getState(gridSubPage) === MIN_PAGE &&
-      getState(gridSubPage) >= Math.ceil(getState(subPress).length / 24)
+      getState(gridSubPage) >= Math.ceil(getState(subPress).length / GRID_NUM)
     ) {
       left_btn.style.visibility = "hidden";
       right_btn.style.visibility = "hidden";
     } else if (getState(gridSubPage) === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
     } else if (
-      getState(gridSubPage) >= Math.ceil(getState(subPress).length / 24)
+      getState(gridSubPage) >= Math.ceil(getState(subPress).length / GRID_NUM)
     ) {
       right_btn.style.visibility = "hidden";
     }

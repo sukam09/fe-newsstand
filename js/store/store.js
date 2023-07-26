@@ -1,8 +1,9 @@
 import { initState } from "./observer.js";
+import { GRID_VIEW, ALL_PRESS } from "../constant.js";
 
-const viewType = initState({ key: "viewType", defaultState: "grid" });
+const viewType = initState({ key: "viewType", defaultState: GRID_VIEW });
 
-const viewOption = initState({ key: "viewOption", defaultState: "all" });
+const viewOption = initState({ key: "viewOption", defaultState: ALL_PRESS });
 
 const listAllPage = initState({ key: "listPage", defaultState: 0 });
 

@@ -4,6 +4,7 @@ import { resetAnimation, addAnimation } from "./handleAnimation.js";
 import { news_by_press } from "./manipulateNewsByPress.js";
 import { getState, setState } from "../../store/observer.js";
 import { listAllPage, viewOption } from "../../store/store.js";
+import { ALL_PRESS } from "../../constant.js";
 
 /* about list view left, right Btn */
 
@@ -33,7 +34,7 @@ function handleLeftBtn(currentCategory) {
       prevCategory = document.querySelector(".category li:last-child");
     }
     let prevMaxPage;
-    if (getState(viewOption) === "all") {
+    if (getState(viewOption) === ALL_PRESS) {
       prevMaxPage = news_by_category[prevCategory.innerText].length;
     } else {
       prevMaxPage = news_by_press[prevCategory.innerText].length;
@@ -58,7 +59,7 @@ function handleRightBtn(currentCategory) {
 }
 
 function findPageNum(category) {
-  if (getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     return news_by_category[category.dataset.category].length;
   } else {
     return news_by_press[category.dataset.category].length;

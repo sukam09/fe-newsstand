@@ -1,8 +1,9 @@
 import { refreshPage } from "./refreshPage.js";
 import { getDate } from "./getDate.js";
+import { REFRESH_DATE_TIME } from "../constant.js";
 
 function initHeader() {
-  getDate(".date", 60000);
+  getDate(".date", REFRESH_DATE_TIME);
   refreshPage(".title");
 }
 export { initHeader };

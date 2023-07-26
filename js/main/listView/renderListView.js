@@ -4,10 +4,11 @@ import { getState } from "../../store/observer.js";
 import { manipulateNewsByCategory } from "./manipulateNewsByCategory.js";
 import { manipulateNewsByPress } from "./manipulateNewsByPress.js";
 import { makeListView } from "./makeListView.js";
+import { ALL_PRESS } from "../../constant.js";
 
 async function renderListView() {
   const news = await fetchData(".././assets/news.json");
-  if (getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     manipulateNewsByCategory(news);
     makeListView();
   } else {

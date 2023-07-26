@@ -9,6 +9,7 @@ import { checkPressInLocal } from "../../subscribe.js";
 import { clickSubscribeBtn } from "../../subscribe.js";
 import { getState } from "../../store/observer.js";
 import { isDark, listAllPage, viewOption } from "../../store/store.js";
+import { ALL_PRESS } from "../../constant.js";
 
 function makeRandomNews() {
   if (getState(viewOption) === "press") return;
@@ -22,7 +23,7 @@ function makeCategory() {
   showView();
 
   let _category;
-  if (getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     _category = category;
   } else {
     _category = press;
@@ -132,7 +133,7 @@ function changePageInfo(e) {
   //e.target => span (class = category-num)
   //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
-  if (getState(viewOption) === "all") {
+  if (getState(viewOption) === ALL_PRESS) {
     e.target.parentElement.children[2].innerText = `${
       getState(listAllPage) + 1
     }/${getPagesNum(e.currentTarget.dataset.category)}`;
@@ -143,7 +144,7 @@ function changePageInfo(e) {
 
 /* GET */
 function getNews(category) {
-  if (getState(viewOption) === "all") return news_by_category[category];
+  if (getState(viewOption) === ALL_PRESS) return news_by_category[category];
   else return news_by_press[category];
 }
 
