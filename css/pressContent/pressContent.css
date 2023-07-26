@@ -25,6 +25,15 @@
   border-left: 1px solid #d2dae0;
 }
 
+.press-content-my-grid-view li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #d2dae0;
+  border-right: 1px solid #d2dae0;
+}
+
 .press-content-all-grid-view li {
   list-style: none;
   display: flex;
@@ -34,7 +43,14 @@
   border-right: 1px solid #d2dae0;
 }
 
-.press-content-list-view {
+.press-content-all-list-view {
+  width: 930px;
+  height: 388px;
+  border: 1px solid #d2dae0;
+  display: none;
+}
+
+.press-content-my-list-view {
   width: 930px;
   height: 388px;
   border: 1px solid #d2dae0;

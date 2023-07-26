@@ -3,21 +3,42 @@ import { showListNewsData } from "./pressListChange.js";
 import { isGrid, allOfPress } from "../store/store.js";
 import { getState, register, setState } from "../observer/observer.js";
 
+const pressListView = getQuerySelector("#pressbar-icon-list-view");
+const pressGridView = getQuerySelector("#pressbar-icon-grid-view");
+
+const allOfPressMode = getQuerySelector(".pressbar-name-all");
+const myPressMode = getQuerySelector(".pressbar-name-subscribe");
+
 function changeViewMode() {
   setState(isGrid, !getState(isGrid));
 }
 
 function changePressMode() {
   setState(allOfPress, !getState(allOfPress));
+
+  if (getState(allOfPress)) {
+    makeStrongPressbarName(allOfPressMode);
+    makeDefaultPressbarName(myPressMode);
+  } else {
+    makeStrongPressbarName(myPressMode);
+    makeDefaultPressbarName(allOfPressMode);
+  }
+}
+
+function makeDefaultPressbarName(selector) {
+  selector.style.cssText =
+    "font-weight: 500;\
+      color: #879298;";
+}
+
+function makeStrongPressbarName(selector) {
+  selector.style.cssText =
+    "font-weight: 700;\
+      color: #14212b;";
 }
 
 // 언론사 뷰 전환시 아이콘 색상 변경(UI)
 function pressViewChange() {
-  const pressListView = getQuerySelector("#pressbar-icon-list-view");
-  const pressGridView = getQuerySelector("#pressbar-icon-grid-view");
-
-  const allOfPressMode = getQuerySelector(".pressbar-name-all");
-  const myPressMode = getQuerySelector(".pressbar-name-subscribe");
   myPressMode.addEventListener("click", changePressMode);
   allOfPressMode.addEventListener("click", changePressMode);
 
@@ -52,37 +73,43 @@ function updateViewButtons() {
 function showPressView() {
   const currentIsGridMode = getState(isGrid);
   const currentIsAllOfPress = getState(allOfPress);
-  console.log("isGrid ", currentIsGridMode);
-  console.log("allOfPress ", currentIsAllOfPress);
+
+  const pressContentAllListView = getQuerySelector(
+    ".press-content-all-list-view"
+  );
+  const pressContentMyListView = getQuerySelector(
+    ".press-content-my-list-view"
+  );
+
   const pressContentAllGridView = getQuerySelector(
     ".press-content-all-grid-view"
   );
   const pressContentMyGridView = getQuerySelector(
     ".press-content-my-grid-view"
   );
-  const pressContentListView = getQuerySelector(".press-content-list-view");
 
   if (currentIsGridMode && currentIsAllOfPress) {
+    pressContentMyListView.style.display = "none";
     pressContentAllGridView.style.display = "grid";
     pressContentMyGridView.style.display = "none";
+    pressContentAllListView.style.display = "none";
   } else if (currentIsGridMode && !currentIsAllOfPress) {
+    pressContentMyListView.style.display = "none";
     pressContentAllGridView.style.display = "none";
     pressContentMyGridView.style.display = "grid";
-  } else if (!currentIsGridMode) {
-    pressContentListView.style.display = "block";
+    pressContentAllListView.style.display = "none";
+  } else if (!currentIsGridMode && currentIsAllOfPress) {
+    //전체 리스트
+    pressContentMyListView.style.display = "none";
+    pressContentAllListView.style.display = "block";
+    pressContentAllGridView.style.display = "none";
+    pressContentMyGridView.style.display = "none";
+  } else {
+    pressContentMyListView.style.display = "block";
+    pressContentAllListView.style.display = "none";
     pressContentAllGridView.style.display = "none";
     pressContentMyGridView.style.display = "none";
   }
-  // pressContentAllGridView.style.display =
-  //   currentIsGridMode && currentIsAllOfPress ? "grid" : "none";
-
-  // pressContentMyGridView.style.display =
-  //   currentIsGridMode && !currentIsAllOfPress ? "none" : "grid";
-
-  // pressContentListView.style.display = currentIsGridMode ? "none" : "block";
-  // pressContentListView.style.display = !currentIsGridMode ? "block" : "none";
 }
-
-// 전체 언론사, 내가 구독한 언론사
 
 export { pressViewChange };

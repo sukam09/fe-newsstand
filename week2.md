@@ -150,7 +150,7 @@ export { getElemId, getElemClass, getQuerySelector, getQuerySelectorAll };
 ```javascript
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
 function showPressImg(flag) {
-  const pressContentView = getElemClass(
+  const pressContentAllView = getElemClass(
     document,
     "press-content-all-grid-view"
   );
@@ -162,7 +162,7 @@ function showPressImg(flag) {
   page[pageNumber].forEach((elem) => {
     imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
   });
-  pressContentView[0].innerHTML = imgSrcContent;
+  pressContentAllView[0].innerHTML = imgSrcContent;
 }
 ```
 
