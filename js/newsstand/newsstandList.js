@@ -1,6 +1,7 @@
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
+import { switchToListAll } from "../utils/switch.js";
 import {
   nextContents,
   makeNewsList,
@@ -66,7 +67,12 @@ addEventOnMySubAndAllSub();
 store.subscribe(renderList);
 
 export function paintNewsCategory() {
-  console.log("PAINT LIST");
+  getNavTabView() === VIEW.MY_SUB &&
+    getSubscrbeList().length === 0 &&
+    (function () {
+      alert("보여줄 콘텐츠가 없습니다.");
+      switchToListAll();
+    })();
   // 카테고리 이름 (ex. 종합/경제 or YTN)
   const categoryNameList =
     getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
@@ -216,7 +222,9 @@ function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
     if (getUserView() === VIEW.LIST) {
       setNavTabViewToMy();
-      onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
+      // 내가 구독한 언론사에 포커스를 줄려면 구독한 콘텐츠가 하나라도 있어야됌.
+      getSubscrbeList().length &&
+        onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
       setCategoryIndex(0);
       setContentsPage(1);
       // paintNewsCategory();

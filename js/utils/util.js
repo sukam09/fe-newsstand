@@ -1,6 +1,7 @@
 import { focusToAllPublisher, focusToMyPubliser } from "../utils/navTab.js";
 import { MESSAGE } from "./constant.js";
-import { snackBarCallBack, switchTo } from "./snackbar.js";
+import { snackBarCallBack } from "./snackbar.js";
+import { switchTo } from "./switch.js";
 
 let snackBarTime;
 
