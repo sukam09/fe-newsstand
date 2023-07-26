@@ -1,3 +1,4 @@
+import { HEADER_CLASS, PATH, CONTENT, NUMBER } from '../../../constants/press-list.js';
 import { LIST } from '../../../constants/press-data.js';
 import { getShuffle } from '../../../utils/shuffle.js';
 import { initListProgress } from './press-list-progress.js';
@@ -24,58 +25,58 @@ class PressListStore extends Store {
   }
 
   renderList() {
-    this.listWrapper = document.querySelector(`.press__wrapper-list`);
+    this.listWrapper = document.querySelector(`.${HEADER_CLASS.WRAPPER_LIST}`);
     this.listElement = `
-    <article class='press-category'>
-        <nav class='press-category__nav'>
-        <ul class='press-category__ul'></ul>
+    <article class=${HEADER_CLASS.CATEGORY}>
+        <nav class=${HEADER_CLASS.CATEGORY_NAV}>
+        <ul class=${HEADER_CLASS.CATEGORY_UL}></ul>
         </nav>
-        <article class='press-category__article'>
-        <section class='press-category__section-main'></section>
-        <section class='press-category__section-sub'></section>
+        <article class=${HEADER_CLASS.CATEGORY_ARTICLE}>
+        <section class=${HEADER_CLASS.SECTION_MAIN}></section>
+        <section class=${HEADER_CLASS.SECTION_SUB}></section>
         </article>
     </article>
-    <img class='arrows-category__img-left' src='./assets/icons/chevron-left.svg' />
-    <img class='arrows-category__img-right' src='./assets/icons/chevron-right.svg' />
+    <img class=${HEADER_CLASS.ARROW_LEFT} src=${PATH.ARROW_LEFT} />
+    <img class=${HEADER_CLASS.ARROW_RIGHT} src=${PATH.ARROW_RIGHT} />
     `;
     this.listWrapper.innerHTML = this.listElement;
   }
 
   renderMain() {
-    this.mainSection = document.querySelector(`.press-category__section-main`);
+    this.mainSection = document.querySelector(`.${HEADER_CLASS.SECTION_MAIN}`);
     this.mainElement = `
-    <nav class='section-main__nav'>
-        <img class='section-main__img-logo' src=''>
-        <div class='section-main__edit'>
-        <time class='section-main__edit-time'></time>
-        <p class='section-main__edit-p'>&nbsp편집</p>
+    <nav class=${HEADER_CLASS.SECTION_NAV}>
+        <img class=${HEADER_CLASS.SECTION_LOGO} src=''>
+        <div class=${HEADER_CLASS.SECTION_EDIT}>
+        <time class=${HEADER_CLASS.SECTION_EDIT_TIME}></time>
+        <p class=${HEADER_CLASS.SECTION_EDIT_P}>${CONTENT.EDIT}</p>
         </div>
-        <buttion class='section-main__button'>
-        <img class='section-main__img-button' src='./assets/icons/button-plus.svg' />
-        <p class='section-main__p-button'>구독하기</p>
+        <buttion class=${HEADER_CLASS.SECTION_BUTTON}>
+        <img class=${HEADER_CLASS.SECTION_BUTTON_SUBSCRIBE} src=${PATH.BUTTON_PLUS} />
+        <p class=${HEADER_CLASS.SECTION_P_SUBSCRIBE}>${CONTENT.SUBSCRIBE}</p>
         </button>
     </nav>
-    <img class='section-main__img-article' src=''/>
-    <h2 class='section-main__h2'></h2>
+    <img class=${HEADER_CLASS.SECTION_ARTICLE} src=''/>
+    <h2 class=${HEADER_CLASS.SECTION_MAIN_P}></h2>
     `;
 
     this.mainSection.innerHTML = this.mainElement;
   }
 
   renderSub() {
-    this.subSection = document.querySelector(`.press-category__section-sub`);
-    this.subFrame = Array.from({ length: 6 }, (_, idx) => idx);
+    this.subSection = document.querySelector(`.${HEADER_CLASS.SECTION_SUB}`);
+    this.subFrame = Array.from({ length: NUMBER.SUB_FRAME }, (_, idx) => idx);
     this.subElement = `
-    <footer class='section-sub__footer'> 
-        <p class='section-sub__footer-press'></p> 
-        <p class='section-sub__footer-text'>&nbsp언론사에서 직접 편집한 뉴스입니다.</p>
+    <footer class=${HEADER_CLASS.SECTION_FOOTER}> 
+        <p class=${HEADER_CLASS.SECTION_FOOTER_PRESS}></p> 
+        <p class=${HEADER_CLASS.SECTION_FOOTER_TEXT}>${CONTENT.PRESS_EDIT}</p>
     </footer>
     `;
 
     this.subFrame.forEach((_) => {
       this.subTitle = `
-        <h4 class='section-sub__h4'>
-        <a class='section-sub__a' href=''></a>
+        <h4 class=${HEADER_CLASS.SECTION_SUB_H4}>
+        <a class=${HEADER_CLASS.SECTION_SUB_A} href=''></a>
         </h4>
         `;
       this.subSection.insertAdjacentHTML('beforeend', this.subTitle);
@@ -84,17 +85,17 @@ class PressListStore extends Store {
   }
 
   renderNav() {
-    this.categorySection = document.querySelector(`.press-category__ul`);
+    this.categorySection = document.querySelector(`.${HEADER_CLASS.CATEGORY_UL}`);
     this.categoryList.forEach((category) => {
       this.categoryElement = `
-        <li class='press-category__li'>
-        <p class='press-category__p'>${category}</p>
-        <div class='press-category__div none'>
-            <div class='press-category__div-now'>1</div>
-            <div class='press-category__div-divide'>/</div>
-            <div class='press-category__div-sum'></div>
+        <li class=${HEADER_CLASS.CATEGORY_LI}>
+        <p class=${HEADER_CLASS.CATEGORY_P}>${category}</p>
+        <div class='${HEADER_CLASS.CATEGORY_DIV} ${HEADER_CLASS.NONE}'>
+            <div class=${HEADER_CLASS.CATEGORY_DIV_NOW}>1</div>
+            <div class=${HEADER_CLASS.CATEGORY_DIV_DIVIDE}>/</div>
+            <div class=${HEADER_CLASS.CATEGORY_DIV_SUM}></div>
         </div>
-        <img class='press-category__img none' src='./assets/icons/arrow.svg'/>
+        <img class='${HEADER_CLASS.CATEGORY_IMG} ${HEADER_CLASS.NONE}' src=${PATH.ARROW_NAV} />
 
         </li>
         `;
@@ -106,24 +107,20 @@ class PressListStore extends Store {
     LIST.SUFFLE_CATEGORY = [];
     this.categoryList.forEach((category) => {
       let categoryFilter = this.pressData.filter((press) => press.categoryName === category);
-      if (categoryFilter.length === 0) categoryFilter = this.pressData.filter((press) => press.name === category);
+      if (categoryFilter.length === NUMBER.CATEGORY_LENGTH)
+        categoryFilter = this.pressData.filter((press) => press.name === category);
       LIST.SUFFLE_CATEGORY.push(getShuffle(categoryFilter));
     });
   }
 
   setHover() {
-    const article = document.querySelector('.press-category__article');
-    const mainImg = document.querySelector('.section-main__img-article');
+    const article = document.querySelector(`.${HEADER_CLASS.CATEGORY_ARTICLE}`);
+    const mainImg = document.querySelector(`.${HEADER_CLASS.SECTION_ARTICLE}`);
 
-    const handleArticleHover = (isHover) => mainImg.classList.toggle('section-main__img-article-hover', isHover);
+    const handleArticleHover = (isHover) => mainImg.classList.toggle(HEADER_CLASS.SECTION_MAIN_HOVER, isHover);
     article.addEventListener('mouseenter', () => handleArticleHover(true));
     article.addEventListener('mouseleave', () => handleArticleHover(false));
   }
-
-  // const changeIcon = () => {
-  //   const modeImg = document.querySelector(`.mode__img`);
-  //   modeImg.addEventListener('click', () => setListArticle());
-  // };
 }
 
 const initPressList = (pressData, categoryList) => {

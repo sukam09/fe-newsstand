@@ -1,3 +1,4 @@
+import { HEADER_CLASS, BUTTON, ARROW, ATTRIBUTE, CATEGORY, NUMBER, CONTENT } from '../../../constants/press-list.js';
 import { LIST } from '../../../constants/press-data.js';
 import { Store } from '../../../utils/store.js';
 import { getSnackBar, getAlert } from '../../../utils/popup.js';
@@ -17,8 +18,8 @@ class ListProgress extends Store {
     this.setupProgress();
     this.setupClick();
     this.setupButtonEvent();
-    this.setupArrow('right');
-    this.setupArrow('left');
+    this.setupArrow(ARROW.RIGHT);
+    this.setupArrow(ARROW.LEFT);
     this.render();
     this.subscribe(this.render.bind(this));
   }
@@ -31,38 +32,40 @@ class ListProgress extends Store {
   }
 
   setupNav() {
-    const navStart = document.querySelector('.progress-start');
-    const navDiv = navStart.querySelector('.press-category__div');
-    const navImg = navStart.querySelector('.press-category__img');
-    const navP = navStart.querySelector('.press-category__p');
+    const navStart = document.querySelector(`.${HEADER_CLASS.PROGRESS_START}`);
+    const navDiv = navStart.querySelector(`.${HEADER_CLASS.CATEGORY_DIV}`);
+    const navImg = navStart.querySelector(`.${HEADER_CLASS.CATEGORY_IMG}`);
+    const navP = navStart.querySelector(`.${HEADER_CLASS.CATEGORY_P}`);
     const isSubscribe = LIST.SUBSCRIBE_NAME.includes(navP.innerText);
 
     if (isSubscribe) {
-      navDiv.classList.add('none');
-      navImg.classList.remove('none');
+      navDiv.classList.add(HEADER_CLASS.NONE);
+      navImg.classList.remove(HEADER_CLASS.NONE);
     }
     if (!isSubscribe) {
-      navDiv.classList.remove('none');
-      navImg.classList.add('none');
+      navDiv.classList.remove(HEADER_CLASS.NONE);
+      navImg.classList.add(HEADER_CLASS.NONE);
     }
   }
 
   setupMain() {
-    const categoryArticle = LIST.SUFFLE_CATEGORY[this.state.categoryCount - 1][this.state.pageCount - 1];
-    const sectionMain = document.querySelector('.press-category__section-main');
-    sectionMain.querySelector('.section-main__img-logo').src = categoryArticle.lightSrc;
-    sectionMain.querySelector('.section-main__edit-time').innerText = categoryArticle.categoryEdit;
-    sectionMain.querySelector('.section-main__img-article').src = categoryArticle.categoryImg;
-    sectionMain.querySelector('.section-main__h2').innerText = categoryArticle.categoryMainTitle;
-    sectionMain.setAttribute('pressid', categoryArticle.id);
-    sectionMain.setAttribute('pressname', categoryArticle.name);
+    const categoryArticle =
+      LIST.SUFFLE_CATEGORY[this.state.categoryCount - NUMBER.INDEX][this.state.pageCount - NUMBER.INDEX];
+    const sectionMain = document.querySelector(`.${HEADER_CLASS.SECTION_MAIN}`);
+    sectionMain.querySelector(`.${HEADER_CLASS.SECTION_LOGO}`).src = categoryArticle.lightSrc;
+    sectionMain.querySelector(`.${HEADER_CLASS.SECTION_EDIT_TIME}`).innerText = categoryArticle.categoryEdit;
+    sectionMain.querySelector(`.${HEADER_CLASS.SECTION_ARTICLE}`).src = categoryArticle.categoryImg;
+    sectionMain.querySelector(`.${HEADER_CLASS.SECTION_MAIN_P}`).innerText = categoryArticle.categoryMainTitle;
+    sectionMain.setAttribute(ATTRIBUTE.PRESS_ID, categoryArticle.id);
+    sectionMain.setAttribute(ATTRIBUTE.PRESS_NAME, categoryArticle.name);
   }
 
   setupSub() {
-    const categoryArticle = LIST.SUFFLE_CATEGORY[this.state.categoryCount - 1][this.state.pageCount - 1];
-    const sectionSub = document.querySelector('.press-category__section-sub');
-    const sectionSubList = sectionSub.querySelectorAll('.section-sub__a');
-    sectionSub.querySelector('.section-sub__footer-press').innerText = categoryArticle.name;
+    const categoryArticle =
+      LIST.SUFFLE_CATEGORY[this.state.categoryCount - NUMBER.INDEX][this.state.pageCount - NUMBER.INDEX];
+    const sectionSub = document.querySelector(`.${HEADER_CLASS.SECTION_SUB}`);
+    const sectionSubList = sectionSub.querySelectorAll(`.${HEADER_CLASS.SECTION_SUB_A}`);
+    sectionSub.querySelector(`.${HEADER_CLASS.SECTION_FOOTER_PRESS}`).innerText = categoryArticle.name;
     sectionSubList.forEach((sub, subIdx) => {
       sub.innerText = categoryArticle.categorySubTitle[subIdx].title;
       sub.href = categoryArticle.categorySubTitle[subIdx].link;
@@ -70,13 +73,13 @@ class ListProgress extends Store {
   }
 
   setupProgress() {
-    const initLi = document.querySelector('.press-category__ul');
-    const progressBar = document.querySelectorAll('.press-category__li');
-    initLi.querySelector('.press-category__li')?.classList.add('progress-start');
+    const initLi = document.querySelector(`.${HEADER_CLASS.CATEGORY_UL}`);
+    const progressBar = document.querySelectorAll(`.${HEADER_CLASS.CATEGORY_LI}`);
+    initLi.querySelector(`.${HEADER_CLASS.CATEGORY_LI}`).classList.add(HEADER_CLASS.PROGRESS_START);
     this.setupNav();
 
-    initLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
-    initLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
+    initLi.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_NOW}`).innerText = this.state.pageCount;
+    initLi.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_SUM}`).innerText = this.state.pageLength;
 
     progressBar.forEach((progress) => {
       progress.addEventListener('animationiteration', () => this.setupNext(progress));
@@ -84,7 +87,7 @@ class ListProgress extends Store {
   }
 
   setupNext(progress) {
-    const progressNow = progress.querySelector('.press-category__div-now');
+    const progressNow = progress.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_NOW}`);
     const PAGE = this.state.pageCount < this.state.pageLength;
     const CATEGORY = this.state.categoryCount < this.state.categoryLength;
 
@@ -94,35 +97,35 @@ class ListProgress extends Store {
   }
 
   setNextPage(progressNow) {
-    this.setState({ pageCount: this.state.pageCount + 1 });
+    this.setState({ pageCount: this.state.pageCount + NUMBER.INDEX });
     progressNow.innerText = this.state.pageCount;
   }
 
   setNextCategory() {
-    const nextCategoryIndex = this.state.categoryCount + 1;
+    const nextCategoryIndex = this.state.categoryCount + NUMBER.INDEX;
     this.setupNextCategory(nextCategoryIndex);
   }
 
   setFirstCategory() {
-    const firstCategoryIndex = 1;
+    const firstCategoryIndex = NUMBER.INDEX;
     this.setupNextCategory(firstCategoryIndex);
   }
 
   setupNextCategory(categoryIndex) {
     this.setState({
-      pageCount: 1,
+      pageCount: NUMBER.INDEX,
       categoryCount: categoryIndex,
-      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
+      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - NUMBER.INDEX].length,
     });
 
-    const addLi = document.querySelector('.press-category__ul').children[categoryIndex - 1];
+    const addLi = document.querySelector(`.${HEADER_CLASS.CATEGORY_UL}`).children[categoryIndex - NUMBER.INDEX];
     this.setupClassList(addLi);
   }
 
   setupPrev(progress) {
-    const progressNow = progress.querySelector('.press-category__div-now');
-    const PAGE = 1 < this.state.pageCount;
-    const CATEGORY = 1 < this.state.categoryCount;
+    const progressNow = progress.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_NOW}`);
+    const PAGE = NUMBER.INDEX < this.state.pageCount;
+    const CATEGORY = NUMBER.INDEX < this.state.categoryCount;
 
     if (PAGE) this.setPrevPage(progressNow);
     if (!PAGE && CATEGORY) this.setPrevCategory();
@@ -130,48 +133,48 @@ class ListProgress extends Store {
   }
 
   setPrevPage(progressNow) {
-    this.setState({ pageCount: this.state.pageCount - 1 });
+    this.setState({ pageCount: this.state.pageCount - NUMBER.INDEX });
     progressNow.innerText = this.state.pageCount;
   }
 
   setPrevCategory() {
-    const nextCategoryIndex = this.state.categoryCount - 1;
-    this.setupPrevCategory('prev', nextCategoryIndex);
+    const nextCategoryIndex = this.state.categoryCount - NUMBER.INDEX;
+    this.setupPrevCategory(CATEGORY.PREV, nextCategoryIndex);
   }
 
   setLastCategory() {
     const firstCategoryIndex = this.state.categoryLength;
-    this.setupPrevCategory('last', firstCategoryIndex);
+    this.setupPrevCategory(CATEGORY.LAST, firstCategoryIndex);
   }
 
   setupPrevCategory(side, categoryIndex) {
     this.setState({
       categoryCount: categoryIndex,
-      pageCount: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
-      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
+      pageCount: LIST.SUFFLE_CATEGORY[categoryIndex - NUMBER.INDEX].length,
+      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - NUMBER.INDEX].length,
     });
 
     const addLi =
-      side === 'prev'
-        ? document.querySelector('.progress-start').previousElementSibling
-        : document.querySelector('.press-category__ul').lastElementChild;
+      side === CATEGORY.PREV
+        ? document.querySelector(`.${HEADER_CLASS.PROGRESS_START}`).previousElementSibling
+        : document.querySelector(`.${HEADER_CLASS.CATEGORY_UL}`).lastElementChild;
     this.setupClassList(addLi);
   }
 
   setupClick() {
-    const progressBar = document.querySelectorAll('.press-category__li');
+    const progressBar = document.querySelectorAll(`.${HEADER_CLASS.CATEGORY_LI}`);
     progressBar.forEach((progress) => {
       progress.addEventListener('click', () => {
-        const progressName = progress.querySelector('.press-category__p').innerText;
+        const progressName = progress.querySelector(`.${HEADER_CLASS.CATEGORY_P}`).innerText;
         const isCategory = LIST.CATEGORY_NAME.includes(progressName);
         const progressIndex = isCategory
           ? LIST.CATEGORY_NAME.findIndex((name) => name === progressName)
           : LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
 
         this.setState({
-          pageCount: 1,
-          categoryCount: progressIndex + 1,
-          pageLength: LIST.SUFFLE_CATEGORY[this.state.categoryCount - 1].length,
+          pageCount: NUMBER.INDEX,
+          categoryCount: progressIndex + NUMBER.INDEX,
+          pageLength: LIST.SUFFLE_CATEGORY[this.state.categoryCount - NUMBER.INDEX].length,
         });
 
         this.setupClassList(progress);
@@ -180,52 +183,52 @@ class ListProgress extends Store {
   }
 
   setupArrow(side) {
-    const arrow = document.querySelector(`.arrows-category__img-${side}`);
+    const arrow = document.querySelector(`.${HEADER_CLASS.ARROW}${side}`);
     arrow.addEventListener('click', () => {
-      const progressStart = document.querySelector('.progress-start');
+      const progressStart = document.querySelector(`.${HEADER_CLASS.PROGRESS_START}`);
       const progressStartClone = progressStart.cloneNode(true);
       progressStartClone.addEventListener('animationiteration', () => this.setupNext(progressStartClone));
       progressStart.parentNode.replaceChild(progressStartClone, progressStart);
-      side === 'right' ? this.setupNext(progressStartClone) : this.setupPrev(progressStartClone);
+      side === ARROW_RIGHT ? this.setupNext(progressStartClone) : this.setupPrev(progressStartClone);
     });
   }
 
   setupClassList(addLi) {
-    const removeLi = document.querySelector('.progress-start');
-    removeLi.classList.remove('progress-start');
-    removeLi.querySelector('.press-category__div').classList.add('none');
+    const removeLi = document.querySelector(`.${HEADER_CLASS.PROGRESS_START}`);
+    removeLi.classList.remove(HEADER_CLASS.PROGRESS_START);
+    removeLi.querySelector(`.${HEADER_CLASS.CATEGORY_DIV}`).classList.add(HEADER_CLASS.NONE);
 
-    addLi.classList.add('progress-start');
+    addLi.classList.add(HEADER_CLASS.PROGRESS_START);
     this.setupNav();
-    addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
-    addLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
+    addLi.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_NOW}`).innerText = this.state.pageCount;
+    addLi.querySelector(`.${HEADER_CLASS.CATEGORY_DIV_SUM}`).innerText = this.state.pageLength;
   }
 
   setupButton() {
-    const sectionMain = document.querySelector('.press-category__section-main');
-    const pressId = Number(sectionMain.getAttribute('pressid'));
+    const sectionMain = document.querySelector(`.${HEADER_CLASS.SECTION_MAIN}`);
+    const pressId = Number(sectionMain.getAttribute(ATTRIBUTE.PRESS_NAME));
     const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
 
-    const button = document.querySelector('.section-main__button');
-    const buttonImg = button.querySelector(`.section-main__img-button`);
-    const buttonP = button.querySelector(`.section-main__p-button`);
+    const button = document.querySelector(`.${HEADER_CLASS.SECTION_BUTTON}`);
+    const buttonImg = button.querySelector(`.${HEADER_CLASS.SECTION_BUTTON_SUBSCRIBE}`);
+    const buttonP = button.querySelector(`.${HEADER_CLASS.SECTION_P_SUBSCRIBE}`);
 
     const newButtonSrc = isSubscribe
-      ? buttonImg.src.replace('plus', 'closed')
-      : buttonImg.src.replace('closed', 'plus');
-    const newButtonP = isSubscribe ? '' : '구독하기';
+      ? buttonImg.src.replace(BUTTON.PLUS, BUTTON.CLOSED)
+      : buttonImg.src.replace(BUTTON.CLOSED, BUTTON.PLUS);
+    const newButtonP = isSubscribe ? '' : CONTENT.SUBSCRIBE;
 
-    button.classList.toggle('section-main__button-closed', isSubscribe);
+    button.classList.toggle(HEADER_CLASS.SECTION_MAIN_BUTTON_CLOSE, isSubscribe);
     buttonImg.src = newButtonSrc;
     buttonP.innerText = newButtonP;
   }
 
   setupButtonEvent() {
-    const button = document.querySelector('.section-main__button');
+    const button = document.querySelector(`.${HEADER_CLASS.SECTION_BUTTON}`);
     button.addEventListener('click', () => {
-      const sectionMain = document.querySelector('.press-category__section-main');
-      const pressId = Number(sectionMain.getAttribute('pressid'));
-      const pressName = sectionMain.getAttribute('pressname');
+      const sectionMain = document.querySelector(`.${HEADER_CLASS.SECTION_MAIN}`);
+      const pressId = Number(sectionMain.getAttribute(ATTRIBUTE.PRESS_ID));
+      const pressName = sectionMain.getAttribute(ATTRIBUTE.PRESS_NAME);
       const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
 
       if (isSubscribe) {
