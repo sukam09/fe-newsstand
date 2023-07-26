@@ -11,7 +11,7 @@ pageStore.setObserver(() => {
 export const subscribedStore = createStore([0,1,2,3,4,5,6,7,8,9,10,11]);
 subscribedStore.setObserver( () => {
   GridController.setLogoList();
-  listViewInit();
+  // listViewInit();
 })
 
 export const mode = createStore('All');
@@ -23,19 +23,20 @@ mode.setObserver( () => {
 
 export const category_page = createStore(0);
 category_page.setObserver ( () => {
-  setNewsData();
+  // setNewsData();
 })
 
 export const media_page = createStore(0);
 media_page.setObserver( () => {
-  setNewsData();
+  // setNewsData();
 })
 
 export const view = createStore('Grid');
-
+view.setObserver( () => {
+  listViewInit();
+})
 export const viewMode = createStore('light');
 viewMode.setObserver(()=>{
   GridController.setLogoList();
-  listViewInit();
   setNewsData();
 })

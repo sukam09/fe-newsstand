@@ -12,6 +12,12 @@ let lastProgressed;
  */
 export const setNewsData = () => {
   const newsItem = categorizedData[categories[category_page.getState()]][media_page.getState()];
+  console.log("------");
+  console.log(categorizedData);
+  console.log(categories);
+  console.log(category_page.getState());
+  console.log(media_page.getState());
+  console.log("------");
   const index = media_data.findIndex(item => item.name === newsItem["name"]);
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
@@ -196,7 +202,6 @@ const getNewsData = async () => {
   categorizedData = categorizeData();
   createCategoryElements(categorizedData);
   setProgressed();
-  setNewsData();
 }
 
 /**
@@ -331,6 +336,8 @@ export const listViewInit = () => {
   setArrowHandler();
   category_page.setState(0);
   media_page.setState(0);
+  setNewsData();
+  
 };
 
 

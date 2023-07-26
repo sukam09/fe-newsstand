@@ -13,7 +13,6 @@ const viewSelector = () => {
     listBtn.src = "assets/images/list_blue.svg";
     gridBtn.src = "assets/images/grid_gray.svg";
     view.setState('List');
-    listViewInit();
   });
 
   gridBtn.addEventListener('click', () => {
