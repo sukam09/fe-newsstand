@@ -84,7 +84,9 @@ export function showGridView() {
       img = li.querySelector("img");
       li.addEventListener("mouseover", () => handleEvent("over", img));
       li.addEventListener("mouseout", () => handleEvent("out", img));
-      li.addEventListener("click", () => handleEvent("click", img));
+      li.querySelector("button").addEventListener("click", () =>
+        handleEvent("click", img)
+      );
     } else {
       li.style.cursor = "default";
     }

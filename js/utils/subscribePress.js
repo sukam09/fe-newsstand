@@ -36,7 +36,7 @@ export function checkAnswer(e) {
   const currentIndex = getSubscribedPress().findIndex(
     (press) => press.name === getCurrentPress().name
   );
-
+  if (!target) return;
   if (target.classList.contains("btn-yes")) {
     const updatedSubscribedPress = getSubscribedPress().filter(
       (item) => item.name !== getCurrentPress().name
