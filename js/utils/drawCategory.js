@@ -1,6 +1,6 @@
 import { showListView } from "./makeListView.js";
 import { store } from "../core/store.js";
-import { getPage, getTabMode } from "../core/getter.js";
+import { getIndex, getPage, getTabMode } from "../core/getter.js";
 import { FIRST_PAGE_NUM } from "../constants/constants.js";
 
 function handleClick(e) {
@@ -18,7 +18,7 @@ function checkProgress(current) {
     progress.addEventListener("animationend", () => {
       const _order = getPage();
       store.setState({ page: _order + 1 });
-      showListView(current, "");
+      showListView(current);
     });
   }
 }
@@ -71,12 +71,25 @@ export function drawCategory(current, list, contents) {
         </li>`;
   });
   main_list.innerHTML = `<div class="field-tab"><ul>${list_content}</ul></div>`;
+
+  const tabContainer = document.querySelector(".field-tab ul");
+  const tabContent = document.querySelector(".category");
+
+  // 클릭한 탭의 index를 구하고, 해당 위치를 기준으로 탭을 정렬
+  const clickedTab = document.querySelector(".selected");
+  const tabContainerWidth = tabContainer.offsetWidth;
+  const tabContentWidth = tabContent.offsetWidth;
+  const tabPosition = clickedTab.offsetLeft;
+  const scrollLeft = Math.max(
+    0,
+    tabPosition + tabContentWidth / 2 - tabContainerWidth / 2
+  );
+  tabContainer.scrollTo({ left: scrollLeft, behavior: "smooth" });
+
   document.addEventListener("DOMContentLoaded", checkProgress(current));
   let isDragging = false;
   let startScrollX;
   let startClickX;
-  const tabContainer = document.querySelector(".field-tab ul");
-  const tabContent = document.querySelector(".category");
 
   tabContainer.addEventListener("mousedown", (e) => {
     const popups = document.querySelectorAll(".popup");
