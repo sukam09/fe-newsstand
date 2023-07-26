@@ -12,6 +12,9 @@ export const MSG = {
   ALERT_NO: '아니오',
   BUTTON_SUB: '구독하기',
   BUTTON_UNSUB: '해지하기',
+  NOSUB_TITLE: '구독한 언론사가 없습니다.',
+  NOSUB_MSG:
+    '언론사 구독 설정에서 관심 있는 언론사를 구독하시면<br>언론사가 직접 편집한 뉴스들을 네이버 홈에서 바로 보실 수 있습니다.',
 };
 
 export const THEME = {
