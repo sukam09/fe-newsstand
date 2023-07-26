@@ -18,12 +18,20 @@ body {
   width: 930px;
 }
 
+.press-content-name-strong {
+  font-weight: 700;
+  color: #14212b;
+}
+
+.press-content-name-default {
+  font-weight: 500;
+  color: #879298;
+}
+
 .pressbar-name-all {
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
-  color: #14212b;
 }
 
 .pressbar-name-all:hover {
@@ -33,9 +41,7 @@ body {
 .pressbar-name-subscribe {
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
   line-height: 22px;
-  color: #879298;
   padding-left: 24px;
 }
 

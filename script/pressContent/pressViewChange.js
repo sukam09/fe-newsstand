@@ -25,16 +25,15 @@ function changePressMode() {
   }
 }
 
+// style속성 지우기
 function makeDefaultPressbarName(selector) {
-  selector.style.cssText =
-    "font-weight: 500;\
-      color: #879298;";
+  selector.classList.remove("press-content-name-strong");
+  selector.classList.add("press-content-name-default");
 }
 
 function makeStrongPressbarName(selector) {
-  selector.style.cssText =
-    "font-weight: 700;\
-      color: #14212b;";
+  selector.classList.remove("press-content-name-default");
+  selector.classList.add("press-content-name-strong");
 }
 
 // 언론사 뷰 전환시 아이콘 색상 변경(UI)
@@ -112,4 +111,4 @@ function showPressView() {
   }
 }
 
-export { pressViewChange };
+export { pressViewChange, changePressMode };
