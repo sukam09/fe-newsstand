@@ -58,8 +58,31 @@ export const list_option = {
 };
 
 export const subscribe_option = {
-    subscribe_press: {},
+    subscribe_press: [],
     subscribe_categories: [],
     subscribe_current: 0,
     subscribe_news_data: {},
+
+    observers: [],
+
+    getState(values) {
+        const state = {};
+        values.forEach((value) => {
+            state[value] = this[value];
+        });
+        return state;
+    },
+
+    subscribe(observers) {
+        this.observers.push(observers);
+    },
+
+    dispatch(action, value) {
+        this[value] = viewReducer(this[value], action, value);
+        this.notify(value);
+    },
+
+    notify(value) {
+        this.observers.forEach((observer) => observer(this[value]));
+    },
 };

@@ -1,7 +1,7 @@
-import { handleEvents } from "./src/events.js";
+import { handleStandbyEvents } from "./src/events.js";
 
 function initApp() {
-    handleEvents();
+    handleStandbyEvents();
 }
 
 initApp();

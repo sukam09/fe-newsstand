@@ -14,8 +14,29 @@ export function viewReducer(state, action) {
 //     "main"
 // );
 
-export function gridReducer(state, action) {}
+export function gridReducer(state, action) {
+    switch (action.type) {
+        case "CHANGE_VIEW_OPTION":
+            return action.value;
+        default:
+            return state;
+    }
+}
 
-export function listReducer(state, action) {}
+export function listReducer(state, action) {
+    switch (action.type) {
+        case "CHANGE_VIEW_OPTION":
+            return action.value;
+        default:
+            return state;
+    }
+}
 
-export function subscribeReducer(state, action) {}
+export function subscribeReducer(state, action) {
+    switch (action.type) {
+        case "CHANGE_VIEW_OPTION":
+            return action.value;
+        default:
+            return state;
+    }
+}

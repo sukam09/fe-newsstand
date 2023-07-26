@@ -7,7 +7,7 @@ import {
     PROGRESS_MAX,
     MAX_CATEGORY,
 } from "./constants.js";
-import { list_option, subscribe_option } from "./globals.js";
+import { view_option, list_option, subscribe_option } from "./globals.js";
 import {
     fetchPressData,
     fetchNewsData,

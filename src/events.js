@@ -15,6 +15,7 @@ import {
     setCategoryIndex,
     setPageIndex,
     setSubscribeNewsData,
+    getEventData,
 } from "./utils.js";
 import {
     render,
@@ -144,24 +145,21 @@ function arrowPagingEvent() {
     const list_right_arrow = document.querySelector(".list_right_arrow");
 
     grid_left_arrow.addEventListener("click", () => {
-        const { main, press } = getOptions();
-        const { data, page } = renderOptions()[main][press];
+        const { main, press, data, page } = getEventData();
         if (page <= 0) return;
         handlePage(main, press, getCalPage(-1), data);
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
-        const { main, press } = getOptions();
-        const { data, page } = renderOptions()[main][press];
+        const { main, press, data, page } = getEventData();
         if (page >= length) return;
         handlePage(main, press, getCalPage(1), data);
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        const { main, press } = getOptions();
-        const { data, category } = renderOptions()[main][press];
+        const { main, press, data, category } = getEventData();
         handlePage(main, press, getCalPage(-1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
@@ -169,8 +167,7 @@ function arrowPagingEvent() {
     });
 
     list_right_arrow.addEventListener("click", () => {
-        const { main, press } = getOptions();
-        const { data, category } = renderOptions()[main][press];
+        const { main, press, data, category } = getEventData();
         handlePage(main, press, getCalPage(1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
@@ -189,10 +186,10 @@ function toggleModeEvent() {
     view_option.mode = currentHourToMode();
 
     if (view_option.mode === "dark-mode") {
-        toggle_mode.children[0].src = "./assets/icons/sun.svg";
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
         document.body.classList.toggle("dark_mode");
     } else {
-        toggle_mode.children[0].src = "./assets/icons/moon.svg";
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
     }
 
     toggle_mode.addEventListener("click", () => {
@@ -200,13 +197,12 @@ function toggleModeEvent() {
         document.body.classList.toggle("dark_mode");
         if (view_option.mode === "light-mode") {
             // toggle_mode child img src change
-            toggle_mode.children[0].src = "./assets/icons/sun.svg";
+            toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
             view_option.mode = "dark-mode";
         } else {
-            toggle_mode.children[0].src = "./assets/icons/moon.svg";
+            toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
             view_option.mode = "light-mode";
         }
-        // current view re render
         if (view_option.main === "grid") {
             renderPressItem(view_option.mode);
         }
@@ -251,25 +247,25 @@ let snack_animation_time;
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
 
-    subscribe.forEach((press) => {
-        press.addEventListener("click", () => {
+    subscribe.forEach((sub_press) => {
+        sub_press.addEventListener("click", () => {
             clearTimeout(snack_animation_time);
 
-            if (press.value === "true") {
-                modalBarEvent(press.name, press.value);
+            if (sub_press.value === "true") {
+                modalBarEvent(sub_press.name, sub_press.value);
                 return;
             }
             const snack_bar = document.querySelector(".snack_bar_text");
-            const { main: main_option, press: press_option } = getOptions();
-            render(getOptions("sub", [togglePressEvent]), press);
+            const { main, press } = view_option.getState(["main", "press"]);
+            render(getOptions("sub", [togglePressEvent]), sub_press);
 
             snack_animation_time = setSnackBar(clearAndRender);
-            subscribe_option.subscribe_press[press.name] = press.value;
-            subscribe_option.subscribe_categories.push(press.name);
+            subscribe_option.subscribe_press[sub_press.name] = sub_press.value;
+            subscribe_option.subscribe_categories.push(sub_press.name);
             setSubscribeNewsData();
 
-            if (press_option === "subscribe") {
-                clearAndRender({ main: main_option, press: press_option });
+            if (press === "subscribe") {
+                clearAndRender({ main, press });
             }
 
             renderSnackBarView(snack_bar);
@@ -288,11 +284,10 @@ function changeCategoryEvent() {
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            const { main: main_option, press: press_option } = getOptions();
-            setNavCategoryIndex(item.innerHTML, press_option);
+            const { main, press } = view_option.getState(["main", "press"]);
+            setNavCategoryIndex(item.innerHTML, press);
             setPageIndex(0);
-            const { data, page, category } =
-                renderOptions()[main_option][press_option];
+            const { data, page, category } = renderOptions()[main][press];
 
             render(
                 getOptions("all", [changeCategoryEvent, toggleSubscribeEvent]),
@@ -341,38 +336,33 @@ function modalBarEvent(name) {
     const modal_bar_cancel = document.querySelector(".modal_bar_cancel");
 
     modal_bar_terminate.addEventListener("click", () => {
-        const modal_bar_container = document.querySelector(
-            ".modal_bar_container"
-        );
-        const { main: main_option, press: press_option } = getOptions();
-        const { category } = renderOptions()[main_option][press_option];
+        const { main, press } = view_option.getState(["main", "press"]);
+        const { category } = renderOptions()[main][press];
         subscribe_option.subscribe_press[name] = "false";
         subscribe_option.subscribe_categories.splice(
             subscribe_option.subscribe_categories.indexOf(name),
             1
         );
         if (category >= subscribe_option.subscribe_categories.length) {
-            setCategoryIndex(press_option, category - 1);
+            setCategoryIndex(press, category - 1);
         }
         setSubscribeNewsData();
-        modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender({ main: main_option, press: press_option });
-        setTimeout(() => {
-            modal_bar_container.style.display = "none";
-        }, 500);
+        modalDisappear(main, press);
     });
 
     modal_bar_cancel.addEventListener("click", () => {
-        const modal_bar_container = document.querySelector(
-            ".modal_bar_container"
-        );
-        const { main: main_option, press: press_option } = getOptions();
-        modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender({ main: main_option, press: press_option });
-        setTimeout(() => {
-            modal_bar_container.style.display = "none";
-        }, 500);
+        const { main, press } = view_option.getState(["main", "press"]);
+        modalDisappear(main, press);
     });
+}
+
+function modalDisappear(main, press) {
+    const modal_bar_container = document.querySelector(".modal_bar_container");
+    modal_bar_container.style.animation = "disappear 0.5s forwards";
+    clearAndRender({ main, press });
+    setTimeout(() => {
+        modal_bar_container.style.display = "none";
+    }, 500);
 }
 
 async function initEvent() {
@@ -407,7 +397,7 @@ async function initEvent() {
     }
 }
 
-function handleEvents() {
+function handleStandbyEvents() {
     initEvent();
     subscribeOptionEvent();
     mainOptionEvent();
@@ -416,4 +406,4 @@ function handleEvents() {
     showToday("today");
 }
 
-export { handleEvents };
+export { handleStandbyEvents };

@@ -240,6 +240,12 @@ export async function fetchPressData() {
     }
 }
 
+export function getEventData() {
+    const { main, press } = view_option.getState(["main", "press"]);
+    const { data, page, category } = renderOptions()[main][press];
+    return { main, press, data, page, category };
+}
+
 export async function fetchHotTopicData() {
     try {
         const data = await fetch(HOT_DATA_PATH)
