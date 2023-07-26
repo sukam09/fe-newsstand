@@ -22,7 +22,7 @@ export function updateTabSelection(selectedTab) {
     showGridView();
   } else {
     showListView(
-      selectedTab.id === "all" ? CATEGORY[0] : getSubscribedPress()[0]
+      getTabMode() === "all" ? CATEGORY[0] : getSubscribedPress()[0]
     );
   }
 }

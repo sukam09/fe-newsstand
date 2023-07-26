@@ -9,8 +9,8 @@ import {
   getSubscribedPress,
   getIndex,
 } from "../core/getter.js";
-import { getData } from "../core/api.js";
 import { checkPage } from "./checkPage.js";
+import { updateTabSelection } from "./changeView.js";
 
 async function drawList(current) {
   try {
@@ -23,6 +23,13 @@ async function drawList(current) {
       ? (list = CATEGORY)
       : (list = getSubscribedPress().map((item) => item.name));
 
+    if (!list.length) {
+      alert("구독한 언론사가 없습니다.");
+      store.setState({ tabMode: "all" });
+      updateTabSelection(document.getElementById(getTabMode()));
+      return;
+    }
+
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
     const data = getIndex("listIndex");
@@ -30,6 +37,7 @@ async function drawList(current) {
     let list_content = data.filter((news) =>
       getTabMode() === "all" ? news.category === current : news.name === current
     );
+
     if (getPage() <= 0 || list_content.length < getPage()) {
       const currentIndex = list.indexOf(current);
       const prevIndex = (currentIndex - 1 + list.length) % list.length;
