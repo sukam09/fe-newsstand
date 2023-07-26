@@ -5,16 +5,16 @@
   grid-template-rows: repeat(4, 96px);
   grid-template-columns: repeat(6, 1fr);
 
-  border-left: 1px solid #d2dae0;
-  border-top: 1px solid #d2dae0;
+  border-left: 1px solid var(--color-border-default);
+  border-top: 1px solid var(--color-border-default);
 }
 .grid-cell {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-right: 1px solid #d2dae0;
-  border-bottom: 1px solid #d2dae0;
+  border-right: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
 }
 .grid-cell > .subscribe-btn {
   display: none;

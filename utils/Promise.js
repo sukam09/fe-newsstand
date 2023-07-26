@@ -1,34 +1,28 @@
+// https://uzihoon.com/post/b0bd9910-42b6-11ed-8b2b-635e2af2f788
+
 const PROMISE_STATUS = Object.freeze({
   PENDING: "pending",
   FULFILLED: "fulfilled",
   REJECTED: "rejected",
 });
 
-// TODO: promise chaining 이 가능하게 구현해야 함
 class CustomPromise {
   status;
   value;
-  onFullfilledList;
-  onRejectedList;
-  onFinallyList;
+  onFullfilled;
+  onRejected;
+  onFinally;
+  thenPromiseResolve;
+  thenPromiseReject;
   constructor(executor) {
     this.status = PROMISE_STATUS.PENDING;
-    this.onFullfilledList = [];
-    this.onRejectedList = [];
-    this.onFinallyList = [];
 
     try {
-      this.addTask(() =>
-        executor(this.resolve.bind(this), this.reject.bind(this))
-      );
+      executor(this.resolve.bind(this), this.reject.bind(this));
     } catch (error) {
       this.reject(error);
     }
   }
-
-  static all() {}
-
-  static allSettled() {}
 
   addTask(callback) {
     queueMicrotask(callback);
@@ -37,100 +31,88 @@ class CustomPromise {
   resolve(value) {
     this.status = PROMISE_STATUS.FULFILLED;
     this.value = value;
-    this.onFullfilledList.forEach((onFullfilled) => onFullfilled(value));
-    console.log(this.onFullfilledList, this.status, this.value);
+    this.addTask(() => {
+      if (!this.onFullfilled) return;
+
+      try {
+        const returned = this.onFullfilled(this.value);
+
+        if (returned instanceof CustomPromise) {
+          returned.then(this.thenPromiseResolve, this.thenPromiseReject);
+          return;
+        }
+        this.thenPromiseResolve(returned);
+      } catch (error) {
+        this.thenPromiseReject(error);
+      }
+    });
   }
 
   reject(error) {
     this.status = PROMISE_STATUS.REJECTED;
     this.value = error;
-    this.onRejectedList.forEach((onRejected) => onRejected(error));
+
+    this.addTask(() => {
+      if (!this.onRejected) return;
+
+      try {
+        const returned = this.onRejected(this.value);
+
+        if (returned instanceof CustomPromise) {
+          returned.then(this.thenPromiseResolve, this.thenPromiseReject);
+          return;
+        }
+        this.thenPromiseResolve(returned);
+      } catch (error) {
+        this.thenPromiseReject(error);
+      }
+    });
   }
 
   then(onFullfilled, onRejected) {
-    const doFullfilledTask = () => {
-      if (typeof onFullfilled !== "function") return;
+    this.onFullfilled =
+      typeof onFullfilled === "function" ? onFullfilled : (value) => value;
+    this.onRejected =
+      typeof onRejected === "function"
+        ? onRejected
+        : (error) => {
+            throw error;
+          };
 
-      onFullfilled(this.value);
-    };
-    const doRejectedTask = () => {
-      if (typeof onRejected !== "function") return;
-
-      onRejected(this.value);
-    };
-
-    switch (this.status) {
-      case PROMISE_STATUS.PENDING:
-        this.onFullfilledList.push(onFullfilled);
-        this.onRejectedList.push(onRejected);
-        break;
-      case PROMISE_STATUS.FULFILLED:
-        this.addTask(doFullfilledTask.bind(this));
-        break;
-      case PROMISE_STATUS.REJECTED:
-        this.addTask(doRejectedTask.bind(this));
-        break;
-      default:
-        return this;
-    }
+    return new CustomPromise((resolve, reject) => {
+      this.thenPromiseResolve = resolve;
+      this.thenPromiseReject = reject;
+    });
   }
 
   catch(onRejected) {
-    const doRejectedTask = () => {
-      if (typeof onRejected !== "function") return;
-
-      onRejected(this.value);
-    };
-
-    switch (this.status) {
-      case PROMISE_STATUS.PENDING:
-        this.onRejectedList.push(onRejected);
-        return this;
-      case PROMISE_STATUS.REJECTED:
-        this.addTask(doRejectedTask.bind(this));
-    }
+    return this.then(undefined, onRejected);
   }
 
   finally(onFinally) {
-    const doFinallyTask = () => {
-      if (typeof onFinally !== "function") return;
-
-      onFinally(this.value);
-    };
-    switch (this.status) {
-      case PROMISE_STATUS.PENDING:
-        this.onFinallyList.push(onFinally);
-        break;
-      case PROMISE_STATUS.FULFILLED:
-        this.addTask(doFinallyTask.bind(this));
-        break;
-    }
+    return this.then(onFinally, onFinally);
   }
 }
 
 export default CustomPromise;
 
-const sleep = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve, ms);
-  });
-};
-
-const fn = async () => {
-  const promise = new Promise();
-};
-
 const _promise = new CustomPromise((resolve, reject) => {
-  setTimeout(() => {
-    console.log(1);
-    resolve(1);
-  }, 1000);
+  setTimeout(() => resolve(1), 1000);
 })
   .then((value) => {
     console.log(value, "hi");
+    return 2;
   })
-  .catch((err) => {
-    console.error(err);
+  .then((value) => {
+    console.log("second", value);
+
+    throw Error("error");
+  })
+  .catch((error) => {
+    console.error(error.message);
+  })
+  .finally((value) => {
+    console.log(value);
   });
 
 console.log(_promise);
