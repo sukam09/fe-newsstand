@@ -5,7 +5,7 @@ import { addObserver, getState, setState } from "../observer/observer.js";
 import { filterSubscribeData } from "../utils/utils.js";
 import { listPageState, subscribeDataState } from "../store/store.js";
 
-const PROGRESS_DURATION = 5000;
+const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
 const COLOR_PROGRESS_BACKGROUND = "#7890e7";
 
@@ -15,6 +15,7 @@ export default class SubscribeListView extends Component {
             subscribeList: this.props.subscribeList,
             pressData: this.props.newsData,
         };
+        setState(listPageState, 1);
         addObserver(subscribeDataState, this.render.bind(this));
         addObserver(listPageState, this.render.bind(this));
     }
@@ -168,7 +169,7 @@ export default class SubscribeListView extends Component {
                 const clickedIndex = pressData.findIndex(
                     (item) => item.name === target.textContent.trim()
                 );
-                // console.log(target.textContent.trim(), clickedIndex);
+
                 setState(listPageState, clickedIndex + 1);
             }
         });

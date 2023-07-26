@@ -19,4 +19,9 @@ const listPageState = initState({
     value: 1,
 });
 
-export { pressDataState, subscribeDataState, listPageState };
+const gridPageState = initState({
+    key: "gridPageState",
+    value: 0,
+});
+
+export { pressDataState, subscribeDataState, listPageState, gridPageState };

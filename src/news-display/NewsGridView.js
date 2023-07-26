@@ -6,8 +6,8 @@ import {
 } from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
-import { addObserver, getState } from "../observer/observer.js";
-import { subscribeDataState } from "../store/store.js";
+import { addObserver, getState, setState } from "../observer/observer.js";
+import { gridPageState, subscribeDataState } from "../store/store.js";
 
 const MIN_PAGE = 0;
 let max_page = 3;
@@ -17,8 +17,10 @@ export default class NewsGridView extends Component {
         this.state = {
             pressData: shuffleNewsPress(this.props.newsData),
             subscribeList: this.props.subscribeList,
-            page: 0,
         };
+        setState(gridPageState, 0);
+        addObserver(gridPageState, this.render.bind(this));
+        addObserver(subscribeDataState, this.render.bind(this));
     }
 
     template() {
@@ -38,36 +40,39 @@ export default class NewsGridView extends Component {
         this.setGridView();
         addObserver(subscribeDataState, this.setGridView.bind(this));
 
+        const gridPage = getState(gridPageState);
         new PageButton(leftButton, {
             type: "left",
-            hidden: this.state.page === MIN_PAGE,
+            hidden: gridPage === MIN_PAGE,
             onClick: this.setPrevPage.bind(this),
         });
         new PageButton(rightButton, {
             type: "right",
-            hidden: this.state.page === max_page,
+            hidden: gridPage === max_page,
             onClick: this.setNextPage.bind(this),
         });
     }
 
     setPrevPage() {
         this.setState({
-            page: this.state.page - 1,
             subscribeList: updateSubscribeList(
                 this.state.pressData,
                 this.state.subscribeList
             ),
         });
+        const gridPage = getState(gridPageState);
+        setState(gridPageState, gridPage - 1);
     }
 
     setNextPage() {
         this.setState({
-            page: this.state.page + 1,
             subscribeList: updateSubscribeList(
                 this.state.pressData,
                 this.state.subscribeList
             ),
         });
+        const gridPage = getState(gridPageState);
+        setState(gridPageState, gridPage + 1);
     }
 
     isSubscribed(id) {
@@ -80,12 +85,9 @@ export default class NewsGridView extends Component {
             ".news-press-grid-view"
         );
 
+        const gridPage = getState(gridPageState);
         let gridList = "";
-        for (
-            let i = this.state.page * 24;
-            i < 24 * (this.state.page + 1);
-            i++
-        ) {
+        for (let i = gridPage * 24; i < 24 * (gridPage + 1); i++) {
             gridList += this.getGridCell(i);
         }
 
@@ -142,8 +144,6 @@ export default class NewsGridView extends Component {
             const subscribeData = getState(subscribeDataState);
             pressData = filterSubscribeData(this.props.newsData, subscribeData);
         }
-        return Math.floor(pressData.length / 24) === 4
-            ? 3
-            : Math.floor(pressData.length / 24);
+        return Math.floor((pressData.length - 1) / 24);
     }
 }

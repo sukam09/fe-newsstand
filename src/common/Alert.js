@@ -1,6 +1,10 @@
 import Component from "../core/Component.js";
 import { getState, setState } from "../observer/observer.js";
-import { listPageState, subscribeDataState } from "../store/store.js";
+import {
+    gridPageState,
+    listPageState,
+    subscribeDataState,
+} from "../store/store.js";
 
 export default class Alert extends Component {
     template() {
@@ -42,9 +46,13 @@ export default class Alert extends Component {
 
         const subscribeData = getState(subscribeDataState);
         const listPageIndex = getState(listPageState);
-        // console.log(subscribeData.length, listPageIndex);
+
         if (subscribeData.length === listPageIndex) {
             setState(listPageState, 1);
+        }
+        if (subscribeList.length % 24 === 0) {
+            const gridPage = getState(gridPageState);
+            setState(gridPageState, gridPage - 1);
         }
         setState(subscribeDataState, subscribeList);
     }
