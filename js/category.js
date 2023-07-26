@@ -50,6 +50,7 @@ function drawCategoryBar(news, categoryIndex) {
 function updateCurrentProgressBar() {
   currentProgressBar =
     document.querySelectorAll(".progress-bar")[currentCategoryIndex];
+  currentProgressBar.parentNode.style.width = "166px";
 }
 
 function categoryDisplayOn(categoryItem) {
@@ -64,6 +65,7 @@ function categoryDisplayClear(news, categoryItem) {
     categoryItem[index].style.backgroundColor = "#f5f7f9";
     categoryItem[index].style.color = "#5f6e76";
     categoryItem[index].style.textDecoration = "none";
+    categoryItem[index].style.width = "";
     categoryItem[index].classList.remove("active");
     if (currentCategoryPage[index] !== undefined) {
       currentCategoryPage[index].style.display = "none";

@@ -4,7 +4,7 @@ import { snackBar } from "../snackBar.js";
 import { shuffle, doBeforeRender } from "../../utils/utils.js";
 import { renderMain } from "./renderMain.js";
 import { rollingTime } from "../../utils/constants.js";
-import { replaceSubscribeButtonGrid } from "../alert.js";
+import { alertGrid, replaceSubscribeButtonGrid } from "../alert.js";
 let timeOut;
 
 const renderGrid = (logos) => {
@@ -48,7 +48,7 @@ function clickSubscribeButtonGrid() {
     subscribeButton[index].addEventListener("click", function () {
       if (!isSubscribedGrid(subscribeButton[index])) {
         Stores.setSubscribeNewsContent(subscribeButton[index].id);
-        replaceSubscribeButton(subscribeButton[index], "cancel");
+        replaceSubscribeButtonGrid(subscribeButton[index], "cancel");
         snackBar("내가 구독한 언론사에 추가되었습니다!");
         Stores.setSubscribedMode("subscribe");
         Stores.setPageMode("list");

@@ -1,3 +1,4 @@
+import Stores from "../js/core/Store.js";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
@@ -37,6 +38,7 @@ function boldAll() {
 }
 
 function doBeforeRender(pageMode) {
+  Stores.setPage(0);
   if (pageMode === "list") {
     document.getElementById("main-grid").style.display = "none";
     document.getElementById("main-list").style.display = "flex";
