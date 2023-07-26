@@ -60,6 +60,12 @@ export default class NewsGridItems extends Component {
             this.$props.nowPageIndexArr[index]
           );
         } else {
+          if (this.$props.subscribeAlert) {
+            this.$props.subscribeAlertName.innerHTML =
+              this.$props.nowPageIndexArr[index].name;
+            this.$props.subscribeAlert.classList.remove("hidden");
+            return;
+          }
           this.$props.SubscribeStore.unSubscribeNews(
             this.$props.nowPageIndexArr[index]
           );

@@ -17,4 +17,11 @@ export default class SubscribeStore extends Observable {
     );
     this.notify(this.subscribeList);
   }
+
+  unSubscribeNewsByName(newspaperName) {
+    this.subscribeList = this.subscribeList.filter(
+      (item) => item.name !== newspaperName
+    );
+    this.notify(this.subscribeList);
+  }
 }

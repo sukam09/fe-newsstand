@@ -41,12 +41,29 @@ export default class MyNewsGrid extends Component {
           <path d="M1 41L25 21L1 1" stroke="#6E8091" />
         </svg>
       </div>
+
+      <div class="subscribe-alert hidden">
+        <div class="subscribe-alert__notice">
+          <div>
+            <span class="subscribe-alert__notice__name"></span>을(를)<br />
+            구독해지하시겠습니까?
+          </div>
+        </div>
+        <div class="subscribe-alert__button">
+          <div class="subscribe-alert__button__YES">예, 해지합니다</div>
+          <div class="subscribe-alert__button__NO">아니오</div>
+        </div>
+      </div>
     `;
   }
 
   mounted() {
     const $leftButton = this.$target.querySelector(".left-button_content");
     const $rightButton = this.$target.querySelector(".right-button_content");
+    const $alertYES = this.$target.querySelector(
+      ".subscribe-alert__button__YES"
+    );
+    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
 
     this.setState(
       { $leftButton: $leftButton, $rightButton: $rightButton },
@@ -55,6 +72,15 @@ export default class MyNewsGrid extends Component {
 
     this.renderNewspaper();
     this.setGridPageButton();
+
+    $alertNO.addEventListener("click", () =>
+      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
+    );
+    $alertYES.addEventListener("click", () => {
+      this.$props.SubscribeStore.unSubscribeNewsByName(
+        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
+      );
+    });
   }
 
   renderNewspaper() {
@@ -67,6 +93,10 @@ export default class MyNewsGrid extends Component {
       nowPageIndexArr: nowPageIndexArr,
       mode: this.$state.mode,
       SubscribeStore: this.$props.SubscribeStore,
+      subscribeAlert: this.$target.querySelector(".subscribe-alert"),
+      subscribeAlertName: this.$target.querySelector(
+        ".subscribe-alert__notice__name"
+      ),
     });
 
     this.setDisplayButton();
