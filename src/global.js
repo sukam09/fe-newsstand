@@ -3,11 +3,21 @@ import { getState, register, setState } from "./core/observer/observer.js";
 import {
   categoryIdx,
   gridPageIdx,
+  isDarkMode,
   isGrid,
   isSubTab,
   listPageIdx,
   subscribeList,
 } from "./core/store/store.js";
+import { ALL_PRESS, SUB_PRESS } from "./core/store/constants.js";
+
+const subTabButton = $(`.${SUB_PRESS}`);
+const allTabButton = $(`.${ALL_PRESS}`);
+const toggleDarkButton = $(".toggle_darkmode");
+const darkLogo = $(".dark_button", toggleDarkButton);
+const lightLogo = $(".light_button", toggleDarkButton);
+const darkLogoNone = $(".dark_button-none", toggleDarkButton);
+const lightLogoNone = $(".light_button-none", toggleDarkButton);
 
 // 로고 새로고침
 function refreshWindow() {
@@ -98,18 +108,31 @@ function toggleMainView() {
 }
 function updateSubViewButton() {
   const isSubMode = getState(isSubTab);
-  const subTabButton = $(".main_section__header__title--sub");
-  const allTabButton = $(".main_section__header__title--all");
   if (isSubMode) {
-    subTabButton.style.color = "#000000";
-    allTabButton.style.color = "#879298";
+    subTabButton.classList.replace(SUB_PRESS, ALL_PRESS);
+    allTabButton.classList.replace(ALL_PRESS, SUB_PRESS);
   } else {
-    subTabButton.style.color = "#879298";
-    allTabButton.style.color = "#000000";
+    subTabButton.classList.replace(ALL_PRESS, SUB_PRESS);
+    allTabButton.classList.replace(SUB_PRESS, ALL_PRESS);
   }
 }
 
-function setEvent() {
+function toggleDarkButtonClicked() {
+  setState(isDarkMode, !getState(isDarkMode));
+}
+function toggleDarkMode() {
+  if (getState(isDarkMode)) {
+    document.documentElement.setAttribute("color-theme", "dark");
+    lightLogo.setAttribute("color-theme", "dark");
+    darkLogo.setAttribute("color-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("color-theme", "light");
+    lightLogo.setAttribute("color-theme", "light");
+    darkLogo.setAttribute("color-theme", "light");
+  }
+}
+
+function setGlobalEvent() {
   const mainLogo = $(".container__header__main");
   const listButton = $(".list_button");
   const gridButton = $(".grid_button");
@@ -121,12 +144,11 @@ function setEvent() {
   subTabButton.addEventListener("click", toggleSubClicked);
   allTabButton.addEventListener("click", toggleSubClicked);
   window.addEventListener("keydown", keyboardClicked);
-}
-
-(function init() {
-  setEvent();
+  toggleDarkButton.addEventListener("click", toggleDarkButtonClicked);
   register(isGrid, toggleMainView);
   register(isSubTab, updateSubViewButton);
-})();
+  register(isDarkMode, toggleDarkMode);
+  updateDate();
+}
 
-export { updateDate };
+export { setGlobalEvent };

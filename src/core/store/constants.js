@@ -19,6 +19,8 @@ export const PREV_BANNER = "newsbanner__list--prev";
 export const NOW_BANNER = "newsbanner__list--now";
 export const NEXT_BANNER = "newsbanner__list--next";
 export const BANNER_LIST = "newsbanner__list";
+export const ALL_PRESS = "main_section__header__title--all";
+export const SUB_PRESS = "main_section__header__title--sub";
 
 export const CATEGORY_TABS = [
   "종합/경제",

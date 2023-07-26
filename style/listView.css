@@ -1,12 +1,16 @@
+@import url("./constant.css");
+
 /* list view */
 .list_container {
   display: none;
+  transition: all 0.5s;
 }
 
 /* category */
 .category_container_header {
-  background-color: #f5f7fb;
-  border: solid 1px #d2dae0;
+  border: 1px solid var(--border-default);
+  background: var(--surface-alt);
+  transition: all 0.5s;
 }
 
 .category_list_container {
@@ -16,15 +20,17 @@
   padding: 0px;
   margin: 0px;
   overflow: scroll;
+  transition: all 0.5s;
 }
 .category_list_container::-webkit-scrollbar {
   display: none;
+  transition: all 0.5s;
 }
 .category_list {
   position: relative;
   padding: 11.5px 16px 11.5px 16px;
   list-style: none;
-  color: #879298;
+  color: var(--text-weak);
   min-width: fit-content;
 }
 
@@ -35,11 +41,12 @@
 .category_list__title {
   position: relative;
   z-index: 100;
+  transition: all 0.5s;
 }
 .category_list--clicked {
-  background-color: #7890e7;
+  background: var(--surface-brand-alt);
   min-width: 166px;
-  color: #ffffff;
+  color: var(--text-white-default);
   display: flex;
   justify-content: space-between;
 }
@@ -65,7 +72,7 @@
 .progressbar {
   display: none;
   position: absolute;
-  background-color: #4362d0;
+  background: var(--surface-brand-default);
   height: 100%;
   width: 0px;
   top: 0;
@@ -86,17 +93,22 @@
 
 /* news container */
 .list_container__wrapper {
-  border: solid 1px #d2dae0;
+  border: 1px solid var(--border-default);
   border-top: none;
   padding: 24px;
+  transition: all 0.5s;
 }
 .list_container__wrapper__header {
   gap: 16px;
   margin-bottom: 16px;
 }
 .list_container__wrapper__header__time {
+  color: var(--text-default);
+  font-family: Pretendard;
   font-size: 12px;
-  color: #5f6e76;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 .list_container__wrapper__main {
   display: flex;
@@ -113,10 +125,20 @@
   align-items: flex-start;
   gap: 16px;
   align-self: stretch;
+  transition: all 0.5s;
 }
 .topic > span {
-  width: 100%;
-  white-space: pre-line;
+  height: 44px;
+  overflow: hidden;
+  align-self: stretch;
+  color: var(--text-strong);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  transition: all 0.5s;
 }
 .topic:hover {
   cursor: pointer;
@@ -143,8 +165,9 @@
   justify-content: space-between;
   gap: 16px;
   font-size: 16px;
-  color: #4b5966;
+  color: var(--text-bold);
   margin-bottom: 16px;
+  transition: all 0.5s;
 }
 .news_list:hover {
   cursor: pointer;
@@ -152,5 +175,6 @@
 }
 .news_list_detail {
   font-size: 14px;
-  color: #879298;
+  color: var(--text-weak);
+  transition: all 0.5s;
 }
