@@ -10,8 +10,34 @@ import {
   getIndex,
 } from "../core/getter.js";
 import { checkPage } from "./checkPage.js";
-import { updateTabSelection } from "./changeView.js";
 
+function filterData(current) {
+  const data = getIndex("listIndex");
+  return data.filter((news) =>
+    getTabMode() === "all" ? news.category === current : news.name === current
+  );
+}
+function updateStateAndListContent(current, list_content) {
+  const list =
+    getTabMode() === "all"
+      ? CATEGORY
+      : getSubscribedPress().map((item) => item.name);
+  const currentIndex = list.indexOf(current);
+  const prevIndex = (currentIndex - 1 + list.length) % list.length;
+  const nextIndex = (currentIndex + 1) % list.length;
+
+  if (getPage() <= 0) {
+    current = list[prevIndex];
+    list_content = filterData(current);
+    store.setState({ page: list_content.length });
+  } else {
+    list_content = filterData(current);
+    store.setState({ page: FIRST_PAGE_NUM });
+    current = list[nextIndex];
+  }
+
+  return { current, list, list_content };
+}
 async function drawList(current) {
   try {
     let list = [];
@@ -25,26 +51,16 @@ async function drawList(current) {
 
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
-    const data = getIndex("listIndex");
 
-    let list_content = data.filter((news) =>
-      getTabMode() === "all" ? news.category === current : news.name === current
-    );
+    let list_content = filterData(current);
 
     if (getPage() <= 0 || list_content.length < getPage()) {
-      const currentIndex = list.indexOf(current);
-      const prevIndex = (currentIndex - 1 + list.length) % list.length;
-      const nextIndex = (currentIndex + 1) % list.length;
-      getPage() <= 0
-        ? (current = list[prevIndex])
-        : (current = list[nextIndex]);
-      store.setState({ page: FIRST_PAGE_NUM });
-      list_content = data.filter((news) =>
-        getTabMode() === "all"
-          ? news.category === current
-          : news.name === current
-      ); //함수로 빼기
+      ({ current, list, list_content } = updateStateAndListContent(
+        current,
+        list_content
+      ));
       showListView(current);
+      return;
     } else {
       drawCategory(current, list, list_content);
       const newDiv = document.createElement("div");
