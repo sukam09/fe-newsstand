@@ -26,6 +26,10 @@ body {
   color: #14212b;
 }
 
+.pressbar-name-all:hover {
+  cursor: pointer;
+}
+
 .pressbar-name-subscribe {
   font-size: 16px;
   font-style: normal;
@@ -33,6 +37,10 @@ body {
   line-height: 22px;
   color: #879298;
   padding-left: 24px;
+}
+
+.pressbar-name-subscribe:hover {
+  cursor: pointer;
 }
 
 #pressbar-icon-grid-view {

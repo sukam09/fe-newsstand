@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 
-.press-content-view {
+.press-content-all-grid-view {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   width: 930px;
@@ -16,7 +16,16 @@
   border-left: 1px solid #d2dae0;
 }
 
-.press-content-view li {
+.press-content-my-grid-view {
+  display: none;
+  grid-template-columns: repeat(6, 1fr);
+  width: 930px;
+  height: 388px;
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+}
+
+.press-content-all-grid-view li {
   list-style: none;
   display: flex;
   align-items: center;

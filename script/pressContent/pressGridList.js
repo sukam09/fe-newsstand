@@ -1,11 +1,11 @@
-import { getQuerySelectorAll } from "../../utils/js/getElements.js";
+import { getQuerySelector } from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
 import { getState, register } from "../observer/observer.js";
 import { gridPageIdx } from "../store/store.js";
 
 const page = [[], [], [], []];
 
-const pressContentView = getQuerySelectorAll(".press-content-view");
+const pressContentView = getQuerySelector(".press-content-all-grid-view");
 
 // Json 객체로부터 받아오는 뉴스 데이터의 id값 랜덤 셔플 후 첫번째 페이지 구현
 async function shuffleImgs() {
@@ -24,7 +24,7 @@ async function shuffleImgs() {
   page[0].forEach((elem) => {
     imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
   });
-  pressContentView[0].innerHTML = imgSrcContent;
+  pressContentView.innerHTML = imgSrcContent;
   register(gridPageIdx, showPressImg);
 }
 
@@ -35,7 +35,7 @@ function showPressImg() {
   page[nowGridIdx].forEach((elem) => {
     imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
   });
-  pressContentView[0].innerHTML = imgSrcContent;
+  pressContentView.innerHTML = imgSrcContent;
 }
 
 export { shuffleImgs };

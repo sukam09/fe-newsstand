@@ -6,6 +6,7 @@ import { pageReload } from "./header/pageReload.js";
 import { getCategoryInfo } from "./pressContent/pressCategory.js";
 import { getNewsData } from "./pressContent/pressListChange.js";
 import { initPageBtn } from "./arrow.js";
+// import { clickNameOfPressMode } from "./pressContent/pressModeChange.js";
 
 // 가장 처음에 실행되는 함수
 window.addEventListener("DOMContentLoaded", () => {
@@ -18,4 +19,5 @@ window.addEventListener("DOMContentLoaded", () => {
   getCategoryInfo();
   getNewsData();
   initPageBtn();
+  // clickNameOfPressMode();
 });

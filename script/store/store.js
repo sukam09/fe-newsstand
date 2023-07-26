@@ -7,7 +7,7 @@ const isGrid = initState({
 
 // 배열 idx로 카테고리 알아오기
 const nowCategoryIdx = initState({
-  key: "categoryㅇIdx",
+  key: "categoryIdx",
   defaultState: { category: 0, list: 1 },
 });
 
@@ -21,4 +21,21 @@ const gridPageIdx = initState({
   defaultState: 0,
 });
 
-export { isGrid, nowCategoryIdx, nowCategoryName, gridPageIdx };
+const isSubscribed = initState({
+  key: "isSubscribed",
+  defaultState: true,
+});
+
+const allOfPress = initState({
+  key: "allOfPress",
+  defaultState: true,
+});
+
+export {
+  isGrid,
+  nowCategoryIdx,
+  nowCategoryName,
+  gridPageIdx,
+  isSubscribed,
+  allOfPress,
+};
