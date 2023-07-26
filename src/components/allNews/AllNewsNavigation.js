@@ -3,6 +3,7 @@ import {
   LISTVIEW_ICON,
   allNewsObj,
 } from "../../constants/index.js";
+import store from "../../core/Store.js";
 import { showStatus } from "../../core/showStatus.js";
 import Icon from "../common/Icon.js";
 
@@ -99,12 +100,14 @@ export default class AllNewsNavigation {
   }
 
   callRender() {
-    showStatus.isShowGrid
-      ? showStatus.isShowAllPress
+    showStatus.isShowAllPress
+      ? showStatus.isShowGrid
         ? this.renderAllGridView()
-        : this.renderSubGridView()
-      : showStatus.isShowAllPress
-      ? this.renderAllListView()
+        : this.renderAllListView()
+      : store.getStateSize() === 0
+      ? this.renderNonSubView()
+      : showStatus.isShowGrid
+      ? this.renderSubGridView()
       : this.renderSubListView();
   }
 }

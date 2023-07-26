@@ -4,6 +4,7 @@ import GridView from "./GridView/index.js";
 import SubListView from "./ListView/SubListView/index.js";
 import ListView from "./ListView/AllListView/index.js";
 import store from "../../core/Store.js";
+import NonSubPage from "./NonSubPage.js";
 
 export default class AllNews {
   constructor() {
@@ -39,11 +40,19 @@ export default class AllNews {
     this.$wrapper.appendChild(subGridViewObj.$wrapper);
   }
 
-  /** 구독한 언로사 리스트뷰 렌더링 */
+  /** 구독한 언론사 리스트뷰 렌더링 */
   renderSubListView() {
     this.$wrapper.replaceChildren();
 
     this.$wrapper.appendChild(this.allNewsNavigationObj);
     this.$wrapper.appendChild(new SubListView());
+  }
+
+  /** 구독한 언론사가 없을 때 뷰 렌더링 */
+  renderNonSubView() {
+    this.$wrapper.replaceChildren();
+
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new NonSubPage());
   }
 }

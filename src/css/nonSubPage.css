@@ -1,0 +1,19 @@
+.nonSubPage {
+  width: 930px;
+  height: 388px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gray-scale-100);
+}
+
+.nonSubPage p {
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.nonSubPage p span {
+  font-weight: 600;
+  font-size: 16px;
+}
