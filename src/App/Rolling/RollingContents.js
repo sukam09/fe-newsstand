@@ -89,7 +89,6 @@ function RollingContents($target, props) {
   Component.call(this, $target, props);
 
   this.timeId;
-  this.init = true;
   this.rolling;
 }
 
@@ -107,12 +106,10 @@ RollingContents.prototype.setEvent = function () {
   const handleMouseOver = over.bind(this);
   const handleMouseOut = out.bind(this);
 
-  if (this.init) {
-    this.$el.addEventListener("mouseover", handleMouseOver);
-    this.$el.addEventListener("mouseout", handleMouseOut);
+  this.$el.addEventListener("mouseover", handleMouseOver);
+  this.$el.addEventListener("mouseout", handleMouseOut);
 
-    this.init = false;
-  }
+  this.init = false;
 };
 
 RollingContents.prototype.mounted = function () {

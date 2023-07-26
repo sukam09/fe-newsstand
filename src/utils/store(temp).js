@@ -1,8 +1,15 @@
-import { observable } from "./observer.js";
-
 export default class Store {
   constructor(reducer) {
-    this.state = observable(reducer()); // initState
+    this.state = reducer(); // initState
+    this.observers = new Set();
+
+    this.subscribe = (func) => {
+      this.observers.add(func);
+    };
+
+    this.notify = () => {
+      this.observers.forEach((fn) => fn());
+    };
 
     const frozenState = {};
     Object.keys(this.state).forEach((key) => {
@@ -10,6 +17,7 @@ export default class Store {
         get: () => this.state[key],
       });
     });
+
     this.frozenState = frozenState;
 
     // dispatch로만 state의 값을 변경할 수 있다.
@@ -17,10 +25,11 @@ export default class Store {
       const newState = reducer(this.state, action);
 
       for (const [key, value] of Object.entries(newState)) {
-        // state의 key가 아닐 경우 변경을 생략한다.
-        if (!this.state[key]) continue;
+        if (!this.state[key] || this.state[key] === value) continue;
         this.state[key] = value;
       }
+
+      this.notify();
     };
   }
 

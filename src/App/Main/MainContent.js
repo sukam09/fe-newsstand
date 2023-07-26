@@ -10,6 +10,7 @@ import NewsListView from "../MainContent/NewsListView.js";
 import Component from "../../utils/Component.js";
 import { mainStore, GRID, LIST } from "../../store/MainStore.js";
 import { FIRST_PAGE, gridStore, setPage } from "../../store/GridStore.js";
+import { pressStore } from "../../store/PressStore.js";
 
 const listViewData = await fetchNews();
 const pressData = await fetchPress();
@@ -54,51 +55,28 @@ function MainContent($target, props) {
   this.setLastPage = (nextLastPage) => {
     this.state.lastPage = nextLastPage;
   };
+
   Component.call(this, $target, props);
+
+  this.prevView = mainStore.getState().viewType;
+  this.prevPress = mainStore.getState().pressType;
 
   let $div = document.createElement("div");
   $div.setAttribute("class", "snack-bar");
   $div.innerText = snackBarText;
 
   cancelAnimation();
-
-  // } else {
-  //   lastPage =
-  //     props.pressType === "all" ? listViewData[this.state.category].length : 1;
-
-  //   const listProps = {
-  //     ...commonProps,
-  //     lastPage: lastPage,
-  //     category: this.state.category,
-  //     setContentState: this.setState,
-  //     setPressType: props.setPressType,
-  //     timerArr: timerArr,
-  //     indexArr: indexArr,
-  //     data:
-  //       props.pressType === "all"
-  //         ? listViewData[this.state.category]
-  //         : {
-  //             ...pressData[store.myPressList[this.state.category]],
-  //             pid: store.myPressList[this.state.category],
-  //           },
-  //   };
-
-  //   // new NewsListView($section, listProps);
-  // }
+  mainStore.subscribe(this.observerCallback);
 }
 
 Object.setPrototypeOf(MainContent.prototype, Component.prototype);
-
-MainContent.prototype.initState = function () {
-  return { lastPage: 4 };
-};
 
 MainContent.prototype.template = function () {
   const mainState = mainStore.getState();
 
   if (mainState.viewType === GRID) {
     return `<ul class="newspaper__list"></ul>${createButtons()}`;
-  } else {
+  } else if (mainState.viewType === LIST) {
     return `<div class="news-container"></div>${createButtons()}`;
   }
 };
@@ -120,29 +98,31 @@ MainContent.prototype.mounted = function () {
   const mainState = mainStore.getState();
   const directions = ["left", "right"];
 
-  let callBacks;
+  let callBacks = [prevGirdpage, nextGridPage];
 
   if (mainState.viewType === GRID) {
     const $ul = this.$el.querySelector("ul");
+
     new PressGridView($ul, {
       ...this.props,
-      lastPage: this.state,
       setLastPage: this.setLastPage,
     });
-
-    callBacks = [prevGirdpage, nextGridPage];
-  } else {
+  } else if (mainState.viewType === LIST) {
     const $div = this.$el.querySelector("div");
     new NewsListView($div, { ...this.props });
-    callBacks = [prevGirdpage, nextGridPage];
   }
 
   const buttons = this.$el.querySelectorAll(".page");
   buttons.forEach(($button, index) => {
+    const lastPage =
+      mainStore.getState().pressType === "all"
+        ? 4
+        : pressStore.getState().pressArr.length / 24 + 1;
+
     new Button($button, {
       ...this.props,
       direction: directions[index],
-      lastPage: this.state.lastPage,
+      lastPage: lastPage,
       onClick: callBacks[index],
     });
   });

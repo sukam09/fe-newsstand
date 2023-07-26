@@ -68,7 +68,7 @@ const createPressList = function (page, pressArr, mode) {
 
 const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
   let $button;
-  let newPress;
+  let newPressArr;
   const pressState = pressStore.getState().pressArr;
 
   if (currentTarget !== target) {
@@ -80,64 +80,61 @@ const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
     if ($button.innerText === "구독하기") {
       $button.innerHTML = unsubscibeButtonInner;
       pressState.push($button.dataset.key);
+      newPressArr = addPress(pressState);
     } else {
       $button.innerHTML = subscibeButtonInner;
       const index = pressState.indexOf($button.dataset.key);
       if (index > -1) {
-        // only splice array when item is found
-        pressState.splice(index, 1); // 2nd parameter means remove one item only
+        pressState.splice(index, 1);
       }
-      newPress = removePress(pressState);
+      newPressArr = removePress(pressState);
     }
 
-    pressStore.dispatch(newPress);
+    pressStore.dispatch(newPressArr);
   }
 };
 
 function PressGridView($target, props) {
-  const mainState = mainStore.getState();
-
   this.indexArr = undefined;
   this.prevState = undefined;
   this.prePage = undefined;
 
-  if (mainState.pressType === ALL) {
-    this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
-    props.setLastPage(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER);
-  } else {
-    this.indexArr = pressStore.getState().pressArr;
-    const nextLastPage = Math.ceil(
-      this.indexArr.length / GRID_PRESS_NUBER + 0.5
-    );
-    props.setLastPage(nextLastPage);
-  }
-
   Component.call(this, $target, props);
+
+  mainStore.subscribe(this.observerCallback);
+  gridStore.subscribe(this.observerCallback);
+  pressStore.subscribe(this.observerCallback);
 }
 
 Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
 
-PressGridView.prototype.render = function () {
-  if (
-    this.prevState !== ALL ||
-    mainStore.getState().pressType !== ALL ||
-    this.prePage !== gridStore.getState().currentPage
-  ) {
-    // 구독시 깜빡임 제거
-    this.prevState = mainStore.getState().pressType;
-    this.prePage = gridStore.getState().currentPage;
-    this.$el.innerHTML = this.template();
-  }
-};
-
 PressGridView.prototype.template = function () {
   const gridState = gridStore.getState();
+  const mainState = mainStore.getState();
+
+  if (mainState.pressType === ALL) {
+    this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
+  } else {
+    this.indexArr = pressStore.getState().pressArr;
+  }
 
   return createPressList(gridState.currentPage, this.indexArr, this.props.mode);
 };
 
 PressGridView.prototype.setEvent = function () {
   this.$el.addEventListener("click", handleSubscriptionButtonClick);
+};
+
+PressGridView.prototype.mounted = function () {
+  this.prevState = mainStore.getState().pressType;
+  this.prePage = gridStore.getState().currentPage;
+};
+
+PressGridView.prototype.isRender = function () {
+  return (
+    this.prevState !== mainStore.getState().pressType ||
+    this.prePage !== gridStore.getState().currentPage
+  );
 };
 
 export default PressGridView;

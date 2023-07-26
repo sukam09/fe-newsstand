@@ -8,6 +8,7 @@ const initState = {
 
 // dispatch에서 사용될 type들을 정의해준다.
 export const SET_PAGE = "SET_PAGE";
+export const SET_LAST = "SET_LAST";
 
 const reducer = (state = initState, action = {}) => {
   switch (action.type) {

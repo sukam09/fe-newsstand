@@ -1,21 +1,18 @@
-import { observe, observable } from "./observer.js";
-
 function Component($el, props) {
   this.$el = $el;
   this.props = props;
-  this.state = observable(this.initState());
+  this.state;
 
-  const observerCallback = () => {
-    this.render();
-    this.setEvent();
-    this.mounted();
+  this.observerCallback = () => {
+    if (this.isRender()) {
+      console.log(this);
+      this.render();
+      this.setEvent();
+      this.mounted();
+    }
   };
 
-  const setup = () => {
-    observe(observerCallback);
-  };
-
-  setup();
+  this.observerCallback();
 }
 
 Component.prototype.initState = function () {
@@ -33,6 +30,10 @@ Component.prototype.render = function () {
 Component.prototype.setEvent = function () {};
 
 Component.prototype.mounted = function () {};
+
+Component.prototype.isRender = function () {
+  return true;
+};
 
 export default Component;
 

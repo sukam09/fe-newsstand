@@ -56,6 +56,7 @@ const createButton = (button, index) => {
 
 function ViewerType($target, props) {
   Component.call(this, $target, props);
+  mainStore.subscribe(this.observerCallback);
 }
 
 Object.setPrototypeOf(ViewerType.prototype, Component.prototype);

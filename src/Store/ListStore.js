@@ -1,6 +1,6 @@
 import Store from "../utils/store(temp).js";
 
-const FIRST_CATEGORY = 1;
+export const FIRST_CATEGORY = 0;
 
 const initState = {
   category: FIRST_CATEGORY,

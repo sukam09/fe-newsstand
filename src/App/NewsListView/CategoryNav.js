@@ -2,10 +2,16 @@
 기사 컨텐츠 네비게이션 컴포넌트
 */
 
-import { pressStore } from "../../store/PressStore.js";
-import { mainStore, ALL, MY } from "../../store/MainStore.js";
-import { fetchPress } from "../../api/fetchNews.js";
 import Component from "../../utils/Component.js";
+import findTargetParentNode from "../../api/findTargetParentNode.js";
+import { pressStore } from "../../store/PressStore.js";
+import { mainStore, ALL, MY, LIST } from "../../store/MainStore.js";
+import { fetchPress } from "../../api/fetchNews.js";
+import {
+  listStore,
+  FIRST_CATEGORY,
+  setCategory,
+} from "../../store/ListStore.js";
 
 const press = await fetchPress();
 
@@ -19,31 +25,22 @@ const categories = [
   "지역",
 ];
 
-const FIRST_CATEGORY = 0;
 const LAST_CATEGORY = 6;
-
 const FIRST_PAGE = 1;
 
 const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
 <path d="M5.48341 10.5L4.66675 9.68333L7.35008 7L4.66675 4.31667L5.48341 3.5L8.98342 7L5.48341 10.5Z" fill="white"/>
 </svg>`;
 
-const createNav = function () {
-  let liString = "";
-
-  let len =
-    mainStore.getState().pressType === ALL
-      ? categories.length
-      : pressStore.getState().pressArr.length;
-  const indexArr = Array.from({ length: len }, (_, i) => i);
-  liString = indexArr.reduce((accumulator, index) => {
+const createNav = function (categoryArr) {
+  let liString;
+  let key = 0;
+  liString = categoryArr.reduce((accumulator, currentValue) => {
     return (
       accumulator +
-      `<li data-key=${index}><span>${
-        mainStore.getState().pressType === ALL
-          ? categories[index]
-          : press[pressStore.getState().pressArr[index]].name
-      }</span></li>`
+      `<li data-key=${key++}>
+        <span>${currentValue}</span>
+      </li>`
     );
   }, "");
 
@@ -51,7 +48,12 @@ const createNav = function () {
 };
 
 function CategoryNav($target, props) {
+  this.$ul = undefined;
+  this.currentPage = 1;
+  this.lastPage = 12;
+
   Component.call(this, $target, props);
+
   const initCategoryState = {
     currentPage: FIRST_PAGE,
     category: FIRST_CATEGORY,
@@ -170,11 +172,71 @@ function CategoryNav($target, props) {
 
 Object.setPrototypeOf(CategoryNav.prototype, Component.prototype);
 
+const getSubPress = (pressIdArr) => {
+  let nameArr = [];
+  pressIdArr.forEach((element) => {
+    nameArr.push(press[Number(element) + 1].name);
+  });
+
+  return nameArr;
+};
+
 CategoryNav.prototype.template = function () {
-  return `
-  <ul class="categoty-list">
-  
-  </ul>`;
+  if (mainStore.getState().viewType === LIST) {
+    let categoryArr =
+      mainStore.getState().pressType === ALL
+        ? categories
+        : getSubPress(pressStore.getState().pressArr);
+
+    return `
+    <ul class="categoty-list">
+      ${createNav(categoryArr)}
+    </ul>`;
+  }
+};
+
+const handleClickCategory = function ({ target }) {
+  let targetElement = findTargetParentNode(target, "li");
+  if (targetElement) {
+    const $select = this.$ul.querySelector(".select");
+
+    if ($select) {
+      $select.classList.remove("select");
+      $select.removeChild($select.lastElementChild);
+      $select.removeChild($select.lastElementChild);
+    }
+
+    const nextCategory = setCategory(Number(targetElement.dataset.key));
+    listStore.dispatch(nextCategory);
+  }
+};
+
+CategoryNav.prototype.setEvent = function () {
+  if (!this.$ul) {
+    this.$ul = this.$el.querySelector(".categoty-list");
+    this.$ul.addEventListener("click", handleClickCategory.bind(this));
+  }
+};
+
+CategoryNav.prototype.mounted = function () {
+  const currentCategory = listStore.getState().category;
+  const progressBar = `<div class="progress-bar"></div>`;
+  const selectedElement = this.$ul?.children[currentCategory];
+
+  if (selectedElement) {
+    selectedElement.style.zIndex = 1;
+    selectedElement.classList.add("select");
+    selectedElement.innerHTML += `
+    <span>
+      ${
+        mainStore.getState().pressType === ALL
+          ? `${this.currentPage}/${this.lastPage}`
+          : arrowIcon
+      }
+    </span>
+    ${progressBar}
+    `;
+  }
 };
 
 export default CategoryNav;

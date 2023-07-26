@@ -5003,5 +5003,2392 @@
             "url": "./assets/newspaper/Light/65.png"
         },
         "regDate": "20230717 11:30:46"
+    },
+    "66": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "송정역 주차빌딩  개장 50일 곳곳 ‘하자’",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630698",
+                "aid": "4fd117b5ddea74b5",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9065%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc22209a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "광주시화정청소년문화의집, 서구 화정2동과 업무협약",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630658",
+                "aid": "4fd117398cf0b639",
+                "image": null,
+                "_id": "64783d54824d90d2cc38bd47"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "광주청소년활동진흥센터 청소년정책토론회 개최",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630647",
+                "aid": "4fd117190522c259",
+                "image": null,
+                "_id": "64b0b0265cea28d2db2e39a3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“다문화가정의 행복 비법을 알려드립니다”",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=629584",
+                "aid": "4fc713a7e664ad27",
+                "image": null,
+                "_id": "64b0b0265cea28d2db2e39a4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[시민기자 생각]재해 복구, 행정 앞장서지만   원인자도 비용 부담해야",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630499",
+                "aid": "4fd110345c8eb7f4",
+                "image": null,
+                "_id": "64b0b0265cea28d2db2e39a5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[김대원의 여의도 포커스]“할 말 못 할 바엔 정치 안하는 게 낫다”",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630650",
+                "aid": "4fd11731f0749431",
+                "image": null,
+                "_id": "64b0b0265cea28d2db2e39a6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "광주경총 금요포럼 ‘판소리의 멋…’",
+                "url": "http://www.gjdream.com/news/articleView.html?idxno=630708",
+                "aid": "4fd11a5f622e289f",
+                "image": null,
+                "_id": "64b0b0265cea28d2db2e39a7"
+            }
+        ],
+        "name": "조선일보",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/66.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/66.png"
+        },
+        "regDate": "20230717 11:10:36"
+    },
+    "67": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "smartPC사랑 2023 상반기 베스트 하드웨어 어워즈 선정",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47208",
+                "aid": "f1d10d514a4a5c51",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0713%2Farticle_img%2Fnew_main%2F9087%2F100252_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221bd1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "가성비 게이밍 그래픽카드, 인텔 아크 A750 알아보기",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47112",
+                "aid": "f1d109a9029f0be9",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "2023년 7월호",
+                "url": "http://www.ilovepc.co.kr",
+                "aid": "167fbf961937deaa",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "시원시원한 디스플레이에 휴대성까지? LG전자 2023 그램16 16ZD90RU-GX56K",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47218",
+                "aid": "f1d10d70c8ab6030",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[팁] 마이크론 2400 SSD로 에이수스 로그 엘라이(ASUS ROG ALLY) 용량을 간단하게 업그레이드해보자",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47306",
+                "aid": "f1d11110a25af090",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "게이밍도 가능한 초경량 노트북? LG전자 2023 그램17 17Z90R-ED7VK",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47219",
+                "aid": "f1d10d71166ad831",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "UMPC 게임기 '옥조' 배터리 폭발 2번…휴대용 게임기 폭발 사고, 다른 제품도 있었을까?",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47357",
+                "aid": "f1d111ac67ff7bec",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd7"
+            }
+        ],
+        "name": "에이블뉴스",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/67.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/67.png"
+        },
+        "regDate": "20230713 09:58:00"
+    },
+    "68": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“아무리 싸도 억” 송지효 부모님 통영 여객선 사업 큰 손이었다(런닝맨)[어제TV]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307161856566710",
+                "aid": "955ae1a0debf2520",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9126%2F085139_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222111"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "김우빈→이찬원 폭우 피해에 ★ 기부 행렬 “도움 되기를” [종합]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307161637415710",
+                "aid": "cffa229e4be4541e",
+                "image": null,
+                "_id": "64382002d2afac98f57ccef6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "빅히트 뮤직 측 “BTS 정국 유튜브 집계 문제없다”[공식]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307170753070410",
+                "aid": "fa821967f7653567",
+                "image": null,
+                "_id": "645661636e592107d2d4489a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "강동원, 정용진 부회장 쌍둥이 남매 만나 깜짝 사인회 ‘삼촌미소’",
+                "url": "http://news.newsen.com/news_view.php?uid=202307170702342410",
+                "aid": "c32b29e3313554e3",
+                "image": null,
+                "_id": "646563463e93486eac614c31"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“열심히 드럼 칠게요” 데이식스 도운, 성진·영케이 축하 속 만기 전역[종합]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307162034360410",
+                "aid": "aa8593bc17e2a6fc",
+                "image": null,
+                "_id": "646563463e93486eac614c32"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "백진희 딸 낳았다, 안재현과 1년만 운명적 재회 (진짜가)[어제TV]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307170600231710",
+                "aid": "c356eb24702c63a4",
+                "image": null,
+                "_id": "646563463e93486eac614c33"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "여자아이들 미연 ‘옅은 화장에도 예쁨 폭발’[포토엔HD]",
+                "url": "http://news.newsen.com/news_view.php?uid=202307161853393510",
+                "aid": "f36760832c1cb243",
+                "image": null,
+                "_id": "646563463e93486eac614c34"
+            }
+        ],
+        "name": "YTN 사이언스",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/68.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/68.png"
+        },
+        "regDate": "20230717 08:45:34"
+    },
+    "69": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "윤 대통령 \"특별재난지역 선포 등 정책 모두 동원\"",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406756",
+                "aid": "20cbda31ed1c2f6f",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9070%2F104113_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc22219d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "아파트 복도서 흉기 난동…1명 사망·1명 경상",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406750",
+                "aid": "20cbda2b6ffefeb5",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22219e"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "바다에 아내 빠트리고 돌 던져 살해…30대 구속영장",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406758",
+                "aid": "20cbda33c17b3fad",
+                "image": null,
+                "_id": "64868b31c499cc07f341f2da"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "경기도·융기원·경기대·장비업체 '반도체 공유대학'",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406749",
+                "aid": "20cbda15ddeb4fcb",
+                "image": null,
+                "_id": "64868b31c499cc07f341f2db"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"호우 사망·실종 48명\"…집계 외 사망자 1명 늘어",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406757",
+                "aid": "20cbda32574bb78e",
+                "image": null,
+                "_id": "64868b31c499cc07f341f2dc"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "코레일, 경강선 세종대왕릉~여주 구간 운행 재개",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406730",
+                "aid": "20cbd9edd4800eb3",
+                "image": null,
+                "_id": "64868b31c499cc07f341f2dd"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "국회 법사위, 오늘 '영아살해·유기 처벌강화법' 처리",
+                "url": "http://www.obsnews.co.kr/news/articleView.html?idxno=1406727",
+                "aid": "20cbd9d56e0d4f8b",
+                "image": null,
+                "_id": "64a67a2a3e93486eac6d4ead"
+            }
+        ],
+        "name": "OSEN",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/69.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/69.png"
+        },
+        "regDate": "20230717 10:37:44"
+    },
+    "70": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "smartPC사랑 2023 상반기 베스트 하드웨어 어워즈 선정",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47208",
+                "aid": "f1d10d514a4a5c51",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0713%2Farticle_img%2Fnew_main%2F9087%2F100252_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221bd1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "가성비 게이밍 그래픽카드, 인텔 아크 A750 알아보기",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47112",
+                "aid": "f1d109a9029f0be9",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "2023년 7월호",
+                "url": "http://www.ilovepc.co.kr",
+                "aid": "167fbf961937deaa",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "시원시원한 디스플레이에 휴대성까지? LG전자 2023 그램16 16ZD90RU-GX56K",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47218",
+                "aid": "f1d10d70c8ab6030",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[팁] 마이크론 2400 SSD로 에이수스 로그 엘라이(ASUS ROG ALLY) 용량을 간단하게 업그레이드해보자",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47306",
+                "aid": "f1d11110a25af090",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "게이밍도 가능한 초경량 노트북? LG전자 2023 그램17 17Z90R-ED7VK",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47219",
+                "aid": "f1d10d71166ad831",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "UMPC 게임기 '옥조' 배터리 폭발 2번…휴대용 게임기 폭발 사고, 다른 제품도 있었을까?",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47357",
+                "aid": "f1d111ac67ff7bec",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd7"
+            }
+        ],
+        "name": "디지털타임즈",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/70.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/70.png"
+        },
+        "regDate": "20230713 09:58:00"
+    },
+    "71": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "기록적 폭우에… 온 나라가 슬픔에 잠겼다",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181333",
+                "aid": "99f490eae26eb2aa",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0716%2Farticle_img%2Fnew_main%2F9063%2F183124_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222149"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "충남 3곳·세종 국제화특구 지정 충청권 국제화 교육 기틀 마련 기대",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181137",
+                "aid": "99f4896cb5f5b1ac",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "손 놓는 보건의료노조 충청지역 의료공백 불가피",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181057",
+                "aid": "99f485e93c9549e9",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "‘지방시대위’ 세종서 출범 어디서나 살기 좋은 지방시대 구현",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2180970",
+                "aid": "99f4338a4c042c0a",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“제발” 지하차도만 하염없이 바라보는 실종자 가족들",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181319",
+                "aid": "99f490b2349888f2",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "집안까지 들이닥친 빗물 \"살림살이 둥둥 떠다녀\"",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181330",
+                "aid": "99f490e74f2a3f67",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214e"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "여야 지도부, 폭우 피해 입은 충북 방문 복구 지원 약속",
+                "url": "https://www.cctoday.co.kr/news/articleView.html?idxno=2181316",
+                "aid": "99f490afa15415af",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22214f"
+            }
+        ],
+        "name": "미디어오늘",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/71.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/71.png"
+        },
+        "regDate": "20230716 18:27:01"
+    },
+    "72": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "최대 200㎜ 물폭탄… 침수·산사태 위험지 수백명 긴급 대피",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409013",
+                "aid": "bf2851f8824cf908",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9072%2F110825_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222157"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "도내 침수 취약주택 30% “비용 부담돼 물막이판 설치 안 해”",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409021",
+                "aid": "bf285215791a758b",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222158"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "창녕함안보 등 4대강 보 정책 ‘해체’서 ‘존치’로 바뀔 듯",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409016",
+                "aid": "bf2851fbfd7004a5",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222159"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "지리산 인근 지자체 ‘케이블카 재추진’ 시끌",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409000",
+                "aid": "bf2851d6139a692a",
+                "image": null,
+                "_id": "64713b656e592107d2d9ae55"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "오염수 우려에 손님 줄었는데 장마까지… 어시장 상인 시름",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409011",
+                "aid": "bf2851f6858af14a",
+                "image": null,
+                "_id": "64997f72530d8014e0f35b08"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "보건의료노조 총파업 종료… 양산부산대병원은 파업 계속",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409018",
+                "aid": "bf2851fdfa320c63",
+                "image": null,
+                "_id": "64997f72530d8014e0f35b09"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "경남도의회 “경남TP 원장 후보 ‘유흥접대 전력’ 있을 수 있는 일”",
+                "url": "http://www.knnews.co.kr/news/articleView.php?idxno=1409022",
+                "aid": "bf285216f77b796a",
+                "image": null,
+                "_id": "64997f72530d8014e0f35b0a"
+            }
+        ],
+        "name": "연합뉴스TV",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/72.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/72.png"
+        },
+        "regDate": "20230717 11:01:04"
+    },
+    "73": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "엄정화·김완선·이효리…화사는 '언니'들이 지킨다",
+                "url": "http://www.sportsworldi.com/newsView/20230717506063",
+                "aid": "4fe028c2cf60f142",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9120%2F103430_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221e6a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "김민재 뮌헨행 공식 발표만 남았다",
+                "url": "http://www.sportsworldi.com/newsView/20230716509459",
+                "aid": "1afb59895fbb8789",
+                "image": null,
+                "_id": "649673e740d2947ae427e960"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'알카라스의 시대' 증명한 윔블던 우승",
+                "url": "http://www.sportsworldi.com/newsView/20230717505052",
+                "aid": "4fdfb4438e7b16c3",
+                "image": null,
+                "_id": "649673e740d2947ae427e961"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "‘킹더랜드’ 이준호♥임윤아, 달빛 입맞춤",
+                "url": "http://www.sportsworldi.com/newsView/20230717505503",
+                "aid": "4fdfc66e7ca52bae",
+                "image": null,
+                "_id": "649673e740d2947ae427e962"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "송지효 \"부모님, 통영서 여객선 사업해\"",
+                "url": "http://www.sportsworldi.com/newsView/20230716516433",
+                "aid": "1b0813a9babee169",
+                "image": null,
+                "_id": "649673e740d2947ae427e963"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "한효주·박나래, '수해 복구' 기부 행렬 동참",
+                "url": "http://www.sportsworldi.com/newsView/20230717507040",
+                "aid": "4fe09ce07653af20",
+                "image": null,
+                "_id": "649673e740d2947ae427e964"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "김종민, “코요태 리더, 신지가 시켜서 해”",
+                "url": "http://www.sportsworldi.com/newsView/20230716516851",
+                "aid": "1b0822e91754ca29",
+                "image": null,
+                "_id": "649673e740d2947ae427e965"
+            }
+        ],
+        "name": "한겨례",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/73.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/73.png"
+        },
+        "regDate": "20230717 10:27:57"
+    },
+    "74": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[단독] 국교위, 전교조 추천 국교위원 '거부'…...",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371726/N?eduNewsYn=N",
+                "aid": "63b436be78a97cbe",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9076%2F104306_001.png%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc2221a4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "영아 유기·살해 확인 계속…후속 입법 속도",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371727/N?eduNewsYn=N",
+                "aid": "bd8fa0ff6c3900ff",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "<뉴스브릿지> 계약 종료 후 '이름' 잃는 가수들…분쟁 원인과 해결책은",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371728/N?eduNewsYn=N",
+                "aid": "176b0b405fc88540",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[단독] 반수생 급증 현실화되나…9월 모평 학원 응시생 전년比 1,536명↑",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371690/N?eduNewsYn=N",
+                "aid": "22e2ec50168bd010",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "어린이집‧유치원 대기 인원 한눈에…통합정보 개편",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371691/N?eduNewsYn=N",
+                "aid": "7cbe56910a1b5451",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a8"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "영아살해 '솜방망이' 개선…70년만 형법 개정 추진",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371692/N?eduNewsYn=N",
+                "aid": "d699c0d2fdaad892",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a9"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'4세대 나이스' 불편 이어져…안정화 과제는?",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371410/N?eduNewsYn=N",
+                "aid": "75004156ad1216",
+                "image": null,
+                "_id": "64a69d1558a9ce6eb3c6d2e8"
+            }
+        ],
+        "name": "조선비즈",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/74.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/74.png"
+        },
+        "regDate": "20230717 10:35:16"
+    },
+    "75": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "오송 지하차도 교통통제 왜 안했나... 사망자 계속 늘어",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238458",
+                "aid": "bba8a21b6f082e9b",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9053%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc2220af"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "오송 침수 지하차도 사망자 7명…5명은 버스 탑승객",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238452",
+                "aid": "bba8a215487f4815",
+                "image": null,
+                "_id": "64a084d762e82fd2bec3dfb0"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "윤 대통령, 우크라이나 방문… 젤렌스키와 정상회담",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238450",
+                "aid": "bba8a21390fc5093",
+                "image": null,
+                "_id": "64a084d762e82fd2bec3dfb1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "52세에 대학 간 엄마와 페미니스트 딸 : 작가일 인스타툰",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238264",
+                "aid": "bba89ab4ceb2d7b4",
+                "image": null,
+                "_id": "64a084d762e82fd2bec3dfb2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[날씨] 충청권 시간당  30~60mm 폭우...내일까지 최고 300mm 이상",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238440",
+                "aid": "bba8a1f426ccc874",
+                "image": null,
+                "_id": "64a084d762e82fd2bec3dfb3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“대기업 사외이사, ‘법조계 서육남’ 편중… 기업 지배구조 다양성 부족”",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238394",
+                "aid": "bba89ed25b00e812",
+                "image": null,
+                "_id": "64ae9be1c499cc07f349e0fc"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“‘불체포특권’ 포기하겠습니다” 민주당 의원 31명 선언",
+                "url": "http://www.womennews.co.kr/news/articleView.html?idxno=238429",
+                "aid": "bba8a1bf0c3b11ff",
+                "image": null,
+                "_id": "64b2dfd57dd28a7aefc56774"
+            }
+        ],
+        "name": "JTBC",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/75.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/75.png"
+        },
+        "regDate": "20230717 11:10:03"
+    },
+    "76": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "학교 신설, 특수교육원, 폐교, IB까지 지금 제주도교육청은 온통 ‘용역 중’",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417186",
+                "aid": "864950ea3ed26bd6",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9073%2F104306_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222165"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“일본 원전 오염수 해양 방류 저지 우리 세대의 무조건적인 의무이자 책임”",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417190",
+                "aid": "864951033c1bd8dd",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222166"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "가칭 제주예술인회관, ‘지역에 꼭 필요한 예술공간’ 추진 탄력받을까?",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417195",
+                "aid": "86495108b400ec38",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222167"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "취임 1년 오영훈 제주지사-김광수 제주교육감 긍정 평가 ‘동반 하락’",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417180",
+                "aid": "864950e4488c549c",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“여름 휴가는 푸파페 제주로!” 농촌융복합 체험행사 풍성",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417191",
+                "aid": "86495104ba7cdcbc",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "아픈 몸의 현상학 / 황임경",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417201",
+                "aid": "864953aebeafa612",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 로얄쇼핑 천장 붕괴 원인은?...‘부실공사-시설 노후화’ 의견 분분",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=416855",
+                "aid": "8648f6743902480c",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc4"
+            }
+        ],
+        "name": "메트로",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/76.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/76.png"
+        },
+        "regDate": "20230717 10:33:59"
+    },
+    "77": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "<마당이 있는 집> 원작자 김진영 인터뷰",
+                "url": "https://ch.yes24.com/Article/View/54599?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "7737d4728b170632",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9084%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221ba7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "What's in my cart? 책 장바구니 특집!",
+                "url": "https://ch.yes24.com/Article/View/54595?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "e232196e2093fc2e",
+                "image": null,
+                "_id": "648049361f0f6898fc301cae"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "삶이 우울하거나 지겨우면 이 작품을 보라!",
+                "url": "https://ch.yes24.com/Article/View/54591?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "4d2c5e6ab610f22a",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "뮤지컬 <신의 손가락> - 모두의 인생은 한 편의 동화다",
+                "url": "https://ch.yes24.com/Article/View/54583?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "54c2d28d28660dcd",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "예술가들이 매혹된 색채를 찾아 떠나는 프로방스 여행",
+                "url": "https://ch.yes24.com/Article/View/54603?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "d8004a16f6443196",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a8"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[김소미의 혼자 영화관에 갔어] 외로운 방조자들의 우주 - <스파이더맨 : 어크로스 더 유니버스>",
+                "url": "https://ch.yes24.com/Article/View/54602?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "f2bedb555ba36f15",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a9"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[임진아의 카페 생활] 여름 방학 기분 - 커먼마치",
+                "url": "https://ch.yes24.com/Article/View/54600?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "283bfdd32661ea13",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1aa"
+            }
+        ],
+        "name": "아이뉴스24",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/77.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/77.png"
+        },
+        "regDate": "20230717 11:10:46"
+    },
+    "78": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Heavy Monsoon Rains Leave at Least 39 Dead",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Dm&Seq_Code=179159",
+                "aid": "2f121de9023158e9",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9057%2F105536_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc22210a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Heavy Rains to Continue in Chungcheong, Southern Regions",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Sc&Seq_Code=179161",
+                "aid": "8cfbb1c70df8f847",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22210b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Yoon Returns from Trip to Lithuania, Poland, Ukraine",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Po&Seq_Code=179160",
+                "aid": "073c7375b4cefa35",
+                "image": null,
+                "_id": "646310e67dd28a7aefb5ecd2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "韩暴雨导致39人死亡、9人失踪 逾万人紧急避难",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=c&id=Dm&Seq_Code=80012",
+                "aid": "4faf4b34d06dfdcc",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "尹锡悦主持召开暴雨有关会议 朝野就指定灾难地区形成共识",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=c&id=Po&Seq_Code=80014",
+                "aid": "dac96f00dc7ce500",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "韓国各地で豪雨 40人死亡 9人行方不明",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=j&id=Dm&Seq_Code=85980",
+                "aid": "fd59ce08547d38",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "ソウルの人口減少率 全国で最高",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=j&id=Dm&Seq_Code=85985",
+                "aid": "fd59ce0d7d5b1553",
+                "image": null,
+                "_id": "64aba8f758a9ce6eb3c7c619"
+            }
+        ],
+        "name": "비즈한국",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/78.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/78.png"
+        },
+        "regDate": "20230717 10:53:42"
+    },
+    "79": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Heavy Monsoon Rains Leave at Least 39 Dead",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Dm&Seq_Code=179159",
+                "aid": "2f121de9023158e9",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9057%2F105536_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc22210a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Heavy Rains to Continue in Chungcheong, Southern Regions",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Sc&Seq_Code=179161",
+                "aid": "8cfbb1c70df8f847",
+                "image": null,
+                "_id": "643542ba1f0f6898fc22210b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "Yoon Returns from Trip to Lithuania, Poland, Ukraine",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=e&id=Po&Seq_Code=179160",
+                "aid": "073c7375b4cefa35",
+                "image": null,
+                "_id": "646310e67dd28a7aefb5ecd2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "韩暴雨导致39人死亡、9人失踪 逾万人紧急避难",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=c&id=Dm&Seq_Code=80012",
+                "aid": "4faf4b34d06dfdcc",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "尹锡悦主持召开暴雨有关会议 朝野就指定灾难地区形成共识",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=c&id=Po&Seq_Code=80014",
+                "aid": "dac96f00dc7ce500",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "韓国各地で豪雨 40人死亡 9人行方不明",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=j&id=Dm&Seq_Code=85980",
+                "aid": "fd59ce08547d38",
+                "image": null,
+                "_id": "64a52ac333520e07dac01d0d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "ソウルの人口減少率 全国で最高",
+                "url": "http://world.kbs.co.kr/service/news_view.htm?lang=j&id=Dm&Seq_Code=85985",
+                "aid": "fd59ce0d7d5b1553",
+                "image": null,
+                "_id": "64aba8f758a9ce6eb3c7c619"
+            }
+        ],
+        "name": "주간경향",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/79.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/79.png"
+        },
+        "regDate": "20230717 10:53:42"
+    },
+    "80": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도, 노후 차집관로 2026년까지 전면 교체",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218066",
+                "aid": "16dfd360b7561820",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9099%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221db4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도의회, 강경흠 의원 징계 착수…사퇴 요구 잇따라",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218046",
+                "aid": "16dfd322e2f707e2",
+                "image": null,
+                "_id": "64af13a4548a597b72d3604a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도 ‘공공주도 2.0 풍력 조례’ 의회서 ‘제동’",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218022",
+                "aid": "16dfd2e09f9208a0",
+                "image": null,
+                "_id": "64af13a4548a597b72d3604b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 자원순환사회 조성 핵심기반시설 본격 가동",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218057",
+                "aid": "16dfd34228e80bc2",
+                "image": null,
+                "_id": "64b02a1363b70c6ebed54bff"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "양파·당근 과잉생산 우려...10% 이상 감축 필요",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218055",
+                "aid": "16dfd34071651440",
+                "image": null,
+                "_id": "64b14b113c50cd9912fcde86"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주, 동물등록 8.7% 늘고↑...유기동물 11.8% 감소↓",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218054",
+                "aid": "16dfd33f95a3987f",
+                "image": null,
+                "_id": "64b14b113c50cd9912fcde87"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 마을관광 브랜드 ‘카름스테이’ 3곳 신규 선정",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218045",
+                "aid": "16dfd32107358c21",
+                "image": null,
+                "_id": "64b284a8e82d6f14f22b4cc4"
+            }
+        ],
+        "name": "포브스",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/80.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/80.png"
+        },
+        "regDate": "20230717 11:10:38"
+    },
+    "81": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "<마당이 있는 집> 원작자 김진영 인터뷰",
+                "url": "https://ch.yes24.com/Article/View/54599?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "7737d4728b170632",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9084%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221ba7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "What's in my cart? 책 장바구니 특집!",
+                "url": "https://ch.yes24.com/Article/View/54595?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "e232196e2093fc2e",
+                "image": null,
+                "_id": "648049361f0f6898fc301cae"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "삶이 우울하거나 지겨우면 이 작품을 보라!",
+                "url": "https://ch.yes24.com/Article/View/54591?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "4d2c5e6ab610f22a",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "뮤지컬 <신의 손가락> - 모두의 인생은 한 편의 동화다",
+                "url": "https://ch.yes24.com/Article/View/54583?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "54c2d28d28660dcd",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "예술가들이 매혹된 색채를 찾아 떠나는 프로방스 여행",
+                "url": "https://ch.yes24.com/Article/View/54603?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "d8004a16f6443196",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a8"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[김소미의 혼자 영화관에 갔어] 외로운 방조자들의 우주 - <스파이더맨 : 어크로스 더 유니버스>",
+                "url": "https://ch.yes24.com/Article/View/54602?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "f2bedb555ba36f15",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1a9"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[임진아의 카페 생활] 여름 방학 기분 - 커먼마치",
+                "url": "https://ch.yes24.com/Article/View/54600?y_contents=채널예스&y_channel=뉴스캐스트&y_area=61",
+                "aid": "283bfdd32661ea13",
+                "image": null,
+                "_id": "64b4a4a660f3c014e7afd1aa"
+            }
+        ],
+        "name": "TV리포트",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/81.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/81.png"
+        },
+        "regDate": "20230717 11:10:46"
+    },
+    "82": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "해변의 양탄자, 비치타올",
+                "url": "https://www.elle.co.kr/article/79048",
+                "aid": "7bd1cdfaa2f52406",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9080%2F104113_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221b53"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "패션 디자이너 지나 손의 로스엔젤레스 #집업실",
+                "url": "https://www.elle.co.kr/article/79116",
+                "aid": "7bd1d15c456829a4",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221b54"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "마지막 순간까지 예술과 함께 했던 제인 버킨이 세상을 떠났다",
+                "url": "https://www.elle.co.kr/article/79200",
+                "aid": "7bd1d4f8e386b0c8",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221b55"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "지니(JINI)와 글로벌 메이크업 브랜드 M∙A∙C이 만났다",
+                "url": "https://www.elle.co.kr/article/79189",
+                "aid": "7bd1d23833f8f608",
+                "image": null,
+                "_id": "64952266e9bedeca6226220d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "김우빈-신민아, 가장 먼저 수해 이웃 돕기 나선 기부 커플",
+                "url": "https://www.elle.co.kr/article/79197",
+                "aid": "7bd1d255b1ceb6cb",
+                "image": null,
+                "_id": "64952266e9bedeca6226220e"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "장마철을 현명하게 이겨낼 채정안의 장마 아이템 7",
+                "url": "https://www.elle.co.kr/article/79196",
+                "aid": "7bd1d254aa6981ac",
+                "image": null,
+                "_id": "64a1c4c40123ecca7c84ff5c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "‘발리댁’ 가희가 알려주는 발리 여행 Tip",
+                "url": "https://www.elle.co.kr/article/79190",
+                "aid": "7bd1d24e7e0a42f2",
+                "image": null,
+                "_id": "64a323283e93486eac6c92ec"
+            }
+        ],
+        "name": "티브이데일리",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/82.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/82.png"
+        },
+        "regDate": "20230717 10:00:00"
+    },
+    "83": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"환상적이었다\" 류현진 KKKKK에 美 호평…'144.5㎞+66구' 다 완벽했다",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620598",
+                "aid": "7a8ee490d539a3f0",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9200%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221b68"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"빅리그 복귀 가까워져\"…류현진, '5이닝 5K 1실점' 트리플A에서도 강력했다",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620575",
+                "aid": "7a8ee44f486cb751",
+                "image": null,
+                "_id": "64a7c11b052e097ad98f0e8e"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'최초·유일 김용희 앞에서 채은성 만루포+문동주 158.7㎞ 쾅!' 나눔 올스타 2년 연속 웃었다…클로저 고우석, 타자 뷰캐넌에 진땀[올스타 게임노트]",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620496",
+                "aid": "7a8ee0cd322e2313",
+                "image": null,
+                "_id": "64a7c11b052e097ad98f0e8f"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'손가락 부상 후유증' 오타니, 멀티히트에도 5이닝 5실점 '시즌 5패'",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620363",
+                "aid": "7a8edcac5f703294",
+                "image": null,
+                "_id": "64a7c11b052e097ad98f0e90"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'나 MVP 아니야?' 무관의 뷰캐넌, 호명 안 했는데 시상대 '항의 방문'",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620663",
+                "aid": "7a8ee7ef9dfecaf1",
+                "image": null,
+                "_id": "64a7c11b052e097ad98f0e91"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "손흥민과 얼마나 닮았나…호주 팬들 벽화까지 그리며 프리시즌 반겼다",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620646",
+                "aid": "7a8ee7b4bbc5c88c",
+                "image": null,
+                "_id": "64a7c11b052e097ad98f0e92"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[윔블던 결산] '빅3 시대' 마침표 찍은 알카라스, 새로운 'GOAT' 가능할까",
+                "url": "https://www.spotvnews.co.kr/news/articleView.html?idxno=620676",
+                "aid": "7a8ee8114f0a3bcf",
+                "image": null,
+                "_id": "64b13f1c58a9ce6eb3c90728"
+            }
+        ],
+        "name": "BBS",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/83.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/83.png"
+        },
+        "regDate": "20230717 11:10:10"
+    },
+    "84": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "학교 신설, 특수교육원, 폐교, IB까지 지금 제주도교육청은 온통 ‘용역 중’",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417186",
+                "aid": "864950ea3ed26bd6",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9073%2F104306_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222165"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“일본 원전 오염수 해양 방류 저지 우리 세대의 무조건적인 의무이자 책임”",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417190",
+                "aid": "864951033c1bd8dd",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222166"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "가칭 제주예술인회관, ‘지역에 꼭 필요한 예술공간’ 추진 탄력받을까?",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417195",
+                "aid": "86495108b400ec38",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222167"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "취임 1년 오영훈 제주지사-김광수 제주교육감 긍정 평가 ‘동반 하락’",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417180",
+                "aid": "864950e4488c549c",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "“여름 휴가는 푸파페 제주로!” 농촌융복합 체험행사 풍성",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417191",
+                "aid": "86495104ba7cdcbc",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "아픈 몸의 현상학 / 황임경",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=417201",
+                "aid": "864953aebeafa612",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 로얄쇼핑 천장 붕괴 원인은?...‘부실공사-시설 노후화’ 의견 분분",
+                "url": "http://www.jejusori.net/news/articleView.html?idxno=416855",
+                "aid": "8648f6743902480c",
+                "image": null,
+                "_id": "6445133d1f0f6898fc24ddc4"
+            }
+        ],
+        "name": "르몽드 디플로마티크",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/84.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/84.png"
+        },
+        "regDate": "20230717 10:33:59"
+    },
+    "85": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "smartPC사랑 2023 상반기 베스트 하드웨어 어워즈 선정",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47208",
+                "aid": "f1d10d514a4a5c51",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0713%2Farticle_img%2Fnew_main%2F9087%2F100252_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221bd1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "가성비 게이밍 그래픽카드, 인텔 아크 A750 알아보기",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47112",
+                "aid": "f1d109a9029f0be9",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "2023년 7월호",
+                "url": "http://www.ilovepc.co.kr",
+                "aid": "167fbf961937deaa",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd3"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "시원시원한 디스플레이에 휴대성까지? LG전자 2023 그램16 16ZD90RU-GX56K",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47218",
+                "aid": "f1d10d70c8ab6030",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[팁] 마이크론 2400 SSD로 에이수스 로그 엘라이(ASUS ROG ALLY) 용량을 간단하게 업그레이드해보자",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47306",
+                "aid": "f1d11110a25af090",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "게이밍도 가능한 초경량 노트북? LG전자 2023 그램17 17Z90R-ED7VK",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47219",
+                "aid": "f1d10d71166ad831",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "UMPC 게임기 '옥조' 배터리 폭발 2번…휴대용 게임기 폭발 사고, 다른 제품도 있었을까?",
+                "url": "https://www.ilovepc.co.kr/news/articleView.html?idxno=47357",
+                "aid": "f1d111ac67ff7bec",
+                "image": null,
+                "_id": "643542ba1f0f6898fc221bd7"
+            }
+        ],
+        "name": "MK스포츠",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/85.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/85.png"
+        },
+        "regDate": "20230713 09:58:00"
+    },
+    "86": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'어둠깔린 오송 지하차도 사고현장'···도보 수색 들어간 구조대 [TF사진관]",
+                "url": "http://news.tf.co.kr/read/photomovie/2030886.htm?from=naver",
+                "aid": "cd08638686bd9146",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9156%2F111224_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222077"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[대전환 AI시대⑤] 보이스피싱 막는 '만능 재주꾼'…은행권에 스며든 AI",
+                "url": "http://news.tf.co.kr/read/economy/2030646.htm",
+                "aid": "d24e3d064c990f06",
+                "image": null,
+                "_id": "6490c92040d2947ae426c487"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[韓日 연대의 섬, 소록도②] 밟힌 이의 흔적 찾기…\"응어리 풀어달라\"",
+                "url": "http://news.tf.co.kr/read/ptoday/2030878.htm",
+                "aid": "3b205a4c8efed334",
+                "image": null,
+                "_id": "6490c92040d2947ae426c488"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "미리 보는 갤럭시 언팩….갤럭시Z플립5·폴드5 스펙·가격 이렇게 나온다",
+                "url": "http://news.tf.co.kr/read/economy/2030576.htm",
+                "aid": "a2868ba2de5ef562",
+                "image": null,
+                "_id": "6490c92040d2947ae426c489"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "유기 조장 vs 영아 생존…여야, '보호출산제' 논쟁",
+                "url": "http://news.tf.co.kr/read/ptoday/2030730.htm",
+                "aid": "fef6008795d2f2d9",
+                "image": null,
+                "_id": "649edbf0530d8014e0f48a4a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[강일홍의 클로즈업] 최환희도 답답한 '외할머니vs여동생' 갈등",
+                "url": "http://news.tf.co.kr/read/entertain/2030817.htm",
+                "aid": "bd687a58260d9718",
+                "image": null,
+                "_id": "64b08cc0c499cc07f34a3e16"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[단독] 'BTS 멤버인 척'…미공개 음원 유출 20대 '집행유예'",
+                "url": "http://news.tf.co.kr/read/national/2030897.htm",
+                "aid": "a320712a1cc61c96",
+                "image": null,
+                "_id": "64b08cc0c499cc07f34a3e17"
+            }
+        ],
+        "name": "텐아시아",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/86.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/86.png"
+        },
+        "regDate": "20230717 11:06:35"
+    },
+    "87": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "민주당 개그, 2000년 뒤까지 책임지라고 하지!",
+                "url": "https://www.dailian.co.kr/news/view/1253750/?sc=Naver",
+                "aid": "d6c970665deb0aa6",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9090%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221bfb"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "윤 대통령 \"비통한 마음…특별재난지역 선포 등 정책 모두 동원\"",
+                "url": "https://www.dailian.co.kr/news/view/1253856/?sc=Naver",
+                "aid": "42a8a76dd09ecced",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c0399"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "검찰, 박영수의 \"변협회장 선거 자금 문제 될 수 있다\" 메모 확보…측근 변호사들 줄소환",
+                "url": "https://www.dailian.co.kr/news/view/1253766/?sc=Naver",
+                "aid": "5bd7464b94ef488b",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c039a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "탄탄한 성장 기반…수익성·여신건전성 모두 '톱' [우리금융 퀀텀점프①]",
+                "url": "https://www.dailian.co.kr/news/view/1253208/?sc=Naver",
+                "aid": "aee7ab0eeddff20e",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c039b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"韓, 4대 방산강국 도약 시 매출·고용 2배 증가…맞춤 수출전략 짜야\"",
+                "url": "https://www.dailian.co.kr/news/view/1253657/?sc=Naver",
+                "aid": "fa874d2ce5341a6c",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c039c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'최대 채권자' 서울보증, 명지학원 기업회생계획 통과시켰다",
+                "url": "https://www.dailian.co.kr/news/view/1253847/?sc=Naver",
+                "aid": "cfdbb4cf965dc50f",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c039d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "경찰, '오송 지하차도 참사' 전담팀 구성…\"책임 소재 본격 수사\"",
+                "url": "https://www.dailian.co.kr/news/view/1253867/?sc=Naver",
+                "aid": "df3eff8d09f308cd",
+                "image": null,
+                "_id": "64aa8f3b40d2947ae42c039e"
+            }
+        ],
+        "name": "정책브리핑",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/87.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/87.png"
+        },
+        "regDate": "20230717 11:08:52"
+    },
+    "88": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "역대급 수마 덮친 전북, 2차 피해예방 '초비상'",
+                "url": "https://www.jjan.kr/article/20230716580127",
+                "aid": "bd22ef316cb1442f",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9066%2F094039_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222181"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'물바다' 된 전북⋯9개 시·군 424세대 753명 대피중",
+                "url": "https://www.jjan.kr/article/20230717580002",
+                "aid": "f209266eaeb575d2",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222182"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "기록적 폭우 원인은? 기상학자들 \"지구 온난화\"",
+                "url": "https://www.jjan.kr/article/20230715580035",
+                "aid": "883cb04cadb963f4",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222183"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"특별재난지역 지정을\" 유례없는 폭우에 지역구로 달려간 정치권",
+                "url": "https://www.jjan.kr/article/20230716580333",
+                "aid": "bd22f6ce6deffe32",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222184"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "한국투자공사 진승호 사장, 전주 이전 거부 발언 파문",
+                "url": "https://www.jjan.kr/article/20230716580316",
+                "aid": "bd22f693305b974d",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222185"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "‘구스타보 결승골’ 전북, 수원FC에 1-0 승리",
+                "url": "https://www.jjan.kr/article/20230716580345",
+                "aid": "bd22f6ef56ff6831",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222186"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "발암물질 석면, 내년이면 전북 학교서 사라진다",
+                "url": "https://www.jjan.kr/article/20230716580088",
+                "aid": "bd22ec2bade13df5",
+                "image": null,
+                "_id": "643542ba1f0f6898fc222187"
+            }
+        ],
+        "name": "파이낸셜뉴스",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/88.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/88.png"
+        },
+        "regDate": "20230717 09:34:24"
+    },
+    "89": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사]  인천시민 46.7% “유정복 시장 잘하고 있다”",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203079",
+                "aid": "284d86dd9e09acdd",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9097%2F112248_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221d9f"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사] 김동연 경기지사 지지율 급상승…“잘한다” 57.1%",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203082",
+                "aid": "284d86f5a13cbcb5",
+                "image": null,
+                "_id": "64aa5830d509cf07e8701c29"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사] 인천시민·경기도민 윤석열 대통령 국정수행 평가",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203075",
+                "aid": "284d86d9d8c36ed9",
+                "image": null,
+                "_id": "64ab9b5df04b5ed2c5434f2b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사] 경기도민·인천시민 정당 지지도…민주당·국민의힘, 오차범위 내 '엎치락뒤치락'",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203074",
+                "aid": "284d86d8e771df58",
+                "image": null,
+                "_id": "64ab9b5df04b5ed2c5434f2c"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사] 내년 총선, 인천시민은 변화 바란다",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203077",
+                "aid": "284d86dbbb668ddb",
+                "image": null,
+                "_id": "64ab9b5df04b5ed2c5434f2d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[여론조사] 내년 총선, 경기도민은 변화 바란다…지역 국회의원 '물갈이' 원해",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203078",
+                "aid": "284d86dcacb81d5c",
+                "image": null,
+                "_id": "64b3d1f51f0f6898fc3a224d"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[창간 35주년 여론조사] 김동연 경기지사 지지율 급상승 이유…철도망 확충·민생경제 주 요인",
+                "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1203092",
+                "aid": "284d87143daab914",
+                "image": null,
+                "_id": "64b3d1f51f0f6898fc3a224e"
+            }
+        ],
+        "name": "씨네21",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/89.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/89.png"
+        },
+        "regDate": "20230717 11:20:04"
+    },
+    "90": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'CJ 승계 핵심'은 올리브영?… 이재현의 큰 그림",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071414520662204&type=4&code=w0405&STAND=ST",
+                "aid": "4274ad77e350c369",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9159%2F111224_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc222085"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"대출금리 올라\" 영끌족 비명… 주담대 금리 7% 육박",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071709462957121&type=4&code=w0202&STAND=SS",
+                "aid": "2cf2ad96429f8f6a",
+                "image": null,
+                "_id": "64a0948c3e93486eac6c1932"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'납품가 기싸움' 쿠팡, '햇반' 없어도 괜찮다?",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071708431989095&type=4&code=w0405&STAND=SS",
+                "aid": "3a09765135e320cf",
+                "image": null,
+                "_id": "64aee3d4e82d6f14f22a6395"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "국제선 결항 아시아나, 비상대책 가동… 승객 피해 최소화",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071710195737812&type=4&code=w0406&STAND=SS",
+                "aid": "0d3da8e06e1e4da0",
+                "image": null,
+                "_id": "64aee3d4e82d6f14f22a6396"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "韓 폭우 피해, 외신도 관심… \"동아시아 기후 위기 직면\"",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071709153565027&type=4&code=w1604&STAND=SS",
+                "aid": "a791c706c35332fa",
+                "image": null,
+                "_id": "64b17417e9bedeca622c07f6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "오송 지하차도 참사 현장서 웃은 공무원… \"소름 끼친다\"",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071709575642600&type=4&code=w1602&STAND=SS",
+                "aid": "225ebaa3d87cf6fd",
+                "image": null,
+                "_id": "64b17417e9bedeca622c07f7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "\"역시 불사조\"… 주윤발 건강이상설, '가짜뉴스'로 판명",
+                "url": "https://www.moneys.co.kr/news/mwView.php?no=2023071708503414165&type=4&code=w1604&STAND=SS",
+                "aid": "eb438184bf7625bc",
+                "image": null,
+                "_id": "64b17417e9bedeca622c07f8"
+            }
+        ],
+        "name": "뉴스포스트",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/90.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/90.png"
+        },
+        "regDate": "20230717 11:10:05"
+    },
+    "91": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[겜ㅊㅊ] 엑조프라이멀 못지 않은, 공룡 때려잡는 게임 5선",
+                "url": "https://www.gamemeca.com/view.php?gid=1739246",
+                "aid": "fd77bcda2444469a",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9082%2F110339_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221b61"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[롤짤] 전자두뇌 피넛",
+                "url": "https://www.gamemeca.com/view.php?gid=1739241",
+                "aid": "fd77bcd5d28cb1d5",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de4286"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[판례.zip] 게임사 상대 소송에서 유저 승소가 늘고 있다",
+                "url": "https://www.gamemeca.com/view.php?gid=1739182",
+                "aid": "fd77b991dd34ce11",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de4287"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "새 마스코트 등장? 반반의 유치원 4 트레일러 공개",
+                "url": "https://www.gamemeca.com/view.php?gid=1739229",
+                "aid": "fd77bc9f0b92539f",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de4288"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "금강선 디렉터, 향후 업데이트는 엔드 콘텐츠 최우선으로",
+                "url": "https://www.gamemeca.com/view.php?gid=1739227",
+                "aid": "fd77bc9d847c181d",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de4289"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "원신 영문 성우 임금체불, 호요버스 \"녹음 스튜디오가 미지불\"",
+                "url": "https://www.gamemeca.com/view.php?gid=1739221",
+                "aid": "fd77bc97ef396597",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de428a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "수동조작 하고 싶어지는 SF MMORPG, 아레스",
+                "url": "https://www.gamemeca.com/view.php?gid=1739066",
+                "aid": "fd77b59608845ed6",
+                "image": null,
+                "_id": "648bf6ed6e592107d2de428b"
+            }
+        ],
+        "name": "정신의학신문",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/91.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/91.png"
+        },
+        "regDate": "20230717 10:59:06"
+    },
+    "92": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도, 노후 차집관로 2026년까지 전면 교체",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218066",
+                "aid": "16dfd360b7561820",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9099%2F111451_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221db4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도의회, 강경흠 의원 징계 착수…사퇴 요구 잇따라",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218046",
+                "aid": "16dfd322e2f707e2",
+                "image": null,
+                "_id": "64af13a4548a597b72d3604a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주도 ‘공공주도 2.0 풍력 조례’ 의회서 ‘제동’",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218022",
+                "aid": "16dfd2e09f9208a0",
+                "image": null,
+                "_id": "64af13a4548a597b72d3604b"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 자원순환사회 조성 핵심기반시설 본격 가동",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218057",
+                "aid": "16dfd34228e80bc2",
+                "image": null,
+                "_id": "64b02a1363b70c6ebed54bff"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "양파·당근 과잉생산 우려...10% 이상 감축 필요",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218055",
+                "aid": "16dfd34071651440",
+                "image": null,
+                "_id": "64b14b113c50cd9912fcde86"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주, 동물등록 8.7% 늘고↑...유기동물 11.8% 감소↓",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218054",
+                "aid": "16dfd33f95a3987f",
+                "image": null,
+                "_id": "64b14b113c50cd9912fcde87"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "제주 마을관광 브랜드 ‘카름스테이’ 3곳 신규 선정",
+                "url": "http://www.jejudomin.co.kr/news/articleView.html?idxno=218045",
+                "aid": "16dfd32107358c21",
+                "image": null,
+                "_id": "64b284a8e82d6f14f22b4cc4"
+            }
+        ],
+        "name": "철강금속신문",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/92.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/92.png"
+        },
+        "regDate": "20230717 11:10:38"
+    },
+    "93": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "충북 오송 지하차도서 밤사이 추가 수습…13명 사망",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230717002000641",
+                "aid": "2ca7da7022378990",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9109%2F112248_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc2220a1"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "충청이남 1년 강수량 60% 집중…주초에도 물벼락",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230716016400641",
+                "aid": "7aabe5b0597a9cd0",
+                "image": null,
+                "_id": "64a8715ec499cc07f3489dfc"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "위험 감수한 왕복 27시간…\"가치외교 실천\"",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230716016100641",
+                "aid": "758d5bd3e8be81cd",
+                "image": null,
+                "_id": "64a8715ec499cc07f3489dfd"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "여야, 수해 현장 방문…\"재난지역 선포\" 한목소리",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230716015900641",
+                "aid": "4e4de58a142876f6",
+                "image": null,
+                "_id": "64a8715ec499cc07f3489dfe"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "한미일, 동해상 미사일 방어훈련…북 ICBM 대응",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230716017100641",
+                "aid": "aa739714e9f4d4ac",
+                "image": null,
+                "_id": "64ac235223adad7ad2994cdd"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[기업기상도] 기회 맞아 맑은 기업 vs 극한호우에 젖은 기업",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230715009400641",
+                "aid": "bd33f975a68e8eab",
+                "image": null,
+                "_id": "64ac235223adad7ad2994cde"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "할리우드가 뿔났다…63년만에 작가·배우조합 동반파업",
+                "url": "https://www.yonhapnewstv.co.kr/news/MYH20230716006700641",
+                "aid": "17e942aea0e26292",
+                "image": null,
+                "_id": "64ac235223adad7ad2994cdf"
+            }
+        ],
+        "name": "IT조선",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/93.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/93.png"
+        },
+        "regDate": "20230717 11:22:16"
+    },
+    "94": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "엔하이픈·보이넥스트도어·카드·폴킴·김재환·이승윤, ‘2023 K 글로벌 하트 드림 어워즈’ 뜬다",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16895507701679687010",
+                "aid": "8ea56e7a08f7653a",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9119%2F112248_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc2220d2"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "故 최진실 아들 최환희, 동생 최준희 논란에 대신 고개 숙였다 [이슈&톡]",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16894584001679674002",
+                "aid": "ba8dcfbccd8f03fc",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7ab"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'미임파7' 개봉 첫 주말 120만 명 동원, 압도적 1위 [박스오피스]",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16895545961679692008",
+                "aid": "c5e1d4c796ed9707",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7ac"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "김우빈·이찬원, 수해 이재민 위해 1억원 기부",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16895449511679679002",
+                "aid": "1ebb70da178696da",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7ad"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "남규리, 하이어랭크 엔터테인먼트 전속계약",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16895575591679699002",
+                "aid": "0b65e2fe6f3ea8be",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7ae"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[TD포토] 블랙핑크 로제 '예쁨이 한가득~'",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16893023711679539017",
+                "aid": "a6d26613c2708193",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7af"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[TD영상] 정일우-박은석, 김병만 '꿈 꾸는 아이'같은 모습에 놀라",
+                "url": "http://www.tvdaily.co.kr/read.php3?aid=16893209111679623003",
+                "aid": "0159f4e4bd4962e4",
+                "image": null,
+                "_id": "64b0d968052e097ad990e7b0"
+            }
+        ],
+        "name": "여성경제신문",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/94.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/94.png"
+        },
+        "regDate": "20230717 11:20:02"
+    },
+    "95": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "엄정화·김완선·이효리…화사는 '언니'들이 지킨다",
+                "url": "http://www.sportsworldi.com/newsView/20230717506063",
+                "aid": "4fe028c2cf60f142",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9120%2F112108_001.jpg%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc221e6a"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "노경은·노진혁이 첫 올스타전을 즐기는 법",
+                "url": "http://www.sportsworldi.com/newsView/20230715513661",
+                "aid": "e62083283404d8e8",
+                "image": null,
+                "_id": "649673e740d2947ae427e960"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "넷플 '트렁크', 서현진·공유 캐스팅 확정",
+                "url": "http://www.sportsworldi.com/newsView/20230717506152",
+                "aid": "4fe02c63d1eaeaa3",
+                "image": null,
+                "_id": "649673e740d2947ae427e961"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'킹더랜드' 이준호♥임윤아, 달빛 입맞춤",
+                "url": "http://www.sportsworldi.com/newsView/20230717505503",
+                "aid": "4fdfc66e7ca52bae",
+                "image": null,
+                "_id": "649673e740d2947ae427e962"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'통영 배수저' 송지효, 난생 첫 인턴 경험",
+                "url": "http://www.sportsworldi.com/newsView/20230717508633",
+                "aid": "4fe127a9f7eef569",
+                "image": null,
+                "_id": "649673e740d2947ae427e963"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'미션 임파서블7' 개봉 첫 주 176만…압도적 1위",
+                "url": "http://www.sportsworldi.com/newsView/20230717509028",
+                "aid": "4fe18568d4be4ea8",
+                "image": null,
+                "_id": "649673e740d2947ae427e964"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "주우재, 모델 시절 '전 여친' 한 마디에…",
+                "url": "http://www.sportsworldi.com/newsView/20230717506532",
+                "aid": "4fe03b2974cf99e9",
+                "image": null,
+                "_id": "649673e740d2947ae427e965"
+            }
+        ],
+        "name": "SBS비즈",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/95.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/95.png"
+        },
+        "regDate": "20230717 11:20:31"
+    },
+    "96": {
+        "materials": [
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[단독] 국교위, 전교조 추천 국교위원 '거부'…...",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371726/N?eduNewsYn=N",
+                "aid": "63b436be78a97cbe",
+                "image": {
+                    "url": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2023%2F0717%2Farticle_img%2Fnew_main%2F9076%2F104306_001.png%22&type=nf312_208&service=navermain"
+                },
+                "_id": "643542ba1f0f6898fc2221a4"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "영아 유기·살해 확인 계속…후속 입법 속도",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371727/N?eduNewsYn=N",
+                "aid": "bd8fa0ff6c3900ff",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a5"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "<뉴스브릿지> 계약 종료 후 '이름' 잃는 가수들…분쟁 원인과 해결책은",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371728/N?eduNewsYn=N",
+                "aid": "176b0b405fc88540",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a6"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "[단독] 반수생 급증 현실화되나…9월 모평 학원 응시생 전년比 1,536명↑",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371690/N?eduNewsYn=N",
+                "aid": "22e2ec50168bd010",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a7"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "어린이집‧유치원 대기 인원 한눈에…통합정보 개편",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371691/N?eduNewsYn=N",
+                "aid": "7cbe56910a1b5451",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a8"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "영아살해 '솜방망이' 개선…70년만 형법 개정 추진",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371692/N?eduNewsYn=N",
+                "aid": "d699c0d2fdaad892",
+                "image": null,
+                "_id": "643542ba1f0f6898fc2221a9"
+            },
+            {
+                "@type": "MATERIAL-PC-NEWSSTAND-HEADLINE",
+                "gdid": null,
+                "title": "'4세대 나이스' 불편 이어져…안정화 과제는?",
+                "url": "https://home.ebs.co.kr/ebsnews/menu1/newsAllView/60371410/N?eduNewsYn=N",
+                "aid": "75004156ad1216",
+                "image": null,
+                "_id": "64a69d1558a9ce6eb3c6d2e8"
+            }
+        ],
+        "name": "한국농어촌방송",
+        "logoLight": {
+            "url": "./assets/newspaper/Light/96.png"
+        },
+        "logoDark": {
+            "url": "./assets/newspaper/Light/96.png"
+        },
+        "regDate": "20230717 10:35:16"
     }
 }

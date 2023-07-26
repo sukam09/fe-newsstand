@@ -24,8 +24,8 @@ const createButton = (button, index) => {
       const newPressType = setPress(types[index]);
       const initPage = setPage(FIRST_PAGE);
 
-      gridStore.dispatch(initPage);
       mainStore.dispatch(newPressType);
+      gridStore.dispatch(initPage);
     },
   };
 
@@ -33,6 +33,7 @@ const createButton = (button, index) => {
 };
 function PressType($target, props) {
   Component.call(this, $target, props);
+  mainStore.subscribe(this.observerCallback);
 }
 
 Object.setPrototypeOf(PressType.prototype, Component.prototype);
