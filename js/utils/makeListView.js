@@ -23,13 +23,6 @@ async function drawList(current) {
       ? (list = CATEGORY)
       : (list = getSubscribedPress().map((item) => item.name));
 
-    if (!list.length) {
-      alert("구독한 언론사가 없습니다.");
-      store.setState({ tabMode: "all" });
-      updateTabSelection(document.getElementById(getTabMode()));
-      return;
-    }
-
     const main_list = document.querySelector(".main-list");
     main_list.innerHTML = "";
     const data = getIndex("listIndex");

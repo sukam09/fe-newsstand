@@ -12,8 +12,6 @@ import {
 import { checkPage } from "./checkPage.js";
 import { handleSubscribe, showSubscribeButton } from "./subscribePress.js";
 import { getData } from "../core/api.js";
-import { store } from "../core/store.js";
-import { updateTabSelection } from "./changeView.js";
 const grid_view = `
     <ul class="main-list-ul"></ul>
     `;
@@ -61,12 +59,7 @@ export function showGridView() {
   getTabMode() === "all"
     ? (list = getIndex("gridIndex"))
     : (list = subscribedIndex);
-  if (!list.length) {
-    alert("구독한 언론사가 없습니다.");
-    store.setState({ tabMode: "all" });
-    updateTabSelection(document.getElementById(getTabMode()));
-    return;
-  }
+
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
