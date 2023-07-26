@@ -212,6 +212,8 @@ const activatePressScroll = () => {
     ? targetElement.getBoundingClientRect().left
     : 0;
 
+  if (containerLeft === 0 && targetLeft === 0) return;
+
   const startTime = performance.now();
   const originalScrollLeft = wrapper.scrollLeft;
   const targetScrollLeft = wrapper.scrollLeft + targetLeft - containerLeft;
