@@ -120,8 +120,6 @@ const moveListView = () => {
 
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
-
-  setCategoryBar();
   setFullList();
 };
 
@@ -140,7 +138,6 @@ const initSubsModalView = () => {
     $subsAlert.classList.add("hidden");
 
     if (!getState("isGridMode")) {
-      setCategoryBar();
       setFullList();
     }
 

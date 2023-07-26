@@ -16,6 +16,7 @@ import {
   subscribeList,
 } from "../../store/index.js";
 import { changeIdx } from "./utils.js";
+import { register } from "../../observer/observer.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(getState(categoryInfo));
@@ -61,16 +62,15 @@ const setCategoryBar = () => {
     setACategoryBar({ keyList: subMediaName });
   }
 };
+
 /**
  * @param {현재 카테고리 idx} cateIdx
  * @returns 현재 카테고리인지 여부
  */
 const isCurCategory = ({ cateIdx }) => {
-  if (getState(isTotalMode)) {
-    return getState(listCateIdx) === cateIdx;
-  } else {
-    return getState(listSubsMediaIdx) === cateIdx;
-  }
+  getState(isTotalMode)
+    ? getState(listCateIdx) === cateIdx
+    : getState(listSubsMediaIdx) === cateIdx;
 };
 
 /**
@@ -104,11 +104,10 @@ const setACategoryBar = ({ keyList }) => {
  * 페이지 전환 따른 프로그래스바 이동
  */
 const setProgressBar = () => {
-  const cate = categoryKeys[getState(listCateIdx)];
   const $cateList = $categoryBar.querySelectorAll("li");
 
   // 1. 모든 li 하위 돌면서 프로그래스바 삭제해주기
-  $cateList.forEach((li, idx) => {
+  $cateList.forEach((li, _) => {
     const lastChild = li.lastElementChild;
     if (lastChild.className === "progress_bar") {
       li.className = "category_unselected";
@@ -121,12 +120,29 @@ const setProgressBar = () => {
   const curCateIdx = getState(isTotalMode)
     ? getState(listCateIdx)
     : getState(listSubsMediaIdx);
+
+  const $li = setPregressText({ curCateIdx });
+  const $progressBar = document.createElement("div");
+  $progressBar.className = "progress_bar";
+  $li.append($progressBar);
+
+  $progressBar.addEventListener("animationend", () => {
+    getState(isTotalMode)
+      ? setState(listCateMediaIdx, getState(listCateMediaIdx) + 1)
+      : setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
+    setFullList();
+  });
+};
+
+const setPregressText = ({ curCateIdx }) => {
+  const cate = categoryKeys[getState(listCateIdx)];
+
   const $li = $categoryBar.children[curCateIdx];
   $li.className = "category_selected";
 
   const $cntDiv = $li.children[1];
+
   if (getState(isTotalMode)) {
-    // 2-1. 전체 언론사 모드일 때만 카운트 추가
     $cntDiv.innerHTML = `
   <p>${getState(listCateMediaIdx) + 1}</p>
   <p>&nbsp; / ${getState(categoryInfo)[cate].length}</p>
@@ -137,19 +153,7 @@ const setProgressBar = () => {
     />`;
   }
 
-  const $progressBar = document.createElement("div");
-  $progressBar.className = "progress_bar";
-
-  $li.append($progressBar);
-
-  $progressBar.addEventListener("animationend", () => {
-    if (getState(isTotalMode))
-      setState(listCateMediaIdx, getState(listCateMediaIdx) + 1);
-    else {
-      setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
-    }
-    setFullList();
-  });
+  return $li;
 };
 
 /**
@@ -200,6 +204,11 @@ const setFullList = () => {
   setProgressBar();
 };
 
+function initListRegister() {
+  register([isTotalMode, subscribeList], setCategoryBar);
+  register([listCateIdx, listCateMediaIdx, listSubsMediaIdx], setCategoryBar);
+}
+
 /**
  * 초기 리스트뷰 세팅
  */
@@ -211,6 +220,8 @@ async function initListView() {
   setListSubscribeEvent();
   setCategoryBar();
   setFullList();
+
+  initListRegister();
 }
 
 export { initListView, setCategoryBar, setFullList, setListView };
