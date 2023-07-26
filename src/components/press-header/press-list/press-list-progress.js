@@ -10,16 +10,16 @@ class ListProgress extends Store {
     this.state = {
       pageCount: 1,
       categoryCount: 1,
-      pageLength: LIST.SUFFLE_CATEGORY[0].length,
-      categoryLength: LIST.SUFFLE_CATEGORY.length,
+      pageLength: LIST.SUFFLE_CATEGORY[0]?.length || 0,
+      categoryLength: LIST.SUFFLE_CATEGORY?.length || 0,
     };
 
     this.setupProgress();
     this.setupClick();
     this.setupButtonEvent();
-    this.render();
     this.setupArrow('right');
     this.setupArrow('left');
+    this.render();
     this.subscribe(this.render.bind(this));
   }
 
@@ -27,6 +27,24 @@ class ListProgress extends Store {
     this.setupMain();
     this.setupSub();
     this.setupButton();
+    this.setupNav();
+  }
+
+  setupNav() {
+    const navStart = document.querySelector('.progress-start');
+    const navDiv = navStart.querySelector('.press-category__div');
+    const navImg = navStart.querySelector('.press-category__img');
+    const navP = navStart.querySelector('.press-category__p');
+    const isSubscribe = LIST.SUBSCRIBE_NAME.includes(navP.innerText);
+
+    if (isSubscribe) {
+      navDiv.classList.add('none');
+      navImg.classList.remove('none');
+    }
+    if (!isSubscribe) {
+      navDiv.classList.remove('none');
+      navImg.classList.add('none');
+    }
   }
 
   setupMain() {
@@ -54,9 +72,9 @@ class ListProgress extends Store {
   setupProgress() {
     const initLi = document.querySelector('.press-category__ul');
     const progressBar = document.querySelectorAll('.press-category__li');
+    initLi.querySelector('.press-category__li')?.classList.add('progress-start');
+    this.setupNav();
 
-    initLi.querySelector('.press-category__li').classList.add('progress-start');
-    initLi.querySelector('.press-category__div').classList.remove('none');
     initLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
     initLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
 
@@ -178,7 +196,7 @@ class ListProgress extends Store {
     removeLi.querySelector('.press-category__div').classList.add('none');
 
     addLi.classList.add('progress-start');
-    addLi.querySelector('.press-category__div').classList.remove('none');
+    this.setupNav();
     addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
     addLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
   }
