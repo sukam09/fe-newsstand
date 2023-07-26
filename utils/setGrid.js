@@ -5,6 +5,7 @@ import { getAllAgencies } from "./setAgencies.js";
 import { sortPages } from "./sort/sortPage.js";
 import { removeButton } from "../components/Button/removeButton.js";
 import { INITIAL_PAGE } from "../constants/constant.js";
+import { stopProgress } from "../components/List/progress.js";
 
 const grid_btn = document.querySelector(".grid-view-btn");
 const list_btn = document.querySelector(".list-view-btn");
@@ -27,6 +28,7 @@ export const setGrid = () => {
   const $list = document.querySelector(".agency-list");
   $grid.style.display = "grid";
   $list.style.display = "none";
+  stopProgress();
 
   // 전체 언론사 보기인지 내가 구독한 언론사 보기인지 체크
   const isSubscribedMode = Boolean(

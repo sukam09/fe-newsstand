@@ -37,7 +37,17 @@ header h1 a {
   background-position-y: center;
 }
 
+.mode-container {
+  margin-left: auto;
+  background-position-y: center;
+}
+
+.mode-selector svg {
+  vertical-align: middle;
+}
+
 .time {
+  margin-left: 2rem;
   color: var(--color-text-default);
 }
 
