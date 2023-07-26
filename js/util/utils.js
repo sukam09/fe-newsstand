@@ -40,10 +40,10 @@ function findPress(type, target) {
     const finded_press = presses.find(press => {
       const press_src = getState(isDark) ? press.path_dark : press.path_light;
       return $target_src === press_src;
-    })
+    });
     return finded_press;
   } else if (type === "name") {
-    return presses.find(press => press.name === target.textContent); 
+    return presses.find(press => press.name === target.textContent);
   }
 }
 
@@ -123,6 +123,10 @@ function moveEmptySubListPage() {
   setDisplay(".no-sub-item-div", "query", "flex");
 }
 
+function setProperty(query, property, value) {
+  document.querySelector(query)[property] = value;
+}
+
 async function initUtilData() {
   presses_by_category = await getJSON("../assets/media.json");
   presses = Object.values(presses_by_category).reduce((acc, cur) => {
@@ -142,4 +146,5 @@ export {
   showListNav,
   getNews,
   moveEmptySubListPage,
+  setProperty,
 };

@@ -1,5 +1,5 @@
 import { initGridItemEvent, preventButtonClick } from "../subscribe/subscribe.js";
-import { LIST_ELEMENT, PAGE_SIZE } from "../store/const.js";
+import { LIST_ELEMENT_HTML, PAGE_SIZE, SUB_BTN_PATH, UNSUB_BTN_PATH } from "../store/const.js";
 import { setDisplay, getJSON } from "../util/utils.js";
 import { setState, getState } from "../observer/observer.js";
 import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "../store/store.js";
@@ -15,21 +15,15 @@ function drawGridArrow() {
   setDisplay("grid-next", "id", "block");
   setDisplay("grid-prev", "id", "block");
   const now_page = is_sub_view ? getState(subGridPageCount) : getState(gridPageCount);
-  if (total_grid_page === 0) {
-    setDisplay("grid-prev", "id", "none");
-    setDisplay("grid-next", "id", "none");
-  } else if (now_page === 0) {
-    setDisplay("grid-prev", "id", "none");
-  } else if (now_page + 1 >= total_grid_page) {
-    setDisplay("grid-next", "id", "none");
-  }
+  if (total_grid_page === 0 || now_page === 0) setDisplay("grid-prev", "id", "none");
+  if (total_grid_page === 0 || now_page + 1 >= total_grid_page) setDisplay("grid-next", "id", "none");
 }
 
 function appendPressInGrid(press) {
   const btn_image_src = getPressImageSrc(press);
   const $press_list = document.getElementById("press-list");
   const image_src = getState(isDark) ? press.path_dark : press.path_light;
-  const htmls = LIST_ELEMENT(image_src, btn_image_src);
+  const htmls = LIST_ELEMENT_HTML(image_src, btn_image_src);
   $press_list.insertAdjacentHTML("beforeend", htmls);
   const $li_element = $press_list.lastElementChild;
   const $li_btn = $li_element.querySelector("button");
@@ -39,9 +33,9 @@ function appendPressInGrid(press) {
 
 function getPressImageSrc(press) {
   if (getState(isSubView)) {
-    return "../img/icons/unsubBtn.svg";
+    return UNSUB_BTN_PATH;
   } else {
-    return getState(subscribedPress).some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
+    return getState(subscribedPress).some(data => data.name === press.name) ? UNSUB_BTN_PATH : SUB_BTN_PATH;
   }
 }
 

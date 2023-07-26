@@ -1,6 +1,6 @@
 import { listSubMouseClick } from "../subscribe/subscribe.js";
-import { checkIsSubscribe, getJSON, setDisplay } from "../util/utils.js";
-import { getState, setState, subscribe, setDictState } from "../observer/observer.js";
+import { checkIsSubscribe, getJSON, setDisplay, setProperty } from "../util/utils.js";
+import { getState, setState, setDictState } from "../observer/observer.js";
 import {
   categoryPageCount,
   clickedUnsubPress,
@@ -11,6 +11,13 @@ import {
   subscribedPress,
   totalCategoryPages,
 } from "../store/store.js";
+import {
+  CANCEL_SUB_BTN_PATH,
+  CAPTION_ELEMENT_HTML,
+  COUNT_DIV_ELEMENT_HTML,
+  SUB_BTN_PATH,
+  SUB_NEWS_TITLE_ELEMENT_HTML,
+} from "../store/const.js";
 
 const category = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
 let news;
@@ -32,20 +39,15 @@ async function initNewsInfo() {
 function drawListArrow() {
   setDisplay(".list-prev", "query", "block");
   setDisplay(".list-next", "query", "block");
-  const subscribed_press = getState(subscribedPress);
+  const subscribed_press_len = getState(subscribedPress).length;
   const sub_list_page = getState(subListPageCount);
   const now_category = getState(nowCategory);
   const list_page = getState(categoryPageCount);
   const total_category_count = getState(totalCategoryPages);
   if (getState(isSubView)) {
-    if (subscribed_press.length === 1) {
-      setDisplay(".list-prev", "query", "none");
-      setDisplay(".list-next", "query", "none");
-    } else if (sub_list_page === 0) {
-      setDisplay(".list-prev", "query", "none");
-    } else if (sub_list_page + 1 === subscribed_press.length) {
-      setDisplay(".list-next", "query", "none");
-    }
+    if (subscribed_press_len === 1 || sub_list_page === 0) setDisplay(".list-prev", "query", "none");
+
+    if (subscribed_press_len === 1 || subscribed_press_len === sub_list_page + 1) setDisplay(".list-next", "query", "none");
   } else {
     // 그냥 리스트 뷰
     if (list_page[now_category] + 1 === total_category_count[now_category]) {
@@ -66,24 +68,19 @@ function drawNews() {
   if (news === undefined) {
     return;
   }
-  document.querySelector(".press-brandmark").src = getState(isDark) ? news.path_dark : news.path_light;
-  document.querySelector(".edit-date").textContent = news.editDate;
-  document.querySelector(".thumbnail").src = news.thumbSrc;
-  document.querySelector(".news-main p").textContent = news.headTitle;
+  const img_path = getState(isDark) ? news.path_dark : news.path_light;
+  const btn_src = checkIsSubscribe("name", news.name) !== undefined ? CANCEL_SUB_BTN_PATH : SUB_BTN_PATH;
+  setProperty(".press-brandmark", "src", img_path);
+  setProperty(".edit-date", "textContent", news.editDate);
+  setProperty(".thumbnail", "src", news.thumbSrc);
+  setProperty(".news-main p", "textContent", news.headTitle);
   const subList = document.querySelector(".news-sub-list");
   subList.innerHTML = "";
   news.subTitle.forEach(subnews => {
-    const $li = document.createElement("li");
-    $li.classList.add("text-bold", "available-medium16");
-    $li.innerText = subnews;
-    subList.append($li);
+    subList.insertAdjacentHTML("beforeend", SUB_NEWS_TITLE_ELEMENT_HTML(subnews));
   });
-  const $caption = document.createElement("li");
-  $caption.classList.add("caption", "display-medium14", "text-weak");
-  $caption.innerText = `${news.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  subList.append($caption);
-  const $sub_btn = document.querySelector(".list-sub-btn");
-  $sub_btn.src = checkIsSubscribe("name", news.name) !== undefined ? "../img/icons/cancelSubBtn.svg" : "../img/icons/subBtn.svg";
+  subList.insertAdjacentHTML("beforeend", CAPTION_ELEMENT_HTML(news.name));
+  setProperty(".list-sub-btn", "src", btn_src);
   drawListArrow();
 }
 
@@ -137,7 +134,6 @@ function initCategoryClass() {
   document.querySelector(".list-next").addEventListener("click", pressListArrow.bind("null", 1));
   document.querySelector(".list-prev").addEventListener("click", pressListArrow.bind("null", -1));
   const $sub_btn = document.querySelector(".list-sub-btn"); // 구독버튼!
-
   $sub_btn.addEventListener("click", () => {
     const news = getState(isSubView)
       ? getState(subscribedPress)[getState(subListPageCount)]
@@ -175,14 +171,9 @@ function nextNewsWhenProgressEnd() {
 
 function insertCountDiv(component) {
   const now_category = getState(nowCategory);
-  component.insertAdjacentHTML(
-    "beforeend",
-    `
-  <div class="count font-init"><span class="now-count">${
-    getState(categoryPageCount)[now_category] + 1
-  }</span> <span>/</span><span class="total-count">${getState(totalCategoryPages)[now_category]}</span></div>
-  `,
-  );
+  const now_count = getState(categoryPageCount)[now_category] + 1;
+  const total_count = getState(totalCategoryPages)[now_category];
+  component.insertAdjacentHTML("beforeend", COUNT_DIV_ELEMENT_HTML(now_count, total_count));
 }
 
 function addProgressIterEvent(component) {
@@ -190,7 +181,7 @@ function addProgressIterEvent(component) {
 }
 
 function removeProgressIterEvent(component) {
-  component.removeEventListener("animationiteration", console.log("erase!"));
+  component.removeEventListener("animationiteration", nextNewsWhenProgressEnd);
 }
 
 function removeProgressStatus() {
@@ -212,9 +203,7 @@ function checkSameCategory(target) {
 
 function checkLastCategory() {
   const now_category = getState(nowCategory);
-  if (now_category === category[category.length - 1]) {
-    return true;
-  }
+  if (now_category === category[category.length - 1]) return true;
   return false;
 }
 
