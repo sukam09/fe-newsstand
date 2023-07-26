@@ -1,8 +1,8 @@
 import renderMain from "./main/renderMain.js";
-import State from "./store/StateStore.js";
-import changeImageSrc from "./utils/changeImageSrc.js";
-import newsData from "./store/NewsStore.js";
-import Store from "./store/SubscribeStore.js";
+import State from "../store/StateStore.js";
+import changeImageSrc from "../utils/changeImageSrc.js";
+import newsData from "../store/NewsStore.js";
+import Store from "../store/SubscribeStore.js";
 
 function clickAllNews(){
 const allNews = document.getElementById("main-left-radio-01");

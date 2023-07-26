@@ -1,7 +1,7 @@
-import { shuffled_data } from "../../data/shuffled_data.js";
-import NewsData from "../store/NewsStore.js";
-import State from "../store/StateStore.js";
-import Store from "../store/SubscribeStore.js";
+import { shuffled_data } from "../../../data/shuffled_data.js";
+import NewsData from "../../store/NewsStore.js";
+import State from "../../store/StateStore.js";
+import Store from "../../store/SubscribeStore.js";
 import renderMain from "./renderMain.js";
 
 let COUNT_PER_PAGE;

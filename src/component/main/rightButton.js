@@ -1,6 +1,6 @@
-import State from "../store/StateStore.js";
+import State from "../../store/StateStore.js";
 import renderMain from "./renderMain.js";
-import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
+import controlListlMinMaxException from "../../utils/controlListlMinMaxException.js";
 
 export default function clickRightAsideButton(){
    let currentPage = State.getCurrentPage();
@@ -14,12 +14,7 @@ export default function clickRightAsideButton(){
     rightAsideButton.innerHTML = '';
     
     if(isGrid){
-        if(currentPage === MAX_PAGE_NUMBER){
-            rightAsideButton.style.visibility = "hidden";
-        }
-        else{
-            rightAsideButton.style.visibility = "visible";
-        }
+        currentPage === MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
     }
     else{
         rightAsideButton.style.visibility = "visible";
@@ -27,12 +22,10 @@ export default function clickRightAsideButton(){
 
     asideRight.addEventListener("click",()=>{
         if(isGrid){
-            currentPage++;
-            State.setCurrentPage(currentPage);
+            State.setCurrentPage(++currentPage);
         }
         else{
-            currentPage++;
-            State.setCurrentPage(currentPage);
+            State.setCurrentPage(++currentPage);
             controlListlMinMaxException();
         }
         renderMain();

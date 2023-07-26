@@ -1,6 +1,6 @@
-import State from "../store/StateStore.js";
+import State from "../../store/StateStore.js";
 import renderMain from "./renderMain.js";
-import controlListlMinMaxException from "../utils/controlListlMinMaxException.js";
+import controlListlMinMaxException from "../../utils/controlListlMinMaxException.js";
 
 export default function clickLeftAsideButton(){
     //페이지 정보 불러오기
@@ -34,12 +34,10 @@ export default function clickLeftAsideButton(){
     //click event 추가
     asideLeft.addEventListener("click",()=>{
         if(isGrid){
-            currentPage--;
-            State.setCurrentPage(currentPage);
+            State.setCurrentPage(--currentPage);
         } 
         else{
-            currentPage--;
-            State.setCurrentPage(currentPage);
+            State.setCurrentPage(--currentPage);
             controlListlMinMaxException();
         }
         renderMain();

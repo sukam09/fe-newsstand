@@ -9,10 +9,10 @@ export default function controListlMinMaxException(){
     let MAX_PAGE_NUMBER = State.getMaxPage();
     let MIN_PAGE_NUMBER = State.getMinPage();
 
-    if(currentPage< MIN_PAGE_NUMBER){
+    if(currentPage < MIN_PAGE_NUMBER){
         categoryNum--;
         if(categoryNum < 0){
-           categoryNum = MAX_CATEGORY_NUM ;
+           categoryNum = MAX_CATEGORY_NUM;
            State.setCategoryNum(categoryNum);
            isAll ? State.setMaxPage(NewsData.getListNews(categoryNum).length - 1): State.setMaxPage(1);
         }
@@ -34,4 +34,4 @@ export default function controListlMinMaxException(){
         State.setCurrentPage(MIN_PAGE_NUMBER);
         isAll ? State.setMaxPage(NewsData.getListNews(categoryNum).length - 1): State.setMaxPage(1);  
      }
-} 
+}

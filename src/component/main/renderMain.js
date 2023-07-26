@@ -1,9 +1,9 @@
 import mainGrid from "./mainGrid.js";
 import mainList from "./mainList.js";
-import clickLeftAsideButton from "./clickLeftAsideButton.js";
-import clickRightAsideButton from "./clickRightAsideButton.js";
-import State from "../store/StateStore.js";
-import controlListMinMaxException from "../utils/controlListlMinMaxException.js";
+import clickLeftAsideButton from "./leftButton.js";
+import clickRightAsideButton from "./rightButton.js";
+import State from "../../store/StateStore.js";
+import controlListMinMaxException from "../../utils/controlListlMinMaxException.js";
 
 let categoryProgress;
 

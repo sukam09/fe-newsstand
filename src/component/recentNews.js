@@ -1,5 +1,5 @@
-import leftrecentArticles from "../data/recent_left_article.json" assert { type: "json"};
-import rightrecentArticles from "../data/recent_right_article.json" assert { type: "json"};
+import leftrecentArticles from "../../../data/recent_left_article.json" assert { type: "json"};
+import rightrecentArticles from "../../../data/recent_right_article.json" assert { type: "json"};
 
 let timeout;
 let left_interval;

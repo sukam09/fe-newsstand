@@ -1,7 +1,7 @@
 import renderMain from "./renderMain.js";
-import State from "../store/StateStore.js";
-import NewsData from "../store/NewsStore.js";
-import Store from "../store/SubscribeStore.js"
+import State from "../../store/StateStore.js";
+import NewsData from "../../store/NewsStore.js";
+import Store from "../../store/SubscribeStore.js"
 
 const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
@@ -57,16 +57,8 @@ function makeCategory(){
    else{
     listArticle.forEach((value, index) => {
         const list = document.createElement("li");
-        let id;
-        if(isAll){
-            id = value[0];
-        }
-        else{
-            id = value.name;
-        }
-        
-        list.id = id;
-
+        list.id = setID(value);
+        let id = setID(value);
         if(index === categoryNum){
             const progress = document.createElement("div");
             const pageinfo = document.createElement("div");
@@ -98,13 +90,7 @@ function addCategoryOnclick(){
     document.querySelector(`#main-center ul`).childNodes.forEach((value, index)=>{
         value.addEventListener("click", ({target}) => {
             listArticle.forEach((value, index)=> {
-                let id;
-                if(isAll){
-                    id = value[0];
-                }
-                else{
-                    id = value.name;
-                }
+                let id = setID(value);
                 if(target.innerHTML === id){
                     State.setCurrentPage(1);
                     State.setMaxPage(listArticle[index % categoryMAX].length - 1);
@@ -292,6 +278,17 @@ function showList(){
         viewArticle();
         makeSubscribeButton();
     } 
+}
+
+function setID(value){
+    let id;
+    if(isAll){
+        id = value[0];
+    }
+    else{
+        id = value.name;
+    }
+    return id;
 }
 
 export default function MainList(){

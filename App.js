@@ -1,18 +1,19 @@
-import NewsStand from "./src/NewsStand.js";
-import setDate from "./src/SetDate.js";
-import recentNews from "./src/RecentNews.js";
-import renderMain from "./src/main/renderMain.js";
-import mainHeader from "./src/MainHeader.js";
+import newsStand from "./src/component/newsStand.js";
+import setDate from "./src/component/setDate.js";
+import recentNews from "./src//component/recentNews.js";
+import renderMain from "./src/component/main/renderMain.js";
+import mainHeader from "./src/component/mainHeader.js";
 import { getPressJSON } from "./src/api/api.js";
 import NewsData from "./src/store/NewsStore.js";
 
 async function App(){
-    const pressData = await getPressJSON();
+    const pressData = await getPressJSON(); // 흐름이 끈김... 
     NewsData.setPressData(pressData);
     NewsData.makeListCategory();
     NewsData.makeListArticle();
 
-    NewsStand();
+    
+    newsStand();
     setDate();
     recentNews();
     mainHeader();
