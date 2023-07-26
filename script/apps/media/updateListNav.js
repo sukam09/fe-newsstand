@@ -81,15 +81,15 @@ const ListNav = listStore => {
 const setSubNavMouseEvent = navList => {
   let prevX;
 
-  navList.addEventListener('mousedown', e => {
+  document.eventManager.register('mousedown', navList, e => {
     prevX = e.clientX;
   });
-  navList.addEventListener('mousemove', e => {
-    if (!prevX) return;
+  document.eventManager.register('mousemove', document, e => {
+    if (!prevX || e.buttons === 0) return;
     navList.scrollLeft -= e.clientX - prevX;
     prevX = e.clientX;
   });
-  navList.addEventListener('mouseup', () => {
+  document.eventManager.register('mouseup', document, () => {
     prevX = null;
   });
 };

@@ -19,7 +19,9 @@ const themeModeApp = themeStore => {
 
   setTheme(themeStore.getState());
   themeStore.subscribe(setTheme);
-  themeToggle.addEventListener('click', () => toggleMode(themeStore));
+  document.eventManager.register('click', themeToggle, () =>
+    toggleMode(themeStore)
+  );
 };
 
 export default themeModeApp;

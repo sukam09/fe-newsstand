@@ -11,7 +11,7 @@ const ActionButton = (alertElement, text, textClass, action) => {
     textClass
   );
   actionButton.innerText = text;
-  actionButton.addEventListener('click', () => {
+  document.eventManager.register('click', actionButton, () => {
     fadeOutElement(alertElement);
     if (action) action();
   });

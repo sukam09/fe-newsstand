@@ -20,10 +20,10 @@ class GridStore extends Store {
   }
 
   addArrowListener(leftArrow, rightArrow) {
-    leftArrow.addEventListener('click', () => {
+    document.eventManager.register('click', leftArrow, () => {
       this.movePage(-1);
     });
-    rightArrow.addEventListener('click', () => {
+    document.eventManager.register('click', rightArrow, () => {
       this.movePage(1);
     });
   }
