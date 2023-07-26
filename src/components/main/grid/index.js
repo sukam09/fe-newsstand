@@ -7,7 +7,7 @@ import {
   viewState,
 } from "../../../store/store.js";
 import { renderGrid } from "./Grid.js";
-import { useSubscribeAtom } from "../../../store/atom.js";
+import { useSubscribeAtom } from "../../../store/coil.js";
 
 export const setGrid = () => {
   renderGrid();

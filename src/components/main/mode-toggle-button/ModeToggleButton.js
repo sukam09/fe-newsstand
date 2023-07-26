@@ -1,22 +1,22 @@
 import { isDarkMode } from "../../../store/store.js";
-import { useGetAtom, useSetAtom } from "../../../store/atom.js";
+import { useGetAtom, useSetAtom } from "../../../store/coil.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
 const $body = _querySelector("body");
 const $toggleButton = _querySelector(".darkmode-toggle");
 const $modeToggleButton = _querySelector(".darkmode-toggle");
-
+const toggleButtonClassList = $toggleButton.classList;
 const toggleMode = () => {
   const currentIsDarkMode = useGetAtom(isDarkMode);
 
   if (currentIsDarkMode) {
-    !$toggleButton.classList.contains("input-checked") &&
-      $toggleButton.classList.add("input-checked");
+    !toggleButtonClassList.contains("input-checked") &&
+      toggleButtonClassList.add("input-checked");
 
     $body.className = "dark";
   } else {
-    $toggleButton.classList.contains("input-checked") &&
-      $toggleButton.classList.remove("input-checked");
+    toggleButtonClassList.contains("input-checked") &&
+      toggleButtonClassList.remove("input-checked");
 
     $body.className = "";
   }

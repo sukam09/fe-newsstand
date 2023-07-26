@@ -16,7 +16,7 @@ import {
   selectedSubscribeState,
   subscribeListPageState,
 } from "../../../store/store.js";
-import { useSubscribeAtom } from "../../../store/atom.js";
+import { useSubscribeAtom } from "../../../store/coil.js";
 import { newsObjectToArray } from "../../../utils/utils.js";
 
 export const setProgressBar = async (newsList, categoryList) => {
@@ -28,15 +28,12 @@ export const setProgressBar = async (newsList, categoryList) => {
     updateCurrentPage(newsList),
     renderProgress
   );
-  //   useSubscribeAtom(listPageState, updateCurrentPage(newsList));
-  //   useSubscribeAtom(listPageState, renderProgress);
 
   useSubscribeAtom(
     subscribeListPageState,
     changePress(pressNewsList),
     renderProgress
   );
-  //   useSubscribeAtom(subscribeListPageState, renderProgress);
 
   useSubscribeAtom(
     categoryState,

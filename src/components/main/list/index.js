@@ -7,7 +7,7 @@ import {
   subscribeListPageState,
 } from "../../../store/store.js";
 import { renderNewsList } from "./List.js";
-import { useSubscribeAtom } from "../../../store/atom.js";
+import { useSubscribeAtom } from "../../../store/coil.js";
 import { newsObjectToArray } from "../../../utils/utils.js";
 
 export const setList = async (newsList) => {

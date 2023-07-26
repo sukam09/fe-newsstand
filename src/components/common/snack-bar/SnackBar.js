@@ -1,4 +1,4 @@
-import { useGetAtom } from "../../../store/atom.js";
+import { useGetAtom } from "../../../store/coil.js";
 import { snackBarMsgState } from "../../../store/store.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 
@@ -17,7 +17,7 @@ const renderSnackBar = () => {
     invisibleToVisible();
   } else {
     visibleToInvisible();
-    setTimeout(invisibleToVisible, 0);
+    requestAnimationFrame(invisibleToVisible);
   }
 };
 

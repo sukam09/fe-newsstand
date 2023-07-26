@@ -9,7 +9,7 @@ import {
   subscribeState,
   viewOptionState,
 } from "../../../store/store.js";
-import { useSubscribeAtom } from "../../../store/atom.js";
+import { useSubscribeAtom } from "../../../store/coil.js";
 
 export const setHeaderBar = (categoryList) => {
   setDragSlider();

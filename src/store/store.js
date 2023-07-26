@@ -1,4 +1,4 @@
-import { atom, selector } from "./atom.js";
+import { atom, selector } from "./coil.js";
 import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
 
 const viewState = atom({

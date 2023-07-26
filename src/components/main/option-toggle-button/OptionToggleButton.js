@@ -12,7 +12,7 @@ import {
   VIEW_OPTION_TYPE,
 } from "../../../constants/constants.js";
 import { checkIsAllType } from "../../../utils/utils.js";
-import { useGetAtom, useSetAtom } from "../../../store/atom.js";
+import { useGetAtom, useSetAtom } from "../../../store/coil.js";
 
 const $mainNavTabs = _querySelector(".main-nav_tabs");
 const $modeToggleButtons = _querySelectorAll("button", $mainNavTabs);

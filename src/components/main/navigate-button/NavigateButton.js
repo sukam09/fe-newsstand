@@ -8,7 +8,7 @@ import {
   useGetAtom,
   useGetSelector,
   useSetSelector,
-} from "../../../store/atom.js";
+} from "../../../store/coil.js";
 import {
   pressObjectToArray,
   checkIsAllType,
@@ -19,6 +19,9 @@ import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
 
 const $prevPageButton = _querySelector(".left-btn");
 const $nextPageButton = _querySelector(".right-btn");
+
+const prevPageButtonClassList = $prevPageButton.classList;
+const nextPageButtonClassList = nextPageButtonClassList;
 
 const getMaxPage = () => {
   const allPress = pressObjectToArray(PRESS_ICON);
@@ -55,17 +58,17 @@ const setGridButtonDisplay = () => {
   const currentPage = isAllType ? currentGridPage : currentSubGridPage;
 
   if (currentPage === maxPage) {
-    $nextPageButton.classList.add("hidden");
+    nextPageButtonClassList.add("hidden");
   } else {
-    $nextPageButton.classList.contains("hidden") &&
-      $nextPageButton.classList.remove("hidden");
+    nextPageButtonClassList.contains("hidden") &&
+      nextPageButtonClassList.remove("hidden");
   }
 
   if (currentPage === 0) {
-    $prevPageButton.classList.add("hidden");
+    prevPageButtonClassList.add("hidden");
   } else {
-    $prevPageButton.classList.contains("hidden") &&
-      $prevPageButton.classList.remove("hidden");
+    prevPageButtonClassList.contains("hidden") &&
+      prevPageButtonClassList.remove("hidden");
   }
 };
 
@@ -73,11 +76,11 @@ const toggleNavigateButtonDisplay = () => {
   const isListView = !checkIsGridView();
 
   if (isListView) {
-    $nextPageButton.classList.contains("hidden") &&
-      $nextPageButton.classList.remove("hidden");
+    nextPageButtonClassList.contains("hidden") &&
+      nextPageButtonClassList.remove("hidden");
 
-    $prevPageButton.classList.contains("hidden") &&
-      $prevPageButton.classList.remove("hidden");
+    prevPageButtonClassList.contains("hidden") &&
+      prevPageButtonClassList.remove("hidden");
 
     return;
   }
