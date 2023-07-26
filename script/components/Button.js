@@ -5,10 +5,10 @@ const Button = ({ icon, isWhite, text, once, onClick }) => {
   const surfaceClass = isWhite ? 'surface_default' : 'surface_alt';
   let clicked = false;
 
-  const onClickOnce = e => {
+  const onClickOnce = () => {
     if (once && clicked) return;
     clicked = true;
-    onClick(e);
+    onClick(buttonElement);
   };
 
   buttonElement.className = `button border_default ${surfaceClass}`;
