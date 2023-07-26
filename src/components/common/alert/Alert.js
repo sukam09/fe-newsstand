@@ -15,7 +15,7 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { useGetAtom, useSetAtom } from "../../../store/atom.js";
+import { useGetAtom, useSetAtom } from "../../../store/coil.js";
 
 const $snackBar = _querySelector(".snackbar");
 const snackClassList = $snackBar.classList;
@@ -51,9 +51,10 @@ const handleUnSubscribeButtonClick = () => {
   const updateArray = subscribeList.filter((_, idx) => idx !== itemIndex);
 
   if (updateArray.length === 0) {
-    useSetAtom(viewOptionState, VIEW_OPTION_TYPE.ALL);
+    useSetAtom(subscribeState, updateArray, false);
     useSetAtom(snackBarMsgState, SNACKBAR_MESSAGE.DELETE);
-    useSetAtom(subscribeState, updateArray);
+    useSetAtom(viewOptionState, VIEW_OPTION_TYPE.ALL);
+
     visibleToInvisible();
     return;
   }
@@ -61,8 +62,8 @@ const handleUnSubscribeButtonClick = () => {
   const selectedSubscribeItem =
     updateArray[itemIndex % (subscribeList.length - 1)];
 
-  useSetAtom(selectedSubscribeState, selectedSubscribeItem);
   useSetAtom(subscribeState, updateArray);
+  useSetAtom(selectedSubscribeState, selectedSubscribeItem);
 
   if (updateArray.length % NEWS_COUNT === 0) {
     const currentPage = useGetAtom(subscribeGridPageState);

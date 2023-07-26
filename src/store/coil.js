@@ -17,14 +17,11 @@ class Atom {
     this.#listeners.forEach((listener) => {
       listener();
     });
-    // for (const listener of Array.from(this.#listeners)) {
-    //   listener(this.snapshot());
-    // }
   }
 
-  update(value) {
+  update(value, isEmit) {
     this.#value = value;
-    this.#emit();
+    if (isEmit) this.#emit();
   }
 
   subscribe(callback) {
@@ -60,8 +57,8 @@ const useGetAtom = (atom) => {
   return atom.snapshot();
 };
 
-const useSetAtom = (atom, value) => {
-  atom.update(value);
+const useSetAtom = (atom, value, isEmit = true) => {
+  atom.update(value, isEmit);
 };
 
 const useSubscribeAtom = (atom, ...callbacks) => {
