@@ -13,7 +13,6 @@ export default function Alert({ $target, initialState }) {
 
   $target.appendChild($div);
 
-  // Optimistic UI 적용
   const handleUnsubscribe = () => {
     const { subscribeButton } = this.state;
     subscribeButton.setState({ ...subscribeButton.state, isSubscribed: false });
