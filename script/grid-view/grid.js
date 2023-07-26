@@ -7,7 +7,6 @@ const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 
 
-
 function getGridData() {
     let gridData;
     const {crntFilter} = store.getViewState();
@@ -28,26 +27,33 @@ function showPressCoverBtn(item){
         unsubBtn.classList.add("hide");
     }
 }
+
 function handleGridHover(){
-    const pressItems = document.querySelectorAll(".pressItem");
-    pressItems.forEach((item)=>{
-        if (item.getAttribute("index") !== "undefined") {
-            item.addEventListener("mouseover",()=>{
-                showPressCoverBtn(item);
-                pressCover.classList.remove("hidden");
-                item.appendChild(pressCover);
-            })
+    gridContainer.addEventListener("mouseover", ({target}) => {
+        if (target.nodeName === "LI" && target.getAttribute("index") !== "undefined"){
+            showPressCoverBtn(target);
+            pressCover.classList.remove("hidden");
+            target.appendChild(pressCover);
         }
     })
-    gridContainer.addEventListener("mouseout", () => {
+    gridContainer.addEventListener("mouseleave", ({target}) => {  
         pressCover.classList.add("hidden");
     })
 }
+
+function initGrid () {
+    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
+        gridContainer.innerHTML += `
+            <li class="pressItem"></li>
+        `
+    }
+    handleGridHover();   
+}
+
 function drawGrid(){
     const {crntPage} = store.getViewState()
     const imgIdxList = getGridData();
     const gridItems = document.querySelectorAll(".pressItem");
-
     let itemIdx = 0
 
     // update grid images according to crnt page index
@@ -58,16 +64,6 @@ function drawGrid(){
         }
         itemIdx++;   
     }
-    
-}
-
-function initGrid () {
-    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
-        gridContainer.innerHTML += `
-            <li class="pressItem"></li>
-        `
-    }
-    handleGridHover();   
 }
 
 export {drawGrid, initGrid}
