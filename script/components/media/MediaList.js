@@ -12,13 +12,13 @@ const setArrowButtons = (store, viewAll) => {
   document.eventManager.register(
     'click',
     leftArrow,
-    () => (viewAll ? store.setPage(-1) : store.setSubPage(-1)),
+    () => (viewAll ? store.movePage(-1) : store.moveSubPage(-1)),
     'view'
   );
   document.eventManager.register(
     'click',
     rightArrow,
-    () => (viewAll ? store.setPage(1) : store.setSubPage(1)),
+    () => (viewAll ? store.movePage(1) : store.moveSubPage(1)),
     'view'
   );
 };
