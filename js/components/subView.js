@@ -1,9 +1,9 @@
 import { html } from '../core/createElement.js';
 function createSubView(datas) {
-  let htmls = '';
+  let template = '';
   datas.map((data) => {
     const [name] = data;
-    htmls += html`
+    template += html`
       <div class="main__content">
         <div class="main-—corp-name">${name}</div>
         <div class="main—-news-area">
@@ -16,7 +16,7 @@ function createSubView(datas) {
     `;
   });
 
-  document.querySelector('.main__subview').insertAdjacentHTML('beforeend', htmls);
+  document.querySelector('.main__subview').insertAdjacentHTML('beforeend', template);
 }
 
 export { createSubView };
