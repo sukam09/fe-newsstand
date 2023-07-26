@@ -7,6 +7,7 @@ import { initSpanEvent } from "../subscribe/subscribe.js";
 import { initUtilData } from "./utils.js";
 import { addEventInSymbol } from "../view/viewHandler.js";
 import { initRolling } from "../component/newsRolling.js";
+import { initSubscriber } from "../observer/subscriber.js";
 
 async function initValue() {
   setHeader();
@@ -19,6 +20,7 @@ async function initValue() {
   await initSpanEvent();
   await initModalBtn();
   initDarkMode();
+  initSubscriber();
 }
 
 export default initValue;

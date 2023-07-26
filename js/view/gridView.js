@@ -70,11 +70,6 @@ async function initPressGrid() {
     return acc.concat(cur);
   });
   presses = [...presses].sort(shuffle);
-  subscribe(subGridPageCount, drawGridView);
-  subscribe(gridPageCount, drawGridView);
-  subscribe(subGridPageCount, drawGridArrow);
-  subscribe(gridPageCount, drawGridArrow);
-  subscribe(isGridView, drawGridArrow);
   drawGridView();
   addEventGridArrow();
 }
@@ -106,4 +101,4 @@ function appendPress(presses) {
   return count;
 }
 
-export { appendPressInGrid, initPressGrid, drawGridView };
+export { appendPressInGrid, initPressGrid, drawGridView, drawGridArrow };

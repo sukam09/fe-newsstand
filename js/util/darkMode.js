@@ -5,8 +5,6 @@ import { isDark } from "../store/store.js";
 
 export function initDarkMode() {
   const $body = document.querySelector("body");
-  subscribe(isDark, drawNews);
-  subscribe(isDark, drawGridView);
   const $dark_mode_icon = document.querySelectorAll(".dark-mode-icon");
   $dark_mode_icon.forEach(icon => icon.addEventListener("click", e => setDarkMode($body, e.target)));
 }

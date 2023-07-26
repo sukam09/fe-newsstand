@@ -1,6 +1,5 @@
 import { listSubMouseClick } from "../subscribe/subscribe.js";
 import { checkIsSubscribe, getJSON, setDisplay } from "../util/utils.js";
-import { setSubListNav } from "../subscribe/subscribeList.js";
 import { getState, setState, subscribe, setDictState } from "../observer/observer.js";
 import {
   categoryPageCount,
@@ -28,16 +27,6 @@ async function initNewsInfo() {
     setDictState(totalCategoryPages, { [item]: news[item].length });
     setDictState(categoryPageCount, { [item]: 0 });
   });
-  subscribe(subListPageCount, drawListArrow);
-  subscribe(subListPageCount, setSubListNav);
-  subscribe(subListPageCount, drawNews);
-  subscribe(categoryPageCount, drawListArrow);
-  subscribe(categoryPageCount, drawNews);
-  subscribe(categoryPageCount, setNowCount);
-  subscribe(subListPageCount, restartAnimation);
-  subscribe(categoryPageCount, restartAnimation);
-  subscribe(nowCategory, drawListArrow);
-  subscribe(nowCategory, drawNews);
 }
 
 function drawListArrow() {
@@ -242,4 +231,4 @@ function checkSubPressEmpty() {
   return false;
 }
 
-export { drawListArrow, setNowCount, drawNews, clickCategory, initCategoryClass, initNewsInfo };
+export { drawListArrow, setNowCount, drawNews, clickCategory, initCategoryClass, initNewsInfo, restartAnimation };

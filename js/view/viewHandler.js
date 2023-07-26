@@ -21,14 +21,6 @@ async function addEventInSymbol() {
   $grid_symbol.forEach(symbol => {
     symbol.addEventListener("click", handleView);
   });
-  subscribe(isGridView, drawNews);
-  subscribe(isGridView, setSubListNav);
-  subscribe(isGridView, drawGridView);
-  subscribe(isGridView, setNowCount);
-  subscribe(isSubView, drawNews);
-  subscribe(isSubView, setSubListNav);
-  subscribe(isSubView, drawGridView);
-  subscribe(isSubView, setNowCount);
 }
 
 function changeViewIcon(selected) {
