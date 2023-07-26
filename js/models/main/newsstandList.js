@@ -1,9 +1,9 @@
-import { getNewsListData } from '../core/apis.js';
-import { createCategoryHtml } from '../components/newsCategory.js.js';
-import { createNewsListHtml } from '../components/newsStandList.js';
-import { shuffle } from '../utils/utils.js';
-import { subScribeStore } from '../store/subScribeStore.js';
-import { globalStore } from '../store/globalVarStore.js';
+import { getNewsListData } from '../../core/apis.js';
+import { categoryView } from '../../components/categoryView.js';
+import { listView } from '../../components/listView.js';
+import { shuffle } from '../../utils/utils.js';
+import { subScribeStore } from '../../store/subScribeStore.js';
+import { globalStore } from '../../store/globalVarStore.js';
 
 subScribeStore.subscribe(() => initNewsStandList());
 globalStore.subscribe(() => initNewsStandList());
@@ -16,16 +16,14 @@ async function initNewsStandList() {
 
 function 전체_언론사(datas) {
   const [category, categorysList] = getCategoryDataPaser(datas);
-  const NEWS_LIST = getCurrentNewsList(category, datas);
+  const newsDatas = getCurrentNewsList(category, datas);
   const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
   const categoryCount = categorysList.filter((name) => name === KEY).length;
 
   if (globalStore.state.전체언론_리스트.뉴스_인덱스 === categoryCount) globalStore.commit('nextCategory');
 
-  createCategoryHtml(category, KEY, categoryCount);
-  createNewsListHtml(
-    NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
-  );
+  categoryView(category, KEY, categoryCount);
+  listView(newsDatas[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]);
 
   progressBar(categoryCount, category.length);
   moveSelectedCategory(category);
@@ -36,11 +34,11 @@ function 구독_언론사(datas) {
   const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
   const newsDatas = getSubscribeNewsList(scribeNews, datas);
 
-  createCategoryHtml(scribeNews, KEY);
-  createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
+  categoryView(scribeNews, KEY);
+  listView(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
 
   SubProgressBar(scribeNews.length);
-  moveSelectSub(scribeNews);
+  moveSelectedSub(scribeNews);
 }
 
 function getSubscribeNewsList(scribeNews, datas) {
@@ -84,7 +82,7 @@ const moveSelectedCategoryHandler = (e, category) => {
   globalStore.commit('categorySelect', { val: category.indexOf(text) });
 };
 
-function moveSelectSub(scribeNews) {
+function moveSelectedSub(scribeNews) {
   const categoryElement = document.querySelector('.newsstand__category');
   categoryElement.addEventListener('click', (e) => moveSelectedSubHandler(e, scribeNews), { once: true });
 }

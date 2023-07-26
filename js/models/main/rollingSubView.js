@@ -1,5 +1,5 @@
-import { getRollingData } from '../core/apis.js';
-import { createSubView } from '../components/subView.js';
+import { getRollingData } from '../../core/apis.js';
+import { createSubView } from '../../components/subView.js';
 
 let RollingData = [];
 let Lidx = 1;
