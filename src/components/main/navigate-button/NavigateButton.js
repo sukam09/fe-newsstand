@@ -21,7 +21,7 @@ const $prevPageButton = _querySelector(".left-btn");
 const $nextPageButton = _querySelector(".right-btn");
 
 const prevPageButtonClassList = $prevPageButton.classList;
-const nextPageButtonClassList = nextPageButtonClassList;
+const nextPageButtonClassList = $nextPageButton.classList;
 
 const getMaxPage = () => {
   const allPress = pressObjectToArray(PRESS_ICON);

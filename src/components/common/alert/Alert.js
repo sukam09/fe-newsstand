@@ -52,10 +52,10 @@ const handleUnSubscribeButtonClick = () => {
 
   if (updateArray.length === 0) {
     useSetAtom(subscribeState, updateArray, false);
-    useSetAtom(snackBarMsgState, SNACKBAR_MESSAGE.DELETE);
     useSetAtom(viewOptionState, VIEW_OPTION_TYPE.ALL);
 
     visibleToInvisible();
+    useSetAtom(snackBarMsgState, SNACKBAR_MESSAGE.DELETE);
     return;
   }
 

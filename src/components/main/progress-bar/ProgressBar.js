@@ -28,12 +28,6 @@ import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";
 
 const $categoryBarWrapper = _querySelector(".list-view_category-bar");
 const $categoryBar = _querySelector("ul", $categoryBarWrapper);
-const $liList = _querySelectorAll("li", $categoryBar);
-const $progressComponent = _querySelector(".progress-component");
-const $progressComponentDiv = _querySelector("div", $progressComponent);
-const $stateElem = _querySelector("span", $progressComponentDiv);
-const $maxPage = _querySelectorAll(".progress-span")[1];
-const maxPageClassList = $maxPage.classList;
 
 const changeCategory = (newsList, categoryList) => () => {
   const currentCategory = useGetAtom(categoryState);
@@ -130,12 +124,19 @@ const updateCurrentPage = (newsList) => () => {
   const currentCategory = useGetAtom(categoryState);
   const maxPage = newsList[currentCategory].length - 1;
 
+  const $progressComponent = _querySelector(".progress-component");
+  const $progressComponentDiv = _querySelector("div", $progressComponent);
+  const $stateElem = _querySelector("span", $progressComponentDiv);
+
   $stateElem.innerHTML = currentPage + 1;
 
   setPageActivateState(currentPage, maxPage);
 };
 
 const setPageActivateState = (currentPage, maxPage) => {
+  const $maxPage = _querySelectorAll(".progress-span")[1];
+  const maxPageClassList = $maxPage.classList;
+
   if (currentPage === maxPage) {
     maxPageClassList.replace("font-deactivate", "font-activate");
   } else {
@@ -151,16 +152,16 @@ const changeActivateCategory = (newsList, categoryList) => () => {
   if (isGridView || isSubscribeType) return;
 
   const currentCategory = useGetAtom(categoryState);
+  const $liList = _querySelectorAll("li", $categoryBar);
   const maxPage = newsList[currentCategory].length;
   const currentCategoryIndex = categoryList.indexOf(currentCategory);
-  const currentListPage = useGetAtom(listPageState);
 
   $liList.forEach((li, idx) => {
     if (idx === currentCategoryIndex) {
       li.classList = "category--selected";
       li.innerHTML = createCategoryProgressInner(
         categoryList[idx],
-        currentListPage + 1,
+        useGetAtom(listPageState) + 1,
         maxPage
       );
     } else {
@@ -180,6 +181,7 @@ const changeActivatePress = () => {
 
   if (isGridView || isAllType) return;
 
+  const $liList = _querySelectorAll("li", $categoryBar);
   const subscribed = useGetAtom(subscribeState);
   const selectedSub = useGetAtom(selectedSubscribeState);
   const currentSubIndex = subscribed.indexOf(selectedSub);
