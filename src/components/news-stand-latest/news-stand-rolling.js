@@ -1,4 +1,4 @@
-import { HEADER_CLASS, ROLLING, SIDE } from '../constants/news-stand-rolling.js';
+import { HEADER_CLASS, ROLLING, SIDE } from '../../constants/news-stand-rolling.js';
 
 class RollingNews {
   constructor(newsWrappers, intervals, side) {

@@ -1,5 +1,5 @@
 import { HEADER_CLASS, MESSESE, NUMBER } from '../constants/press-popup.js';
-import pressHeaderStore from '../components/press-header.js';
+import pressHeaderStore from '../components/press-header/press-header.js';
 
 const getSnackBar = () => {
   const snackBar = document.querySelector(`.${HEADER_CLASS.SNACK_BAR}`);

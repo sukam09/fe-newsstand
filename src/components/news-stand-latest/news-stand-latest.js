@@ -1,5 +1,5 @@
-import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../constants/news-stand-rolling.js';
-import { getFetchData } from '../utils/fetch.js';
+import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../../constants/news-stand-rolling.js';
+import { getFetchData } from '../../utils/fetch.js';
 import { startRolling } from './news-stand-rolling.js';
 
 class LatestNews {

@@ -1,5 +1,5 @@
-import { LIST } from '../constants/press-data.js';
-import { Store } from '../utils/store.js';
+import { LIST } from '../../../constants/press-data.js';
+import { Store } from '../../../utils/store.js';
 
 class ListProgress extends Store {
   constructor() {

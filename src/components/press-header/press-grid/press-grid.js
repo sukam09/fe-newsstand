@@ -1,7 +1,7 @@
-import { HEADER_CLASS, PATH, NUMBER, CONTENT } from '../constants/press-grid.js';
+import { HEADER_CLASS, PATH, NUMBER, CONTENT } from '../../../constants/press-grid.js';
 import { initGridArrow } from './press-grid-arrow.js';
 import { initGridButton } from './press-grid-button.js';
-import { Store } from '../utils/store.js';
+import { Store } from '../../../utils/store.js';
 
 class PressGridStore extends Store {
   constructor(pressData, pressList) {

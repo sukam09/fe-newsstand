@@ -1,5 +1,5 @@
-import { LIST } from '../constants/press-data.js';
-import { getSnackBar, getAlert } from '../utils/popup.js';
+import { LIST } from '../../../constants/press-data.js';
+import { getSnackBar, getAlert } from '../../../utils/popup.js';
 
 class ListButton {
   constructor(pressData, categoryList) {

@@ -1,11 +1,11 @@
-import { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE } from '../constants/press-header.js';
-import { LIST } from '../constants/press-data.js'; // 변수 빼기
-import { Store } from '../utils/store.js';
-import { getFetchData } from '../utils/fetch.js';
+import { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE } from '../../constants/press-header.js';
+import { LIST } from '../../constants/press-data.js'; // 변수 빼기
+import { Store } from '../../utils/store.js';
+import { getFetchData } from '../../utils/fetch.js';
 import { initLightDarkMode } from './light-dark-mode.js';
 
-import { initPressGrid } from './press-grid.js';
-import { initPressList } from './list.js';
+import { initPressGrid } from './press-grid/press-grid.js';
+import { initPressList } from './press-list/list.js';
 
 class PressHeaderStore extends Store {
   constructor() {

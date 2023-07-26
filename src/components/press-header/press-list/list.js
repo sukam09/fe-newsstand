@@ -1,8 +1,8 @@
-import { LIST } from '../constants/press-data.js';
-import { getShuffle } from '../utils/shuffle.js';
+import { LIST } from '../../../constants/press-data.js';
+import { getShuffle } from '../../../utils/shuffle.js';
 import { initListButton } from './press-list-button.js';
 import { initListProgress } from './press-list-progress.js';
-import { Store } from '../utils/store.js';
+import { Store } from '../../../utils/store.js';
 
 class PressListStore extends Store {
   constructor(pressData, categoryList) {

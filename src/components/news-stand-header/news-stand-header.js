@@ -1,4 +1,4 @@
-import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../constants/news-stand-header.js';
+import { HEADER_CLASS, DATE_OPTIONS, PATH, TITLE } from '../../constants/news-stand-header.js';
 
 class NewsStandHeader {
   constructor() {

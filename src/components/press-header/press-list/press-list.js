@@ -1,6 +1,6 @@
-import { getShuffle } from '../utils/shuffle.js';
-import { LIST } from '../constants/press-data.js';
-import { getSnackBar, getAlert } from '../utils/popup.js';
+import { getShuffle } from '../../../utils/shuffle.js';
+import { LIST } from '../../../constants/press-data.js';
+import { getSnackBar, getAlert } from '../../../utils/popup.js';
 
 /**
  * 언론사 리스트의 INIT
