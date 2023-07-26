@@ -33,7 +33,7 @@ const HEADER_CLASS = {
   SECTION_P_SUBSCRIBE: 'section-main__p-button',
   SECTION_ARTICLE: 'section-main__img-article',
 
-  SECTION_FOOTER: 'section-main__footer',
+  SECTION_FOOTER: 'section-sub__footer',
   SECTION_FOOTER_PRESS: 'section-sub__footer-press',
   SECTION_FOOTER_TEXT: 'section-sub__footer-text',
 
