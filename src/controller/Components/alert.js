@@ -1,5 +1,6 @@
 import { UNSUBSCRIBE } from "../../constant.js";
 import { actionCreator, store } from "../../model/store.js";
+import { scrollMove } from "../../util/scroll.js";
 import { snackBarForceDisappear } from "../../view/snackBar.js";
 import { timerId } from "../timer.js";
 
@@ -35,11 +36,15 @@ export function AlertHandler({ pressName, pressData }) {
 
     store.dispatch(actionCreator(UNSUBSCRIBE, { press: pressData }));
 
-    main.removeChild(alertElement);
+    if (alertElement && alertElement.parentElement === main) {
+      main.removeChild(alertElement);
+    }
   });
 
   rejectBtn.addEventListener("click", () => {
     const main = document.querySelector("main");
-    main.removeChild(alertElement);
+    if (alertElement && alertElement.parentElement === main) {
+      main.removeChild(alertElement);
+    }
   });
 }

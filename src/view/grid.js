@@ -12,7 +12,6 @@ const ICONS_PER_PAGE = 24;
 export function gridPageMove() {
   try {
     if (news_data) {
-      console.log(VIEW.isDark);
       let icon_idx = GRID_PAGE.page * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
       grid_row.forEach((ul) => {

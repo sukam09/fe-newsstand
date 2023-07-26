@@ -17,7 +17,7 @@ function snackBar() {
     main.appendChild(snackBarElement);
 
     setTimeout(() => {
-      if (snackBarElement) {
+      if (snackBarElement && snackBarElement.parentElement === main) {
         main.removeChild(snackBarElement);
       }
       resolve();

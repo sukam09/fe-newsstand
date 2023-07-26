@@ -6,6 +6,7 @@ import { store } from "../model/store.js";
 import { renderTabs, updateField } from "./field.js";
 import { news_data } from "./grid.js";
 import { ENTIRE, LIST, SUBSCRIBE, UNSUBSCRIBE } from "../constant.js";
+import { scrollMove } from "../util/scroll.js";
 
 export let category;
 export let news;
@@ -115,10 +116,6 @@ function updateSection() {
     });
     subNews.querySelector(".explain").innerHTML = `${currentPress.name} 언론사에서 직접 편집한 뉴스입니다.`;
   }
-  // else {
-  //   const press_news_wrap = document.querySelector("main .news-list-wrap .press-news-wrap");
-  //   press_news_wrap.innerHTML = "<div class='no-press'>구독한 언론사가 없습니다</div>";
-  // }
 }
 export function updateList() {
   updateSection();
@@ -153,7 +150,9 @@ function subscriber() {
           if (LIST_PAGE.category === store.getSubscribe().length) {
             LIST_PAGE.category = 0;
           }
+          const savedScroll = document.querySelector("main .news-list-wrap .field-tab").scrollLeft;
           renderList();
+          scrollMove(null, savedScroll);
         }
       },
       UNSUBSCRIBE,
