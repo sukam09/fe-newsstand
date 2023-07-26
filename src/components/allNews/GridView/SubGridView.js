@@ -9,7 +9,7 @@ export default class SubGridView {
     this.$wrapper.className = "grid-wrapper";
     this.$subPressOrder = store.getState();
     this.page = 0;
-    this.maxPage = Math.floor(this.$subPressOrder.length / GRID_COUNT + 1);
+    this.maxPage = Math.floor(this.$subPressOrder.length / (GRID_COUNT + 1));
     this.render();
 
     return this.$wrapper;
