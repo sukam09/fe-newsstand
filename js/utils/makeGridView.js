@@ -17,12 +17,9 @@ const grid_view = `
     `;
 
 function handleEvent(event, img) {
-  // const img = e.target.closest("img");
   if (!img) return;
   const li = img.parentNode;
   const button = img.nextElementSibling;
-  // console.log(event);
-
   switch (event) {
     case "over":
       img.style.display = "none";

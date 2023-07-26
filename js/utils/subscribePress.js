@@ -41,12 +41,18 @@ export function checkAnswer(e) {
     const updatedSubscribedPress = getSubscribedPress().filter(
       (item) => item.name !== getCurrentPress().name
     );
+
     store.setState({ subscribedPress: updatedSubscribedPress });
-    // if (getSubscribedPress().length <= PRESS_VIEW_COUNT * getPage()) {
-    //   console.log(getSubscribedPress().length, PRESS_VIEW_COUNT * getPage());
-    //   store.setState({ page: getPage() - 1 });
-    //   // showGridView();
-    // }
+    const pressCount = getSubscribedPress().length;
+    //구독한 언론사 해당 페이지가 비었을 경우 페이지 수 감소
+    if (
+      !(
+        pressCount > PRESS_VIEW_COUNT * (getPage() - 1) &&
+        pressCount <= PRESS_VIEW_COUNT * getPage()
+      )
+    ) {
+      getPage() > 1 ? store.setState({ page: getPage() - 1 }) : null;
+    }
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   }
   target.closest(".popup").style.display = "none";
