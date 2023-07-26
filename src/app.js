@@ -30,7 +30,6 @@ export default function App({ $app }) {
   this.state = {
     press: 'all',
     view: 'grid',
-    pressList: [],
   };
 
   this.setState = (nextState, isRender = true) => {
