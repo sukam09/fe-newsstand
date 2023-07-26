@@ -2,8 +2,8 @@ import { MEDIA } from '../../constants.js';
 import { getCategoryData } from '../../fetch/getNewsData.js';
 import { shuffleArray } from '../../utils/utils.js';
 import EmptySubscribed from './EmptySubscribed.js';
-import MediaGrid from './MediaGrid.js';
-import MediaList from './MediaList.js';
+import MediaGrid from './grid/MediaGrid.js';
+import MediaList from './list/MediaList.js';
 
 const createMediaData = view => {
   if (view === 'grid') {

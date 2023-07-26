@@ -1,10 +1,10 @@
-import updateListNav from '../../apps/media/updateListNav.js';
-import { replaceArrow } from '../../components/media/ArrowButton.js';
-import { MSG } from '../../constants.js';
-import { getNewsData } from '../../fetch/getNewsData.js';
-import ListStore from '../../store/ListStore.js';
-import { setMediaLogo } from '../../utils/utils.js';
-import Button from '../Button.js';
+import updateListNav from '../../../apps/media/updateListNav.js';
+import { MSG } from '../../../constants.js';
+import { getNewsData } from '../../../fetch/getNewsData.js';
+import ListStore from '../../../store/ListStore.js';
+import { setMediaLogo } from '../../../utils/utils.js';
+import Button from '../../Button.js';
+import { replaceArrow } from '../ArrowButton.js';
 
 const setArrowButtons = (store, viewAll) => {
   const [leftArrow, rightArrow] = replaceArrow();

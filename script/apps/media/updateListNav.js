@@ -1,4 +1,4 @@
-import ListNavItem from '../../components/ListNavItem.js';
+import ListNavItem from '../../components/media/list/ListNavItem.js';
 import { getMediaArray } from '../../fetch/getNewsData.js';
 
 const listNavOnClick = (category, index, listStore) => {
