@@ -53,17 +53,13 @@ export default class PressNews extends Component {
     const $subscribeButton = this.$target.querySelector(
       ".news-list__press-news__subscribe"
     );
-    // const $snackBar = document.querySelector(".news-list__snack-bar");
 
     $subscribeButton.addEventListener("click", () => {
       if ($subscribeButton.classList.contains("subscribeButton")) {
         this.$props.SubscribeStore.subscribeNews(this.$props.nowNewsData);
-        // $snackBar.classList.remove("hidden");
-        // setTimeout(() => {
-        //   $snackBar.classList.add("hidden");
-        // }, 5000);
       } else {
-        this.$props.SubscribeStore.unSubscribeNews(this.$props.nowNewsData);
+        this.$props.subscribeAlertName.innerHTML = this.$props.nowNewsData.name;
+        this.$props.subscribeAlert.classList.remove("hidden");
       }
     });
   }

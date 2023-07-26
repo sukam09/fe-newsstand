@@ -46,6 +46,19 @@ export default class MyNewsList extends Component {
       <div class="news-list__snack-bar news-list__snack-bar__noData hidden">
         내가 구독한 언론사가 없습니다.
       </div>
+
+      <div class="subscribe-alert hidden">
+        <div class="subscribe-alert__notice">
+          <div>
+            <span class="subscribe-alert__notice__name"></span>을(를)<br />
+            구독해지하시겠습니까?
+          </div>
+        </div>
+        <div class="subscribe-alert__button">
+          <div class="subscribe-alert__button__YES">예, 해지합니다</div>
+          <div class="subscribe-alert__button__NO">아니오</div>
+        </div>
+      </div>
     `;
   }
 
@@ -67,6 +80,20 @@ export default class MyNewsList extends Component {
     this.setFieldTab();
     this.renderPressNews(this.nowIndex);
     this.setListPageButton();
+
+    const $alertYES = this.$target.querySelector(
+      ".subscribe-alert__button__YES"
+    );
+    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
+
+    $alertNO.addEventListener("click", () =>
+      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
+    );
+    $alertYES.addEventListener("click", () => {
+      this.$props.SubscribeStore.unSubscribeNewsByName(
+        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
+      );
+    });
   }
 
   initialTag() {
@@ -154,6 +181,10 @@ export default class MyNewsList extends Component {
     new PressNews(this.$target.querySelector(".news-list__press-news"), {
       nowNewsData: this.subscribeList[idx],
       SubscribeStore: this.$props.SubscribeStore,
+      subscribeAlert: this.$target.querySelector(".subscribe-alert"),
+      subscribeAlertName: this.$target.querySelector(
+        ".subscribe-alert__notice__name"
+      ),
     });
   }
 
@@ -163,7 +194,7 @@ export default class MyNewsList extends Component {
     );
 
     $fieldTabList[
-      (++this.nowIndex + this.subscribeList.length) % this.subscribeList.length //-------------------------------------
+      (++this.nowIndex + this.subscribeList.length) % this.subscribeList.length
     ].click();
   }
 
