@@ -1,5 +1,6 @@
 import { ENTIRE, GRID, LIST } from "../../constant.js";
 import { GRID_PAGE, LIST_PAGE, VIEW } from "../../model/global.js";
+import { scrollMove } from "../../util/scroll.js";
 import { category, news } from "../../view/list.js";
 import { eachCategoryLength } from "../../view/list.js";
 import { startTimer, timerId } from "../timer.js";
@@ -52,6 +53,11 @@ function arrowBtnClickHandler(dir) {
       LIST_PAGE.setCategory(currentCategoryIdx);
     }
   }
+
+  //가로 스크롤 조정
+  scrollMove();
+
+  //타이머 초기화
   timerId && clearInterval(timerId);
   startTimer();
 }

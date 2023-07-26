@@ -1,5 +1,6 @@
 import { ENTIRE, SUBSCRIBE } from "../constant.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
+import { scrollMove } from "../util/scroll.js";
 import { eachCategoryLength } from "../view/list.js";
 import { news } from "../view/list.js";
 
@@ -34,24 +35,24 @@ export function startTimer() {
     currentWidth = 0;
   }
 
-  function scrollMove() {
-    const field = document.querySelector("main .news-list-wrap .field-tab");
-    const fieldRectRight = field.getBoundingClientRect().right;
-    const fieldRectLeft = field.getBoundingClientRect().left;
+  // function scrollMove() {
+  //   const field = document.querySelector("main .news-list-wrap .field-tab");
+  //   const fieldRectRight = field.getBoundingClientRect().right;
+  //   const fieldRectLeft = field.getBoundingClientRect().left;
 
-    const progressBar = document.querySelector("main .news-list-wrap .progress-tab");
-    const progressBarRectRight = progressBar.getBoundingClientRect().right;
-    const progressBarRectLeft = progressBar.getBoundingClientRect().left;
+  //   const progressBar = document.querySelector("main .news-list-wrap .progress-tab");
+  //   const progressBarRectRight = progressBar.getBoundingClientRect().right;
+  //   const progressBarRectLeft = progressBar.getBoundingClientRect().left;
 
-    if (fieldRectRight < progressBarRectRight) {
-      //왼쪽으로 땡김
-      field.scrollLeft += progressBarRectRight - fieldRectRight;
-    }
-    if (fieldRectLeft > progressBarRectLeft) {
-      //오른쪽으로 땡김
-      field.scrollLeft += progressBarRectLeft - fieldRectLeft;
-    }
-  }
+  //   if (fieldRectRight < progressBarRectRight) {
+  //     //왼쪽으로 땡김
+  //     field.scrollLeft += progressBarRectRight - fieldRectRight;
+  //   }
+  //   if (fieldRectLeft > progressBarRectLeft) {
+  //     //오른쪽으로 땡김
+  //     field.scrollLeft += progressBarRectLeft - fieldRectLeft;
+  //   }
+  // }
 
   function pageChange() {
     //프로그래스바 초기화
@@ -68,10 +69,8 @@ export function startTimer() {
       LIST_PAGE.setCategory((LIST_PAGE.category + 1) % news.length);
     }
 
-    //프로그래스 탭 위치로 스크롤 조정
-    if (VIEW.tab === SUBSCRIBE) {
-      scrollMove();
-    }
+    //가로 스크롤 스크롤 조정
+    scrollMove();
 
     //타이머 다시 시작
     startTimer();

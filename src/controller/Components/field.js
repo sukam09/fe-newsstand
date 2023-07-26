@@ -1,4 +1,5 @@
 import { LIST_PAGE } from "../../model/global.js";
+import { scrollMove } from "../../util/scroll.js";
 import { timerId, startTimer } from "../timer.js";
 
 function categoryClickEventHandler(index, tab) {
@@ -10,17 +11,7 @@ function categoryClickEventHandler(index, tab) {
   startTimer();
 
   // 카테고리가 양 옆에 걸쳐있을 때
-  const field = document.querySelector("main .news-list-wrap .field-tab");
-  const fieldRectRight = field.getBoundingClientRect().right;
-  const tabRectRight = tab.getBoundingClientRect().right;
-  const fieldRectLeft = field.getBoundingClientRect().left;
-  const tabRectLeft = tab.getBoundingClientRect().left;
-  if (fieldRectRight < tabRectRight) {
-    field.scrollLeft += tabRectRight - fieldRectRight;
-  }
-  if (fieldRectLeft > tabRectLeft) {
-    field.scrollLeft += tabRectLeft - fieldRectLeft;
-  }
+  scrollMove(tab);
 }
 
 export function fieldClick() {
