@@ -41,15 +41,6 @@ function handleGridHover(){
     })
 }
 
-function initGrid () {
-    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
-        gridContainer.innerHTML += `
-            <li class="pressItem"></li>
-        `
-    }
-    handleGridHover();   
-}
-
 function drawGrid(){
     const {crntPage} = store.getViewState()
     const imgIdxList = getGridData();
@@ -59,11 +50,18 @@ function drawGrid(){
     // update grid images according to crnt page index
     for (let i=GRID_ITEMS_PER_PAGE*crntPage;i<GRID_ITEMS_PER_PAGE*(crntPage+1);i++){
         gridItems[itemIdx].setAttribute("index", imgIdxList[i]);
-        if (i < imgIdxList.length){
-            gridItems[itemIdx].innerHTML = `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />`
-        }
+        gridItems[itemIdx].innerHTML = i < imgIdxList.length ? `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />`: "";
         itemIdx++;   
     }
+}
+
+function initGrid () {
+    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
+        gridContainer.innerHTML += `
+            <li class="pressItem"></li>
+        `
+    }
+    handleGridHover();   
 }
 
 export {drawGrid, initGrid}
