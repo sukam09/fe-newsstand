@@ -17,7 +17,8 @@ function filterData() {
             break;
         case FILTER_TYPE.SUBSCRIBED:
             const subList = store.getSubList();
-            listData = listViewData.filter(data => subList.includes(data.id));
+            listData = subList.map((id) => listViewData.find(data => data.id === id))
+            // listData = listViewData.filter(data => subList.includes(data.id));
             navData = listData.map(data => data.name);
             numOfListPages = 1;
             break;

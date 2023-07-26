@@ -7,12 +7,6 @@ const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
 
 function handleCategoryChange(catBtns){
-    // listNav.addEventListener("click", ({target}) => {
-    //     console.log(target.nodeName)
-    //     if (target.nodeName == "LI") {
-    //         console.log(target.nodeName)
-    //     }
-    // })
     Array.prototype.forEach.call(catBtns, (btn, index) => {
         btn.addEventListener("click", () => {        
             let {crntCategory} = store.getViewState()
@@ -101,7 +95,6 @@ function drawList() {
         // 그리드뷰 -> 리스트뷰로 바뀔 때 실행
         drawListNav({...viewData});
         handleCategoryChange(listNav.children);
-        drawSelectedCategory();
     }
     if (isChangeCategory){
         // 카테고리가 바뀔 때 실행
@@ -112,7 +105,6 @@ function drawList() {
     drawPageInfo({...viewData}); 
     drawProgressBar() 
     drawListPage({...viewData}); 
-
 }
 
 export {drawList}
