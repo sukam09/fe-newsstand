@@ -1,7 +1,7 @@
 @import url(./reset.css);
 @import url(./variable.css);
 @import url(./typography.css);
-
+@import url(./themeBtn.css);
 /* commot css */
 body {
   width: 1280px;
@@ -29,6 +29,10 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+}
+
+.title .main-title {
+  color: var(--text-strong, #14212b);
 }
 
 .today {
@@ -148,7 +152,7 @@ section {
 }
 .grid .grid-row li .subscribe-wrap {
   z-index: 99;
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-alt);
   display: flex;
   padding: 0px 41.167px 0px 41px;
   justify-content: center;
@@ -180,7 +184,7 @@ section {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--surface-surface-default, #fff);
+  background: var(--surface-default, #fff);
 }
 
 .field-tab {
@@ -189,7 +193,7 @@ section {
   display: flex;
   align-items: center;
   border: 1px solid var(--border-border-default, #d2dae0);
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-alt, #f5f7f9);
   overflow: auto;
   -ms-overflow-style: none; /* 인터넷 익스플로러 */
   scrollbar-width: none; /* 파이어폭스 */
@@ -209,7 +213,7 @@ section {
   display: none;
 }
 .text-tab .text-category-name {
-  color: var(--text-text-weak);
+  color: var(--text-weak);
   white-space: nowrap;
 }
 .text-tab .text-category-name:hover {
@@ -223,7 +227,7 @@ main .news-list-wrap .progress-tab {
   width: 166px;
   height: 40px;
   flex-shrink: 0;
-  background: var(--surface-surface-brand-alt, #7890e7);
+  background: var(--surface-brand-alt, #7890e7);
 }
 main .news-list-wrap .progress-tab .text-wrap {
   display: flex;
@@ -240,7 +244,7 @@ main .news-list-wrap .progress-tab .progress-ratio {
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--surface-surface-brand-default, #4362d0);
+  background: var(--surface-brand-default, #4362d0);
   width: 0;
   height: 40px;
   flex-shrink: 0;
@@ -294,7 +298,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
 }
 
 .press-news-wrap .press-info .edit-time {
-  color: var(--text-text-default, #5f6e76);
+  color: var(--text-default, #5f6e76);
 }
 .press-news-wrap .press-info .subscribe-btn,
 .grid .grid-row li .subscribe-btn {
@@ -307,8 +311,10 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   gap: 2px;
   border-radius: 50px;
   border: 1px solid var(--border-default, #d2dae0);
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-default, #f5f7f9);
   z-index: 0;
+
+  color: var(--text-weak, #879298);
 }
 .press-news-wrap .press-info .subscribe-btn .plus-btn,
 .grid .grid-row li .plus-btn {
@@ -319,7 +325,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   align-items: center;
 }
 .press-news-wrap .press-info .subscribe-btn .subscribe-text {
-  color: var(--text-text-weak, #879298);
+  color: var(--text-weak, #879298);
 }
 
 .press-news-wrap .news {
@@ -360,7 +366,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   flex-direction: column;
   align-self: stretch;
   overflow: hidden;
-  color: var(--text-text-strong, #14212b);
+  color: var(--text-strong, #14212b);
   text-overflow: ellipsis;
   word-spacing: nowrap;
   cursor: pointer;
@@ -381,7 +387,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  color: var(--text-text-bold, #4b5966);
+  color: var(--text-bold, #4b5966);
   cursor: pointer;
 }
 .press-news-wrap .news-sub .each-news-title:hover {
@@ -391,7 +397,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  color: var(--text-text-weak, #879298);
+  color: var(--text-weak, #879298);
 }
 
 .snack-bar {
@@ -404,13 +410,13 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   padding: 16px 24px;
   align-items: flex-start;
   gap: 10px;
-  background: var(--surface-surface-brand-default, #4362d0);
+  background: var(--surface-brand-default, #4362d0);
 
   /* popup */
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
 }
 .snack-bar-text {
-  color: var(--text-text-white-default, #fff);
+  color: var(--text-white-default, #fff);
 }
 .unsubscribe-alert {
   z-index: 900;
@@ -423,7 +429,6 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   width: 320px;
   flex-direction: column;
   align-items: flex-start;
-  border: var();
   border: 1px solid #d2dae0;
   /* popup */
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
@@ -431,21 +436,22 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
 .unsubscribe-alert .alert-contents {
   display: flex;
   padding: 24px;
-  /* align-items: flex-start;*/
   flex-direction: column;
   align-items: center;
-  /* gap: 10px; */
   align-self: stretch;
+  /* gap: 10px; */
+  border: 1px solid var(--border-default, #d2dae0);
+  background: var(--surface-default, #fff);
 }
 
 .unsubscribe-alert .alert-contents span:first-child {
   flex: 1 0 0;
-  color: var(--text-text-strong, #14212b);
+  color: var(--text-strong, #14212b);
   text-align: center;
 }
 .unsubscribe-alert .alert-contents span:last-child {
   flex: 1 0 0;
-  color: var(--text-text-default, #5f6e76);
+  color: var(--text-default, #5f6e76);
 }
 .unsubscribe-alert .alert-buttons {
   display: flex;
@@ -453,7 +459,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   align-items: flex-start;
   align-self: stretch;
   border-top: 1px solid #d2dae0;
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-alt, #f5f7f9);
 }
 .unsubscribe-alert .alert-buttons .each-button {
   display: flex;
@@ -463,7 +469,7 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   gap: 10px;
   flex: 1 0 0;
   align-self: stretch;
-  color: var(--text-text-default, #5f6e76);
+  color: var(--text-default, #5f6e76);
   text-align: center;
   cursor: pointer;
 }
@@ -479,6 +485,8 @@ main .news-list-wrap .progress-tab .text-category-number .entire {
   justify-content: center;
   align-items: center;
   width: 100%;
+  background-color: transparent;
+  color: var(--text-bold, #4b5966);
 }
 
 .chevron-right {

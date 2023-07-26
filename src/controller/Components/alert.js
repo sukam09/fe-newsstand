@@ -1,5 +1,4 @@
 import { UNSUBSCRIBE } from "../../constant.js";
-import { VIEW } from "../../model/global.js";
 import { actionCreator, store } from "../../model/store.js";
 import { snackBarForceDisappear } from "../../view/snackBar.js";
 import { timerId } from "../timer.js";

@@ -31,6 +31,7 @@ export const LIST_PAGE = {
 export const VIEW = {
   layout: GRID,
   tab: ENTIRE,
+  isDark: false,
   setLayout: (layout, autoMoveSubscribePage = false) => {
     VIEW.layout = layout;
     renderViewButton(VIEW.layout);
@@ -50,6 +51,12 @@ export const VIEW = {
       VIEW.setLayout(GRID);
     } else {
       VIEW.setLayout(LIST, autoMoveSubscribePage);
+    }
+  },
+  setDark: () => {
+    VIEW.isDark = !VIEW.isDark;
+    if (VIEW.layout === GRID) {
+      gridPageMove();
     }
   },
 };

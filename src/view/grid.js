@@ -4,7 +4,6 @@ import { GRID_PAGE, VIEW } from "../model/global.js";
 import { shuffle_press } from "../util/shuffle.js";
 import { store } from "../model/store.js";
 import { ENTIRE, GRID, UNSUBSCRIBE } from "../constant.js";
-
 export let news_data;
 const GRID_ROW = 4;
 const GRID_COL = 6;
@@ -13,6 +12,7 @@ const ICONS_PER_PAGE = 24;
 export function gridPageMove() {
   try {
     if (news_data) {
+      console.log(VIEW.isDark);
       let icon_idx = GRID_PAGE.page * ICONS_PER_PAGE;
       const grid_row = document.querySelectorAll(".grid ul");
       grid_row.forEach((ul) => {
@@ -22,7 +22,7 @@ export function gridPageMove() {
           if (icon_idx < news_data.length) {
             const ID = news_data[icon_idx].ID;
             li.setAttribute("data-id", ID);
-            press_logo.src = `../../asset/icons/basic/${news_data[icon_idx++].path}`;
+            press_logo.src = `../../asset/icons/${VIEW.isDark ? "dark/d_" : "basic/"}${news_data[icon_idx++].path}`;
           } else {
             li.setAttribute("data-id", null);
             press_logo.src = "";
@@ -62,7 +62,7 @@ export async function renderGrid() {
 
         if (icon_idx < news_data.length) {
           grid_li.setAttribute("data-id", news_data[icon_idx].ID);
-          press_logo.src = `../../asset/icons/basic/${news_data[icon_idx++].path}`;
+          press_logo.src = `../../asset/icons/${VIEW.isDark ? "dark/d_" : "basic/"}${news_data[icon_idx++].path}`;
           subscribeButton(grid_li);
         }
 
@@ -75,6 +75,7 @@ export async function renderGrid() {
     console.error(e);
   }
 }
+
 function subscriber() {
   store.subscribe(renderGrid, UNSUBSCRIBE, GRID);
 }

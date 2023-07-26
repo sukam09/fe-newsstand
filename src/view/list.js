@@ -25,7 +25,7 @@ function renderSection(news) {
     news.length > 0
       ? `
   <div class="press-info">
-      <img class="press-icon" src="../../asset/icons/basic/${currentPress?.path}"/>
+      <img class="press-icon" src="../../asset/icons/${VIEW.isDark ? "dark/d_" : "basic/"}${currentPress?.path}"/>
       <span class="edit-time display-medium12">2023.02.10 18:24 편집</span>
       <button class="subscribe-btn">
       
@@ -89,7 +89,7 @@ function updateSection() {
   if (currentPress) {
     const pressInfo = document.querySelector("main .news-list-wrap .press-news-wrap .press-info ");
     const pressLogo = pressInfo.querySelector(".press-icon");
-    pressLogo.src = `../../../../asset/icons/basic/${currentPress.path}`;
+    pressLogo.src = `../../../../asset/icons/${VIEW.isDark ? "dark/d_" : "basic/"}${currentPress.path}`;
 
     const subscribe_icon = pressInfo.querySelector(".subscribe-btn");
     const pressID = currentPress.ID;
