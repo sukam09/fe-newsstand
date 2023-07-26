@@ -57,6 +57,8 @@ export const VIEW = {
     VIEW.isDark = !VIEW.isDark;
     if (VIEW.layout === GRID) {
       gridPageMove();
+    } else {
+      updateList();
     }
   },
 };
