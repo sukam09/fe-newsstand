@@ -16,8 +16,6 @@ const allTabButton = $(`.${ALL_PRESS}`);
 const toggleDarkButton = $(".toggle_darkmode");
 const darkLogo = $(".dark_button", toggleDarkButton);
 const lightLogo = $(".light_button", toggleDarkButton);
-const darkLogoNone = $(".dark_button-none", toggleDarkButton);
-const lightLogoNone = $(".light_button-none", toggleDarkButton);
 
 // 로고 새로고침
 function refreshWindow() {
@@ -39,11 +37,11 @@ function getMainElements() {
 // 그리드, 리스트 여부에 따른 요소 css 변환
 function changeView(elements, currentMode) {
   elements.listButton.src = currentMode
-    ? "./assets/icons/list_off.png"
-    : "./assets/icons/list_on.png";
+    ? "./assets/icons/list_off.svg"
+    : "./assets/icons/list_on.svg";
   elements.gridButton.src = currentMode
-    ? "./assets/icons/grid_on.png"
-    : "./assets/icons/grid_off.png";
+    ? "./assets/icons/grid_on.svg"
+    : "./assets/icons/grid_off.svg";
 
   elements.listContainer.style.display = currentMode ? "none" : "block";
   elements.gridContainer.style.display = currentMode ? "grid" : "none";

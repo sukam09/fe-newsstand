@@ -21,7 +21,9 @@ function appendGridList(shuffledArr) {
   const isGridMode = getState(isGrid);
   const subList = getState(subscribeList);
   const gridContainerList = $All(".grid_container");
-  gridContainerList.forEach((item) => (item.innerHTML = ""));
+  gridContainerList.forEach(
+    (item) => ((item.innerHTML = ""), (item.style.display = "none"))
+  );
   if (isGridMode) {
     gridContainerList[0].style.display = "grid";
     if (isSubscribeTab) {
@@ -170,7 +172,6 @@ function checkMode() {
         setState(gridPageIdx, 1);
         return;
     }
-    appendGridList();
   }
 }
 

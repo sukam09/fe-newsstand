@@ -16,12 +16,11 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  margin-left: 350px;
   width: 1000px;
   position: relative;
 }
 .toggle_darkmode {
-  /* position: relative; */
   margin-right: 20px;
   margin-bottom: 20px;
 }
