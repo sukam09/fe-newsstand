@@ -136,8 +136,14 @@ export default class NewsGridView extends Component {
     }
 
     getMaxPage() {
-        return Math.floor(this.state.pressData.length / 24) === 4
+        let pressData = [];
+        if (this.props.pressTab === "all") pressData = this.state.pressData;
+        else {
+            const subscribeData = getState(subscribeDataState);
+            pressData = filterSubscribeData(this.props.newsData, subscribeData);
+        }
+        return Math.floor(pressData.length / 24) === 4
             ? 3
-            : Math.floor(this.state.pressData.length / 24);
+            : Math.floor(pressData.length / 24);
     }
 }

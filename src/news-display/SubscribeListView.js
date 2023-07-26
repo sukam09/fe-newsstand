@@ -5,7 +5,7 @@ import { addObserver, getState, setState } from "../observer/observer.js";
 import { filterSubscribeData } from "../utils/utils.js";
 import { listPageState, subscribeDataState } from "../store/store.js";
 
-const PROGRESS_DURATION = 20000;
+const PROGRESS_DURATION = 5000;
 const COLOR_IN_PROGRESS = "#4362d0";
 const COLOR_PROGRESS_BACKGROUND = "#7890e7";
 
@@ -20,7 +20,6 @@ export default class SubscribeListView extends Component {
     }
 
     template() {
-        // 중복
         const subscribeData = getState(subscribeDataState);
         const currentPage = getState(listPageState);
         const pressData = filterSubscribeData(
@@ -99,7 +98,6 @@ export default class SubscribeListView extends Component {
             ".list-view-category-bar > ul"
         );
 
-        // 중복
         const subscribeData = getState(subscribeDataState);
         const pressData = filterSubscribeData(
             this.props.newsData,
@@ -146,12 +144,12 @@ export default class SubscribeListView extends Component {
         new PageButton(leftButton, {
             type: "left",
             hidden: false,
-            onClick: this.setPrevPage.bind(this),
+            onClick: this.setPrevPage,
         });
         new PageButton(rightButton, {
             type: "right",
             hidden: false,
-            onClick: this.setNextPage.bind(this),
+            onClick: this.setNextPage,
         });
     }
 
@@ -161,7 +159,6 @@ export default class SubscribeListView extends Component {
                 target.classList.contains("category") ||
                 target.classList.contains("category-text")
             ) {
-                // 중복
                 const subscribeData = getState(subscribeDataState);
                 const pressData = filterSubscribeData(
                     this.props.newsData,
@@ -178,17 +175,20 @@ export default class SubscribeListView extends Component {
     }
 
     setPrevPage() {
-        if (this.state.currentPage === 1) {
-            setState(listPageState, this.state.pressData.length);
+        const currentPage = getState(listPageState);
+        const subscribeData = getState(subscribeDataState);
+        if (currentPage === 1) {
+            setState(listPageState, subscribeData.length);
         } else {
-            const currentPage = getState(listPageState);
             setState(listPageState, currentPage - 1);
         }
     }
 
     setNextPage() {
         const currentPage = getState(listPageState);
-        if (currentPage === this.state.pressData.length) {
+        const subscribeData = getState(subscribeDataState);
+
+        if (currentPage === subscribeData.length) {
             setState(listPageState, 1);
         } else {
             setState(listPageState, currentPage + 1);
