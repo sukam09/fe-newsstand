@@ -42,7 +42,6 @@ export function checkAnswer(e) {
       (item) => item.name !== getCurrentPress().name
     );
     store.setState({ subscribedPress: updatedSubscribedPress });
-    target.closest(".popup").style.display = "none";
     // if (getSubscribedPress().length <= PRESS_VIEW_COUNT * getPage()) {
     //   console.log(getSubscribedPress().length, PRESS_VIEW_COUNT * getPage());
     //   store.setState({ page: getPage() - 1 });
@@ -50,6 +49,7 @@ export function checkAnswer(e) {
     // }
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   }
+  target.closest(".popup").style.display = "none";
 }
 export function handleAnimationEnd(e) {
   const view_content = document.querySelector(".view-content");
