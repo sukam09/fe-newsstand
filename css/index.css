@@ -49,6 +49,7 @@ body {
 button:hover,
 .title:hover,
 li:hover,
+.dark-mode:hover,
 .news-title:hover {
   cursor: pointer;
 }

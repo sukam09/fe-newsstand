@@ -1,5 +1,10 @@
 import { getState, setState } from "../store/observer.js";
-import { gridAllPage, listAllPage, viewOption } from "../store/store.js";
+import {
+  gridAllPage,
+  listAllPage,
+  viewOption,
+  isDark,
+} from "../store/store.js";
 import {
   changeViewOptionToAll,
   changeViewOptionToSub,
@@ -38,5 +43,19 @@ function changeViewOption() {
     setState(listAllPage, 0);
   }
 }
+function addEventToDarkMode() {
+  const darkMode = document.querySelector(".dark-mode");
+  darkMode.addEventListener("click", () => {
+    if (getState(isDark)) {
+      document.documentElement.setAttribute("color-theme", "light");
+      darkMode.setAttribute("src", "../images/icon/Dark.svg");
+      setState(isDark, !getState(isDark));
+    } else {
+      document.documentElement.setAttribute("color-theme", "dark");
+      darkMode.setAttribute("src", "../images/icon/Light.svg");
+      setState(isDark, !getState(isDark));
+    }
+  });
+}
 
-export { addEventToViewBtn, changeViewOption };
+export { addEventToViewBtn, changeViewOption, addEventToDarkMode };

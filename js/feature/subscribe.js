@@ -14,18 +14,18 @@ function clickSubscribeBtn(selectedPress, _img) {
   //구독 중 X
   else {
     SubscribePress.push(selectedPress);
+    setState(subPress, SubscribePress);
+    localStorage.setItem("press", JSON.stringify(SubscribePress));
 
     const snackbar = document.querySelector(".snackbar");
     snackbar.style.display = "block";
+
     clearTimeout(clearSnackbar);
     clearSnackbar = setTimeout(() => moveToSubList(snackbar), SNACKBAR_TIME);
 
     if (getState(viewType) === LIST_VIEW)
       _img.setAttribute("src", "../images/icon/Unsubscribe2.svg");
     else _img.setAttribute("src", "../images/icon/Unsubscribe.svg");
-
-    setState(subPress, SubscribePress);
-    localStorage.setItem("press", JSON.stringify(SubscribePress));
   }
 }
 

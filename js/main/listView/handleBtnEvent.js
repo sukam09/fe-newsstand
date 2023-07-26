@@ -26,8 +26,9 @@ function handleBtnClick(type) {
 }
 
 function handleLeftBtn(currentCategory) {
+  const allPage = getState(listAllPage);
   //이전 카테고리로 넘어갈 때
-  if (getState(listAllPage) - 1 < 0) {
+  if (allPage - 1 < 0) {
     let prevCategory = currentCategory.previousElementSibling;
     if (prevCategory === null) {
       prevCategory = document.querySelector(".category li:last-child");
@@ -41,19 +42,19 @@ function handleLeftBtn(currentCategory) {
     setState(listAllPage, prevMaxPage - 1);
     addAnimation(prevCategory, "Prev");
   } else {
-    setState(listAllPage, getState(listAllPage) - 1);
+    setState(listAllPage, allPage - 1);
   }
 }
 
 function handleRightBtn(currentCategory) {
-  // const maxPage = currentCategory.children[2].innerText.split("/")[1];
+  const allPage = getState(listAllPage);
   const maxPage = findPageNum(currentCategory);
   //다음 카테고리로 넘어갈 때
-  if (getState(listAllPage) + 1 >= maxPage) {
+  if (allPage + 1 >= maxPage) {
     setState(listAllPage, 0);
     addAnimation(currentCategory.nextElementSibling, "Next");
   } else {
-    setState(listAllPage, getState(listAllPage) + 1);
+    setState(listAllPage, allPage + 1);
   }
 }
 

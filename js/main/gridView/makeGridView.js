@@ -99,24 +99,24 @@ function checkPage() {
   left_btn.style.visibility = "visible";
   right_btn.style.visibility = "visible";
 
-  if (getState(viewOption) === ALL_PRESS) {
-    if (getState(gridAllPage) === MIN_PAGE) {
+  const subPage = getState(gridSubPage);
+  const allPage = getState(gridAllPage);
+  const maxPage = Math.ceil(getState(subPress).length / GRID_NUM);
+  const Option = getState(viewOption);
+
+  if (Option === ALL_PRESS) {
+    if (allPage === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
-    } else if (getState(gridAllPage) === MAX_PAGE) {
+    } else if (allPage === MAX_PAGE) {
       right_btn.style.visibility = "hidden";
     }
-  } else if (getState(viewOption) === SUB_PRESS) {
-    if (
-      getState(gridSubPage) === MIN_PAGE &&
-      getState(gridSubPage) >= Math.ceil(getState(subPress).length / GRID_NUM)
-    ) {
+  } else if (Option === SUB_PRESS) {
+    if (subPage === MIN_PAGE && subPage >= maxPage) {
       left_btn.style.visibility = "hidden";
       right_btn.style.visibility = "hidden";
-    } else if (getState(gridSubPage) === MIN_PAGE) {
+    } else if (subPage === MIN_PAGE) {
       left_btn.style.visibility = "hidden";
-    } else if (
-      getState(gridSubPage) >= Math.ceil(getState(subPress).length / GRID_NUM)
-    ) {
+    } else if (subPage >= maxPage) {
       right_btn.style.visibility = "hidden";
     }
   }

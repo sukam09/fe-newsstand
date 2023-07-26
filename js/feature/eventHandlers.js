@@ -11,6 +11,7 @@ import {
   ALL_PRESS,
   SUB_PRESS,
 } from "../utils/constant.js";
+import { addAnimation } from "../main/listView/handleAnimation.js";
 
 /* grid View */
 function changePage(e) {
@@ -56,8 +57,13 @@ function clickYes(selectedPress, _img) {
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
   if (getState(viewType) === LIST_VIEW) {
-    if (getState(viewOption) === SUB_PRESS) {
-      renderListView();
+    const _ul = document.querySelector(".category");
+    for (let i = 0; i < _ul.children.length; i++) {
+      if (_ul.children[i].dataset.category === selectedPress) {
+        addAnimation(_ul.children[i + 1], "Next");
+        _ul.removeChild(_ul.children[i]);
+        break;
+      }
     }
     _img.setAttribute("src", "../images/icon/subscribe.svg");
   }

@@ -7,8 +7,8 @@ import { render } from "./render.js";
 function initMain() {
   initSubscribe();
   renderRolling();
-  render();
   addEvent();
   makeRandomNews();
+  render();
 }
 export { initMain };
