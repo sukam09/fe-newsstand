@@ -21,13 +21,17 @@ export default function PressGridView({ $target, initialState }) {
     }
   };
 
-  const myPress = store.getMyPress().map(({ pid }) => pid);
-  const data = this.state.press === 'all' ? shuffle(this.state.pressInfo) : myPress;
-  if (this.state.press === 'my') {
-    this.setState({ ...this.state, maxPage: Math.ceil(myPress.length / NEWS_PRESS_NUMBERS_PER_PAGE) }, false);
+  function calculateMaxPage(data) {
+    return Math.ceil(data.length / NEWS_PRESS_NUMBERS_PER_PAGE);
   }
 
   const initPressItems = () => {
+    const myPress = store.getMyPress().map(({ pid }) => pid);
+    const data = this.state.press === 'all' ? shuffle(this.state.pressInfo) : myPress;
+    if (this.state.press === 'my') {
+      this.setState({ ...this.state, maxPage: calculateMaxPage(myPress) }, false);
+    }
+
     const $ul = $section.querySelector('ul');
     $ul.innerHTML = '';
 
@@ -118,6 +122,23 @@ export default function PressGridView({ $target, initialState }) {
     }
   };
 
+  const updateGridView = () => {
+    const { press, page } = this.state;
+
+    if (press === 'all') {
+      return;
+    }
+
+    const myPress = store.getMyPress().map(({ pid }) => pid);
+    const maxPage = calculateMaxPage(myPress);
+
+    if (page > maxPage) {
+      this.setState({ ...this.state, page: page - 1 }, false);
+    }
+
+    this.setState({ ...this.state, data: myPress });
+  };
+
   this.render = () => {
     $section.innerHTML = `
       <div class="news-press-container">
@@ -159,4 +180,6 @@ export default function PressGridView({ $target, initialState }) {
   };
 
   this.render();
+
+  store.subscribe(updateGridView);
 }
