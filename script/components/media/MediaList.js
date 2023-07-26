@@ -9,12 +9,18 @@ import Button from '../Button.js';
 const setArrowButtons = (store, viewAll) => {
   const [leftArrow, rightArrow] = replaceArrow();
 
-  leftArrow.addEventListener('click', () => {
-    viewAll ? store.setPage(-1) : store.setSubPage(-1);
-  });
-  rightArrow.addEventListener('click', () => {
-    viewAll ? store.setPage(1) : store.setSubPage(1);
-  });
+  document.eventManager.register(
+    'click',
+    leftArrow,
+    () => (viewAll ? store.setPage(-1) : store.setSubPage(-1)),
+    'view'
+  );
+  document.eventManager.register(
+    'click',
+    rightArrow,
+    () => (viewAll ? store.setPage(1) : store.setSubPage(1)),
+    'view'
+  );
 };
 
 const MediaLogoImg = (themeStore, id) => {

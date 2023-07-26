@@ -95,7 +95,9 @@ h2.headline_area_item {
 #media_view_nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 24px;
   margin-bottom: 24px;
 }
 
@@ -126,7 +128,6 @@ h2.headline_area_item {
 }
 
 .view_select:checked + label svg {
-  /* fill: var(--blue-500); */
   fill: var(--text-point);
 }
 
@@ -173,6 +174,19 @@ h2.headline_area_item {
 #right_arrow img {
   width: 100%;
   height: 100%;
+}
+
+/* empty subscribed */
+.empty_subscribed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 1px solid var(--border-default);
 }
 
 /* theme toggle */

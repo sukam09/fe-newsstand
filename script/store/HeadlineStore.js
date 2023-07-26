@@ -1,42 +1,31 @@
-import {
-  rollingNewsTitle,
-  updateNewsContent,
-} from '../apps/headline/headlineApp.js';
 import { HEADLINE } from '../constants.js';
 import Store from '../core/Store.js';
 
 class HeadlineStore extends Store {
+  #loop;
+
   constructor(newsData) {
     super({
-      index: 0,
+      prevIndex: newsData.news.length - 1,
       newsData,
-      loop: null,
     });
-    this.updateNewsContent = updateNewsContent;
+    this.#loop = null;
   }
 
-  #readyRolling(titleWrapper) {
-    titleWrapper.classList.add('rolling');
-    titleWrapper.insertAdjacentHTML('beforeend', rollingNewsTitle());
+  update() {
+    const { prevIndex, newsData } = this.getState();
+
+    this.setState({ prevIndex: (prevIndex + 1) % newsData.news.length });
   }
 
   startLoop(titleWrapper) {
-    const updateNews = () => {
-      const { index, newsData } = this.getState();
-
-      if (!titleWrapper.classList.contains('rolling')) {
-        this.#readyRolling(titleWrapper);
-      }
-      this.updateNewsContent(titleWrapper, newsData.news, index);
-      this.setState({ index: (index + 1) % newsData.news.length });
-    };
-
-    this.setState({ loop: setInterval(updateNews, HEADLINE.INTERVAL) });
+    this.#loop = setInterval(this.update.bind(this), HEADLINE.INTERVAL);
+    this;
     titleWrapper.addEventListener('mouseenter', () => {
-      clearInterval(this.getState().loop);
+      clearInterval(this.#loop);
     });
     titleWrapper.addEventListener('mouseleave', () => {
-      this.setState({ loop: setInterval(updateNews, HEADLINE.INTERVAL) });
+      this.#loop = setInterval(this.update.bind(this), HEADLINE.INTERVAL);
     });
   }
 }

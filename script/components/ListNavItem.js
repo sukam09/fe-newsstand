@@ -2,13 +2,24 @@ import NavPageIndicator from './NavPageIndicator.js';
 import ListProgressBar from './Progress.js';
 
 const addMouseEvents = (listNavItem, mouse, onClick) => {
-  listNavItem.addEventListener('mousedown', ({ clientX, clientY }) => {
-    mouse = { x: clientX, y: clientY };
-  });
-  listNavItem.addEventListener('mouseup', ({ clientX, clientY }) => {
-    if (mouse.x !== clientX || mouse.y !== clientY) return;
-    onClick();
-  });
+  document.eventManager.register(
+    'mousedown',
+    listNavItem,
+    ({ clientX, clientY }) => {
+      mouse = { x: clientX, y: clientY };
+    },
+    'view'
+  );
+  document.eventManager.register(
+    'mouseup',
+    listNavItem,
+    ({ clientX, clientY }) => {
+      if (Math.abs(mouse.x - clientX) > 5 || Math.abs(mouse.y - clientY) > 5)
+        return;
+      onClick();
+    },
+    'view'
+  );
 };
 
 const navItemName = (selected, title) => {

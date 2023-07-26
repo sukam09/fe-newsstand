@@ -6,7 +6,12 @@ const RadioInput = (navStore, state, selected, name) => {
   inputElement.name = `${name}_select`;
   inputElement.className = `${name}_select`;
   inputElement.defaultChecked = selected;
-  inputElement.addEventListener('change', () => navStore.setView(name, state));
+  document.eventManager.register(
+    'change',
+    inputElement,
+    () => navStore.setView(name, state),
+    'view'
+  );
   return inputElement;
 };
 
@@ -36,16 +41,13 @@ const NavSelector = (navStore, states, selectedName, name) => {
 };
 
 const MediaNav = navStore => {
-  const state = navStore.getState();
+  const { data, media, view, subscribed } = navStore.getState();
   const mediaViewNav = document.createElement('nav');
 
   mediaViewNav.id = 'media_view_nav';
-  mediaViewNav.appendChild(
-    NavSelector(navStore, state.data.media, state.media, 'media')
-  );
-  mediaViewNav.appendChild(
-    NavSelector(navStore, state.data.view, state.view, 'view')
-  );
+  mediaViewNav.appendChild(NavSelector(navStore, data.media, media, 'media'));
+  if (media === 'subscribed' && subscribed.length === 0) return mediaViewNav;
+  mediaViewNav.appendChild(NavSelector(navStore, data.view, view, 'view'));
   return mediaViewNav;
 };
 

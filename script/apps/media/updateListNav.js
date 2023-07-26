@@ -1,47 +1,6 @@
 import ListNavItem from '../../components/ListNavItem.js';
 import { getMediaArray } from '../../fetch/getNewsData.js';
 
-const setPage = (store, newPage) => {
-  const { category, media } = store.getState();
-  const catLength = media.length;
-  const pageLength = media[category].media.length;
-
-  switch (newPage) {
-    case -1:
-      const newCategory = (category - 1 + catLength) % catLength;
-
-      store.setState({
-        category: newCategory,
-        page: media[newCategory].media.length - 1,
-      });
-      break;
-    case pageLength:
-      store.setState({
-        category: (category + 1) % catLength,
-        page: 0,
-      });
-      break;
-    default:
-      store.setState({ page: newPage });
-  }
-};
-
-const setSubPage = (store, newPage) => {
-  const { media } = store.getState();
-  const pageLength = media.length;
-
-  switch (newPage) {
-    case -1:
-      store.setState({ page: pageLength - 1 });
-      break;
-    case pageLength:
-      store.setState({ page: 0 });
-      break;
-    default:
-      store.setState({ page: newPage });
-  }
-};
-
 const listNavOnClick = (category, index, listStore) => {
   if (category === index) return;
   listStore.setState({
@@ -60,7 +19,7 @@ const appendListNavItems = (navList, listStore) => {
         title: categoryData.name,
         indicator: { index: page, total: categoryData.media.length },
         onClick: () => listNavOnClick(category, index, listStore),
-        afterDelay: () => setPage(listStore, page + 1),
+        afterDelay: () => listStore.movePage(1),
       })
     );
   });
@@ -81,17 +40,17 @@ const ListNav = listStore => {
 const setSubNavMouseEvent = navList => {
   let prevX;
 
-  navList.addEventListener('mousedown', e => {
+  const mouseDown = e => {
     prevX = e.clientX;
-  });
-  navList.addEventListener('mousemove', e => {
-    if (!prevX) return;
+  };
+  const mouseMove = e => {
+    if (!prevX || e.buttons === 0) return;
     navList.scrollLeft -= e.clientX - prevX;
     prevX = e.clientX;
-  });
-  navList.addEventListener('mouseup', () => {
-    prevX = null;
-  });
+  };
+
+  document.eventManager.register('mousedown', navList, mouseDown, 'view');
+  document.eventManager.register('mousemove', document, mouseMove, 'view');
 };
 
 const subNavOnClick = (page, index, listStore) => {
@@ -109,7 +68,7 @@ const appendSubNavItems = (navList, listStore) => {
           selected: page === index,
           title: mediaItem.name,
           onClick: () => subNavOnClick(page, index, listStore),
-          afterDelay: () => setSubPage(listStore, page + 1),
+          afterDelay: () => listStore.moveSubPage(1),
         })
       );
     });
@@ -135,7 +94,7 @@ const selectNav = (navItem, index, page, listStore) => {
       selected: true,
       title: navItem.querySelector('.name').innerText,
       onClick: () => subNavOnClick(page, index, listStore),
-      afterDelay: () => setSubPage(listStore, page + 1),
+      afterDelay: () => listStore.moveSubPage(1),
     })
   );
 };

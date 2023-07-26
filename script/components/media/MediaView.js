@@ -1,6 +1,7 @@
 import { MEDIA } from '../../constants.js';
 import { getCategoryData } from '../../fetch/getNewsData.js';
 import { shuffleArray } from '../../utils/utils.js';
+import EmptySubscribed from './EmptySubscribed.js';
 import MediaGrid from './MediaGrid.js';
 import MediaList from './MediaList.js';
 
@@ -22,22 +23,26 @@ const createMediaData = view => {
 };
 
 const MediaView = (themeStore, navStore) => {
-  const { view, subscribed } = navStore.getState();
+  const { media, view, subscribed } = navStore.getState();
   const mediaView = document.createElement('div');
   const mediaData = createMediaData(view);
 
   mediaView.id = 'media_view';
-  if (view === 'list') {
-    mediaData.then(mediaData => {
-      mediaView.appendChild(
-        MediaList(themeStore, navStore, { mediaData, subscribed })
-      );
-    });
-  } else {
+  if (media === 'subscribed' && subscribed.length === 0) {
+    mediaView.appendChild(EmptySubscribed());
+    return mediaView;
+  }
+  if (view === 'grid') {
     mediaView.appendChild(
       MediaGrid(themeStore, navStore, { mediaData, subscribed })
     );
+    return mediaView;
   }
+  mediaData.then(mediaData => {
+    mediaView.appendChild(
+      MediaList(themeStore, navStore, { mediaData, subscribed })
+    );
+  });
   return mediaView;
 };
 

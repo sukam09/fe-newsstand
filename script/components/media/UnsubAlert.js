@@ -3,6 +3,10 @@ import { fadeOutElement } from '../../utils/utils.js';
 
 const ActionButton = (alertElement, text, textClass, action) => {
   const actionButton = document.createElement('button');
+  const onClick = () => {
+    fadeOutElement(alertElement);
+    if (action) action();
+  };
 
   actionButton.classList.add(
     'alert_button',
@@ -11,10 +15,7 @@ const ActionButton = (alertElement, text, textClass, action) => {
     textClass
   );
   actionButton.innerText = text;
-  actionButton.addEventListener('click', () => {
-    fadeOutElement(alertElement);
-    if (action) action();
-  });
+  document.eventManager.register('click', actionButton, onClick, 'action');
   return actionButton;
 };
 
