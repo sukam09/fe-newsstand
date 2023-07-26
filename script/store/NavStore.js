@@ -1,6 +1,6 @@
 import Button from '../components/Button.js';
 import SnackBar from '../components/SnackBar.js';
-import UnsubAlert from '../components/media/UnsubAlert.js';
+import UnsubAlert from '../components/UnsubAlert.js';
 import { MEDIA, MEDIA_APP_DATA, MSG } from '../constants.js';
 import Store from '../core/Store.js';
 

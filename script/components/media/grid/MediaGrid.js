@@ -1,9 +1,9 @@
-import { MEDIA } from '../../constants.js';
-import { getNewsData } from '../../fetch/getNewsData.js';
-import GridStore from '../../store/GridStore.js';
-import { clearAllChildren, setMediaLogo } from '../../utils/utils.js';
-import Button from '../Button.js';
-import { replaceArrow } from './ArrowButton.js';
+import { MEDIA } from '../../../constants.js';
+import { getNewsData } from '../../../fetch/getNewsData.js';
+import GridStore from '../../../store/GridStore.js';
+import { clearAllChildren, setMediaLogo } from '../../../utils/utils.js';
+import Button from '../../Button.js';
+import { replaceArrow } from '../ArrowButton.js';
 
 const setArrowDisplay = (gridStore, leftArrow, rightArrow) => {
   const { page, media } = gridStore.getState();

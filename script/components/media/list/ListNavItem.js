@@ -1,5 +1,5 @@
+import ListProgressBar from '../../Progress.js';
 import NavPageIndicator from './NavPageIndicator.js';
-import ListProgressBar from './Progress.js';
 
 const addMouseEvents = (listNavItem, mouse, onClick) => {
   document.eventManager.register(

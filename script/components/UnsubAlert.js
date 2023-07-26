@@ -1,5 +1,5 @@
-import { MSG } from '../../constants.js';
-import { fadeOutElement } from '../../utils/utils.js';
+import { MSG } from '../constants.js';
+import { fadeOutElement } from '../utils/utils.js';
 
 const ActionButton = (alertElement, text, textClass, action) => {
   const actionButton = document.createElement('button');
