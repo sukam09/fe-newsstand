@@ -1,3 +1,4 @@
+import { DARK_MODE, LIGHT_MODE, LOGO_PATH } from "../../constants/constant.js";
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
 import alert from "../Alert/Alert.js";
@@ -10,7 +11,10 @@ export const makeGrid = (data) => {
   li.className = data.name;
 
   const img = document.createElement("img");
-  img.src = data.logo;
+
+  img.src = store.isDarkMode
+    ? `${LOGO_PATH}/${DARK_MODE}/${data.logo}`
+    : `${LOGO_PATH}/${LIGHT_MODE}/${data.logo}`;
 
   li.appendChild(img);
   if (data.logo) {

@@ -1,3 +1,5 @@
+import { DARK_MODE, LIGHT_MODE, LOGO_PATH } from "../../constants/constant.js";
+import { store } from "../../store/store.js";
 import { makeSubscribeBtn } from "./subscribeButton.js";
 
 export const makePressInfo = (current_page, agencies) => {
@@ -6,7 +8,9 @@ export const makePressInfo = (current_page, agencies) => {
 
   const $press_brandmark = document.createElement("img");
   $press_brandmark.className = "press-brandmark";
-  $press_brandmark.src = agencies[current_page].logo;
+  $press_brandmark.src = store.isDarkMode
+    ? `${LOGO_PATH}/${DARK_MODE}/${agencies[current_page].logo}`
+    : `${LOGO_PATH}/${LIGHT_MODE}/${agencies[current_page].logo}`;
   $press_brandmark.alt = `${agencies[current_page]}`;
 
   const $press_edit_date = document.createElement("div");
