@@ -7,7 +7,7 @@ import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
 import Alert from './common/Alert.js';
 
-export default function PressListView({ $target, initialState }) {
+export default function PressListView({ $target, initialState, onChangePress }) {
   const $section = document.createElement('section');
 
   const $div = document.createElement('div');
@@ -196,6 +196,12 @@ export default function PressListView({ $target, initialState }) {
     }
 
     const myPress = store.getMyPress().map(({ pressName }) => pressName);
+
+    if (myPress.length === 0) {
+      onChangePress('all');
+      return;
+    }
+
     this.setState({
       ...this.state,
       categories: myPress,

@@ -6,7 +6,7 @@ import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
 import Alert from './common/Alert.js';
 
-export default function PressGridView({ $target, initialState }) {
+export default function PressGridView({ $target, initialState, onChangePress }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 
@@ -134,6 +134,11 @@ export default function PressGridView({ $target, initialState }) {
 
     if (page > maxPage) {
       this.setState({ ...this.state, page: page - 1 }, false);
+    }
+
+    if (myPress.length === 0) {
+      onChangePress('all');
+      return;
     }
 
     this.setState({ ...this.state, data: myPress });

@@ -79,6 +79,11 @@ export default function App({ $app }) {
 
   const defaultCategories = ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'];
 
+  const onChangePress = press => {
+    this.setState({ ...this.state, press });
+    pressTab.setState({ ...this.state, press });
+  };
+
   this.render = () => {
     $div.innerHTML = '';
 
@@ -95,6 +100,7 @@ export default function App({ $app }) {
             pressInfo,
             pidMap,
           },
+          onChangePress,
         })
       : new PressListView({
           $target: $div,
@@ -107,6 +113,7 @@ export default function App({ $app }) {
             categories: defaultCategories,
             pidMap,
           },
+          onChangePress,
         });
   };
 
