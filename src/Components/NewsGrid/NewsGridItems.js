@@ -7,7 +7,7 @@ export default class NewsGridItems extends Component {
   }
 
   template() {
-    return this.padArrayToLength(this.$props.nowPageIndexArr).reduce(
+    return this.makeOnePageArray(this.$props.nowPageIndexArr).reduce(
       (acc, item) => {
         if (!item) {
           return (
@@ -51,6 +51,17 @@ export default class NewsGridItems extends Component {
   }
 
   mounted() {
+    this.setSubscribeButtonEvent();
+  }
+
+  makeOnePageArray(arr) {
+    const length = constants.ONE_PAGE_NEWSPAPER;
+    return Array.from({ length }, (_, index) =>
+      arr[index] ? arr[index] : undefined
+    );
+  }
+
+  setSubscribeButtonEvent() {
     const $newspaperSubscribe = this.$target.querySelectorAll(".card-back");
 
     $newspaperSubscribe.forEach((item, index) => {
@@ -72,12 +83,5 @@ export default class NewsGridItems extends Component {
         }
       });
     });
-  }
-
-  padArrayToLength(arr) {
-    const length = constants.ONE_PAGE_NEWSPAPER;
-    return Array.from({ length }, (_, index) =>
-      arr[index] ? arr[index] : undefined
-    );
   }
 }

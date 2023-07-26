@@ -66,12 +66,11 @@ export default class NavBar extends Component {
   }
 
   mounted() {
-    const $listButton = this.$target.querySelector(
-      ".news-navbar_content__list"
-    );
-    const $gridButton = this.$target.querySelector(
-      ".news-navbar_content__grid"
-    );
+    this.setCategoryButtonEvent();
+    this.setViewButtonEvent();
+  }
+
+  setCategoryButtonEvent() {
     const $allNewspaper = this.$target.querySelector(
       ".news-navbar_newspaper-list-all"
     );
@@ -79,12 +78,6 @@ export default class NavBar extends Component {
       ".news-navbar_newspaper-list-my"
     );
 
-    $listButton.addEventListener("click", () => {
-      this.$props.ViewStore.setView(constants.SHOW_LIST);
-    });
-    $gridButton.addEventListener("click", () => {
-      this.$props.ViewStore.setView(constants.SHOW_GRID);
-    });
     $allNewspaper.addEventListener("click", () => {
       this.$props.ViewStore.setCategory(constants.SHOW_ALL_NEWS);
       this.$props.ViewStore.setView(constants.SHOW_GRID);
@@ -92,6 +85,22 @@ export default class NavBar extends Component {
     $myNewspaper.addEventListener("click", () => {
       this.$props.ViewStore.setCategory(constants.SHOW_MY_NEWS);
       this.$props.ViewStore.setView(constants.SHOW_LIST);
+    });
+  }
+
+  setViewButtonEvent() {
+    const $listButton = this.$target.querySelector(
+      ".news-navbar_content__list"
+    );
+    const $gridButton = this.$target.querySelector(
+      ".news-navbar_content__grid"
+    );
+
+    $listButton.addEventListener("click", () => {
+      this.$props.ViewStore.setView(constants.SHOW_LIST);
+    });
+    $gridButton.addEventListener("click", () => {
+      this.$props.ViewStore.setView(constants.SHOW_GRID);
     });
   }
 }

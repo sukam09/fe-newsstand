@@ -63,10 +63,8 @@ export default class MyNewsList extends Component {
   }
 
   mounted() {
-    if (!this.$props.SubscribeStore.subscribeList.length) {
-      this.$target
-        .querySelector(".news-list__snack-bar__noData")
-        .classList.remove("hidden");
+    if (this.isEmptySubscribeList()) {
+      this.showNoDataSnackBar();
       return;
     }
 
@@ -80,20 +78,7 @@ export default class MyNewsList extends Component {
     this.setFieldTab();
     this.renderPressNews(this.nowIndex);
     this.setListPageButton();
-
-    const $alertYES = this.$target.querySelector(
-      ".subscribe-alert__button__YES"
-    );
-    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
-
-    $alertNO.addEventListener("click", () =>
-      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
-    );
-    $alertYES.addEventListener("click", () => {
-      this.$props.SubscribeStore.unSubscribeNewsByName(
-        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
-      );
-    });
+    this.setAlertEvent();
   }
 
   initialTag() {
@@ -214,5 +199,31 @@ export default class MyNewsList extends Component {
 
     $leftButton.addEventListener("click", () => this.movePageLeft());
     $rightButton.addEventListener("click", () => this.movePageRight());
+  }
+
+  setAlertEvent() {
+    const $alertYES = this.$target.querySelector(
+      ".subscribe-alert__button__YES"
+    );
+    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
+
+    $alertNO.addEventListener("click", () =>
+      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
+    );
+    $alertYES.addEventListener("click", () => {
+      this.$props.SubscribeStore.unSubscribeNewsByName(
+        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
+      );
+    });
+  }
+
+  isEmptySubscribeList() {
+    return !this.$props.SubscribeStore.subscribeList.length;
+  }
+
+  showNoDataSnackBar() {
+    this.$target
+      .querySelector(".news-list__snack-bar__noData")
+      .classList.remove("hidden");
   }
 }

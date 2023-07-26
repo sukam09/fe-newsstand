@@ -58,29 +58,10 @@ export default class MyNewsGrid extends Component {
   }
 
   mounted() {
-    const $leftButton = this.$target.querySelector(".left-button_content");
-    const $rightButton = this.$target.querySelector(".right-button_content");
-    const $alertYES = this.$target.querySelector(
-      ".subscribe-alert__button__YES"
-    );
-    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
-
-    this.setState(
-      { $leftButton: $leftButton, $rightButton: $rightButton },
-      false
-    );
-
+    this.setArrowButton();
     this.renderNewspaper();
     this.setGridPageButton();
-
-    $alertNO.addEventListener("click", () =>
-      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
-    );
-    $alertYES.addEventListener("click", () => {
-      this.$props.SubscribeStore.unSubscribeNewsByName(
-        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
-      );
-    });
+    this.setAlertEvent();
   }
 
   renderNewspaper() {
@@ -120,8 +101,34 @@ export default class MyNewsGrid extends Component {
     this.renderNewspaper();
   }
 
+  setArrowButton() {
+    const $leftButton = this.$target.querySelector(".left-button_content");
+    const $rightButton = this.$target.querySelector(".right-button_content");
+
+    this.setState(
+      { $leftButton: $leftButton, $rightButton: $rightButton },
+      false
+    );
+  }
+
   setGridPageButton() {
     this.$state.$leftButton.addEventListener("click", () => this.movePage(-1));
     this.$state.$rightButton.addEventListener("click", () => this.movePage(1));
+  }
+
+  setAlertEvent() {
+    const $alertYES = this.$target.querySelector(
+      ".subscribe-alert__button__YES"
+    );
+    const $alertNO = this.$target.querySelector(".subscribe-alert__button__NO");
+
+    $alertNO.addEventListener("click", () =>
+      this.$target.querySelector(".subscribe-alert").classList.add("hidden")
+    );
+    $alertYES.addEventListener("click", () => {
+      this.$props.SubscribeStore.unSubscribeNewsByName(
+        this.$target.querySelector(".subscribe-alert__notice__name").innerHTML
+      );
+    });
   }
 }

@@ -60,6 +60,10 @@ export default class PressNews extends Component {
   }
 
   mounted() {
+    this.setSubscribeButtonEvent();
+  }
+
+  setSubscribeButtonEvent() {
     const $subscribeButton = this.$target.querySelector(
       ".news-list__press-news__subscribe"
     );

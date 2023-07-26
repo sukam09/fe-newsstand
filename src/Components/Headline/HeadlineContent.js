@@ -13,6 +13,10 @@ export default class HeadlineContent extends Component {
   }
 
   mounted() {
+    this.setRollingItem();
+  }
+
+  setRollingItem() {
     const $ul = this.$target.querySelector(".headline__content_rolling > ul");
 
     new RollingItem($ul, {

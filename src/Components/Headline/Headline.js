@@ -19,15 +19,7 @@ export default class Headline extends Component {
   }
 
   mounted() {
-    const $headline__content =
-      this.$target.querySelectorAll(".headline__content");
-
-    $headline__content.forEach((item, index) => {
-      new HeadlineContent(item, {
-        rollingData: this.$state.rollingData.slice(5 * index, 5 + (index + 1)),
-      });
-    });
-
+    this.setHeadlineContent();
     this.setRolling();
   }
 
@@ -83,5 +75,16 @@ export default class Headline extends Component {
     $rollingTarget.forEach((elem, index) =>
       this.setRollingAndStop(elem, index)
     );
+  }
+
+  setHeadlineContent() {
+    const $headline__content =
+      this.$target.querySelectorAll(".headline__content");
+
+    $headline__content.forEach((item, index) => {
+      new HeadlineContent(item, {
+        rollingData: this.$state.rollingData.slice(5 * index, 5 + (index + 1)),
+      });
+    });
   }
 }

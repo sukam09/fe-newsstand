@@ -44,14 +44,7 @@ export default class NewsGrid extends Component {
   }
 
   mounted() {
-    const $leftButton = this.$target.querySelector(".left-button_content");
-    const $rightButton = this.$target.querySelector(".right-button_content");
-
-    this.setState(
-      { $leftButton: $leftButton, $rightButton: $rightButton },
-      false
-    );
-
+    this.setArrowButton();
     this.renderNewspaper();
     this.setGridPageButton();
   }
@@ -86,6 +79,16 @@ export default class NewsGrid extends Component {
   setGridPageButton() {
     this.$state.$leftButton.addEventListener("click", () => this.movePage(-1));
     this.$state.$rightButton.addEventListener("click", () => this.movePage(1));
+  }
+
+  setArrowButton() {
+    const $leftButton = this.$target.querySelector(".left-button_content");
+    const $rightButton = this.$target.querySelector(".right-button_content");
+
+    this.setState(
+      { $leftButton: $leftButton, $rightButton: $rightButton },
+      false
+    );
   }
 
   async fetchNewsData() {
