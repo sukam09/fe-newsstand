@@ -17,7 +17,7 @@ function handleCategoryChange(catBtns){
         btn.addEventListener("click", () => {        
             let {crntCategory} = store.getViewState()
             if (crntCategory !== index){ // change to different category
-                store.setViewState({crntCategory: index, crntPage: 0, isChangeCategory:true})
+                store.setViewState({crntCategory: index, crntPage: 0})
             } else { 
                 // stay in crnt category
             }

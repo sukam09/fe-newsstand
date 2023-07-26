@@ -23,7 +23,7 @@ function changeFilter(nextFilter){
             nextView = VIEW_TYPE.LIST;
             break;
     }
-    store.setViewState({crntFilter:nextFilter, crntView:nextView, crntPage:0, crntCategory:0, isChangeView:true})
+    store.setViewState({crntFilter:nextFilter, crntView:nextView, crntPage:0, crntCategory:0})
 }
 function handleFilterChange(){
     filterBtns.forEach((btn)=> {

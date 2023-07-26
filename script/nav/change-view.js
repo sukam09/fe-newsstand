@@ -33,7 +33,7 @@ function handleViewChange() {
             const nextView = btn.getAttribute("type");
             let {crntView} = store.getViewState();
             if (crntView !== nextView){
-                store.setViewState({crntView:nextView, crntPage: 0, crntCategory:0, isChangeView:true});
+                store.setViewState({crntView:nextView, crntPage: 0, crntCategory:0});
                 // observer에서 changeNavIcons, toggleNewVisibility 실행됨
             }
         })

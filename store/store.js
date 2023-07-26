@@ -34,8 +34,17 @@ class Store {
             this.viewState.isChangeCategory = false;
         }
     }
+    setFlagVar(newState) {
+        if ("crntView" in newState){
+            this.viewState.isChangeView = true;
+        }
+        if ("crntCategory" in newState){
+            this.viewState.isChangeCategory = true;
+        }
+    }
     setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
+        this.setFlagVar(newState);
         this.notify();
         this.initFlagVar();
     }

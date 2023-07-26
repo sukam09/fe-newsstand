@@ -13,7 +13,7 @@ function listenProgressBarEnd() {
             store.setViewState({crntPage: crntPage+1})
         } else if (crntPage == numOfListPages - 1){
             let crntListIdx = crntCategory == navData.length-1 ? 0 : crntCategory+1;
-            store.setViewState({crntCategory: crntListIdx, crntPage: 0, isChangeCategory:true})
+            store.setViewState({crntCategory: crntListIdx, crntPage: 0})
         }
     })
 }
