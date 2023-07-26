@@ -1,5 +1,7 @@
 import { store } from "../../store/store.js";
 import { FILTER_TYPE, GRID_ITEMS_PER_PAGE } from "../../asset/data/constants.js";
+import pressList from "../../asset/data/pressList.js";
+import { shuffleArray } from "../../util/shuffleArray.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const pressCover = document.querySelector(".press-cover");
@@ -56,12 +58,16 @@ function drawGrid(){
 }
 
 function initGrid () {
+    let pressIdxArray = Array.from({length: pressList.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
+    shuffleArray(pressIdxArray); // shuffle grid only when reloading
+
     for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
         gridContainer.innerHTML += `
             <li class="pressItem"></li>
         `
     }
-    handleGridHover();   
+    handleGridHover();  
+    drawGrid();
 }
 
 export {drawGrid, initGrid}

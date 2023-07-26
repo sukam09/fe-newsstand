@@ -4,18 +4,8 @@ import { drawGrid } from "../grid-view/grid.js";
 import { drawList } from "../list-view/list.js";
 import { drawEmptySubView } from "./empty-sub-view.js";
 
-const viewContainer = document.querySelector(".view-section-content")
 
-function toggleViewVisibility() {
-    const {crntView} = store.getViewState();
-    Array.prototype.forEach.call(viewContainer.children, (view) => {
-        if (view.getAttribute("type") == crntView){
-            view.classList.remove("hide");
-        } else {
-            view.classList.add("hide")
-        }      
-    })
-}
+
 
 function renderView(){
     const {crntPage, crntCategory, crntView, crntFilter} = store.getViewState();
@@ -34,4 +24,4 @@ function renderView(){
     }
 }
 
-export {renderView, toggleViewVisibility}
+export {renderView}

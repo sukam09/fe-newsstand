@@ -1,7 +1,7 @@
 import { store } from "../../store/store.js";
 import { drawArrow } from "../arrow/arrow.js";
-import { changeNavIcons } from "../nav/change-nav-icons.js";
-import { renderView, toggleViewVisibility } from "./render-view.js";
+import { changeNavIcons, toggleViewVisibility } from "../nav/change-view.js";
+import { renderView } from "./render-view.js";
 
 function observer() {
     const {isStillList, isChangeView} = store.getViewState();

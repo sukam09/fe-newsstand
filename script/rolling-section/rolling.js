@@ -20,7 +20,7 @@ function drawHeadline(target){
 
 }
 
-function rollHeadline(target, headlineIdx) {
+function rollHeadline(target, headlineIdx = 0) {
     if (headlineIdx >= rollingList.length){
         drawHeadline(target);
         headlineIdx = 0;
@@ -36,11 +36,15 @@ function rollHeadline(target, headlineIdx) {
     })
 }
 
-function rollInit(){
+function initRoll(){
     rollingContent.forEach((item, index) => {
-        if (index == 0){ // left rolling section
+        drawHeadline(item);
+
+        if (index == 0){ 
+            // left rolling section
             rollHeadline(item, rollingList.length);
-        } else if (index == 1){  // right rolling section
+        } else if (index == 1){ 
+            // right rolling section
             item.innerHTML += `<span>${rollingList[0].title}</span>`
             setTimeout(() => {
                 rollHeadline(item, rollingList.length);
@@ -50,4 +54,4 @@ function rollInit(){
 }
 
 
-export {rollInit};
+export {initRoll};
