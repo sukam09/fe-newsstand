@@ -4,43 +4,49 @@ import { createNewsListHtml } from '../components/newsStandList.js';
 import { shuffle } from '../utils/utils.js';
 import { subScribeStore } from '../store/subScribeStore.js';
 import { globalStore } from '../store/globalVarStore.js';
-import { reRenderComponent } from '../utils/reRenderComponent.js';
-
-let EntireCateGoryCount = 0;
 
 subScribeStore.subscribe(() => initNewsStandList());
+globalStore.subscribe(() => initNewsStandList());
 
 async function initNewsStandList() {
   const datas = await getNewsListData();
-  if (globalStore.state.KEY === '전체언론_리스트') {
-    const [category, categorysList] = getCategoryDataPaser(datas);
-    EntireCateGoryCount = category.length;
-    const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
+  if (globalStore.state.KEY === '전체언론_리스트') 전체_언론사(datas);
+  else if (globalStore.state.KEY === '구독언론_리스트') 구독_언론사(datas);
+}
 
-    const categoryCount = categorysList.filter((name) => name === KEY).length;
-    globalStore.commit('updateCateGoryCount', categoryCount);
+function 전체_언론사(datas) {
+  const [category, categorysList] = getCategoryDataPaser(datas);
+  const NEWS_LIST = getCurrentNewsList(category, datas);
+  const KEY = category[globalStore.state.전체언론_리스트.카테고리_인덱스];
+  const categoryCount = categorysList.filter((name) => name === KEY).length;
 
-    createCategoryHtml(category, KEY);
-    const NEWS_LIST = getCurrentNewsList(category, datas);
-    createNewsListHtml(
-      NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
-    );
-    isProgressBarFinish();
-    moveSelectedCategory(category);
-  } else if (globalStore.state.KEY === '구독언론_리스트') {
-    const scribeNews = subScribeStore.state.subscribeData;
-    if (scribeNews.length === globalStore.state.구독언론_리스트.카테고리_인덱스) {
-      globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: scribeNews.length - 1 });
-    }
-    if (scribeNews.length === 1) globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: 0 });
+  if (globalStore.state.전체언론_리스트.뉴스_인덱스 === categoryCount) globalStore.commit('nextCategory');
 
-    const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
-    const newsDatas = [];
-    scribeNews.forEach((category) => newsDatas.push(...datas.filter((d) => d.name === category)));
+  createCategoryHtml(category, KEY, categoryCount);
+  createNewsListHtml(
+    NEWS_LIST[globalStore.state.전체언론_리스트.카테고리_인덱스][globalStore.state.전체언론_리스트.뉴스_인덱스]
+  );
 
-    createCategoryHtml(scribeNews, KEY);
-    createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
-  }
+  progressBar(categoryCount, category.length);
+  moveSelectedCategory(category);
+}
+
+function 구독_언론사(datas) {
+  const scribeNews = subScribeStore.state.subscribeData;
+  const KEY = scribeNews[globalStore.state.구독언론_리스트.카테고리_인덱스];
+  const newsDatas = getSubscribeNewsList(scribeNews, datas);
+
+  createCategoryHtml(scribeNews, KEY);
+  createNewsListHtml(newsDatas[globalStore.state.구독언론_리스트.카테고리_인덱스]);
+
+  SubProgressBar(scribeNews.length);
+  moveSelectSub(scribeNews);
+}
+
+function getSubscribeNewsList(scribeNews, datas) {
+  const newsList = [];
+  scribeNews.forEach((category) => newsList.push(...datas.filter((d) => d.name === category)));
+  return newsList;
 }
 
 function getCurrentNewsList(category, datas) {
@@ -52,33 +58,39 @@ function getCurrentNewsList(category, datas) {
 function getCategoryDataPaser(datas) {
   const categorys = datas.map((data) => data.category);
   const newData = [...new Set(categorys)];
-  return [newData, categorys]; // [카테고리, 중복제거 안한 카테고리]
+  return [newData, categorys];
 }
 
-function isProgressBarFinish() {
+function progressBar(categoryCount, entireCateGoryCount) {
   const progressBar = document.querySelector('.select-category');
-  progressBar.addEventListener('animationiteration', () => progressBarHandler());
+  progressBar.addEventListener('animationiteration', () =>
+    globalStore.commit('categoryProgress', { len: categoryCount, total: entireCateGoryCount }, { once: true })
+  );
 }
 
-const progressBarHandler = () => {
-  globalStore.commit('nextIndex', '전체언론_리스트');
-  if (globalStore.state.전체언론_리스트.뉴스_인덱스 >= globalStore.state.전체언론_리스트.전체카테고리) {
-    globalStore.commit('nextCategoryIndex');
-    if (EntireCateGoryCount - 1 < globalStore.state.전체언론_리스트.카테고리_인덱스)
-      globalStore.commit('resetNewsList');
-  }
-  reRenderComponent('LIST_ALL');
-};
+function SubProgressBar(len) {
+  const progressBar = document.querySelector('.select-category');
+  if (!len) return;
+  progressBar.addEventListener('animationiteration', () => globalStore.commit('categoryProgress', len), { once: true });
+}
 
 function moveSelectedCategory(category) {
   const categoryElement = document.querySelector('.newsstand__category');
-  categoryElement.addEventListener('click', (e) => moveSelectedCategoryHandler(e, category));
+  categoryElement.addEventListener('click', (e) => moveSelectedCategoryHandler(e, category), { once: true });
 }
 
 const moveSelectedCategoryHandler = (e, category) => {
   const text = e.target.textContent;
-  globalStore.commit('resetNewsIndex');
-  globalStore.commit('updateCategoryIndex', { key: globalStore.state.KEY, val: category.indexOf(text) });
-  reRenderComponent('LIST_ALL');
+  globalStore.commit('categorySelect', { val: category.indexOf(text) });
+};
+
+function moveSelectSub(scribeNews) {
+  const categoryElement = document.querySelector('.newsstand__category');
+  categoryElement.addEventListener('click', (e) => moveSelectedSubHandler(e, scribeNews), { once: true });
+}
+
+const moveSelectedSubHandler = (e, scribeNews) => {
+  const text = e.target.textContent;
+  globalStore.commit('categorySelect', { val: scribeNews.indexOf(text) });
 };
 export { initNewsStandList };

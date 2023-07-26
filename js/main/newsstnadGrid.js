@@ -6,11 +6,12 @@ import { subScribeStore } from '../store/subScribeStore.js';
 let datas = [];
 
 subScribeStore.subscribe(() => initNewsStandGrid());
+globalStore.subscribe(() => initNewsStandGrid());
 
 async function initNewsStandGrid() {
   const newsData = await getNewsData();
-  if (globalStore.state.OPTION === '전체_언론사') 전체_언론사(newsData);
-  else if (globalStore.state.OPTION === '구독_언론사') 내가_구독한_언론사(newsData);
+  if (globalStore.state.KEY === '전체언론_그리드_인덱스') 전체_언론사(newsData);
+  else if (globalStore.state.KEY === '구독언론_그리드_인덱스') 내가_구독한_언론사(newsData);
 }
 
 function 전체_언론사(newsData) {
