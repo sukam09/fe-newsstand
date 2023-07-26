@@ -38,6 +38,7 @@ class NavStore extends Store {
   }
 
   unsubMedia(id, name, viewStore, button) {
+    if (document.querySelector('.alert') !== null) return;
     document.querySelector('#media_view').appendChild(
       UnsubAlert(id, name, id => {
         const { media, view, subscribed } = this.getState();
