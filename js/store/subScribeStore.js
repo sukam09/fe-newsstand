@@ -6,12 +6,11 @@ const subScribeStore = new Store({
   },
 
   mutations: {
-    setState(state, payload) {
+    subscribe(state, payload) {
       state.subscribeData.push(payload);
-      // notify
     },
-    updateState(state, payload) {
-      state.subscribeData = state.subscribeData.filter((d) => d != payload);
+    unsubscribe(state, payload) {
+      state.subscribeData = state.subscribeData.filter((data) => data != payload);
     },
   },
 

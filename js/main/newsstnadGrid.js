@@ -5,6 +5,8 @@ import { globalStore } from '../store/globalVarStore.js';
 import { subScribeStore } from '../store/subScribeStore.js';
 let datas = [];
 
+subScribeStore.subscribe(() => initNewsStandGrid());
+
 async function initNewsStandGrid() {
   const newsData = await getNewsData();
   if (globalStore.state.OPTION === '전체_언론사') 전체_언론사(newsData);

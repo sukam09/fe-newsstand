@@ -8,6 +8,8 @@ import { reRenderComponent } from '../utils/reRenderComponent.js';
 
 let EntireCateGoryCount = 0;
 
+subScribeStore.subscribe(() => initNewsStandList());
+
 async function initNewsStandList() {
   const datas = await getNewsListData();
   if (globalStore.state.KEY === '전체언론_리스트') {
