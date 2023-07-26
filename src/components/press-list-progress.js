@@ -12,9 +12,9 @@ class ListProgress extends Store {
     };
 
     this.setupProgress();
+    this.setupClick();
     this.render();
     this.subscribe(this.render.bind(this));
-    // this.setupClick();
   }
 
   render() {
@@ -82,22 +82,14 @@ class ListProgress extends Store {
   }
 
   setupCategory(categoryIndex) {
-    this.state.categoryCount = categoryIndex;
-    this.state.pageLength = LIST.SUFFLE_CATEGORY[categoryIndex - 1].length;
-    this.setState({ pageCount: 1 });
+    this.setState({
+      pageCount: 1,
+      categoryCount: categoryIndex,
+      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
+    });
 
-    const removeLi = document.querySelector('.progress-start');
-    const removeDiv = removeLi.querySelector('.press-category__div');
     const addLi = document.querySelector('.press-category__ul').children[categoryIndex - 1];
-    const addDiv = addLi.querySelector('.press-category__div');
-
-    addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
-    addLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
-
-    removeLi.classList.remove('progress-start');
-    removeDiv.classList.add('none');
-    addLi.classList.add('progress-start');
-    addDiv.classList.remove('none');
+    this.setupClassList(addLi);
   }
 
   //   const isSubscribe = progressSum.innerText === 1;
@@ -108,52 +100,47 @@ class ListProgress extends Store {
   //           progressSum.innerText = this.state.pageLength;
   //         }
 
-  setSubscribeArrow(isSubscribe) {
-    const categoryDiv = document.querySelector('.press-category__div');
-    const categoryArrow = `
-      <img class="press-category__div-img" src='./assets/icons/arrow.svg'></img>
-      `;
+  //   setSubscribeArrow(isSubscribe) {
+  //     const categoryDiv = document.querySelector('.press-category__div');
+  //     const categoryArrow = `
+  //       <img class="press-category__div-img" src='./assets/icons/arrow.svg'></img>
+  //       `;
 
-    const catogoryCount = `
-      <div class='press-category__div-now'>1</div>
-      <div class='press-category__div-divide'>/</div>
-      <div class='press-category__div-sum'></div>`;
+  //     const catogoryCount = `
+  //       <div class='press-category__div-now'>1</div>
+  //       <div class='press-category__div-divide'>/</div>
+  //       <div class='press-category__div-sum'></div>`;
 
-    isSubscribe ? (categoryDiv.innerHTML = categoryArrow) : (categoryDiv.innerHTML = catogoryCount);
-  }
+  //     isSubscribe ? (categoryDiv.innerHTML = categoryArrow) : (categoryDiv.innerHTML = catogoryCount);
+  //   }
 
   setupClick() {
     const progressBar = document.querySelectorAll('.press-category__li');
     progressBar.forEach((progress) => {
       progress.addEventListener('click', () => {
-        const removeLi = document.querySelector('.progress-start');
-        const removeDiv = removeLi.querySelector('.press-category__div');
-        removeLi.classList.remove('progress-start');
-        removeDiv.classList.add('none');
-
-        let progressIndex;
         const progressName = progress.querySelector('.press-category__p').innerText;
         const isCategory = LIST.CATEGORY_NAME.includes(progressName);
-        const isSubscribe = LIST.SUBSCRIBE_NAME.includes(progressName);
+        const progressIndex = isCategory
+          ? LIST.CATEGORY_NAME.findIndex((name) => name === progressName)
+          : LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
 
-        if (isCategory) progressIndex = LIST.CATEGORY_NAME.findIndex((name) => name === progressName);
-        if (isSubscribe) progressIndex = LIST.SUBSCRIBE_NAME.findIndex((name) => name === progressName);
+        this.setState({
+          pageCount: 1,
+          categoryCount: progressIndex + 1,
+          pageLength: LIST.SUFFLE_CATEGORY[this.state.categoryCount - 1].length,
+        });
 
-        this.state.categoryCount = progressIndex + 1;
-        this.state.pageCount = 1;
-        this.state.pageLength = LIST.SUFFLE_CATEGORY[this.state.categoryCount - 1].length;
-
-        progress.classList.add('progress-start');
-        progress.querySelector('.press-category__div').classList.remove('none');
-        const progressNow = progress.querySelector('.press-category__div-now');
-        const progressSum = progress.querySelector('.press-category__div-sum');
-
-        progressNow.innerText = this.state.pageCount;
-        progressSum.innerText = this.state.pageLength;
-
-        // setListArticle();
+        this.setupClassList(progress);
       });
     });
+  }
+
+  setupClassList(addLi) {
+    document.querySelector('.progress-start').classList.remove('progress-start');
+    addLi.classList.add('progress-start');
+    addLi.querySelector('.press-category__div').classList.remove('none');
+    addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;
+    addLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
   }
 }
 
