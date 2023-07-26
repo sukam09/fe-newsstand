@@ -6,9 +6,7 @@ import Store from './core/Store.js';
 import setEventManager from './core/EventManager.js';
 
 (() => {
-  const themeStore = new Store({
-    theme: 'light',
-  });
+  const themeStore = new Store({ theme: 'light' });
 
   setEventManager();
   headerApp();
