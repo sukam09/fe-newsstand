@@ -11,7 +11,7 @@ import {
   addEventsOnThemeButton,
   addEventsOnTitle,
   addEventsOnViewButton,
-  addEvetsOnSubCancelButton,
+  addEvetsOnUnsubButton,
 } from "./events.js";
 import {
   addObserverOnGridPage,
@@ -33,7 +33,7 @@ export function initEvents() {
   addEventsOnTitle();
   addEventsOnListSubButton();
   addEventsOnPageModeButton();
-  addEvetsOnSubCancelButton();
+  addEvetsOnUnsubButton();
   addEventsOnAlertButton();
   addEventsOnCategory();
 }

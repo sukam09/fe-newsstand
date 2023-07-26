@@ -29,12 +29,27 @@ export function updateMyPressList(subState, pressId) {
   }
 }
 
-export function handleSubCancelClick({ target }) {
+export function handleGridUnsubClick({ target }) {
   const targetClass = target.className;
   if (targetClass === "unsub_button") {
     const { pressList } = getState(pressDataState);
     const $pressItem = target.parentNode.parentNode;
     const pressId = parseInt($pressItem.classList[1].split("_")[1]);
+    const targetPress = [...pressList].find((press) => press.id === pressId);
+
+    displayAlert({
+      name: targetPress.name,
+      pressId: targetPress.id,
+    });
+  }
+}
+
+export function handleListUnsubClick({ target }) {
+  const targetClass = target.className;
+  if (targetClass === "list_unsub_button") {
+    const { pressList } = getState(pressDataState);
+    const $pressItem = target.parentNode.parentNode;
+    const pressId = parseInt($pressItem.classList[0].split("_")[2]);
     const targetPress = [...pressList].find((press) => press.id === pressId);
 
     displayAlert({

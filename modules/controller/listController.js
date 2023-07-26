@@ -14,6 +14,7 @@ import {
   handleCategoryItemClick,
   handleCategoryMousedown,
 } from "./categoryController.js";
+import { handleListUnsubClick } from "./subscribeController.js";
 
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
@@ -71,8 +72,7 @@ export function drawMyPressToList() {
     $news = document.createElement("div");
     $news.className = `list_press_${press.id} news news_my${idx}`;
     $news.innerHTML = createNewsHeader(press) + createNewsBody(press);
-    const $unsubButton = $news.querySelector(".list_unsub_button");
-    $unsubButton.addEventListener("click", handleListSubButton);
+    $news.addEventListener("click", handleListUnsubClick);
 
     $container.appendChild($news);
     controllListsSubButtonShowing(press.id);

@@ -44,7 +44,8 @@ import {
 import {
   handleAlertCancelButtonClick,
   handleAlertOkButtonClick,
-  handleSubCancelClick,
+  handleGridUnsubClick,
+  handleListUnsubClick,
 } from "./subscribeController.js";
 
 export function addEventsOnGridItem() {
@@ -132,12 +133,8 @@ export function addEventsOnTitle() {
 
 export function addEventsOnListSubButton() {
   const $subButtons = qsa(".list_sub_button");
-  const $unsubButtons = qsa(".list_unsub_button");
   [...$subButtons].forEach(($subButton) => {
     $subButton.addEventListener("click", handleListSubButton);
-  });
-  [...$unsubButtons].forEach(($unsubButton) => {
-    $unsubButton.addEventListener("click", handleListSubButton);
   });
 }
 
@@ -148,10 +145,15 @@ export function addEventsOnPageModeButton() {
   $ModeallButton.addEventListener("click", handleModeMyClick);
 }
 
-export function addEvetsOnSubCancelButton() {
+export function addEvetsOnUnsubButton() {
   const $pressGrids = qsa(".press_grid");
+  const $pressLists = qsa(".news");
   [...$pressGrids].forEach(($pressGrid) => {
-    $pressGrid.addEventListener("click", handleSubCancelClick);
+    $pressGrid.addEventListener("click", handleGridUnsubClick);
+  });
+
+  [...$pressLists].forEach(($pressList) => {
+    $pressList.addEventListener("click", handleListUnsubClick);
   });
 }
 
