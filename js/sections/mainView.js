@@ -5,11 +5,17 @@ import {
   FIRST_PAGE_NUM,
   CATEGORY,
   ICON_IMG_PATH,
-  gridIndex,
+  GRID_INDEX,
 } from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { shuffleArray } from "../utils/shuffleIndex.js";
-import { getView, getPage, getMode, getCurrentPress } from "../core/getter.js";
+import {
+  getView,
+  getPage,
+  getMode,
+  getCurrentPress,
+  getIndex,
+} from "../core/getter.js";
 import { getData } from "../core/api.js";
 import {
   deletePopupAndAnimation,
@@ -17,14 +23,20 @@ import {
   handleAnimationEnd,
 } from "../utils/subscribePress.js";
 
-function MainView() {
+async function MainView() {
   store.setState({
-    gridIndex: shuffleArray(gridIndex),
-    // listIndex: shuffleArray(data),
+    gridIndex: shuffleArray(GRID_INDEX),
   });
+  getPressListData();
   drawPopup();
   showGridView();
   attachEventListner();
+}
+async function getPressListData() {
+  const data = await getData("newsListData");
+  store.setState({
+    listIndex: shuffleArray(data.News),
+  });
 }
 
 function attachEventListner() {
