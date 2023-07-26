@@ -48,7 +48,7 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: #5f6e76;
+  color: var(--color-text-default);
 }
 
 .rolling-banner a:hover {

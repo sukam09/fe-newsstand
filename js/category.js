@@ -3,7 +3,7 @@ import { drawNews } from "./drawNews.js";
 import Stores from "./core/Store.js";
 import { makeArrow } from "../utils/utils.js";
 
-let progress = 0;
+let progress;
 let currentCategoryPageNumber = 1;
 let currentCategoryIndex;
 let currentCategoryPage;
@@ -19,22 +19,22 @@ function drawCategoryList(news) {
   let categoryHtml = `<div class="categoryWrap"><ul class="categoryUl">`;
   for (const categoryItem of Object.keys(news)) {
     categoryHtml += `<div class="categoryItem" id="category${categoryItem}">
-    <div class="progress-bar" id="${categoryItem}"></div><span class="category">${categoryItem}</span>${drawCategoryNumber(
+    <div class="progress-bar" id="${categoryItem}"></div><span class="category">${categoryItem}</span>${drawCurrentCategoryPage(
       news[categoryItem]
     )}</div>`;
   }
   categoryHtml += `</ul></div>`;
   document.getElementById("category").innerHTML = categoryHtml;
-  drawCategoryBar(news, 0);
+  drawCategoryItem(news, 0);
 }
 
-function drawCategoryNumber(categoryItem) {
+function drawCurrentCategoryPage(categoryItem) {
   return categoryItem[0].arrow
     ? `<span class="currentCategoryPages">></span>`
     : `<span class="currentCategoryPage"></span>`;
 }
 
-function drawCategoryBar(news, categoryIndex) {
+function drawCategoryItem(news, categoryIndex) {
   currentCategoryIndex = categoryIndex;
   currentCategoryPage = document.querySelectorAll(".currentCategoryPage");
   clearCategoryNumber(news);
@@ -196,7 +196,7 @@ function clickCategory(news) {
       categoryItem.addEventListener("click", function () {
         progressReset(news, currentProgressBar, currentCategoryPage);
         currentCategoryPageNumber = 1;
-        drawCategoryBar(news, index);
+        drawCategoryItem(news, index);
         drawNews(news);
         Stores.setPage(index);
       });

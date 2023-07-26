@@ -4,6 +4,7 @@
 @import "./css/newsMain.css";
 @import "./css/alert.css";
 @import "./css/constant.css";
+@import "./css/toggle.css";
 img {
   width: 24px;
   height: 24px;
@@ -25,7 +26,8 @@ label {
 h1 {
   position: relative;
   top: 38%;
-  font-weight: bold;
+  color: var(--color-text-strong);
+  font-weight: var(--font-weight-bold);
 }
 div > img {
   width: auto;
@@ -74,7 +76,7 @@ section.main {
 
 .section-div {
   padding: 15px 30px 15px 20px;
-  background-color: #f5f7f9;
+  background-color: var(--color-grayscale-50);
   display: flex;
   width: 400px;
   height: 20px;
@@ -102,7 +104,7 @@ section.main {
 
 #header-div-02 {
   margin-top: 50px;
-  color: #5f6e76;
+  color: var(--color-text-bold);
   font-size: 16px;
 }
 
@@ -150,7 +152,7 @@ section.main {
   width: 100%;
   align-items: center;
   justify-content: center;
-  border: 1px #d2dae0 solid;
+  border: 1px var(--color-border-default) solid;
 }
 
 .main-div-02 {
@@ -168,16 +170,16 @@ section.main {
   height: 388px;
   display: none;
   width: inherit;
-  border: 1px #d2dae0 solid;
+  border: 1px var(--color-border-default) solid;
   margin-top: 20px;
 }
 
 .snackbar {
   opacity: 0;
   position: absolute;
-  border: 1px black solid;
-  background-color: #4362d0;
-  color: #ffffff;
+  border: 1px var(--color-grayscale-black) solid;
+  background-color: var(--color-surface-brand-default);
+  color: var(--color-text-white-default);
   width: Hug (286px);
   height: Hug (54px);
   left: 40%;
@@ -193,7 +195,7 @@ section.main {
   left: 0;
   height: 100%;
   width: 0%;
-  background-color: #4362d0;
+  background-color: var(--color-surface-brand-default);
   z-index: 0;
 }
 
@@ -204,7 +206,7 @@ section.main {
 .grid-list:hover {
   .hover-subscribe-button {
     display: flex;
-    background-color: #f5f7f9;
+    background-color: var(--color-surface-alt);
   }
   .hover-subscribe-button > img {
     margin: 0 auto;

@@ -5,16 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>뉴스스탠드</title>
     <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.0/css/all.css"
+    />
   </head>
   <body>
-    <div class="main-container">
+    <div id="root" class="main-container">
       <section class="wrapper">
         <header class="main">
           <div id="header-div-01">
-            <img src="./img/news_stand.png" />
+            <img alt="news-stand" src="./img/news_stand.png" />
             <h1>뉴스스탠드</h1>
           </div>
-          <div id="header-div-02"></div>
+          <div id="header-div-02">
+            <div class="toggle">
+              <input
+                type="radio"
+                name="toggle"
+                id="toggle-radio-light"
+                checked
+              /><label for="toggle-radio-light"
+                ><i id="light-mode" class="fas fa-sun"></i
+              ></label>
+              <input type="radio" name="toggle" id="toggle-radio-dark" /><label
+                for="toggle-radio-dark"
+                ><i id="dark-mode" class="fas fa-moon"></i
+              ></label>
+            </div>
+          </div>
         </header>
         <section class="main">
           <div class="section-div">
@@ -44,7 +63,11 @@
             <div id="main-right">
               <label>
                 <input type="radio" id="main-right-radio-01" name="sort" />
-                <img id="card-list-image" src="./img/card_list.svg" />
+                <img
+                  alt="card-list-image"
+                  id="card-list-image"
+                  src="./img/card_list.svg"
+                />
               </label>
               <label>
                 <input
@@ -53,7 +76,11 @@
                   name="sort"
                   checked
                 />
-                <img id="grid-image" src="./img/clicked_grid.png" />
+                <img
+                  alt="grid-image"
+                  id="grid-image"
+                  src="./img/clicked_grid.png"
+                />
               </label>
             </div>
           </div>
