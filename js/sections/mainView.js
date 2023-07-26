@@ -1,4 +1,4 @@
-import { changeView } from "../utils/changeView.js";
+import { changeView, updateTabSelection } from "../utils/changeView.js";
 import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 import {
@@ -9,23 +9,31 @@ import {
 } from "../constants/constants.js";
 import { store } from "../core/store.js";
 import { shuffleArray } from "../utils/shuffleIndex.js";
-import {
-  getView,
-  getPage,
-  getSubscribedPress,
-  getMode,
-  getCurrentPress,
-} from "../core/getter.js";
+import { getView, getPage, getMode, getCurrentPress } from "../core/getter.js";
 import { getData } from "../core/api.js";
-function MainView() {
-  document.addEventListener("click", handleClick);
+import {
+  deletePopupAndAnimation,
+  checkAnswer,
+  handleAnimationEnd,
+} from "../utils/subscribePress.js";
 
+function MainView() {
   store.setState({
     gridIndex: shuffleArray(gridIndex),
     // listIndex: shuffleArray(data),
   });
   drawPopup();
   showGridView();
+  attachEventListner();
+}
+
+function attachEventListner() {
+  document.addEventListener("click", (e) => handleClick(e));
+  document.addEventListener("animationend", (e) => handleAnimationEnd(e));
+  const btn = document.querySelector(".buttons");
+  btn.addEventListener("click", (e) => {
+    checkAnswer(e);
+  });
 }
 
 function changePage(target) {
@@ -42,7 +50,15 @@ function changePage(target) {
   }
 }
 
+function checkRange(e) {
+  if (!e.target.closest(".popup") && !e.target.closest(".sub")) {
+    deletePopupAndAnimation();
+  }
+}
+
 function drawPopup() {
+  document.addEventListener("click", (e) => checkRange(e));
+
   const view_content = document.querySelector(".view-content");
   // alert 그리는 부분
   const new_div_alert = document.createElement("div");
@@ -63,27 +79,6 @@ function drawPopup() {
 
   // popup창들 추가
   view_content.append(new_div_alert, new_div_snackbar);
-}
-
-function updateTabSelection(selectedTab) {
-  const allTab = document.getElementById("all");
-  const subscribeTab = document.getElementById("subscribe");
-
-  allTab.classList.remove("selected-bold16", "clicked");
-  allTab.classList.add("available-medium16");
-  subscribeTab.classList.remove("selected-bold16", "clicked");
-  subscribeTab.classList.add("available-medium16");
-  selectedTab.classList.remove("available-medium16");
-  selectedTab.classList.add("selected-bold16", "clicked");
-  store.setState({ page: FIRST_PAGE_NUM, tabMode: `${selectedTab.id}` });
-
-  if (getView() === "grid") {
-    showGridView();
-  } else {
-    showListView(
-      selectedTab.id === "all" ? CATEGORY[0] : getSubscribedPress()[0]
-    );
-  }
 }
 
 function handleClick(e) {
@@ -115,10 +110,8 @@ function handleClick(e) {
         : changePage(target);
       break;
     case "all":
-      updateTabSelection(document.getElementById("all"));
-      break;
     case "subscribe":
-      updateTabSelection(document.getElementById("subscribe"));
+      updateTabSelection(document.getElementById(`${target}`));
       break;
     default:
       break;

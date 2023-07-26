@@ -17,6 +17,7 @@ const grid_view = `
     `;
 
 function handleEvent(event, img) {
+  if (!img) return;
   const li = img.parentNode;
   const button = img.nextElementSibling;
   switch (event) {
@@ -87,5 +88,6 @@ export function showGridView() {
       li.style.cursor = "default";
     }
   }
-  checkPage(list.length < PRESS_VIEW_COUNT * getPage());
+
+  checkPage(list.length <= PRESS_VIEW_COUNT * getPage());
 }
