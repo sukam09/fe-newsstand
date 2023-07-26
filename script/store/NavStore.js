@@ -50,6 +50,7 @@ class NavStore extends Store {
             Button(this.buttonData({ id, name, viewStore }))
           );
         }
+        if (subscribed.length === 0) return this.setState({});
 
         const newPage =
           view === 'grid'
