@@ -7,7 +7,8 @@ const addMouseEvents = (listNavItem, mouse, onClick) => {
     listNavItem,
     ({ clientX, clientY }) => {
       mouse = { x: clientX, y: clientY };
-    }
+    },
+    'view'
   );
   document.eventManager.register(
     'mouseup',
@@ -16,7 +17,8 @@ const addMouseEvents = (listNavItem, mouse, onClick) => {
       if (Math.abs(mouse.x - clientX) > 5 || Math.abs(mouse.y - clientY) > 5)
         return;
       onClick();
-    }
+    },
+    'view'
   );
 };
 

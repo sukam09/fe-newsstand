@@ -3,9 +3,12 @@ import Icon from './Icon.js';
 const Button = ({ icon, isWhite, text, once, onClick }) => {
   const buttonElement = document.createElement('button');
   const surfaceClass = isWhite ? 'surface_default' : 'surface_alt';
+  let clicked = false;
+
   const onClickOnce = e => {
+    if (once && clicked) return;
+    clicked = true;
     onClick(e);
-    buttonElement.removeEventListener('click', onClickOnce);
   };
 
   buttonElement.className = `button border_default ${surfaceClass}`;
@@ -14,11 +17,7 @@ const Button = ({ icon, isWhite, text, once, onClick }) => {
     buttonElement.classList.add('text_button');
     buttonElement.appendChild(document.createTextNode(text));
   }
-  document.eventManager.register(
-    'click',
-    buttonElement,
-    once ? onClickOnce : () => onClick(buttonElement)
-  );
+  document.eventManager.register('click', buttonElement, onClickOnce, 'button');
   return buttonElement;
 };
 export default Button;

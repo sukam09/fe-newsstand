@@ -10,17 +10,28 @@ class EventManager {
     callback(type);
   }
 
-  register(type, element, callback) {
-    if (!this.#data[type]) {
-      this.#data[type] = [];
+  register(type, element, callback, key = 'global') {
+    if (!this.#data.hasOwnProperty(type)) {
+      this.#data[type] = {};
       document.addEventListener(type, event => {
-        this.#data[type].forEach(listener => listener(event));
+        Object.values(this.#data[type])
+          .flat()
+          .forEach(listener => listener(event));
       });
     }
-    this.#data[type].push(event => this.#run(event, element, callback));
+    if (!this.#data[type].hasOwnProperty(key)) {
+      this.#data[type][key] = [];
+    }
+    this.#data[type][key].push(event => this.#run(event, element, callback));
   }
 
-  // TODO: unregister 구현
+  unregister(keys) {
+    keys.forEach(key => {
+      Object.values(this.#data)?.forEach(type => {
+        delete type[key];
+      });
+    });
+  }
 }
 
 const setEventManager = () => {

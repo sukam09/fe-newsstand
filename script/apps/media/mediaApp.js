@@ -26,6 +26,9 @@ const mediaApp = themeStore => {
     wrapper.append(ArrowButton('left'), mediaView, ArrowButton('right'));
   };
 
+  navStore.subscribe(() => {
+    document.eventManager.unregister(['view', 'button']);
+  });
   navStore.subscribe(clearThemeStates);
   navStore.subscribe(render);
   createLayout();

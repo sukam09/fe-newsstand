@@ -81,14 +81,24 @@ const ListNav = listStore => {
 const setSubNavMouseEvent = navList => {
   let prevX;
 
-  document.eventManager.register('mousedown', navList, e => {
-    prevX = e.clientX;
-  });
-  document.eventManager.register('mousemove', document, e => {
-    if (!prevX || e.buttons === 0) return;
-    navList.scrollLeft -= e.clientX - prevX;
-    prevX = e.clientX;
-  });
+  document.eventManager.register(
+    'mousedown',
+    navList,
+    e => {
+      prevX = e.clientX;
+    },
+    'view'
+  );
+  document.eventManager.register(
+    'mousemove',
+    document,
+    e => {
+      if (!prevX || e.buttons === 0) return;
+      navList.scrollLeft -= e.clientX - prevX;
+      prevX = e.clientX;
+    },
+    'view'
+  );
 };
 
 const subNavOnClick = (page, index, listStore) => {

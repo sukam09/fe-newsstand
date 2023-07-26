@@ -6,9 +6,12 @@ const RadioInput = (navStore, state, selected, name) => {
   inputElement.name = `${name}_select`;
   inputElement.className = `${name}_select`;
   inputElement.defaultChecked = selected;
-  document.eventManager.register('change', inputElement, () => {
-    navStore.setView(name, state);
-  });
+  document.eventManager.register(
+    'change',
+    inputElement,
+    () => navStore.setView(name, state),
+    'view'
+  );
   return inputElement;
 };
 
