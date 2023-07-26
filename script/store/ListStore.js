@@ -9,7 +9,7 @@ class ListStore extends Store {
     });
   }
 
-  setPage(move) {
+  movePage(move) {
     const { category, media, page } = this.getState();
     const catLength = media.length;
     const pageLength = media[category].media.length;
@@ -35,7 +35,7 @@ class ListStore extends Store {
     }
   }
 
-  setSubPage(move) {
+  moveSubPage(move) {
     const { media, page } = this.getState();
     const pageLength = media.length;
     const newPage = page + move;
