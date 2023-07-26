@@ -30,11 +30,11 @@ const globalStore = new Store({
       if (payload === '전체언론_그리드_인덱스') state[payload]--;
       if (payload === '구독언론_그리드_인덱스') state[payload]--;
     },
-    nextCategoryIndex(state) {
+    nextCategory(state) {
       state.전체언론_리스트.카테고리_인덱스++;
       state.전체언론_리스트.뉴스_인덱스 = 0;
     },
-    prevCategoryIndex(state) {
+    prevCategory(state) {
       state.전체언론_리스트.카테고리_인덱스--;
       state.전체언론_리스트.뉴스_인덱스 = 0;
     },
@@ -42,21 +42,40 @@ const globalStore = new Store({
       state.KEY = payload;
     },
     updateOption(state, payload) {
+      if (payload === '전체_언론사') {
+        if (state.KEY === '구독언론_그리드_인덱스') state.KEY = '전체언론_그리드_인덱스';
+        if (state.KEY === '구독언론_리스트') state.KEY = '전체언론_리스트';
+      } else if (payload === '구독_언론사') {
+        if (state.KEY === '전체언론_그리드_인덱스') state.KEY = '구독언론_그리드_인덱스';
+        if (state.KEY === '전체언론_리스트') state.KEY = '구독언론_리스트';
+      }
       state.OPTION = payload;
-    },
-    updateCateGoryCount(state, payload) {
-      state.전체언론_리스트.전체카테고리 = payload;
     },
     updateCategoryIndex(state, payload) {
       if (payload.key === '전체언론_리스트') state.전체언론_리스트.카테고리_인덱스 = payload.val;
       if (payload.key === '구독언론_리스트') state.구독언론_리스트.카테고리_인덱스 = payload.val;
     },
-    resetNewsList(state) {
-      state.전체언론_리스트.카테고리_인덱스 = 0;
-      state.전체언론_리스트.뉴스_인덱스 = 0;
+    categoryProgress(state, payload) {
+      if (state.KEY === '전체언론_리스트') {
+        state.전체언론_리스트.뉴스_인덱스++;
+        if (globalStore.state.전체언론_리스트.뉴스_인덱스 >= payload.len) {
+          state.전체언론_리스트.카테고리_인덱스++;
+          state.전체언론_리스트.뉴스_인덱스 = 0;
+          if (payload.total - 1 < globalStore.state.전체언론_리스트.카테고리_인덱스) {
+            state.전체언론_리스트.카테고리_인덱스 = 0;
+            state.전체언론_리스트.뉴스_인덱스 = 0;
+          }
+        }
+      }
+      if (state.KEY === '구독언론_리스트') {
+        state.구독언론_리스트.카테고리_인덱스++;
+        if (state.구독언론_리스트.카테고리_인덱스 === payload) state.구독언론_리스트.카테고리_인덱스 = 0;
+      }
     },
-    resetNewsIndex(state) {
+    categorySelect(state, payload) {
       state.전체언론_리스트.뉴스_인덱스 = 0;
+      if (state.KEY === '전체언론_리스트') state.전체언론_리스트.카테고리_인덱스 = payload.val;
+      if (state.KEY === '구독언론_리스트') state.구독언론_리스트.카테고리_인덱스 = payload.val;
     },
   },
 

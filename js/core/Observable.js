@@ -9,11 +9,7 @@ class Observable {
     this._observers.delete(observer);
   }
   notify(data) {
-    console.log(data);
     this._observers.forEach((observer) => observer(data));
-  }
-  a() {
-    console.log('a');
   }
 }
 export { Observable };
