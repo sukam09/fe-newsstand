@@ -76,7 +76,13 @@ export default class MyNewsGrid extends Component {
     this.$state.$leftButton.style.display =
       this.$state.page === constants.MIN_PAGE ? "none" : "block";
     this.$state.$rightButton.style.display =
-      this.$state.page === constants.MAX_PAGE ? "none" : "block";
+      this.$state.page ===
+      Math.floor(
+        this.$props.SubscribeStore.subscribeList.length /
+          constants.ONE_PAGE_NEWSPAPER
+      )
+        ? "none"
+        : "block";
   }
 
   movePage(amount) {
