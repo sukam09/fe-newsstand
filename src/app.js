@@ -105,6 +105,7 @@ export default function App({ $app }) {
             present: 1,
             entire: 1,
             categories: defaultCategories,
+            pidMap,
           },
         });
   };

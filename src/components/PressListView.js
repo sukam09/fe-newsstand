@@ -40,7 +40,7 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const initListView = async () => {
-    const { index, press, listViewData } = this.state;
+    const { index, press, listViewData, pidMap } = this.state;
 
     const entire = press === 'all' ? listViewData[index].length : 1;
     const present = this.state.present === 0 ? entire : this.state.present;
@@ -58,8 +58,8 @@ export default function PressListView({ $target, initialState }) {
         present,
         entire,
         pid,
-        pressLogo: logo,
         pressName: name,
+        pressLogo: logo,
         regDate,
         thumbnail: mainNews.image.url,
         mainNews: mainNews.title,
@@ -67,6 +67,23 @@ export default function PressListView({ $target, initialState }) {
       },
       false
     );
+
+    if (press === 'my') {
+      const { pid } = store.getMyPress()[index];
+      const { name, logo } = pidMap.get(pid);
+
+      console.log(pidMap, pid, name, logo);
+
+      this.setState(
+        {
+          ...this.state,
+          pid,
+          pressName: name,
+          pressLogo: logo,
+        },
+        false
+      );
+    }
   };
 
   const initFieldTab = () => {
