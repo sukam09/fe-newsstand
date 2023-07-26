@@ -25,3 +25,7 @@
   line-height: 22px;
   color: #5f6e76;
 }
+
+#header-news-icon:hover {
+  cursor: pointer;
+}

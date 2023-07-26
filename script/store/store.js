@@ -7,7 +7,7 @@ const isGrid = initState({
 
 // 배열 idx로 카테고리 알아오기
 const nowCategoryIdx = initState({
-  key: "categoryIdx",
+  key: "categoryㅇIdx",
   defaultState: { category: 0, list: 1 },
 });
 

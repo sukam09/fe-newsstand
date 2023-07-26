@@ -41,7 +41,14 @@ body {
 }
 
 #pressbar-icon-list-view {
-  padding-right: 8px;
+  margin-right: 8px;
   height: 24px;
   width: 24px;
+}
+
+#pressbar-icon-grid-view:hover {
+  cursor: pointer;
+}
+#pressbar-icon-list-view:hover {
+  cursor: pointer;
 }

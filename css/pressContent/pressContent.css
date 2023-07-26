@@ -113,9 +113,17 @@
   display: none;
 }
 
+#press-content-btn-prev:hover {
+  cursor: pointer;
+}
+
 #press-content-btn-next {
   position: absolute;
   left: 978px;
+}
+
+#press-content-btn-next:hover {
+  cursor: pointer;
 }
 
 .press-content-news {
