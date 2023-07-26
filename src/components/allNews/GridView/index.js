@@ -1,6 +1,7 @@
 import { shufflePressOrder } from "../../../utils/index.js";
 import AllNewsList from "./AllnewsList.js";
 import ArrowButton from "../Buttons/ArrowButton.js";
+import store from "../../../core/Store.js";
 
 export default class GridView {
   constructor() {
@@ -8,6 +9,8 @@ export default class GridView {
     this.$wrapper.className = "grid-wrapper";
     this.$pressOrder = shufflePressOrder();
     this.page = 0;
+
+    this.allNewsListObj = new Array(96);
 
     this.render();
 
@@ -20,7 +23,11 @@ export default class GridView {
     const $newsLists = document.createElement("ul");
     $newsLists.className = "news-list";
     for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(this.$pressOrder[i]));
+      this.allNewsListObj[i] = new AllNewsList(this.$pressOrder[i]);
+      store.subscribe(() =>
+        this.allNewsListObj[i].hideSubButton(this.$pressOrder[i])
+      );
+      $newsLists.appendChild(this.allNewsListObj[i].$wrapper);
     }
     $newsListGrid.appendChild($newsLists);
 

@@ -20,7 +20,7 @@ export default class SubGridView {
     const $newsLists = document.createElement("ul");
     $newsLists.className = "news-list";
     for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(this.$subPressOrder[i]));
+      $newsLists.appendChild(new AllNewsList(this.$subPressOrder[i]).$wrapper);
     }
     $newsListGrid.appendChild($newsLists);
 

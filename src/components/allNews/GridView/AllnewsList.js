@@ -5,38 +5,38 @@ import UnsubButton from "../Buttons/UnsubButton.js";
 
 export default class AllNewsList {
   constructor(name = -1) {
-    this.$component = document.createElement("li");
+    this.$wrapper = document.createElement("li");
 
     if (name > 0) {
       this.render(name);
 
-      this.$component.addEventListener("mouseenter", (e) =>
-        this.showSubButton(e, name)
+      this.$wrapper.addEventListener("mouseenter", () =>
+        this.showSubButton(name)
       );
-      this.$component.addEventListener("mouseleave", (e) =>
-        this.hideSubButton(e, name)
+      this.$wrapper.addEventListener("mouseleave", () =>
+        this.hideSubButton(name)
       );
     }
-
-    return this.$component;
   }
 
   render(name) {
-    this.$component.appendChild(this.createLogoImage(name));
+    this.$wrapper.appendChild(this.createLogoImage(name));
   }
 
-  showSubButton({ target: li }, name) {
-    li.replaceChildren();
+  /** 구독 및 해지버튼 생성 */
+  showSubButton(name) {
+    this.$wrapper.replaceChildren();
     if (store.getState().includes(name)) {
-      li.appendChild(new UnsubButton(name, "해지하기"));
+      this.$wrapper.appendChild(new UnsubButton(name, "해지하기"));
     } else {
-      li.appendChild(new SubButton(name));
+      this.$wrapper.appendChild(new SubButton(name));
     }
   }
 
-  hideSubButton({ target: li }, name) {
-    li.replaceChildren();
-    li.appendChild(this.createLogoImage(name));
+  /** 구독 및 해지버튼 제거 */
+  hideSubButton(name) {
+    this.$wrapper.replaceChildren();
+    this.$wrapper.appendChild(this.createLogoImage(name));
   }
 
   /** 로고 이미지 요소 생성 */
