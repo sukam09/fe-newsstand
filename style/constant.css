@@ -19,9 +19,40 @@
   --grayscale-black: #14212b;
   --blue-100: #7890e7;
   --blue-500: #4362d0;
-  --border-default: 1px solid var(--grayscale-100);
+  --border-default: var(--grayscale-100);
 }
 
+:root[color-theme="light"] {
+  --text-strong: var(--grayscale-black);
+  --text-bold: var(--grayscale-500);
+  --text-default: var(--grayscale-400);
+  --text-weak: var(--grayscale-200);
+  --text-white-default: var(--grayscale-white);
+  --text-white-weak: var(--grayscale-white-alt);
+  --text-point: var(--blue-500);
+  --surface-default: var(--grayscale-white);
+  --surface-alt: var(--grayscale-50);
+  --surface-brand-default: var(--blue-500);
+  --surface-brand-alt: var(--blue-100);
+  --border-bold: var(--grayscale-300);
+  --border-default: var(--grayscale-100);
+}
+
+:root[color-theme="dark"] {
+  --text-strong: var(--grayscale-white);
+  --text-bold: var(--grayscale-50);
+  --text-default: var(--grayscale-100);
+  --text-weak: var(--grayscale-white-alt);
+  --text-white-default: var(--grayscale-white);
+  --text-white-weak: var(--grayscale-white-alt);
+  --text-point: var(--blue-500);
+  --surface-default: var(--grayscale-black);
+  --surface-alt: var(--grayscale-500);
+  --surface-brand-default: var(--blue-500);
+  --surface-brand-alt: var(--blue-100);
+  --border-bold: var(--grayscale-white-alt);
+  --border-default: var(--grayscale-400);
+}
 .display-bold24 {
   font: var(--bold-L);
 }

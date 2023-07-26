@@ -5,6 +5,7 @@ import {
   categoryIdx,
   deletePress,
   isAlertOn,
+  isDarkMode,
   isGrid,
   isSnackOn,
   isSubTab,
@@ -41,6 +42,7 @@ function appendNewsList(newsList) {
     const nowListIdx = getState(listPageIdx) - 1;
     const subList = getState(subscribeList);
     const elements = getListViewElement();
+    const isDark = getState(isDarkMode);
     let nowData;
     elements.newsListContainer.innerHTML = "";
     if (isSubMode) {
@@ -55,7 +57,9 @@ function appendNewsList(newsList) {
     if (nowData[nowListIdx] === undefined) return;
     $(".list_container").dataset.press = nowData[nowListIdx].name;
     elements.newsDetail.innerHTML = `${nowData[nowListIdx].name} 언론사에서 직접 편집한 뉴스입니다.`;
-    elements.topicHeaderLogo.src = nowData[nowListIdx].lightSrc;
+    elements.topicHeaderLogo.src = isDark
+      ? nowData[nowListIdx].darkSrc
+      : nowData[nowListIdx].lightSrc;
     elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
     elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
     updateSubButtons(nowData);
@@ -114,6 +118,9 @@ async function setListViewEvents() {
     appendNewsList(newsList);
   });
   register(subscribeList, () => {
+    appendNewsList(newsList);
+  });
+  register(isDarkMode, () => {
     appendNewsList(newsList);
   });
 }
