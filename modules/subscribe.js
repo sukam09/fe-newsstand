@@ -1,7 +1,10 @@
 import { moveGridView, moveListView } from "./utils.js";
 import { getState, setState } from "../observer/observer.js";
-import { selectSubscribeIdx, subscribeList } from "../store/subscribe.js";
-import { listSubsMediaIdx } from "../store/media.js";
+import {
+  selectSubscribeIdx,
+  subscribeList,
+  listSubsMediaIdx,
+} from "../../store/index.js";
 
 const $totalMedia = document.querySelector(".main-nav_total");
 const $subscribeMedia = document.querySelector(".main-nav_subscribe");

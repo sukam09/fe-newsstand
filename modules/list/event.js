@@ -5,9 +5,10 @@ import {
   listCateMediaIdx,
   listSubsMediaIdx,
   mediaInfo,
-} from "../../store/media.js";
-import { isGridMode, isTotalMode } from "../../store/mode.js";
-import { subscribeList } from "../../store/subscribe.js";
+  isGridMode,
+  isTotalMode,
+  subscribeList,
+} from "../../store/index.js";
 import { changeSubState, onClickSubscribeMode } from "../subscribe.js";
 import { setFullList } from "./list.js";
 

@@ -11,9 +11,11 @@ import {
   listCateMediaIdx,
   listSubsMediaIdx,
   mediaInfo,
-} from "../../store/media.js";
-import { isLightMode, isTotalMode } from "../../store/mode.js";
-import { subscribeList } from "../../store/subscribe.js";
+  isLightMode,
+  isTotalMode,
+  subscribeList,
+} from "../../store/index.js";
+import { changeIdx } from "./utils.js";
 
 const $categoryBar = document.querySelector(".news-list_category");
 const categoryKeys = Object.keys(getState(categoryInfo));
@@ -42,44 +44,6 @@ const getListInfo = async () => {
     newCateInfo[key] = shuffleList(newCateInfo[key]);
   });
   setState(categoryInfo, newCateInfo);
-};
-
-/**
- * 페이지 이동 시 예외처리
- */
-const changeIdx = () => {
-  getState(isTotalMode) ? totalModeIdx() : subscribeModeIdx();
-};
-
-const totalModeIdx = () => {
-  const cateInfo = getState(categoryInfo);
-  // 왼쪽 화살표 눌렀을 때
-  if (getState(listCateMediaIdx) === -1) {
-    setState(listCateIdx, getState(listCateIdx) - 1);
-    setState(listCateMediaIdx, 0);
-  }
-  if (getState(listCateIdx) === -1) {
-    setState(listCateIdx, categoryKeys.length - 1);
-  }
-
-  // 오른쪽 화살표 눌렀을 때
-  let cateLen = cateInfo[categoryKeys[getState(listCateIdx)]].length;
-  if (getState(listCateMediaIdx) === cateLen) {
-    setState(listCateIdx, getState(listCateIdx) + 1);
-    setState(listCateMediaIdx, 0);
-  }
-  if (getState(listCateIdx) === categoryKeys.length) {
-    setState(listCateIdx, 0);
-  }
-};
-
-const subscribeModeIdx = () => {
-  const subList = getState(subscribeList);
-  if (getState(listSubsMediaIdx) === -1) {
-    setState(listSubsMediaIdx, subList.length - 1);
-  } else if (getState(listSubsMediaIdx) === subList.length) {
-    setState(listSubsMediaIdx, 0);
-  }
 };
 
 /**
