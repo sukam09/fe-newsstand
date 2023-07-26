@@ -18,10 +18,3 @@
   --blue-100: #7890e7;
   --blue-500: #4362d0;
 }
-
-.btn-disabled {
-  display: none;
-}
-.view-disabled {
-  display: none;
-}

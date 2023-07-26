@@ -32,7 +32,7 @@ navTag();
 const VIEWED_CONTENS = 24;
 const FIRST_PAGE = 0;
 
-let LAST_PAGE = 3;
+let lastPage = 3;
 
 const ul = document.querySelector(".newsstand-area—six-col-list");
 const rightBtn = document.querySelector(".newsstand--right-btn");
@@ -40,7 +40,7 @@ const leftBtn = document.querySelector(".newsstand--left-btn");
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 
-store.subscribe(gridObserved);
+store.subscribe(paintGrid);
 
 export async function paintGridNewsstand() {
   initPaintNews();
@@ -52,7 +52,7 @@ export function addGridButton() {
   getSelectedPage() === FIRST_PAGE
     ? handleElementClass(leftBtn, "add", "btn-disabled")
     : handleElementClass(leftBtn, "remove", "btn-disabled");
-  getSelectedPage() === LAST_PAGE
+  getSelectedPage() === lastPage
     ? handleElementClass(rightBtn, "add", "btn-disabled")
     : handleElementClass(rightBtn, "remove", "btn-disabled");
 }
@@ -102,55 +102,40 @@ function paintNews(paintData = publisherData) {
   let elementIdx = 0; // 로고를 새로 등록할 li 순서
 
   element.map((child) => {
+    const firstChild = element[elementIdx].children[1];
     if (idx < paintData.length) {
+      const view = getNavTabView();
       const alt =
-        getNavTabView() === VIEW.MY_SUB
-          ? paintData[idx][0]
-          : paintData[idx].name;
+        view === VIEW.MY_SUB ? paintData[idx][0] : paintData[idx].name;
       const icon =
-        getNavTabView() === VIEW.MY_SUB
-          ? paintData[idx][1]
-          : paintData[idx].lightSrc;
+        view === VIEW.MY_SUB ? paintData[idx][1] : paintData[idx].lightSrc;
 
-      handleElementClass(
-        element[elementIdx].children[1],
-        "remove",
-        "btn-disabled"
-      );
+      handleElementClass(firstChild, "remove", "btn-disabled");
 
       // 구독중일때.
-      if (isSubscribe(alt)) {
-        element[elementIdx].children[1].textContent = MESSAGE.UNSUBSCRIBE;
-      } else {
-        element[elementIdx].children[1].textContent = MESSAGE.SUBSCRIBE;
-      }
+      isSubscribe(alt)
+        ? (firstChild.textContent = MESSAGE.UNSUBSCRIBE)
+        : (firstChild.textContent = MESSAGE.SUBSCRIBE);
 
       child.children[0].src = icon;
       child.children[0].alt = alt;
-      idx++;
-      elementIdx++;
     } else {
       const alt = "";
       const icon = "";
 
-      handleElementClass(
-        element[elementIdx].children[1],
-        "add",
-        "btn-disabled"
-      );
+      handleElementClass(firstChild, "add", "btn-disabled");
 
-      element[elementIdx].children[1].textContent = "";
+      firstChild.textContent = "";
 
       child.children[0].src = icon;
       child.children[0].alt = alt;
-      // child.children[0].dataset.id = paintData[idx].id;
-      idx++;
-      elementIdx++;
     }
+    idx++;
+    elementIdx++;
   });
 }
 
-function gridObserved() {
+function paintGrid() {
   const subList = getSubscrbeList() || [];
   const currentUserView = getUserView();
 
@@ -180,10 +165,9 @@ function addEventOnMySubAndAllSub() {
       // selectedPage를 0페이지에서 시작한다. [버튼 활성화 조건도 수정해야함]
       setSelectedPage(0); // selectedPage 0에서 시작
 
-      LAST_PAGE = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
+      lastPage = parseInt((subscribeList.length - 1) / VIEWED_CONTENS); // 마지막 페이지 수정.
       isBtnDisabled(); // 버튼 활성화 조건 실행.
     }
-    // store에서 구독중인 목록을 가져와서 그려준다. [paint 함수 실행] 이때, 남는 영역은 빈칸으로 채운다. [이때, 마우스오버 효과 삭제]
   });
 
   // 전체 언론사 클릭했을떄.
@@ -194,7 +178,7 @@ function addEventOnMySubAndAllSub() {
       onFocusToClicked(VIEW.ALL_SUB, mySubscribe, allPublisher);
 
       setSelectedPage(0); // selectedPage 0에서 시작
-      LAST_PAGE = 3;
+      lastPage = 3;
       isBtnDisabled(); // 버튼 활성화 조건 실행.
     }
   });
@@ -238,8 +222,6 @@ function userClickSubscribeButton(liElement) {
     // 해지하기를 눌렀을때.
     if (isSubscribe(name)) {
       unsubscribeModal(name);
-      // setUnsubscribe(name);
-      // snackBarAction(MESSAGE.UN_SUB);
     }
     // 구독하기 버튼을 눌렀을때.
     else {
@@ -256,14 +238,12 @@ function pagination() {
   leftBtn.addEventListener(EVENT.CLICK, (e) => {
     let page = getSelectedPage();
     setSelectedPage(--page);
-
     isBtnDisabled();
   });
 
   rightBtn.addEventListener(EVENT.CLICK, (e) => {
     let page = getSelectedPage();
     setSelectedPage(++page);
-
     isBtnDisabled();
   });
 }
@@ -276,12 +256,12 @@ function isBtnDisabled() {
     : handleElementClass(leftBtn, "remove", "btn-disabled");
 
   // 보고있는 페이지가 마지막 페이지라면 우측 버튼 삭제.
-  getSelectedPage() === LAST_PAGE
+  getSelectedPage() === lastPage
     ? handleElementClass(rightBtn, "add", "btn-disabled")
     : handleElementClass(rightBtn, "remove", "btn-disabled");
   // 첫 페이지와 마지막 페이지가 같다면 모든 버튼 삭제.
 
-  if (FIRST_PAGE === LAST_PAGE) {
+  if (FIRST_PAGE === lastPage) {
     handleElementClass(leftBtn, "add", "btn-disabled");
     handleElementClass(rightBtn, "add", "btn-disabled");
   }

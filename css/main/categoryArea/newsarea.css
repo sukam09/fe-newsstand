@@ -164,3 +164,10 @@
   font-style: normal;
   font-weight: 500;
 }
+
+.btn-disabled {
+  display: none;
+}
+.view-disabled {
+  display: none;
+}
