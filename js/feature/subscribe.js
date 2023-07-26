@@ -1,6 +1,6 @@
-import { getState, setState } from "./store/observer.js";
-import { subPress, viewType } from "./store/store.js";
-import { SNACKBAR_TIME, LIST_VIEW } from "./constant.js";
+import { getState, setState } from "../store/observer.js";
+import { subPress, viewType } from "../store/store.js";
+import { SNACKBAR_TIME, LIST_VIEW } from "../utils/constant.js";
 import { clickNo, clickYes } from "./eventHandlers.js";
 
 let clearSnackbar;

@@ -5,7 +5,7 @@ import {
   PRESS_NUM,
   ALL_PRESS,
   SUB_PRESS,
-} from "../../constant.js";
+} from "../../utils/constant.js";
 import {
   gridAllPage,
   gridSubPage,
@@ -18,8 +18,8 @@ import {
   changePage,
   handleMouseOut,
   handleMouseOver,
-} from "../../eventHandlers.js";
-import { clickSubscribeBtn } from "../../subscribe.js";
+} from "../../feature/eventHandlers.js";
+import { clickSubscribeBtn } from "../../feature/subscribe.js";
 
 const imgIndex = Array(PRESS_NUM)
   .fill()
@@ -121,6 +121,7 @@ function checkPage() {
     }
   }
 }
+
 function addEventToGridBtn() {
   const left_btn = document.getElementById("grid-left-btn");
   const right_btn = document.getElementById("grid-right-btn");

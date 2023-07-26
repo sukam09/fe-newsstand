@@ -3,7 +3,7 @@ import { manipulateSubPress } from "./manipulateSubPress.js";
 import { getState } from "../../store/observer.js";
 import { viewOption } from "../../store/store.js";
 import { makeGridView } from "./makeGridView.js";
-import { ALL_PRESS, SUB_PRESS } from "../../constant.js";
+import { ALL_PRESS, SUB_PRESS } from "../../utils/constant.js";
 
 async function renderGridView() {
   const press = await fetchData(".././assets/news.json");

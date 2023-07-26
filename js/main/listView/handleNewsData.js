@@ -1,15 +1,19 @@
-import { category, news_by_category } from "./manipulateNewsByCategory.js";
-import { news_by_press, press } from "./manipulateNewsByPress.js";
+import {
+  category,
+  news_by_category,
+  news_by_press,
+  press,
+} from "./manipulateNews.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
 } from "./handleCategoryEvent.js";
-import { checkPressInLocal } from "../../subscribe.js";
-import { clickSubscribeBtn } from "../../subscribe.js";
+import { checkPressInLocal } from "../../feature/subscribe.js";
+import { clickSubscribeBtn } from "../../feature/subscribe.js";
 import { getState } from "../../store/observer.js";
 import { isDark, listAllPage, viewOption } from "../../store/store.js";
-import { ALL_PRESS } from "../../constant.js";
+import { ALL_PRESS } from "../../utils/constant.js";
 
 function makeRandomNews() {
   if (getState(viewOption) === "press") return;

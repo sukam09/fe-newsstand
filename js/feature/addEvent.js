@@ -1,15 +1,15 @@
-import { addEventToGridBtn } from "./main/gridView/makeGridView.js";
-import { addEventToListBtn } from "./main/listView/handleBtnEvent.js";
-import { addEventPressInfo } from "./main/listView/handleNewsData.js";
-import { changeView } from "./main/changeView.js";
-import { getState, setState } from "./store/observer.js";
-import { isDark } from "./store/store.js";
+import { addEventToGridBtn } from "../main/gridView/makeGridView.js";
+import { addEventToListBtn } from "../main/listView/handleBtnEvent.js";
+import { addEventPressInfo } from "../main/listView/handleNewsData.js";
+import { addEventToViewBtn } from "./changeView.js";
+import { getState, setState } from "../store/observer.js";
+import { isDark } from "../store/store.js";
 function addEvent() {
   addEventToGridBtn();
   addEventToListBtn();
   addEventPressInfo();
   addEventToDarkMode();
-  changeView();
+  addEventToViewBtn();
 }
 
 function addEventToDarkMode() {

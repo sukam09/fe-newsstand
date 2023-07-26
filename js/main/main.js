@@ -1,6 +1,6 @@
 import { renderRolling } from "../main/newsRolling/newsRolling.js";
-import { initSubscribe } from "./initSubscribe.js";
-import { addEvent } from "../addEvent.js";
+import { initSubscribe } from "../store/initSubscribe.js";
+import { addEvent } from "../feature/addEvent.js";
 import { makeRandomNews } from "./listView/handleNewsData.js";
 import { render } from "./render.js";
 

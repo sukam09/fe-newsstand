@@ -1,11 +1,16 @@
-import { makeGridView } from "./main/gridView/makeGridView.js";
+import { makeGridView } from "../main/gridView/makeGridView.js";
 import { checkPressInLocal } from "./subscribe.js";
-import { setState, getState } from "./store/observer.js";
-import { gridAllPage, viewOption, viewType, subPress } from "./store/store.js";
-import { GRID_NUM } from "./constant.js";
-import { renderGridView } from "./main/gridView/renderGridView.js";
-import { renderListView } from "./main/listView/renderListView.js";
-import { LIST_VIEW, GRID_VIEW, ALL_PRESS, SUB_PRESS } from "./constant.js";
+import { setState, getState } from "../store/observer.js";
+import { gridAllPage, viewOption, viewType, subPress } from "../store/store.js";
+import { GRID_NUM } from "../utils/constant.js";
+import { renderGridView } from "../main/gridView/renderGridView.js";
+import { renderListView } from "../main/listView/renderListView.js";
+import {
+  LIST_VIEW,
+  GRID_VIEW,
+  ALL_PRESS,
+  SUB_PRESS,
+} from "../utils/constant.js";
 
 /* grid View */
 function changePage(e) {

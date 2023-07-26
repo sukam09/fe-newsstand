@@ -1,10 +1,9 @@
 import { findCurrentCategory } from "./handleNewsData.js";
-import { news_by_category } from "./manipulateNewsByCategory.js";
+import { news_by_category, news_by_press } from "./manipulateNews.js";
 import { resetAnimation, addAnimation } from "./handleAnimation.js";
-import { news_by_press } from "./manipulateNewsByPress.js";
 import { getState, setState } from "../../store/observer.js";
 import { listAllPage, viewOption } from "../../store/store.js";
-import { ALL_PRESS } from "../../constant.js";
+import { ALL_PRESS } from "../../utils/constant.js";
 
 /* about list view left, right Btn */
 

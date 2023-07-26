@@ -1,5 +1,5 @@
 import { initState } from "./observer.js";
-import { GRID_VIEW, ALL_PRESS } from "../constant.js";
+import { GRID_VIEW, ALL_PRESS } from "../utils/constant.js";
 
 const viewType = initState({ key: "viewType", defaultState: GRID_VIEW });
 

@@ -5,10 +5,10 @@ import {
   changeViewOptionToSub,
   changeViewTypeToList,
   changeViewTypeToGrid,
-} from "../eventHandlers.js";
-import { ALL_PRESS, SUB_PRESS } from "../constant.js";
+} from "./eventHandlers.js";
+import { ALL_PRESS, SUB_PRESS } from "../utils/constant.js";
 
-function changeView() {
+function addEventToViewBtn() {
   const allPress = document.querySelector(".all-press");
   const subPress = document.querySelector(".sub-press");
   const listViewBtn = document.querySelector(".list-view-btn");
@@ -39,4 +39,4 @@ function changeViewOption() {
   }
 }
 
-export { changeView, changeViewOption };
+export { addEventToViewBtn, changeViewOption };
