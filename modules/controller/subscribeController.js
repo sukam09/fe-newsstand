@@ -1,3 +1,4 @@
+import { pressDataState } from "../store/dataState.js";
 import { getState, setState } from "../store/observer.js";
 import {
   LIST,
@@ -5,8 +6,10 @@ import {
   pageModeState,
   pageTypeState,
 } from "../store/pageState.js";
-import { myPressListState } from "../store/subState.js";
+import { myPressListState, subStateList } from "../store/subState.js";
+import { qs } from "../utils.js";
 import { showPage } from "./pageController/pageController.js";
+import { displayAlert, removeAlert } from "./popupController.js";
 
 export function updateMyPressList(subState, pressId) {
   const isSub = getState(subState);
@@ -21,8 +24,35 @@ export function updateMyPressList(subState, pressId) {
     const pageType = getState(pageTypeState);
     const pageMode = getState(pageModeState);
     if (pageType === LIST && pageMode === MODE_MY) {
-      console.log("test");
       showPage({ pageMode, pageType });
     }
   }
+}
+
+export function handleSubCancelClick({ target }) {
+  const targetClass = target.className;
+  if (targetClass === "unsub_button") {
+    const { pressList } = getState(pressDataState);
+    const $pressItem = target.parentNode.parentNode;
+    const pressId = parseInt($pressItem.classList[1].split("_")[1]);
+    const targetPress = [...pressList].find((press) => press.id === pressId);
+
+    displayAlert({
+      name: targetPress.name,
+      pressId: targetPress.id,
+    });
+  }
+}
+
+export function handleAlertOkButtonClick() {
+  const $alert = qs(".alert");
+  const $targetPressDiv = $alert.querySelector(".target_press");
+  const pressId = parseInt($targetPressDiv.classList[1]);
+  const subState = subStateList[pressId];
+  setState(subState, false);
+  removeAlert();
+}
+
+export function handleAlertCancelButtonClick() {
+  removeAlert();
 }

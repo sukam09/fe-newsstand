@@ -14,29 +14,19 @@ import {
   handleLogoButton,
   handleThemeButtonClick,
 } from "../components/titleSection/titleSection.js";
-import { handleCategoryItemClick } from "./categoryController.js";
+import {
+  handleCategoryItemClick,
+  handleCategoryMousedown,
+  handleCategoryMousemove,
+  handleCategoryMouseup,
+} from "./categoryController.js";
 import {
   handleGridItemClick,
   handleGridItemMouseout,
   handleGridItemMouseover,
 } from "./gridController.js";
-import { getState, setState } from "../store/observer.js";
-import {
-  MAX_CATEGORY_ID,
-  MAX_GRID_PAGE,
-  MAX_LIST_PAGE,
-  GRID,
-  LIST,
-  categoryIdState,
-  gridPageState,
-  listPageState,
-  pageTypeState,
-  pageModeState,
-  MODE_ALL,
-  MODE_MY,
-  myListPageState,
-  myGridPageState,
-} from "../store/pageState.js";
+import { getState } from "../store/observer.js";
+import { pageTypeState, pageModeState } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
 import { handleListSubButton } from "./listController.js";
 import {
@@ -47,19 +37,22 @@ import {
   handleModeAllClick,
   handleModeMyClick,
 } from "./pageController/modeController.js";
-import { myPressCntState } from "../store/subState.js";
 import {
   setNextPageState,
   setPrevPageState,
-  showPage,
 } from "./pageController/pageController.js";
+import {
+  handleAlertCancelButtonClick,
+  handleAlertOkButtonClick,
+  handleSubCancelClick,
+} from "./subscribeController.js";
 
 export function addEventsOnGridItem() {
   const $gridItems = qsa(".grid_item");
   [...$gridItems].forEach(($gridItem) => {
-    $gridItem.addEventListener("mouseover", (e) => handleGridItemMouseover(e));
-    $gridItem.addEventListener("mouseout", (e) => handleGridItemMouseout(e));
-    $gridItem.addEventListener("click", (e) => handleGridItemClick(e));
+    $gridItem.addEventListener("mouseover", handleGridItemMouseover);
+    $gridItem.addEventListener("mouseout", handleGridItemMouseout);
+    $gridItem.addEventListener("click", handleGridItemClick);
   });
 }
 
@@ -80,27 +73,19 @@ export function addEventsOnPageButton() {
   });
 }
 
-export function addEventsOnSubButton() {
-  const $gridItems = qsa(".grid_items");
-
-  [...$gridItems].forEach(($item) => {
-    $item.addEventListener("click", (e) => handleGridItemClick(e));
-  });
-}
-
 export function addEventsOnViewButton() {
   const $listViewButton = qs(".list_view_button");
   const $gridViewButton = qs(".grid_view_button");
 
-  $gridViewButton.addEventListener("click", (e) => handleGridViewButton(e));
-  $listViewButton.addEventListener("click", (e) => handleListViewButton(e));
+  $gridViewButton.addEventListener("click", handleGridViewButton);
+  $listViewButton.addEventListener("click", handleListViewButton);
 }
 
 export function addEventsOnCategoryItem() {
   const $categoryItems = qsa(".category_item");
 
   [...$categoryItems].forEach(($categoryItem) => {
-    $categoryItem.addEventListener("click", (e) => handleCategoryItemClick(e));
+    $categoryItem.addEventListener("click", handleCategoryItemClick);
   });
 }
 
@@ -149,16 +134,46 @@ export function addEventsOnListSubButton() {
   const $subButtons = qsa(".list_sub_button");
   const $unsubButtons = qsa(".list_unsub_button");
   [...$subButtons].forEach(($subButton) => {
-    $subButton.addEventListener("click", (e) => handleListSubButton(e));
+    $subButton.addEventListener("click", handleListSubButton);
   });
   [...$unsubButtons].forEach(($unsubButton) => {
-    $unsubButton.addEventListener("click", (e) => handleListSubButton(e));
+    $unsubButton.addEventListener("click", handleListSubButton);
   });
 }
 
 export function addEventsOnPageModeButton() {
   const $modeMyButton = qs(".mode_all_button");
   const $ModeallButton = qs(".mode_my_button");
-  $modeMyButton.addEventListener("click", (e) => handleModeAllClick(e));
-  $ModeallButton.addEventListener("click", (e) => handleModeMyClick(e));
+  $modeMyButton.addEventListener("click", handleModeAllClick);
+  $ModeallButton.addEventListener("click", handleModeMyClick);
+}
+
+export function addEvetsOnSubCancelButton() {
+  const $pressGrids = qsa(".press_grid");
+  [...$pressGrids].forEach(($pressGrid) => {
+    $pressGrid.addEventListener("click", handleSubCancelClick);
+  });
+}
+
+export function addEventsOnSubButton() {
+  const $gridItems = qsa(".grid_items");
+  [...$gridItems].forEach(($item) => {
+    $item.addEventListener("click", handleGridItemClick);
+  });
+}
+
+export function addEventsOnAlertButton() {
+  const $alertOkButton = qs(".unsub_ok_button");
+  const $alertCancelButton = qs(".unsub_cancel_button");
+  $alertOkButton.addEventListener("click", handleAlertOkButtonClick);
+  $alertCancelButton.addEventListener("click", handleAlertCancelButtonClick);
+}
+
+export function addEventsOnCategory() {
+  const $categorys = qsa(".category_list");
+  [...$categorys].forEach(($category) => {
+    $category.addEventListener("mousedown", handleCategoryMousedown);
+  });
+  window.addEventListener("mouseup", handleCategoryMouseup);
+  window.addEventListener("mousemove", handleCategoryMousemove);
 }

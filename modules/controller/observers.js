@@ -1,6 +1,12 @@
 import { myPressListState, subStateList } from "../store/subState.js";
-import { addObserver } from "../store/observer.js";
-import { pageModeState } from "../store/pageState.js";
+import { addObserver, getState } from "../store/observer.js";
+import {
+  gridPageState,
+  listPageState,
+  myGridPageState,
+  myListPageState,
+  pageModeState,
+} from "../store/pageState.js";
 import {
   controllGridSubButtonShowing,
   drawMyPressToGrid,
@@ -9,7 +15,11 @@ import {
   controllListsSubButtonShowing,
   drawMyPressToList,
 } from "./listController.js";
-import { controllPage } from "./pageController/pageController.js";
+import {
+  controllPage,
+  showModeAllGridPage,
+  showModeMyGridPage,
+} from "./pageController/pageController.js";
 import { controllSnackbarShowing } from "./popupController.js";
 import { updateMyPressList } from "./subscribeController.js";
 
@@ -29,4 +39,20 @@ export function addObserverOnMyPress() {
 
 export function addObserverOnPageMode() {
   addObserver(pageModeState, controllPage);
+}
+
+export function addObserverOnGridPage() {
+  addObserver(gridPageState, () => {
+    const gridPage = getState(gridPageState);
+    showModeAllGridPage(gridPage);
+  });
+  addObserver(myGridPageState, () => {
+    const myGridPage = getState(myGridPageState);
+    showModeMyGridPage(myGridPage);
+  });
+}
+
+export function addObserverOnListPage() {
+  addObserver(listPageState, controllPage);
+  addObserver(myListPageState, controllPage);
 }

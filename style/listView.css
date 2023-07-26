@@ -78,14 +78,15 @@
   height: 40px;
   background-color: var(--surface-surface-alt);
   border: solid 1px var(--border-border-default);
+  position: relative;
+  overflow: hidden;
 }
 
 .category_list {
   overflow-x: scroll;
   flex-wrap: nowrap;
 
-  position: relative;
-  width: 100%;
+  position: absolute;
   font-size: 14px;
   padding: 0px;
   margin: 0px;

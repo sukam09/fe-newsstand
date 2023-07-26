@@ -1,4 +1,6 @@
 import {
+  addEventsOnAlertButton,
+  addEventsOnCategory,
   addEventsOnCategoryItem,
   addEventsOnGridItem,
   addEventsOnListSubButton,
@@ -9,16 +11,15 @@ import {
   addEventsOnThemeButton,
   addEventsOnTitle,
   addEventsOnViewButton,
+  addEvetsOnSubCancelButton,
 } from "./events.js";
 import {
+  addObserverOnGridPage,
   addObserverOnIsSub,
+  addObserverOnListPage,
   addObserverOnMyPress,
   addObserverOnPageMode,
 } from "./observers.js";
-import {
-  addObserverOnGridPage,
-  addObserverOnListPage,
-} from "./pageController/pageController.js";
 import { addObserverOnPageType } from "./pageController/typeController.js";
 
 export function initEvents() {
@@ -32,6 +33,9 @@ export function initEvents() {
   addEventsOnTitle();
   addEventsOnListSubButton();
   addEventsOnPageModeButton();
+  addEvetsOnSubCancelButton();
+  addEventsOnAlertButton();
+  addEventsOnCategory();
 }
 
 export function initObservers() {

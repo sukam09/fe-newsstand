@@ -15,26 +15,10 @@ import {
   pageModeState,
   pageTypeState,
 } from "../../store/pageState.js";
-import { myPressCntState, myPressListState } from "../../store/subState.js";
+import { myPressCntState } from "../../store/subState.js";
 import { qs, qsa } from "../../utils.js";
 import { highlightCategoryItem } from "../categoryController.js";
 import { controllButtonShowing } from "./typeController.js";
-
-export function addObserverOnGridPage() {
-  addObserver(gridPageState, () => {
-    const gridPage = getState(gridPageState);
-    showModeAllGridPage(gridPage);
-  });
-  addObserver(myGridPageState, () => {
-    const myGridPage = getState(myGridPageState);
-    showModeMyGridPage(myGridPage);
-  });
-}
-
-export function addObserverOnListPage() {
-  addObserver(listPageState, controllPage);
-  addObserver(myListPageState, controllPage);
-}
 
 export function controllPage() {
   const pageType = getState(pageTypeState);
@@ -58,6 +42,7 @@ export function showPage({ pageMode, pageType }) {
   const modeMyGrid = pageType === GRID && pageMode === MODE_MY;
   const modeAllList = pageType === LIST && pageMode === MODE_ALL;
   const modeMyList = pageType === LIST && pageMode === MODE_MY;
+
   if (modeAllGrid) {
     const gridPage = getState(gridPageState);
     showModeAllGridPage(gridPage);
@@ -70,8 +55,6 @@ export function showPage({ pageMode, pageType }) {
     showModeAllListPage(categoryId, listPage);
   } else if (modeMyList) {
     const myListPage = getState(myListPageState);
-    const maxPage = getState(myPressCntState);
-
     showModeMyListPage(myListPage);
   }
 }

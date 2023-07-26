@@ -10,7 +10,10 @@ import {
   createNewsBody,
   createNewsHeader,
 } from "../components/mainSection/mainBody/content/pressList/pressList.js";
-import { handleCategoryItemClick } from "./categoryController.js";
+import {
+  handleCategoryItemClick,
+  handleCategoryMousedown,
+} from "./categoryController.js";
 
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
@@ -55,6 +58,7 @@ export function drawMyPressToList() {
   let $news;
 
   $container.innerHTML = "";
+  $ul.addEventListener("mousedown", handleCategoryMousedown);
 
   filteredPressList.forEach((press, idx) => {
     // category

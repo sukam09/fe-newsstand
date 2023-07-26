@@ -1,6 +1,6 @@
 import { startRollingAnimation } from "./components/headlineSection/headline/headline.js";
 import { initCategoryData, initPressData } from "./store/dataState.js";
-import { MODE_ALL, initPageState } from "./store/pageState.js";
+import { initPageState } from "./store/pageState.js";
 import { initComponents } from "./components/initComponents.js";
 import { initSubStateList } from "./store/subState.js";
 import { initEvents, initObservers } from "./controller/initControllers.js";

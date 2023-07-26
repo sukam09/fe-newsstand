@@ -111,3 +111,35 @@ function startProgressAnimation($progressbar) {
 
   raf = requestAnimationFrame(performAnimation);
 }
+
+let isDragging;
+let startX;
+let draggableElement;
+let draggableElementX;
+let categoryContainerX;
+let maxX;
+
+export function handleCategoryMousedown({ currentTarget, clientX }) {
+  const $categoryContainer = currentTarget.parentNode;
+  isDragging = true;
+  draggableElement = currentTarget;
+  categoryContainerX = $categoryContainer.getBoundingClientRect().left;
+  draggableElementX = draggableElement.getBoundingClientRect().left;
+  startX = clientX - draggableElementX;
+  maxX = currentTarget.scrollWidth - $categoryContainer.offsetWidth;
+}
+export function handleCategoryMousemove(e) {
+  if (!isDragging) {
+    return;
+  }
+  const curX = e.clientX - draggableElementX;
+  const moveX = curX - startX;
+  const x = draggableElementX + moveX - categoryContainerX;
+  if (x > 0 || x < -maxX) {
+    return;
+  }
+  draggableElement.style.left = `${x}px`;
+}
+export function handleCategoryMouseup() {
+  isDragging = false;
+}

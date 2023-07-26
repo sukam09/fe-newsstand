@@ -1,9 +1,5 @@
 import { getState } from "../../../../../store/observer.js";
-import {
-  MODE_MY,
-  listPageState,
-  pageModeState,
-} from "../../../../../store/pageState.js";
+import { listPageState } from "../../../../../store/pageState.js";
 
 export function createCategory(categoryList) {
   let categoryItems = "";
@@ -21,7 +17,7 @@ export function createCategory(categoryList) {
 
   return `
     <div class="category">
-      <ul class="category_list flex_row">
+      <ul class="category_list draggable flex_row">
         ${categoryItems}
       </ul>
     </div>
