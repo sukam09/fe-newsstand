@@ -114,7 +114,7 @@ export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   const newsListParent = document.querySelector(".newsstand__list-right");
   const idx =
     getNavTabView() === VIEW.MY_SUB
-      ? getSubscrbeList()[getCategoryIdx() % CATEROY_NUMBER][2]
+      ? getSubscrbeList()[getCategoryIdx() % getSubscrbeList().length][2]
       : getCategoryIdx() % CATEROY_NUMBER;
 
   const data =

@@ -40,7 +40,7 @@ const leftBtn = document.querySelector(".newsstand--left-btn");
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 
-store.subscribe(paintGrid);
+store.subscribe(renderGrid);
 
 export async function paintGridNewsstand() {
   initPaintNews();
@@ -135,7 +135,7 @@ function paintNews(paintData = publisherData) {
   });
 }
 
-function paintGrid() {
+function renderGrid() {
   const subList = getSubscrbeList() || [];
   const currentUserView = getUserView();
 

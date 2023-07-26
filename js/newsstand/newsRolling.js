@@ -27,25 +27,22 @@ const CLASS_RIGHT_CORP = ".main__rolling-corp-right";
 const CLASS_RIGHT_TITLE = ".main__rolling-title-right";
 
 // 발행사와 제목 태그 생성
-makeCorpViewTag();
-makeTitleViewTag();
-makeRightCorpViewTag();
-makeRightTitleViewTag();
+makeInitTage();
 
-let hoverTags = [];
+const hoverTags = [];
 let leftInterval;
 let rightInterval;
-let move = [2, 2];
-let dataCnt = [1, 1];
-let currentChildIndex = [1, 1]; // 자식의 몇번째를 의미함.
+const move = [2, 2];
+const dataCnt = [1, 1];
+const currentChildIndex = [1, 1]; // 자식의 몇번째를 의미함.
 
 const position = [POSITION.LEFT, POSITION.RIGHT];
-let firstCorp = [];
-let secondCorp = [];
-let thirdCorp = [];
-let firstTitle = [];
-let secondTitle = [];
-let thirdTitle = [];
+const firstCorp = [];
+const secondCorp = [];
+const thirdCorp = [];
+const firstTitle = [];
+const secondTitle = [];
+const thirdTitle = [];
 
 // 롤링 subView를 그려주는 함수.
 export async function paintSubView() {
@@ -57,6 +54,15 @@ export async function paintSubView() {
   setTimeout(() => {
     rightRolling();
   }, 1000);
+}
+
+// 처음에 만들어야하는 태그들
+function makeInitTage() {
+  // 발행사와 제목 태그 생성
+  makeCorpViewTag();
+  makeTitleViewTag();
+  makeRightCorpViewTag();
+  makeRightTitleViewTag();
 }
 
 // 시작화면 시작할때 첫 롤링뉴스 보여주는 함수.

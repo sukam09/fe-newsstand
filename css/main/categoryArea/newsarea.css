@@ -28,7 +28,7 @@
   justify-content: space-between;
   width: 166px;
 
-  flex-shrink: 0.1;
+  flex-shrink: 0;
   background-color: var(--blue-100);
 }
 

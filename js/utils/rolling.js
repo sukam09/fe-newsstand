@@ -1,7 +1,16 @@
+import { handleElementClass } from "./util.js";
+
 const CARD_SLIDING = "card_sliding";
 const CARD_SLIDING_AFTER = "card_sliding_after";
 
-function moveTopContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT) {
+export function moveTopContent(
+  firstCp,
+  secondCp,
+  thirdCp,
+  firstT,
+  secondT,
+  thirdT
+) {
   rollingAction(firstT, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
   rollingAction(secondT, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
   rollingAction(thirdT, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
@@ -11,7 +20,7 @@ function moveTopContent(firstCp, secondCp, thirdCp, firstT, secondT, thirdT) {
   rollingAction(thirdCp, "remove", CARD_SLIDING_AFTER, "remove", CARD_SLIDING);
 }
 
-function moveMiddleContent(
+export function moveMiddleContent(
   firstCp,
   secondCp,
   thirdCp,
@@ -28,7 +37,7 @@ function moveMiddleContent(
   rollingAction(thirdCp, "remove", CARD_SLIDING, "add", CARD_SLIDING_AFTER);
 }
 
-function moveBottomContent(
+export function moveBottomContent(
   firstCp,
   secondCp,
   thirdCp,
@@ -45,7 +54,7 @@ function moveBottomContent(
   rollingAction(thirdCp, "remove", CARD_SLIDING_AFTER, "add", CARD_SLIDING);
 }
 
-function replaceText(
+export function replaceText(
   whereCorp,
   whereTitle,
   currentChildIndex,
@@ -68,11 +77,9 @@ function rollingAction(position, action1, class1, action2, class2) {
 }
 
 function removeAction(position, className) {
-  position.classList.remove(className);
+  handleElementClass(position, "remove", className);
 }
 
 function addAction(position, className) {
-  position.classList.add(className);
+  handleElementClass(position, "add", className);
 }
-
-export { moveTopContent, moveMiddleContent, moveBottomContent, replaceText };

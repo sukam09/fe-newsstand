@@ -1,5 +1,5 @@
 import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
-import { addListdButton, deleteListButton } from "./newsCategory.js";
+import { addListdButton, deleteListButton } from "./newsstandList.js";
 import { EVENT, VIEW } from "../utils/constant.js";
 import { setUserViewToList, setUserViewToGrid } from "../store/dispatch.js";
 

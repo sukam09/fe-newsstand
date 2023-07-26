@@ -63,9 +63,10 @@ const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
-store.subscribe(listObserved);
+store.subscribe(renderList);
 
 export function paintNewsCategory() {
+  console.log("PAINT LIST");
   // 카테고리 이름 (ex. 종합/경제 or YTN)
   const categoryNameList =
     getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
@@ -287,6 +288,6 @@ function handleProgressAnimationIteration(
   };
 }
 
-function listObserved() {
+function renderList() {
   getUserView() === VIEW.LIST && paintNewsCategory();
 }
