@@ -23,8 +23,8 @@ function changeView() {
 }
 
 function changeViewOption() {
-  const allPress = document.querySelector(".all-press span");
-  const subPress = document.querySelector(".sub-press span");
+  const allPress = document.querySelector(".all-press");
+  const subPress = document.querySelector(".sub-press");
   if (getState(viewOption) === "all") {
     allPress.classList.replace("unclicked-press", "clicked-press");
     subPress.classList.replace("clicked-press", "unclicked-press");

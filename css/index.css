@@ -12,6 +12,8 @@ body {
   align-items: center;
   font-family: Pretendard;
   height: 720px;
+  background-color: var(--surface-default);
+  color: var(--text-default);
 }
 
 .wrapper {
@@ -71,7 +73,6 @@ li:hover,
   justify-content: center;
   align-items: center;
   background-color: var(--surface-default);
-  color: var(--text-default);
   font-weight: 500;
 }
 .question span span {
@@ -83,7 +84,6 @@ li:hover,
   display: flex;
   height: 48px;
   background-color: var(--surface-alt);
-  color: var(--text-default);
   font-weight: 500;
   font-size: 16px;
 }
@@ -98,6 +98,11 @@ li:hover,
   color: var(--text-strong);
 }
 .answer div:hover {
-  color: var(--text-default);
   text-decoration: underline;
+}
+
+.dark-mode {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
 }

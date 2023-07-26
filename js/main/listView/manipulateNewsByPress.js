@@ -10,7 +10,8 @@ function manipulateNewsByPress(news) {
     if (press.includes(item.name)) {
       news_by_press[item.name].push({
         name: item.name,
-        src: item.lightSrc,
+        lightSrc: item.lightSrc,
+        darkSrc: item.darkSrc,
         isSub: item.isSub,
         editDate: item.editDate,
         thumbSrc: item.thumbSrc,

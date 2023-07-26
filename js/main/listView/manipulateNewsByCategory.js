@@ -11,7 +11,8 @@ function manipulateNewsByCategory(news) {
   news.forEach((item) => {
     news_by_category[item.category].push({
       name: item.name,
-      src: item.lightSrc,
+      lightSrc: item.lightSrc,
+      darkSrc: item.darkSrc,
       isSub: item.isSub,
       editDate: item.editDate,
       thumbSrc: item.thumbSrc,

@@ -8,7 +8,7 @@ import {
 import { checkPressInLocal } from "../../subscribe.js";
 import { clickSubscribeBtn } from "../../subscribe.js";
 import { getState } from "../../store/observer.js";
-import { listAllPage, viewOption } from "../../store/store.js";
+import { isDark, listAllPage, viewOption } from "../../store/store.js";
 
 function makeRandomNews() {
   if (getState(viewOption) === "press") return;
@@ -86,7 +86,12 @@ function changeNews(e) {
 
 function changePressInfo(news) {
   const press_info = document.querySelector(".press-info");
-  press_info.children[0].setAttribute("src", `${news.src}`);
+  if (getState(isDark)) {
+    press_info.children[0].setAttribute("src", `${news.darkSrc}`);
+  } else {
+    press_info.children[0].setAttribute("src", `${news.lightSrc}`);
+  }
+
   press_info.children[0].setAttribute("data-press", `${news.name}`);
   press_info.children[1].innerText = `${news.editDate}`;
 

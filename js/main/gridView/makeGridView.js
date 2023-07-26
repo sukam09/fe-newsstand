@@ -2,6 +2,7 @@ import { GRID_NUM, MIN_PAGE, MAX_PAGE, PRESS_NUM } from "../../constant.js";
 import {
   gridAllPage,
   gridSubPage,
+  isDark,
   subPress,
   viewOption,
   viewType,
@@ -63,16 +64,24 @@ function makeGrid(pressinfo) {
 
   if (pressinfo !== undefined) {
     _li.setAttribute("data-press", `${pressinfo.name}`);
-    _img.setAttribute("src", `${pressinfo.lightSrc}`);
+    if (getState(isDark)) {
+      _img.setAttribute("src", `${pressinfo.darkSrc}`);
+    } else {
+      _img.setAttribute("src", `${pressinfo.lightSrc}`);
+    }
 
     /* li hover 이벤트 리스너 */
     _li.addEventListener("mouseover", () =>
       handleMouseOver(_img, _li.dataset.press)
     );
 
-    _li.addEventListener("mouseout", () =>
-      handleMouseOut(_img, ` ${pressinfo.lightSrc}`)
-    );
+    _li.addEventListener("mouseout", () => {
+      if (getState(isDark)) {
+        handleMouseOut(_img, ` ${pressinfo.darkSrc}`);
+      } else {
+        handleMouseOut(_img, ` ${pressinfo.lightSrc}`);
+      }
+    });
   }
   return [_li, _img];
 }

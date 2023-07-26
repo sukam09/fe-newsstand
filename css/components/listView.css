@@ -20,11 +20,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 16px;
   font-size: 14px;
   color: var(--text-weak);
   font-weight: 500;
-  min-width: 80px;
+  min-width: fit-content;
 }
 
 .press-info {
@@ -38,7 +38,6 @@
   font-size: 14px;
   font-weight: 500;
   padding: 0 10px;
-  color: var(--text-default);
 }
 .press-info-img {
   width: 52.5px;
