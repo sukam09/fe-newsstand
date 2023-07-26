@@ -4,28 +4,17 @@ import {
     grid_option,
     list_option,
     subscribe_option,
-} from "./globals.js";
-import {
-    showToday,
-    getOptions,
-    currentHourToMode,
-    renderOptions,
-    getCalPage,
-    setNavCategoryIndex,
-    setCategoryIndex,
-    setPageIndex,
-    setSubscribeNewsData,
-    getEventData,
-} from "./utils.js";
-import {
-    render,
-    save,
-    changeViewArrow,
-    clear,
-    handlePage,
-    controlBanner,
-    setSnackBar,
-} from "./actions.js";
+} from "./store.js";
+
+import * as data_util from "./utils/data_util.js";
+import * as mode_util from "./utils/mode_util.js";
+
+import { changeViewArrow, handlePage } from "./actions/page_handle_action.js";
+import { save } from "./actions/data_action.js";
+import { render, clear } from "./actions/render_action.js";
+import { controlBanner } from "./actions/banner_action.js";
+import { setSnackBar } from "./actions/snack_bar_action.js";
+
 import { renderPressItem } from "./views/grid_views.js";
 import { renderNewsItem } from "./views/list_views.js";
 import { renderHotTopicsView } from "./views/rolling_views.js";
@@ -104,11 +93,19 @@ function clearAndRender(options) {
 
     createSnackBarView("container_center");
     createModalBarView("container_center");
-    const { data, page, category } = renderOptions()[main][press];
+    const { data, page, category } = data_util.renderOptions()[main][press];
 
     changeViewArrow(main);
-    render(getOptions("all", [changeCategoryEvent]), data, page, category);
-    togglePressEvent();
+    render(
+        data_util.getOptions("all", [
+            changeCategoryEvent,
+            toggleSubscribeEvent,
+        ]),
+        data,
+        page,
+        category
+    );
+    if (main === "grid") togglePressEvent();
 }
 
 function updateMainNewsContainer(option_elements, main_option) {
@@ -145,30 +142,30 @@ function arrowPagingEvent() {
     const list_right_arrow = document.querySelector(".list_right_arrow");
 
     grid_left_arrow.addEventListener("click", () => {
-        const { main, press, data, page } = getEventData();
+        const { main, press, data, page } = data_util.getEventData();
         if (page <= 0) return;
-        handlePage(main, press, getCalPage(-1), data);
+        handlePage(main, press, data_util.getCalPage(-1), data);
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
-        const { main, press, data, page } = getEventData();
+        const { main, press, data, page } = data_util.getEventData();
         if (page >= length) return;
-        handlePage(main, press, getCalPage(1), data);
+        handlePage(main, press, data_util.getCalPage(1), data);
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        const { main, press, data, category } = getEventData();
-        handlePage(main, press, getCalPage(-1), data, category, [
+        const { main, press, data, category } = data_util.getEventData();
+        handlePage(main, press, data_util.getCalPage(-1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
         ]);
     });
 
     list_right_arrow.addEventListener("click", () => {
-        const { main, press, data, category } = getEventData();
-        handlePage(main, press, getCalPage(1), data, category, [
+        const { main, press, data, category } = data_util.getEventData();
+        handlePage(main, press, data_util.getCalPage(1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
         ]);
@@ -183,7 +180,7 @@ function arrowPagingEvent() {
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
 
-    view_option.mode = currentHourToMode();
+    view_option.mode = mode_util.currentHourToMode();
 
     if (view_option.mode === "dark-mode") {
         toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
@@ -257,12 +254,12 @@ function toggleSubscribeEvent() {
             }
             const snack_bar = document.querySelector(".snack_bar_text");
             const { main, press } = view_option.getState(["main", "press"]);
-            render(getOptions("sub", [togglePressEvent]), sub_press);
+            render(data_util.getOptions("sub", [togglePressEvent]), sub_press);
 
             snack_animation_time = setSnackBar(clearAndRender);
             subscribe_option.subscribe_press[sub_press.name] = sub_press.value;
             subscribe_option.subscribe_categories.push(sub_press.name);
-            setSubscribeNewsData();
+            data_util.setSubscribeNewsData();
 
             if (press === "subscribe") {
                 clearAndRender({ main, press });
@@ -285,12 +282,16 @@ function changeCategoryEvent() {
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
             const { main, press } = view_option.getState(["main", "press"]);
-            setNavCategoryIndex(item.innerHTML, press);
-            setPageIndex(0);
-            const { data, page, category } = renderOptions()[main][press];
+            data_util.setNavCategoryIndex(item.innerHTML, press);
+            data_util.setPageIndex(0);
+            const { data, page, category } =
+                data_util.renderOptions()[main][press];
 
             render(
-                getOptions("all", [changeCategoryEvent, toggleSubscribeEvent]),
+                data_util.getOptions("all", [
+                    changeCategoryEvent,
+                    toggleSubscribeEvent,
+                ]),
                 data,
                 page,
                 category
@@ -337,16 +338,16 @@ function modalBarEvent(name) {
 
     modal_bar_terminate.addEventListener("click", () => {
         const { main, press } = view_option.getState(["main", "press"]);
-        const { category } = renderOptions()[main][press];
+        const { category } = data_util.renderOptions()[main][press];
         subscribe_option.subscribe_press[name] = "false";
         subscribe_option.subscribe_categories.splice(
             subscribe_option.subscribe_categories.indexOf(name),
             1
         );
         if (category >= subscribe_option.subscribe_categories.length) {
-            setCategoryIndex(press, category - 1);
+            data_util.setCategoryIndex(press, category - 1);
         }
-        setSubscribeNewsData();
+        data_util.setSubscribeNewsData();
         modalDisappear(main, press);
     });
 
@@ -380,7 +381,11 @@ async function initEvent() {
 
         view_option.hot_topic_data = data["hot_topic_data"];
 
-        render(getOptions(), grid_option.press_data, grid_option.page);
+        render(
+            data_util.getOptions(),
+            grid_option.press_data,
+            grid_option.page
+        );
         renderHotTopicsView(
             data["hot_topic_data"][0],
             data["hot_topic_data"][1],
@@ -403,7 +408,7 @@ function handleStandbyEvents() {
     mainOptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
-    showToday("today");
+    mode_util.showToday("today");
 }
 
 export { handleStandbyEvents };

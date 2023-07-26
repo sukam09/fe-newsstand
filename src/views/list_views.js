@@ -3,7 +3,7 @@ import {
     grid_option,
     view_option,
     subscribe_option,
-} from "../globals.js";
+} from "../store.js";
 import {
     ASSETS_IMAGE_PATH,
     CATEGORIES,
@@ -11,7 +11,7 @@ import {
     SUBSCRIBE_TEXT,
     FROM_TO_TEXT,
 } from "../constants.js";
-import { isSubscribed } from "../utils.js";
+import { isSubscribed } from "../utils/data_util.js";
 
 function renderListView(options, data, category, page) {
     const list_news_container = document.querySelector(".main_news_container");

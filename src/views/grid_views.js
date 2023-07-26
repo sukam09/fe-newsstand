@@ -6,8 +6,8 @@ import {
     SUBSCRIBE_TEXT,
     UNSUBSCRIBE_TEXT,
 } from "../constants.js";
-import { view_option } from "../globals.js";
-import { isSubscribed } from "../utils.js";
+import { view_option } from "../store.js";
+import { isSubscribed } from "../utils/data_util.js";
 
 function renderGridView(options, data, page, toggleArrow) {
     switch (options["target"]) {
