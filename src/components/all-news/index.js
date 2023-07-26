@@ -23,7 +23,9 @@ export default class AllNews extends Component {
 
   template() {
     return `<div class='all-news-header'></div>
-            <div class='all-news-wrapper'></div>`;
+            <div class='all-news-wrapper'></div>
+            <div class='snack-bar-component'></div>
+            <div class='alert-modal'></div>`;
   }
 
   mounted() {

@@ -14,7 +14,7 @@ export default class SnackBar extends Component {
   }
   template() {
     return `
-      <div class='snack-bar surface-brand-default  text-white-default pop-up'>
+      <div class='snack-bar surface-brand-default text-white-default pop-up'>
         ${TEXT.SUBSCRIBE_SUCCESS}
       </div>
     `;

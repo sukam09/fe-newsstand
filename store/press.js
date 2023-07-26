@@ -45,10 +45,11 @@ export class PressStore extends Observable {
   putSubscribedList(list) {
     this.subscribedList = [...this.subscribedList, list];
     setLocalStorage(TEXT.SUBSCRIBE_EN, this.subscribedList);
-    showSnackBar(TEXT.SUBSCRIBE_KO);
 
     this.filteredPress = this.setFilteredPress();
     this.notify();
+
+    showSnackBar(TEXT.SUBSCRIBE_KO);
   }
 
   deleteSubscribedList(list) {

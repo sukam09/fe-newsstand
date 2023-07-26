@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+
+  position: relative;
 }
 .all-news-header {
   display: flex;

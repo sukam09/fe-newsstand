@@ -50,8 +50,6 @@ section {
   flex-direction: column;
   gap: 20px;
   align-items: center;
-
-  position: relative;
 }
 
 .left-button,
