@@ -126,7 +126,6 @@ h2.headline_area_item {
 }
 
 .view_select:checked + label svg {
-  /* fill: var(--blue-500); */
   fill: var(--text-point);
 }
 
