@@ -189,7 +189,7 @@ class ListProgress extends Store {
       const progressStartClone = progressStart.cloneNode(true);
       progressStartClone.addEventListener('animationiteration', () => this.setupNext(progressStartClone));
       progressStart.parentNode.replaceChild(progressStartClone, progressStart);
-      side === ARROW_RIGHT ? this.setupNext(progressStartClone) : this.setupPrev(progressStartClone);
+      side === ARROW.RIGHT ? this.setupNext(progressStartClone) : this.setupPrev(progressStartClone);
     });
   }
 
@@ -206,7 +206,7 @@ class ListProgress extends Store {
 
   setupButton() {
     const sectionMain = document.querySelector(`.${HEADER_CLASS.SECTION_MAIN}`);
-    const pressId = Number(sectionMain.getAttribute(ATTRIBUTE.PRESS_NAME));
+    const pressId = Number(sectionMain.getAttribute(ATTRIBUTE.PRESS_ID));
     const isSubscribe = LIST.SUBSCRIBE_ID.includes(pressId);
 
     const button = document.querySelector(`.${HEADER_CLASS.SECTION_BUTTON}`);
