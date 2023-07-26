@@ -110,11 +110,9 @@ const setButttonWrapper = (idx) => {
 
   $buttonWrapper.append($button);
 
-  if (mediaIdx === undefined) {
-    $buttonWrapper.style.display = "none";
-  } else {
-    $buttonWrapper.style.display = "";
-  }
+  mediaIdx === undefined
+    ? ($buttonWrapper.style.display = "none")
+    : ($buttonWrapper.style.display = "");
 
   return $buttonWrapper;
 };
@@ -143,11 +141,9 @@ const setArrowVisible = () => {
     ? getState(mediaIdList).length / MEDIA_NUM
     : getState(subscribeList).length / MEDIA_NUM;
 
-  if (getState(gridPageNum) < totalPage - 1) {
-    $rightArrow.classList.remove("hidden");
-  } else {
-    $rightArrow.classList.add("hidden");
-  }
+  getState(gridPageNum) < totalPage - 1
+    ? $rightArrow.classList.remove("hidden")
+    : $rightArrow.classList.add("hidden");
 };
 
 const getGridInfo = async () => {

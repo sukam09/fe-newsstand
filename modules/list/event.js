@@ -28,21 +28,17 @@ const setListArrowEvent = () => {
 
   $leftArrow.addEventListener("click", () => {
     if (!getState(isGridMode)) {
-      if (getState(isTotalMode)) {
-        setState(listCateMediaIdx, getState(listCateMediaIdx) - 1);
-      } else {
-        setState(listSubsMediaIdx, getState(listSubsMediaIdx) - 1);
-      }
+      getState(isTotalMode)
+        ? setState(listCateMediaIdx, getState(listCateMediaIdx) - 1)
+        : setState(listSubsMediaIdx, getState(listSubsMediaIdx) - 1);
       setFullList();
     }
   });
   $rightArrow.addEventListener("click", () => {
     if (!getState(isGridMode)) {
-      if (getState(isTotalMode)) {
-        setState(listCateMediaIdx, getState(listCateMediaIdx) + 1);
-      } else {
-        setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
-      }
+      getState(isTotalMode)
+        ? setState(listCateMediaIdx, getState(listCateMediaIdx) + 1)
+        : setState(listSubsMediaIdx, getState(listSubsMediaIdx) + 1);
       setFullList();
     }
   });

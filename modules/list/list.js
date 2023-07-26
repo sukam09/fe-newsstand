@@ -142,16 +142,12 @@ const setPregressText = ({ curCateIdx }) => {
 
   const $cntDiv = $li.children[1];
 
-  if (getState(isTotalMode)) {
-    $cntDiv.innerHTML = `
-  <p>${getState(listCateMediaIdx) + 1}</p>
-  <p>&nbsp; / ${getState(categoryInfo)[cate].length}</p>
-`;
-  } else {
-    $cntDiv.innerHTML = `<img
-      src="/images/progress-arrow.svg"
-    />`;
-  }
+  $cntDiv.innerHTML = getState(isTotalMode)
+    ? `
+      <p>${getState(listCateMediaIdx) + 1}</p>
+      <p>&nbsp; / ${getState(categoryInfo)[cate].length}</p>
+    `
+    : `<img src="/images/progress-arrow.svg"/>`;
 
   return $li;
 };

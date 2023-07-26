@@ -9,11 +9,7 @@ import {
 import { isGridMode, isTotalMode } from "../store/mode.js";
 import { subscribeList } from "../store/subscribe.js";
 import { changeImgSrc } from "./grid/grid.js";
-import {
-  setCategoryBar,
-  setFullList,
-  setListView,
-} from "/modules/list/list.js";
+import { setFullList, setListView } from "/modules/list/list.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
