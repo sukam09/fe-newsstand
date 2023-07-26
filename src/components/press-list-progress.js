@@ -14,6 +14,8 @@ class ListProgress extends Store {
     this.setupProgress();
     this.setupClick();
     this.render();
+    this.setupArrow('right');
+    this.setupArrow('left');
     this.subscribe(this.render.bind(this));
   }
 
@@ -52,11 +54,11 @@ class ListProgress extends Store {
     initLi.querySelector('.press-category__div-sum').innerText = this.state.pageLength;
 
     progressBar.forEach((progress) => {
-      progress.addEventListener('animationiteration', () => this.setupAnimation(progress));
+      progress.addEventListener('animationiteration', () => this.setupNext(progress));
     });
   }
 
-  setupAnimation(progress) {
+  setupNext(progress) {
     const progressNow = progress.querySelector('.press-category__div-now');
     const PAGE = this.state.pageCount < this.state.pageLength;
     const CATEGORY = this.state.categoryCount < this.state.categoryLength;
@@ -73,15 +75,15 @@ class ListProgress extends Store {
 
   setNextCategory() {
     const nextCategoryIndex = this.state.categoryCount + 1;
-    this.setupCategory(nextCategoryIndex);
+    this.setupNextCategory(nextCategoryIndex);
   }
 
   setFirstCategory() {
     const firstCategoryIndex = 1;
-    this.setupCategory(firstCategoryIndex);
+    this.setupNextCategory(firstCategoryIndex);
   }
 
-  setupCategory(categoryIndex) {
+  setupNextCategory(categoryIndex) {
     this.setState({
       pageCount: 1,
       categoryCount: categoryIndex,
@@ -92,27 +94,44 @@ class ListProgress extends Store {
     this.setupClassList(addLi);
   }
 
-  //   const isSubscribe = progressSum.innerText === 1;
-  //         console.log(isSubscribe);
-  //         setSubscribeArrow(isSubscribe);
-  //         if (!isSubscribe) {
-  //           progressNow.innerText = this.state.pageCount;
-  //           progressSum.innerText = this.state.pageLength;
-  //         }
+  setupPrev(progress) {
+    const progressNow = progress.querySelector('.press-category__div-now');
+    const PAGE = 1 < this.state.pageCount;
+    const CATEGORY = 1 < this.state.categoryCount;
 
-  //   setSubscribeArrow(isSubscribe) {
-  //     const categoryDiv = document.querySelector('.press-category__div');
-  //     const categoryArrow = `
-  //       <img class="press-category__div-img" src='./assets/icons/arrow.svg'></img>
-  //       `;
+    if (PAGE) this.setPrevPage(progressNow);
+    if (!PAGE && CATEGORY) this.setPrevCategory();
+    if (!PAGE && !CATEGORY) this.setLastCategory();
+  }
 
-  //     const catogoryCount = `
-  //       <div class='press-category__div-now'>1</div>
-  //       <div class='press-category__div-divide'>/</div>
-  //       <div class='press-category__div-sum'></div>`;
+  setPrevPage(progressNow) {
+    this.setState({ pageCount: this.state.pageCount - 1 });
+    progressNow.innerText = this.state.pageCount;
+  }
 
-  //     isSubscribe ? (categoryDiv.innerHTML = categoryArrow) : (categoryDiv.innerHTML = catogoryCount);
-  //   }
+  setPrevCategory() {
+    const nextCategoryIndex = this.state.categoryCount - 1;
+    this.setupPrevCategory('prev', nextCategoryIndex);
+  }
+
+  setLastCategory() {
+    const firstCategoryIndex = this.state.categoryLength;
+    this.setupPrevCategory('last', firstCategoryIndex);
+  }
+
+  setupPrevCategory(side, categoryIndex) {
+    this.setState({
+      categoryCount: categoryIndex,
+      pageCount: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
+      pageLength: LIST.SUFFLE_CATEGORY[categoryIndex - 1].length,
+    });
+
+    const addLi =
+      side === 'prev'
+        ? document.querySelector('.progress-start').previousElementSibling
+        : document.querySelector('.press-category__ul').lastElementChild;
+    this.setupClassList(addLi);
+  }
 
   setupClick() {
     const progressBar = document.querySelectorAll('.press-category__li');
@@ -135,8 +154,22 @@ class ListProgress extends Store {
     });
   }
 
+  setupArrow(side) {
+    const arrow = document.querySelector(`.arrows-category__img-${side}`);
+    arrow.addEventListener('click', () => {
+      const progressStart = document.querySelector('.progress-start');
+      const progressStartClone = progressStart.cloneNode(true);
+      progressStartClone.addEventListener('animationiteration', () => this.setupNext(progressStartClone));
+      progressStart.parentNode.replaceChild(progressStartClone, progressStart);
+      side === 'right' ? this.setupNext(progressStartClone) : this.setupPrev(progressStartClone);
+    });
+  }
+
   setupClassList(addLi) {
-    document.querySelector('.progress-start').classList.remove('progress-start');
+    const removeLi = document.querySelector('.progress-start');
+    removeLi.classList.remove('progress-start');
+    removeLi.querySelector('.press-category__div').classList.add('none');
+
     addLi.classList.add('progress-start');
     addLi.querySelector('.press-category__div').classList.remove('none');
     addLi.querySelector('.press-category__div-now').innerText = this.state.pageCount;

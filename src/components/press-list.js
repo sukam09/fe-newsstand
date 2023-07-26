@@ -17,8 +17,8 @@ const initPressList = (pressData, categoryList) => {
   // setProgressBarClick();
   // setProgressBarEvent();
 
-  setArrowRight();
-  setArrowLeft();
+  // setArrowRight();
+  // setArrowLeft();
 
   setArticleEvent();
   changeIcon();
@@ -272,32 +272,32 @@ const initPressList = (pressData, categoryList) => {
 /**
  * 언론사 리스트의 Arrow
  */
-const setArrowRight = () => {
-  const arrowRight = document.querySelector('.arrows-category__img-right');
-  arrowRight.addEventListener('click', () => {
-    const progressStart = document.querySelector('.progress-start');
-    const progressStartClone = progressStart.cloneNode(true);
-    progressStart.parentNode.replaceChild(progressStartClone, progressStart);
-    const progressNow = progressStartClone.querySelector('.press-category__div-now');
-    const progressSum = progressStartClone.querySelector('.press-category__div-sum');
+// const setArrowRight = () => {
+//   const arrowRight = document.querySelector('.arrows-category__img-right');
+//   arrowRight.addEventListener('click', () => {
+//     const progressStart = document.querySelector('.progress-start');
+//     const progressStartClone = progressStart.cloneNode(true);
+//     progressStart.parentNode.replaceChild(progressStartClone, progressStart);
+//     const progressNow = progressStartClone.querySelector('.press-category__div-now');
+//     const progressSum = progressStartClone.querySelector('.press-category__div-sum');
 
-    const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
-    const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
+//     const PAGE = LIST.PAGE_COUNT < LIST.PAGE_LENTH;
+//     const CATEGORY = LIST.CATEGORY_COUNT < LIST.CATEGORY_LENGTH;
 
-    const isSubscribe = progressNow === null;
-    setSubscribeArrow(isSubscribe);
-    if (!isSubscribe) {
-      progressNow.innerText = LIST.PAGE_COUNT;
-      progressSum.innerText = LIST.PAGE_LENTH;
-    }
+//     const isSubscribe = progressNow === null;
+//     setSubscribeArrow(isSubscribe);
+//     if (!isSubscribe) {
+//       progressNow.innerText = LIST.PAGE_COUNT;
+//       progressSum.innerText = LIST.PAGE_LENTH;
+//     }
 
-    if (PAGE) setNextPage(progressNow);
-    if (!PAGE && CATEGORY) setNextCategory();
-    if (!PAGE && !CATEGORY) setFirstCategory();
+//     if (PAGE) setNextPage(progressNow);
+//     if (!PAGE && CATEGORY) setNextCategory();
+//     if (!PAGE && !CATEGORY) setFirstCategory();
 
-    setListArticle();
-  });
-};
+//     setListArticle();
+//   });
+// };
 
 const setArrowLeft = () => {
   const arrowLeft = document.querySelector('.arrows-category__img-left');
@@ -326,10 +326,10 @@ const setArrowLeft = () => {
   });
 };
 
-const setPrevPage = (progressNow) => {
-  LIST.PAGE_COUNT -= 1;
-  progressNow.innerText = LIST.PAGE_COUNT;
-};
+// const setPrevPage = (progressNow) => {
+//   LIST.PAGE_COUNT -= 1;
+//   progressNow.innerText = LIST.PAGE_COUNT;
+// };
 
 const setPrevCategory = () => {
   LIST.CATEGORY_COUNT -= 1;
