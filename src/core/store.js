@@ -1,6 +1,6 @@
 class Store {
   constructor() {
-    this.state = [2, 3]; // 구독한 언론사
+    this.state = []; // 구독한 언론사
     this.listeners = new Set();
   }
 

@@ -1,5 +1,6 @@
 import pressName from "../../../constants/pressName.js";
 import store from "../../../core/Store.js";
+import { showStatus } from "../../../core/showStatus.js";
 import Icon from "../../common/Icon.js";
 
 export default class UnsubButton {
@@ -55,5 +56,18 @@ export default class UnsubButton {
 
   handleClickYesButton(name) {
     store.removeState(name);
+
+    if (!showStatus.isShowGrid || showStatus.isShowAllPress) {
+      this.removeModal();
+    }
+  }
+
+  removeModal() {
+    const $gridWrapper = document.querySelector(".news-list-wrapper");
+    const $listWrapper = document.querySelector(".list-container");
+    const $modal = document.querySelector(".unsub-modal");
+
+    if ($gridWrapper) $gridWrapper.removeChild($modal);
+    if ($listWrapper) $listWrapper.removeChild($modal);
   }
 }
