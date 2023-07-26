@@ -1,18 +1,25 @@
-import { shuffle } from "../../utils/utils.js";
 import Stores from "../core/Store.js";
-import { addEventArrowGrid } from "../addEventArrowGrid.js";
+import { addEventArrowGrid } from "../clickEvent/addEventArrowGrid.js";
 import { snackBar } from "../snackBar.js";
-import { changeImageSrc } from "../../utils/utils.js";
+import { changeImageSrc, removeArrow, shuffle } from "../../utils/utils.js";
 import { renderMain } from "./renderMain.js";
 import { rollingTime } from "../../utils/constants.js";
-import { removeArrow } from "../../utils/utils.js";
 
 const gridMain = document.getElementById("main-grid");
 const listMain = document.getElementById("main-list");
+let timeOut;
 
 const renderGrid = (logos) => {
   gridMain.style.display = "grid";
   listMain.style.display = "none";
+  changeImageSrc(
+    document.getElementById("card-list-image"),
+    "./img/card_list.svg"
+  );
+  changeImageSrc(
+    document.getElementById("grid-image"),
+    "./img/clicked_grid.png"
+  );
   removeArrow();
   if (Stores.getSubscribedMode() == "all") shuffle(logos);
   makeGrid(logos);
@@ -42,7 +49,7 @@ function drawLogo(logos, LOGO_INDEX) {
   return "";
 }
 
-function clickSubscribeButtonGrid(logos) {
+function clickSubscribeButtonGrid() {
   const subscribeButton = document.querySelectorAll(".subscribe-button");
   subscribeButton.forEach((value, index) => {
     if (isSubscribedGrid(subscribeButton[index]))
@@ -54,11 +61,15 @@ function clickSubscribeButtonGrid(logos) {
         snackBar("내가 구독한 언론사에 추가되었습니다!");
         Stores.setSubscribedMode("subscribe");
         Stores.setPageMode("list");
-        setTimeout(() => {
+        if (timeOut) clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
           Stores.setSubscribedMode("subscribed");
           renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
         }, rollingTime);
-      } else alertGrid(subscribeButton[index]);
+      } else {
+        if (timeOut) clearTimeout(timeOut);
+        alertGrid(subscribeButton[index]);
+      }
     });
   });
 }

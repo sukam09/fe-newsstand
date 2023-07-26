@@ -1,6 +1,6 @@
-import { makeArrow } from "../utils/utils.js";
-import { makeGrid, clickSubscribeButtonGrid } from "./render/renderGrid.js";
-import Stores from "./core/Store.js";
+import { makeArrow } from "../../utils/utils.js";
+import { makeGrid, clickSubscribeButtonGrid } from "../render/renderGrid.js";
+import Stores from "../core/Store.js";
 
 const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;

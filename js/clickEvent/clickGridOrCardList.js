@@ -1,6 +1,6 @@
-import { changeImageSrc, removeArrow } from "../utils/utils.js";
-import { renderMain } from "./render/renderMain.js";
-import Stores from "./core/Store.js";
+import { changeImageSrc, removeArrow } from "../../utils/utils.js";
+import { renderMain } from "../render/renderMain.js";
+import Stores from "../core/Store.js";
 
 const clickGridCardList = () => {
   const clickGridImage = () => {
@@ -19,8 +19,6 @@ const clickGridCardList = () => {
   const clickCardListImage = () => {
     const cardListImage = document.getElementById("card-list-image");
     cardListImage.addEventListener("click", (e) => {
-      changeImageSrc(document.getElementById("grid-image"), "./img/grid.svg");
-      changeImageSrc(e.target, "./img/clicked_card_list.png");
       Stores.setPageMode("cardList");
       renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
     });

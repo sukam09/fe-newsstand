@@ -1,5 +1,5 @@
-import { renderMain } from "./render/renderMain.js";
-import Stores from "./core/Store.js";
+import { renderMain } from "../render/renderMain.js";
+import Stores from "../core/Store.js";
 
 const clickAllOrSubscribeButton = () => {
   function clickAllNews() {

@@ -2,8 +2,8 @@ import { setDate } from "./js/setData/setDate.js";
 import { rollingBanner } from "./js/rollingBanner.js";
 import { clickNewsStand } from "./js/newsStand.js";
 import { renderMain } from "./js/render/renderMain.js";
-import { clickAllOrSubscribeButton } from "./js/clickAllOrSubscribeButton.js";
-import { clickGridCardList } from "./js/clickGridOrCardList.js";
+import { clickAllOrSubscribeButton } from "./js/clickEvent/clickAllOrSubscribeButton.js";
+import { clickGridCardList } from "./js/clickEvent/clickGridOrCardList.js";
 
 (function init() {
   clickNewsStand(document.getElementById("header-div-01"));

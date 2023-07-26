@@ -9,47 +9,45 @@ let timeOut;
 const drawNews = (news) => {
   let progressBarId =
     document.getElementsByClassName("progress-bar")[currentCategoryIndex].id;
-  drawNewsDiv(news, progressBarId);
-  drawNewsHeader(news, progressBarId);
+  let pageIndex = currentCategoryPageNumber - 1;
+  if (Stores.getSubscribedMode() === "subscribed") pageIndex = 0;
+  drawNewsDiv(news, progressBarId, pageIndex);
+  drawNewsHeader(news, progressBarId, pageIndex);
   clickSubscribeButton(news, progressBarId);
 };
 
-function drawNewsImage(news, progressBarId) {
-  return `<img class="news-main-image" src="${news[progressBarId][0].thumbnail}">${news[progressBarId][0].title}`;
+function drawNewsImage(news, progressBarId, pageIndex) {
+  return `<img class="news-main-image" src="${news[progressBarId][pageIndex].thumbnail}">${news[progressBarId][pageIndex].title}`;
 }
 
-function drawNewsArticle(news, progressBarId) {
+function drawNewsArticle(news, progressBarId, pageIndex) {
   let article_div = "";
   for (let article_cnt = 0; article_cnt < 6; article_cnt++) {
-    article_div += `<div class="news-main-article">${news[progressBarId][0].article[article_cnt]}</div>`;
+    article_div += `<div class="news-main-article">${news[progressBarId][pageIndex].article[article_cnt]}</div>`;
   }
-  article_div += `<div class="news-main-article-press">${news[progressBarId][0].name}언론사에서 직접 편집한 뉴스입니다.</div>`;
+  article_div += `<div class="news-main-article-press">${news[progressBarId][pageIndex].name}언론사에서 직접 편집한 뉴스입니다.</div>`;
   return article_div;
 }
 
-function drawNewsDiv(news, progressBarId) {
+function drawNewsDiv(news, progressBarId, pageIndex) {
   const listDiv = document.querySelector(".news-content");
   listDiv.innerHTML = "";
   let new_div = `<div class="news-main-left-div">${drawNewsImage(
     news,
-    progressBarId
+    progressBarId,
+    pageIndex
   )}</div><div class="news-main-right-div">${drawNewsArticle(
     news,
-    progressBarId
+    progressBarId,
+    pageIndex
   )}</div>`;
   listDiv.innerHTML = new_div;
 }
 
-function drawNewsHeader(news, progressBarId) {
+function drawNewsHeader(news, progressBarId, pageIndex) {
   const news_header = document.querySelector(".news-header");
   news_header.innerHTML = "";
-  let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${
-    news[progressBarId][currentCategoryPageNumber - 1].name
-  }"  src="${
-    news[progressBarId][currentCategoryPageNumber - 1].logo
-  }"><span class="news-edit-time">${
-    news[progressBarId][currentCategoryPageNumber - 1].editTime
-  }</span><img class="subscribe-buttonList" src="./img/subscribe_button.svg"></div>`;
+  let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${news[progressBarId][pageIndex].name}"  src="${news[progressBarId][pageIndex].logo}"><span class="news-edit-time">${news[progressBarId][pageIndex].editTime}</span><img class="subscribe-buttonList" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
   if (isSubscribed(news, progressBarId)) replaceSubscribeButton("cancel");
 }
@@ -77,6 +75,7 @@ function clickSubscribeButton(news, progressBarId) {
         news[progressBarId][currentCategoryPageNumber - 1].id
       );
       snackBar("내가 구독한 언론사에 추가되었습니다!");
+      if (timeOut) clearTimeout(timeOut);
       timeOut = setTimeout(() => {
         Stores.setSubscribedMode("subscribed");
         renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
