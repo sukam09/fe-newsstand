@@ -51,6 +51,7 @@ import { myPressCntState } from "../store/subState.js";
 import {
   setNextPageState,
   setPrevPageState,
+  showPage,
 } from "./pageController/pageController.js";
 
 export function addEventsOnGridItem() {

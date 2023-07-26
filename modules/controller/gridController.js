@@ -9,7 +9,7 @@ import {
   subStateList,
 } from "../store/subState.js";
 import { getState, setState } from "../store/observer.js";
-import { NUM_IN_A_GRID } from "../store/pageState.js";
+import { MAX_GRID_PAGE, NUM_IN_A_GRID } from "../store/pageState.js";
 import { qs, strToHtmlElemnt } from "../utils.js";
 
 function getPressId($gridItem) {
@@ -77,36 +77,39 @@ export function controllGridSubButtonShowing(id) {
   }
 }
 
+//todo 에러 수정
 export function drawMyPressToGrid() {
   const { pressList } = getState(pressDataState);
   const myPressList = getState(myPressListState);
   const myPressCnt = getState(myPressCntState);
 
-  let i = 0;
+  let cnt = 0;
   myPressList.forEach((pressId) => {
     const subState = subStateList[pressId];
     const isSub = getState(subState);
     const targetPress = [...pressList].find((press) => press.id === pressId);
 
-    const targetPage = Math.floor(i / NUM_IN_A_GRID);
+    const targetPage = Math.floor(cnt / NUM_IN_A_GRID);
     const $targetGrid = qs(`#mode_my_grid_page_${targetPage}`);
 
     if (isSub) {
       const newItem = createPressItem(pressId, targetPress);
       const $newItem = strToHtmlElemnt(newItem);
-      const $oldItem = $targetGrid.children[i++ % NUM_IN_A_GRID];
-      $newItem.addEventListener("mouseover", (e) => handleGridItemMouseover(e));
-      $newItem.addEventListener("mouseout", (e) => handleGridItemMouseout(e));
-      $newItem.addEventListener("click", (e) => handleGridItemClick(e));
+      const $oldItem = $targetGrid.children[cnt % NUM_IN_A_GRID];
+      $newItem.addEventListener("mouseover", handleGridItemMouseover);
+      $newItem.addEventListener("mouseout", handleGridItemMouseout);
+      $newItem.addEventListener("click", handleGridItemClick);
       $targetGrid.replaceChild($newItem, $oldItem);
+      cnt++;
     }
   });
-  for (let i = myPressList.length; i < NUM_IN_A_GRID; i++) {
-    const targetPage = Math.floor(myPressCnt / NUM_IN_A_GRID);
+
+  for (let i = cnt; i < MAX_GRID_PAGE * NUM_IN_A_GRID; i++) {
+    const targetPage = Math.floor(i / NUM_IN_A_GRID);
     const $targetGrid = qs(`#mode_my_grid_page_${targetPage}`);
     const emptyItem = createEmptyPressItem();
     const $emptyItem = strToHtmlElemnt(emptyItem);
-    const $oldItem = $targetGrid.children[i];
+    const $oldItem = $targetGrid.children[i % NUM_IN_A_GRID];
     $targetGrid.replaceChild($emptyItem, $oldItem);
   }
   setState(myPressCntState, myPressList.length);

@@ -25,3 +25,4 @@ export function strToHtmlElemnt(str) {
   $container.innerHTML = str.trim();
   return $container.childNodes[0];
 }
+

@@ -96,7 +96,6 @@
 .category_item {
   position: relative;
   height: 100%;
-  width: 80px;
   flex: 0 0 auto;
 
   display: flex;

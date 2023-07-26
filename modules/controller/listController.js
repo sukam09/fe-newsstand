@@ -15,7 +15,6 @@ import { handleCategoryItemClick } from "./categoryController.js";
 export function handleListSubButton({ currentTarget: $button }) {
   const pressId = parseInt($button.getAttribute("key").split("_")[1]);
   const subState = getState(subStateList[pressId]);
-  console.log(subState);
   setState(subStateList[pressId], !subState);
 }
 
@@ -61,8 +60,7 @@ export function drawMyPressToList() {
     // category
     const categoryItem = createCategoryItem(press.name, `my_${idx}`, 1);
     const $categoryItem = strToHtmlElemnt(categoryItem);
-    console.log($categoryItem);
-    $categoryItem.addEventListener("click", (e) => handleCategoryItemClick(e));
+    $categoryItem.addEventListener("click", handleCategoryItemClick);
     $ul.appendChild($categoryItem);
 
     // body
@@ -70,7 +68,7 @@ export function drawMyPressToList() {
     $news.className = `list_press_${press.id} news news_my${idx}`;
     $news.innerHTML = createNewsHeader(press) + createNewsBody(press);
     const $unsubButton = $news.querySelector(".list_unsub_button");
-    $unsubButton.addEventListener("click", (e) => handleListSubButton(e));
+    $unsubButton.addEventListener("click", handleListSubButton);
 
     $container.appendChild($news);
     controllListsSubButtonShowing(press.id);

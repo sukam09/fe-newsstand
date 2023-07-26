@@ -15,7 +15,7 @@ import {
   pageModeState,
   pageTypeState,
 } from "../../store/pageState.js";
-import { myPressCntState } from "../../store/subState.js";
+import { myPressCntState, myPressListState } from "../../store/subState.js";
 import { qs, qsa } from "../../utils.js";
 import { highlightCategoryItem } from "../categoryController.js";
 import { controllButtonShowing } from "./typeController.js";
@@ -53,7 +53,7 @@ export function controllPage() {
   });
 }
 
-function showPage({ pageMode, pageType }) {
+export function showPage({ pageMode, pageType }) {
   const modeAllGrid = pageType === GRID && pageMode === MODE_ALL;
   const modeMyGrid = pageType === GRID && pageMode === MODE_MY;
   const modeAllList = pageType === LIST && pageMode === MODE_ALL;
@@ -70,6 +70,8 @@ function showPage({ pageMode, pageType }) {
     showModeAllListPage(categoryId, listPage);
   } else if (modeMyList) {
     const myListPage = getState(myListPageState);
+    const maxPage = getState(myPressCntState);
+
     showModeMyListPage(myListPage);
   }
 }

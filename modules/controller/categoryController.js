@@ -22,7 +22,6 @@ export function handleCategoryItemClick({ currentTarget }) {
     setState(listPageState, 0);
   } else {
     const [, , pressId] = id.split("_");
-    console.log(pressId);
     setState(myListPageState, parseInt(pressId));
   }
 
