@@ -119,6 +119,7 @@ function paintNews(paintData = publisherData) {
 
       child.children[0].src = icon;
       child.children[0].alt = alt;
+      child.children[0].dataset.id = paintData[idx].id;
     } else {
       const alt = "";
       const icon = "";
