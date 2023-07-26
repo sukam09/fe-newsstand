@@ -58,7 +58,7 @@ export function drawMyPressToList() {
 
   filteredPressList.forEach((press, idx) => {
     // category
-    const categoryItem = createCategoryItem(press.name, `my_${idx}`, 1);
+    const categoryItem = createCategoryItem(press.name, `my_${idx}`, -1);
     const $categoryItem = strToHtmlElemnt(categoryItem);
     $categoryItem.addEventListener("click", handleCategoryItemClick);
     $ul.appendChild($categoryItem);

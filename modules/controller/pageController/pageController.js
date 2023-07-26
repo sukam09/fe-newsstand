@@ -153,6 +153,10 @@ function hideAllListPage() {
 }
 
 export function updatePageCount() {
+  const pageMode = getState(pageModeState);
+  if (pageMode === MODE_MY) {
+    return;
+  }
   const listPage = getState(listPageState);
   const categoryId = getState(categoryIdState);
   const $categoryItem = qs(`#category_${parseInt(categoryId)}`);

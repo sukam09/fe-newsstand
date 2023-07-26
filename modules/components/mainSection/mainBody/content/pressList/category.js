@@ -1,5 +1,9 @@
 import { getState } from "../../../../../store/observer.js";
-import { listPageState } from "../../../../../store/pageState.js";
+import {
+  MODE_MY,
+  listPageState,
+  pageModeState,
+} from "../../../../../store/pageState.js";
 
 export function createCategory(categoryList) {
   let categoryItems = "";
@@ -31,8 +35,14 @@ export function createCategoryItem(categoryName, categoryId, len) {
     <li class="category_item" id="category_${categoryId}">
       <span>${categoryName}</span>
       <span class="page_count">
+      ${
+        len === -1
+          ? ">"
+          : `
         <span class="now_page">${listPage + 1}</span>
-        <span class="all_page">/ ${len}</span>
+        <span class="all_page">/ ${len}</span>      `
+      }
+          
       </span>
       ${createProgressBar()}
     </li>
