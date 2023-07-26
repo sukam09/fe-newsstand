@@ -18,8 +18,8 @@ export function unsubscribeModal(name) {
   parent.classList.remove("modal__none");
 
   unsub.addEventListener("click", () => {
-    setUnsubscribe(name);
     parent.classList.add("modal__none");
+    setUnsubscribe(name);
   });
 
   no.addEventListener("click", () => {

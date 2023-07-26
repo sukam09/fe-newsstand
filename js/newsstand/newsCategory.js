@@ -20,8 +20,6 @@ import {
   setNavTabViewToAll,
   setCategoryIndex,
   setContentsPage,
-  setGoBefore,
-  getGoBefore,
   getFirstPage,
 } from "../store/dispatch.js";
 import { store } from "../store/reducer.js";
@@ -248,14 +246,13 @@ function handlProgressAnimationEnd(
   return function () {
     let categoryIdx = getCategoryIdx();
 
-    getGoBefore() ? --categoryIdx : ++categoryIdx;
+    ++categoryIdx;
 
     categoryIdx = categoryIdx < 0 ? totalCategory - 1 : categoryIdx;
     categoryIdx %= totalCategory;
 
     setCategoryIndex(categoryIdx);
     setContentsPage(1);
-    setGoBefore(false);
 
     startProgressAction(categoryList, contentsLength);
 

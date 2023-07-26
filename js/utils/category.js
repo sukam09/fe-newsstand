@@ -9,7 +9,6 @@ import {
   setCategoryIndex,
   setContentsPage,
   getCategoryIdx,
-  getGoBefore,
   getFirstPage,
   getNavTabView,
   getSubscrbeList,
@@ -169,11 +168,7 @@ export function nextContents(
     const reCount =
       parseInt(element.children[0].style.animationIterationCount) + 1;
 
-    if (getGoBefore()) {
-      element.children[0].style.animationIterationCount = 0;
-    } else {
-      element.children[0].style.animationIterationCount = reCount;
-    }
+    element.children[0].style.animationIterationCount = reCount;
   }
 
   showTextByNavTab(element, categoryDataLength, childIndex);
@@ -264,7 +259,9 @@ export function leftBtnEvent(
     let currentContents = getCurrentContent();
     setContentsPage(--currentContents);
 
+    // 더이상 보여줄 이전 콘텐츠가 없다면. 카테고리를 이동시켜야한다.
     if (currentContents <= 0) {
+      // '내가 구독한 언론사'일때
       if (getNavTabView() === VIEW.MY_SUB) {
         let idx =
           getCategoryIdx() <= 0
@@ -272,14 +269,29 @@ export function leftBtnEvent(
             : getCategoryIdx() - 1;
 
         setCategoryIndex(idx);
-      } else {
-        let idx = getCategoryIdx() <= 0 ? 7 - 1 : getCategoryIdx() - 1;
+      }
+      // '전체 언론사'일때
+      else {
+        let idx =
+          getCategoryIdx() <= 0 ? CATEROY_NUMBER - 1 : getCategoryIdx() - 1;
 
         setCategoryIndex(idx);
       }
     }
-    currentContents = currentContents <= 0 ? 1 : currentContents;
-    setContentsPage(currentContents);
+
+    // 카테고리가 이동하고 콘텐츠를 어디서부터 보여줄것인지
+    if (getNavTabView() === VIEW.ALL_SUB) {
+      currentContents =
+        currentContents <= 0
+          ? categoryDataLength[getCategoryIdx()]
+          : currentContents;
+      setContentsPage(currentContents);
+    } else {
+      currentContents =
+        currentContents <= 0
+          ? getSubscrbeList()[getCategoryIdx()]
+          : currentContents;
+    }
 
     nextContents(
       POSITION.LEFT,

@@ -1,6 +1,12 @@
-import { setNavTabViewToMy, setUserViewToList } from "../store/dispatch.js";
+import {
+  getSubscrbeList,
+  setNavTabViewToMy,
+  setUserViewToList,
+} from "../store/dispatch.js";
 import { focusToAllPublisher, focusToMyPubliser } from "../utils/navTab.js";
 import { MESSAGE, VIEW } from "./constant.js";
+
+let snackBarTime;
 
 export function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
@@ -24,14 +30,22 @@ export function handleElementClass(element, type, name) {
 }
 
 export function snackBarAction(msg) {
+  if (snackBarTime) {
+    clearTimeout(snackBarTime);
+  }
   const snackbar = document.querySelector(".modal__snack-bar");
   snackbar.classList.remove("modal__none");
   snackbar.textContent = msg;
-  setTimeout(() => {
+  snackBarTime = setTimeout(snackBarCallBack(snackbar), 2000);
+}
+
+function snackBarCallBack(snackbar) {
+  return function () {
     snackbar.classList.add("modal__none");
     switchTo(); // 구독버튼을 눌렀을때 이동.
-  }, 2000);
+  };
 }
+
 export function snackBarListAction(msg) {
   const snackbar = document.querySelector(".modal__snack-bar");
   snackbar.classList.remove("modal__none");
