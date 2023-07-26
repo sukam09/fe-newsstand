@@ -40,11 +40,6 @@ export function createMainGrid(grid_view_info, isInit, isDark) {
             // 그리드 셀 호버시 나타나는 컴포넌트
             const $mouse_hover_btn = create.div({
                 className: "mouse-enter-grid",
-                events: {
-                    mouseleave: () => {
-                        $mouse_hover_btn.style.visibility = "hidden"; // 그리드 셀 벗어나는 경우 이벤트
-                    },
-                },
             });
 
             // 구독하기 버튼 (구독한 경우: 해지하기 버튼, 구독하지 않은 경우: 구독하기 버튼)
@@ -85,6 +80,9 @@ export function createMainGrid(grid_view_info, isInit, isDark) {
                 events: {
                     mouseenter: () => {
                         $mouse_hover_btn.style.visibility = "visible";
+                    },
+                    mouseleave: () => {
+                        $mouse_hover_btn.style.visibility = "hidden"; // 그리드 셀 벗어나는 경우 이벤트
                     },
                 },
             });
