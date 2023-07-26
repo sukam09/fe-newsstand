@@ -205,7 +205,6 @@ const getNewsData = async () => {
 const updateCategoryProgress = () => {
   var categoryItems = document.querySelectorAll(".category_item");
   var progressedItem = document.querySelector(".category_item.progressed");
-
   categoryItems.forEach(item => item.style.background = '');
   if (progressedItem) {
     progressedItem.classList.remove("progressed");
@@ -213,6 +212,7 @@ const updateCategoryProgress = () => {
 
   if (categoryItems[category_page.getState()]) {
     categoryItems[category_page.getState()].classList.add("progressed");
+    categoryItems[category_page.getState()].scrollIntoView({behavior: "smooth"}); 
   }
   setNewsData();
 };
