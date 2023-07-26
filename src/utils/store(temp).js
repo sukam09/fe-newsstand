@@ -20,12 +20,17 @@ export default class Store {
 
     this.frozenState = frozenState;
 
+    this.unsubscribe = (func) => {
+      this.observers.delete(func);
+    };
+
     // dispatch로만 state의 값을 변경할 수 있다.
     this.dispatch = (action) => {
       const newState = reducer(this.state, action);
 
       for (const [key, value] of Object.entries(newState)) {
-        if (!this.state[key] || this.state[key] === value) continue;
+        if (this.state[key] === undefined || this.state[key] === value)
+          continue;
         this.state[key] = value;
       }
 

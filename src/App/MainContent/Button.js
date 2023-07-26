@@ -30,6 +30,9 @@ const buttonInner = { left: leftButtonInner, right: rightButtonInner };
 
 function Button($target, props) {
   Component.call(this, $target, props);
+  if (mainStore.getState().viewType === GRID) {
+    gridStore.subscribe(this.setUp);
+  }
 }
 
 Object.setPrototypeOf(Button.prototype, Component.prototype);

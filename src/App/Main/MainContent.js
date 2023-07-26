@@ -8,9 +8,10 @@ import Button from "../MainContent/Button.js";
 import PressGridView from "../MainContent/PressGridView.js";
 import NewsListView from "../MainContent/NewsListView.js";
 import Component from "../../utils/Component.js";
-import { mainStore, GRID, LIST } from "../../store/MainStore.js";
+import { mainStore, GRID, LIST, ALL } from "../../store/MainStore.js";
 import { FIRST_PAGE, gridStore, setPage } from "../../store/GridStore.js";
 import { pressStore } from "../../store/PressStore.js";
+import { listStore } from "../../store/ListStore.js";
 
 const listViewData = await fetchNews();
 const pressData = await fetchPress();
@@ -57,16 +58,16 @@ function MainContent($target, props) {
   };
 
   Component.call(this, $target, props);
+  mainStore.subscribe(this.setUp);
 
-  this.prevView = mainStore.getState().viewType;
-  this.prevPress = mainStore.getState().pressType;
+  this.prevView = undefined;
+  this.prevPress = undefined;
 
   let $div = document.createElement("div");
   $div.setAttribute("class", "snack-bar");
   $div.innerText = snackBarText;
 
   cancelAnimation();
-  mainStore.subscribe(this.observerCallback);
 }
 
 Object.setPrototypeOf(MainContent.prototype, Component.prototype);
@@ -97,28 +98,35 @@ const nextGridPage = () => {
 MainContent.prototype.mounted = function () {
   const mainState = mainStore.getState();
   const directions = ["left", "right"];
+  let lastPage = undefined;
 
   let callBacks = [prevGirdpage, nextGridPage];
 
   if (mainState.viewType === GRID) {
+    gridStore.observers.clear();
+
     const $ul = this.$el.querySelector("ul");
+
+    lastPage =
+      mainStore.getState().pressType === ALL
+        ? TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER
+        : Math.ceil(
+            pressStore.getState().pressArr.length / GRID_PRESS_NUBER + 0.5
+          );
 
     new PressGridView($ul, {
       ...this.props,
-      setLastPage: this.setLastPage,
     });
   } else if (mainState.viewType === LIST) {
     const $div = this.$el.querySelector("div");
+
+    listStore.observers.clear();
     new NewsListView($div, { ...this.props });
+    lastPage = 12;
   }
 
   const buttons = this.$el.querySelectorAll(".page");
   buttons.forEach(($button, index) => {
-    const lastPage =
-      mainStore.getState().pressType === "all"
-        ? 4
-        : pressStore.getState().pressArr.length / 24 + 1;
-
     new Button($button, {
       ...this.props,
       direction: directions[index],
@@ -127,4 +135,9 @@ MainContent.prototype.mounted = function () {
     });
   });
 };
+
+MainContent.prototype.isRender = function () {
+  return this.prevView !== mainStore.getState().viewType;
+};
+
 export default MainContent;

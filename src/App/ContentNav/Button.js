@@ -18,14 +18,6 @@ const findTargetChildNode = (element, targetTagName) => {
 
 function Button($target, props) {
   Component.call(this, $target, props);
-
-  if (this.props.actionType === SET_PRESS) {
-    this.$el.style.color = this.props.selected ? "#14212B" : "#879298";
-    this.$el.style.fontWeight = this.props.selected ? 700 : 500;
-  } else {
-    const path = this.$el.querySelector("path");
-    path.style.fill = this.props.selected ? "#4362D0" : "";
-  }
 }
 
 Object.setPrototypeOf(Button.prototype, Component.prototype);
@@ -38,4 +30,13 @@ Button.prototype.setEvent = function () {
   this.$el.addEventListener("click", this.props.onClick);
 };
 
+Button.prototype.mounted = function () {
+  if (this.props.actionType === SET_PRESS) {
+    this.$el.style.color = this.props.selected ? "#14212B" : "#879298";
+    this.$el.style.fontWeight = this.props.selected ? 700 : 500;
+  } else {
+    const path = this.$el.querySelector("path");
+    path.style.fill = this.props.selected ? "#4362D0" : "";
+  }
+};
 export default Button;

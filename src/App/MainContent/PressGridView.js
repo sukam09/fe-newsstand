@@ -6,7 +6,7 @@ import findTargetChildNode from "../../api/findTargetChildNode.js";
 import findTargetParentNode from "../../api/findTargetParentNode.js";
 import { addPress, removePress, pressStore } from "../../store/PressStore.js";
 import Component from "../../utils/Component.js";
-import { mainStore, ALL, MY } from "../../store/MainStore.js";
+import { mainStore, ALL, MY, GRID } from "../../store/MainStore.js";
 import { gridStore } from "../../store/GridStore.js";
 
 const TOTAL_PRESS_NUMBER = 96;
@@ -95,30 +95,26 @@ const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
 };
 
 function PressGridView($target, props) {
-  this.indexArr = undefined;
-  this.prevState = undefined;
-  this.prePage = undefined;
-
-  Component.call(this, $target, props);
-
-  mainStore.subscribe(this.observerCallback);
-  gridStore.subscribe(this.observerCallback);
-  pressStore.subscribe(this.observerCallback);
-}
-
-Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
-
-PressGridView.prototype.template = function () {
-  const gridState = gridStore.getState();
-  const mainState = mainStore.getState();
-
-  if (mainState.pressType === ALL) {
+  if (mainStore.getState().pressType === ALL) {
     this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
   } else {
     this.indexArr = pressStore.getState().pressArr;
   }
 
-  return createPressList(gridState.currentPage, this.indexArr, this.props.mode);
+  Component.call(this, $target, props);
+
+  mainStore.subscribe(this.setUp);
+  gridStore.subscribe(this.setUp);
+}
+
+Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
+
+PressGridView.prototype.template = function () {
+  return createPressList(
+    gridStore.getState().currentPage,
+    this.indexArr,
+    this.props.mode
+  );
 };
 
 PressGridView.prototype.setEvent = function () {
@@ -126,15 +122,15 @@ PressGridView.prototype.setEvent = function () {
 };
 
 PressGridView.prototype.mounted = function () {
-  this.prevState = mainStore.getState().pressType;
-  this.prePage = gridStore.getState().currentPage;
+  if (mainStore.getState().pressType === ALL) {
+    pressStore.unsubscribe(this.setUp);
+  } else {
+    pressStore.subscribe(this.setUp);
+  }
 };
 
 PressGridView.prototype.isRender = function () {
-  return (
-    this.prevState !== mainStore.getState().pressType ||
-    this.prePage !== gridStore.getState().currentPage
-  );
+  return mainStore.getState().viewType === GRID;
 };
 
 export default PressGridView;

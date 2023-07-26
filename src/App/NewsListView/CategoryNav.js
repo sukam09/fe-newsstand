@@ -59,6 +59,7 @@ function CategoryNav($target, props) {
     category: FIRST_CATEGORY,
   };
 
+  listStore.subscribe(this.setUp);
   // const nextCategoryState = {
   //   currentPage: 1,
   //   category: props.category + 1,
@@ -212,16 +213,14 @@ const handleClickCategory = function ({ target }) {
 };
 
 CategoryNav.prototype.setEvent = function () {
-  if (!this.$ul) {
-    this.$ul = this.$el.querySelector(".categoty-list");
-    this.$ul.addEventListener("click", handleClickCategory.bind(this));
-  }
+  this.$ul = this.$el.querySelector("ul");
+  this.$ul.addEventListener("click", handleClickCategory.bind(this));
 };
 
 CategoryNav.prototype.mounted = function () {
   const currentCategory = listStore.getState().category;
   const progressBar = `<div class="progress-bar"></div>`;
-  const selectedElement = this.$ul?.children[currentCategory];
+  const selectedElement = this.$ul.children[currentCategory];
 
   if (selectedElement) {
     selectedElement.style.zIndex = 1;
@@ -239,4 +238,7 @@ CategoryNav.prototype.mounted = function () {
   }
 };
 
+CategoryNav.prototype.isRender = function () {
+  return mainStore.getState().viewType === LIST;
+};
 export default CategoryNav;

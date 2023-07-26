@@ -8,6 +8,7 @@ import Contents from "../NewsListView/Contents.js";
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
 import Component from "../../utils/Component.js";
 import { LIST, mainStore } from "../../store/MainStore.js";
+import { listStore } from "../../store/ListStore.js";
 
 let indexArr;
 let prevCategory = undefined;
@@ -60,7 +61,7 @@ function NewsListView($target, props) {
     this.state.lastCategory = nextLastCategory;
   };
 
-  this.$nav = undefined;
+  this.prevCategory = undefined;
 
   Component.call(this, $target, props);
   // if (prevCategory !== props.category) {
@@ -124,10 +125,18 @@ NewsListView.prototype.mounted = function () {
   const $nav = this.$el.querySelector("nav");
   const $section = this.$el.querySelector("section");
 
-  this.$nav = new CategoryNav($nav, {
+  this.prevCategory = listStore.getState().category;
+  new CategoryNav($nav, {
     ...this.props,
-    setLastCategory: this.setLastCategory,
   });
   // new Contents($section, { ...this.props });
 };
+
+NewsListView.prototype.isRender = function () {
+  return (
+    mainStore.getState().viewType === LIST &&
+    this.prevCategory !== listStore.getState().category
+  );
+};
+
 export default NewsListView;

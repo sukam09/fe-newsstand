@@ -1,18 +1,18 @@
 function Component($el, props) {
+  console.log(this);
   this.$el = $el;
   this.props = props;
   this.state;
 
-  this.observerCallback = () => {
+  this.setUp = () => {
     if (this.isRender()) {
-      console.log(this);
       this.render();
       this.setEvent();
       this.mounted();
     }
   };
 
-  this.observerCallback();
+  this.setUp();
 }
 
 Component.prototype.initState = function () {

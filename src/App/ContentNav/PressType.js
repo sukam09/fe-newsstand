@@ -11,6 +11,11 @@ import {
   mainStore,
   setPress,
 } from "../../store/MainStore.js";
+import {
+  listStore,
+  setCategory,
+  FIRST_CATEGORY,
+} from "../../store/ListStore.js";
 
 const types = [ALL, MY];
 const buttonInners = ["전체 언론사", "내가 구독한 언론사"];
@@ -23,17 +28,20 @@ const createButton = (button, index) => {
     onClick: () => {
       const newPressType = setPress(types[index]);
       const initPage = setPage(FIRST_PAGE);
+      const initCategory = setCategory(FIRST_CATEGORY);
 
       mainStore.dispatch(newPressType);
+      listStore.dispatch(initCategory);
       gridStore.dispatch(initPage);
     },
   };
 
   new Button(button, buttonProps);
 };
+
 function PressType($target, props) {
   Component.call(this, $target, props);
-  mainStore.subscribe(this.observerCallback);
+  mainStore.subscribe(this.setUp);
 }
 
 Object.setPrototypeOf(PressType.prototype, Component.prototype);
