@@ -2,13 +2,13 @@ import {
   getCurrentPress,
   getSubscribedPress,
   getView,
+  getPage,
 } from "../core/getter.js";
 import { store } from "../core/store.js";
-import { ICON_IMG_PATH } from "../constants/constants.js";
+import { ICON_IMG_PATH, PRESS_VIEW_COUNT } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 import { showGridView } from "./makeGridView.js";
 import { changeView } from "./changeView.js";
-
 export function showSubscribeButton(isSubscribed) {
   return isSubscribed
     ? getView() === "grid"
@@ -31,20 +31,27 @@ export function showSubscribeButton(isSubscribed) {
         `;
 }
 
-function checkAnswer(e, _press) {
-  const currentIndex = getSubscribedPress().findIndex(
-    (press) => press.name === _press.name
-  );
+export function checkAnswer(e) {
   const target = e.target.closest("button");
+  const currentIndex = getSubscribedPress().findIndex(
+    (press) => press.name === getCurrentPress().name
+  );
+
   if (target.classList.contains("btn-yes")) {
     const updatedSubscribedPress = getSubscribedPress().filter(
-      (item) => item.name !== _press.name
+      (item) => item.name !== getCurrentPress().name
     );
     store.setState({ subscribedPress: updatedSubscribedPress });
+    target.closest(".popup").style.display = "none";
+    // if (getSubscribedPress().length <= PRESS_VIEW_COUNT * getPage()) {
+    //   console.log(getSubscribedPress().length, PRESS_VIEW_COUNT * getPage());
+    //   store.setState({ page: getPage() - 1 });
+    //   // showGridView();
+    // }
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   }
 }
-function handleAnimationEnd(e, _press) {
+export function handleAnimationEnd(e) {
   const view_content = document.querySelector(".view-content");
   const snackbar = view_content.querySelector(".snackbar");
 
@@ -52,31 +59,31 @@ function handleAnimationEnd(e, _press) {
     snackbar.style.display = "none";
     store.setState({ tabMode: "subscribe" });
     changeView("list");
-    showListView(_press.name);
+    // showListView(_press.name);
   }
 }
-
-function checkRange(e) {
-  if (!e.target.closest(".popup") && !e.target.closest(".sub")) {
-    deletePopupAndAnimation();
-  }
+export function deletePopupAndAnimation() {
+  closeAllPopups();
+  const btn = document.querySelector(".buttons");
+  document.removeEventListener("animationend", handleAnimationEnd);
+  btn.removeEventListener("click", checkAnswer);
 }
 
-function deletePopupAndAnimation() {
+function closeAllPopups() {
   const popups = document.querySelectorAll(".popup");
-  if (popups)
+  if (popups) {
     popups.forEach((popup) => {
       popup.style.display = "none";
     });
-  document.addEventListener("animationend", (e) => handleAnimationEnd);
+  }
 }
 
 export function handleSubscribe(_press) {
   const isSubscribed = getSubscribedPress().some(
     (press) => press.name === _press.name
   );
-  document.addEventListener("click", (e) => checkRange(e));
-  deletePopupAndAnimation();
+  closeAllPopups();
+
   //구독한 상태에서 누를 경우
   if (isSubscribed) {
     store.setState({ currentPress: _press });
@@ -84,11 +91,6 @@ export function handleSubscribe(_press) {
     alert.style.display = "block";
     const press_msg = alert.querySelector(".press");
     press_msg.innerHTML = `${getCurrentPress().name}`;
-    const btn = document.querySelector(".buttons");
-    btn.addEventListener("click", (e) => {
-      checkAnswer(e, _press);
-      alert.style.display = "none";
-    });
   }
   //구독하지 않았을 때 => 구독됨
   else {
@@ -96,9 +98,6 @@ export function handleSubscribe(_press) {
     store.setState({ subscribedPress: updatedSubscribedPress });
     const snackbar = document.querySelector(".snackbar");
     snackbar.style.display = "block";
-    document.addEventListener("animationend", (e) =>
-      handleAnimationEnd(e, _press)
-    );
 
     //구독한 상태로 바뀜
     getView() === "grid" ? showGridView() : showListView();

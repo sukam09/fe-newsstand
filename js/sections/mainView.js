@@ -11,15 +11,29 @@ import { store } from "../core/store.js";
 import { shuffleArray } from "../utils/shuffleIndex.js";
 import { getView, getPage, getMode, getCurrentPress } from "../core/getter.js";
 import { getData } from "../core/api.js";
-function MainView() {
-  document.addEventListener("click", handleClick);
+import {
+  deletePopupAndAnimation,
+  checkAnswer,
+  handleAnimationEnd,
+} from "../utils/subscribePress.js";
 
+function MainView() {
   store.setState({
     gridIndex: shuffleArray(gridIndex),
     // listIndex: shuffleArray(data),
   });
   drawPopup();
   showGridView();
+  attachEventListner();
+}
+
+function attachEventListner() {
+  document.addEventListener("click", (e) => handleClick(e));
+  document.addEventListener("animationend", (e) => handleAnimationEnd(e));
+  const btn = document.querySelector(".buttons");
+  btn.addEventListener("click", (e) => {
+    checkAnswer(e);
+  });
 }
 
 function changePage(target) {
@@ -36,7 +50,15 @@ function changePage(target) {
   }
 }
 
+function checkRange(e) {
+  if (!e.target.closest(".popup") && !e.target.closest(".sub")) {
+    deletePopupAndAnimation();
+  }
+}
+
 function drawPopup() {
+  document.addEventListener("click", (e) => checkRange(e));
+
   const view_content = document.querySelector(".view-content");
   // alert 그리는 부분
   const new_div_alert = document.createElement("div");
