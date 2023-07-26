@@ -1,6 +1,6 @@
 import { Observable } from './Observable.js';
 
-class Store extends Observable {
+class Vuex extends Observable {
   constructor(store) {
     super();
     this.state = store.state;
@@ -27,4 +27,4 @@ class Store extends Observable {
   }
 }
 
-export { Store };
+export { Vuex };

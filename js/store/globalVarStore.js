@@ -1,6 +1,6 @@
-import { Store } from '../core/Store.js';
+import { Vuex } from '../core/Vuex.js';
 
-const globalStore = new Store({
+const globalStore = new Vuex({
   state: {
     전체언론_그리드_인덱스: 0,
     전체언론_리스트: {

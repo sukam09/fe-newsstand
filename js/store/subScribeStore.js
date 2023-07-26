@@ -1,6 +1,6 @@
-import { Store } from '../core/Store.js';
+import { Vuex } from '../core/Vuex.js';
 
-const subScribeStore = new Store({
+const subScribeStore = new Vuex({
   state: {
     subscribeData: [],
   },
