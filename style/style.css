@@ -1,5 +1,3 @@
-@import url("./constant.css");
-
 body {
   width: 1280px;
   height: 720px;
@@ -35,7 +33,7 @@ body {
 }
 .light_button {
   position: absolute;
-  color: var(--text-strong);
+  color: #ffc312;
   transform: rotate(0deg) scale(1);
   transition: all 0.5s ease-in-out;
 }
