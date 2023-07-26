@@ -15,6 +15,8 @@ import {
   getMode,
   getCurrentPress,
   getIndex,
+  getSubscribedPress,
+  getTabMode,
 } from "../core/getter.js";
 import { getData } from "../core/api.js";
 import {
@@ -113,7 +115,6 @@ function handleClick(e) {
     case "list-view-btn":
       store.setState({ page: FIRST_PAGE_NUM });
       changeView(target.slice(0, 4));
-      getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
       break;
     case "left":
     case "right":
@@ -122,8 +123,18 @@ function handleClick(e) {
         : changePage(target);
       break;
     case "all":
+      updateTabSelection(document.getElementById("all"));
+      break;
     case "subscribe":
-      updateTabSelection(document.getElementById(`${target}`));
+      if (!getSubscribedPress().length) {
+        alert("구독한 언론사가 없습니다.");
+        store.setState({ tabMode: "all" });
+        return;
+      } else {
+        store.setState({ tabMode: "subscribe" });
+        changeView("list");
+      }
+
       break;
     default:
       break;

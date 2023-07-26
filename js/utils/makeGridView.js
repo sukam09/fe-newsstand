@@ -59,6 +59,7 @@ export function showGridView() {
   getTabMode() === "all"
     ? (list = getIndex("gridIndex"))
     : (list = subscribedIndex);
+
   const main_list = document.querySelector(".main-list");
   main_list.innerHTML = grid_view;
   const main_list_ul = document.querySelector(".main-list-ul");
@@ -83,7 +84,9 @@ export function showGridView() {
       img = li.querySelector("img");
       li.addEventListener("mouseover", () => handleEvent("over", img));
       li.addEventListener("mouseout", () => handleEvent("out", img));
-      li.addEventListener("click", () => handleEvent("click", img));
+      li.querySelector("button").addEventListener("click", () =>
+        handleEvent("click", img)
+      );
     } else {
       li.style.cursor = "default";
     }

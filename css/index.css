@@ -150,7 +150,7 @@ body {
 
 button:hover,
 .title:hover,
-.main-list ul li:hover,
+.list-view .main-list ul li:hover,
 .news-title:hover,
 a:hover {
   cursor: pointer;

@@ -6,7 +6,7 @@ class Store {
       mode: "light", //추후 다크모드
       view: "grid", //그리드뷰 또는 리스트뷰
       page: FIRST_PAGE_NUM, //현재 페이지
-      tabMode: "all", //all 전체언론사 sub 구독한 언론사
+      tabMode: "all", //all 전체언론사 subcribe 구독한 언론사
       gridIndex: [], //셔플된 그리드 인덱스
       listIndex: [], //셔플된 리스트인덱스
       subscribedPress: [
