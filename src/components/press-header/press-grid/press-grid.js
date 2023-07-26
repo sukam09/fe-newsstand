@@ -1,4 +1,4 @@
-import { HEADER_CLASS, PATH, NUMBER, CONTENT } from '../../../constants/press-grid.js';
+import { HEADER_CLASS, PATH, NUMBER, CONTENT } from '../../../constants/press-header/press-grid.js';
 import { initGridArrow } from './press-grid-arrow.js';
 import { initGridButton } from './press-grid-button.js';
 import { Store } from '../../../utils/store.js';

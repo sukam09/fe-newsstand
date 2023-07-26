@@ -1,5 +1,5 @@
-import { HEADER_CLASS, PATH, CONTENT, NUMBER } from '../../../constants/press-list.js';
-import { LIST } from '../../../constants/press-data.js';
+import { HEADER_CLASS, PATH, CONTENT, NUMBER } from '../../../constants/press-header/press-list.js';
+import { LIST } from '../../../constants/press-header/press-data.js';
 import { getShuffle } from '../../../utils/shuffle.js';
 import { initListProgress } from './press-list-progress.js';
 import { Store } from '../../../utils/store.js';

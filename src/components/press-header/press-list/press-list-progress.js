@@ -1,5 +1,13 @@
-import { HEADER_CLASS, BUTTON, ARROW, ATTRIBUTE, CATEGORY, NUMBER, CONTENT } from '../../../constants/press-list.js';
-import { LIST } from '../../../constants/press-data.js';
+import {
+  HEADER_CLASS,
+  BUTTON,
+  ARROW,
+  ATTRIBUTE,
+  CATEGORY,
+  NUMBER,
+  CONTENT,
+} from '../../../constants/press-header/press-list.js';
+import { LIST } from '../../../constants/press-header/press-data.js';
 import { Store } from '../../../utils/store.js';
 import { getSnackBar, getAlert } from '../../../utils/popup.js';
 

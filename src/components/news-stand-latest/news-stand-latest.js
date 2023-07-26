@@ -1,4 +1,4 @@
-import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../../constants/news-stand-rolling.js';
+import { HEADER_CLASS, NEWS_SLICE, SIDE, URL, ERROR } from '../../constants/news-stand-latest/news-stand-latest.js';
 import { getFetchData } from '../../utils/fetch.js';
 import { startRolling } from './news-stand-rolling.js';
 

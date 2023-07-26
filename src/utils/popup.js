@@ -1,5 +1,5 @@
-import { HEADER_CLASS, MESSESE, NUMBER } from '../constants/press-popup.js';
-import { LIST } from '../constants/press-data.js';
+import { HEADER_CLASS, MESSESE, NUMBER } from '../constants/press-header/press-popup.js';
+import { LIST } from '../constants/press-header/press-data.js';
 import pressHeaderStore from '../components/press-header/press-header.js';
 
 const getSnackBar = () => {

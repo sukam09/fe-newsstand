@@ -1,4 +1,4 @@
-import { HEADER_CLASS, NUMBER, MODE, ATTRIBUTE } from '../../../constants/press-grid.js';
+import { HEADER_CLASS, NUMBER, MODE, ATTRIBUTE } from '../../../constants/press-header/press-grid.js';
 import { getSliceIds } from '../../../utils/shuffle.js';
 import { Store } from '../../../utils/store.js';
 

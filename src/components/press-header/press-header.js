@@ -1,5 +1,5 @@
-import { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE } from '../../constants/press-header.js';
-import { LIST } from '../../constants/press-data.js'; // 변수 빼기
+import { HEADER_CLASS, PATH, URL, ERROR, TITLE, STYLE } from '../../constants/press-header/press-header.js';
+import { LIST } from '../../constants/press-header/press-data.js'; // 변수 빼기
 import { Store } from '../../utils/store.js';
 import { getFetchData } from '../../utils/fetch.js';
 import { initLightDarkMode } from './light-dark-mode.js';

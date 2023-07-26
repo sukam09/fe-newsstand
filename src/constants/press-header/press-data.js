@@ -1,4 +1,4 @@
-import { getShuffleIds } from '../utils/shuffle.js';
+import { getShuffleIds } from '../../utils/shuffle.js';
 
 const LIST = {
   SUFFLE_CATEGORY: [],

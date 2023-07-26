@@ -1,4 +1,4 @@
-import { MODE_CLASS, MODE, PATH } from '../../constants/light-dark-mode.js';
+import { MODE_CLASS, MODE, PATH } from '../../constants/press-header/light-dark-mode.js';
 
 /**
  * 뉴스스탠드의 INIT

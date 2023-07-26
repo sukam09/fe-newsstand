@@ -1,5 +1,5 @@
-import { HEADER_CLASS, ATTRIBUTE, BUTTON, CONTENT } from '../../../constants/press-grid.js';
-import { LIST } from '../../../constants/press-data.js';
+import { HEADER_CLASS, ATTRIBUTE, BUTTON, CONTENT } from '../../../constants/press-header/press-grid.js';
+import { LIST } from '../../../constants/press-header/press-data.js';
 import { getSnackBar, getAlert } from '../../../utils/popup.js';
 
 class GridButton {
