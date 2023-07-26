@@ -1,8 +1,8 @@
 import { initGridItemEvent, preventButtonClick } from "../subscribe/subscribe.js";
-import { PAGE_SIZE } from "../store/const.js";
+import { LIST_ELEMENT, PAGE_SIZE } from "../store/const.js";
 import { setDisplay, getJSON } from "../util/utils.js";
-import { setState, getState, subscribe } from "../observer/observer.js";
-import { gridPageCount, isDark, isGridView, isSubView, subGridPageCount, subscribedPress } from "../store/store.js";
+import { setState, getState } from "../observer/observer.js";
+import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "../store/store.js";
 
 const shuffle = () => Math.random() - 0.5;
 let presses = null;
@@ -26,27 +26,23 @@ function drawGridArrow() {
 }
 
 function appendPressInGrid(press) {
-  // grid에 뉴스 기사 넣기
-  const $list = document.createElement("li");
-  $list.classList.add("press-item");
-  initGridItemEvent($list, press);
-  const $image = document.createElement("img");
-  $image.src = getState(isDark) ? `${press.path_dark}` : `${press.path_light}`;
-  $image.classList.add("original");
-  const $button = document.createElement("button");
-  $button.classList.add("hidden");
-  preventButtonClick($button, false);
-  const $sub_img = document.createElement("img");
+  const btn_image_src = getPressImageSrc(press);
+  const $press_list = document.getElementById("press-list");
+  const image_src = getState(isDark) ? press.path_dark : press.path_light;
+  const htmls = LIST_ELEMENT(image_src, btn_image_src);
+  $press_list.insertAdjacentHTML("beforeend", htmls);
+  const $li_element = $press_list.lastElementChild;
+  const $li_btn = $li_element.querySelector("button");
+  initGridItemEvent($li_element, press);
+  preventButtonClick($li_btn, false);
+}
+
+function getPressImageSrc(press) {
   if (getState(isSubView)) {
-    $sub_img.src = "../img/icons/unsubBtn.svg";
+    return "../img/icons/unsubBtn.svg";
   } else {
-    $sub_img.src = getState(subscribedPress).some(data => data.name === press.name)
-      ? "../img/icons/unsubBtn.svg"
-      : "../img/icons/Button.svg";
+    return getState(subscribedPress).some(data => data.name === press.name) ? "../img/icons/unsubBtn.svg" : "../img/icons/Button.svg";
   }
-  $button.append($sub_img);
-  $list.append($image, $button);
-  document.getElementById("press-list").appendChild($list);
 }
 
 function pressGridArrow(increment) {

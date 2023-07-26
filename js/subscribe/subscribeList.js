@@ -6,18 +6,21 @@ function setSubListNav() {
   const subscribed_presses = getState(subscribedPress);
   const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
   $sub_list_nav.innerHTML = "";
-  subscribed_presses.forEach((press, index) => {
-    const $li = document.createElement("li");
-    $li.classList.add("sub-nav-item", "surface-alt", "text-weak");
-    $li.textContent = press.name;
-    $li.addEventListener("click", clickSubListNav);
-    $li.addEventListener("animationiteration", progressEnd);
-    if (index === getState(subListPageCount)) {
-      $li.classList.add("list-progress-bar", "text-white-default");
-      insertNavArrow($li);
-    }
-    $sub_list_nav.append($li);
-  });
+  subscribed_presses.forEach((press, index) => addSubListItem(press, index));
+}
+
+function addSubListItem(press, index) {
+  const $sub_list_nav = document.querySelector(".sub-list-nav").firstElementChild;
+  const $li = document.createElement("li");
+  $li.classList.add("sub-nav-item", "surface-alt", "text-weak");
+  $li.textContent = press.name;
+  $li.addEventListener("click", clickSubListNav);
+  $li.addEventListener("animationiteration", progressEnd);
+  if (index === getState(subListPageCount)) {
+    $li.classList.add("list-progress-bar", "text-white-default");
+    insertNavArrow($li);
+  }
+  $sub_list_nav.append($li);
 }
 
 function progressEnd() {
@@ -34,10 +37,8 @@ function clickSubListNav({ target: target }) {
   $element.classList.remove("list-progress-bar", "text-white-default");
   $element.querySelector("span").remove();
   const nav_item = target.textContent;
-  setState(
-    subListPageCount,
-    subscribed_presses.findIndex(data => data.name === nav_item),
-  );
+  const item_index = subscribed_presses.findIndex(data => data.name === nav_item);
+  setState(subListPageCount, item_index);
   target.classList.add("list-progress-bar");
   insertNavArrow(target);
 }

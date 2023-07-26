@@ -1,9 +1,9 @@
-import { isDark, subscribedPress } from "../store/store.js";
+import { isDark, subscribedPress, nowCategory, categoryPageCount, isSubView, subListPageCount } from "../store/store.js";
 import { getState, setState, subscribe } from "../observer/observer.js";
 import { drawGridView } from "../view/gridView.js";
 
+let presses_by_category;
 let presses;
-
 const getJSON = async url => {
   try {
     const response = await fetch(url);
@@ -37,13 +37,13 @@ function findPress(type, target) {
   if (type === "src") {
     let $target_src = target.getElementsByTagName("img")[0].src;
     $target_src = ".." + $target_src.split("5500")[1];
-    const press_name = presses.find(press => {
+    const finded_press = presses.find(press => {
       const press_src = getState(isDark) ? press.path_dark : press.path_light;
       return $target_src === press_src;
-    }).name;
-    return press_name;
+    })
+    return finded_press;
   } else if (type === "name") {
-    return presses.find(press => press.name === target.textContent); // 객체반환
+    return presses.find(press => press.name === target.textContent); 
   }
 }
 
@@ -109,11 +109,37 @@ function showListNav(type) {
   }
 }
 
+function getNews() {
+  // 뷰 상태에 따라 맞는 뉴스 가져오기
+  const subscribed_presses = getState(subscribedPress);
+  const now_category = getState(nowCategory);
+  const page_count = getState(categoryPageCount);
+  return getState(isSubView) ? subscribed_presses[getState(subListPageCount)] : presses_by_category[now_category][page_count[now_category]];
+}
+
+function moveEmptySubListPage() {
+  removeDisplay();
+  changeOption("subscribe");
+  setDisplay(".no-sub-item-div", "query", "flex");
+}
+
 async function initUtilData() {
-  presses = await getJSON("../assets/media.json");
-  presses = Object.values(presses).reduce((acc, cur) => {
+  presses_by_category = await getJSON("../assets/media.json");
+  presses = Object.values(presses_by_category).reduce((acc, cur) => {
     return acc.concat(cur);
   });
 }
 
-export { setDisplay, removeDisplay, findPress, findSpanNearby, getJSON, initUtilData, checkIsSubscribe, setSubData, showListNav };
+export {
+  setDisplay,
+  removeDisplay,
+  findPress,
+  findSpanNearby,
+  getJSON,
+  initUtilData,
+  checkIsSubscribe,
+  setSubData,
+  showListNav,
+  getNews,
+  moveEmptySubListPage,
+};

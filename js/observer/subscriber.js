@@ -8,6 +8,7 @@ import {
   isGridView,
   isSubView,
   isDark,
+  subscribedPress,
 } from "../store/store.js";
 import { drawListArrow, drawNews, setNowCount, restartAnimation } from "../view/listView.js";
 import { setSubListNav } from "../subscribe/subscribeList.js";
@@ -42,4 +43,5 @@ export function initSubscriber() {
 
   subscribe(isDark, drawNews);
   subscribe(isDark, drawGridView);
+  subscribe(subscribedPress, drawNews);
 }

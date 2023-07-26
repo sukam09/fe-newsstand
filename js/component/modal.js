@@ -1,22 +1,13 @@
-import { setDisplay, findPress, findSpanNearby, removeDisplay, getJSON } from "../util/utils.js";
+import { setDisplay, findPress, findSpanNearby, getJSON, getNews, moveEmptySubListPage } from "../util/utils.js";
 import { setSubData } from "../util/utils.js";
 import { getState, setState } from "../observer/observer.js";
-import {
-  categoryPageCount,
-  clickedUnsubPress,
-  isGridView,
-  isSubView,
-  nowCategory,
-  subListPageCount,
-  subscribedPress,
-} from "../store/store.js";
-import { changeOption } from "../view/viewHandler.js";
+import { clickedUnsubPress, isGridView, subListPageCount, subscribedPress } from "../store/store.js";
 
-let news_by_category = null;
+let news_by_category;
 
 function onGridUndiscribeModal({ target: target }) {
   const $press_name = document.querySelector(".grid-sub-press-name");
-  $press_name.textContent = findPress("src", target);
+  $press_name.textContent = findPress("src", target).name;
   setDisplay(".grid-subscribe-modal", "query", "block");
 }
 
@@ -28,12 +19,7 @@ function offUndiscribeModal() {
 function onListUndiscribeModal() {
   // 리스트 구독 모달
   const $sub_modal = document.querySelector(".list-subscribe-modal");
-  const subscribed_presses = getState(subscribedPress);
-  const now_category = getState(nowCategory);
-  const page_count = getState(categoryPageCount);
-  const $press = getState(isSubView)
-    ? subscribed_presses[getState(subListPageCount)]
-    : news_by_category[now_category][page_count[now_category]];
+  const $press = getNews();
   $sub_modal.querySelector(".sub-press-name").textContent = $press.name;
   setDisplay(".list-subscribe-modal", "query", "block");
 }
@@ -45,25 +31,24 @@ function offListUndiscribeModal() {
 function handleModalBtn({ target: target }) {
   const $target_class = target.classList;
   if ($target_class.contains("pos")) {
-    //예 ?
     if (getState(isGridView)) {
-      //그리드뷰일때
-      const $press_name_span = findSpanNearby(target);
-      const $find_press = findPress("name", $press_name_span);
-      setSubData($find_press);
+      subscribePressByTarget(target);
     } else {
-      // 리스트뷰일때
       setSubData(getState(clickedUnsubPress));
       setState(subListPageCount, 0);
       if (getState(subscribedPress).length === 0) {
-        removeDisplay();
-        changeOption("subscribe");
-        setDisplay(".no-sub-item-div", "query", "flex");
+        moveEmptySubListPage();
       }
     }
   }
   offUndiscribeModal();
   offListUndiscribeModal();
+}
+
+function subscribePressByTarget(target) {
+  const $press_name_span = findSpanNearby(target);
+  const $find_press = findPress("name", $press_name_span);
+  setSubData($find_press);
 }
 
 async function initModalBtn() {

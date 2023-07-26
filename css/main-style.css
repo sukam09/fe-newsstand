@@ -617,8 +617,10 @@ h1 {
   gap: 10px;
   background: var(--surface-brand-default);
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
-  position: absolute;
-  transform: translate(226%, 60vh);
+  position: fixed;
+  /* transform: translate(226%, 60vh); */
+  right: 255px;
+  bottom: 15px;
   display: none;
   z-index: 3;
   color: var(--text-white-default);
