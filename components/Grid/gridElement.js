@@ -10,24 +10,24 @@ export const makeGrid = (data) => {
   const li = document.createElement("li");
   li.className = data.name;
 
-  const img = document.createElement("img");
+  if (data.logo !== "") {
+    const img = document.createElement("img");
+    img.src = store.isDarkMode
+      ? `${LOGO_PATH}/${DARK_MODE}/${data.logo}`
+      : `${LOGO_PATH}/${LIGHT_MODE}/${data.logo}`;
 
-  img.src = store.isDarkMode
-    ? `${LOGO_PATH}/${DARK_MODE}/${data.logo}`
-    : `${LOGO_PATH}/${LIGHT_MODE}/${data.logo}`;
+    li.appendChild(img);
+    if (data.logo) {
+      li.addEventListener("mouseenter", () => {
+        li.appendChild(createButton(data));
+      });
 
-  li.appendChild(img);
-  if (data.logo) {
-    li.addEventListener("mouseenter", () => {
-      li.appendChild(createButton(data));
-    });
-
-    li.addEventListener("mouseleave", () => {
-      const btn = document.querySelector(`#${data.name}`);
-      if (btn) li.removeChild(btn);
-    });
+      li.addEventListener("mouseleave", () => {
+        const btn = document.querySelector(`#${data.name}`);
+        if (btn) li.removeChild(btn);
+      });
+    }
   }
-
   document.querySelector(".agency-grid").appendChild(li);
 };
 

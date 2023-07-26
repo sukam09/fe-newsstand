@@ -44,6 +44,6 @@ export const setEvents = () => {
     mode_selector.style.backgroundImage = store.isDarkMode
       ? `url("../asset/icon/dark-mode.svg")`
       : `url("../asset/icon/light-mode.svg")`;
+    setGrid();
   });
-  setGrid();
 };
