@@ -1,4 +1,4 @@
-import { fetchData } from "../setData/fetchCategoryData.js";
+import { fetchNewsData } from "../setData/fetchCategoryData.js";
 
 class Store {
   constructor() {
@@ -9,7 +9,7 @@ class Store {
     this.subscribeLogo = [];
   }
   async getOriginalNews() {
-    return fetchData();
+    return fetchNewsData();
   }
   setPage(pagenumber) {
     this.pageNumber = pagenumber;
