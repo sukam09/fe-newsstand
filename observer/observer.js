@@ -24,7 +24,7 @@ function notify(key) {
 }
 
 export function register(keyList, observer) {
-  keyList.map((key) => {
+  keyList.forEach((key) => {
     globalStates[key].observers.add(observer);
   });
 }

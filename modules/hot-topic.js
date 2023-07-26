@@ -1,5 +1,5 @@
 import { getJSON } from "./data.js";
-import { TOPIC } from "../constant.js";
+import { TOPIC, URL } from "../constant.js";
 
 /**
  * 핫토픽 5개씩 요소 추가하기
@@ -8,7 +8,7 @@ const setHotTopic = async () => {
   const $hotTopicLeft = document.querySelector(".hot-topic-left");
   const $hotTopicRight = document.querySelector(".hot-topic-right");
 
-  let hotTopic = await getJSON("../assets/hot-topic.json");
+  let hotTopic = await getJSON(URL.HOT_TOPIC);
 
   hotTopic.forEach((topic, idx) => {
     const $li = document.createElement("li");

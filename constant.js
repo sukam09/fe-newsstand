@@ -26,4 +26,9 @@ const MESSAGE = Object.freeze({
   ERROR_NO_SUBSCRIBE: "구독중인 언론사가 없습니다!",
 });
 
-export { MEDIA, TOPIC, IMAGE, MESSAGE };
+const URL = Object.freeze({
+  HOT_TOPIC: "/assets/hot-topic.json",
+  MEDIA_INFO: "/assets/media-content.json",
+});
+
+export { MEDIA, TOPIC, IMAGE, MESSAGE, URL };

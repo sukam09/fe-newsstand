@@ -1,4 +1,4 @@
-import { MEDIA } from "../../constant.js";
+import { MEDIA, URL } from "../../constant.js";
 import { getJSON } from "../data.js";
 import { shuffleList } from "../utils.js";
 import { getState, register, setState } from "../../observer/observer.js";
@@ -147,7 +147,7 @@ const setArrowVisible = () => {
 };
 
 const getGridInfo = async () => {
-  setState(mediaInfo, await getJSON("/assets/media-content.json"));
+  setState(mediaInfo, await getJSON(URL.MEDIA_INFO));
   setState(mediaIdList, shuffleList(getState(mediaIdList)));
 };
 
