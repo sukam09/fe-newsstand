@@ -9,7 +9,7 @@ body {
     flex-direction : column;
     min-width: 930px;
     height: 100vh;
-    background-color: var(--grayscale-white);
+    background-color: var(--surface-default);
 }
 .news_stand_wrapper {
     width: 930px;

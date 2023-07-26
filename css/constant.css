@@ -1,4 +1,4 @@
-:root[color-theme='light']{
+:root{
   --bold-L: 700 24px "Pretendard";
   --bold-M: 700 16px "Pretendard";
   --bold-R: 700 14px "Pretendard";
@@ -7,7 +7,6 @@
   --medium-M: 500 16px/22px "Pretendard";
   --medium-R: 500 14px "Pretendard";
   --medium-S: 500 12px "Pretendard";
-
   --grayscale-white-alt : rgba(255, 255, 255, 0.7);
   --grayscale-white : #FFFFFF;
   --grayscale-50 : #F5F9F9;
@@ -19,30 +18,36 @@
   --grayscale-black : #14212B;
   --blue-100 : #7890E7;
   --blue-500 : #4362D0;
+}
+:root[color-theme='light']{
+  --text-strong : var(--grayscale-black);
+  --text-bold : var(--grayscale-500);
+  --text-default : var(--grayscale-400);
+  --text-weak : var(--grayscale-200);
+  --text-white-default : var(--grayscale-white);
+  --text-white-weak : var(--grayscale-white-alt);
+  --text-point : var(--blue-500);
+  --surface-default : var(--grayscale-white);
+  --surface-alt : var(--grayscale-50);
+  --surface-brand-default : var(--blue-500);
+  --surface-brand-alt : var(--blue-100);
+  --border-bold : var(--grayscale-300);
   --border-default : 1px solid var(--grayscale-100);
 }
 
 :root[color-theme='dark']{
-  --bold-L: 700 24px "Pretendard";
-  --bold-M: 700 16px "Pretendard";
-  --bold-R: 700 14px "Pretendard";
-  --bold-S: 700 12px "Pretendard";
-
-  --medium-M: 500 16px/22px "Pretendard";
-  --medium-R: 500 14px "Pretendard";
-  --medium-S: 500 12px "Pretendard";
-  --grayscale-white-alt: #ffffff;
-  --grayscale-white: #14212b;
-  --grayscale-50: #4b5966;
-  --grayscale-100: #5f6e76;
-  --grayscale-200: #ffffff;
-  --grayscale-300: rgba(255, 255, 255, 0.7);
-  --grayscale-400: #d2dae0;
-  --grayscale-500: #f5f7f9;
-  --grayscale-black: rgba(255, 255, 255, 0.7);
-
-  --blue-100: #7890e7;
-  --blue-500: #4362d0;
+  --text-strong : var(--grayscale-white);
+  --text-bold : var(--grayscale-50);
+  --text-default : var(--grayscale-100);
+  --text-weak : var(--grayscale-white-alt);
+  --text-white-default : var(--grayscale-white);
+  --text-white-weak : var(--grayscale-white-alt);
+  --text-point : var(--blue-500);
+  --surface-default : var(--grayscale-black);
+  --surface-alt : var(--grayscale-500);
+  --surface-brand-default : var(--blue-500);
+  --surface-brand-alt : var(--blue-100);
+  --border-bold : var(--grayscale-white-alt);
   --border-default : 1px solid var(--grayscale-400);
 }
 .display-bold24 {
@@ -92,47 +97,47 @@
 }
 
 .text-strong {
-  color: var(--grayscale-black);
+  color: var(--text-strong);
 }
 
 .text-bold {
-  color: var(--grayscale-500);
+  color: var(--text-bold);
 }
 
 .text-default {
-  color: var(--grayscale-400);
+  color: var(--text-default);
 }
 
 .text-weak {
-  color: var(--grayscale-200);
+  color: var(--text-weak);
 }
 
 .text-white-default {
-  color: var(--grayscale-white);
+  color: var(--text-white-default);
 }
 
 .text-white-weak {
-  color: var(--grayscale-white-alt);
+  color: var(--text-white-weak);
 }
 
 .text-point {
-  color: var(--blue-500);
+  color: var(--text-point);
 }
 
 .surface-default {
-  background-color: var(--grayscale-white);
+  background-color: var(--surface-default);
 }
 
 .surface-alt {
-  background-color: var(--grayscale-50);
+  background-color: var(--surface-alt);
 }
 
 .surface-brand-default {
-  background-color: var(--blue-500);
+  background-color: var(--surface-brand-default);
 }
 
 .surface-brand-alt {
-  background-color: var(--blue-100);
+  background-color: var(--surface-brand-alt);
 }
 
 .flex-center{
