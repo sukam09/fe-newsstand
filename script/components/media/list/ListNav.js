@@ -11,7 +11,7 @@ const clickNav = (target, listStore, navList, viewAll) => {
 
   if (viewAll && index === category) return;
   if (!viewAll && index === page) return;
-  listStore.setState(viewAll ? { category: index } : { page: index });
+  listStore.setState(viewAll ? { category: index, page: 0 } : { page: index });
 };
 
 const addListNavEvent = (navList, listStore) => {
