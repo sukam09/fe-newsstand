@@ -8,6 +8,9 @@ const LIST_VIEW = "list";
 const GRID_VIEW = "grid";
 const ALL_PRESS = "all";
 const SUB_PRESS = "sub";
+const LightModeImg = "../images/icon/Light.svg";
+const darkModeImg = "../images/icon/Dark.svg";
+
 export {
   GRID_NUM,
   PRESS_NUM,

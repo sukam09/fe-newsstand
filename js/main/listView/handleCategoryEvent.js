@@ -2,12 +2,23 @@ import { getState, setState } from "../../store/observer.js";
 import { listAllPage } from "../../store/store.js";
 import { addAnimation, removeAnimation } from "./handleAnimation.js";
 import { changeNews, getPagesNum } from "./handleNewsData.js";
+
 /* category event listeners */
 
+let moved;
+let startX;
+let scrollLeft;
+let isDrag = false;
+const _ul = document.querySelector(".category");
+
 function handleCategoryClick(e) {
-  setState(listAllPage, 0);
-  removeAnimation();
-  addAnimation(e.target, "Current");
+  if (!isDrag) {
+    setState(listAllPage, 0);
+    removeAnimation();
+    addAnimation(e.target, "Current");
+  } else {
+    return;
+  }
 }
 
 function handleAniamtionStart(e) {
@@ -28,4 +39,43 @@ function handleAniamtionIteration(e) {
   //store.state.list_page > totalNum => passAnimation
 }
 
-export { handleAniamtionIteration, handleCategoryClick, handleAniamtionStart };
+function handleMouseDown(e) {
+  moved = true;
+  isDrag = false;
+  startX = e.screenX - _ul.offsetLeft;
+
+  scrollLeft = _ul.scrollLeft;
+}
+// screenX - offsetLeft => 부모 요소 내에서 상대 좌표
+function handleMouseMove(e) {
+  if (moved) {
+    //drag
+    const endX = e.screenX - _ul.offsetLeft;
+
+    const walk = (endX - startX) * 1;
+    _ul.scrollLeft = scrollLeft - walk;
+
+    isDrag = true;
+  }
+}
+function handleMouseUp() {
+  moved = false;
+
+  _ul.removeEventListener("mousedown", handleMouseDown);
+  window.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("mouseup", handleMouseUp);
+  setTimeout(() => {
+    _ul.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  }, 10);
+}
+
+export {
+  handleAniamtionIteration,
+  handleCategoryClick,
+  handleAniamtionStart,
+  handleMouseUp,
+  handleMouseMove,
+  handleMouseDown,
+};

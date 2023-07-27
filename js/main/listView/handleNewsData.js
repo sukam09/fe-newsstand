@@ -8,6 +8,9 @@ import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
+  handleMouseUp,
+  handleMouseMove,
+  handleMouseDown,
 } from "./handleCategoryEvent.js";
 import { checkPressInLocal } from "../../feature/subscribe.js";
 import { clickSubscribeBtn } from "../../feature/subscribe.js";
@@ -35,6 +38,11 @@ function makeCategory() {
 
   if (_category.length !== 0) {
     const _ul = document.querySelector(".category");
+
+    _ul.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
     _ul.innerHTML = ``;
     _category.forEach((item, index) => {
       const _li = document.createElement("li");
@@ -49,6 +57,7 @@ function makeCategory() {
       _li.dataset.category = item;
 
       _li.addEventListener("click", (e) => handleCategoryClick(e));
+
       _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
       _li.addEventListener("animationiteration", (e) =>
         handleAniamtionIteration(e)

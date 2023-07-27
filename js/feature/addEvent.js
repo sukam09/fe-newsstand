@@ -3,7 +3,6 @@ import { addEventToListBtn } from "../main/listView/handleBtnEvent.js";
 import { addEventPressInfo } from "../main/listView/handleNewsData.js";
 import { addEventToViewBtn } from "./changeView.js";
 import { addEventToDarkMode } from "./changeView.js";
-
 function addEvent() {
   addEventToGridBtn();
   addEventToListBtn();

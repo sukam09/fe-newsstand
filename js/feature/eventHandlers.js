@@ -4,7 +4,6 @@ import { setState, getState } from "../store/observer.js";
 import { gridAllPage, viewOption, viewType, subPress } from "../store/store.js";
 import { GRID_NUM } from "../utils/constant.js";
 import { renderGridView } from "../main/gridView/renderGridView.js";
-import { renderListView } from "../main/listView/renderListView.js";
 import {
   LIST_VIEW,
   GRID_VIEW,
