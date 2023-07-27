@@ -21,4 +21,27 @@ const gridPageIdx = initState({
   defaultState: 0,
 });
 
-export { isGrid, nowCategoryIdx, nowCategoryName, gridPageIdx };
+const isSubscribed = initState({
+  key: "isSubscribed",
+  defaultState: false,
+});
+
+const subscribedPress = initState({
+  key: "subscribedPress",
+  defaultState: [],
+});
+
+const allOfPress = initState({
+  key: "allOfPress",
+  defaultState: true,
+});
+
+export {
+  isGrid,
+  nowCategoryIdx,
+  nowCategoryName,
+  gridPageIdx,
+  isSubscribed,
+  allOfPress,
+  subscribedPress,
+};
