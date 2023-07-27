@@ -4,6 +4,7 @@ import {
   shuffleObjectRandom,
 } from "./utils/utils.js";
 import { useSetAtom } from "./store/coil.js";
+import { MyPromise } from "./utils/my-promise.js";
 import { subscribeState } from "./store/store.js";
 import { CATEGORY_LIST } from "./constants/constants.js";
 import { setHeader } from "./components/header/index.js";
@@ -18,7 +19,6 @@ import { setSubscribeButton } from "./components/common/subscribe-button/index.j
 import { setViewToggleButton } from "./components/main/view-toggle-button/index.js";
 import { setModeToggleButton } from "./components/main/mode-toggle-button/index.js";
 import { setOptionToggleButton } from "./components/main/option-toggle-button/index.js";
-import { MyPromise } from "./utils/my-promise.js";
 
 (async function init() {
   const subscribeList = await customFetch("../mocks/subscribe.json");
