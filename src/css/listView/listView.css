@@ -60,7 +60,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 4s linear infinite;
+  animation: progressBar 4s linear;
 }
 
 @keyframes progressBar {

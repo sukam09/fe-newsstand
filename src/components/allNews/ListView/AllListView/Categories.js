@@ -4,6 +4,7 @@ import {
   PROGRESS_SPEED,
   pressObj,
 } from "../../../../constants/index.js";
+import store from "../../../../core/Store.js";
 
 export default class Categories {
   constructor() {
@@ -13,8 +14,6 @@ export default class Categories {
     this.currentPage = 1;
     this.interval;
     this.currentCategory = 0;
-
-    this.handleProgress();
   }
 
   /**
@@ -58,20 +57,24 @@ export default class Categories {
    */
   handleProgress() {
     this.render();
-    this.interval = setInterval(() => {
-      const targetCategory = Object.keys(categories)[this.currentCategory];
-      this.currentPage += 1;
-      if (categories[targetCategory].press.length < this.currentPage) {
-        this.currentCategory += 1;
-        this.currentPage = 1;
-        if (this.currentCategory === CATEGORIES_COUNT) {
-          this.currentCategory = 0;
+    if (!store.showState.isShowGrid && store.showState.isShowAllPress) {
+      this.interval = setInterval(() => {
+        const targetCategory = Object.keys(categories)[this.currentCategory];
+        this.currentPage += 1;
+        if (categories[targetCategory].press.length < this.currentPage) {
+          this.currentCategory += 1;
           this.currentPage = 1;
+          if (this.currentCategory === CATEGORIES_COUNT) {
+            this.currentCategory = 0;
+            this.currentPage = 1;
+          }
         }
-      }
-      this.render();
-      this.goNextNews.call(pressObj);
-    }, PROGRESS_SPEED);
+        this.render();
+        this.goNextNews.call(pressObj);
+      }, PROGRESS_SPEED);
+    } else {
+      clearInterval(this.interval);
+    }
   }
 
   /**

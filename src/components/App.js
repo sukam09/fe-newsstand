@@ -2,6 +2,7 @@ import {
   GRIDVIEW_ICON,
   LISTVIEW_ICON,
   allNewsObj,
+  categoriesObj,
 } from "../constants/index.js";
 import store from "../core/Store.js";
 import Header from "./header/index.js";
@@ -37,9 +38,11 @@ export default class App {
     if (store.showState.isShowGrid) {
       iconsNodes[0].src = `src/assets/icons/${LISTVIEW_ICON}.svg`;
       iconsNodes[1].src = `src/assets/icons/${GRIDVIEW_ICON}-selected.svg`;
+      categoriesObj.handleProgress();
     } else {
       iconsNodes[0].src = `src/assets/icons/${LISTVIEW_ICON}-selected.svg`;
       iconsNodes[1].src = `src/assets/icons/${GRIDVIEW_ICON}.svg`;
+      categoriesObj.handleProgress();
     }
   }
 }
