@@ -323,6 +323,9 @@ a:hover {
   text-decoration: underline;
 }
 
+.selected:hover {
+  text-decoration: none;
+}
 /* press-info */
 .press-news {
   padding: 24px;
