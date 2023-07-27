@@ -10,10 +10,15 @@
   font-size: 1.5em;
   color: #aaa;
 }
+
+#light-mode {
+  display: none;
+}
+
 .toggle input[type="radio"] {
   display: none;
 }
 .toggle input[type="radio"]:checked + label > i {
-  color: #fff;
+  display: flex;
   transition: all 0.35s ease-in-out;
 }

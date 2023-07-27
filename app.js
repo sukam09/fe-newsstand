@@ -4,6 +4,7 @@ import { clickNewsStand } from "./js/newsStand.js";
 import { renderMain } from "./js/render/renderMain.js";
 import { clickAllOrSubscribeButton } from "./js/clickEvent/clickAllOrSubscribeButton.js";
 import { clickGridCardList } from "./js/clickEvent/clickGridOrCardList.js";
+import { clickDarkLightMode } from "./js/clickEvent/clickDarkMode.js";
 
 (function init() {
   clickNewsStand(document.getElementById("header-div-01"));
@@ -11,5 +12,6 @@ import { clickGridCardList } from "./js/clickEvent/clickGridOrCardList.js";
   rollingBanner();
   clickAllOrSubscribeButton();
   clickGridCardList();
+  clickDarkLightMode();
   renderMain("all", "grid");
 })();

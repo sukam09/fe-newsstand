@@ -55,7 +55,7 @@
   --color-text-bold: var(--color-grayscale-50);
   --color-text-default: var(--color-grayscale-100);
   --color-text-weak: var(--color-grayscale-white-alt);
-  --color-text-white-default: var(--color-grayscale-white);
+  --color-text-white-default: var(--color-grayscale-black);
   --color-text-white-weak: var(--color-grayscale-white-alt);
   --color-text-point: var(--color-blue-500);
   --color-surface-default: var(--color-grayscale-black);
