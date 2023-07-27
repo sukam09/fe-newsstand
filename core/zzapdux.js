@@ -35,7 +35,14 @@ export function createStore(reducer) {
   };
 
   const getState = () => {
-    return { ...state };
+    switch (typeof state) {
+      case "object":
+        return Array.isArray(state) ? [...state] : { ...state };
+      case "function":
+        return state.bind();
+      default:
+        return state;
+    }
   };
 
   const subscribe = (callback) => {
