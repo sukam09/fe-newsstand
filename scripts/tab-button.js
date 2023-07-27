@@ -43,6 +43,6 @@ export function activateCurrentTab(tabType) {
   });
 }
 
-export function addEventOnTabs() {
+export function addEventHandlerOnTabs() {
   $mainNavTabs.addEventListener("click", handleTabsClick);
 }

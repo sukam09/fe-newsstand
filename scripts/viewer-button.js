@@ -35,10 +35,10 @@ function viewerButtonSubscriber() {
   }
 }
 
-export function addEventOnViewerButton() {
-  appStore.subscribe(viewerButtonSubscriber);
-
+export function addEventHandlerOnViewerButton() {
   $mainNavViewerButtons.forEach(($button) => {
     $button.addEventListener("click", handleViewerButtonClick);
   });
 }
+
+appStore.subscribe(viewerButtonSubscriber);

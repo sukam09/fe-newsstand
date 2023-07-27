@@ -10,7 +10,7 @@ function handleNextButtonClick() {
   appStore.dispatch(nextPage());
 }
 
-export const addEventOnPaginationButton = () => {
+export const addEventHandlerOnPaginationButton = () => {
   $prevPageButton.addEventListener("click", handlePrevButtonClick);
   $nextPageButton.addEventListener("click", handleNextButtonClick);
 };

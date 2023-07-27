@@ -2,10 +2,11 @@ import { NewsDB } from "./core/index.js";
 import { startRollingBanner } from "./scripts/rolling-banner.js";
 import { renderGridView } from "./scripts/grid-view.js";
 import { renderListView } from "./scripts/list-view.js";
-import { addEventOnPaginationButton } from "./scripts/pagination-button.js";
-import { addEventOnViewerButton } from "./scripts/viewer-button.js";
-import { addEventOnTabs } from "./scripts/tab-button.js";
-import { addEventOnProgressBar } from "./scripts/progress-bar.js";
+import { addEventHandlerOnPaginationButton } from "./scripts/pagination-button.js";
+import { addEventHandlerOnViewerButton } from "./scripts/viewer-button.js";
+import { addEventHandlerOnTabs } from "./scripts/tab-button.js";
+import { addEventHandlerOnProgressBar } from "./scripts/progress-bar.js";
+import { addEventHandlerOnThemeButton, initAppTheme } from "./scripts/theme.js";
 import { setModal } from "./scripts/modal.js";
 import { setSnackbar } from "./scripts/snackbar.js";
 import {
@@ -16,7 +17,6 @@ import {
 import { appStore } from "./store/index.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
-import { addEventHandlerOnThemeButton, initAppTheme } from "./scripts/theme.js";
 
 async function initDB() {
   const NEWS_DATA_SOURCE = "./mocks/news.json";
@@ -42,10 +42,10 @@ function renderViews() {
 
 function addEventHandlers() {
   addEventHandlerOnThemeButton();
-  addEventOnPaginationButton();
-  addEventOnTabs();
-  addEventOnViewerButton();
-  addEventOnProgressBar();
+  addEventHandlerOnPaginationButton();
+  addEventHandlerOnTabs();
+  addEventHandlerOnViewerButton();
+  addEventHandlerOnProgressBar();
 }
 
 async function initApp() {

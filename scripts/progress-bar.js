@@ -30,7 +30,7 @@ export function resetProgress() {
   $categorySelected.insertBefore($progressBar, $categorySelected.firstChild);
 }
 
-export function addEventOnProgressBar() {
+export function addEventHandlerOnProgressBar() {
   $listViewTab.addEventListener(
     "animationiteration",
     handleProgressAnimationIteration
