@@ -1,3 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 .press-content-container {
   display: flex;
   position: relative;
