@@ -1,9 +1,9 @@
-import { register, setState } from "../core/observer/observer.js";
+import { getState, register, setState } from "../core/observer/observer.js";
 import {
-  categoryIdx,
   isAlertOn,
   isSnackOn,
   isSubTab,
+  listIdx,
 } from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
 
@@ -25,14 +25,17 @@ function setInvisible() {
   snackbar.style.display = "none";
   progressLine.style.display = "none";
 }
+function progressEnd() {
+  setInvisible();
+  setState(isSubTab, true);
+  const currentIdx = getState(listIdx);
+  currentIdx.category = 0;
+  setState(listIdx, currentIdx);
+}
 
 export function setSnackbar() {
   register(isSnackOn, toggleSnackbar);
   register(isAlertOn, setInvisible);
-  progressLine.addEventListener("animationend", () => {
-    setInvisible();
-    setState(isSubTab, true);
-    setState(categoryIdx, 0);
-  });
+  progressLine.addEventListener("animationend", progressEnd);
   snackbar.addEventListener("click", setInvisible);
 }

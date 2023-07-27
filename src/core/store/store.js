@@ -15,14 +15,9 @@ const isSubTab = initState({
   defaultState: false,
 });
 
-const categoryIdx = initState({
-  key: "categoryIdx",
-  defaultState: 0,
-});
-
-const listPageIdx = initState({
-  key: "listPageIdx",
-  defaultState: 1,
+const listIdx = initState({
+  key: "listIdx",
+  defaultState: { category: 0, list: 1 },
 });
 
 const gridPageIdx = initState({
@@ -32,7 +27,7 @@ const gridPageIdx = initState({
 
 const subscribeList = initState({
   key: "subscribeList",
-  defaultState: ["datanews", "세계일보"],
+  defaultState: JSON.parse(localStorage.getItem("subscribeList")),
 });
 
 const isAlertOn = initState({
@@ -54,11 +49,10 @@ export {
   isDarkMode,
   isGrid,
   isSubTab,
-  categoryIdx,
-  listPageIdx,
   gridPageIdx,
   subscribeList,
   isAlertOn,
   isSnackOn,
   deletePress,
+  listIdx,
 };

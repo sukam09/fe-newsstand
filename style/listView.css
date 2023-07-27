@@ -9,6 +9,11 @@
   border: 1px solid var(--border-default);
   background: var(--surface-alt);
   transition: all 0.5s;
+  overflow: scroll;
+}
+.category_container_header::-webkit-scrollbar {
+  display: none;
+  transition: all 0.5s;
 }
 
 .category_list_container {
@@ -17,11 +22,6 @@
   font-size: 14px;
   padding: 0px;
   margin: 0px;
-  overflow: scroll;
-  transition: all 0.5s;
-}
-.category_list_container::-webkit-scrollbar {
-  display: none;
   transition: all 0.5s;
 }
 .category_list {

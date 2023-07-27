@@ -4,7 +4,7 @@ import {
   gridPageIdx,
   isGrid,
   isSubTab,
-  listPageIdx,
+  listIdx,
   subscribeList,
 } from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
@@ -15,8 +15,13 @@ const rightButton = $(".right_navigation_button");
 function updatePages(increment) {
   return () => {
     const currentMode = getState(isGrid);
-    const key = currentMode ? gridPageIdx : listPageIdx;
-    setState(key, getState(key) + increment);
+    if (currentMode) {
+      setState(gridPageIdx, getState(gridPageIdx) + increment);
+    } else {
+      const currentIdx = getState(listIdx);
+      currentIdx.list += increment;
+      setState(listIdx, currentIdx);
+    }
   };
 }
 
@@ -79,7 +84,7 @@ function setNavigationButton() {
   leftButton.addEventListener("click", updatePages(-1));
   rightButton.addEventListener("click", updatePages(1));
   register(gridPageIdx, updateNavigationButton);
-  register(listPageIdx, updateNavigationButton);
+  register(listIdx, updateNavigationButton);
   register(isGrid, updateNavigationButton);
   register(isSubTab, updateNavigationButton);
   register(isSubTab, () => setState(gridPageIdx, 0));

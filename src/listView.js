@@ -2,14 +2,13 @@ import { CATEGORY_TABS, MAX_NEWS_COUNT } from "./core/store/constants.js";
 import { getNewsContent } from "./core/utils/api.js";
 import { getState, register, setState } from "./core/observer/observer.js";
 import {
-  categoryIdx,
   deletePress,
   isAlertOn,
   isDarkMode,
   isGrid,
   isSnackOn,
   isSubTab,
-  listPageIdx,
+  listIdx,
   subscribeList,
 } from "./core/store/store.js";
 import { $ } from "./core/utils/util.js";
@@ -38,8 +37,9 @@ function appendNewsList(newsList) {
   const isGridMode = getState(isGrid);
   if (!isGridMode) {
     const isSubMode = getState(isSubTab);
-    const nowCategoryIdx = getState(categoryIdx);
-    const nowListIdx = getState(listPageIdx) - 1;
+    const currentIdx = getState(listIdx);
+    const nowCategoryIdx = currentIdx.category;
+    const nowListIdx = currentIdx.list - 1;
     const subList = getState(subscribeList);
     const elements = getListViewElement();
     const isDark = getState(isDarkMode);
@@ -72,7 +72,7 @@ function appendNewsList(newsList) {
 
 function updateSubButtons(nowData) {
   const subList = getState(subscribeList);
-  const nowListIdx = getState(listPageIdx) - 1;
+  const nowListIdx = getState(listIdx).list - 1;
   const subButton = $(".list_sub_button");
   const unSubButton = $(".list_unsub_button");
 
@@ -105,10 +105,7 @@ async function setListViewEvents() {
   const unSubButton = $(".list_unsub_button");
   subButton.addEventListener("click", subButtonClicked);
   unSubButton.addEventListener("click", unSubButtonClicked);
-  register(listPageIdx, () => {
-    appendNewsList(newsList);
-  });
-  register(categoryIdx, () => {
+  register(listIdx, () => {
     appendNewsList(newsList);
   });
   register(isGrid, () => {

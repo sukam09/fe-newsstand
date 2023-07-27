@@ -1,12 +1,11 @@
 import { $, $All } from "./core/utils/util.js";
 import { getState, register, setState } from "./core/observer/observer.js";
 import {
-  categoryIdx,
   gridPageIdx,
   isDarkMode,
   isGrid,
   isSubTab,
-  listPageIdx,
+  listIdx,
   subscribeList,
 } from "./core/store/store.js";
 import { ALL_PRESS, SUB_PRESS } from "./core/store/constants.js";
@@ -68,7 +67,8 @@ function updateDate() {
 function keyboardClicked({ key: key }) {
   const currentGridMode = getState(isGrid);
   const nowGridPage = getState(gridPageIdx);
-  const nowListPage = getState(listPageIdx);
+  const currentIdx = getState(listIdx);
+
   if (currentGridMode) {
     if (key === "ArrowRight" && nowGridPage < 3) {
       setState(gridPageIdx, nowGridPage + 1);
@@ -77,9 +77,11 @@ function keyboardClicked({ key: key }) {
     }
   } else {
     if (key === "ArrowRight") {
-      setState(listPageIdx, nowListPage + 1);
+      currentIdx.list += 1;
+      setState(listIdx, currentIdx);
     } else if (key === "ArrowLeft") {
-      setState(listPageIdx, nowListPage - 1);
+      currentIdx.list += -1;
+      setState(listIdx, currentIdx);
     }
   }
 }
@@ -99,8 +101,7 @@ function toggleSubClicked() {
       setState(isGrid, false);
     }
     setState(isSubTab, !getState(isSubTab));
-    setState(categoryIdx, 0);
-    setState(listPageIdx, 1);
+    setState(listIdx, { category: 0, list: 1 });
   }
 }
 
