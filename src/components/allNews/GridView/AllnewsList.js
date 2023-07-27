@@ -26,6 +26,7 @@ export default class AllNewsList {
   /** 구독 및 해지버튼 생성 */
   showSubButton(name) {
     this.$wrapper.replaceChildren();
+    this.$wrapper.classList.add("list-mouseover");
     if (store.getState().includes(name)) {
       this.$wrapper.appendChild(new UnsubButton(name, "해지하기"));
     } else {
@@ -36,6 +37,7 @@ export default class AllNewsList {
   /** 구독 및 해지버튼 제거 */
   hideSubButton(name) {
     this.$wrapper.replaceChildren();
+    this.$wrapper.classList.remove("list-mouseover");
     this.$wrapper.appendChild(this.createLogoImage(name));
   }
 

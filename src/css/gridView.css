@@ -46,3 +46,7 @@
   width: fit-content;
   height: 20px;
 }
+
+.list-mouseover {
+  background-color: var(--gray-scale-50);
+}
