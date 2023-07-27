@@ -1,4 +1,5 @@
 import { setList } from "../../utils/setList.js";
+import { ce, qs } from "../../utils/utils.js";
 
 export class SnackBar {
   constructor() {
@@ -13,13 +14,13 @@ export class SnackBar {
   }
 
   initializeElement() {
-    this.modal = document.createElement("div");
+    this.modal = ce("div");
     this.modal.className = "snackbar";
 
-    this.container = document.createElement("div");
+    this.container = ce("div");
     this.container.className = "snackbar-container";
 
-    this.content = document.createElement("div");
+    this.content = ce("div");
     this.content.className = "snackbar-content";
 
     this.container.appendChild(this.content);
@@ -33,14 +34,13 @@ export class SnackBar {
     if (this.timer) {
       clearTimeout(this.timer);
       this.modal.style.display = "none";
-      console.log(this.modal);
     }
 
     this.content.innerText = message;
     this.modal.style.display = "block";
 
-    const subscribe_press = document.querySelector(".subscribe_press");
-    const all_press = document.querySelector(".all_press");
+    const subscribe_press = qs(".subscribe_press");
+    const all_press = qs(".all_press");
     this.timer = setTimeout(() => {
       this.close();
       if (Boolean(all_press.getAttribute("subscribetype"))) {

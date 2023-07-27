@@ -1,9 +1,11 @@
+import { ce } from "../../utils/utils.js";
+
 // rolling 할 리스트 생성
 const appendRollingList = (tag, datas) => {
   datas.map((data) => {
-    const $li = document.createElement("li");
-    const $a = document.createElement("a");
-    const $span = document.createElement("span");
+    const $li = ce("li");
+    const $a = ce("a");
+    const $span = ce("span");
     $span.innerText = data.mainArticle.title;
     $a.appendChild($span);
     $li.appendChild($a);

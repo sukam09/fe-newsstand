@@ -1,10 +1,10 @@
 import { PAGINATION_NUM } from "../../constants/constant.js";
-import { removeAllChildNodes } from "../../utils/utils.js";
+import { qs, removeAllChildNodes } from "../../utils/utils.js";
 import { makeGrid } from "./gridElement.js";
 
 // 페이지에 따라 신문사 list 추가
 export const GridComponent = (current_page, pages) => {
-  const agency_list = document.querySelector(".agency-grid");
+  const agency_list = qs(".agency-grid");
   // 기존 child nodes 모두 제거
   removeAllChildNodes(agency_list);
 
@@ -14,8 +14,8 @@ export const GridComponent = (current_page, pages) => {
     makeGrid({ name: "", logo: "" });
   }
 
-  const prev_btn = document.querySelector(".prev-page-btn");
-  const next_btn = document.querySelector(".next-page-btn");
+  const prev_btn = qs(".prev-page-btn");
+  const next_btn = qs(".next-page-btn");
 
   // 첫페이지와 마지막페이지 버튼 disable
   // button disabled 처리

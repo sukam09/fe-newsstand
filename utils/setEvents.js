@@ -2,14 +2,15 @@ import { dispatcher } from "../store/dispatcher.js";
 import { store } from "../store/store.js";
 import { setGrid } from "./setGrid.js";
 import { setList, setSubList } from "./setList.js";
+import { absoluteFilePath, qs } from "./utils.js";
 
-const grid_btn = document.querySelector(".grid-view-btn");
-const list_btn = document.querySelector(".list-view-btn");
+const grid_btn = qs(".grid-view-btn");
+const list_btn = qs(".list-view-btn");
 
-const all_press = document.querySelector(".all_press");
-const subscribe_press = document.querySelector(".subscribe_press");
+const all_press = qs(".all_press");
+const subscribe_press = qs(".subscribe_press");
 
-const mode_selector = document.querySelector(".mode-selector");
+const mode_selector = qs(".mode-selector");
 
 const $body = document.body;
 
@@ -42,8 +43,8 @@ export const setEvents = () => {
     dispatcher({ type: "CHANGE_MODE", mode: !store.isDarkMode });
     $body.className = store.isDarkMode ? "dark-mode" : "";
     mode_selector.style.backgroundImage = store.isDarkMode
-      ? `url("../asset/icon/dark-mode.svg")`
-      : `url("../asset/icon/light-mode.svg")`;
+      ? absoluteFilePath("../asset/icon/dark-mode.svg")
+      : absoluteFilePath("../asset/icon/light-mode.svg");
     setGrid();
   });
 };

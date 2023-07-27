@@ -1,5 +1,6 @@
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
+import { ce } from "../../utils/utils.js";
 import alert from "../Alert/Alert.js";
 import snackbar from "../SnackBar/SnackBar.js";
 
@@ -8,20 +9,20 @@ export const makeSubscribeBtn = (current_page, agencies) => {
     (item) => item.name === agencies[current_page].name
   ).subscribe;
 
-  const $press_subscribe = document.createElement("button");
+  const $press_subscribe = ce("button");
   $press_subscribe.className = "press-subscribe";
   $press_subscribe.id = `${agencies[current_page].name}`;
 
-  const sr_only = document.createElement("span");
+  const sr_only = ce("span");
   sr_only.className = "screen-reader-only";
   sr_only.innerText = isSubscribed ? "해지하기" : "구독하기";
 
-  const icon = document.createElement("img");
+  const icon = ce("img");
   icon.className = isSubscribed ? "minus" : "plus";
   icon.src = isSubscribed ? "./asset/icon/closed.svg" : "./asset/icon/plus.svg";
   icon.alt = isSubscribed ? "minus" : "plus";
 
-  const $subscribe = document.createElement("div");
+  const $subscribe = ce("div");
   $subscribe.className = "subscribe-text";
   $subscribe.innerText = isSubscribed ? "" : "구독하기";
 

@@ -7,6 +7,7 @@ import { updateSubscribeButton } from "../List/subscribeButton.js";
 import { ListComponent } from "../List/ListComponent.js";
 import { setGrid } from "../../utils/setGrid.js";
 import { setList } from "../../utils/setList.js";
+import { ce, qs } from "../../utils/utils.js";
 
 export class Alert {
   constructor() {
@@ -24,34 +25,34 @@ export class Alert {
   }
 
   initializeElement() {
-    this.modal = document.createElement("div");
+    this.modal = ce("div");
     this.modal.className = "alert";
 
-    this.container = document.createElement("div");
+    this.container = ce("div");
     this.container.className = "alert-container";
 
-    this.content = document.createElement("div");
+    this.content = ce("div");
     this.content.className = "alert-content";
 
-    this.topcontent = document.createElement("span");
+    this.topcontent = ce("span");
     this.topcontent.className = "alert-top-content";
 
-    this.botcontent = document.createElement("span");
+    this.botcontent = ce("span");
     this.botcontent.className = "alert-bottom-content";
     this.botcontent.innerHTML = `(을)를 <br/> 구독해지하시겠습니까?`;
 
-    this.action = document.createElement("div");
+    this.action = ce("div");
     this.action.className = "alert-action";
 
-    this.confirmBtn = document.createElement("button");
+    this.confirmBtn = ce("button");
     this.confirmBtn.innerText = "예, 해지합니다";
     this.confirmBtn.className = "confirmBtn";
 
     this.confirmBtn.addEventListener("click", () => {
-      const subscribe_press = document.querySelector(".subscribe_press");
-      const all_press = document.querySelector(".all_press");
+      const subscribe_press = qs(".subscribe_press");
+      const all_press = qs(".all_press");
 
-      const agency_list = document.querySelector(".agency-grid");
+      const agency_list = qs(".agency-grid");
 
       [this.name, this.isSubscribed, this.current_page, this.agencies] =
         this.getState();
@@ -60,12 +61,12 @@ export class Alert {
       if (Boolean(subscribe_press.getAttribute("subscribetype"))) {
         // Grid View in 내가 구독한 언론사
         if (agency_list.style.display === "grid") {
-          const cancel_elem = document.querySelector(`.${this.getState()[0]}`);
+          const cancel_elem = qs(`.${this.getState()[0]}`);
           cancel_elem.remove();
           makeGrid({ name: "", logo: "" });
 
           // 구독한 언론사가 하나도 없으면 전체 언론사로 이동
-          const $ul = document.querySelector(".agency-grid");
+          const $ul = qs(".agency-grid");
           const first_child = $ul.querySelector("li:first-child").className;
           if (first_child === "") {
             all_press.setAttribute("subscribetype", true);
@@ -100,7 +101,7 @@ export class Alert {
       this.close();
     });
 
-    this.cancelBtn = document.createElement("button");
+    this.cancelBtn = ce("button");
     this.cancelBtn.innerText = "아니오";
     this.cancelBtn.className = "cancelBtn";
 

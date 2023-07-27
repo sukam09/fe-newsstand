@@ -1,5 +1,7 @@
+import { qs } from "../../utils/utils.js";
+
 export const DateComponent = () => {
-  const $time = document.querySelector(".time time");
+  const $time = qs(".time time");
   const today = new Date();
   const DAYS = ["일", "월", "화", "수", "목", "금", "토"];
   $time.setAttribute("datetime", String(today));
