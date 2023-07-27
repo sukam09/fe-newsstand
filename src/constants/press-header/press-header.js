@@ -13,14 +13,14 @@ const HEADER_CLASS = {
 };
 
 const PATH = {
-  LIST_ICON: './assets/icons/list-view.svg',
-  GRID_ICON: './assets/icons/grid-view.svg',
-  HIDE_LIST_ICON: './assets/icons/list-hide.svg',
-  HIDE_GRID_ICON: './assets/icons/grid-hide.svg',
+  LIST_ICON: './src/src/assets/icons/list-view.svg',
+  GRID_ICON: './src/assets/icons/grid-view.svg',
+  HIDE_LIST_ICON: './src/assets/icons/list-hide.svg',
+  HIDE_GRID_ICON: './src/assets/icons/grid-hide.svg',
 };
 
 const URL = {
-  DATA: './assets/data/press-news.json',
+  DATA: './src/assets/data/press-news.json',
 };
 
 const ERROR = {

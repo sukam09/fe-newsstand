@@ -14,7 +14,7 @@ const DATE_OPTIONS = {
 };
 
 const PATH = {
-  LOGO: './assets/icons/newspaper.svg',
+  LOGO: './src/assets/icons/newspaper.svg',
 };
 
 const TITLE = {

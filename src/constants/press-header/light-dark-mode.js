@@ -11,10 +11,10 @@ const MODE = {
 };
 
 const PATH = {
-  LIGHT: './assets/icons/mode-light.svg',
-  DARK: './assets/icons/mode-dark.svg',
+  LIGHT: './src/assets/icons/mode-light.svg',
+  DARK: './src/assets/icons/mode-dark.svg',
   LIGHT_STYLESHEET: '',
-  DARK_STYLESHEET: './styles/dark.css',
+  DARK_STYLESHEET: './src/styles/dark.css',
 };
 
 export { MODE_CLASS, MODE, PATH };

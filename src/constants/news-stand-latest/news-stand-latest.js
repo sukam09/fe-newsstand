@@ -26,7 +26,7 @@ const ROLLING = {
 };
 
 const URL = {
-  DATA: './assets/data/latest-news.json',
+  DATA: './src/assets/data/latest-news.json',
 };
 
 const ERROR = {

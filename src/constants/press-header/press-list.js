@@ -46,10 +46,10 @@ const HEADER_CLASS = {
 };
 
 const PATH = {
-  ARROW_LEFT: './assets/icons/chevron-left.svg',
-  ARROW_RIGHT: './assets/icons/chevron-right.svg',
-  BUTTON_PLUS: './assets/icons/button-plus.svg',
-  ARROW_NAV: './assets/icons/arrow.svg',
+  ARROW_LEFT: './src/assets/icons/chevron-left.svg',
+  ARROW_RIGHT: './src/assets/icons/chevron-right.svg',
+  BUTTON_PLUS: './src/assets/icons/button-plus.svg',
+  ARROW_NAV: './src/assets/icons/arrow.svg',
 };
 
 const NUMBER = {
