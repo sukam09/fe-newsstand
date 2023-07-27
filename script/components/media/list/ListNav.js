@@ -49,7 +49,7 @@ const addSubListNavEvent = (navList, listStore) => {
     mouse.y = clientY;
   };
   const mouseMove = e => {
-    if (!navList.prevX === null || e.buttons === 0) return;
+    if (prevX === null || e.buttons === 0) return;
     navList.scrollLeft += prevX - e.clientX;
     prevX = e.clientX;
   };
