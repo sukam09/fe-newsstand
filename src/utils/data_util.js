@@ -33,6 +33,7 @@ export function setPageIndex(page) {
         },
         "subscribe_page"
     );
+    list_option.page = page;
 }
 
 export function getCategoryIndex() {
