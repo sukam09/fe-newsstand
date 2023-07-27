@@ -175,6 +175,11 @@ function checkMode() {
   }
 }
 
+function setStorage() {
+  const subList = getState(subscribeList);
+  localStorage.setItem("subscribeList", JSON.stringify(subList));
+}
+
 async function setGridEvents() {
   pressObj = await getPressObj();
   const shuffledArr = shuffleArray(pressObj);
@@ -186,10 +191,14 @@ async function setGridEvents() {
   register(isGrid, () => {
     appendGridList(shuffledArr);
   });
-  register(subscribeList, checkMode);
   register(isDarkMode, () => {
     appendGridList(shuffledArr);
   });
+  register(subscribeList, () => {
+    appendGridList(shuffledArr);
+  });
+  register(subscribeList, checkMode);
+  register(subscribeList, setStorage);
 }
 
 export { setGridEvents };
