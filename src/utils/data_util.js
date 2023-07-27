@@ -26,8 +26,13 @@ export function setCategoryIndex(press, index) {
 }
 
 export function setPageIndex(page) {
-    list_option.page = page;
-    list_option.subscribe_page = page;
+    list_option.dispatch(
+        {
+            type: "CHANGE_PAGE_OPTION",
+            value: page,
+        },
+        "subscribe_page"
+    );
 }
 
 export function getCategoryIndex() {
@@ -73,23 +78,51 @@ export function getOptions(target, callback) {
 }
 
 export function getCalPage(page) {
-    const { main, press } = getOptions();
+    const { main, press } = view_option.getState(["main", "press"]);
 
     if (main === "grid") {
         if (press === "all") {
-            grid_option.page += page;
+            const current = grid_option.page + page;
+            grid_option.dispatch(
+                {
+                    type: "CHANGE_PAGE_OPTION",
+                    value: current,
+                },
+                "page"
+            );
             return grid_option.page;
         } else {
-            grid_option.subscribe_page += page;
+            const current = grid_option.subscribe_page + page;
+            grid_option.dispatch(
+                {
+                    type: "CHANGE_PAGE_OPTION",
+                    value: current,
+                },
+                "subscribe_page"
+            );
             return grid_option.subscribe_page;
         }
     }
     if (main === "list") {
         if (press === "all") {
-            list_option.page += page;
+            const current = list_option.page + page;
+            list_option.dispatch(
+                {
+                    type: "CHANGE_PAGE_OPTION",
+                    value: current,
+                },
+                "page"
+            );
             return list_option.page;
         } else {
-            list_option.subscribe_page += page;
+            const current = list_option.subscribe_page + page;
+            list_option.dispatch(
+                {
+                    type: "CHANGE_PAGE_OPTION",
+                    value: current,
+                },
+                "subscribe_page"
+            );
             return list_option.subscribe_page;
         }
     }

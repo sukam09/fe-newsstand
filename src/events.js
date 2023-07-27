@@ -172,16 +172,22 @@ function toggleModeEvent() {
 
         if (view_option.mode === "light-mode") {
             toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
-            view_option.mode = "dark-mode";
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "dark-mode",
+                },
+                "mode"
+            );
         } else {
             toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
-            view_option.mode = "light-mode";
-        }
-        if (view_option.main === "grid") {
-            renderPressItem(view_option.mode);
-        }
-        if (view_option.main === "list") {
-            renderNewsItem(view_option.mode);
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "light-mode",
+                },
+                "mode"
+            );
         }
     });
 }
@@ -230,6 +236,16 @@ function toggleSubscribeEvent() {
             if (sub_press.value === "true") {
                 modalBarEvent(sub_press.name, sub_press.value);
                 return;
+            }
+            const modal_prev_container = document.querySelector(
+                ".modal_bar_container"
+            );
+            if (modal_prev_container) {
+                modal_prev_container.style.animation =
+                    "disappear 0.5s forwards";
+                setTimeout(() => {
+                    modal_prev_container.style.display = "none";
+                }, 500);
             }
             const snack_bar = document.querySelector(".snack_bar_text");
             const { main, press } = view_option.getState(["main", "press"]);
@@ -333,6 +349,55 @@ function modalDisappear(main, press) {
     }, 500);
 }
 
+let auto_interval;
+function toggleAutoModeEvent() {
+    const toggle_auto_mode = document.querySelector(".auto_mode");
+    const toggle_mode = document.querySelector(".toggle_mode");
+
+    toggle_auto_mode.addEventListener("click", () => {
+        if (toggle_auto_mode.classList.contains("auto_mode_active")) {
+            setTimeout(() => {
+                toggle_auto_mode.classList.remove("auto_mode_active");
+                view_option.subscribe(mode_util.currentHourToMode);
+                view_option.subscribe(changeMode);
+                clearInterval(auto_interval);
+            }, 3000);
+        } else {
+            toggle_auto_mode.style.animation = "right-move 3s forwards";
+            toggle_mode.style.display = "none";
+
+            setTimeout(() => {
+                toggle_auto_mode.classList.add("auto_mode_active");
+                view_option.unsubscribe(mode_util.currentHourToMode);
+                view_option.unsubscribe(changeMode);
+                auto_interval = timerAutoModeChange();
+            }, 3000);
+        }
+    });
+}
+
+function timerAutoModeChange() {
+    return setInterval(() => {
+        if (view_option.mode === "light-mode") {
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "dark-mode",
+                },
+                "mode"
+            );
+        } else {
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "light-mode",
+                },
+                "mode"
+            );
+        }
+        changeMode();
+    }, 3000);
+}
 async function initEvent() {
     try {
         mode_util.currentHourToMode();
@@ -376,10 +441,11 @@ function handleStandbyEvents() {
     mainOptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
+    toggleAutoModeEvent();
     mode_util.showToday("today");
 
-    view_option.subscribe(mode_util.currentHourToMode);
-    view_option.subscribe(changeMode);
+    view_option.subscribe(renderPressItem);
+    view_option.subscribe(renderNewsItem);
 }
 
 export { handleStandbyEvents };

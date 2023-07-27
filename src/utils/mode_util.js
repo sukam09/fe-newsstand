@@ -18,7 +18,6 @@ export function currentHourToMode() {
         current_hour >= 18 || current_hour < 6 ? "dark-mode" : "light-mode";
 }
 
-
 export function myQuerySelector(selector, element = document) {
     const matchesSelector = (el) => el.matches(selector);
 

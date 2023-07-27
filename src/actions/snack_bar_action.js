@@ -10,30 +10,27 @@ export function setSnackBar(clearAndRender) {
 
     const snack_animation_time = setTimeout(() => {
         snack_bar_container.style.animation = "disappear 0.5s forwards";
-        view_option.dispatch(
-            {
-                type: "CHANGE_VIEW_OPTION",
-                value: "list",
-            },
-            "main"
-        );
-        view_option.dispatch(
-            {
-                type: "CHANGE_VIEW_OPTION",
-                value: "subscribe",
-            },
-            "press"
-        );
-        const { main, press } = view_option.getState(["main", "press"]);
-        const option_elements = document.querySelectorAll(`.option_main`);
-        setActiveClass();
-        clearAndRender({
-            main: main,
-            press: press,
-            option_elements: option_elements,
-            selected: "main",
-        });
-    }, SNACKBAR_DELAY);
+
+        setTimeout(() => {
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "list",
+                },
+                "main"
+            );
+            view_option.press = "subscribe";
+            const { main, press } = view_option.getState(["main", "press"]);
+            const option_elements = document.querySelectorAll(`.option_main`);
+            setActiveClass();
+            clearAndRender({
+                main: main,
+                press: press,
+                option_elements: option_elements,
+                selected: "main",
+            });
+        }, 500);
+    }, 2500);
 
     return snack_animation_time;
 }

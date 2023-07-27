@@ -26,6 +26,12 @@ export const view_option = {
         this.observers.push(observers);
     },
 
+    unsubscribe(observers) {
+        this.observers = this.observers.filter((observer) => {
+            return observer !== observers;
+        });
+    },
+
     dispatch(action, value) {
         this[value] = viewReducer(this[value], action, value);
         this.notify();
@@ -33,7 +39,7 @@ export const view_option = {
 
     notify() {
         this.observers.forEach((observer) => {
-            observer();
+            observer(view_option.mode);
         });
     },
 };
@@ -57,13 +63,21 @@ export const grid_option = {
         this.observers.push(observers);
     },
 
-    dispatch(action, value) {
-        this[value] = gridReducer(this[value], action, value);
-        this.notify(value);
+    unsubscribe(observers) {
+        this.observers = this.observers.filter((observer) => {
+            return observer !== observers;
+        });
     },
 
-    notify(value) {
-        this.observers.forEach((observer) => observer(this[value]));
+    dispatch(action, value) {
+        this[value] = gridReducer(this[value], action, value);
+        this.notify();
+    },
+
+    notify() {
+        this.observers.forEach((observer) => {
+            observer();
+        });
     },
 };
 
@@ -78,6 +92,8 @@ export const list_option = {
     progress_max: 200,
     progress_time: 0,
 
+    observers: [],
+
     getState(values) {
         const state = {};
         values.forEach((value) => {
@@ -90,13 +106,21 @@ export const list_option = {
         this.observers.push(observers);
     },
 
-    dispatch(action, value) {
-        this[value] = listReducer(this[value], action, value);
-        this.notify(value);
+    unsubscribe(observers) {
+        this.observers = this.observers.filter((observer) => {
+            return observer !== observers;
+        });
     },
 
-    notify(value) {
-        this.observers.forEach((observer) => observer(this[value]));
+    dispatch(action, value) {
+        this[value] = listReducer(this[value], action, value);
+        this.notify();
+    },
+
+    notify() {
+        this.observers.forEach((observer) => {
+            observer();
+        });
     },
 };
 
@@ -118,6 +142,12 @@ export const subscribe_option = {
 
     subscribe(observers) {
         this.observers.push(observers);
+    },
+
+    unsubscribe(observers) {
+        this.observers = this.observers.filter((observer) => {
+            return observer !== observers;
+        });
     },
 
     dispatch(action, value) {

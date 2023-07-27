@@ -69,16 +69,15 @@ function renderListView(options, data, category, page) {
 
 function renderNewsItem(mode) {
     const content_press = document.querySelector(".content_press");
+    if (content_press === null) return;
 
     content_press.src = `${ASSETS_IMAGE_PATH}${mode}${content_press.alt}`;
 }
 
 function renderSubscribeButton() {
-
     const subscribe_toggle = document.querySelector(".content_header button");
 
     if (subscribe_toggle.value === "false") {
-
         subscribe_toggle.classList.add("content_subscribe_cancel");
         subscribe_toggle.classList.remove("content_subscribe_active");
         subscribe_toggle.value = "true";
