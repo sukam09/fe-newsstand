@@ -113,11 +113,15 @@ function removeClickedPressId(clickedPressId) {
 function moveSubscribedList() {
   $gridSnackBar.style.display = 'block'
   const $moveSubscribedListTimeout = setTimeout(() => {
-    setView('list');
-    setPress('my');
-    changeView();
-    $gridSnackBar.style.display = 'none'
+    moveSubscribedListCallback();
   }, SNACKBAR_DURATION)
+}
+
+function moveSubscribedListCallback() {
+  setView('list');
+  setPress('my');
+  changeView();
+  $gridSnackBar.style.display = 'none'
 }
 
 /** 바깥 border 그리기 */
