@@ -6,13 +6,6 @@ export function viewReducer(state, action) {
             return state;
     }
 }
-// view_option.dispatch(
-//     {
-//         type: "CHANGE_VALUE",
-//         value: "list",
-//     },
-//     "main"
-// );
 
 export function gridReducer(state, action) {
     switch (action.type) {

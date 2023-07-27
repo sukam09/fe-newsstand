@@ -1,6 +1,5 @@
 import { view_option } from "../store.js";
 import { setActiveClass } from "../utils/data_util.js";
-import { SNACKBAR_DELAY } from "../constants.js";
 
 export function setSnackBar(clearAndRender) {
     const snack_bar_container = document.querySelector(".snack_bar_container");
