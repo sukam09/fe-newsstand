@@ -119,3 +119,20 @@ export function isListSubscribeView() {
     if (!view_info.getIsGridView() && view_info.getIsSubscribeView()) return true;
     return false;
 }
+
+export function onClickEntire() {
+    _mode.setState({ is_grid_view: null, is_sub_view: false });
+    view_info.setToEntireView().then(() => view_info.changeView(false));
+}
+export function onClickSubscribe() {
+    _mode.setState({ is_grid_view: null, is_sub_view: true });
+    view_info.setToSubscribeView().then(() => view_info.changeView(false));
+}
+export function onClickGrid() {
+    _mode.setState({ is_grid_view: true, is_sub_view: null });
+    view_info.setToGridView().then(view_info.changeView);
+}
+export function onClickList() {
+    _mode.setState({ is_grid_view: false, is_sub_view: null });
+    view_info.setToListView().then(view_info.changeView);
+}

@@ -1,5 +1,12 @@
 import { ICON_LIST_VIEW_URL, ICON_GRID_VIEW_URL } from "../utils/iconURL.js";
-import { onClickSubBtn, onClickViewBtn } from "../components/layout/mainNavEvent.js";
+import {
+    onClickEntire,
+    onClickGrid,
+    onClickList,
+    onClickSubBtn,
+    onClickSubscribe,
+    onClickViewBtn,
+} from "../components/layout/mainNavEvent.js";
 import { create } from "../utils/createElement.js";
 import { DOM } from "../utils/domClassName.js";
 import { onClickModeBtn } from "../components/layout/darkModeEvent.js";
@@ -10,20 +17,12 @@ function createMainNavLeft() {
     const $btn_entire = create.span({
         className: "nav-left_entire selected-bold16",
         txt: "전체 언론사",
-        events: {
-            click: () => {
-                onClickSubBtn(false, true);
-            },
-        },
+        events: { click: onClickEntire },
     });
     const $btn_subscribe = create.span({
         className: "nav-left_subscribe available-medium16",
         txt: "내가 구독한 언론사",
-        events: {
-            click: () => {
-                onClickSubBtn(true, true);
-            },
-        },
+        events: { click: onClickSubscribe },
     });
     $container.append($btn_entire, $btn_subscribe);
 
@@ -36,32 +35,19 @@ function createMainNavRight() {
     const $btn_dark = create.button({
         className: "nav-right_dark_btn",
         txt: "다크 모드",
-        events: {
-            click: () => {
-                $btn_dark.innerHTML = "";
-                $btn_dark.innerHTML = onClickModeBtn() ? "라이트 모드" : "다크 모드";
-            },
-        },
+        events: { click: () => ($btn_dark.innerHTML = onClickModeBtn() ? "라이트 모드" : "다크 모드") },
     });
 
     const $btn_list = create.img({
         className: "nav-right_list_icon icon",
         attributes: { src: ICON_LIST_VIEW_URL, alt: "icon-list-view" },
-        events: {
-            click: () => {
-                onClickViewBtn(false);
-            },
-        },
+        events: { click: onClickList },
     });
 
     const $btn_grid = create.img({
         className: "nav-right_grid_icon icon",
         attributes: { src: ICON_GRID_VIEW_URL, alt: "icon-grid-view" },
-        events: {
-            click: () => {
-                onClickViewBtn(true);
-            },
-        },
+        events: { click: onClickGrid },
     });
 
     $container.append($btn_dark, $btn_list, $btn_grid);
