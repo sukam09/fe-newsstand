@@ -16,27 +16,14 @@ Model이 변하면 그와 관련된 View를 변하도록 하는 옵저버 패턴
 
 ### 구독하기
 
-
 https://github.com/jijiseong/fe-newsstand/assets/77661228/6c7bb429-cc1b-48b0-b6d4-36120c0c1ee4
 
-
-
 ### 구독 해지하기
-
-
-
-https://github.com/jijiseong/fe-newsstand/assets/77661228/4e18a9af-b130-4784-bdba-9ca72c57189d
-
-
-
+https://github.com/jijiseong/fe-newsstand/assets/77661228/f434f5d4-98c0-44d0-9171-1862860d4c86
 
 ### 다크모드
 
-
-
 https://github.com/jijiseong/fe-newsstand/assets/77661228/a1097228-437b-4a38-8eba-27aaac12d96c
-
-
 
 ## 가장 어려웠던 점
 
