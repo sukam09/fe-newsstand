@@ -104,7 +104,7 @@ function fillArticle(articleData) {
   const isSubscribed = subscribeList.includes(name);
 
   $listViewHeader.innerHTML = `
-    <img src="${src[theme]}" alt="${name}" height="20" width="auto" />
+    <img src="${src[theme]}" alt="${name}" class="brand-mark" />
     <span class="list-view-main_edit-date display-medium12">${edit_date}</span>
     ${SubscribeButton(isSubscribed)}
   `;

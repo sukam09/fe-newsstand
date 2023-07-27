@@ -13,3 +13,7 @@ export function setTheme() {
     document.documentElement.classList.remove(THEME.DARK);
   }
 }
+
+export function getReplacedSrcByTheme(src, theme) {
+  return src.replace(/(light|dark)/, theme);
+}

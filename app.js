@@ -12,13 +12,11 @@ import {
   customFetch,
   shuffleData,
   getKRLocaleDateString,
-  setTheme,
 } from "./utils/index.js";
 import { appStore } from "./store/index.js";
-import { changeTheme, initTheme } from "./store/reducer/theme.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
-import { THEME } from "./constants/index.js";
+import { addEventHandlerOnThemeButton, initAppTheme } from "./scripts/theme.js";
 
 async function initDB() {
   const NEWS_DATA_SOURCE = "./mocks/news.json";
@@ -32,39 +30,9 @@ function initSubscribeList() {
   appStore.dispatch(initSubscribe(subscribeList));
 }
 
-function initAppTheme() {
-  let theme = getLocalStorageItem("theme");
-
-  const isUserPreferDarkTheme =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  // theme 설정이 없을 시 사용자의 OS 테마 설정을 따름
-  if (!theme && isUserPreferDarkTheme) {
-    theme = THEME.DARK;
-  }
-
-  // 위의 케이스가 모두 해당하지 않을 시 기본 테마를 light로 설정
-  if (!theme) {
-    theme = THEME.LIGHT;
-  }
-
-  appStore.dispatch(initTheme(theme));
-  setTheme();
-}
-
 function setHeaderDate() {
   const $headerDate = document.querySelector(".container-header_date");
   $headerDate.innerText = getKRLocaleDateString(new Date());
-}
-
-function addEventOnThemeButton() {
-  const $themeButton = document.querySelector(".theme-btn");
-
-  $themeButton.addEventListener("click", () => {
-    appStore.dispatch(changeTheme());
-    setTheme();
-  });
 }
 
 function renderViews() {
@@ -73,7 +41,7 @@ function renderViews() {
 }
 
 function addEventHandlers() {
-  addEventOnThemeButton();
+  addEventHandlerOnThemeButton();
   addEventOnPaginationButton();
   addEventOnTabs();
   addEventOnViewerButton();
