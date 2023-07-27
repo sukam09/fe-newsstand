@@ -52,4 +52,4 @@ function insertNavArrow(target) {
   );
 }
 
-export { setSubListNav };
+export { setSubListNav, clickSubListNav };
