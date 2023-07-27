@@ -13,7 +13,7 @@ const HEADER_CLASS = {
 };
 
 const PATH = {
-  LIST_ICON: './src/src/assets/icons/list-view.svg',
+  LIST_ICON: './src/assets/icons/list-view.svg',
   GRID_ICON: './src/assets/icons/grid-view.svg',
   HIDE_LIST_ICON: './src/assets/icons/list-hide.svg',
   HIDE_GRID_ICON: './src/assets/icons/grid-hide.svg',
