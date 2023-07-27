@@ -23,7 +23,12 @@ const gridPageIdx = initState({
 
 const isSubscribed = initState({
   key: "isSubscribed",
-  defaultState: true,
+  defaultState: false,
+});
+
+const subscribedPress = initState({
+  key: "subscribedPress",
+  defaultState: [],
 });
 
 const allOfPress = initState({
@@ -38,4 +43,5 @@ export {
   gridPageIdx,
   isSubscribed,
   allOfPress,
+  subscribedPress,
 };

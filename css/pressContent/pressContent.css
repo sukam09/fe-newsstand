@@ -51,6 +51,10 @@
   border-right: 1px solid #d2dae0;
 }
 
+.press-content-all-grid-view-btn :hover {
+  cursor: pointer;
+}
+
 .press-content-all-list-view {
   width: 930px;
   height: 388px;
@@ -91,6 +95,10 @@
 .press-content-category * {
   z-index: 3;
   white-space: nowrap;
+}
+
+.press-content-category-name:hover {
+  cursor: pointer;
 }
 
 @keyframes progress {
