@@ -18,6 +18,7 @@ import { setSubscribeButton } from "./components/common/subscribe-button/index.j
 import { setViewToggleButton } from "./components/main/view-toggle-button/index.js";
 import { setModeToggleButton } from "./components/main/mode-toggle-button/index.js";
 import { setOptionToggleButton } from "./components/main/option-toggle-button/index.js";
+import { MyPromise } from "./utils/my-promise.js";
 
 (async function init() {
   const subscribeList = await customFetch("../mocks/subscribe.json");
@@ -26,20 +27,41 @@ import { setOptionToggleButton } from "./components/main/option-toggle-button/in
     "../mocks/newsList.json",
     shuffleObjectRandom
   );
-  const categoryList = shuffleArrayRandom(CATEGORY_LIST);
 
-  useSetAtom(subscribeState, subscribeList);
+  const myPromiseSubScribeList = new MyPromise((resolve) =>
+    resolve(subscribeList)
+  );
+  const myPromiseHeadLineData = new MyPromise((resolve) =>
+    resolve(headLineData)
+  );
+  const myPromiseNewsList = new MyPromise((resolve) => resolve(newsList));
 
-  setHeader(headLineData);
-  setGrid();
-  setHeaderBar(categoryList);
-  setProgressBar(newsList, categoryList);
-  setList(newsList, categoryList);
-  setSubscribeButton();
-  setNavigateButton();
-  setViewToggleButton();
-  setModeToggleButton();
-  setSnackBar();
-  setAlert();
-  setOptionToggleButton();
+  MyPromise.all([
+    myPromiseSubScribeList,
+    myPromiseHeadLineData,
+    myPromiseNewsList,
+  ])
+    .then((dataList) => {
+      const subscribeList = dataList[0];
+      const headLineData = dataList[1];
+      const newsList = dataList[2];
+
+      const categoryList = shuffleArrayRandom(CATEGORY_LIST);
+
+      useSetAtom(subscribeState, subscribeList);
+
+      setHeader(headLineData);
+      setGrid();
+      setHeaderBar(categoryList);
+      setProgressBar(newsList, categoryList);
+      setList(newsList, categoryList);
+      setSubscribeButton();
+      setNavigateButton();
+      setViewToggleButton();
+      setModeToggleButton();
+      setSnackBar();
+      setAlert();
+      setOptionToggleButton();
+    })
+    .catch((error) => console.error(error));
 })();
