@@ -10,15 +10,16 @@ export default class SubCategories {
 
     this.progressInterval;
     this.currentCategory = 0;
-    this.subCategories = store.getState();
 
-    this.handleProgress();
+    if (store.getStateSize() !== 0) {
+      this.handleProgress();
+    }
   }
 
   render() {
     this.$wrapper.replaceChildren();
 
-    this.subCategories.forEach((id) => {
+    store.getState().forEach((id) => {
       this.$wrapper.appendChild(this.createCategoryList(id));
     });
   }
@@ -28,7 +29,7 @@ export default class SubCategories {
    */
   createCategoryList(pressId) {
     const $categoryList = document.createElement("li");
-    const targetIndex = this.subCategories.findIndex((v) => v === pressId);
+    const targetIndex = store.getState().findIndex((v) => v === pressId);
     const isCurrentCategory = this.currentCategory === targetIndex;
     const subPressName = pressName[pressId - 1][pressId];
     $categoryList.classList.add(
@@ -52,10 +53,9 @@ export default class SubCategories {
     this.render();
     this.progressInterval = setInterval(() => {
       this.currentCategory += 1;
-      if (this.currentCategory === this.subCategories.length) {
+      if (this.currentCategory === store.getStateSize()) {
         this.currentCategory = 0;
       }
-      this.render();
       this.goNextNews.call(subPressObj);
     }, PROGRESS_SPEED);
   }
@@ -76,10 +76,8 @@ export default class SubCategories {
    * 카테고리 클릭 시 카테고리 이동
    */
   handleCategoryClick(pressId) {
-    clearInterval(this.progressInterval);
-    const targetIndex = this.subCategories.findIndex((v) => v === pressId);
+    const targetIndex = store.getState().findIndex((v) => v === pressId);
     this.currentCategory = targetIndex;
     this.goSpecificCategory.call(subPressObj, this.currentCategory);
-    this.handleProgress();
   }
 }

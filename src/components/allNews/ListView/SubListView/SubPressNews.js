@@ -11,9 +11,8 @@ export default class SubPressNews {
 
     this.storePIndex = 0;
 
-    this.pressArray = store.getState();
     if (store.getStateSize() > 0) {
-      this.pressIndex = this.pressArray[this.storePIndex] - 1;
+      this.pressIndex = store.getState()[this.storePIndex] - 1;
       this.mainNews = pressData[this.pressIndex];
 
       this.render();
@@ -71,7 +70,6 @@ export default class SubPressNews {
   /** 다음 뉴스페이지로 이동 */
   goNextPage() {
     this.storePIndex += 1;
-    this.checkStorePIndex();
     this.newRender();
   }
 
@@ -84,8 +82,6 @@ export default class SubPressNews {
   /** 왼쪽 화살표 버튼 클릭  */
   goPreviousPageByArrowBtn() {
     this.storePIndex -= 1;
-    this.checkStorePIndex();
-
     this.decreaseCurrentPage.call(subCategoriesObj);
     this.newRender();
   }
@@ -93,8 +89,6 @@ export default class SubPressNews {
   /** 오른쪽 화살표 버튼 클릭 시  */
   goNextPageByArrowBtn() {
     this.storePIndex += 1;
-    this.checkStorePIndex();
-
     this.increaseCurrentPage.call(subCategoriesObj);
     this.newRender();
   }
@@ -121,9 +115,23 @@ export default class SubPressNews {
     this.handleProgress();
   }
 
+  setCategroies() {
+    this.currentCategory = 0;
+  }
+
+  setSubProgressBar() {
+    clearInterval(this.progressInterval);
+    this.handleProgress();
+  }
+
   /** 새로운 페이지 렌더링 */
   newRender() {
-    this.pressIndex = this.pressArray[this.storePIndex] - 1;
+    this.checkStorePIndex();
+    if (this.storePIndex === 0) {
+      this.setCategroies.call(subCategoriesObj);
+    }
+    this.setSubProgressBar.call(subCategoriesObj);
+    this.pressIndex = store.getState()[this.storePIndex] - 1;
     this.mainNews = pressData[this.pressIndex];
     this.render();
   }
