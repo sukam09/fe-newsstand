@@ -16,8 +16,8 @@ export default class SubscribeListView extends Component {
             pressData: this.props.newsData,
         };
         setState(listPageState, 1);
-        addObserver(subscribeDataState, this.render.bind(this));
         addObserver(listPageState, this.render.bind(this));
+        addObserver(subscribeDataState, this.render.bind(this));
     }
 
     template() {
@@ -28,6 +28,7 @@ export default class SubscribeListView extends Component {
             subscribeData
         );
         const newsData = pressData[currentPage - 1];
+        // console.log(currentPage - 1, pressData);
 
         return `
             <div class="news-press-list-view">
@@ -169,7 +170,7 @@ export default class SubscribeListView extends Component {
                 const clickedIndex = pressData.findIndex(
                     (item) => item.name === target.textContent.trim()
                 );
-
+                // console.log(target.textContent.trim(), clickedIndex);
                 setState(listPageState, clickedIndex + 1);
             }
         });

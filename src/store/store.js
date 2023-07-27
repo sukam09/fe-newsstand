@@ -26,7 +26,7 @@ const gridPageState = initState({
 
 const viewTypeState = initState({
     key: "viewTypeState",
-    value: "grid",
+    value: "all",
 });
 
 const viewModeState = initState({
