@@ -8,4 +8,9 @@ const FILTER_TYPE = {
     SUBSCRIBED: "subscribed",
 }
 const GRID_ITEMS_PER_PAGE = 24;
-export {CATEGORY_LIST, VIEW_TYPE, FILTER_TYPE, GRID_ITEMS_PER_PAGE}
+
+const URL = {
+    ROLLING_DATA : "/asset/data/rolling-data.json",
+    PRESS_DATA : "/asset/data/press-data.json",
+}
+export {CATEGORY_LIST, VIEW_TYPE, FILTER_TYPE, GRID_ITEMS_PER_PAGE, URL}

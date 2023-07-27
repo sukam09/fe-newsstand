@@ -1,5 +1,4 @@
-import { FILTER_TYPE, VIEW_TYPE } from "../../asset/data/constants.js";
-import pressList from "../../asset/data/pressList.js";
+import { FILTER_TYPE, URL } from "../../asset/data/constants.js";
 import { store } from "../../store/store.js";
 import { changeFilter } from "../nav/change-filter.js";
 
@@ -20,9 +19,10 @@ function handleAlertAction(id) {
     })
 }
 function drawUnsubAlert(id) {
+    const pressData = store.getPressData();
     const unsubAlert = `
     <div class="unsub-alert">
-        <div class="alert-content">${pressList[id-1].name}을(를)<br/>구독해지하시겠습니까?</div>
+        <div class="alert-content">${pressData[id-1].name}을(를)<br/>구독해지하시겠습니까?</div>
         <div class="alert-btns-container">
             <div class="alert-btn alert-btn-yes">예, 해지합니다</div>
             <div class="alert-btn alert-btn-no">아니오</div>

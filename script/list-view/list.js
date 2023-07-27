@@ -48,17 +48,19 @@ function drawListPage({listData, navData}) {
         </section>
     </div>`
 }
-function drawListNav({navData}){
-    const {crntCategory} = store.getViewState();
-    listNav.innerHTML = "";
-    navData.forEach((category, index) => {
-        listNav.innerHTML += `
-        <li class="${crntCategory == index ? "category" : "category"}">
-            <div class="category-title">${category}</div>
-            <div class="${crntCategory == index ? "" : "hide"} list-page-info">
-            </div>
-        </li>`
-    })
+async function drawListNav({navData}){
+   
+        const {crntCategory} = store.getViewState();
+        listNav.innerHTML = "";
+        navData.forEach((category, index) => {
+            listNav.innerHTML += `
+            <li class="${crntCategory == index ? "category" : "category"}">
+                <div class="category-title">${category}</div>
+                <div class="${crntCategory == index ? "" : "hide"} list-page-info">
+                </div>
+            </li>`
+        })
+   
 }
 function drawSelectedCategory() {
     const {crntCategory} = store.getViewState();
@@ -88,9 +90,9 @@ function drawPageInfo({listData}) {
         </span>`
 }
 
-function drawList() {
-    const viewData = filterData(); // filter data to show according to crnt filter type
-    const {isChangeView, isChangeCategory} = store.getViewState();
+async function drawList() {
+    const viewData = await filterData(); // filter data to show according to crnt filter type
+    const {isChangeView, isChangeCategory} = store.getFlagState();
     if (isChangeView){
         // 그리드뷰 -> 리스트뷰로 바뀔 때 실행
         drawListNav({...viewData});
@@ -100,11 +102,12 @@ function drawList() {
         // 카테고리가 바뀔 때 실행
         drawSelectedCategory();
     }
-
     // 항상 실행 (페이지가 바뀔 때)
     drawPageInfo({...viewData}); 
     drawProgressBar() 
     drawListPage({...viewData}); 
+    
+    store.initFlagVar();
 }
 
 export {drawList}

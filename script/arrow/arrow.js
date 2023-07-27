@@ -1,28 +1,27 @@
-import pressList from "../../asset/data/pressList.js"
 import { store } from "../../store/store.js";
-import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, VIEW_TYPE } from "../../asset/data/constants.js";
+import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, URL, VIEW_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
 
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
-function getArrowData(crntFilter) {
+async function getArrowData(crntFilter) {
     let data;
     if (crntFilter === FILTER_TYPE.ALL){
-        data = pressList;
+        data = store.getPressData();
     } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
         data = store.getSubList();
     }
     return data;
 }
 
-function drawArrow(){
+async function drawArrow(){
     let {crntPage, crntView, crntFilter} = store.getViewState();
-    let dataInfo = getArrowData(crntFilter);
+    let pressData = await getArrowData(crntFilter);
     
     // subscription list empty > hide all arrows
     leftArrow.classList.add("hidden");
-    if (crntFilter === FILTER_TYPE.SUBSCRIBED && dataInfo.length === 0){ 
+    if (crntFilter === FILTER_TYPE.SUBSCRIBED && pressData.length === 0){ 
         rightArrow.classList.add("hidden");
         return;
     }
@@ -33,7 +32,7 @@ function drawArrow(){
 
     switch (crntView){
         case VIEW_TYPE.GRID:
-            maxPage = Math.ceil(dataInfo.length/GRID_ITEMS_PER_PAGE);
+            maxPage = Math.ceil(pressData.length/GRID_ITEMS_PER_PAGE);
             if (crntPage == 0){
                 leftArrow.classList.add("hidden");
             } 
@@ -49,10 +48,10 @@ function drawArrow(){
 }
  
 function handleArrowClick(){
-    leftArrow.addEventListener("click",()=> {
+    leftArrow.addEventListener("click", async ()=> {
         let {crntPage, crntView, crntCategory} = store.getViewState();
         if (crntView == VIEW_TYPE.LIST) {
-            const {navData} = filterData();
+            const {navData} = await filterData();
             if (crntPage == 0 && crntCategory == 0) { 
                 // first page of first category
                 store.setViewState({crntCategory: navData.length - 1, crntPage : 0});
@@ -67,10 +66,10 @@ function handleArrowClick(){
         }
         
     })
-    rightArrow.addEventListener("click",() => {
+    rightArrow.addEventListener("click", async() => {
         let {crntPage, crntView, crntCategory} = store.getViewState();
         if (crntView == VIEW_TYPE.LIST) {
-            const {navData, numOfListPages} = filterData();
+            const {navData, numOfListPages} = await filterData();
             if (crntPage >= numOfListPages - 1 && crntCategory >= navData.length - 1){ 
                 // last page of the last category
                 store.setViewState({crntCategory: 0, crntPage : 0});

@@ -3,10 +3,10 @@ import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 
-function listenProgressBarEnd() {
+async function listenProgressBarEnd() {
     const progressBar = document.querySelector(".progress-bar");
     const {crntPage, crntCategory} = store.getViewState();
-    const {navData, numOfListPages} = filterData();
+    const {navData, numOfListPages} = await filterData();
     
     progressBar.addEventListener("animationend", () => {
         if (crntPage < numOfListPages - 1){

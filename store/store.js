@@ -8,16 +8,22 @@ class Store {
             crntPage : 0,               // page index (grid, list view)
             crntCategory : 0,           // category index (list view)
             crntFilter : FILTER_TYPE.ALL,
+        }
+        this.flagState = {
             isChangeView : false,
             isChangeCategory :  false,
         }
+        this.pressData = [];
         this.subList = [];
         this.shuffledList = [];
         this.observers = new Set();
     }
 
     getViewState() {
-        return {...this.viewState}
+        return {...this.viewState};
+    }
+    getFlagState() {
+        return {...this.flagState};
     }
     getSubList() {
         return this.subList;
@@ -25,28 +31,31 @@ class Store {
     getShuffledList() {
         return this.shuffledList;
     }
+    getPressData() {
+        return this.pressData;
+    }
+
     
     initFlagVar() {
-        if (this.viewState.isChangeView === true){
-            this.viewState.isChangeView = false;
+        if (this.flagState.isChangeView === true){
+            this.flagState.isChangeView = false;
         }
-        if (this.viewState.isChangeCategory === true) {
-            this.viewState.isChangeCategory = false;
+        if (this.flagState.isChangeCategory === true) {
+            this.flagState.isChangeCategory = false;
         }
     }
     setFlagVar(newState) {
         if ("crntView" in newState){
-            this.viewState.isChangeView = true;
+            this.flagState.isChangeView = true;
         }
         if ("crntCategory" in newState){
-            this.viewState.isChangeCategory = true;
+            this.flagState.isChangeCategory = true;
         }
     }
-    setViewState(newState){
+    async setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
         this.setFlagVar(newState);
         this.notify();
-        this.initFlagVar();
     }
     setSubList(id, type){
         switch(type){
@@ -63,12 +72,18 @@ class Store {
     setShuffledList(arr){
         this.shuffledList = arr;
     }
+    setPressData(data) {
+        this.pressData = data
+    }
 
     subscribe(observer) {
         this.observers.add(observer)
     }
     notify(){
-        this.observers.forEach(func => func());
+        return new Promise((resolve) => {
+            this.observers.forEach(func =>  new Promise(resolve => func(resolve)));
+            resolve(); 
+          });
     }
 }
 

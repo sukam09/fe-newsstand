@@ -1,4 +1,5 @@
-import rollingList from "../../asset/data/rollingList.js";
+import { URL } from "../../asset/data/constants.js";
+import { getJSON } from "../../util/getJSON.js";
 
 const rollingContent = document.querySelectorAll(".rolling-content");
 
@@ -11,18 +12,18 @@ function handleHeadlineHover(target){
     })
 }
 
-function drawHeadline(target){
+function drawHeadline(rollingData, target){
     target.innerHTML = "";
-    rollingList.forEach((item) => {
+    rollingData.forEach((item) => {
         target.innerHTML += `<span>${item.title}</span>`
     })
-    target.innerHTML += `<span>${rollingList[0].title}</span>` // repeat drawHeadline instantly when rolling-window shows the last headline
+    target.innerHTML += `<span>${rollingData[0].title}</span>` // repeat drawHeadline instantly when rolling-window shows the last headline
 
 }
 
-function rollHeadline(target, headlineIdx = 0) {
-    if (headlineIdx >= rollingList.length){
-        drawHeadline(target);
+function rollHeadline(rollingData, target, headlineIdx = 0) {
+    if (headlineIdx >= rollingData.length){
+        drawHeadline(rollingData,target);
         headlineIdx = 0;
     }
     
@@ -32,22 +33,23 @@ function rollHeadline(target, headlineIdx = 0) {
 
     crntHeadline.addEventListener("animationend",() => {
         headlineIdx++;
-        rollHeadline(target, headlineIdx);
+        rollHeadline(rollingData, target, headlineIdx);
     })
 }
 
-function initRoll(){
+async function initRoll(){
+    const rollingData = await getJSON(URL.ROLLING_DATA);
     rollingContent.forEach((item, index) => {
-        drawHeadline(item);
+        drawHeadline(rollingData, item);
 
         if (index == 0){ 
             // left rolling section
-            rollHeadline(item, rollingList.length);
+            rollHeadline(rollingData, item, rollingData.length);
         } else if (index == 1){ 
             // right rolling section
-            item.innerHTML += `<span>${rollingList[0].title}</span>`
+            item.innerHTML += `<span>${rollingData[0].title}</span>`
             setTimeout(() => {
-                rollHeadline(item, rollingList.length);
+                rollHeadline(rollingData, item, rollingData.length);
             }, 1000);
         }
     })

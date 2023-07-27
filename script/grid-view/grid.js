@@ -1,6 +1,5 @@
 import { store } from "../../store/store.js";
-import { FILTER_TYPE, GRID_ITEMS_PER_PAGE } from "../../asset/data/constants.js";
-import pressList from "../../asset/data/pressList.js";
+import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, URL } from "../../asset/data/constants.js";
 import { shuffleArray } from "../../util/shuffleArray.js";
 
 const gridContainer = document.querySelector(".grid-box");
@@ -55,10 +54,13 @@ function drawGrid(){
         gridItems[itemIdx].innerHTML = i < imgIdxList.length ? `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />`: "";
         itemIdx++;   
     }
+
+    store.initFlagVar();
 }
 
-function initGrid () {
-    let pressIdxArray = Array.from({length: pressList.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
+async function initGrid () {
+    const pressData = store.getPressData();
+    let pressIdxArray = Array.from({length: pressData.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
     shuffleArray(pressIdxArray); // shuffle grid only when reloading
 
     for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
