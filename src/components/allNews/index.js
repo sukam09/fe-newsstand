@@ -55,4 +55,16 @@ export default class AllNews {
     this.$wrapper.appendChild(this.allNewsNavigationObj);
     this.$wrapper.appendChild(new NonSubPage());
   }
+
+  callRender() {
+    store.showState.isShowAllPress
+      ? store.showState.isShowGrid
+        ? this.renderAllGridView()
+        : this.renderAllListView()
+      : store.getStateSize() === 0
+      ? this.renderNonSubView()
+      : store.showState.isShowGrid
+      ? this.renderSubGridView()
+      : this.renderSubListView();
+  }
 }

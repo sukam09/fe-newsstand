@@ -34,6 +34,10 @@ export default class SubButton {
     setTimeout(() => {
       if ($gridWrapper) $gridWrapper.removeChild($snackBar);
       if ($listWrapper) $listWrapper.removeChild($snackBar);
+
+      if (!store.showState.isShowGrid) {
+        store.setShowState({ isShowAllPress: false, isShowGrid: false });
+      }
     }, SNACKBAR_DURATION);
   }
 }

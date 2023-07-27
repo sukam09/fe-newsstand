@@ -1,7 +1,13 @@
 class Store {
   constructor() {
     this.state = []; // 구독한 언론사
+    this.showState = {
+      isShowAllPress: true,
+      isShowGrid: true,
+    };
+
     this.listeners = new Set();
+    this.showListenrs = new Set();
   }
 
   /** 구독 언론사 추가 */
@@ -14,6 +20,12 @@ class Store {
   removeState(rmState) {
     this.state = this.state.filter((v) => v !== rmState);
     this.notify();
+  }
+
+  /** 탭 상태 설정 */
+  setShowState({ isShowAllPress, isShowGrid }) {
+    this.showState = { isShowAllPress, isShowGrid };
+    this.notifyShowState();
   }
 
   /** 구독 언론사 가져오기 */
@@ -30,8 +42,18 @@ class Store {
     this.listeners.add(listener);
   }
 
+  subscribeShowState(listener) {
+    this.showListenrs.add(listener);
+  }
+
   notify() {
     this.listeners.forEach((listener) => {
+      listener();
+    });
+  }
+
+  notifyShowState() {
+    this.showListenrs.forEach((listener) => {
       listener();
     });
   }

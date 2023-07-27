@@ -1,10 +1,5 @@
-import {
-  GRIDVIEW_ICON,
-  LISTVIEW_ICON,
-  allNewsObj,
-} from "../../constants/index.js";
+import { GRIDVIEW_ICON, LISTVIEW_ICON } from "../../constants/index.js";
 import store from "../../core/Store.js";
-import { showStatus } from "../../core/showStatus.js";
 import Icon from "../common/Icon.js";
 
 export default class AllNewsNavigation {
@@ -30,9 +25,21 @@ export default class AllNewsNavigation {
     $subscibedPress.innerText = "내가 구독한 언론사";
     $allPress.classList.add("selected-type");
 
-    $allPress.addEventListener("click", (e) => this.handleAllPressClick(e));
-    $subscibedPress.addEventListener("click", (e) =>
-      this.handleSubPressClick(e)
+    $allPress.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: true,
+          isShowGrid: store.showState.isShowGrid,
+        }) // 전체 언론사 클릭
+    );
+    $subscibedPress.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: false,
+          isShowGrid: store.showState.isShowGrid,
+        }) // 구독한 언론사 클릭
     );
 
     $titleNavigation.appendChild($allPress);
@@ -52,62 +59,26 @@ export default class AllNewsNavigation {
     $listViewIcon.classList.add("img-icon");
     $gridViewIcon.classList.add("img-icon");
 
-    $listViewIcon.addEventListener("click", (e) => this.handleListIconClick(e));
-    $gridViewIcon.addEventListener("click", (e) => this.handleGridIconClick(e));
+    $listViewIcon.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: store.showState.isShowAllPress,
+          isShowGrid: false,
+        }) // 리스트뷰 아이콘 클릭
+    );
+    $gridViewIcon.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: store.showState.isShowAllPress,
+          isShowGrid: true,
+        }) // 그리드뷰 아이콘 클릭
+    );
 
     $iconNavigation.appendChild($listViewIcon);
     $iconNavigation.appendChild($gridViewIcon);
 
     return $iconNavigation;
-  }
-
-  /* 전체 언론사 버튼 클릭 시 */
-  handleAllPressClick({ target: span }) {
-    span.nextSibling.className = "";
-    span.className = "selected-type";
-    showStatus.isShowAllPress = true;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /* 구독한 언론사 클릭 시 */
-  handleSubPressClick({ target: span }) {
-    span.previousSibling.className = "";
-    span.className = "selected-type";
-    showStatus.isShowAllPress = false;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /** 리스트 아이콘 클릭 시 */
-  handleListIconClick({ target: $listIconImg }) {
-    const $gridIconImg = $listIconImg.nextSibling;
-    $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}-selected.svg`;
-    $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}.svg`;
-    showStatus.isShowGrid = false;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /** 그리드 아이콘 클릭 시 */
-  handleGridIconClick({ target: $gridIconImg }) {
-    const $listIconImg = $gridIconImg.previousSibling;
-    $listIconImg.src = `src/assets/icons/${LISTVIEW_ICON}.svg`;
-    $gridIconImg.src = `src/assets/icons/${GRIDVIEW_ICON}-selected.svg`;
-    showStatus.isShowGrid = true;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  callRender() {
-    showStatus.isShowAllPress
-      ? showStatus.isShowGrid
-        ? this.renderAllGridView()
-        : this.renderAllListView()
-      : store.getStateSize() === 0
-      ? this.renderNonSubView()
-      : showStatus.isShowGrid
-      ? this.renderSubGridView()
-      : this.renderSubListView();
   }
 }

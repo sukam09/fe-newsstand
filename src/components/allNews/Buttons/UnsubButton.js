@@ -1,6 +1,5 @@
 import pressName from "../../../constants/pressName.js";
 import store from "../../../core/Store.js";
-import { showStatus } from "../../../core/showStatus.js";
 import Icon from "../../common/Icon.js";
 
 export default class UnsubButton {
@@ -57,7 +56,7 @@ export default class UnsubButton {
   handleClickYesButton(name) {
     store.removeState(name);
 
-    if (!showStatus.isShowGrid || showStatus.isShowAllPress) {
+    if (!store.showState.isShowGrid || store.showState.isShowAllPress) {
       this.removeModal();
     }
   }

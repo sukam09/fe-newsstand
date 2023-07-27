@@ -23,3 +23,4 @@ export const subCategoriesObj = new SubCategories();
 
 store.subscribe(() => pressObj.render());
 store.subscribe(() => subPressObj.newRender());
+store.subscribeShowState(() => allNewsObj.callRender());
