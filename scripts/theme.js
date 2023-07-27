@@ -5,7 +5,7 @@ import { getReplacedSrcByTheme, setTheme } from "../utils/theme.js";
 import { THEME, VIEW_TYPE } from "../constants/index.js";
 import { $gridView, $listView } from "./doms.js";
 
-function initAppTheme() {
+export function initAppTheme() {
   let theme = getLocalStorageItem("theme");
 
   const isUserPreferDarkTheme =
@@ -26,7 +26,7 @@ function initAppTheme() {
   setTheme();
 }
 
-function addEventHandlerOnThemeButton() {
+export function addEventHandlerOnThemeButton() {
   const $themeButton = document.querySelector(".theme-btn");
 
   $themeButton.addEventListener("click", () => {
@@ -57,5 +57,3 @@ function changeBrandMarkSrcByTheme() {
 }
 
 themeStore.subscribe(changeBrandMarkSrcByTheme);
-
-export { initAppTheme, addEventHandlerOnThemeButton };

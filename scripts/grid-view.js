@@ -125,7 +125,7 @@ function gridViewSubscriber(newsData, maxPage) {
   }
 }
 
-function renderGridView() {
+export function renderGridView() {
   const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
@@ -133,5 +133,3 @@ function renderGridView() {
 
   appStore.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
 }
-
-export { renderGridView };
