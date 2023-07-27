@@ -5,25 +5,33 @@ import Store from "../../store/SubscribeStore.js";
 import renderMain from "./renderMain.js";
 import { AllState } from "../../store/viewStore.js";
 import { getState } from "../../observer/observer.js";
+import { addModalClickEvent, makeModal } from "../common/Alert.js";
+import { makeSnackBar } from "../common/snackBar.js";
 
 let COUNT_PER_PAGE;
 let isAll;
 let currentPage;
 let pressData;
 
+
 function addSubscribeBtn({target}){
-    let id = target.previousSibling.className
+    let id = target.previousSibling.className;
+    const modal = document.querySelector(".alert-container");
+    const snackbar = document.querySelector(".snackbar");
+    const pressSpan = document.querySelector(".display-bold16");
+
     if(Store.getSubscribeByID(id)){
-        target.innerText = "+ 구독하기";
-        Store.removeSubscribe(NewsData.getGridArticleByID(id));
-        renderMain();
+        let selectedPress = Store.getSubscribeByID(id).name;
+        modal.style.display = "flex";
+        pressSpan.innerHTML = selectedPress;
     }
+    
     else{
-        SnackBar();
         target.innerText = "해지하기";
+        snackbar.style.display = "flex";
         Store.addSubscribe(NewsData.getGridArticleByID(id));
         renderMain();
-    } 
+    }
 }
 
 function logoMouseOver({target}){
@@ -111,4 +119,7 @@ export default function MainGrid(){
     setData();
     setMaxpage();
     refreshGrid();
+    makeModal();
+    makeSnackBar();
+    addModalClickEvent();
 }

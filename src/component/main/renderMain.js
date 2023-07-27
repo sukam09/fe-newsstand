@@ -31,6 +31,6 @@ export default function renderMain(){
       mainList();
       clickLeftAsideButton();
       clickRightAsideButton();
-      progress();
+      // progress();
    }
 }

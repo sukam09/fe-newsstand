@@ -1,11 +1,11 @@
 import State from "../../store/StateStore.js";
 import renderMain from "./renderMain.js";
 import controlListlMinMaxException from "../../utils/controlListlMinMaxException.js";
+import { getState } from "../../observer/observer.js";
+import { GridState } from "../../store/viewStore.js";
 
 export default function clickRightAsideButton(){
    let currentPage = State.getCurrentPage();
-   let isAll = State.getAllState();
-   let isGrid = State.getGridState();
    const MAX_PAGE_NUMBER = State.getMaxPage();
 
     const rightAsideButton = document.getElementById("aside-right");
@@ -13,7 +13,7 @@ export default function clickRightAsideButton(){
     asideRight.src = "./img/RightButton.png"
     rightAsideButton.innerHTML = '';
     
-    if(isGrid){
+    if(getState(GridState)){
         currentPage === MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
     }
     else{
@@ -21,7 +21,7 @@ export default function clickRightAsideButton(){
     }
 
     asideRight.addEventListener("click",()=>{
-        if(isGrid){
+        if(getState(GridState)){
             State.setCurrentPage(++currentPage);
         }
         else{

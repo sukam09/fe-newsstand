@@ -4,6 +4,8 @@ import NewsData from "../../store/NewsStore.js";
 import Store from "../../store/SubscribeStore.js"
 import { AllState } from "../../store/viewStore.js";
 import { getState } from "../../observer/observer.js";
+import controListlMinMaxException from "../../utils/controlListlMinMaxException.js";
+import { addModalClickEvent, makeModal } from "../common/Alert.js";
 
 const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
@@ -60,7 +62,7 @@ function makeCategory(){
     listArticle.forEach((value, index) => {
         const list = document.createElement("li");
         list.id = setID(value);
-        id = setID(value);
+        let id = setID(value);
         if(index === categoryNum){
             const progress = document.createElement("div");
             const pageinfo = document.createElement("div");
@@ -108,6 +110,8 @@ function  makeSubscribeButton(){
     const ListHeader = document.querySelector(`.listHeader`);
     const subscribeBtn = document.createElement("button");
     subscribeBtn.classList.add("subscribebtn");
+    const modal = document.querySelector(".alert-container");
+    const pressSpan = document.querySelector(".display-bold16");
     
     let categoryNum = State.getCategoryNum();
     let articleInfo;
@@ -130,14 +134,12 @@ function  makeSubscribeButton(){
         subscribeBtn.innerText = "x";
     }
     ListHeader.appendChild(subscribeBtn);
+
     subscribeBtn.addEventListener("click", ()=>{
-        if(Store.findSubscribe(articleInfo.id)){
-            Store.removeSubscribe(articleInfo);
-            //구독보기에서 마지막 삭제 시 예외처리
-            if(categoryNum + 1 === categoryMAX){
-                State.setCategoryNum(--categoryNum);
-            }
-            renderMain();
+        if(Store.getSubscribeByID(articleInfo.id)){
+            let selectedPress = Store.getSubscribeByID(articleInfo.id).name;
+            modal.style.display = "flex";
+            pressSpan.innerHTML = selectedPress;
         }
         else{
             Store.addSubscribe(articleInfo);
@@ -234,7 +236,6 @@ function progress(){
     clearInterval(interval);
 
     const activeCategory = document.querySelector(".selectedprogress");
-
     let progress = 0;
     const increment = 100 / (PROGRESS_DURATION / 16);
 
@@ -245,10 +246,12 @@ function progress(){
                                                 ${COLOR_PROGRESS_BACKGROUND} 0%)`;
             progress += increment;
         } else {
-            clearInterval(interval);
             State.setCurrentPage(++currentPage);
+            controListlMinMaxException();
+            clearInterval(interval);
+            renderMain();
         }
-    }, 20000);
+    }, 5);
 }
 
 function setData(){
@@ -271,7 +274,6 @@ function setData(){
 function showList(){
     if(listArticle.length <= 0 ){
         alert("구독한 언론사가 없습니다.");
-        
     }  
     else{
         makeCategory();
@@ -302,5 +304,7 @@ export default function MainList(){
     isAll = getState(AllState);    
 
     setData();
+    makeModal();
     showList();
+    addModalClickEvent();
 }

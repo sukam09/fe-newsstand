@@ -1,15 +1,14 @@
 import State from "../../store/StateStore.js";
 import renderMain from "./renderMain.js";
 import controlListlMinMaxException from "../../utils/controlListlMinMaxException.js";
+import { getState } from "../../observer/observer.js";
+import { GridState } from "../../store/viewStore.js";
 
 export default function clickLeftAsideButton(){
     //페이지 정보 불러오기
     let currentPage = State.getCurrentPage();
-    let isAll = State.getAllState();
-    let isGrid = State.getGridState();
     const MIN_PAGE_NUMBER = State.getMinPage();
-    const MAX_PAGE_NUMBER = State.getMaxPage();
-
+    
     //leftButton 불러오고 초기화
     const leftAsideButton = document.getElementById("aside-left");
     leftAsideButton.innerHTML = '';
@@ -19,7 +18,7 @@ export default function clickLeftAsideButton(){
     asideLeft.src = "./img/LeftButton.png"
     leftAsideButton.appendChild(asideLeft);
 
-    if(isGrid){
+    if(getState(GridState)){
         if(currentPage === MIN_PAGE_NUMBER){
             leftAsideButton.style.visibility = "hidden";
         }
@@ -33,7 +32,7 @@ export default function clickLeftAsideButton(){
 
     //click event 추가
     asideLeft.addEventListener("click",()=>{
-        if(isGrid){
+        if(getState(GridState)){
             State.setCurrentPage(--currentPage);
         } 
         else{

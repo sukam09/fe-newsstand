@@ -1,13 +1,13 @@
-// import { getState, setState } from "../observer/observer.js";
-// import {
-//     gridPageState,
-//     listPageState,
-//     subscribeDataState,
-// } from "../store/store.js";
+import State from "../../store/StateStore.js";
+import SubscribeStore from "../../store/SubscribeStore.js";
+import renderMain from "../main/renderMain.js";
 
 function makeModal(){   
+    const mainCenter = document.querySelector("#main-center");
     const modal = document.createElement("div");
-    modal.classList.add("")
+    modal.classList.add("alert-container");
+    modal.style.display = "none";
+    modal.innerHTML = " ";
     modal.innerHTML = 
     `
         <div class="alert-message">
@@ -19,45 +19,29 @@ function makeModal(){
             <div class="alert-cancel">아니오</div>
         </div>
     `;
+    mainCenter.appendChild(modal);
 }
 
-export default function Alert(){
-    makeModal();
-
-    {
-        this.$target.addEventListener("click", ({ target, currentTarget }) => {
-            if (target.classList.contains("alert-confirm")) {
-                currentTarget.classList.add("hidden");
-
-                // 구독하기 리스트에서 삭제
-                this.unsubscribePress();
-            } else if (target.classList.contains("alert-cancel")) {
-                currentTarget.classList.add("hidden");
+function addModalClickEvent(){
+    let categoryNum = State.getCategoryNum();
+    let categoryMAX = State.getMaxCategoryNum();
+    const target_Btn =  document.querySelector(".alert-button-container");
+    const pressSpan = document.querySelector(".display-bold16");
+    
+    target_Btn.addEventListener("click", ({ target, currentTarget }) => {
+        if (target.classList.contains("alert-confirm")) {
+            SubscribeStore.removeSubscribe(SubscribeStore.getSubscribeByName(pressSpan.innerHTML));
+            //리스트에서 마지막 삭제 시 예외처리
+            if(categoryNum === categoryMAX){
+                State.setCategoryNum(--categoryNum);
             }
-        });
-    }
-
-    unsubscribePress() {
-        const subscribeList = JSON.parse(localStorage.getItem("subscribeList"));
-        const pressName = this.$target.querySelector(".alert-message > span");
-        const indexToRemove = subscribeList.findIndex(
-            (data) => data.name === pressName.textContent.trim()
-        );
-        if (indexToRemove !== -1) {
-            subscribeList.splice(indexToRemove, 1);
+            currentTarget.parentNode.style.display = "none";  
+            renderMain();
+            
+        } else if (target.classList.contains("alert-cancel")) {
+            currentTarget.parentNode.style.display = "none";
         }
-        localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
-
-        const subscribeData = getState(subscribeDataState);
-        const listPageIndex = getState(listPageState);
-
-        if (subscribeData.length === listPageIndex) {
-            setState(listPageState, 1);
-        }
-        if (subscribeList.length % 24 === 0) {
-            const gridPage = getState(gridPageState);
-            setState(gridPageState, gridPage - 1);
-        }
-        setState(subscribeDataState, subscribeList);
-    }
+    });
 }
+
+export { makeModal, addModalClickEvent };

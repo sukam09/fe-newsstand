@@ -2,6 +2,7 @@ class SubscribeStore{
     constructor(){
         this.subscribePress = [];
         this.subscribeListCategory = [];
+        this.selectedPress;
     }
 
     getSubscribe(){
@@ -19,6 +20,17 @@ class SubscribeStore{
     removeSubscribe(press){
         let pressIndex = this.subscribePress.indexOf(press);
         this.subscribePress.splice(pressIndex, 1);
+    }
+
+    getSubscribeByName(pressName){
+        let press;
+        if(this.subscribePress.length > 0){
+            press = this.subscribePress.find(logo =>logo.name === pressName);
+        }
+        else{
+            press = 0;
+        }
+        return press;
     }
 
     getSubscribeByID(id){
@@ -42,7 +54,6 @@ class SubscribeStore{
             let pressSet = new Set(subscribeListCategory);
             this.subscribeListCategory = [...subscribeListCategory];
         }
-
     }
 }
 
