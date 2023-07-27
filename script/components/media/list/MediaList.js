@@ -7,20 +7,13 @@ import Button from '../../Button.js';
 import { replaceArrow } from '../ArrowButton.js';
 
 const setArrowButtons = (store, viewAll) => {
-  const [leftArrow, rightArrow] = replaceArrow();
+  const [left, right] = replaceArrow();
+  const movePage = move => {
+    viewAll ? store.movePage(move) : store.moveSubPage(move);
+  };
 
-  document.eventManager.register(
-    'click',
-    leftArrow,
-    () => (viewAll ? store.movePage(-1) : store.moveSubPage(-1)),
-    'view'
-  );
-  document.eventManager.register(
-    'click',
-    rightArrow,
-    () => (viewAll ? store.movePage(1) : store.moveSubPage(1)),
-    'view'
-  );
+  document.eventManager.register('click', left, () => movePage(-1), 'view');
+  document.eventManager.register('click', right, () => movePage(1), 'view');
 };
 
 const MediaLogoImg = (themeStore, id) => {

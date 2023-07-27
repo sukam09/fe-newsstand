@@ -14,14 +14,10 @@ class NavStore extends Store {
     });
   }
 
-  defaultView(media) {
-    return media === 'all' ? 'grid' : 'list';
-  }
-
   setView(name, media) {
     const newState = { [name]: media };
 
-    if (name === 'media') newState.view = this.defaultView(media);
+    if (name === 'media') newState.view = media === 'all' ? 'grid' : 'list';
     this.setState(newState);
   }
 
@@ -52,12 +48,11 @@ class NavStore extends Store {
         }
         if (subscribed.length === 0) return this.setState({});
 
-        const newPage =
-          view === 'grid'
-            ? Math.min(Math.ceil(sub.length / MEDIA.PAGE_SIZE) - 1, page)
-            : page % sub.length;
-
-        viewStore.setState({ page: newPage });
+        if (media === 'all') return;
+        if (view === 'list') return viewStore.moveSubPage(0);
+        viewStore.setState({
+          page: Math.min(Math.ceil(sub.length / MEDIA.PAGE_SIZE) - 1, page),
+        });
       })
     );
   }

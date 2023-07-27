@@ -5,13 +5,11 @@ import NavStore from '../../store/NavStore.js';
 
 const mediaApp = themeStore => {
   const navStore = new NavStore();
-  const clearThemeStates = () => {
-    themeStore.unsubscribe('view');
-  };
   const render = () => {
     const navArea = document.querySelector('#media_view_nav');
     const mediaView = document.querySelector('#media_view');
 
+    document.querySelectorAll('.list_progress').forEach(bar => bar.remove());
     navArea.replaceWith(MediaNav(navStore));
     mediaView.replaceWith(MediaView(themeStore, navStore));
     mediaView.querySelectorAll('.snack_bar').forEach(snackbar => {
@@ -28,8 +26,8 @@ const mediaApp = themeStore => {
 
   navStore.subscribe(() => {
     document.eventManager.unregister(['view', 'button']);
+    themeStore.unsubscribe('view');
   });
-  navStore.subscribe(clearThemeStates);
   navStore.subscribe(render);
   createLayout();
   render();
