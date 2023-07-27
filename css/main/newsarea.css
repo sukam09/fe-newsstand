@@ -58,6 +58,12 @@
 .inner-back {
   transform: rotateY(180deg);
 }
+.inner-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .inner-front,
 .inner-back {
   backface-visibility: hidden;
