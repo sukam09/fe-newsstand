@@ -1,4 +1,4 @@
-import { store, useSelector } from "../store/index.js";
+import { appStore, useSelector } from "../store/index.js";
 import { changeView } from "../store/reducer/page.js";
 import { VIEW_TYPE } from "../constants/index.js";
 import { $gridView, $listView, $mainNav } from "./doms.js";
@@ -9,12 +9,12 @@ const $mainNavViewerButtons = $mainNav.querySelectorAll(
 
 function handleViewerButtonClick(e) {
   const viewType = e.currentTarget.dataset.view;
-  store.dispatch(changeView(viewType));
+  appStore.dispatch(changeView(viewType));
 }
 
 function viewerButtonSubscriber() {
   const viewType = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.page.viewType,
   });
 
@@ -35,10 +35,10 @@ function viewerButtonSubscriber() {
   }
 }
 
-export function addEventOnViewerButton() {
-  store.subscribe(viewerButtonSubscriber);
-
+export function addEventHandlerOnViewerButton() {
   $mainNavViewerButtons.forEach(($button) => {
     $button.addEventListener("click", handleViewerButtonClick);
   });
 }
+
+appStore.subscribe(viewerButtonSubscriber);

@@ -1,5 +1,5 @@
 import { TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
-import { store, snackbarStore, useSelector } from "../store/index.js";
+import { appStore, snackbarStore, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { closeSnackbar } from "../store/reducer/snackbar.js";
 import { activateCurrentTab } from "./tab-button.js";
@@ -15,7 +15,7 @@ function snackbarSubscriber() {
     selector: (state) => state.open,
   });
   const viewType = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.page.viewType,
   });
 
@@ -27,7 +27,7 @@ function snackbarSubscriber() {
       snackbarStore.dispatch(closeSnackbar());
 
       if (viewType === VIEW_TYPE.LIST) {
-        store.dispatch(changeTab(TAB_TYPE.SUBSCRIBE));
+        appStore.dispatch(changeTab(TAB_TYPE.SUBSCRIBE));
         activateCurrentTab(TAB_TYPE.SUBSCRIBE);
       }
     }, SNACKBAR_SHOW_DURATION);

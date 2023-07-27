@@ -1,10 +1,9 @@
 import { THEME } from "../constants/index.js";
-import { store, useSelector } from "../store/index.js";
+import { themeStore, useSelector } from "../store/index.js";
 
 export function setTheme() {
   const theme = useSelector({
-    store,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
 
   if (theme === THEME.DARK) {
@@ -12,4 +11,8 @@ export function setTheme() {
   } else {
     document.documentElement.classList.remove(THEME.DARK);
   }
+}
+
+export function getReplacedSrcByTheme(src, theme) {
+  return src.replace(/(light|dark)/, theme);
 }

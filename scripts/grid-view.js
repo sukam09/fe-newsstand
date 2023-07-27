@@ -3,8 +3,9 @@ import { NewsDB } from "../core/db.js";
 import {
   modalStore,
   snackbarStore,
-  store,
+  appStore,
   useSelector,
+  themeStore,
 } from "../store/index.js";
 import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
@@ -16,13 +17,12 @@ const $gridView = document.querySelector(".grid-view");
 
 function fillGridView(newsData, currentPage) {
   const theme = useSelector({
-    store,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
 
   const startIdx = currentPage * NEWS_COUNT;
   const subscribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
 
@@ -59,7 +59,7 @@ function handleSubscribeButtonClick(e) {
   }
 
   snackbarStore.dispatch(openSnackbar());
-  store.dispatch(addSubscribe(name));
+  appStore.dispatch(addSubscribe(name));
 }
 
 function addEventHandlerOnGridView() {
@@ -68,7 +68,7 @@ function addEventHandlerOnGridView() {
 
 function initGridView(newsData) {
   const currentPage = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.page.currentPage,
   });
   fillGridView(newsData, currentPage);
@@ -94,7 +94,7 @@ function updateButtonUI(currentPage, maxPage) {
 
 function renderGridViewOnSubscribe(currentPage) {
   const subscribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
   const newsData = subscribeList.map((press) => ({
@@ -109,7 +109,7 @@ function renderGridViewOnSubscribe(currentPage) {
 
 function gridViewSubscriber(newsData, maxPage) {
   const { currentPage, viewType, tabType } = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.page,
   });
 
@@ -131,5 +131,5 @@ export function renderGridView() {
   initGridView(newsData);
   addEventHandlerOnGridView();
 
-  store.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
+  appStore.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
 }

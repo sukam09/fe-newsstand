@@ -2,8 +2,9 @@ import { NewsDB } from "../core/index.js";
 import {
   modalStore,
   snackbarStore,
-  store,
+  appStore,
   useSelector,
+  themeStore,
 } from "../store/index.js";
 import { CATEGORIES, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
@@ -92,11 +93,10 @@ function unshowCategoryTab() {
 
 function fillArticle(articleData) {
   const theme = useSelector({
-    store,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
   const subscribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
 
@@ -104,7 +104,7 @@ function fillArticle(articleData) {
   const isSubscribed = subscribeList.includes(name);
 
   $listViewHeader.innerHTML = `
-    <img src="${src[theme]}" alt="${name}" height="20" width="auto" />
+    <img src="${src[theme]}" alt="${name}" class="brand-mark" />
     <span class="list-view-main_edit-date display-medium12">${edit_date}</span>
     ${SubscribeButton(isSubscribed)}
   `;
@@ -151,18 +151,18 @@ function handleListViewTabClick(e) {
 
   activateCategory(category);
 
-  store.dispatch(setCategory(category));
+  appStore.dispatch(setCategory(category));
 }
 
 function handleSubscribeTabsClick(e) {
   const subscribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
   const pressName = e.target.innerText;
 
   const pressIdx = subscribeList.indexOf(pressName);
-  store.dispatch(setPage(pressIdx));
+  appStore.dispatch(setPage(pressIdx));
 }
 
 function handleSubscribeButtonClick(e) {
@@ -183,7 +183,7 @@ function handleSubscribeButtonClick(e) {
   }
 
   snackbarStore.dispatch(openSnackbar());
-  store.dispatch(addSubscribe(name));
+  appStore.dispatch(addSubscribe(name));
 }
 
 function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
@@ -195,12 +195,12 @@ function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
   const isLastPage = currentPage >= totalCnt;
 
   if (isFirstPage) {
-    store.dispatch(prevCategory());
+    appStore.dispatch(prevCategory());
     return;
   }
 
   if (isLastPage) {
-    store.dispatch(nextCategory());
+    appStore.dispatch(nextCategory());
     return;
   }
 
@@ -213,7 +213,7 @@ function fillArticleOnAllTab({ currentPage, currentCategoryIdx }) {
 
 function fillArticleOnSubscribeTab({ currentPage }) {
   const subscribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
   const pressName = subscribeList[currentPage];
@@ -226,12 +226,12 @@ function fillArticleOnSubscribeTab({ currentPage }) {
   const isLastPage = currentPage >= subscribeList.length;
 
   if (isFirstPage) {
-    store.dispatch(setPage(subscribeList.length - 1));
+    appStore.dispatch(setPage(subscribeList.length - 1));
     return;
   }
 
   if (isLastPage) {
-    store.dispatch(setPage(0));
+    appStore.dispatch(setPage(0));
     return;
   }
 
@@ -242,7 +242,7 @@ function fillArticleOnSubscribeTab({ currentPage }) {
 
 function listViewSubscriber() {
   const page = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.page,
   });
   const { viewType, tabType } = page;
@@ -268,5 +268,5 @@ export function renderListView() {
 
   setSubscribeTabsDraggable();
 
-  store.subscribe(listViewSubscriber);
+  appStore.subscribe(listViewSubscriber);
 }
