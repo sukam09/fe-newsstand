@@ -1,10 +1,10 @@
-import { START_CATEGORY_IDX, FIRST_PAGE_IDX } from "../../constant.js"
+import { addpress, getCurrentCategoryIndex, getPage, getPress, getSubscribedPressId, getView, removepress, setCurrentCategoryIndex, setPage, store } from "../../Store/store.js";
+import { FIRST_PAGE_IDX, START_CATEGORY_IDX } from "../../constant.js";
+import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_X_BTN } from "../../path.js";
 import pressStore from "../../pressDataStore.js";
-import { setProgressEventFlag, setClickNewsTurner, showNewsTurner } from "./pageMoveButton.js";
-import { setCategories, clickCategoryOfPressList } from "./categoryTab.js";
+import { clickCategoryOfPressList, setCategories } from "./categoryTab.js";
+import { setClickNewsTurner, setProgressEventFlag, showNewsTurner } from "./pageMoveButton.js";
 import { initProgress, removeProgress } from "./progressBar.js";
-import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store, addpress } from "../../Store/store.js";
-import { PATH_UNSUBSCRIBE_X_BTN, PATH_SUBSCRIBE_BTN } from "../../path.js";
 
 const shuffledAllPress = pressStore.getShuffledAllPress
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
@@ -12,13 +12,13 @@ const $pressNews = document.querySelector('.press-news');
 
 /** 언론사 로고, 편집 날짜, 구독/해지 띄우기 */
 function drawPressNewsHeader(whatPressNews) {
-  const subUnsubBtnImg = store.isSubscribed(whatPressNews[getClickedCategoryIndex()][getPage()]["id"]) === true
+  const subUnsubBtnImg = store.isSubscribed(whatPressNews[getCurrentCategoryIndex()][getPage()]["id"]) === true
     ? PATH_UNSUBSCRIBE_X_BTN
     : PATH_SUBSCRIBE_BTN
   $pressNews.innerHTML = `
   <div class="press-news-info">
-    <img class = "press-list-logo" data-id = "${whatPressNews[getClickedCategoryIndex()][getPage()]["id"]}" src=${whatPressNews[getClickedCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getClickedCategoryIndex()][getPage()]["name"]}">
-    <span class="display-medium12 text-default">${whatPressNews[getClickedCategoryIndex()][getPage()]["editDate"]}</span>
+    <img class = "press-list-logo" data-id = "${whatPressNews[getCurrentCategoryIndex()][getPage()]["id"]}" src=${whatPressNews[getCurrentCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getCurrentCategoryIndex()][getPage()]["name"]}">
+    <span class="display-medium12 text-default">${whatPressNews[getCurrentCategoryIndex()][getPage()]["editDate"]}</span>
     <img class = "sub-unsub-btn pointer" data-src=${subUnsubBtnImg} src=${subUnsubBtnImg} alt="">
   </div>
   `
@@ -30,10 +30,10 @@ function drawPressNewsMain(whatPressNews) {
   <div class="press-news-content">
     <div class="press-news-main">
       <img class="press-news-thumbnail" src="./assets/thumbnail/Thumbnail.png">
-      <p class="press-news-title available-medium16 text-strong">${whatPressNews[getClickedCategoryIndex()][getPage()]["mainTitle"]}</p>
+      <p class="press-news-title available-medium16 text-strong">${whatPressNews[getCurrentCategoryIndex()][getPage()]["mainTitle"]}</p>
     </div>
     <div class="press-news-sub available-medium16 text-bold">
-      ${whatPressNews[getClickedCategoryIndex()][getPage()]["subTitle"].map(sub => `<p class = "press-news-sub-list">${sub}</p>`).join('')}
+      ${whatPressNews[getCurrentCategoryIndex()][getPage()]["subTitle"].map(sub => `<p class = "press-news-sub-list">${sub}</p>`).join('')}
       <p class = "text-weak display-medium14"> 편집 권한에 대한 문구</p>
     </div>
   </div>
@@ -97,8 +97,10 @@ function initNewsWhenMyPressEmpty() {
 
 /** 전체 언론사 보기 이거나 내가 구독한 언론사가 있을 때의 리스트 보기 초기화 */
 function initNewsWhenAllPressOrMyPressNotEmpty() {
-  setClickedCategoryIndex(START_CATEGORY_IDX);
-  setPage(FIRST_PAGE_IDX);
+  getCurrentCategoryIndex() !== START_CATEGORY_IDX
+    ? setCurrentCategoryIndex(START_CATEGORY_IDX) : null;
+  getPage() !== FIRST_PAGE_IDX
+    ? setPage(FIRST_PAGE_IDX) : null
   setCategories();
   setDrawPressNews();
   showNewsTurner();
@@ -141,4 +143,4 @@ function initNews() {
     : initNewsWhenMyPressEmpty()
 }
 
-export { initNews, setDrawPressNews, getSubscribedPressOfList, isAllPressOrMyPressNotEmpty }
+export { getSubscribedPressOfList, initNews, setDrawPressNews };

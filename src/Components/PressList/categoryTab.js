@@ -1,9 +1,7 @@
-import { FIRST_PAGE_IDX } from "../../constant.js"
-import { setDrawPressNews, getSubscribedPressOfList } from "./pressNews.js";
-import { initProgress } from "./progressBar.js";
+import { getPress, getView, setCurrentCategoryIndex, setPage } from "../../Store/store.js";
 import pressStore from "../../pressDataStore.js";
-import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../Store/store.js";
-import { _changeDispay } from "../../utils.js";
+import { getSubscribedPressOfList, setDrawPressNews } from "./pressNews.js";
+import { initProgress } from "./progressBar.js";
 
 const allPressNewsCategory = pressStore.getAllPressNewsCategory
 const $pressNewsBar = document.querySelector('.press-news-bar');
@@ -36,7 +34,7 @@ function handleClickCategory({ target }) {
 /** 클릭한 카테고리로 이동 */
 function handleClickCategoryOfList(target, whatNewsCategory) {
   const categoryIndex = whatNewsCategory.findIndex(category => category === target.innerText);
-  setClickedCategoryIndex(categoryIndex);
+  setCurrentCategoryIndex(categoryIndex);
 }
 
 /** 카테고리를 클릭하면 handleClickCategory함수 호출 */
@@ -68,4 +66,10 @@ function changeCategory() {
   initProgress();
 }
 
-export { clickCategoryOfPressList, changeCategory, setCategories }
+/** 카테고리 이동 시 초기 세팅 */
+function changeCategoryAtList() {
+  setPage(0);
+  changeCategory();
+}
+
+export { changeCategory, changeCategoryAtList, clickCategoryOfPressList, setCategories };

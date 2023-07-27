@@ -1,9 +1,9 @@
+import { getCurrentCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setCurrentCategoryIndex, setPage } from "../../Store/store.js";
+import { PROGRESS_FLAG } from "../../constant.js";
+import pressStore from "../../pressDataStore.js";
+import { getSubscribedPressOfList } from "../PressList/pressNews.js";
 import { changeCategory } from "./categoryTab.js";
 import { startProgressAnimation } from "./progressBar.js";
-import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../Store/store.js";
-import { PROGRESS_FLAG } from "../../constant.js";
-import { getSubscribedPressOfList } from "../PressList/pressNews.js";
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 const allPressNewsCategory = pressStore.getAllPressNewsCategory
@@ -51,12 +51,12 @@ function handleClickNewsTurner(whatButton) {
 
 /** (progressbar) 20초마다 다음 페이지로 뉴스 넘김 */
 function setProgressNewsTurner(progressFlag) {
-  if (progressFlag === PROGRESS_FLAG && progressEventFlagPerCategory[getClickedCategoryIndex()] === false) {
+  if (progressFlag === PROGRESS_FLAG && progressEventFlagPerCategory[getCurrentCategoryIndex()] === false) {
     const $progrsesAnimation = document.querySelector('.progress');
     $progrsesAnimation.addEventListener('animationiteration', (event) => {
       clickNewsTurner('right');
     })
-    progressEventFlagPerCategory[getClickedCategoryIndex()] = true;
+    progressEventFlagPerCategory[getCurrentCategoryIndex()] = true;
   }
 }
 
@@ -81,8 +81,8 @@ function setNextCategory() {
 
 /** 다음 카테고리 이동 */
 function moveNextCategoryOfList(whatPressNews, category) {
-  if (getPage() === whatPressNews[getClickedCategoryIndex()].length) {
-    setClickedCategoryIndex((getClickedCategoryIndex() + 1) % category.length)
+  if (getPage() === whatPressNews[getCurrentCategoryIndex()].length) {
+    setCurrentCategoryIndex((getCurrentCategoryIndex() + 1) % category.length)
     setPage(0);
   }
 }
@@ -90,9 +90,9 @@ function moveNextCategoryOfList(whatPressNews, category) {
 /** 이전 카테고리 이동 */
 function movePrevCategoryOfList(whatPressNews, category) {
   if (getPage() === -1) {
-    if (getClickedCategoryIndex() === 0) setClickedCategoryIndex(category.length - 1)
-    else setClickedCategoryIndex((getClickedCategoryIndex() - 1))
-    setPage(whatPressNews[getClickedCategoryIndex()].length - 1)
+    if (getCurrentCategoryIndex() === 0) setCurrentCategoryIndex(category.length - 1)
+    else setCurrentCategoryIndex((getCurrentCategoryIndex() - 1))
+    setPage(whatPressNews[getCurrentCategoryIndex()].length - 1)
   }
 }
 
@@ -108,4 +108,11 @@ function clickNewsTurner(whatButton) {
   setNextPage(whatButton);
 }
 
-export { setProgressEventFlag, setClickNewsTurner, showNewsTurner, setProgressNewsTurner, setNextCategory }
+/** 리스트뷰의 페이지 이동에 따른 카테고리 설정/띄우기 */
+function drawNextPrevListPage() {
+  setNextCategory();
+  changeCategory();
+}
+
+export { drawNextPrevListPage, setClickNewsTurner, setProgressEventFlag, setProgressNewsTurner, showNewsTurner };
+

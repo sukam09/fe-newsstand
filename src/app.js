@@ -7,7 +7,6 @@ handleClickLogo();
 showDate();
 initView();
 initPressImg();
-
 rollNews();
 
 

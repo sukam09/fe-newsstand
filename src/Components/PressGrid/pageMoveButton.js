@@ -1,6 +1,6 @@
 import { LEFT_UNDISPLAY, PRESS_CNT_PER_PAGE } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
-import { getPage, getPress, getSubscribedPressId, setPage, store } from "../../Store/store.js";
+import { getPage, getPress, getSubscribedPressId, setPage } from "../../Store/store.js";
 import { _changeDispay } from "../../utils.js";
 import { drawPressImg } from "./pressLogos.js";
 
@@ -48,4 +48,10 @@ function turnPressPage() {
   $pageNextButton.addEventListener('click', handleClickTurner);
 }
 
-export { turnPressPage, setPageTurner };
+/** 그리드 뷰의 이전/다음 페이지 설정 */
+function drawNextPrevGridPage() {
+  setPageTurner();
+  drawPressImg();
+}
+
+export { drawNextPrevGridPage, setPageTurner, turnPressPage };

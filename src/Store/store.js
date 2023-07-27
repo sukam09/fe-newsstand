@@ -1,9 +1,9 @@
-import { setPageTurner } from "../Components/PressGrid/pageMoveButton.js";
+import { drawNextPrevGridPage } from "../Components/PressGrid/pageMoveButton.js";
 import { drawPressImg, moveSubscribedList } from "../Components/PressGrid/pressLogos.js";
-import { initNews, isAllPressOrMyPressNotEmpty } from "../Components/PressList/PressNews.js";
-import { changeCategory } from "../Components/PressList/categoryTab.js";
-import { setNextCategory } from "../Components/PressList/pageMoveButton.js";
-import { changePressView, changeView, changeViewerView } from "../Components/PressTab/pressTab.js";
+import { initNews } from "../Components/PressList/PressNews.js";
+import { changeCategoryAtList } from "../Components/PressList/categoryTab.js";
+import { drawNextPrevListPage } from "../Components/PressList/pageMoveButton.js";
+import { changePressView, changeViewerView } from "../Components/PressTab/pressTab.js";
 
 export class createStore {
   constructor(reducer) {
@@ -35,7 +35,7 @@ const initState = {
   page: 0,
   howPress: '',
   howView: '',
-  clickedCategoryIndex: 0,
+  currentCategoryIndex: 0,
   mode: '',
 }
 
@@ -54,7 +54,7 @@ function reducer(state = initState, action) {
     case "setPage":
       return { ...state, page: action.page };
     case "setCategory":
-      return { ...state, clickedCategoryIndex: action.clickedCategoryIndex };
+      return { ...state, currentCategoryIndex: action.currentCategoryIndex };
     default:
       return { ...state };
   }
@@ -95,9 +95,8 @@ export function setPage(whatPage) {
   store.dispatch(actionCreator("setPage", { page: whatPage }));
 }
 
-let isChangingCategory = false;
-export function setClickedCategoryIndex(whatCategory) {
-  store.dispatch(actionCreator("setCategory", { clickedCategoryIndex: whatCategory }))
+export function setCurrentCategoryIndex(whatCategory) {
+  store.dispatch(actionCreator("setCategory", { currentCategoryIndex: whatCategory }))
 }
 
 export function getSubscribedPressId() {
@@ -120,38 +119,31 @@ export function getPage() {
   return store.getState().page;
 }
 
-export function getClickedCategoryIndex() {
-  return store.getState().clickedCategoryIndex;
+export function getCurrentCategoryIndex() {
+  return store.getState().currentCategoryIndex;
 }
 
 let prevPage = getPage();
 let prevPressView = getPress();
 let prevViewerView = getView();
 let prevSubscribedPress = getSubscribedPressId();
-let prevCategoryIndex = getClickedCategoryIndex();
+let prevCategoryIndex = getCurrentCategoryIndex();
 
 function onChangeSubscribedPress() {
   if (prevSubscribedPress.length === getSubscribedPressId().length) return;
-  if (prevSubscribedPress.length < getSubscribedPressId().length) {
+  if (prevSubscribedPress.length < getSubscribedPressId().length)
     getView() === 'grid' ? moveSubscribedList() : initNews();
-  }
-  else if (prevSubscribedPress.length > getSubscribedPressId().length) {
+  else if (prevSubscribedPress.length > getSubscribedPressId().length)
     getView() === 'grid' ? drawPressImg() : initNews();
-  }
   prevSubscribedPress = getSubscribedPressId();
 }
 
 function onPageChange() {
   if (prevPage === getPage()) return;
   prevPage = getPage();
-  if (getView() === 'grid') {
-    setPageTurner();
-    drawPressImg();
-  }
-  else if (getView() === 'list') {
-    setNextCategory();
-    changeCategory();
-  }
+  getView() === 'grid'
+    ? drawNextPrevGridPage()
+    : drawNextPrevListPage();
 }
 
 function onPressViewChange() {
@@ -166,18 +158,17 @@ function onViewerViewChange() {
   changeViewerView();
 }
 
-function onChangeClickedCategory() {
-  if (prevCategoryIndex == getClickedCategoryIndex()) return;
-  prevCategoryIndex = getClickedCategoryIndex();
-  setPage(0)
-  changeCategory();
+function onChangeCurrentCategory() {
+  if (prevCategoryIndex === getCurrentCategoryIndex()) return;
+  prevCategoryIndex = getCurrentCategoryIndex();
+  changeCategoryAtList();
 }
 
 store.subscribe(onPageChange);
 store.subscribe(onPressViewChange);
 store.subscribe(onViewerViewChange);
 store.subscribe(onChangeSubscribedPress);
-store.subscribe(onChangeClickedCategory);
+store.subscribe(onChangeCurrentCategory);
 
 
 

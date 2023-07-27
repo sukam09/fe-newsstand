@@ -1,18 +1,24 @@
+import { addpress, getPage, getPress, getSubscribedPressId, getView, removepress, setPage, setPress, setView, store } from "../../Store/store.js";
+import { FIRST_PAGE_IDX, PRESS_CNT_PER_PAGE, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_BTN } from "../../path.js";
-import { PRESS_CNT_PER_PAGE, FIRST_PAGE_IDX, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
-import { turnPressPage, setPageTurner } from "./pageMoveButton.js";
-import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../Store/store.js";
-import { changeView } from "../PressTab/pressTab.js"
+import { changeView } from "../PressTab/pressTab.js";
+import { setPageTurner, turnPressPage } from "./pageMoveButton.js";
 
 const $gridSnackBar = document.querySelector('.grid-snackbar')
 const shuffledAllPress = pressStore.getShuffledAllPress
 
 /**
- 언론사 이미지 띄우기
+ 언론사 그리드 띄우기
  */
 function drawPressImgContent(whatPress) {
   resetGridView();
+  drawGridLogos(whatPress);
+  handleSubscribe();
+}
+
+/** 언론사 로고 띄우기 */
+function drawGridLogos(whatPress) {
   const currentPageGridPress = whatPress.slice(getPage() * PRESS_CNT_PER_PAGE, getPage() * PRESS_CNT_PER_PAGE + PRESS_CNT_PER_PAGE);
   const $pressList = document.querySelectorAll('.current-logos-container');
   for (let i = 0; i < currentPageGridPress.length; i++) {
@@ -20,7 +26,6 @@ function drawPressImgContent(whatPress) {
     <img class = "pointer current-logos" data-id = "${currentPageGridPress[i].id}" src="${currentPageGridPress[i].lightSrc}">
     `
   }
-  handleSubscribe();
 }
 
 /** 그리드 초기화 */
@@ -96,7 +101,6 @@ function handleClickSubUnsubBtn({ target }) {
   }
   else {
     addpress(clickedPressId);
-    //moveSubscribedList();
   }
 }
 
@@ -159,4 +163,4 @@ function initPressImg() {
 }
 
 
-export { initPressImg, drawPressImg, getSubscribedPressOfGrid, moveSubscribedList }
+export { drawPressImg, initPressImg, moveSubscribedList };
