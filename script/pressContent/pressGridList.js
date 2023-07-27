@@ -14,7 +14,6 @@ import {
 const page = [[], [], [], []];
 
 const pressContentAllView = getQuerySelector(".press-content-all-grid-view");
-const pressContentMyView = getQuerySelector(".press-content-my-grid-view");
 
 // Json 객체로부터 받아오는 뉴스 데이터의 id값 랜덤 셔플 후 첫번째 페이지 구현
 async function shuffleImgs() {
@@ -44,7 +43,7 @@ async function shuffleImgs() {
   showSubscribeBtn();
   setSubClickEvents();
   register(gridPageIdx, showPressImg);
-  register(allOfPress, showMyPressImg);
+
   register(subscribedPress, () => {
     console.log(getState(subscribedPress));
   });
@@ -130,14 +129,6 @@ function setSubClickEvents() {
       elem.previousElementSibling.classList.add("show");
     });
   });
-}
-
-function showMyPressImg() {
-  let imgSrcContent = "";
-  for (let i = 0; i < 24; i++) {
-    imgSrcContent += `<li></li>`;
-  }
-  pressContentMyView.innerHTML = imgSrcContent;
 }
 
 export { shuffleImgs, showSubscribeBtn };

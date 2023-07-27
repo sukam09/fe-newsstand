@@ -27,6 +27,7 @@
 .press-content-my-grid-view {
   display: none;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 930px;
   height: 388px;
   border-top: 1px solid #d2dae0;
