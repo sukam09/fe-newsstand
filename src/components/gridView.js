@@ -49,18 +49,22 @@ function appendPressInGrid(press) {
 
   //구독 여부 확인 후 구독하기/해지하기 이미지 추가
   const $sub = document.createElement("img");
-  const sub_press = getState(subscribedPress).filter((item) => item === press);
+  const sub_press = getState(subscribedPress).filter(
+    (item) => item.name === press.name
+  );
   if (getState(isMySubView)) {
     // 내 구독 언론사 클릭 상태면
     $sub.src = UNSUB_BTN_IMG;
+    $sub.classList.add("un-sub", `id${press.id}`);
   } else {
     if (sub_press.length === 0) {
       $sub.src = GRID_SUB_BTN_IMG;
+      $sub.classList.add("sub", `id${press.id}`);
     } else {
       $sub.src = UNSUB_BTN_IMG;
+      $sub.classList.add("un-sub", `id${press.id}`);
     }
   }
-  $sub.classList.add("sub", `id${press.id}`);
 
   //ul에 li 추가
   const $list = document.createElement("li");
@@ -164,23 +168,15 @@ function removePressFromSubList(press) {
 const sub_btns = document.querySelector("#press-list");
 sub_btns.addEventListener("click", async (e) => {
   const target = e.target;
-  const target_class = target.classList[1];
-  if (target.classList.contains("sub")) {
-    const press_id = target_class.slice(2, target_class.length);
+  const target_class = target.classList;
+  const target_id = target_class[1].slice(2, target_class[1].length);
+  if (target_class.contains("sub")) {
     const current_sub_list = getState(subscribedPress);
-    const sub_press = await getPressItemById(press_id);
+    const sub_press = await getPressItemById(target_id);
     setState(subscribedPress, [...current_sub_list, sub_press[0]]);
     target.src = UNSUB_BTN_IMG;
-    target.className = `un-sub id${press_id}`;
-  }
-});
-
-/***** 해지하기 버튼 클릭 시 alert 창 pop up *****/
-const un_sub_btns = document.querySelector("#press-list");
-un_sub_btns.addEventListener("click", async (e) => {
-  const target_class = e.target.classList;
-  const target_id = target_class[1].slice(2, 4);
-  if (target_class.contains("un-sub")) {
+    target.className = `un-sub id${target_id}`;
+  } else if (target_class.contains("un-sub")) {
     const press = await getPressItemById(target_id);
     setDisplay(".sub-alert", "block");
     document.querySelector(
