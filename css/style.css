@@ -560,7 +560,7 @@ nav.agency .view-type button {
   display: none;
 
   opacity: 1;
-  animation: fadeout 5s ease-in;
+  /* animation: fadeout 5s ease-in; */
 }
 
 @keyframes fadeout {

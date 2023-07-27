@@ -69,16 +69,22 @@ const createButton = (data) => {
       ? `${data.name}`
       : `내가 구독한 언론사에 추가되었습니다.`;
 
+    const $snackbar = document.querySelector(".snackbar");
+
     if (isSubscribed) {
+      if ($snackbar.style.display == "block") {
+        snackbar.cancelTimer();
+        snackbar.close();
+      }
       alert.show(message);
       alert.setState(e.target.id, isSubscribed);
     } else {
-      snackbar.show(message);
       dispatcher({
         type: "TOGGLE_SUBSCRIPTIONS",
         name: e.target.id,
         value: !isSubscribed,
       });
+      snackbar.show(message);
     }
     updateButton(data.name);
   });
