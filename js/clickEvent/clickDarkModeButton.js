@@ -1,4 +1,4 @@
-const clickDarkLightMode = () => {
+const clickDarkLightModeButton = () => {
   clickDarkMode();
   clickLightMode();
 };
@@ -23,4 +23,4 @@ function clickLightMode() {
     });
 }
 
-export { clickDarkLightMode };
+export { clickDarkLightModeButton };

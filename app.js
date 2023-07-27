@@ -3,7 +3,7 @@ import { rollingBanner } from "./js/rollingBanner.js";
 import { clickNewsStand } from "./js/newsStand.js";
 import { renderMain } from "./js/render/renderMain.js";
 import { clickPageTypeButton } from "./js/clickEvent/clickPageTypeButton.js";
-import { clickDarkLightMode } from "./js/clickEvent/clickDarkMode.js";
+import { clickDarkLightModeButton } from "./js/clickEvent/clickDarkModeButton.js";
 
 (function init() {
   clickNewsStand(document.getElementById("header-div-01"));
@@ -11,5 +11,5 @@ import { clickDarkLightMode } from "./js/clickEvent/clickDarkMode.js";
   rollingBanner();
   renderMain("all", "grid");
   clickPageTypeButton();
-  clickDarkLightMode();
+  clickDarkLightModeButton();
 })();
