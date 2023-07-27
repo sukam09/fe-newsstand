@@ -17,7 +17,6 @@ import { $, $All } from "../core/utils/util.js";
 let categoryInterval;
 let startX = 0;
 let nowX = 0;
-let endX = 0;
 let listX = 0;
 const categoryListContainer = $(".category_list_container");
 let listScrollWidth;
@@ -35,7 +34,6 @@ const onScrollMove = (e) => {
   setTranslateX(listX + nowX - startX);
 };
 const onScrollEnd = (e) => {
-  endX = getClientX(e);
   listX = getTranslateX();
   listClientWidth = categoryListContainer.clientWidth;
   listScrollWidth = categoryListContainer.scrollWidth;
