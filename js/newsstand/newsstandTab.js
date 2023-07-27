@@ -5,6 +5,7 @@ import { setUserViewToList, setUserViewToGrid } from "../store/dispatch.js";
 import { CustomQuery } from "../utils/customSelector/customQuery.js";
 
 export function newsstandListTab() {
+  // 커스텀 DOM Api 사용해봤는데 class로 구조를 만드니까 별로 좋아보이지가 않는다.
   const [listButton] =
     new CustomQuery().getElementWithClassName("newsstand-btn-list") || [];
   const [thumbButton] = new CustomQuery().getElementWithClassName(

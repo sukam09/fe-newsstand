@@ -7,7 +7,7 @@
   top: 13px;
   left: 10px;
 
-  color: var(--text-text-white-default, #fff);
+  color: var(--text-text-white-default);
 
   /* selected-bold14 */
   font-family: Pretendard;
@@ -21,7 +21,7 @@
   top: 13px;
   right: 33px;
 
-  color: var(--text-text-white-default, #fff);
+  color: var(--text-text-white-default);
 
   /* display-bold12 */
   font-family: Pretendard;

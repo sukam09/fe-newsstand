@@ -11,7 +11,7 @@
   border-bottom: 1px solid var(--border-border-default);
 
   color: var(--text-text-weak);
-  background: var(--surface-surface-alt, #f5f7f9);
+  background: var(--surface-surface-alt);
 
   height: 40px;
   overflow-x: scroll;
