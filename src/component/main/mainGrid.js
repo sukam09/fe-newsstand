@@ -27,10 +27,10 @@ function addSubscribeBtn({target}){
     }
     
     else{
+        console.log(snackbar);
         target.innerText = "해지하기";
         snackbar.style.display = "flex";
         Store.addSubscribe(NewsData.getGridArticleByID(id));
-        renderMain();
     }
 }
 

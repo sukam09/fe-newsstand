@@ -5,7 +5,6 @@ function makeSnackBar(){
     snackbar.classList.add("snackbar");
     snackbar.style.display = "none";
     snackbar.innerHTML = "내가 구독한 언론사에 추가되었습니다.";
-
     mainCenter.appendChild(snackbar);
 }
 
