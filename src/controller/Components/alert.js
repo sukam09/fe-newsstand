@@ -1,6 +1,5 @@
 import { UNSUBSCRIBE } from "../../constant.js";
 import { actionCreator, store } from "../../model/store.js";
-import { scrollMove } from "../../util/scroll.js";
 import { snackBarForceDisappear } from "../../view/snackBar.js";
 import { timerId } from "../timer.js";
 

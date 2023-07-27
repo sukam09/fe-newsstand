@@ -133,15 +133,6 @@ function subscriber() {
   if (store) {
     store.subscribe(
       () => {
-        const autoMoveSubscribePage = true;
-        LIST_PAGE.category = store.getSubscribe().length - 1;
-        VIEW.setTab(SUBSCRIBE, autoMoveSubscribePage);
-      },
-      SUBSCRIBE,
-      LIST
-    );
-    store.subscribe(
-      () => {
         if (VIEW.tab === ENTIRE) {
           const subscribeBtnElement = document.querySelector(".press-news-wrap .press-info .subscribe-btn");
           subscribeBtnElement.querySelector(".subscribe-text").innerHTML = "구독하기";

@@ -1,4 +1,7 @@
-import { VIEW } from "../model/global.js";
+import { GRID, LIST, SUBSCRIBE } from "../constant.js";
+import { timerId } from "../controller/timer.js";
+import { LIST_PAGE, VIEW } from "../model/global.js";
+import { store } from "../model/store.js";
 
 function snackBarForceDisappear() {
   const main = document.querySelector("main");
@@ -24,5 +27,26 @@ function snackBar() {
     }, 5000);
   });
 }
+
+function subscriber() {
+  store.subscribe(snackBar, SUBSCRIBE, GRID);
+  store.subscribe(
+    () => {
+      snackBar().then(() => {
+        timerId && clearInterval(timerId);
+
+        if (VIEW.layout === LIST) {
+          LIST_PAGE.category = store.getSubscribe().length - 1;
+
+          const autoMoveSubscribePage = true;
+          VIEW.setTab(SUBSCRIBE, autoMoveSubscribePage);
+        }
+      });
+    },
+    SUBSCRIBE,
+    LIST
+  );
+}
+subscriber();
 
 export { snackBar, snackBarForceDisappear };

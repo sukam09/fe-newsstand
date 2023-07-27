@@ -41,6 +41,7 @@ export const VIEW = {
       renderGrid();
     } else {
       if (!autoMoveSubscribePage) LIST_PAGE.category = 0;
+      LIST_PAGE.page = 0;
       renderList();
     }
   },

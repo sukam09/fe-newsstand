@@ -17,7 +17,7 @@ class Store {
 
   dispatch(action) {
     this.#state = reducer(this.#state, action);
-    if (action.type === SUBSCRIBE && VIEW.layout === LIST) {
+    if (action.type === SUBSCRIBE) {
       this.#subscribeHandler.forEach((renderFn) => {
         renderFn();
       });

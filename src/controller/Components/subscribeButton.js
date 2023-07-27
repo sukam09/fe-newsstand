@@ -2,8 +2,7 @@ import { LIST_PAGE, VIEW } from "../../model/global.js";
 import { actionCreator, store } from "../../model/store.js";
 import { news_data } from "../../view/grid.js";
 import { news } from "../../view/list.js";
-import { timerId } from "../timer.js";
-import { snackBar } from "../../view/snackBar.js";
+
 import { AlertHandler } from "./alert.js";
 import { GRID, LIST, SUBSCRIBE } from "../../constant.js";
 
@@ -22,20 +21,9 @@ function SubscribeBtnEventHandler(e, btnElement, pressID) {
   //구독하기
   if (!isSubscribe) {
     //구독 배열에 저장
-
-    if (VIEW.layout === LIST) {
-      // 내가 구독한 언론사 페이지로 이동
-      snackBar(e).then(() => {
-        timerId && clearInterval(timerId);
-        store.dispatch(actionCreator(SUBSCRIBE, { press: pressData }));
-      });
-    } else {
-      //그리드뷰
-      snackBar(e);
-      btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
-      btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
-      store.dispatch(actionCreator(SUBSCRIBE, { press: pressData }));
-    }
+    store.dispatch(actionCreator(SUBSCRIBE, { press: pressData }));
+    btnElement.querySelector(".subscribe-text").innerHTML = "해지하기";
+    btnElement.querySelector(".plus-btn").setAttribute("src", "../../asset/button/closed.png");
   } else {
     //해지하기
     const main = document.querySelector("main");
