@@ -8,7 +8,7 @@ import { handleElementClass } from "./util.js";
 import { VIEW } from "./constant.js";
 
 export function switchTo() {
-  const [listButton] = document.getElementsByClassName("newsstand—btn-list");
+  const [listButton] = document.getElementsByClassName("newsstand-btn-list");
   const [thumbButton] = document.getElementsByClassName("newsstand-btn-thumb");
   const [gridArea] = document.getElementsByClassName("newsstand__media-area");
   const listArea = document.getElementById("newsstand__news-area");
@@ -43,7 +43,7 @@ export function switchTo() {
 }
 
 export function switchToListAll() {
-  const [listButton] = document.getElementsByClassName("newsstand—btn-list");
+  const [listButton] = document.getElementsByClassName("newsstand-btn-list");
   const [thumbButton] = document.getElementsByClassName("newsstand-btn-thumb");
   const [gridArea] = document.getElementsByClassName("newsstand__media-area");
   const listArea = document.getElementById("newsstand__news-area");

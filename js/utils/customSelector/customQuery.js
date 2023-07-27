@@ -49,6 +49,18 @@ export class CustomQuery {
 
     return this.result;
   }
+  getElementWithId(search, parent = document) {
+    for (const elem of parent.children) {
+      if (search === elem.id) {
+        if (!this.result.length) this.result.push(elem);
+
+        return this.result;
+      }
+      this.getElementWithId(search, elem);
+    }
+
+    return this.result;
+  }
 
   customQuerySelectById(search, parent = document) {
     parent.id === search && this.result.push(parent);

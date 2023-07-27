@@ -2,12 +2,23 @@ import { addGridButton, deleteGridButton } from "./newsstandGrid.js";
 import { addListdButton, deleteListButton } from "./newsstandList.js";
 import { EVENT, VIEW } from "../utils/constant.js";
 import { setUserViewToList, setUserViewToGrid } from "../store/dispatch.js";
+import { CustomQuery } from "../utils/customSelector/customQuery.js";
 
 export function newsstandListTab() {
-  const [listButton] = document.getElementsByClassName("newsstand—btn-list");
-  const [thumbButton] = document.getElementsByClassName("newsstand-btn-thumb");
-  const [gridArea] = document.getElementsByClassName("newsstand__media-area");
-  const listArea = document.getElementById("newsstand__news-area");
+  const [listButton] =
+    new CustomQuery().getElementWithClassName("newsstand-btn-list") || [];
+  const [thumbButton] = new CustomQuery().getElementWithClassName(
+    "newsstand-btn-thumb"
+  );
+  const [gridArea] = new CustomQuery().getElementWithClassName(
+    "newsstand__media-area"
+  );
+  const [listArea] = new CustomQuery().getElementWithId("newsstand__news-area");
+
+  // const [listButton] = document.getElementsByClassName("newsstand-btn-list");
+  // const [thumbButton] = document.getElementsByClassName("newsstand-btn-thumb");
+  // const [gridArea] = document.getElementsByClassName("newsstand__media-area");
+  // const listArea = document.getElementById("newsstand__news-area");
 
   hanlderNewsTabListener(listButton, thumbButton, listArea, gridArea);
 }
