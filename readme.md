@@ -26,3 +26,53 @@
 - [x] 구독한 언론사: 그리드 보기
 - [x] 구독해지 시 dialog 표시
 - [x] 다크모드(선택)
+
+## 추가 구현
+
+### querySelector
+
+- dfs 탐색으로 구현
+
+![querySelector](<스크린샷 2023-07-27 오전 11.18.09.png>)
+
+### querySelectorAll
+
+- bfs 탐색으로 구현
+
+![querySelectorAll](image.png)
+
+### Promise
+
+- `queueMicrotask api` 를 활용하여 직접 micro task queue에 비동기 로직 push 하여 비동기 작업 구현
+- static 메서드 `resolve`, `reject`, `all` 구현
+
+![Alt text](image-1.png)
+
+### recoil을 참고한 observer store
+
+- 한개의 Store로 전역상태 관리하는 것이 아닌 Atomic 하게 전역변수 관리
+- `atom`, `useAtom` 함수를 통해 전역변수 init, get, set, subscribe 할수 있도록 구현
+- `atom` 값을 활용한 로직을 재사용할 수 있도록 `selector` 구현
+- `selector`, `useSelector` 함수를 통해 init, get, set 할수 있도록 구현
+
+#### atom
+
+![Alt text](image-6.png)
+![Alt text](image-3.png)
+
+#### selector
+
+![Alt text](image-4.png)
+![Alt text](image-5.png)
+
+## 새로 배운점
+
+### requestAnimationFrames
+
+- `setTimeout`, `setInterval` 을 사용한 애니메이션에 `rAF` 적용
+- 장점: 페이지 비활성화 상태에서 실행이 중지되기 때문에 cpu 리소스와 배터리 수명 낭비 막을 수 있다, 프레임 손실 방지, 코드의 가독성 증가
+
+### 이벤트 위임
+
+- 기존에는 버든 마다 event를 걸어줬는데 이벤트 위임을 사용해 공통 조상에 event listner를 한개만 거는 방식 사용
+- 장점: 이벤트를 동적으로 생성해 주지 않아도 되고 이벤트를 한개만 사용하면 되기 때문에 메모리 절약 할 수 있다.
