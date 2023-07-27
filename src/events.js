@@ -197,11 +197,10 @@ function changeMode() {
 
     if (view_option.mode === "dark-mode") {
         toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
-        document.body.classList.add("dark_mode");
     } else {
         toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
-        document.body.classList.remove("dark_mode");
     }
+    document.body.classList.toggle("dark_mode");
 }
 
 function togglePressEvent() {
@@ -356,12 +355,12 @@ function toggleAutoModeEvent() {
 
     toggle_auto_mode.addEventListener("click", () => {
         if (toggle_auto_mode.classList.contains("auto_mode_active")) {
-            setTimeout(() => {
-                toggle_auto_mode.classList.remove("auto_mode_active");
-                view_option.subscribe(mode_util.currentHourToMode);
-                view_option.subscribe(changeMode);
-                clearInterval(auto_interval);
-            }, 3000);
+            clearInterval(auto_interval);
+            toggle_mode.style.display = "block";
+            toggle_auto_mode.tranlate = "translateX(0)";
+            toggle_auto_mode.classList.remove("auto_mode_active");
+            view_option.subscribe(mode_util.currentHourToMode);
+            view_option.subscribe(changeMode);
         } else {
             toggle_auto_mode.style.animation = "right-move 3s forwards";
             toggle_mode.style.display = "none";
@@ -441,7 +440,7 @@ function handleStandbyEvents() {
     mainOptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
-    toggleAutoModeEvent();
+    // toggleAutoModeEvent();
     mode_util.showToday("today");
 
     view_option.subscribe(renderPressItem);
