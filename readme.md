@@ -1,10 +1,23 @@
 1. 레이아웃 설계
 
-    ![UI - 1](./docs/test5.png)
-    ![UI - 2](./docs/test6.png)
+-   그리드 뷰
+    ![UI - grid](./docs/test5.png)
+
+-   리스트 뷰
+    ![UI - list](./docs/test6.png)
+
+-   다크모드
+    ![UI - dark](./docs/test8.png)
+    ![UI - dark](./docs/test9.png)
+
+-   언론사 구독
+    ![UI - subscribe](./docs/test10.png)
+-   언론사 해지
+    ![UI - terminate](./docs/test7.png)
 
 2. 시연 영상
    [![NEWSSTAND 2주차 시연](./docs/screen1.png)](https://www.youtube.com/watch?v=KOVuUW7YreQ)
+   [![NEWSSTAND 3주차 시연](./docs/screen2.png)](https://www.youtube.com/watch?v=ofuAR0mxNkI)
 
 3. 네이밍 규칙
 
@@ -38,16 +51,26 @@ fe-newsstand
 ├── index.html
 ├── readme.md
 └── src
-    ├── actions.js
+    ├── actions
+    │   ├── banner_action.js ---------- 헤드라인 액션
+    │   ├── data_action.js ------------ 패치 데이터 저장
+    │   ├── page_handle_action.js ----- 페이지 이동 액션
+    │   ├── render_action.js ---------- 뷰 그리기/지우기
+    │   └── snack_bar_action.js ------- 구독 액션
     ├── constants.js
-    ├── events.js
-    ├── globals.js
-    ├── utils.js
+    ├── events.js --------------------- 이벤트 감지 및 핸들링
+    ├── reducers.js ------------------- 디스패치되는 액션
+    ├── store.js ---------------------- 전역 저장 스토어
+    ├── utils
+    │   ├── data_util.js -------------- 데이터 정제, 불러오기
+    │   ├── fetch_util.js ------------- 로컬 데이터 패치
+    │   └── mode_util.js -------------- 이외 모드에 따른 유틸
     └── views
-        ├── grid_views.js
-        ├── list_views.js
-        ├── rolling_views.js
-        └── snack_bar_views.js
+        ├── grid_views.js ------------- 그리드 언론사 뷰
+        ├── list_views.js ------------- 리스트 뉴스 뷰
+        ├── modal_bar_views.js -------- 구독 해지 뷰
+        ├── rolling_views.js ---------- 헤드라인 뷰
+        └── snack_bar_views.js -------- 언론사 구독 뷰
 ```
 
 5. 구현 체크리스트
@@ -64,19 +87,27 @@ fe-newsstand
         - [ ] 호버 이벤트
     - 스낵바 알림
         - [x] 그리드 보기
-        - [ ] 리스트 보기
+        - [x] 리스트 보기
     - 언론사 구독 기능
-        - [ ] 그리드 보기
-        - [ ] 리스트 보기
-        - [ ] 구독 해지 기능
+        - [x] 그리드 보기
+        - [x] 리스트 보기
+        - [x] 구독 해지 기능
     - 추가 기능
         - [x] 다크모드
 
 6. 모델 구조 개요
     - 모든 event는 event.js에서 정의됩니다. 정의된 event는 initEvent, conditionEvent로 분류되며, 시작부터 끝까지 사용되는 event는 initEvent로 바로 호출되며, 조건에 따라 conditionEvent가 호출됩니다. 호출된 event는 실행 될 행동을 action에서 가져옵니다. action에 따라 최종적으로 보여지는 view는 달라집니다.
 
+
+7. [깨달은 점](./docs/realize.md)
 ---
-### 7.25 (화)
+
+### 7.27 (목)
+
+-   mode가 view_store를 구독
+    -   view_option이 변경될 때마다(mode가 변경되면) 자동으로 dark, light icon이 변경
+
+### 7.25 (화), 7.26 (수)
 
 -   옵저버 패턴 적용 리팩토링
 
