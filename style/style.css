@@ -208,6 +208,10 @@ ul {
     width: 53px;
     height: 21px;
 }
+.list-sub-btn {
+    width:72px;
+    height:24px;
+}
 .list-unsub-btn {
     width:24px;
     height:24px;

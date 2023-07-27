@@ -24,10 +24,7 @@ async function filterData() {
                 break;
         }
         resolve({listData, navData, numOfListPages});
-    })
-    
-    return {listData, navData, numOfListPages};
-    
+    })    
 }
 
 export {filterData}

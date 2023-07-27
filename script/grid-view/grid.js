@@ -1,6 +1,7 @@
 import { store } from "../../store/store.js";
 import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, URL } from "../../asset/data/constants.js";
 import { shuffleArray } from "../../util/shuffleArray.js";
+import { handleSubscribe } from "../view-utils/handle-subscribe.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const pressCover = document.querySelector(".press-cover");
@@ -68,8 +69,10 @@ async function initGrid () {
             <li class="pressItem"></li>
         `
     }
-    handleGridHover();  
     drawGrid();
+    handleGridHover();  
+    handleSubscribe();
+
 }
 
 export {drawGrid, initGrid}

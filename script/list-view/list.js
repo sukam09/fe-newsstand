@@ -2,6 +2,7 @@ import { store } from "../../store/store.js";
 import { drawProgressBar } from "./progress-bar.js";
 import { CATEGORY_LIST, FILTER_TYPE } from "../../asset/data/constants.js";
 import { filterData } from "../view-utils/filter-data.js";
+import { handleSubscribe } from "../view-utils/handle-subscribe.js";
 
 const listNav = document.querySelector(".list-nav");
 const listContent = document.querySelector(".list-content");
@@ -34,7 +35,7 @@ function drawListPage({listData, navData}) {
         <header class="list-page-header display-medium12 light-text-default">
             <img class="list-main-img" src=${crntData.path}></img>
             <span>${crntData.edit_date} 편집</span>
-            <img src="/asset/icons/${store.getSubList().includes(crntData.id) ? "list-unsub-btn.png":"subscribe-button.png"}" class="${store.getSubList().includes(crntData.id) ? "list-unsub-btn" : "sub-btn"}"/>
+            <img src="/asset/icons/${store.getSubList().includes(crntData.id) ? "list-unsub-btn.png":"subscribe-button.png"}" class="${store.getSubList().includes(crntData.id) ? "list-unsub-btn" : "list-sub-btn"}" index=${crntData.id} />
         </header>
         <section class="list-page-section">
             <section class="list-page-left available-medium16 light-text-strong">
@@ -92,9 +93,10 @@ function drawPageInfo({listData}) {
 
 async function drawList() {
     const viewData = await filterData(); // filter data to show according to crnt filter type
-    const {isChangeView, isChangeCategory} = store.getFlagState();
-    if (isChangeView){
+    const {isChangeView, isChangeCategory, isUnsubscribing} = store.getFlagState();
+    if (isChangeView || isUnsubscribing){
         // 그리드뷰 -> 리스트뷰로 바뀔 때 실행
+        // 구독 언론사 보기 + 리스트뷰 + 구독해지할 때도 실행
         drawListNav({...viewData});
         handleCategoryChange(listNav.children);
     }
@@ -106,7 +108,8 @@ async function drawList() {
     drawPageInfo({...viewData}); 
     drawProgressBar() 
     drawListPage({...viewData}); 
-    
+    handleSubscribe();
+
     store.initFlagVar();
 }
 

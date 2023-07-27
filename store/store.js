@@ -12,6 +12,8 @@ class Store {
         this.flagState = {
             isChangeView : false,
             isChangeCategory :  false,
+            isSubscribing : false,
+            isUnsubscribing : false,
         }
         this.pressData = [];
         this.subList = [];
@@ -37,11 +39,10 @@ class Store {
 
     
     initFlagVar() {
-        if (this.flagState.isChangeView === true){
-            this.flagState.isChangeView = false;
-        }
-        if (this.flagState.isChangeCategory === true) {
-            this.flagState.isChangeCategory = false;
+        for (let state in this.flagState){
+            if (state){
+                state = false;
+            }
         }
     }
     setFlagVar(newState) {
@@ -56,18 +57,21 @@ class Store {
         this.viewState = {...this.viewState,  ...newState};
         this.setFlagVar(newState);
         this.notify();
+        
     }
     setSubList(id, type){
         switch(type){
             case "subscribe":
                 this.subList.push(id);
+                this.flagState.isSubscribing = true;
                 break;
             case "unsubscribe":
                 const idx = this.subList.findIndex(item => item === id);
                 this.subList.splice(idx,1)
+                this.flagState.isUnsubscribing = true;
                 break;
         }
-        this.notify();
+        // this.notify();
     }  
     setShuffledList(arr){
         this.shuffledList = arr;
