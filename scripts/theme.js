@@ -1,4 +1,4 @@
-import { appStore, themeStore } from "../store/index.js";
+import { appStore, themeStore, useSelector } from "../store/index.js";
 import { changeTheme, initTheme } from "../store/reducer/theme.js";
 import { getLocalStorageItem } from "../utils/local-storage.js";
 import { getReplacedSrcByTheme, setTheme } from "../utils/theme.js";
@@ -22,7 +22,7 @@ function initAppTheme() {
     theme = THEME.LIGHT;
   }
 
-  appStore.dispatch(initTheme(theme));
+  themeStore.dispatch(initTheme(theme));
   setTheme();
 }
 
@@ -30,21 +30,21 @@ function addEventHandlerOnThemeButton() {
   const $themeButton = document.querySelector(".theme-btn");
 
   $themeButton.addEventListener("click", () => {
-    appStore.dispatch(changeTheme());
+    themeStore.dispatch(changeTheme());
     setTheme();
   });
 }
 
 function changeBrandMarkSrcByTheme() {
   const theme = useSelector({
-    store: appStore,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
   const viewType = useSelector({
     store: appStore,
-    selector: (state) => state.viewType,
+    selector: (state) => state.page.viewType,
   });
 
+  console.log(viewType);
   const isGridView = viewType === VIEW_TYPE.GRID;
 
   const $marks = isGridView

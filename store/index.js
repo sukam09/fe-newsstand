@@ -7,7 +7,6 @@ import { modal } from "./reducer/modal.js";
 
 const rootReducer = combineReducers({
   page,
-  theme,
   subscribeList,
 });
 
@@ -17,6 +16,8 @@ export const appStore = createStore(rootReducer);
 export const modalStore = createStore(modal);
 
 export const snackbarStore = createStore(snackbar);
+
+export const themeStore = createStore(theme);
 
 export const useSelector = ({ store, selector }) => {
   if (!selector) return store.getState();

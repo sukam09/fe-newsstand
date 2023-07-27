@@ -4,6 +4,7 @@ import {
   snackbarStore,
   appStore,
   useSelector,
+  themeStore,
 } from "../store/index.js";
 import { CATEGORIES, TAB_TYPE, VIEW_TYPE } from "../constants/index.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
@@ -92,8 +93,7 @@ function unshowCategoryTab() {
 
 function fillArticle(articleData) {
   const theme = useSelector({
-    store: appStore,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
   const subscribeList = useSelector({
     store: appStore,

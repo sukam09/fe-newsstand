@@ -5,6 +5,7 @@ import {
   snackbarStore,
   appStore,
   useSelector,
+  themeStore,
 } from "../store/index.js";
 import { openModal } from "../store/reducer/modal.js";
 import { openSnackbar } from "../store/reducer/snackbar.js";
@@ -16,8 +17,7 @@ const $gridView = document.querySelector(".grid-view");
 
 function fillGridView(newsData, currentPage) {
   const theme = useSelector({
-    store: appStore,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
 
   const startIdx = currentPage * NEWS_COUNT;
@@ -125,7 +125,7 @@ function gridViewSubscriber(newsData, maxPage) {
   }
 }
 
-export function renderGridView() {
+function renderGridView() {
   const newsData = NewsDB.getNewsData();
   const maxPage = getMaxPage(newsData);
   initGridView(newsData);
@@ -133,3 +133,5 @@ export function renderGridView() {
 
   appStore.subscribe(gridViewSubscriber.bind(null, newsData, maxPage));
 }
+
+export { renderGridView };

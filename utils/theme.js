@@ -1,10 +1,9 @@
 import { THEME } from "../constants/index.js";
-import { appStore, useSelector } from "../store/index.js";
+import { themeStore, useSelector } from "../store/index.js";
 
 export function setTheme() {
   const theme = useSelector({
-    store: appStore,
-    selector: (state) => state.theme,
+    store: themeStore,
   });
 
   if (theme === THEME.DARK) {
