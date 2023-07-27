@@ -31,15 +31,15 @@ export function snackBarAction(msg) {
     clearTimeout(snackBarTime);
   }
   const snackbar = document.querySelector(".modal__snack-bar");
-  snackbar.classList.remove("modal__none");
+  handleElementClass(snackbar, "remove", "modal__none");
   snackbar.textContent = msg;
   snackBarTime = setTimeout(snackBarCallBack(snackbar), 2000);
 }
 
 export function snackBarListAction(msg) {
   const snackbar = document.querySelector(".modal__snack-bar");
-  snackbar.classList.remove("modal__none");
+  handleElementClass(snackbar, "remove", "modal__none");
   snackbar.textContent = msg;
-  snackbar.classList.add("modal__none");
+  handleElementClass(snackbar, "add", "modal__none");
   switchTo(); // 구독버튼을 눌렀을때 이동.
 }

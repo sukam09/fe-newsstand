@@ -1,4 +1,4 @@
-import { removeChildElement } from "../utils/util.js";
+import { handleElementClass, removeChildElement } from "../utils/util.js";
 import { setUnsubscribe } from "../store/dispatch.js";
 import { makeUnSubTag } from "../tag/unsubTag.js";
 
@@ -15,14 +15,14 @@ export function unsubscribeModal(name) {
   title.textContent = name;
 
   // display none -> 보이도록
-  parent.classList.remove("modal__none");
+  handleElementClass(parent, "remove", "modal__none");
 
   unsub.addEventListener("click", () => {
-    parent.classList.add("modal__none");
+    handleElementClass(parent, "add", "modal__none");
     setUnsubscribe(name);
   });
 
   no.addEventListener("click", () => {
-    parent.classList.add("modal__none");
+    handleElementClass(parent, "add", "modal__none");
   });
 }

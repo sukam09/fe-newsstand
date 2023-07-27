@@ -54,7 +54,3 @@ export class CustomQuery {
     return this.result;
   }
 }
-
-const custom = new CustomQuery();
-
-console.log(custom.customQuerySelectAllByTagName("ul"));

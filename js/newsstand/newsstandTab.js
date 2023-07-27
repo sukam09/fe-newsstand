@@ -3,6 +3,7 @@ import { addListdButton, deleteListButton } from "./newsstandList.js";
 import { EVENT, VIEW } from "../utils/constant.js";
 import { setUserViewToList, setUserViewToGrid } from "../store/dispatch.js";
 import { CustomQuery } from "../utils/customSelector/customQuery.js";
+import { handleElementClass } from "../utils/util.js";
 
 export function newsstandListTab() {
   // 커스텀 DOM Api 사용해봤는데 class로 구조를 만드니까 별로 좋아보이지가 않는다.
@@ -47,8 +48,8 @@ function switchToList(listButton, thumbButton, listArea, gridArea) {
   thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
   // display: none 속성 부여.
-  listArea.classList.remove(VIEW.DISABLED);
-  gridArea.classList.add(VIEW.DISABLED);
+  handleElementClass(listArea, "remove", VIEW.DISABLED);
+  handleElementClass(gridArea, "add", VIEW.DISABLED);
 }
 
 function switchToGrid(listButton, thumbButton, listArea, gridArea) {
@@ -60,6 +61,6 @@ function switchToGrid(listButton, thumbButton, listArea, gridArea) {
   listButton.src = "./assets/basicIcon/list-symbol.svg";
   thumbButton.src = "./assets//basicIcon/grid-symbol-selected.svg";
 
-  gridArea.classList.remove(VIEW.DISABLED);
-  listArea.classList.add(VIEW.DISABLED);
+  handleElementClass(gridArea, "remove", VIEW.DISABLED);
+  handleElementClass(listArea, "add", VIEW.DISABLED);
 }

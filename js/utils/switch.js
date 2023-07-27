@@ -36,8 +36,8 @@ export function switchTo() {
   thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
   // display: none 속성 부여.
-  listArea.classList.remove(VIEW.DISABLED);
-  gridArea.classList.add(VIEW.DISABLED);
+  handleElementClass(listArea, "remove", VIEW.DISABLED);
+  handleElementClass(gridArea, "add", VIEW.DISABLED);
 
   focusToMyPubliser(mySubscribe, allPublisher);
 }
@@ -55,8 +55,8 @@ export function switchToListAll() {
   thumbButton.src = "./assets//basicIcon/grid-symbol.svg";
 
   // display: none 속성 부여.
-  listArea.classList.remove(VIEW.DISABLED);
-  gridArea.classList.add(VIEW.DISABLED);
+  handleElementClass(listArea, "remove", VIEW.DISABLED);
+  handleElementClass(gridArea, "add", VIEW.DISABLED);
 
   focusToAllPublisher(mySubscribe, allPublisher);
 

@@ -1,4 +1,8 @@
-import { removeChildElement, snackBarListAction } from "../utils/util.js";
+import {
+  handleElementClass,
+  removeChildElement,
+  snackBarListAction,
+} from "../utils/util.js";
 import { MESSAGE, POSITION, EVENT, VIEW } from "./constant.js";
 import { unsubscribeModal } from "./unsubscribe.js";
 import { getCategoryData } from "../fetchAPI.js";
@@ -27,10 +31,12 @@ const newsData = await getCategoryData("./data/pressObj.json");
 // 프로그래스 바 활성화
 export function activeProgressClass(element, childIndex, categoryDataLength) {
   element.style.padding = 0; // 선택된 카테고리의 padding 제거
-  element.classList.add("newsstand__focus");
-  element.classList.add("newsstand__focus-font");
+  handleElementClass(element, "add", "newsstand__focus");
+  handleElementClass(element, "add", "newsstand__focus-font");
 
-  progressClassList.map((it, idx) => element.children[idx].classList.add(it));
+  progressClassList.map((it, idx) =>
+    handleElementClass(element.children[idx], "add", it)
+  );
   showTextByNavTab(element, categoryDataLength, childIndex);
 
   // animationIterationCount 속성을부여해 원하는 횟수만큼 프로그래스 바 진행.
@@ -42,12 +48,12 @@ export function activeProgressClass(element, childIndex, categoryDataLength) {
 export function deactiveProgressClass(element) {
   const textData = ["", "", ""];
   element.style.padding = "16px";
-  element.classList.remove("newsstand__focus");
-  element.classList.remove("newsstand__focus-font");
+  handleElementClass(element, "remove", "newsstand__focus");
+  handleElementClass(element, "remove", "newsstand__focus-font");
 
   // 클래스 제거
   progressClassList.map((it, idx) =>
-    element.children[idx].classList.remove(it)
+    handleElementClass(element.children[idx], "remove", it)
   );
 
   // 텍스트 초기화
