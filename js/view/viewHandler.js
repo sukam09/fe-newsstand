@@ -76,15 +76,13 @@ function handleView({ target: target }) {
   if (checkClass("grid-symbol")) {
     //grid 버튼 눌렀을 때
     changeViewIcon("grid");
-    setDisplay(".press-grid", "query", "block");
-    drawGridView();
     setState(isGridView, true);
-    setState(isSubView, true);
+    setDisplay(".press-grid", "query", "block");
   }
   if (checkClass("total-press")) {
     // 전체 언론사 클릭
-    setState(isGridView, true);
     setState(isSubView, false);
+    setState(isGridView, true);
     setDisplay(".press-grid", "query", "block");
     changeViewIcon("grid");
     changeOption("total");

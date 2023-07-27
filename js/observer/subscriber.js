@@ -19,23 +19,27 @@ export function initSubscriber() {
   subscribe(subListPageCount, setSubListNav);
   subscribe(subListPageCount, drawNews);
   subscribe(subListPageCount, restartAnimation);
+
   subscribe(categoryPageCount, drawListArrow);
   subscribe(categoryPageCount, drawNews);
   subscribe(categoryPageCount, setNowCount);
   subscribe(categoryPageCount, restartAnimation);
+
   subscribe(nowCategory, drawListArrow);
   subscribe(nowCategory, drawNews);
 
-  subscribe(subGridPageCount, drawGridView);
   subscribe(gridPageCount, drawGridView);
-  subscribe(subGridPageCount, drawGridArrow);
   subscribe(gridPageCount, drawGridArrow);
-  subscribe(isGridView, drawGridArrow);
+  
+  subscribe(subGridPageCount, drawGridView);
+  subscribe(subGridPageCount, drawGridArrow);
 
+  subscribe(isGridView, drawGridArrow);
   subscribe(isGridView, drawNews);
   subscribe(isGridView, setSubListNav);
   subscribe(isGridView, drawGridView);
   subscribe(isGridView, setNowCount);
+
   subscribe(isSubView, drawNews);
   subscribe(isSubView, setSubListNav);
   subscribe(isSubView, drawGridView);
