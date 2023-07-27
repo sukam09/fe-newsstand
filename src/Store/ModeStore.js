@@ -7,9 +7,14 @@ export default class ModeStore extends Observable {
     this.mode = constants.LIGHT_MODE;
   }
 
-  setMode(mode) {
-    document.body.classList.replace(this.mode, mode);
-    this.mode = mode;
+  toggleMode() {
+    const newMode =
+      this.mode === constants.LIGHT_MODE
+        ? constants.DARK_MODE
+        : constants.LIGHT_MODE;
+
+    document.body.classList.replace(this.mode, newMode);
+    this.mode = newMode;
     this.notify(this.mode);
   }
 }

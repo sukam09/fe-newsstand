@@ -1,7 +1,9 @@
 import { constants } from "../../Data/constants.js";
+import ModeStore from "../../Store/ModeStore.js";
 import SubscribeStore from "../../Store/SubscribeStore.js";
 import ViewStore from "../../Store/ViewStore.js";
 import Component from "../../core/Component.js";
+import ModeToggleButton from "../Button/ModeToggleButton.js";
 import MyNewsGrid from "../MyNewsGrid/MyNewsGrid.js";
 import MyNewsList from "../MyNewsList/MyNewsList.js";
 import NavBar from "../NavBar/NavBar.js";
@@ -18,6 +20,7 @@ export default class News extends Component {
     this.progressTimerMy = [];
     this.SubscribeStore = new SubscribeStore();
     this.ViewStore = new ViewStore();
+    this.ModeStore = new ModeStore();
   }
 
   setEvent() {
@@ -43,6 +46,7 @@ export default class News extends Component {
         !this.isViewNewsType(constants.SHOW_MY_NEWS, constants.SHOW_GRID) &&
         "hidden"
       }"></section>
+      <div class="darkModeButton"></div>
     `;
   }
 
@@ -55,12 +59,14 @@ export default class News extends Component {
 
     new NewsGrid(this.$target.querySelector(".news-section-grid"), {
       SubscribeStore: this.SubscribeStore,
+      ModeStore: this.ModeStore,
     });
 
     new NewsList(this.$target.querySelector(".news-section-list"), {
       SubscribeStore: this.SubscribeStore,
       progressTimer: this.progressTimer,
       setProgressTimer: this.setProgressTimer,
+      ModeStore: this.ModeStore,
     });
 
     new MyNewsList(this.$target.querySelector(".news-section-my-list"), {
@@ -68,11 +74,15 @@ export default class News extends Component {
       progressTimerMy: this.progressTimerMy,
       setProgressTimerMy: this.setProgressTimerMy,
       clearProgressTimer: this.clearProgressTimer,
+      ModeStore: this.ModeStore,
     });
 
     new MyNewsGrid(this.$target.querySelector(".news-section-my-grid"), {
       SubscribeStore: this.SubscribeStore,
+      ModeStore: this.ModeStore,
     });
+
+    this.setModeToggleButton();
   }
 
   setProgressTimer(timer) {
@@ -109,5 +119,11 @@ export default class News extends Component {
       this.ViewStore.newsCategory === categoryType &&
       this.ViewStore.newsView === viewType
     );
+  }
+
+  setModeToggleButton() {
+    new ModeToggleButton(this.$target.querySelector(".darkModeButton"), {
+      ModeStore: this.ModeStore,
+    });
   }
 }

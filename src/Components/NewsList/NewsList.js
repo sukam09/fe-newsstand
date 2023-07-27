@@ -80,6 +80,7 @@ export default class NewsList extends Component {
       nowCategoryNewsData: this.$state.nowCategoryNewsData,
       page: this.$state.page,
       SubscribeStore: this.$props.SubscribeStore,
+      ModeStore: this.$props.ModeStore,
     });
   }
 

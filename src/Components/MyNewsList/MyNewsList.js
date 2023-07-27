@@ -170,6 +170,7 @@ export default class MyNewsList extends Component {
       subscribeAlertName: this.$target.querySelector(
         ".subscribe-alert__notice__name"
       ),
+      ModeStore: this.$props.ModeStore,
     });
   }
 

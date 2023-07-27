@@ -1,7 +1,6 @@
 import Component from "../../core/Component.js";
 import { constants } from "../../Data/constants.js";
 import NewsGridItems from "./NewsGridItems.js";
-import ModeStore from "../../Store/ModeStore.js";
 
 export default class NewsGrid extends Component {
   setup() {
@@ -12,12 +11,11 @@ export default class NewsGrid extends Component {
       pressNewsData: [],
     };
 
-    this.ModeStore = new ModeStore();
     this.fetchNewsData();
   }
 
   setEvent() {
-    this.ModeStore.subscribe(() => this.render());
+    this.$props.ModeStore.subscribe(() => this.render());
   }
 
   template() {
@@ -62,7 +60,7 @@ export default class NewsGrid extends Component {
 
     new NewsGridItems(this.$target.querySelector(".newspaper__list"), {
       nowPageIndexArr: nowPageIndexArr,
-      mode: this.ModeStore.mode,
+      mode: this.$props.ModeStore.mode,
       SubscribeStore: this.$props.SubscribeStore,
     });
 
