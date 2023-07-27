@@ -3,7 +3,6 @@ import { showGridView } from "../utils/makeGridView.js";
 import { showListView } from "../utils/makeListView.js";
 import {
   FIRST_PAGE_NUM,
-  CATEGORY,
   ICON_IMG_PATH,
   GRID_INDEX,
 } from "../constants/constants.js";
@@ -14,9 +13,7 @@ import {
   getPage,
   getMode,
   getCurrentPress,
-  getIndex,
   getSubscribedPress,
-  getTabMode,
 } from "../core/getter.js";
 import { getData } from "../core/api.js";
 import {
@@ -25,7 +22,7 @@ import {
   handleAnimationEnd,
 } from "../utils/subscribePress.js";
 
-async function MainView() {
+function MainView() {
   store.setState({
     gridIndex: shuffleArray(GRID_INDEX),
   });
@@ -65,7 +62,10 @@ function changePage(target) {
 }
 
 function checkRange(e) {
-  if (!e.target.closest(".popup") && !e.target.closest(".sub")) {
+  if (
+    !e.target.closest(".popup") &&
+    !(e.target.closest(".sub") && getView() === "list")
+  ) {
     deletePopupAndAnimation();
   }
 }

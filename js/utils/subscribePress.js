@@ -9,6 +9,7 @@ import { ICON_IMG_PATH, PRESS_VIEW_COUNT } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 import { showGridView } from "./makeGridView.js";
 import { changeView } from "./changeView.js";
+
 export function showSubscribeButton(isSubscribed) {
   return isSubscribed
     ? getView() === "grid"
@@ -65,7 +66,6 @@ export function handleAnimationEnd(e) {
     snackbar.style.display = "none";
     store.setState({ tabMode: "subscribe" });
     changeView("list");
-    // showListView(_press.name);
   }
 }
 export function deletePopupAndAnimation() {
