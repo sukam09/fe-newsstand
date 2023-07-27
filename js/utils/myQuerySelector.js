@@ -37,7 +37,7 @@ const dfs = (node, elementIdentifier) => {
   if (node.className === elementIdentifier) return node;
   if (node.id === elementIdentifier) return node;
 
-  for (let child of node.children) {
+  for (const child of node.children) {
     const findNode = dfs(child, elementIdentifier);
     if (findNode) return findNode;
   }

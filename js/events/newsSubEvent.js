@@ -7,8 +7,8 @@ function initNewsSubEvent() {
 }
 
 function subScribeGrid() {
-  const gird = document.querySelector('.newsstand__media-area');
-  gird.addEventListener('click', (e) => GridHandler(e));
+  const grid = document.querySelector('.newsstand__media-area');
+  grid.addEventListener('click', (e) => GridHandler(e));
 }
 
 const GridHandler = (e) => {
@@ -42,6 +42,7 @@ const ListHandler = (e) => {
     const titleElement = e.target.closest('.list-header').querySelector('.list-header-title');
     const data = titleElement.textContent;
     if (!subScribeStore.getGetter('getsubscribeData').includes(data)) {
+      subProgressBar();
       titleElement.closest('.list-header').querySelector('.header-btn-subscribe').textContent = 'X';
       subScribeStore.commit('subscribe', data);
     } else {
