@@ -7,7 +7,6 @@ import {
   isMySubView,
   subGridPageIdx,
   subscribedPress,
-  isGridView,
 } from "../store/store.js";
 import { setDisplay } from "../util/utils.js";
 
@@ -18,6 +17,7 @@ let total_page_count = 0;
 
 /***** 사진 셔플 *****/
 let presses;
+let shuffled_presses;
 let presses_in_grid;
 
 function shuffleArray(array) {
@@ -42,7 +42,6 @@ function appendPressItemli() {
 
 /***** grid에 언론사 & 구독 이미지 추가 *****/
 function appendPressInGrid(press) {
-  const is_my_sub_view = getState(isMySubView);
   //언론사 이미지 추가
   const $image = document.createElement("img");
   $image.src = getState(isLight) ? `${press.lightSrc}` : `${press.darkSrc}`;
@@ -56,10 +55,8 @@ function appendPressInGrid(press) {
     $sub.src = UNSUB_BTN_IMG;
   } else {
     if (sub_press.length === 0) {
-      //구독 안했으면
       $sub.src = GRID_SUB_BTN_IMG;
     } else {
-      //구독 했으면
       $sub.src = UNSUB_BTN_IMG;
     }
   }
@@ -92,14 +89,16 @@ function drawGrid() {
 
 async function initGrid() {
   presses = await getPressObj();
-  presses = shuffleArray(presses);
+  shuffled_presses = shuffleArray(presses);
   setGrid();
   addEventToGridArrow();
 }
 
 function setGrid() {
   const is_my_sub_view = getState(isMySubView);
-  presses_in_grid = is_my_sub_view ? getState(subscribedPress) : presses;
+  presses_in_grid = is_my_sub_view
+    ? getState(subscribedPress)
+    : shuffled_presses;
   drawGrid();
   drawGridArrow();
 }
