@@ -1,12 +1,5 @@
 import { ICON_LIST_VIEW_URL, ICON_GRID_VIEW_URL } from "../utils/iconURL.js";
-import {
-    onClickEntire,
-    onClickGrid,
-    onClickList,
-    onClickSubBtn,
-    onClickSubscribe,
-    onClickViewBtn,
-} from "../components/layout/mainNavEvent.js";
+import { onClickEntire, onClickGrid, onClickList, onClickSubscribe } from "../components/layout/mainNavEvent.js";
 import { create } from "../utils/createElement.js";
 import { DOM } from "../utils/domClassName.js";
 import { onClickModeBtn } from "../components/layout/darkModeEvent.js";

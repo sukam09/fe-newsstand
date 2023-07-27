@@ -1,6 +1,6 @@
 import { buttonFacotry } from "./btnfactory.js";
 import { create } from "../../utils/createElement.js";
-import { _sub_press_list } from "../../Store.js";
+import { _mode, _sub_press_list } from "../../Store.js";
 const btnFactory = new buttonFacotry();
 
 export function createAlert(press_name, press_id, $parent, resetBtn) {
@@ -27,6 +27,8 @@ export function createAlert(press_name, press_id, $parent, resetBtn) {
     $pos_btn.setEvents({
         click: () => {
             _sub_press_list.deleteState(press_id);
+            _mode.setToNextPage();
+            _mode.setState({ is_grid_view: false, is_sub_view: true });
             document.querySelector(".alert") && document.querySelector(".alert").remove();
             resetBtn && resetBtn($parent, press_id);
         },

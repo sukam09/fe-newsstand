@@ -5,8 +5,7 @@ import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
-import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
-import { _sub_press_list } from "../Store.js";
+import { _mode, _sub_press_list } from "../Store.js";
 import { list_view_subscribe } from "../components/list/listObserverSub.js";
 import { list_view_entire } from "../components/list/listObserverEntire.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
@@ -124,8 +123,10 @@ function resetBtn($container, press_id) {
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, false);
+                            // onClickSubBtn(true, false);
                             _sub_press_list.addState(press_id);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     },
                 },
@@ -155,8 +156,9 @@ function createPressInfoBtn($container, press_name, press_id, subscribe_mode, is
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, false);
                             _sub_press_list.addState(press_id);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     },
                 },

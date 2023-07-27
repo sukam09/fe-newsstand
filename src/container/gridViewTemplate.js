@@ -6,8 +6,7 @@ import { DOM } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
-import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
-import { _sub_press_list } from "../Store.js";
+import { _mode, _sub_press_list } from "../Store.js";
 import { dark_mode } from "../components/layout/darkModeEvent.js";
 const btnFactory = new buttonFacotry();
 
@@ -68,7 +67,8 @@ export function createMainGrid(grid_view_info, isInit, isDark) {
                         document.querySelector(".main_news_container").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, true);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     }
                 },

@@ -19,22 +19,22 @@ class Subject {
 class subscribeSubject extends Subject {
     addState(press_idx) {
         this._state.push(press_idx);
-        this.notifyAll(true);
+        this.notifyAll();
     }
 
     deleteState(press_idx) {
         this._state = this._state.filter((idx) => idx !== press_idx);
-        this.notifyAll(false);
+        this.notifyAll();
     }
 
     getIdx() {
         return this._state;
     }
 
-    notifyAll(is_add) {
+    notifyAll() {
         this._observers.forEach((sbs) => {
             try {
-                sbs.update(this._state, is_add);
+                sbs.update(this._state);
             } catch (err) {
                 throw new Error("update error: ", sbs);
             }
@@ -46,12 +46,24 @@ class modeSubject extends Subject {
     constructor() {
         super();
         this._state = { is_grid_view: true, is_sub_view: false };
+        this._is_last = false;
+        this._is_next = false;
     }
 
     setState({ is_grid_view, is_sub_view }) {
         if (is_grid_view !== null) this._state.is_grid_view = is_grid_view;
         if (is_sub_view !== null) this._state.is_sub_view = is_sub_view;
         this.notifyAll();
+    }
+
+    // 마지막 페이지로 이동
+    setToLastPage() {
+        this._is_last = true;
+    }
+
+    // 다음 페이지로 이동
+    setToNextPage() {
+        this._is_next = true;
     }
 
     changeFont(cont1, cont2) {
@@ -93,17 +105,19 @@ class modeSubject extends Subject {
             this._state.is_sub_view ? this.replaceView(list_entire, list_sub) : this.replaceView(list_sub, list_entire);
         }
     }
+
     notifyAll() {
-        console.log(this._state);
         this.changeView();
 
         this._observers.forEach((sbs) => {
             try {
-                sbs.updateMode(this._state);
+                sbs.updateMode(this._state, this._is_last, this._is_next);
             } catch (err) {
                 throw new Error("_mode error: ", sbs);
             }
         });
+        this._is_last = false;
+        this._is_next = false;
     }
 }
 
