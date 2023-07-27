@@ -4,6 +4,7 @@ import {
     gridPageState,
     listPageState,
     subscribeDataState,
+    viewModeState,
 } from "../store/store.js";
 
 export default class Alert extends Component {
@@ -47,12 +48,17 @@ export default class Alert extends Component {
         const subscribeData = getState(subscribeDataState);
         const listPageIndex = getState(listPageState);
 
-        if (subscribeData.length === listPageIndex) {
-            setState(listPageState, 1);
-        }
-        if (subscribeList.length % 24 === 0) {
-            const gridPage = getState(gridPageState);
-            setState(gridPageState, gridPage - 1);
+        const viewMode = getState(viewModeState);
+
+        if (viewMode === "list") {
+            if (subscribeData.length === listPageIndex) {
+                setState(listPageState, 1);
+            }
+        } else {
+            if (subscribeList.length % 24 === 0) {
+                const gridPage = getState(gridPageState);
+                setState(gridPageState, gridPage - 1);
+            }
         }
         setState(subscribeDataState, subscribeList);
     }

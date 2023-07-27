@@ -1,23 +1,24 @@
 import { $app } from "../app.js";
 import Alert from "../common/Alert.js";
 import Component from "../core/Component.js";
-import { getState } from "../observer/observer.js";
-import { pressDataState, subscribeDataState } from "../store/store.js";
+import { addObserver, getState, setState } from "../observer/observer.js";
+import {
+    pressDataState,
+    viewModeState,
+    viewTypeState,
+} from "../store/store.js";
 import NewsDisplayTab from "./NewsDisplayTab.js";
 import NewsGridView from "./NewsGridView.js";
 import NewsListView from "./NewsListView.js";
 import SubscribeListView from "./SubscribeListView.js";
 
-let currentPressTab = "all";
-let currentViewMode = "grid";
-
 export default class NewsDisplay extends Component {
     setup() {
         this.state = {
-            pressTab: currentPressTab,
-            view: currentViewMode,
             pressData: getState(pressDataState),
         };
+        addObserver(viewModeState, this.render.bind(this));
+        addObserver(viewTypeState, this.render.bind(this));
     }
 
     template() {
@@ -39,22 +40,24 @@ export default class NewsDisplay extends Component {
         const subscribeList = [];
         this.mountSubscribe(this.state.pressData, subscribeList);
 
+        const currentTabMode = getState(viewTypeState);
+        const currentViewMode = getState(viewModeState);
         new NewsDisplayTab(newsDisplayTab, {
-            pressTab: this.state.pressTab,
-            view: this.state.view,
+            pressTab: currentTabMode,
+            view: currentViewMode,
             onClickView: this.onClickView.bind(this),
             onClickTab: this.onClickTab.bind(this),
         });
 
-        if (this.state.pressTab === "all") {
-            if (this.state.view === "grid") {
+        if (currentTabMode === "all") {
+            if (currentViewMode === "grid") {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
                         newsData: this.state.pressData,
                         subscribeList: subscribeList,
                         page: 0,
-                        pressTab: this.state.pressTab,
+                        pressTab: currentTabMode,
                     }
                 );
             } else {
@@ -67,14 +70,14 @@ export default class NewsDisplay extends Component {
                 );
             }
         } else {
-            if (this.state.view === "grid") {
+            if (currentViewMode === "grid") {
                 new NewsGridView(
                     this.$target.querySelector(".news-display-container"),
                     {
                         newsData: this.state.pressData,
                         subscribeList: subscribeList,
                         page: 0,
-                        pressTab: this.state.pressTab,
+                        pressTab: currentTabMode,
                     }
                 );
             } else {
@@ -96,13 +99,13 @@ export default class NewsDisplay extends Component {
     }
 
     onClickView(viewMode) {
-        currentViewMode = viewMode;
-        this.setState({ view: currentViewMode });
+        setState(viewModeState, viewMode);
     }
 
     onClickTab(pressTab) {
-        currentPressTab = pressTab;
-        this.setState({ pressTab: currentPressTab });
+        setState(viewTypeState, pressTab);
+        if (pressTab === "all") setState(viewModeState, "grid");
+        else setState(viewModeState, "list");
     }
 
     mountSubscribe(pressData, subscribeList) {

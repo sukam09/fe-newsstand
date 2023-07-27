@@ -24,4 +24,21 @@ const gridPageState = initState({
     value: 0,
 });
 
-export { pressDataState, subscribeDataState, listPageState, gridPageState };
+const viewTypeState = initState({
+    key: "viewTypeState",
+    value: "grid",
+});
+
+const viewModeState = initState({
+    key: "viewModeState",
+    value: "grid",
+});
+
+export {
+    pressDataState,
+    subscribeDataState,
+    listPageState,
+    gridPageState,
+    viewTypeState,
+    viewModeState,
+};
