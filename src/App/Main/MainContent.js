@@ -8,10 +8,10 @@ import Button from "../MainContent/Button.js";
 import PressGridView from "../MainContent/PressGridView.js";
 import NewsListView from "../MainContent/NewsListView.js";
 import Component from "../../utils/Component.js";
-import { mainStore, GRID, LIST, ALL } from "../../store/MainStore.js";
+import { mainStore, GRID, LIST, ALL, MY } from "../../store/MainStore.js";
 import { FIRST_PAGE, gridStore, setPage } from "../../store/GridStore.js";
 import { pressStore } from "../../store/PressStore.js";
-import { listStore } from "../../store/ListStore.js";
+import { listStore, setCategory, setListPage } from "../../store/ListStore.js";
 
 const listViewData = await fetchNews();
 const pressData = await fetchPress();
@@ -95,12 +95,52 @@ const nextGridPage = () => {
   gridStore.dispatch(nextState);
 };
 
+const prevListPage = () => {
+  let lastCategory = 6;
+  let action;
+
+  const currentPage = listStore.getState().page;
+  if (currentPage === FIRST_PAGE) {
+    if (mainStore.getState().pressType === MY) {
+      lastCategory = pressStore.getState().pressArr.length - 1;
+    }
+
+    action = setCategory(
+      (listStore.getState().category + lastCategory) % (lastCategory + 1)
+    );
+  } else {
+    action = setListPage(listStore.getState().page - 1);
+  }
+
+  listStore.dispatch(action);
+};
+
+const nextListPage = () => {
+  let lastCategory = 6;
+  let action;
+
+  const currentPage = listStore.getState().page;
+  if (currentPage === listStore.getState().lastPage) {
+    let nextCategory;
+    if (mainStore.getState().pressType === MY) {
+      lastCategory = pressStore.getState().pressArr.length - 1;
+    }
+
+    action = setCategory(
+      (listStore.getState().category + 1) % (lastCategory + 1)
+    );
+  } else {
+    action = setListPage(listStore.getState().page + 1);
+  }
+
+  listStore.dispatch(action);
+};
 MainContent.prototype.mounted = function () {
   const mainState = mainStore.getState();
   const directions = ["left", "right"];
   let lastPage = undefined;
 
-  let callBacks = [prevGirdpage, nextGridPage];
+  let callBacks;
 
   if (mainState.viewType === GRID) {
     gridStore.observers.clear();
@@ -117,12 +157,15 @@ MainContent.prototype.mounted = function () {
     new PressGridView($ul, {
       ...this.props,
     });
+
+    callBacks = [prevGirdpage, nextGridPage];
   } else if (mainState.viewType === LIST) {
     const $div = this.$el.querySelector("div");
-
     listStore.observers.clear();
+
     new NewsListView($div, { ...this.props });
-    lastPage = 12;
+
+    callBacks = [prevListPage, nextListPage];
   }
 
   const buttons = this.$el.querySelectorAll(".page");

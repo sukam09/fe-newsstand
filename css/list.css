@@ -55,11 +55,20 @@
 }
 
 .list-content .list-news .main-news .img-container {
+  overflow: hidden;
   height: 200px;
 }
 
 .list-content .list-news .main-news .img-container img {
   transition: 0.3s;
+}
+
+.list-content .list-news .main-news:hover img {
+  scale: 105%;
+}
+
+.list-content .list-news .main-news:hover .main-title {
+  text-decoration: underline;
 }
 
 .list-content .list-news .main-title {

@@ -129,7 +129,7 @@ NewsListView.prototype.mounted = function () {
   new CategoryNav($nav, {
     ...this.props,
   });
-  // new Contents($section, { ...this.props });
+  new Contents($section, { ...this.props });
 };
 
 NewsListView.prototype.isRender = function () {

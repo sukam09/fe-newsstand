@@ -229,7 +229,7 @@ CategoryNav.prototype.mounted = function () {
     <span>
       ${
         mainStore.getState().pressType === ALL
-          ? `${this.currentPage}/${this.lastPage}`
+          ? `${listStore.getState().page}/${listStore.getState().lastPage}`
           : arrowIcon
       }
     </span>
@@ -241,4 +241,5 @@ CategoryNav.prototype.mounted = function () {
 CategoryNav.prototype.isRender = function () {
   return mainStore.getState().viewType === LIST;
 };
+
 export default CategoryNav;

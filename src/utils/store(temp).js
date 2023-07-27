@@ -33,7 +33,7 @@ export default class Store {
           continue;
         this.state[key] = value;
       }
-
+      console.log(this);
       this.notify();
     };
   }

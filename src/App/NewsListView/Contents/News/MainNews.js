@@ -38,16 +38,6 @@ export default function MainNews($target, props) {
     $div.appendChild($imgContainer);
     $div.appendChild($childDiv);
 
-    $div.addEventListener("mouseover", () => {
-      $img.style.scale = "105%";
-      $childDiv.style.textDecoration = "underline";
-    });
-
-    $div.addEventListener("mouseout", () => {
-      $img.style.scale = "none";
-      $childDiv.style.textDecoration = "none";
-    });
-
     $target.appendChild($div);
   };
 
