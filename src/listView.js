@@ -13,6 +13,9 @@ import {
 } from "./core/store/store.js";
 import { $ } from "./core/utils/util.js";
 
+const subButton = $(".list_sub_button");
+const unSubButton = $(".list_unsub_button");
+
 // 리스트뷰 element querySelector 함수
 function getListViewElement() {
   return {
@@ -34,47 +37,47 @@ function createNewsList(content) {
 
 // 리스트 뷰의 뉴스 append
 function appendNewsList(newsList) {
-  const isGridMode = getState(isGrid);
-  if (!isGridMode) {
-    const isSubMode = getState(isSubTab);
-    const currentIdx = getState(listIdx);
-    const nowCategoryIdx = currentIdx.category;
-    const nowListIdx = currentIdx.list - 1;
-    const subList = getState(subscribeList);
-    const elements = getListViewElement();
-    const isDark = getState(isDarkMode);
-    let nowData;
-    elements.newsListContainer.innerHTML = "";
-    if (isSubMode) {
-      nowData = newsList.filter((press) => {
-        return press.name === subList[nowCategoryIdx];
-      });
-    } else {
-      nowData = newsList.filter((press) => {
-        return press.category === CATEGORY_TABS[nowCategoryIdx];
-      });
+  return () => {
+    const isGridMode = getState(isGrid);
+    if (!isGridMode) {
+      const isSubMode = getState(isSubTab);
+      const currentIdx = getState(listIdx);
+      const nowCategoryIdx = currentIdx.category;
+      const nowListIdx = currentIdx.list - 1;
+      const subList = getState(subscribeList);
+      const elements = getListViewElement();
+      const isDark = getState(isDarkMode);
+      let nowData;
+      elements.newsListContainer.innerHTML = "";
+      if (isSubMode) {
+        nowData = newsList.filter((press) => {
+          return press.name === subList[nowCategoryIdx];
+        });
+      } else {
+        nowData = newsList.filter((press) => {
+          return press.category === CATEGORY_TABS[nowCategoryIdx];
+        });
+      }
+      if (nowData[nowListIdx] === undefined) return;
+      $(".list_container").dataset.press = nowData[nowListIdx].name;
+      elements.newsDetail.innerHTML = `${nowData[nowListIdx].name} 언론사에서 직접 편집한 뉴스입니다.`;
+      elements.topicHeaderLogo.src = isDark
+        ? nowData[nowListIdx].darkSrc
+        : nowData[nowListIdx].lightSrc;
+      elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
+      elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
+      updateSubButtons(nowData);
+      for (let i = 0; i < MAX_NEWS_COUNT; i++) {
+        const newNewsList = createNewsList(nowData[nowListIdx].subNews[i]);
+        elements.newsListContainer.appendChild(newNewsList);
+      }
     }
-    if (nowData[nowListIdx] === undefined) return;
-    $(".list_container").dataset.press = nowData[nowListIdx].name;
-    elements.newsDetail.innerHTML = `${nowData[nowListIdx].name} 언론사에서 직접 편집한 뉴스입니다.`;
-    elements.topicHeaderLogo.src = isDark
-      ? nowData[nowListIdx].darkSrc
-      : nowData[nowListIdx].lightSrc;
-    elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
-    elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
-    updateSubButtons(nowData);
-    for (let i = 0; i < MAX_NEWS_COUNT; i++) {
-      const newNewsList = createNewsList(nowData[nowListIdx].subNews[i]);
-      elements.newsListContainer.appendChild(newNewsList);
-    }
-  }
+  };
 }
 
 function updateSubButtons(nowData) {
   const subList = getState(subscribeList);
   const nowListIdx = getState(listIdx).list - 1;
-  const subButton = $(".list_sub_button");
-  const unSubButton = $(".list_unsub_button");
 
   if (subList.includes(nowData[nowListIdx].name)) {
     subButton.style.display = "none";
@@ -101,25 +104,13 @@ function unSubButtonClicked() {
 
 async function setListViewEvents() {
   const newsList = await getNewsContent();
-  const subButton = $(".list_sub_button");
-  const unSubButton = $(".list_unsub_button");
   subButton.addEventListener("click", subButtonClicked);
   unSubButton.addEventListener("click", unSubButtonClicked);
-  register(listIdx, () => {
-    appendNewsList(newsList);
-  });
-  register(isGrid, () => {
-    appendNewsList(newsList);
-  });
-  register(isSubTab, () => {
-    appendNewsList(newsList);
-  });
-  register(subscribeList, () => {
-    appendNewsList(newsList);
-  });
-  register(isDarkMode, () => {
-    appendNewsList(newsList);
-  });
+  register(listIdx, appendNewsList(newsList));
+  register(isGrid, appendNewsList(newsList));
+  register(isSubTab, appendNewsList(newsList));
+  register(subscribeList, appendNewsList(newsList));
+  register(isDarkMode, appendNewsList(newsList));
 }
 
 export { setListViewEvents };

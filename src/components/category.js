@@ -41,11 +41,11 @@ const onScrollEnd = (e) => {
   listScrollWidth = categoryListContainer.scrollWidth;
   if (listX > 0) {
     setTranslateX(0);
-    categoryListContainer.style.transition = `all 0.3s ease`;
+    categoryListContainer.style.transition = `all 0.1s ease`;
     listX = 0;
   } else if (listX < listClientWidth - listScrollWidth) {
     setTranslateX(listClientWidth - listScrollWidth);
-    categoryListContainer.style.transition = `all 0.3s ease`;
+    categoryListContainer.style.transition = `all 0.1s ease`;
     listX = listClientWidth - listScrollWidth;
   }
 
@@ -176,14 +176,14 @@ function updateCategory() {
   const isGridMode = getState(isGrid);
   const isSubMode = getState(isSubTab);
   const currentIdx = getState(listIdx);
+  const subList = getState(subscribeList);
   const categoryList = $All(".category_list");
   const clickedCategory = categoryList[currentIdx.category];
-
   if (!isGridMode && !isSubMode) {
     $(".now_page", clickedCategory).innerHTML = `${currentIdx.list} / `;
     // 카테고리 오른쪽으로 넘어가야할 경우
     if (isTabFull($(".all_page", clickedCategory).innerHTML, currentIdx.list)) {
-      if (clickedCategory.nextElementSibling === null) {
+      if (currentIdx.category === subList.length) {
         categoryList[0].classList.add(CATEGORY_CLICKED);
         setState(listIdx, { category: 0, list: 1 });
       } else {
@@ -200,16 +200,25 @@ function updateCategory() {
       }
     }
   } else if (!isGridMode && isSubMode) {
-    if (currentIdx.list > 1) {
-      clickedCategory.classList.remove(CATEGORY_CLICKED);
-      if (clickedCategory.nextElementSibling === null) {
-        categoryList[0].classList.add(CATEGORY_CLICKED);
+    if (currentIdx.list > 1 || currentIdx.category === subList.length) {
+      if (currentIdx.category === subList.length) {
         setState(listIdx, { category: 0, list: 1 });
+        categoryList[0].classList.add(CATEGORY_CLICKED);
       } else {
         clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
         setState(listIdx, { category: currentIdx.category + 1, list: 1 });
       }
+    } else if (currentIdx.list === 0 || currentIdx.category < 0) {
+      if (currentIdx.category < 0) {
+        setState(listIdx, { category: subList.length - 1, list: 1 });
+      } else {
+        setState(listIdx, { category: currentIdx.category - 1, list: 1 });
+      }
     }
+    if (clickedCategory === undefined) return;
+    clickedCategory.scrollIntoView({
+      behavior: "smooth",
+    });
   }
 }
 // 카테고리 메뉴 클릭시 전환
