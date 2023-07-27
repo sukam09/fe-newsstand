@@ -2,8 +2,7 @@
 메인 컨텐츠 컴포넌트
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
-import getRandomIndexArr from "../../api/getRandomIndexArr.js";
-import { fetchNews, fetchPress } from "../../api/fetchNews.js";
+
 import Button from "../MainContent/Button.js";
 import PressGridView from "../MainContent/PressGridView.js";
 import NewsListView from "../MainContent/NewsListView.js";
@@ -11,21 +10,19 @@ import Component from "../../utils/Component.js";
 import { mainStore, GRID, LIST, ALL, MY } from "../../store/MainStore.js";
 import { FIRST_PAGE, gridStore, setPage } from "../../store/GridStore.js";
 import { pressStore } from "../../store/PressStore.js";
-import { listStore, setCategory, setListPage } from "../../store/ListStore.js";
+import {
+  listStore,
+  setCategory,
+  setListPage,
+  cancelAnimation,
+} from "../../store/ListStore.js";
 
-const listViewData = await fetchNews();
-const pressData = await fetchPress();
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
 let timerArr = [];
 
 const snackBarText = "내가 구독한 언론사에 추가되었습니다.";
-const cancelAnimation = () => {
-  timerArr.forEach((timer) => {
-    cancelAnimationFrame(timer);
-  });
-};
 
 const $alertDiv = document.createElement("div");
 $alertDiv.setAttribute("class", "alert");
@@ -96,6 +93,7 @@ const nextGridPage = () => {
 };
 
 const prevListPage = () => {
+  cancelAnimation();
   let lastCategory = 6;
   let action;
 
@@ -116,6 +114,7 @@ const prevListPage = () => {
 };
 
 const nextListPage = () => {
+  cancelAnimation();
   let lastCategory = 6;
   let action;
 

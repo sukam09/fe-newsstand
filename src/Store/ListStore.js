@@ -1,4 +1,4 @@
-import Store from "../utils/store(temp).js";
+import Store from "../utils/Store.js";
 import { MY, mainStore } from "./MainStore.js";
 import { fetchNews, fetchPress } from "../api/fetchNews.js";
 
@@ -21,6 +21,14 @@ export const SET_CATEGORY = "SET_CATEGORY";
 export const SET_PAGE = "SET_PAGE";
 export const SET_LASTPAGE = "SET_LASTPAGE";
 export const SET_LIST = "SET_LIST";
+
+export const timer = [];
+
+export const cancelAnimation = () => {
+  timer.forEach((timer) => {
+    cancelAnimationFrame(timer);
+  });
+};
 
 const reducer = (state = initState, action = {}) => {
   switch (action.type) {

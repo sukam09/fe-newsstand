@@ -2,7 +2,7 @@
 메인 컨텐츠를 선택하는 버튼(전체/구독, 리스트 뷰/그리드를 선택 가능)
 */
 import Component from "../../utils/Component.js";
-import { SET_VIEW, SET_PRESS } from "../../store/MainStore.js";
+import { SET_PRESS } from "../../store/MainStore.js";
 
 const findTargetChildNode = (element, targetTagName) => {
   if (!element) {

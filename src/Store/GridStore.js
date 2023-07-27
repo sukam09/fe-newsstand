@@ -1,4 +1,4 @@
-import Store from "../utils/store(temp).js";
+import Store from "../utils/Store.js";
 
 export const FIRST_PAGE = 1;
 

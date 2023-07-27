@@ -14,6 +14,7 @@ import {
 import {
   listStore,
   setCategory,
+  cancelAnimation,
   FIRST_CATEGORY,
 } from "../../store/ListStore.js";
 
@@ -26,6 +27,7 @@ const createButton = (button, index) => {
     inner: buttonInners[index],
     actionType: SET_PRESS,
     onClick: () => {
+      cancelAnimation();
       const newPressType = setPress(types[index]);
       const initPage = setPage(FIRST_PAGE);
       const initCategory = setCategory(FIRST_CATEGORY);

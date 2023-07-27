@@ -10,6 +10,7 @@ import {
   mainStore,
   setView,
 } from "../../store/MainStore.js";
+import { cancelAnimation } from "../../store/ListStore.js";
 
 const listButtonIcon = `<svg
 class="view-line"
@@ -46,6 +47,7 @@ const createButton = (button, index) => {
     inner: buttonInners[index],
     actionType: SET_VIEW,
     onClick: () => {
+      cancelAnimation();
       const newViewType = setView(types[index]);
       mainStore.dispatch(newViewType);
     },

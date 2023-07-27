@@ -5,7 +5,6 @@ import Component from "../../utils/Component.js";
 import { mainStore, GRID } from "../../store/MainStore.js";
 import { gridStore, FIRST_PAGE } from "../../store/GridStore.js";
 
-const FIRST_PAGE_NUMBER = 1;
 const leftButtonInner = `<svg
 xmlns="http://www.w3.org/2000/svg"
 width="26"

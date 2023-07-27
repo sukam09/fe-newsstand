@@ -6,8 +6,6 @@ import { listStore, categoryNews, pressNews } from "../../store/ListStore.js";
 import { mainStore, ALL, MY } from "../../store/MainStore.js";
 import { pressStore } from "../../store/PressStore.js";
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
-// import Header from "./Contents/Header.js";
-// import News from "./Contents/News.js";
 
 const subscribeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99799H13V10.998H19V12.998Z" fill="#879298"/></svg>구독하기`;
 
@@ -46,11 +44,6 @@ function Contents($target, props) {
 
   mainStore.subscribe(this.setUp);
   listStore.subscribe(this.setUp);
-
-  // new Header($section, props.headerData);
-  // new News($section, props.newsData);
-
-  // $target.appendChild($section);
 }
 
 Object.setPrototypeOf(Contents.prototype, Component.prototype);
