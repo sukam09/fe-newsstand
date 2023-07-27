@@ -2,7 +2,7 @@ import { THEME } from '../constants.js';
 
 const FETCH_PATH = 'script/newsData.json';
 const HEADLINE_PATH = 'script/headlineData.json';
-const MEDIA_LOGO_PATH = '../../assets/images/logo/';
+const MEDIA_LOGO_PATH = './assets/images/logo/';
 
 export const getHeadlineNews = async index => {
   return await fetch(HEADLINE_PATH)
