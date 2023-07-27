@@ -90,6 +90,16 @@ class ListViewSub extends ListViewInfo {
         });
         this.data = tmp_list;
     };
+
+    updateMode = function (state) {
+        state.is_grid_view ? this.removeInterval() : !state.is_sub_view && this.removeInterval();
+        if (state.is_sub_view && state.is_grid_view) {
+            this.initProgressBar({
+                category_old: this.getCategoryNow(),
+                category_now: 0,
+            });
+        }
+    };
 }
 
 export const list_view_subscribe = new ListViewSub();

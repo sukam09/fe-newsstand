@@ -2,17 +2,18 @@ import { GRID_SIZE, PRESS_IDX } from "../../utils/constant.js";
 import { press_list } from "../../../data/pressList.js";
 import { DOM } from "../../utils/domClassName.js";
 import { createMainGrid } from "../../container/gridViewTemplate.js";
-import { _sub_press_list } from "../../Store.js";
+import { _mode, _sub_press_list } from "../../Store.js";
 import { dark_mode } from "../layout/darkModeEvent.js";
 
 class gridViewInfo {
     constructor(data, isSub) {
+        _sub_press_list.subscribe(this);
+        // _mode.subscribe(this);
         this.current_page = 0;
         this.data = data;
         this.left_btn_name = `.${DOM.GRID_LEFT_BTN}-${isSub}`;
         this.right_btn_name = `.${DOM.GRID_RIGHT_BTN}-${isSub}`;
         this.class_name = `.grid-${isSub}`;
-        _sub_press_list.subscribe(this);
     }
 
     getCurrentPage = function () {
@@ -52,6 +53,10 @@ class gridViewEntire extends gridViewInfo {
     update = function (state) {
         createMainGrid(this, false, dark_mode.getMode());
     };
+
+    updateMode = function (state) {
+        console.log("grid entire");
+    };
 }
 
 // grid view page 정보 - 내가 구독한 언론사 (관찰자)
@@ -67,6 +72,10 @@ class gridViewSub extends gridViewInfo {
 
     setPageNum = function (page_num) {
         this.current_page = page_num;
+    };
+
+    updateMode = function (state) {
+        console.log("grid sub");
     };
 }
 

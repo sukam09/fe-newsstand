@@ -114,6 +114,15 @@ class ListViewEntire extends ListViewInfo {
     update = function (state) {
         this.data = state;
     };
+
+    updateMode = function (state) {
+        state.is_grid_view ? this.removeInterval() : state.is_sub_view && this.removeInterval();
+        this.initProgressBar({
+            category_old: this.getCategoryNow(),
+            category_now: 0,
+            page_num: 0,
+        });
+    };
 }
 
 export const list_view_entire = new ListViewEntire();
