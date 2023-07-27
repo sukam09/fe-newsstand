@@ -129,6 +129,14 @@ section.main {
   width: 220px;
 }
 
+.main-div-01 i {
+  color: var(--color-text-weak);
+}
+
+.main-div-01 input[type="radio"]:checked + label > i {
+  color: var(--color-text-strong);
+}
+
 #main-right {
   display: flex;
   justify-content: space-between;
@@ -222,10 +230,6 @@ section.main {
   height: 100%;
   width: 100%;
   display: none;
-}
-
-input[type="radio"]:checked + label {
-  font-weight: bold;
 }
 
 #header-div-01:hover {

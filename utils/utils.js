@@ -25,18 +25,6 @@ function removeArrow() {
   });
 }
 
-function boldSubscribed() {
-  document.getElementById("allNews").style.color = "#879298";
-  document.getElementById("subscribedNews").style.fontWeight = "700";
-  document.getElementById("subscribedNews").style.color = "#14212B";
-}
-
-function boldAll() {
-  document.getElementById("allNews").style.fontWeight = "";
-  document.getElementById("allNews").style.color = "#14212B";
-  document.getElementById("subscribedNews").style.color = "#879298";
-}
-
 function doBeforeRender(pageMode) {
   Stores.setPage(0);
   if (pageMode === "list") {
@@ -67,7 +55,5 @@ export {
   changeImageSrc,
   makeArrow,
   removeArrow,
-  boldSubscribed,
-  boldAll,
   doBeforeRender,
 };

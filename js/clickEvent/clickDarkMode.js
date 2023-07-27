@@ -15,7 +15,7 @@ function clickDarkMode() {
 
 function clickLightMode() {
   document
-    .getElementById("toggle-radio-light")
+    .getElementById("toggle-radio-light") 
     .addEventListener("click", function () {
       document.getElementById("root").classList.remove("dark-mode");
       document.getElementById("light-mode").style.display = "none";

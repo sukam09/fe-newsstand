@@ -19,6 +19,6 @@
   display: none;
 }
 .toggle input[type="radio"]:checked + label > i {
-  display: flex;
+  color: #fff;
   transition: all 0.35s ease-in-out;
 }
