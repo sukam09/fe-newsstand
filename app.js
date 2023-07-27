@@ -8,6 +8,9 @@ import { setSnackbar } from "./src/components/snackbar.js";
 import { setAlert } from "./src/components/alert.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!localStorage.getItem("subscribeList")) {
+    localStorage.setItem("subscribeList", JSON.stringify([]));
+  }
   document.documentElement.setAttribute("color-theme", "light");
   setGlobalEvent();
   setGridEvents();

@@ -1,8 +1,8 @@
 import { getState, register, setState } from "../core/observer/observer.js";
 import {
-  categoryIdx,
   deletePress,
   isAlertOn,
+  listIdx,
   subscribeList,
 } from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
@@ -24,7 +24,9 @@ function yesButtonClicked() {
     return item != deletePressName;
   });
   setState(subscribeList, newSubList);
-  setState(categoryIdx, 0);
+  const currentIdx = getState(listIdx);
+  currentIdx.category = 0;
+  setState(listIdx, currentIdx);
   setState(isAlertOn, false);
 }
 

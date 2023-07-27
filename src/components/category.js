@@ -5,10 +5,9 @@ import {
   CATEGORY_TAB_TIME,
 } from "../core/store/constants.js";
 import {
-  categoryIdx,
   isGrid,
   isSubTab,
-  listPageIdx,
+  listIdx,
   subscribeList,
 } from "../core/store/store.js";
 import { getNewsContent } from "../core/utils/api.js";
@@ -16,6 +15,61 @@ import { $, $All } from "../core/utils/util.js";
 
 // 프로그레스에 맞춘 탭 자동 넘김 Interval
 let categoryInterval;
+let startX = 0;
+let nowX = 0;
+let listX = 0;
+const categoryListContainer = $(".category_list_container");
+let listScrollWidth;
+let listClientWidth;
+function bindEvents() {
+  categoryListContainer.addEventListener("mousedown", onScrollStart);
+}
+const onScrollStart = (e) => {
+  startX = getClientX(e);
+  window.addEventListener("mousemove", onScrollMove);
+  window.addEventListener("mouseup", onScrollEnd);
+};
+const onScrollMove = (e) => {
+  nowX = getClientX(e);
+  setTranslateX(listX + nowX - startX);
+};
+const onScrollEnd = (e) => {
+  listX = getTranslateX();
+  listClientWidth = categoryListContainer.clientWidth;
+  listScrollWidth = categoryListContainer.scrollWidth;
+  if (listX > 0) {
+    setTranslateX(0);
+    categoryListContainer.style.transition = `all 0.1s ease`;
+    listX = 0;
+  } else if (listX < listClientWidth - listScrollWidth) {
+    setTranslateX(listClientWidth - listScrollWidth);
+    categoryListContainer.style.transition = `all 0.1s ease`;
+    listX = listClientWidth - listScrollWidth;
+  }
+
+  categoryListContainer.removeEventListener("mousedown", onScrollStart);
+  window.removeEventListener("mousemove", onScrollMove);
+  window.removeEventListener("mouseup", onScrollEnd);
+
+  setTimeout(() => {
+    bindEvents();
+    categoryListContainer.style.transition = "";
+  }, 100);
+};
+const getClientX = (e) => {
+  const isTouches = e.touches ? true : false;
+  return isTouches ? e.touches[0].clientX : e.clientX;
+};
+
+const getTranslateX = () => {
+  return parseInt(
+    getComputedStyle(categoryListContainer).transform.split(/[^\-0-9]+/g)[5]
+  );
+};
+
+const setTranslateX = (x) => {
+  categoryListContainer.style.transform = `translateX(${x}px)`;
+};
 
 function stopCategoryInterval() {
   clearInterval(categoryInterval);
@@ -27,7 +81,9 @@ function startCategoryInterval() {
   }
 }
 function listPageUp() {
-  setState(listPageIdx, getState(listPageIdx) + 1);
+  const currentIdx = getState(listIdx);
+  currentIdx.list += 1;
+  setState(listIdx, currentIdx);
 }
 
 // 자동 탭 넘김 인터벌 새로고침
@@ -45,7 +101,6 @@ function refreshInterval() {
 
 // 카테고리 리스트 추가
 function appendCategoryList(newsList) {
-  const categoryListContainer = $(".category_list_container");
   categoryListContainer.innerHTML = "";
   const isSubMode = getState(isSubTab);
   const isGridMode = getState(isGrid);
@@ -92,7 +147,7 @@ function createCategoryList(item, newsList, idx) {
     `;
   } else {
     counterContainer.innerHTML = `
-    <span class="now_page">${getState(listPageIdx)} / </span>
+    <span class="now_page">${getState(listIdx).list} / </span>
     <span class="all_page">${pressCount.length}</span>
     `;
   }
@@ -118,45 +173,50 @@ function isTabFull(innerHTML, currentListIdx) {
 function updateCategory() {
   const isGridMode = getState(isGrid);
   const isSubMode = getState(isSubTab);
-  const currentListIdx = getState(listPageIdx);
-  const currentCategoryIdx = getState(categoryIdx);
+  const currentIdx = getState(listIdx);
+  const subList = getState(subscribeList);
   const categoryList = $All(".category_list");
-  const clickedCategory = categoryList[currentCategoryIdx];
-
+  const clickedCategory = categoryList[currentIdx.category];
   if (!isGridMode && !isSubMode) {
-    $(".now_page", clickedCategory).innerHTML = `${currentListIdx} / `;
+    $(".now_page", clickedCategory).innerHTML = `${currentIdx.list} / `;
     // 카테고리 오른쪽으로 넘어가야할 경우
-    if (isTabFull($(".all_page", clickedCategory).innerHTML, currentListIdx)) {
-      setState(listPageIdx, 1);
-      if (clickedCategory.nextElementSibling === null) {
+    if (isTabFull($(".all_page", clickedCategory).innerHTML, currentIdx.list)) {
+      if (currentIdx.category === subList.length) {
         categoryList[0].classList.add(CATEGORY_CLICKED);
-        setState(categoryIdx, 0);
+        setState(listIdx, { category: 0, list: 1 });
       } else {
         clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
-        setState(categoryIdx, currentCategoryIdx + 1);
+        setState(listIdx, { category: currentIdx.category + 1, list: 1 });
       }
       clickedCategory.classList.remove(CATEGORY_CLICKED);
-    } else if (currentListIdx === 0) {
+    } else if (currentIdx.list === 0) {
       // 카테고리 왼쪽으로 넘어가야할 경우
-      setState(listPageIdx, 1);
-      if (currentCategoryIdx === 0) {
-        setState(categoryIdx, categoryList.length - 1);
+      if (currentIdx.category === 0) {
+        setState(listIdx, { category: categoryList.length - 1, list: 1 });
       } else {
-        setState(categoryIdx, currentCategoryIdx - 1);
+        setState(listIdx, { category: currentIdx.category - 1, list: 1 });
       }
     }
   } else if (!isGridMode && isSubMode) {
-    if (currentListIdx > 1) {
-      setState(listPageIdx, 1);
-      clickedCategory.classList.remove(CATEGORY_CLICKED);
-      if (clickedCategory.nextElementSibling === null) {
+    if (currentIdx.list > 1 || currentIdx.category === subList.length) {
+      if (currentIdx.category === subList.length) {
+        setState(listIdx, { category: 0, list: 1 });
         categoryList[0].classList.add(CATEGORY_CLICKED);
-        setState(categoryIdx, 0);
       } else {
         clickedCategory.nextElementSibling.classList.add(CATEGORY_CLICKED);
-        setState(categoryIdx, currentCategoryIdx + 1);
+        setState(listIdx, { category: currentIdx.category + 1, list: 1 });
+      }
+    } else if (currentIdx.list === 0 || currentIdx.category < 0) {
+      if (currentIdx.category < 0) {
+        setState(listIdx, { category: subList.length - 1, list: 1 });
+      } else {
+        setState(listIdx, { category: currentIdx.category - 1, list: 1 });
       }
     }
+    if (clickedCategory === undefined) return;
+    clickedCategory.scrollIntoView({
+      behavior: "smooth",
+    });
   }
 }
 // 카테고리 메뉴 클릭시 전환
@@ -166,18 +226,23 @@ function categoryClicked(item) {
   const targetOff = $(`.${CATEGORY_CLICKED}`);
   targetOff.classList.remove(CATEGORY_CLICKED);
   item.classList.add(CATEGORY_CLICKED);
-  setState(listPageIdx, 1);
   if (isSubMode) {
-    setState(categoryIdx, subList.indexOf(item.children[0].innerHTML));
+    setState(listIdx, {
+      category: subList.indexOf(item.children[0].innerHTML),
+      list: 1,
+    });
   } else {
-    setState(categoryIdx, CATEGORY_TABS.indexOf(item.children[0].innerHTML));
+    setState(listIdx, {
+      category: CATEGORY_TABS.indexOf(item.children[0].innerHTML),
+      list: 1,
+    });
   }
 }
 // 현재 리스트 페이지에 카테고리 동기화
 function updateCategoryClicked() {
   const isGridMode = getState(isGrid);
   if (!isGridMode) {
-    const currentCategoryIdx = getState(categoryIdx);
+    const currentCategoryIdx = getState(listIdx).category;
     const categoryList = $All(".category_list");
     categoryList.forEach((item) => {
       item.classList.remove(CATEGORY_CLICKED);
@@ -189,6 +254,7 @@ function updateCategoryClicked() {
 
 export async function setCategory() {
   const newsList = await getNewsContent();
+  bindEvents();
   register(isGrid, startCategoryInterval);
   register(isSubTab, () => {
     appendCategoryList(newsList);
@@ -200,14 +266,12 @@ export async function setCategory() {
     appendCategoryList(newsList);
   });
   appendCategoryList(newsList);
-  register(listPageIdx, updateCategory);
-  register(categoryIdx, updateCategory);
+  register(listIdx, updateCategory);
   register(subscribeList, updateCategory);
-  register(listPageIdx, refreshInterval);
-  register(categoryIdx, refreshInterval);
+  register(listIdx, refreshInterval);
   register(subscribeList, refreshInterval);
   register(isGrid, refreshInterval);
   register(isSubTab, refreshInterval);
-  register(categoryIdx, updateCategoryClicked);
+  register(listIdx, updateCategoryClicked);
   register(subscribeList, updateCategoryClicked);
 }

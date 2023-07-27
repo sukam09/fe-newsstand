@@ -1,9 +1,12 @@
 import {
   ANIMATION_GAP,
+  BANNER_CONTAINER,
   BANNER_LIST,
+  LEFT,
   NEXT_BANNER,
   NOW_BANNER,
   PREV_BANNER,
+  RIGHT,
   ROLLING_NEWS_NUM,
   ROLLING_TIME,
 } from "../core/store/constants.js";
@@ -12,32 +15,32 @@ import { $ } from "../core/utils/util.js";
 
 // 왼쪽 배너 롤링 반복
 let rollingIntervalLeft = setInterval(() => {
-  rollingEvent("left");
+  rollingEvent(LEFT);
 }, ROLLING_TIME);
 
 // 오른쪽 배너 롤링 1초 Timeout 후 반복
 let rollingIntervalRight = setInterval(() => {
   setTimeout(() => {
-    rollingEvent("right");
+    rollingEvent(RIGHT);
   }, ANIMATION_GAP);
 }, ROLLING_TIME);
 
 // 마우스 아웃시 반복 재시작
 function startRolling(state) {
-  if (state === "left") {
+  if (state === LEFT) {
     rollingIntervalLeft = setInterval(() => {
-      rollingEvent("left");
+      rollingEvent(LEFT);
     }, ROLLING_TIME);
   } else {
     rollingIntervalRight = setInterval(() => {
-      rollingEvent("right");
+      rollingEvent(RIGHT);
     }, ROLLING_TIME);
   }
 }
 
 // 마우스 호버시 반복 멈춤
 function stopRolling(state) {
-  if (state === "left") {
+  if (state === LEFT) {
     clearInterval(rollingIntervalLeft);
   } else {
     clearInterval(rollingIntervalRight);
@@ -47,11 +50,11 @@ function stopRolling(state) {
 // 롤링에 들어갈 뉴스 리스트 추가
 export async function appendRollingList() {
   const headlineData = await getRollingList();
-  const rollingListContainerLeft = $(".newsbanner__list-container--left");
-  const rollingListContainerRight = $(".newsbanner__list-container--right");
+  const rollingListContainerLeft = $(`.${BANNER_CONTAINER}${LEFT}`);
+  const rollingListContainerRight = $(`.${BANNER_CONTAINER}${RIGHT}`);
   for (let i = 0; i < ROLLING_NEWS_NUM; i++) {
-    const leftItem = createBannerItem(i, headlineData[i].title, "left");
-    const rightItem = createBannerItem(i, headlineData[i + 5].title, "right");
+    const leftItem = createBannerItem(i, headlineData[i].title, LEFT);
+    const rightItem = createBannerItem(i, headlineData[i + 5].title, RIGHT);
     rollingListContainerLeft.appendChild(leftItem);
     rollingListContainerRight.appendChild(rightItem);
   }
@@ -89,21 +92,21 @@ function createBannerItem(idx, content, state) {
 // 롤링 애니메이션
 function rollingEvent(state) {
   // 이전 값 삭제
-  $(`.newsbanner__list-container--${state} .${PREV_BANNER}`).classList.remove(
+  $(`.${BANNER_CONTAINER}${state} .${PREV_BANNER}`).classList.remove(
     PREV_BANNER
   );
 
   // 현재 값 이전으로 옮기기
-  let now = $(`.newsbanner__list-container--${state} .${NOW_BANNER}`);
+  let now = $(`.${BANNER_CONTAINER}${state} .${NOW_BANNER}`);
   now.classList.remove(NOW_BANNER);
   now.classList.add(PREV_BANNER);
   // 다음 값 현재로 옮기기
-  let next = $(`.newsbanner__list-container--${state} .${NEXT_BANNER}`);
+  let next = $(`.${BANNER_CONTAINER}${state} .${NEXT_BANNER}`);
 
   // 다음 값이 없다면 처음부터
   if (next.nextElementSibling === null) {
     $(
-      `.newsbanner__list-container--${state} .newsbanner__list:first-child`
+      `.${BANNER_CONTAINER}${state} .newsbanner__list:first-child`
     ).classList.add(NEXT_BANNER);
   } else {
     next.nextElementSibling.classList.add(NEXT_BANNER);

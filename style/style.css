@@ -1,10 +1,12 @@
-@import url("./constant.css");
-
 body {
-  width: 1280px;
   height: 720px;
   background: var(--surface-default);
   transition: all 0.5s;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flex_row {
@@ -18,12 +20,10 @@ body {
 }
 
 .container {
-  margin: 0 auto;
   width: 1000px;
   position: relative;
 }
 .toggle_darkmode {
-  /* position: relative; */
   margin-right: 20px;
   margin-bottom: 20px;
 }
@@ -35,8 +35,8 @@ body {
 }
 .light_button {
   position: absolute;
-  color: var(--text-strong);
-  transform: rotate(0deg) scale(1);
+  color: #ffc312;
+  transform: rotate(360deg) scale(1);
   transition: all 0.5s ease-in-out;
 }
 .dark_button[color-theme="light"] {
@@ -46,10 +46,10 @@ body {
   transform: rotate(0) scale(1);
 }
 .light_button[color-theme="light"] {
-  transform: rotate(0) scale(1);
+  transform: rotate(360deg) scale(1);
 }
 .light_button[color-theme="dark"] {
-  transform: rotate(360deg) scale(0);
+  transform: rotate(0) scale(0);
 }
 
 /* 메인 헤더 부분 */
@@ -173,6 +173,7 @@ section {
 .main_section__header__title--all {
   font-size: 16px;
   color: var(--text-strong);
+  font-weight: 700;
   transition: all 0.5s;
 }
 .main_section__header__title--sub {
@@ -230,6 +231,7 @@ section {
   position: absolute;
   display: none;
   padding: 16px 24px;
+  /* margin-left: 350px; */
   background: var(--surface-brand-default);
   color: var(--text-white-default);
   box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08),
@@ -270,6 +272,7 @@ section {
   position: absolute;
   display: none;
   width: 320px;
+
   flex-direction: column;
   align-items: flex-start;
   z-index: 10;

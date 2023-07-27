@@ -17,38 +17,69 @@ let pressObj = null;
 
 // 셔플된 리스트 그리드리스트에 append
 function appendGridList(shuffledArr) {
-  const isSubscribeTab = getState(isSubTab);
-  const isGridMode = getState(isGrid);
-  const subList = getState(subscribeList);
-  const gridContainerList = $All(".grid_container");
-  gridContainerList.forEach((item) => (item.innerHTML = ""));
-  if (isGridMode) {
-    gridContainerList[0].style.display = "grid";
-    if (isSubscribeTab) {
-      const subPressList = pressObj.filter((item) => {
-        return subList.includes(item.name);
-      });
-      subPressList.forEach((element, idx) => {
-        const id = Math.floor(idx / MAX_GRID_COUNT);
-        const gridItem = createGridItem(element);
-        gridContainerList[id].appendChild(gridItem);
-      });
-      for (let i = subPressList.length; i < PRESS_COUNT; i++) {
-        const id = Math.floor(i / MAX_GRID_COUNT);
-        const gridItem = document.createElement("li");
-        gridItem.className = "grid_item";
-        gridContainerList[id].appendChild(gridItem);
+  return () => {
+    const isSubscribeTab = getState(isSubTab);
+    const isGridMode = getState(isGrid);
+    const subList = getState(subscribeList);
+    const gridContainerList = $All(".grid_container");
+    gridContainerList.forEach(
+      (item) => ((item.innerHTML = ""), (item.style.display = "none"))
+    );
+    if (isGridMode) {
+      gridContainerList[0].style.display = "grid";
+      if (isSubscribeTab) {
+        const subPressList = pressObj.filter((item) => {
+          return subList.includes(item.name);
+        });
+        subPressList.forEach((element, idx) => {
+          const id = Math.floor(idx / MAX_GRID_COUNT);
+          const gridItem = createGridItem(element);
+          gridContainerList[id].appendChild(gridItem);
+        });
+        for (let i = subPressList.length; i < PRESS_COUNT; i++) {
+          const id = Math.floor(i / MAX_GRID_COUNT);
+          const gridItem = document.createElement("li");
+          gridItem.className = "grid_item";
+          gridContainerList[id].appendChild(gridItem);
+        }
+      } else {
+        shuffledArr.forEach((element, idx) => {
+          const id = Math.floor(idx / MAX_GRID_COUNT);
+          const gridItem = createGridItem(element);
+          gridContainerList[id].appendChild(gridItem);
+        });
       }
     } else {
-      shuffledArr.forEach((element, idx) => {
-        const id = Math.floor(idx / MAX_GRID_COUNT);
-        const gridItem = createGridItem(element);
-        gridContainerList[id].appendChild(gridItem);
-      });
+      gridContainerList.forEach((item) => (item.style.display = "none"));
     }
-  } else {
-    gridContainerList.forEach((item) => (item.style.display = "none"));
-  }
+  };
+}
+
+// 그리드 아이템 리스트 태그 생성
+function createGridItem(element) {
+  const newImg = document.createElement("img");
+  const li = document.createElement("li");
+  const subButtonContainer = createSubButton(element.id);
+  const unSubButtonContainer = createUnSubButton(element.id);
+  const isDark = getState(isDarkMode);
+  // 이미지 로드
+  newImg.src = isDark ? element.darkSrc : element.lightSrc;
+  newImg.id = element.id;
+  li.style.position = "relative";
+
+  // li 생성
+  li.className = "grid_item";
+  li.append(subButtonContainer, unSubButtonContainer);
+  li.addEventListener("mouseover", () => {
+    toggleSubButton(element, subButtonContainer);
+    toggleUnSubButton(element, unSubButtonContainer);
+  });
+  li.addEventListener("mouseout", () =>
+    hiddenSubButtons(subButtonContainer, unSubButtonContainer)
+  );
+
+  li.appendChild(newImg);
+  return li;
 }
 
 // 구독버튼 컨테이너 생성
@@ -85,43 +116,15 @@ function createUnSubButton(id) {
 
   unSubButton.addEventListener("click", () => {
     const targetPress = pressObj.find((item) => item.id === id);
-    setVisible(targetPress);
+    alertOn(targetPress);
     toggleUnSubButton(targetPress, unSubButtonContainer);
   });
   unSubButtonContainer.appendChild(unSubButton);
-
   return unSubButtonContainer;
 }
-function setVisible(targetPress) {
+function alertOn(targetPress) {
   setState(isAlertOn, true);
   setState(deletePress, targetPress.name);
-}
-
-// 그리드 아이템 리스트 태그 생성
-function createGridItem(element) {
-  const newImg = document.createElement("img");
-  const li = document.createElement("li");
-  const subButtonContainer = createSubButton(element.id);
-  const unSubButtonContainer = createUnSubButton(element.id);
-  const isDark = getState(isDarkMode);
-  // 이미지 로드
-  newImg.src = isDark ? element.darkSrc : element.lightSrc;
-  newImg.id = element.id;
-  li.style.position = "relative";
-
-  // li 생성
-  li.className = "grid_item";
-  li.append(subButtonContainer, unSubButtonContainer);
-  li.addEventListener("mouseover", () => {
-    toggleSubButton(element, subButtonContainer);
-    toggleUnSubButton(element, unSubButtonContainer);
-  });
-  li.addEventListener("mouseout", () =>
-    hiddenSubButtons(subButtonContainer, unSubButtonContainer)
-  );
-
-  li.appendChild(newImg);
-  return li;
 }
 
 // 구독버튼 토글
@@ -155,7 +158,7 @@ function showGridPage() {
   curPage.style.display = "grid";
 }
 
-function checkMode() {
+function updateViewIdx() {
   const isSubView = getState(isSubTab);
   const subListCount = getState(subscribeList).length;
   if (isSubView) {
@@ -170,25 +173,25 @@ function checkMode() {
         setState(gridPageIdx, 1);
         return;
     }
-    appendGridList();
   }
+}
+
+function setStorage() {
+  const subList = getState(subscribeList);
+  localStorage.setItem("subscribeList", JSON.stringify(subList));
 }
 
 async function setGridEvents() {
   pressObj = await getPressObj();
   const shuffledArr = shuffleArray(pressObj);
-  appendGridList(shuffledArr);
+  appendGridList(shuffledArr)();
   register(gridPageIdx, showGridPage);
-  register(isSubTab, () => {
-    appendGridList(shuffledArr);
-  });
-  register(isGrid, () => {
-    appendGridList(shuffledArr);
-  });
-  register(subscribeList, checkMode);
-  register(isDarkMode, () => {
-    appendGridList(shuffledArr);
-  });
+  register(isSubTab, appendGridList(shuffledArr));
+  register(isGrid, appendGridList(shuffledArr));
+  register(isDarkMode, appendGridList(shuffledArr));
+  register(subscribeList, appendGridList(shuffledArr));
+  register(subscribeList, updateViewIdx);
+  register(subscribeList, setStorage);
 }
 
 export { setGridEvents };

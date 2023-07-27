@@ -4,7 +4,7 @@ import {
   gridPageIdx,
   isGrid,
   isSubTab,
-  listPageIdx,
+  listIdx,
   subscribeList,
 } from "../core/store/store.js";
 import { $ } from "../core/utils/util.js";
@@ -14,10 +14,49 @@ const rightButton = $(".right_navigation_button");
 
 function updatePages(increment) {
   return () => {
-    const currentMode = getState(isGrid);
-    const key = currentMode ? gridPageIdx : listPageIdx;
-    setState(key, getState(key) + increment);
+    const isGridMode = getState(isGrid);
+    const isSubMode = getState(isSubTab);
+    if (isGridMode) {
+      setState(gridPageIdx, getState(gridPageIdx) + increment);
+    } else {
+      const currentIdx = getState(listIdx);
+      if (isSubMode) {
+        currentIdx.category += increment;
+      } else {
+        currentIdx.list += increment;
+      }
+      setState(listIdx, currentIdx);
+    }
   };
+}
+// 키보드 방향키로 탭 이동
+function keyboardClicked({ key: key }) {
+  const currentGridMode = getState(isGrid);
+  const nowGridPage = getState(gridPageIdx);
+  const currentIdx = getState(listIdx);
+  const isSubMode = getState(isSubTab);
+  if (currentGridMode) {
+    if (key === "ArrowRight" && nowGridPage < 3) {
+      setState(gridPageIdx, nowGridPage + 1);
+    } else if (key === "ArrowLeft" && nowGridPage > 0) {
+      setState(gridPageIdx, nowGridPage - 1);
+    }
+  } else {
+    if (key === "ArrowRight") {
+      if (isSubMode) {
+        currentIdx.category += 1;
+      } else {
+        currentIdx.list += 1;
+      }
+    } else if (key === "ArrowLeft") {
+      if (isSubMode) {
+        currentIdx.category += -1;
+      } else {
+        currentIdx.list += -1;
+      }
+    }
+    setState(listIdx, currentIdx);
+  }
 }
 
 function updateNavigationButton() {
@@ -78,8 +117,9 @@ function showLeftButton() {
 function setNavigationButton() {
   leftButton.addEventListener("click", updatePages(-1));
   rightButton.addEventListener("click", updatePages(1));
+  window.addEventListener("keydown", keyboardClicked);
   register(gridPageIdx, updateNavigationButton);
-  register(listPageIdx, updateNavigationButton);
+  register(listIdx, updateNavigationButton);
   register(isGrid, updateNavigationButton);
   register(isSubTab, updateNavigationButton);
   register(isSubTab, () => setState(gridPageIdx, 0));
