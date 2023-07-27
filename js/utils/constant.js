@@ -1,25 +1,10 @@
-const GRID_NUM = 24;
-const PRESS_NUM = 96;
-const MIN_PAGE = 1;
-const MAX_PAGE = 4;
-const SNACKBAR_TIME = 5000;
-const REFRESH_DATE_TIME = 60000;
-const LIST_VIEW = "list";
-const GRID_VIEW = "grid";
-const ALL_PRESS = "all";
-const SUB_PRESS = "sub";
-const LightModeImg = "../images/icon/Light.svg";
-const darkModeImg = "../images/icon/Dark.svg";
-
-export {
-  GRID_NUM,
-  PRESS_NUM,
-  MIN_PAGE,
-  MAX_PAGE,
-  SNACKBAR_TIME,
-  REFRESH_DATE_TIME,
-  LIST_VIEW,
-  GRID_VIEW,
-  ALL_PRESS,
-  SUB_PRESS,
-};
+export const GRID_NUM = 24;
+export const PRESS_NUM = 96;
+export const MIN_PAGE = 1;
+export const MAX_PAGE = 4;
+export const SNACKBAR_TIME = 5000;
+export const REFRESH_DATE_TIME = 60000;
+export const LIST_VIEW = "list";
+export const GRID_VIEW = "grid";
+export const ALL_PRESS = "all";
+export const SUB_PRESS = "sub";

@@ -126,8 +126,8 @@ function addEventToGridBtn() {
   const left_btn = document.getElementById("grid-left-btn");
   const right_btn = document.getElementById("grid-right-btn");
 
-  right_btn.addEventListener("click", (e) => changePage(e));
-  left_btn.addEventListener("click", (e) => changePage(e));
+  right_btn.addEventListener("click", changePage);
+  left_btn.addEventListener("click", changePage);
 }
 
 export { checkPage, makeGridView, addEventToGridBtn };

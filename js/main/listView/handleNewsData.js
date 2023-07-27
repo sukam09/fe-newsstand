@@ -56,12 +56,10 @@ function makeCategory() {
 
       _li.dataset.category = item;
 
-      _li.addEventListener("click", (e) => handleCategoryClick(e));
+      _li.addEventListener("click", handleCategoryClick);
 
-      _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
-      _li.addEventListener("animationiteration", (e) =>
-        handleAniamtionIteration(e)
-      );
+      _li.addEventListener("animationstart", handleAniamtionStart);
+      _li.addEventListener("animationiteration", handleAniamtionIteration);
 
       //span 클릭 시 li 클릭으로 처리
       _li.children[1].addEventListener("click", (e) => {
