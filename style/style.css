@@ -173,6 +173,7 @@ section {
 .main_section__header__title--all {
   font-size: 16px;
   color: var(--text-strong);
+  font-weight: 700;
   transition: all 0.5s;
 }
 .main_section__header__title--sub {

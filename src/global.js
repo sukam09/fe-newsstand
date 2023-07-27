@@ -12,6 +12,9 @@ import { ALL_PRESS, SUB_PRESS } from "./core/store/constants.js";
 
 const subTabButton = $(`.${SUB_PRESS}`);
 const allTabButton = $(`.${ALL_PRESS}`);
+const mainLogo = $(".container__header__main");
+const listButton = $(".list_button");
+const gridButton = $(".grid_button");
 const toggleDarkButton = $(".toggle_darkmode");
 const darkLogo = $(".dark_button", toggleDarkButton);
 const lightLogo = $(".light_button", toggleDarkButton);
@@ -26,8 +29,6 @@ function getMainElements() {
   return {
     listContainer: $(".list_container"),
     gridContainer: $All(".grid_container")[getState(gridPageIdx)],
-    listButton: $(".list_button"),
-    gridButton: $(".grid_button"),
     leftNavigationButton: $(".left_navigation_button"),
     rightNavigationButton: $(".right_navigation_button"),
   };
@@ -35,10 +36,10 @@ function getMainElements() {
 
 // 그리드, 리스트 여부에 따른 요소 css 변환
 function changeView(elements, currentMode) {
-  elements.listButton.src = currentMode
+  listButton.src = currentMode
     ? "./assets/icons/list_off.svg"
     : "./assets/icons/list_on.svg";
-  elements.gridButton.src = currentMode
+  gridButton.src = currentMode
     ? "./assets/icons/grid_on.svg"
     : "./assets/icons/grid_off.svg";
 
@@ -61,29 +62,6 @@ function updateDate() {
 
   today = today.toLocaleDateString("ko-KR", options);
   dateHtml.innerHTML = today;
-}
-
-// 키보드 방향키로 탭 이동
-function keyboardClicked({ key: key }) {
-  const currentGridMode = getState(isGrid);
-  const nowGridPage = getState(gridPageIdx);
-  const currentIdx = getState(listIdx);
-
-  if (currentGridMode) {
-    if (key === "ArrowRight" && nowGridPage < 3) {
-      setState(gridPageIdx, nowGridPage + 1);
-    } else if (key === "ArrowLeft" && nowGridPage > 0) {
-      setState(gridPageIdx, nowGridPage - 1);
-    }
-  } else {
-    if (key === "ArrowRight") {
-      currentIdx.list += 1;
-      setState(listIdx, currentIdx);
-    } else if (key === "ArrowLeft") {
-      currentIdx.list += -1;
-      setState(listIdx, currentIdx);
-    }
-  }
 }
 
 function toggleGridClicked() {
@@ -137,17 +115,11 @@ function toggleDarkMode() {
 }
 
 function setGlobalEvent() {
-  const mainLogo = $(".container__header__main");
-  const listButton = $(".list_button");
-  const gridButton = $(".grid_button");
-  const subTabButton = $(".main_section__header__title--sub");
-  const allTabButton = $(".main_section__header__title--all");
   mainLogo.addEventListener("click", refreshWindow);
   listButton.addEventListener("click", toggleGridClicked);
   gridButton.addEventListener("click", toggleGridClicked);
   subTabButton.addEventListener("click", toggleSubClicked);
   allTabButton.addEventListener("click", toggleSubClicked);
-  window.addEventListener("keydown", keyboardClicked);
   toggleDarkButton.addEventListener("click", toggleDarkButtonClicked);
   register(isGrid, toggleMainView);
   register(isSubTab, updateSubViewButton);
