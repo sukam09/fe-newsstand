@@ -1,11 +1,25 @@
+import { constants } from "../../Data/constants.js";
+import ModeStore from "../../Store/ModeStore.js";
 import Component from "../../core/Component.js";
 
 export default class PressNews extends Component {
+  setup() {
+    this.ModeStore = new ModeStore();
+  }
+
+  setEvent() {
+    this.ModeStore.subscribe(() => this.render());
+  }
+
   template() {
     return `
       <div class="news-list__press-news__info">
         <img
-          src=${this.$props.nowNewsData.path}
+          src=${
+            this.ModeStore.mode === constants.LIGHT_MODE
+              ? this.$props.nowNewsData.path
+              : this.$props.nowNewsData.path_dark
+          }
           alt="Brandmark"
           height="24"
           class="news-list__press-news__info__brandmark"
