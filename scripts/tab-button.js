@@ -1,5 +1,5 @@
 import { TAB_TYPE } from "../constants/index.js";
-import { store, useSelector } from "../store/index.js";
+import { appStore, useSelector } from "../store/index.js";
 import { changeTab } from "../store/reducer/page.js";
 import { $mainNav } from "./doms.js";
 
@@ -12,7 +12,7 @@ function handleTabsClick(e) {
     return;
   }
   const subcribeList = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.subscribeList,
   });
   const tabType = $currentButton.dataset.tab;
@@ -26,7 +26,7 @@ function handleTabsClick(e) {
 
   activateCurrentTab(tabType);
 
-  store.dispatch(changeTab(tabType));
+  appStore.dispatch(changeTab(tabType));
 }
 
 export function activateCurrentTab(tabType) {

@@ -14,7 +14,7 @@ import {
   getKRLocaleDateString,
   setTheme,
 } from "./utils/index.js";
-import { store } from "./store/index.js";
+import { appStore } from "./store/index.js";
 import { changeTheme, initTheme } from "./store/reducer/theme.js";
 import { initSubscribe } from "./store/reducer/subscribe-list.js";
 import { getLocalStorageItem } from "./utils/local-storage.js";
@@ -29,7 +29,7 @@ async function initDB() {
 
 function initSubscribeList() {
   const subscribeList = JSON.parse(getLocalStorageItem("subscribeList")) || [];
-  store.dispatch(initSubscribe(subscribeList));
+  appStore.dispatch(initSubscribe(subscribeList));
 }
 
 function initAppTheme() {
@@ -49,7 +49,7 @@ function initAppTheme() {
     theme = THEME.LIGHT;
   }
 
-  store.dispatch(initTheme(theme));
+  appStore.dispatch(initTheme(theme));
   setTheme();
 }
 
@@ -62,7 +62,7 @@ function addEventOnThemeButton() {
   const $themeButton = document.querySelector(".theme-btn");
 
   $themeButton.addEventListener("click", () => {
-    store.dispatch(changeTheme());
+    appStore.dispatch(changeTheme());
     setTheme();
   });
 }

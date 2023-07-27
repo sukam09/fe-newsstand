@@ -1,9 +1,9 @@
 import { THEME } from "../constants/index.js";
-import { store, useSelector } from "../store/index.js";
+import { appStore, useSelector } from "../store/index.js";
 
 export function setTheme() {
   const theme = useSelector({
-    store,
+    store: appStore,
     selector: (state) => state.theme,
   });
 
