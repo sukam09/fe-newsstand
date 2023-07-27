@@ -2,7 +2,7 @@ import { renderMain } from "../render/renderMain.js";
 import Stores from "../core/Store.js";
 import { snackBar } from "../snackBar.js";
 
-const clickAllOrSubscribeButton = () => {
+const clickSubscribeTypeButton = () => {
   clickAllNews();
   clickSubscribeNews();
 };
@@ -27,4 +27,4 @@ function clickSubscribeNews() {
   });
 }
 
-export { clickAllOrSubscribeButton };
+export { clickSubscribeTypeButton };

@@ -54,7 +54,7 @@ function alertClickGrid(subscribeButton, alertDiv) {
   });
 }
 
-function replaceSubscribeButtonGrid(subscribeButton, buttonType) {
+function replaceSubscribeButtonInGrid(subscribeButton, buttonType) {
   changeImageSrc(
     subscribeButton,
     buttonType === "subscribe"
@@ -63,7 +63,7 @@ function replaceSubscribeButtonGrid(subscribeButton, buttonType) {
   );
 }
 
-function replaceSubscribeButtonList(buttonType) {
+function replaceSubscribeButtonInList(buttonType) {
   if (buttonType === "subscribe")
     changeImageSrc(
       document.querySelector(".subscribe-buttonList"),
@@ -79,6 +79,6 @@ function replaceSubscribeButtonList(buttonType) {
 export {
   alertList,
   alertGrid,
-  replaceSubscribeButtonList,
-  replaceSubscribeButtonGrid,
+  replaceSubscribeButtonInList,
+  replaceSubscribeButtonInGrid,
 };

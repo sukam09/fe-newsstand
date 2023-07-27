@@ -3,7 +3,7 @@ import Stores from "./core/Store.js";
 import { snackBar } from "./snackBar.js";
 import { rollingTime } from "../utils/constants.js";
 import { renderMain } from "./render/renderMain.js";
-import { alertList, replaceSubscribeButtonList } from "./alert.js";
+import { alertList, replaceSubscribeButtonInList } from "./alert.js";
 
 let timeOut;
 const drawNews = (news) => {
@@ -15,7 +15,7 @@ const drawNews = (news) => {
       : currentCategoryPageNumber - 1;
   drawNewsDiv(news, progressBarId, pageIndex);
   drawNewsHeader(news, progressBarId, pageIndex);
-  clickSubscribeButton(news, progressBarId);
+  clickSubscribeButtonInList(news, progressBarId);
 };
 
 function drawNewsImage(news, progressBarId, pageIndex) {
@@ -51,7 +51,7 @@ function drawNewsHeader(news, progressBarId, pageIndex) {
   news_header.innerHTML = "";
   let new_div = `<div class="news-header-div"><img class="news-thumbnail"  id="${news[progressBarId][pageIndex].name}"  src="${news[progressBarId][pageIndex].logo}"><span class="news-edit-time">${news[progressBarId][pageIndex].editTime}</span><img class="subscribe-buttonList" src="./img/subscribe_button.svg"></div>`;
   news_header.innerHTML = new_div;
-  if (isSubscribed(news, progressBarId)) replaceSubscribeButtonList("cancel");
+  if (isSubscribed(news, progressBarId)) replaceSubscribeButtonInList("cancel");
 }
 
 function isSubscribed(news, progressBarId) {
@@ -69,7 +69,7 @@ function isSubscribed(news, progressBarId) {
   return false;
 }
 
-function clickSubscribeButton(news, progressBarId) {
+function clickSubscribeButtonInList(news, progressBarId) {
   const subscribedButton = document.querySelector(".subscribe-buttonList");
   subscribedButton.addEventListener("click", function () {
     if (!isSubscribed(news, progressBarId)) {
@@ -82,7 +82,7 @@ function clickSubscribeButton(news, progressBarId) {
         Stores.setSubscribedMode("subscribed");
         renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
       }, rollingTime);
-      replaceSubscribeButtonList("cancel");
+      replaceSubscribeButtonInList("cancel");
     } else {
       if (timeOut) clearTimeout(timeOut);
       alertList(
