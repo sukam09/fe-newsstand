@@ -23,6 +23,10 @@ function handleCategoryClick(e) {
 
 function handleAniamtionStart(e) {
   changeNews(e);
+
+  const selected = document.querySelector(".selected-category");
+
+  selected.scrollIntoView({ behavior: "smooth" });
 }
 
 function handleAniamtionIteration(e) {
@@ -42,16 +46,14 @@ function handleAniamtionIteration(e) {
 function handleMouseDown(e) {
   moved = true;
   isDrag = false;
-  startX = e.screenX - _ul.offsetLeft;
-
+  startX = e.screenX;
   scrollLeft = _ul.scrollLeft;
 }
-// screenX - offsetLeft => 부모 요소 내에서 상대 좌표
+
 function handleMouseMove(e) {
   if (moved) {
     //drag
-    const endX = e.screenX - _ul.offsetLeft;
-
+    const endX = e.screenX;
     const walk = (endX - startX) * 1;
     _ul.scrollLeft = scrollLeft - walk;
 
