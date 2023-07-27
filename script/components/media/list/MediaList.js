@@ -6,8 +6,7 @@ import { setMediaLogo } from '../../../utils/utils.js';
 import Button from '../../Button.js';
 import { replaceArrow } from '../ArrowButton.js';
 
-const setArrowButtons = (store, viewAll) => {
-  const [left, right] = replaceArrow();
+const setArrowButtons = (store, viewAll, left, right) => {
   const movePage = move => {
     viewAll ? store.movePage(move) : store.moveSubPage(move);
   };
@@ -110,6 +109,7 @@ const MediaList = (themeStore, navStore, viewData) => {
   const viewAll = navStore.getState().media === 'all';
   const listStore = new ListStore(viewData, viewAll);
   const mediaList = document.createElement('div');
+  const [leftArrow, rightArrow] = replaceArrow();
 
   const render = () => {
     const nav = mediaList.querySelector('#list_nav');
@@ -119,12 +119,16 @@ const MediaList = (themeStore, navStore, viewData) => {
     listContent.replaceWith(
       ListContent(themeStore, navStore, listStore, viewAll)
     );
+    if (listStore.getState().media.length === 1) {
+      leftArrow.style.display = 'none';
+      rightArrow.style.display = 'none';
+    }
   };
 
   mediaList.innerHTML = `
     <nav id="list_nav" class="surface_alt"></nav>
     <div id="list_view"></div>`;
-  setArrowButtons(listStore, viewAll);
+  setArrowButtons(listStore, viewAll, leftArrow, rightArrow);
   mediaList.id = 'list_view_wrapper';
   listStore.subscribe(render);
   render();
