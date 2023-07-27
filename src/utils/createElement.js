@@ -1,4 +1,9 @@
-const create = {};
+/**
+ * @typedef {Object.<string,
+ * ({className, txt, attributes, events}:{className: string, txt:string, attributes:Object.<string, string>, events:Object.<string,string>}) => HTMLElement>}
+ */
+
+export const create = {};
 const block = ["div", "button", "nav", "ul", "li", "img", "a", "span"];
 
 (function createElementFunc() {
@@ -13,5 +18,3 @@ const block = ["div", "button", "nav", "ul", "li", "img", "a", "span"];
         };
     });
 })();
-
-export { create };

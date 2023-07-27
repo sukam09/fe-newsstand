@@ -10,6 +10,8 @@ export const DOM = {
     CONTAINER_MAIN: "container_main",
     SUBSCRIBE: "subscribe",
     ENTIRE: "entire",
+    GRID: "grid",
+    LIST: "list",
 
     // grid
     GRID_ENTIRE_VIEW: "grid-entire",

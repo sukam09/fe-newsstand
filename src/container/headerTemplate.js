@@ -20,7 +20,9 @@ function createHeaderRight() {
     return $container;
 }
 
-// 헤더 생성
+/**
+ * 뉴스스탠드 로고와 오늘 날짜를 생성하여 헤더에 추가하는 함수
+ */
 export function createHeader() {
     const $container = document.querySelector(".container_header");
     $container.append(createHeaderLeft(), createHeaderRight());
