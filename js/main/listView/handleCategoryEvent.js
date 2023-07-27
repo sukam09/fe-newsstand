@@ -25,7 +25,6 @@ function handleAniamtionStart(e) {
   changeNews(e);
 
   const selected = document.querySelector(".selected-category");
-
   selected.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -40,7 +39,6 @@ function handleAniamtionIteration(e) {
     setState(listAllPage, 0);
     addAnimation(e.target.parentElement.nextElementSibling, "Next");
   }
-  //store.state.list_page > totalNum => passAnimation
 }
 
 function handleMouseDown(e) {
@@ -66,6 +64,7 @@ function handleMouseUp() {
   _ul.removeEventListener("mousedown", handleMouseDown);
   window.removeEventListener("mousemove", handleMouseMove);
   window.removeEventListener("mouseup", handleMouseUp);
+
   setTimeout(() => {
     _ul.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
