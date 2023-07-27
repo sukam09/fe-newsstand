@@ -748,6 +748,10 @@ h1 {
   border-right: none !important;
 }
 
+.dark-mode-icon {
+  cursor: pointer;
+}
+
 .xi-moon {
   color: #4362d0;
   transition: 0.3s;

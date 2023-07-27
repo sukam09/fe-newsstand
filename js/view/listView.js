@@ -1,5 +1,5 @@
 import { listSubMouseClick } from "../subscribe/subscribe.js";
-import { checkIsSubscribe, getJSON, setDisplay, setProperty } from "../util/utils.js";
+import { checkIsSubscribe, getJSON, setDisplay, setProperty, shuffle } from "../util/utils.js";
 import { getState, setState, setDictState } from "../observer/observer.js";
 import {
   categoryPageCount,
@@ -34,6 +34,13 @@ async function initNewsInfo() {
     setDictState(totalCategoryPages, { [item]: news[item].length });
     setDictState(categoryPageCount, { [item]: 0 });
   });
+  Object.entries(news).forEach(item => shuffleNews(item));
+}
+
+function shuffleNews(item) {
+  const key = item[0];
+  let value = item[1];
+  news[key] = [...value].sort(shuffle);
 }
 
 function drawListArrow() {

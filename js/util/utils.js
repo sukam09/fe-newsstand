@@ -127,6 +127,8 @@ function setProperty(query, property, value) {
   document.querySelector(query)[property] = value;
 }
 
+const shuffle = () => Math.random() - 0.5;
+
 async function initUtilData() {
   presses_by_category = await getJSON("../assets/media.json");
   presses = Object.values(presses_by_category).reduce((acc, cur) => {
@@ -147,4 +149,5 @@ export {
   getNews,
   moveEmptySubListPage,
   setProperty,
+  shuffle,
 };

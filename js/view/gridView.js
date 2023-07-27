@@ -1,10 +1,9 @@
 import { initGridItemEvent, preventButtonClick } from "../subscribe/subscribe.js";
 import { LIST_ELEMENT_HTML, PAGE_SIZE, SUB_BTN_PATH, UNSUB_BTN_PATH } from "../store/const.js";
-import { setDisplay, getJSON } from "../util/utils.js";
+import { setDisplay, getJSON, shuffle } from "../util/utils.js";
 import { setState, getState } from "../observer/observer.js";
 import { gridPageCount, isDark, isSubView, subGridPageCount, subscribedPress } from "../store/store.js";
 
-const shuffle = () => Math.random() - 0.5;
 let presses = null;
 
 function drawGridArrow() {
