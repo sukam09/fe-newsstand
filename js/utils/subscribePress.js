@@ -8,7 +8,7 @@ import { store } from "../core/store.js";
 import { ICON_IMG_PATH, PRESS_VIEW_COUNT } from "../constants/constants.js";
 import { showListView } from "./makeListView.js";
 import { showGridView } from "./makeGridView.js";
-import { changeView } from "./changeView.js";
+import { changeView, updateTabSelection } from "./changeView.js";
 
 export function showSubscribeButton(isSubscribed) {
   return isSubscribed
@@ -45,6 +45,7 @@ export function checkAnswer(e) {
 
     store.setState({ subscribedPress: updatedSubscribedPress });
     const pressCount = getSubscribedPress().length;
+
     //구독한 언론사 해당 페이지가 비었을 경우 페이지 수 감소
     if (
       !(
@@ -53,6 +54,11 @@ export function checkAnswer(e) {
       )
     ) {
       getPage() > 1 ? store.setState({ page: getPage() - 1 }) : null;
+    }
+    if (!pressCount) {
+      alert("구독한 언론사가 없습니다.");
+      store.setState({ tabMode: "all" });
+      updateTabSelection(document.getElementById("all"));
     }
     getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
   }

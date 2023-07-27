@@ -134,7 +134,6 @@ function handleClick(e) {
         store.setState({ tabMode: "subscribe" });
         changeView("list");
       }
-
       break;
     default:
       break;
