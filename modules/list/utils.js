@@ -21,22 +21,24 @@ const totalModeIdx = () => {
   const cateInfo = getState(categoryInfo);
   // 왼쪽 화살표 눌렀을 때
   if (getState(listCateMediaIdx) === -1) {
-    setState(listCateIdx, getState(listCateIdx) - 1);
+    const nextCateIdx = getState(listCateIdx) - 1;
+    const newCateIdx =
+      nextCateIdx === -1 ? categoryKeys.length - 1 : nextCateIdx;
+
+    setState(listCateIdx, newCateIdx);
     setState(listCateMediaIdx, 0);
-  }
-  if (getState(listCateIdx) === -1) {
-    setState(listCateIdx, categoryKeys.length - 1);
   }
 
   // 오른쪽 화살표 눌렀을 때
-  let cateLen = cateInfo[categoryKeys[getState(listCateIdx)]].length;
-  if (getState(listCateMediaIdx) === cateLen) {
-    setState(listCateIdx, getState(listCateIdx) + 1);
+  if (
+    getState(listCateMediaIdx) ===
+    cateInfo[categoryKeys[getState(listCateIdx)]].length
+  ) {
+    const nextCateIdx = getState(listCateIdx) + 1;
+    const newCateIdx = nextCateIdx === categoryKeys.length ? 0 : nextCateIdx;
+
+    setState(listCateIdx, newCateIdx);
     setState(listCateMediaIdx, 0);
-  }
-  if (getState(listCateIdx) === categoryKeys.length) {
-    console.log(getState(listCateIdx), categoryKeys.length);
-    setState(listCateIdx, 0);
   }
 };
 
