@@ -31,6 +31,12 @@ function clickSubscribeBtn(selectedPress, _img) {
 
 function confirmModal(selectedPress, _img) {
   document.querySelector(".confirm").style.display = "block";
+  const snackbar = document.querySelector(".snackbar");
+
+  if (snackbar.style.display === "block") {
+    snackbar.style.display = "none";
+  }
+
   document.querySelector(
     ".question"
   ).innerHTML = `<span><span>${selectedPress}</span>을(를)</span> 구독해지하시겠습니까?`;
