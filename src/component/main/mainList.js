@@ -2,6 +2,8 @@ import renderMain from "./renderMain.js";
 import State from "../../store/StateStore.js";
 import NewsData from "../../store/NewsStore.js";
 import Store from "../../store/SubscribeStore.js"
+import { AllState } from "../../store/viewStore.js";
+import { getState } from "../../observer/observer.js";
 
 const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
@@ -58,7 +60,7 @@ function makeCategory(){
     listArticle.forEach((value, index) => {
         const list = document.createElement("li");
         list.id = setID(value);
-        let id = setID(value);
+        id = setID(value);
         if(index === categoryNum){
             const progress = document.createElement("div");
             const pageinfo = document.createElement("div");
@@ -117,7 +119,7 @@ function  makeSubscribeButton(){
     }
 
     if(isAll){
-        if(Store.findSubscribe(articleInfo.id)){
+        if(Store.getSubscribeByID(articleInfo.id)){
             subscribeBtn.innerText = "해지하기";
         }
         else{
@@ -244,9 +246,9 @@ function progress(){
             progress += increment;
         } else {
             clearInterval(interval);
-            setNextPage();
+            State.setCurrentPage(++currentPage);
         }
-    }, 16);
+    }, 20000);
 }
 
 function setData(){
@@ -297,7 +299,7 @@ export default function MainList(){
     mainCenter.style.border = 'none';
     currentPage = State.getCurrentPage();
     categoryNum = State.getCategoryNum();
-    isAll = State.getAllState();    
+    isAll = getState(AllState);    
 
     setData();
     showList();

@@ -1,24 +1,25 @@
-export default class Observable {
-    #state
-    #observers = new Set();
+const globalState = {};
 
-    constructor(state) {
-        this.#state = state; 
-        Object.keys(data).forEach(key => Object.defineProperty(this, key, {
-            get: () => this.#state[key]
-        }));
-    }
+const subscribe = (key, observer) => globalState[key].observers.add(observer);
 
-    setState(newState){
-        this.#state = {...this.#state, ...newState};
-        this.notify();
-    }
+const _notify = (key) => 
+    globalState[key].observers.forEach((observer) => observer());
 
-    addSubscribe(subscriber) {
-        this.#observers.add(subscriber);
-    }
+const initState = ({ key, defaultValue }) => {
+    globalState[key] = {
+        state: defaultValue,
+        observers: new Set(),
+    };
+    return key;
+};
 
-    notify() {
-        this.#observers.forEach((fn) => fn());
-    }
-  } 
+const getState = (key) => {
+    return globalState[key].state;
+}
+
+const setState = (key, newState) => {
+    globalState[key].state = newState;
+    _notify(key);
+};
+
+export { subscribe, initState, getState, setState };

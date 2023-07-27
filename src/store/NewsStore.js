@@ -48,7 +48,7 @@ class NewsStore{
         return category;
     }
 
-    findGridArticle(id){
+    getGridArticleByID(id){
         return this.pressData[id - 1];
     }
 

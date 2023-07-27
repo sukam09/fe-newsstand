@@ -21,7 +21,7 @@ class SubscribeStore{
         this.subscribePress.splice(pressIndex, 1);
     }
 
-    findSubscribe(id){
+    getSubscribeByID(id){
         let press;
         if(this.subscribePress.length > 0){
             press = this.subscribePress.find(logo =>logo.id == id);

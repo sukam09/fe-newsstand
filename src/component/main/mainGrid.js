@@ -3,6 +3,8 @@ import NewsData from "../../store/NewsStore.js";
 import State from "../../store/StateStore.js";
 import Store from "../../store/SubscribeStore.js";
 import renderMain from "./renderMain.js";
+import { AllState } from "../../store/viewStore.js";
+import { getState } from "../../observer/observer.js";
 
 let COUNT_PER_PAGE;
 let isAll;
@@ -11,14 +13,15 @@ let pressData;
 
 function addSubscribeBtn({target}){
     let id = target.previousSibling.className
-    if(Store.findSubscribe(id)){
+    if(Store.getSubscribeByID(id)){
         target.innerText = "+ 구독하기";
-        Store.removeSubscribe(NewsData.findGridArticle(id));
+        Store.removeSubscribe(NewsData.getGridArticleByID(id));
         renderMain();
     }
     else{
+        SnackBar();
         target.innerText = "해지하기";
-        Store.addSubscribe(NewsData.findGridArticle(id));
+        Store.addSubscribe(NewsData.getGridArticleByID(id));
         renderMain();
     } 
 }
@@ -32,7 +35,7 @@ function logoMouseOver({target}){
     subscribeBtn.style.display = "flex";
     target.style.backgroundColor = "#F5F7F9";
 
-    if(Store.findSubscribe(id)){
+    if(Store.getSubscribeByID(id)){
         subscribeBtn.innerText = "해지하기";
     }   
     else{
@@ -103,7 +106,7 @@ function setData(){
 
 export default function MainGrid(){
     COUNT_PER_PAGE = State.getCountPerPage();
-    isAll = State.getAllState();
+    isAll = getState(AllState);
     currentPage = State.getCurrentPage();
     setData();
     setMaxpage();

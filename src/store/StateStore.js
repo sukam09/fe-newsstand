@@ -92,5 +92,3 @@ class StateStore{
 
 const State = new StateStore();
 export default State;  
-
-//viewState와 pageState로 분리 필요
