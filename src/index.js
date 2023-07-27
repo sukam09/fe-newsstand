@@ -1,9 +1,9 @@
-import { initNewsStandHeader } from './components/news-stand-header.js';
-import { initLatestNews } from './components/latest-news.js';
-import { initPressHeader } from './components/press-header.js';
+import newsStandHeader from './components/news-stand-header/news-stand-header.js';
+import latestNews from './components/news-stand-latest/news-stand-latest.js';
+import pressHeaderStore from './components/press-header/press-header.js';
 
 (function init() {
-  initNewsStandHeader();
-  initLatestNews();
-  initPressHeader(); // 수정중
+  newsStandHeader.initHeader();
+  latestNews.initNews();
+  pressHeaderStore.initPress();
 })();

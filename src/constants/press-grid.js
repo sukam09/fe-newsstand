@@ -27,8 +27,10 @@ const PATH = {
 const NUMBER = {
   GRID_LENGTH: 24,
   ARROW_MIN: 1,
-  ARROW_MINUS: -1,
-  ARROW_PLUS: 1,
+  PAGE_MIN: 0,
+  PAGE_MAX: 3,
+  MINUS: -1,
+  PLUS: 1,
 };
 
 const CONTENT = {

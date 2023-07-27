@@ -5,6 +5,7 @@ const HEADER_CLASS = {
   H1: 'header__h1',
   TIME: 'header__time',
 };
+
 const DATE_OPTIONS = {
   year: 'numeric',
   month: '2-digit',
