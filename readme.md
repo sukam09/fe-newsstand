@@ -33,20 +33,20 @@
 
 - dfs 탐색으로 구현
 
-![querySelector](<스크린샷 2023-07-27 오전 11.18.09.png>)
+![code-snapshot](https://github.com/kim-limit/fe-newsstand/assets/101790391/8057df9d-68a7-4b3b-bf0e-026c905a83bc)
 
 ### querySelectorAll
 
 - bfs 탐색으로 구현
 
-![querySelectorAll](image.png)
+![code-snapshot](https://github.com/kim-limit/fe-newsstand/assets/101790391/cfd5edba-a568-4830-99d5-35266fbc3445)
 
 ### Promise
 
 - `queueMicrotask api` 를 활용하여 직접 micro task queue에 비동기 로직 push 하여 비동기 작업 구현
 - static 메서드 `resolve`, `reject`, `all` 구현
 
-![Alt text](image-1.png)
+![code-snapshot](https://github.com/kim-limit/fe-newsstand/assets/101790391/e6731c90-bd47-42ae-856c-b19c499af707)
 
 ### recoil을 참고한 observer store
 
@@ -57,13 +57,13 @@
 
 #### atom
 
-![Alt text](image-6.png)
-![Alt text](image-3.png)
+![code-snapshot](https://github.com/kim-limit/fe-newsstand/assets/101790391/40ae1ce5-c7a3-4e2c-987a-84f67abbce55)
+![code-snapshot](https://user-images.githubusercontent.com/101790391/255535066-3d442a4d-7f86-4f9a-a100-7e62d0608fb4.png)
 
 #### selector
 
-![Alt text](image-4.png)
-![Alt text](image-5.png)
+![code-snapshot](https://user-images.githubusercontent.com/101790391/255535358-3ea59991-7d51-4462-bcc0-9053d9be9305.png)
+![code-snapshot](https://user-images.githubusercontent.com/101790391/255535645-1a47fc90-7316-4e0c-98f6-f2dff885fae3.png)
 
 ## 새로 배운점
 
