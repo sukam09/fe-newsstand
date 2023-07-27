@@ -121,7 +121,6 @@ class modeSubject extends Subject {
     }
 }
 
-// 관찰하는 주체 (구독한 언론사)
 const _sub_press_list = new subscribeSubject();
 const _mode = new modeSubject();
 
