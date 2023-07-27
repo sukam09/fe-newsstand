@@ -1,5 +1,5 @@
 import { addpress, getPage, getPress, getSubscribedPressId, getView, removepress, setPage, setPress, setView, store } from "../../Store/store.js";
-import { FIRST_PAGE_IDX, PRESS_CNT_PER_PAGE, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
+import { FIRST_PAGE_IDX, PRESS_CNT_PER_PAGE, SURFACE_ALT, SURFACE_DEFAULT, SNACKBAR_DURATION } from "../../constant.js";
 import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_BTN } from "../../path.js";
 import pressStore from "../../pressDataStore.js";
 import { changeView } from "../PressTab/pressTab.js";
@@ -117,7 +117,7 @@ function moveSubscribedList() {
     setPress('my');
     changeView();
     $gridSnackBar.style.display = 'none'
-  }, 1000)
+  }, SNACKBAR_DURATION)
 }
 
 /** 바깥 border 그리기 */

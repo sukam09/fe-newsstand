@@ -5,16 +5,21 @@ function _changeClass(element, removeClass, addClass) {
 }
 
 /** 화면에 보이는 요소 변경 */
-function _changeDispay(element1, displayType1, element2, displayType2){
+function _changeDispay(element1, displayType1, element2, displayType2) {
   element1.style.display = displayType1;
   element2.style.display = displayType2;
 }
 
 /** json 데이터 가져오기 */
-async function dataFetch(path){
-  const response = await fetch(path);
-  const jsonData = await response.json();
-  return jsonData;
+async function dataFetch(path) {
+  try {
+    const response = await fetch(path);
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (error) {
+    console.log("ERROR: ", error);
+    return false;
+  }
 }
 
-export {_changeClass, _changeDispay, dataFetch}
+export { _changeClass, _changeDispay, dataFetch }
