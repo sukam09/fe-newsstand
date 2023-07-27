@@ -37,7 +37,7 @@
       "logo": "press7.png",
       "subscribe": true,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "서울경제",
@@ -76,7 +76,7 @@
       "logo": "press95.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "데일리안",
@@ -115,7 +115,7 @@
       "logo": "press1.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "헤럴드경제",
@@ -154,7 +154,7 @@
       "logo": "press2.png",
       "subscribe": true,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "SBSBiz",
@@ -193,7 +193,7 @@
       "logo": "press3.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "세계일보",
@@ -232,7 +232,7 @@
       "logo": "press4.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "아시아경제",
@@ -271,7 +271,7 @@
       "logo": "press5.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "이데일리",
@@ -283,3468 +283,3468 @@
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press6.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "아이뉴스24",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press8.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "파이낸셜뉴스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press9.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "스포츠서울",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press10.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "스포츠동아",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press11.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "석간문화일보",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press12.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "KBSWorld",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press13.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "KoreaJoongAngDaily",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press14.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "Insight",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press15.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "법률방송뉴스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press16.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "시사저널e",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press17.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "한국농어촌방송",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press18.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
 
     {
       "name": "에너지경제",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press20.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "BUSINESSPOST",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press21.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "CEO스코어데일리",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press22.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "KNN",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press23.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "TheKoreaHerald",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press24.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "경향신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press29.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "매일경제",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press35.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
 
     {
       "name": "한국대학신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press41.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "OSEN",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press94.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "JTBC",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press88.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "MBC",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press0.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "ZDNETKorea",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press30.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "MBN",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press36.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "서울파이낸스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press42.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "디지털타임스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press93.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "Metro",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press87.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "뉴스타파",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press25.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "MyDaily",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press31.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "YTN",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press37.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "엑스포츠뉴스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press43.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "미디어오늘",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press92.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "비즈한국",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press86.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "NewDaily",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press26.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "머니투데이",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press32.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "시사위크",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press38.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "맥스무비",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press44.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "연합뉴스TV",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press91.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "주간경향",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press85.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "국민일보",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press27.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "SBS",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press33.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "DigitalToday",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press39.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "OBS",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press45.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "한겨레",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press90.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "Forbes",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press84.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "일간스포츠",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press28.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "OhMyNews",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press34.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "DataNews",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press40.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "소년한국일보",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press46.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "조선비즈",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press89.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "TVReport",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press83.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "노컷뉴스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press62.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "뉴스토마토",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press80.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "뉴스포스트",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press54.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "대전방송",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press77.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "데일리한국",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press79.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "독서신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press75.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "동아일보",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press70.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "MondeDiplomatique",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press49.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "월간산",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press74.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "서울신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press64.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "스포츠조선",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press65.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "시사오늘",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press78.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "시사IN",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press73.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "씨네21",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press53.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "에이블뉴스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press81.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "여성경제신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press58.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "전자신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press66.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "정신의학신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press55.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "정책브리핑",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press52.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "철강금속신문",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press56.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "텐아시아",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press51.png",
       "subscribe": false,
       "category": "방송/통신",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "티브이데일리",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press47.png",
       "subscribe": false,
       "category": "IT",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "조이뉴스24",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press19.png",
       "subscribe": false,
       "category": "종합/경제",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "프레시안",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press61.png",
       "subscribe": false,
       "category": "IT",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "한국경제",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press72.png",
       "subscribe": false,
       "category": "IT",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "한국경제TV",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press67.png",
       "subscribe": false,
       "category": "IT",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "한국일보",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press60.png",
       "subscribe": false,
       "category": "영자지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "BBSNews",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press48.png",
       "subscribe": false,
       "category": "영자지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "BLOTER",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press68.png",
       "subscribe": false,
       "category": "영자지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "ECONOTIMES",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press76.png",
       "subscribe": false,
       "category": "스포츠/연예",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "IT조선",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press57.png",
       "subscribe": false,
       "category": "스포츠/연예",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "KBS",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press69.png",
       "subscribe": false,
       "category": "스포츠/연예",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "MK스포츠",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press50.png",
       "subscribe": false,
       "category": "매거진/전문지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "NEWSIS",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press71.png",
       "subscribe": false,
       "category": "매거진/전문지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "SportalKorea",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press59.png",
       "subscribe": false,
       "category": "매거진/전문지",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "TheJoongAng",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press63.png",
       "subscribe": false,
       "category": "지역",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     },
     {
       "name": "YTN사이언스",
       "url": "/#",
       "mainArticle": {
-        "title": "기사 제목",
+        "title": "현대자동차, '더 뉴 아반떼 N' 26일 출시",
         "url": "/#",
         "thumbnail": "https://picsum.photos/seed/picsum/200/300"
       },
       "subArticles": [
         {
-          "title": "기사 제목",
+          "title": "물가 상승세 지속, 미국 경제에 우려 증폭",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "새로운 코로나 변이 탐지, 전세계 각국 긴장",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "기후 위기 심각성 인식 높아지며 기업들도 친환경 투자 늘려",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "연방준비제도, 금리 인상 시그널 보내며 시장 변동성 예고",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "데이터 유출 사고 잇따라, 사생활 보호에 대한 우려 증가",
           "url": "/#"
         },
         {
-          "title": "기사 제목",
+          "title": "아마존의 드론 배송 서비스 상용화 계획 발표로 물류 업계 충격",
           "url": "/#"
         }
       ],
       "logo": "press82.png",
       "subscribe": false,
       "category": "지역",
-      "editTime": "YYYY-MM-DD HH:mm:ss"
+      "editTime": "2023-07-27 16:41:42"
     }
   ]
 }
