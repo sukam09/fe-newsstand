@@ -100,7 +100,7 @@
 }
 
 .snack-bar {
-  z-index: -1;
+  z-index: 1;
   box-sizing: border-box;
   position: absolute;
   width: 286px;
@@ -112,8 +112,6 @@
   line-height: 54px;
   background-color: #4362d0;
   color: #ffffff;
-  transition: 0.5s;
-  opacity: 0;
 }
 
 .alert {
@@ -126,19 +124,31 @@
   transform: translate(-50%, -50%);
 }
 
-.alert div {
+.alert .text-box {
   height: 92px;
   padding: 24px;
+  text-align: center;
   border-bottom: 1px solid #d2dae0;
   background-color: #ffffff;
 }
+
 .alert button {
   display: inline-block;
 
   width: 50%;
   height: 48px;
   background-color: #f5f7f9;
+  border-bottom: 1px solid #d2dae0;
+
   /* border-left: 1px solid #d2dae0; */
 
   font-size: 16px;
+}
+
+.alert button:hover {
+  text-decoration: underline;
+}
+
+.alert .ok-btn {
+  border-right: 1px solid #d2dae0;
 }

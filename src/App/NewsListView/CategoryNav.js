@@ -52,7 +52,6 @@ const nextListPage = () => {
 
   const currentPage = listStore.getState().page;
   if (currentPage === listStore.getState().lastPage) {
-    let nextCategory;
     if (mainStore.getState().pressType === MY) {
       lastCategory = pressStore.getState().pressArr.length - 1;
     }
@@ -68,7 +67,7 @@ const nextListPage = () => {
 };
 
 const startProgress = (progressBar) => {
-  const duration = 2000; // 20초
+  const duration = 20000; // 20초
   const startWidth = 0;
   const endWidth = 100;
   const startTime = performance.now();
@@ -106,6 +105,7 @@ Object.setPrototypeOf(CategoryNav.prototype, Component.prototype);
 
 const getSubPress = (pressIdArr) => {
   let nameArr = [];
+
   pressIdArr.forEach((element) => {
     nameArr.push(press[Number(element) + 1].name);
   });

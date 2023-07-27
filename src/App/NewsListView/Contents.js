@@ -3,9 +3,11 @@
 */
 import Component from "../../utils/Component.js";
 import { listStore, categoryNews, pressNews } from "../../store/ListStore.js";
-import { mainStore, ALL, MY } from "../../store/MainStore.js";
-import { pressStore } from "../../store/PressStore.js";
+import { mainStore, ALL, MY, setPress } from "../../store/MainStore.js";
+import { addPress, pressStore } from "../../store/PressStore.js";
 import getRandomIndexArr from "../../api/getRandomIndexArr.js";
+import Alert from "../Modal/Alert.js";
+import SnackBar from "../Modal/SnackBar.js";
 
 const subscribeButtonInner = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99799H13V10.998H19V12.998Z" fill="#879298"/></svg>구독하기`;
 
@@ -77,7 +79,7 @@ Contents.prototype.template = function () {
     <img src="${imgSrc.url}" class="list-img">
     <div class="list-edit">${getEditDate(content.regDate)}</div>
     <button ${isSubscribed(id) ? "" : `class="subscribe-btn"`}
-    data-key=${id}>
+    data-key=${Number(id)}>
     ${isSubscribed(id) ? unsubscribeButtonInner : subscribeButtonInner}</button>
   </header>
   <div class="list-news">
@@ -98,5 +100,29 @@ Contents.prototype.template = function () {
     </div>
   </div>
   `;
+};
+
+Contents.prototype.setEvent = function () {
+  const $el = this.$el;
+  const $button = this.$el.querySelector("button");
+  $button.addEventListener("click", ({ currentTarget }) => {
+    if (currentTarget.className === "subscribe-btn") {
+      let newPress = pressStore.getState().pressArr;
+      newPress.push($button.dataset.key);
+
+      $button.classList.remove("subscribe-btn");
+      $button.innerHTML = unsubscribeButtonInner;
+
+      let newAction = addPress(newPress);
+      pressStore.dispatch(newAction);
+
+      new SnackBar($el, {});
+    } else {
+      new Alert(this.$el.parentNode, {
+        ...this.props,
+        id: Number(currentTarget.dataset.key),
+      });
+    }
+  });
 };
 export default Contents;

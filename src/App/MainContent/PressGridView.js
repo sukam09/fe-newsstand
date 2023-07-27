@@ -8,6 +8,7 @@ import { addPress, removePress, pressStore } from "../../store/PressStore.js";
 import Component from "../../utils/Component.js";
 import { mainStore, ALL, MY, GRID } from "../../store/MainStore.js";
 import { gridStore } from "../../store/GridStore.js";
+import Alert from "../Modal/Alert.js";
 
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
@@ -66,7 +67,7 @@ const createPressList = function (page, pressArr, mode) {
   return pressList;
 };
 
-const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
+let handleSubscriptionButtonClick = function ({ currentTarget, target }) {
   let $button;
   let newPressArr;
   const pressState = pressStore.getState().pressArr;
@@ -76,25 +77,24 @@ const handleSubscriptionButtonClick = ({ currentTarget, target }) => {
     if (!$button) {
       $button = findTargetParentNode(target, "button");
     }
+  }
 
-    if ($button.innerText === "구독하기") {
-      $button.innerHTML = unsubscibeButtonInner;
-      pressState.push($button.dataset.key);
-      newPressArr = addPress(pressState);
-    } else {
-      $button.innerHTML = subscibeButtonInner;
-      const index = pressState.indexOf($button.dataset.key);
-      if (index > -1) {
-        pressState.splice(index, 1);
-      }
-      newPressArr = removePress(pressState);
-    }
-
+  if ($button.innerText === "구독하기") {
+    $button.innerHTML = unsubscibeButtonInner;
+    pressState.push($button.dataset.key);
+    newPressArr = addPress(pressState);
     pressStore.dispatch(newPressArr);
+  } else {
+    new Alert(this.$el.parentNode, {
+      ...this.props,
+      id: $button.dataset.key,
+    });
   }
 };
 
 function PressGridView($target, props) {
+  this.init = true;
+
   if (mainStore.getState().pressType === ALL) {
     this.indexArr = getRandomIndexArr(TOTAL_PRESS_NUMBER);
   } else {
@@ -118,7 +118,14 @@ PressGridView.prototype.template = function () {
 };
 
 PressGridView.prototype.setEvent = function () {
-  this.$el.addEventListener("click", handleSubscriptionButtonClick);
+  if (this.init) {
+    this.$el.addEventListener(
+      "click",
+      handleSubscriptionButtonClick.bind(this)
+    );
+
+    this.init = false;
+  }
 };
 
 PressGridView.prototype.mounted = function () {

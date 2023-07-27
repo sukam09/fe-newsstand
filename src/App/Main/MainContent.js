@@ -20,21 +20,7 @@ import {
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
-let timerArr = [];
-
 const snackBarText = "내가 구독한 언론사에 추가되었습니다.";
-
-const $alertDiv = document.createElement("div");
-$alertDiv.setAttribute("class", "alert");
-const okButton = document.createElement("button");
-const cancelButton = document.createElement("button");
-
-okButton.innerHTML = "예, 해지합니다.";
-cancelButton.innerHTML = "아니오";
-
-$alertDiv.appendChild(document.createElement("div"));
-$alertDiv.appendChild(okButton);
-$alertDiv.appendChild(cancelButton);
 
 const createButtons = function () {
   let buttonTemplate = "";

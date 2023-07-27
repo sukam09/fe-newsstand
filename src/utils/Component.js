@@ -1,5 +1,4 @@
 function Component($el, props) {
-  console.log(this);
   this.$el = $el;
   this.props = props;
   this.state;
