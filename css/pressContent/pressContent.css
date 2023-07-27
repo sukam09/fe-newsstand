@@ -18,6 +18,7 @@
 .press-content-all-grid-view {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 930px;
   height: 388px;
   border-top: 1px solid #d2dae0;
@@ -53,6 +54,14 @@
 }
 
 .press-content-all-grid-view-btn :hover {
+  cursor: pointer;
+}
+
+.my-grid-view-btn-unsub :hover {
+  cursor: pointer;
+}
+
+.press-content-my-grid-view button:hover {
   cursor: pointer;
 }
 

@@ -43,23 +43,24 @@ async function shuffleImgs() {
   showSubscribeBtn();
   setSubClickEvents();
   register(gridPageIdx, showPressImg);
-
-  register(subscribedPress, () => {
-    console.log(getState(subscribedPress));
-  });
+  register(subscribedPress, showPressImg);
 }
 
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
 function showPressImg() {
   const nowGridIdx = getState(gridPageIdx);
+  const subList = getState(subscribedPress);
   let imgSrcContent = "";
   page[nowGridIdx].forEach((elem) => {
     imgSrcContent += `
     <li>
       <img src="../assets/images/pressLogo/light/img${elem}.svg" data-key=${elem}>
       <div class="press-content-all-grid-view-btn hidden">
-        <button class="all-grid-view-btn-sub">+ 구독하기</button>
-        <button class="all-grid-view-btn-unsub hidden">x 해지하기</button>
+      ${
+        subList.includes(elem)
+          ? `<button class="all-grid-view-btn-unsub">x 해지하기</button>`
+          : `<button class="all-grid-view-btn-sub">+ 구독하기</button>`
+      } 
       </div>
     </li>`;
   });
@@ -97,13 +98,16 @@ function showSubscribeBtn() {
 
 function addSubscribedPress(element) {
   const subList = getState(subscribedPress);
-  setState(subscribedPress, [...subList, element.children[0].dataset.key]);
+  setState(subscribedPress, [
+    ...subList,
+    parseInt(element.children[0].dataset.key),
+  ]);
 }
 
 function removeSubscribedPress(element) {
   const subList = getState(subscribedPress);
   const updateSubList = subList.filter((elem) => {
-    return elem !== element.children[0].dataset.key;
+    return elem !== parseInt(element.children[0].dataset.key);
   });
   setState(subscribedPress, updateSubList);
 }
@@ -116,8 +120,6 @@ function setSubClickEvents() {
       addSubscribedPress(elem.parentNode.parentNode);
       elem.classList.remove("show");
       elem.classList.add("hidden");
-      elem.nextElementSibling.classList.remove("hidden");
-      elem.nextElementSibling.classList.add("show");
     });
   });
   unsubBtnLists.forEach((elem) => {
@@ -125,8 +127,6 @@ function setSubClickEvents() {
       removeSubscribedPress(elem.parentNode.parentNode);
       elem.classList.remove("show");
       elem.classList.add("hidden");
-      elem.previousElementSibling.classList.remove("hidden");
-      elem.previousElementSibling.classList.add("show");
     });
   });
 }
