@@ -123,7 +123,6 @@ function resetBtn($container, press_id) {
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            // onClickSubBtn(true, false);
                             _sub_press_list.addState(press_id);
                             _mode.setToLastPage();
                             _mode.setState({ is_grid_view: false, is_sub_view: true });
