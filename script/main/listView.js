@@ -1,7 +1,8 @@
 import {getJSON,shuffle } from '../util/util.js';
+import {subscribedStore,mode,category_page,media_page,viewMode,progressedIdx } from '../util/store.js'; 
+import { alertUnsubscribe } from './subscribe.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
 const newsData = await getJSON("../../assets/data/news_data.json");
-import {subscribedStore,mode,category_page,media_page,viewMode } from '../util/store.js'; 
 let categories = [];
 let categorizedData;
 let animationId;
@@ -16,6 +17,9 @@ export const setNewsData = () => {
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
   let subscribedElem = document.querySelector('.subscribed');
+  if(mode.getState()==='Sub'){
+    progressedIdx.setState(category_page.getState());
+  }
   if(subscribedStore.getState().includes(index)){ // 구독중인지 아닌지
       subscribedElem.innerHTML = `<img src = "assets/images/delete.svg">`;
   }
@@ -27,28 +31,19 @@ export const setNewsData = () => {
   }
   idx = index;
   // 감싸는 요소에 이벤트 추가
-  if (!subscribedElem._hasClickListener) {
-    subscribedElem.addEventListener('click', function(e) {
-      if (subscribedStore.getState().includes(idx)) {
-        let removeIdx = subscribedStore.getState().indexOf(idx);
-        if (removeIdx !== -1) {
-          let newState = [...subscribedStore.getState()];
-          newState.splice(removeIdx, 1);
-          subscribedStore.setState(newState);
-        }
-      } else {
-        subscribedStore.setState([...subscribedStore.getState(),idx]);
-        const snackBar = document.querySelector('.snackBar');
-        snackBar.classList.remove('hide');
-        setTimeout(function() {
-          snackBar.classList.add('hide');  
-          mode.setState('Sub');
-          
-        }, 3000);
-      }
-    });
-    subscribedElem._hasClickListener = true; 
+  const handleClick = handleSubscribe(newsItem, idx);
+  
+  if (subscribedElem._hasClickListener) {
+    subscribedElem.removeEventListener('click', subscribedElem._clickHandler);
   }
+  
+  // 클릭 이벤트 핸들러를 요소에 저장합니다.
+  // 이렇게 하면 나중에 이 핸들러를 제거할 수 있습니다.
+  subscribedElem._clickHandler = handleClick;
+
+  subscribedElem.addEventListener('click', handleClick);
+  subscribedElem._hasClickListener = true;
+
   if(mode.getState()==='All'){
     selectedCategory.innerHTML = (media_page.getState() + 1) + "/" + categorizedData[categories[category_page.getState()]].length;
   }
@@ -65,6 +60,22 @@ export const setNewsData = () => {
   
   for (let i = 0; i < media_section_list_p_tags.length - 1; i++) {
     media_section_list_p_tags[i].innerHTML = newsItem["sub_title"][i] || "";
+  }
+}
+
+function handleSubscribe(newsItem, idx) {
+  return function handleClick(e) {
+    if (subscribedStore.getState().includes(idx)) {
+      alertUnsubscribe(newsItem["name"],idx);
+    } else {
+      subscribedStore.setState([...subscribedStore.getState(),idx]);
+      const snackBar = document.querySelector('.snackBar');
+      snackBar.classList.remove('hide');
+      setTimeout(function() {
+        snackBar.classList.add('hide');  
+        mode.setState('Sub');
+      }, 3000);
+    }
   }
 }
 
@@ -108,7 +119,6 @@ function categorizeData() {
       }   
     }
   }
-  console.log(categorizedData);
   return categorizedData;
 }
 
@@ -123,7 +133,7 @@ function createCategoryElements(categorizedData) {
     categories.push(category);
     
     let categoryItemDiv = document.createElement('div');
-    if (index === 0) {
+    if(index === category_page.getState()){
       categoryItemDiv.classList.add('progressed');
     }
     categoryItemDiv.classList.add('category_item');
@@ -308,6 +318,7 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progressed");
+  console.log(progressBar);
   const duration = 2000;
   const endWidth = 100;
   animateProgressBar(progressBar, endWidth, duration);
@@ -318,19 +329,22 @@ let categoriesWrapper;
 export const listViewInit = () => {
   cancelAnimationFrame(animationId);
   categories = [];
-  
   animationId = null;
-  
   if(categoriesWrapper) {
     categoriesWrapper.innerHTML = `<div class="progress_bar surface-brand-default"></div>`;
   } else {
     categoriesWrapper = document.querySelector('.category');
   }
-  getNewsData();
-  progressBarControl();
-  setArrowHandler();
-  category_page.setState(0);
+  if(mode.getState()==='Sub'){
+    category_page.setState(progressedIdx.getState());
+  }
+  else{
+    category_page.setState(0);
+  }
   media_page.setState(0);
+  getNewsData();
+  setArrowHandler();
+  progressBarControl();
   setNewsData();
   
 };

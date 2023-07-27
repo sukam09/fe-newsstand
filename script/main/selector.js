@@ -1,5 +1,4 @@
-import listViewInit from "./listView.js";
-import { pageStore,mode,view } from "../util/store.js";
+import { pageStore,mode,view,category_page,progressedIdx } from "../util/store.js";
 const viewSelector = () => {
   const listBtn = document.querySelector('.view_select img[src$="list_gray.svg"]');
   const gridBtn = document.querySelector('.view_select img[src$="grid_blue.svg"]');
@@ -43,11 +42,14 @@ export const toggleClass = () => {
 const modeSelector = () => {
   const [allMediaDiv, subscribeMediaDiv] = document.querySelectorAll('.media_select');
   allMediaDiv.addEventListener('click', function() {
-    mode.setState('All');
     pageStore.setState(0);
+    category_page.setState(0);
+    mode.setState('All');
     toggleClass();
   });
   subscribeMediaDiv.addEventListener('click', function() {
+    category_page.setState(0);
+    progressedIdx.setState(0);
     mode.setState('Sub');
     pageStore.setState(0);
     toggleClass();
