@@ -79,24 +79,24 @@ https://github.com/DaeHee99/fe-newsstand/assets/100769596/7da3fb98-635a-4490-ab2
 - [x] 메인 뉴스에 마우스를 올리면, 썸네일은 5% 확대되고, 뉴스 타이틀에는 밑줄이 생김
 - [x] 각 서브 뉴스 타이틀에도 마우스를 올리면 밑줄이 생김
 - [x] "구독하기" 버튼을 누르면, ```내가 구독한 언론사에 추가되었습니다.``` 라는 스낵바가 5초간 유지
-- [ ] 스낵바가 사라지면, 즉시 내가 구독한 언론사 탭의 리스트 보기 화면으로 이동
+- [x] 스낵바가 사라지면, 즉시 내가 구독한 언론사 탭의 리스트 보기 화면으로 이동
 
 ### 리스트 보기 (내가 구독한 언론사)
 
-- [ ] '내가 구독한 언론사의 리스트 보기' 화면은 '전체 언론사의 리스트 보기' 화면과 동일
-- [ ] 카테고리들이 나열되어있던 가로 탭에 언론사의 이름과 > 화살표 아이콘이 보임
-- [ ] 언론사가 많아서 탭의 가로 영역을 넘어가는 경우, 드래그를 통해 가로로 스크롤이 됨
-- [ ] 언론사는 구독한 순서대로 배치
-- [ ] 전체 언론사 탭 상태에서는 그리드 보기가 기본인 것처럼, 내가 구독한 언론사 탭 상태에서는 리스트 보기가 기본
-- [ ] "구독해지" 버튼을 누르면 ```[언론사이름]을(를) 구독해지 하시겠습니까?```라는 알럿이 뜸
-- [ ] 알럿의 "예, 해지합니다" or "아니오" 버튼에 마우스를 올리면 텍스트에 밑줄이 생김
-- [ ] "예, 해지합니다"를 선택하면 즉시 구독이 해지되고, 목록의 다음 순서 언론사가 바로 나타남
+- [x] '내가 구독한 언론사의 리스트 보기' 화면은 '전체 언론사의 리스트 보기' 화면과 동일
+- [x] 카테고리들이 나열되어있던 가로 탭에 언론사의 이름과 > 화살표 아이콘이 보임
+- [x] 언론사가 많아서 탭의 가로 영역을 넘어가는 경우, 드래그를 통해 가로로 스크롤이 됨
+- [x] 언론사는 구독한 순서대로 배치
+- [x] 전체 언론사 탭 상태에서는 그리드 보기가 기본인 것처럼, 내가 구독한 언론사 탭 상태에서는 리스트 보기가 기본
+- [x] "구독해지" 버튼을 누르면 ```[언론사이름]을(를) 구독해지 하시겠습니까?```라는 알럿이 뜸
+- [x] 알럿의 "예, 해지합니다" or "아니오" 버튼에 마우스를 올리면 텍스트에 밑줄이 생김
+- [x] "예, 해지합니다"를 선택하면 즉시 구독이 해지되고, 목록의 다음 순서 언론사가 바로 나타남
 
 ### 신경쓰고 노력한 부분
 
 - [x] 최대한 리액트와 비슷하게 컴포넌트 단위로 개발하기
-- [X] 모든 컴포넌트는 클래스 형태로 만들어서 아래 Component를 상속 받기
-
+- [x] 컴포넌트 단위로 디렉토리와 파일 구조 정리
+- [x] 모든 컴포넌트는 클래스 형태로 만들어서 아래 Component를 상속 받기
     ```javascript
     export default class Component {
       $target;
@@ -131,49 +131,89 @@ https://github.com/DaeHee99/fe-newsstand/assets/100769596/7da3fb98-635a-4490-ab2
       }
     }
     ```
-- [X] 최대한 redux와 비슷하게 전역 상태 관리를 위한 store 만들기
-
-    ```javascript
-    // 구독 정보를 위한 store
-    import { createStore } from "../core/Store.js";
-    
-    const initState = {
-      subscribe: [],
-    };
-    
-    export const SET_SUBSCRIBE = "SET_SUBSCRIBE";
-    export const SET_UNSUBSCRIBE = "SET_UNSUBSCRIBE";
-    
-    export const subscribeStore = createStore((state = initState, action = {}) => {
-      const subscribeState = [...state.subscribe];
-    
-      switch (action.type) {
-        case "SET_SUBSCRIBE":
-          subscribeState.push(action.payload);
-          return { ...state, subscribe: subscribeState };
-        case "SET_UNSUBSCRIBE":
-          return {
-            ...state,
-            subscribe: subscribeState.filter(
-              (item) => item.id !== action.payload.id
-            ),
-          };
-        default:
-          return state;
-      }
-    });
-    
-    export const setSubscribe = (payload) => ({ type: SET_SUBSCRIBE, payload });
-    export const setUnSubscribe = (payload) => ({ type: SET_UNSUBSCRIBE, payload });
-    ```
-- [x] 컴포넌트 단위로 디렉토리와 파일 구조 정리
 
 ### 앞으로 더 개선할 점, 목표
 
-- [ ] 다양한 store를 통해 view와의 응집도 낮추기
+- [x] 다양한 store를 통해 view와의 응집도 낮추기
 
+## 4주차
 
-### 구조
+### 그리드 보기 (내가 구독한 언론사)
+
+- [x] 내가 구독한 언론사의 그리드 보기 화면은 '전체 언론사의 그리드 보기' 화면과 동일
+- [x] 사용자가 구독을 누른 언론사의 브랜드마크만 보이고, 나머지 칸은 비어 있음
+- [x] 구독 중인 언론사의 브랜드마크 셀에 마우스를 올리면 "구독해지' 버튼이 나타남
+- [x] 리스트 보기 상태에서 구독해지를 하는 것과 동일하게, 알럿이 뜸
+- [x] 구독이 해지되는 즉시 그리드에서 해당 언론사의 브랜드마크가 사라짐
+
+### 다크모드
+
+- [x] Foundation의 컬러 팔레트 정보를 활용해 다크모드 테마 적용
+- [x] 다크모드로 전환시, 로고들도 다크모드 버전으로 일괄 전환
+- [x] 다크모드를 ON/OFF 할 수 있는 버튼 추가
+
+### 신경쓰고 노력한 부분
+
+- [x] 옵저버 패턴을 적용하여 스토어 만들기
+- [x] 스토어의 state가 변경되면 구독하고 있던 컴포넌트는 재랜더링
+- [x] 구독, 뉴스 뷰, 다크모드 관련 스토어 구성
+```javascript
+// 최상위 Observable 클래스
+
+export default class Observable {
+  constructor() {
+    this._observers = new Set();
+  }
+  subscribe(observer) {
+    this._observers.add(observer);
+  }
+  unsubscribe(observer) {
+    this._observers.delete(observer);
+  }
+  notify(data) {
+    this._observers.forEach((observer) => observer(data));
+  }
+}
+```
+```javascript
+// 구독 스토어 예시
+
+import Observable from "../core/Observable.js";
+
+export default class SubscribeStore extends Observable {
+  constructor() {
+    super();
+    this.subscribeList = [];
+  }
+
+  subscribeNews(news) {
+    this.subscribeList.push(news);
+    this.notify(this.subscribeList);
+  }
+
+  unSubscribeNews(news) {
+    this.subscribeList = this.subscribeList.filter(
+      (item) => item.id !== news.id
+    );
+    this.notify(this.subscribeList);
+  }
+
+  unSubscribeNewsByName(newspaperName) {
+    this.subscribeList = this.subscribeList.filter(
+      (item) => item.name !== newspaperName
+    );
+    this.notify(this.subscribeList);
+  }
+}
+```
+```javascript
+// 컴포넌트가 아래와 같이 구독하면, 해당 스토어의 state가 변경되었을 때 해당 컴포넌트가 재렌더링됨
+
+this.SubscribeStore.subscribe(() => this.render());
+this.ModeStore.subscribe(() => this.render());
+```
+
+## 구조
 
 ```bash
 .
@@ -193,14 +233,23 @@ https://github.com/DaeHee99/fe-newsstand/assets/100769596/7da3fb98-635a-4490-ab2
 ├── src
 │   ├── App.js
 │   ├── Components
+│   │   ├── Button
+│   │   │   └── ModeToggleButton.js
 │   │   ├── Header
 │   │   │   └── Header.js
 │   │   ├── Headline
 │   │   │   ├── Headline.js
 │   │   │   ├── HeadlineContent.js
 │   │   │   └── RollingItem.js
+│   │   ├── MyNewsGrid
+│   │   │   └── MyNewsGrid.js
+│   │   ├── MyNewsList
+│   │   │   ├── MyNewsList.js
+│   │   │   └── PressNews.js
 │   │   ├── NavBar
 │   │   │   └── NavBar.js
+│   │   ├── News
+│   │   │   └── News.js
 │   │   ├── NewsGrid
 │   │   │   ├── NewsGrid.js
 │   │   │   └── NewsGridItems.js
@@ -212,19 +261,22 @@ https://github.com/DaeHee99/fe-newsstand/assets/100769596/7da3fb98-635a-4490-ab2
 │   │   ├── constants.js
 │   │   └── pressNews.json
 │   ├── Store
-│   │   └── subscribeStore.js
+│   │   ├── ModeStore.js
+│   │   ├── SubscribeStore.js
+│   │   └── ViewStore.js
 │   ├── core
 │   │   ├── Component.js
-│   │   ├── Store.js
-│   │   └── observer.js
+│   │   └── Observable.js
 │   └── index.js
-└──style
+└── style
     ├── Basic
     │   ├── color.css
     │   ├── font.css
     │   ├── global.css
     │   └── reset.css
     ├── Components
+    │   ├── alert.css
+    │   ├── darkButton.css
     │   ├── header.css
     │   ├── headline.css
     │   ├── navBar.css
