@@ -1,6 +1,6 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
-import { pageStore,subscribedStore,mode,viewMode } from '../util/store.js'; 
+import { pageStore,subscribedStore,mode,viewMode,progressedIdx } from '../util/store.js'; 
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -110,7 +110,8 @@ export const GridController = {
         const snackBar = document.querySelector('.snackBar');
         snackBar.classList.remove('hide');
         setTimeout(function() {
-          snackBar.classList.add('hide');  
+          progressedIdx.setState(0);
+          snackBar.classList.add('hide');
           mode.setState('Sub');
         }, 3000);
       });

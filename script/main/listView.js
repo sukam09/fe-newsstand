@@ -72,6 +72,7 @@ function handleSubscribe(newsItem, idx) {
       const snackBar = document.querySelector('.snackBar');
       snackBar.classList.remove('hide');
       setTimeout(function() {
+        progressedIdx.setState(0);
         snackBar.classList.add('hide');  
         mode.setState('Sub');
       }, 3000);
@@ -318,7 +319,6 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progressed");
-  console.log(progressBar);
   const duration = 2000;
   const endWidth = 100;
   animateProgressBar(progressBar, endWidth, duration);
@@ -327,6 +327,7 @@ const progressBarControl = () => {
 
 let categoriesWrapper;
 export const listViewInit = () => {
+  console.log("엥");
   cancelAnimationFrame(animationId);
   categories = [];
   animationId = null;
@@ -343,6 +344,7 @@ export const listViewInit = () => {
   }
   media_page.setState(0);
   getNewsData();
+  console.log("데이터가져오기");
   setArrowHandler();
   progressBarControl();
   setNewsData();

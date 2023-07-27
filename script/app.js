@@ -4,6 +4,7 @@ import rollingInit from './main/rolling.js';
 import getTopicInit from './main/topic.js';
 import selectorInit from './main/selector.js';
 import modeInit from './main/mode.js';
+import listViewInit from './main/listView.js';
 ( () => {
   modeInit();
   headerInit();
@@ -11,4 +12,5 @@ import modeInit from './main/mode.js';
   getTopicInit();
   selectorInit();
   gridInit();
+  listViewInit();
 })();
