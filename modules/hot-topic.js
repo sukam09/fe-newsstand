@@ -38,12 +38,11 @@ const setHotTopic = async () => {
  * 핫토픽 롤링하는 함수
  * -> 5초에 한번씩 가장 위에 있는 뉴스 하위로 가져옴.
  */
-const rollingTopic = () => {
-  // 토픽 롤링 타이머 세팅
-  document.addEventListener("DOMContentLoaded", () => {
-    let leftInterval = null,
-      rightInterval = null;
+let leftInterval = null,
+  rightInterval = null;
 
+const rollingTopic = () => {
+  document.addEventListener("DOMContentLoaded", () => {
     clearInterval(leftInterval);
     clearInterval(rightInterval);
 
@@ -52,33 +51,24 @@ const rollingTopic = () => {
     setTimeout(() => {
       rightInterval = startRolling("hot-topic-right");
     }, TOPIC.ROLLING_TIME_GAP);
-
-    // 마우스 호버 시 타이머 리셋
-    const $hotTopicLeft = document.querySelector(".hot-topic-left");
-    $hotTopicLeft.addEventListener("mouseenter", () => {
-      clearInterval(leftInterval);
-    });
-    $hotTopicLeft.addEventListener("mouseleave", () => {
-      leftInterval = startRolling("hot-topic-left");
-    });
-
-    const $hotTopicRight = document.querySelector(".hot-topic-right");
-    $hotTopicRight.addEventListener("mouseenter", () => {
-      clearInterval(rightInterval);
-    });
-    $hotTopicRight.addEventListener("mouseleave", () => {
-      rightInterval = startRolling("hot-topic-right");
-    });
   });
 };
 
-/**
- * 핫토픽 롤링 시작
- */
 const startRolling = (sectionClass) => {
-  let interval = setInterval(() => {
+  let interval =
+    sectionClass === "hot-topic-left" ? leftInterval : rightInterval;
+
+  interval = setInterval(() => {
     rollingCallback(sectionClass);
   }, TOPIC.ROLLING_TIME);
+
+  const $hotTopic = document.querySelector(`.${sectionClass}`);
+  $hotTopic.addEventListener("mouseenter", () => {
+    clearInterval(interval);
+  });
+  $hotTopic.addEventListener("mouseleave", () => {
+    interval = startRolling("hot-topic-right");
+  });
 
   return interval;
 };
