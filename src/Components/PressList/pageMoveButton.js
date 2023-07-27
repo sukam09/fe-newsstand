@@ -1,7 +1,7 @@
 import { getCurrentCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setCurrentCategoryIndex, setPage } from "../../Store/store.js";
 import { PROGRESS_FLAG } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
-import { getSubscribedPressOfList } from "../PressList/pressNews.js";
+import { getSubscribedPressOfList, isAllPressOrMyPressNotEmpty } from "../PressList/pressNews.js";
 import { changeCategory } from "./categoryTab.js";
 import { startProgressAnimation } from "./progressBar.js";
 
@@ -62,8 +62,14 @@ function setProgressNewsTurner(progressFlag) {
 
 /** 페이지 넘기는 버튼 유무 설정 */
 function showNewsTurner(whatPressNews) {
-  $newsPrevButton.style.display = 'block';
-  $newsNextButton.style.display = 'block';
+  if (!isAllPressOrMyPressNotEmpty()) {
+    $newsPrevButton.style.display = 'none';
+    $newsNextButton.style.display = 'none';
+  }
+  else {
+    $newsPrevButton.style.display = 'block';
+    $newsNextButton.style.display = 'block';
+  }
 }
 
 /** 페이지 이동에 따른 카테고리 설정 */

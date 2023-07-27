@@ -92,7 +92,8 @@ function handleClickSubUnsubBtnAtList() {
 function initNewsWhenMyPressEmpty() {
   removeProgress();
   setCategories();
-  drawEmptyMessage()
+  drawEmptyMessage();
+  showNewsTurner();
 }
 
 /** 전체 언론사 보기 이거나 내가 구독한 언론사가 있을 때의 리스트 보기 초기화 */
@@ -143,4 +144,4 @@ function initNews() {
     : initNewsWhenMyPressEmpty()
 }
 
-export { getSubscribedPressOfList, initNews, setDrawPressNews };
+export { getSubscribedPressOfList, initNews, setDrawPressNews, isAllPressOrMyPressNotEmpty };
