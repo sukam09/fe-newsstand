@@ -10,18 +10,18 @@ import {
   INITIAL_CATEGORY,
   INITIAL_PAGE,
 } from "../constants/constant.js";
-import { checkSubscription } from "./utils.js";
+import { checkSubscription, qs } from "./utils.js";
 import { setGrid } from "./setGrid.js";
 import { stopProgress } from "../components/List/progress.js";
 
-const grid_btn = document.querySelector(".grid-view-btn");
-const list_btn = document.querySelector(".list-view-btn");
+const grid_btn = qs(".grid-view-btn");
+const list_btn = qs(".list-view-btn");
 
-const subscribe_press = document.querySelector(".subscribe_press");
-const all_press = document.querySelector(".all_press");
+const subscribe_press = qs(".subscribe_press");
+const all_press = qs(".all_press");
 
-const $grid = document.querySelector(".agency-grid");
-const $list = document.querySelector(".agency-list");
+const $grid = qs(".agency-grid");
+const $list = qs(".agency-list");
 
 // List 뷰 선택시
 export const setList = () => {

@@ -1,9 +1,10 @@
 import { FIELDTAB_LIST } from "../../constants/constant.js";
 import { filterCategory } from "../../utils/filter/filterCategory.js";
+import { qs } from "../../utils/utils.js";
 import { setButton } from "../Button/setButton.js";
 import { ListComponent } from "./ListComponent.js";
 
-const all_press = document.querySelector(".all_press");
+const all_press = qs(".all_press");
 
 export const setListButton = (
   sorted_agencies,

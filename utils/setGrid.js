@@ -6,11 +6,12 @@ import { sortPages } from "./sort/sortPage.js";
 import { removeButton } from "../components/Button/removeButton.js";
 import { INITIAL_PAGE } from "../constants/constant.js";
 import { stopProgress } from "../components/List/progress.js";
+import { qs } from "./utils.js";
 
-const grid_btn = document.querySelector(".grid-view-btn");
-const list_btn = document.querySelector(".list-view-btn");
+const grid_btn = qs(".grid-view-btn");
+const list_btn = qs(".list-view-btn");
 
-const subscribe_press = document.querySelector(".subscribe_press");
+const subscribe_press = qs(".subscribe_press");
 
 // Grid 뷰 선택 시
 export const setGrid = () => {
@@ -24,8 +25,8 @@ export const setGrid = () => {
   }
   removeButton();
 
-  const $grid = document.querySelector(".agency-grid");
-  const $list = document.querySelector(".agency-list");
+  const $grid = qs(".agency-grid");
+  const $list = qs(".agency-list");
   $grid.style.display = "grid";
   $list.style.display = "none";
   stopProgress();

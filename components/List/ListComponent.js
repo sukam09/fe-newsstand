@@ -1,5 +1,5 @@
 import { filterCategory } from "../../utils/filter/filterCategory.js";
-import { removeAllChildNodes } from "../../utils/utils.js";
+import { qs, removeAllChildNodes } from "../../utils/utils.js";
 
 import { makeFieldTab } from "./fieldTab.js";
 import { makePressNews } from "./pressNews.js";
@@ -10,7 +10,7 @@ import {
   setListButton,
 } from "./setListButton.js";
 
-const all_press = document.querySelector(".all_press");
+const all_press = qs(".all_press");
 
 export const ListComponent = (
   current_page,
@@ -19,10 +19,10 @@ export const ListComponent = (
   current_category
 ) => {
   // 초기화
-  const press = document.querySelector(".press-news");
-  const field = document.querySelector(".field-tab");
-  const prev_btn = document.querySelector(".prev-page-btn");
-  const next_btn = document.querySelector(".next-page-btn");
+  const press = qs(".press-news");
+  const field = qs(".field-tab");
+  const prev_btn = qs(".prev-page-btn");
+  const next_btn = qs(".next-page-btn");
 
   if (press.childNodes.length > 0) {
     removeAllChildNodes(press);
