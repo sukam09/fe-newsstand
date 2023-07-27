@@ -1,7 +1,18 @@
+import { setPageTurner } from "../Components/PressGrid/pageMoveButton.js";
+import { drawPressImg, moveSubscribedList } from "../Components/PressGrid/pressLogos.js";
+import { initNews, isAllPressOrMyPressNotEmpty } from "../Components/PressList/PressNews.js";
+import { changeCategory } from "../Components/PressList/categoryTab.js";
+import { setNextCategory } from "../Components/PressList/pageMoveButton.js";
+import { changePressView, changeView, changeViewerView } from "../Components/PressTab/pressTab.js";
+
 export class createStore {
   constructor(reducer) {
     let state;
     let handler = [];
+
+    state = reducer(state, {
+      type: '@@__init__@@',
+    });
 
     this.dispatch = (action) => {
       state = reducer(state, action)
@@ -28,7 +39,7 @@ const initState = {
   mode: '',
 }
 
-export function reducer(state = initState, action) {
+function reducer(state = initState, action) {
   switch (action.type) {
     case "subscribe":
       return { ...state, subscribedPressesId: [...state.subscribedPressesId, action.pressId] };
@@ -44,10 +55,13 @@ export function reducer(state = initState, action) {
       return { ...state, page: action.page };
     case "setCategory":
       return { ...state, clickedCategoryIndex: action.clickedCategoryIndex };
+    default:
+      return { ...state };
   }
+
 }
 
-export function actionCreator(type, data) { //action 생성
+function actionCreator(type, data) { //action 생성
   return {
     type: type,
     ...data
@@ -55,6 +69,7 @@ export function actionCreator(type, data) { //action 생성
 }
 
 export const store = new createStore(reducer);
+
 
 export function addpress(pressId) {
   store.dispatch(actionCreator("subscribe", { pressId: pressId }));
@@ -80,6 +95,7 @@ export function setPage(whatPage) {
   store.dispatch(actionCreator("setPage", { page: whatPage }));
 }
 
+let isChangingCategory = false;
 export function setClickedCategoryIndex(whatCategory) {
   store.dispatch(actionCreator("setCategory", { clickedCategoryIndex: whatCategory }))
 }
@@ -108,8 +124,60 @@ export function getClickedCategoryIndex() {
   return store.getState().clickedCategoryIndex;
 }
 
+let prevPage = getPage();
+let prevPressView = getPress();
+let prevViewerView = getView();
+let prevSubscribedPress = getSubscribedPressId();
+let prevCategoryIndex = getClickedCategoryIndex();
 
+function onChangeSubscribedPress() {
+  if (prevSubscribedPress.length === getSubscribedPressId().length) return;
+  if (prevSubscribedPress.length < getSubscribedPressId().length) {
+    getView() === 'grid' ? moveSubscribedList() : initNews();
+  }
+  else if (prevSubscribedPress.length > getSubscribedPressId().length) {
+    getView() === 'grid' ? drawPressImg() : initNews();
+  }
+  prevSubscribedPress = getSubscribedPressId();
+}
 
+function onPageChange() {
+  if (prevPage === getPage()) return;
+  prevPage = getPage();
+  if (getView() === 'grid') {
+    setPageTurner();
+    drawPressImg();
+  }
+  else if (getView() === 'list') {
+    setNextCategory();
+    changeCategory();
+  }
+}
+
+function onPressViewChange() {
+  if (prevPressView === getPress()) return;
+  prevPressView = getPress();
+  changePressView();
+}
+
+function onViewerViewChange() {
+  if (prevViewerView === getView()) return;
+  prevViewerView = getView();
+  changeViewerView();
+}
+
+function onChangeClickedCategory() {
+  if (prevCategoryIndex == getClickedCategoryIndex()) return;
+  prevCategoryIndex = getClickedCategoryIndex();
+  setPage(0)
+  changeCategory();
+}
+
+store.subscribe(onPageChange);
+store.subscribe(onPressViewChange);
+store.subscribe(onViewerViewChange);
+store.subscribe(onChangeSubscribedPress);
+store.subscribe(onChangeClickedCategory);
 
 
 

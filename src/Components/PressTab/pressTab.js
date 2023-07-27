@@ -1,5 +1,5 @@
 import { TEXT_WEAK, TEXT_POINT } from "../../constant.js";
-import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage, setPress, setView, store } from "../../store.js";
+import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage, setPress, setView, store } from "../../Store/store.js";
 import { _changeClass, _changeDispay } from "../../utils.js";
 import { initPressImg } from "../PressGrid/pressLogos.js";
 import { initNews } from "../PressList/pressNews.js";
@@ -20,10 +20,9 @@ function clickChangePressViewBtn() {
 /** 모든 언론사 또는 내가 구독한 언론사 클릭 이벤틑 핸들러 */
 function handleClickChangePressViewBtn(whatPressView) {
   setPress(whatPressView)
-  changePressView();
 }
 
-/** 클릭한 언론사 보기에 따라 화면 설정 */
+/** 클릭한 언론사 보기에 따른 설정 */
 function changePressView() {
   setPressViewDisplay();
   setViewIconColor();
@@ -31,27 +30,34 @@ function changePressView() {
 
 /** 클릭한 언론사 보기에 따른 메인 화면 설정 */
 function setPressViewDisplay() {
-  if (getPress() === 'all') setClickAllPress();
-  else setClickMyPress();
+  if (getPress() === 'all') {
+    setClickAllPress();
+  } else if (getPress() === 'my') {
+    setClickMyPress();
+  }
 }
 
-/** 모든 언론사 클릭 했을 때의 메인 화면 설정 */
+/** 내가 구독한 언론사 클릭 했을 때의 메인 화면 설정 */
 function setClickAllPress() {
+  if (getView() !== 'grid') {
+    setView('grid');
+  }
   changeClass($mySubscribedPress, $allPress);
   _changeDispay($newsList, 'none', $pressGrid, 'block')
-  setPress('all');
-  setView('grid');
   initPressImg();
+
 }
 
 /** 내가 구독한 언론사 클릭 했을 때의 메인 화면 설정 */
 function setClickMyPress() {
+  if (getView() !== 'list') {
+    setView('list');
+  }
   changeClass($allPress, $mySubscribedPress)
   _changeDispay($pressGrid, 'none', $newsList, 'block')
-  setPress('my');
-  setView('list');
   initNews();
 }
+
 
 /** 클릭한 언론사 보기에 따라 전체 언론사와 내가 구독한 언론사 CSS 설정 */
 function changeClass(unclicked, clicked) {
@@ -70,7 +76,6 @@ function clickChangeViewerViewBtn() {
 /** 리스트 보기 도는 그리드 보기 클릭 이벤트 핸들러 */
 function handleChangeViewerView(howView) {
   setView(howView);
-  changeViewerView();
 }
 
 /** 클릭한 뷰어에 따라 화면 설정 */
@@ -127,4 +132,4 @@ function initView() {
   setView('grid');
   clickchangeViewBtn();
 }
-export { changeView, initView }
+export { changeView, initView, changePressView, changeViewerView }

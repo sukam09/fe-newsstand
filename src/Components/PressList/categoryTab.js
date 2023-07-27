@@ -2,7 +2,7 @@ import { FIRST_PAGE_IDX } from "../../constant.js"
 import { setDrawPressNews, getSubscribedPressOfList } from "./pressNews.js";
 import { initProgress } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
-import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../store.js";
+import { getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../Store/store.js";
 import { _changeDispay } from "../../utils.js";
 
 const allPressNewsCategory = pressStore.getAllPressNewsCategory
@@ -37,8 +37,6 @@ function handleClickCategory({ target }) {
 function handleClickCategoryOfList(target, whatNewsCategory) {
   const categoryIndex = whatNewsCategory.findIndex(category => category === target.innerText);
   setClickedCategoryIndex(categoryIndex);
-  setPage(0);
-  changeCategory();
 }
 
 /** 카테고리를 클릭하면 handleClickCategory함수 호출 */

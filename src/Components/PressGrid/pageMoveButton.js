@@ -1,6 +1,6 @@
 import { LEFT_UNDISPLAY, PRESS_CNT_PER_PAGE } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
-import { getPage, getPress, getSubscribedPressId, setPage } from "../../store.js";
+import { getPage, getPress, getSubscribedPressId, setPage, store } from "../../Store/store.js";
 import { _changeDispay } from "../../utils.js";
 import { drawPressImg } from "./pressLogos.js";
 
@@ -16,8 +16,6 @@ function handleClickTurner(event) {
   event.target.className.animVal === 'left-button'
     ? setPage(getPage() - 1)
     : setPage(getPage() + 1);
-  setPageTurner();
-  drawPressImg();
 }
 
 /**

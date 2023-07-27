@@ -2,7 +2,7 @@ import { PROGRESS_FLAG } from "../../constant.js";
 import { _changeClass } from "../../utils.js";
 import { setProgressNewsTurner } from "./pageMoveButton.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView } from "../../Store/store.js";
 
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews

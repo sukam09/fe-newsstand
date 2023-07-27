@@ -3,7 +3,7 @@ import pressStore from "../../pressDataStore.js";
 import { setProgressEventFlag, setClickNewsTurner, showNewsTurner } from "./pageMoveButton.js";
 import { setCategories, clickCategoryOfPressList } from "./categoryTab.js";
 import { initProgress, removeProgress } from "./progressBar.js";
-import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store, addpress } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getView, setClickedCategoryIndex, setPage, getSubscribedPressId, removepress, store, addpress } from "../../Store/store.js";
 import { PATH_UNSUBSCRIBE_X_BTN, PATH_SUBSCRIBE_BTN } from "../../path.js";
 
 const shuffledAllPress = pressStore.getShuffledAllPress
@@ -86,7 +86,6 @@ function handleClickSubUnsubBtnAtList() {
   subUnsubButtonSrc === PATH_SUBSCRIBE_BTN
     ? addpress(currentPressId)
     : removepress(currentPressId)
-  initNews();
 }
 
 /** 내가 구독한 언론사가 없을 때의 리스트 보기 초기화 */
@@ -142,4 +141,4 @@ function initNews() {
     : initNewsWhenMyPressEmpty()
 }
 
-export { initNews, setDrawPressNews, getSubscribedPressOfList }
+export { initNews, setDrawPressNews, getSubscribedPressOfList, isAllPressOrMyPressNotEmpty }

@@ -2,7 +2,7 @@ import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_BTN } from "../../path.js";
 import { PRESS_CNT_PER_PAGE, FIRST_PAGE_IDX, SURFACE_ALT, SURFACE_DEFAULT } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import { turnPressPage, setPageTurner } from "./pageMoveButton.js";
-import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../store.js"
+import { store, addpress, removepress, setView, setPress, getPress, getSubscribedPressId, getPage, setPage, getView } from "../../Store/store.js";
 import { changeView } from "../PressTab/pressTab.js"
 
 const $gridSnackBar = document.querySelector('.grid-snackbar')
@@ -96,26 +96,24 @@ function handleClickSubUnsubBtn({ target }) {
   }
   else {
     addpress(clickedPressId);
-    $gridSnackBar.style.display = 'block'
-    moveSubscribedList(target);
+    //moveSubscribedList();
   }
 }
 
 /** 구독 해지하기 */
 function removeClickedPressId(clickedPressId) {
   removepress(clickedPressId);
-  drawPressImg();
 }
 
 /** 구독하면 내가 구독한 언론사 리스트로 이동 */
-function moveSubscribedList(target) {
+function moveSubscribedList() {
+  $gridSnackBar.style.display = 'block'
   const $moveSubscribedListTimeout = setTimeout(() => {
-    target.parentElement.style.backgroundColor = SURFACE_DEFAULT
     setView('list');
     setPress('my');
     changeView();
     $gridSnackBar.style.display = 'none'
-  }, 1000, target)
+  }, 1000)
 }
 
 /** 바깥 border 그리기 */
@@ -161,4 +159,4 @@ function initPressImg() {
 }
 
 
-export { initPressImg, drawPressImg, getSubscribedPressOfGrid }
+export { initPressImg, drawPressImg, getSubscribedPressOfGrid, moveSubscribedList }

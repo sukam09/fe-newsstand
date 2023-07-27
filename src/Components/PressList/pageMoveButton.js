@@ -1,7 +1,7 @@
 import { changeCategory } from "./categoryTab.js";
 import { startProgressAnimation } from "./progressBar.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../store.js";
+import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setClickedCategoryIndex, setPage } from "../../Store/store.js";
 import { PROGRESS_FLAG } from "../../constant.js";
 import { getSubscribedPressOfList } from "../PressList/pressNews.js";
 
@@ -106,8 +106,6 @@ function setNextPage(whatButton) {
  */
 function clickNewsTurner(whatButton) {
   setNextPage(whatButton);
-  setNextCategory();
-  changeCategory();
 }
 
-export { setProgressEventFlag, setClickNewsTurner, showNewsTurner, setProgressNewsTurner }
+export { setProgressEventFlag, setClickNewsTurner, showNewsTurner, setProgressNewsTurner, setNextCategory }
