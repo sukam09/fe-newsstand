@@ -1,5 +1,5 @@
 import { getCurrentCategoryIndex, getPage, getPress, getSubscribedPressId, getView, setCurrentCategoryIndex, setPage } from "../../Store/store.js";
-import { PROGRESS_FLAG } from "../../constant.js";
+import { FIRST_PAGE_IDX, PROGRESS_FLAG } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import { getSubscribedPressOfList, isAllPressOrMyPressNotEmpty } from "../PressList/pressNews.js";
 import { changeCategory } from "./categoryTab.js";
@@ -89,7 +89,7 @@ function setNextCategory() {
 function moveNextCategoryOfList(whatPressNews, category) {
   if (getPage() === whatPressNews[getCurrentCategoryIndex()].length) {
     setCurrentCategoryIndex((getCurrentCategoryIndex() + 1) % category.length)
-    setPage(0);
+    setPage(FIRST_PAGE_IDX);
   }
 }
 

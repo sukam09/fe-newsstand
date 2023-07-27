@@ -1,4 +1,5 @@
 import { getPress, getView, setCurrentCategoryIndex, setPage } from "../../Store/store.js";
+import { FIRST_PAGE_IDX } from "../../constant.js";
 import pressStore from "../../pressDataStore.js";
 import { getSubscribedPressOfList, setDrawPressNews } from "./pressNews.js";
 import { initProgress } from "./progressBar.js";
@@ -68,7 +69,7 @@ function changeCategory() {
 
 /** 카테고리 이동 시 초기 세팅 */
 function changeCategoryAtList() {
-  setPage(0);
+  setPage(FIRST_PAGE_IDX);
   changeCategory();
 }
 
