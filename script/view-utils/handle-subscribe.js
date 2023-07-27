@@ -10,7 +10,6 @@ function handleAlertAction(id) {
     const alertNo = document.querySelector(".alert-btn-no");
     alertYes.addEventListener("click", () => {
         store.setSubList(id, "unsubscribe");
-        store.notify();
         alertContainer.innerHTML = "";
     })
     alertNo.addEventListener("click", () => {
@@ -64,19 +63,17 @@ function handleSubscribe(){
             break;
         
         case VIEW_TYPE.LIST:
-            subBtn = document.querySelector(".list-sub-btn");
-            unsubBtn = document.querySelector(".list-unsub-btn")
-            subBtn?.addEventListener("click", ({target}) => {
-                console.log("here")
-                const pressIdx = parseInt(target.getAttribute("index"));
-                store.setSubList(pressIdx, "subscribe");
-                
-                drawSubSnack();
-            }, )
-            unsubBtn?.addEventListener("click", ({target}) => {
-                const pressIdx = parseInt(target.getAttribute("index"));
-                drawUnsubAlert(pressIdx);
-            })
+            // subBtn = document.querySelector(".list-sub-btn");
+            // unsubBtn = document.querySelector(".list-unsub-btn")
+            // subBtn?.addEventListener("click", ({target}) => {
+            //     const pressIdx = parseInt(target.getAttribute("index"));
+            //     store.setSubList(pressIdx, "subscribe");
+            //     drawSubSnack();
+            // }, )
+            // unsubBtn?.addEventListener("click", ({target}) => {
+            //     const pressIdx = parseInt(target.getAttribute("index"));
+            //     drawUnsubAlert(pressIdx);
+            // })
             break;
         }
 }

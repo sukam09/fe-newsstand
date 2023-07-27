@@ -68,10 +68,9 @@ class Store {
             case "unsubscribe":
                 const idx = this.subList.findIndex(item => item === id);
                 this.subList.splice(idx,1)
-                this.flagState.isUnsubscribing = true;
                 break;
         }
-        // this.notify();
+        this.notify();
     }  
     setShuffledList(arr){
         this.shuffledList = arr;

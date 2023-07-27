@@ -93,8 +93,8 @@ function drawPageInfo({listData}) {
 
 async function drawList() {
     const viewData = await filterData(); // filter data to show according to crnt filter type
-    const {isChangeView, isChangeCategory, isUnsubscribing} = store.getFlagState();
-    if (isChangeView || isUnsubscribing){
+    const {isChangeView, isChangeCategory} = store.getFlagState();
+    if (isChangeView){
         // 그리드뷰 -> 리스트뷰로 바뀔 때 실행
         // 구독 언론사 보기 + 리스트뷰 + 구독해지할 때도 실행
         drawListNav({...viewData});
