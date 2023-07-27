@@ -1,5 +1,7 @@
-import { drawSubListView } from "./subListNews.js";
-import { subscribeState } from "../store/subscribeState.js";
+import { appendSubCategory, drawSubListView } from "./subListNews.js";
+import { getState, setState } from "../observer/observer.js";
+import { subscribedPress } from "../store/store.js";
+import { getPressItemByName, removePressFromSubList } from "./gridView.js";
 
 const PROGRESS_TIME = 2000;
 let category_num = 0;
@@ -8,7 +10,7 @@ let clicked_idx = 0;
 let progress_interval;
 
 function getSubPressLength() {
-  category_num = subscribeState.getSubscribeState().length;
+  category_num = getState(subscribedPress).length;
 }
 
 //제자리에서 프로그레스바 다시 차오르게 해주는 함수
@@ -20,14 +22,13 @@ function reloadProgressAnimation() {
 }
 
 function clearAndReload() {
-  clearProgress();
+  clearSubProgress();
   reloadProgressAnimation();
 }
 
 function countUp() {
   getSubPressLength();
   if (category_num === 1) {
-    console.log("Category num is 1");
     reloadProgressAnimation();
   } else {
     if (current_category < category_num - 1) {
@@ -48,7 +49,7 @@ function runSubProgress() {
   progress_interval = countUpInterval();
 }
 
-function clearProgress() {
+function clearSubProgress() {
   clearInterval(progress_interval);
 }
 
@@ -76,18 +77,42 @@ function findCategoryIdx(element) {
   }
 }
 
+function initializeSubProgress() {
+  current_category = 0;
+}
+
 /***** 프로그레스바 카테고리 누르면 이동 *****/
 const categories = document.querySelector(".sub-list-nav");
 categories.addEventListener("click", (e) => {
   const press_name = e.target.innerText.slice(0, -2);
-  const press = subscribeState.getSubInfoByName(press_name)[0];
-  const press_id = press[0];
+  const press = getPressItemByName(press_name)[0];
+  const press_id = press.id;
   const clicked_category = document.querySelector(`.press${press_id}`);
   findCategoryIdx(clicked_category);
-  clearProgress();
+  clearSubProgress();
   changeCategory(current_category, clicked_idx);
   runSubProgress();
   drawSubListView(current_category);
 });
 
-export { runSubProgress, clearProgress, reloadProgressAnimation };
+const unsub_btn = document.querySelector(".unsub-btn");
+unsub_btn.addEventListener("click", async (e) => {
+  const target_innertext = document.querySelector(
+    ".sub-list-nav .progress-bar"
+  ).innerText;
+  const press_name = target_innertext.slice(0, -2);
+  let sub_press = await getPressItemByName(press_name);
+  sub_press = removePressFromSubList(sub_press[0]);
+  setState(subscribedPress, sub_press);
+  clearSubProgress();
+  initializeSubProgress();
+  appendSubCategory();
+  runSubProgress();
+});
+
+export {
+  runSubProgress,
+  clearSubProgress,
+  reloadProgressAnimation,
+  initializeSubProgress,
+};

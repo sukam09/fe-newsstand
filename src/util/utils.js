@@ -3,6 +3,10 @@ export function setDisplay(element, display_style) {
   document.querySelector(element).style.display = display_style;
 }
 
+export function setDisplayById(element, idx, display_style) {
+  document.querySelectorAll(element)[idx].style.display = display_style;
+}
+
 //style.display of array elements
 export function setDisplayofArr(elements, display_style) {
   elements.forEach((element) => {

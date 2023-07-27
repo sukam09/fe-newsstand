@@ -1,9 +1,11 @@
-import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "../path.js";
+import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "../util/path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
 import { getNewsContent, getPressObj } from "../api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
-import { subscribeState } from "../store/subscribeState.js";
 import { removeAddClass } from "../util/utils.js";
+import { getPressItemByName, removePressFromSubList } from "./gridView.js";
+import { getState, setState } from "../observer/observer.js";
+import { subscribedPress } from "../store/store.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;
@@ -68,9 +70,15 @@ function drawListView(category_idx, count_idx) {
 }
 
 //구독 언론사라면 해지하기 버튼 삽입
+function getSubInfoFromSubList(name) {
+  let sub_press_list = getState(subscribedPress);
+  sub_press_list = sub_press_list.filter((item) => item.name === name);
+  return sub_press_list;
+}
+
 function putSubscribeBtnImg(name) {
   const img = document.querySelector(".subbtn-or-xbtn img");
-  if (subscribeState.getSubInfoByName(name).length !== 0) {
+  if (getSubInfoFromSubList(name).length !== 0) {
     img.src = X_BTN_IMG;
     removeAddClass(img, "subscribe-press-btn", "x-btn");
   } else {
@@ -90,13 +98,6 @@ async function getNameFromArticle(category_idx, count_idx) {
   return press_name;
 }
 
-//언론사 이름으로 찾기
-async function getPressItemByName(name) {
-  const presses = await getPressObj();
-  const press = await Promise.all(presses.filter((item) => item.name === name));
-  return press;
-}
-
 /***** 구독하기 버튼 이벤트 + 스낵바 팝업 *****/
 let snackbar_timeout;
 const subscribe_btn = document.querySelector(".subscribe-press-btn");
@@ -109,12 +110,9 @@ subscribe_btn.addEventListener("click", async () => {
       parseInt(document.querySelector(".progress-bar .now-count").innerHTML) -
       1;
     const press_name = await getNameFromArticle(category_idx, count_idx);
-    const subscribed_press = await getPressItemByName(press_name);
-    subscribeState.setSubscribeState(
-      subscribed_press[0].id.toString(),
-      press_name,
-      subscribed_press[0].lightSrc
-    );
+    const sub_press = await getPressItemByName(press_name);
+    const current_sub_list = getState(subscribedPress);
+    setState(subscribedPress, [...current_sub_list, sub_press[0]]);
     drawListView(category_idx, count_idx);
 
     snackbar_timeout = setTimeout(function () {
@@ -133,8 +131,8 @@ unsubscribe_btn.addEventListener("click", async (e) => {
       parseInt(document.querySelector(".progress-bar .now-count").innerHTML) -
       1;
     const press_name = await getNameFromArticle(category_idx, count_idx);
-    const target_press = subscribeState.getSubInfoByName(press_name);
-    subscribeState.removePressFromSubList(target_press[0]);
+    const target_press = await getPressItemByName(press_name);
+    removePressFromSubList(target_press[0]);
     drawListView(category_idx, count_idx);
   }
 });

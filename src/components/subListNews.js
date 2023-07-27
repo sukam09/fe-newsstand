@@ -1,5 +1,8 @@
 import { getPressObj } from "../api/api.js";
-import { subscribeState } from "../store/subscribeState.js";
+import { getState, setState } from "../observer/observer.js";
+import { subscribedPress } from "../store/store.js";
+import { clearProgress } from "./progressBar.js";
+import { getPressItemByName, removePressFromSubList } from "./gridView.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 let sub_length = 0;
@@ -17,8 +20,8 @@ let news_sub_list = sub_news_article.querySelectorAll(".news-sub-list li");
 function appendPressInCategory(press) {
   const sub_nav = document.querySelector(".sub-list-nav ul");
   const $li = document.createElement("li");
-  $li.classList.add("progress-item", `press${press[0]}`);
-  $li.innerHTML = `${press[1]}<div class="count font-init"><span class="now-count"> > </span></div>`;
+  $li.classList.add("progress-item", `press${press.id}`);
+  $li.innerHTML = `${press.name}<div class="count font-init"><span class="now-count"> > </span></div>`;
   sub_nav.append($li);
 }
 
@@ -28,7 +31,7 @@ async function appendPressInfo(press) {
     pressList = await getPressObj();
   }
   const currentData = pressList.filter(
-    (item) => item.id === parseInt(press[0])
+    (item) => item.id === parseInt(press.id)
   );
   press_brandmark.src = currentData[0].lightSrc;
   edit_date.innerHTML = currentData[0].editDate;
@@ -39,7 +42,7 @@ async function appendNewsMain(press) {
     pressList = await getPressObj();
   }
   const currentData = pressList.filter(
-    (item) => item.id === parseInt(press[0])
+    (item) => item.id === parseInt(press.id)
   );
   thumbnail.src = currentData[0].thumbSrc;
   news_main_title.innerHTML = `${currentData[0].mainTitle}`;
@@ -50,7 +53,7 @@ async function appendNewsSub(press) {
     pressList = await getPressObj();
   }
   const currentData = pressList.filter(
-    (item) => item.id === parseInt(press[0])
+    (item) => item.id === parseInt(press.id)
   );
   for (let i = 0; i < SUB_NEWS_TITLE_NUM; i++) {
     news_sub_list[i].innerHTML = currentData[0].subTitle[i];
@@ -59,7 +62,7 @@ async function appendNewsSub(press) {
 }
 
 function appendSubCategory() {
-  const sub_list = subscribeState.getSubscribeState();
+  const sub_list = getState(subscribedPress);
   const sub_nav = document.querySelector(".sub-list-nav ul");
   sub_nav.innerHTML = "";
   for (let i = 0; i < sub_list.length; i++) {
@@ -68,10 +71,15 @@ function appendSubCategory() {
 }
 
 function drawSubListView(idx) {
-  const sub_list = subscribeState.getSubscribeState();
+  const sub_list = getState(subscribedPress);
   appendPressInfo(sub_list[idx]);
   appendNewsMain(sub_list[idx]);
   appendNewsSub(sub_list[idx]);
 }
 
-export { appendSubCategory, drawSubListView };
+//구독 언론사가 아무 것도 없을 경우의 화면
+function showAlertForNonSub() {
+  alert("구독한 언론사가 없습니다. 관심 있는 언론사를 구독해주세요.");
+}
+
+export { appendSubCategory, drawSubListView, showAlertForNonSub };
