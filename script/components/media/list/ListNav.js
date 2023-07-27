@@ -5,8 +5,12 @@ const clickNav = (target, listStore, navList, viewAll) => {
   const navItem = target.closest('.list_view_select');
 
   if (!navItem) return;
+
+  const { category, page } = listStore.getState();
   const index = Array.from(navList.childNodes).indexOf(navItem);
 
+  if (viewAll && index === category) return;
+  if (!viewAll && index === page) return;
   listStore.setState(viewAll ? { category: index } : { page: index });
 };
 
