@@ -4,7 +4,7 @@ import State from "../../store/StateStore.js";
 import Store from "../../store/SubscribeStore.js";
 import renderMain from "./renderMain.js";
 import { AllState } from "../../store/viewStore.js";
-import { getState } from "../../observer/observer.js";
+import { getState, setState } from "../../observer/observer.js";
 import { addModalClickEvent, makeModal } from "../common/Alert.js";
 import { makeSnackBar } from "../common/snackBar.js";
 
@@ -16,6 +16,7 @@ let pressData;
 
 function addSubscribeBtn({target}){
     let id = target.previousSibling.className;
+    let timeout;
     const modal = document.querySelector(".alert-container");
     const snackbar = document.querySelector(".snackbar");
     const pressSpan = document.querySelector(".display-bold16");
@@ -27,10 +28,14 @@ function addSubscribeBtn({target}){
     }
     
     else{
-        console.log(snackbar);
+        clearTimeout(timeout);
         target.innerText = "해지하기";
         snackbar.style.display = "flex";
-        Store.addSubscribe(NewsData.getGridArticleByID(id));
+        timeout = setTimeout(() =>{
+                snackbar.style.display = "none";
+                Store.addSubscribe(NewsData.getGridArticleByID(id));
+                setState(AllState, false);
+        },5000);
     }
 }
 

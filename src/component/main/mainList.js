@@ -3,9 +3,10 @@ import State from "../../store/StateStore.js";
 import NewsData from "../../store/NewsStore.js";
 import Store from "../../store/SubscribeStore.js"
 import { AllState } from "../../store/viewStore.js";
-import { getState } from "../../observer/observer.js";
+import { getState, setState } from "../../observer/observer.js";
 import controListlMinMaxException from "../../utils/controlListlMinMaxException.js";
 import { addModalClickEvent, makeModal } from "../common/Alert.js";
+import { makeSnackBar } from "../common/snackBar.js";
 
 const PROGRESS_DURATION = 20000;
 const COLOR_IN_PROGRESS = "#4362d0";
@@ -112,9 +113,12 @@ function  makeSubscribeButton(){
     subscribeBtn.classList.add("subscribebtn");
     const modal = document.querySelector(".alert-container");
     const pressSpan = document.querySelector(".display-bold16");
+    const snackbar = document.querySelector(".snackbar");
     
     let categoryNum = State.getCategoryNum();
     let articleInfo;
+    let timeout;
+
     if(isAll){
         articleInfo = listArticle[categoryNum][currentPage];
     }
@@ -142,8 +146,13 @@ function  makeSubscribeButton(){
             pressSpan.innerHTML = selectedPress;
         }
         else{
-            Store.addSubscribe(articleInfo);
-            renderMain();
+            clearTimeout(timeout);
+            snackbar.style.display = "flex";
+            timeout = setTimeout(() =>{
+                    snackbar.style.display = "none";
+                    Store.addSubscribe(articleInfo);
+                    setState(AllState, false);
+            },5000);
         } 
     })
 }
@@ -305,6 +314,7 @@ export default function MainList(){
 
     setData();
     makeModal();
+    makeSnackBar();
     showList();
     addModalClickEvent();
 }

@@ -472,9 +472,11 @@ input[type="radio"]:checked + label
 }  
 
 .snackbar{
-    display: flex;
+    display: inline-flex;
     position: absolute;
-    width: 286px;
+    left: 387px;
+    top: 123px;
+    min-width: 286px;
     height: 54px;
     background-color: #4362D0; 
     color: #FFFFFF; 
