@@ -32,11 +32,11 @@ const updateListNav = (nav, viewAll, navStore, listStore) => {
 
   if (navItems.length !== subscribed.length) {
     navItems[page].remove();
-    return selectNav(navItems[page], page, page, listStore);
+    return selectNav(navItems[page], listStore);
   }
   navItems.forEach((navItem, index) => {
-    if (index === page) return selectNav(navItem, index, page, listStore);
-    unSelectNav(navItem, index, page, listStore);
+    if (index === page) return selectNav(navItem, listStore);
+    unSelectNav(navItem);
   });
 };
 
