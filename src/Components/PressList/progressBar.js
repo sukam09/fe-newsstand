@@ -1,8 +1,10 @@
 import { getCurrentCategoryIndex, getPage, getPress, getView } from "../../Store/store.js";
 import { PROGRESS_FLAG } from "../../constant.js";
+import { PATH_DIVSION_SVG, PATH_SYMBOL_SVG } from "../../path.js";
 import pressStore from "../../pressDataStore.js";
 import { _changeClass } from "../../utils.js";
 import { setProgressNewsTurner } from "./pageMoveButton.js";
+
 
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
@@ -53,7 +55,7 @@ function setProgressPage() {
 function setProgressPageOfAllList() {
   $pageInfo.innerHTML = `
   <div class="display-bold12 text-white-default">${getPage() + 1}</div>
-  <img src="./assets/Icon/division.svg">
+  <img src=${PATH_DIVSION_SVG}>
   <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getCurrentCategoryIndex()].length}</div>
 `
 }
@@ -62,7 +64,7 @@ function setProgressPageOfAllList() {
 function setProgressPageOfMyList() {
   $pageInfo.innerHTML = `
   <div class="display-bold12 text-white-default"></div>
-  <img src="./assets/Icon/Symbol.svg">
+  <img src=${PATH_SYMBOL_SVG}>
   <div class="display-bold12 text-white-weak"></div>
 `
 }

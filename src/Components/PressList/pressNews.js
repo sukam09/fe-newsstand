@@ -1,6 +1,6 @@
 import { addpress, getCurrentCategoryIndex, getPage, getPress, getSubscribedPressId, getView, removepress, setCurrentCategoryIndex, setPage, store } from "../../Store/store.js";
 import { FIRST_PAGE_IDX, START_CATEGORY_IDX } from "../../constant.js";
-import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_X_BTN } from "../../path.js";
+import { PATH_SUBSCRIBE_BTN, PATH_UNSUBSCRIBE_X_BTN, PATH_TEST_THUMBNAIL } from "../../path.js";
 import pressStore from "../../pressDataStore.js";
 import { clickCategoryOfPressList, setCategories } from "./categoryTab.js";
 import { setClickNewsTurner, setProgressEventFlag, showNewsTurner } from "./pageMoveButton.js";
@@ -29,7 +29,7 @@ function drawPressNewsMain(whatPressNews) {
   $pressNews.innerHTML = $pressNews.innerHTML + `
   <div class="press-news-content">
     <div class="press-news-main">
-      <img class="press-news-thumbnail" src="./assets/thumbnail/Thumbnail.png">
+      <img class="press-news-thumbnail" src=${PATH_TEST_THUMBNAIL}>
       <p class="press-news-title available-medium16 text-strong">${whatPressNews[getCurrentCategoryIndex()][getPage()]["mainTitle"]}</p>
     </div>
     <div class="press-news-sub available-medium16 text-bold">
