@@ -28,7 +28,7 @@ export function createAlert(press_name, press_id, $parent, resetBtn) {
         click: () => {
             _sub_press_list.deleteState(press_id);
             _mode.setToNextPage();
-            _mode.setState({ is_grid_view: false, is_sub_view: true });
+            _mode.setState({ is_grid_view: null, is_sub_view: null });
             document.querySelector(".alert") && document.querySelector(".alert").remove();
             resetBtn && resetBtn($parent, press_id);
         },
