@@ -1,6 +1,7 @@
 import { pressData } from "../../../../constants/categories.js";
-import { subCategoriesObj } from "../../../../constants/index.js";
+import { allNewsObj, subCategoriesObj } from "../../../../constants/index.js";
 import store from "../../../../core/Store.js";
+import { showStatus } from "../../../../core/showStatus.js";
 import Logo from "../../../common/Logo.js";
 import UnsubButton from "../../Buttons/UnsubButton.js";
 
@@ -130,6 +131,12 @@ export default class SubPressNews {
     if (this.storePIndex === 0) {
       this.setCategroies.call(subCategoriesObj);
     }
+    if (store.getStateSize() === 0 && !showStatus.isShowAllPress) {
+      allNewsObj.renderNonSubView();
+      return;
+    }
+    if (store.getStateSize() === 0 && showStatus.isShowAllPress) return;
+
     this.setSubProgressBar.call(subCategoriesObj);
     this.pressIndex = store.getState()[this.storePIndex] - 1;
     this.mainNews = pressData[this.pressIndex];
