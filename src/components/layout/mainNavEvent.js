@@ -1,3 +1,5 @@
+import { _mode } from "../../Store.js";
+import { ICON_COLOR } from "../../utils/constant.js";
 import { DOM } from "../../utils/domClassName.js";
 import { list_view_entire } from "../list/listObserverEntire.js";
 import { list_view_subscribe } from "../list/listObserverSub.js";
@@ -29,46 +31,42 @@ const view_info = (function () {
         is_subscribe_view = false;
     }
 
+    function changeFont(cont1, cont2) {
+        cont1.classList.replace("selected-bold16", "available-medium16");
+        cont2.classList.replace("available-medium16", "selected-bold16");
+    }
+    function changeIcon(cont1, cont2) {
+        cont1.style.filter = ICON_COLOR;
+        cont2.style.filter = "none";
+    }
+    function hideView(conts) {
+        conts.forEach((cont) => (cont.style.display = "none"));
+    }
+    function replaceView(cont1, cont2) {
+        cont1.style.display = "none";
+        cont2.style.display = "flex";
+    }
+
     function changeView(is_init) {
         const grid_icon = document.querySelector(`.${DOM.NAV_GRID_ICON}`);
         const list_icon = document.querySelector(`.${DOM.NAV_LIST_ICON}`);
-        const entire_btn = document.querySelector(".nav-left_entire");
-        const subscribe_btn = document.querySelector(".nav-left_subscribe");
-        const grid_entire_view = document.querySelector(`.${DOM.GRID_ENTIRE_VIEW}`);
-        const grid_sub_view = document.querySelector(`.${DOM.GRID_SUBSCRIBE_VIEW}`);
-        const list_entire_view = document.querySelector(`.${DOM.LIST_ENTIRE_VIEW}`);
-        const list_sub_view = document.querySelector(`.${DOM.LIST_SUBSCRIBE_VIEW}`);
+        const entire_btn = document.querySelector(`.${DOM.NAV_ENTIRE}`);
+        const subscribe_btn = document.querySelector(`.${DOM.NAV_SUBSCRIBE}`);
+        const grid_entire = document.querySelector(`.${DOM.GRID_ENTIRE_VIEW}`);
+        const grid_sub = document.querySelector(`.${DOM.GRID_SUBSCRIBE_VIEW}`);
+        const list_entire = document.querySelector(`.${DOM.LIST_ENTIRE_VIEW}`);
+        const list_sub = document.querySelector(`.${DOM.LIST_SUBSCRIBE_VIEW}`);
 
-        if (is_subscribe_view) {
-            entire_btn.classList.remove("selected-bold16");
-            entire_btn.classList.add("available-medium16");
-            subscribe_btn.classList.remove("available-medium16");
-            subscribe_btn.classList.add("selected-bold16");
-        } else {
-            subscribe_btn.classList.remove("selected-bold16");
-            subscribe_btn.classList.add("available-medium16");
-            entire_btn.classList.remove("available-medium16");
-            entire_btn.classList.add("selected-bold16");
-        }
+        is_subscribe_view ? changeFont(entire_btn, subscribe_btn) : changeFont(subscribe_btn, entire_btn);
+        is_grid_view ? changeIcon(grid_icon, list_icon) : changeIcon(list_icon, grid_icon);
 
         if (is_grid_view) {
-            grid_icon.style.filter =
-                "invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg) brightness(87%) contrast(85%)";
-            list_icon.style.filter = "none";
-            list_entire_view.style.display = "none";
-            list_sub_view.style.display = "none";
+            hideView([list_entire, list_sub]);
             list_view_entire.removeInterval();
             list_view_subscribe.removeInterval();
-            is_subscribe_view
-                ? ((grid_entire_view.style.display = "none"), (grid_sub_view.style.display = "flex"))
-                : ((grid_entire_view.style.display = "flex"), (grid_sub_view.style.display = "none"));
+            is_subscribe_view ? replaceView(grid_entire, grid_sub) : replaceView(grid_sub, grid_entire);
         } else {
-            // 리스트 아이콘 클릭
-            list_icon.style.filter =
-                "invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg) brightness(87%) contrast(85%)";
-            grid_icon.style.filter = "none";
-            grid_entire_view.style.display = "none";
-            grid_sub_view.style.display = "none";
+            hideView([grid_entire, grid_sub]);
             if (is_subscribe_view) {
                 list_view_entire.removeInterval();
                 is_init &&
@@ -84,9 +82,7 @@ const view_info = (function () {
                     page_num: 0,
                 });
             }
-            is_subscribe_view
-                ? ((list_entire_view.style.display = "none"), (list_sub_view.style.display = "flex"))
-                : ((list_entire_view.style.display = "flex"), (list_sub_view.style.display = "none"));
+            is_subscribe_view ? replaceView(list_entire, list_sub) : replaceView(list_sub, list_entire);
         }
     }
 
@@ -102,6 +98,7 @@ const view_info = (function () {
 })();
 
 export function onClickSubBtn(is_subscribe, is_init) {
+    _mode.setState({ is_grid_view: null, is_sub_view: is_subscribe });
     is_subscribe
         ? view_info.setToSubscribeView().then(() => {
               view_info.changeView(is_init);
@@ -112,6 +109,7 @@ export function onClickSubBtn(is_subscribe, is_init) {
 }
 
 export function onClickViewBtn(is_grid) {
+    _mode.setState({ is_grid_view: is_grid, is_sub_view: null });
     is_grid
         ? view_info.setToGridView().then(view_info.changeView)
         : view_info.setToListView().then(view_info.changeView);

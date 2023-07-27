@@ -39,7 +39,25 @@ class subscribeSubject extends Subject {
     }
 }
 
+class modeSubject extends Subject {
+    constructor() {
+        super();
+        this._state = { is_grid_view: true, is_sub_view: false };
+    }
+
+    setState({ is_grid_view, is_sub_view }) {
+        if (is_grid_view !== null) this._state.is_grid_view = is_grid_view;
+        if (is_sub_view !== null) this._state.is_sub_view = is_sub_view;
+        this.notifyAll();
+    }
+
+    notifyAll() {
+        console.log(this._state);
+    }
+}
+
 // 관찰하는 주체 (구독한 언론사)
 const _sub_press_list = new subscribeSubject();
+const _mode = new modeSubject();
 
-export { _sub_press_list };
+export { _sub_press_list, _mode };
