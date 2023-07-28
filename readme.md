@@ -87,4 +87,5 @@
 3. 프로그래스바
 4. 구독하기/해지하기
    <img width = "80%" src="https://github.com/choiseona/fe-newsstand/assets/52223965/f74a7a28-c665-4eff-8f0d-6ccb2af0973a">
+   <br>
    <img width = "80%" src="https://github.com/choiseona/fe-newsstand/assets/52223965/bec1c09e-e691-4122-8061-3b86c70faf66">
