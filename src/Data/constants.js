@@ -10,6 +10,8 @@ const constants = {
   DARK_MODE: "dark",
   SHOW_LIST: "list",
   SHOW_GRID: "grid",
+  SHOW_MY_NEWS: "myNews",
+  SHOW_ALL_NEWS: "allNews",
   PROGRESS_DURATION_MS: 20000,
   FIELDTAB_LIST: [
     "종합/경제",

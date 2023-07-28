@@ -6,7 +6,6 @@ export default class NewsList extends Component {
   setup() {
     this.$state = {
       pressNewsData: [],
-      progressTimer: undefined,
       page: 1,
       nowCategoryNewsData: [],
     };
@@ -38,27 +37,10 @@ export default class NewsList extends Component {
       <div class="news-list__press-news"></div>
 
       <div class="left-button_content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="26"
-          height="42"
-          viewBox="0 0 26 42"
-          fill="none"
-        >
-          <path d="M25 1L1 21L25 41" stroke="#6E8091" />
-        </svg>
+        <img src="./assets/icons/LeftPage.svg" alt="LeftPage" />
       </div>
-
       <div class="right-button_content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="26"
-          height="42"
-          viewBox="0 0 26 42"
-          fill="none"
-        >
-          <path d="M1 41L25 21L1 1" stroke="#6E8091" />
-        </svg>
+        <img src="./assets/icons/RightPage.svg" alt="RightPage" />
       </div>
 
       <div class="news-list__snack-bar hidden">
@@ -77,10 +59,11 @@ export default class NewsList extends Component {
   }
 
   renderPressNews() {
-    new PressNews(document.querySelector(".news-list__press-news"), {
+    new PressNews(this.$target.querySelector(".news-list__press-news"), {
       nowCategoryNewsData: this.$state.nowCategoryNewsData,
       page: this.$state.page,
       SubscribeStore: this.$props.SubscribeStore,
+      ModeStore: this.$props.ModeStore,
     });
   }
 
@@ -104,17 +87,10 @@ export default class NewsList extends Component {
     this.currentPercentage = 0;
   };
 
-  stopProgress() {
-    if (this.$state.progressTimer) {
-      this.clearProgress();
-      clearInterval(this.$state.progressTimer);
-      this.setState({ progressTimer: undefined }, false);
-    }
-  }
-
   startProgress() {
-    this.stopProgress();
-    const $progress = document.querySelector(".news-list__field-tab__progress");
+    const $progress = this.$target.querySelector(
+      ".news-list__field-tab__progress"
+    );
     const increment = 100 / (constants.PROGRESS_DURATION_MS / 16); // 16ms 마다 업데이트
 
     const progressTimer = setInterval(() => {
@@ -128,7 +104,7 @@ export default class NewsList extends Component {
       $progress.style.background = `linear-gradient(to right, #4362d0 ${this.currentPercentage}%, #7890e7 ${this.currentPercentage}%)`;
     }, 16); // 16ms 마다 업데이트
 
-    this.setState({ progressTimer: progressTimer }, false);
+    this.$props.setProgressTimer(progressTimer);
   }
 
   renderContent() {
@@ -159,7 +135,7 @@ export default class NewsList extends Component {
   }
 
   setNowPageTag() {
-    this.$nowPage = document.querySelector(
+    this.$nowPage = this.$target.querySelector(
       ".news-list__field-tab__progress-count"
     ).childNodes[0];
   }
@@ -171,12 +147,8 @@ export default class NewsList extends Component {
   }
 
   setListPageButton() {
-    const $leftButton = document.querySelector(
-      ".news-section-list .left-button_content"
-    );
-    const $rightButton = document.querySelector(
-      ".news-section-list .right-button_content"
-    );
+    const $leftButton = this.$target.querySelector(".left-button_content");
+    const $rightButton = this.$target.querySelector(".right-button_content");
 
     this.setNowPageTag();
 
@@ -210,7 +182,7 @@ export default class NewsList extends Component {
   }
 
   convertTab(amount) {
-    const $liAll = document.querySelectorAll(".news-list__field-tab > li");
+    const $liAll = this.$target.querySelectorAll(".news-list__field-tab > li");
     [...$liAll].forEach((item, index) => {
       if (item.className === "news-list__field-tab__progress") {
         $liAll[
@@ -235,14 +207,13 @@ export default class NewsList extends Component {
     }
 
     this.tabLiteral = "";
-    const $fieldTabList = document.querySelectorAll(
+    const $fieldTabList = this.$target.querySelectorAll(
       ".news-list__field-tab > li"
     );
     [...$fieldTabList].forEach((item) => {
       item.addEventListener("click", (event) => {
-        this.stopProgress();
         constants.FIELDTAB_LIST.forEach((item) => this.makeTag(event, item));
-        document.querySelector(".news-list__field-tab").innerHTML =
+        this.$target.querySelector(".news-list__field-tab").innerHTML =
           this.tabLiteral;
 
         this.setFieldTab();

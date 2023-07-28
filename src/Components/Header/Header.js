@@ -4,16 +4,15 @@ export default class Header extends Component {
   template() {
     return `
       <h1 class="header__title">
-        <a href="/">
-          <img src="./assets/icons/Logo.svg" class="header__title__logo" alt="Logo" />
-          뉴스스탠드
-        </a>
+        <img src="./assets/icons/Logo.svg" class="header__title__logo" alt="Logo" />
+        뉴스스탠드
       </h1>
       <div class="header__date"></div>
     `;
   }
 
   mounted() {
+    this.setReloadEvent();
     this.setHeaderDate();
   }
 
@@ -30,8 +29,16 @@ export default class Header extends Component {
 
   setHeaderDate() {
     const formattedToday = this.formatToday();
-    const $header__date = document.querySelector(".header__date");
+    const $header__date = this.$target.querySelector(".header__date");
 
     $header__date.innerHTML = formattedToday;
+  }
+
+  setReloadEvent() {
+    const $header = this.$target.querySelector(".header__title");
+
+    $header.addEventListener("click", () => {
+      location.reload();
+    });
   }
 }

@@ -7,10 +7,19 @@ export default class NewsGridItems extends Component {
   }
 
   template() {
-    return this.$props.nowPageIndexArr
-      .map(
-        (item) => `
-          <li class="newspaper__item">
+    return this.makeOnePageArray(this.$props.nowPageIndexArr).reduce(
+      (acc, item) => {
+        if (!item) {
+          return (
+            acc +
+            `<li class="newspaper__item">
+              
+            </li>`
+          );
+        }
+        return (
+          acc +
+          `<li class="newspaper__item">
             <div class="newspaper__item__card">
               <div class="card-front">
                 <img
@@ -34,13 +43,25 @@ export default class NewsGridItems extends Component {
               </div>`
               }
             </div>
-          </li>
-        `
-      )
-      .join(" ");
+          </li>`
+        );
+      },
+      ""
+    );
   }
 
   mounted() {
+    this.setSubscribeButtonEvent();
+  }
+
+  makeOnePageArray(arr) {
+    const length = constants.ONE_PAGE_NEWSPAPER;
+    return Array.from({ length }, (_, index) =>
+      arr[index] ? arr[index] : undefined
+    );
+  }
+
+  setSubscribeButtonEvent() {
     const $newspaperSubscribe = this.$target.querySelectorAll(".card-back");
 
     $newspaperSubscribe.forEach((item, index) => {
@@ -50,6 +71,12 @@ export default class NewsGridItems extends Component {
             this.$props.nowPageIndexArr[index]
           );
         } else {
+          if (this.$props.subscribeAlert) {
+            this.$props.subscribeAlertName.innerHTML =
+              this.$props.nowPageIndexArr[index].name;
+            this.$props.subscribeAlert.classList.remove("hidden");
+            return;
+          }
           this.$props.SubscribeStore.unSubscribeNews(
             this.$props.nowPageIndexArr[index]
           );

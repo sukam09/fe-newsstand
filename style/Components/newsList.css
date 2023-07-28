@@ -1,6 +1,7 @@
 /* news list layout */
 
-.news-section-list {
+.news-section-list,
+.news-section-my-list {
   height: 388px;
   position: relative;
   border: 1px solid var(--color-border-default);
@@ -14,13 +15,19 @@
   text-align: center;
   font-size: var(--font-size-regular);
   color: var(--color-text-weak);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.news-list__field-tab::-webkit-scrollbar {
+  display: none;
 }
 
 .news-list__field-tab__progress {
   display: flex;
+  flex: 0 0 166px;
   justify-content: space-between;
   align-items: center;
-  width: 166px;
   padding: 0 16px;
   background: linear-gradient(
     to right,
@@ -144,12 +151,14 @@
 
 .news-list__snack-bar {
   position: absolute;
-  top: 163px;
-  left: 323px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 286px;
   height: 54px;
   padding: 16px 24px;
   background-color: var(--color-surface-brand-default);
   color: var(--color-text-white-default);
   font-size: var(--font-size-medium);
+  text-align: center;
 }

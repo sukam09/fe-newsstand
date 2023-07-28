@@ -14,6 +14,10 @@
   width: 136px;
   font-size: var(--font-size-large);
   white-space: nowrap;
+  color: var(--color-text-strong);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-large);
+  cursor: pointer;
 }
 
 .header__title__logo {

@@ -2,14 +2,7 @@ import { constants } from "../../Data/constants.js";
 import Component from "../../core/Component.js";
 
 export default class PressNews extends Component {
-  setup() {
-    this.$state = {
-      nowNews: this.$props.nowCategoryNewsData[this.$props.page - 1],
-    };
-  }
-
   setEvent() {
-    this.$props.SubscribeStore.subscribe(() => this.render());
     this.$props.ModeStore.subscribe(() => this.render());
   }
 
@@ -19,19 +12,19 @@ export default class PressNews extends Component {
         <img
           src=${
             this.$props.ModeStore.mode === constants.LIGHT_MODE
-              ? this.$state.nowNews.path
-              : this.$state.nowNews.path_dark
+              ? this.$props.nowNewsData.path
+              : this.$props.nowNewsData.path_dark
           }
           alt="Brandmark"
           height="24"
           class="news-list__press-news__info__brandmark"
         />
         <span class="news-list__press-news__info__date">${
-          this.$state.nowNews.edit_date
+          this.$props.nowNewsData.edit_date
         } 편집</span>
         ${
           this.$props.SubscribeStore.subscribeList.filter(
-            (elem) => elem.id === this.$state.nowNews.id
+            (elem) => elem.id === this.$props.nowNewsData.id
           ).length === 0
             ? `<img class="news-list__press-news__subscribe subscribeButton" src="./assets/icons/SubscribeButton_List.svg" alt="Button" />`
             : `<img class="news-list__press-news__subscribe unSubscribeButton" src="./assets/icons/UnSubscribeButton_List.svg" alt="Button" />`
@@ -41,24 +34,24 @@ export default class PressNews extends Component {
         <div class="news-list__press-news__main">
           <div class="news-list__press-news__thumbnail">
             <img
-              src=${this.$state.nowNews.main_img_src}
+              src=${this.$props.nowNewsData.main_img_src}
               alt="Thumbnail"
               class="news-list__press-news__thumbnail-image"
             />
           </div>
           <span class="news-list__press-news__title">${
-            this.$state.nowNews.main_title
+            this.$props.nowNewsData.main_title
           }</span>
         </div>
         <div class="news-list__press-news__sub">
-        ${this.$state.nowNews.sub_title.reduce((acc, title) => {
+        ${this.$props.nowNewsData.sub_title.reduce((acc, title) => {
           return (
             acc +
             `<span class="news-list__press-news__subtitle">${title}</span>`
           );
         }, "")}
           <span class="news-list__press-news__subcaption">${
-            this.$state.nowNews.name
+            this.$props.nowNewsData.name
           } 언론사에서 직접 편집한 뉴스입니다.</span>
         </div>
       </div>
@@ -73,19 +66,13 @@ export default class PressNews extends Component {
     const $subscribeButton = this.$target.querySelector(
       ".news-list__press-news__subscribe"
     );
-    const $snackBar = document.querySelector(".news-list__snack-bar");
 
     $subscribeButton.addEventListener("click", () => {
       if ($subscribeButton.classList.contains("subscribeButton")) {
-        this.$props.SubscribeStore.subscribeNews(this.$state.nowNews);
-
-        $snackBar.classList.remove("hidden");
-        setTimeout(() => {
-          $snackBar.classList.add("hidden");
-          document.querySelector(".news-navbar_newspaper-list-my").click();
-        }, 5000);
+        this.$props.SubscribeStore.subscribeNews(this.$props.nowNewsData);
       } else {
-        this.$props.SubscribeStore.unSubscribeNews(this.$state.nowNews);
+        this.$props.subscribeAlertName.innerHTML = this.$props.nowNewsData.name;
+        this.$props.subscribeAlert.classList.remove("hidden");
       }
     });
   }
