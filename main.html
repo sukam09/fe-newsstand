@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>뉴스스탠드</title>
-    <button class="dark-btn">다크모드</button>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/main-style.css" />
     <link rel="stylesheet" href="/css/init-style.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
   </head>
   <body>
     <div class="container">
@@ -93,6 +93,7 @@
           </div>
         </div>
       </div>
+      <div class="grid-snackbar">내가 구독한 언론사에 추가되었습니다.</div>
       <section class="press-section">
         <nav class="press-nav">
           <div class="press-option available-medium16 text-weak">
@@ -103,18 +104,20 @@
 
           <div class="view-icon-div grid-selected">
             <!--grid가 선택되었을 때-->
+            <i class="dark-mode-icon xi-brightness xi-x"></i>
             <img class="list-symbol" src="/img/icons/list-symbol.svg" />
             <img class="grid-symbol" src="/img/icons/grid-symbol-selected.svg" />
           </div>
           <div class="view-icon-div list-selected">
             <!--list가 선택되었을 때-->
+            <i class="dark-mode-icon xi-brightness xi-x"></i>
             <img class="list-symbol" src="/img/icons/list-symbol-selected.svg" />
             <img class="grid-symbol" src="/img/icons/grid-symbol.svg" />
           </div>
         </nav>
         <div class="grid-subscribe-modal pop-up">
-          <div class="pop-up-top display-medium16">
-            <span class="sub-press-name display-bold16 text-strong"></span>을(를)<br />구독해지하시겠습니까?
+          <div class="pop-up-top display-medium16 border-default surface-default text-default">
+            <span class="grid-sub-press-name display-bold16 text-strong"></span>을(를)<br />구독해지하시겠습니까?
           </div>
           <div class="pop-up-btn-div available-medium16 surface-alt">
             <button class="pop-up-btn text-default border-default pos">예, 해지합니다</button>
@@ -179,9 +182,12 @@
             </div>
           </article>
         </section>
-        <div class="no-sub-item-div text-bold">구독한 언론사가 없습니다.<br />지금 바로 구독해보세요!</div>
+        <div class="no-sub-item-div">
+          <span class="display-bold24 text-bold"> 구독한 언론사가 없습니다.<br />지금 바로 구독해보세요!</span>
+        </div>
       </section>
     </div>
   </body>
-  <script type="module" src="/js/script.js"></script>
+  <script type="module" src="/js/app.js"></script>
+  <script type="module" src="/js/util/slider.js"></script>
 </html>

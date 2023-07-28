@@ -1,4 +1,4 @@
-import { ROLLING_TIME, ROLLING_LATENCY } from "./const.js";
+import { ROLLING_TIME, ROLLING_LATENCY } from "../store/const.js";
 
 function rollingCallback(index) {
   document.querySelector(`.rolling-${index} .prev`).classList.remove("prev");

@@ -30,13 +30,14 @@ header {
   margin-top: 54px;
 }
 
-body{
+body {
+  transition: 0.3s linear;
   -ms-overflow-style: none;
-  }
-  
- ::-webkit-scrollbar {
-   display: none;
- }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 
 .container {
   width: 930px;
@@ -68,9 +69,9 @@ h1 {
   position: relative;
 }
 
-.press-item:hover {
+/* .press-item:hover {
   background-color: var(--surface-alt);
-}
+} */
 
 #press-list,
 #sub-press-list {
@@ -83,13 +84,14 @@ h1 {
   border-bottom: none;
   position: relative;
 }
+
 /* */
 
 /* view icon style */
 .view-icon-div {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
 }
 .view-icon-div > img {
@@ -289,7 +291,7 @@ h1 {
   background: url(<path-to-image>), lightgray 0px -11.561px / 100% 106.561% no-repeat;
 }
 .news-main > p {
-  height:44px;
+  height: 44px;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -467,9 +469,6 @@ h1 {
   cursor: pointer;
 }
 
-#press-list > li {
-  cursor: pointer;
-}
 #sub-press-list > li {
   cursor: pointer;
 }
@@ -606,6 +605,32 @@ h1 {
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
+  transition: 0.5s linear;
+}
+
+.grid-snackbar {
+  display: inline-flex;
+  padding: 16px 24px;
+  width: 238px;
+  height: 22px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-brand-default);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  position: fixed;
+  /* transform: translate(226%, 60vh); */
+  right: 255px;
+  bottom: 15px;
+  display: none;
+  z-index: 3;
+  color: var(--text-white-default);
+  /* display-medium16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  transition: 1s linear;
 }
 
 .press-grid-sub {
@@ -686,7 +711,7 @@ h1 {
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  z-index: 3;
+  z-index: 10;
   transform: translate(95.5%, 89%);
   display: none;
 }
@@ -721,4 +746,18 @@ h1 {
 
 .pos {
   border-right: none !important;
+}
+
+.dark-mode-icon {
+  cursor: pointer;
+}
+
+.xi-moon {
+  color: #4362d0;
+  transition: 0.3s;
+}
+
+.xi-brightness {
+  color: orange;
+  transition: 0.3s;
 }
