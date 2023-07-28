@@ -14,5 +14,11 @@ async function fetchpressNews() {
   return dataFetch("./assets/data/pressNews.json");
 }
 
-export { fetchpressNews }
+/** 최신 뉴스 가져오기 */
+async function fetchRollingNews() {
+  return dataFetch("./assets/data/latestNews.json");
+}
+
+
+export { fetchpressNews, fetchRollingNews }
 

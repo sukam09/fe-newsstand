@@ -1,9 +1,11 @@
+import { getCurrentCategoryIndex, getPage, getPress, getView } from "../../Store/store.js";
 import { PROGRESS_FLAG } from "../../constant.js";
-import { _changeClass } from "../../utils.js";
-import { setProgressEventFlag, turnNewsPage } from "./pageMoveButton.js";
-import { setDrawPressNews } from "./pressNews.js";
+import { PATH_DIVSION_SVG, PATH_SYMBOL_SVG } from "../../path.js";
 import pressStore from "../../pressDataStore.js";
-import { getClickedCategoryIndex, getPage, getPress, getSubscribedPressId, getView } from "../../store.js";
+import { _changeClass } from "../../utils.js";
+import { setProgressNewsTurner } from "./pageMoveButton.js";
+
+
 
 const shuffledAllPressNews = pressStore.getShuffledAllPressNews
 
@@ -29,7 +31,7 @@ function removeProgress() {
   클릭한 카테고리 progress 설정
  */
 function setProgress() {
-  const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${getClickedCategoryIndex() + 1})`);
+  const $CategoryContainer = document.querySelector(`.press-news-bar li:nth-child(${getCurrentCategoryIndex() + 1})`);
   _changeClass($CategoryContainer, 'non-progress', 'progress');
   _changeClass($CategoryContainer, 'pointer', 'effect');
   $pageInfo.classList.add('progress-page');
@@ -53,8 +55,8 @@ function setProgressPage() {
 function setProgressPageOfAllList() {
   $pageInfo.innerHTML = `
   <div class="display-bold12 text-white-default">${getPage() + 1}</div>
-  <img src="./assets/Icon/division.svg">
-  <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getClickedCategoryIndex()].length}</div>
+  <img src=${PATH_DIVSION_SVG}>
+  <div class="display-bold12 text-white-weak">${shuffledAllPressNews[getCurrentCategoryIndex()].length}</div>
 `
 }
 
@@ -62,7 +64,7 @@ function setProgressPageOfAllList() {
 function setProgressPageOfMyList() {
   $pageInfo.innerHTML = `
   <div class="display-bold12 text-white-default"></div>
-  <img src="./assets/Icon/Symbol.svg">
+  <img src=${PATH_SYMBOL_SVG}>
   <div class="display-bold12 text-white-weak"></div>
 `
 }
@@ -75,7 +77,7 @@ function startProgressAnimation() {
   restartProgressAnimation();
   const $progrsesAnimation = document.querySelector('.progress');
   $progrsesAnimation.addEventListener('animationstart', (event) => {
-    turnNewsPage(PROGRESS_FLAG);
+    setProgressNewsTurner(PROGRESS_FLAG);
   })
 }
 
@@ -97,4 +99,4 @@ function initProgress() {
   startProgressAnimation();
 }
 
-export { initProgress, setProgressPage, startProgressAnimation, removeProgress };
+export { initProgress, removeProgress, startProgressAnimation };
