@@ -14,6 +14,7 @@
 @import url("/src/style/components/header.css");
 @import url("/src/style/components/recent-news.css");
 @import url("/src/style/components/content-nav.css");
+@import url("/src/style/components/content-empty.css");
 @import url("/src/style/components/content-list.css");
 @import url("/src/style/components/content-grid.css");
 @import url("/src/style/components/subscribe/alert.css");
@@ -37,7 +38,7 @@
   width: 930px;
 }
 
-.page__container {
+.main__container {
   position: relative;
 }
 

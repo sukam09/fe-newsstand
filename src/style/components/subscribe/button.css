@@ -15,7 +15,7 @@
 }
 
 .subscribe__button--unsubscribe.subscribe__button--grid {
-  border: 1px solid var(--color-border-bold);
+  border: 1px solid var(--color-border-default);
   color: var(--color-text-bold);
 }
 .subscribe__button--unsubscribe.subscribe__button--list {

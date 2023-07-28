@@ -1,4 +1,7 @@
 :root {
+  --grid-columns: 6;
+  --grid-rows: 4;
+
   /* color */
   --color-grayscale-white-alt: #ffffffb2;
   --color-grayscale-white: #ffffff;

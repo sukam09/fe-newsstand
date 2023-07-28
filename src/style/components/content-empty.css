@@ -1,0 +1,30 @@
+.view--empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 0;
+  text-align: center;
+  border: 1px solid var(--color-border-default);
+  height: 100%;
+}
+
+.view--empty h2 {
+  font: var(--font-bold-m);
+  color: var(--color-text-strong);
+}
+
+.view--empty div {
+  font: var(--font-medium-r);
+  color: var(--color-text-weak);
+}
+
+.view--empty button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5rem;
+  font: var(--font-medium-r);
+  color: var(--color-text-white-default);
+  background-color: var(--color-blue-100);
+}
