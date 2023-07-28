@@ -2,26 +2,31 @@ class Store {
   #state;
   #listeners;
 
-  constructor(state) {
+  constructor(state, listeners = {}) {
     this.#state = state;
-    this.#listeners = [];
+    this.#listeners = listeners;
   }
 
-  subscribe(listener) {
-    this.#listeners.push(listener);
+  subscribe(listener, key = '') {
+    if (!this.#listeners[key]) {
+      this.#listeners[key] = [];
+    }
+    this.#listeners[key].push(listener);
   }
 
   setState(newState) {
     this.#state = { ...this.#state, ...newState };
-    this.#listeners.forEach(listener => listener(this.#state));
+    Object.values(this.#listeners).forEach(listeners =>
+      listeners.forEach(listener => listener(this.#state))
+    );
   }
 
   getState() {
     return this.#state;
   }
 
-  unsubscribe(listener) {
-    this.#listeners = this.#listeners.filter(l => l !== listener);
+  unsubscribe(key) {
+    this.#listeners[key] = [];
   }
 
   broadcast() {

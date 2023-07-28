@@ -1,4 +1,4 @@
-import Icon from './Icon.js';
+import Icon from '../../Icon.js';
 
 const NavPageIndicator = data => {
   const navPageIndicator = document.createElement('div');

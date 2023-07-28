@@ -1,15 +1,5 @@
+import ListProgressBar from '../../Progress.js';
 import NavPageIndicator from './NavPageIndicator.js';
-import ListProgressBar from './Progress.js';
-
-const addMouseEvents = (listNavItem, mouse, onClick) => {
-  listNavItem.addEventListener('mousedown', ({ clientX, clientY }) => {
-    mouse = { x: clientX, y: clientY };
-  });
-  listNavItem.addEventListener('mouseup', ({ clientX, clientY }) => {
-    if (mouse.x !== clientX || mouse.y !== clientY) return;
-    onClick();
-  });
-};
 
 const navItemName = (selected, title) => {
   return `<div class="name ${
@@ -17,11 +7,10 @@ const navItemName = (selected, title) => {
   }">${title}</div>`;
 };
 
-const ListNavContent = (selected, title, indicator, onClick) => {
+const ListNavContent = (selected, title, indicator) => {
   const listNavContent = document.createElement('div');
   let mouse = { x: null, y: null };
 
-  addMouseEvents(listNavContent, mouse, onClick);
   listNavContent.classList.add('list_view_select_content', 'pointer');
   listNavContent.insertAdjacentHTML('beforeend', navItemName(selected, title));
   if (selected) {
@@ -38,9 +27,11 @@ const addProgressBar = (element, afterDelay) => {
   const progressBar = ListProgressBar(afterDelay);
   const callback = (mutationList, observer) => {
     mutationList.forEach(mutation => {
-      if (mutation.removedNodes[0] !== progressBar) return;
-      observer.disconnect();
+      const removedNodes = Array.from(mutation.removedNodes);
+
+      if (!removedNodes.includes(progressBar)) return;
       progressBar.cancelLoop();
+      observer.disconnect();
     });
   };
   const observer = new MutationObserver(callback);
@@ -49,9 +40,9 @@ const addProgressBar = (element, afterDelay) => {
   observer.observe(element, { childList: true });
 };
 
-const ListNavItem = ({ title, selected, indicator, onClick, afterDelay }) => {
+const ListNavItem = ({ title, selected, indicator, afterDelay }) => {
   const listNavItem = document.createElement('li');
-  const listNavContent = ListNavContent(selected, title, indicator, onClick);
+  const listNavContent = ListNavContent(selected, title, indicator);
 
   listNavItem.classList.add('list_view_select');
   if (selected) {

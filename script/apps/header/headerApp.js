@@ -2,7 +2,7 @@ const headerApp = () => {
   const setHeader = () => {
     const headerElement = document.querySelector('.title_wrapper');
 
-    headerElement.addEventListener('click', () => {
+    document.eventManager.register('click', headerElement, () => {
       location.reload();
     });
   };

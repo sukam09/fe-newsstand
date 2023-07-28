@@ -1,8 +1,9 @@
 import { MEDIA } from '../../constants.js';
 import { getCategoryData } from '../../fetch/getNewsData.js';
 import { shuffleArray } from '../../utils/utils.js';
-import MediaGrid from './MediaGrid.js';
-import MediaList from './MediaList.js';
+import EmptySubscribed from './EmptySubscribed.js';
+import MediaGrid from './grid/MediaGrid.js';
+import MediaList from './list/MediaList.js';
 
 const createMediaData = view => {
   if (view === 'grid') {
@@ -21,19 +22,27 @@ const createMediaData = view => {
   });
 };
 
-const MediaView = store => {
-  const { view, subscribed } = store.getState();
+const MediaView = (themeStore, navStore) => {
+  const { media, view, subscribed } = navStore.getState();
   const mediaView = document.createElement('div');
   const mediaData = createMediaData(view);
 
   mediaView.id = 'media_view';
-  if (view === 'list') {
-    mediaData.then(mediaData => {
-      mediaView.appendChild(MediaList(store, { list: mediaData, subscribed }));
-    });
-  } else {
-    mediaView.appendChild(MediaGrid(store, { grid: mediaData, subscribed }));
+  if (media === 'subscribed' && subscribed.length === 0) {
+    mediaView.appendChild(EmptySubscribed());
+    return mediaView;
   }
+  if (view === 'grid') {
+    mediaView.appendChild(
+      MediaGrid(themeStore, navStore, { mediaData, subscribed })
+    );
+    return mediaView;
+  }
+  mediaData.then(mediaData => {
+    mediaView.appendChild(
+      MediaList(themeStore, navStore, { mediaData, subscribed })
+    );
+  });
   return mediaView;
 };
 
