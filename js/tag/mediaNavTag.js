@@ -16,7 +16,7 @@ export function navTag() {
     <div class="newsstand__tab">
         <button>
         <img
-            class="newsstand—btn-list"
+            class="newsstand-btn-list"
             src="./assets/basicIcon/list-symbol.svg"
             alt=""
         />

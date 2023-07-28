@@ -1,267 +1,168 @@
-## 1주차 목표
+### 폴더구조
 
-- 기본화면 구성 ⭕️
-- 그리드 배치와 화면 전환 ⭕️
+[뉴스스탠드 데모영상](https://youtu.be/RX3RJi6MUi8)
 
-**7월 6일**
-
-1. 페이지네이션
-   오른쪽 버튼을 눌렀을때 랜덤하게 신문사가 나오도록 구현하기위해 어떻게 할 수 있을까 고민하다가
-
-   페이지네이션과 비슷한 방식으로 구현하면 되겠다고 생각을했습니다. 우측 버튼이 클릭되면 페이지 값을 증가시켜 자식 노드를 추가하는
-
-   방식으로 기능을 구현하였는데 누적되어 표현되는 문제가 발생했습니다. 이 문제점을 해결하기위해 자식노드를 삭제해야되는것을 깨닫고 자식노드를 삭제하는 방법을 찾아서 해결하였습니다.
-
-2. Grid와 Flex
-   뉴스스탠드의 그리드 영역에서 Grid와 Flex를 고민한 결과 Flex는 배치를 할때 어려운 부분이 있었고, UI가 [그리드 보기]인 만큼 Grid를 적용하기로 결정했습니다.
-
-**7월 7일**
-
-1. template literal로 전환 html로 작성된 문서를 template literal로 전환하는 과정에서, 어쩌면 간단하게 유지보수에 용이하게 파일을 분리하여 만들고자 했는데진행을하다보니 더 복잡해지고 중복되는 요소들이 많아졌다. 흐름을 파악하기 힘들어진 경우도 있어서 이를 어떻게 잘 해결해야할지 고민해봐야겠다. -> 기본적인 틀은 기존의 html 파일에 작성하기로 결정.
-2. 파일들이 분리되고, A 파일에서 사용되던 함수가 B 파일에서도 사용하려고 생각해보니까 점점 더 복잡해졌다. 인자로 전달된 값도 계속 추적해서 모든 파일에서 동일한 값을 갖게 신경써주려니 어려움이 많았다.
-   그래서 클래스를 적용시켜보기로 페어분과 상의를 했다. 클래스를 적용시키면 함수와 변수들을 일정하게 관리할 수 있었고 함수들간의 관계를 명확하게 할 수 있었다.
-   -> 시간이 지나고 생각해보니까 굳이 클래스로 묶어서 할 필요가 있을까 생각이 든다.
-
-## 2주차 목표
-
-- 속보뉴스 롤링효과 구현 ⭕️
-- 리스트보기 기본화면 구성 ⭕️
-- 카테고리에 프로그래스 바 구현 ⭕️
-- 카테고리 이동 (자동이동 & 버튼기반이동) ❌
-
-**7월 10일**
-
-1. 롤링효과 구현
-   <img width="944" alt="스크린샷 2023-07-10 오후 5 46 59" src="https://github.com/devMingu/fe-newsstand/assets/96288558/ddbf6828-3e51-490a-920f-0036a5a181ad">
-
-- 롤링효과를 처음 구현해봐서 어려움이 많았다. 혼자서는 도저히 좋은 생각이 떠오르지 않아서 구글링해서 자료를 검색하고 구현에 성공했다. 롤링효과는 간단하게 [대기, 진행, 완료] 3단계로 진행된다. 각각의 단계에 맞는 css를 집어넣으면 된다.
-
-- 그리고 마우스를 올렸을때 밑줄 긋는 효과를 주는것은 생각보다 간단하게 해결했다. 해당 영역에 이벤틔스너를 달아 밑줄 효과를 주면 끝.
-
-- 한가지 또 어려웠던 점은 무한롤링을 일시정지 시키는것이었다. 처음에는 css 효과를 안주면 될려나?하고 생각했지만 생각해보니 setInterval를 정지시키면 되는것이다.
-  사실, 처음에는 setInterval 함수에 시간을 무한에 가깝게 준 다음 정지시킬려고했지만 잘 안됬다. 결국에는 setInterval 함수를 일시적으로 종료시켜야했기에 clearInterval 함수를 사용해서 해결했다.
-
-2. 뉴스리스트 기본 틀 현재 진행중!
-
-- 오늘은 기본틀까지 만들고, 프로그래스바를 계속해서 만들어볼 예정이다.
-  <img width="944" alt="스크린샷 2023-07-10 오후 5 55 32" src="https://github.com/devMingu/fe-newsstand/assets/96288558/469406d5-e00a-4488-87f3-9435259018ac">
-
-3. 다시한번 느끼는 리팩토링
-
-- 오늘 롤링효과와 뉴스리스트를 구현하면서 코드가 다시 복잡해졌다. 내일은 전체구조를 다듬는 일을 하는게 좋을것같다.
-
-**7월 11일**
-
-1. 프로그래스 바 애니메이션 구현
-   <img width="938" alt="스크린샷 2023-07-11 오후 6 09 09" src="https://github.com/devMingu/fe-newsstand/assets/96288558/4a52d8d6-a3b9-4515-8f9a-daffb455b834">
-
-- 오늘은 하루종일 프로그래스 바를 구현하는데 시간을 보낸것 같다. 처음에는 단순하게 배경색상에 키프레임을줘서 채우면 되겠지 생각했는데 그리 간단하지 않았다. 흐릿한 배경이 존재하고 그 위에 배경을 서서히 채워야했다. 그러기위해서 css의 position값을 잘 활용할 수 있어야했다. 부모 태그에 position을 'relative'로 자식 태그의 position은 'absolute'로 위치 관계를 잘 잡아야한다. 이게 또 중요한 이유는 프로그래스 바 내부에 텍스트가 있기 때문에 영역을 잘 생각해서 구현해줘야했다.
-
-- 처음에는 setInterval을 활용해서 width 값을 0부터 시작해서 일정값만큼 증가시켜서 구현을 했었다. 구현은 잘 되었는데 이상하게 페이지를 이동하다보면 채워지는 바의 속도가 점점 빨라지는것이었다. 왜 이런 문제가 발생하는지 몰랐는데 크롱의 강의를 들으면서 '콜 스택' '이벤트 루프' '콜백 큐'의 관계를 이해하니까 왜 속도가 빨라졌는지 이해할 수 있었다. 이 부분에대해서 정리를 해보자.
-
-**7월 12일**
-
-1. 프로그래스 바 선택 기반 구현
-   ![화면_기록_2023-07-12_오후_6_01_28_AdobeExpress](https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/96288558/5cbf4b6c-ba59-4cf4-8064-a42a6540fd8b)
-
-- 카테고리를 감싸고 있는 부모 태그를 querySelectAll로 받아와서 자식 태그 전부에 이벤트리스너를 달았다.
-- 특정 카테고리가 선택되면, 프로그래스가 진행중인 카테고리를 찾아 효과를 제거해준다.
-- 제거가 완료되면, 선택된 카테고리에 프로그래스 바를 나타내는 클래스를 넣어준다.
-- 원하는 횟수만큼 작동되지 않는것은 해결해야할 점이다.
-
-**7월 13일**
-
-1. 좌우 버튼 선택에 따라 카테고리 이동 기능 구현
-
-   사실 좌우 버튼은 그리드보기할때도 사용되던 녀석들이다. 그래서 카테고리에 이동할때 같은 버튼을 사용하게되면 겹치는 문제가 발생하고 잘 작동되지 않는것을 알 수 있다. 그래서 어떤 방법이 있을까 생각해보다가 서로 역할에 맞는 버튼을 따로 만들기로 했다. 서로 다른 버튼이기에 겹치는 경우는 생각하지 않아도 좋다. 다만, 페이지가 변경될때 사용하지 않는 버튼에 display 속성에 none을 줘서 사용 불가능 상태로 만들어줬다.
-
-   ⚠️ 발생한 문제점
-   현재 보여지는 페이지를 전역변수로 잡고 어디에서나 사용할 수 있게 선언해줬는데, addEventListener 안에서 페이지 변수를 바꿨는데 이벤트리스너 스코프 안에서만 바뀌고 전역변수는 값이 그대로라서 자동이동 & 버튼 이동이 혼합되서 진행될때 서로 다른 페이지 값을 가지고 있어서 원하는 기능 구현이 되지 않았다.
-   그래서 상태를 업데이트해주는 함수를 따로 만들어서 이벤트리스너 안에서 함수를 호출해서 모든 변수가 일정된 값을 가질 수 있도록 하였다.
-
-   <img width="848" alt="스크린샷 2023-07-13 오후 6 20 16" src="https://github.com/devMingu/fe-newsstand/assets/96288558/0140ecfd-99c2-4126-b1e7-af57f96dcaf9">
-
-2. 카테고리에 따른 뉴스 콘텐츠 보여주기
-
-   뉴스 콘텐츠를 간단하게 json형식으로 만들어서 가져와서 보여주는 기능이다. 현재 선택된 카테고리를 추적해서 거기에 알맞은 뉴스를 보여주는 방식을 사용하기위해서 카테고리 선택을 인덱스로 관리해서 쉽게 접근할 수 있도록 전역변수를 만들어줬다.
-
-   ![화면_기록_2023-07-13_오후_6_21_52_AdobeExpress](https://github.com/devMingu/fe-newsstand/assets/96288558/df214221-722d-4f85-85fd-e127c56bd76e)
-
-**7월 14일**
-
-1. 카테고리에 보여줄 콘텐츠가 남은 상태에서 우측 버튼을 클릭하면 다음 콘텐츠로 넘어가도록 구현.
-
-   ⚠️ 전역변수로 선언된 현재 콘텐츠 페이지의 수가 한바퀴를 돌고나면 이상하게 +2씩 증가하고 +4씩 증가하는 이상한 현상을 겪는중이다.
-   방금 든 생각인데 프로그래스 바 효과를 넣어줄때 이벤트리스너를 중첩해서 추가하는 것 같아서 발생하는 문제인 것 같다.
-   우선 오류를 찾기위해서는 코드의 흐름부터 정리해서 수정한 다음에 코드를 수정해보자.
-   ![화면_기록_2023-07-14_오후_6_40_12_AdobeExpress](https://github.com/devMingu/fe-newsstand/assets/96288558/9e235c4e-7f39-4220-ad4c-7b8baf4ca286)
-
-   ❔ 무엇이 문제점이였을까?
-
-   이벤트리스너에대한 이해부족이 가장 큰 문제였다. 그 이유는 현재 진행중인 카테고리와 다른 카테고리가 실행될때 해당 카테고리를 addProgressAction 함수를 호출해서 카테고리에 페이지와 프로그래스 바를 실행시켰다.
-
-   ```javascript
-   function 해당카테고리에_프로그래스바_추가() {
-     element.children[0].addEventListener("animationiteration", callback);
-     element.children[0].addEventListener("animationend", callback);
-   }
-   ```
-
-   여기서 위에서 언급한 한바퀴를 돌고났을때 문제가 발생하던 지점이다. 한바퀴를 돌고나면 똑같은 카테고리에 이벤트리스너가 중복되어 적용이 된다. 따라서 +2씩 +4씩 증가하는 문제점이 발생한 것이였다. 이벤트 핸들링 과정을 이해하면 조금 더 빠르게 찾을 수 있던 문제점이지 않을까 싶다.
-
-**7월 17일**
-
-### 구독하기와 해제하기 기능 오류
-
-### 오류 발생
-
-1. '전체 언론사'에서 언론사 구독
-2. '내가 구독한 언론사' 탭으로 이동하고 다시 '전체 언론사'로 넘어와서 구독한 언론사를 확인하면 구독이 안되어있음.
-   ![구독하기_오류_AdobeExpress (1)](https://github.com/devMingu/fe-newsstand/assets/96288558/fb01f2dd-300f-4b8d-82ea-5a4ef83f174f)
-
-### 정상적으로 진행될때
-
-1. '전체 언론사'에서 언론사 구독
-2. '내가 구독한 언론사' 탭으로 이동하고 구독된 언론사를 해제하기하고 다시 '전체 언론사'로 이동.
-3. '전체 언론사'에서 언론사 구독
-4. '내가 구독한 언론사' 탭으로 이동했다가 다시 '전체 언론사' 탭으로 넘어오면 구독이 되어있는것을 확인할 수 있음.
-   ![구독하기_제대로_됨_AdobeExpress (1)](https://github.com/devMingu/fe-newsstand/assets/96288558/f44fd31d-4f5d-4fcc-b6d1-7d60836f8dcc)
-
-### 예상하는 문제점
-
-1. mouseover 타입의 이벤트리스너를 등록할때 버블링이 일어남. -> mouserenter 타입으로 변경했지만 별 소용없음.
-   (가끔 오류발생나던 과정에서 제대로 동작할때도 있어서 위와같은 오류를 예상해봤음)
-
-### 문제해결
-
-생각보다 문제는 쉽게 해결됬다. 바로 코드를 잘못 작성해서 그렇다.
-
-```javascript
-// 변경전
-const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].imgSrc;
-const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
-
-// 변경후
-const alt = isMySubscribe ? paintData[idx][0] : paintData[idx].name;
-const icon = isMySubscribe ? paintData[idx][1] : paintData[idx].lightSrc;
+```bash
+├── assets
+│   ├── basicIcon
+│   ├── logo
+│   │   ├── light
+│   │   └── dark
+│   └── thumbnail
+│
+├── css
+│   ├── header
+│   └── main
+│       ├── categoryArea
+│       ├── mediaArea
+│       └── snakBar
+│
+├── data
+│
+├── js
+│   ├── core
+│   ├── newsstand
+│   ├── store
+│   ├── tag
+│   └── utils
+│
+└── home.html
 ```
-
-변경전 alt 값에 imgSrc를 넣어줘서 발생한 문제였다. 당연히 구독목록에 존재하지 않는 값을 넣어주니 발생한 문제점이였다.
-그래도 설계를 구체적으로해서 코드가 흘러가는 흐름을 잘 찾을 수 있어서 금방 오류를 해결했다.
-
-**7월 18일**
-
-### 코드 개선을 위해 단축평가 적용하기
-
-뉴스스탠드 미션을 진행하면서 if문 사용을 지양하고자 삼항연산자를 많이 활용하는 패턴을 적용시켰다.
-
-### 기존 코드의 문제점
-
-- if문으로 충분한 문장에서 삼항연산자를 적용시킬때. 불 필요한 에로우 함수가 만들어져있다.
-
-```javascript
-// 구독을해지하면 바로 다시 그려준다. 삼항연산자 적용
-const subList = subscribeState.getSubscribeState();
-navTab.isMySubscribe ? paintNews(subList) : () => {};
-```
-
-### 기존 코드 개선
-
-- 논리연산자를 활용한 단축평가
-
-```javascript
-// 구독을해지하면 바로 다시 그려준다. 단축평가 적용
-const subList = subscribeState.getSubscribeState();
-navTab.isMySubscribe && paintNews(subList);
-```
-
-### 요약
-
-- 논리곱(&&): A && B 모두 true일때 B를 반환
-- 논리합(||): A || B중 true를 만나면 바로 반환.
-
-**7월 19일**
-
-### [내가 구독한 언론사 카테고리 리스트에 반영하기](https://github.com/devMingu/fe-newsstand/issues/10)
 
 ---
 
-### 잘 반영되어있는것처럼 보이지만 수정할게 많다.
+### 기술적 도전
 
-![화면_기록_2023-07-19_오후_6_33_51_AdobeExpress](https://github.com/devMingu/fe-newsstand/assets/96288558/27c221b0-2aa4-4b80-acca-5248e745e467)
+뉴스스탠드 미션을 진행하면서 다음과 같은 기술적 도전을했습니다.
 
-### 오류발생
+- 옵저버 패턴 적용하기
+- store을 생성하기 (with 리덕스)
+- querySelector 직접 만들어보기
 
-'전체 언론사'와 '내가 구독중인 언론사' 두 개의 탭에
-리스트 뷰에서의 이벤트리스너와 그리드 뷰에서의 이벤트리스너가 등록되어있어서 클릭될때마다 동시에 실행이되는 경우가있다. 이럴때 원하지 않는 코드까지 실행되어 서로 다른 영역에 영향을 미치게되고 원하지 않는 결과가 등장했다.
-현재 보고있는 페이지를 참조하여 실행되는 조건을 바꿀 생각이다.
+---
 
-**7월 20일**
+### store 생성하기
 
-7월 19일에 발생한 문제점을 해결하기위해서는 사용자가 현재 보고있는 페이지를 담고있는 상태가 필요했다.
-사용자가 보고있는 페이지가 '그리디' 페이지라면 해당 페이지에서 상태가 변경됬을때 '리스트' 페이지를 다시 그려주지 않아도 된다.
-사용자가 보고있는 뷰를 관리하는 상태는 클래스를 사용했다.
+구독하기 & 해지하기 기능을 구현하면서 구독중인 언론사를 담는 store가 필요했습니다. 이때, 각 모듈들이 서로 동일한 구독 상태를 공유해야하므로 하나의 store를 생성해야했습니다.
+
+store에는 리덕스 개념을 적용시켰습니다. 따라서 다음과 같이 구조를 구성하였습니다.
+
+### store
+
+##### 추가적으로 옵저버 패턴을 적용시키기위해 subscribe 메소드를 생성하여 구독 함수를 받을 수 있도록하였습니다.
 
 ```javascript
-// 사용자가 포커스한 뷰가 어딘지 기억하는 ViewState 클래스
-class ViewState {
-  // '전체 언론사' or '내가 구독한 언론사'중 포커싱이 어디에 되어있는지? navTab
-  // 사용자가 '그리드' or '리스트'뷰 중 어디를 포커싱하는지.
-  constructor() {
-    this.view = {
-      navTab: {
-        MY_PUBLISHER: false,
-        ALL_PUBLISHER: true,
-      },
-      user: {
-        grid: true,
-        list: false,
-      },
-    };
+export function createStore(reducer) {
+  let state;
+  let handler = [];
+  reducer(state, {
+    type: "@@__init__@@",
+  });
+
+  return {
+    dispatch: (action) => {
+      state = reducer(state, action);
+      // notify
+      handler.forEach((h) => {
+        h();
+      });
+    },
+    subscribe: (listener) => {
+      handler.push(listener);
+    },
+    //unsubscribe
+
+    getState: () => state,
+  };
+}
+```
+
+### dispatch
+
+```javascript
+// SET: 언론사 구독하기
+export function setSubscribe(name, src, id) {
+  store.dispatch(actionCreator(ACTION.SUBSCRIBE, [name, src, id]));
+}
+
+// SET: 구독 해지하기
+export function setUnsubscribe(name) {
+  store.dispatch(actionCreator(ACTION.UNSUBSCRIBE, name));
+}
+```
+
+### reducer
+
+```javascript
+function reducer(state = InitState, action) {
+  switch (action.type) {
+    // 구독하기
+    case ACTION.SUBSCRIBE:
+      return { ...state, subList: [...state.subList, action.data] };
+    // 구독 해지하기
+    case ACTION.UNSUBSCRIBE:
+      return {
+        ...state,
+        subList: state.subList.filter((sub) => sub[0] !== action.data),
+      };
+    default:
+      return { ...state };
   }
 }
 ```
 
-### 크롱님 코드리뷰 반영
+---
 
-- Spread operator 사용
-  ```javascript
-  // 수정전
-  const categoryList = Array.from(categoryParent.children);
-  // 수정후
-  const categoryList = [...categoryParent.children];
-  ```
-- 객체에 직접적인 접근 피하기
-  - View를 담당하는 클래스를 만들어서 메소드를통해 간접적으로 접근.
-  ```javascript
-  // 수정전
-  navTab.isMySubscribe = true;
-  // 수정후
-  View.setNavTabView(VIEW.MY_SUB, true);
-  ```
+### querySelector 직접 만들기
 
-**7월 21일**
+#### 이번 미션을 진행하면서 DOM조작을위해 querySelector를 많이 사용했습니다.
 
-### 롤링 로직 리팩토링
+크롱님이 querySelector API를 직접 만들어보는 선택미션을주셔서 만들어보기로 했습니다.
+querySelector를 구현하기위해 노드 객체가 가지고있는 속성을 확인하기위해 `console.dir`를 사용하면서 어떤 속성을 가지고 있는지 확인하고
+root노드부터 시작하고 자식노드들을 재귀적으로 순회하면서 구현하였습니다.
 
 ```javascript
-// 수정 전
-function moveLeftContent() {
-  // 왼쪽 뉴스 롤링 로직
-}
-function moveRightContent() {
-  // 오른쪽 뉴스 롤링 로직
-}
+// "div"와 같은 태그네임을 인자로 받아 모든 노드 객체들을 반환합니다.
+customQuerySelectAllByTagName(search, node = document) {
+    node.localName === search && this.result.push(node);
 
-// 수정 후
-function moveContent(position) {
-  // position을 인자로 받아서 방향에 맞는 로직을 실행해준다.
-  const headlineData =
-    position === "right" ? rightHeadlineData : leftHeadlineData;
-  // 생략 ...
-}
+    for (const elem of node.children) {
+      this.customQuerySelectAllByTagName(search, elem);
+    }
+    return this.result;
+  }
+
+  // 클래스 이름을 인자로 받아 모든 노드 객체들을 반환합니다.
+  getAllElementWithClassName(search, node = document) {
+    if (node.classList) {
+      [...node.classList].includes(search) && this.result.push(node);
+    }
+
+    for (const elem of node.children) {
+      this.getAllElementWithClassName(search, elem);
+    }
+
+    return this.result;
+  }
+
+  // 클래스 이름을 인자로 받아 첫번째로 발견된 노드 객체를 반환합니다.
+  getElementWithClassName(search, node = document) {
+    for (const elem of node.children) {
+      [...elem.classList].includes(search) &&
+        !this.result.length &&
+        this.result.push(elem);
+      this.getElementWithClassName(search, elem);
+    }
+
+    return this.result;
+  }
 ```
 
-### 구독하기 스낵바 추가
+### 이슈 & 위키에 정리한 내용들
 
-<img width="955" alt="스크린샷 2023-07-21 오후 6 43 43" src="https://github.com/devMingu/fe-newsstand/assets/96288558/488fbc98-6eba-4ece-aaa2-da16c3aa3a05">
+- [뉴스스탠드 개발일기](https://github.com/devMingu/fe-newsstand/wiki/%EB%89%B4%EC%8A%A4%EC%8A%A4%ED%83%A0%EB%93%9C-%EC%A0%9C%EC%9E%91%EC%9D%BC%EA%B8%B0)
+- [바닐라로 리덕스 적용하기](https://github.com/devMingu/fe-newsstand/wiki/%EB%B0%94%EB%8B%90%EB%9D%BC%EB%A1%9C-store%EC%97%90-%EB%A6%AC%EB%8D%95%EC%8A%A4-%EA%B0%9C%EB%85%90-%EB%8F%84%EC%9E%85%ED%95%98%EA%B8%B0)
+- [querySelector 만들기](https://github.com/devMingu/fe-newsstand/issues/17)
+- [언론사를 동시에 구독할때 생기는 문제 해결하기](https://github.com/devMingu/fe-newsstand/issues/15)
+- [이벤트리스너 중복으로 발생한 문제점](<https://github.com/devMingu/fe-newsstand/wiki/%EC%BD%98%ED%85%90%EC%B8%A0-%EC%88%AB%EC%9E%90%EA%B0%80-%EC%9D%B4%EC%83%81%ED%95%98%EA%B2%8C-%EC%A6%9D%EA%B0%80%ED%95%98%EB%8A%94-%ED%98%84%EC%83%81-(%EC%9D%B4%EB%B2%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4%EB%84%88-%EC%A4%91%EB%B3%B5)>)
+- [고차함수 reduce 사용기](https://github.com/devMingu/fe-newsstand/wiki/%EA%B3%A0%EC%B0%A8%ED%95%A8%EC%88%98-reduce-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0.)

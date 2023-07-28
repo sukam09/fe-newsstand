@@ -1,6 +1,7 @@
 import { makeCategoryTag } from "../tag/categoryTag.js";
 import { makeButtonTag } from "../tag/buttonTag.js";
 import { getCategoryData } from "../fetchAPI.js";
+import { switchToListAll } from "../utils/switch.js";
 import {
   nextContents,
   makeNewsList,
@@ -20,11 +21,9 @@ import {
   setNavTabViewToAll,
   setCategoryIndex,
   setContentsPage,
-  setGoBefore,
-  getGoBefore,
   getFirstPage,
-} from "../store/state.js";
-import { store } from "../store/redux.js";
+} from "../store/dispatch.js";
+import { store } from "../store/reducer.js";
 import {
   removeChildElement,
   handleElementClass,
@@ -42,8 +41,6 @@ const category = [
   "지역",
 ];
 
-// 카테고리 태그, 리스트 버튼 태그 생성.
-// makeCategoryTag(category);
 makeButtonTag(
   ".newsstand__list-navigation-btn",
   "left-list-button btn-disabled",
@@ -61,29 +58,35 @@ newsData.map((it) => {
 categoryDataList.map((it) => categoryDataLength.push(it.length));
 
 const CATEROY_NUMBER = 7;
+const FIRST_PAGE = 0;
 
 const mySubscribe = document.querySelector(".newsstand-subscribe-publisher");
 const allPublisher = document.querySelector(".newsstand-all-publisher");
 addEventOnMySubAndAllSub();
 
-store.subscribe(() => {
-  getUserView() === VIEW.LIST && paintNewsCategory();
-});
+store.subscribe(renderList);
 
 export function paintNewsCategory() {
+  getNavTabView() === VIEW.MY_SUB &&
+    getSubscrbeList().length === 0 &&
+    (function () {
+      alert("보여줄 콘텐츠가 없습니다.");
+      switchToListAll();
+    })();
+  // 카테고리 이름 (ex. 종합/경제 or YTN)
   const categoryNameList =
     getNavTabView() === MESSAGE.MY_PUBLISHER ? mySubArray() : category;
-
+  // 전체 카테고리 수
   const totalCategory =
     getNavTabView() === MESSAGE.MY_PUBLISHER
       ? mySubArray().length
       : CATEROY_NUMBER;
-
+  // 각 카테고리별 담고있는 콘텐츠 수. 내가 구독한 언론사일때는 1로 맞춰줌
   const contentsLength =
     getNavTabView() === MESSAGE.MY_PUBLISHER
       ? new Array(mySubArray().length).fill(1)
       : categoryDataLength;
-
+  // 각 카테고리에 맞는 뉴스들
   const categoryNewsData =
     getNavTabView() === MESSAGE.MY_PUBLISHER
       ? makeMySubNews()
@@ -92,7 +95,7 @@ export function paintNewsCategory() {
   const categoryParent = document.querySelector(".newsstand__news-nav");
   const btnParent = document.querySelector(".newsstand__list-navigation-btn");
 
-  // 기존에 존재하던 카테고리 리스트와 버튼 리스트 제거.
+  // 기존에 존재하던 카테고리 리스트와 버튼 리스트 제거. -> 등록되어있는 이벤트리스너를 삭제하기위해.
   removeChildElement(categoryParent);
   removeChildElement(btnParent);
 
@@ -106,37 +109,20 @@ export function paintNewsCategory() {
 
   // li태그와 버튼 태그
   const categoryList = [...categoryParent.children];
-  const leftBtn = document.querySelector(".left-list-button");
-  const rightBtn = document.querySelector(".right-list-button");
 
-  // 애니메이션 이벤트 추가
-  addAnimationEvent(categoryList, totalCategory, contentsLength);
+  // 프로그래스 바 진행과 관련된 이벤트 리스너 등록
+  addEventListenerWithProgressBar(categoryList, totalCategory, contentsLength);
 
-  // 뉴스리스트 생성
-  makeNewsList(getFirstPage(), totalCategory, categoryNewsData);
-  // 각각의 클릭, 버튼 이벤트 추가
-  onUserClickCategory(
-    totalCategory,
+  // 클릭과 관련된 이벤트 리스너 등록
+  addEventListnerWithClick(
     categoryNewsData,
     categoryList,
     contentsLength,
     totalCategory
   );
-  // 이전 또는 다음 콘텐츠를 보여주도록 함.
-  onUserLeftClickCategory(
-    leftBtn,
-    totalCategory,
-    categoryList,
-    contentsLength,
-    categoryNewsData
-  );
-  onUserRightClickCategory(
-    rightBtn,
-    totalCategory,
-    categoryList,
-    contentsLength,
-    categoryNewsData
-  );
+  // 뉴스리스트 생성
+  makeNewsList(FIRST_PAGE, totalCategory, categoryNewsData);
+
   restartProgressBar(categoryList, contentsLength);
 }
 
@@ -175,7 +161,11 @@ export function deleteListButton() {
 }
 
 // 카테고리에 애니메이션과 관련된 이벤트리스너 등록
-function addAnimationEvent(categoryList, totalCategory, contentsLength) {
+function addEventListenerWithProgressBar(
+  categoryList,
+  totalCategory,
+  contentsLength
+) {
   categoryList.map((element, idx) => {
     element.addEventListener(
       "animationiteration",
@@ -194,12 +184,47 @@ function addAnimationEvent(categoryList, totalCategory, contentsLength) {
   });
 }
 
+function addEventListnerWithClick(
+  categoryNewsData,
+  categoryList,
+  contentsLength,
+  totalCategory
+) {
+  const leftBtn = document.querySelector(".left-list-button");
+  const rightBtn = document.querySelector(".right-list-button");
+
+  // 각각의 클릭, 버튼 이벤트 추가
+  onUserClickCategory(
+    categoryNewsData,
+    categoryList,
+    contentsLength,
+    totalCategory
+  );
+  // 이전 또는 다음 콘텐츠를 보여주도록 함.
+  onUserLeftClickCategory(
+    leftBtn,
+    totalCategory,
+    categoryList,
+    contentsLength,
+    categoryNewsData
+  );
+  onUserRightClickCategory(
+    rightBtn,
+    totalCategory,
+    categoryList,
+    contentsLength,
+    categoryNewsData
+  );
+}
+
 // 내가 구독한 언론사일때 실행되는 함수
 function addEventOnMySubAndAllSub() {
   mySubscribe.addEventListener("click", () => {
     if (getUserView() === VIEW.LIST) {
       setNavTabViewToMy();
-      onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
+      // 내가 구독한 언론사에 포커스를 줄려면 구독한 콘텐츠가 하나라도 있어야됌.
+      getSubscrbeList().length &&
+        onFocusToClicked(VIEW.MY_SUB, mySubscribe, allPublisher);
       setCategoryIndex(0);
       setContentsPage(1);
       // paintNewsCategory();
@@ -228,18 +253,15 @@ function handlProgressAnimationEnd(
   contentsLength
 ) {
   return function () {
-    removeProgressAction();
     let categoryIdx = getCategoryIdx();
 
-    getGoBefore()
-      ? setCategoryIndex(--categoryIdx)
-      : setCategoryIndex(++categoryIdx);
+    ++categoryIdx;
 
     categoryIdx = categoryIdx < 0 ? totalCategory - 1 : categoryIdx;
     categoryIdx %= totalCategory;
+
     setCategoryIndex(categoryIdx);
     setContentsPage(1);
-    setGoBefore(false);
 
     startProgressAction(categoryList, contentsLength);
 
@@ -256,6 +278,7 @@ function handleProgressAnimationIteration(
   contentsLength
 ) {
   return function () {
+    const textData = [getCurrentContent(), "/", contentsLength[idx]];
     let currentContents = getCurrentContent();
     setContentsPage(++currentContents);
 
@@ -266,10 +289,13 @@ function handleProgressAnimationIteration(
       contentsLength,
       categoryDataList
     );
-
-    element.children[2].textContent = `${getCurrentContent()}`;
-    element.children[3].textContent = `/`;
-    element.children[4].textContent = `${contentsLength[idx]}`;
+    textData.map((it, idx) => {
+      element.children[idx + 2].textContent = it;
+    });
     makeNewsList(getCurrentContent() - 1, totalCategory, categoryDataList);
   };
+}
+
+function renderList() {
+  getUserView() === VIEW.LIST && paintNewsCategory();
 }

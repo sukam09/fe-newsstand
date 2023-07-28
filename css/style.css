@@ -2,11 +2,10 @@
 @import "./main/main.css";
 @import "./header/header.css";
 
-#root {
-  width: 930px;
-
+:root {
   --border-border-default: #d2dae0;
   --surface-surface-alt: #f5f7f9;
+  --surface-surface-default: #ffffff;
 
   --text-text-default: #5f6e76;
   --text-text-strong: #14212b;
@@ -18,9 +17,6 @@
   --blue-500: #4362d0;
 }
 
-.btn-disabled {
-  display: none;
-}
-.view-disabled {
-  display: none;
+#root {
+  width: 930px;
 }
