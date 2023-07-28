@@ -5,7 +5,7 @@ import { CATEGORY_NUM } from "./progressBar.js";
 import { removeAddClass } from "../util/utils.js";
 import { getPressItemByName, removePressFromSubList } from "./gridView.js";
 import { getState, setState } from "../observer/observer.js";
-import { subscribedPress } from "../store/store.js";
+import { isLight, subscribedPress } from "../store/store.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;
@@ -22,9 +22,7 @@ let news_sub_list = document.querySelectorAll(".news-sub-list li");
 
 /***** 리스트뷰 프로그레스바 카운트/탭넘버 추가 *****/
 async function appendCategoryTabNum() {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   for (let i = 0; i < CATEGORY_NUM; i++) {
     const currentData = categoryList[i];
     tab[i].innerHTML = `<span class="now-count">1</span> <span>/</span>
@@ -34,28 +32,25 @@ async function appendCategoryTabNum() {
 
 /***** 리스트뷰 아티클 섹션 그리기 *****/
 async function appendPressInfo(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  const is_light_mode = getState(isLight);
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
-  press_brandmark.src = currentData.logoSrc;
+  press_brandmark.src = is_light_mode
+    ? currentData.lightSrc
+    : currentData.darkSrc;
   edit_date.innerHTML = currentData.editDate;
 }
 
 async function appendNewsMain(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   thumbnail.src = currentData.imgSrc;
-  news_main_title = currentData.mainTitle;
+  news_main_title.innerHTML = currentData.mainTitle;
   putSubscribeBtnImg(currentData.name);
 }
 
 async function appendNewsSub(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   for (let i = 0; i < SUB_NEWS_TITLE_NUM; i++) {
     news_sub_list[i].innerHTML = currentData.subTitleList[i].title;
@@ -90,9 +85,7 @@ function putSubscribeBtnImg(name) {
 /***** 언론사 이름으로 구독 언론사 여부 확인 *****/
 //아티클에서 언론사 이름 가져오기
 async function getNameFromArticle(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   const press_name = currentData.name;
   return press_name;

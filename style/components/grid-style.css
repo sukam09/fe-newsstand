@@ -7,8 +7,8 @@
   width: 929px;
   height: 388px;
   gap: 1px;
-  border-top: 1px solid var(--border-border-default, #d2dae0);
-  border-left: 1px solid var(--border-border-default, #d2dae0);
+  border-top: 1px solid var(--border-default);
+  border-left: 1px solid var(--border-default);
   z-index: 1;
   position: relative;
 }

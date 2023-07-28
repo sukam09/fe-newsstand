@@ -1,5 +1,6 @@
 import { setGrid, drawGridArrow } from "../components/gridView.js";
 import {
+  isLight,
   isGridView,
   isMySubView,
   gridPageIdx,
@@ -19,4 +20,6 @@ export function initSubscribe() {
 
   subscribe(isMySubView, setGrid);
   subscribe(isMySubView, drawGridArrow);
+
+  subscribe(isLight, setGrid);
 }

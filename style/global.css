@@ -1,23 +1,64 @@
 /***** 공통 부분 *****/
 :root {
-  --text-weak: #879298;
-  --text-strong: #14212b;
-  --text-default: #5f6e76;
-  --border-default: #d2dae0;
-  --surface-alt: #f5f7f9;
-  --text-white-weak: rgba(255, 255, 255, 0.7);
+  --gray-scale-white-alt: #ffffff;
+  --gray-scale-white-alt-opacity: 0.7;
+  --gray-scale-white: #ffffff;
+  --gray-scale-50: #f5f7f9;
+  --gray-scale-100: #d2dae0;
+  --gray-scale-200: #879298;
+  --gray-scale-300: #6e8091;
+  --gray-scale-400: #5f6e76;
+  --gray-scale-500: #4b5966;
+  --gray-scale-black: #14212b;
+  --blue-100: #7890e7;
+  --blue-500: #4362d0;
+
+  --text-strong: var(--gray-scale-black);
+  --text-bold: var(--gray-scale-500);
+  --text-default: var(--gray-scale-400);
+  --text-weak: var(--gray-scale-200);
+  --text-white-default: var(--gray-scale-white);
+  --text-white-weak: var(--gray-scale-white-alt);
+  --text-point: var(--blue-500);
+  --surface-default: var(--gray-scale-white);
+  --surface-alt: var(--gray-scale-50);
+  --surface-brand-default: var(--blue-500);
+  --surface-brand-alt: var(--blue-100);
+  --border-bold: var(--gray-scale-300);
+  --border-default: var(--gray-scale-100);
   --progress-before: #7890e7;
   --progress-after: #4362d0;
 }
 
+.dark {
+  --text-strong: var(--gray-scale-white);
+  --text-bold: var(--gray-scale-50);
+  --text-default: var(--gray-scale-100);
+  --text-weak: var(--gray-scale-white-alt);
+  --text-white-default: var(--gray-scale-white);
+  --text-white-weak: var(--gray-scale-white-alt);
+  --text-point: var(--blue-500);
+  --surface-default: var(--gray-scale-black);
+  --surface-alt: var(--gray-scale-500);
+  --surface-brand-default: var(--blue-500);
+  --surface-brand-alt: var(--blue-100);
+  --border-bold: var(--gray-scale-white-alt);
+  --border-default: var(--gray-scale-400);
+  transition: 0.3s linear !important;
+}
+
+.dark {
+  background-color: var(--surface-default);
+}
+
 .font-init {
-  color: var(--text-text-default, #5f6e76);
+  color: var(--text-default);
   font-family: Pretendard;
   font-style: normal;
 }
 
 .bold-font-init {
-  color: var(--text-text-strong, #14212b);
+  color: var(--text-strong);
   font-family: Pretendard;
   font-style: normal;
   font-weight: 700;

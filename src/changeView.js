@@ -17,12 +17,14 @@ import {
 } from "./components/subListNews.js";
 import { setState, getState } from "./observer/observer.js";
 import {
+  isLight,
   isGridView,
   isMySubView,
   subListPageIdx,
   subscribedPress,
 } from "./store/store.js";
 import { setGrid } from "./components/gridView.js";
+import { DARK_MODE_ICON, LIGHT_MODE_ICON } from "./util/path.js";
 
 let total_press;
 let subscribed_press;
@@ -162,6 +164,25 @@ function changeToSubListViewDisplay() {
   removeAddClass(total_press, "bold-font-init", "not-clicked");
   removeAddClass(subscribed_press, "not-clicked", "bold-font-init");
   appendSubCategory();
+}
+
+const body = document.querySelector("body");
+const dark_mode_icon = document.querySelectorAll(".dark-mode-icon");
+
+dark_mode_icon.forEach((icon) =>
+  icon.addEventListener("click", (e) => {
+    handleDarkMode(body, e.target);
+  })
+);
+
+function handleDarkMode(body, target) {
+  setState(isLight, !getState(isLight));
+  if (getState(isLight)) {
+    target.src = LIGHT_MODE_ICON;
+  } else {
+    target.src = DARK_MODE_ICON;
+  }
+  body.classList.toggle("dark"), 100;
 }
 
 export {

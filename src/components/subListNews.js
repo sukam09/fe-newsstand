@@ -5,7 +5,6 @@ import { clearProgress } from "./progressBar.js";
 import { getPressItemByName, removePressFromSubList } from "./gridView.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
-let sub_length = 0;
 let pressList = null;
 
 const sub_news_article = document.querySelector(".sub-news-article");
@@ -23,6 +22,15 @@ function appendPressInCategory(press) {
   $li.classList.add("progress-item", `press${press.id}`);
   $li.innerHTML = `${press.name}<div class="count font-init"><span class="now-count"> > </span></div>`;
   sub_nav.append($li);
+}
+
+function appendSubCategory() {
+  const sub_list = getState(subscribedPress);
+  const sub_nav = document.querySelector(".sub-list-nav ul");
+  sub_nav.innerHTML = "";
+  for (let i = 0; i < sub_list.length; i++) {
+    appendPressInCategory(sub_list[i]);
+  }
 }
 
 /***** 내 구독 리스트뷰 아티클 섹션 그리기 *****/
@@ -59,15 +67,6 @@ async function appendNewsSub(press) {
     news_sub_list[i].innerHTML = currentData[0].subTitle[i];
   }
   caption.innerHTML = `${currentData[0].name} 언론사에서 직접 편집한 뉴스입니다.`;
-}
-
-function appendSubCategory() {
-  const sub_list = getState(subscribedPress);
-  const sub_nav = document.querySelector(".sub-list-nav ul");
-  sub_nav.innerHTML = "";
-  for (let i = 0; i < sub_list.length; i++) {
-    appendPressInCategory(sub_list[i]);
-  }
 }
 
 function drawSubListView(idx) {
