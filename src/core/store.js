@@ -4,8 +4,7 @@ class Store {
     this.showState = {
       isShowAllPress: true,
       isShowGrid: true,
-    };
-
+    }; // 전체/구독 , 그리드/리스트 상태
     this.listeners = new Set();
     this.showListenrs = new Set();
   }

@@ -136,7 +136,9 @@ export default class SubPressNews {
     }
     if (store.getStateSize() === 0 && store.showState.isShowAllPress) return;
 
-    this.setSubProgressBar.call(subCategoriesObj);
+    if (!store.showState.isShowGrid && !store.showState.isShowAllPress) {
+      this.setSubProgressBar.call(subCategoriesObj);
+    }
     this.pressIndex = store.getState()[this.storePIndex] - 1;
     this.mainNews = pressData[this.pressIndex];
     this.render();

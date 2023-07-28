@@ -10,10 +10,6 @@ export default class SubCategories {
 
     this.progressInterval;
     this.currentCategory = 0;
-
-    if (store.getStateSize() !== 0) {
-      this.handleProgress();
-    }
   }
 
   render() {
@@ -51,13 +47,17 @@ export default class SubCategories {
    */
   handleProgress() {
     this.render();
-    this.progressInterval = setInterval(() => {
-      this.currentCategory += 1;
-      if (this.currentCategory === store.getStateSize()) {
-        this.currentCategory = 0;
-      }
-      this.goNextNews.call(subPressObj);
-    }, PROGRESS_SPEED);
+    if (!store.showState.isShowGrid && !store.showState.isShowAllPress) {
+      this.progressInterval = setInterval(() => {
+        this.currentCategory += 1;
+        if (this.currentCategory === store.getStateSize()) {
+          this.currentCategory = 0;
+        }
+        this.goNextNews.call(subPressObj);
+      }, PROGRESS_SPEED);
+    } else {
+      clearInterval(this.progressInterval);
+    }
   }
 
   /**

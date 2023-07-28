@@ -3,6 +3,7 @@ import {
   LISTVIEW_ICON,
   allNewsObj,
   categoriesObj,
+  subCategoriesObj,
 } from "../constants/index.js";
 import store from "../core/Store.js";
 import Header from "./header/index.js";
@@ -39,10 +40,12 @@ export default class App {
       iconsNodes[0].src = `src/assets/icons/${LISTVIEW_ICON}.svg`;
       iconsNodes[1].src = `src/assets/icons/${GRIDVIEW_ICON}-selected.svg`;
       categoriesObj.handleProgress();
+      subCategoriesObj.handleProgress();
     } else {
       iconsNodes[0].src = `src/assets/icons/${LISTVIEW_ICON}-selected.svg`;
       iconsNodes[1].src = `src/assets/icons/${GRIDVIEW_ICON}.svg`;
       categoriesObj.handleProgress();
+      subCategoriesObj.handleProgress();
     }
   }
 }

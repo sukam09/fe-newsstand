@@ -35,7 +35,8 @@ export default class SubButton {
       if ($gridWrapper) $gridWrapper.removeChild($snackBar);
       if ($listWrapper) $listWrapper.removeChild($snackBar);
 
-      if (!store.showState.isShowGrid) {
+      // 리스트뷰에서 구독할 때
+      if (!store.showState.isShowGrid && store.showState.isShowAllPress) {
         store.setShowState({ isShowAllPress: false, isShowGrid: false });
       }
     }, SNACKBAR_DURATION);
