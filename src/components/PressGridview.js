@@ -123,9 +123,9 @@ export default function PressGridView({ $target, initialState, onChangeTab, clea
   };
 
   const updateGridView = () => {
-    const { press, page } = this.state;
+    const { press, view, page } = this.state;
 
-    if (press === 'all') {
+    if (view !== 'grid' || press === 'all') {
       return;
     }
 
