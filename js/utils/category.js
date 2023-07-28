@@ -118,15 +118,16 @@ function makeMainNews(img, title) {
 // idx는 뉴스 콘텐츠의 순서를 의미함. 처음 시작할때는 무조건 0, 진행중일때는 값이 변경될 수 있음.
 export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
   const newsListParent = document.querySelector(".newsstand__list-right");
+  const subList = getSubscrbeList();
+  const categoryIdx = getCategoryIdx();
+  const view = getNavTabView();
+  const subIdx = categoryIdx % subList.length;
+
   const idx =
-    getNavTabView() === VIEW.MY_SUB
-      ? getSubscrbeList()[getCategoryIdx() % getSubscrbeList().length][2]
-      : getCategoryIdx() % CATEROY_NUMBER;
+    view === VIEW.MY_SUB ? subList[subIdx][2] : categoryIdx % CATEROY_NUMBER;
 
   const data =
-    getNavTabView() === VIEW.MY_SUB
-      ? [newsData[idx - 1]]
-      : categoryDataList[idx];
+    view === VIEW.MY_SUB ? [newsData[idx - 1]] : categoryDataList[idx];
 
   const name = data[page].name; // 언론사
   const img = data[page].imgSrc; // 뉴스 이미지 src
