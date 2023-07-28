@@ -1,0 +1,33 @@
+.toggle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle i {
+  font-size: 1.5em;
+  color: #aaa;
+  transition: opacity 0.3s ease;
+}
+
+#light-mode {
+  opacity: 0;
+}
+
+#dark-mode {
+  opacity: 1;
+}
+
+.toggle input[type="radio"] {
+  display: none;
+}

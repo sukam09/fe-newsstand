@@ -1,0 +1,75 @@
+:root {
+  /* color */
+  --color-grayscale-white-alt: #ffffffb2;
+  --color-grayscale-white: #ffffff;
+  --color-grayscale-50: #f5f7f9;
+  --color-grayscale-100: #d2dae0;
+  --color-grayscale-200: #879298;
+  --color-grayscale-300: #6e8091;
+  --color-grayscale-400: #5f6e76;
+  --color-grayscale-500: #4b5966;
+  --color-grayscale-black: #14212b;
+  --color-blue-100: #7890e7;
+  --color-blue-500: #4362d0;
+
+  /* color system */
+  --color-text-strong: var(--color-grayscale-black);
+  --color-text-bold: var(--color-grayscale-500);
+  --color-text-default: var(--color-grayscale-400);
+  --color-text-weak: var(--color-grayscale-200);
+  --color-text-white-default: var(--color-grayscale-white);
+  --color-text-white-weak: var(--color-grayscale-white-alt);
+  --color-text-point: var(--color-blue-500);
+  --color-surface-default: var(--color-grayscale-white);
+  --color-surface-alt: var(--color-grayscale-50);
+  --color-surface-brand-default: var(--color-blue-500);
+  --color-surface-brand-alt: var(--color-blue-100);
+  --color-border-bold: var(--color-grayscale-300);
+  --color-border-default: var(--color-grayscale-100);
+
+  /* font size */
+  --font-size-large: 24px;
+  --font-size-medium: 16px;
+  --font-size-regular: 14px;
+  --font-size-small: 12px;
+
+  /* font weight */
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+}
+
+.dark-mode {
+  --color-grayscale-white-alt: #ffffffb2;
+  --color-grayscale-white: #ffffff;
+  --color-grayscale-50: #f5f7f9;
+  --color-grayscale-100: #d2dae0;
+  --color-grayscale-200: #879298;
+  --color-grayscale-300: #6e8091;
+  --color-grayscale-400: #5f6e76;
+  --color-grayscale-500: #4b5966;
+  --color-grayscale-black: #14212b;
+  --color-blue-100: #7890e7;
+  --color-blue-500: #4362d0;
+
+  --color-text-strong: var(--color-grayscale-white);
+  --color-text-bold: var(--color-grayscale-50);
+  --color-text-default: var(--color-grayscale-100);
+  --color-text-weak: var(--color-grayscale-white-alt);
+  --color-text-white-default: var(--color-grayscale-black);
+  --color-text-white-weak: var(--color-grayscale-white-alt);
+  --color-text-point: var(--color-blue-500);
+  --color-surface-default: var(--color-grayscale-black);
+  --color-surface-alt: var(--color-grayscale-500);
+  --color-surface-brand-default: var(--color-blue-500);
+  --color-surface-brand-alt: var(--color-blue-100);
+  --color-border-bold: var(--color-grayscale-white-alt);
+  --color-border-default: var(--color-grayscale-400);
+
+  --font-size-large: 24px;
+  --font-size-medium: 16px;
+  --font-size-regular: 14px;
+  --font-size-small: 12px;
+
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+}

@@ -6,7 +6,6 @@
   letter-spacing: -1px;
   padding: 0 18px;
   box-sizing: border-box;
-  border: 1px solid var(--border-default);
   background-color: var(--surface-alt);
 }
 .rolling-banner > .rollingWrap {
@@ -49,7 +48,7 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: #5f6e76;
+  color: var(--color-text-default);
 }
 
 .rolling-banner a:hover {

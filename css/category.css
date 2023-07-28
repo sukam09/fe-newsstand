@@ -3,21 +3,24 @@
   width: 100%;
   display: flex;
   align-items: flex-start;
-  border-bottom: solid 1px #d2dae0;
+  border-bottom: solid 1px var(--color-border-default);
+  overflow: scroll;
 }
+
 .categoryItem progress {
   flex-grow: 1;
-  width: 100%;
+  width: 166px;
   height: 20px;
-  border: 2px black solid;
+  border: 2px black var(--color-text-strong);
 }
 
 #category {
   width: 100%;
+  background-color: #ffffffb2;
 }
 
 .categoryWrap {
-  background-color: #f5f7f9;
+  background-color: var(--color-surface-alt);
   position: relative;
 }
 
@@ -27,22 +30,19 @@
 
 .currentCategoryPage {
   display: none;
-  margin-right: 10px;
 }
 
 .categoryItem {
   position: relative;
   display: flex;
   padding: 16px;
-  height: 100%;
-  align-items: center;
-  color: #5f6e76;
+  min-width: fit-content;
+  justify-content: space-between;
 }
 
 .categoryItem:hover {
   cursor: pointer;
 }
-
 
 .progress-bar {
   pointer-events: none;
@@ -50,5 +50,8 @@
 
 .categoryItem > span {
   z-index: 1;
-  margin-right: 10px;
+}
+
+.categoryWrap > ul::-webkit-scrollbar {
+  display: none;
 }

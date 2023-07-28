@@ -1,18 +1,15 @@
 import news_article from "../json/news_article.json" assert { type: "json" };
 import { rollingTime } from "../utils/constants.js";
 
-let interval1;
-let interval2;
-
 function rollingBanner() {
   addInitRollingData(1);
   addInitRollingData(2);
-  addRollingHoverEvent(1);
-  addRollingHoverEvent(2);
   document.addEventListener("DOMContentLoaded", () => {
-    interval1 = setInterval(changeBanner, rollingTime, 1);
+    let interval1 = setInterval(changeBanner, rollingTime, 1);
+    addRollingHoverEvent(1, interval1);
     setTimeout(() => {
-      interval2 = setInterval(changeBanner, rollingTime, 2);
+      let interval2 = setInterval(changeBanner, rollingTime, 2);
+      addRollingHoverEvent(2, interval2);
     }, 1000);
   });
 }
@@ -82,7 +79,7 @@ function changeNextBanner(bannerNumber) {
   nextBanner.classList.add("current");
 }
 
-function addRollingHoverEvent(bannerNumber) {
+function addRollingHoverEvent(bannerNumber, interval) {
   const bannerHover = {};
   bannerHover[`bannerHover0${bannerNumber}`] = document.getElementById(
     `rolling-banner-0${bannerNumber}`
@@ -90,7 +87,7 @@ function addRollingHoverEvent(bannerNumber) {
   bannerHover[`bannerHover0${bannerNumber}`].addEventListener(
     "mouseover",
     function () {
-      clearInterval(`interval${bannerNumber}`);
+      clearInterval(interval);
     }
   );
   bannerHover[`bannerHover0${bannerNumber}`].addEventListener(

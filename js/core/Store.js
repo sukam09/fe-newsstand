@@ -1,56 +1,75 @@
+import { fetchNewsData } from "../setData/fetchCategoryData.js";
+
 class Store {
-  #pageNumber;
-  #progressInterval;
-  #pageMode;
-  #subscribedStatus;
-  #subscribedNewsCnt;
-  #subscribedNewsContent;
   constructor() {
-    this.#pageNumber = 0;
-    this.#pageMode = "grid";
-    this.#subscribedStatus = "all";
-    this.#subscribedNewsCnt = [];
-    this.#subscribedNewsContent = {};
-    this.setPage = function (pagenumber) {
-      this.#pageNumber = pagenumber;
-    };
-    this.getPage = function () {
-      return this.#pageNumber;
-    };
-    this.setProgressInterval = function (setInterval) {
-      this.#progressInterval = setInterval;
-    };
-    this.getProgressInterval = function () {
-      return this.#progressInterval;
-    };
-    this.clearProgressInterval = function () {
-      clearInterval(this.#progressInterval);
-    };
-    this.setSubscribedMode = function (status) {
-      this.#subscribedStatus = status;
-    };
-    this.setPageMode = function (status) {
-      this.#pageMode = status;
-    };
-    this.getSubscribedMode = function () {
-      return this.#subscribedStatus;
-    };
-    this.getPageMode = function () {
-      return this.#pageMode;
-    };
-    this.setSubscribeNewsCnt = function (key) {
-      this.#subscribedNewsCnt.push({ key: key, value: 1, arrow: true });
-    };
-    this.getSubscribeNewsCnt = function () {
-      return this.#subscribedNewsCnt;
-    };
-    this.setSubscribeNewsContent = function (object) {
-      // console.log(object);
-      // this.#subscribedNewsContent.push(object);
-    };
-    this.getSubscribeNewsContent = function (pageIndex) {
-      return this.#subscribedNewsContent[pageIndex];
-    };
+    this.pageNumber = 0;
+    this.pageMode = "grid";
+    this.subscribedStatus = "all";
+    this.subscribedNewsContent = {};
+    this.subscribeLogo = [];
+  }
+  async getOriginalNews() {
+    return fetchNewsData();
+  }
+  setPage(pagenumber) {
+    this.pageNumber = pagenumber;
+  }
+  getPage() {
+    return this.pageNumber;
+  }
+  setProgressInterval(setInterval) {
+    this.progressInterval = setInterval;
+  }
+  getProgressInterval() {
+    return this.progressInterval;
+  }
+  clearProgressInterval() {
+    clearInterval(this.progressInterval);
+  }
+  setSubscribedMode(status) {
+    this.subscribedStatus = status;
+  }
+  setPageMode(status) {
+    this.pageMode = status;
+  }
+  getSubscribedMode() {
+    return this.subscribedStatus;
+  }
+  getPageMode() {
+    return this.pageMode;
+  }
+  async setSubscribeNewsContent(itemId) {
+    const news = await Stores.getOriginalNews();
+    for (const category in news) {
+      const newsItems = news[category];
+      const foundItem = newsItems.find((item) => item.id === parseInt(itemId));
+      if (foundItem) {
+        foundItem["arrow"] = true;
+        if (!this.subscribedNewsContent[foundItem.id]) {
+          this.subscribedNewsContent[foundItem.name] = [foundItem];
+          this.subscribeLogo.push(foundItem);
+        } else {
+          this.subscribedNewsContent[foundItem.name].push(foundItem);
+          this.subscribeLogo.push(foundItem);
+        }
+      }
+    }
+  }
+  getSubscribeNewsContent() {
+    return this.subscribedNewsContent;
+  }
+  removeSubscribeNewsContent(id) {
+    const newData = {};
+    const data = this.subscribedNewsContent;
+    for (const key in data) {
+      newData[key] = data[key].filter((item) => item.id != id);
+      if (newData[key].length === 0) delete newData[key];
+    }
+    this.subscribedNewsContent = newData;
+    this.subscribeLogo = this.subscribeLogo.filter((item) => item.id != id);
+  }
+  getSubscribeLogo() {
+    return this.subscribeLogo;
   }
 }
 

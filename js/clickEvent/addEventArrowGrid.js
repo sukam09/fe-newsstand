@@ -1,11 +1,12 @@
-import { makeArrow } from "../utils/utils.js";
-import { makeGrid } from "./render/renderGrid.js";
-import Stores from "./core/Store.js";
+import { makeArrow, removeArrow } from "../../utils/utils.js";
+import { makeGrid, clickSubscribeButtonInGrid } from "../render/renderGrid.js";
+import Stores from "../core/Store.js";
 
 const MAX_PAGE_NUMBER = 3;
 const MIN_PAGE_NUMBER = 0;
 
 function addEventArrowGrid(logos) {
+  removeArrow();
   makeArrow();
   const leftAsideButton = document.getElementById("left-arrow");
   const rightAsideButton = document.getElementById("right-arrow");
@@ -22,11 +23,13 @@ function increaseGridPage(logos, leftAsideButton, rightAsideButton) {
     rightAsideButton.style.visibility = "hidden";
     Stores.setPage(parseInt(Stores.getPage()) + 1);
     makeGrid(logos);
+    clickSubscribeButtonInGrid(logos);
     return;
   }
   leftAsideButton.style.visibility = "visible";
   Stores.setPage(parseInt(Stores.getPage()) + 1);
   makeGrid(logos);
+  clickSubscribeButtonInGrid(logos);
 }
 
 function decreaseGridPage(logos, leftAsideButton, rightAsideButton) {
@@ -34,11 +37,13 @@ function decreaseGridPage(logos, leftAsideButton, rightAsideButton) {
     leftAsideButton.style.visibility = "hidden";
     Stores.setPage(parseInt(Stores.getPage()) - 1);
     makeGrid(logos);
+    clickSubscribeButtonInGrid(logos);
     return;
   }
   rightAsideButton.style.visibility = "visible";
   Stores.setPage(parseInt(Stores.getPage()) - 1);
   makeGrid(logos);
+  clickSubscribeButtonInGrid(logos);
 }
 
 export { addEventArrowGrid };

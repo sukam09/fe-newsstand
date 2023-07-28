@@ -1,9 +1,11 @@
 import { drawCategory } from "../category.js";
 import { drawNews } from "../drawNews.js";
+import { doBeforeRender } from "../../utils/utils.js";
 
-const renderCardList = (categoryNewsCnt, categoryNewsContent) => {
-  drawCategory(categoryNewsCnt, categoryNewsContent);
-  drawNews(categoryNewsContent);
+const renderCardList = (news) => {
+  doBeforeRender("list");
+  drawCategory(news);
+  drawNews(news);
 };
 
 export { renderCardList };

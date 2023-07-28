@@ -2,34 +2,25 @@ import { renderCardList } from "./renderCardList.js";
 import { renderGrid } from "./renderGrid.js";
 import logo from "../../json/news_image.json" assert { type: "json" };
 import Stores from "../core/Store.js";
-import { categoryCnt, categoryNews } from "../setData.js/setCategoryData.js";
-import { snackBar } from "../snackBar.js";
-import { boldSubscribed, boldAll } from "../../utils/utils.js";
+import { clickSubscribeTypeButton } from "../clickEvent/clickSubscribeTypeButton.js";
+import { renderSubscribeTypeButton } from "./renderSubscribeTypeButton.js";
 
-const renderMain = (subscribeStatus, pageMode) =>
+const renderMain = (subscribeStatus, pageMode) => {
+  renderSubscribeTypeButton(subscribeStatus);
+  clickSubscribeTypeButton();
   subscribeStatus === "all" ? renderAll(pageMode) : renderSubscribe(pageMode);
+};
 
-const renderAll = (pageMode) => {
-  Stores.setPage(0);
-  boldAll();
+const renderAll = async (pageMode) => {
   return pageMode === "grid"
     ? renderGrid(logo)
-    : renderCardList(categoryCnt, categoryNews);
+    : renderCardList(await Stores.getOriginalNews());
 };
 
 const renderSubscribe = (pageMode) => {
-  if (!Stores.getSubscribeNewsCnt().length) {
-    snackBar("구독한 언론사가 없습니다.");
-    return;
-  }
-  Stores.setPage(0);
-  boldSubscribed();
   return pageMode === "grid"
-    ? renderGrid(logo)
-    : renderCardList(
-        Stores.getSubscribeNewsCnt(),
-        Stores.getSubscribeNewsContent()
-      );
+    ? renderGrid(Stores.getSubscribeLogo())
+    : renderCardList(Stores.getSubscribeNewsContent());
 };
 
 export { renderMain };
