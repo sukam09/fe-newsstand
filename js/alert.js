@@ -20,7 +20,7 @@ function alertClickList(news, alertDiv, progressBarId) {
       news[progressBarId][currentCategoryPageNumber - 1].id
     );
     Stores.setPageMode("list");
-    replaceSubscribeButtonList("subscribe");
+    replaceSubscribeButtonInList("subscribe");
     if (!Object.keys(Stores.getSubscribeNewsContent()).length)
       Stores.setSubscribedMode("all");
     renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
@@ -44,7 +44,7 @@ function alertClickGrid(subscribeButton, alertDiv) {
   alertYes.addEventListener("click", () => {
     alertDiv.style.display = "none";
     Stores.removeSubscribeNewsContent(subscribeButton.id);
-    replaceSubscribeButtonGrid(subscribeButton, "subscribe");
+    replaceSubscribeButtonInGrid(subscribeButton, "subscribe");
     if (Object.keys(Stores.getSubscribeNewsContent()).length === 0)
       Stores.setSubscribedMode("all");
     renderMain(Stores.getSubscribedMode(), Stores.getPageMode());
