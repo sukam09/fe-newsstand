@@ -49,8 +49,7 @@ export default function PressListView({ $target, initialState, onChangeTab, save
     const { materials, pid, regDate } = newsData;
     const mainNews = materials[0];
 
-    const pressInfoData = await fetchPressInfo();
-    const { logo, name } = pressInfoData.find(press => press.id === parseInt(pid, 10));
+    const { logo, name } = pressInfoData.find(({ id }) => id === parseInt(pid, 10));
 
     this.setState(
       {
