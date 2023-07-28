@@ -20,7 +20,7 @@ export default class ListView {
     this.$wrapper.appendChild(
       new ArrowButton({
         name: "LeftButton",
-        isVisible: this.page !== 0,
+        isVisible: true,
         action: this.goPreviousNews.bind(pressObj),
       })
     );
@@ -28,7 +28,7 @@ export default class ListView {
     this.$wrapper.appendChild(
       new ArrowButton({
         name: "rightButton",
-        isVisible: this.page !== 0,
+        isVisible: true,
         action: this.goNextNews.bind(pressObj),
       })
     );
