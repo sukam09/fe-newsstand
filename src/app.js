@@ -72,6 +72,7 @@ export default function App({ $app }) {
       if (this.state.view === view) {
         return;
       }
+
       this.setState({ ...this.state, view });
       pressTab.setState({ ...this.state, view });
     },
@@ -103,6 +104,9 @@ export default function App({ $app }) {
             pidMap,
           },
           onChangeTab,
+          clearTimer: () => {
+            clearInterval(this.timer);
+          },
         })
       : new PressListView({
           $target: $div,
@@ -119,8 +123,12 @@ export default function App({ $app }) {
             view: this.state.view,
           },
           onChangeTab,
+          saveTimer: timer => {
+            this.timer = timer;
           },
-          onChangePress,
+          clearTimer: () => {
+            clearInterval(this.timer);
+          },
         });
   };
 
