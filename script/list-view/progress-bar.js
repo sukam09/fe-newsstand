@@ -1,14 +1,12 @@
-import { CATEGORY_LIST } from "../../asset/data/constants.js";
-import listViewData from "../../asset/data/listViewData.js";
 import { store } from "../../store/store.js";
 import { filterData } from "../view-utils/filter-data.js";
 
 const listNav = document.querySelector(".list-nav");
 
-function listenProgressBarEnd() {
+async function listenProgressBarEnd() {
     const progressBar = document.querySelector(".progress-bar");
-    let {crntPage, crntCategory} = store.getViewState();
-    const {navData, numOfListPages} = filterData();
+    const {crntPage, crntCategory} = store.getViewState();
+    const {navData, numOfListPages} = await filterData();
     
     progressBar.addEventListener("animationend", () => {
         if (crntPage < numOfListPages - 1){
@@ -20,10 +18,13 @@ function listenProgressBarEnd() {
     })
 }
 function removeProgressBar() {
-    const progressBar = document.querySelector(".progress-bar")
-    progressBar.classList.remove("progressing");
+    const progressBar = document.querySelector(".progress-bar");
+    if (progressBar){
+        progressBar.remove()
+    }
 }
 function drawProgressBar() {
+    removeProgressBar();
     const target = listNav.children[store.getViewState().crntCategory];
     const progressBarElem = document.createElement("div");
     progressBarElem.classList.add("progress-bar", "progressing");
@@ -32,4 +33,4 @@ function drawProgressBar() {
     listenProgressBarEnd();
     
 }
-export {drawProgressBar, removeProgressBar}
+export {drawProgressBar}

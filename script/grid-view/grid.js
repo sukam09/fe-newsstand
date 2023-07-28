@@ -1,19 +1,17 @@
 import { store } from "../../store/store.js";
-import { FILTER_TYPE } from "../../asset/data/constants.js";
+import { FILTER_TYPE, GRID_ITEMS_PER_PAGE, URL } from "../../asset/data/constants.js";
+import { shuffleArray } from "../../util/shuffleArray.js";
+import { handleSubscribe } from "../view-utils/handle-subscribe.js";
 
 const gridContainer = document.querySelector(".grid-box");
 const pressCover = document.querySelector(".press-cover");
-const emptyView = document.querySelector(".empty-view");
 const subBtn = document.querySelector(".sub-btn");
 const unsubBtn = document.querySelector(".unsub-btn");
 
-function drawEmptyGrid() {
-    gridContainer.classList.add("hide");
-    emptyView.classList.remove("hide");
-}
+
 function getGridData() {
     let gridData;
-    let {crntFilter} = store.getViewState();
+    const {crntFilter} = store.getViewState();
     if (crntFilter === FILTER_TYPE.ALL){
         gridData = store.getShuffledList();
     } else if (crntFilter === FILTER_TYPE.SUBSCRIBED){
@@ -22,7 +20,7 @@ function getGridData() {
     return gridData
 }
 function showPressCoverBtn(item){
-    let subscribedPress = store.getSubList();
+    const subscribedPress = store.getSubList();
     if (subscribedPress.includes(parseInt(item.getAttribute("index")))){
         subBtn.classList.add("hide");
         unsubBtn.classList.remove("hide");
@@ -31,36 +29,50 @@ function showPressCoverBtn(item){
         unsubBtn.classList.add("hide");
     }
 }
+
 function handleGridHover(){
-    const pressItems = document.querySelectorAll(".pressItem");
-    pressItems.forEach((item)=>{
-        if (item.getAttribute("index") !== "undefined") {
-            item.addEventListener("mouseover",()=>{
-                showPressCoverBtn(item);
-                pressCover.classList.remove("hidden");
-                item.appendChild(pressCover);
-            })
+    gridContainer.addEventListener("mouseover", ({target}) => {
+        if (target.nodeName === "LI" && target.getAttribute("index") !== "undefined"){
+            showPressCoverBtn(target);
+            pressCover.classList.remove("hidden");
+            target.appendChild(pressCover);
         }
     })
-    gridContainer.addEventListener("mouseout", () => {
+    gridContainer.addEventListener("mouseleave", ({target}) => {  
         pressCover.classList.add("hidden");
     })
 }
+
 function drawGrid(){
-    let {crntPage} = store.getViewState()
-    let imgIdxList = getGridData();
-    if (imgIdxList.length === 0) {
-        drawEmptyGrid();
+    const {crntPage} = store.getViewState()
+    const imgIdxList = getGridData();
+    const gridItems = document.querySelectorAll(".pressItem");
+    let itemIdx = 0
+
+    // update grid images according to crnt page index
+    for (let i=GRID_ITEMS_PER_PAGE*crntPage;i<GRID_ITEMS_PER_PAGE*(crntPage+1);i++){
+        gridItems[itemIdx].setAttribute("index", imgIdxList[i]);
+        gridItems[itemIdx].innerHTML = i < imgIdxList.length ? `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />`: "";
+        itemIdx++;   
     }
-    gridContainer.innerHTML = "";
-    for (let i=24*crntPage;i<24*(crntPage+1);i++){
-        gridContainer.innerHTML += `
-            <li class="pressItem" index=${imgIdxList[i]}>
-            ${i >= imgIdxList.length ? "" : `<img src="./asset/logo/light/img${imgIdxList[i]}.svg" />` }   
-            </li>
-        `      
-    }
-    handleGridHover();    
+
+    store.initFlagVar();
 }
 
-export {drawGrid}
+async function initGrid () {
+    const pressData = store.getPressData();
+    let pressIdxArray = Array.from({length: pressData.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
+    shuffleArray(pressIdxArray); // shuffle grid only when reloading
+
+    for (let i = 0; i < GRID_ITEMS_PER_PAGE; i++){
+        gridContainer.innerHTML += `
+            <li class="pressItem"></li>
+        `
+    }
+    drawGrid();
+    handleGridHover();  
+    handleSubscribe();
+
+}
+
+export {drawGrid, initGrid}

@@ -1,32 +1,24 @@
-import { drawArrow, handleArrowClick } from "./script/arrow/arrow.js";
-import { drawDate } from "./script/view-utils/date.js";
-import { drawGrid} from "./script/grid-view/grid.js";
-import { handleViewChange } from "./script/nav/change-view.js";
-import {handleFilterChange} from "./script/nav/change-filter.js"
-import { handleReload } from "./script/view-utils/reload.js";
-import { rollInit } from "./script/rolling-section/rolling.js";
-import { shuffleArray } from "./util/shuffleArray.js";
-import pressList from "../asset/data/pressList.js";
-import { handleSubscribe } from "./script/view-utils/handle-subscribe.js";
+import { initArrow } from "./script/arrow/arrow.js";
+import { initGrid} from "./script/grid-view/grid.js";
+import { initRoll } from "./script/rolling-section/rolling.js";
 import { store } from "./store/store.js";
-import { renderView } from "./script/view-utils/render-view.js";
+import { observer } from "./store/observer-master.js";
+import { initHeader } from "./script/header/header.js";
+import { initNav } from "./script/nav/nav.js";
+import { getJSON } from "./util/getJSON.js";
+import { URL } from "./asset/data/constants.js";
 
 
-let pressIdxArray = Array.from({length: pressList.length}, (_,i) => i+1); // create array of consecutive numbers [1...96]
+async function init () {
+    store.setPressData(await getJSON(URL.PRESS_DATA));
+    // following init- functions are executed only once when loaded
+    initHeader();
+    initRoll();
+    initGrid();
+    initArrow();
+    initNav();
 
-function init () {
-    shuffleArray(pressIdxArray); // shuffle grid only when reloading
-    drawDate();
-    drawGrid();
-    drawArrow();
-    rollInit();
-
-    store.subscribe(renderView);
-    store.subscribe(drawArrow);
-    handleReload();
-    handleArrowClick();
-    handleViewChange();
-    handleFilterChange();
-    handleSubscribe();
+    store.subscribe(observer);
 }
+
 window.onload = init;

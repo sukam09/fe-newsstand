@@ -1,24 +1,31 @@
 
 import { FILTER_TYPE, VIEW_TYPE } from "../asset/data/constants.js";
-import { drawArrow } from "../script/arrow/arrow.js";
-import { drawGrid } from "../script/grid-view/grid.js";
-import { drawList } from "../script/list-view/list.js";
 
 class Store {
     constructor () {
         this.viewState = {
-            crntView : VIEW_TYPE.GRID, // this.crntView = VIEW_TYPE.GRID;
-            crntPage : 0,  // page index (grid, list view)
-            crntCategory : 0,  // category index (list view)
-            crntFilter : FILTER_TYPE.ALL
+            crntView : VIEW_TYPE.GRID,  // this.crntView = VIEW_TYPE.GRID;
+            crntPage : 0,               // page index (grid, list view)
+            crntCategory : 0,           // category index (list view)
+            crntFilter : FILTER_TYPE.ALL,
         }
+        this.flagState = {
+            isChangeView : false,
+            isChangeCategory :  false,
+            isSubscribing : false,
+            isUnsubscribing : false,
+        }
+        this.pressData = [];
         this.subList = [];
         this.shuffledList = [];
         this.observers = new Set();
     }
 
     getViewState() {
-        return {...this.viewState}
+        return {...this.viewState};
+    }
+    getFlagState() {
+        return {...this.flagState};
     }
     getSubList() {
         return this.subList;
@@ -26,36 +33,60 @@ class Store {
     getShuffledList() {
         return this.shuffledList;
     }
-    
+    getPressData() {
+        return this.pressData;
+    }
 
-    setViewState(newState){
+    
+    initFlagVar() {
+        for (let state in this.flagState){
+            if (state){
+                state = false;
+            }
+        }
+    }
+    setFlagVar(newState) {
+        if ("crntView" in newState){
+            this.flagState.isChangeView = true;
+        }
+        if ("crntCategory" in newState){
+            this.flagState.isChangeCategory = true;
+        }
+    }
+    async setViewState(newState){
         this.viewState = {...this.viewState,  ...newState};
-        // this.renderView();
+        this.setFlagVar(newState);
         this.notify();
+        
     }
     setSubList(id, type){
         switch(type){
             case "subscribe":
                 this.subList.push(id);
+                this.flagState.isSubscribing = true;
                 break;
             case "unsubscribe":
                 const idx = this.subList.findIndex(item => item === id);
                 this.subList.splice(idx,1)
                 break;
         }
-        // this.renderView();
         this.notify();
     }  
     setShuffledList(arr){
         this.shuffledList = arr;
     }
-
+    setPressData(data) {
+        this.pressData = data
+    }
 
     subscribe(observer) {
         this.observers.add(observer)
     }
     notify(){
-        this.observers.forEach(func => func());
+        return new Promise((resolve) => {
+            this.observers.forEach(func =>  new Promise(resolve => func(resolve)));
+            resolve(); 
+          });
     }
 }
 
