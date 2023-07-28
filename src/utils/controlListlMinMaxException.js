@@ -1,8 +1,10 @@
 import State from "../store/StateStore.js";
 import NewsData from "../store/NewsStore.js";
+import { getState } from "../observer/observer.js";
+import { AllState } from "../store/viewStore.js";
 
 export default function controListlMinMaxException(){
-    let isAll = State.getAllState();
+    let isAll = getState(AllState);
     let currentPage = State.getCurrentPage();
     let categoryNum = State.getCategoryNum();
     let MAX_CATEGORY_NUM = State.getMaxCategoryNum();

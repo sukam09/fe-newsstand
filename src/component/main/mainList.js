@@ -18,6 +18,7 @@ let listArticle;
 let pageMAX;
 let categoryMAX;
 let interval;
+let timeout;
 
 function makeCategory(){
     const mainCenter = document.getElementById("main-center");
@@ -117,7 +118,6 @@ function  makeSubscribeButton(){
     
     let categoryNum = State.getCategoryNum();
     let articleInfo;
-    let timeout;
 
     if(isAll){
         articleInfo = listArticle[categoryNum][currentPage];
@@ -147,10 +147,10 @@ function  makeSubscribeButton(){
         }
         else{
             clearTimeout(timeout);
+            Store.addSubscribe(articleInfo);
             snackbar.style.display = "flex";
             timeout = setTimeout(() =>{
                     snackbar.style.display = "none";
-                    Store.addSubscribe(articleInfo);
                     setState(AllState, false);
             },5000);
         } 
@@ -283,6 +283,7 @@ function setData(){
 function showList(){
     if(listArticle.length <= 0 ){
         alert("구독한 언론사가 없습니다.");
+        setState(AllState, true);
     }  
     else{
         makeCategory();

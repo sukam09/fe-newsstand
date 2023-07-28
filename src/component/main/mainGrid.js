@@ -12,11 +12,11 @@ let COUNT_PER_PAGE;
 let isAll;
 let currentPage;
 let pressData;
+let timeout;
 
 
 function addSubscribeBtn({target}){
     let id = target.previousSibling.className;
-    let timeout;
     const modal = document.querySelector(".alert-container");
     const snackbar = document.querySelector(".snackbar");
     const pressSpan = document.querySelector(".display-bold16");
@@ -30,10 +30,10 @@ function addSubscribeBtn({target}){
     else{
         clearTimeout(timeout);
         target.innerText = "해지하기";
+        Store.addSubscribe(NewsData.getGridArticleByID(id));
         snackbar.style.display = "flex";
         timeout = setTimeout(() =>{
                 snackbar.style.display = "none";
-                Store.addSubscribe(NewsData.getGridArticleByID(id));
                 setState(AllState, false);
         },5000);
     }
@@ -109,7 +109,8 @@ function refreshGrid(){
 }
 
 function setMaxpage(){
-    let maxPage = parseInt(pressData.length / COUNT_PER_PAGE) + 1;
+    let maxPage = parseInt(pressData.length / COUNT_PER_PAGE);
+    console.log(currentPage, maxPage);
     State.setMaxPage(maxPage);
 }
 

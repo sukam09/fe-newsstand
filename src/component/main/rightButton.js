@@ -14,7 +14,7 @@ export default function clickRightAsideButton(){
     rightAsideButton.innerHTML = '';
     
     if(getState(GridState)){
-        currentPage === MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
+        currentPage >= MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
     }
     else{
         rightAsideButton.style.visibility = "visible";
