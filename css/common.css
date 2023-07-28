@@ -33,11 +33,13 @@
 }
 
 .subscribe-circle-btn {
-  display: flex;
   height: 24px;
   padding: 6px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
+
   border-radius: 50px;
   border: var(--border-default);
   background: var(--color-surface-default);

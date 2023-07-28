@@ -19,9 +19,9 @@ class Atom {
     });
   }
 
-  update(value) {
+  update(value, isEmit) {
     this.#value = value;
-    this.#emit();
+    if (isEmit) this.#emit();
   }
 
   subscribe(callback) {
@@ -57,12 +57,12 @@ const useGetAtom = (atom) => {
   return atom.snapshot();
 };
 
-const useSetAtom = (atom, value) => {
-  atom.update(value);
+const useSetAtom = (atom, value, isEmit = true) => {
+  atom.update(value, isEmit);
 };
 
-const useSubscribeAtom = (atom, callback) => {
-  atom.subscribe(callback);
+const useSubscribeAtom = (atom, ...callbacks) => {
+  callbacks.forEach((callback) => atom.subscribe(callback));
 };
 
 const selector = ({ key, get, set }) => {

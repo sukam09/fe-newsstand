@@ -10,7 +10,7 @@ import {
   viewOptionState,
   viewState,
 } from "../../../store/store.js";
-import { useSubscribeAtom } from "../../../store/atom.js";
+import { useSubscribeAtom } from "../../../store/coil.js";
 
 export const setNavigateButton = () => {
   setEvents();

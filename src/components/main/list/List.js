@@ -5,7 +5,7 @@ import {
   selectedSubscribeState,
   subscribeListPageState,
 } from "../../../store/store.js";
-import { useGetAtom } from "../../../store/atom.js";
+import { useGetAtom } from "../../../store/coil.js";
 import { PRESS_ICON } from "../../../constants/constants.js";
 import { _querySelector } from "../../../utils/my-query-selector.js";
 import { checkIsAllType, checkIsGridView } from "../../../utils/utils.js";

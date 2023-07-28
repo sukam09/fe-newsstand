@@ -1,13 +1,5 @@
-const getSubscribeButton = (name) => {
-  const isSubscribed = checkSubscribe(name);
-  const isGridView = checkIsGridView();
+import { setEvents } from "./SubscribeButton.js";
 
-  if (isSubscribed) {
-    if (isGridView) {
-      return createUnSubscribeButton(name);
-    }
-    return createCircleSubscribeButton(name);
-  } else {
-    return createNormalSubscribeButton(name);
-  }
+export const setSubscribeButton = () => {
+  setEvents();
 };

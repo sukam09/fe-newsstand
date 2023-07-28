@@ -3,7 +3,7 @@ import {
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
 import { viewState } from "../../../store/store.js";
-import { useSetAtom } from "../../../store/atom.js";
+import { useSetAtom } from "../../../store/coil.js";
 import { checkIsGridView } from "../../../utils/utils.js";
 import { VIEW_TYPE } from "../../../constants/constants.js";
 

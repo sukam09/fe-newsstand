@@ -13,7 +13,7 @@ import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { useGetAtom } from "../../../store/atom.js";
+import { useGetAtom } from "../../../store/coil.js";
 import { NEWS_COUNT, PRESS_ICON } from "../../../constants/constants.js";
 import { getSubscribeButton } from "../../common/subscribe-button/SubscribeButton.js";
 
@@ -94,6 +94,7 @@ const getGridContent = (name, src) => {
 
   const $back = document.createElement("div");
   $back.className = "back";
+
   const $subscribeButton = getSubscribeButton(name);
   $back.appendChild($subscribeButton);
 

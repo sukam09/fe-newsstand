@@ -4,13 +4,18 @@ import {
   snackBarMsgState,
   subscribeGridPageState,
   subscribeState,
+  viewOptionState,
 } from "../../../store/store.js";
+import {
+  NEWS_COUNT,
+  SNACKBAR_MESSAGE,
+  VIEW_OPTION_TYPE,
+} from "../../../constants/constants.js";
 import {
   _querySelector,
   _querySelectorAll,
 } from "../../../utils/my-query-selector.js";
-import { useGetAtom, useSetAtom } from "../../../store/atom.js";
-import { NEWS_COUNT, SUBSCRIBE_MESSAGE } from "../../../constants/constants.js";
+import { useGetAtom, useSetAtom } from "../../../store/coil.js";
 
 const $snackBar = _querySelector(".snackbar");
 const snackClassList = $snackBar.classList;
@@ -44,11 +49,21 @@ const handleUnSubscribeButtonClick = () => {
   const itemIndex = subscribeList.indexOf(subscribeItem);
 
   const updateArray = subscribeList.filter((_, idx) => idx !== itemIndex);
+
+  if (updateArray.length === 0) {
+    useSetAtom(subscribeState, updateArray, false);
+    useSetAtom(viewOptionState, VIEW_OPTION_TYPE.ALL);
+
+    visibleToInvisible();
+    useSetAtom(snackBarMsgState, SNACKBAR_MESSAGE.DELETE);
+    return;
+  }
+
   const selectedSubscribeItem =
     updateArray[itemIndex % (subscribeList.length - 1)];
 
-  useSetAtom(selectedSubscribeState, selectedSubscribeItem);
   useSetAtom(subscribeState, updateArray);
+  useSetAtom(selectedSubscribeState, selectedSubscribeItem);
 
   if (updateArray.length % NEWS_COUNT === 0) {
     const currentPage = useGetAtom(subscribeGridPageState);
@@ -57,7 +72,7 @@ const handleUnSubscribeButtonClick = () => {
   }
 
   visibleToInvisible();
-  useSetAtom(snackBarMsgState, SUBSCRIBE_MESSAGE.DELETE);
+  useSetAtom(snackBarMsgState, SNACKBAR_MESSAGE.DELETE);
 };
 
 const handleCloseButtonClick = () => {

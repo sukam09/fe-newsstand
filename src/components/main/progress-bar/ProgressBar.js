@@ -3,7 +3,7 @@ import {
   useGetSelector,
   useSetAtom,
   useSetSelector,
-} from "../../../store/atom.js";
+} from "../../../store/coil.js";
 import {
   categoryState,
   viewState,
@@ -135,12 +135,13 @@ const updateCurrentPage = (newsList) => () => {
 
 const setPageActivateState = (currentPage, maxPage) => {
   const $maxPage = _querySelectorAll(".progress-span")[1];
+  const maxPageClassList = $maxPage.classList;
 
   if (currentPage === maxPage) {
-    $maxPage.classList.replace("font-deactivate", "font-activate");
+    maxPageClassList.replace("font-deactivate", "font-activate");
   } else {
-    $maxPage.classList.contains("font-activate") &&
-      $maxPage.classList.replace("font-activate", "font-deactivate");
+    maxPageClassList.contains("font-activate") &&
+      maxPageClassList.replace("font-activate", "font-deactivate");
   }
 };
 
@@ -207,7 +208,11 @@ const activatePressScroll = () => {
   const targetElement = _querySelector(".category--selected", container);
 
   const containerLeft = wrapper.getBoundingClientRect().left;
-  const targetLeft = targetElement.getBoundingClientRect().left;
+  const targetLeft = targetElement
+    ? targetElement.getBoundingClientRect().left
+    : 0;
+
+  if (containerLeft === 0 && targetLeft === 0) return;
 
   const startTime = performance.now();
   const originalScrollLeft = wrapper.scrollLeft;
@@ -223,7 +228,8 @@ const activatePressScroll = () => {
     const easeValue = easeInOutQuad(
       currentTime,
       originalScrollLeft,
-      targetScrollLeft - originalScrollLeft
+      targetScrollLeft - originalScrollLeft,
+      PROGRESS_SCROLL_DURATION
     );
     wrapper.scrollLeft = easeValue;
 

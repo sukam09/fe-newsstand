@@ -1,4 +1,4 @@
-import { useGetAtom } from "../store/atom.js";
+import { useGetAtom } from "../store/coil.js";
 import { VIEW_OPTION_TYPE, VIEW_TYPE } from "../constants/constants.js";
 import { viewOptionState, viewState } from "../store/store.js";
 
