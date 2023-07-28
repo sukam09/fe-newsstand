@@ -2,10 +2,15 @@
 
 ```
 fe-newsstand
+├─ .git
+│  ├─ ...
+├─ .github
+│  ├─ ...
 ├─ .gitignore
 ├─ Data
 │  ├─ News_Data.json
 │  └─ Rolling_News.json
+├─ datagenerator.js
 ├─ icons
 │  ├─ GridButton-Blue.svg
 │  ├─ GridButton.svg
@@ -16,7 +21,9 @@ fe-newsstand
 │  ├─ RightButton.svg
 │  ├─ SymbolArrow.svg
 │  ├─ SymbolDivision.svg
+│  ├─ SymbolMoon.svg
 │  ├─ SymbolPlus.svg
+│  ├─ SymbolSun.svg
 │  ├─ SymbolX.svg
 │  ├─ basic
 │  │  ├─ news_logo1.svg
@@ -24,32 +31,111 @@ fe-newsstand
 │  │  └─ news_logo96.svg
 │  └─ dark
 │     ├─ d_news_logo1.svg
+│     ├─ d_news_logo10.svg
 │     ├─ ...
 │     └─ d_news_logo96.svg
 ├─ img
 │  ├─ thumbnail1.jpg
 │  ├─ ...
 │  └─ thumbnail96.jpg
-├─ module
-│  ├─ api.js
-│  ├─ app.js
-│  ├─ grid.js
-│  ├─ list.js
-│  ├─ rolling.js
-│  ├─ subscribe.js
-│  ├─ util.js
-│  └─ variable.js
-├─ style
-│  ├─ reset.css
-│  ├─ style.css
-│  ├─ typography.css
-│  └─ variable.css
-├─ datagenerator.js
 ├─ index.html
-└─ readme.md
+├─ readme.md
+├─ src
+│  ├─ app.js
+│  ├─ controller
+│  │  ├─ arrowBtnController.js
+│  │  ├─ componentController.js
+│  │  ├─ fieldTabController.js
+│  │  ├─ gridController.js
+│  │  ├─ listController.js
+│  │  ├─ mainController.js
+│  │  ├─ myQuerySelector.js
+│  │  ├─ observer.js
+│  │  ├─ rollingController.js
+│  │  ├─ subscribeController.js
+│  │  └─ tabAndViewerController.js
+│  ├─ model
+│  │  ├─ model.js
+│  │  ├─ store.js
+│  │  └─ variable.js
+│  └─ view
+│     ├─ alert.js
+│     ├─ arrowBtn.js
+│     ├─ fieldTab.js
+│     ├─ grid.js
+│     ├─ header.js
+│     ├─ init.js
+│     ├─ list.js
+│     ├─ rollingBar.js
+│     ├─ snackBar.js
+│     ├─ subscribe.js
+│     └─ tabAndViewer.js
+└─ style
+   ├─ alert.css
+   ├─ arrowBtn.css
+   ├─ fieldTab.css
+   ├─ grid.css
+   ├─ header.css
+   ├─ list.css
+   ├─ reset.css
+   ├─ rollingBar.css
+   ├─ snackBar.css
+   ├─ style.css
+   ├─ tabAndViewer.css
+   ├─ typography.css
+   └─ variable.css
 ```
 
+## 4주차 To Do List
+
+<details>
+<summary>4주차 To Do List 정리</summary>
+<div markdown="1">
+
+### 1. [기존 state 기반 옵저버 패턴 구현](https://github.com/tommya98/fe-newsstand/issues/12#issue-1817450483)
+
+- [x] 함수형 옵저버 패턴 구현을 위한 함수 작성
+- [x] 옵저버 패턴을 통해 구독할 데이터 세팅
+- [x] view의 draw 함수 옵저버 구독
+- [x] 기존의 draw를 위한 state 삭제
+
+### 2. [코드 리팩토링 및 버그 수정](https://github.com/tommya98/fe-newsstand/issues/14#issue-1817757931)
+
+- [x] 함수에서 하나의 동작만 수행하도록 함수 나누기
+- [x] 기획서와 다른 동작 수정
+- [x] 버그 수정
+
+### 3. [다크모드 구현](https://github.com/tommya98/fe-newsstand/issues/15#issue-1817887807)
+
+- [x] 다크모드를 위한 css 구현
+- [x] 다크모드를 위한 js 구현
+- [x] 다크모드 스토어 구현
+- [x] 다크모드 토글을 위한 아이콘 추가
+
+### 4. [전역변수 옵저버 패턴으로 적용](https://github.com/tommya98/fe-newsstand/issues/18#issue-1819373455)
+
+- [x] 그리드 페이지 옵저버 적용
+- [x] 리스트 페이지 옵저버 적용
+- [x] 뷰 모드 옵저버 적용
+- [x] 다크모드 옵저버 단순화 적용
+- [x] 구독 뉴스 수 옵저버 적용
+
+### 5. [나만의 querySelector 구현](https://github.com/tommya98/fe-newsstand/issues/20#issue-1819863416)
+
+- [x] 태그 이름으로 querySelector구현
+- [x] 클래스로 querySelector구현
+- [x] 아이디로 querySelector구현
+- [x] 여러 요소를 합쳐서 querySelector구현
+- [x] 기존 querySelector와 myQuerySelector가 호환되도록 구현
+
+</div>
+</details>
+
 ## 3주차 To Do List
+
+<details>
+<summary>3주차 To Do List 정리</summary>
+<div markdown="1">
 
 ### 1. [2주차 코드 리팩토링](https://github.com/tommya98/fe-newsstand/issues/1#issue-1806831166)
 
@@ -74,7 +160,28 @@ fe-newsstand
 - [x] 리스트 모드 언론사 기사 영역 구현
 - [x] [구독하기] 버튼 클릭시 스낵바 등장 및 내부 뉴스 데이터 업데이트
 - [x] [x] 버튼 클릭시 알림창 등장 및 해지 기능 구현
-- [ ] 내가 구독한 언론사 보기 구현
+
+### 4. [MVC패턴으로 코드 작성](https://github.com/tommya98/fe-newsstand/issues/7#issue-1811566272)
+
+- [x] 알럿창 이벤트 리스너 구현
+- [x] 리스트모드 페이지 이동 구현
+- [x] 리스트모드 구독 기능 구현
+- [x] 그리드뷰 구독시 즉시 구독버튼이 바뀌도록 구현
+- [x] 그리드뷰 내가 구독한 언론사 예외 처리
+- [x] 리스트뷰 내가 구독한 언론사 최대 페이지 처리
+- [x] 기본 프로그래스바 구현
+- [x] 내가 구독한 언론사용 프로그래스바 그리는 함수 작성
+- [x] 내가 구독한 언론사 프로그래바 이동 구현
+
+### 5. [코드 리팩토링 및 오류 수정](https://github.com/tommya98/fe-newsstand/issues/10#issue-1815224147)
+
+- [x] 구독 버튼 커서 포인터 css 설정
+- [x] 구독하고 바로 취소시 타임아웃 삭제
+- [x] 리스트뷰 내가 구독한 언론사 마지막 언론사 삭제시 발생하는 오류 수정
+- [x] 내가 구독한 언론사 프로그래스바가 길 때 발생하는 오류 수정
+
+</div>
+</details>
 
 ## 2주차 To Do List
 
