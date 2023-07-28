@@ -1,4 +1,4 @@
-import { html } from "../lib/jsx.js";
+import { html } from "../../lib/jsx.js";
 /**
  * 브라우저를 새로고침합니다.
  */
