@@ -28,23 +28,26 @@ export function getSubscribed(id) {
   return store.getMyPress().find(({ pid }) => pid === id);
 }
 
-export function handleSubscribe(id, name, from, subscribeButton) {
+export function handleSubscribe(id, name, caller, subscribeButton, onChangeTab) {
   const { isSubscribed } = subscribeButton.state;
 
   if (isSubscribed) {
-    from.alert.setState({ ...from.alert.state, isShow: true, pid: id, pressName: name, subscribeButton });
+    caller.alert.setState({ ...caller.alert.state, isShow: true, pid: id, pressName: name, subscribeButton });
   } else {
     subscribeButton.setState({ ...subscribeButton.state, isSubscribed: true });
 
     // 만약 스낵바 타이머가 걸려 있으면 초기화하고 다시 5초 카운트
-    if (from.timer) {
-      clearTimeout(from.timer);
+    if (caller.snackBarTimer !== undefined) {
+      clearTimeout(caller.snackBarTimer);
     }
 
-    from.snackBar.setState({ ...from.snackBar.state, isShow: true });
-    from.timer = setTimeout(() => {
-      from.snackBar.setState({ ...from.snackBar.state, isShow: false });
-      // TODO: 내가 구독한 리스트로 이동
+    caller.snackBar.setState({ ...caller.snackBar.state, isShow: true });
+
+    caller.snackBarTimer = setTimeout(() => {
+      caller.snackBar.setState({ ...caller.snackBar.state, isShow: false });
+      if (caller.state.view === 'list') {
+        onChangeTab('my', 'list');
+      }
     }, SNACKBAR_DURATION);
 
     store.dispatch(actionCreator('subscribe', { pid: id, pressName: name }));
