@@ -1,0 +1,64 @@
+@import url("./foundation.css");
+
+/* Typography System */
+.display-bold24 {
+  font-size: var(--text-size-large);
+  font-weight: var(--text-weight-bold);
+}
+.display-bold16 {
+  font-size: var(--text-size-medium);
+  font-weight: var(--text-weight-bold);
+}
+.display-bold14 {
+  font-size: var(--text-size-regular);
+  font-weight: var(--text-weight-bold);
+}
+.display-bold12 {
+  font-size: var(--text-size-small);
+  font-weight: var(--text-weight-bold);
+}
+.display-medium16 {
+  font-size: var(--text-size-medium);
+  font-weight: var(--text-weight-medium);
+  line-height: 22px;
+}
+.display-medium14 {
+  font-size: var(--text-size-regular);
+  font-weight: var(--text-weight-medium);
+}
+.display-medium12 {
+  font-size: var(--text-size-small);
+  font-weight: var(--text-weight-medium);
+}
+.selected-bold16 {
+  font-size: var(--text-size-medium);
+  font-weight: var(--text-weight-bold);
+}
+.selected-bold14 {
+  font-size: var(--text-size-regular);
+  font-weight: var(--text-weight-bold);
+}
+.available-medium16 {
+  font-size: var(--text-size-medium);
+  font-weight: var(--text-weight-medium);
+  line-height: 22px;
+}
+.available-medium14 {
+  font-size: var(--text-size-regular);
+  font-weight: var(--text-weight-medium);
+}
+.available-medium12 {
+  font-size: var(--text-size-small);
+  font-weight: var(--text-weight-medium);
+}
+.hover-medium16 {
+  font-size: var(--text-size-medium);
+  font-weight: var(--text-weight-medium);
+  line-height: 22px;
+  text-decoration-line: underline;
+}
+.hover-medium14 {
+  font-size: var(--text-size-regular);
+  font-weight: var(--text-weight-medium);
+  text-decoration-line: underline;
+}

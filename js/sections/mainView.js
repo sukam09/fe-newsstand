@@ -1,15 +1,53 @@
-import { checkPage } from "../utils/checkPage.js";
-import { changeView } from "../utils/changeView.js";
-import { showGridView } from "../utils/makeGridView.js";
-import { showListView } from "../utils/makeListView.js";
-import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
+import {
+  changeView,
+  updateTabSelection,
+} from "../utils/viewUtils/changeView.js";
+import { showGridView } from "../utils/gridUtils/makeGridView.js";
+import { showListView } from "../utils/listUtils/makeListView.js";
+import {
+  FIRST_PAGE_NUM,
+  ICON_IMG_PATH,
+  GRID_INDEX,
+} from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { getView, getPage, getSubscribedPress } from "../core/getter.js";
+import { shuffleArray } from "../utils/commonUtils/shuffleIndex.js";
+import {
+  getView,
+  getPage,
+  getMode,
+  getCurrentPress,
+  getSubscribedPress,
+} from "../core/getter.js";
+import { getData } from "../core/api.js";
+import {
+  deletePopupAndAnimation,
+  checkAnswer,
+  handleAnimationEnd,
+} from "../utils/viewUtils/subscribePress.js";
+
 function MainView() {
-  // 옵저버 함수를 등록
-  document.addEventListener("click", handleClick);
+  store.setState({
+    gridIndex: shuffleArray(GRID_INDEX),
+  });
+  getPressListData();
+  drawPopup();
   showGridView();
-  // checkPage();
+  attachEventListner();
+}
+async function getPressListData() {
+  const data = await getData("newsListData");
+  store.setState({
+    listIndex: shuffleArray(data.News),
+  });
+}
+
+function attachEventListner() {
+  document.addEventListener("click", (e) => handleClick(e));
+  document.addEventListener("animationend", (e) => handleAnimationEnd(e));
+  const btn = document.querySelector(".buttons");
+  btn.addEventListener("click", (e) => {
+    checkAnswer(e);
+  });
 }
 
 function changePage(target) {
@@ -24,21 +62,62 @@ function changePage(target) {
   } else {
     showListView("");
   }
-  // checkPage();
+}
+
+function checkRange(e) {
+  if (
+    !e.target.closest(".popup") &&
+    !(e.target.closest(".sub") && getView() === "list")
+  ) {
+    deletePopupAndAnimation();
+  }
+}
+
+function drawPopup() {
+  document.addEventListener("click", (e) => checkRange(e));
+
+  const view_content = document.querySelector(".view-content");
+  // alert 그리는 부분
+  const new_div_alert = document.createElement("div");
+  new_div_alert.classList.add("popup", "alert");
+  new_div_alert.innerHTML += `
+        <div class="display-medium16 message"><span class="display-bold16 press">${
+          getCurrentPress().name
+        }</span>을(를)<br>구독해지하시겠습니까?</div>
+        <div class="buttons">
+          <button class="available-medium16 btn-yes">예, 해지합니다</button>
+          <button class="available-medium16 btn-no">아니오</button>
+        </div>`;
+
+  // snackbar 그리는 부분
+  const new_div_snackbar = document.createElement("div");
+  new_div_snackbar.classList.add("popup", "snackbar");
+  new_div_snackbar.textContent = "내가 구독한 언론사에 추가되었습니다.";
+
+  // popup창들 추가
+  view_content.append(new_div_alert, new_div_snackbar);
 }
 
 function handleClick(e) {
   const view_content = document.querySelector(".view-content");
   const target = e.target.id;
   switch (target) {
+    case "light-dark":
+      let _mode;
+      getMode() === "light" ? (_mode = "dark") : (_mode = "light");
+      store.setState({ mode: _mode });
+      document
+        .getElementById(`${target}`)
+        .setAttribute("src", `${ICON_IMG_PATH}${_mode}-mode.svg`);
+      document.documentElement.setAttribute("color-theme", getMode());
+      getView() === "grid" ? showGridView() : showListView();
+      break;
     case "grid-btn":
     case "grid-view-btn":
     case "list-btn":
     case "list-view-btn":
       store.setState({ page: FIRST_PAGE_NUM });
-      changeView();
-      getView() === "list" ? showListView(CATEGORY[0]) : showGridView();
-      // checkPage();
+      changeView(target.slice(0, 4));
       break;
     case "left":
     case "right":
@@ -47,27 +126,16 @@ function handleClick(e) {
         : changePage(target);
       break;
     case "all":
-      document.getElementById("subscribe").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-        // checkPage();
-      } else {
-        showListView(CATEGORY[0]);
-        // checkPage();
-      }
+      updateTabSelection(document.getElementById("all"));
       break;
     case "subscribe":
-      document.getElementById("all").classList.remove("clicked");
-      document.getElementById(`${target}`).classList.add("clicked");
-      store.setState({ page: FIRST_PAGE_NUM, tabMode: `${target}` });
-      if (getView() === "grid") {
-        showGridView();
-        // checkPage();
+      if (!getSubscribedPress().length) {
+        alert("구독한 언론사가 없습니다.");
+        store.setState({ tabMode: "all" });
+        return;
       } else {
-        showListView(getSubscribedPress[0]);
-        // checkPage();
+        store.setState({ tabMode: "subscribe" });
+        changeView("list");
       }
       break;
     default:

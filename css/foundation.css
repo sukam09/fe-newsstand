@@ -1,5 +1,17 @@
 :root {
-  --grayscalewhite-alt: #FFFFFF(70%);
+  /* Typography Default Value */
+  /* font size */
+  --text-size-large: 24px;
+  --text-size-medium: 16px;
+  --text-size-regular: 14px;
+  --text-size-small: 12px;
+
+  /* font weight */
+  --text-weight-bold: 700;
+  --text-weight-medium: 500;
+
+  /* Color Default Value */
+  --grayscalewhite-alt: rgba(255, 255, 255, 0.7);
   --grayscalewhite: #ffffff;
   --grayscale50: #f5f7f9;
   --grayscale100: #d2dae0;
@@ -29,7 +41,7 @@
 }
 
 :root[color-theme="dark"] {
-  --text-strong: var(--grayscalewhite50);
+  --text-strong: var(--grayscalewhite);
   --text-bold: var(--grayscale50);
   --text-default: var(--grayscale100);
   --text-weak: var(--grayscalewhite-alt);
