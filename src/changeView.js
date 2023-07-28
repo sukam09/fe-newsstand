@@ -8,7 +8,7 @@ import {
   runSubProgress,
   clearSubProgress,
 } from "./components/subProgressBar.js";
-import { setDisplay, setDisplayofArr, removeAddClass } from "./util/utils.js";
+import { setDisplayofArr, removeAddClass } from "./util/utils.js";
 import { drawListView } from "./components/listNews.js";
 import {
   appendSubCategory,
@@ -166,21 +166,20 @@ function changeToSubListViewDisplay() {
   appendSubCategory();
 }
 
+/***** 라이트모드 <-> 다크모드 변경 *****/
 const body = document.querySelector("body");
 const dark_mode_icon = document.querySelectorAll(".dark-mode-icon");
 
 dark_mode_icon.forEach((icon) =>
-  icon.addEventListener("click", (e) => {
-    handleDarkMode(body, e.target);
-  })
+  icon.addEventListener("click", handleDarkMode)
 );
 
-function handleDarkMode(body, target) {
+function handleDarkMode() {
   setState(isLight, !getState(isLight));
   if (getState(isLight)) {
-    target.src = LIGHT_MODE_ICON;
+    dark_mode_icon.forEach((item) => (item.src = LIGHT_MODE_ICON));
   } else {
-    target.src = DARK_MODE_ICON;
+    dark_mode_icon.forEach((item) => (item.src = DARK_MODE_ICON));
   }
   body.classList.toggle("dark"), 100;
 }
