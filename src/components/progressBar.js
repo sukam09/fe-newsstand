@@ -11,9 +11,7 @@ let progress_interval;
 let categoryList = null;
 
 async function getTabNum(current_category) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const tabNum = categoryList[current_category].tabs;
   return tabNum;
 }

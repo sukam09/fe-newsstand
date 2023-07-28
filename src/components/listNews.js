@@ -1,6 +1,6 @@
 import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "../util/path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
-import { getNewsContent, getPressObj } from "../api/api.js";
+import { getNewsContent } from "../api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
 import { removeAddClass } from "../util/utils.js";
 import { getPressItemByName, removePressFromSubList } from "./gridView.js";

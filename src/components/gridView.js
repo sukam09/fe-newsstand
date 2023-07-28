@@ -1,6 +1,6 @@
 import { UNSUB_BTN_IMG, GRID_SUB_BTN_IMG } from "../util/path.js";
 import { getPressObj } from "../api/api.js";
-import { setState, getState, subscribe } from "../observer/observer.js";
+import { setState, getState } from "../observer/observer.js";
 import {
   isLight,
   gridPageIdx,

@@ -3,15 +3,12 @@ const ROLLING_TIME = 5000;
 const SECOND_BANNER_DELAY = 1000;
 
 function rollingCallback(idx) {
-  //.prev 클래스 삭제
   document.querySelector(`.rolling-${idx} .prev`).classList.remove("prev");
 
-  //.current -> .prev
   let current = document.querySelector(`.rolling-${idx} .current`);
   current.classList.remove("current");
   current.classList.add("prev");
 
-  //.next -> .current
   let next = document.querySelector(`.rolling-${idx} .next`);
   //다음 목록 요소가 널인지 체크
   if (next.nextElementSibling == null) {

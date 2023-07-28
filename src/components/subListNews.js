@@ -1,8 +1,6 @@
 import { getPressObj } from "../api/api.js";
-import { getState, setState } from "../observer/observer.js";
-import { subscribedPress } from "../store/store.js";
-import { clearProgress } from "./progressBar.js";
-import { getPressItemByName, removePressFromSubList } from "./gridView.js";
+import { getState } from "../observer/observer.js";
+import { isLight, subscribedPress } from "../store/store.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 let pressList = null;
@@ -35,20 +33,19 @@ function appendSubCategory() {
 
 /***** 내 구독 리스트뷰 아티클 섹션 그리기 *****/
 async function appendPressInfo(press) {
-  if (pressList === null) {
-    pressList = await getPressObj();
-  }
+  pressList = await getPressObj();
   const currentData = pressList.filter(
     (item) => item.id === parseInt(press.id)
   );
-  press_brandmark.src = currentData[0].lightSrc;
+  const is_light_mode = getState(isLight);
+  press_brandmark.src = is_light_mode
+    ? currentData[0].lightSrc
+    : currentData[0].darkSrc;
   edit_date.innerHTML = currentData[0].editDate;
 }
 
 async function appendNewsMain(press) {
-  if (pressList === null) {
-    pressList = await getPressObj();
-  }
+  pressList = await getPressObj();
   const currentData = pressList.filter(
     (item) => item.id === parseInt(press.id)
   );
@@ -57,9 +54,7 @@ async function appendNewsMain(press) {
 }
 
 async function appendNewsSub(press) {
-  if (pressList === null) {
-    pressList = await getPressObj();
-  }
+  pressList = await getPressObj();
   const currentData = pressList.filter(
     (item) => item.id === parseInt(press.id)
   );

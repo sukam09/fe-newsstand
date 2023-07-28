@@ -1,8 +1,13 @@
-import { appendSubCategory, drawSubListView } from "./subListNews.js";
+import {
+  appendSubCategory,
+  drawSubListView,
+  showAlertForNonSub,
+} from "./subListNews.js";
 import { getState, setState } from "../observer/observer.js";
 import { subscribedPress } from "../store/store.js";
 import { removePressFromSubList } from "./gridView.js";
 import { getPressObj } from "../api/api.js";
+import { setDisplay } from "../util/utils.js";
 
 const PROGRESS_TIME = 2000;
 let category_num = 0;
@@ -112,12 +117,16 @@ unsub_btn.addEventListener("click", async (e) => {
     presses.filter((item) => item.name === press_name)
   );
   let sub_press = filtered_press[0];
-  sub_press = removePressFromSubList(sub_press.name);
+  sub_press = removePressFromSubList(sub_press);
   setState(subscribedPress, sub_press);
-  clearSubProgress();
-  initializeSubProgress();
-  appendSubCategory();
-  runSubProgress();
+  if (getState(subscribedPress).length !== 0) {
+    clearSubProgress();
+    initializeSubProgress();
+    appendSubCategory();
+    runSubProgress();
+  } else {
+    showAlertForNonSub();
+  }
 });
 
 export {
