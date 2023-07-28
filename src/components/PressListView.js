@@ -181,9 +181,9 @@ export default function PressListView({ $target, initialState, onChangePress }) 
     }
   };
 
-  const handleClickSubscribeButton = subscribeButton => {
+  const handleClickSubscribeButton = (subscribeButton, onChangeTab) => {
     const { pid, pressName } = this.state;
-    handleSubscribe(parseInt(pid, 10), pressName, this, subscribeButton);
+    handleSubscribe(parseInt(pid, 10), pressName, this, subscribeButton, onChangeTab);
   };
 
   const updateListView = () => {
@@ -257,7 +257,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
         isSubscribed: press === 'my' ? true : getSubscribed(parseInt(this.state.pid, 10)),
       },
     });
-    $buttonWrapper.addEventListener('click', () => handleClickSubscribeButton(subscribeButton));
+    $buttonWrapper.addEventListener('click', () => handleClickSubscribeButton(subscribeButton, onChangeTab));
 
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
