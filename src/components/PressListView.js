@@ -1,7 +1,12 @@
-import { fetchPressInfo, fetchListView } from '../api.js';
-import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA } from '../constants.js';
+import { store } from '../../core/store.js';
+import { convertRegDate, getSubscribed, handleSubscribe } from '../utils.js';
+import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA, SUBSCRIBE_MESSAGE } from '../constants.js';
 
-export default function PressListView({ $target, initialState }) {
+import SubscribeButton from './common/SubscribeButton.js';
+import SnackBar from './common/SnackBar.js';
+import Alert from './common/Alert.js';
+
+export default function PressListView({ $target, initialState, onChangeTab, saveTimer, clearTimer }) {
   const $section = document.createElement('section');
 
   const $div = document.createElement('div');
@@ -33,28 +38,27 @@ export default function PressListView({ $target, initialState }) {
     }
   };
 
-  const { categories } = this.state;
+  const initListView = () => {
+    const { index, press, listViewData, pressInfoData, pidMap } = this.state;
 
-  const initListView = async () => {
-    const { index, listViewData } = this.state;
-
-    const entire = listViewData[index].length;
+    const entire = press === 'all' ? listViewData[index].length : 1;
     const present = this.state.present === 0 ? entire : this.state.present;
 
-    const newsData = listViewData[index][present - 1];
+    const newsData = listViewData[index % CATEGORY_NUMBERS][present - 1];
+
     const { materials, pid, regDate } = newsData;
     const mainNews = materials[0];
 
-    const pressInfoData = await fetchPressInfo();
-    const { logo, name } = pressInfoData.find(press => press.id === parseInt(pid, 10));
+    const { logo, name } = pressInfoData.find(({ id }) => id === parseInt(pid, 10));
 
     this.setState(
       {
         ...this.state,
         present,
         entire,
-        pressLogo: logo,
+        pid,
         pressName: name,
+        pressLogo: logo,
         regDate,
         thumbnail: mainNews.image.url,
         mainNews: mainNews.title,
@@ -62,9 +66,31 @@ export default function PressListView({ $target, initialState }) {
       },
       false
     );
+
+    if (press === 'my') {
+      const { pid } = store.getMyPress()[index];
+      const { name, logo } = pidMap.get(pid);
+
+      this.setState(
+        {
+          ...this.state,
+          pid,
+          pressName: name,
+          pressLogo: logo,
+        },
+        false
+      );
+    }
   };
 
   const initFieldTab = () => {
+    if (this.state.press === 'my') {
+      const myCategories = store.getMyPress().map(({ pressName }) => pressName);
+      this.setState({ ...this.state, categories: myCategories }, false);
+    }
+
+    const { categories } = this.state;
+
     $section.innerHTML = `
       <nav class="field-tab">
         ${categories.map(category => `<button class="text-button">${category}</button>`).join('')}
@@ -78,37 +104,39 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const initProgressBar = $selectedButton => {
-    if (this.timer !== undefined) {
+    if (this.progressBarTimer !== undefined) {
       this.$currentButton.style.background = '';
-      clearInterval(this.timer);
+      clearInterval(this.progressBarTimer);
     }
 
     $selectedButton.style.background = '#7890e7';
     this.percentage = 0;
-    this.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
+    this.progressBarTimer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
+    saveTimer(this.progressBarTimer);
 
     this.$currentButton = $selectedButton;
   };
 
   const setProgressBar = $selectedButton => {
-    this.percentage += PROGRESSBAR_UPDATE_DELTA;
-
     // percentage가 정확히 100이 안될 수가 있으므로 등호가 아닌 부등호를 써야 함
     if (this.percentage >= 100) {
-      const { present, entire } = this.state;
+      const { present, entire, length } = this.state;
+
+      clearInterval(this.progressBarTimer);
 
       if (present === entire) {
         this.setState({
           ...this.state,
-          index: (this.state.index + 1) % CATEGORY_NUMBERS,
+          index: (this.state.index + 1) % length,
           present: 1,
         });
       } else {
         this.setState({ ...this.state, present: this.state.present + 1 });
       }
+    } else {
+      this.percentage += PROGRESSBAR_UPDATE_DELTA;
+      $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
     }
-
-    $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
   };
 
   const handleClickTextButton = newIndex => {
@@ -119,8 +147,8 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickLeftButton = () => {
-    const { index, present } = this.state;
-    const prevIndex = (index - 1 + CATEGORY_NUMBERS) % CATEGORY_NUMBERS;
+    const { index, present, length } = this.state;
+    const prevIndex = (index - 1 + length) % length;
 
     if (present === 1) {
       this.setState({
@@ -137,8 +165,8 @@ export default function PressListView({ $target, initialState }) {
   };
 
   const handleClickRightButton = () => {
-    const { index, present, entire } = this.state;
-    const nextIndex = (index + 1) % CATEGORY_NUMBERS;
+    const { index, present, entire, length } = this.state;
+    const nextIndex = (index + 1) % length;
 
     if (present === entire) {
       this.setState({
@@ -154,13 +182,40 @@ export default function PressListView({ $target, initialState }) {
     }
   };
 
+  const handleClickSubscribeButton = (subscribeButton, onChangeTab) => {
+    const { pid, pressName } = this.state;
+    handleSubscribe(parseInt(pid, 10), pressName, this, subscribeButton, onChangeTab);
+  };
+
+  const updateListView = () => {
+    const { press, view, length } = this.state;
+
+    if (view !== 'list' || press === 'all') {
+      return;
+    }
+
+    const myPress = store.getMyPress().map(({ pressName }) => pressName);
+
+    if (myPress.length === 0) {
+      onChangeTab('all', 'list');
+      return;
+    }
+
+    this.setState({
+      ...this.state,
+      categories: myPress,
+      index: 0,
+      length: length - 1,
+    });
+  };
+
   let isInit = false;
 
-  this.render = async () => {
+  this.render = () => {
+    clearTimer();
+
     if (!isInit) {
       initFieldTab();
-      const listViewData = await fetchListView();
-      this.setState({ ...this.state, listViewData }, false);
 
       $leftButton.addEventListener('click', handleClickLeftButton);
       $rightButton.addEventListener('click', handleClickRightButton);
@@ -168,9 +223,9 @@ export default function PressListView({ $target, initialState }) {
       isInit = true;
     }
 
-    await initListView();
+    initListView();
 
-    const { index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
+    const { press, index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
       this.state;
 
     $article.innerHTML = `
@@ -178,11 +233,8 @@ export default function PressListView({ $target, initialState }) {
         <div class="press-name">
           <img class="press-image" src="${pressLogo}"/>
         </div>
-        <div class="edit-date">${regDate} 편집</div>
-        <button class="list-subscribe-button">
-          <img src="../asset/icons/plus.svg" />
-          <p>구독하기</p>
-        </button>
+        <div class="edit-date">${convertRegDate(regDate)} 편집</div>
+        <div class="list-subscribe-button-wrapper"></div>
       </div>
       <div class="news">
         <div class="news-main">
@@ -198,6 +250,16 @@ export default function PressListView({ $target, initialState }) {
       </div>
     `;
 
+    const $buttonWrapper = $article.querySelector('.list-subscribe-button-wrapper');
+    const subscribeButton = new SubscribeButton({
+      $target: $buttonWrapper,
+      initialState: {
+        type: 'list',
+        isSubscribed: press === 'my' ? true : getSubscribed(parseInt(this.state.pid, 10)),
+      },
+    });
+    $buttonWrapper.addEventListener('click', () => handleClickSubscribeButton(subscribeButton, onChangeTab));
+
     const $textButtons = $section.querySelectorAll('.text-button');
     Array.from($textButtons).forEach(($textButton, index) => {
       const category = categories[index];
@@ -211,15 +273,37 @@ export default function PressListView({ $target, initialState }) {
     $selectedButton.classList.add('text-button-selected');
     $selectedButton.innerHTML = `
       <div class="text-button-name">${selectedCategory}</div>
-      <div class="text-button-count">
-        <p class="text-button-present">${present}</p>
-        <img src="../asset/icons/division.svg" />
-        <p class="text-button-entire">${entire}</p>
-      </div>
     `;
+
+    $selectedButton.innerHTML +=
+      press === 'all'
+        ? `<div class="text-button-count">
+            <p class="text-button-present">${present}</p>
+            <img src="../asset/icons/division.svg" />
+            <p class="text-button-entire">${entire}</p>
+          </div>`
+        : `<img src="../asset/icons/chevron-right.svg" />`;
+
+    this.snackBar = new SnackBar({
+      $target: $article,
+      initialState: {
+        isShow: false,
+        text: SUBSCRIBE_MESSAGE,
+      },
+    });
+
+    this.alert = new Alert({
+      $target: $article,
+      initialState: {
+        isShow: false,
+        pressName: '',
+      },
+    });
 
     initProgressBar($selectedButton);
   };
 
   this.render();
+
+  store.subscribe(updateListView);
 }

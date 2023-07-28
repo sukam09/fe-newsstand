@@ -182,6 +182,7 @@ header {
 
 .news-press-display {
   margin-top: 24px;
+  position: relative;
 }
 
 .news-press-tab-container {
@@ -195,17 +196,6 @@ header {
   align-items: center;
 }
 
-.news-press-tab-menu-activated {
-  color: var(--text-text-strong, #14212b);
-
-  /* selected-bold16 */
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
 .news-press-tab-menu {
   color: var(--text-text-weak, #879298);
 
@@ -215,6 +205,17 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
+}
+
+.news-press-tab-menu-activated {
+  color: var(--text-text-strong, #14212b);
+
+  /* selected-bold16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .news-press-tab-menu:hover {
@@ -325,11 +326,15 @@ header {
   display: flex;
   width: 930px;
   height: 40px;
-  padding: 16px 0px;
   margin-top: 24px;
   align-items: center;
   border: 1px solid var(--border-border-default, #d2dae0);
   background: var(--surface-surface-alt, #f5f7f9);
+  overflow-x: scroll;
+}
+
+.field-tab::-webkit-scrollbar {
+  display: none;
 }
 
 .text-button {
@@ -345,6 +350,7 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -445,6 +451,24 @@ header {
   line-height: normal;
 }
 
+.grid-unsubscribe-button {
+  display: none;
+  height: 24px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-border-bold, #6e8091);
+  background: var(--surface-surface-alt, #f5f7f9);
+  color: var(--text-text-bold, #4b5966);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .list-subscribe-button {
   display: flex;
   justify-content: center;
@@ -461,6 +485,19 @@ header {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.list-unsubscribe-button {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  padding: 0px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 50px;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-default, #fff);
 }
 
 .news {
@@ -555,4 +592,123 @@ header {
 
 .list-right-button {
   cursor: pointer;
+}
+
+.snack-bar {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 286px;
+  height: 54px;
+  padding: 16px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface-surface-brand-default, #4362d0);
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+  color: var(--text-text-white-default, #fff);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.alert {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 140px;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0px 2px 18px 0px rgba(20, 33, 43, 0.08), 0px 4px 2px 0px rgba(20, 33, 43, 0.02);
+}
+
+.alert-frame {
+  display: flex;
+  padding: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  background: var(--surface-surface-default, #fff);
+  color: var(--text-text-default, #5f6e76);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.alert-frame span {
+  color: var(--text-text-strong, #14212b);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.alert-button {
+  display: flex;
+  flex-direction: row;
+  width: 320px;
+  height: 48px;
+  background: var(--surface-surface-alt, #f5f7f9);
+}
+
+.positive-button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  border-top: 0;
+  color: var(--text-text-default, #5f6e76);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.positive-button:hover {
+  text-decoration: underline;
+}
+
+.negative-button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border: 1px solid var(--border-border-default, #d2dae0);
+  border-top: 0;
+  border-left: 0;
+  color: var(--text-text-strong, #14212b);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.negative-button:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
 }

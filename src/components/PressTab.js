@@ -1,4 +1,4 @@
-export default function PressTab({ $target, initialState, onClickView }) {
+export default function PressTab({ $target, initialState, onClickPress, onClickView }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 
@@ -11,6 +11,12 @@ export default function PressTab({ $target, initialState, onClickView }) {
     this.render();
   };
 
+  const setPressButton = ($allPressButton, $myPressButton) => {
+    this.state.press === 'all'
+      ? $allPressButton.classList.add('news-press-tab-menu-activated')
+      : $myPressButton.classList.add('news-press-tab-menu-activated');
+  };
+
   const setViewIcon = ($listIcon, $gridIcon) => {
     this.state.view === 'grid'
       ? $gridIcon.classList.add('press-view-selected')
@@ -21,7 +27,7 @@ export default function PressTab({ $target, initialState, onClickView }) {
     $section.innerHTML = `
       <div class="news-press-tab-container">
         <div class="news-press-type-menu">
-          <div class="news-press-tab-menu-activated">전체 언론사</div>
+          <div class="news-press-tab-menu">전체 언론사</div>
           <div class="news-press-tab-menu">내가 구독한 언론사</div>
         </div>
         <div class="news-press-align-menu">
@@ -34,6 +40,12 @@ export default function PressTab({ $target, initialState, onClickView }) {
         </div>
       </div>
     `;
+
+    const [$allPressButton, $myPressButton] = $section.querySelectorAll('.news-press-tab-menu');
+    $allPressButton.addEventListener('click', () => onClickPress('all'));
+    $myPressButton.addEventListener('click', () => onClickPress('my'));
+
+    setPressButton($allPressButton, $myPressButton);
 
     const [$listButton, $gridButton] = $section.querySelectorAll('svg');
 

@@ -9,9 +9,9 @@ class Store {
 
     this.dispatch = action => {
       state = reducer(state, action);
-      handler.forEach(fn => {
-        fn();
-      });
+      if (action.type === 'unsubscribe') {
+        this.notify();
+      }
     };
 
     this.subscribe = listener => {
@@ -19,15 +19,24 @@ class Store {
     };
 
     this.getState = () => state;
+
+    this.getMyPress = () => state.myPress;
+
+    this.notify = () => {
+      handler.forEach(fn => {
+        fn();
+      });
+    };
   }
 }
 
 function reducer(state = initialState, action) {
-  switch (action.type) {
+  const { type, pid, pressName } = action;
+  switch (type) {
     case 'subscribe':
-      return { ...state, myPress: [...state.myPress, action.pid] };
+      return { ...state, myPress: [...state.myPress, { pid, pressName }] };
     case 'unsubscribe':
-      return { ...state, myPress: state.myPress.filter(press => press !== action.pid) };
+      return { ...state, myPress: state.myPress.filter(({ pid: originalPid }) => originalPid !== pid) };
     default:
       return { ...state };
   }
