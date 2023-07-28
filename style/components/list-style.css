@@ -9,7 +9,7 @@
 }
 
 .progress-bar {
-  background: var(--progress-before);
+  background: var(--progress-before) !important;
   display: flex;
   width: 166px;
   height: 40px;
@@ -30,7 +30,7 @@
   left: 0;
   height: 40px;
   width: 0;
-  background: var(--progress-after);
+  background: var(--progress-after) !important;
   animation: progress 20s linear;
   z-index: -1;
 }
@@ -59,6 +59,7 @@
   color: #fff !important;
 }
 /* list형 nav style */
+.sub-list-nav > ul,
 .list-nav > ul {
   display: flex;
   align-items: center;
@@ -66,9 +67,10 @@
   background: var(--surface-alt);
 }
 
+.sub-list-nav > ul > li,
 .list-nav > ul > li {
   display: flex;
-  color: var(--text-text-weak, #879298);
+  color: var(--text-weak);
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -81,14 +83,11 @@
 
 /***** list형 - article style *****/
 /* 언론사명, 편집 날짜, 구독하기 버튼 style */
+.sub-news-article,
 .news-article {
   padding: 24px;
   border: 1px solid var(--border-default);
   border-top: none;
-  position: relative;
-}
-
-.news-article {
   position: relative;
 }
 
@@ -142,12 +141,11 @@
 
 .news-main > img:hover {
   transform: scale(1.05);
-  transition: 0.2s;
 }
 
 .news-main > h2 {
   overflow: hidden;
-  color: var(--text-text-strong, #14212b);
+  color: var(--text-strong);
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: Pretendard;
@@ -170,7 +168,7 @@
   flex: 1 0 0;
 }
 .news-sub-list > li {
-  color: var(--text-text-bold);
+  color: var(--text-bold);
   font-size: 16px;
   font-family: Pretendard;
   font-style: normal;

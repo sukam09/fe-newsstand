@@ -1,9 +1,9 @@
-import { getNewsContent } from "./api/api.js";
+import { getNewsContent } from "../api/api.js";
 import { drawListView } from "./listNews.js";
-import { setDisplay } from "./util/utils.js";
+import { setDisplay } from "../util/utils.js";
 
 const CATEGORY_NUM = 7;
-const PROGRESS_TIME = 2000;
+const PROGRESS_TIME = 20000;
 let current_category = 0;
 let up_count = 1;
 let total_count = 0;
@@ -11,9 +11,7 @@ let progress_interval;
 let categoryList = null;
 
 async function getTabNum(current_category) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const tabNum = categoryList[current_category].tabs;
   return tabNum;
 }

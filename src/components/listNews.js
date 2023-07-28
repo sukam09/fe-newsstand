@@ -1,9 +1,14 @@
-import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "./path.js";
+import { LIST_SUB_BTN_IMG, X_BTN_IMG } from "../util/path.js";
 import { showSnackBar, removeSnackBar } from "./snackBar.js";
-import { getNewsContent, getPressObj } from "./api/api.js";
+import { getNewsContent } from "../api/api.js";
 import { CATEGORY_NUM } from "./progressBar.js";
-import { subscribeState } from "./store/subscribeState.js";
-import { removeAddClass } from "./util/utils.js";
+import { removeAddClass } from "../util/utils.js";
+import { getPressItemByName, removePressFromSubList } from "./gridView.js";
+import { getState, setState } from "../observer/observer.js";
+import { isLight, subscribedPress } from "../store/store.js";
+import { drawSubListView } from "./subListNews.js";
+import { changeToSubListViewDisplay } from "../changeView.js";
+import { runSubProgress } from "./subProgressBar.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;
@@ -20,9 +25,7 @@ let news_sub_list = document.querySelectorAll(".news-sub-list li");
 
 /***** 리스트뷰 프로그레스바 카운트/탭넘버 추가 *****/
 async function appendCategoryTabNum() {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   for (let i = 0; i < CATEGORY_NUM; i++) {
     const currentData = categoryList[i];
     tab[i].innerHTML = `<span class="now-count">1</span> <span>/</span>
@@ -32,28 +35,25 @@ async function appendCategoryTabNum() {
 
 /***** 리스트뷰 아티클 섹션 그리기 *****/
 async function appendPressInfo(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  const is_light_mode = getState(isLight);
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
-  press_brandmark.src = currentData.logoSrc;
+  press_brandmark.src = is_light_mode
+    ? currentData.lightSrc
+    : currentData.darkSrc;
   edit_date.innerHTML = currentData.editDate;
 }
 
 async function appendNewsMain(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   thumbnail.src = currentData.imgSrc;
-  news_main_title = currentData.mainTitle;
+  news_main_title.innerHTML = currentData.mainTitle;
   putSubscribeBtnImg(currentData.name);
 }
 
 async function appendNewsSub(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   for (let i = 0; i < SUB_NEWS_TITLE_NUM; i++) {
     news_sub_list[i].innerHTML = currentData.subTitleList[i].title;
@@ -68,9 +68,15 @@ function drawListView(category_idx, count_idx) {
 }
 
 //구독 언론사라면 해지하기 버튼 삽입
+function getSubInfoFromSubList(name) {
+  let sub_press_list = getState(subscribedPress);
+  sub_press_list = sub_press_list.filter((item) => item.name === name);
+  return sub_press_list;
+}
+
 function putSubscribeBtnImg(name) {
   const img = document.querySelector(".subbtn-or-xbtn img");
-  if (subscribeState.getSubInfoByName(name).length !== 0) {
+  if (getSubInfoFromSubList(name).length !== 0) {
     img.src = X_BTN_IMG;
     removeAddClass(img, "subscribe-press-btn", "x-btn");
   } else {
@@ -82,19 +88,10 @@ function putSubscribeBtnImg(name) {
 /***** 언론사 이름으로 구독 언론사 여부 확인 *****/
 //아티클에서 언론사 이름 가져오기
 async function getNameFromArticle(category_idx, count_idx) {
-  if (categoryList === null) {
-    categoryList = await getNewsContent();
-  }
+  categoryList = await getNewsContent();
   const currentData = categoryList[category_idx].data[count_idx];
   const press_name = currentData.name;
   return press_name;
-}
-
-//언론사 이름으로 찾기
-async function getPressItemByName(name) {
-  const presses = await getPressObj();
-  const press = await Promise.all(presses.filter((item) => item.name === name));
-  return press;
 }
 
 /***** 구독하기 버튼 이벤트 + 스낵바 팝업 *****/
@@ -109,16 +106,19 @@ subscribe_btn.addEventListener("click", async () => {
       parseInt(document.querySelector(".progress-bar .now-count").innerHTML) -
       1;
     const press_name = await getNameFromArticle(category_idx, count_idx);
-    const subscribed_press = await getPressItemByName(press_name);
-    subscribeState.setSubscribeState(
-      subscribed_press[0].id.toString(),
-      press_name,
-      subscribed_press[0].lightSrc
-    );
+    const sub_press = await getPressItemByName(press_name);
+    const current_sub_list = getState(subscribedPress);
+    setState(subscribedPress, [...current_sub_list, sub_press[0]]);
     drawListView(category_idx, count_idx);
 
     snackbar_timeout = setTimeout(function () {
       removeSnackBar();
+      changeToSubListViewDisplay();
+      document
+        .querySelectorAll(".sub-list-nav .progress-item")
+        [getState(subscribedPress).length - 1].classList.add("progress-bar");
+      runSubProgress();
+      drawSubListView(getState(subscribedPress).length - 1);
     }, SNACKBAR_POPUP_TIME);
   }
 });
@@ -133,8 +133,8 @@ unsubscribe_btn.addEventListener("click", async (e) => {
       parseInt(document.querySelector(".progress-bar .now-count").innerHTML) -
       1;
     const press_name = await getNameFromArticle(category_idx, count_idx);
-    const target_press = subscribeState.getSubInfoByName(press_name);
-    subscribeState.removePressFromSubList(target_press[0]);
+    const target_press = await getPressItemByName(press_name);
+    removePressFromSubList(target_press[0]);
     drawListView(category_idx, count_idx);
   }
 });

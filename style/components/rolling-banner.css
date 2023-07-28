@@ -19,7 +19,7 @@
   border: 1px solid var(--border-default);
 }
 .rolling-press {
-  color: var(--text-strong, #14212b);
+  color: var(--text-strong);
   font-size: 14px;
   line-height: normal;
 }
