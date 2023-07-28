@@ -1,54 +1,29 @@
 /**
  * 메인 컨튼츠의 컨테이너 컴포넌트
  */
+import Component from "../utils/Component.js";
 import ContentNav from "./Main/ContentNav.js";
 import MainContent from "./Main/MainContent.js";
 
-export default function Main($target, props) {
-  let $main = document.querySelector(".news");
-
-  this.state = {
-    viewerType: "grid",
-    pressType: "all",
-  };
-
-  this.setViewerType = (viewerType) => {
-    this.state = { ...this.state, viewerType: viewerType };
-    this.render();
-  };
-
-  this.setPressType = (pressType) => {
-    this.state = { ...this.state, pressType: pressType };
-    this.render();
-  };
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
-  };
-
-  this.render = () => {
-    if ($main) {
-      $main.innerHTML = "";
-    } else {
-      $main = document.createElement("main");
-      $main.setAttribute("class", "news");
-    }
-
-    new ContentNav($main, {
-      mode: props.mode,
-      ...this.state,
-      setViewerType: this.setViewerType,
-      setPressType: this.setPressType,
-    });
-    new MainContent($main, {
-      ...props,
-      ...this.state,
-      setPressType: this.setPressType,
-    });
-
-    $target.appendChild($main);
-  };
-
-  this.render();
+function Main($target, props) {
+  Component.call(this, $target, props);
 }
+
+Object.setPrototypeOf(Main.prototype, Component.prototype);
+
+Main.prototype.template = function () {
+  return `
+  <nav class="news-navbar"></nav>
+  <section class="news-section"></section>
+  `;
+};
+
+Main.prototype.mounted = function () {
+  const $nav = this.$el.querySelector("nav");
+  const $section = this.$el.querySelector("section");
+
+  new ContentNav($nav, this.props);
+  new MainContent($section, this.props);
+};
+
+export default Main;

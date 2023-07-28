@@ -1,4 +1,67 @@
+@import url("./pallet.css");
 /* util */
 .mouse-hover-pointer:hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+#dn {
+  display: none;
+}
+.toggle2 {
+  display: inline-block;
+
+  position: absolute;
+  top: -10%;
+  right: 0;
+  cursor: pointer;
+
+  margin-left: 75px;
+  width: 54px;
+  height: 27px;
+  background: #dfe2e3;
+  border-radius: 84px;
+  transition: background 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.toggle__handler {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  background: #ffe5b5;
+  background: #ffde7b;
+  border-color: #debd56;
+  box-shadow: none;
+  background-size: 0;
+  transition: transform 0.5s;
+  border: 0.188em solid #caba94;
+}
+#dn:checked + .toggle2 {
+  background: #dfe2e3;
+}
+#dn:checked + .toggle2:before {
+  color: var(--font-color);
+}
+#dn:checked + .toggle2:after {
+  color: var(--check-color);
+}
+#dn:checked + .toggle2 .toggle__handler {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-block;
+  transform: translate3d(28px, 0, 0) rotate(0);
+  border: 0.188em solid #caba94;
+  background: #ffefb5;
+  box-shadow: inset -0.15em -0.15em #ffe096;
+  background-image: radial-gradient(
+      circle at 60% 10%,
+      #e6cea5 15%,
+      transparent 0
+    ),
+    radial-gradient(circle at 30% 50%, #e6cea5 10%, transparent 0),
+    radial-gradient(circle at 60% 70%, #e6cea5 13%, transparent 0);
+  transition: transform 0.2s ease-in-out, background 0.3s, border-color 0.3s;
 }

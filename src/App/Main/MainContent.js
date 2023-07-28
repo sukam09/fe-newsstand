@@ -2,133 +2,170 @@
 메인 컨텐츠 컴포넌트
 그리드 뷰, 리스트 뷰를 보여주는 컴포넌트
 */
-import getRandomIndexArr from "../../api/getRandomIndexArr.js";
-import { fetchNews, fetchPress } from "../../api/fetchNews.js";
-import Button from "./MainContent/Button.js";
-import PressGridView from "./MainContent/PressGridView.js";
-import NewsListView from "./MainContent/NewsListView.js";
-import store from "../../Store/Store.js";
 
-const listViewData = await fetchNews();
-const pressData = await fetchPress();
+import Button from "../MainContent/Button.js";
+import PressGridView from "../MainContent/PressGridView.js";
+import NewsListView from "../MainContent/NewsListView.js";
+import Component from "../../utils/Component.js";
+import { mainStore, GRID, LIST, ALL, MY } from "../../store/MainStore.js";
+import { FIRST_PAGE, gridStore, setPage } from "../../store/GridStore.js";
+import { pressStore } from "../../store/PressStore.js";
+import {
+  listStore,
+  setCategory,
+  setListPage,
+  cancelAnimation,
+} from "../../store/ListStore.js";
+
 const TOTAL_PRESS_NUMBER = 96;
 const GRID_PRESS_NUBER = 24;
 
-let timerArr = [];
-let indexArr = getRandomIndexArr(4);
-
 const snackBarText = "내가 구독한 언론사에 추가되었습니다.";
-const cancelAnimation = () => {
-  timerArr.forEach((timer) => {
-    cancelAnimationFrame(timer);
-  });
+
+const createButtons = function () {
+  let buttonTemplate = "";
+  const direction = ["left", "right"];
+
+  buttonTemplate = direction.reduce((result, currentValue) => {
+    return (
+      result + `<button class="${currentValue}-button_content page"}></button>`
+    );
+  }, buttonTemplate);
+
+  return buttonTemplate;
 };
 
-const suffile = (len) => {
-  indexArr = Array.from({ length: len }, (_, i) => i);
-  indexArr.sort(() => Math.random() - 0.5);
-};
+function MainContent($target, props) {
+  this.setLastPage = (nextLastPage) => {
+    this.state.lastPage = nextLastPage;
+  };
 
-export default function MainContent($target, props) {
-  let $section = document.querySelector(".news-section");
-  let lastPage;
+  Component.call(this, $target, props);
+  mainStore.subscribe(this.setUp);
+
+  this.prevView = undefined;
+  this.prevPress = undefined;
 
   let $div = document.createElement("div");
   $div.setAttribute("class", "snack-bar");
   $div.innerText = snackBarText;
 
-  this.state = { currentPage: 1, category: 0 };
-
   cancelAnimation();
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    suffile(lastPage);
-    this.render();
-  };
-
-  this.setCategory = (nextCategory) => {
-    this.state = { ...this.state, category: nextCategory % 7 };
-    suffile(lastPage);
-    this.render();
-  };
-
-  this.setCurrentPage = (nextPage) => {
-    this.state = { ...this.state, currentPage: nextPage };
-    this.render();
-  };
-
-  this.setLastPage = (number) => {
-    this.state = { ...this.state, lastPage: number };
-    this.render();
-  };
-
-  this.render = () => {
-    console.log(this.state.category);
-    if ($section) {
-      $target.removeChild($section);
-    }
-
-    $section = document.createElement("section");
-    $section.setAttribute("class", "news-section");
-
-    const commonProps = {
-      mode: props.mode,
-      pressType: props.pressType,
-      currentPage: this.state.currentPage,
-    };
-
-    if (props.viewerType === "grid") {
-      const gridProps = {
-        ...commonProps,
-      };
-
-      lastPage =
-        props.pressType === "all"
-          ? parseInt(TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER)
-          : parseInt(store.myPressList.length / GRID_PRESS_NUBER + 1);
-
-      new PressGridView($section, gridProps);
-    } else {
-      lastPage =
-        props.pressType === "all"
-          ? listViewData[this.state.category].length
-          : 1;
-
-      const listProps = {
-        ...commonProps,
-        lastPage: lastPage,
-        category: this.state.category,
-        setContentState: this.setState,
-        setPressType: props.setPressType,
-        timerArr: timerArr,
-        indexArr: indexArr,
-        data:
-          props.pressType === "all"
-            ? listViewData[this.state.category]
-            : {
-                ...pressData[store.myPressList[this.state.category]],
-                pid: store.myPressList[this.state.category],
-              },
-      };
-
-      new NewsListView($section, listProps);
-    }
-
-    const commonButtonProps = {
-      ...this.state,
-      mode: props.mode,
-      viewerType: props.viewerType,
-      lastPage: lastPage,
-      onClick: this.setCurrentPage,
-    };
-
-    new Button($section, { ...commonButtonProps, direction: "left" });
-    new Button($section, { ...commonButtonProps, direction: "right" });
-
-    $section.appendChild($div);
-    $target.appendChild($section);
-  };
-
-  this.render();
 }
+
+Object.setPrototypeOf(MainContent.prototype, Component.prototype);
+
+MainContent.prototype.template = function () {
+  const mainState = mainStore.getState();
+
+  if (mainState.viewType === GRID) {
+    return `<ul class="newspaper__list"></ul>${createButtons()}`;
+  } else if (mainState.viewType === LIST) {
+    return `<div class="news-container"></div>${createButtons()}`;
+  }
+};
+
+const prevGirdpage = () => {
+  const currentPage = gridStore.getState().currentPage;
+  let nextPage = currentPage - 1;
+  const nextState = setPage(nextPage);
+  gridStore.dispatch(nextState);
+};
+
+const nextGridPage = () => {
+  const currentPage = gridStore.getState().currentPage;
+  const nextState = setPage(currentPage + 1);
+  gridStore.dispatch(nextState);
+};
+
+const prevListPage = () => {
+  cancelAnimation();
+  let lastCategory = 6;
+  let action;
+
+  const currentPage = listStore.getState().page;
+  if (currentPage === FIRST_PAGE) {
+    if (mainStore.getState().pressType === MY) {
+      lastCategory = pressStore.getState().pressArr.length - 1;
+    }
+
+    action = setCategory(
+      (listStore.getState().category + lastCategory) % (lastCategory + 1)
+    );
+  } else {
+    action = setListPage(listStore.getState().page - 1);
+  }
+
+  listStore.dispatch(action);
+};
+
+const nextListPage = () => {
+  cancelAnimation();
+  let lastCategory = 6;
+  let action;
+
+  const currentPage = listStore.getState().page;
+  if (currentPage === listStore.getState().lastPage) {
+    let nextCategory;
+    if (mainStore.getState().pressType === MY) {
+      lastCategory = pressStore.getState().pressArr.length - 1;
+    }
+
+    action = setCategory(
+      (listStore.getState().category + 1) % (lastCategory + 1)
+    );
+  } else {
+    action = setListPage(listStore.getState().page + 1);
+  }
+
+  listStore.dispatch(action);
+};
+MainContent.prototype.mounted = function () {
+  const mainState = mainStore.getState();
+  const directions = ["left", "right"];
+  let lastPage = undefined;
+
+  let callBacks;
+
+  if (mainState.viewType === GRID) {
+    gridStore.observers.clear();
+
+    const $ul = this.$el.querySelector("ul");
+
+    lastPage =
+      mainStore.getState().pressType === ALL
+        ? TOTAL_PRESS_NUMBER / GRID_PRESS_NUBER
+        : Math.ceil(
+            pressStore.getState().pressArr.length / GRID_PRESS_NUBER + 0.5
+          );
+
+    new PressGridView($ul, {
+      ...this.props,
+    });
+
+    callBacks = [prevGirdpage, nextGridPage];
+  } else if (mainState.viewType === LIST) {
+    const $div = this.$el.querySelector("div");
+    listStore.observers.clear();
+
+    new NewsListView($div, { ...this.props });
+
+    callBacks = [prevListPage, nextListPage];
+  }
+
+  const buttons = this.$el.querySelectorAll(".page");
+  buttons.forEach(($button, index) => {
+    new Button($button, {
+      ...this.props,
+      direction: directions[index],
+      lastPage: lastPage,
+      onClick: callBacks[index],
+    });
+  });
+};
+
+MainContent.prototype.isRender = function () {
+  return this.prevView !== mainStore.getState().viewType;
+};
+
+export default MainContent;

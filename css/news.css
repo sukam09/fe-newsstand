@@ -1,3 +1,4 @@
+@import url("./pallet.css");
 /* display.
 list-style.
 position.
@@ -15,8 +16,9 @@ content
  */
 
 .categoty-nav {
-  border: solid 1px #d2dae0;
-  background-color: #f5f7f9;
+  height: 40px;
+  border: solid 1px var(--border-border-default);
+  background-color: var(--surface-surface-alt);
   overflow-y: scroll;
 }
 
@@ -30,8 +32,8 @@ content
   justify-content: space-between;
   position: relative;
   width: 166px;
-  background-color: #7890e7;
-  color: #ffffff;
+  background-color: var(--surface-surface-brand-alt);
+  color: var(--text-text-white-default);
 }
 
 .news-container .categoty-nav .categoty-list .select:hover {
@@ -46,7 +48,7 @@ content
   position: absolute;
   height: 100%;
   left: 0;
-  background-color: #4362d0;
+  background-color: var(--surface-surface-brand-default);
   z-index: 0;
 }
 
@@ -54,7 +56,7 @@ content
   height: 40px;
   line-height: 40px;
   padding: 0 16px 0 16px;
-  color: #879298;
+  color: var(--text-text-weak);
   cursor: pointer;
 }
 

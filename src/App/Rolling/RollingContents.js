@@ -1,11 +1,53 @@
 /*
 롤링 컨텐츠 컴포넌트
 */
+
+import Component from "../../utils/Component.js";
+
 const WAITING_TIME = 1000;
 const ANIMATION_TIME = 400;
 const MOVE_PIXEL = -16;
 
 const ROLLING_INTERVAL = 5000;
+
+const titleArr = [
+  {
+    press: "연합뉴스",
+    title: "[1보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[2보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[3보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[4보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출",
+  },
+  {
+    press: "연합뉴스",
+    title: "[5보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출",
+  },
+];
+
+const createList = (accumulator, currentValue) => {
+  return (
+    accumulator +
+    `
+    <li>
+      <div class="newsflash__content__newspaper">
+        ${currentValue.press}
+      </div>
+      <span class="newsflash__content__title">
+        ${currentValue.title}
+      </span>
+    </li>
+    `
+  );
+};
 
 const pauseRolling = function (timer) {
   clearTimeout(timer);
@@ -33,87 +75,49 @@ const startRolling = function (rollingElement) {
   return setInterval(moveUpElement, ROLLING_INTERVAL);
 };
 
-export default function Rolling($target, props) {
-  const startTime = props.startTime;
-  let timeId;
+const over = function ({ target }) {
+  target.style.textDecoration = "underline";
+  pauseRolling(this.timeId);
+};
 
-  this.handleMouseOver = (elem) => {
-    elem.style.textDecoration = "underline";
-    pauseRolling(timeId);
-  };
+const out = function ({ target }) {
+  target.style.textDecoration = "none";
+  this.timeId = startRolling(this.rolling);
+};
 
-  this.handleMouseOut = (elem, rollingTarget) => {
-    elem.style.textDecoration = "none";
-    timeId = startRolling(rollingTarget.firstElementChild);
-  };
+function RollingContents($target, props) {
+  Component.call(this, $target, props);
 
-  this.setHoverEvent = (target) => {
-    let spanList = target.getElementsByClassName("newsflash__content__title");
-    // HTMLCollection Type has not forEach
-    HTMLCollection.prototype.forEach = Array.prototype.forEach;
-
-    spanList.forEach((elem) => {
-      elem.onmouseover = () => {
-        this.handleMouseOver(elem);
-      };
-      elem.onmouseout = () => {
-        this.handleMouseOut(elem, target);
-      };
-    });
-  };
-
-  this.render = () => {
-    const $rollingBox = document.createElement("div");
-    $rollingBox.setAttribute("class", "newsflash__content");
-
-    // 컨텐츠가 보여지는 영역
-    const $rollingDiv = document.createElement("div");
-    $rollingDiv.setAttribute("class", "rolling");
-
-    $rollingDiv.innerHTML = `
-    <ul>
-    <li>
-      <div class="newsflash__content__newspaper">연합뉴스</div>
-      <span class="newsflash__content__title">
-        [1보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-      </span>
-    </li>
-    <li>
-      <div class="newsflash__content__newspaper">연합뉴스</div>
-      <span class="newsflash__content__title">
-        [2보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-      </span>
-    </li>
-    <li>
-      <div class="newsflash__content__newspaper">연합뉴스</div>
-      <span class="newsflash__content__title">
-        [3보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-      </span>
-    </li>
-    <li>
-      <div class="newsflash__content__newspaper">연합뉴스</div>
-      <span class="newsflash__content__title">
-        [4보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-      </span>
-    </li>
-    <li>
-      <div class="newsflash__content__newspaper">연합뉴스</div>
-      <span class="newsflash__content__title">
-        [5보] 김기현•안철수•천하람•황교안, 여전대 본경선 진출
-      </span>
-    </li>
-  </ul>
-  `;
-
-    setTimeout(() => {
-      timeId = startRolling($rollingDiv.firstElementChild);
-    }, startTime * WAITING_TIME);
-
-    this.setHoverEvent($rollingDiv);
-
-    $rollingBox.appendChild($rollingDiv);
-    $target.appendChild($rollingBox);
-  };
-
-  this.render();
+  this.timeId;
+  this.rolling;
 }
+
+Object.setPrototypeOf(RollingContents.prototype, Component.prototype);
+
+RollingContents.prototype.template = function () {
+  return `
+  <ul>
+    ${titleArr.reduce(createList, "")}
+  </ul>
+`;
+};
+
+RollingContents.prototype.setEvent = function () {
+  const handleMouseOver = over.bind(this);
+  const handleMouseOut = out.bind(this);
+
+  this.$el.addEventListener("mouseover", handleMouseOver);
+  this.$el.addEventListener("mouseout", handleMouseOut);
+
+  this.init = false;
+};
+
+RollingContents.prototype.mounted = function () {
+  this.rolling = this.$el.querySelector("ul");
+
+  setTimeout(() => {
+    this.timeId = startRolling(this.rolling);
+  }, this.props.startTime * WAITING_TIME);
+};
+
+export default RollingContents;

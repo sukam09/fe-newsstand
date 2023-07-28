@@ -11,8 +11,8 @@
   width: 461px;
   height: 49px;
   padding: 16px;
-  border: 1px solid #d2dae0;
-  background-color: #f5f7f9;
+  border: 1px solid var(--border-border-default);
+  background-color: var(--surface-surface-alt);
   font-size: 14px;
 }
 .newsflash .newsflash__content .rolling {
@@ -27,11 +27,11 @@
 .newsflash .newsflash__content .newsflash__content__newspaper {
   display: inline-block;
   margin-right: 10px;
-  color: #14212b;
+  color: var(--text-text-strong);
   font-weight: bold;
 }
 
 .newsflash .newsflash__content .newsflash__content__title {
-  color: #5f6276;
+  color: var(--text-text-default);
   cursor: pointer;
 }

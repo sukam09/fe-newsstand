@@ -1,5 +1,7 @@
+@import url("./pallet.css");
+
 .list-content {
-  border: 1px solid #d2dae0;
+  border: 1px solid var(--border-border-default);
   border-top: none;
   padding: 24px;
   height: 348px;
@@ -17,14 +19,23 @@
   height: 14px;
   line-height: 14.32px;
   font-size: 14px;
-  color: #5f6e76;
+  color: var(--text-text-default);
+}
+
+.list-content .list-header rect {
+  color: var(--surface-surface-default);
+}
+
+.list-content .list-header path {
+  fill: var(--text-text-default);
 }
 
 .news-section .subscribe-btn {
-  border: 1px solid #d2dae0;
+  background-color: var(--surface-surface-default);
+
+  border: 1px solid var(--border-border-default);
   border-radius: 50px;
-  background-color: #f5f7f9;
-  color: #879298;
+  color: var(--text-text-weak);
   font-size: 12px;
   width: 72px;
   height: 100%;
@@ -38,7 +49,7 @@
 
 .news-section .newspaper__item .subscribe-btn {
   display: none;
-  background-color: #ffffff;
+  background-color: var(--surface-surface-default);
 }
 
 .list-content .list-news {
@@ -55,6 +66,7 @@
 }
 
 .list-content .list-news .main-news .img-container {
+  overflow: hidden;
   height: 200px;
 }
 
@@ -62,11 +74,19 @@
   transition: 0.3s;
 }
 
+.list-content .list-news .main-news:hover img {
+  scale: 105%;
+}
+
+.list-content .list-news .main-news:hover .main-title {
+  text-decoration: underline;
+}
+
 .list-content .list-news .main-title {
   width: 320px;
   height: 44px;
   margin-top: 15px;
-  color: #14212b;
+  color: var(--text-text-strong);
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
@@ -79,7 +99,7 @@
 
 .list-content .list-news .sub-news ul {
   height: 100%;
-  color: #4b5966;
+  color: var(--text-text-bold);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -97,5 +117,5 @@
 
 .list-content .list-news .sub-news ul .caption {
   font-size: 14px;
-  color: #879298;
+  color: var(--text-text-weak);
 }

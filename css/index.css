@@ -15,11 +15,14 @@ content
  */
 
 /* global */
-#container{
-    width: 930px;
-    margin: 0 auto;
+#container {
+  position: relative;
+  width: 930px;
+  margin: 0 auto;
 }
 
-.header, .newsflash, .newspaper {
-    width: 100%;
+.header,
+.newsflash,
+.newspaper {
+  width: 100%;
 }
