@@ -6,7 +6,7 @@ import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
 import Alert from './common/Alert.js';
 
-export default function PressGridView({ $target, initialState, onChangePress }) {
+export default function PressGridView({ $target, initialState, onChangeTab, clearTimer }) {
   const $section = document.createElement('section');
   $section.classList.add('news-press-display');
 
