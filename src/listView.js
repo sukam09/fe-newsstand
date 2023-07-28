@@ -1,12 +1,20 @@
+import { CATEGORY_TABS, MAX_NEWS_COUNT } from "./core/store/constants.js";
+import { getNewsContent } from "./core/utils/api.js";
+import { getState, register, setState } from "./core/observer/observer.js";
 import {
-  CATEGORY_TAB_NUM,
-  IS_GRID,
-  MAX_NEWS_COUNT,
-  NOW_CATEGORY_IDX,
-  NOW_LIST_PAGE,
-} from "../constant/constants.js";
-import { refreshInterval } from "./category.js";
-import { $ } from "./util.js";
+  deletePress,
+  isAlertOn,
+  isDarkMode,
+  isGrid,
+  isSnackOn,
+  isSubTab,
+  listIdx,
+  subscribeList,
+} from "./core/store/store.js";
+import { $ } from "./core/utils/util.js";
+
+const subButton = $(".list_sub_button");
+const unSubButton = $(".list_unsub_button");
 
 // 리스트뷰 element querySelector 함수
 function getListViewElement() {
@@ -19,25 +27,6 @@ function getListViewElement() {
   };
 }
 
-// 리스트 뷰의 뉴스 append
-export function appendNewsList() {
-  const elements = getListViewElement();
-  elements.newsListContainer.innerHTML = "";
-  const nowData =
-    categoryList[NOW_CATEGORY_IDX.getValue()].data[
-      NOW_LIST_PAGE.getValue() - 1
-    ];
-
-  elements.newsDetail.innerHTML = `${nowData.name} 언론사에서 직접 편집한 뉴스입니다.`;
-  elements.topicHeaderLogo.src = nowData.logoSrc;
-  elements.topicThumbnail.src = nowData.imgSrc;
-  elements.topicMain.innerHTML = nowData.mainTitle;
-  for (let i = 0; i < MAX_NEWS_COUNT; i++) {
-    const newNewsList = createNewsList(nowData.subTitleList[i].title);
-    elements.newsListContainer.appendChild(newNewsList);
-  }
-}
-
 // content가 들어간 뉴스 리스트 태그 생성
 function createNewsList(content) {
   const newList = document.createElement("li");
@@ -46,48 +35,82 @@ function createNewsList(content) {
   return newList;
 }
 
-// 좌우 리스트 버튼 display 변경
-export function updateListButton() {
-  const leftListButton = $(".left_list_button");
-  const rightListButton = $(".right_list_button");
-  if (NOW_LIST_PAGE.getValue() === 1 && NOW_CATEGORY_IDX.getValue() === 0) {
-    leftListButton.style.display = "none";
-    rightListButton.style.display = "block";
-  } else if (
-    NOW_CATEGORY_IDX.getValue() === CATEGORY_TAB_NUM &&
-    NOW_LIST_PAGE.getValue() === categoryList[CATEGORY_TAB_NUM].data.length
-  ) {
-    rightListButton.style.display = "none";
-    leftListButton.style.display = "block";
-  } else {
-    leftListButton.style.display = "block";
-    rightListButton.style.display = "block";
-  }
-}
-export function listArrowButtonClicked(increment) {
-  if (NOW_LIST_PAGE.getValue() + increment === 0) {
-    NOW_CATEGORY_IDX.incrementValue(-1);
-    NOW_LIST_PAGE.setValue(
-      categoryList[NOW_CATEGORY_IDX.getValue()].data.length
-    );
-  } else {
-    NOW_LIST_PAGE.incrementValue(increment);
-  }
-  const clickedCategory = $(".category_list--clicked");
-  clickedCategory.children[2].classList.remove("progressbar");
-  clickedCategory.offsetWidth;
-  clickedCategory.children[2].classList.add("progressbar");
-  refreshInterval();
-  updateListButton();
+// 리스트 뷰의 뉴스 append
+function appendNewsList(newsList) {
+  return () => {
+    const isGridMode = getState(isGrid);
+    if (!isGridMode) {
+      const isSubMode = getState(isSubTab);
+      const currentIdx = getState(listIdx);
+      const nowCategoryIdx = currentIdx.category;
+      const nowListIdx = currentIdx.list - 1;
+      const subList = getState(subscribeList);
+      const elements = getListViewElement();
+      const isDark = getState(isDarkMode);
+      let nowData;
+      elements.newsListContainer.innerHTML = "";
+      if (isSubMode) {
+        nowData = newsList.filter((press) => {
+          return press.name === subList[nowCategoryIdx];
+        });
+      } else {
+        nowData = newsList.filter((press) => {
+          return press.category === CATEGORY_TABS[nowCategoryIdx];
+        });
+      }
+      if (nowData[nowListIdx] === undefined) return;
+      $(".list_container").dataset.press = nowData[nowListIdx].name;
+      elements.newsDetail.innerHTML = `${nowData[nowListIdx].name} 언론사에서 직접 편집한 뉴스입니다.`;
+      elements.topicHeaderLogo.src = isDark
+        ? nowData[nowListIdx].darkSrc
+        : nowData[nowListIdx].lightSrc;
+      elements.topicThumbnail.src = nowData[nowListIdx].mainNews.thumbnail;
+      elements.topicMain.innerHTML = nowData[nowListIdx].mainNews.title;
+      updateSubButtons(nowData);
+      for (let i = 0; i < MAX_NEWS_COUNT; i++) {
+        const newNewsList = createNewsList(nowData[nowListIdx].subNews[i]);
+        elements.newsListContainer.appendChild(newNewsList);
+      }
+    }
+  };
 }
 
-(function init() {
-  const leftListButton = $(".left_list_button");
-  const rightListButton = $(".right_list_button");
-  leftListButton.addEventListener("click", () => {
-    listArrowButtonClicked(-1);
-  });
-  rightListButton.addEventListener("click", () => {
-    listArrowButtonClicked(1);
-  });
-})();
+function updateSubButtons(nowData) {
+  const subList = getState(subscribeList);
+  const nowListIdx = getState(listIdx).list - 1;
+
+  if (subList.includes(nowData[nowListIdx].name)) {
+    subButton.style.display = "none";
+    unSubButton.style.display = "block";
+  } else {
+    subButton.style.display = "block";
+    unSubButton.style.display = "none";
+  }
+}
+
+function subButtonClicked() {
+  const currentSubList = getState(subscribeList);
+  setState(subscribeList, [
+    ...currentSubList,
+    $(".list_container").dataset.press,
+  ]);
+  setState(isSnackOn, true);
+}
+
+function unSubButtonClicked() {
+  setState(isAlertOn, true);
+  setState(deletePress, $(".list_container").dataset.press);
+}
+
+async function setListViewEvents() {
+  const newsList = await getNewsContent();
+  subButton.addEventListener("click", subButtonClicked);
+  unSubButton.addEventListener("click", unSubButtonClicked);
+  register(listIdx, appendNewsList(newsList));
+  register(isGrid, appendNewsList(newsList));
+  register(isSubTab, appendNewsList(newsList));
+  register(subscribeList, appendNewsList(newsList));
+  register(isDarkMode, appendNewsList(newsList));
+}
+
+export { setListViewEvents };
