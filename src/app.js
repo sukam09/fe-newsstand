@@ -80,9 +80,9 @@ export default function App({ $app }) {
   const $div = document.createElement('div');
   $app.appendChild($div);
 
-  const onChangePress = press => {
-    this.setState({ ...this.state, press });
-    pressTab.setState({ ...this.state, press });
+  const onChangeTab = (press, view) => {
+    this.setState({ ...this.state, press, view });
+    pressTab.setState({ ...this.state, press, view });
   };
 
   this.render = () => {
