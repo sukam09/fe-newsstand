@@ -1,17 +1,14 @@
-import { renderListView } from "../main/listView/core/renderListView.js";
-import { renderGridView } from "../main/gridView/core/renderGridView.js";
 import { renderRolling } from "../main/newsRolling/newsRolling.js";
-import { initViewChange } from "../main/changeView/changeView.js";
-import { addEventToBtn } from "./listView/feature/handleBtnEvent.js";
-import { addEventPressInfo } from "./listView/feature/handleNewsData.js";
-import { addEventToGridBtn } from "./gridView/feature/handleEvent.js";
+import { initSubscribe } from "../store/initSubscribe.js";
+import { addEvent } from "../feature/addEvent.js";
+import { makeRandomNews } from "./listView/handleNewsData.js";
+import { render } from "./render.js";
+
 function initMain() {
+  initSubscribe();
   renderRolling();
-  renderGridView();
-  renderListView();
-  initViewChange();
-  addEventToBtn();
-  addEventPressInfo();
-  addEventToGridBtn();
+  addEvent();
+  makeRandomNews();
+  render();
 }
 export { initMain };

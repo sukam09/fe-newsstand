@@ -33,11 +33,11 @@
   font-weight: 700;
 }
 .news-title {
-  color: var(--text-default);
   font-size: 14px;
   font-weight: 500;
   padding-left: 18px;
 }
+
 .news-title:hover {
   text-decoration: underline;
 }

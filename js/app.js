@@ -6,7 +6,6 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.setAttribute("color-theme", "light");
   //header
   initHeader();
-
   //main
   initMain();
 });

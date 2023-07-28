@@ -1,0 +1,10 @@
+export const GRID_NUM = 24;
+export const PRESS_NUM = 96;
+export const MIN_PAGE = 1;
+export const MAX_PAGE = 4;
+export const SNACKBAR_TIME = 5000;
+export const REFRESH_DATE_TIME = 60000;
+export const LIST_VIEW = "list";
+export const GRID_VIEW = "grid";
+export const ALL_PRESS = "all";
+export const SUB_PRESS = "sub";

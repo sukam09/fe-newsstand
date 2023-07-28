@@ -1,17 +1,25 @@
-import { category, news_by_category } from "./manipulateNewsByCategory.js";
-import { news_by_press, press } from "./manipulateNewsByPress.js";
+import {
+  category,
+  news_by_category,
+  news_by_press,
+  press,
+} from "./manipulateNews.js";
 import {
   handleAniamtionIteration,
   handleAniamtionStart,
   handleCategoryClick,
+  handleMouseUp,
+  handleMouseMove,
+  handleMouseDown,
 } from "./handleCategoryEvent.js";
-import { store } from "../../../store.js";
-import { checkPressInLocal } from "../../../checkPressInLocal.js";
-import { clickSubscribe } from "../../../clickSubscribe.js";
-import { renderListView } from "../core/renderListView.js";
+import { checkPressInLocal } from "../../feature/subscribe.js";
+import { clickSubscribeBtn } from "../../feature/subscribe.js";
+import { getState } from "../../store/observer.js";
+import { isDark, listAllPage, viewOption } from "../../store/store.js";
+import { ALL_PRESS } from "../../utils/constant.js";
 
 function makeRandomNews() {
-  if (store.state.type === "list-press") return;
+  if (getState(viewOption) === "press") return;
 
   category.forEach((cate) => {
     news_by_category[cate].sort(() => Math.random() - 0.5);
@@ -19,59 +27,69 @@ function makeRandomNews() {
 }
 
 function makeCategory() {
+  showView();
+
   let _category;
-  if (store.state.type === "list-category") {
+  if (getState(viewOption) === ALL_PRESS) {
     _category = category;
   } else {
     _category = press;
   }
 
-  const _ul = document.querySelector(".category");
-  _ul.innerHTML = ``;
-  _category.forEach((item, index) => {
-    const _li = document.createElement("li");
-    _li.innerHTML = `
+  if (_category.length !== 0) {
+    const _ul = document.querySelector(".category");
+
+    _ul.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    _ul.innerHTML = ``;
+    _category.forEach((item, index) => {
+      const _li = document.createElement("li");
+      _li.innerHTML = `
        <div></div>
        <span class="category-item">${item}</span> 
        <span class="category-num"></span>
      `;
 
-    _ul.appendChild(_li);
+      _ul.appendChild(_li);
 
-    _li.dataset.category = item;
+      _li.dataset.category = item;
 
-    _li.addEventListener("click", (e) => handleCategoryClick(e));
-    _li.addEventListener("animationstart", (e) => handleAniamtionStart(e));
-    _li.addEventListener("animationiteration", (e) =>
-      handleAniamtionIteration(e)
-    );
+      _li.addEventListener("click", handleCategoryClick);
 
-    //span 클릭 시 li 클릭으로 처리
-    _li.children[1].addEventListener("click", (e) => {
-      e.stopPropagation();
-      _li.click();
+      _li.addEventListener("animationstart", handleAniamtionStart);
+      _li.addEventListener("animationiteration", handleAniamtionIteration);
+
+      //span 클릭 시 li 클릭으로 처리
+      _li.children[1].addEventListener("click", (e) => {
+        e.stopPropagation();
+        _li.click();
+      });
+
+      //default로 첫번째 카테고리
+      if (index === 0) {
+        _li.classList.add("selected-category");
+        _li.children[2].style.display = "flex";
+      }
     });
-
-    //default로 첫번째 카테고리
-    if (index === 0) {
-      _li.classList.add("selected-category");
-      _li.children[2].style.display = "flex";
-    }
-  });
+  } else {
+    hideView();
+  }
 }
 
 /* change */
-function chageNews(e) {
+function changeNews(e) {
   const news = getNews(e.currentTarget.dataset.category);
   //press-info
   if (news !== undefined) {
-    changePressInfo(news[store.state.list_page]);
+    changePressInfo(news[getState(listAllPage)]);
 
     //main news
-    changeMain(news[store.state.list_page]);
+    changeMain(news[getState(listAllPage)]);
 
     //sub news
-    changeSub(news[store.state.list_page]);
+    changeSub(news[getState(listAllPage)]);
 
     //pagenum info
     changePageInfo(e);
@@ -80,7 +98,12 @@ function chageNews(e) {
 
 function changePressInfo(news) {
   const press_info = document.querySelector(".press-info");
-  press_info.children[0].setAttribute("src", `${news.src}`);
+  if (getState(isDark)) {
+    press_info.children[0].setAttribute("src", `${news.darkSrc}`);
+  } else {
+    press_info.children[0].setAttribute("src", `${news.lightSrc}`);
+  }
+
   press_info.children[0].setAttribute("data-press", `${news.name}`);
   press_info.children[1].innerText = `${news.editDate}`;
 
@@ -121,9 +144,9 @@ function changePageInfo(e) {
   //e.target => span (class = category-num)
   //e.target.parentElement => li
   e.target.parentElement.children[2].style.display = "flex";
-  if (store.state.type === "list-category") {
+  if (getState(viewOption) === ALL_PRESS) {
     e.target.parentElement.children[2].innerText = `${
-      store.state.list_page + 1
+      getState(listAllPage) + 1
     }/${getPagesNum(e.currentTarget.dataset.category)}`;
   } else {
     e.target.parentElement.children[2].innerText = `>`;
@@ -132,7 +155,7 @@ function changePageInfo(e) {
 
 /* GET */
 function getNews(category) {
-  if (store.state.type === "list-category") return news_by_category[category];
+  if (getState(viewOption) === ALL_PRESS) return news_by_category[category];
   else return news_by_press[category];
 }
 
@@ -173,12 +196,28 @@ function handleMouseOverAndOut(mainNews, type) {
 function addEventPressInfo() {
   const _img = document.querySelector(".press-info button img");
   _img.addEventListener("click", () => {
-    clickSubscribe(
+    clickSubscribeBtn(
       document.querySelector(".press-info-img").dataset.press,
-      "list",
       _img
     );
   });
+}
+
+function hideView() {
+  document.querySelector(".list-view").style.visibility = "hidden";
+  document.getElementById("list-right").style.visibility = "hidden";
+  document.getElementById("list-left").style.visibility = "hidden";
+  document.querySelector(".warning-message").style.display = "block";
+}
+
+function showView() {
+  const listView = document.querySelector(".list-view");
+  if (listView.style.visibility === "hidden") {
+    document.querySelector(".list-view").style.visibility = "visible";
+    document.getElementById("list-right").style.visibility = "visible";
+    document.getElementById("list-left").style.visibility = "visible";
+    document.querySelector(".warning-message").style.display = "none";
+  }
 }
 
 export {
@@ -187,6 +226,6 @@ export {
   transformMainNews,
   getPagesNum,
   findCurrentCategory,
-  chageNews,
+  changeNews,
   addEventPressInfo,
 };
