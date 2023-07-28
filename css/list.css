@@ -22,10 +22,19 @@
   color: var(--text-text-default);
 }
 
+.list-content .list-header rect {
+  color: var(--surface-surface-default);
+}
+
+.list-content .list-header path {
+  fill: var(--text-text-default);
+}
+
 .news-section .subscribe-btn {
+  background-color: var(--surface-surface-default);
+
   border: 1px solid var(--border-border-default);
   border-radius: 50px;
-  background-color: var(--surface-surface-alt);
   color: var(--text-text-weak);
   font-size: 12px;
   width: 72px;
