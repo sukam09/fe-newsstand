@@ -1,6 +1,6 @@
 class Store {
   constructor() {
-    this.state = []; // 구독한 언론사
+    this.subPressState = []; // 구독한 언론사
     this.showState = {
       isShowAllPress: true,
       isShowGrid: true,
@@ -11,13 +11,13 @@ class Store {
 
   /** 구독 언론사 추가 */
   addState(newstate) {
-    this.state = [...this.state, newstate];
+    this.subPressState = [...this.subPressState, newstate];
     this.notify();
   }
 
   /** 구독 언론사 제거 */
   removeState(rmState) {
-    this.state = this.state.filter((v) => v !== rmState);
+    this.subPressState = this.subPressState.filter((v) => v !== rmState);
     this.notify();
   }
 
@@ -29,12 +29,12 @@ class Store {
 
   /** 구독 언론사 가져오기 */
   getState() {
-    return this.state;
+    return this.subPressState;
   }
 
   /** 구독 언론사 개수 */
   getStateSize() {
-    return this.state.length;
+    return this.subPressState.length;
   }
 
   subscribe(listener) {
