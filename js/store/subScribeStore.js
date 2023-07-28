@@ -1,23 +1,19 @@
-import { Store } from '../core/Store.js';
+import { Vuex } from '../core/Vuex.js';
 
-const subScribeStore = new Store({
+const subScribeStore = new Vuex({
   state: {
     subscribeData: [],
   },
-  // state의 값은 오직 mutations를 통해서 변경할 수 있다.
+
   mutations: {
-    setState(state, payload) {
+    subscribe(state, payload) {
       state.subscribeData.push(payload);
     },
-    updateState(state, payload) {
-      state.subscribeData = state.subscribeData.filter((d) => d != payload);
+    unsubscribe(state, payload) {
+      state.subscribeData = state.subscribeData.filter((data) => data != payload);
     },
   },
 
-  // 현재 쓸만한 API가 없다.
-  actions: {},
-
-  //computed
   getters: {
     getsubscribeData(state) {
       return state.subscribeData;

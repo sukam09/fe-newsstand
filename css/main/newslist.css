@@ -9,18 +9,24 @@
   position: relative;
   display: flex;
   align-items: center;
-
   background-color: #f5f7f9;
   border: 1px solid #d2dae0;
   color: var(--text-gray-light);
+  overflow-x: auto;
 }
+.newsstand__category::-webkit-scrollbar {
+  display: none;
+}
+
 .category-item {
   height: 45px;
-  width: 10%;
+  /* width: 10%; */
   display: flex;
+  flex: 0 0 90px;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  white-space: nowrap;
 }
 /* .newsstand__category > span {
   content: none;
@@ -32,9 +38,10 @@
 .select-category {
   justify-content: space-around;
 
-  width: 15%;
+  /* width: 15%; */
   height: 100%;
-
+  display: flex;
+  flex: 0 0 120px;
   color: white;
 
   background: linear-gradient(to right, #7890e7, #4362d0);

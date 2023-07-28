@@ -4,7 +4,7 @@ function subProgressBar() {
   snackbar.style.display = 'block';
   setTimeout(() => {
     snackbar.style.display = 'none';
-  }, 2000);
+  }, 1000);
 }
 
 export { subProgressBar };

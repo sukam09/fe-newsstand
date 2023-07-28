@@ -1,12 +1,12 @@
 import { html } from '../core/createElement.js';
 import { subScribeStore } from '../store/subScribeStore.js';
 
-function createNewsListHtml(d) {
-  let htmls = '';
+function listView(d) {
+  let template = '';
   if (!d) {
-    htmls = html` <div></div> `;
+    template = html` <div></div> `;
   } else {
-    htmls = html`
+    template = html`
     <div class="list-header">
       <div class="list-header-title">${d.name}</div>
       <div class="list-header-sub">
@@ -31,7 +31,7 @@ function createNewsListHtml(d) {
   }
 
   document.querySelector('.newsstand__list-box').innerHTML = '';
-  document.querySelector('.newsstand__list-box').insertAdjacentHTML('beforeend', htmls);
+  document.querySelector('.newsstand__list-box').insertAdjacentHTML('beforeend', template);
 }
 
-export { createNewsListHtml };
+export { listView };
