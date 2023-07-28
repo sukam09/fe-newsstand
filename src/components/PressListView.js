@@ -123,6 +123,8 @@ export default function PressListView({ $target, initialState, onChangeTab, save
     if (this.percentage >= 100) {
       const { present, entire, length } = this.state;
 
+      clearInterval(this.progressBarTimer);
+
       if (present === entire) {
         this.setState({
           ...this.state,
@@ -132,6 +134,9 @@ export default function PressListView({ $target, initialState, onChangeTab, save
       } else {
         this.setState({ ...this.state, present: this.state.present + 1 });
       }
+    } else {
+      this.percentage += PROGRESSBAR_UPDATE_DELTA;
+      $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
     }
 
     $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
