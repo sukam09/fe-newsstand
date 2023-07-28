@@ -187,5 +187,6 @@ function handleDarkMode() {
 export {
   changeToGridViewDisplay,
   changeToListViewDisplay,
+  changeToSubListViewDisplay,
   addEventToViewOption,
 };

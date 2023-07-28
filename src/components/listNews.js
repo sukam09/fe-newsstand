@@ -6,6 +6,9 @@ import { removeAddClass } from "../util/utils.js";
 import { getPressItemByName, removePressFromSubList } from "./gridView.js";
 import { getState, setState } from "../observer/observer.js";
 import { isLight, subscribedPress } from "../store/store.js";
+import { drawSubListView } from "./subListNews.js";
+import { changeToSubListViewDisplay } from "../changeView.js";
+import { runSubProgress } from "./subProgressBar.js";
 
 const SUB_NEWS_TITLE_NUM = 6;
 const SNACKBAR_POPUP_TIME = 5000;
@@ -110,6 +113,12 @@ subscribe_btn.addEventListener("click", async () => {
 
     snackbar_timeout = setTimeout(function () {
       removeSnackBar();
+      changeToSubListViewDisplay();
+      document
+        .querySelectorAll(".sub-list-nav .progress-item")
+        [getState(subscribedPress).length - 1].classList.add("progress-bar");
+      runSubProgress();
+      drawSubListView(getState(subscribedPress).length - 1);
     }, SNACKBAR_POPUP_TIME);
   }
 });
