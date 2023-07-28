@@ -1,13 +1,16 @@
-import { changeView, updateTabSelection } from "../utils/changeView.js";
-import { showGridView } from "../utils/makeGridView.js";
-import { showListView } from "../utils/makeListView.js";
+import {
+  changeView,
+  updateTabSelection,
+} from "../utils/viewUtils/changeView.js";
+import { showGridView } from "../utils/gridUtils/makeGridView.js";
+import { showListView } from "../utils/listUtils/makeListView.js";
 import {
   FIRST_PAGE_NUM,
   ICON_IMG_PATH,
   GRID_INDEX,
 } from "../constants/constants.js";
 import { store } from "../core/store.js";
-import { shuffleArray } from "../utils/shuffleIndex.js";
+import { shuffleArray } from "../utils/commonUtils/shuffleIndex.js";
 import {
   getView,
   getPage,
@@ -20,7 +23,7 @@ import {
   deletePopupAndAnimation,
   checkAnswer,
   handleAnimationEnd,
-} from "../utils/subscribePress.js";
+} from "../utils/viewUtils/subscribePress.js";
 
 function MainView() {
   store.setState({

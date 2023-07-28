@@ -3,11 +3,11 @@ import {
   getSubscribedPress,
   getView,
   getPage,
-} from "../core/getter.js";
-import { store } from "../core/store.js";
-import { ICON_IMG_PATH, PRESS_VIEW_COUNT } from "../constants/constants.js";
-import { showListView } from "./makeListView.js";
-import { showGridView } from "./makeGridView.js";
+} from "../../core/getter.js";
+import { store } from "../../core/store.js";
+import { ICON_IMG_PATH, PRESS_VIEW_COUNT } from "../../constants/constants.js";
+import { showListView } from "../listUtils/makeListView.js";
+import { showGridView } from "../gridUtils/makeGridView.js";
 import { changeView, updateTabSelection } from "./changeView.js";
 
 export function showSubscribeButton(isSubscribed) {

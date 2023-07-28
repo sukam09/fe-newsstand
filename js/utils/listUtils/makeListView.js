@@ -1,15 +1,15 @@
 import { drawCategory } from "./drawCategory.js";
 import { drawPressInfo } from "./drawPressInfo.js";
 import { drawPressNews } from "./drawPressNews.js";
-import { store } from "../core/store.js";
-import { FIRST_PAGE_NUM, CATEGORY } from "../constants/constants.js";
+import { store } from "../../core/store.js";
+import { FIRST_PAGE_NUM, CATEGORY } from "../../constants/constants.js";
 import {
   getPage,
   getTabMode,
   getSubscribedPress,
   getIndex,
-} from "../core/getter.js";
-import { checkPage } from "./checkPage.js";
+} from "../../core/getter.js";
+import { checkPage } from "../commonUtils/checkPage.js";
 
 function filterData(current) {
   const data = getIndex("listIndex");

@@ -1,7 +1,7 @@
 import {
   ROLLING_WAIT_TIME,
   ROLLING_DIFF_TIME,
-} from "../constants/constants.js";
+} from "../../constants/constants.js";
 let leftAutoRollingInterval;
 let rightAutoRollingInterval;
 function rollingCallback(target) {

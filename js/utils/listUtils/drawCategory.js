@@ -1,7 +1,7 @@
 import { showListView } from "./makeListView.js";
-import { store } from "../core/store.js";
-import { getPage, getTabMode } from "../core/getter.js";
-import { FIRST_PAGE_NUM } from "../constants/constants.js";
+import { store } from "../../core/store.js";
+import { getPage, getTabMode } from "../../core/getter.js";
+import { FIRST_PAGE_NUM } from "../../constants/constants.js";
 
 function handleClick(e) {
   const li_target = e.target.closest("li");

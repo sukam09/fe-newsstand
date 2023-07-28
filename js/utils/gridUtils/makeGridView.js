@@ -1,17 +1,20 @@
 import {
   PRESS_VIEW_COUNT,
   PRESS_LOGO_IMG_PATH,
-} from "../constants/constants.js";
+} from "../../constants/constants.js";
 import {
   getIndex,
   getPage,
   getSubscribedPress,
   getTabMode,
   getMode,
-} from "../core/getter.js";
-import { checkPage } from "./checkPage.js";
-import { handleSubscribe, showSubscribeButton } from "./subscribePress.js";
-import { getData } from "../core/api.js";
+} from "../../core/getter.js";
+import { checkPage } from "../commonUtils/checkPage.js";
+import {
+  handleSubscribe,
+  showSubscribeButton,
+} from "../viewUtils/subscribePress.js";
+import { getData } from "../../core/api.js";
 const grid_view = `
     <ul class="main-list-ul"></ul>
     `;

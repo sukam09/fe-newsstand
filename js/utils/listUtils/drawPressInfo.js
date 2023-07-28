@@ -1,6 +1,9 @@
-import { PRESS_LOGO_IMG_PATH } from "../constants/constants.js";
-import { getPage, getSubscribedPress, getMode } from "../core/getter.js";
-import { handleSubscribe, showSubscribeButton } from "./subscribePress.js";
+import { PRESS_LOGO_IMG_PATH } from "../../constants/constants.js";
+import { getPage, getSubscribedPress, getMode } from "../../core/getter.js";
+import {
+  handleSubscribe,
+  showSubscribeButton,
+} from "../viewUtils/subscribePress.js";
 
 export function drawPressInfo(list_content) {
   const pattern = /img(\d+)\.svg/; // 정규식 패턴

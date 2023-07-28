@@ -1,4 +1,4 @@
-import { getPage, getTabMode } from "../core/getter.js";
+import { getPage, getTabMode } from "../../core/getter.js";
 
 function generateMainNews(main_news) {
   return `<div class="main-img"><img src="${main_news.thumbnail}" alt="thumbnail"/></div>
