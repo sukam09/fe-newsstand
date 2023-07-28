@@ -205,7 +205,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
     this.setState({
       ...this.state,
       categories: myPress,
-      index: index === length - 1 ? index - 1 : index,
+      index: 0,
       length: this.state.length - 1,
     });
   };
