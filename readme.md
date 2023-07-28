@@ -43,6 +43,14 @@ JS에 많은 것을 배웠다. 먼저 React의 컴포넌트 방식으로 구현�
 
 4주동안 단순히 코딩실력보다는 **내부동작과정에 초점**을 맞추어 공부를 하여 문제가 발생했을시 문제분석을 보다 빠르고 정확하게 할 수 있을거라 생각이 든다. 
 
+# 🥳 Pull Request
+
+- [x] <a href = 'https://github.com/softeerbootcamp-2nd/fe-newsstand/pull/8'>1주차 PR</a>
+- [x] <a href = 'https://github.com/softeerbootcamp-2nd/fe-newsstand/pull/35'>2주차 PR</a>
+- [x] <a href = 'https://github.com/softeerbootcamp-2nd/fe-newsstand/pull/90'>3주차 PR</a>
+- [x] <a href = 'https://github.com/softeerbootcamp-2nd/fe-newsstand/pull/126'>4주차 PR</a>
+
+
 # 🗂️ 폴더 구조
 ```
 fe-newsstand
