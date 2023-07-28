@@ -1,15 +1,13 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
-/* 폰트 다운받은 파일로 수정 */
-
 @import url('./reset.css');
 @import url('./design.css');
 
-@import url('./components/news-stand-header.css');
-@import url('./components/latest-news.css');
-@import url('./components/light-dark-mode.css');
-@import url('./components/press-header.css');
-@import url('./components/press-grid.css');
-@import url('./components/press-list.css');
+@import url('./components/news-stand-header/news-stand-header.css');
+@import url('./components/news-stand-latest/news-stand-latest.css');
+@import url('./components/press-header/light-dark-mode.css');
+@import url('./components/press-header/press-header.css');
+@import url('./components/press-header/press-grid.css');
+@import url('./components/press-header/press-list.css');
 
 @import url('./global.css'); /*실행순서*/
 

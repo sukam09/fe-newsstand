@@ -1,10 +1,13 @@
 const HEADER_CLASS = {
+  LEFT: 'latest_news__wrapper-left',
+  RIGHT: 'latest_news__wrapper-right',
   LI: 'latest_news__li',
   H2: 'latest_news__h2',
   P: 'latest_news__p',
 };
 
 const NEWS_SLICE = {
+  NUM: 2,
   MIN: 0,
   MAX: 10,
 };
@@ -23,7 +26,7 @@ const ROLLING = {
 };
 
 const URL = {
-  DATA: './assets/data/latest-news.json',
+  DATA: './src/assets/data/latest-news.json',
 };
 
 const ERROR = {

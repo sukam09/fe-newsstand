@@ -1,16 +1,6 @@
-import { getShuffleIds } from '../utils/shuffle.js';
-
-const STATE = {
-  IS_GRID: true,
-  IS_TOTAL: true,
-  IS_UNSUBSCRIBE: true,
-};
+import { getShuffleIds } from '../../utils/shuffle.js';
 
 const LIST = {
-  CATEGORY_LENGTH: 0,
-  CATEGORY_COUNT: 1,
-  PAGE_LENTH: 0,
-  PAGE_COUNT: 1,
   SUFFLE_CATEGORY: [],
   SUFFLE_ID: getShuffleIds(96),
   SUBSCRIBE_ID: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -29,11 +19,4 @@ const LIST = {
   ],
 };
 
-// 리팩토링
-const PAGE = {
-  GRID: 0,
-  MIN: 0,
-  MAX: 3,
-};
-
-export { STATE, LIST, PAGE };
+export { LIST };

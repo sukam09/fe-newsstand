@@ -19,16 +19,18 @@ const HEADER_CLASS = {
 };
 
 const PATH = {
-  ARROW_LEFT: './assets/icons/chevron-left.svg',
-  ARROW_RIGHT: './assets/icons/chevron-right.svg',
-  BUTTON_PLUS: './assets/icons/button-plus.svg',
+  ARROW_LEFT: './src/assets/icons/chevron-left.svg',
+  ARROW_RIGHT: './src/assets/icons/chevron-right.svg',
+  BUTTON_PLUS: './src/assets/icons/button-plus.svg',
 };
 
 const NUMBER = {
   GRID_LENGTH: 24,
   ARROW_MIN: 1,
-  ARROW_MINUS: -1,
-  ARROW_PLUS: 1,
+  PAGE_MIN: 0,
+  PAGE_MAX: 3,
+  MINUS: -1,
+  PLUS: 1,
 };
 
 const CONTENT = {

@@ -5,6 +5,7 @@ const HEADER_CLASS = {
   H1: 'header__h1',
   TIME: 'header__time',
 };
+
 const DATE_OPTIONS = {
   year: 'numeric',
   month: '2-digit',
@@ -13,7 +14,7 @@ const DATE_OPTIONS = {
 };
 
 const PATH = {
-  LOGO: './assets/icons/newspaper.svg',
+  LOGO: './src/assets/icons/newspaper.svg',
 };
 
 const TITLE = {

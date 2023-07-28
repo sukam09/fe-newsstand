@@ -1,16 +1,17 @@
-import { MODE_CLASS, MODE, PATH } from '../constants/light-dark-mode.js';
+import { MODE_CLASS, MODE, PATH } from '../../constants/press-header/light-dark-mode.js';
 
 /**
  * 뉴스스탠드의 INIT
  * 기본은 Light 모드 🌈
  */
+
 const initLightDarkMode = () => {
   localStorage.setItem(MODE.MODE, MODE.LIGHT);
-  setMode();
-  setModeEvent();
+  renderMode();
+  setupEvent();
 };
 
-const setMode = () => {
+const renderMode = () => {
   const navRight = document.querySelector(`.${MODE_CLASS.NAV}`);
   const modeElement = `
     <img class=${MODE_CLASS.IMG} src=${PATH.LIGHT}></img>
@@ -18,14 +19,11 @@ const setMode = () => {
   navRight.insertAdjacentHTML('afterbegin', modeElement);
 };
 
-const setModeEvent = () => {
+const setupEvent = () => {
   const modeImg = document.querySelector(`.${MODE_CLASS.IMG}`);
   modeImg.addEventListener('click', toggleMode);
 };
 
-/**
- *  라이트/다크모드 변경
- */
 const toggleMode = () => {
   let mode = localStorage.getItem(MODE.MODE);
 
