@@ -1,5 +1,7 @@
 ### 폴더구조
 
+[뉴스스탠드 데모영상](https://youtu.be/RX3RJi6MUi8)
+
 ```bash
 ├── assets
 │   ├── basicIcon
