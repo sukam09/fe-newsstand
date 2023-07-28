@@ -1,4 +1,3 @@
-import { fetchPressInfo, fetchListView } from '../api.js';
 import { store } from '../../core/store.js';
 import { convertRegDate, getSubscribed, handleSubscribe } from '../utils.js';
 import { ANIMATION_UPDATE_DELAY, CATEGORY_NUMBERS, PROGRESSBAR_UPDATE_DELTA, SUBSCRIBE_MESSAGE } from '../constants.js';
@@ -46,6 +45,7 @@ export default function PressListView({ $target, initialState, onChangeTab, save
     const present = this.state.present === 0 ? entire : this.state.present;
 
     const newsData = listViewData[index % CATEGORY_NUMBERS][present - 1];
+
     const { materials, pid, regDate } = newsData;
     const mainNews = materials[0];
 
@@ -104,21 +104,20 @@ export default function PressListView({ $target, initialState, onChangeTab, save
   };
 
   const initProgressBar = $selectedButton => {
-    if (this.timer !== undefined) {
+    if (this.progressBarTimer !== undefined) {
       this.$currentButton.style.background = '';
-      clearInterval(this.timer);
+      clearInterval(this.progressBarTimer);
     }
 
     $selectedButton.style.background = '#7890e7';
     this.percentage = 0;
-    this.timer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
+    this.progressBarTimer = setInterval(() => setProgressBar($selectedButton), ANIMATION_UPDATE_DELAY);
+    saveTimer(this.progressBarTimer);
 
     this.$currentButton = $selectedButton;
   };
 
   const setProgressBar = $selectedButton => {
-    this.percentage += PROGRESSBAR_UPDATE_DELTA;
-
     // percentage가 정확히 100이 안될 수가 있으므로 등호가 아닌 부등호를 써야 함
     if (this.percentage >= 100) {
       const { present, entire, length } = this.state;
@@ -138,8 +137,6 @@ export default function PressListView({ $target, initialState, onChangeTab, save
       this.percentage += PROGRESSBAR_UPDATE_DELTA;
       $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
     }
-
-    $selectedButton.style.background = `linear-gradient(to right, #4362d0 ${this.percentage}%, #7890e7 ${this.percentage}%)`;
   };
 
   const handleClickTextButton = newIndex => {
@@ -212,11 +209,13 @@ export default function PressListView({ $target, initialState, onChangeTab, save
     });
   };
 
-  this.render = async () => {
+  let isInit = false;
+
+  this.render = () => {
+    clearTimer();
+
     if (!isInit) {
       initFieldTab();
-      const listViewData = await fetchListView();
-      this.setState({ ...this.state, listViewData }, false);
 
       $leftButton.addEventListener('click', handleClickLeftButton);
       $rightButton.addEventListener('click', handleClickRightButton);
