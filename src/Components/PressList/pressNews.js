@@ -17,8 +17,13 @@ function drawPressNewsHeader(whatPressNews) {
     : PATH_SUBSCRIBE_BTN
   $pressNews.innerHTML = `
   <div class="press-news-info">
-    <img class = "press-list-logo" data-id = "${whatPressNews[getCurrentCategoryIndex()][getPage()]["id"]}" src=${whatPressNews[getCurrentCategoryIndex()][getPage()]["lightSrc"]} alt="${whatPressNews[getCurrentCategoryIndex()][getPage()]["name"]}">
-    <span class="display-medium12 text-default">${whatPressNews[getCurrentCategoryIndex()][getPage()]["editDate"]}</span>
+    <img class = "press-list-logo" data-id = 
+    "${whatPressNews[getCurrentCategoryIndex()][getPage()]["id"]}" 
+    src=${whatPressNews[getCurrentCategoryIndex()][getPage()]["lightSrc"]} 
+    alt="${whatPressNews[getCurrentCategoryIndex()][getPage()]["name"]}">
+    <span class="display-medium12 text-default">
+    ${whatPressNews[getCurrentCategoryIndex()][getPage()]["editDate"]}
+    </span>
     <img class = "sub-unsub-btn pointer" data-src=${subUnsubBtnImg} src=${subUnsubBtnImg} alt="">
   </div>
   `
@@ -30,10 +35,12 @@ function drawPressNewsMain(whatPressNews) {
   <div class="press-news-content">
     <div class="press-news-main">
       <img class="press-news-thumbnail" src=${PATH_TEST_THUMBNAIL}>
-      <p class="press-news-title available-medium16 text-strong">${whatPressNews[getCurrentCategoryIndex()][getPage()]["mainTitle"]}</p>
+      <p class="press-news-title available-medium16 text-strong">
+      ${whatPressNews[getCurrentCategoryIndex()][getPage()]["mainTitle"]}</p>
     </div>
     <div class="press-news-sub available-medium16 text-bold">
-      ${whatPressNews[getCurrentCategoryIndex()][getPage()]["subTitle"].map(sub => `<p class = "press-news-sub-list">${sub}</p>`).join('')}
+      ${whatPressNews[getCurrentCategoryIndex()][getPage()]["subTitle"]
+      .map(sub => `<p class = "press-news-sub-list">${sub}</p>`).join('')}
       <p class = "text-weak display-medium14"> 편집 권한에 대한 문구</p>
     </div>
   </div>

@@ -47,13 +47,15 @@ function drawRollingNews(rollingNews) {
 function setRollingNewsClass(rollingNews) {
   const $leftNewsList = document.querySelectorAll('.wrap-left li');
   const $rightNewsList = document.querySelectorAll('.wrap-right li');
+  console.log($leftNewsList)
   $leftNewsList[0].classList.add("current");
-  $leftNewsList[1].classList.add("next");
-  $leftNewsList[rollingNews[0].length - 1].classList.add("prev")
-
   $rightNewsList[0].classList.add("current");
+
+  $leftNewsList[1].classList.add("next");
   $rightNewsList[1].classList.add("next");
-  $rightNewsList[rollingNews[1].length - 1].classList.add("prev")
+
+  $leftNewsList[rollingNews[0].length - 1].classList.add("prev");
+  $rightNewsList[rollingNews[1].length - 1].classList.add("prev");
 }
 
 /**
@@ -62,6 +64,7 @@ function setRollingNewsClass(rollingNews) {
 function rollNewsBoth(whatRolling) {
   let interval = window.setInterval(rollNewsCallback, ROLLING_INTERVAL_TIME, whatRolling);
   const $lists = document.querySelectorAll(`.rolling-banner .wrap-${whatRolling} li`);
+  console.log($lists)
   $lists.forEach($list => {
     $list.addEventListener('mouseenter', () => {
       clearInterval(interval);

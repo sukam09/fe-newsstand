@@ -10,5 +10,5 @@ export const SURFACE_DEFAULT = '#FFFFFF'
 export const START_CATEGORY_IDX = 0;
 export const PROGRESS_FLAG = 1;
 export const SNACKBAR_DURATION = 2000;
-export const ONE_ROLLINGNEWS_CNT = 5000;
+export const ONE_ROLLINGNEWS_CNT = 5;
 
