@@ -1,21 +1,10 @@
-import { TEXT } from '../src/constants/index.js';
-import { customQuerySelector } from '../src/utils/index.js';
-import SnackBar from '../src/components/common/SnackBar.js';
+//store
+import { PressStore } from './Press.js';
+import { ViewModeStore } from './View.js';
+import { PageStore } from './Page.js';
 
-export const toggleAlert = name => {
-  const $alertModal = customQuerySelector(TEXT.ALERT_MODAL_CLASS_NAME);
-  const isAlertModalOn = $alertModal.classList.contains('on');
-  if (isAlertModalOn) {
-    $alertModal.classList.remove('on');
-    $alertModal.classList.add('off');
-    $alertModal.dataset.name = name;
-  } else {
-    $alertModal.classList.remove('off');
-    $alertModal.classList.add('on');
-    $alertModal.dataset.name = '';
-  }
-};
+const pressStore = new PressStore();
+const viewStore = new ViewModeStore();
+const pageStore = new PageStore();
 
-export const showSnackBar = () => {
-  new SnackBar(customQuerySelector(TEXT.SNACK_BAR_CLASS_NAME));
-};
+export { pressStore, viewStore, pageStore };

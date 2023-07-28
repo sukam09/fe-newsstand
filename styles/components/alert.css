@@ -1,7 +1,7 @@
 /* alert-button */
 .alert-modal {
   position: absolute;
-  top: 240px;
+  top: 120px;
   z-index: 10;
 }
 .alert-wrapper {

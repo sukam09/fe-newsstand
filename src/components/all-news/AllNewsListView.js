@@ -1,28 +1,30 @@
-import db from '../../../store/db.js';
-import { TEXT } from '../../constants/index.js';
-import { customQuerySelector } from '../../utils/index.js';
-import Icon from '../common/Icon.js';
+//components
 import Component from '../core/Component.js';
 import ArrowButton from './ArrowButton.js';
 import SubscribeButton from './SubscribeButton.js';
-import { changeCurrentView } from './index.js';
 
-let savedCurrentPressIndex = 0;
+//constants
+import { LIST_KEYS_TEMPLATE, TEXT } from '../../constants/index.js';
 
-export default class AllNewsMyListView extends Component {
+//utils
+import { customQuerySelector } from '../../utils/index.js';
+
+//store
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
+export default class AllNewsListView extends Component {
   setup() {
-    this.pressOrder = db.getFilteredPress;
-    this.headerList = this.pressOrder.map(({ name }) => name);
+    this.pressOrder = this.getListPress();
+    this.headerList = this.getHeaderList();
 
     this.state = {
-      currentPressIndex: savedCurrentPressIndex,
-      currentPress: this.pressOrder[savedCurrentPressIndex],
+      currentPage: pageStore.allTypeListPage,
+      currentPress: this.getCurrentPress(pageStore.allTypeListPageIndex, pageStore.allTypeListPage),
+      currentPressIndex: pageStore.allTypeListPageIndex,
     };
-    changeCurrentView(TEXT.SUBSCRIBE_EN);
   }
 
   template() {
-    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
+    const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
 
     return `
       <div class="news-list-wrapper">
@@ -68,8 +70,7 @@ export default class AllNewsMyListView extends Component {
   mounted() {
     this.navigationMount();
     this.detailListMount();
-
-    savedCurrentPressIndex = this.state.currentPressIndex;
+    this.savePage({ page: this.state.currentPage, index: this.state.currentPressIndex });
 
     customQuerySelector('.press-header-focus', this.$target).addEventListener(
       'animationiteration',
@@ -78,12 +79,12 @@ export default class AllNewsMyListView extends Component {
 
     new SubscribeButton(customQuerySelector('.subscribe-button-wrapper', this.$target), {
       color: 'gray',
-      text: db.getDbData.includes(this.state.currentPress.number) ? '' : TEXT.SUBSCRIBE_KO,
+      text: pressStore.subscribedList.includes(this.state.currentPress.number)
+        ? ''
+        : TEXT.SUBSCRIBE_KO,
       name: this.state.currentPress.name,
       number: this.state.currentPress.number,
     });
-
-    new Icon(customQuerySelector('.chevron-icon', this.$target), { name: 'chevron-right' });
 
     new ArrowButton(customQuerySelector('.left-button', this.$target), {
       name: 'left-button',
@@ -96,12 +97,12 @@ export default class AllNewsMyListView extends Component {
       isVisible: true,
       action: this.goNextPage.bind(this),
     });
-
-    customQuerySelector('.press-header-focus', this.$target).scrollIntoView(false);
   }
 
   navigationMount() {
     const currentCategory = this.headerList[this.state.currentPressIndex];
+
+    const totalPage = this.pressOrder[currentCategory]?.length;
 
     customQuerySelector('nav', this.$target).innerHTML = this.headerList.reduce(
       (innerHTML, press) => {
@@ -110,7 +111,10 @@ export default class AllNewsMyListView extends Component {
             innerHTML +
             `<li class="press-header-focus surface-brand-alt ">
               <span class="selected-bold14 text-white-default">${press}</span>
-              <img class='chevron-icon'/>
+              <div>
+                <span class="display-bold12 text-white-default">${this.state.currentPage}</span>
+                <span class="display-bold12 text-white-weak"> / ${totalPage}</span>
+              </div>
             </li>`
           );
         }
@@ -133,35 +137,85 @@ export default class AllNewsMyListView extends Component {
   }
 
   setEvent() {
-    this.$target.addEventListener('click', ({ target }) => {
-      if (target.classList.contains('press-type-name')) {
-        const targetPress = target.innerHTML;
-        const nextIndex = this.headerList.indexOf(targetPress);
+    this.$target.addEventListener('click', e => {
+      if (e.target.classList.contains('press-type-name')) {
+        const targetPress = e.target.innerHTML;
+        const currentPressIndex = this.headerList.indexOf(targetPress);
 
         this.setState({
-          nextIndex,
-          currentPressIndex: nextIndex,
+          currentPressIndex,
+          currentPage: 1,
+          currentPress: this.getCurrentPress(currentPressIndex),
         });
       }
     });
   }
 
   goPrevPage() {
-    const nextIndex =
-      (this.state.currentPressIndex + this.headerList.length - 1) % this.headerList.length;
-
-    this.setState({
-      currentPressIndex: nextIndex,
-      currentPress: this.pressOrder[nextIndex],
-    });
+    if (this.state.currentPage === 1) {
+      const currentPressIndex =
+        (this.state.currentPressIndex + this.headerList.length - 1) % this.headerList.length;
+      this.setState({
+        currentPressIndex,
+        currentPage: 1,
+        currentPress: this.getCurrentPress(currentPressIndex, 1),
+      });
+    } else {
+      this.setState({
+        currentPage: this.state.currentPage - 1,
+        currentPress: this.getCurrentPress(
+          this.state.currentPressIndex,
+          this.state.currentPage - 1,
+        ),
+      });
+    }
   }
 
   goNextPage() {
-    const nextIndex = (this.state.currentPressIndex + 1) % this.headerList.length;
+    const currentCategory = this.headerList[this.state.currentPressIndex];
+    const totalPage = this.pressOrder[currentCategory].length;
 
-    this.setState({
-      currentPressIndex: nextIndex,
-      currentPress: this.pressOrder[nextIndex],
+    if (this.state.currentPage === totalPage) {
+      const currentPressIndex = (this.state.currentPressIndex + 1) % this.headerList.length;
+
+      this.setState({
+        currentPressIndex,
+        currentPage: 1,
+        currentPress: this.getCurrentPress(currentPressIndex, 1),
+      });
+    } else {
+      this.setState({
+        currentPage: this.state.currentPage + 1,
+        currentPress: this.getCurrentPress(
+          this.state.currentPressIndex,
+          this.state.currentPage + 1,
+        ),
+      });
+    }
+  }
+
+  getCurrentPress(pressIndex = 0, currentPage = 1) {
+    const currentPressName = this.headerList[pressIndex];
+    return this.pressOrder[currentPressName][currentPage - 1];
+  }
+
+  getHeaderList() {
+    return Object.keys(this.pressOrder);
+  }
+
+  getListPress() {
+    const listPress = {};
+    LIST_KEYS_TEMPLATE.forEach(category => (listPress[category] = []));
+    pressStore.getAllPress().forEach(press => listPress[press.category].push(press));
+    return listPress;
+  }
+
+  savePage({ page, index }) {
+    pageStore.setPage({
+      page,
+      index,
+      type: TEXT.LIST,
+      option: TEXT.ALL,
     });
   }
 }

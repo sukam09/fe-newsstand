@@ -1,18 +1,25 @@
-import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
+//component
 import Component from '../core/Component.js';
+import SubscribeButton from './SubscribeButton.js';
 import ArrowButton from './ArrowButton.js';
 
-import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
-import SubscribeButton from './SubscribeButton.js';
-import db from '../../../store/db.js';
+//utils
+import { customQuerySelector, customQuerySelectorAll } from '../../utils/index.js';
 
-let [savedAllPage, savedMyPage] = [0, 0];
+//constants
+import { GRID_NEWS_COUNT, TEXT } from '../../constants/index.js';
+
+//store
+import { pageStore, pressStore, viewStore } from '../../../store/index.js';
 
 export default class AllNewsGridView extends Component {
   setup() {
-    const page = this.allType ? savedAllPage : savedMyPage;
-    this.allType = this.props.pressType === TEXT.ALL;
-    this.state = { ...this.props, page: this.allType ? savedAllPage : savedMyPage };
+    this.state = {
+      ...this.props,
+      page: pageStore.getPage({ type: TEXT.GRID, option: viewStore.option }),
+    };
+
+    pageStore.subscribe(this);
   }
 
   template() {
@@ -26,36 +33,33 @@ export default class AllNewsGridView extends Component {
 
   mounted() {
     const pressOrder = this.getGridPress();
+    const logoMode = viewStore.isDarkMode() ? 'logodark' : 'logo';
     const maxPage = Math.floor((pressOrder.length - 1) / GRID_NEWS_COUNT);
-    const logoMode = document.body.className === 'dark' ? 'logodark' : 'logo';
-    let innerHTML = '';
 
     this.state.page > maxPage && this.setState({ page: maxPage });
 
-    for (
-      let i = this.state.page * GRID_NEWS_COUNT;
-      i < GRID_NEWS_COUNT * (this.state.page + 1);
-      i++
-    ) {
-      innerHTML += ` 
-      <li class="grid-logo-wrapper border-default">
-      ${
-        pressOrder.length > i
-          ? `<div class="flip-card-inner">
+    const innerHTML = Array.from({ length: GRID_NEWS_COUNT })
+      .map((_, i) => {
+        const index = this.state.page * GRID_NEWS_COUNT + i;
+        return ` <li class="grid-logo-wrapper border-default">
+        ${
+          pressOrder.length > index
+            ? `<div class="flip-card-inner">
             <div class="flip-card-front surface-default">
               <img
                 class="press-logo"
-                src="src/assets/${logoMode}/${pressOrder[i].number}.png"
+                src="src/assets/${logoMode}/${pressOrder[index]?.number}.png"
               />
             </div>
             <div class="flip-card-back surface-alt">
-              <div class="subscribe-button-wrapper" data-index=${i}></div>
+              <div class="subscribe-button-wrapper" data-index=${index}></div>
             </div>
           </div>`
-          : ``
-      }
+            : ``
+        }
       </li>`;
-    }
+      })
+      .join('');
 
     customQuerySelector('.news-list-grid', this.$target).innerHTML = innerHTML;
 
@@ -67,7 +71,7 @@ export default class AllNewsGridView extends Component {
         name,
         number,
         color: 'gray',
-        text: db.getDbData.includes(index) ? TEXT.SUBSCRIBE_KO : TEXT.UNSUBSCRIBE_KO,
+        text: pressStore.isSubscribed(number) ? TEXT.UNSUBSCRIBE_KO : TEXT.SUBSCRIBE_KO,
       });
     });
 
@@ -86,15 +90,17 @@ export default class AllNewsGridView extends Component {
 
   goNextPage() {
     this.setState({ page: this.state.page + 1 });
-    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
+    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.state.option });
   }
 
   goPreviousPage() {
     this.setState({ page: this.state.page - 1 });
-    this.allType ? (savedAllPage = this.state.page) : (savedMyPage = this.state.page);
+    pageStore.setPage({ page: this.state.page, type: TEXT.GRID, option: this.state.option });
   }
 
   getGridPress() {
-    return this.allType ? db.allPress : db.getFilteredPress;
+    return this.state.option === TEXT.ALL
+      ? pressStore.getAllPress()
+      : pressStore.getFilteredPress();
   }
 }

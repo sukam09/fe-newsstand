@@ -1,7 +1,7 @@
-import { TEXT } from '../../constants/index.js';
-import { customQuerySelector } from '../../utils/index.js';
 import Component from '../core/Component.js';
 import Icon from './Icon.js';
+import { TEXT } from '../../constants/index.js';
+import { customQuerySelector } from '../../utils/index.js';
 
 export default class Button extends Component {
   setup() {

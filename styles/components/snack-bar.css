@@ -1,7 +1,7 @@
 .snack-bar-component {
   position: absolute;
-  top: 420px;
   z-index: 10;
+  top: 120px;
 }
 .snack-bar {
   padding: 16px 24px;

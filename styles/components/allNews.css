@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+
+  position: relative;
 }
 .all-news-header {
   display: flex;
@@ -51,6 +53,23 @@
   overflow: auto;
 }
 
+.newslist-list-view > article {
+  height: 324px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 12px;
+}
+.newslist-list-view > article > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 4px;
+}
 .newslist-list-view > nav::-webkit-scrollbar {
   display: none;
 }

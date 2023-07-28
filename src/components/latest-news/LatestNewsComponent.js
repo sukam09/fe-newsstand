@@ -1,6 +1,6 @@
+import Component from '../core/Component.js';
 import { ROLLING_COUNT, ROLLING_SECOND, SECOND } from '../../constants/index.js';
 import { customQuerySelector } from '../../utils/index.js';
-import Component from '../core/Component.js';
 
 export default class LatestNewsComponent extends Component {
   setup() {
