@@ -1,16 +1,16 @@
-import { store } from "../store/index.js";
+import { appStore } from "../store/index.js";
 import { nextPage, prevPage } from "../store/reducer/page.js";
 import { $nextPageButton, $prevPageButton } from "./doms.js";
 
-const handlePrevButtonClick = () => {
-  store.dispatch(prevPage());
-};
+function handlePrevButtonClick() {
+  appStore.dispatch(prevPage());
+}
 
-const handleNextButtonClick = () => {
-  store.dispatch(nextPage());
-};
+function handleNextButtonClick() {
+  appStore.dispatch(nextPage());
+}
 
-export const addEventOnPaginationButton = () => {
+export const addEventHandlerOnPaginationButton = () => {
   $prevPageButton.addEventListener("click", handlePrevButtonClick);
   $nextPageButton.addEventListener("click", handleNextButtonClick);
 };

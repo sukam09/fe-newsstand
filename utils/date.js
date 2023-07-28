@@ -1,4 +1,4 @@
-export const getKRLocaleDateString = (date) => {
+export function getKRLocaleDateString(date) {
   const options = {
     year: "numeric",
     month: "2-digit",
@@ -7,4 +7,4 @@ export const getKRLocaleDateString = (date) => {
   };
 
   return date.toLocaleDateString("ko-KR", options);
-};
+}

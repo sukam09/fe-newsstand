@@ -1,4 +1,4 @@
-export const SubscribeButton = (isSubscribed) => {
+export function SubscribeButton(isSubscribed) {
   const Icon = isSubscribed
     ? `<svg
       width="24"
@@ -31,4 +31,4 @@ export const SubscribeButton = (isSubscribed) => {
     ${Icon}
     <span>${isSubscribed ? "해지하기" : "구독하기"}</span>
   </button>`;
-};
+}

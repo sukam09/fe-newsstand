@@ -7,24 +7,24 @@ const DURATION_RESET = 500;
 
 const $containerNewsBar = document.querySelector(".container-news-bar");
 
-const createRollingBannerList = ($banner, data) => {
+function createRollingBannerList($banner, data) {
   // 첫번째 요소를 마지막에 copy
   const list = [...data, data[0]];
 
   $banner.innerHTML = list.reduce((acc, curr) => {
     return acc + `<li><a href="/">${curr}</a></li>`;
   }, "");
-};
+}
 
-const setTransitionDuration = ($banner, value) => {
+function setTransitionDuration($banner, value) {
   $banner.style.transitionDuration = `${value}ms`;
-};
+}
 
-const setTransform = ($banner, cnt) => {
+function setTransform($banner, cnt) {
   $banner.style.transform = `translateY(-${MOVE_OFFSET * cnt}px)`;
-};
+}
 
-export const startRollingBanner = () => {
+export function startRollingBanner() {
   const headlineData = NewsDB.getHeadlineData();
 
   const [leftSlice, rightSlice] = [
@@ -81,4 +81,4 @@ export const startRollingBanner = () => {
     $banner.addEventListener("mouseover", handleArticleMouseOver);
     $banner.addEventListener("mouseout", handleArticleMouseOut);
   });
-};
+}

@@ -7,14 +7,20 @@ import { modal } from "./reducer/modal.js";
 
 const rootReducer = combineReducers({
   page,
-  theme,
-  snackbar,
-  modal,
   subscribeList,
 });
 
-export const store = createStore(rootReducer);
+// TODO: 적절한 네이밍 하기
+export const appStore = createStore(rootReducer);
 
-export const useSelector = (selector) => {
+export const modalStore = createStore(modal);
+
+export const snackbarStore = createStore(snackbar);
+
+export const themeStore = createStore(theme);
+
+export const useSelector = ({ store, selector }) => {
+  if (!selector) return store.getState();
+
   return selector(store.getState());
 };
