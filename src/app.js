@@ -95,6 +95,7 @@ export default function App({ $app }) {
           $target: $div,
           initialState: {
             press: this.state.press,
+            view: this.state.view,
             page: 1,
             minPage: PAGE_MIN_NUMBER,
             maxPage: PAGE_MAX_NUMBER,
@@ -115,6 +116,8 @@ export default function App({ $app }) {
             listViewData,
             pressInfoData,
             pidMap,
+            view: this.state.view,
+          },
           },
           onChangePress,
         });
