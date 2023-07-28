@@ -186,7 +186,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
     handleSubscribe(parseInt(pid, 10), pressName, this, subscribeButton);
   };
 
-  let isInit = false;
+  const updateListView = () => {
 
   const updateCategories = () => {
     const { press, index, length } = this.state;
@@ -304,5 +304,5 @@ export default function PressListView({ $target, initialState, onChangePress }) 
 
   this.render();
 
-  store.subscribe(updateCategories);
+  store.subscribe(updateListView);
 }
