@@ -1,7 +1,8 @@
+import { qs } from "../../utils/utils.js";
 import { appendButton } from "./appendButton.js";
 
 export const setButton = () => {
-  const button_container = document.querySelector(".agency-container");
+  const button_container = qs(".agency-container");
 
   const [prev_btn, next_btn] = appendButton();
 

@@ -2,6 +2,7 @@ import { dispatcher } from "./dispatcher.js";
 
 export const store = {
   subscriptions: null,
+  isDarkMode: false,
 };
 
 export const initializeStore = async (data) => {

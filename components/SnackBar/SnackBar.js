@@ -1,20 +1,26 @@
+import { setList } from "../../utils/setList.js";
+import { ce, qs } from "../../utils/utils.js";
+
 export class SnackBar {
   constructor() {
     this.modal = null;
     this.container = null;
     this.content = null;
+
     this.root = document.getElementById("root");
     this.initializeElement();
+
+    this.timer = null;
   }
 
   initializeElement() {
-    this.modal = document.createElement("div");
+    this.modal = ce("div");
     this.modal.className = "snackbar";
 
-    this.container = document.createElement("div");
+    this.container = ce("div");
     this.container.className = "snackbar-container";
 
-    this.content = document.createElement("div");
+    this.content = ce("div");
     this.content.className = "snackbar-content";
 
     this.container.appendChild(this.content);
@@ -25,19 +31,39 @@ export class SnackBar {
   }
 
   show(message) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.modal.style.display = "none";
+    }
+
     this.content.innerText = message;
     this.modal.style.display = "block";
 
-    this.modal.classList.add("fadeout-animation");
-
-    setTimeout(() => {
+    const subscribe_press = qs(".subscribe_press");
+    const all_press = qs(".all_press");
+    this.timer = setTimeout(() => {
       this.close();
+      if (Boolean(all_press.getAttribute("subscribetype"))) {
+        all_press.removeAttribute("subscribetype");
+        subscribe_press.setAttribute("subscribetype", true);
+      }
+      setList();
     }, 5000);
   }
 
   close() {
-    this.modal.classList.remove("fadeout-animation");
-
     this.modal.style.display = "none";
+    this.timer = null;
+  }
+
+  cancelTimer() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 }
+
+const snackbar = new SnackBar();
+
+export default snackbar;

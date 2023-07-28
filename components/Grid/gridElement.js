@@ -1,54 +1,56 @@
+import { DARK_MODE, LIGHT_MODE, LOGO_PATH } from "../../constants/constant.js";
 import { dispatcher } from "../../store/dispatcher.js";
 import { store } from "../../store/store.js";
-import { Alert } from "../Alert/Alert.js";
-import { SnackBar } from "../SnackBar/SnackBar.js";
+import { absoluteFilePath, ce, qs } from "../../utils/utils.js";
+import alert from "../Alert/Alert.js";
+import snackbar from "../SnackBar/SnackBar.js";
 
 // 구독 or 해지 버튼 누르고 버튼 다시 렌더시키는 것 필요
 
 export const makeGrid = (data) => {
-  const li = document.createElement("li");
+  const li = ce("li");
   li.className = data.name;
 
-  const img = document.createElement("img");
-  img.src = data.logo;
+  if (data.logo !== "") {
+    const img = ce("img");
+    img.src = store.isDarkMode
+      ? absoluteFilePath(`${LOGO_PATH}/${DARK_MODE}/${data.logo}`)
+      : absoluteFilePath(`${LOGO_PATH}/${LIGHT_MODE}/${data.logo}`);
 
-  li.appendChild(img);
-  if (data.logo) {
-    li.addEventListener("mouseenter", () => {
-      li.appendChild(createButton(data));
-    });
+    li.appendChild(img);
+    if (data.logo) {
+      li.addEventListener("mouseenter", () => {
+        li.appendChild(createButton(data));
+      });
 
-    li.addEventListener("mouseleave", () => {
-      const btn = document.querySelector(`#${data.name}`);
-      if (btn) li.removeChild(btn);
-    });
+      li.addEventListener("mouseleave", () => {
+        const btn = qs(`#${data.name}`);
+        if (btn) li.removeChild(btn);
+      });
+    }
   }
-
-  document.querySelector(".agency-grid").appendChild(li);
+  qs(".agency-grid").appendChild(li);
 };
-
-const alert = new Alert();
-const snackbar = new SnackBar();
 
 // 호버 시 나타날 구독 or 해지 버튼 생성
 
 const createButton = (data) => {
-  const btn = document.createElement("button");
+  const btn = ce("button");
 
   const isSubscribed = store.subscriptions.find(
     (item) => item.name === data.name
   ).subscribe;
 
-  const sr_only = document.createElement("span");
+  const sr_only = ce("span");
   sr_only.className = "screen-reader-only";
   sr_only.innerText = isSubscribed ? "해지하기" : "구독하기";
 
-  const icon = document.createElement("img");
+  const icon = ce("img");
   icon.alt = isSubscribed ? "minus" : "plus";
   icon.src = isSubscribed ? "./asset/icon/closed.svg" : "./asset/icon/plus.svg";
   icon.className = isSubscribed ? "plus" : "minus";
 
-  const $subscribe = document.createElement("div");
+  const $subscribe = ce("div");
   $subscribe.className = "subscribe-text";
   $subscribe.innerText = isSubscribed ? "해지하기" : "구독하기";
 
@@ -68,17 +70,22 @@ const createButton = (data) => {
       ? `${data.name}`
       : `내가 구독한 언론사에 추가되었습니다.`;
 
+    const $snackbar = qs(".snackbar");
+
     if (isSubscribed) {
+      if ($snackbar.style.display == "block") {
+        snackbar.cancelTimer();
+        snackbar.close();
+      }
       alert.show(message);
       alert.setState(e.target.id, isSubscribed);
     } else {
-      snackbar.show(message);
       dispatcher({
         type: "TOGGLE_SUBSCRIPTIONS",
         name: e.target.id,
-        value: !store.subscriptions.find((item) => item.name === e.target.id)
-          .subscribe,
+        value: !isSubscribed,
       });
+      snackbar.show(message);
     }
     updateButton(data.name);
   });

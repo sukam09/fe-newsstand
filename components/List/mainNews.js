@@ -1,13 +1,15 @@
+import { ce } from "../../utils/utils.js";
+
 export const makeMainNews = (agency) => {
-  const $news_main = document.createElement("div");
+  const $news_main = ce("div");
   $news_main.className = "news-main";
 
-  const $img = document.createElement("img");
+  const $img = ce("img");
   $img.className = "thumbnail";
   $img.src = agency.mainArticle.thumbnail;
   $img.alt = "Main News Thumbnail";
 
-  const $title = document.createElement("div");
+  const $title = ce("div");
   $title.className = "title";
   $title.innerText = agency.mainArticle.title;
 

@@ -9,6 +9,9 @@ export const dispatcher = (action) => {
       const { name, value } = action;
       store.subscriptions.find((item) => item.name === name).subscribe = value;
       break;
+    case "CHANGE_MODE":
+      store.isDarkMode = action.mode;
+      break;
     default:
       break;
   }

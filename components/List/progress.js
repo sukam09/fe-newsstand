@@ -1,4 +1,5 @@
 import { PROGRESS_DURATION_MS } from "../../constants/constant.js";
+import { qs } from "../../utils/utils.js";
 import { moveToNextPage } from "./setListButton.js";
 
 let $progress;
@@ -21,7 +22,7 @@ export const startProgress = (
   current_page,
   current_category
 ) => {
-  $progress = document.querySelector(".progress-count-wrapper");
+  $progress = qs(".progress-count-wrapper");
   const increment = 100 / (PROGRESS_DURATION_MS / 16);
 
   progress_timer = setInterval(() => {

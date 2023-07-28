@@ -1,8 +1,10 @@
-export const removeButton = () => {
-  const button_container = document.querySelector(".agency-container");
+import { qs } from "../../utils/utils.js";
 
-  const prev_btn = document.querySelector(".prev-page-btn");
-  const next_btn = document.querySelector(".next-page-btn");
+export const removeButton = () => {
+  const button_container = qs(".agency-container");
+
+  const prev_btn = qs(".prev-page-btn");
+  const next_btn = qs(".next-page-btn");
 
   button_container.removeChild(prev_btn);
   button_container.removeChild(next_btn);
