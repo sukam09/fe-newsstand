@@ -74,20 +74,20 @@ function showSubscribeBtn() {
 
   eachElementOfGrid.forEach((elem) => {
     elem.addEventListener("mouseover", () => {
-      elem.children[0].classList.remove("show");
+      elem.children[0].classList.remove("show-flex");
       elem.children[0].classList.add("hidden");
 
       elem.children[1].classList.remove("hidden");
-      elem.children[1].classList.add("show");
+      elem.children[1].classList.add("show-flex");
     });
   });
 
   eachElementOfGrid.forEach((elem) => {
     elem.addEventListener("mouseout", () => {
       elem.children[0].classList.remove("hidden");
-      elem.children[0].classList.add("show");
+      elem.children[0].classList.add("show-flex");
 
-      elem.children[1].classList.remove("show");
+      elem.children[1].classList.remove("show-flex");
       elem.children[1].classList.add("hidden");
     });
   });
@@ -115,14 +115,14 @@ function setSubClickEvents() {
   subBtnLists.forEach((elem) => {
     elem.addEventListener("click", () => {
       addSubscribedPress(elem.parentNode.parentNode);
-      elem.classList.remove("show");
+      elem.classList.remove("show-flex");
       elem.classList.add("hidden");
     });
   });
   unsubBtnLists.forEach((elem) => {
     elem.addEventListener("click", () => {
       removeSubscribedPress(elem.parentNode.parentNode);
-      elem.classList.remove("show");
+      elem.classList.remove("show-flex");
       elem.classList.add("hidden");
     });
   });

@@ -48,7 +48,7 @@ function showSubscribeBtn() {
       elem.children[0].classList.add("hidden");
 
       elem.children[1].classList.remove("hidden");
-      elem.children[1].classList.add("show");
+      elem.children[1].classList.add("show-flex");
     });
   });
 
@@ -58,7 +58,7 @@ function showSubscribeBtn() {
       elem.children[0].classList.remove("hidden");
       elem.children[0].classList.add("show");
 
-      elem.children[1].classList.remove("show");
+      elem.children[1].classList.remove("show-flex");
       elem.children[1].classList.add("hidden");
     });
   });
@@ -83,5 +83,4 @@ function setSubClickEvents() {
 }
 
 register(allOfPress, showMyPressImg);
-register(isSubscribed, getSubscribedData);
 register(subscribedPress, getSubscribedData);
