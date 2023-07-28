@@ -59,8 +59,12 @@ export function checkAnswer(e) {
       alert("구독한 언론사가 없습니다.");
       store.setState({ tabMode: "all" });
       updateTabSelection(document.getElementById("all"));
+      return;
     }
-    getView() === "grid" ? showGridView() : showListView(currentIndex + 1);
+    console.log(currentIndex + 1);
+    getView() === "grid"
+      ? showGridView()
+      : showListView(getSubscribedPress()[currentIndex - 1].name);
   }
   target.closest(".popup").style.display = "none";
 }
@@ -107,11 +111,13 @@ export function handleSubscribe(_press) {
   //구독하지 않았을 때 => 구독됨
   else {
     const updatedSubscribedPress = [...getSubscribedPress(), _press];
-    store.setState({ subscribedPress: updatedSubscribedPress });
+    store.setState({
+      subscribedPress: updatedSubscribedPress,
+      currentPress: _press,
+    });
     const snackbar = document.querySelector(".snackbar");
     snackbar.style.display = "block";
-
     //구독한 상태로 바뀜
-    getView() === "grid" ? showGridView() : showListView();
+    getView() === "grid" ? showGridView() : showListView(_press.name);
   }
 }

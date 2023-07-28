@@ -1,5 +1,5 @@
 import { store } from "../core/store.js";
-import { getTabMode, getView, getSubscribedPress } from "../core/getter.js";
+import { getTabMode, getView, getCurrentPress } from "../core/getter.js";
 import {
   CATEGORY,
   ICON_IMG_PATH,
@@ -27,9 +27,7 @@ export function updateTabSelection(selectedTab) {
   if (getView() === "grid") {
     showGridView();
   } else {
-    showListView(
-      getTabMode() === "all" ? CATEGORY[0] : getSubscribedPress()[0]
-    );
+    showListView(getTabMode() === "all" ? CATEGORY[0] : getCurrentPress().name);
   }
 }
 export function changeView(e_target) {
