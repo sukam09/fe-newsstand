@@ -71,12 +71,14 @@
 
 1. 화면 새로고침
 2. 오늘의 날짜
+   <br>
    <img width = "80%" src = "https://github.com/choiseona/fe-newsstand/assets/52223965/e2249b44-9b90-4d66-976a-a5a6d75b6812">
    <br><br><br>
 
 # 📌 Banner
 
 1. 최신 뉴스 롤링
+   <br>
    <img width = "80%" src = "https://github.com/choiseona/fe-newsstand/assets/52223965/351c8baf-2e09-4763-8bb0-60209fe7a0fd">
    <br><br><br>
 
@@ -86,6 +88,6 @@
 2. 리스트 보기
 3. 프로그래스바
 4. 구독하기/해지하기
-   <img width = "80%" src="https://github.com/choiseona/fe-newsstand/assets/52223965/f74a7a28-c665-4eff-8f0d-6ccb2af0973a">
    <br>
+   <img width = "80%" src="https://github.com/choiseona/fe-newsstand/assets/52223965/f74a7a28-c665-4eff-8f0d-6ccb2af0973a">
    <img width = "80%" src="https://github.com/choiseona/fe-newsstand/assets/52223965/bec1c09e-e691-4122-8061-3b86c70faf66">
