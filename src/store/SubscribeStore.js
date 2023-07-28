@@ -1,10 +1,16 @@
 class SubscribeStore{
     constructor(){
         this.subscribePress = [];
+        this.subscribeListCategory = [];
+        this.selectedPress;
     }
 
     getSubscribe(){
         return this.subscribePress;
+    }
+
+    getSubscribeCategory(){
+        return this.subscribeListCategory;
     }
 
     addSubscribe(press){
@@ -16,14 +22,38 @@ class SubscribeStore{
         this.subscribePress.splice(pressIndex, 1);
     }
 
-    findSubscribe(id){
+    getSubscribeByName(pressName){
+        let press;
         if(this.subscribePress.length > 0){
-            press = this.subscribePress.find(press => press.id === id);
+            press = this.subscribePress.find(logo =>logo.name === pressName);
+        }
+        else{
+            press = 0;
+        }
+        return press;
+    }
+
+    getSubscribeByID(id){
+        let press;
+        if(this.subscribePress.length > 0){
+            press = this.subscribePress.find(logo =>logo.id == id);
         }
         else{
             press = 0;
         }
         return press
+    }
+
+    makeSubscribeCategory(){
+        let subscribeListCategory = [];
+        if(this.subscribePress.length > 0){
+            this.subscribePress.forEach((press) => {
+                subscribeListCategory.push(press.name);
+            })
+            //removeDuplicate();
+            let pressSet = new Set(subscribeListCategory);
+            this.subscribeListCategory = [...subscribeListCategory];
+        }
     }
 }
 

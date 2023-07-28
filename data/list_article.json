@@ -3,7 +3,8 @@
         "category":"종합/경제",
         "news":[
             {
-                "name": "연합뉴스TV",
+                "id": 52,
+                "name": "연함뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/52.png",
                 "mainImg": "./img/1.png",
@@ -12,6 +13,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 1,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/1.png",
@@ -26,6 +28,7 @@
         "category":"방송/통신",
         "news":[
             {
+                "id": 2,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/2.png",
@@ -35,6 +38,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 11,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/11.png",
@@ -49,6 +53,7 @@
         "category":"IT",
         "news":[
             {
+                "id": 3,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/3.png",
@@ -58,6 +63,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 4,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/4.png",
@@ -72,6 +78,7 @@
         "category":"영자지",
         "news":[
             {
+                "id": 5,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/5.png",
@@ -81,6 +88,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 6,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/6.png",
@@ -95,6 +103,7 @@
         "category":"스포츠/연예",
         "news":[
             {
+                "id": 7,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/7.png",
@@ -104,6 +113,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 8,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/8.png",
@@ -118,6 +128,7 @@
         "category":"매거진/전문지",
         "news":[
             {
+                "id": 9,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/9.png",
@@ -127,6 +138,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 10,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/10.png",
@@ -141,6 +153,7 @@
         "category":"지역",
         "news":[
             {
+                "id" : 12,
                 "name": "연합뉴스TV",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/12.png",
@@ -150,6 +163,7 @@
                 "editGuide": "연합뉴스TV 언론사에서 직접 편집한 뉴스입니다."
             },
             {
+                "id": 13,
                 "name": "서울경제",
                 "lastEdit": "2023.02.10. 18:53 편집",
                 "logo": "./icons/light/13.png",
