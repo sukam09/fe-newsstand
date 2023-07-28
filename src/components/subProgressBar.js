@@ -1,13 +1,15 @@
 import { appendSubCategory, drawSubListView } from "./subListNews.js";
 import { getState, setState } from "../observer/observer.js";
 import { subscribedPress } from "../store/store.js";
-import { getPressItemByName, removePressFromSubList } from "./gridView.js";
+import { removePressFromSubList } from "./gridView.js";
+import { getPressObj } from "../api/api.js";
 
 const PROGRESS_TIME = 2000;
 let category_num = 0;
 let current_category = 0;
 let clicked_idx = 0;
 let progress_interval;
+let presses = null;
 
 function getSubPressLength() {
   category_num = getState(subscribedPress).length;
@@ -83,9 +85,13 @@ function initializeSubProgress() {
 
 /***** 프로그레스바 카테고리 누르면 이동 *****/
 const categories = document.querySelector(".sub-list-nav");
-categories.addEventListener("click", (e) => {
+categories.addEventListener("click", async (e) => {
   const press_name = e.target.innerText.slice(0, -2);
-  const press = getPressItemByName(press_name)[0];
+  presses = await getPressObj();
+  const filtered_press = await Promise.all(
+    presses.filter((item) => item.name === press_name)
+  );
+  const press = filtered_press[0];
   const press_id = press.id;
   const clicked_category = document.querySelector(`.press${press_id}`);
   findCategoryIdx(clicked_category);
@@ -101,8 +107,12 @@ unsub_btn.addEventListener("click", async (e) => {
     ".sub-list-nav .progress-bar"
   ).innerText;
   const press_name = target_innertext.slice(0, -2);
-  let sub_press = await getPressItemByName(press_name);
-  sub_press = removePressFromSubList(sub_press[0]);
+  presses = await getPressObj();
+  const filtered_press = await Promise.all(
+    presses.filter((item) => item.name === press_name)
+  );
+  let sub_press = filtered_press[0];
+  sub_press = removePressFromSubList(sub_press.name);
   setState(subscribedPress, sub_press);
   clearSubProgress();
   initializeSubProgress();
