@@ -72,6 +72,7 @@ const observable = (obj: ObjType) => {
 */
 export { observe, observable };
 const store = observable({
+    dark: false,
     type: "grid",
     filter: "all",
     category: 0,

@@ -36,6 +36,10 @@
 .view-type__option[data-option="grid"] {
   background-image: url("/public/asset/icon/grid-view.svg");
 }
+.dark .view-type__option {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(256deg)
+    brightness(104%) contrast(101%);
+}
 
 .view-type__option.active {
   filter: invert(39%) sepia(96%) saturate(500%) hue-rotate(190deg)

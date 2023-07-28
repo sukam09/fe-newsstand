@@ -1,5 +1,8 @@
 import { html } from "../../../lib/jsx.js";
+import { store } from "../../../store/state.js";
 import SubscribeButton from "../../subscribe/SubscribeButton.js";
+const LIGHT_LOGO_PATH = (id) => `/public/asset/images/light/${id}.png`;
+const DARK_LOGO_PATH = (id) => `/public/asset/images/dark/${id}.png`;
 const ListContent = (data) => {
     const company = data[0];
     return html `
@@ -7,7 +10,9 @@ const ListContent = (data) => {
       <div class="list-page__nav">
         <a href="${company.url}">
           <img
-            src=${`/public/asset/images/light/${company.id}.png`}
+            src=${!store.dark
+        ? LIGHT_LOGO_PATH(company.id)
+        : DARK_LOGO_PATH(company.id)}
             class="logo"
             alt="${company.name}"
           />

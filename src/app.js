@@ -13,6 +13,24 @@ const app = document.getElementById("app");
         category: CATEGORY_OPTIONS[0],
     });
     app.append(html `
+      <button
+        class="dark-mode__button"
+        onClick=${() => {
+        store.dark = !store.dark;
+    }}
+      >
+        다크모드
+      </button>
+    `);
+    observe(() => {
+        if (store.dark) {
+            document.querySelector(":root").classList.add("dark");
+        }
+        else {
+            document.querySelector(":root").classList.remove("dark");
+        }
+    });
+    app.append(html `
       <div class="app__container">
         ${Header()} ${RecentNewsSection()}
         <section class="main__container">
