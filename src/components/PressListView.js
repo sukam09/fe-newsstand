@@ -196,7 +196,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
     const myPress = store.getMyPress().map(({ pressName }) => pressName);
 
     if (myPress.length === 0) {
-      onChangePress('all');
+      onChangeTab('all', 'list');
       return;
     }
 
