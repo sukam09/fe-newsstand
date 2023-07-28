@@ -130,6 +130,11 @@ export default function PressGridView({ $target, initialState, onChangeTab, clea
     }
 
     const myPress = store.getMyPress().map(({ pid }) => pid);
+    if (myPress.length === 0) {
+      onChangeTab('all', 'grid');
+      return;
+    }
+
     const maxPage = calculateMaxPage(myPress);
 
     if (page > maxPage) {
