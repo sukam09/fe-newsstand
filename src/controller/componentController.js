@@ -1,15 +1,22 @@
-import { MODE, CONSTANT, GLOBAL } from "../model/variable.js";
+import { PATH, MODE, CONSTANT, GLOBAL } from "../model/variable.js";
 import { toggleSubscribe } from "./subscribeController.js";
-import { moveListMode } from "./tabAndViewerController.js";
+import { getState, setState } from "./observer.js";
+import { currentMode, listCurrentPage, toggleDarkMode } from "../model/store.js";
 
 function initSnackBarTimer() {
   const snackBar = document.querySelector(".snack-bar");
 
   GLOBAL.SNACKBAR_TIME_OUT = window.setTimeout(() => {
     snackBar.style.display = "none";
-    GLOBAL.CURRENT_MODE = MODE.LIST_SUB;
-    moveListMode();
+    setState(listCurrentPage, 0);
+    setState(currentMode, MODE.LIST_SUB);
   }, CONSTANT.SNACK_BAR_TIME);
+}
+
+function resetSnackBarTimer() {
+  document.querySelector(".snack-bar").style.display = "none";
+  window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
+  GLOBAL.SNACKBAR_TIME_OUT = null;
 }
 
 function initAlertEvent() {
@@ -26,4 +33,25 @@ function initAlertEvent() {
   });
 }
 
-export { initSnackBarTimer, initAlertEvent };
+function initDarkToggleBtn() {
+  const darkToggleBtn = document.querySelector(".dark-mode-btn");
+
+  darkToggleBtn.addEventListener("click", () => {
+    const gridLiAll = document.querySelectorAll(".grid-view li");
+    gridLiAll.forEach((li) => {
+      li.style.backgroundColor = "";
+    });
+
+    if (getState(toggleDarkMode)) {
+      document.querySelector("html").className = "";
+      document.querySelector(".dark-mode-btn img").src = PATH.SUN;
+      setState(toggleDarkMode, false);
+    } else {
+      document.querySelector("html").className = "dark-mode";
+      document.querySelector(".dark-mode-btn img").src = PATH.MOON;
+      setState(toggleDarkMode, true);
+    }
+  });
+}
+
+export { initSnackBarTimer, resetSnackBarTimer, initAlertEvent, initDarkToggleBtn };

@@ -12,9 +12,9 @@ function initFieldTabEvent() {
   });
 }
 
-function updateCategory() {
+function updateCategory(listPage) {
   for (let category in GLOBAL.CATEGORY_START_INDEX) {
-    if (GLOBAL.CATEGORY_START_INDEX[category] <= GLOBAL.LIST_CURRENT_PAGE) {
+    if (GLOBAL.CATEGORY_START_INDEX[category] <= listPage) {
       GLOBAL.LIST_CURRENT_CATEGORY = CATEGORY[category];
     }
   }

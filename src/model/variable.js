@@ -10,6 +10,8 @@ const PATH = {
   DIVISION: "/icons/SymbolDivision.svg",
   PLUS: "/icons/SymbolPlus.svg",
   X: "/icons/SymbolX.svg",
+  SUN: "/icons/SymbolSun.svg",
+  MOON: "/icons/SymbolMoon.svg",
   NEWS_DATA: "DATA/News_Data.json",
   ROLLING_NEWS: "/Data/Rolling_News.json",
 };
@@ -31,22 +33,6 @@ const CONSTANT = {
   PROGRESS_SEC: 20,
 };
 
-const STATE = {
-  MOVE_GRID_LEFT: 1,
-  MOVE_GRID_RIGHT: 2,
-  MOVE_LIST_LEFT: 3,
-  MOVE_LIST_RIGHT: 4,
-  MOVE_LIST_PAGE: 5,
-  MOVE_GRID_ALL: 6,
-  MOVE_GRID_SUB: 7,
-  MOVE_LIST_ALL: 8,
-  MOVE_LIST_SUB: 9,
-  SUBSCRIBE_NEWS: 10,
-  UNSUBSCRIBE_NEWS: 11,
-  SHOW_SNACKBAR: 12,
-  SHOW_ALERT: 13,
-};
-
 const CATEGORY = {
   ECONOMY: "종합/경제",
   BROADCAST: "방송/통신",
@@ -65,23 +51,14 @@ const MODE = {
 };
 
 const GLOBAL = {
-  CURRENT_MODE: MODE.GRID_ALL,
-
-  GRID_CURRENT_PAGE: 0,
-  LIST_CURRENT_PAGE: 0,
   LIST_CURRENT_CATEGORY: CATEGORY.ECONOMY,
-
   NEWS_DATA: null,
   LIST_NEWS_DATA: null,
+  SUBSCRIBE_NEWS_DATA: [],
+  ROLLING_NEWS: [],
   TOTAL_NEWS_NUM: 0,
 
-  SUBSCRIBE_NEWS_DATA: [],
-  SUBSCRIBE_NEWS_NUM: 0,
-
-  ROLLING_NEWS: [],
-
   TEMP_TARGET: null,
-
   SNACKBAR_TIME_OUT: null,
 
   CATEGORY_NUM: {
@@ -105,4 +82,4 @@ const GLOBAL = {
   },
 };
 
-export { PATH, CONSTANT, STATE, CATEGORY, MODE, GLOBAL };
+export { PATH, CONSTANT, CATEGORY, MODE, GLOBAL };

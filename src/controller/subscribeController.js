@@ -1,7 +1,10 @@
-import { CONSTANT, MODE, STATE, GLOBAL } from "../model/variable.js";
-import { changeState } from "./mainController.js";
+import { CONSTANT, MODE, GLOBAL, PATH } from "../model/variable.js";
 import { drawSubscribeBtn } from "../view/subscribe.js";
 import { moveLeft } from "./arrowBtnController.js";
+import { getState, setState, setStateOnce } from "./observer.js";
+import { currentMode, gridCurrentPage, listCurrentPage, showAlert, showSnackBar, subscribeNewsNum } from "../model/store.js";
+import { resetSnackBarTimer } from "./componentController.js";
+import { updateCategory } from "./fieldTabController.js";
 
 function initSubscribeBtnEvnet(target) {
   target.addEventListener("click", (event) => {
@@ -29,7 +32,7 @@ function findTargetNewsFromSrc(src) {
 function clickSubscribeBtn(src) {
   if (checkSubscribe(src) === true) {
     GLOBAL.TEMP_TARGET = findTargetNewsFromSrc(src);
-    changeState(STATE.SHOW_ALERT);
+    setStateOnce(showAlert);
   } else {
     toggleSubscribe(src);
   }
@@ -40,39 +43,46 @@ function toggleSubscribe(src) {
   targetNews.is_subscribe = targetNews.is_subscribe === "true" ? "false" : "true";
 
   if (GLOBAL.SNACKBAR_TIME_OUT !== null) {
-    document.querySelector(".snack-bar").style.display = "none";
-    window.clearTimeout(GLOBAL.SNACKBAR_TIME_OUT);
-    GLOBAL.SNACKBAR_TIME_OUT = null;
+    resetSnackBarTimer();
   }
 
   if (targetNews.is_subscribe === "true") {
     GLOBAL.SUBSCRIBE_NEWS_DATA.push(targetNews);
-    GLOBAL.SUBSCRIBE_NEWS_NUM++;
-
-    changeState(STATE.SHOW_SNACKBAR);
-    changeState(STATE.SUBSCRIBE_NEWS);
+    setSubscribeBtnX();
+    setStateOnce(showSnackBar);
+    setState(subscribeNewsNum, getState(subscribeNewsNum) + 1);
   } else {
     GLOBAL.SUBSCRIBE_NEWS_DATA = GLOBAL.SUBSCRIBE_NEWS_DATA.filter((value) => {
       return !(value.path.slice(-6) === src.slice(-6));
     });
-    GLOBAL.SUBSCRIBE_NEWS_NUM--;
 
-    if (GLOBAL.CURRENT_MODE === MODE.GRID_SUB) {
-      if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
-        GLOBAL.CURRENT_MODE = MODE.GRID_ALL;
-      } else if (GLOBAL.GRID_CURRENT_PAGE > Math.floor((GLOBAL.SUBSCRIBE_NEWS_NUM - 1) / CONSTANT.GRID_NEWS_NUM)) {
-        GLOBAL.GRID_CURRENT_PAGE--;
-      }
-    } else if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
-      if (GLOBAL.SUBSCRIBE_NEWS_NUM === 0) {
-        GLOBAL.CURRENT_MODE = MODE.LIST_ALL;
-      }
-    }
-
-    if (GLOBAL.CURRENT_MODE === MODE.LIST_SUB) {
+    const newSubscribeNewsNum = getState(subscribeNewsNum) - 1;
+    viewExceptionHandling(newSubscribeNewsNum);
+    if (getState(currentMode) === MODE.LIST_SUB && getState(listCurrentPage) >= newSubscribeNewsNum) {
       moveLeft();
     }
-    changeState(STATE.UNSUBSCRIBE_NEWS);
+    setState(subscribeNewsNum, newSubscribeNewsNum);
+  }
+}
+
+function setSubscribeBtnX() {
+  const listSubBtn = document.querySelector(".list-sub-btn");
+  listSubBtn.childNodes[0].src = PATH.X;
+  listSubBtn.childNodes[1].style.display = "none";
+}
+
+function viewExceptionHandling(newSubscribeNewsNum) {
+  if (getState(currentMode) === MODE.GRID_SUB) {
+    if (newSubscribeNewsNum === 0) {
+      setState(currentMode, MODE.GRID_ALL);
+    } else if (getState(gridCurrentPage) > Math.floor((newSubscribeNewsNum - 1) / CONSTANT.GRID_NEWS_NUM)) {
+      setState(gridCurrentPage, getState(gridCurrentPage) - 1);
+    }
+  } else if (getState(currentMode) === MODE.LIST_SUB) {
+    if (newSubscribeNewsNum === 0) {
+      updateCategory(0);
+      setState(currentMode, MODE.LIST_ALL);
+    }
   }
 }
 

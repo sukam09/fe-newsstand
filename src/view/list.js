@@ -1,5 +1,7 @@
 import { PATH, CONSTANT, MODE, GLOBAL } from "../model/variable.js";
 import { initFieldTab, drawFieldTab } from "./fieldTab.js";
+import { getState, subscribe } from "../controller/observer.js";
+import { toggleDarkMode, listCurrentPage, currentMode, subscribeNewsNum } from "../model/store.js";
 
 function initList(parentNode) {
   const dom = document.createElement("div");
@@ -33,17 +35,28 @@ function initList(parentNode) {
   dom.innerHTML += listPressNews;
 
   parentNode.appendChild(dom);
+  parentNode.innerHTML += `<div class="no-view display-bold24">구독한 언론사가 없습니다</div>`;
 }
 
 function drawList() {
+  const curMode = getState(currentMode);
+  if (curMode === MODE.GRID_ALL || curMode === MODE.GRID_SUB) return;
+  if (getState(currentMode) === MODE.LIST_SUB && getState(subscribeNewsNum) === 0) {
+    document.querySelector(".no-view").style.display = "flex";
+    document.querySelector(".grid-view").style.display = "none";
+    document.querySelector(".list-view").style.display = "none";
+    return;
+  }
+
+  document.querySelector(".no-view").style.display = "none";
   const listView = document.querySelector(".list-view");
   listView.style.display = "flex";
   document.querySelector(".grid-view").style.display = "none";
 
-  const targetNews = GLOBAL.CURRENT_MODE === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE] : GLOBAL.SUBSCRIBE_NEWS_DATA[GLOBAL.LIST_CURRENT_PAGE];
+  const targetNews = curMode === MODE.LIST_ALL ? GLOBAL.LIST_NEWS_DATA[getState(listCurrentPage)] : GLOBAL.SUBSCRIBE_NEWS_DATA[getState(listCurrentPage)];
 
   const listPressIcon = listView.querySelector(".list-press-icon");
-  listPressIcon.src = targetNews.path;
+  listPressIcon.src = getState(toggleDarkMode) ? targetNews.path_dark : targetNews.path;
 
   const editData = listView.querySelector(".edit-date");
   editData.innerHTML = `${targetNews.edit_date} 편집`;
@@ -73,5 +86,10 @@ function drawList() {
 
   drawFieldTab();
 }
+
+subscribe(listCurrentPage, drawList);
+subscribe(currentMode, drawList);
+subscribe(subscribeNewsNum, drawList);
+subscribe(toggleDarkMode, drawList);
 
 export { initList, drawList };

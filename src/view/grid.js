@@ -1,4 +1,6 @@
 import { CONSTANT, MODE, GLOBAL } from "../model/variable.js";
+import { getState, subscribe } from "../controller/observer.js";
+import { toggleDarkMode, gridCurrentPage, currentMode, subscribeNewsNum } from "../model/store.js";
 
 function initGrid(parentNode) {
   const dom = document.createElement("div");
@@ -21,16 +23,31 @@ function initGrid(parentNode) {
 }
 
 function drawGrid() {
+  const curMode = getState(currentMode);
+  if (curMode === MODE.LIST_ALL || curMode === MODE.LIST_SUB) return;
+
+  document.querySelector(".no-view").style.display = "none";
   document.querySelector(".list-view").style.display = "none";
   document.querySelector(".grid-view").style.display = "flex";
 
-  let iconIndex = GLOBAL.GRID_CURRENT_PAGE * CONSTANT.GRID_NEWS_NUM;
+  let iconIndex = getState(gridCurrentPage) * CONSTANT.GRID_NEWS_NUM;
   const pressLogo = document.querySelectorAll(".press-logo");
-  const targetData = GLOBAL.CURRENT_MODE === MODE.GRID_ALL ? GLOBAL.NEWS_DATA : GLOBAL.SUBSCRIBE_NEWS_DATA;
+  const targetData = curMode === MODE.GRID_ALL ? GLOBAL.NEWS_DATA : GLOBAL.SUBSCRIBE_NEWS_DATA;
 
-  pressLogo.forEach((img) => {
-    img.src = targetData[iconIndex] ? targetData[iconIndex++].path : "";
-  });
+  if (getState(toggleDarkMode)) {
+    pressLogo.forEach((img) => {
+      img.src = targetData[iconIndex] ? targetData[iconIndex++].path_dark : "";
+    });
+  } else {
+    pressLogo.forEach((img) => {
+      img.src = targetData[iconIndex] ? targetData[iconIndex++].path : "";
+    });
+  }
 }
+
+subscribe(gridCurrentPage, drawGrid);
+subscribe(currentMode, drawGrid);
+subscribe(subscribeNewsNum, drawGrid);
+subscribe(toggleDarkMode, drawGrid);
 
 export { initGrid, drawGrid };
