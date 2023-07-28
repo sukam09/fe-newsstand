@@ -27,7 +27,7 @@ export default function PressGridView({ $target, initialState, onChangePress }) 
 
   const initPressItems = () => {
     const myPress = store.getMyPress().map(({ pid }) => pid);
-    const data = this.state.press === 'all' ? shuffle(this.state.pressInfo) : myPress;
+    const data = this.state.press === 'all' ? shuffle(this.state.pressInfoData) : myPress;
     if (this.state.press === 'my') {
       this.setState({ ...this.state, maxPage: calculateMaxPage(myPress) }, false);
     }
