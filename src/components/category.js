@@ -181,7 +181,7 @@ function updateCategory() {
     $(".now_page", clickedCategory).innerHTML = `${currentIdx.list} / `;
     // 카테고리 오른쪽으로 넘어가야할 경우
     if (isTabFull($(".all_page", clickedCategory).innerHTML, currentIdx.list)) {
-      if (currentIdx.category === subList.length) {
+      if (clickedCategory.nextElementSibling === null) {
         categoryList[0].classList.add(CATEGORY_CLICKED);
         setState(listIdx, { category: 0, list: 1 });
       } else {
@@ -192,9 +192,19 @@ function updateCategory() {
     } else if (currentIdx.list === 0) {
       // 카테고리 왼쪽으로 넘어가야할 경우
       if (currentIdx.category === 0) {
-        setState(listIdx, { category: categoryList.length - 1, list: 1 });
+        setState(listIdx, {
+          category: categoryList.length - 1,
+          list: parseInt(
+            $(".all_page", categoryList[categoryList.length - 1]).innerHTML
+          ),
+        });
       } else {
-        setState(listIdx, { category: currentIdx.category - 1, list: 1 });
+        setState(listIdx, {
+          category: currentIdx.category - 1,
+          list: parseInt(
+            $(".all_page", categoryList[currentIdx.category - 1]).innerHTML
+          ),
+        });
       }
     }
   } else if (!isGridMode && isSubMode) {
