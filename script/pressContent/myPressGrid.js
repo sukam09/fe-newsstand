@@ -2,7 +2,6 @@ import {
   getQuerySelector,
   getQuerySelectorAll,
 } from "../../utils/js/getElements.js";
-import { fetchData } from "../../utils/js/getJson.js";
 import { getState, setState, register } from "../observer/observer.js";
 import { allOfPress, isSubscribed, subscribedPress } from "../store/store.js";
 

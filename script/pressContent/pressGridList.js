@@ -4,12 +4,7 @@ import {
 } from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
 import { getState, register, setState } from "../observer/observer.js";
-import {
-  allOfPress,
-  gridPageIdx,
-  isSubscribed,
-  subscribedPress,
-} from "../store/store.js";
+import { gridPageIdx, isSubscribed, subscribedPress } from "../store/store.js";
 
 const page = [[], [], [], []];
 
@@ -48,9 +43,11 @@ async function shuffleImgs() {
 
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
 function showPressImg() {
+  const pressContentAllView = getQuerySelector(".press-content-all-grid-view");
   const nowGridIdx = getState(gridPageIdx);
   const subList = getState(subscribedPress);
   let imgSrcContent = "";
+
   page[nowGridIdx].forEach((elem) => {
     imgSrcContent += `
     <li>
