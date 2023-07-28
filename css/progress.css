@@ -28,7 +28,7 @@
 }
 
 .progress.effect::after {
-  animation: progressBar 2s ease infinite;
+  animation: progressBar 20s ease infinite;
 }
 
 @keyframes progressBar {
