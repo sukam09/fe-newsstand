@@ -25,6 +25,5 @@ export {
   viewOption,
   isDark,
   subPress,
-  // listSubPage,
   gridSubPage,
 };

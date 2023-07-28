@@ -53,6 +53,7 @@
   width: 320px;
   height: 260px;
   margin-right: 32px;
+  overflow: hidden;
 }
 .list-view-main img {
   width: 320px;
