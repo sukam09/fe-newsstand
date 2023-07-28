@@ -82,7 +82,7 @@ const startProgress = (progressBar) => {
     progressBar.style.width = width + "%";
 
     if (width >= endWidth) {
-      // nextListPage();
+      nextListPage();
     }
 
     if (elapsed < duration) {
@@ -169,6 +169,7 @@ CategoryNav.prototype.mounted = function () {
     </span>
     ${progressBar}
     `;
+    cancelAnimation();
     let progress = selectedElement.querySelector(".progress-bar");
     startProgress(progress);
   }
