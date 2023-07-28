@@ -33,3 +33,39 @@ export const updateSubscribeList = (jsonData, subscribeList) => {
         return subscribeList;
     }
 };
+
+export const initSubscribeList = (jsonData) => {
+    const subscribeList = [];
+    if (localStorage.getItem("subscribeList") === null) {
+        jsonData.forEach((data) => {
+            if (data.subscribed === true) {
+                subscribeList.push({ id: data.id, name: data.name });
+            }
+        });
+        localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
+    } else {
+        const localSubscribeList = JSON.parse(
+            localStorage.getItem("subscribeList")
+        );
+        localSubscribeList.forEach((data) => {
+            subscribeList.push({ id: data.id, name: data.name });
+        });
+        return subscribeList;
+    }
+};
+
+export const filterSubscribeData = (pressData, subscribeList) => {
+    const filteredSubscribeData = [];
+
+    subscribeList.forEach((subscription) => {
+        const subscriptionId = subscription.id;
+        const subscribedData = pressData.find(
+            (data) => data.id === subscriptionId
+        );
+
+        if (subscribedData) {
+            filteredSubscribeData.push(subscribedData);
+        }
+    });
+    return filteredSubscribeData;
+};

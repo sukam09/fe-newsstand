@@ -1,7 +1,13 @@
 import Component from "../core/Component.js";
-import { shuffleNewsPress, updateSubscribeList } from "../utils/utils.js";
+import {
+    filterSubscribeData,
+    shuffleNewsPress,
+    updateSubscribeList,
+} from "../utils/utils.js";
 import PageButton from "../common/PageButton.js";
 import SubscribeButton from "../common/SubscribeButton.js";
+import { addObserver, getState, setState } from "../observer/observer.js";
+import { gridPageState, subscribeDataState } from "../store/store.js";
 
 const MIN_PAGE = 0;
 let max_page = 3;
@@ -11,8 +17,10 @@ export default class NewsGridView extends Component {
         this.state = {
             pressData: shuffleNewsPress(this.props.newsData),
             subscribeList: this.props.subscribeList,
-            page: 0,
         };
+        setState(gridPageState, 0);
+        addObserver(gridPageState, this.render.bind(this));
+        addObserver(subscribeDataState, this.render.bind(this));
     }
 
     template() {
@@ -26,33 +34,64 @@ export default class NewsGridView extends Component {
     }
 
     mounted() {
-        const newsPressGrid = this.$target.querySelector(
-            ".news-press-grid-view"
-        );
         const leftButton = this.$target.querySelector(".left-button");
         const rightButton = this.$target.querySelector(".right-button");
 
-        let gridList = "";
-        for (
-            let i = this.state.page * 24;
-            i < 24 * (this.state.page + 1);
-            i++
-        ) {
-            gridList += this.getGridCell(i);
-        }
+        this.setGridView();
+        addObserver(subscribeDataState, this.setGridView.bind(this));
 
-        newsPressGrid.innerHTML = gridList;
-
+        const gridPage = getState(gridPageState);
         new PageButton(leftButton, {
             type: "left",
-            hidden: this.state.page === MIN_PAGE,
+            hidden: gridPage === MIN_PAGE,
             onClick: this.setPrevPage.bind(this),
         });
         new PageButton(rightButton, {
             type: "right",
-            hidden: this.state.page === max_page,
+            hidden: gridPage === max_page,
             onClick: this.setNextPage.bind(this),
         });
+    }
+
+    setPrevPage() {
+        this.setState({
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
+        const gridPage = getState(gridPageState);
+        setState(gridPageState, gridPage - 1);
+    }
+
+    setNextPage() {
+        this.setState({
+            subscribeList: updateSubscribeList(
+                this.state.pressData,
+                this.state.subscribeList
+            ),
+        });
+        const gridPage = getState(gridPageState);
+        setState(gridPageState, gridPage + 1);
+    }
+
+    isSubscribed(id) {
+        const subscribeList = getState(subscribeDataState);
+        return subscribeList.some((data) => data.id === Number(id));
+    }
+
+    setGridView() {
+        const newsPressGrid = this.$target.querySelector(
+            ".news-press-grid-view"
+        );
+
+        const gridPage = getState(gridPageState);
+        let gridList = "";
+        for (let i = gridPage * 24; i < 24 * (gridPage + 1); i++) {
+            gridList += this.getGridCell(i);
+        }
+
+        newsPressGrid.innerHTML = gridList;
 
         const subscribeButtons = this.$target.querySelectorAll(".flip-back");
         subscribeButtons.forEach((item) => {
@@ -67,45 +106,28 @@ export default class NewsGridView extends Component {
         });
     }
 
-    setPrevPage() {
-        this.setState({
-            page: this.state.page - 1,
-            subscribeList: updateSubscribeList(
-                this.state.pressData,
-                this.state.subscribeList
-            ),
-        });
-    }
-
-    setNextPage() {
-        this.setState({
-            page: this.state.page + 1,
-            subscribeList: updateSubscribeList(
-                this.state.pressData,
-                this.state.subscribeList
-            ),
-        });
-    }
-
-    isSubscribed(id) {
-        return this.state.subscribeList.some((data) => data.id === Number(id));
-    }
-
     getGridCell(i) {
-        if (i > this.state.pressData.length - 1) {
+        let pressData = [];
+        if (this.props.pressTab === "all") pressData = this.state.pressData;
+        else {
+            const subscribeData = getState(subscribeDataState);
+            pressData = filterSubscribeData(this.props.newsData, subscribeData);
+        }
+
+        if (i > pressData.length - 1) {
             return `
                 <li class="news-press-item"></li>
                 `;
         } else {
             return `<li class="news-press-item" 
-                    data-id=${this.state.pressData[i].id} 
-                    data-name=${this.state.pressData[i].name}
+                    data-id=${pressData[i].id} 
+                    data-name=${pressData[i].name}
                     >
                     <div class="flip-card-container">
                         <div class="flip-front">
                             <img class="news-press-item-logo" 
-                                src=${this.state.pressData[i].logo} 
-                                alt="${this.state.pressData[i].name}"
+                                src=${pressData[i].logo} 
+                                alt="${pressData[i].name}"
                             />
                         </div>
                         <div class="flip-back">
@@ -116,8 +138,12 @@ export default class NewsGridView extends Component {
     }
 
     getMaxPage() {
-        return Math.floor(this.state.pressData.length / 24) === 4
-            ? 3
-            : Math.floor(this.state.pressData.length / 24);
+        let pressData = [];
+        if (this.props.pressTab === "all") pressData = this.state.pressData;
+        else {
+            const subscribeData = getState(subscribeDataState);
+            pressData = filterSubscribeData(this.props.newsData, subscribeData);
+        }
+        return Math.floor((pressData.length - 1) / 24);
     }
 }

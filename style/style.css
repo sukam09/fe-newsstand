@@ -257,7 +257,8 @@ body {
 .category-selected {
     display: flex;
     justify-content: space-between;
-    width: 166px;
+    gap: 16px;
+    min-width: 166px;
     color: var(--color-text-white-default);
     background-color: var(--color-surface-brand-alt);
 }

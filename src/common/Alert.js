@@ -1,4 +1,11 @@
 import Component from "../core/Component.js";
+import { getState, setState } from "../observer/observer.js";
+import {
+    gridPageState,
+    listPageState,
+    subscribeDataState,
+    viewModeState,
+} from "../store/store.js";
 
 export default class Alert extends Component {
     template() {
@@ -37,5 +44,22 @@ export default class Alert extends Component {
             subscribeList.splice(indexToRemove, 1);
         }
         localStorage.setItem("subscribeList", JSON.stringify(subscribeList));
+
+        const subscribeData = getState(subscribeDataState);
+        const listPageIndex = getState(listPageState);
+
+        const viewMode = getState(viewModeState);
+
+        if (viewMode === "list") {
+            if (subscribeData.length === listPageIndex) {
+                setState(listPageState, 1);
+            }
+        } else {
+            if (subscribeList.length % 24 === 0) {
+                const gridPage = getState(gridPageState);
+                setState(gridPageState, gridPage - 1);
+            }
+        }
+        setState(subscribeDataState, subscribeList);
     }
 }
