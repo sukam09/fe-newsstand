@@ -102,7 +102,7 @@ export default function App({ $app }) {
             pressInfoData,
             pidMap,
           },
-          onChangePress,
+          onChangeTab,
         })
       : new PressListView({
           $target: $div,
@@ -118,6 +118,7 @@ export default function App({ $app }) {
             pidMap,
             view: this.state.view,
           },
+          onChangeTab,
           },
           onChangePress,
         });
