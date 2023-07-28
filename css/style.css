@@ -6,11 +6,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction : column;
     min-width: 930px;
     height: 100vh;
+    background-color: var(--surface-default);
 }
 .news_stand_wrapper {
     width: 930px;
+    position: relative;
 }
 
 /* header */
@@ -91,6 +94,7 @@ nav {
 .view_wrapper {
     width:930px;
     height:388px;
+    position:relative;
 }
 .grid_wrapper{
     width:100%;
@@ -164,7 +168,7 @@ ul li:hover .media-hover .subscribedWrapper {
     align-items: center;
     gap: 2px;
     border-radius: 50px;
-    border: 1px solid var(--border-border-default, #D2DAE0);
+    border:var(--border-default);
     cursor:pointer;
 }
 
@@ -185,6 +189,7 @@ ul li:hover .media-hover .subscribedWrapper {
     position: absolute;
     top: -36px;
     left: 0;
+
 }
 .news_title_wrapper a{
     display: block;
@@ -193,7 +198,6 @@ ul li:hover .media-hover .subscribedWrapper {
     -webkit-line-clamp: 1;
     -webkit-box-orient:vertical;
     overflow: hidden;
-    color: #000;
 }
 
 .article_wrapper p:hover{
@@ -230,6 +234,10 @@ ul li:hover .media-hover .subscribedWrapper {
     height : 40px;
     display : flex;
     overflow:auto;
+}
+
+.list_wrapper .category::-webkit-scrollbar{
+    display:none;
 }
 
 .list_wrapper .category .category_item {
@@ -303,7 +311,7 @@ ul li:hover .media-hover .subscribedWrapper {
     align-items: center;
     gap: 2px;
     border-radius: 50px;
-    border: 1px solid var(--border-border-default, #D2DAE0);
+    border: var(--border-default);
     cursor : pointer;
 }
 
@@ -321,12 +329,27 @@ ul li:hover .media-hover .subscribedWrapper {
     flex-direction: column;
     gap : 16px;
 }
+.listView_wrapper .media_section .thumbnail p{
+    cursor:pointer;
+}
 
+.listView_wrapper .media_section .thumbnail img{
+    transition: all 0.2s linear;
+}
+
+.listView_wrapper .media_section .thumbnail img:hover{
+    transform: scale(1.05);
+}
 .listView_wrapper .media_section .media_section_list {
     display:flex;
     flex-direction: column;
     gap : 16px;
 }
+.listView_wrapper .media_section .media_section_list p{
+    cursor : pointer;
+}
+
+
 #arrow_wrapper_left_list{
     position: absolute;
     left:-72px;
@@ -339,7 +362,7 @@ ul li:hover .media-hover .subscribedWrapper {
 }
 
 .snackBar{
-    color: var(--text-text-white-default, #FFF);
+    color: var(--text-white-default);
     display: inline-flex;
     padding: 16px 24px;
     align-items: flex-start;
@@ -354,4 +377,112 @@ ul li:hover .media-hover .subscribedWrapper {
 
 .snackBar.hide { 
     display: none;
+}
+
+.mode_wrapper {
+    position: absolute;
+    bottom: 120%;
+    right: 0;
+}
+.toggleSwitch {
+    width: 100px;
+    height: 50px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #000;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+}
+  
+.toggleSwitch .toggleButton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #fff;
+}
+
+#toggle:checked ~ .toggleSwitch {
+    background: #fff;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+    left: calc(100% - 44px);
+    background: #000;
+}
+
+.toggleSwitch, .toggleButton {
+    transition: all 0.2s ease-in;
+}
+
+.unsubscribe_alert{
+    position:absolute;
+    top: 32%;
+    left: 32.7%;
+    display: flex;
+    flex-direction : column;
+    width: 320px;
+    height:140px;
+    border: var(--border-default);
+    background: var(--surface-default);
+    align-items: flex-start;
+    align-items: center;
+}
+
+.unsubscribe_alert .text{
+    display:flex;
+    padding:24px;
+    text-align: center;
+}
+.unsubscribe_alert .button_wrapper{
+    display:flex;
+    width:100%;
+    height:100%;
+}
+
+.unsubscribe_alert .button_wrapper .button_unsubscribe{
+    width:50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 137.5% */
+    border: var(--border-default);
+}
+.unsubscribe_alert .button_wrapper .button_cancel{
+    width:50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 137.5% */
+    border: var(--border-default);
+}
+
+.unsubscribe_alert .button_wrapper p{
+    cursor:pointer;
+}
+
+.display_none{
+    display:none;
+}
+
+.sub_none {
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -15,4 +15,5 @@ const getJSON = async (url) => {
     return null;
   }
 };
+
 export {shuffle, getJSON};

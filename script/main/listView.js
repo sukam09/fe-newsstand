@@ -1,7 +1,8 @@
 import {getJSON,shuffle } from '../util/util.js';
+import {subscribedStore,mode,category_page,media_page,viewMode,progressedIdx, timeoutId } from '../util/store.js'; 
+import { alertUnsubscribe } from './subscribe.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
 const newsData = await getJSON("../../assets/data/news_data.json");
-import {subscribedStore,mode,category_page,media_page } from '../util/store.js'; 
 let categories = [];
 let categorizedData;
 let animationId;
@@ -16,6 +17,9 @@ export const setNewsData = () => {
   const src = media_data[index].src;
   const selectedCategory = document.querySelectorAll('.category_progress')[category_page.getState()];
   let subscribedElem = document.querySelector('.subscribed');
+  if(mode.getState()==='Sub'){
+    progressedIdx.setState(category_page.getState());
+  }
   if(subscribedStore.getState().includes(index)){ // 구독중인지 아닌지
       subscribedElem.innerHTML = `<img src = "assets/images/delete.svg">`;
   }
@@ -27,29 +31,19 @@ export const setNewsData = () => {
   }
   idx = index;
   // 감싸는 요소에 이벤트 추가
-  // 이전에 이벤트 리스너가 추가된 상태인지 확인하고, 그렇지 않은 경우에만 이벤트 리스너를 추가합니다.
-  if (!subscribedElem._hasClickListener) {
-    subscribedElem.addEventListener('click', function(e) {
-      if (subscribedStore.getState().includes(idx)) {
-        let removeIdx = subscribedStore.getState().indexOf(idx);
-        if (removeIdx !== -1) {
-          let newState = [...subscribedStore.getState()];
-          newState.splice(removeIdx, 1);
-          subscribedStore.setState(newState);
-        }
-      } else {
-        subscribedStore.setState([...subscribedStore.getState(),idx]);
-        const snackBar = document.querySelector('.snackBar');
-        snackBar.classList.remove('hide');
-        setTimeout(function() {
-          snackBar.classList.add('hide');  
-          mode.setState('Sub');
-
-        }, 3000);
-      }
-    });
-    subscribedElem._hasClickListener = true; // 이벤트 리스너가 등록되었음을 표시
+  const handleClick = handleSubscribe(newsItem, idx);
+  
+  if (subscribedElem._hasClickListener) {
+    subscribedElem.removeEventListener('click', subscribedElem._clickHandler);
   }
+  
+  // 클릭 이벤트 핸들러를 요소에 저장합니다.
+  // 이렇게 하면 나중에 이 핸들러를 제거할 수 있습니다.
+  subscribedElem._clickHandler = handleClick;
+
+  subscribedElem.addEventListener('click', handleClick);
+  subscribedElem._hasClickListener = true;
+
   if(mode.getState()==='All'){
     selectedCategory.innerHTML = (media_page.getState() + 1) + "/" + categorizedData[categories[category_page.getState()]].length;
   }
@@ -60,12 +54,30 @@ export const setNewsData = () => {
   document.querySelector(".thumbnail img").src = "https://picsum.photos/320/200";
   document.querySelector(".thumbnail p").innerHTML = newsItem["main_title"];
   document.querySelector(".source").innerHTML = newsItem["name"] + " 언론사에서 직접 편집한 뉴스입니다.";
-  document.querySelector(".media_info img").src = `assets/images/logo/light/${src}`;
+  document.querySelector(".media_info img").src = `assets/images/logo/${viewMode.getState()}/${src}`;
 
   const media_section_list_p_tags = document.querySelectorAll(".media_section_list p");
   
   for (let i = 0; i < media_section_list_p_tags.length - 1; i++) {
     media_section_list_p_tags[i].innerHTML = newsItem["sub_title"][i] || "";
+  }
+}
+
+function handleSubscribe(newsItem, idx) {
+  return function handleClick(e) {
+    if (subscribedStore.getState().includes(idx)) {
+      alertUnsubscribe(newsItem["name"],idx);
+    } else {
+      subscribedStore.setState([...subscribedStore.getState(),idx]);
+      const snackBar = document.querySelector('.snackBar');
+      snackBar.classList.remove('hide');
+      const timeout = setTimeout(function() {
+        progressedIdx.setState(0);
+        snackBar.classList.add('hide');  
+        mode.setState('Sub');
+      }, 3000);
+      timeoutId.setState(timeout);
+    }
   }
 }
 
@@ -80,26 +92,26 @@ export const setNewsData = () => {
  * 데이터 가져와서 카테고리별로 분류하는 함수
  */
 function categorizeData() {
-  let categorizedData = {};
+  const categorizedData = {};
   if(mode.getState()==='All'){
     for(let i = 0; i < newsData.length; i++) {
-      let item = newsData[i];
-      let category = item.category;
+      const item = newsData[i];
+      const category = item.category;
       if(!categorizedData[category]) {
         categorizedData[category] = [];
       }
       categorizedData[category].push(item);
     }
 
-    for (let category in categorizedData) {
+    for (const category in categorizedData) {
       shuffle(categorizedData[category]);
     }
   }
   else{
     for(let i =0;i<subscribedStore.getState().length;i++){
       for(let j = 0; j < newsData.length; j++) {
-        let item = newsData[j];
-        let category = item.name;
+        const item = newsData[j];
+        const category = item.name;
         if(category === media_data[subscribedStore.getState()[i]].name){ // 구독한 목록에 있을 때만 
           if(!categorizedData[category]) {
             categorizedData[category] = [];
@@ -123,7 +135,7 @@ function createCategoryElements(categorizedData) {
     categories.push(category);
     
     let categoryItemDiv = document.createElement('div');
-    if (index === 0) {
+    if(index === category_page.getState()){
       categoryItemDiv.classList.add('progressed');
     }
     categoryItemDiv.classList.add('category_item');
@@ -151,7 +163,6 @@ const setArrowHandler = () => {
   const leftArrowWrapper = document.querySelector("#arrow_wrapper_left_list");
   const rightArrowWrapper = document.querySelector("#arrow_wrapper_right_list");
   
-  // 이벤트 리스너가 이미 등록되어 있다면 리턴하여 다시 추가하지 않습니다.
   if (leftArrowWrapper._hasClickListener || rightArrowWrapper._hasClickListener) {
     return;
   }
@@ -167,8 +178,8 @@ const setArrowHandler = () => {
       media_page.setState(media_page.getState()-1);
     }
     cancelAnimationFrame(animationId);
-    progressBarControl();
     updateCategoryProgress();
+    progressBarControl();
   });
   
   rightArrowWrapper.addEventListener("click", () => {
@@ -185,8 +196,8 @@ const setArrowHandler = () => {
       media_page.setState(media_page.getState()+1);
     }
     cancelAnimationFrame(animationId);
-    progressBarControl();
     updateCategoryProgress();
+    progressBarControl();
   });  
   leftArrowWrapper._hasClickListener = true;
   rightArrowWrapper._hasClickListener = true;
@@ -198,7 +209,6 @@ const getNewsData = async () => {
   categorizedData = categorizeData();
   createCategoryElements(categorizedData);
   setProgressed();
-  setNewsData();
 }
 
 /**
@@ -207,7 +217,6 @@ const getNewsData = async () => {
 const updateCategoryProgress = () => {
   var categoryItems = document.querySelectorAll(".category_item");
   var progressedItem = document.querySelector(".category_item.progressed");
-
   categoryItems.forEach(item => item.style.background = '');
   if (progressedItem) {
     progressedItem.classList.remove("progressed");
@@ -215,6 +224,7 @@ const updateCategoryProgress = () => {
 
   if (categoryItems[category_page.getState()]) {
     categoryItems[category_page.getState()].classList.add("progressed");
+    categoryItems[category_page.getState()].scrollIntoView({behavior: "smooth"}); 
   }
   setNewsData();
 };
@@ -226,9 +236,7 @@ const updateCategoryProgress = () => {
  * 카테고리 클릭하면 progressed class 추가하는 함수
  */
 const toggleProgressedClass = (items, index) => {
-  lastProgressed.style.background = '';
   items.forEach(item => item.classList.remove("progressed"));
-  document.querySelectorAll('category_item').forEach(item => item.style.bacgkround = '');
   items[index].classList.add("progressed");
 };
 
@@ -241,6 +249,7 @@ const toggleProgressedClass = (items, index) => {
  */
 const addClickListenerToCategoryItem = (item, index, items) => {
   item.addEventListener("click", () => {
+    updateCategoryProgress();
     toggleProgressedClass(items, index);
     progressBarControl();
   });
@@ -290,12 +299,9 @@ const updatePageAndData = () => {
  */
 const animateProgressBar = (element, endWidth, duration) => {
   const start = performance.now();
-  lastProgressed = element;
-
   const step = (timestamp) => {
     const elapsed = timestamp - start;
     const currentWidth = Math.min((endWidth * elapsed) / duration, endWidth);
-    // setWidth(element, currentWidth);
     element.style.background = `linear-gradient(to right, 
       #4362d0 ${currentWidth}%, 
       #7890E7 0%)`;
@@ -303,11 +309,9 @@ const animateProgressBar = (element, endWidth, duration) => {
       animationId = requestAnimationFrame(step);
     } else {
       updatePageAndData();
-      element.style.background = '';
       progressBarControl();
     }
   };
-
   animationId = requestAnimationFrame(step);
 };
 
@@ -316,7 +320,7 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progressed");
-  const duration = 2000;
+  const duration = 20000;
   const endWidth = 100;
   animateProgressBar(progressBar, endWidth, duration);
 };
@@ -326,19 +330,23 @@ let categoriesWrapper;
 export const listViewInit = () => {
   cancelAnimationFrame(animationId);
   categories = [];
-  
   animationId = null;
-  
   if(categoriesWrapper) {
     categoriesWrapper.innerHTML = `<div class="progress_bar surface-brand-default"></div>`;
   } else {
     categoriesWrapper = document.querySelector('.category');
   }
-  getNewsData();
-  progressBarControl();
-  setArrowHandler();
-  category_page.setState(0);
+  if(mode.getState()==='Sub'){
+    category_page.setState(progressedIdx.getState());
+  }
+  else{
+    category_page.setState(0);
+  }
   media_page.setState(0);
+  getNewsData();
+  setArrowHandler();
+  progressBarControl();
+  setNewsData();
 };
 
 
