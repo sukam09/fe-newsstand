@@ -7,7 +7,7 @@ import AutoRollingNews from './components/AutoRollingNews.js';
 import PressTab from './components/PressTab.js';
 import PressGridView from './components/PressGridview.js';
 import PressListView from './components/PressListView.js';
-import { fetchPressInfo } from './api.js';
+import { fetchPressInfo, fetchListView } from './api.js';
 
 const defaultHeadlines = [
   `정부, '처리수' 표현에 "문제없어", '핵폐수'엔 "불안감 내용 부적절"`,
@@ -23,7 +23,8 @@ const defaultHeadlines = [
 ];
 const defaultCategories = ['종합/경제', '방송/통신', 'IT', '영자지', '스포츠/연예', '매거진/전문지', '지역'];
 
-const pressInfo = await fetchPressInfo();
+const pressInfoData = await fetchPressInfo();
+const listViewData = await fetchListView();
 const pidMap = await getPidMap();
 
 export default function App({ $app }) {
