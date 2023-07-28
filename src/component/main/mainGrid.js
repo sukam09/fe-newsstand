@@ -2,7 +2,6 @@ import { shuffled_data } from "../../../data/shuffled_data.js";
 import NewsData from "../../store/NewsStore.js";
 import State from "../../store/StateStore.js";
 import Store from "../../store/SubscribeStore.js";
-import renderMain from "./renderMain.js";
 import { AllState } from "../../store/viewStore.js";
 import { getState, setState } from "../../observer/observer.js";
 import { addModalClickEvent, makeModal } from "../common/Alert.js";

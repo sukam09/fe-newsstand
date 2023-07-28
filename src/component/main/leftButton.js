@@ -19,15 +19,10 @@ export default function clickLeftAsideButton(){
     leftAsideButton.appendChild(asideLeft);
 
     if(getState(GridState)){
-        if(currentPage === MIN_PAGE_NUMBER){
-            leftAsideButton.style.visibility = "hidden";
-        }
-        else{
-            leftAsideButton.style.visibility = "visible";
-        }
+        currentPage <= MIN_PAGE_NUMBER ? leftAsideButton.style.visibility = "hidden" : leftAsideButton.style.visibility = "visible";
     }
     else{
-        leftAsideButton.style.visibility = "visible";
+        currentPage < MIN_PAGE_NUMBER ? leftAsideButton.style.visibility = "hidden" : leftAsideButton.style.visibility = "visible";
     }
 
     //click event 추가

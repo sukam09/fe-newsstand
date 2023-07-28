@@ -281,17 +281,20 @@ function setData(){
 }
 
 function showList(){
-    if(listArticle.length <= 0 ){
-        alert("구독한 언론사가 없습니다.");
-        setState(AllState, true);
-    }  
-    else{
+    if(listArticle.length > 0){
+        addModalClickEvent();
         makeCategory();
         progress();
         addCategoryOnclick();
         viewArticle();
         makeSubscribeButton();
-    } 
+    }
+    else{
+        showAlert();
+        State.setCurrentPage(1);
+        State.setMaxPage(0);
+        State.setMinpage(2);
+    }
 }
 
 function setID(value){
@@ -303,6 +306,13 @@ function setID(value){
         id = value.name;
     }
     return id;
+}
+
+function showAlert(){
+    const mainCenter = document.getElementById("main-center");
+    const alert = document.createElement("div");
+    alert.innerHTML = "구독한 언론사가 없습니다.";
+    mainCenter.appendChild(alert);
 }
 
 export default function MainList(){
@@ -317,5 +327,4 @@ export default function MainList(){
     makeModal();
     makeSnackBar();
     showList();
-    addModalClickEvent();
 }
