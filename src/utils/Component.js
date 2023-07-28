@@ -1,7 +1,7 @@
 function Component($el, props) {
   this.$el = $el;
   this.props = props;
-  this.state;
+  this.state = this.initState();
 
   this.setUp = () => {
     if (this.isRender()) {

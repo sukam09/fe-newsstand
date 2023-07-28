@@ -32,8 +32,9 @@ Button.prototype.setEvent = function () {
 
 Button.prototype.mounted = function () {
   if (this.props.actionType === SET_PRESS) {
-    this.$el.style.color = this.props.selected ? "#14212B" : "#879298";
-    this.$el.style.fontWeight = this.props.selected ? 700 : 500;
+    this.$el.style.fontWeight = this.props.selected
+      ? this.$el.classList.add("selected")
+      : this.$el.classList.remove("selected");
   } else {
     const path = this.$el.querySelector("path");
     path.style.fill = this.props.selected ? "#4362D0" : "";

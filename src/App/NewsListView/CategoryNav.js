@@ -150,6 +150,8 @@ CategoryNav.prototype.setEvent = function () {
 };
 
 CategoryNav.prototype.mounted = function () {
+  this.$ul = this.$el.querySelector("ul");
+
   const currentCategory = listStore.getState().category;
   const progressBar = `<div class="progress-bar"></div>`;
   const selectedElement = this.$ul.children[currentCategory];
@@ -167,9 +169,9 @@ CategoryNav.prototype.mounted = function () {
     </span>
     ${progressBar}
     `;
+    let progress = selectedElement.querySelector(".progress-bar");
+    startProgress(progress);
   }
-  let progress = selectedElement.querySelector(".progress-bar");
-  startProgress(progress);
 };
 
 CategoryNav.prototype.isRender = function () {

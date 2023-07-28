@@ -35,7 +35,8 @@ ${buttonInner}
 </button>`;
 };
 
-const createNewspaperItem = function (index, mode) {
+const createNewspaperItem = function (index) {
+  let mode = document.body.className ? "Dark" : "Light";
   const pressId = String(index);
   const button = createButtonHTML(pressId, mode);
 
@@ -45,7 +46,7 @@ const createNewspaperItem = function (index, mode) {
       index > -1
         ? `<img src="./assets/newspaper/${mode}/${
             Number(pressId) + 1
-          }.png" alt=${"name"} />`
+          }.png" alt=${"name"} class="press-img"/>`
         : ""
     }
     ${index > -1 ? button : ""}
@@ -53,7 +54,7 @@ const createNewspaperItem = function (index, mode) {
     `;
 };
 
-const createPressList = function (page, pressArr, mode) {
+const createPressList = function (page, pressArr) {
   const nowPageIndexArr = pressArr.slice(
     (page - 1) * GRID_PRESS_NUBER,
     page * GRID_PRESS_NUBER
@@ -61,7 +62,7 @@ const createPressList = function (page, pressArr, mode) {
 
   while (nowPageIndexArr.length < GRID_PRESS_NUBER) nowPageIndexArr.push(-1);
 
-  const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item, mode));
+  const liArr = nowPageIndexArr.map((item) => createNewspaperItem(item));
   let pressList = liArr.reduce((news, currentIndex) => news + currentIndex, "");
 
   return pressList;
@@ -110,11 +111,7 @@ function PressGridView($target, props) {
 Object.setPrototypeOf(PressGridView.prototype, Component.prototype);
 
 PressGridView.prototype.template = function () {
-  return createPressList(
-    gridStore.getState().currentPage,
-    this.indexArr,
-    this.props.mode
-  );
+  return createPressList(gridStore.getState().currentPage, this.indexArr);
 };
 
 PressGridView.prototype.setEvent = function () {

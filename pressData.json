@@ -72,7 +72,7 @@
             "url": "./assets/newspaper/Light/1.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/1.png"
+            "url": "./assets/newspaper/Dark/1.png"
         },
         "regDate": "20230717 11:10:36"
     },
@@ -149,7 +149,7 @@
             "url": "./assets/newspaper/Light/2.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/2.png"
+            "url": "./assets/newspaper/Dark/2.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -226,7 +226,7 @@
             "url": "./assets/newspaper/Light/3.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/3.png"
+            "url": "./assets/newspaper/Dark/3.png"
         },
         "regDate": "20230717 08:45:34"
     },
@@ -303,7 +303,7 @@
             "url": "./assets/newspaper/Light/4.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/4.png"
+            "url": "./assets/newspaper/Dark/4.png"
         },
         "regDate": "20230717 10:37:44"
     },
@@ -380,7 +380,7 @@
             "url": "./assets/newspaper/Light/5.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/5.png"
+            "url": "./assets/newspaper/Dark/5.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -457,7 +457,7 @@
             "url": "./assets/newspaper/Light/6.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/6.png"
+            "url": "./assets/newspaper/Dark/6.png"
         },
         "regDate": "20230716 18:27:01"
     },
@@ -534,7 +534,7 @@
             "url": "./assets/newspaper/Light/7.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/7.png"
+            "url": "./assets/newspaper/Dark/7.png"
         },
         "regDate": "20230717 11:01:04"
     },
@@ -611,7 +611,7 @@
             "url": "./assets/newspaper/Light/8.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/8.png"
+            "url": "./assets/newspaper/Dark/8.png"
         },
         "regDate": "20230717 10:27:57"
     },
@@ -688,7 +688,7 @@
             "url": "./assets/newspaper/Light/9.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/9.png"
+            "url": "./assets/newspaper/Dark/9.png"
         },
         "regDate": "20230717 10:35:16"
     },
@@ -765,7 +765,7 @@
             "url": "./assets/newspaper/Light/10.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/10.png"
+            "url": "./assets/newspaper/Dark/10.png"
         },
         "regDate": "20230717 11:10:03"
     },
@@ -842,7 +842,7 @@
             "url": "./assets/newspaper/Light/11.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/11.png"
+            "url": "./assets/newspaper/Dark/11.png"
         },
         "regDate": "20230717 10:33:59"
     },
@@ -919,7 +919,7 @@
             "url": "./assets/newspaper/Light/12.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/12.png"
+            "url": "./assets/newspaper/Dark/12.png"
         },
         "regDate": "20230717 11:10:46"
     },
@@ -996,7 +996,7 @@
             "url": "./assets/newspaper/Light/13.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/13.png"
+            "url": "./assets/newspaper/Dark/13.png"
         },
         "regDate": "20230717 10:53:42"
     },
@@ -1073,7 +1073,7 @@
             "url": "./assets/newspaper/Light/14.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/14.png"
+            "url": "./assets/newspaper/Dark/14.png"
         },
         "regDate": "20230717 10:53:42"
     },
@@ -1150,7 +1150,7 @@
             "url": "./assets/newspaper/Light/15.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/15.png"
+            "url": "./assets/newspaper/Dark/15.png"
         },
         "regDate": "20230717 11:10:38"
     },
@@ -1227,7 +1227,7 @@
             "url": "./assets/newspaper/Light/16.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/16.png"
+            "url": "./assets/newspaper/Dark/16.png"
         },
         "regDate": "20230717 11:10:46"
     },
@@ -1304,7 +1304,7 @@
             "url": "./assets/newspaper/Light/17.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/17.png"
+            "url": "./assets/newspaper/Dark/17.png"
         },
         "regDate": "20230717 10:00:00"
     },
@@ -1381,7 +1381,7 @@
             "url": "./assets/newspaper/Light/18.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/18.png"
+            "url": "./assets/newspaper/Dark/18.png"
         },
         "regDate": "20230717 11:10:10"
     },
@@ -1458,7 +1458,7 @@
             "url": "./assets/newspaper/Light/19.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/19.png"
+            "url": "./assets/newspaper/Dark/19.png"
         },
         "regDate": "20230717 10:33:59"
     },
@@ -1535,7 +1535,7 @@
             "url": "./assets/newspaper/Light/20.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/20.png"
+            "url": "./assets/newspaper/Dark/20.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -1612,7 +1612,7 @@
             "url": "./assets/newspaper/Light/21.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/21.png"
+            "url": "./assets/newspaper/Dark/21.png"
         },
         "regDate": "20230717 11:06:35"
     },
@@ -1689,7 +1689,7 @@
             "url": "./assets/newspaper/Light/22.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/22.png"
+            "url": "./assets/newspaper/Dark/22.png"
         },
         "regDate": "20230717 11:08:52"
     },
@@ -1766,7 +1766,7 @@
             "url": "./assets/newspaper/Light/23.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/23.png"
+            "url": "./assets/newspaper/Dark/23.png"
         },
         "regDate": "20230717 09:34:24"
     },
@@ -1843,7 +1843,7 @@
             "url": "./assets/newspaper/Light/24.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/24.png"
+            "url": "./assets/newspaper/Dark/24.png"
         },
         "regDate": "20230717 11:20:04"
     },
@@ -1920,7 +1920,7 @@
             "url": "./assets/newspaper/Light/25.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/25.png"
+            "url": "./assets/newspaper/Dark/25.png"
         },
         "regDate": "20230717 11:10:05"
     },
@@ -1997,7 +1997,7 @@
             "url": "./assets/newspaper/Light/26.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/26.png"
+            "url": "./assets/newspaper/Dark/26.png"
         },
         "regDate": "20230717 10:59:06"
     },
@@ -2074,7 +2074,7 @@
             "url": "./assets/newspaper/Light/27.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/27.png"
+            "url": "./assets/newspaper/Dark/27.png"
         },
         "regDate": "20230717 11:10:38"
     },
@@ -2151,7 +2151,7 @@
             "url": "./assets/newspaper/Light/28.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/28.png"
+            "url": "./assets/newspaper/Dark/28.png"
         },
         "regDate": "20230717 11:22:16"
     },
@@ -2228,7 +2228,7 @@
             "url": "./assets/newspaper/Light/29.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/29.png"
+            "url": "./assets/newspaper/Dark/29.png"
         },
         "regDate": "20230717 11:20:02"
     },
@@ -2305,7 +2305,7 @@
             "url": "./assets/newspaper/Light/30.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/30.png"
+            "url": "./assets/newspaper/Dark/30.png"
         },
         "regDate": "20230717 11:20:31"
     },
@@ -2382,7 +2382,7 @@
             "url": "./assets/newspaper/Light/31.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/31.png"
+            "url": "./assets/newspaper/Dark/31.png"
         },
         "regDate": "20230717 10:35:16"
     },
@@ -2459,7 +2459,7 @@
             "url": "./assets/newspaper/Light/32.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/32.png"
+            "url": "./assets/newspaper/Dark/32.png"
         },
         "regDate": "20230717 10:59:06"
     },
@@ -2536,7 +2536,7 @@
             "url": "./assets/newspaper/Light/33.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/33.png"
+            "url": "./assets/newspaper/Dark/33.png"
         },
         "regDate": "20230715 06:51:19"
     },
@@ -2613,7 +2613,7 @@
             "url": "./assets/newspaper/Light/34.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/34.png"
+            "url": "./assets/newspaper/Dark/34.png"
         },
         "regDate": "20230717 10:43:52"
     },
@@ -2690,7 +2690,7 @@
             "url": "./assets/newspaper/Light/35.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/35.png"
+            "url": "./assets/newspaper/Dark/35.png"
         },
         "regDate": "20230715 06:51:19"
     },
@@ -2767,7 +2767,7 @@
             "url": "./assets/newspaper/Light/36.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/36.png"
+            "url": "./assets/newspaper/Dark/36.png"
         },
         "regDate": "20230717 11:01:04"
     },
@@ -2844,7 +2844,7 @@
             "url": "./assets/newspaper/Light/37.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/37.png"
+            "url": "./assets/newspaper/Dark/37.png"
         },
         "regDate": "20230716 21:36:43"
     },
@@ -2921,7 +2921,7 @@
             "url": "./assets/newspaper/Light/38.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/38.png"
+            "url": "./assets/newspaper/Dark/38.png"
         },
         "regDate": "20230717 11:22:20"
     },
@@ -2998,7 +2998,7 @@
             "url": "./assets/newspaper/Light/39.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/39.png"
+            "url": "./assets/newspaper/Dark/39.png"
         },
         "regDate": "20230717 08:56:59"
     },
@@ -3075,7 +3075,7 @@
             "url": "./assets/newspaper/Light/40.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/40.png"
+            "url": "./assets/newspaper/Dark/40.png"
         },
         "regDate": "20230717 11:20:37"
     },
@@ -3152,7 +3152,7 @@
             "url": "./assets/newspaper/Light/41.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/41.png"
+            "url": "./assets/newspaper/Dark/41.png"
         },
         "regDate": "20230716 18:27:27"
     },
@@ -3229,7 +3229,7 @@
             "url": "./assets/newspaper/Light/42.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/42.png"
+            "url": "./assets/newspaper/Dark/42.png"
         },
         "regDate": "20230717 10:37:44"
     },
@@ -3306,7 +3306,7 @@
             "url": "./assets/newspaper/Light/43.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/43.png"
+            "url": "./assets/newspaper/Dark/43.png"
         },
         "regDate": "20230716 21:36:43"
     },
@@ -3383,7 +3383,7 @@
             "url": "./assets/newspaper/Light/44.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/44.png"
+            "url": "./assets/newspaper/Dark/44.png"
         },
         "regDate": "20230717 08:56:59"
     },
@@ -3460,7 +3460,7 @@
             "url": "./assets/newspaper/Light/45.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/45.png"
+            "url": "./assets/newspaper/Dark/45.png"
         },
         "regDate": "20230717 09:06:20"
     },
@@ -3537,7 +3537,7 @@
             "url": "./assets/newspaper/Light/46.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/46.png"
+            "url": "./assets/newspaper/Dark/46.png"
         },
         "regDate": "20230717 11:17:17"
     },
@@ -3614,7 +3614,7 @@
             "url": "./assets/newspaper/Light/47.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/47.png"
+            "url": "./assets/newspaper/Dark/47.png"
         },
         "regDate": "20230717 09:06:20"
     },
@@ -3691,7 +3691,7 @@
             "url": "./assets/newspaper/Light/48.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/48.png"
+            "url": "./assets/newspaper/Dark/48.png"
         },
         "regDate": "20230716 21:36:43"
     },
@@ -3768,7 +3768,7 @@
             "url": "./assets/newspaper/Light/49.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/49.png"
+            "url": "./assets/newspaper/Dark/49.png"
         },
         "regDate": "20230717 10:37:44"
     },
@@ -3845,7 +3845,7 @@
             "url": "./assets/newspaper/Light/50.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/50.png"
+            "url": "./assets/newspaper/Dark/50.png"
         },
         "regDate": "20230717 11:20:04"
     },
@@ -3922,7 +3922,7 @@
             "url": "./assets/newspaper/Light/51.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/51.png"
+            "url": "./assets/newspaper/Dark/51.png"
         },
         "regDate": "20230717 10:43:52"
     },
@@ -3999,7 +3999,7 @@
             "url": "./assets/newspaper/Light/52.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/52.png"
+            "url": "./assets/newspaper/Dark/52.png"
         },
         "regDate": "20230717 11:31:07"
     },
@@ -4076,7 +4076,7 @@
             "url": "./assets/newspaper/Light/53.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/53.png"
+            "url": "./assets/newspaper/Dark/53.png"
         },
         "regDate": "20230714 10:41:16"
     },
@@ -4153,7 +4153,7 @@
             "url": "./assets/newspaper/Light/54.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/54.png"
+            "url": "./assets/newspaper/Dark/54.png"
         },
         "regDate": "20230717 05:37:59"
     },
@@ -4230,7 +4230,7 @@
             "url": "./assets/newspaper/Light/55.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/55.png"
+            "url": "./assets/newspaper/Dark/55.png"
         },
         "regDate": "20230717 11:20:37"
     },
@@ -4307,7 +4307,7 @@
             "url": "./assets/newspaper/Light/56.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/56.png"
+            "url": "./assets/newspaper/Dark/56.png"
         },
         "regDate": "20230717 11:31:07"
     },
@@ -4384,7 +4384,7 @@
             "url": "./assets/newspaper/Light/57.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/57.png"
+            "url": "./assets/newspaper/Dark/57.png"
         },
         "regDate": "20230717 11:30:06"
     },
@@ -4461,7 +4461,7 @@
             "url": "./assets/newspaper/Light/58.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/58.png"
+            "url": "./assets/newspaper/Dark/58.png"
         },
         "regDate": "20230717 11:20:10"
     },
@@ -4538,7 +4538,7 @@
             "url": "./assets/newspaper/Light/59.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/59.png"
+            "url": "./assets/newspaper/Dark/59.png"
         },
         "regDate": "20230717 11:20:04"
     },
@@ -4615,7 +4615,7 @@
             "url": "./assets/newspaper/Light/60.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/60.png"
+            "url": "./assets/newspaper/Dark/60.png"
         },
         "regDate": "20230716 18:27:01"
     },
@@ -4692,7 +4692,7 @@
             "url": "./assets/newspaper/Light/61.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/61.png"
+            "url": "./assets/newspaper/Dark/61.png"
         },
         "regDate": "20230717 09:06:12"
     },
@@ -4769,7 +4769,7 @@
             "url": "./assets/newspaper/Light/62.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/62.png"
+            "url": "./assets/newspaper/Dark/62.png"
         },
         "regDate": "20230717 11:31:07"
     },
@@ -4846,7 +4846,7 @@
             "url": "./assets/newspaper/Light/63.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/63.png"
+            "url": "./assets/newspaper/Dark/63.png"
         },
         "regDate": "20230714 10:41:16"
     },
@@ -4923,7 +4923,7 @@
             "url": "./assets/newspaper/Light/64.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/64.png"
+            "url": "./assets/newspaper/Dark/64.png"
         },
         "regDate": "20230717 08:45:34"
     },
@@ -5000,7 +5000,7 @@
             "url": "./assets/newspaper/Light/65.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/65.png"
+            "url": "./assets/newspaper/Dark/65.png"
         },
         "regDate": "20230717 11:30:46"
     },
@@ -5077,7 +5077,7 @@
             "url": "./assets/newspaper/Light/66.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/66.png"
+            "url": "./assets/newspaper/Dark/66.png"
         },
         "regDate": "20230717 11:10:36"
     },
@@ -5154,7 +5154,7 @@
             "url": "./assets/newspaper/Light/67.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/67.png"
+            "url": "./assets/newspaper/Dark/67.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -5231,7 +5231,7 @@
             "url": "./assets/newspaper/Light/68.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/68.png"
+            "url": "./assets/newspaper/Dark/68.png"
         },
         "regDate": "20230717 08:45:34"
     },
@@ -5308,7 +5308,7 @@
             "url": "./assets/newspaper/Light/69.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/69.png"
+            "url": "./assets/newspaper/Dark/69.png"
         },
         "regDate": "20230717 10:37:44"
     },
@@ -5385,7 +5385,7 @@
             "url": "./assets/newspaper/Light/70.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/70.png"
+            "url": "./assets/newspaper/Dark/70.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -5462,7 +5462,7 @@
             "url": "./assets/newspaper/Light/71.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/71.png"
+            "url": "./assets/newspaper/Dark/71.png"
         },
         "regDate": "20230716 18:27:01"
     },
@@ -5539,7 +5539,7 @@
             "url": "./assets/newspaper/Light/72.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/72.png"
+            "url": "./assets/newspaper/Dark/72.png"
         },
         "regDate": "20230717 11:01:04"
     },
@@ -5616,7 +5616,7 @@
             "url": "./assets/newspaper/Light/73.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/73.png"
+            "url": "./assets/newspaper/Dark/73.png"
         },
         "regDate": "20230717 10:27:57"
     },
@@ -5693,7 +5693,7 @@
             "url": "./assets/newspaper/Light/74.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/74.png"
+            "url": "./assets/newspaper/Dark/74.png"
         },
         "regDate": "20230717 10:35:16"
     },
@@ -5770,7 +5770,7 @@
             "url": "./assets/newspaper/Light/75.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/75.png"
+            "url": "./assets/newspaper/Dark/75.png"
         },
         "regDate": "20230717 11:10:03"
     },
@@ -5847,7 +5847,7 @@
             "url": "./assets/newspaper/Light/76.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/76.png"
+            "url": "./assets/newspaper/Dark/76.png"
         },
         "regDate": "20230717 10:33:59"
     },
@@ -5924,7 +5924,7 @@
             "url": "./assets/newspaper/Light/77.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/77.png"
+            "url": "./assets/newspaper/Dark/77.png"
         },
         "regDate": "20230717 11:10:46"
     },
@@ -6001,7 +6001,7 @@
             "url": "./assets/newspaper/Light/78.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/78.png"
+            "url": "./assets/newspaper/Dark/78.png"
         },
         "regDate": "20230717 10:53:42"
     },
@@ -6078,7 +6078,7 @@
             "url": "./assets/newspaper/Light/79.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/79.png"
+            "url": "./assets/newspaper/Dark/79.png"
         },
         "regDate": "20230717 10:53:42"
     },
@@ -6155,7 +6155,7 @@
             "url": "./assets/newspaper/Light/80.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/80.png"
+            "url": "./assets/newspaper/Dark/80.png"
         },
         "regDate": "20230717 11:10:38"
     },
@@ -6232,7 +6232,7 @@
             "url": "./assets/newspaper/Light/81.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/81.png"
+            "url": "./assets/newspaper/Dark/81.png"
         },
         "regDate": "20230717 11:10:46"
     },
@@ -6309,7 +6309,7 @@
             "url": "./assets/newspaper/Light/82.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/82.png"
+            "url": "./assets/newspaper/Dark/82.png"
         },
         "regDate": "20230717 10:00:00"
     },
@@ -6386,7 +6386,7 @@
             "url": "./assets/newspaper/Light/83.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/83.png"
+            "url": "./assets/newspaper/Dark/83.png"
         },
         "regDate": "20230717 11:10:10"
     },
@@ -6463,7 +6463,7 @@
             "url": "./assets/newspaper/Light/84.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/84.png"
+            "url": "./assets/newspaper/Dark/84.png"
         },
         "regDate": "20230717 10:33:59"
     },
@@ -6540,7 +6540,7 @@
             "url": "./assets/newspaper/Light/85.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/85.png"
+            "url": "./assets/newspaper/Dark/85.png"
         },
         "regDate": "20230713 09:58:00"
     },
@@ -6617,7 +6617,7 @@
             "url": "./assets/newspaper/Light/86.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/86.png"
+            "url": "./assets/newspaper/Dark/86.png"
         },
         "regDate": "20230717 11:06:35"
     },
@@ -6694,7 +6694,7 @@
             "url": "./assets/newspaper/Light/87.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/87.png"
+            "url": "./assets/newspaper/Dark/87.png"
         },
         "regDate": "20230717 11:08:52"
     },
@@ -6771,7 +6771,7 @@
             "url": "./assets/newspaper/Light/88.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/88.png"
+            "url": "./assets/newspaper/Dark/88.png"
         },
         "regDate": "20230717 09:34:24"
     },
@@ -6848,7 +6848,7 @@
             "url": "./assets/newspaper/Light/89.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/89.png"
+            "url": "./assets/newspaper/Dark/89.png"
         },
         "regDate": "20230717 11:20:04"
     },
@@ -6925,7 +6925,7 @@
             "url": "./assets/newspaper/Light/90.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/90.png"
+            "url": "./assets/newspaper/Dark/90.png"
         },
         "regDate": "20230717 11:10:05"
     },
@@ -7002,7 +7002,7 @@
             "url": "./assets/newspaper/Light/91.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/91.png"
+            "url": "./assets/newspaper/Dark/91.png"
         },
         "regDate": "20230717 10:59:06"
     },
@@ -7079,7 +7079,7 @@
             "url": "./assets/newspaper/Light/92.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/92.png"
+            "url": "./assets/newspaper/Dark/92.png"
         },
         "regDate": "20230717 11:10:38"
     },
@@ -7156,7 +7156,7 @@
             "url": "./assets/newspaper/Light/93.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/93.png"
+            "url": "./assets/newspaper/Dark/93.png"
         },
         "regDate": "20230717 11:22:16"
     },
@@ -7233,7 +7233,7 @@
             "url": "./assets/newspaper/Light/94.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/94.png"
+            "url": "./assets/newspaper/Dark/94.png"
         },
         "regDate": "20230717 11:20:02"
     },
@@ -7310,7 +7310,7 @@
             "url": "./assets/newspaper/Light/95.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/95.png"
+            "url": "./assets/newspaper/Dark/95.png"
         },
         "regDate": "20230717 11:20:31"
     },
@@ -7387,7 +7387,7 @@
             "url": "./assets/newspaper/Light/96.png"
         },
         "logoDark": {
-            "url": "./assets/newspaper/Light/96.png"
+            "url": "./assets/newspaper/Dark/96.png"
         },
         "regDate": "20230717 10:35:16"
     }

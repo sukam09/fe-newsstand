@@ -72,14 +72,17 @@ Contents.prototype.template = function () {
     content = pressNews[id];
   }
 
-  let imgSrc = content[`logo${this.props.mode}`];
+  if (content) {
+    let mode = document.body.className ? "Dark" : "Light";
 
-  return `
+    let imgSrc = content[`logo${mode}`];
+
+    return `
   <header class="list-header">
-    <img src="${imgSrc.url}" class="list-img">
+    <img src="${imgSrc.url}" class="press-img">
     <div class="list-edit">${getEditDate(content.regDate)}</div>
     <button ${isSubscribed(id) ? "" : `class="subscribe-btn"`}
-    data-key=${Number(id)}>
+    data-key=${Number(id) - 1}>
     ${isSubscribed(id) ? unsubscribeButtonInner : subscribeButtonInner}</button>
   </header>
   <div class="list-news">
@@ -100,29 +103,34 @@ Contents.prototype.template = function () {
     </div>
   </div>
   `;
+  }
+  return "";
 };
 
 Contents.prototype.setEvent = function () {
   const $el = this.$el;
   const $button = this.$el.querySelector("button");
-  $button.addEventListener("click", ({ currentTarget }) => {
-    if (currentTarget.className === "subscribe-btn") {
-      let newPress = pressStore.getState().pressArr;
-      newPress.push($button.dataset.key);
 
-      $button.classList.remove("subscribe-btn");
-      $button.innerHTML = unsubscribeButtonInner;
+  if ($button) {
+    $button.addEventListener("click", ({ currentTarget }) => {
+      if (currentTarget.className === "subscribe-btn") {
+        let newPress = pressStore.getState().pressArr;
+        newPress.push($button.dataset.key);
 
-      let newAction = addPress(newPress);
-      pressStore.dispatch(newAction);
+        $button.classList.remove("subscribe-btn");
+        $button.innerHTML = unsubscribeButtonInner;
 
-      new SnackBar($el, {});
-    } else {
-      new Alert(this.$el.parentNode, {
-        ...this.props,
-        id: Number(currentTarget.dataset.key),
-      });
-    }
-  });
+        let newAction = addPress(newPress);
+        pressStore.dispatch(newAction);
+
+        new SnackBar($el, {});
+      } else {
+        new Alert(this.$el.parentNode, {
+          ...this.props,
+          id: Number(currentTarget.dataset.key),
+        });
+      }
+    });
+  }
 };
 export default Contents;

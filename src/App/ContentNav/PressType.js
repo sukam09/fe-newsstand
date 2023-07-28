@@ -21,8 +21,9 @@ import {
 const types = [ALL, MY];
 const buttonInners = ["전체 언론사", "내가 구독한 언론사"];
 
-const createButton = (button, index) => {
+const createButton = function (button, index) {
   const buttonProps = {
+    ...this.props,
     selected: mainStore.getState().pressType === types[index],
     inner: buttonInners[index],
     actionType: SET_PRESS,
@@ -57,7 +58,7 @@ PressType.prototype.template = function () {
 
 PressType.prototype.mounted = function () {
   const buttons = this.$el.querySelectorAll("button");
-  buttons.forEach(createButton);
+  buttons.forEach(createButton.bind(this));
 };
 
 export default PressType;
