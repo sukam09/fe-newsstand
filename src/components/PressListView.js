@@ -7,7 +7,7 @@ import SubscribeButton from './common/SubscribeButton.js';
 import SnackBar from './common/SnackBar.js';
 import Alert from './common/Alert.js';
 
-export default function PressListView({ $target, initialState, onChangePress }) {
+export default function PressListView({ $target, initialState, onChangeTab, saveTimer, clearTimer }) {
   const $section = document.createElement('section');
 
   const $div = document.createElement('div');
