@@ -39,8 +39,8 @@ export default function PressListView({ $target, initialState, onChangeTab, save
     }
   };
 
-  const initListView = async () => {
-    const { index, press, listViewData, pidMap } = this.state;
+  const initListView = () => {
+    const { index, press, listViewData, pressInfoData, pidMap } = this.state;
 
     const entire = press === 'all' ? listViewData[index].length : 1;
     const present = this.state.present === 0 ? entire : this.state.present;
