@@ -1,91 +1,165 @@
-# :file_folder: 뉴스스탠드 3주차
+# :file_folder: 뉴스스탠드 4주차
 ### 기능 구현
-2주차 때 못했던 기능 구현 이어서 하기
+#### ✔️ 옵저버 패턴 만들기   
+#### ✔️ 구독하기 기능 추가(그리드뷰)
+<br>
 
-### 📍 카테고리바 기능 개발
-- [x] 카테고리 데이터 받아오기(이름 및 개수)
-- [x] 카테고리 누를 때마다 이동
-- [x] press content에 페이지 이동 화살표로 카테고리 전환
+### 📍 옵저버 패턴 만들기
+- [x] store 파일 만들기
+- [x] constants 파일 관리로 매직넘버 줄이기
+- [x] 옵저버 패턴으로 코드 재구성하기
 
-### 📍 리스트뷰일 때 각각에 해당하는 뉴스 데이터 받아오기
-- [x] JSON 데이터에 SubNews 목록 및 사진 데이터 추가
-- [x] 화면에 따른 데이터 받아서 출력
+### 📍 구독하기 기능 추가(그리드뷰)
+- [x] 마우스 호버시 구독하기 버튼 생성
+- [x] 구독하기 -> 해지하기 버튼 변경
+- [x] 내가 구독한 언론사로 이동
+- [x] 내가 구독한 언론사 내 해지하기 누를 시 요소 삭제
 
-![ezgif com-video-to-gif (3)](https://github.com/meanz1/fe-newsstand/assets/62049151/4156c594-1495-4771-86e7-47566c03a5ab)
+![ezgif com-video-to-gif (5)](https://github.com/meanz1/fe-newsstand/assets/62049151/71a2f3a4-71f2-42b7-83de-236f37e3b5d4)
+<br>
 
-
-### 📍 프로그레스바 효과주기
-- [x] 프로그레스바 효과 넣기 (CSS)
-- [x] 20초 지날 때마다 페이지 인덱스 변화주기 (JS)
-
-![ezgif com-video-to-gif (2)](https://github.com/meanz1/fe-newsstand/assets/62049151/5894c1f9-a0ba-4712-90ba-9c175c7e3613)
-
-(데모영상에서는 프로그레스바 진행 시간을 2초로 설정함)
-
-
-### 배운 점 및 고민했던 점   
+### 배운 점 및 어려웠던 점   
 #### 시도한 것 및 배운 것
-- Reduce 함수 사용(다양한 메소드 및 함수들 사용해보려 노력함)
+- 스토어 형식과 옵저버 패턴을 이용하여 코드를 재구성한 것    
+
+   **Store.js 일부**
   ```javascript
-  const putSubTitles = categoryData.subNews.reduce((acc, _, idx)=> {
-    return acc + `<span class="press-content-news-title">${categoryData.subNews[idx]}</span>`
-  }, "");
+  const nowCategoryName = initState({
+    key: "categoryName",
+    defaultState: "",
+  });
+  
+  const gridPageIdx = initState({
+    key: "gridPageIdx",
+    defaultState: 0,
+  });
+  
+  const isSubscribed = initState({
+    key: "isSubscribed",
+    defaultState: false,
+  });
+  
+  const subscribedPress = initState({
+    key: "subscribedPress",
+    defaultState: [],
+  });
+  
+  const allOfPress = initState({
+    key: "allOfPress",
+    defaultState: true,
+  });
+  ```   
+  **Observer.js**
+  ```javascript
+  const globalStates = {};
+
+  export function initState({ key, defaultState }) {
+    globalStates[key] = {
+      state: defaultState,
+      observers: new Set(),
+    };
+    return key;
+  }
+
+  export function getState(key) {
+    return globalStates[key].state;
+  }
+  
+  export function setState(key, state) {
+    globalStates[key].state = state;
+    notify(key);
+  }
+  
+  function notify(key) {
+    globalStates[key].observers.forEach((observer) => {
+      observer();
+    });
+  }
+  
+  export function register(key, observer) {
+    globalStates[key].observers.add(observer);
+  }
+
   ```
+- css를 inline 요소로 넣지 않고 classList를 이용해서 넣는 이유를 완전히 이해 후 적용
   ```javascript
-  const categoryMap = categoryNames.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1;
-    return acc;
-  }, {})
+    eachElementOfGrid.forEach((elem) => {
+      elem.addEventListener("mouseover", () => {
+        elem.children[0].classList.remove("show-flex");
+        elem.children[0].classList.add("hidden");
+  
+        elem.children[1].classList.remove("hidden");
+        elem.children[1].classList.add("show-flex");
+      });
+    });
   ```
-- JSON 데이터를 받아와서 카테고리 이름 및 개수 parsing 한 값 사용
+- 템플릿 리터럴 안에 삼항연산자 사용, img태그의 데이터 속성을 추가해서 사용한 것
   ```javascript
-  const categoryPath = await fetchData("../assets/data/newspaperSrc.json");
-  const categoryNames = categoryPath.newsList.map((elem) => elem.category);
-
-  // 누적합 연산을 통한 카테고리 개수세기
-  const categoryMap = categoryNames.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1;
-    return acc;
-  }, {})
+  page[nowGridIdx].forEach((elem) => {
+    imgSrcContent += `
+    <li>
+      <img src="../assets/images/pressLogo/light/img${elem}.svg" data-key=${elem}>
+      <div class="press-content-all-grid-view-btn hidden">
+      ${
+        subList.includes(elem)
+          ? `<button class="all-grid-view-btn-unsub">x 해지하기</button>`
+          : `<button class="all-grid-view-btn-sub">+ 구독하기</button>`
+      } 
+      </div>
+    </li>`;
+  });
   ```
-- fetch를 이용하여 데이터 통신
+- filter 사용 (1주차 때 설명들은 고차함수들 모두(map, filter, forEach, reduce) 이용!!)
   ```javascript
-  export async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Error : ", err);
-    return null;
-     }
-   }
-   ```
-- 깃 이슈 생성하고, 각 이슈에 따른 브랜치 생성 및 개발 후 메인에 merge
-  <a href='https://ifh.cc/v-p9ytJ6' target='_blank'><img src='https://ifh.cc/g/p9ytJ6.jpg' border='0'></a>
-- constants 파일을 이용하여 매직 넘버 줄이기
-  ```javascript
-  // 롤링 뉴스 개수
-   export const HEADLINE_ROLLING_NEWS_NUM = 5;
-   
-   // 좌 우 롤링 컨테이너 시간차
-   export const HEADLINE_ROLLING_TIME_GAP = 1000;
-   
-   // 롤링 컨테이너 롤링 주기
-   export const HEADLINE_ROLLING_TIME = 5000;
-   ```
+  function removeSubscribedPress(element) {
+    const subList = getState(subscribedPress);
+    const updateSubList = subList.filter((elem) => {
+      return elem !== parseInt(element.children[0].dataset.key);
+    });
+    setState(subscribedPress, updateSubList);
+  }
+  ```
 
 
-#### 고민했던 것
-- 카테고리바에서 현재 페이지 및 전체 페이지 받아오는 부분  
-  <a href='https://ifh.cc/v-FWolAd' target='_blank'><img src='https://ifh.cc/g/FWolAd.jpg' border='0'></a>
-- 프로그레스 바 구현을 어떻게 할지
 
 
-### 아쉬운 점 및 개선할 점
-- 리스트뷰에 있다가 그리드뷰 갔다가 다시 리스트뷰에 오면 현재 페이지의 정보가 저장되는 것(현재 페이지 번호 초기화 해주어야함)
-- 지식의 부족으로 여전히 설계에 어려움을 겪고 있는 것  
-  <a href='https://ifh.cc/v-TfMW0v' target='_blank'><img src='https://ifh.cc/g/TfMW0v.jpg' border='0'></a>
-- rAF로 프로그레스바 구현해보고 싶었는데 하지 못한 것
-- 3주차 진도를 따라가지 못해 동료들이 하는 이야기를 온전히 알아듣지 못한 것
+  
+#### 어려웠던 점
+- 옵저버 패턴 구현시 키 값의 상태를 변경해주는 setState가 register에서 등록된 함수 내에서 사용되다 보니 재귀로 무한 렌더링 되었던 점.
+  -> 두 가지 키 값을 묶어서 객체로 관리 (렌더링 수 줄었다.)
+
+```javascript
+  const nowCategoryIdx = initState({
+    key: "categoryIdx",
+    defaultState: { category: 0, list: 1 },
+  });
+```
+```javascript
+  function selectCategory() {
+    const categories = getQuerySelectorAll(".press-content-category");
+    categories.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        e.currentTarget.classList.add("selected");
+        let newCateIdx = getState(nowCategoryIdx);
+        newCateIdx.list = 1;
+        newCateIdx.category = nameOfEachCategory.indexOf(
+          e.currentTarget.children[1].textContent
+        );
+        setState(nowCategoryIdx, newCateIdx);
+      });
+    });
+  }
+```
+- 처음(1주차) 설계부터 옵저버 패턴을 고려하지 않고 중간에 추가한 것이기 때문에 코드를 재구성할 때 register 메소드로 함수를 호출하는 위치를 잡는 점.
+
+- git stash를 해놓고 브랜치를 이동했다가 stash apply를 다른 브랜치에서 해서 약간의 stash 이슈가 있었던 점.
+
+- 기능이 많아지니 파일 관리하는 게 복잡해져서 어려웠던 점.
+
+
+
+### 아쉬운 점 및 뿌듯한 점
+- 리스트뷰 화면에서의 구독하기 기능 구현 아직 못한 것.
+- css 파일에서 색상같은 값들을 변수로 관리하는 것.(이해는 하였으나 아직 적용하지 못했음)
+- 리팩토링을 하지 못한 것.
 

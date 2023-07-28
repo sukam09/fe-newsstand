@@ -8,6 +8,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .pressbar-container {
@@ -18,22 +20,35 @@ body {
   width: 930px;
 }
 
+.press-content-name-strong {
+  font-weight: 700;
+  color: #14212b;
+}
+
+.press-content-name-default {
+  font-weight: 500;
+  color: #879298;
+}
+
 .pressbar-name-all {
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
-  color: #14212b;
+}
 
+.pressbar-name-all:hover {
+  cursor: pointer;
 }
 
 .pressbar-name-subscribe {
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
   line-height: 22px;
-  color: #879298;
   padding-left: 24px;
+}
+
+.pressbar-name-subscribe:hover {
+  cursor: pointer;
 }
 
 #pressbar-icon-grid-view {
@@ -42,7 +57,14 @@ body {
 }
 
 #pressbar-icon-list-view {
-  padding-right: 8px;
+  margin-right: 8px;
   height: 24px;
   width: 24px;
+}
+
+#pressbar-icon-grid-view:hover {
+  cursor: pointer;
+}
+#pressbar-icon-list-view:hover {
+  cursor: pointer;
 }

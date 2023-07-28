@@ -1,3 +1,15 @@
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.show-flex {
+  display: flex;
+}
+
 .press-content-container {
   display: flex;
   position: relative;
@@ -7,16 +19,27 @@
   margin: 0 auto;
 }
 
-.press-content-view {
+.press-content-all-grid-view {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 930px;
   height: 388px;
   border-top: 1px solid #d2dae0;
   border-left: 1px solid #d2dae0;
 }
 
-.press-content-view li {
+.press-content-my-grid-view {
+  display: none;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 930px;
+  height: 388px;
+  border-top: 1px solid #d2dae0;
+  border-left: 1px solid #d2dae0;
+}
+
+.press-content-my-grid-view li {
   list-style: none;
   display: flex;
   align-items: center;
@@ -25,7 +48,72 @@
   border-right: 1px solid #d2dae0;
 }
 
-.press-content-list-view {
+.press-content-all-grid-view li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #d2dae0;
+  border-right: 1px solid #d2dae0;
+}
+.press-content-all-grid-view li:hover {
+  background-color: #f5f7f9;
+}
+
+.press-content-my-grid-view li:hover {
+  background-color: #f5f7f9;
+}
+
+.press-content-all-grid-view-btn :hover {
+  cursor: pointer;
+}
+
+.my-grid-view-btn-unsub {
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  border: 1px solid #d2dae0;
+  border-radius: 50px;
+  background-color: #ffffff;
+  color: #879298;
+}
+
+.all-grid-view-btn-sub {
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  border: 1px solid #d2dae0;
+  border-radius: 50px;
+  background-color: #ffffff;
+  color: #879298;
+}
+
+.all-grid-view-btn-unsub {
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  border: 1px solid #d2dae0;
+  border-radius: 50px;
+  background-color: #ffffff;
+  color: #879298;
+}
+
+.my-grid-view-btn-unsub :hover {
+  cursor: pointer;
+}
+
+.press-content-my-grid-view button:hover {
+  cursor: pointer;
+}
+
+.press-content-all-list-view {
+  width: 930px;
+  height: 388px;
+  border: 1px solid #d2dae0;
+  display: none;
+}
+
+.press-content-my-list-view {
   width: 930px;
   height: 388px;
   border: 1px solid #d2dae0;
@@ -33,12 +121,11 @@
 }
 
 .press-content-categorybar {
-  background-color: #F5F7F9;
+  background-color: #f5f7f9;
   height: 40px;
   border-bottom: 1px solid #d2dae0;
   display: flex;
   align-items: center;
- 
 }
 
 .press-content-category {
@@ -59,6 +146,10 @@
 .press-content-category * {
   z-index: 3;
   white-space: nowrap;
+}
+
+.press-content-category-name:hover {
+  cursor: pointer;
 }
 
 @keyframes progress {
@@ -82,7 +173,7 @@
 
 .selected {
   width: 134px;
-  background-color: #7890E7;
+  background-color: #7890e7;
   color: #ffffff;
   position: relative;
 }
@@ -105,30 +196,26 @@
 }
 
 .press-content-category-cnt-all {
-  color: #FFFFFFB2;
+  color: #ffffffb2;
 }
 
-#press-content-grid-prev {
+#press-content-btn-prev {
   position: absolute;
   left: -71px;
   display: none;
 }
 
-#press-content-grid-next {
+#press-content-btn-prev:hover {
+  cursor: pointer;
+}
+
+#press-content-btn-next {
   position: absolute;
   left: 978px;
 }
 
-#press-content-list-prev {
-  position: absolute;
-  left: -71px;
-  display: none;
-}
-
-#press-content-list-next {
-  position: absolute;
-  left: 978px;
-  display: none;
+#press-content-btn-next:hover {
+  cursor: pointer;
 }
 
 .press-content-news {
@@ -145,7 +232,7 @@
 }
 
 .press-content-news-info-time {
-  color: #5F6E76;
+  color: #5f6e76;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -156,8 +243,8 @@
   width: 72px;
   height: 24px;
   border-radius: 50px;
-  border: 1px solid #D2DAE0;
-  background: #F5F7F9;
+  border: 1px solid #d2dae0;
+  background: #f5f7f9;
   color: #879298;
   font-size: 12px;
   font-style: normal;
@@ -191,7 +278,7 @@
 }
 
 .press-content-news-title {
-  color: #4B5966;
+  color: #4b5966;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

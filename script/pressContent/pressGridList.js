@@ -1,20 +1,21 @@
-import { getElemClass, getQuerySelector} from "../../utils/js/getElements.js";
+import {
+  getQuerySelector,
+  getQuerySelectorAll,
+} from "../../utils/js/getElements.js";
 import { fetchData } from "../../utils/js/getJson.js";
+import { getState, register, setState } from "../observer/observer.js";
+import { gridPageIdx, isSubscribed, subscribedPress } from "../store/store.js";
 
 const page = [[], [], [], []];
 
-const sectionPrevButton = getQuerySelector('#press-content-grid-prev');
-const sectionNextButton = getQuerySelector('#press-content-grid-next');
-const pressContentView = getElemClass('press-content-view');
-
-let pageNumber = 0;
+const pressContentAllView = getQuerySelector(".press-content-all-grid-view");
 
 // Json 객체로부터 받아오는 뉴스 데이터의 id값 랜덤 셔플 후 첫번째 페이지 구현
 async function shuffleImgs() {
   const imgPath = await fetchData("../assets/data/newspaperSrc.json");
   const imgId = imgPath.newsList.map((elem) => {
     return elem.id;
-  })
+  });
 
   const shuffledArray = [...imgId].sort(() => Math.random() - 0.5);
   shuffledArray.forEach((arr, idx) => {
@@ -24,31 +25,107 @@ async function shuffleImgs() {
 
   let imgSrcContent = "";
   page[0].forEach((elem) => {
-    imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
-  })
-  pressContentView[0].innerHTML = imgSrcContent;
+    imgSrcContent += `
+    <li>
+      <img src="../assets/images/pressLogo/light/img${elem}.svg" data-key=${elem}>
+      <div class="press-content-all-grid-view-btn hidden">
+        <button class="all-grid-view-btn-sub">+ 구독하기</button>
+        <button class="all-grid-view-btn-unsub hidden">x 해지하기</button>
+      </div>
+    </li>`;
+  });
+  pressContentAllView.innerHTML = imgSrcContent;
+  showSubscribeBtn();
+  setSubClickEvents();
+  register(gridPageIdx, showPressImg);
+  register(subscribedPress, showPressImg);
 }
 
 // 각각의 페이지에 올바른 뉴스데이터 나타내기
-function showPressImg({pageValue}) {
-  const pressContentView = getElemClass('press-content-view');
-  pageNumber = (pageValue >= 0) ? ++pageNumber : --pageNumber;
-
-  sectionPrevButton.style.display = pageNumber !== 0 ? "block" : "none";
-  sectionNextButton.style.display = pageNumber >= 3 ? "none" : "block";
+function showPressImg() {
+  const pressContentAllView = getQuerySelector(".press-content-all-grid-view");
+  const nowGridIdx = getState(gridPageIdx);
+  const subList = getState(subscribedPress);
   let imgSrcContent = "";
-  page[pageNumber].forEach((elem) => {
-    imgSrcContent += `<li><img src="../assets/images/pressLogo/light/img${elem}.svg"</li>`;
-  })
-  pressContentView[0].innerHTML = imgSrcContent;
+
+  page[nowGridIdx].forEach((elem) => {
+    imgSrcContent += `
+    <li>
+      <img src="../assets/images/pressLogo/light/img${elem}.svg" data-key=${elem}>
+      <div class="press-content-all-grid-view-btn hidden">
+      ${
+        subList.includes(elem)
+          ? `<button class="all-grid-view-btn-unsub">x 해지하기</button>`
+          : `<button class="all-grid-view-btn-sub">+ 구독하기</button>`
+      } 
+      </div>
+    </li>`;
+  });
+
+  pressContentAllView.innerHTML = imgSrcContent;
+  showSubscribeBtn();
+  setSubClickEvents();
 }
 
-// 이전 페이지 이동 및 다음 페이지 이동 구현
-function changePressGrid() {
-  sectionPrevButton.addEventListener('click', () => showPressImg({pageValue:-1}));
-  sectionNextButton.addEventListener('click', () => showPressImg({pageValue:1}));
+function showSubscribeBtn() {
+  const eachElementOfGrid = getQuerySelectorAll(
+    ".press-content-all-grid-view li"
+  );
+
+  eachElementOfGrid.forEach((elem) => {
+    elem.addEventListener("mouseover", () => {
+      elem.children[0].classList.remove("show-flex");
+      elem.children[0].classList.add("hidden");
+
+      elem.children[1].classList.remove("hidden");
+      elem.children[1].classList.add("show-flex");
+    });
+  });
+
+  eachElementOfGrid.forEach((elem) => {
+    elem.addEventListener("mouseout", () => {
+      elem.children[0].classList.remove("hidden");
+      elem.children[0].classList.add("show-flex");
+
+      elem.children[1].classList.remove("show-flex");
+      elem.children[1].classList.add("hidden");
+    });
+  });
 }
 
+function addSubscribedPress(element) {
+  const subList = getState(subscribedPress);
+  setState(subscribedPress, [
+    ...subList,
+    parseInt(element.children[0].dataset.key),
+  ]);
+}
 
+function removeSubscribedPress(element) {
+  const subList = getState(subscribedPress);
+  const updateSubList = subList.filter((elem) => {
+    return elem !== parseInt(element.children[0].dataset.key);
+  });
+  setState(subscribedPress, updateSubList);
+}
 
-export { shuffleImgs, changePressGrid };
+function setSubClickEvents() {
+  const subBtnLists = getQuerySelectorAll(".all-grid-view-btn-sub");
+  const unsubBtnLists = getQuerySelectorAll(".all-grid-view-btn-unsub");
+  subBtnLists.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      addSubscribedPress(elem.parentNode.parentNode);
+      elem.classList.remove("show-flex");
+      elem.classList.add("hidden");
+    });
+  });
+  unsubBtnLists.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      removeSubscribedPress(elem.parentNode.parentNode);
+      elem.classList.remove("show-flex");
+      elem.classList.add("hidden");
+    });
+  });
+}
+
+export { shuffleImgs, showSubscribeBtn };
