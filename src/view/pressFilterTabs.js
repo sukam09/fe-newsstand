@@ -1,10 +1,12 @@
+import { ENTIRE } from "../constant.js";
+
 const Tabs = document.querySelector(".tab-and-viewer .tabs");
 const EntirePressBtn = Tabs.querySelector(".all-press-btn");
 const SubscribePressBtn = Tabs.querySelector(".sub-press-btn");
 
 export function renderPressFilterTab(tab) {
   let targetTab, inactiveTab;
-  if (tab === "entire") {
+  if (tab === ENTIRE) {
     targetTab = EntirePressBtn;
     inactiveTab = SubscribePressBtn;
   } else {

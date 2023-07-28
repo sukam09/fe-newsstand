@@ -1,4 +1,6 @@
+import { ENTIRE, SUBSCRIBE } from "../constant.js";
 import { LIST_PAGE, VIEW } from "../model/global.js";
+import { scrollMove } from "../util/scroll.js";
 import { eachCategoryLength } from "../view/list.js";
 import { news } from "../view/list.js";
 
@@ -20,10 +22,10 @@ export function startTimer() {
         clearInterval(timerId);
         pageChange();
       } else {
-        currentWidth += PROGRESS_TAB_WIDTH / 100;
+        currentWidth += PROGRESS_TAB_WIDTH / 1000;
         progressRatioTab.style.width = `${currentWidth}px`;
       }
-    }, PAGE_AUTO_MOVING_TIME / 100); //0.2초 단위로 이동
+    }, PAGE_AUTO_MOVING_TIME / 1000); //0.2초 단위로 이동
   }
 
   function resetProgressBar() {
@@ -38,7 +40,7 @@ export function startTimer() {
     resetProgressBar();
 
     //페이지 & 카테고리 변수 변경
-    if (VIEW.tab === "entire") {
+    if (VIEW.tab === ENTIRE) {
       if (LIST_PAGE.page === eachCategoryLength[LIST_PAGE.category] - 1) {
         LIST_PAGE.setCategory((LIST_PAGE.category + 1) % eachCategoryLength.length);
       } else {
@@ -47,6 +49,9 @@ export function startTimer() {
     } else {
       LIST_PAGE.setCategory((LIST_PAGE.category + 1) % news.length);
     }
+
+    //가로 스크롤 스크롤 조정
+    scrollMove();
 
     //타이머 다시 시작
     startTimer();

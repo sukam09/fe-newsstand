@@ -1,4 +1,5 @@
-import { updateCategory, updateField } from "../view/field.js";
+import { ENTIRE, GRID, LIST } from "../constant.js";
+import { updateCategory } from "../view/field.js";
 import { renderGrid, gridPageMove } from "../view/grid.js";
 import { renderList, updateList } from "../view/list.js";
 import { renderPageButton } from "../view/pageButton.js";
@@ -19,7 +20,6 @@ export const LIST_PAGE = {
   setPage: (page) => {
     LIST_PAGE.page = page;
     updateList();
-    updateField();
   },
   setCategory: (category, prevCateLength) => {
     LIST_PAGE.category = category;
@@ -29,25 +29,37 @@ export const LIST_PAGE = {
 };
 
 export const VIEW = {
-  layout: "grid",
-  tab: "entire",
-  setLayout: (layout, changeSubscribeView = false) => {
+  layout: GRID,
+  tab: ENTIRE,
+  isDark: false,
+  setLayout: (layout, autoMoveSubscribePage = false) => {
     VIEW.layout = layout;
     renderViewButton(VIEW.layout);
     renderPageButton();
-    if (VIEW.layout === "grid") {
+    if (VIEW.layout === GRID) {
+      GRID_PAGE.page = 0;
       renderGrid();
     } else {
-      renderList(changeSubscribeView);
+      if (!autoMoveSubscribePage) LIST_PAGE.category = 0;
+      LIST_PAGE.page = 0;
+      renderList();
     }
   },
-  setTab: (tab, changeSubscribeView) => {
+  setTab: (tab, autoMoveSubscribePage = false) => {
     VIEW.tab = tab;
     renderPressFilterTab(VIEW.tab);
-    if (VIEW.tab === "entire") {
-      VIEW.setLayout("grid");
+    if (VIEW.tab === ENTIRE) {
+      VIEW.setLayout(GRID);
     } else {
-      VIEW.setLayout("list", changeSubscribeView);
+      VIEW.setLayout(LIST, autoMoveSubscribePage);
+    }
+  },
+  setDark: () => {
+    VIEW.isDark = !VIEW.isDark;
+    if (VIEW.layout === GRID) {
+      gridPageMove();
+    } else {
+      updateList();
     }
   },
 };
