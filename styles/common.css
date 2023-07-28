@@ -10,20 +10,13 @@ body {
   width: 100vw;
   height: 100vh;
   min-height: 900px;
-}
-
-.mode-button {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  top: 50px;
-  right: 50px;
-  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .news-stand-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 930px;
 }
 
@@ -33,6 +26,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .header-wrapper > button {

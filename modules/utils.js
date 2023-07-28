@@ -1,11 +1,19 @@
-import { IMAGE, MEDIA, MESSAGE, STATE } from "../constant.js";
-import { changeImgSrc, setNewPage } from "./grid.js";
-import { setCategoryBar, setFullList, setListView } from "./list.js";
-
-const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
+import { IMAGE, MESSAGE } from "../constant.js";
+import { getState, setState } from "../observer/observer.js";
+import {
+  gridPageNum,
+  listCateIdx,
+  listCateMediaIdx,
+  listSubsMediaIdx,
+} from "../store/media.js";
+import { isGridMode, isTotalMode } from "../store/mode.js";
+import { subscribeList } from "../store/subscribe.js";
 
 const $gridIcon = document.querySelector(".nav-grid");
 const $listIcon = document.querySelector(".nav-list");
+
+const $totalMedia = document.querySelector(".main-nav_total");
+const $subscribeMedia = document.querySelector(".main-nav_subscribe");
 
 const $gridView = document.querySelector(".news-grid-wrapper");
 const $listView = document.querySelector(".news-list-wrapper");
@@ -20,20 +28,32 @@ const shuffleList = (list) => {
 
 const setColorModeEvent = () => {
   const $html = document.querySelector("html");
-  const $colorModeBtn = document.querySelector(".mode-button");
+  // const $colorModeBtn = document.querySelector(".mode-button");
 
-  if (!$colorModeBtn.src) {
-    $colorModeBtn.src = IMAGE.MOON_ICON;
-  }
+  // if (!$colorModeBtn.src) {
+  //   $colorModeBtn.src = IMAGE.MOON_ICON;
+  // }
 
-  $colorModeBtn.addEventListener("click", () => {
+  // $colorModeBtn.addEventListener("click", () => {
+  //   $html.classList.toggle("dark");
+
+  //   setState("isLightMode", $html.className !== "dark");
+
+  //   $colorModeBtn.src =
+  //     $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+  // });
+
+  const Q = (q) => document.querySelector(q);
+
+  Q(".dark-mode-switch").addEventListener("click", (ev) => {
     $html.classList.toggle("dark");
-    STATE.MODE.IS_LIGHT = !STATE.MODE.IS_LIGHT;
-    $colorModeBtn.src =
-      $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
-    STATE.MODE.IS_GRID
-      ? changeImgSrc(MEDIA_NUM * STATE.GRID_PAGE_NUM)
-      : setListView();
+    setState("isLightMode", $html.className !== "dark");
+    Q("body").classList.toggle("switching", true);
+    setTimeout(() => {
+      Q("body").classList.toggle("switching", false);
+    }, 200);
+    Q(".dark-mode-switch").classList.toggle("dark");
+    Q("body").classList.toggle("dark");
   });
 };
 /**
@@ -64,9 +84,6 @@ const setReload = () => {
 };
 
 const setViewEvent = () => {
-  const $listIcon = document.querySelector(".nav-list");
-  const $gridIcon = document.querySelector(".nav-grid");
-
   $listIcon.addEventListener("click", () => {
     moveListView();
   });
@@ -79,24 +96,25 @@ const setViewEvent = () => {
  * 그리드뷰로 이동할 수 있는 함수
  */
 const moveGridView = () => {
+  setState(isGridMode, true);
+  setState(gridPageNum, 0);
+
   $gridIcon.src = IMAGE.BLUE_GRID_ICON;
   $listIcon.src = IMAGE.GRAY_LIST_ICON;
 
   $gridView.classList.remove("hidden");
   $listView.classList.add("hidden");
-
-  STATE.MODE.IS_GRID = true;
-  const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-  setNewPage(
-    STATE.GRID_PAGE_NUM * MEDIA_NUM,
-    (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-  );
 };
 
 /**
  * 리스트뷰로 이동할 수 있는 함수
  */
 const moveListView = () => {
+  setState(isGridMode, false);
+  setState(listCateIdx, 0);
+  setState(listCateMediaIdx, 0);
+  setState(listSubsMediaIdx, 0);
+
   $gridIcon.src = IMAGE.GRAY_GRID_ICON;
   $listIcon.src = IMAGE.BLUE_LIST_ICON;
 
@@ -108,11 +126,6 @@ const moveListView = () => {
 
   $leftArrow.classList.remove("hidden");
   $rightArrow.classList.remove("hidden");
-
-  STATE.MODE.IS_GRID = false;
-
-  setCategoryBar();
-  setFullList();
 };
 
 const initSubsModalView = () => {
@@ -121,32 +134,43 @@ const initSubsModalView = () => {
   const $subBtnNo = document.querySelectorAll(".subs-alert_btn")[1];
 
   $subBtnYes.addEventListener("click", () => {
-    const subIdx = STATE.SELECT_SUBSCRIBE_IDX;
-    STATE.SUBSCRIBE_LIST.splice(subIdx, 1);
+    const subIdx = getState("selectSubscribeIdx");
+
+    const newSubscribeList = getState("subscribeList");
+    newSubscribeList.splice(subIdx, 1);
+    setState("subscribeList", newSubscribeList);
+
     $subsAlert.classList.add("hidden");
 
     alert(MESSAGE.UNSUBSCRIBE);
-
-    if (STATE.MODE.IS_GRID) {
-      const MEDIA_NUM = MEDIA.GRID_ROW_NUM * MEDIA.GRID_COLUMN_NUM;
-      setNewPage(
-        STATE.GRID_PAGE_NUM * MEDIA_NUM,
-        (STATE.GRID_PAGE_NUM + 1) * MEDIA_NUM
-      );
-    } else {
-      setCategoryBar();
-      setFullList();
-    }
+    if (!isPossible()) return;
   });
   $subBtnNo.addEventListener("click", () => {
     $subsAlert.classList.add("hidden");
   });
 };
 
+function isPossible() {
+  if (!getState(isTotalMode) && getState(subscribeList).length === 0) {
+    alert(MESSAGE.ERROR_NO_SUBSCRIBE);
+    setState(isGridMode, true);
+    setState(isTotalMode, true);
+
+    $totalMedia.classList.add("main-nav_selected");
+    $subscribeMedia.classList.remove("main-nav_selected");
+
+    $totalMedia.classList.remove("main-nav_unselected");
+    $subscribeMedia.classList.add("main-nav_unselected");
+
+    return false;
+  }
+  return true;
+}
+
 /**
  * 공통뷰 & 공통 이벤트 세팅
  */
-async function initCommonView() {
+function initCommonView() {
   setColorModeEvent();
   setReload();
   setDate();
@@ -154,4 +178,4 @@ async function initCommonView() {
   initSubsModalView();
 }
 
-export { initCommonView, shuffleList, moveGridView, moveListView };
+export { initCommonView, shuffleList, moveGridView, moveListView, isPossible };
