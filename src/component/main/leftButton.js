@@ -21,8 +21,8 @@ export default function clickLeftAsideButton(){
     if(getState(GridState)){
         currentPage <= MIN_PAGE_NUMBER ? leftAsideButton.style.visibility = "hidden" : leftAsideButton.style.visibility = "visible";
     }
-    else{
-        currentPage < MIN_PAGE_NUMBER ? leftAsideButton.style.visibility = "hidden" : leftAsideButton.style.visibility = "visible";
+    else{ 
+        leftAsideButton.style.visibility = "visible";
     }
 
     //click event 추가

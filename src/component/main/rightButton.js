@@ -17,7 +17,7 @@ export default function clickRightAsideButton(){
         currentPage >= MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
     }
     else{
-        currentPage > MAX_PAGE_NUMBER ? rightAsideButton.style.visibility = "hidden" : rightAsideButton.style.visibility = "visible";
+        rightAsideButton.style.visibility = "visible";
     }
 
     asideRight.addEventListener("click",()=>{
