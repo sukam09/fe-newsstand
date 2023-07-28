@@ -187,6 +187,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
   };
 
   const updateListView = () => {
+    const { press, view, length } = this.state;
 
   const updateCategories = () => {
     const { press, index, length } = this.state;
@@ -206,7 +207,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
       ...this.state,
       categories: myPress,
       index: 0,
-      length: this.state.length - 1,
+      length: length - 1,
     });
   };
 
