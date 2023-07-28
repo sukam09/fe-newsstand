@@ -109,8 +109,13 @@ function refreshGrid(){
 }
 
 function setMaxpage(){
-    let maxPage = parseInt(pressData.length / COUNT_PER_PAGE);
-    console.log(currentPage, maxPage);
+    let maxPage
+    if(pressData.length % COUNT_PER_PAGE === 0){
+        maxPage = parseInt(pressData.length / COUNT_PER_PAGE);
+    }
+    else{
+        maxPage = parseInt(pressData.length / COUNT_PER_PAGE) + 1;
+    }
     State.setMaxPage(maxPage);
 }
 
