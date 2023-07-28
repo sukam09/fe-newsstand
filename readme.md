@@ -16,9 +16,7 @@
 # 📌 기능구현
 ## 데모 영상
 
-https://github.com/bae-sh/fe-newsstand/assets/37887690/d07a8c38-d0a0-4bd6-af6f-ddba55670426
-
-
+https://github.com/bae-sh/fe-newsstand/assets/37887690/f46da68d-4a70-449e-a30b-51d0a3b28e30
 
 ## querySelector
 ### 성능 비교
