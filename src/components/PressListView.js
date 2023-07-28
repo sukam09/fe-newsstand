@@ -189,10 +189,7 @@ export default function PressListView({ $target, initialState, onChangePress }) 
   const updateListView = () => {
     const { press, view, length } = this.state;
 
-  const updateCategories = () => {
-    const { press, index, length } = this.state;
-
-    if (press === 'all') {
+    if (view !== 'list' || press === 'all') {
       return;
     }
 
