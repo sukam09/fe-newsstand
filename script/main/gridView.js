@@ -1,6 +1,7 @@
 import { shuffle, getJSON } from '../util/util.js';
 import { MEDIA } from '../constants.js'; // magic 넘버
-import { pageStore,subscribedStore,mode,viewMode,progressedIdx } from '../util/store.js'; 
+import { pageStore,subscribedStore,mode,viewMode,progressedIdx, timeoutId } from '../util/store.js'; 
+import { alertUnsubscribe } from './subscribe.js';
 /* 
   media_data = [
   { name: '한국농어촌방송', src: '0.png' },
@@ -109,22 +110,19 @@ export const GridController = {
         subscribedStore.setState([...subscribedStore.getState(),logoIndex]);
         const snackBar = document.querySelector('.snackBar');
         snackBar.classList.remove('hide');
-        setTimeout(function() {
+        const timeout = setTimeout(function() {
           progressedIdx.setState(0);
           snackBar.classList.add('hide');
           mode.setState('Sub');
         }, 3000);
+        timeoutId.setState(timeout);
       });
+
     }
     
     else{
       wrapperElement.addEventListener('click', function(event) {
-        let index = subscribedStore.getState().indexOf(logoIndex);
-        if (index !== -1) {
-          let newState = [...subscribedStore.getState()];
-          newState.splice(index, 1);
-          subscribedStore.setState(newState);
-        }
+        alertUnsubscribe(media_data[logoIndex]["name"],logoIndex);
       })
     }
 

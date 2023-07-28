@@ -168,7 +168,7 @@ ul li:hover .media-hover .subscribedWrapper {
     align-items: center;
     gap: 2px;
     border-radius: 50px;
-    border: 1px solid var(--border-border-default, #D2DAE0);
+    border:var(--border-default);
     cursor:pointer;
 }
 
@@ -311,7 +311,7 @@ ul li:hover .media-hover .subscribedWrapper {
     align-items: center;
     gap: 2px;
     border-radius: 50px;
-    border: 1px solid var(--border-border-default, #D2DAE0);
+    border: var(--border-default);
     cursor : pointer;
 }
 
@@ -362,7 +362,7 @@ ul li:hover .media-hover .subscribedWrapper {
 }
 
 .snackBar{
-    color: var(--text-text-white-default, #FFF);
+    color: var(--text-white-default);
     display: inline-flex;
     padding: 16px 24px;
     align-items: flex-start;
@@ -427,8 +427,8 @@ ul li:hover .media-hover .subscribedWrapper {
     flex-direction : column;
     width: 320px;
     height:140px;
-    border: 1px solid var(--border-border-default, #D2DAE0);
-    background: var(--surface-surface-default, #FFF);
+    border: var(--border-default);
+    background: var(--surface-default);
     align-items: flex-start;
     align-items: center;
 }
@@ -477,4 +477,12 @@ ul li:hover .media-hover .subscribedWrapper {
 
 .display_none{
     display:none;
+}
+
+.sub_none {
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }

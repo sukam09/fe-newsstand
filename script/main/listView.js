@@ -1,5 +1,5 @@
 import {getJSON,shuffle } from '../util/util.js';
-import {subscribedStore,mode,category_page,media_page,viewMode,progressedIdx } from '../util/store.js'; 
+import {subscribedStore,mode,category_page,media_page,viewMode,progressedIdx, timeoutId } from '../util/store.js'; 
 import { alertUnsubscribe } from './subscribe.js';
 const media_data = await getJSON("../../assets/data/media_data.json");
 const newsData = await getJSON("../../assets/data/news_data.json");
@@ -71,11 +71,12 @@ function handleSubscribe(newsItem, idx) {
       subscribedStore.setState([...subscribedStore.getState(),idx]);
       const snackBar = document.querySelector('.snackBar');
       snackBar.classList.remove('hide');
-      setTimeout(function() {
+      const timeout = setTimeout(function() {
         progressedIdx.setState(0);
         snackBar.classList.add('hide');  
         mode.setState('Sub');
       }, 3000);
+      timeoutId.setState(timeout);
     }
   }
 }
@@ -319,7 +320,7 @@ const animateProgressBar = (element, endWidth, duration) => {
  */
 const progressBarControl = () => {
   const progressBar = document.querySelector(".progressed");
-  const duration = 2000;
+  const duration = 20000;
   const endWidth = 100;
   animateProgressBar(progressBar, endWidth, duration);
 };
@@ -327,7 +328,6 @@ const progressBarControl = () => {
 
 let categoriesWrapper;
 export const listViewInit = () => {
-  console.log("엥");
   cancelAnimationFrame(animationId);
   categories = [];
   animationId = null;
@@ -344,11 +344,9 @@ export const listViewInit = () => {
   }
   media_page.setState(0);
   getNewsData();
-  console.log("데이터가져오기");
   setArrowHandler();
   progressBarControl();
   setNewsData();
-  
 };
 
 
