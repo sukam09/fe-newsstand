@@ -9,7 +9,7 @@ function removeAnimation() {
 function addAnimation(domObj, to) {
   if (to === "Next" || to === "Prev") {
     removeAnimation();
-    if (domObj === null) {
+    if (domObj === null || domObj === undefined) {
       document
         .querySelector(".category li:first-child")
         .classList.add("selected-category");

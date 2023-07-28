@@ -55,6 +55,7 @@ function clickYes(selectedPress, _img) {
   setState(subPress, SubscribePress);
   //hide confirm
   document.querySelector(".confirm").style.display = "none";
+
   if (getState(viewType) === LIST_VIEW) {
     const _ul = document.querySelector(".category");
     for (let i = 0; i < _ul.children.length; i++) {
