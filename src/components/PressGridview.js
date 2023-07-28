@@ -141,15 +141,12 @@ export default function PressGridView({ $target, initialState, onChangeTab, clea
       this.setState({ ...this.state, page: page - 1 }, false);
     }
 
-    if (myPress.length === 0) {
-      onChangePress('all');
-      return;
-    }
-
     this.setState({ ...this.state, data: myPress });
   };
 
   this.render = () => {
+    clearTimer();
+
     $section.innerHTML = `
       <div class="news-press-container">
         <ul class="news-press-grid-container">
