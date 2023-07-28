@@ -2,6 +2,7 @@
 @import url("./styles/reset.css");
 @import url("./styles/global-style.css");
 
+@import url("./styles/dark-mode.css");
 @import url("./styles/grid.css");
 @import url("./styles/list.css");
 @import url("./styles/common.css");

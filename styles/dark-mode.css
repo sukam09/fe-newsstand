@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap");
+
+.dark-mode-switch {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  cursor: pointer;
+
+  &:hover {
+    .circle {
+      margin-left: 15px;
+      margin-top: -95px;
+    }
+  }
+
+  .inner {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    overflow: hidden;
+  }
+
+  .bg {
+    width: 80px;
+    height: 80px;
+    background-color: #202020;
+    /* border: 1px solid #ffffff; */
+    border-radius: 40px;
+    transition: all 0s;
+  }
+
+  .circle {
+    margin-left: 20px;
+    margin-top: -100px;
+    width: 80px;
+    height: 80px;
+    background-color: #ffffff;
+    /* border: 2px solid transparent; */
+    border-radius: 40px;
+    transition: all 0.2s;
+  }
+
+  .rays {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    .ray {
+      position: absolute;
+      left: 38px;
+      top: 40px;
+      width: 4px;
+      height: 8px;
+      background-color: #fbc02d;
+      transform-origin: 2px 0;
+      opacity: 0;
+
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          transform: rotate(-45deg * $i - 135deg) translateY(40px);
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
+
+  &.dark {
+    &:hover {
+      .rays .ray {
+        @for $i from 1 through 8 {
+          &:nth-child(#{$i}) {
+            transform: rotate(-45deg * $i - 135deg) translateY(52px);
+          }
+        }
+      }
+    }
+
+    .circle {
+      margin-left: 0;
+      margin-top: -80px;
+      background-color: #fbc02d;
+      /* border-color: #f9a825; */
+    }
+
+    .rays .ray {
+      opacity: 1;
+
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          transform: rotate(-45deg * $i - 135deg) translateY(48px);
+          transition: all (0.2s + $i * 0.2s);
+        }
+      }
+    }
+  }
+}

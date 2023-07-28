@@ -28,19 +28,32 @@ const shuffleList = (list) => {
 
 const setColorModeEvent = () => {
   const $html = document.querySelector("html");
-  const $colorModeBtn = document.querySelector(".mode-button");
+  // const $colorModeBtn = document.querySelector(".mode-button");
 
-  if (!$colorModeBtn.src) {
-    $colorModeBtn.src = IMAGE.MOON_ICON;
-  }
+  // if (!$colorModeBtn.src) {
+  //   $colorModeBtn.src = IMAGE.MOON_ICON;
+  // }
 
-  $colorModeBtn.addEventListener("click", () => {
+  // $colorModeBtn.addEventListener("click", () => {
+  //   $html.classList.toggle("dark");
+
+  //   setState("isLightMode", $html.className !== "dark");
+
+  //   $colorModeBtn.src =
+  //     $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+  // });
+
+  const Q = (q) => document.querySelector(q);
+
+  Q(".dark-mode-switch").addEventListener("click", (ev) => {
     $html.classList.toggle("dark");
-
     setState("isLightMode", $html.className !== "dark");
-
-    $colorModeBtn.src =
-      $html.className === "dark" ? IMAGE.SUN_ICON : IMAGE.MOON_ICON;
+    Q("body").classList.toggle("switching", true);
+    setTimeout(() => {
+      Q("body").classList.toggle("switching", false);
+    }, 200);
+    Q(".dark-mode-switch").classList.toggle("dark");
+    Q("body").classList.toggle("dark");
   });
 };
 /**
