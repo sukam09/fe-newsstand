@@ -9,7 +9,9 @@ class Store {
 
     this.dispatch = action => {
       state = reducer(state, action);
-      this.notify();
+      if (action.type === 'unsubscribe') {
+        this.notify();
+      }
     };
 
     this.subscribe = listener => {
