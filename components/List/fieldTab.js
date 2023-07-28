@@ -1,30 +1,31 @@
 import { FIELDTAB_LIST, INITIAL_PAGE } from "../../constants/constant.js";
 import { filterCategory } from "../../utils/filter/filterCategory.js";
+import { ce, qs } from "../../utils/utils.js";
 import { ListComponent } from "./ListComponent.js";
 
-const all_press = document.querySelector(".all_press");
+const all_press = qs(".all_press");
 
 const makeFocusTab = (currentPage, filteredAgencies, item) => {
-  const $field_tab_progress = document.createElement("li");
+  const $field_tab_progress = ce("li");
   $field_tab_progress.className = "field-tab-progress";
 
-  const $progress_count_wrapper = document.createElement("div");
+  const $progress_count_wrapper = ce("div");
   $progress_count_wrapper.className = "progress-count-wrapper";
 
-  const $progress_category = document.createElement("span");
+  const $progress_category = ce("span");
   $progress_category.className = "progress-category";
   $progress_category.innerText = item;
 
   if (Boolean(all_press.getAttribute("subscribetype"))) {
-    const $progress_count = document.createElement("span");
+    const $progress_count = ce("span");
     $progress_count.className = "progress-count";
     $progress_count.innerText = currentPage + 1;
 
-    const $division = document.createElement("span");
+    const $division = ce("span");
     $division.className = "division";
     $division.innerText = "/";
 
-    const $progress_total_count = document.createElement("span");
+    const $progress_total_count = ce("span");
     $progress_total_count.className = "progress-total-count";
     $progress_total_count.innerText = `${filteredAgencies.length}`;
     $progress_count_wrapper.appendChild($progress_category);
@@ -44,7 +45,7 @@ const makeTab = (sorted_agencies, item) => {
     ? FIELDTAB_LIST
     : sorted_agencies.map((item) => item.name);
 
-  const $li = document.createElement("li");
+  const $li = ce("li");
   $li.className = "field-tab-normal";
   $li.innerText = item;
   $li.addEventListener("click", () => {
@@ -68,7 +69,7 @@ const makeTab = (sorted_agencies, item) => {
 };
 
 export const makeFieldTab = (current_page, sorted_agencies, focus) => {
-  const $field_tab = document.querySelector(".field-tab");
+  const $field_tab = qs(".field-tab");
   $field_tab.className = "field-tab";
 
   const filtered_agencies = filterCategory(sorted_agencies, focus);
