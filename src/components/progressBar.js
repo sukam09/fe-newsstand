@@ -3,7 +3,7 @@ import { drawListView } from "./listNews.js";
 import { setDisplay } from "../util/utils.js";
 
 const CATEGORY_NUM = 7;
-const PROGRESS_TIME = 2000;
+const PROGRESS_TIME = 20000;
 let current_category = 0;
 let up_count = 1;
 let total_count = 0;

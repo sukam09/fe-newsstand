@@ -7,9 +7,8 @@ import { getState, setState } from "../observer/observer.js";
 import { subscribedPress } from "../store/store.js";
 import { removePressFromSubList } from "./gridView.js";
 import { getPressObj } from "../api/api.js";
-import { setDisplay } from "../util/utils.js";
 
-const PROGRESS_TIME = 2000;
+const PROGRESS_TIME = 20000;
 let category_num = 0;
 let current_category = 0;
 let clicked_idx = 0;
