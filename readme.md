@@ -14,6 +14,74 @@
 - [x] 이벤트 위임 사용
 
 # 📌 기능구현
+## 데모 영상
+## querySelector
+### 성능 비교
+> 크롬브라우저의 Perfomance 탭을 이용하여 측정하였습니다. **Idle 부분은 성능 비교시 불필요한 시간**(녹화 클릭 시간)이므로 제외하고 비교를 진행하였습니다.  직접 구현한 querySelector 부분이 **50ms** 정도 빠른 것을 확인할 수 있습니다.
+
+<div>
+<h4>기존 DOM API querySelector <strong>(287ms)</strong></h4>
+<img width="50%" alt="스크린샷 2023-07-14 오전 10 43 20" src="https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/37887690/cafc65a1-bc00-4f05-9d29-c29f2be04916">
+<h4>직접 구현한 querySelector  <strong>(222ms)</strong></h4>
+<img width="50%" alt="스크린샷 2023-07-14 오전 10 43 59" src="https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/37887690/73793050-a2d3-4c79-92ed-27aa2d7c4559">
+</div>
+
+### Code
+``` javascript
+const customQuerySelector = (selector, $target = document) => {
+  const childNodes = [...$target.childNodes];
+  const targetSelctor = selector.trim();
+  const tagType = targetSelctor.charAt(0);
+  const name = targetSelctor.slice(1);
+
+  while (childNodes.length > 0) {
+    const $node = childNodes.shift();
+
+    if (tagType === '#' && $node.id === name) 
+      return $node;
+     else if (tagType === '.' && $node.classList && $node.classList.contains(name)) 
+      return $node;
+     else if ($node.tagName === targetSelctor.toUpperCase()) 
+      return $node;
+     else {
+      const $result = customQuerySelector(selector, $node);
+      if ($result) 
+        return $result;
+      
+    }
+  }
+
+  return null;
+};
+```
+
+``` javascript
+const customQuerySelector = (selector, $target = document) => {
+  const childNodes = [...$target.childNodes];
+  const targetSelctor = selector.trim();
+  const tagType = targetSelctor.charAt(0);
+  const name = targetSelctor.slice(1);
+
+  while (childNodes.length > 0) {
+    const $node = childNodes.shift();
+
+    if (tagType === '#' && $node.id === name) 
+      return $node;
+     else if (tagType === '.' && $node.classList && $node.classList.contains(name)) 
+      return $node;
+     else if ($node.tagName === targetSelctor.toUpperCase()) 
+      return $node;
+     else {
+      const $result = customQuerySelector(selector, $node);
+      if ($result) 
+        return $result;
+      
+    }
+  }
+
+  return null;
+};
+```
 
 # 📌 배운점
 1. css Selector 지정시 `>` 의 경우 바로 하위 자식, 공백의 경우 하위 모든 자식을 선택할 수 있다.
@@ -27,7 +95,6 @@
 
 
 ## 이벤트 루프
-
 
 
 # 📌 느낀점
