@@ -4,26 +4,17 @@ import {
     grid_option,
     list_option,
     subscribe_option,
-} from "./globals.js";
-import {
-    showToday,
-    setOptions,
-    currentHourToMode,
-    renderOptions,
-    getCalPage,
-    setCategoryIndex,
-    setPageIndex,
-    setSubscribeNewsData,
-} from "./utils.js";
-import {
-    render,
-    save,
-    changeViewArrow,
-    clear,
-    handlePage,
-    controlBanner,
-    setSnackBar,
-} from "./actions.js";
+} from "./store.js";
+
+import * as data_util from "./utils/data_util.js";
+import * as mode_util from "./utils/mode_util.js";
+
+import { changeViewArrow, handlePage } from "./actions/page_handle_action.js";
+import { save } from "./actions/data_action.js";
+import { render, clear } from "./actions/render_action.js";
+import { controlBanner } from "./actions/banner_action.js";
+import { setSnackBar } from "./actions/snack_bar_action.js";
+
 import { renderPressItem } from "./views/grid_views.js";
 import { renderNewsItem } from "./views/list_views.js";
 import { renderHotTopicsView } from "./views/rolling_views.js";
@@ -33,11 +24,6 @@ import {
 } from "./views/snack_bar_views.js";
 import { createModalBarView } from "./views/modal_bar_views.js";
 
-/**
- * @description
- * 1. 구독자 옵션 변경 이벤트
- * 2. grid_views, list_views, 구독자 옵션 클릭 이벤트
- */
 function subscribeOptionEvent() {
     const option_press_elements = document.querySelectorAll(".option_press");
     option_press_elements.forEach((option_press) => {
@@ -47,11 +33,6 @@ function subscribeOptionEvent() {
     });
 }
 
-/**
- * @description
- * 1. 메인 옵션 변경 이벤트
- * 2. grid_views, list_views, 메인 옵션 클릭 이벤트
- */
 function mainOptionEvent() {
     const option_main_elements = document.querySelectorAll(".option_main");
     option_main_elements.forEach((option_main) => {
@@ -64,8 +45,14 @@ function mainOptionEvent() {
 function optionListener(event, selected) {
     const clicked_option = event.target;
 
-    view_option[selected] = clicked_option.id.split("_")[1];
-    const { main: main_option, press: press_option } = setOptions();
+    view_option.dispatch(
+        {
+            type: "CHANGE_VIEW_OPTION",
+            value: clicked_option.id.split("_")[1],
+        },
+        selected
+    );
+    const { main, press } = view_option.getState(["main", "press"]);
 
     const option_elements = document.querySelectorAll(`.option_${selected}`);
     option_elements.forEach((option_name) => {
@@ -75,9 +62,40 @@ function optionListener(event, selected) {
                 : `option_${selected}`;
     });
 
-    if (selected === "main")
-        updateMainNewsContainer(option_elements, main_option);
-    clearAndRender(main_option, press_option);
+    clearAndRender({
+        main: main,
+        press: press,
+        option_elements: option_elements,
+        selected: selected,
+    });
+}
+
+function clearAndRender(options) {
+    const { main, press, option_elements, selected } = options;
+
+    clearTimeout(snack_animation_time);
+    if (selected && selected === "main")
+        updateMainNewsContainer(option_elements, main);
+
+    clear("main_news_container", list_option);
+    clear("snack_bar_container", "remove");
+    clear("modal_bar_container", "remove");
+
+    createSnackBarView("container_center");
+    createModalBarView("container_center");
+    const { data, page, category } = data_util.renderOptions()[main][press];
+
+    changeViewArrow(main);
+    render(
+        data_util.getOptions("all", [
+            changeCategoryEvent,
+            toggleSubscribeEvent,
+        ]),
+        data,
+        page,
+        category
+    );
+    if (main === "grid") togglePressEvent();
 }
 
 function updateMainNewsContainer(option_elements, main_option) {
@@ -101,21 +119,6 @@ function updateMainNewsContainer(option_elements, main_option) {
     news_data_container.classList.add(view_mode);
 }
 
-function clearAndRender(main, press) {
-    clear("main_news_container", list_option);
-
-    const { data, page, category } = renderOptions()[main][press];
-
-    changeViewArrow(main);
-    render(setOptions("all", [changeCategoryEvent]), data, page, category);
-    togglePressEvent();
-}
-
-/**
- * @description
- * 1. 페이지 이동 이벤트
- * 2. list_views, grid_views, 화살표 클릭 이벤트
- */
 function arrowPagingEvent() {
     if (!length) length = MAX_PAGE;
     const grid_left_arrow = document.querySelector(".grid_left_arrow");
@@ -124,89 +127,82 @@ function arrowPagingEvent() {
     const list_right_arrow = document.querySelector(".list_right_arrow");
 
     grid_left_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
-        const { data, page } = renderOptions()[main][press];
+        const { main, press, data, page } = data_util.getEventData();
         if (page <= 0) return;
-        handlePage(main, press, getCalPage(-1), data);
+        handlePage(main, press, data_util.getCalPage(-1), data);
         togglePressEvent();
     });
 
     grid_right_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
-        const { data, page } = renderOptions()[main][press];
+        const { main, press, data, page } = data_util.getEventData();
         if (page >= length) return;
-        handlePage(main, press, getCalPage(1), data);
+        handlePage(main, press, data_util.getCalPage(1), data);
         togglePressEvent();
     });
 
     list_left_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
-        const { data, category } = renderOptions()[main][press];
-        handlePage(main, press, getCalPage(-1), data, category, [
+        const { main, press, data, category } = data_util.getEventData();
+        handlePage(main, press, data_util.getCalPage(-1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
         ]);
     });
 
     list_right_arrow.addEventListener("click", () => {
-        const { main, press } = setOptions();
-        const { data, category } = renderOptions()[main][press];
-        handlePage(main, press, getCalPage(1), data, category, [
+        const { main, press, data, category } = data_util.getEventData();
+        handlePage(main, press, data_util.getCalPage(1), data, category, [
             changeCategoryEvent,
             togglePressEvent,
         ]);
     });
 }
 
-/**
- * @description
- * 1. 테마 변경 이벤트
- * 2. header, toggle_mode 클릭 이벤트
- */
 function toggleModeEvent() {
     const toggle_mode = document.querySelector(".toggle_mode");
 
-    view_option.mode = currentHourToMode();
-
     if (view_option.mode === "dark-mode") {
-        toggle_mode.children[0].src = "./assets/icons/sun.svg";
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
         document.body.classList.toggle("dark_mode");
     } else {
-        toggle_mode.children[0].src = "./assets/icons/moon.svg";
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
     }
 
     toggle_mode.addEventListener("click", () => {
-        // body class toggle
         document.body.classList.toggle("dark_mode");
+
         if (view_option.mode === "light-mode") {
-            // toggle_mode child img src change
-            toggle_mode.children[0].src = "./assets/icons/sun.svg";
-            view_option.mode = "dark-mode";
+            toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "dark-mode",
+                },
+                "mode"
+            );
         } else {
-            toggle_mode.children[0].src = "./assets/icons/moon.svg";
-            view_option.mode = "light-mode";
-        }
-        // current view re render
-        if (view_option.main === "grid") {
-            renderPressItem(view_option.mode);
-            /*
-                render(view_option, grid_option);
-            */
-        }
-        if (view_option.main === "list") {
-            renderNewsItem(view_option.mode);
-            /*
-                render(view_option, grid_option);
-            */
+            toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "light-mode",
+                },
+                "mode"
+            );
         }
     });
 }
 
-/**
- * @description
- * 1. 언론사 토글 기능
- * 2. grid_views, 언론사 호버 이벤트
- */
+function changeMode() {
+    const toggle_mode = document.querySelector(".toggle_mode");
+
+    if (view_option.mode === "dark-mode") {
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}sun.svg`;
+    } else {
+        toggle_mode.children[0].src = `${ASSETS_ICONS_PATH}moon.svg`;
+    }
+    document.body.classList.toggle("dark_mode");
+}
+
 function togglePressEvent() {
     const press_container = document.querySelectorAll(".press_data_item");
     press_container.forEach((item) => {
@@ -228,38 +224,39 @@ const handleMouseLeave = (event) => {
     item.style.transition = "transform 0.5s";
 };
 
-/**
- * @description
- * 1. 구독/구독해제 이벤트
- * 2. grid_views, 언론사 구독 클릭 이벤트
- */
+let snack_animation_time;
 function toggleSubscribeEvent() {
     const subscribe = document.querySelectorAll(".content_subscribe");
 
-    let snack_animation_time;
-
-    subscribe.forEach((press) => {
-        press.addEventListener("click", () => {
+    subscribe.forEach((sub_press) => {
+        sub_press.addEventListener("click", () => {
             clearTimeout(snack_animation_time);
 
-            const { main: main_option, press: press_option } = setOptions();
-            const { page } = renderOptions()[main_option];
-
-            if (press.value === "true") {
-                modalBarEvent(press.name, press.value);
+            if (sub_press.value === "true") {
+                modalBarEvent(sub_press.name, sub_press.value);
                 return;
             }
-
+            const modal_prev_container = document.querySelector(
+                ".modal_bar_container"
+            );
+            if (modal_prev_container) {
+                modal_prev_container.style.animation =
+                    "disappear 0.5s forwards";
+                setTimeout(() => {
+                    modal_prev_container.style.display = "none";
+                }, 500);
+            }
             const snack_bar = document.querySelector(".snack_bar_text");
-            snack_animation_time = setSnackBar();
+            const { main, press } = view_option.getState(["main", "press"]);
+            render(data_util.getOptions("sub", [togglePressEvent]), sub_press);
 
-            render(setOptions("sub", [togglePressEvent]), press, page);
-            subscribe_option.subscribe_press[press.name] = press.value;
-            subscribe_option.subscribe_categories.push(press.name);
-            setSubscribeNewsData();
+            snack_animation_time = setSnackBar(clearAndRender);
+            subscribe_option.subscribe_press[sub_press.name] = sub_press.value;
+            subscribe_option.subscribe_categories.push(sub_press.name);
+            data_util.setSubscribeNewsData();
 
-            if (press_option === "subscribe") {
-                clearAndRender(main_option, press_option);
+            if (press === "subscribe") {
+                clearAndRender({ main, press });
             }
 
             renderSnackBarView(snack_bar);
@@ -267,25 +264,22 @@ function toggleSubscribeEvent() {
     });
 }
 
-/**
- * @description
- * 1. 카테고리 변경 이벤트
- * 2. list_views, 카테고리 클릭 이벤트
- * @param {Array} data
- */
 function changeCategoryEvent() {
     const main_nav_item = document.querySelectorAll(".main_nav_item");
 
     main_nav_item.forEach((item) => {
         item.addEventListener("click", () => {
-            const { main: main_option, press: press_option } = setOptions();
-            setCategoryIndex(item.innerHTML, press_option);
-            setPageIndex(0);
+            const { main, press } = view_option.getState(["main", "press"]);
+            data_util.setNavCategoryIndex(item.innerHTML, press);
+            data_util.setPageIndex(0);
             const { data, page, category } =
-                renderOptions()[main_option][press_option];
+                data_util.renderOptions()[main][press];
 
             render(
-                setOptions("all", [changeCategoryEvent, togglePressEvent]),
+                data_util.getOptions("all", [
+                    changeCategoryEvent,
+                    toggleSubscribeEvent,
+                ]),
                 data,
                 page,
                 category
@@ -294,12 +288,6 @@ function changeCategoryEvent() {
     });
 }
 
-/**
- * @description
- * 1. 오토 롤링 애니메이션 제어 이벤트
- * 2. rolling_views, 오토 롤링 호버 이벤트
- * @param {*} action
- */
 function bannerMouseEvent(action) {
     action["banner_left"].addEventListener("mouseover", function () {
         action["banner_left"].style.animationPlayState = "paused";
@@ -318,7 +306,7 @@ function bannerMouseEvent(action) {
     });
 }
 
-function modalBarEvent(name, value) {
+function modalBarEvent(name) {
     const modal_bar_container = document.querySelector(".modal_bar_container");
 
     modal_bar_container.style.display = "block";
@@ -331,38 +319,87 @@ function modalBarEvent(name, value) {
     const modal_bar_cancel = document.querySelector(".modal_bar_cancel");
 
     modal_bar_terminate.addEventListener("click", () => {
-        const modal_bar_container = document.querySelector(
-            ".modal_bar_container"
-        );
-        const { main: main_option, press: press_option } = setOptions();
+        const { main, press } = view_option.getState(["main", "press"]);
+        const { category } = data_util.renderOptions()[main][press];
         subscribe_option.subscribe_press[name] = "false";
         subscribe_option.subscribe_categories.splice(
             subscribe_option.subscribe_categories.indexOf(name),
             1
         );
-        setSubscribeNewsData();
-        modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender(main_option, press_option);
-        setTimeout(() => {
-            modal_bar_container.style.display = "none";
-        }, 500);
+        if (category >= subscribe_option.subscribe_categories.length) {
+            data_util.setCategoryIndex(press, category - 1);
+        }
+        data_util.setSubscribeNewsData();
+        modalDisappear(main, press);
     });
 
     modal_bar_cancel.addEventListener("click", () => {
-        const modal_bar_container = document.querySelector(
-            ".modal_bar_container"
-        );
-        const { main: main_option, press: press_option } = setOptions();
-        modal_bar_container.style.animation = "disappear 0.5s forwards";
-        clearAndRender(main_option, press_option);
-        setTimeout(() => {
-            modal_bar_container.style.display = "none";
-        }, 500);
+        const { main, press } = view_option.getState(["main", "press"]);
+        modalDisappear(main, press);
     });
 }
 
+function modalDisappear(main, press) {
+    const modal_bar_container = document.querySelector(".modal_bar_container");
+    modal_bar_container.style.animation = "disappear 0.5s forwards";
+    clearAndRender({ main, press });
+    setTimeout(() => {
+        modal_bar_container.style.display = "none";
+    }, 500);
+}
+
+let auto_interval;
+function toggleAutoModeEvent() {
+    const toggle_auto_mode = document.querySelector(".auto_mode");
+    const toggle_mode = document.querySelector(".toggle_mode");
+
+    toggle_auto_mode.addEventListener("click", () => {
+        if (toggle_auto_mode.classList.contains("auto_mode_active")) {
+            clearInterval(auto_interval);
+            toggle_mode.style.display = "block";
+            toggle_auto_mode.tranlate = "translateX(0)";
+            toggle_auto_mode.classList.remove("auto_mode_active");
+            view_option.subscribe(mode_util.currentHourToMode);
+            view_option.subscribe(changeMode);
+        } else {
+            toggle_auto_mode.style.animation = "right-move 3s forwards";
+            toggle_mode.style.display = "none";
+
+            setTimeout(() => {
+                toggle_auto_mode.classList.add("auto_mode_active");
+                view_option.unsubscribe(mode_util.currentHourToMode);
+                view_option.unsubscribe(changeMode);
+                auto_interval = timerAutoModeChange();
+            }, 3000);
+        }
+    });
+}
+
+function timerAutoModeChange() {
+    return setInterval(() => {
+        if (view_option.mode === "light-mode") {
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "dark-mode",
+                },
+                "mode"
+            );
+        } else {
+            view_option.dispatch(
+                {
+                    type: "CHANGE_VIEW_OPTION",
+                    value: "light-mode",
+                },
+                "mode"
+            );
+        }
+        changeMode();
+    }, 3000);
+}
 async function initEvent() {
     try {
+        mode_util.currentHourToMode();
         const data = await save();
 
         grid_option.press_data = data["press_data"];
@@ -376,7 +413,11 @@ async function initEvent() {
 
         view_option.hot_topic_data = data["hot_topic_data"];
 
-        render(setOptions(), grid_option.press_data, grid_option.page);
+        render(
+            data_util.getOptions(),
+            grid_option.press_data,
+            grid_option.page
+        );
         renderHotTopicsView(
             data["hot_topic_data"][0],
             data["hot_topic_data"][1],
@@ -393,13 +434,17 @@ async function initEvent() {
     }
 }
 
-function handleEvents() {
+function handleStandbyEvents() {
     initEvent();
     subscribeOptionEvent();
     mainOptionEvent();
     arrowPagingEvent();
     toggleModeEvent();
-    showToday("today");
+    // toggleAutoModeEvent();
+    mode_util.showToday("today");
+
+    view_option.subscribe(renderPressItem);
+    view_option.subscribe(renderNewsItem);
 }
 
-export { handleEvents };
+export { handleStandbyEvents };

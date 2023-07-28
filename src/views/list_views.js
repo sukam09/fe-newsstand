@@ -3,7 +3,7 @@ import {
     grid_option,
     view_option,
     subscribe_option,
-} from "../globals.js";
+} from "../store.js";
 import {
     ASSETS_IMAGE_PATH,
     CATEGORIES,
@@ -11,38 +11,38 @@ import {
     SUBSCRIBE_TEXT,
     FROM_TO_TEXT,
 } from "../constants.js";
-import { isSubscribed } from "../utils.js";
+import { isSubscribed } from "../utils/data_util.js";
 
 function renderListView(options, data, category, page) {
     const list_news_container = document.querySelector(".main_news_container");
 
     const main_content = document.createElement("div");
-
-    if (data === undefined) {
-        main_content.classList.add("main_content");
-        main_content.innerHTML = `<p class="error_message">구독한 언론사가 없습니다.</p>
-        `;
-        list_news_container.appendChild(main_content);
-        return;
-    }
-    const new_category =
+    const new_categories =
         options.press === "all"
             ? CATEGORIES
             : subscribe_option.subscribe_categories;
-    const new_data =
-        options.press === "all"
-            ? data[new_category[category]]
-            : data[new_category[category]];
-
     const new_page =
         options.press === "all" ? page : list_option.subscribe_page;
-    const new_current =
+    let new_current =
         options.press === "all"
             ? list_option.category
             : subscribe_option.subscribe_current;
+    if (new_categories[new_current] === undefined) {
+        new_current = 0;
+    }
+    const new_data =
+        data === undefined ? undefined : data[new_categories[new_current]];
 
     switch (options.target) {
         case "all":
+            if (data === undefined || Object.keys(data).length === 0) {
+                main_content.classList.add("main_content");
+                main_content.innerHTML = `<p class="error_message">구독한 언론사가 없습니다.</p>
+                `;
+                list_news_container.appendChild(main_content);
+                return;
+            }
+
             list_news_container.innerHTML = "";
             main_content.classList.add("main_content");
             clearInterval(list_option.interval);
@@ -51,11 +51,11 @@ function renderListView(options, data, category, page) {
                 list_news_container,
                 new_data,
                 new_page + 1,
-                new_category,
+                new_categories,
                 new_current
             );
-            createNewsHeader(main_content, new_data, new_page, new_current);
-            createMainContents(main_content, new_data, new_page, new_current);
+            createNewsHeader(main_content, new_data, new_page);
+            createMainContents(main_content, new_data, new_page);
             break;
         case "sub":
             renderSubscribeButton();
@@ -69,20 +69,22 @@ function renderListView(options, data, category, page) {
 
 function renderNewsItem(mode) {
     const content_press = document.querySelector(".content_press");
+    if (content_press === null) return;
 
     content_press.src = `${ASSETS_IMAGE_PATH}${mode}${content_press.alt}`;
 }
 
 function renderSubscribeButton() {
-    // button className 찾기
     const subscribe_toggle = document.querySelector(".content_header button");
 
-    if (subscribe_toggle.className === "content_subscribe") {
-        subscribe_toggle.className = "content_subscribe_cancel";
+    if (subscribe_toggle.value === "false") {
+        subscribe_toggle.classList.add("content_subscribe_cancel");
+        subscribe_toggle.classList.remove("content_subscribe_active");
         subscribe_toggle.value = "true";
         subscribe_toggle.innerHTML = `<img src="./assets/icons/symbol.png" />`;
     } else {
-        subscribe_toggle.className = "content_subscribe";
+        subscribe_toggle.classList.add("content_subscribe_active");
+        subscribe_toggle.classList.remove("content_subscribe_cancel");
         subscribe_toggle.value = "false";
         subscribe_toggle.innerHTML = `<img src="./assets/icons/plus.png" />
         <span>${SUBSCRIBE_TEXT}</span>`;
@@ -121,7 +123,6 @@ function createNewsNav(container, data, page, category, current) {
 function createNewsHeader(parent, data, page, current) {
     const container = document.createElement("div");
     container.classList.add("content_header");
-
     let press_url = 0;
     grid_option.press_data.forEach((item) => {
         if (item.name === data[page].press_name) {
@@ -136,11 +137,11 @@ function createNewsHeader(parent, data, page, current) {
         <p class="content_edit">${data[page].last_edit} 편집</p>
         ${
             subscribe === "true"
-                ? `<button class="content_subscribe_cancel"
+                ? `<button class="content_subscribe content_subscribe_cancel"
                 name="${data[page].press_name}" value="${subscribe}">
                 <img src="./assets/icons/symbol.png" />
                 </button>`
-                : `<button class="content_subscribe"
+                : `<button class="content_subscribe content_subscribe_active"
                 name="${data[page].press_name}" value="${subscribe}">
                     <img src="./assets/icons/plus.png" />
                     <span>${SUBSCRIBE_TEXT}</span>

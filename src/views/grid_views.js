@@ -6,8 +6,8 @@ import {
     SUBSCRIBE_TEXT,
     UNSUBSCRIBE_TEXT,
 } from "../constants.js";
-import { view_option } from "../globals.js";
-import { isSubscribed } from "../utils.js";
+import { view_option } from "../store.js";
+import { isSubscribed } from "../utils/data_util.js";
 
 function renderGridView(options, data, page, toggleArrow) {
     switch (options["target"]) {
@@ -44,7 +44,7 @@ function createPressList(container, data, idx) {
                     <img class="press_item press_data_img press_front" src="${ASSETS_IMAGE_PATH}${
                               view_option.mode
                           }${item.url}" alt="${item.url}"/>
-                    <button class="press_item content_subscribe press_back" name="${
+                    <button class="press_item content_subscribe content_subscribe_active press_back" name="${
                         item.name
                     }" value="${subscribe}">
                     ${

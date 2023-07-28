@@ -1,5 +1,3 @@
-function renderModalView() {}
-
 export function createModalBarView(parent) {
     const parent_container = document.querySelector(`.${parent}`);
     const modal_bar_container = document.createElement("div");

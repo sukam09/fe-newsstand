@@ -99,14 +99,26 @@ body {
     align-items: center;
     color: var(--text-default);
     font-weight: 500;
-    gap: 8px;
+    gap: 16px;
 }
 
-.toggle_mode_container {
+.mode_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
+}
+
+.auto_mode {
+    /* button styling */
+    width: 36px;
+    height: 36px;
+    border: none;
+    background-color: transparent;
+}
+
+.auto_mode_active {
+    color: red;
 }
 
 .toggle_mode {
@@ -216,10 +228,24 @@ body {
     list-style-type: none;
     border-bottom: 1px solid var(--border-default);
     border-right: 1px solid var(--border-default);
+    /* relative */
+    position: relative;
 }
 
 .grid_view_container .press_data_container:hover {
     background-color: var(--surface-alt);
+}
+
+.press_pointer {
+    cursor: pointer;
+    position: absolute;
+
+    z-index: 1;
+    /* 우측 상단 */
+    top: 5%;
+    right: 2%;
+    width: 18px;
+    height: 18px;
 }
 
 .press_data_item {
@@ -254,7 +280,6 @@ body {
     font-size: 14px;
     font-weight: 500;
     height: 40px;
-    /* 가로 스크롤 */
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -262,13 +287,14 @@ body {
 
 .main_nav_title {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 200px;
     gap: 8px;
 }
 .main_nav_title span {
-    z-index: 1;
+    z-index: 2;
     margin: 0 16px 0 16px;
     color: var(--text-white-default);
     font-weight: 700;
@@ -285,7 +311,7 @@ body {
 
 .main_nav_progress {
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     width: 200px;
     border-radius: 0;
     height: 40px;
@@ -293,7 +319,6 @@ body {
 
 .main_nav_progress::-webkit-progress-bar {
     background: #7890e7;
-    overflow: hidden;
 }
 
 .main_nav_progress::-webkit-progress-value {
@@ -348,7 +373,7 @@ body {
     margin-left: 8px;
 }
 
-.content_subscribe {
+.content_subscribe_active {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -572,5 +597,14 @@ body {
     }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes right-move {
+    0% {
+        transform: translateX(-145%);
+    }
+    100% {
+        transform: translateX(calc(-100% / 3));
     }
 }
