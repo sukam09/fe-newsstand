@@ -220,7 +220,7 @@ export default function PressListView({ $target, initialState, onChangeTab, save
       isInit = true;
     }
 
-    await initListView();
+    initListView();
 
     const { press, index, present, entire, categories, pressLogo, pressName, regDate, thumbnail, mainNews, subNews } =
       this.state;
