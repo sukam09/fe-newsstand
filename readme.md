@@ -1,3 +1,5 @@
+
+https://github.com/kim-limit/fe-newsstand/assets/101790391/e1a57404-ff7c-45d5-91d0-956cdfcc2d4c
 #FE - NEWS STAND
 
 뉴스 스탠드 미션
@@ -76,3 +78,12 @@
 
 - 기존에는 버든 마다 event를 걸어줬는데 이벤트 위임을 사용해 공통 조상에 event listner를 한개만 거는 방식 사용
 - 장점: 이벤트를 동적으로 생성해 주지 않아도 되고 이벤트를 한개만 사용하면 되기 때문에 메모리 절약 할 수 있다.
+
+
+## 동작 영상
+
+
+
+https://github.com/kim-limit/fe-newsstand/assets/101790391/491ec86a-6472-4bfc-9bce-240c08d67ea4
+
+
