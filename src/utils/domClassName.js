@@ -10,6 +10,8 @@ export const DOM = {
     CONTAINER_MAIN: "container_main",
     SUBSCRIBE: "subscribe",
     ENTIRE: "entire",
+    GRID: "grid",
+    LIST: "list",
 
     // grid
     GRID_ENTIRE_VIEW: "grid-entire",
@@ -30,4 +32,7 @@ export const DOM = {
     // tab
     TAB_ITEM: "tab-item",
     TAB_CLICKED: "tab-item-clicked",
+
+    // dark
+    DARK: "dark",
 };

@@ -1,9 +1,10 @@
-import { _sub_press_list } from "../../Store.js";
+import { _mode, _sub_press_list } from "../../Store.js";
 import { DOM } from "../../utils/domClassName.js";
 
 export class ListViewInfo {
     constructor(mode) {
         _sub_press_list.subscribe(this); // observer 추가
+        _mode.subscribe(this);
         this.category_old = 0;
         this.category_now = 0;
         this.interval = 0;

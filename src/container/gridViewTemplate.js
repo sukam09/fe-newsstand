@@ -6,13 +6,12 @@ import { DOM } from "../utils/domClassName.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
-import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
-import { _sub_press_list } from "../Store.js";
-
+import { _mode, _sub_press_list } from "../Store.js";
+import { dark_mode } from "../components/layout/darkModeEvent.js";
 const btnFactory = new buttonFacotry();
 
 // 그리드 뷰 생성 (화살표 제외한 뷰)
-export function createMainGrid(grid_view_info, isInit) {
+export function createMainGrid(grid_view_info, isInit, isDark) {
     const $container = isInit
         ? create.div({ className: "main_news_container" })
         : document.querySelector(`${grid_view_info.getClassName()}`).querySelector(".main_news_container");
@@ -40,11 +39,6 @@ export function createMainGrid(grid_view_info, isInit) {
             // 그리드 셀 호버시 나타나는 컴포넌트
             const $mouse_hover_btn = create.div({
                 className: "mouse-enter-grid",
-                events: {
-                    mouseleave: () => {
-                        $mouse_hover_btn.style.visibility = "hidden"; // 그리드 셀 벗어나는 경우 이벤트
-                    },
-                },
             });
 
             // 구독하기 버튼 (구독한 경우: 해지하기 버튼, 구독하지 않은 경우: 구독하기 버튼)
@@ -73,7 +67,8 @@ export function createMainGrid(grid_view_info, isInit) {
                         document.querySelector(".main_news_container").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, true);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     }
                 },
@@ -86,12 +81,17 @@ export function createMainGrid(grid_view_info, isInit) {
                     mouseenter: () => {
                         $mouse_hover_btn.style.visibility = "visible";
                     },
+                    mouseleave: () => {
+                        $mouse_hover_btn.style.visibility = "hidden"; // 그리드 셀 벗어나는 경우 이벤트
+                    },
                 },
             });
 
             const $list_img = create.img({
                 className: "news_data_img",
-                attributes: { src: data_list[cnt++].press_light_src },
+                attributes: {
+                    src: isDark ? data_list[cnt++].press_dark_src : data_list[cnt++].press_light_src,
+                },
             });
             $list_item.append($list_img, $mouse_hover_btn);
             $list.appendChild($list_item);
@@ -109,7 +109,7 @@ function createGridArrowBtn(btnFactory, isRight, is_subscribe, grid_view_info) {
         events: {
             click: () => {
                 grid_view_info.setPage(isRight);
-                createMainGrid(grid_view_info, false);
+                createMainGrid(grid_view_info, false, dark_mode.getMode());
             },
         },
         isRight: isRight,
@@ -120,7 +120,7 @@ function createGridView(is_subscribe, grid_view_info) {
     const $container = document.querySelector(`.grid-${is_subscribe}`);
     $container.append(
         createGridArrowBtn(btnFactory, false, is_subscribe, grid_view_info).getButton(),
-        createMainGrid(grid_view_info, true, []),
+        createMainGrid(grid_view_info, true, dark_mode.getMode()),
         createGridArrowBtn(btnFactory, true, is_subscribe, grid_view_info).getButton()
     );
     toggleArrow(grid_view_info);

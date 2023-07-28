@@ -8,7 +8,18 @@ class ListViewEntire extends ListViewInfo {
     constructor() {
         super(DOM.LIST_ENTIRE_VIEW);
         this.page_num = 0;
+        this.random_data = this.getRandomData();
     }
+
+    // 새로 고침할 때 랜덤 뉴스
+    getRandomData = function () {
+        const new_data = [];
+        list_news_data.forEach((item) => {
+            new_data.push({ category: item.category, news: item.news.slice().sort(() => Math.random() - 0.5) });
+        });
+
+        return new_data;
+    };
 
     // 정보 변경
     setValue = async function (props) {
@@ -22,11 +33,19 @@ class ListViewEntire extends ListViewInfo {
         this.removeInterval();
         this.interval = window.setInterval(() => {
             this.changePageNum(true).then(() => {
-                const $id = list_news_data[this.category_now].news[this.page_num].press_id;
+                const $id = this.random_data[this.category_now].news[this.page_num].press_id;
                 if (this.data.includes($id))
-                    renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, true);
+                    renderPressNews(
+                        this.random_data[this.category_now].news[this.page_num],
+                        DOM.LIST_ENTIRE_VIEW,
+                        true
+                    );
                 else
-                    renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, false);
+                    renderPressNews(
+                        this.random_data[this.category_now].news[this.page_num],
+                        DOM.LIST_ENTIRE_VIEW,
+                        false
+                    );
             });
         }, SET_TIME);
     };
@@ -35,10 +54,10 @@ class ListViewEntire extends ListViewInfo {
     initProgressBar = function (props) {
         this.setValue(props).then(() => {
             this.changeProgressBar();
-            const $id = list_news_data[this.category_now].news[this.page_num].press_id;
+            const $id = this.random_data[this.category_now].news[this.page_num].press_id;
             if (this.data.includes($id))
-                renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, true);
-            else renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, false);
+                renderPressNews(this.random_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, true);
+            else renderPressNews(this.random_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, false);
             this.startInterval();
         });
     };
@@ -84,16 +103,25 @@ class ListViewEntire extends ListViewInfo {
     onClickArrowBtn = function (is_right) {
         this.changePageNum(is_right).then(() => {
             this.resetProgressBar();
-            const $id = list_news_data[this.category_now].news[this.page_num].press_id;
+            const $id = this.random_data[this.category_now].news[this.page_num].press_id;
             if (this.data.includes($id))
-                renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, true);
-            else renderPressNews(list_news_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, false);
+                renderPressNews(this.random_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, true);
+            else renderPressNews(this.random_data[this.category_now].news[this.page_num], DOM.LIST_ENTIRE_VIEW, false);
             this.startInterval();
         });
     };
 
     update = function (state) {
         this.data = state;
+    };
+
+    updateMode = function (state) {
+        state.is_grid_view ? this.removeInterval() : state.is_sub_view && this.removeInterval();
+        this.initProgressBar({
+            category_old: this.getCategoryNow(),
+            category_now: 0,
+            page_num: 0,
+        });
     };
 }
 

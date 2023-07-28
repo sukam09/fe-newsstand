@@ -23,6 +23,7 @@ export const IMG_EXPAND = 1.05;
 export const IMG_NORM = 1.0;
 
 export const NEWS_CATEGORY = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+export const ICON_COLOR = "invert(49%) sepia(83%) saturate(5417%) hue-rotate(218deg) brightness(87%) contrast(85%)";
 
 export const PRESS_IDX = (function () {
     const tmp = [];

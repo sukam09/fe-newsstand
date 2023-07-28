@@ -4,7 +4,7 @@ import { create } from "../utils/createElement.js";
 
 // 배너 리스트 생성
 function createHeadlineList(headline_news) {
-    const $container = create.ul({ className: "container_sec-banner-list" });
+    const $container = create.ul({ className: "container_sec-banner-list available-medium14" });
     headline_news.forEach((news_item, idx) => {
         let list_class_name = "container_sec_li-banner";
         if (idx === 0) list_class_name += " current";
@@ -13,7 +13,6 @@ function createHeadlineList(headline_news) {
 
         const $list_item = create.li({ className: list_class_name });
         const $title = create.a({
-            className: "available-medium14",
             txt: news_item.title,
             attributes: { url: news_item.url },
             events: { mouseover: stopRolling, mouseout: startRolling },

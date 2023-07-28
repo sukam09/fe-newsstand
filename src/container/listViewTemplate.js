@@ -5,11 +5,11 @@ import { ICON_CHEVRON_RIGHT } from "../utils/iconURL.js";
 import { init_news_data, list_news_data } from "../../data/list_news_data.js";
 import { createSnackBar } from "../components/common/snackBar.js";
 import { createAlert } from "../components/common/alertSubscribe.js";
-import { onClickSubBtn } from "../components/layout/mainNavEvent.js";
-import { _sub_press_list } from "../Store.js";
+import { _mode, _sub_press_list } from "../Store.js";
 import { list_view_subscribe } from "../components/list/listObserverSub.js";
 import { list_view_entire } from "../components/list/listObserverEntire.js";
 import { buttonFacotry } from "../components/common/btnfactory.js";
+import { dark_mode } from "../components/layout/darkModeEvent.js";
 const btnFactory = new buttonFacotry();
 
 // 언론사 탭 생성
@@ -79,12 +79,12 @@ function createCategoryBtn(category_name, category_size, idx) {
         className: "btn-tab-category selected-bold14",
         txt: category_name,
     });
-    const $btn_tab_count = create.div({ className: "btn-tab-count" });
+    const $btn_tab_count = create.div({ className: "btn-tab-count display-bold12" });
     $btn_tab_count.append(
-        create.span({ className: "btn-tab-count-present display-bold12", txt: 1 }),
-        create.span({ className: "btn-tab-count-divison display-bold12", txt: "/" }),
+        create.span({ className: "btn-tab-count-present", txt: 1 }),
+        create.span({ className: "btn-tab-count-divison", txt: "/" }),
         create.span({
-            className: "btn-tab-count-entire display-bold12",
+            className: "btn-tab-count-entire",
             txt: category_size,
         })
     );
@@ -123,8 +123,9 @@ function resetBtn($container, press_id) {
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, false);
                             _sub_press_list.addState(press_id);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     },
                 },
@@ -154,8 +155,9 @@ function createPressInfoBtn($container, press_name, press_id, subscribe_mode, is
                         document.querySelector(".main-list-view-news-list").appendChild(createSnackBar());
                         setTimeout(() => {
                             document.querySelector(".snack-bar").remove();
-                            onClickSubBtn(true, false);
                             _sub_press_list.addState(press_id);
+                            _mode.setToLastPage();
+                            _mode.setState({ is_grid_view: false, is_sub_view: true });
                         }, SNACK_BAR_TIME);
                     },
                 },
@@ -166,13 +168,13 @@ function createPressInfoBtn($container, press_name, press_id, subscribe_mode, is
 }
 
 // 언론사 정보 생성
-function createPressInfo(press_news, subscribe_mode, is_subscribe) {
+function createPressInfo(press_news, subscribe_mode, is_subscribe, isDark) {
     const $container = create.div({ className: "list-view-press-info" });
     if (!press_news.press_light_src) return $container;
 
     const $img = create.img({
         className: "press_img",
-        attributes: { src: press_news.press_light_src, alt: "press-logo" },
+        attributes: { src: isDark ? press_news.press_dark_src : press_news.press_light_src, alt: "press-logo" },
     });
     const $edit_date = create.span({ className: "edit_date display-medium12", txt: press_news.edit_date });
 
@@ -212,7 +214,7 @@ function createSubNews(press, sub_news) {
     });
 
     const $editor = create.span({
-        className: "display-medium14",
+        className: "editor display-medium14",
         txt: press + " 언론사에서 직접 편집한 뉴스입니다.",
     });
 
@@ -258,7 +260,10 @@ export function createPressNews(news_category_press, isInit, subscribe_mode, is_
         createMainNews(news_category_press.main_news_thumbnail, news_category_press.main_news),
         createSubNews(news_category_press.press, news_category_press.sub_news)
     );
-    $container.append(createPressInfo(news_category_press, subscribe_mode, is_subscribe), $news_content);
+    $container.append(
+        createPressInfo(news_category_press, subscribe_mode, is_subscribe, dark_mode.getMode()),
+        $news_content
+    );
     return $container;
 }
 

@@ -3,7 +3,6 @@ import { DOM } from "../../utils/domClassName.js";
 import { renderPressNews, createListViewMain } from "../../container/listViewTemplate.js";
 import { list_news_data } from "../../../data/list_news_data.js";
 import { SET_TIME } from "../../utils/constant.js";
-import { isListSubscribeView } from "../layout/mainNavEvent.js";
 import { init_news_data } from "../../../data/list_news_data.js";
 
 class ListViewSub extends ListViewInfo {
@@ -25,7 +24,6 @@ class ListViewSub extends ListViewInfo {
     initProgressBar = function (props) {
         if (props.category_old === this.data.length) props.category_old = 0;
         this.setValue(props).then(() => {
-            console.log(this.category_old, this.category_now);
             this.changeProgressBar();
             if (this.data.length) {
                 renderPressNews(this.data[this.category_now], DOM.LIST_SUBSCRIBE_VIEW);
@@ -67,14 +65,6 @@ class ListViewSub extends ListViewInfo {
                 : createListViewMain(this.data[0], DOM.LIST_SUBSCRIBE_VIEW, true, this.data);
 
         document.querySelector(`.${this.mode}`).children[1].replaceWith($container);
-
-        if (!isListSubscribeView()) return;
-        is_add
-            ? this.initProgressBar({ category_old: this.getCategoryNow(), category_now: this.data.length - 1 })
-            : this.initProgressBar({
-                  category_old: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
-                  category_now: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
-              });
     };
 
     // 언론사 리스트 -> 언론사 뉴스 리스트
@@ -90,6 +80,20 @@ class ListViewSub extends ListViewInfo {
             });
         });
         this.data = tmp_list;
+    };
+
+    updateMode = function (state, is_last, is_next) {
+        state.is_grid_view ? this.removeInterval() : !state.is_sub_view && this.removeInterval();
+        if (state.is_sub_view && !state.is_grid_view) {
+            is_last
+                ? this.initProgressBar({ category_old: this.getCategoryNow(), category_now: this.data.length - 1 })
+                : is_next
+                ? this.initProgressBar({
+                      category_old: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
+                      category_now: this.getCategoryNow() === this.data.length ? 0 : this.getCategoryNow(),
+                  })
+                : this.initProgressBar({ category_old: this.getCategoryNow(), category_now: 0 });
+        }
     };
 }
 

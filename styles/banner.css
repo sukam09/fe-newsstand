@@ -1,0 +1,69 @@
+@import url("./pallete.css");
+
+.container_section {
+    width: var(--width-default);
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.container_section-banner {
+    height: var(--height-banner);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    /* style */
+    border: 1px solid var(--border-border-default);
+    background-color: var(--surface-surface-alt);
+}
+
+.container_section-banner-press {
+    display: block;
+    margin-left: 16px;
+    color: var(--text-text-strong, #14212b);
+}
+
+.container_sec-banner-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container_sec_li-banner {
+    height: var(--height-banner);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    position: absolute;
+    top: 49px;
+    color: var(--text-text-default, #5f6e76);
+}
+
+.container_sec_li-banner a {
+    text-decoration: none;
+}
+.container_sec_li-banner a:hover {
+    text-decoration: underline;
+}
+
+.container_section .prev {
+    top: var(--height-banner-neg);
+    transition: top 1s ease;
+}
+
+.container_section .current {
+    top: 0px;
+    transition: top 1s ease;
+}
+
+.container_section .next {
+    top: var(--height-banner);
+}
