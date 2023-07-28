@@ -23,4 +23,4 @@ Object.keys(categories).forEach((cate) => {
   );
 });
 
-export default categories;
+export { pressData, categories };

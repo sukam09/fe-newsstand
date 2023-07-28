@@ -1,9 +1,10 @@
-import categories from "../../../constants/categories.js";
+import { categories } from "../../../../constants/categories.js";
 import {
   CATEGORIES_COUNT,
   PROGRESS_SPEED,
   pressObj,
-} from "../../../constants/index.js";
+} from "../../../../constants/index.js";
+import store from "../../../../core/Store.js";
 
 export default class Categories {
   constructor() {
@@ -13,8 +14,6 @@ export default class Categories {
     this.currentPage = 1;
     this.interval;
     this.currentCategory = 0;
-
-    this.handleProgress();
   }
 
   /**
@@ -46,7 +45,9 @@ export default class Categories {
         <span class="category-name">${category}</span>
         <span class="category-count">${this.currentPage}/${categories[category].press.length}</span>
       `;
-    $categoryList.addEventListener("click", (e) => this.handleCategoryClick(e));
+    $categoryList.addEventListener("click", () =>
+      this.handleCategoryClick(category)
+    );
 
     return $categoryList;
   }
@@ -56,20 +57,24 @@ export default class Categories {
    */
   handleProgress() {
     this.render();
-    this.interval = setInterval(() => {
-      const targetCategory = Object.keys(categories)[this.currentCategory];
-      this.currentPage += 1;
-      if (categories[targetCategory].press.length < this.currentPage) {
-        this.currentCategory += 1;
-        this.currentPage = 1;
-        if (this.currentCategory === CATEGORIES_COUNT) {
-          this.currentCategory = 0;
+    if (!store.showState.isShowGrid && store.showState.isShowAllPress) {
+      this.interval = setInterval(() => {
+        const targetCategory = Object.keys(categories)[this.currentCategory];
+        this.currentPage += 1;
+        if (categories[targetCategory].press.length < this.currentPage) {
+          this.currentCategory += 1;
           this.currentPage = 1;
+          if (this.currentCategory === CATEGORIES_COUNT) {
+            this.currentCategory = 0;
+            this.currentPage = 1;
+          }
         }
-      }
-      this.render();
-      this.goNextNews.call(pressObj);
-    }, PROGRESS_SPEED);
+        this.render();
+        this.goNextNews.call(pressObj);
+      }, PROGRESS_SPEED);
+    } else {
+      clearInterval(this.interval);
+    }
   }
 
   /**
@@ -82,10 +87,8 @@ export default class Categories {
   /**
    * 카테고리 클릭 시 카테고리 이동
    */
-  handleCategoryClick(event) {
+  handleCategoryClick(categoryName) {
     clearInterval(this.interval);
-    const targetCategory = event.target;
-    const categoryName = targetCategory.innerText;
     const targetIndex = Object.keys(categories).findIndex(
       (cate) => cate === categoryName
     );

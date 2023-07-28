@@ -1,44 +1,44 @@
-import { store } from "../../../core/store.js";
+import store from "../../../core/Store.js";
 import Logo from "../../common/Logo.js";
-import SubButton from "../SubButton.js";
-import UnsubButton from "../UnsubButton.js";
+import SubButton from "../Buttons/SubButton.js";
+import UnsubButton from "../Buttons/UnsubButton.js";
 
 export default class AllNewsList {
   constructor(name = -1) {
-    this.$component = document.createElement("li");
+    this.$wrapper = document.createElement("li");
 
     if (name > 0) {
       this.render(name);
 
-      this.$component.addEventListener("mouseenter", (e) =>
-        this.showSubButton(e, name)
+      this.$wrapper.addEventListener("mouseenter", () =>
+        this.showSubButton(name)
       );
-      this.$component.addEventListener("mouseleave", (e) =>
-        this.hideSubButton(e, name)
+      this.$wrapper.addEventListener("mouseleave", () =>
+        this.hideSubButton(name)
       );
     }
-
-    return this.$component;
   }
 
   render(name) {
-    this.$component.appendChild(this.createLogoImage(name));
+    this.$wrapper.appendChild(this.createLogoImage(name));
   }
 
-  showSubButton(event, name) {
-    const li = event.target;
-    li.replaceChildren();
-    if (store.press.includes(name)) {
-      li.appendChild(new UnsubButton(name, "해지하기"));
+  /** 구독 및 해지버튼 생성 */
+  showSubButton(name) {
+    this.$wrapper.replaceChildren();
+    this.$wrapper.classList.add("list-mouseover");
+    if (store.getState().includes(name)) {
+      this.$wrapper.appendChild(new UnsubButton(name, "해지하기"));
     } else {
-      li.appendChild(new SubButton(name));
+      this.$wrapper.appendChild(new SubButton(name));
     }
   }
 
-  hideSubButton(event, name) {
-    const li = event.target;
-    li.replaceChildren();
-    li.appendChild(this.createLogoImage(name));
+  /** 구독 및 해지버튼 제거 */
+  hideSubButton(name) {
+    this.$wrapper.replaceChildren();
+    this.$wrapper.classList.remove("list-mouseover");
+    this.$wrapper.appendChild(this.createLogoImage(name));
   }
 
   /** 로고 이미지 요소 생성 */

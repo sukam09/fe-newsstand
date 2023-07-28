@@ -1,7 +1,7 @@
-import { categoriesObj, pressObj } from "../../../constants/index.js";
-import ArrowButton from "../ArrowButton.js";
+import { subCategoriesObj, subPressObj } from "../../../../constants/index.js";
+import ArrowButton from "../../Buttons/ArrowButton.js";
 
-export default class ListView {
+export default class SubListView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "list-wrapper";
@@ -14,22 +14,22 @@ export default class ListView {
   render() {
     const $container = document.createElement("div");
     $container.classList.add("list-container");
-    $container.appendChild(categoriesObj.$wrapper);
-    $container.appendChild(pressObj.$wrapper);
+    $container.appendChild(subCategoriesObj.$wrapper);
+    $container.appendChild(subPressObj.$wrapper);
 
     this.$wrapper.appendChild(
       new ArrowButton({
         name: "LeftButton",
-        isVisible: this.page !== 0,
-        action: this.goPreviousNews.bind(pressObj),
+        isVisible: true,
+        action: this.goPreviousNews.bind(subPressObj),
       })
     );
     this.$wrapper.appendChild($container);
     this.$wrapper.appendChild(
       new ArrowButton({
         name: "rightButton",
-        isVisible: this.page !== 0,
-        action: this.goNextNews.bind(pressObj),
+        isVisible: true,
+        action: this.goNextNews.bind(subPressObj),
       })
     );
   }

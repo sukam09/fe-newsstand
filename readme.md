@@ -1,47 +1,39 @@
-# 📌 TODO
+# 네이버 뉴스스탠드
 
-목표 : 하나의 index.html파일에 js DOM API를 이용하여 news stand를 완성한다.
+> 개발 기간: 23.07.05 ~ 23.07.28
+> 개발 인원: 1주차 2명 (페어 프로그래밍), 2~4주차 1명
 
-## 2주차 설계
+## 📌 프로젝트 소개
 
-- 롤링 (2p)
+네이버 뉴스스탠드를 구현하는 과정을 통해 **바닐라 자바스크립트**의 기본과 심화 과정을 배운다.
 
-  - JS
+##### 기능 요구 사항
 
-    - 타이머 기능 구현 (5초)
-    - 시간 차 기능 구현
+- 롤링 애니메이션 구현
+- 프로그래스바 구현
+- 스토어 및 옵저버 패턴 구현
+- 구독 및 해지 구현
 
-  - CSS
-  - 애니메이션 구현
-    - `.auto-rolling-news` : css 추가
-  - hover 시 멈춤, 밑줄 표시
-    - 리스너 `hover` 시 클래스 추가
-      - `.hover-latestNews`: 밑줄, 롤링 제거
+## ⚒ Stacks
+
+#### Enviroment
+
+<img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+#### Development
+
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black">
 
 <br />
 
-- 리스트보기 (5p)
+## 사용한 Javascript 기술
 
-  - 아이콘 클릭 시 컴포넌트 변경
-  - 구조 설계
-
-    - AllCategories
-    - Category
-
-      - 인자: 언론사 개수, 현재 순서
-      - 타이머 설계 (20초) 다음으로 넘어감
-      - 애니메이션: 프로그레스바
-
-    - NewsDetail
-      - 구조 설계
-        - 인자: 언론사 네임 (이미지 출력), 편집 날짜, 메인 뉴스, 뉴스 리스트
-      - 새로고침 시 랜덤 출력
-      - 버튼 기능 구현
-
-추가 구현
-
-1. 폰트 적용
-2. css 모듈화
+- ES Modules
+- Javascript classes
+- data fetching
+- async, await
+- setInterval, setTimeout
+- 고차함수
 
 ## 📌 규칙
 

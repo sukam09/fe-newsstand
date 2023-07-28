@@ -1,14 +1,11 @@
-import { allNewsObj } from "../../constants/index.js";
-import { store } from "../../core/store.js";
+import { GRIDVIEW_ICON, LISTVIEW_ICON } from "../../constants/index.js";
+import store from "../../core/Store.js";
 import Icon from "../common/Icon.js";
 
 export default class AllNewsNavigation {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "all-news-header";
-
-    this.GRIDVIEW_ICON = "grid-view";
-    this.LISTVIEW_ICON = "list-view";
 
     this.$wrapper.appendChild(this.addTitleNavigator());
     this.$wrapper.appendChild(this.addIconNavigator());
@@ -28,9 +25,21 @@ export default class AllNewsNavigation {
     $subscibedPress.innerText = "내가 구독한 언론사";
     $allPress.classList.add("selected-type");
 
-    $allPress.addEventListener("click", (e) => this.handleAllPressClick(e));
-    $subscibedPress.addEventListener("click", (e) =>
-      this.handleSubPressClick(e)
+    $allPress.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: true,
+          isShowGrid: store.showState.isShowGrid,
+        }) // 전체 언론사 클릭
+    );
+    $subscibedPress.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: false,
+          isShowGrid: store.showState.isShowGrid,
+        }) // 구독한 언론사 클릭
     );
 
     $titleNavigation.appendChild($allPress);
@@ -44,66 +53,32 @@ export default class AllNewsNavigation {
     const $iconNavigation = document.createElement("div");
     $iconNavigation.className = "view-type-icon";
 
-    const $listViewIcon = new Icon({ name: this.LISTVIEW_ICON });
-    const $gridViewIcon = new Icon({ name: `${this.GRIDVIEW_ICON}-selected` });
+    const $listViewIcon = new Icon({ name: LISTVIEW_ICON });
+    const $gridViewIcon = new Icon({ name: `${GRIDVIEW_ICON}-selected` });
 
     $listViewIcon.classList.add("img-icon");
     $gridViewIcon.classList.add("img-icon");
 
-    $listViewIcon.addEventListener("click", (e) => this.handleListIconClick(e));
-    $gridViewIcon.addEventListener("click", (e) => this.handleGridIconClick(e));
+    $listViewIcon.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: store.showState.isShowAllPress,
+          isShowGrid: false,
+        }) // 리스트뷰 아이콘 클릭
+    );
+    $gridViewIcon.addEventListener(
+      "click",
+      () =>
+        store.setShowState({
+          isShowAllPress: store.showState.isShowAllPress,
+          isShowGrid: true,
+        }) // 그리드뷰 아이콘 클릭
+    );
 
     $iconNavigation.appendChild($listViewIcon);
     $iconNavigation.appendChild($gridViewIcon);
 
     return $iconNavigation;
-  }
-
-  /* 전체 언론사 버튼 클릭 시 */
-  handleAllPressClick({ target: span }) {
-    span.nextSibling.className = "";
-    span.className = "selected-type";
-    store.isShowAllPress = true;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /* 구독한 언론사 클릭 시 */
-  handleSubPressClick({ target: span }) {
-    span.previousSibling.className = "";
-    span.className = "selected-type";
-    store.isShowAllPress = false;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /** 리스트 아이콘 클릭 시 */
-  handleListIconClick({ target: $listIconImg }) {
-    const $gridIconImg = $listIconImg.nextSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}-selected.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}.svg`;
-    store.isShowGrid = false;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  /** 그리드 아이콘 클릭 시 */
-  handleGridIconClick({ target: $gridIconImg }) {
-    const $listIconImg = $gridIconImg.previousSibling;
-    $listIconImg.src = `src/assets/icons/${this.LISTVIEW_ICON}.svg`;
-    $gridIconImg.src = `src/assets/icons/${this.GRIDVIEW_ICON}-selected.svg`;
-    store.isShowGrid = true;
-
-    this.callRender.call(allNewsObj);
-  }
-
-  callRender() {
-    store.isShowGrid
-      ? store.isShowAllPress
-        ? this.renderAllGridView()
-        : this.renderSubGridView()
-      : store.isShowAllPress
-      ? this.renderAllListView()
-      : this.renderSubListView();
   }
 }

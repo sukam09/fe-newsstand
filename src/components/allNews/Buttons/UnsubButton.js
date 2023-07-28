@@ -1,9 +1,9 @@
-import pressName from "../../constants/pressName.js";
-import { store } from "../../core/store.js";
-import Icon from "../common/Icon.js";
+import pressName from "../../../constants/pressName.js";
+import store from "../../../core/Store.js";
+import Icon from "../../common/Icon.js";
 
 export default class UnsubButton {
-  constructor(name, text = "") {
+  constructor(pressId, text = "") {
     this.$subButton = document.createElement("button");
     this.$plusIcon = new Icon({ name: "x" });
     this.$text = document.createElement("span");
@@ -14,21 +14,21 @@ export default class UnsubButton {
     if (text !== "") this.$subButton.appendChild(this.$text);
 
     this.$subButton.addEventListener("click", () =>
-      this.handleClickUnsubBtn(name)
+      this.handleClickUnsubBtn(pressId)
     );
 
     return this.$subButton;
   }
 
-  handleClickUnsubBtn(name) {
+  handleClickUnsubBtn(pressId) {
     const $gridWrapper = document.querySelector(".news-list-wrapper");
     const $listWrapper = document.querySelector(".list-container");
 
-    if ($gridWrapper) $gridWrapper.appendChild(this.createUnsubModal(name));
-    if ($listWrapper) $listWrapper.appendChild(this.createUnsubModal(name));
+    if ($gridWrapper) $gridWrapper.appendChild(this.createUnsubModal(pressId));
+    if ($listWrapper) $listWrapper.appendChild(this.createUnsubModal(pressId));
   }
 
-  createUnsubModal(name) {
+  createUnsubModal(pressId) {
     const $wrapper = document.createElement("div");
     const $infoText = document.createElement("div");
     const $buttonsDiv = document.createElement("div");
@@ -36,7 +36,7 @@ export default class UnsubButton {
     $infoText.className = "unsub-modal__text";
     $buttonsDiv.className = "unsub-modal__buttons";
     $infoText.innerHTML = `<span>${
-      pressName[name - 1][name]
+      pressName[pressId - 1][pressId]
     }</span>을(를) <br> 구독해지하시겠습니까?`;
 
     const $yesButton = document.createElement("button");
@@ -44,7 +44,9 @@ export default class UnsubButton {
     $yesButton.innerText = "예, 해지합니다";
     $noButton.innerText = "아니오";
 
-    $yesButton.addEventListener("click", () => this.handleClickYesButton(name));
+    $yesButton.addEventListener("click", () =>
+      this.handleClickYesButton(pressId)
+    );
     $noButton.addEventListener("click", this.removeModal);
 
     $buttonsDiv.append($yesButton, $noButton);
@@ -53,9 +55,12 @@ export default class UnsubButton {
     return $wrapper;
   }
 
-  handleClickYesButton(name) {
-    store.press = store.press.filter((v) => v !== name);
-    this.removeModal();
+  handleClickYesButton(pressId) {
+    store.removeState(pressId);
+
+    if (!store.showState.isShowGrid || store.showState.isShowAllPress) {
+      this.removeModal();
+    }
   }
 
   removeModal() {

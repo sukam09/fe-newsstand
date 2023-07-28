@@ -1,8 +1,10 @@
 import AllNewsNavigation from "./AllNewsNavigation.js";
 import SubGridView from "./GridView/SubGridView.js";
 import GridView from "./GridView/index.js";
-import SubListView from "./ListView/SubListView.js";
-import ListView from "./ListView/index.js";
+import SubListView from "./ListView/SubListView/index.js";
+import ListView from "./ListView/AllListView/index.js";
+import store from "../../core/Store.js";
+import NonSubPage from "./NonSubPage.js";
 
 export default class AllNews {
   constructor() {
@@ -32,15 +34,37 @@ export default class AllNews {
   renderSubGridView() {
     this.$wrapper.replaceChildren();
 
+    const subGridViewObj = new SubGridView();
+    store.subscribe(() => subGridViewObj.render());
     this.$wrapper.appendChild(this.allNewsNavigationObj);
-    this.$wrapper.appendChild(new SubGridView());
+    this.$wrapper.appendChild(subGridViewObj.$wrapper);
   }
 
-  /** 구독한 언로사 리스트뷰 렌더링 */
+  /** 구독한 언론사 리스트뷰 렌더링 */
   renderSubListView() {
     this.$wrapper.replaceChildren();
 
     this.$wrapper.appendChild(this.allNewsNavigationObj);
     this.$wrapper.appendChild(new SubListView());
+  }
+
+  /** 구독한 언론사가 없을 때 뷰 렌더링 */
+  renderNonSubView() {
+    this.$wrapper.replaceChildren();
+
+    this.$wrapper.appendChild(this.allNewsNavigationObj);
+    this.$wrapper.appendChild(new NonSubPage());
+  }
+
+  callRender() {
+    store.showState.isShowAllPress
+      ? store.showState.isShowGrid
+        ? this.renderAllGridView()
+        : this.renderAllListView()
+      : store.getStateSize() === 0
+      ? this.renderNonSubView()
+      : store.showState.isShowGrid
+      ? this.renderSubGridView()
+      : this.renderSubListView();
   }
 }

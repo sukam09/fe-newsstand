@@ -21,9 +21,15 @@
   border: 1px solid var(--gray-scale-100);
   border-bottom: none;
   background-color: var(--gray-scale-50);
+  overflow-x: scroll;
+}
+
+.categories-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .categories-list {
+  white-space: nowrap;
   display: flex;
   align-items: center;
   height: 40px;
@@ -33,10 +39,19 @@
   cursor: pointer;
 }
 
+.categories-list img {
+  display: none;
+}
+
 .category-current {
   width: 166px;
   background-color: var(--blue-100);
   position: relative;
+}
+
+.category-current img {
+  z-index: 999;
+  display: block;
 }
 
 .category-current::after {
@@ -45,7 +60,7 @@
   height: 40px;
   left: 0;
   background-color: var(--blue-500);
-  animation: progressBar 20s linear infinite;
+  animation: progressBar 20s linear;
 }
 
 @keyframes progressBar {

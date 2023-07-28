@@ -1,26 +1,30 @@
 import AllNewsList from "./AllnewsList.js";
-import { store } from "../../../core/store.js";
-import ArrowButton from "../ArrowButton.js";
+import store from "../../../core/Store.js";
+import ArrowButton from "../Buttons/ArrowButton.js";
+import { GRID_COUNT } from "../../../constants/index.js";
 
 export default class SubGridView {
   constructor() {
     this.$wrapper = document.createElement("div");
     this.$wrapper.className = "grid-wrapper";
-    this.$subPressOrder = store.press;
     this.page = 0;
-    this.maxPage = Math.floor(this.$subPressOrder.length / 25);
-    this.render();
+    this.maxPage = Math.floor(store.getStateSize() / (GRID_COUNT + 1));
 
-    return this.$wrapper;
+    this.render();
   }
 
   addGrid() {
+    const subPressOrder = store.getState();
     const $newsListGrid = document.createElement("div");
     $newsListGrid.className = "news-list-wrapper";
     const $newsLists = document.createElement("ul");
     $newsLists.className = "news-list";
-    for (let i = 24 * this.page; i < 24 * (this.page + 1); i++) {
-      $newsLists.appendChild(new AllNewsList(this.$subPressOrder[i]));
+    for (
+      let i = GRID_COUNT * this.page;
+      i < GRID_COUNT * (this.page + 1);
+      i++
+    ) {
+      $newsLists.appendChild(new AllNewsList(subPressOrder[i]).$wrapper);
     }
     $newsListGrid.appendChild($newsLists);
 
