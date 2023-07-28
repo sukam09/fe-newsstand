@@ -17,22 +17,28 @@ export function createCategory(categoryList) {
 
   return `
     <div class="category">
-      <ul class="category_list flex_row">
+      <ul class="category_list draggable flex_row">
         ${categoryItems}
       </ul>
     </div>
     `;
 }
 
-function createCategoryItem(categoryName, categoryId, len) {
+export function createCategoryItem(categoryName, categoryId, len) {
   const listPage = getState(listPageState);
 
   return `
     <li class="category_item" id="category_${categoryId}">
       <span>${categoryName}</span>
       <span class="page_count">
+      ${
+        len === -1
+          ? ">"
+          : `
         <span class="now_page">${listPage + 1}</span>
-        <span class="all_page">/ ${len}</span>
+        <span class="all_page">/ ${len}</span>      `
+      }
+          
       </span>
       ${createProgressBar()}
     </li>

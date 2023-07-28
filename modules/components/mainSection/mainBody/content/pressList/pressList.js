@@ -23,10 +23,11 @@ export function createPressList(categoryId, page) {
   `;
 }
 
-function createNewsHeader(press) {
+export function createNewsHeader(press) {
   const newsHeader = `
     <div class="news_header flex_row">
-      <img src=${press.lightSrc} />
+      <img class="light_press_logo" src=${press.lightSrc} />
+      <img class="dark_press_logo" src=${press.darkSrc} />
       <span>${press.data.editTime} 편집</span>
       <button  key="sub_${press.id}" class="list_sub_button"> + 구독하기 </button>
       <button key="unsub_${press.id}" class="list_unsub_button"> x </button>
@@ -36,7 +37,7 @@ function createNewsHeader(press) {
   return newsHeader;
 }
 
-function createNewsBody(press) {
+export function createNewsBody(press) {
   const newsBody = `
     <div class="flex_row">
       ${createMainNews(press)}

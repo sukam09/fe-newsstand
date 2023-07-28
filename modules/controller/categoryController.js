@@ -2,22 +2,28 @@ import { getState, setState } from "../store/observer.js";
 import {
   MAX_CATEGORY_ID,
   MAX_LIST_PAGE,
+  MODE_ALL,
   categoryIdState,
   listPageState,
+  myListPageState,
+  pageModeState,
 } from "../store/pageState.js";
 import { qs, qsa } from "../utils.js";
-import {
-  showListPage,
-  updatePageCount,
-} from "./pageController/pageController.js";
+import { updatePageCount } from "./pageController/pageController.js";
 
 export function handleCategoryItemClick({ currentTarget }) {
+  const pageMode = getState(pageModeState);
   const id = currentTarget.id;
-  const [, categoryId] = id.split("_");
   const clicked = currentTarget.classList.contains("category_clicked");
 
-  setState(categoryIdState, parseInt(categoryId));
-  setState(listPageState, 0);
+  if (pageMode === MODE_ALL) {
+    const [, categoryId] = id.split("_");
+    setState(categoryIdState, parseInt(categoryId));
+    setState(listPageState, 0);
+  } else {
+    const [, , pressId] = id.split("_");
+    setState(myListPageState, parseInt(pressId));
+  }
 
   if (!clicked) {
     highlightCategoryItem();
@@ -27,15 +33,23 @@ export function handleCategoryItemClick({ currentTarget }) {
 export function highlightCategoryItem() {
   const categoryId = getState(categoryIdState);
   const $clickedElements = qsa(".category_clicked");
-  const $category = qs(`#category_${parseInt(categoryId)}`);
-  const $progressbar = $category.getElementsByClassName("progressbar")[0];
-
+  const pageMode = getState(pageModeState);
   [...$clickedElements].forEach((elemnet) => {
     elemnet.classList.remove("category_clicked");
   });
-  $category.classList.add("category_clicked");
 
-  startProgressAnimation($progressbar);
+  if (pageMode === MODE_ALL) {
+    const $category = qs(`#category_${parseInt(categoryId)}`);
+    const $progressbar = $category.getElementsByClassName("progressbar")[0];
+    $category.classList.add("category_clicked");
+    startProgressAnimation($progressbar);
+  } else {
+    const myListPage = getState(myListPageState);
+    const $category = qs(`#category_my_${parseInt(myListPage)}`);
+    $category.classList.add("category_clicked");
+    const $progressbar = $category.querySelector(".progressbar");
+    startProgressAnimation($progressbar);
+  }
 }
 
 function startProgressAnimation($progressbar) {
@@ -45,6 +59,7 @@ function startProgressAnimation($progressbar) {
   let start;
   const listPage = getState(listPageState);
   const startPage = listPage;
+  const startMode = getState(pageModeState);
   const categoryId = getState(categoryIdState);
 
   const performAnimation = (timestamp) => {
@@ -66,7 +81,6 @@ function startProgressAnimation($progressbar) {
       } else {
         setState(listPageState, listPage + 1);
       }
-      showListPage(getState(categoryIdState), getState(listPageState));
       updatePageCount();
       highlightCategoryItem();
 
@@ -85,10 +99,47 @@ function startProgressAnimation($progressbar) {
       highlightCategoryItem();
       return;
     }
+
+    if (startMode !== getState(pageModeState)) {
+      cancelAnimationFrame(raf);
+      return;
+    }
     percentage = (elapsed / runningTime) * 100;
     $progressbar.style.width = `${percentage}%`;
     raf = requestAnimationFrame(performAnimation);
   };
 
   raf = requestAnimationFrame(performAnimation);
+}
+
+let isDragging;
+let startX;
+let draggableElement;
+let draggableElementX;
+let categoryContainerX;
+let maxX;
+
+export function handleCategoryMousedown({ currentTarget, clientX }) {
+  const $categoryContainer = currentTarget.parentNode;
+  isDragging = true;
+  draggableElement = currentTarget;
+  categoryContainerX = $categoryContainer.getBoundingClientRect().left;
+  draggableElementX = draggableElement.getBoundingClientRect().left;
+  startX = clientX - draggableElementX;
+  maxX = currentTarget.scrollWidth - $categoryContainer.offsetWidth;
+}
+export function handleCategoryMousemove(e) {
+  if (!isDragging) {
+    return;
+  }
+  const curX = e.clientX - draggableElementX;
+  const moveX = curX - startX;
+  const x = draggableElementX + moveX - categoryContainerX;
+  if (x > 0 || x < -maxX) {
+    return;
+  }
+  draggableElement.style.left = `${x}px`;
+}
+export function handleCategoryMouseup() {
+  isDragging = false;
 }

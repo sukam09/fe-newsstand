@@ -20,7 +20,8 @@
   height: 100%;
   margin: 0;
 }
-.grid_item {
+.grid_item,
+.grid_empty_item {
   position: relative;
   border-right: solid 1px var(--border-border-default);
   border-bottom: solid 1px var(--border-border-default);

@@ -7,30 +7,33 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 100px;
+  width: 320px;
+  height: 140px;
   background-color: var(--surface-surface-default);
   z-index: 999;
-  border: 0.5px solid var(--border-border-default);
+  border: 1px solid var(--border-border-default);
 }
 
 .alert .message {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  border: 0.5px solid var(--border-border-default);
   flex-grow: 2;
 }
 .alert .button_container {
   display: flex;
   width: 100%;
   flex-grow: 1;
+  background-color: var(--border-border-default);
+  gap: 1px;
+  border-top: 1px solid var(--border-border-default);
 }
 .button_container button {
   border: none;
   width: 100%;
   height: 100%;
   background-color: var(--surface-surface-alt);
-  border: 0.5px solid var(--border-border-default);
+  cursor: pointer;
 }

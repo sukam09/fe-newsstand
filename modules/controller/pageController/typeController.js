@@ -3,13 +3,21 @@
  */
 
 import { addObserver, getState, setState } from "../../store/observer.js";
-import { MAX_GRID_PAGE } from "../../store/pageState.js";
+import {
+  MAX_GRID_PAGE,
+  MODE_ALL,
+  MODE_MY,
+  NUM_IN_A_GRID,
+  myGridPageState,
+  pageModeState,
+} from "../../store/pageState.js";
 import {
   GRID,
   LIST,
   gridPageState,
   pageTypeState,
 } from "../../store/pageState.js";
+import { myPressCntState } from "../../store/subState.js";
 import { qs } from "../../utils.js";
 import { controllPage } from "./pageController.js";
 
@@ -35,9 +43,15 @@ export function handleListViewButton(e) {
 export function controllButtonShowing() {
   const $leftButton = qs(".left_button");
   const $rightButton = qs(".right_button");
-  const type = getState(pageTypeState);
+  const pageType = getState(pageTypeState);
+  const pageMode = getState(pageModeState);
 
-  if (type === GRID) {
+  const modeAllGrid = pageType === GRID && pageMode === MODE_ALL;
+  const modeMyGrid = pageType === GRID && pageMode === MODE_MY;
+  const modeAllList = pageType === LIST && pageMode === MODE_ALL;
+  const modeMyList = pageType === LIST && pageMode === MODE_MY;
+
+  if (modeAllGrid) {
     const gridPage = getState(gridPageState);
     if (gridPage >= MAX_GRID_PAGE - 1) {
       $leftButton.style.display = "block";
@@ -49,7 +63,23 @@ export function controllButtonShowing() {
       $leftButton.style.display = "block";
       $rightButton.style.display = "block";
     }
-  } else if (type === LIST) {
+  } else if (modeMyGrid) {
+    const myGridPage = getState(myGridPageState);
+    const maxPage = parseInt(getState(myPressCntState) / NUM_IN_A_GRID) + 1;
+    if (maxPage === 1) {
+      $leftButton.style.display = "none";
+      $rightButton.style.display = "none";
+    } else if (myGridPage >= maxPage - 1) {
+      $leftButton.style.display = "block";
+      $rightButton.style.display = "none";
+    } else if (myGridPage <= 0) {
+      $leftButton.style.display = "none";
+      $rightButton.style.display = "block";
+    } else {
+      $leftButton.style.display = "block";
+      $rightButton.style.display = "block";
+    }
+  } else if (modeAllList || modeMyList) {
     $leftButton.style.display = "block";
     $rightButton.style.display = "block";
   }
