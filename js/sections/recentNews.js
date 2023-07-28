@@ -1,4 +1,4 @@
-import { autoRollingAnimation } from "../utils/autoRolling.js";
+import { autoRollingAnimation } from "../utils/commonUtils/autoRolling.js";
 import { RECENT_NEWS_CNT } from "../constants/constants.js";
 import { getData } from "../core/api.js";
 function RecentNews() {

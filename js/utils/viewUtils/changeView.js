@@ -1,12 +1,12 @@
-import { store } from "../core/store.js";
-import { getTabMode, getView, getCurrentPress } from "../core/getter.js";
+import { store } from "../../core/store.js";
+import { getTabMode, getView, getCurrentPress } from "../../core/getter.js";
 import {
   CATEGORY,
   ICON_IMG_PATH,
   FIRST_PAGE_NUM,
-} from "../constants/constants.js";
-import { showGridView } from "../utils/makeGridView.js";
-import { showListView } from "../utils/makeListView.js";
+} from "../../constants/constants.js";
+import { showGridView } from "../gridUtils/makeGridView.js";
+import { showListView } from "../listUtils/makeListView.js";
 export function updateTabSelection(selectedTab) {
   const allTab = document.getElementById("all");
   const subscribeTab = document.getElementById("subscribe");
