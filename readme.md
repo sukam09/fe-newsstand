@@ -278,3 +278,120 @@ function moveContent(position) {
 (지금까지 최소 10개나 된다) 그리고 지금 dispatch 파일에 get하는 함수들도 넣어놨는데 이 부분은 내일 옮겨봐야겠다.
 
 리덕스 개념 도입하는거는 위키에 정리해놨다!
+
+### 고민했던 내용
+
+지난번 스쿼드 세션에서 선아님이 알려주신 블로그를 참고해서 리덕스의 개념을 사용한 store를 사용했다. 이때, 다양한 변수들을 store로 관리하게되었다. 그러다보니 각각의 변수들에 맞는 set과 get 메소드를 만들면서 상당히 방대한 코드가 되었다. 물론, 실제로 사용할때는 코드가 줄어드는 효과도 보기도 했다.
+<img width="955" alt="스크린샷 2023-07-24 오후 6 18 37" src="https://github.com/softeerbootcamp-2nd/fe-newsstand/assets/96288558/9fb2de4f-d186-46a3-853d-b4ad97ae790d">
+위 사진에서 보이는 함수들이 총 18개나 있다...
+
+두번째로 어려웠던 점은, 옵저버 패턴을 적용할때 발생했다. 내가 간단하게 이해한 옵저버 패턴은 상태가 변경됬을때 구독중인 함수를 실행시키는것으로 이해했다. 그래서 기존에 그리드 뷰와 리스트 뷰에서 사용중이던 paint 함수를 옵저버에 구독시켰다. 그렇지만 중요한 문제가 발생했는데 'call stack'이 담을 수 없을만큼 함수가 쌓이게 되었다. `Error: maximum call stack size exceeded`
+paint함수 내에서 set함수를 호출하기때문에 paint -> set -> paint -> set -> paint .... 이 패턴을 계속 반복하는 것이다. 그래서 paint 함수에서 상태 변경을 해주는 상황들을 제거해줘야했다. 이 부분을 나눌때 어려웠고 코드가 방대해지면서 내 코드를 살짝 이해하기 어려웠었다.
+
+```javascript
+// 그리드 뷰에서의 옵저버에 넣어주는 함수
+function gridObserved() {
+  const subList = getSubscrbeList() || [];
+
+  getUserView() === VIEW.GRID &&
+    getNavTabView() === VIEW.MY_SUB &&
+    paintNews(subList);
+
+  getUserView() === VIEW.GRID &&
+    getNavTabView() === VIEW.ALL_SUB &&
+    paintNews();
+}
+```
+
+```javascript
+// 옵저버 패턴 적용 전
+mySubscribe.addEventListener("click", () => {
+  if (View.getUserView() === "list") {
+    View.setNavTabView(VIEW.MY_SUB, true);
+    paintNewsCategory();
+  }
+});
+
+// 옵저버 패턴 적용 후
+mySubscribe.addEventListener("click", () => {
+  if (getUserView() === VIEW.LIST) {
+    setNavTabViewToMy();
+  }
+});
+```
+
+**7월 25일**
+
+### 내가 구독한 언론사와 기사내용이 달라서 어떻게 해결할지 고민했습니다
+
+```javascript
+// 기존 코드
+export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
+  const idx = getCategoryIdx() % CATEROY_NUMBER;
+  const data = categoryDataList[idx];
+}
+
+// 변경 코드
+export function makeNewsList(page, CATEROY_NUMBER, categoryDataList) {
+  const idx =
+    getNavTabView() === VIEW.MY_SUB
+      ? getSubscrbeList()[getCategoryIdx() % CATEROY_NUMBER][2]
+      : getCategoryIdx() % CATEROY_NUMBER;
+
+  const data =
+    getNavTabView() === VIEW.MY_SUB
+      ? [newsData[idx - 1]]
+      : categoryDataList[idx];
+}
+```
+
+### 문제점
+
+- 리스트 페이지에서 사용자가 구독한 언론사와 기사 내용이 일치하지 않는 문제점 발생.
+
+### 해결
+
+- 사용자가 '내가 구독한 언론사' 탭을 보고있는 경우 미리 store에 저장되어있는 값을이용해서 newsData에 접근해서 넣어줬습니다
+
+### 아쉬운 점
+
+- 아직 해결해야할 오류가 많았는데 해당 오류를 발견하고 빠르게 해결할 수 있다는 생각이 들어서 수정하였는데 급하게하다보니 코드가 그렇게 깔끔하지 못한 것 같다. 그래서 내일은 이 부분을 개선하고 예외사항들을 처리할 생각이다.
+- 그리고 전체 언론사 정보를 한번 더 fetch하기때문에 해당 데이터를 store에 저장해서 전역적으로 접근하는 방법을 고려해야할 것 같다.
+
+**7월 26일**
+
+### 고민한 점
+
+언론사를 짧은간격으로 여러분 구독할때 n초뒤에 setTimeout 함수가 동시에 여러번 호출되면서
+그만큼 랜더링이 반복해서 일어나는 현상이 발생함.
+
+### 해결방법
+
+새로운 setTimeout이 호출될때 기존에 호출된 setTimeout이 있다면 clear하고 새로운 setTimeout으로 바꿔서 해결했습니다.
+
+### 해결 코드
+
+```javascript
+let snackBarTime;
+
+export function snackBarAction(msg) {
+  if (snackBarTime) {
+    clearTimeout(snackBarTime);
+  }
+  const snackbar = document.querySelector(".modal__snack-bar");
+  snackbar.classList.remove("modal__none");
+  snackbar.textContent = msg;
+  snackBarTime = setTimeout(snackBarCallBack(snackbar), 2000);
+}
+```
+
+**7월 27일**
+
+### 고민한 점
+
+DOM을 조작하기위해서 querySelector를 활용해서 돔에 접근하는 경우가 많았다.
+그런데 실제로 DOM Tree를 어떻게 탐색하는 걸까?
+
+예전에 크롱이 말한 커스텀 querySelector를 구현하고자 오늘은 커스텀 쿼리를 구현하기로했다.
+
+https://github.com/devMingu/fe-newsstand/issues/17 [이슈에 정리해놨다]
